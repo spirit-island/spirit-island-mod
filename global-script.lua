@@ -2583,6 +2583,7 @@ function place(objName, placePos, droppingPlayerColor)
     end
 end
 
+-- one-indexed table
 Pieces = {
     "Explorer",
     "Town",

@@ -289,6 +289,17 @@ function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
 
+    clearHotkeys()
+    for _, v in ipairs(Minatures) do
+        local v = v
+        addHotkey("Add " .. v, function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+            if not gameStarted or gamePaused then
+                return
+            end
+            place(v,cursorLocation + Vector(0,2,0),droppingPlayerColor)
+        end)
+    end
+
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
         if getObjectFromGUID(v) ~= nil then
             getObjectFromGUID(v).setLock(true)
@@ -3880,28 +3891,22 @@ function place(objName, placePos, droppingPlayerColor)
     end
 end
 
+-- one-indexed table
+Minatures = {
+    "Explorer",
+    "Town",
+    "City",
+    "Blight",
+    "Badlands",
+    "Strife",
+    "Beasts",
+    "Wilds",
+    "Disease",
+    "Dahan",
+}
+
 function DropMiniature(index, cursorLocation, droppingPlayerColor)
-    if index == 1 then
-        place("Explorer",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 2 then
-        place("Town",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 3 then
-        place("City",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 4 then
-        place("Blight",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 10 then
-        place("Dahan",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 6 then
-        place("Strife",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 7 then
-        place("Beasts",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 8 then
-        place("Wilds",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 9 then
-        place("Disease",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 5 then
-        place("Badlands",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    end
+    place(Minatures[index], cursorLocation + Vector(0,2,0), droppingPlayerColor)
 end
 
 zoneDestroyFlag = false

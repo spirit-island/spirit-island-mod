@@ -221,6 +221,7 @@ function onSave()
         panelTimePassesVisibility = UI.getAttribute("panelTimePasses","visibility"),
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
         panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
+        panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -339,6 +340,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelTimePasses","visibility",loaded_data.panelTimePassesVisibility)
             UI.setAttribute("panelReady","visibility",loaded_data.panelReadyVisibility)
             UI.setAttribute("panelFear","visibility",loaded_data.panelFearVisibility)
+            UI.setAttribute("panelBlight","visibility",loaded_data.panelBlightVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
             SetupPowerDecks()
@@ -2981,6 +2983,10 @@ end
 function toggleFearUI(player)
     colorEnabled = getCurrentState("panelFear", player.color)
     toggleUI("panelFear", player.color, colorEnabled)
+end
+function toggleBlightUI(player)
+    colorEnabled = getCurrentState("panelBlight", player.color)
+    toggleUI("panelBlight", player.color, colorEnabled)
 end
 function getCurrentState(xmlID, player_color)
     local colorEnabled = false

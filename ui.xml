@@ -200,6 +200,16 @@
         </VerticalLayout>
     </HorizontalLayout>
 </Panel>
+<Panel id="panelBlight" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="80" offsetXY="315 -90" rectAlignment="UpperLeft">
+    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+        <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+            <Text fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Blight" color="black" />
+        </Panel>
+        <Panel preferredWidth="80" preferredHeight="80" color="white">
+            <Text id="panelBlightPool" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="" fontSize="40" color="black" />
+        </Panel>
+    </VerticalLayout>
+</Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">
         <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">▼</Button>
@@ -212,7 +222,7 @@
     <Text id="panelReadyYes" visibility="Invisible" fontsize="36" color="#00FF00">Ready</Text>
     <Text id="panelReadyNo" visibility="Invisible" fontsize="36" color="#FF0000">Not Ready</Text>
 </Panel>
-<Panel id="panelUI" visibility="Invisible" width="160" height="120" rectAlignment="UpperRight" offsetXY="-240 0">
+<Panel id="panelUI" visibility="Invisible" width="160" height="140" rectAlignment="UpperRight" offsetXY="-240 0">
     <VerticalLayout>
         <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Toggle Invader UI</Button>
         <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Toggle Adversary UI</Button>
@@ -220,5 +230,6 @@
         <Button onClick="toggleTimePassesUI" textAlignment="MiddleCenter">Toggle Time Passes UI</Button>
         <Button onClick="toggleReadyUI" textAlignment="MiddleCenter">Toggle Ready UI</Button>
         <Button onClick="toggleFearUI" textAlignment="MiddleCenter">Toggle Fear UI</Button>
+        <Button onClick="toggleBlightUI" textAlignment="MiddleCenter">Toggle Blight UI</Button>
     </VerticalLayout>
 </Panel>

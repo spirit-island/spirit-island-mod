@@ -25,11 +25,13 @@ function onLoad(saved_data)
         font_size      = 500,
         font_color     = {0,0,0},
     })
+    UI.setAttribute("panelBlightPool", "text", #self.getObjects())
 end
 function upd()
     self.editButton({
         index = 0,
         label = #self.getObjects(),
     })
+    UI.setAttribute("panelBlightPool", "text", #self.getObjects())
 end
 function nullFunc() return end

@@ -3234,15 +3234,9 @@ function timePassesCo()
     for _,guid in pairs (elementScanZones) do
         local zone = getObjectFromGUID(guid)
         for _, obj in ipairs(zone.getObjects()) do
-            if obj.getName() == "Any" then
-                if obj.getStateId() ~= 9 then obj.setState(9) end
-                if obj.getLock() == false then obj.destruct() end
-            elseif obj.tag == "Tile" and obj.getVar("elements") ~= nil then
-                if obj.getLock() == false then obj.destruct() end
-            end
+            handlePiece(obj, 1)
         end
     end
-
     broadcastToAll("Time Passes...", Color.SoftBlue)
     local quote = quotes[math.random(#quotes)]
     wt(2)
@@ -3254,19 +3248,57 @@ function timePassesCo()
     return 1
 end
 function handlePiece(object, depth)
-    if string.sub(object.getName(),1,4) == "City" then
+    local isoOffset = Vector(-11.2, 2, -1)
+    local defOffset = Vector(-9.5, 2, -1)
+    local name = object.getName()
+    local color = "Red"
+    local count = 3
+    local spos = getObjectFromGUID(elementScanZones[color]).getPosition()
+    if string.sub(name,1,4) == "City" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),1,4) == "Town" then
+    elseif string.sub(name,1,4) == "Town" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),1,8) == "Explorer" then
+    elseif string.sub(name,1,8) == "Explorer" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),1,5) == "Dahan" then
+    elseif string.sub(name,1,5) == "Dahan" then
         object = resetPiece(object, Vector(0,0,0), depth)
-    elseif string.sub(object.getName(),1,6) == "Blight" then
+    elseif string.sub(name,1,6) == "Blight" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),-7) == "Defence" then
-        object.destruct()
-        object = nil
+    elseif string.sub(name,-7) == "Defence" then
+        if object.getLock() == false then
+            object.destruct()
+            object = nil
+        end
+    elseif string.sub(name,-23) == "Isolate Reminder Tokens" then
+        if object.getLock() == false then
+             count, _ = string.find(name, "'")
+             count = count - 1
+             color = string.sub(name,1,count)
+             spos = getObjectFromGUID(elementScanZones[color]).getPosition()
+             object.setPositionSmooth(Vector(spos.x,0,spos.z) + isoOffset)
+        end
+    elseif string.sub(name,-23) == "Defence Reminder Tokens" then
+        if object.getLock() == false then
+             count, _ = string.find(name, "'")
+             count = count - 1
+             color = string.sub(name,1,count)
+             spos = getObjectFromGUID(elementScanZones[color]).getPosition()
+             object.setPositionSmooth(Vector(spos.x,0,spos.z) + defOffset)
+        end
+    elseif name == "Any" then
+        if object.getLock() == false then
+             object.destruct()
+             object = nil
+        else  -- if it is locked, set it back to neutral instead of destroying it
+            if object.getStateId() ~= 9 then object.setState(9) end
+        end
+    elseif object.tag == "Tile" then
+        if object.getVar("elements") ~= nil then
+            if object.getLock() == false then
+                 object.destruct()
+                 object = nil
+            end
+        end
     end
     return object
 end

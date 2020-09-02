@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -103.33,
+    "posY": 1.18989265,
+    "posZ": 6.22,
+    "rotX": 0.00446145656,
+    "rotY": 179.9974,
+    "rotZ": 1.14726254e-06,
+    "scaleX": 0.3651334,
+    "scaleY": 1.0,
+    "scaleZ": 0.3651334
+  },
+  "Nickname": "Beasts",
+  "Description": "Harms Invaders and generates Fear as specified by Powers and Event Cards",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110812/04019E4C271180904A4648C87F9BFA23364FB9F6/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.2,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

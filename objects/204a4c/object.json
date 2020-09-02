@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -4.18,
+    "posY": 0.8835037,
+    "posZ": 14.86,
+    "rotX": 2.49439025e-10,
+    "rotY": 180.000015,
+    "rotZ": -0.0001443235,
+    "scaleX": 2.733795,
+    "scaleY": 1.0,
+    "scaleZ": 2.733795
+  },
+  "Nickname": "Habsburg",
+  "Description": "Jagged Earth Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.709803939,
+    "g": 0.709803939,
+    "b": 0.709803939
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 46300,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "463": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422174807/1684C78F9B72A34A196E64FD07B03192858FEDFC/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422175195/5C4758B64192815AF7665BE04A6E75313780A594/",
+      "NumWidth": 2,
+      "NumHeight": 2,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "{\"count\":0}",
+  "XmlUI": ""
+}

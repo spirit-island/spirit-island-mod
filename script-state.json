@@ -1,0 +1,21 @@
+{
+  "adversaryLevel": 0,
+  "adversaryLevel2": 0,
+  "blightedIsland": false,
+  "BnCAdded": false,
+  "cityBag": "a245f8",
+  "difficultyString": "",
+  "explorerBag": "613ea4",
+  "fearPool": 0,
+  "gameStarted": false,
+  "generatedFear": 0,
+  "JEAdded": false,
+  "panelAdversaryVisibility": "Invisible",
+  "panelInvaderVisibility": "Invisible",
+  "panelReadyVisibility": "Invisible",
+  "panelTimePassesVisibility": "Invisible",
+  "panelTurnOrderVisibility": "Invisible",
+  "returnBlightBag": "af50b8",
+  "selectedColors": [],
+  "townBag": "4d3c15"
+}

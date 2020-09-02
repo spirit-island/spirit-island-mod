@@ -1,0 +1,49 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": -43.3580742,
+    "posY": 1.15,
+    "posZ": 5.28322458,
+    "rotX": -2.88715637e-06,
+    "rotY": 180.0,
+    "rotZ": -0.000144464677,
+    "scaleX": 0.6749999,
+    "scaleY": 0.6749999,
+    "scaleZ": 0.6749999
+  },
+  "Nickname": "Blight",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0,
+    "g": 0.0,
+    "b": 0.0
+  },
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Number": 0,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "Convex": false,
+    "MaterialIndex": 0,
+    "TypeIndex": 6,
+    "CastShadows": true
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

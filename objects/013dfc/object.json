@@ -1,0 +1,120 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -101.35,
+    "posY": 1.08882511,
+    "posZ": -7.54180241,
+    "rotX": 0.00445041247,
+    "rotY": 179.970856,
+    "rotZ": 179.999969,
+    "scaleX": 5.48526049,
+    "scaleY": 1.0,
+    "scaleZ": 5.44488239
+  },
+  "Nickname": "Fractured Days Split The Sky",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003004,
+    "g": 0.160345674,
+    "b": 0.151783943
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422159185/0FB852E9FC2AAC16A20B2CDD9B26297F42582867/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422160466/E1CBF10BEDF17E1B86FE4E66679AF7DC2EA83BCB/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.199999839,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.04694546,
+        "y": 0.200000539,
+        "z": -0.222387284
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27790606,
+        "y": 0.200001389,
+        "z": -0.227688253
+      }
+    },
+    {
+      "Position": {
+        "x": -0.504245639,
+        "y": 0.20000042,
+        "z": -0.227549076
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7341654,
+        "y": 0.20000045,
+        "z": -0.22335206
+      }
+    },
+    {
+      "Position": {
+        "x": -0.958480239,
+        "y": 0.200000212,
+        "z": -0.2266281
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9584173,
+        "y": 0.200000092,
+        "z": 0.0490419529
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7341794,
+        "y": 0.199999735,
+        "z": 0.0517827347
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5044726,
+        "y": 0.200000525,
+        "z": 0.0526265949
+      }
+    },
+    {
+      "Position": {
+        "x": -0.278411716,
+        "y": 0.199999362,
+        "z": 0.0551683344
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0468816571,
+        "y": 0.199999586,
+        "z": 0.0568647571
+      }
+    }
+  ]
+}

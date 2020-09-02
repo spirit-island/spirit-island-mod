@@ -1,0 +1,114 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -57.9941368,
+    "posY": 3.32746124,
+    "posZ": 33.6188431,
+    "rotX": 359.974243,
+    "rotY": 269.976837,
+    "rotZ": 359.9004,
+    "scaleX": 2.42499876,
+    "scaleY": 2.42499876,
+    "scaleZ": 2.42499876
+  },
+  "Nickname": "Town: 0 Damage",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.8898049,
+    "g": 0.880506933,
+    "b": 0.8526128
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 1,
+    "CastShadows": true
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -1.67961787e-08,
+        "y": 0.2365209,
+        "z": -1.7728913e-05
+      }
+    }
+  ],
+  "States": {
+    "2": {
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -52.0801659,
+        "posY": 1.621969,
+        "posZ": 33.95773,
+        "rotX": 0.004447185,
+        "rotY": 179.983841,
+        "rotZ": -2.69104976e-06,
+        "scaleX": 2.42499876,
+        "scaleY": 2.42499876,
+        "scaleZ": 2.42499876
+      },
+      "Nickname": "Town: 1 Damage",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898049,
+        "g": 0.880506933,
+        "b": 0.8526128
+      },
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "GUID": "58ba36",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -1.27269217e-08,
+            "y": 0.210993722,
+            "z": -1.57074774e-05
+          }
+        }
+      ]
+    }
+  }
+}

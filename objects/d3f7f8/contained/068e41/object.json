@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -48.3084221,
+    "posY": 1.32354045,
+    "posZ": 26.7146473,
+    "rotX": 359.93924,
+    "rotY": 0.0301691256,
+    "rotZ": 359.9689,
+    "scaleX": 0.334266663,
+    "scaleY": 1.0,
+    "scaleZ": 0.334266663
+  },
+  "Nickname": "Badlands",
+  "Description": "The first time each Action Damages Invaders in a land, increase that Damage by 1 per Badlands. (Restrictions still apply)\n\nThe first time each Action Damages Dahan in a land, increase that Damage by 1 per Badlands.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422213449/F940B4208D25E5AFD20220D130B11A5F1FE2CEF2/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.2,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

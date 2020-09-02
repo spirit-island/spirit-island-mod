@@ -1,0 +1,36 @@
+{
+  "Name": "go_game_piece_white",
+  "Transform": {
+    "posX": -120.605141,
+    "posY": 1.30869126,
+    "posZ": -4.08,
+    "rotX": -0.004452424,
+    "rotY": 359.878418,
+    "rotZ": 3.685495e-06,
+    "scaleX": 1.19999993,
+    "scaleY": 1.19999993,
+    "scaleZ": 1.19999993
+  },
+  "Nickname": "Spare Pieces",
+  "Description": "Use these for your \"Growth Begets Growth\" Special Rule",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.249972761,
+    "g": 0.249972761,
+    "b": 0.249972761
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

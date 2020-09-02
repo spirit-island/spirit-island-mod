@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -118.705109,
+    "posY": 1.08473706,
+    "posZ": 4.219936,
+    "rotX": 0.00444659265,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46376562,
+    "scaleY": 1.0,
+    "scaleZ": 5.46376562
+  },
+  "Nickname": "Shifting Memory of Ages",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.19999209,
+    "g": 0.156854838,
+    "b": 0.1490117
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/775122665534743241/05E76C40E756418000DAF1995DE9834642DB6CD8/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/775122665534742525/650B224365448E70C0256CD5803CE17B0F23C9E6/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.195,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.008489913,
+        "y": 0.195000529,
+        "z": -0.409202635
+      }
+    },
+    {
+      "Position": {
+        "x": -0.211548775,
+        "y": 0.195000514,
+        "z": -0.408100724
+      }
+    },
+    {
+      "Position": {
+        "x": -0.440423667,
+        "y": 0.1950005,
+        "z": -0.4095563
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6522825,
+        "y": 0.195000544,
+        "z": -0.413947076
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8691822,
+        "y": 0.195000529,
+        "z": -0.410595924
+      }
+    },
+    {
+      "Position": {
+        "x": -1.078279,
+        "y": 0.195000485,
+        "z": -0.407613039
+      }
+    },
+    {
+      "Position": {
+        "x": -1.300538,
+        "y": 0.1950005,
+        "z": -0.416003
+      }
+    },
+    {
+      "Position": {
+        "x": 0.009313742,
+        "y": 0.195000455,
+        "z": -0.09422543
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2111327,
+        "y": 0.19500047,
+        "z": -0.09757227
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4281078,
+        "y": 0.195000559,
+        "z": -0.09760955
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6501684,
+        "y": 0.195000485,
+        "z": -0.0975284949
+      }
+    }
+  ]
+}

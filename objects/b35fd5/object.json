@@ -1,0 +1,120 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -101.35,
+    "posY": 1.08973694,
+    "posZ": 4.21969938,
+    "rotX": 0.00444671838,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.5092597,
+    "scaleY": 1.0,
+    "scaleZ": 5.45085144
+  },
+  "Nickname": "Lure of The Deep Wilderness",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003004,
+    "g": 0.160345674,
+    "b": 0.151783943
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422142165/5155B3B49FA630E4633D4D92C9702B83C89809DC/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1284038227082374167/591BC403782931B97ACE399D71C6A85ACFB33012/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0408843346,
+        "y": 0.200000331,
+        "z": -0.401080549
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9640723,
+        "y": 0.20000042,
+        "z": -0.4173052
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7304652,
+        "y": 0.200000376,
+        "z": -0.414884418
+      }
+    },
+    {
+      "Position": {
+        "x": -0.507028162,
+        "y": 0.200000376,
+        "z": -0.407546282
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2769288,
+        "y": 0.200000361,
+        "z": -0.4098363
+      }
+    },
+    {
+      "Position": {
+        "x": -0.274653554,
+        "y": 0.200000316,
+        "z": -0.08558981
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5016274,
+        "y": 0.20000042,
+        "z": -0.08279678
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7340006,
+        "y": 0.200000346,
+        "z": -0.07733581
+      }
+    },
+    {
+      "Position": {
+        "x": -0.960651755,
+        "y": 0.20000042,
+        "z": -0.0932254046
+      }
+    },
+    {
+      "Position": {
+        "x": -0.049592182,
+        "y": 0.200000331,
+        "z": -0.08162094
+      }
+    }
+  ]
+}

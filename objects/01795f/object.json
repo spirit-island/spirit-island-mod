@@ -1,0 +1,65 @@
+{
+  "Name": "Deck",
+  "Transform": {
+    "posX": -55.69988,
+    "posY": 1.003141,
+    "posZ": 49.01993,
+    "rotX": -7.59122045e-08,
+    "rotY": 179.964752,
+    "rotZ": 180.0,
+    "scaleX": 1.5,
+    "scaleY": 1.0,
+    "scaleZ": 1.5
+  },
+  "Nickname": "Fear",
+  "Description": "Spirit Island",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    15118,
+    15120,
+    15112,
+    15111,
+    15119,
+    15121,
+    15122,
+    15113,
+    15117,
+    15114,
+    15116,
+    15124,
+    15125,
+    15123,
+    15115
+  ],
+  "CustomDeck": {
+    "151": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/868489312390108197/6097ABD5315335BD0C4CD0A1ADFEAF2F5F4ACAD4/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/868489312390108294/02B53D77F9C78466C1AB84134181E5DE3231F30B/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

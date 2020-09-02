@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -66.62623,
+    "posY": 1.08882368,
+    "posZ": -7.540011,
+    "rotX": 0.004448194,
+    "rotY": 179.999344,
+    "rotZ": 180.0,
+    "scaleX": 5.463006,
+    "scaleY": 1.0,
+    "scaleZ": 5.463006
+  },
+  "Nickname": "Finder of Paths Unseen",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200300485,
+    "g": 0.160345763,
+    "b": 0.151784033
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284039015929019904/01D002652F21152A1B829F5789B8AE260F85B799/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1284039015929019610/1941106B23E10000C8AE0576FAC2E0054B163078/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0543679,
+        "y": 0.199976683,
+        "z": -0.405468345
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0568077154,
+        "y": 0.200011611,
+        "z": -0.0104157431
+      }
+    },
+    {
+      "Position": {
+        "x": -0.266031355,
+        "y": 0.1999883,
+        "z": -0.205954924
+      }
+    },
+    {
+      "Position": {
+        "x": -0.464831144,
+        "y": 0.199976951,
+        "z": -0.008355506
+      }
+    },
+    {
+      "Position": {
+        "x": -0.470463425,
+        "y": 0.199977368,
+        "z": -0.4060965
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6711248,
+        "y": 0.1999917,
+        "z": -0.202433527
+      }
+    },
+    {
+      "Position": {
+        "x": -0.877245367,
+        "y": 0.199981481,
+        "z": -0.407926381
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8744257,
+        "y": 0.200005591,
+        "z": -0.0133604463
+      }
+    },
+    {
+      "Position": {
+        "x": -1.07751715,
+        "y": 0.199988231,
+        "z": -0.210631
+      }
+    },
+    {
+      "Position": {
+        "x": -1.283241,
+        "y": 0.199985877,
+        "z": -0.413297534
+      }
+    },
+    {
+      "Position": {
+        "x": -1.29213428,
+        "y": 0.200041324,
+        "z": -0.010611359
+      }
+    }
+  ]
+}

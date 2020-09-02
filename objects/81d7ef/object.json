@@ -1,0 +1,45 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": -49.5723457,
+    "posY": 2.99958944,
+    "posZ": 59.2571754,
+    "rotX": 60.0001259,
+    "rotY": 9.17201e-07,
+    "rotZ": 6.56489249e-07,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "The Box",
+    "colorstate": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "fontSize": 72
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

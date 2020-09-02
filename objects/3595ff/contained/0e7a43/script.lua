@@ -1,0 +1,1 @@
+highlightOnObjectDrop = true

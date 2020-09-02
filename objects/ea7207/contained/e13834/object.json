@@ -1,0 +1,80 @@
+{
+  "Name": "Deck",
+  "Transform": {
+    "posX": -70.41142,
+    "posY": 1.43293262,
+    "posZ": 21.7502537,
+    "rotX": -0.00198603235,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.36331284,
+    "scaleY": 1.0,
+    "scaleZ": 1.36331284
+  },
+  "Nickname": "Major Powers",
+  "Description": "Branch & Claw Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    53816,
+    40000,
+    40011,
+    40001,
+    40002,
+    40013,
+    40003,
+    40014,
+    40004,
+    40015,
+    40005,
+    40017,
+    40006,
+    40018,
+    40007,
+    40019,
+    40008,
+    40020,
+    40009,
+    40016,
+    40010
+  ],
+  "CustomDeck": {
+    "538": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420392261/6A78F281FE884E408C0CF6FD70DCE5873E849A6A/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/868489312390108475/26F089A0445455A67D8CF3D19191315C92B57C54/",
+      "NumWidth": 6,
+      "NumHeight": 4,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "400": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/782995132824865094/C0139F7A6F7D9B406051AE40F2766C96DCFFB205/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/868489312390108475/26F089A0445455A67D8CF3D19191315C92B57C54/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

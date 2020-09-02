@@ -1,0 +1,134 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -66.62521,
+    "posY": 1.0906496,
+    "posZ": 15.9799786,
+    "rotX": 0.00444670767,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.49111176,
+    "scaleY": 1.0,
+    "scaleZ": 5.46646
+  },
+  "Nickname": "Many Minds Move As One",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200300425,
+    "g": 0.1603457,
+    "b": 0.151783973
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422138596/2B13F4BFB5A04A0DBE16635A5C919A0496D21306/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422140041/4206A2BE2F728983D46F047A1F2669C54FF7A96C/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -1.1853193,
+        "y": 0.200000435,
+        "z": -0.08435751
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9610396,
+        "y": 0.200000361,
+        "z": -0.07779327
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7232813,
+        "y": 0.200000361,
+        "z": -0.0828748941
+      }
+    },
+    {
+      "Position": {
+        "x": -0.499770045,
+        "y": 0.200000346,
+        "z": -0.08119377
+      }
+    },
+    {
+      "Position": {
+        "x": -0.282780617,
+        "y": 0.200000346,
+        "z": -0.0845677853
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0484917164,
+        "y": 0.20000039,
+        "z": -0.08307857
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0461658053,
+        "y": 0.20000042,
+        "z": -0.4117824
+      }
+    },
+    {
+      "Position": {
+        "x": -0.270177275,
+        "y": 0.200000361,
+        "z": -0.409660339
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4988947,
+        "y": 0.200000361,
+        "z": -0.409667373
+      }
+    },
+    {
+      "Position": {
+        "x": -0.722893655,
+        "y": 0.20000039,
+        "z": -0.4081775
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9548942,
+        "y": 0.200000331,
+        "z": -0.411136717
+      }
+    },
+    {
+      "Position": {
+        "x": -1.18184423,
+        "y": 0.200000346,
+        "z": -0.4085928
+      }
+    }
+  ]
+}

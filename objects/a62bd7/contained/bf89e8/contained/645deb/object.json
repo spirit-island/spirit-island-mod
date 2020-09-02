@@ -1,0 +1,115 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -66.63514,
+    "posY": 2.67056775,
+    "posZ": -7.0286994,
+    "rotX": 359.691071,
+    "rotY": 359.933044,
+    "rotZ": -0.00299304421,
+    "scaleX": 1.09473681,
+    "scaleY": 1.01052642,
+    "scaleZ": 1.09473681
+  },
+  "Nickname": "Explorer: 0 Damage",
+  "Description": "They are unable to be removed by fear cards and instead will be pushed",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.796014,
+    "g": 0.674434543,
+    "b": 0.867856443
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1322320051668672219/93D6F7EA64920394655555C2FA3EC0FF9AD75287/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 1,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.6201327,
+        "g": 0.5360767,
+        "b": 0.6726676
+      },
+      "SpecularIntensity": 0.2,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.4
+    },
+    "CastShadows": true
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -1.04420877e-07,
+        "y": 1.14088762,
+        "z": -8.226469e-05
+      }
+    }
+  ],
+  "ChildObjects": [
+    {
+      "Name": "BlockSquare",
+      "Transform": {
+        "posX": -1.31477496e-08,
+        "posY": 1.12603164,
+        "posZ": -8.279129e-05,
+        "rotX": -3.35715754e-06,
+        "rotY": 180.004242,
+        "rotZ": 2.72626039e-07,
+        "scaleX": 0.4567308,
+        "scaleY": 0.0296874959,
+        "scaleZ": 0.4567308
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.7882353,
+        "g": 0.6588235,
+        "b": 0.48627454,
+        "a": 0.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "GUID": "f45255",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 3.528605e-10,
+            "y": 0.500385,
+            "z": -1.47186711e-06
+          }
+        }
+      ]
+    }
+  ]
+}

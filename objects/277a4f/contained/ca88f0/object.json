@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -87.67,
+    "posY": 0.9013747,
+    "posZ": -20.98,
+    "rotX": 0.004446588,
+    "rotY": 180.0025,
+    "rotZ": 180.0,
+    "scaleX": 1.52888727,
+    "scaleY": 1.0,
+    "scaleZ": 1.52888727
+  },
+  "Nickname": "Powers Long Forgotten",
+  "Description": "Branch & Claw Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 17503,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "175": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412501/089E1D495EA40F5830D432C56EFE77E59DA214F1/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412574/647A10C421528FC37AF06DABD93B00A02CE7E020/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

@@ -1,0 +1,120 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -83.96575,
+    "posY": 1.0933882,
+    "posZ": 51.29696,
+    "rotX": 0.00444718543,
+    "rotY": 180.00676,
+    "rotZ": 180.0,
+    "scaleX": 5.46376944,
+    "scaleY": 1.0,
+    "scaleZ": 5.46376944
+  },
+  "Nickname": "Shadows Flicker like Flame",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029372,
+    "g": 0.160339,
+    "b": 0.151777267
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://i.imgur.com/VIdwWIS.jpg",
+    "ImageSecondaryURL": "https://i.imgur.com/HOUdfWw.jpg",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0368955247,
+        "y": 0.2000003,
+        "z": -0.0792586356
+      }
+    },
+    {
+      "Position": {
+        "x": -0.256458074,
+        "y": 0.2000003,
+        "z": -0.07684878
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4725776,
+        "y": 0.200000316,
+        "z": -0.07952757
+      }
+    },
+    {
+      "Position": {
+        "x": -0.681521833,
+        "y": 0.200000316,
+        "z": -0.078882955
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8876844,
+        "y": 0.200000316,
+        "z": -0.0808257
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8869319,
+        "y": 0.200000226,
+        "z": -0.378548
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6630711,
+        "y": 0.200000226,
+        "z": -0.373476982
+      }
+    },
+    {
+      "Position": {
+        "x": -0.465608418,
+        "y": 0.200000226,
+        "z": -0.381000847
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2504678,
+        "y": 0.200000212,
+        "z": -0.382793933
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0385302939,
+        "y": 0.200000212,
+        "z": -0.383111149
+      }
+    }
+  ]
+}

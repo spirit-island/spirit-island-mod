@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -83.9852142,
+    "posY": 1.092475,
+    "posZ": 39.5,
+    "rotX": 0.00444717,
+    "rotY": 180.017151,
+    "rotZ": 180.0,
+    "scaleX": 5.46376944,
+    "scaleY": 1.0,
+    "scaleZ": 5.46376944
+  },
+  "Nickname": "Bringer of Dreams and Nightmares",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029375,
+    "g": 0.160339028,
+    "b": 0.1517773
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://i.imgur.com/d8fiBma.jpg",
+    "ImageSecondaryURL": "https://i.imgur.com/L6BdC7x.jpg",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.049899064,
+        "y": 0.1999998,
+        "z": -0.07900738
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0518255681,
+        "y": 0.200001732,
+        "z": -0.393481463
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2783886,
+        "y": 0.200000986,
+        "z": -0.393781781
+      }
+    },
+    {
+      "Position": {
+        "x": -0.269461066,
+        "y": 0.199995,
+        "z": -0.07648973
+      }
+    },
+    {
+      "Position": {
+        "x": -0.490085661,
+        "y": 0.19999522,
+        "z": -0.08047043
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4918778,
+        "y": 0.199999034,
+        "z": -0.394536376
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7178551,
+        "y": 0.1999985,
+        "z": -0.391133964
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7116107,
+        "y": 0.19999522,
+        "z": -0.0769443959
+      }
+    },
+    {
+      "Position": {
+        "x": -0.932341158,
+        "y": 0.199994758,
+        "z": -0.08293064
+      }
+    },
+    {
+      "Position": {
+        "x": -0.941718757,
+        "y": 0.200003058,
+        "z": -0.396095127
+      }
+    },
+    {
+      "Position": {
+        "x": -1.15491521,
+        "y": 0.20000051,
+        "z": -0.395293951
+      }
+    }
+  ]
+}

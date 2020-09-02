@@ -1,0 +1,134 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -83.98531,
+    "posY": 1.08882391,
+    "posZ": -7.53995943,
+    "rotX": 0.00444683945,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.463006,
+    "scaleY": 1.0,
+    "scaleZ": 5.463006
+  },
+  "Nickname": "Downpour Drenches the World",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200300336,
+    "g": 0.160345614,
+    "b": 0.151783884
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422162566/C4C7CD079F7E0AA85547D360BC817E8CE2528657/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422164232/F1B78A5F58D57BE525B7340E19CAA189C5183353/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.902171,
+        "y": 0.2000004,
+        "z": 0.040896982
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6749123,
+        "y": 0.20000039,
+        "z": 0.0346913375
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4441942,
+        "y": 0.2000004,
+        "z": 0.0423245169
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2084318,
+        "y": 0.200000346,
+        "z": 0.0345721
+      }
+    },
+    {
+      "Position": {
+        "x": 0.0106696822,
+        "y": 0.200000376,
+        "z": 0.0377616957
+      }
+    },
+    {
+      "Position": {
+        "x": 0.01370584,
+        "y": 0.200000331,
+        "z": -0.23341082
+      }
+    },
+    {
+      "Position": {
+        "x": -0.216883719,
+        "y": 0.200000435,
+        "z": -0.230653718
+      }
+    },
+    {
+      "Position": {
+        "x": -0.44319284,
+        "y": 0.2000004,
+        "z": -0.229287386
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6838334,
+        "y": 0.20000042,
+        "z": -0.233486339
+      }
+    },
+    {
+      "Position": {
+        "x": -0.89779,
+        "y": 0.200000316,
+        "z": -0.241032064
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1256144,
+        "y": 0.200000435,
+        "z": -0.2356868
+      }
+    },
+    {
+      "Position": {
+        "x": -1.35375166,
+        "y": 0.200000316,
+        "z": -0.23542653
+      }
+    }
+  ]
+}

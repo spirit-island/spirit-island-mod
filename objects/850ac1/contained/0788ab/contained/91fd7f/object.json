@@ -1,0 +1,49 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -38.34,
+    "posY": 0.9141478,
+    "posZ": -23.7800026,
+    "rotX": 0.004446493,
+    "rotY": 180.00177,
+    "rotZ": 1.48182338e-07,
+    "scaleX": 1.5,
+    "scaleY": 1.0,
+    "scaleZ": 1.5
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 53200,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "497": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420334423/698639BC1321414DC9C543EEBC16816CA85712E1/",
+      "BackURL": "https://i.imgur.com/DsPX0ex.jpg",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

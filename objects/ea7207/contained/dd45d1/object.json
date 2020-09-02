@@ -1,0 +1,65 @@
+{
+  "Name": "Deck",
+  "Transform": {
+    "posX": -70.21392,
+    "posY": 1.40492189,
+    "posZ": 21.5826874,
+    "rotX": 359.9798,
+    "rotY": 180.00032,
+    "rotZ": 179.9996,
+    "scaleX": 1.5,
+    "scaleY": 1.0,
+    "scaleZ": 1.5
+  },
+  "Nickname": "Fear",
+  "Description": "Branch & Claw Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    18215,
+    18221,
+    18228,
+    18226,
+    18220,
+    18219,
+    18218,
+    18217,
+    18216,
+    18222,
+    18223,
+    18229,
+    18227,
+    18225,
+    18224
+  ],
+  "CustomDeck": {
+    "182": {
+      "FaceURL": "https://i.imgur.com/29V5BAi.jpg",
+      "BackURL": "https://i.imgur.com/DsPX0ex.jpg",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

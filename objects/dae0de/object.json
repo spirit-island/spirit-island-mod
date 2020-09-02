@@ -1,0 +1,36 @@
+{
+  "Name": "go_game_piece_white",
+  "Transform": {
+    "posX": -103.33,
+    "posY": 1.3085779,
+    "posZ": -5.539999,
+    "rotX": -0.00445721438,
+    "rotY": 359.9666,
+    "rotZ": 3.02238332e-05,
+    "scaleX": 1.19999993,
+    "scaleY": 1.19999993,
+    "scaleZ": 1.19999993
+  },
+  "Nickname": "Days That Never Were",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.249994159,
+    "g": 0.249994159,
+    "b": 0.249994159
+  },
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

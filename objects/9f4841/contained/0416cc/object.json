@@ -1,0 +1,36 @@
+{
+  "Name": "go_game_piece_white",
+  "Transform": {
+    "posX": -43.05823,
+    "posY": 2.47775459,
+    "posZ": 44.8970757,
+    "rotX": 358.878235,
+    "rotY": 79.6097946,
+    "rotZ": 13.357131,
+    "scaleX": 1.19999993,
+    "scaleY": 1.19999993,
+    "scaleZ": 1.19999993
+  },
+  "Nickname": "Green's Presence",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.191966325,
+    "g": 0.701,
+    "b": 0.1679663
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": -56.4128723,
+    "posY": 2.28926778,
+    "posZ": 37.42323,
+    "rotX": 359.984039,
+    "rotY": 180.015182,
+    "rotZ": -0.00011564351,
+    "scaleX": 0.8750001,
+    "scaleY": 0.8750001,
+    "scaleZ": 0.8750001
+  },
+  "Nickname": "Infinite 1 Energy",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112137/2C135F1EA450E7B9F9FE5A46D56E1764E7A28BB3/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 7,
+    "CastShadows": true
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

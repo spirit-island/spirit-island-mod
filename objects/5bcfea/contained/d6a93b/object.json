@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -1.94000077,
+    "posY": 0.8979727,
+    "posZ": -5.300066,
+    "rotX": 0.396962851,
+    "rotY": 179.998367,
+    "rotZ": -0.000121079174,
+    "scaleX": 1.36331284,
+    "scaleY": 1.0,
+    "scaleZ": 1.36331284
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 38713,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "321": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/787503295902329174/D8EAEF67402C65C046971A498C31DEED69D48E19/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/868489312390111015/989395F14FD937BDBBF5F55E7EBE7B50CDDB867F/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

@@ -1,0 +1,38 @@
+{
+  "Name": "Infinite_Bag",
+  "Transform": {
+    "posX": 96.99072,
+    "posY": -0.5,
+    "posZ": -13.6,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": -0.000145533864,
+    "scaleX": 0.9,
+    "scaleY": 0.9,
+    "scaleZ": 0.9
+  },
+  "Nickname": "Any Element Tokens",
+  "Description": "Change the state to change the element shown\n\nUse these for powers/growths which provide any elements, or when you reveal an any element on your growth track",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.442974,
+    "g": 0.230973989,
+    "b": 0.08997885
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

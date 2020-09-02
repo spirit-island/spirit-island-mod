@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 68.6327057,
+    "posY": 1.54814351,
+    "posZ": -5.61315727,
+    "rotX": 359.749847,
+    "rotY": 179.9868,
+    "rotZ": 0.01146567,
+    "scaleX": 6.5,
+    "scaleY": 1.0,
+    "scaleZ": 6.5
+  },
+  "Nickname": "THEMATIC NW",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489506197001838/EB10C8FB3974B1EB66480B50E7B977338955C5AE/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.4,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

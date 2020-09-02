@@ -1,0 +1,36 @@
+{
+  "Name": "go_game_piece_white",
+  "Transform": {
+    "posX": -48.60109,
+    "posY": 3.45298839,
+    "posZ": 42.5861473,
+    "rotX": 341.5625,
+    "rotY": 1.49886,
+    "rotZ": 315.502075,
+    "scaleX": 1.19999993,
+    "scaleY": 1.19999993,
+    "scaleZ": 1.19999993
+  },
+  "Nickname": "Red's Presence",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.0,
+    "b": 0.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

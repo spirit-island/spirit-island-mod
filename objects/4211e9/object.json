@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -42.2596169,
+    "posY": 0.923605,
+    "posZ": 53.4806023,
+    "rotX": 1.06320075e-09,
+    "rotY": 179.929413,
+    "rotZ": 180.0,
+    "scaleX": 1.5,
+    "scaleY": 1.0,
+    "scaleZ": 1.5
+  },
+  "Nickname": "Terror III",
+  "Description": "Spirit Island",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 20001,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "200": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/970993441110210217/DEF7C36CF77304E9314DA31BBD154CCC9717D601/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/970993441110210217/DEF7C36CF77304E9314DA31BBD154CCC9717D601/",
+      "NumWidth": 2,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

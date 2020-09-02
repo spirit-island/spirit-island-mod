@@ -1,0 +1,36 @@
+{
+  "Name": "go_game_piece_white",
+  "Transform": {
+    "posX": -47.3313637,
+    "posY": 2.335676,
+    "posZ": 44.48231,
+    "rotX": 358.9097,
+    "rotY": 304.623474,
+    "rotZ": 28.2602386,
+    "scaleX": 1.19999993,
+    "scaleY": 1.19999993,
+    "scaleZ": 1.19999993
+  },
+  "Nickname": "Blue's Presence",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0,
+    "g": 0.108069383,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

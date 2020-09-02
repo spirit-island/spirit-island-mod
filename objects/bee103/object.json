@@ -1,0 +1,170 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -48.9970055,
+    "posY": 0.99771595,
+    "posZ": 10.0,
+    "rotX": 8.501772e-08,
+    "rotY": 180.0,
+    "rotZ": -0.000144409234,
+    "scaleX": 5.451691,
+    "scaleY": 1.0,
+    "scaleZ": 5.451691
+  },
+  "Nickname": "Invader Board",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": true,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1322320380553167809/3ADC7C1A9B84713847F89D0F515CE528D2B7A31E/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.195,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "LuaScriptState": "{\"panelAdversaryVisibilityString\":\"Invisible\",\"panelInvaderVisibilityString\":\"Invisible\",\"panelTurnOrderVisibilityString\":\"Invisible\"}",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 1.15224957,
+        "y": 0.0499999672,
+        "z": 0.097114265
+      },
+      "Rotation": {
+        "x": 4.837157e-08,
+        "y": 359.973938,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 1.15212262,
+        "y": 0.0499999635,
+        "z": 0.9758937
+      },
+      "Rotation": {
+        "x": -1.70769763e-08,
+        "y": 359.973938,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 1.14825141,
+        "y": 0.0499999635,
+        "z": 1.86033857
+      },
+      "Rotation": {
+        "x": 1.17645182e-08,
+        "y": 359.973938,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 0.41283232,
+        "y": 0.049999956,
+        "z": 1.76531267
+      },
+      "Rotation": {
+        "x": 7.48310747e-09,
+        "y": 269.9943,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7495184,
+        "y": 0.0499999449,
+        "z": -1.80980933
+      },
+      "Rotation": {
+        "x": 4.654296e-08,
+        "y": -0.0010505541,
+        "z": -2.74232548e-07
+      }
+    },
+    {
+      "Position": {
+        "x": -1.099469,
+        "y": 0.0500000566,
+        "z": 0.079171285
+      },
+      "Rotation": {
+        "x": -1.89837181e-06,
+        "y": 0.0005737359,
+        "z": 3.60886361e-07
+      }
+    },
+    {
+      "Position": {
+        "x": 0.7345037,
+        "y": 0.0499999672,
+        "z": -1.803057
+      },
+      "Rotation": {
+        "x": -2.83189337e-07,
+        "y": 0.0005190944,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": -0.321061641,
+        "y": 0.0499999523,
+        "z": -0.8746943
+      },
+      "Rotation": {
+        "x": -8.479937e-08,
+        "y": 359.971649,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 0.3367451,
+        "y": 0.04999996,
+        "z": -0.863598347
+      },
+      "Rotation": {
+        "x": 1.46026565e-07,
+        "y": 0.000532754755,
+        "z": -7.89195269e-07
+      }
+    },
+    {
+      "Position": {
+        "x": -1.14797175,
+        "y": 0.0499998629,
+        "z": 0.9899909
+      },
+      "Rotation": {
+        "x": 1.31136133e-08,
+        "y": 359.960815,
+        "z": 180.0
+      }
+    }
+  ]
+}

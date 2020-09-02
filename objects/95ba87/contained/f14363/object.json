@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 66.6690445,
+    "posY": 1.49705338,
+    "posZ": -36.6481667,
+    "rotX": 0.00341229467,
+    "rotY": 180.002655,
+    "rotZ": -0.000334304466,
+    "scaleX": 6.5,
+    "scaleY": 1.0,
+    "scaleZ": 6.5
+  },
+  "Nickname": "THEMATIC E Re-skinned",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284038650230528246/496CD85635D1C98402F979B219831E26F3FE15E8/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.399999827,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

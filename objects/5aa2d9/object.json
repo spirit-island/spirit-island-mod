@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -101.339355,
+    "posY": 1.09064746,
+    "posZ": 15.9779892,
+    "rotX": 0.004453183,
+    "rotY": 179.970627,
+    "rotZ": 180.000061,
+    "scaleX": 5.549189,
+    "scaleY": 1.0,
+    "scaleZ": 5.46614838
+  },
+  "Nickname": "Stone's Unyielding Defiance",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200300336,
+    "g": 0.160345614,
+    "b": 0.151783884
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422131972/8989CA5EFC7F1DACB4F764D891851974DCE0600E/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422133441/1857D917A8E902232F74EDF8FAA42E1E0766C207/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.199999839,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0562017821,
+        "y": 0.200000137,
+        "z": -0.4017921
+      }
+    },
+    {
+      "Position": {
+        "x": -0.273122728,
+        "y": 0.200000152,
+        "z": -0.400924653
+      }
+    },
+    {
+      "Position": {
+        "x": -0.06136442,
+        "y": 0.200000122,
+        "z": -0.09158798
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27993384,
+        "y": 0.200000137,
+        "z": -0.08900724
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7341472,
+        "y": 0.2000002,
+        "z": -0.404040873
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9677123,
+        "y": 0.200000226,
+        "z": -0.4081783
+      }
+    },
+    {
+      "Position": {
+        "x": -1.202644,
+        "y": 0.2000002,
+        "z": -0.408523023
+      }
+    },
+    {
+      "Position": {
+        "x": -0.973571956,
+        "y": 0.200000167,
+        "z": -0.08797429
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7507212,
+        "y": 0.2000002,
+        "z": -0.0980017
+      }
+    },
+    {
+      "Position": {
+        "x": -0.518881559,
+        "y": 0.200000167,
+        "z": -0.09050649
+      }
+    },
+    {
+      "Position": {
+        "x": -0.507576,
+        "y": 0.200000226,
+        "z": -0.4017274
+      }
+    }
+  ]
+}

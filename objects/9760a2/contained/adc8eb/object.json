@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 86.68697,
+    "posY": 1.47487473,
+    "posZ": -4.874719,
+    "rotX": 0.0463359654,
+    "rotY": 179.99881,
+    "rotZ": 359.992767,
+    "scaleX": 6.464674,
+    "scaleY": 1.0,
+    "scaleZ": 6.30348873
+  },
+  "Nickname": "NORMAL F",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.831372559,
+    "g": 0.831372559,
+    "b": 0.831372559
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284038874063606777/8D0A597FA3BF83DE7A205700ED4BC0A7D707451F/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.3950002,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

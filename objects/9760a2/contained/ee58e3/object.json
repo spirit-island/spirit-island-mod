@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 86.2581558,
+    "posY": 1.4937973,
+    "posZ": -2.503346,
+    "rotX": 0.006051624,
+    "rotY": 179.99939,
+    "rotZ": -0.0012345796,
+    "scaleX": 6.603762,
+    "scaleY": 1.0,
+    "scaleZ": 6.54515266
+  },
+  "Nickname": "NORMAL E",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.831372559,
+    "g": 0.831372559,
+    "b": 0.831372559
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284038874063612450/EB089C5FDB6BECAE835093D45CD68E8B47D63283/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.3950002,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

@@ -1,0 +1,45 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": -50.0234261,
+    "posY": 0.9596172,
+    "posZ": 31.9574261,
+    "rotX": 90.0,
+    "rotY": 4.678745e-06,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "2",
+    "colorstate": {
+      "r": 0.1882353,
+      "g": 0.8627451,
+      "b": 0.1764706
+    },
+    "fontSize": 64
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -66.60521,
+    "posY": 1.08973861,
+    "posZ": 4.23995829,
+    "rotX": 0.00444651442,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.487596,
+    "scaleY": 1.0,
+    "scaleZ": 5.44894934
+  },
+  "Nickname": "Shroud of Silent Mist",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200300366,
+    "g": 0.160345644,
+    "b": 0.151783913
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422149803/924B5397CCC509E8289A40186468152321EAAB4B/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422151869/D50D184A5CC73F78BC6B2D730A61B02B7613DDC7/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.200000152,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.009143998,
+        "y": 0.200000763,
+        "z": -0.07930648
+      }
+    },
+    {
+      "Position": {
+        "x": -0.211893946,
+        "y": 0.200000763,
+        "z": -0.07590805
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4354942,
+        "y": 0.200000763,
+        "z": -0.07674843
+      }
+    },
+    {
+      "Position": {
+        "x": -0.901127338,
+        "y": 0.20000045,
+        "z": -0.08304493
+      }
+    },
+    {
+      "Position": {
+        "x": -1.36472917,
+        "y": 0.20000048,
+        "z": -0.08580267
+      }
+    },
+    {
+      "Position": {
+        "x": -1.12222362,
+        "y": 0.20000048,
+        "z": -0.08750183
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6751691,
+        "y": 0.20000048,
+        "z": -0.08410326
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6730308,
+        "y": 0.20000039,
+        "z": -0.406256467
+      }
+    },
+    {
+      "Position": {
+        "x": -0.437771469,
+        "y": 0.20000039,
+        "z": -0.406256467
+      }
+    },
+    {
+      "Position": {
+        "x": -0.211828589,
+        "y": 0.2000005,
+        "z": -0.409655035
+      }
+    },
+    {
+      "Position": {
+        "x": 0.0138849393,
+        "y": 0.2000005,
+        "z": -0.409655035
+      }
+    }
+  ]
+}

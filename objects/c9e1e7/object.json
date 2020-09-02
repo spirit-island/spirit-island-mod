@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -66.6018448,
+    "posY": 1.09247589,
+    "posZ": 39.53559,
+    "rotX": 0.004447341,
+    "rotY": 180.017624,
+    "rotZ": 180.0,
+    "scaleX": 5.46376944,
+    "scaleY": 1.0,
+    "scaleZ": 5.46376944
+  },
+  "Nickname": "Ocean's Hungry Grasp",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029375,
+    "g": 0.160339028,
+    "b": 0.1517773
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://i.imgur.com/QI4pqcO.jpg",
+    "ImageSecondaryURL": "https://i.imgur.com/zcKgsiH.jpg",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0440772921,
+        "y": 0.200000435,
+        "z": -0.12888
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0397348739,
+        "y": 0.200000376,
+        "z": 0.135625839
+      }
+    },
+    {
+      "Position": {
+        "x": -0.254405767,
+        "y": 0.200000376,
+        "z": 0.140339732
+      }
+    },
+    {
+      "Position": {
+        "x": -0.25680536,
+        "y": 0.200000435,
+        "z": -0.130926162
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4705908,
+        "y": 0.20000042,
+        "z": -0.129177183
+      }
+    },
+    {
+      "Position": {
+        "x": -0.470456868,
+        "y": 0.200000361,
+        "z": 0.134854361
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6781988,
+        "y": 0.200000361,
+        "z": 0.133714169
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6788079,
+        "y": 0.20000042,
+        "z": -0.131342366
+      }
+    },
+    {
+      "Position": {
+        "x": -0.891891539,
+        "y": 0.20000042,
+        "z": -0.135305867
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8884138,
+        "y": 0.200000361,
+        "z": 0.135637566
+      }
+    },
+    {
+      "Position": {
+        "x": -1.110247,
+        "y": 0.2000004,
+        "z": -0.134382024
+      }
+    }
+  ]
+}

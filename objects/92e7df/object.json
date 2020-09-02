@@ -1,0 +1,134 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -118.70816,
+    "posY": 1.09064937,
+    "posZ": 15.979516,
+    "rotX": 0.00444664853,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.540597,
+    "scaleY": 1.0,
+    "scaleZ": 5.45227337
+  },
+  "Nickname": "Volcano Looming High",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003003,
+    "g": 0.160345584,
+    "b": 0.151783854
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422127042/14E6EC3C4F3E46C52A6A84C8098CE47BDA2EA107/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422128532/2C6A4A73F0DD9AE4B774CD188B7BBC91FF65FBF9/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.199999839,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.017581556,
+        "y": 0.200000286,
+        "z": -0.424589068
+      }
+    },
+    {
+      "Position": {
+        "x": 0.0179891251,
+        "y": 0.200000286,
+        "z": -0.159955621
+      }
+    },
+    {
+      "Position": {
+        "x": -1.35136449,
+        "y": 0.200000212,
+        "z": -0.1517524
+      }
+    },
+    {
+      "Position": {
+        "x": -1.12224567,
+        "y": 0.200000122,
+        "z": -0.1595794
+      }
+    },
+    {
+      "Position": {
+        "x": -0.894749,
+        "y": 0.200000137,
+        "z": -0.154476091
+      }
+    },
+    {
+      "Position": {
+        "x": -0.663570166,
+        "y": 0.200000137,
+        "z": -0.151645973
+      }
+    },
+    {
+      "Position": {
+        "x": -0.439336956,
+        "y": 0.2000002,
+        "z": -0.15233615
+      }
+    },
+    {
+      "Position": {
+        "x": -0.210303485,
+        "y": 0.200000122,
+        "z": -0.155068964
+      }
+    },
+    {
+      "Position": {
+        "x": -0.437698275,
+        "y": 0.200000212,
+        "z": -0.425052017
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6666987,
+        "y": 0.200000167,
+        "z": -0.424016923
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8908217,
+        "y": 0.200000152,
+        "z": -0.428831279
+      }
+    },
+    {
+      "Position": {
+        "x": -0.212346926,
+        "y": 0.200000226,
+        "z": -0.426980257
+      }
+    }
+  ]
+}

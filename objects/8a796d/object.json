@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -4.1799984,
+    "posY": 0.8835037,
+    "posZ": 50.7,
+    "rotX": 5.55941178e-08,
+    "rotY": 180.0,
+    "rotZ": -0.0001443161,
+    "scaleX": 2.733795,
+    "scaleY": 1.0,
+    "scaleZ": 2.733795
+  },
+  "Nickname": "Prussia",
+  "Description": "Spirit Island",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.709803939,
+    "g": 0.709803939,
+    "b": 0.709803939
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 14600,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "146": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/868489312390108042/C5350188325141523F0553634CA3415BB420970E/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/868489312390108117/DA2D6D027CD39BBE58E5067EB7A011D85B81D94C/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

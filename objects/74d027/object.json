@@ -1,0 +1,134 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -118.705078,
+    "posY": 1.08882427,
+    "posZ": -7.54004431,
+    "rotX": 0.00444667,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.50743055,
+    "scaleY": 1.0,
+    "scaleZ": 5.447708
+  },
+  "Nickname": "Starlight Seeks Its Form",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200300187,
+    "g": 0.160345465,
+    "b": 0.151783735
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422153943/AAAB2A050179D2C2D8BBA4282BB75DCE4182C4B4/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422155930/D508487479FCAA83DB175232446AE4A424E7D6CD/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.00180649129,
+        "y": 0.200000376,
+        "z": 0.8177237
+      }
+    },
+    {
+      "Position": {
+        "x": -0.228054985,
+        "y": 0.200000361,
+        "z": 0.819667161
+      }
+    },
+    {
+      "Position": {
+        "x": -0.460177153,
+        "y": 0.200000316,
+        "z": 0.8240722
+      }
+    },
+    {
+      "Position": {
+        "x": -0.457281858,
+        "y": 0.20000039,
+        "z": 0.5589355
+      }
+    },
+    {
+      "Position": {
+        "x": -0.228465021,
+        "y": 0.2000004,
+        "z": 0.5510724
+      }
+    },
+    {
+      "Position": {
+        "x": -0.00262656063,
+        "y": 0.200000346,
+        "z": 0.556563556
+      }
+    },
+    {
+      "Position": {
+        "x": 0.214692414,
+        "y": 0.200000346,
+        "z": -0.0436885469
+      }
+    },
+    {
+      "Position": {
+        "x": 0.448496282,
+        "y": 0.2000004,
+        "z": -0.0480639674
+      }
+    },
+    {
+      "Position": {
+        "x": 0.216662273,
+        "y": 0.200000331,
+        "z": 0.2317331
+      }
+    },
+    {
+      "Position": {
+        "x": 0.452001065,
+        "y": 0.20000042,
+        "z": 0.235884309
+      }
+    },
+    {
+      "Position": {
+        "x": 0.405361146,
+        "y": 0.200000331,
+        "z": -0.2811621
+      }
+    },
+    {
+      "Position": {
+        "x": 0.4046602,
+        "y": 0.2000004,
+        "z": -0.5327625
+      }
+    }
+  ]
+}

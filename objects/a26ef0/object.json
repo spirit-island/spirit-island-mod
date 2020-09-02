@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -101.345215,
+    "posY": 1.09247446,
+    "posZ": 39.5,
+    "rotX": 0.004448012,
+    "rotY": 180.023209,
+    "rotZ": 180.0,
+    "scaleX": 5.46376944,
+    "scaleY": 1.0,
+    "scaleZ": 5.46376944
+  },
+  "Nickname": "A Spread of Rampant Green",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029375,
+    "g": 0.160339028,
+    "b": 0.1517773
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://i.imgur.com/v9z8YkG.jpg",
+    "ImageSecondaryURL": "https://i.imgur.com/FUSeljO.jpg",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0470717549,
+        "y": 0.200000331,
+        "z": -0.3529071
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04303219,
+        "y": 0.200000346,
+        "z": -0.05874825
+      }
+    },
+    {
+      "Position": {
+        "x": -0.250719279,
+        "y": 0.200000331,
+        "z": -0.0558819249
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2552894,
+        "y": 0.200000316,
+        "z": -0.355016172
+      }
+    },
+    {
+      "Position": {
+        "x": -0.468374074,
+        "y": 0.2000003,
+        "z": -0.358922243
+      }
+    },
+    {
+      "Position": {
+        "x": -0.460884154,
+        "y": 0.200000316,
+        "z": -0.0565335825
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6760983,
+        "y": 0.2000003,
+        "z": -0.05612841
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6867293,
+        "y": 0.200000286,
+        "z": -0.357939541
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9074182,
+        "y": 0.200000271,
+        "z": -0.365242481
+      }
+    },
+    {
+      "Position": {
+        "x": -0.892857552,
+        "y": 0.200000286,
+        "z": -0.0525718443
+      }
+    },
+    {
+      "Position": {
+        "x": -1.12040794,
+        "y": 0.200000256,
+        "z": -0.366276264
+      }
+    }
+  ]
+}

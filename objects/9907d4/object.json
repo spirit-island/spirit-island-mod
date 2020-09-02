@@ -1,0 +1,38 @@
+{
+  "Name": "Infinite_Bag",
+  "Transform": {
+    "posX": -121.635124,
+    "posY": 1.12789547,
+    "posZ": 6.02995,
+    "rotX": 359.9804,
+    "rotY": 0.00307939434,
+    "rotZ": -4.562138e-05,
+    "scaleX": 0.5812501,
+    "scaleY": 0.3875001,
+    "scaleZ": 0.5812501
+  },
+  "Nickname": "Element Markers",
+  "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.3058885,
+    "g": 0.372555166,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

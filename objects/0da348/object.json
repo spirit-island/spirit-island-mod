@@ -1,0 +1,38 @@
+{
+  "Name": "Infinite_Bag",
+  "Transform": {
+    "posX": 55.9907,
+    "posY": -0.5,
+    "posZ": -13.6,
+    "rotX": -2.6294138e-09,
+    "rotY": 180.0,
+    "rotZ": -0.000144685822,
+    "scaleX": 0.9,
+    "scaleY": 0.9,
+    "scaleZ": 0.9
+  },
+  "Nickname": "Defend Tokens",
+  "Description": "Change the state to change the number shown",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.1919753,
+    "g": 0.701,
+    "b": 0.167975277
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

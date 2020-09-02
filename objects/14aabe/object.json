@@ -1,0 +1,127 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -83.9852142,
+    "posY": 1.0906496,
+    "posZ": 15.9799795,
+    "rotX": 0.0044466136,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.50364971,
+    "scaleY": 1.0,
+    "scaleZ": 5.459635
+  },
+  "Nickname": "Grinning Trickster Stirs Up Trouble",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003004,
+    "g": 0.160345674,
+    "b": 0.151783943
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422135061/4021644F5814D58C422A73B1F027A49845C1E8BF/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422136766/47BB6966B9963624E88615195FE35ECC93DCEDA5/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0409542657,
+        "y": 0.200000256,
+        "z": -0.4246612
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04172347,
+        "y": 0.200000241,
+        "z": -0.149408177
+      }
+    },
+    {
+      "Position": {
+        "x": -0.263179362,
+        "y": 0.200000152,
+        "z": -0.4206029
+      }
+    },
+    {
+      "Position": {
+        "x": -1.183642,
+        "y": 0.200000331,
+        "z": -0.15660435
+      }
+    },
+    {
+      "Position": {
+        "x": -0.95557183,
+        "y": 0.200000435,
+        "z": -0.148751527
+      }
+    },
+    {
+      "Position": {
+        "x": -0.953888834,
+        "y": 0.200000361,
+        "z": -0.433671236
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7331394,
+        "y": 0.200000361,
+        "z": -0.4328198
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5009687,
+        "y": 0.200000361,
+        "z": -0.434515923
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7328733,
+        "y": 0.200000331,
+        "z": -0.150434345
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5056598,
+        "y": 0.200000316,
+        "z": -0.152976915
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2754589,
+        "y": 0.2000004,
+        "z": -0.151927412
+      }
+    }
+  ]
+}

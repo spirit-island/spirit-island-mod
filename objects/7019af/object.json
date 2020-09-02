@@ -1,0 +1,111 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": -42.26,
+    "posY": 1.26177144,
+    "posZ": 16.4729862,
+    "rotX": 1.13325605e-07,
+    "rotY": 179.987717,
+    "rotZ": -0.000144517,
+    "scaleX": 0.829393744,
+    "scaleY": 0.03,
+    "scaleZ": 0.829393744
+  },
+  "Nickname": "Disease",
+  "Description": "[b]Prevents the next Build[/b] and is then removed",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.5647059,
+    "g": 0.5568628,
+    "b": 0.5568628,
+    "a": 0.0
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1465311980392984528/73227B5349E276006AB38E1027F18255A26EF555/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 7,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "ChildObjects": [
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 0.101715237,
+        "posY": -2.494519,
+        "posZ": -0.00133493962,
+        "rotX": -1.17677173e-05,
+        "rotY": 0.146261677,
+        "rotZ": 7.65665e-06,
+        "scaleX": 0.440241754,
+        "scaleY": 33.3333321,
+        "scaleZ": 0.440241754
+      },
+      "Nickname": "Disease",
+      "Description": "[b]Prevents the next Build[/b] and is then removed",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390107720/16A30B2C146A05A6475BC8BAAFD5D227CAC6D315/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.200000152,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "highlightOnObjectDrop = true",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "GUID": "784c00"
+    }
+  ]
+}

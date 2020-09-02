@@ -1,0 +1,45 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": -48.9350471,
+    "posY": 0.9614534,
+    "posZ": -40.519062,
+    "rotX": 90.0,
+    "rotY": 3.2779522e-07,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "Discord Link:\n https://discord.gg/TEZYFAY",
+    "colorstate": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "fontSize": 92
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

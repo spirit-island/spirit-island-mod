@@ -1,0 +1,120 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -66.60576,
+    "posY": 1.09337926,
+    "posZ": 51.29696,
+    "rotX": 0.004473783,
+    "rotY": 180.013351,
+    "rotZ": 180.000092,
+    "scaleX": 5.46376944,
+    "scaleY": 1.0,
+    "scaleZ": 5.46376944
+  },
+  "Nickname": "Vital Strength of the Earth",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029372,
+    "g": 0.160339,
+    "b": 0.151777267
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://i.imgur.com/HWwm8q2.jpg",
+    "ImageSecondaryURL": "https://i.imgur.com/TfjRCUm.jpg",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0401103869,
+        "y": 0.19999446,
+        "z": -0.374307424
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04320893,
+        "y": 0.200005651,
+        "z": -0.06808979
+      }
+    },
+    {
+      "Position": {
+        "x": -0.254115671,
+        "y": 0.2000066,
+        "z": -0.0683846548
+      }
+    },
+    {
+      "Position": {
+        "x": -0.257839441,
+        "y": 0.200001061,
+        "z": -0.375477046
+      }
+    },
+    {
+      "Position": {
+        "x": -0.467703462,
+        "y": 0.199998513,
+        "z": -0.375988781
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4661882,
+        "y": 0.199999541,
+        "z": -0.0662237257
+      }
+    },
+    {
+      "Position": {
+        "x": -0.680376947,
+        "y": 0.200008571,
+        "z": -0.3821749
+      }
+    },
+    {
+      "Position": {
+        "x": -0.896110833,
+        "y": 0.2000006,
+        "z": -0.376218
+      }
+    },
+    {
+      "Position": {
+        "x": -0.681617856,
+        "y": 0.199995756,
+        "z": -0.06615251
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8957554,
+        "y": 0.199994028,
+        "z": -0.06615679
+      }
+    }
+  ]
+}

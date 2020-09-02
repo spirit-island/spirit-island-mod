@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -120.685158,
+    "posY": 1.1908052,
+    "posZ": 17.9800014,
+    "rotX": 0.0044387877,
+    "rotY": 180.034958,
+    "rotZ": 9.207336e-06,
+    "scaleX": 0.334266663,
+    "scaleY": 1.0,
+    "scaleZ": 0.334266663
+  },
+  "Nickname": "Badlands",
+  "Description": "[b] Once per action [/b]\n\nAfter Invaders are damaged, deal 1 Damage to Invaders \n[i] ~and~ [/i]\nAfter Dahan are damaged, deal 1 damage to Dahan",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422213449/F940B4208D25E5AFD20220D130B11A5F1FE2CEF2/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.2,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": true
+    }
+  },
+  "LuaScriptState": "",
+  "XmlUI": ""
+}

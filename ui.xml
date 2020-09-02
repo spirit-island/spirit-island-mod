@@ -1,0 +1,203 @@
+<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="380" height="100" color="#00000044" rectAlignment="UpperCenter" offsetXY="0 -70">
+    <HorizontalLayout id="hLTypes" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="10">
+        <Panel id="panelBuild2" active="false" preferredWidth="80" preferredHeight="80">
+            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+                <Panel id="panelBuild20" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+                    <Text id="panelBuild2text" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Build2" color="black" />
+                </Panel>
+                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelBuild211" preferredWidth="40" preferredHeight="40" color="yellow">
+                            <Text id="panelBuild211text" fontStyle="Bold" preferredWidth="40" preferredHeight="2" text="S" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelBuild212" preferredWidth="40" preferredHeight="40" color="blue">
+                            <Text id="panelBuild212text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelBuild221" preferredWidth="40" preferredHeight="40" color="green">
+                            <Text id="panelBuild221text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelBuild222" preferredWidth="40" preferredHeight="40" color="grey">
+                            <Text id="panelBuild222text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                </HorizontalLayout>
+            </VerticalLayout>
+        </Panel>
+        <Panel id="panelRavage" preferredWidth="80" preferredHeight="80">
+            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+                <Panel id="panelRavage0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+                    <Text id="panelRavagetext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Ravage" color="black" />
+                </Panel>
+                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelRavage11" preferredWidth="40" preferredHeight="40" color="yellow">
+                            <Text id="panelRavage11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="S" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelRavage12" preferredWidth="40" preferredHeight="40" color="blue">
+                            <Text id="panelRavage12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelRavage21" preferredWidth="40" preferredHeight="40" color="green">
+                            <Text id="panelRavage21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelRavage22" preferredWidth="40" preferredHeight="40" color="grey">
+                            <Text id="panelRavage22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                </HorizontalLayout>
+            </VerticalLayout>
+        </Panel>
+        <Panel id="panelBuild" preferredWidth="80" preferredHeight="80">
+            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+                <Panel id="panelBuild0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+                    <Text id="panelBuildtext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Build" color="black" />
+                </Panel>
+                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="false">
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+                        <Panel id="panelBuild11" preferredWidth="40" preferredHeight="40" color="yellow">
+                            <Text id="panelBuild11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="S" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelBuild12" preferredWidth="40" preferredHeight="40" color="blue">
+                            <Text id="panelBuild12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+                        <Panel id="panelBuild21" preferredWidth="40" preferredHeight="40" color="green">
+                            <Text id="panelBuild21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelBuild22" preferredWidth="40" preferredHeight="40" color="grey">
+                            <Text id="panelBuild22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                </HorizontalLayout>
+            </VerticalLayout>
+        </Panel>
+        <Panel id="panelExplore" preferredWidth="80" preferredHeight="80">
+            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+                <Panel id="panelExplore0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+                    <Text id="panelExploretext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Explore" color="black" />
+                </Panel>
+                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelExplore11" preferredWidth="40" preferredHeight="40" color="yellow">
+                            <Text id="panelExplore11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="S" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelExplore12" preferredWidth="40" preferredHeight="40" color="blue">
+                            <Text id="panelExplore12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelExplore21" preferredWidth="40" preferredHeight="40" color="green">
+                            <Text id="panelExplore21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                        </Panel>
+                        <Panel id="panelExplore22" preferredWidth="40" preferredHeight="40" color="grey">
+                            <Text id="panelExplore22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                        </Panel>
+                    </VerticalLayout>
+                </HorizontalLayout>
+            </VerticalLayout>
+        </Panel>
+        <Panel id="panelStage" preferredWidth="80" preferredHeight="80">
+            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+                <Panel id="panelStage0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+                    <Text id="panelStagetext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Stage" color="black" />
+                </Panel>
+                <Panel id="panelStage11" preferredWidth="80" preferredHeight="80" color="white">
+                    <Text id="panelStage11text" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="I" fontSize="40" color="black" />
+                </Panel>
+            </VerticalLayout>
+        </Panel>
+    </HorizontalLayout>
+</Panel>
+<Panel id="panelTimePasses" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="60" rectAlignment="UpperRight" offsetXY="-430 0">
+    <Button onClick="timePassesUI" textAlignment="MiddleCenter">Time Passes</Button>
+</Panel>
+<Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="225" height="335" color="#00000044" rectAlignment="UpperLeft" offsetXY="80 0">
+    <VerticalLayout>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Spirit Phase</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Growth</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Gain Energy</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Choose Powers</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Fast Power Phase</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Invader Phase</Text>
+        <Text id="panelTurnOrderBlight" active="false" fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Blighted Island</Text>
+        <Text id="panelTurnOrderEvent" active="false" fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Event</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Fear</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Ravage</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Build</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Explore</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Advance Invader Cards</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Slow Power Phase</Text>
+        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Time Passes</Text>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#00000044" rectAlignment="LowerRight" offsetXY="0 260">
+    <VerticalLayout>
+        <VerticalLayout id="panelAdversaryHelper">
+            <Text id="panelAdversaryName" fontsize="16" color="#FFFFFF" alignment="UpperLeft" fontStyle="Bold"></Text>
+            <VerticalLayout id="panelAdversaryLoss" active="false">
+                <Text id="panelAdversaryLossText" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left">Additional Loss Condition</Text>
+                <HorizontalLayout id="panelAdversaryLossCounter" active="false" childForceExpandWidth="false">
+                    <Text id="panelAdversaryLossCounterText" fontsize="16" color="#FFFFFF" alignment="UpperLeft"></Text>
+                    <Button id="panelAdversaryLossCounterMinus" onClick="decrementLossCounter(panelAdversaryLossCounterCount)" active="false" fontSize="12" textAlignment="MiddleCenter" minWidth="22">-</Button>
+                    <Text id="panelAdversaryLossCounterCount" fontsize="16" color="#FFFFFF" alignment="UpperLeft"></Text>
+                    <Button id="panelAdversaryLossCounterPlus" onClick="incrementLossCounter(panelAdversaryLossCounterCount)" active="false" fontSize="12" textAlignment="MiddleCenter" minWidth="22">+</Button>
+                </HorizontalLayout>
+            </VerticalLayout>
+            <Text id="panelAdversaryEscalation" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left">Stage II Escalation</Text>
+            <Text id="panelAdversaryLevel1" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversaryLevel2" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversaryLevel3" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversaryLevel4" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversaryLevel5" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversaryLevel6" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+        </VerticalLayout>
+        <VerticalLayout id="panelAdversary2Helper" active="false">
+            <Text></Text>
+            <Text id="panelAdversary2Name" fontsize="16" color="#FFFFFF" alignment="UpperLeft" fontStyle="Bold"></Text>
+            <VerticalLayout id="panelAdversary2Loss" active="false">
+                <Text id="panelAdversary2LossText" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left">Additional Loss Condition</Text>
+                <HorizontalLayout id="panelAdversary2LossCounter" active="false" childForceExpandWidth="false">
+                    <Text id="panelAdversary2LossCounterText" fontsize="16" color="#FFFFFF" alignment="UpperLeft"></Text>
+                    <Button id="panelAdversary2LossCounterMinus" onClick="decrementLossCounter(panelAdversary2LossCounterCount)" active="false" fontSize="12" textAlignment="MiddleCenter" minWidth="22">-</Button>
+                    <Text id="panelAdversary2LossCounterCount" fontsize="16" color="#FFFFFF" alignment="UpperLeft"></Text>
+                    <Button id="panelAdversary2LossCounterPlus" onClick="incrementLossCounter(panelAdversary2LossCounterCount)" active="false" fontSize="12" textAlignment="MiddleCenter" minWidth="22">+</Button>
+                </HorizontalLayout>
+            </VerticalLayout>
+            <HorizontalLayout childForceExpandWidth="false">
+                <Text id="panelAdversary2Escalation" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left">Stage III Escalation</Text>
+                <Button id="panelAdversary2EscalationRandom" onClick="randomTerrain" active="false" fontSize="12" textAlignment="MiddleCenter" minWidth="60">Random</Button>
+            </HorizontalLayout>
+            <Text id="panelAdversary2Level1" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversary2Level2" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversary2Level3" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversary2Level4" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversary2Level5" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+            <Text id="panelAdversary2Level6" active="false" fontsize="16" color="#FFFFFF" alignment="UpperLeft" tooltipPosition="Left"></Text>
+        </VerticalLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
+    <Panel id="panelUIToggleShow" visibility="">
+        <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">▼</Button>
+    </Panel>
+    <Panel id="panelUIToggleHide" visibility="Invisible">
+        <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">▲</Button>
+    </Panel>
+</Panel>
+<Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="180" height="50" rectAlignment="UpperRight" offsetXY="-430 -65">
+    <Text id="panelReadyYes" visibility="Invisible" fontsize="36" color="#00FF00">Ready</Text>
+    <Text id="panelReadyNo" visibility="Invisible" fontsize="36" color="#FF0000">Not Ready</Text>
+</Panel>
+<Panel id="panelUI" visibility="Invisible" width="160" height="100" rectAlignment="UpperRight" offsetXY="-240 0">
+    <VerticalLayout>
+        <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Toggle Invader UI</Button>
+        <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Toggle Adversary UI</Button>
+        <Button onClick="toggleTurnOrderUI" textAlignment="MiddleCenter">Toggle Turn Order UI</Button>
+        <Button onClick="toggleTimePassesUI" textAlignment="MiddleCenter">Toggle Time Passes UI</Button>
+        <Button onClick="toggleReadyUI" textAlignment="MiddleCenter">Toggle Ready UI</Button>
+    </VerticalLayout>
+</Panel>

@@ -3286,11 +3286,12 @@ function handlePiece(object, depth)
              object.setPositionSmooth(Vector(spos.x,0,spos.z) + defOffset)
         end
     elseif name == "Any" then
+        if object.getStateId() ~= 9 then
+            object = object.setState(9)
+        end
         if object.getLock() == false then
              object.destruct()
              object = nil
-        else  -- if it is locked, set it back to neutral instead of destroying it
-            if object.getStateId() ~= 9 then object.setState(9) end
         end
     elseif object.tag == "Tile" then
         if object.getVar("elements") ~= nil then

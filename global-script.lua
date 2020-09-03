@@ -3289,13 +3289,13 @@ function handlePiece(object, depth)
         if object.getStateId() ~= 9 then
             object = object.setState(9)
         end
-        if object.getLock() == false then
+        if object.getLock() == false and object.getPosition().z > spos.z then
              object.destruct()
              object = nil
         end
     elseif object.tag == "Tile" then
         if object.getVar("elements") ~= nil then
-            if object.getLock() == false then
+            if object.getLock() == false and object.getPosition().z > spos.z then
                  object.destruct()
                  object = nil
             end

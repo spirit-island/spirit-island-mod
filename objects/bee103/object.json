@@ -43,8 +43,6 @@
       "Stackable": false
     }
   },
-  "LuaScriptState": "{\"panelAdversaryVisibilityString\":\"Invisible\",\"panelInvaderVisibilityString\":\"Invisible\",\"panelTurnOrderVisibilityString\":\"Invisible\"}",
-  "XmlUI": "",
   "AttachedSnapPoints": [
     {
       "Position": {

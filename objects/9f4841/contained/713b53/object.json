@@ -40,7 +40,5 @@
     "MaterialIndex": 3,
     "TypeIndex": 0,
     "CastShadows": true
-  },
-  "LuaScriptState": "",
-  "XmlUI": ""
+  }
 }

@@ -43,8 +43,6 @@
       "Stretch": true
     }
   },
-  "LuaScriptState": "",
-  "XmlUI": "",
   "States": {
     "5": {
       "Name": "Custom_Tile",

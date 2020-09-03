@@ -32,8 +32,6 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "LuaScriptState": "",
-  "XmlUI": "",
   "AttachedSnapPoints": [
     {
       "Position": {

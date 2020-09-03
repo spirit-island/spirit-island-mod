@@ -43,8 +43,6 @@
       "Stackable": true
     }
   },
-  "LuaScriptState": "",
-  "XmlUI": "",
   "States": {
     "3": {
       "Name": "Custom_Token",

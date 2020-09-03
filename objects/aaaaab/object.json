@@ -54,8 +54,6 @@
     },
     "CastShadows": false
   },
-  "LuaScriptState": "",
-  "XmlUI": "",
   "ChildObjects": [
     {
       "Name": "Custom_Model",

@@ -50,7 +50,5 @@
       "FresnelStrength": 0.0
     },
     "CastShadows": true
-  },
-  "LuaScriptState": "",
-  "XmlUI": ""
+  }
 }

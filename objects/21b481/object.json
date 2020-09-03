@@ -32,7 +32,5 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "MaterialIndex": -1,
-  "MeshIndex": -1,
-  "LuaScriptState": "",
-  "XmlUI": ""
+  "MeshIndex": -1
 }

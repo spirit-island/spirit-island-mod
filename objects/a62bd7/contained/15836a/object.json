@@ -45,8 +45,6 @@
     "TypeIndex": 6,
     "CastShadows": true
   },
-  "LuaScriptState": "",
-  "XmlUI": "",
   "ChildObjects": [
     {
       "Name": "Custom_Token",

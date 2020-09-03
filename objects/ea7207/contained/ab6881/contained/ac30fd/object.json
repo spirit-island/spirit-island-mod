@@ -31,7 +31,5 @@
   "GridProjection": false,
   "Hands": true,
   "CardID": 18304,
-  "SidewaysCard": false,
-  "LuaScriptState": "",
-  "XmlUI": ""
+  "SidewaysCard": false
 }

@@ -30,7 +30,5 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
-  "LuaScriptState": "",
-  "XmlUI": ""
+  "Hands": false
 }

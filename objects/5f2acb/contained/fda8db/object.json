@@ -33,7 +33,5 @@
   "Hands": false,
   "Counter": {
     "value": 0
-  },
-  "LuaScriptState": "",
-  "XmlUI": ""
+  }
 }

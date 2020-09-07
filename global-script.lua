@@ -3265,7 +3265,21 @@ function handlePiece(object, depth)
     elseif string.sub(name,1,6) == "Blight" then
         object = resetPiece(object, Vector(0,180,0), depth)
     elseif string.sub(name,-7) == "Defence" then
-        if object.getLock() == false then
+        local state = 21
+        local searching = true
+
+        if object.getStateId() ~= state then
+            object = object.setState(state)
+        end
+        while searching  and state >= 1 do
+            if object.getLock() == true then
+                searching = false
+            else
+                state = state - 1
+                if state >= 1 then object = object.setState(state) end
+            end
+        end
+        if searching then
             object.destruct()
             object = nil
         end

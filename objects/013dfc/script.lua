@@ -3,7 +3,24 @@ useProgression = false
 progressionCard = nil
 useAspect = 2
 
-function onLoad()
+function onLoad(saved_data)
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        if loaded_data.progressionPrescense == nil then
+            loaded_data.progressionPrescense = #self.getSnapPoints()
+            self.script_state = JSON.encode(loaded_data)
+        end
+        progressionPrescense = loaded_data.progressionPrescense
+    else
+        snapPoints = JSON.decode(self.getJSON()).AttachedSnapPoints
+        if snapPoints ~= nil then
+            progressionPrescense = #snapPoints
+            self.script_state = JSON.encode({
+                progressionPrescense = progressionPrescense
+            })
+        end
+    end
+
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     if Global.getVar("gameStarted") then return end
     self.createButton({
@@ -91,7 +108,7 @@ function SetupSpirit(object_pick,player_color)
         -- Setup Presence
         for i = 1,13 do
             local p = snaps[i]
-            if i <= #snaps then
+            if i <= progressionPrescense then
                 PlayerBag.takeObject({position = self.positionToWorld(p.position)})
             else
                 PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})

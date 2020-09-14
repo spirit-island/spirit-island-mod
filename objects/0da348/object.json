@@ -15,9 +15,9 @@
   "Description": "Change the state to change the number shown",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.191972673,
+    "r": 0.191972584,
     "g": 0.701,
-    "b": 0.167972654
+    "b": 0.167972565
   },
   "Locked": true,
   "Grid": true,

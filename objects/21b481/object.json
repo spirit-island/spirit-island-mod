@@ -11,12 +11,12 @@
     "scaleY": 0.9000001,
     "scaleZ": 0.9000001
   },
-  "Nickname": "Element Tokens",
-  "Description": "Use these for powers/growths which provide elements, or when you reveal an element on your growth track",
+  "Nickname": "Element Token",
+  "Description": "Use these for when a  powers/events/growths which gift elements, o,r when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.627,
-    "g": 0.124971189,
+    "g": 0.124971084,
     "b": 0.941
   },
   "Locked": true,

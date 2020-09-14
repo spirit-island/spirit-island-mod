@@ -1,0 +1,46 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 62.204567,
+    "posY": 1.35663557,
+    "posZ": -13.63802,
+    "rotX": 0.00444353651,
+    "rotY": -0.000286744849,
+    "rotZ": 0.000121338839,
+    "scaleX": 0.367304444,
+    "scaleY": 1.0,
+    "scaleZ": 0.367304444
+  },
+  "Nickname": "Element",
+  "Description": "Use these for when a power/event gifts you an element or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159431524/5379D06E34BFA92DF21BC8376FE735AE6C89F1EC/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.1,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  }
+}

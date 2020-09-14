@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -118.70816,
-    "posY": 1.09064937,
-    "posZ": 15.979516,
-    "rotX": 0.00444664853,
+    "posX": -116.943108,
+    "posY": 1.09205341,
+    "posZ": 18.05,
+    "rotX": 0.004452175,
     "rotY": 180.0,
-    "rotZ": 180.0,
-    "scaleX": 5.540597,
+    "rotZ": 180.000015,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.45227337
+    "scaleZ": 5.46
   },
   "Nickname": "Volcano Looming High",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2003003,
-    "g": 0.160345584,
-    "b": 0.151783854
+    "r": 0.200297773,
+    "g": 0.160343051,
+    "b": 0.151781321
   },
   "Locked": true,
   "Grid": true,

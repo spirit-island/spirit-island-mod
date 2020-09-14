@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -66.53773,
+    "posY": 1.09612548,
+    "posZ": 40.4569,
+    "rotX": 0.004446609,
+    "rotY": 179.99968,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Ocean's Hungry Grasp",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029062,
+    "g": 0.1603359,
+    "b": 0.151774168
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861337983/DED21BA0858955CA223FC1730C689695D955D865/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861345382/6229CBE340CCD59BC8800B104EA26F735A56D68C/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0395212881,
+        "y": 0.20000039,
+        "z": -0.139607117
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0403716937,
+        "y": 0.200000748,
+        "z": 0.139774337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.260125369,
+        "y": 0.200000942,
+        "z": -0.1385686
+      }
+    },
+    {
+      "Position": {
+        "x": -0.263719648,
+        "y": 0.200000882,
+        "z": 0.137814865
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4810171,
+        "y": 0.200000763,
+        "z": -0.140546918
+      }
+    },
+    {
+      "Position": {
+        "x": -0.481275439,
+        "y": 0.200001121,
+        "z": 0.138826862
+      }
+    },
+    {
+      "Position": {
+        "x": -0.701751053,
+        "y": 0.200000823,
+        "z": -0.139694452
+      }
+    },
+    {
+      "Position": {
+        "x": -0.702271938,
+        "y": 0.200000808,
+        "z": 0.139889479
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9222853,
+        "y": 0.200001121,
+        "z": -0.138644755
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9226987,
+        "y": 0.200001121,
+        "z": 0.140560761
+      }
+    },
+    {
+      "Position": {
+        "x": -1.14262,
+        "y": 0.200000957,
+        "z": -0.140281662
+      }
+    }
+  ]
+}

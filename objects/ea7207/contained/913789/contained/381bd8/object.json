@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1.3656503,
+    "scaleY": 1,
+    "scaleZ": 1.3656503
+  },
+  "Nickname": "Gold's Allure",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 58403,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "584": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609487668/5F566EDFEACADBB864106A87FF2925000F027640/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859966097/77D13AE6F8BC3963A9194911D8A509EC060A2134/",
+      "NumWidth": 8,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

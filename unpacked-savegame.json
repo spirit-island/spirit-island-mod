@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island - [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ]",
-  "Date": "8/22/2020 9:05:30 AM",
+  "Date": "9/12/2020 1:19:47 PM",
   "Gravity": 0.5,
   "PlayArea": 1.0,
   "GameType": "Game",
@@ -25,126 +25,14 @@
   "Sky": "Sky_Forest",
   "Rules": "",
   "MusicPlayer": {
-    "RepeatSong": false,
-    "PlaylistEntry": -1,
-    "CurrentAudioTitle": "Silence",
-    "CurrentAudioURL": "http://cloud-3.steamusercontent.com/ugc/1170321140105354770/E6B776B487A4435774ED40266DA2729F761B3656/",
+    "RepeatSong": true,
+    "PlaylistEntry": 0,
+    "CurrentAudioTitle": "Zen",
+    "CurrentAudioURL": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
     "AudioLibrary": [
       {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224634775/AEB015895136DF2829B35A9BC3B3E4768A87AF23/",
-        "Item2": "The Binding of Isaac Antibirth OST Depression Shop"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224637499/CC4F74C62B93E141011DB59BE830175F7F493B9E/",
-        "Item2": "The Binding of Isaac Antibirth OST Descent (Title)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224643089/AF7B445B49B341C7F253D60E3A69BE5F256B4D27/",
-        "Item2": "The Binding of Isaac Antibirth OST Drowning (Corpse)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224646729/3BBAA5106094FA669A1C5F4CB9EF40A535B159B7/",
-        "Item2": "The Binding of Isaac Antibirth OST Dystension (Womb)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224649423/3FFC207AA5105A087A86C43D16C913388754F323/",
-        "Item2": "The Binding of Isaac Antibirth OST Esc (Arcade)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224650768/24874F88F896A892EB65D03AE5210C7FA630EC22/",
-        "Item2": "The Binding of Isaac Antibirth OST Fault Lines (Mines)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224652562/A5CFC8C9F71901E96D63FB3DEBA0D3A3EAF716A4/",
-        "Item2": "The Binding of Isaac Antibirth OST Forgotten Lullaby (Secret Room)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224653965/55A595287F1A6AFE0B3F69184C9BE9F6391993ED/",
-        "Item2": "The Binding of Isaac Antibirth OST Gloria Filio (Mom's Heart)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224656735/960F20651F97C6AD8D03004850817A29ACFD00EA/",
-        "Item2": "The Binding of Isaac Antibirth OST Hallowed Ground (Downpour)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224660027/084B8957FD342259521E7B07E773CCD350E7392A/",
-        "Item2": "The Binding of Isaac Antibirth OST Innocence Glitched (Basement)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224661003/18F6ECAAED080B857FE09B2AF6BABF60AB75A9B6/",
-        "Item2": "The Binding of Isaac Antibirth OST Innocence Mangled (Depths)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224662069/32A8F9CB6F9C09372FA0DE28C18E72E7C1E1C15B/",
-        "Item2": "The Binding of Isaac Antibirth OST Intro (Cinematic)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224663401/445F93960373F64C194C92DAEAEB757CCD5B728A/",
-        "Item2": "The Binding of Isaac Antibirth OST Journey from a Jar to the Sky (Planetarium)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224664066/439728ED0794AAB417B2958F2B572EAD277236E6/",
-        "Item2": "The Binding of Isaac Antibirth OST Lucidate (Library)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224665618/47A2C91C75A625CA1A83BF8F7FC22BC69933A6D1/",
-        "Item2": "The Binding of Isaac Antibirth OST Machine in the Walls (Mausoleum)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224666850/983CC939CDC3A6FFF31DF52B31C06759D3DE505A/",
-        "Item2": "The Binding of Isaac Antibirth OST Marble Forest (Catacombs)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224667543/808528FEC4186E8FEA853AD63E28BCA2A395DB86/",
-        "Item2": "The Binding of Isaac Antibirth OST Memento Mori (Final Boss)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224668547/B6DE253A7B0EE1533D6D7C5BA92053D8EA2F121C/",
-        "Item2": "The Binding of Isaac Antibirth OST Misericorde (Isaac Fight)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224670457/9AE969DB54B233E06EA1D1D89C29F315B68BE868/",
-        "Item2": "The Binding of Isaac Antibirth OST Morphine (Dark Room)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224671402/7BDF52D1E24404A60E964C99BCB8ACD7F9B3E898/",
-        "Item2": "The Binding of Isaac Antibirth OST Outside the Fold (Cellar)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224672052/1CB682E83A3810A188DD24540BA919C285702956/",
-        "Item2": "The Binding of Isaac Antibirth OST Shadowdance (Sheol)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224672943/37D6A3F5D8333CB44B7E5401F8936F99140AACA5/",
-        "Item2": "The Binding of Isaac Antibirth OST Spinning Intensifies (Boss Beaten + )"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224674657/2E344D429196E4C89F2E638B5658ED546AF156C9/",
-        "Item2": "The Binding of Isaac Antibirth OST Spinning Out of Orbit (Boss Beaten)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224675711/32FB11610C3D92E679140F6C2D5FD498F096A3B4/",
-        "Item2": "The Binding of Isaac Antibirth OST Subterranean Homesick Malign (Caves)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224677455/C8AD0D94AFBF6254D8C7595412B14635C2FE4F29/",
-        "Item2": "The Binding of Isaac Antibirth OST Tandava (Boss)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224678969/19D5A38C06A380A8FF0F088969EEB7973F2AC101/",
-        "Item2": "The Binding of Isaac Antibirth OST The Hammer of Pompeii (Necropolis)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224680060/52171592C3BB484FFFD3F29BB8C6FC6BBCD53D2C/",
-        "Item2": "The Binding of Isaac Antibirth OST The Thief (Cathedral)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224681185/7AD30F7292FADC422ED3F00F19E9983F9C432807/",
-        "Item2": "The Binding of Isaac Antibirth OST Ultimort (Chest)"
-      },
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/771729113224682444/20A6BBEDD39D839AF16825012DEF53ADAC8E42E7/",
-        "Item2": "The Binding of Isaac Antibirth OST Underscore (Credits)"
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
+        "Item2": "Zen"
       }
     ]
   },
@@ -521,61 +409,49 @@
   "SnapPoints": [
     {
       "Position": {
-        "x": -45.6999969,
+        "x": -48.98,
         "y": 0.9611349,
-        "z": -10.2100077
+        "z": -5.860028
       },
       "Rotation": {
-        "x": 6.14757e-07,
-        "y": 179.999863,
-        "z": 180.002731
-      }
-    },
-    {
-      "Position": {
-        "x": -48.9999924,
-        "y": 0.9611349,
-        "z": -10.2001123
-      },
-      "Rotation": {
-        "x": 2.281005e-06,
-        "y": 179.975662,
-        "z": 0.00274610729
-      }
-    },
-    {
-      "Position": {
-        "x": -52.3,
-        "y": 0.9611349,
-        "z": -10.2000008
-      },
-      "Rotation": {
-        "x": 0.00444660056,
-        "y": 179.999969,
-        "z": -1.274391e-07
-      }
-    },
-    {
-      "Position": {
-        "x": -49.0,
-        "y": 0.9611349,
-        "z": -5.812271
-      },
-      "Rotation": {
-        "x": 0.0044468157,
-        "y": 179.9991,
+        "x": 0.00444679,
+        "y": 179.996033,
         "z": 180.0
       }
     },
     {
       "Position": {
-        "x": -45.7,
+        "x": -45.62,
         "y": 0.9611349,
-        "z": -5.815148
+        "z": -5.8599987
       },
       "Rotation": {
-        "x": 0.00444649067,
-        "y": 180.000015,
+        "x": 0.00444660056,
+        "y": 179.995163,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": -45.62001,
+        "y": 0.9611349,
+        "z": -10.61
+      },
+      "Rotation": {
+        "x": 0.004446887,
+        "y": 180.025269,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": -48.9800034,
+        "y": 0.9611349,
+        "z": -10.6098442
+      },
+      "Rotation": {
+        "x": 0.004453903,
+        "y": 180.02417,
         "z": 180.0
       }
     }

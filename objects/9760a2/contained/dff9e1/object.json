@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 85.61791,
-    "posY": 1.46224689,
-    "posZ": -1.7891897,
-    "rotX": 359.918152,
-    "rotY": 180.003143,
-    "rotZ": -0.00566441333,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 6.5,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 6.5
   },
   "Nickname": "NORMAL A",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 0.8156863,
+    "g": 0.8156863,
+    "b": 0.8156863
   },
   "Locked": false,
   "Grid": false,
@@ -32,13 +32,13 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412943/9707446FF4553638F4CBC29E324E0C6CC60120B3/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1588037098358809732/EAC9E4DE91D149756FF62E7B94CDCAEEBF2C20E5/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomToken": {
       "Thickness": 0.39500016,
-      "MergeDistancePixels": 15.0,
+      "MergeDistancePixels": 15,
       "StandUp": false,
       "Stackable": false
     }

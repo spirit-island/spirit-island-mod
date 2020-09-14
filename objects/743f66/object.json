@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -66.62623,
-    "posY": 1.08882368,
-    "posZ": -7.540011,
-    "rotX": 0.004448194,
+    "posX": -66.54,
+    "posY": 1.09020758,
+    "posZ": -4.351488,
+    "rotX": 0.004446647,
     "rotY": 179.999344,
     "rotZ": 180.0,
-    "scaleX": 5.463006,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.463006
+    "scaleZ": 5.46
   },
   "Nickname": "Finder of Paths Unseen",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200300485,
-    "g": 0.160345763,
-    "b": 0.151784033
+    "r": 0.200297952,
+    "g": 0.16034323,
+    "b": 0.1517815
   },
   "Locked": true,
   "Grid": true,

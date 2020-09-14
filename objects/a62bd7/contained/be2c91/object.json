@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.7605438,
-    "posY": 1.314666,
-    "posZ": 0.542179167,
-    "rotX": -1.12433941e-06,
-    "rotY": 179.991669,
-    "rotZ": -1.32512594e-06,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.21,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 0.2
   },
   "Nickname": "France Build Reminder",
   "Description": "Branch & Claw Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 1,
+    "g": 1,
+    "b": 1
   },
   "Locked": false,
   "Grid": true,
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412878/9B1AD63B0EB828C362E1199D02197825F9E27D53/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomTile": {
       "Type": 0,
       "Thickness": 0.2,

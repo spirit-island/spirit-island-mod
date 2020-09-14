@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1.3656503,
+    "scaleY": 1,
+    "scaleZ": 1.3656503
+  },
+  "Nickname": "Savage Transformation",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 58311,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "583": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609485600/3AE86DDD60BAED49DAAEFCC09617022A452F74D6/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859964189/C21FE8B1440EB0D4E8293B088AE167E69285B286/",
+      "NumWidth": 7,
+      "NumHeight": 4,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

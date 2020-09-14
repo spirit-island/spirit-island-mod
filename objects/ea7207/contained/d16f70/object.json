@@ -1,0 +1,63 @@
+{
+  "Name": "DeckCustom",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1.47602439,
+    "scaleY": 1,
+    "scaleZ": 1.47602439
+  },
+  "Nickname": "Fear",
+  "Description": "Branch & Claw Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    57800,
+    57801,
+    57802,
+    57803,
+    57804,
+    57805,
+    57806,
+    57807,
+    57808,
+    57809,
+    57810,
+    57811,
+    57812,
+    57813,
+    57814
+  ],
+  "CustomDeck": {
+    "578": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609472768/2A536DD0D66EE590A8E8AAE986272877523C2A6D/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859855314/F4B7D800D65706BD35F2B4F5A72593A50312F198/",
+      "NumWidth": 7,
+      "NumHeight": 4,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

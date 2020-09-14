@@ -119,6 +119,7 @@ useRandomBoard = false
 ------
 aidBoard = "bee103"
 SetupChecker = "ab0a4e"
+fearDeckSetupZone = "fbbf69"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -145,13 +146,13 @@ dahanDamage = "d936f3"
 -----
 adversaryGuids = {
     "", -- None
-    "8a796d", -- Prussia
-    "fad468", -- England
-    "7f6e53", -- Sweden
-    "d2249d", -- France
-    "204a4c", -- Habsburg
-    "4ead68", -- Russia
-    "393719", -- Scotland
+    "dd3d47", -- Prussia
+    "b765cf", -- England
+    "f114f8", -- Sweden
+    "e8f3e3", -- France
+    "1d9bcd", -- Habsburg
+    "1ea4cf", -- Russia
+    "37a592", -- Scotland
 }
 boardSetupNames = {
     "Standard",
@@ -1883,16 +1884,16 @@ function addBnCCardsCo()
     })
     local BnCBag = getObjectFromGUID("ea7207")
 
-    local fearDeck = BnCBag.takeObject({guid = "dd45d1"})
-    getObjectFromGUID("01795f").putObject(fearDeck)
-    local minorPowers = BnCBag.takeObject({guid = "850f46"})
+    local fearDeck = BnCBag.takeObject({guid = "d16f70"})
+    getObjectFromGUID(fearDeckSetupZone).getObjects()[1].putObject(fearDeck)
+    local minorPowers = BnCBag.takeObject({guid = "913789"})
     getObjectFromGUID(minorPowerZone).getObjects()[1].putObject(minorPowers)
-    local majorPowers = BnCBag.takeObject({guid = "e13834"})
+    local majorPowers = BnCBag.takeObject({guid = "07ac50"})
     getObjectFromGUID(majorPowerZone).getObjects()[1].putObject(majorPowers)
-    local blightCards = BnCBag.takeObject({guid = "c6e714"})
+    local blightCards = BnCBag.takeObject({guid = "788333"})
     getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
     BnCBag.takeObject({
-        guid = "ab6881",
+        guid = "05f7b7",
         position = getObjectFromGUID("b18505").getPosition(),
         rotation = {0,180,180},
     })
@@ -1914,13 +1915,13 @@ function addJECardsCo()
     })
     local JEBag = getObjectFromGUID("850ac1")
 
-    local fearDeck = JEBag.takeObject({guid = "0788ab"})
-    getObjectFromGUID("01795f").putObject(fearDeck)
+    local fearDeck = JEBag.takeObject({guid = "723183"})
+    getObjectFromGUID(fearDeckSetupZone).getObjects()[1].putObject(fearDeck)
     local minorPowers = JEBag.takeObject({guid = "80b54a"})
     getObjectFromGUID(minorPowerZone).getObjects()[1].putObject(minorPowers)
     local majorPowers = JEBag.takeObject({guid = "98a916"})
     getObjectFromGUID(majorPowerZone).getObjects()[1].putObject(majorPowers)
-    local blightCards = JEBag.takeObject({guid = "5d209e"})
+    local blightCards = JEBag.takeObject({guid = "8120e0"})
     getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
     JEBag.takeObject({
         guid = "299e38",
@@ -2152,7 +2153,7 @@ function SetupFear()
     end
 
     local zone = getObjectFromGUID(fearDeckZone)
-    local fearDeck = getObjectFromGUID("01795f")
+    local fearDeck = getObjectFromGUID(fearDeckSetupZone).getObjects()[1]
     -- include the two terror dividers
     local maxCards = #fearDeck.getObjects() + 2
     local count = 0
@@ -2250,21 +2251,21 @@ function SetupPowerDecks()
         SetupChecker.createButton({
             click_function = "MajorPowerC",
             function_owner = Global,
-            label          = "Major",
+            label          = "Gain a\nMajor",
             position       = Vector(0,0.8, -2.2),
-            width          = 2000,
-            height         = 1600,
-            font_size      = 700,
+            width          = 1600,
+            height         = 1500,
+            font_size      = 500,
             tooltip        = "Click to learn a Major Power",
         })
         SetupChecker.createButton({
             click_function = "MinorPowerC",
             function_owner = Global,
-            label          = "Minor",
-            position       = Vector(0, 0.8, 2.2),
-            width          = 2000,
-            height         = 1600,
-            font_size      = 700,
+            label          = "Gain a\nMinor",
+            position       = Vector(0, 0.8, 2.6),
+            width          = 1600,
+            height         = 1500,
+            font_size      = 500,
             tooltip        = "Click to learn a Minor Power",
         })
         stagesSetup = stagesSetup + 1
@@ -2648,53 +2649,59 @@ function reminderSetup()
 
     local ravagePos = Vector(-0.2,-0.09,2.24)
     if reminder.ravage then
-        adversaryBag.takeObject({
+        local obj = adversaryBag.takeObject({
             guid = reminder.ravage,
             position = aidBoard.positionToWorld(ravagePos),
             rotation = {0,180,0},
         })
+        obj.setLock(true)
         ravagePos.z = ravagePos.z + 0.07
     end
     if reminder2.ravage and reminder2.ravage ~= reminder.ravage then
-        adversaryBag.takeObject({
+        local obj = adversaryBag.takeObject({
             guid = reminder2.ravage,
             position = aidBoard.positionToWorld(ravagePos),
             rotation = {0,180,0},
         })
+        obj.setLock(true)
     end
 
     local buildPos = Vector(-0.72,-0.09,2.24)
     if reminder.build then
-        adversaryBag.takeObject({
+        local obj = adversaryBag.takeObject({
             guid = reminder.build,
             position = aidBoard.positionToWorld(buildPos),
             rotation = {0,180,0},
         })
+        obj.setLock(true)
         buildPos.z = buildPos.z + 0.07
     end
     if reminder2.build and reminder2.build ~= reminder.build then
-        adversaryBag.takeObject({
+        local obj = adversaryBag.takeObject({
             guid = reminder2.build,
             position = aidBoard.positionToWorld(buildPos),
             rotation = {0,180,0},
         })
+        obj.setLock(true)
     end
 
     local explorePos = Vector(-1.24,-0.09,2.24)
     if reminder.explore then
-        adversaryBag.takeObject({
+        local obj = adversaryBag.takeObject({
             guid = reminder.explore,
             position = aidBoard.positionToWorld(explorePos),
             rotation = {0,180,0},
         })
+        obj.setLock(true)
         explorePos.z = explorePos.z + 0.07
     end
     if reminder2.explore and reminder2.explore ~= reminder.explore then
-        adversaryBag.takeObject({
+        local obj = adversaryBag.takeObject({
             guid = reminder2.explore,
             position = aidBoard.positionToWorld(explorePos),
             rotation = {0,180,0},
         })
+        obj.setLock(true)
     end
 end
 function createDifficultyButton()
@@ -2921,9 +2928,9 @@ function SetupInvaderDeck()
     local coastalSetup = false
     if requiresCoastal then
         -- Set Coastal card aside for now
-        local stage2Deck = getObjectFromGUID("4e4ef4")
+        local stage2Deck = getObjectFromGUID("fd9c6b")
         stage2Deck.takeObject({
-            guid = "2f0538",
+            guid = "c304c1",
             position = stage2Deck.getPosition() + Vector(0,1,0),
             rotation = Vector(0,180,0),
             callback_function = function(obj) coastalSetup = true end,
@@ -2937,9 +2944,9 @@ function SetupInvaderDeck()
 end
 function grabInvaderCards(deckTable)
     local zone = getObjectFromGUID(invaderDeckZone)
-    local stage1Deck = getObjectFromGUID("2e790f")
-    local stage2Deck = getObjectFromGUID("4e4ef4")
-    local stage3Deck = getObjectFromGUID("7d0f0f")
+    local stage1Deck = getObjectFromGUID(stage1DeckZone).getObjects()[1]
+    local stage2Deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
+    local stage3Deck = getObjectFromGUID(stage3DeckZone).getObjects()[1]
 
     stage1Deck.shuffle()
     stage2Deck.shuffle()
@@ -2975,7 +2982,7 @@ function grabInvaderCards(deckTable)
             })
             table.insert(cardTable, card)
         elseif char == "C" then
-            local card = getObjectFromGUID("2f0538")
+            local card = getObjectFromGUID("c304c1")
             card.setPositionSmooth(zone.getPosition() + Vector(-#deckTable+i,0,0))
             card.setRotationSmooth(Vector(0,180,180))
             cardsLoaded = cardsLoaded + 1
@@ -3231,6 +3238,9 @@ function timePassesCo()
         for _, obj in ipairs(zone.getObjects()) do
             if obj.getName() == "Any" then
                 if obj.getStateId() ~= 9 then obj.setState(9) end
+                if obj.getLock() == false then obj.destruct() end
+            elseif obj.tag == "Tile" and obj.getVar("elements") ~= nil then
+                if obj.getLock() == false then obj.destruct() end
             end
         end
     end
@@ -3294,117 +3304,117 @@ posMap = { -- This order should exactly match alternateSetupNames table
     },
     { -- 2 Player
         { -- Standard
-            Vector(12.23, 1.08, 24.28),
-            Vector(1.96, 1.08, 9.41),
+            Vector(9.13, 1.08, 25.29),
+            Vector{0.29, 1.08, 10.21},
         },
         { -- Fragment
-            Vector(1.96, 1.08, 9.41),
-            Vector(16.37, 1.08, 16.17),
+            Vector{-5.20, 1.07, 18.87},
+            Vector{10.12, 1.07, 19.08},
         },
         { -- Opposite Shores
-            Vector(1.85, 1.08, 14.44),
-            Vector(20.21, 1.08, 12.85),
+            Vector{-4.22, 1.07, 18.91},
+            Vector{13.78, 1.07, 19.09},
         },
     },
     { -- 3 Player
         { -- Standard
-            Vector(7.97, 1.08, 25.75),
-            Vector(21.40, 1.08, 17.17),
-            Vector(7.29, 1.08, 9.84),
+            Vector{2.33, 1.08, 26.80},
+            Vector{2.46, 1.08, 11.54},
+            Vector{15.70, 1.08, 19.37},
         },
         { -- Coastline
-            Vector(1.70, 1.08, 8.28),
-            Vector(19.90, 1.08, 8.21),
-            Vector(38.16, 1.08, 8.13),
+            Vector{-2.47, 1.08, 10.29},
+            Vector{15.38, 1.08, 9.96},
+            Vector{33.22, 1.08, 9.58},
         },
         { -- Sunrise
-            Vector(2.63, 1.08, 9.58),
-            Vector(17.07, 1.08, 16.13),
-            Vector(30.03, 1.08, 6.86),
+            Vector{-6.01, 1.07, 10.63},
+            Vector{7.19, 1.07, 18.54},
+            Vector{20.60, 1.07, 10.69},
         },
     },
     { -- 4 Player
         { -- Standard
-            Vector(6.20, 1.08, 24.40),
-            Vector(24.70, 1.08, 22.66),
-            Vector(14.19, 1.08, 7.71),
-            Vector(-4.30, 1.08, 9.41),
+            Vector{2.36, 1.08, 26.47},
+            Vector{20.40, 1.08, 26.64},
+            Vector{-6.65, 1.08, 11.13},
+            Vector{11.27, 1.08, 11.33},
         },
         { -- Leaf
-            Vector(2.26, 1.08, 18.89),
-            Vector(12.96, 1.08, 33.99),
-            Vector(25.89, 0.97, 24.75),
-            Vector(15.37, 1.08, 9.89),
+            Vector{7.05, 1.08, 34.30},
+            Vector{20.53, 1.08, 26.36},
+            Vector{-2.00, 1.08, 18.53},
+            Vector{11.39, 1.08, 10.92},
         },
         { --Snake
-            Vector(-4.57, 1.08, 7.74),
-            Vector(5.69, 1.08, 22.70),
-            Vector(34.38, 1.08, 35.94),
-            Vector(24.07, 0.97, 20.95),
+            Vector{35.36, 1.08, 37.55},
+            Vector{8.26, 1.08, 22.19},
+            Vector{26.45, 1.08, 22.36},
+            Vector{-0.73, 1.08, 7.00},
         },
     },
     { -- 5 Player
         { -- Standard
-            Vector(3.48, 0.97, 37.02),
-            Vector(11.17, 0.97, 20.58),
-            Vector(24.14, 0.97, 11.44),
-            Vector(25.50, 0.97, 27.19),
-            Vector(39.86, 0.97, 33.77),
+            Vector{3.32, 1.08, 32.42},
+            Vector{25.46, 1.08, 24.68},
+            Vector{38.99, 1.08, 32.44},
+            Vector{12.18, 1.08, 16.81},
+            Vector{25.62, 1.08, 9.32},
         },
         {  -- Snail
-            Vector(6.92, 1.08, 7.77),
-            Vector(13.67, 1.08, 31.04),
-            Vector(28.05, 1.08, 37.81),
-            Vector(26.67, 1.08, 21.91),
-            Vector(25.09, 1.08, 6.09),
+            Vector{26.42, 1.08, 41.16},
+            Vector{13.22, 1.08, 33.29},
+            Vector{26.68, 1.08, 25.70},
+            Vector{8.72, 1.08, 10.08},
+            Vector{26.67, 1.08, 9.98},
         },
         { -- Peninsula
-            Vector(2.23, 1.08, 32.46),
-            Vector(8.96, 1.08, 17.97),
-            Vector(18.13, 1.08, 31.13),
-            Vector(33.19, 1.08, 20.66),
-            Vector(48.18, 1.08, 10.14),
+            Vector{10.81, 1.08, 32.03},
+            Vector{26.27, 1.08, 32.27},
+            Vector{18.66, 1.08, 18.81},
+            Vector{41.71, 1.07, 23.07},
+            Vector{57.12, 1.07, 13.96},
         },
         { -- V
-            Vector(2.86, 1.08, 29.61),
-            Vector(10.66, 1.08, 13.16),
-            Vector(44.75, 1.08, 34.04),
-            Vector(34.25, 1.08, 19.05),
-            Vector(23.82, 1.08, 4.07),
+            Vector{0.17, 1.07, 33.75},
+            Vector{40.67, 1.07, 41.60},
+            Vector{8.96, 1.07, 18.16},
+            Vector{31.52, 1.07, 26.14},
+            Vector{22.40, 1.07, 10.67},
         },
     },
     { -- 6 Player
         { -- Standard
-            Vector(4.10, 0.97, 27.34),
-            Vector(10.93, 0.97, 12.98),
-            Vector(19.99, 0.97, 26.09),
-            Vector(34.81, 0.97, 15.37),
-            Vector(43.93, 0.97, 28.38),
-            Vector(50.61, 0.97, 13.86),
+            Vector{4.31, 1.08, 29.13},
+            Vector{19.72, 1.08, 29.32},
+            Vector{43.04, 1.08, 33.51},
+            Vector{12.25, 1.08, 15.90},
+            Vector{35.44, 1.08, 20.02},
+            Vector{50.90, 1.08, 20.26},
         },
         { -- Star
-            Vector(17.95, 1.08, 34.71),
-            Vector(32.44, 1.08, 41.36),
-            Vector(16.46, 1.08, 18.86),
-            Vector(45.44, 1.08, 32.09),
-            Vector(29.53, 1.08, 9.62),
-            Vector(43.93, 1.08, 16.33),
+            Vector{33.19, 1.07, 34.36},
+            Vector{40.94, 1.07, 20.76},
+            Vector{33.16, 1.07, 7.18},
+            Vector{17.52, 1.07, 7.25},
+            Vector{9.71, 1.07, 20.79},
+            Vector{17.50, 1.07, 34.33},
         },
         { -- Flower
-            Vector(15.89, 1.08, 42.10),
-            Vector(23.54, 1.08, 25.54),
-            Vector(37.99, 1.08, 32.32),
-            Vector(56.13, 1.08, 30.73),
-            Vector(36.67, 1.08, 16.45),
-            Vector(26.17, 1.08, 1.55),
+            Vector{7.70, 1.07, 41.68},
+            Vector{30.85, 1.07, 38.06},
+            Vector{48.54, 1.07, 41.11},
+            Vector{19.22, 1.07, 27.92},
+            Vector{33.81, 1.07, 22.91},
+            Vector{27.62, 1.07, 6.07},
         },
         { -- Caldera
-            Vector(4.79, 1.08, 30.00),
-            Vector(19.28, 1.08, 36.80),
-            Vector(12.49, 1.08, 13.40),
-            Vector(37.37, 1.08, 35.16),
-            Vector(35.92, 1.08, 19.19),
-            Vector(25.51, 1.08, 4.22),
+            Vector{-0.20, 1.07, 31.44},
+            Vector{13.16, 1.07, 39.17},
+            Vector{31.10, 1.07, 38.86},
+            Vector{8.54, 1.07, 15.76},
+            Vector{31.18, 1.07, 23.41},
+            Vector{21.95, 1.07, 8.04},
         },
     },
 }
@@ -3416,12 +3426,12 @@ rotMap = {
     },
     { -- 2 Player
         { -- Standard
-            Vector(0.00, 180.76, 0.00),
+            Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
         { -- Fragment
-            Vector(0.00, 60.00, 0.00),
-            Vector(0.00, 300.00, 0.00),
+            Vector{0.00, 90.00, 0.00},
+            Vector{0.00, 330.00, 0.00},
         },
         { -- Opposite Shores
             Vector(0.00, 180.00, 0.00),
@@ -3430,14 +3440,14 @@ rotMap = {
     },
     { -- 3 Player
         { -- Standard
-            Vector(0.00, 177.29, 0.00),
-            Vector(0.00, 297.33, 0.00),
-            Vector(0.00, 57.55, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 60.00, 0.00),
+            Vector(0.00, 300.00, 0.00),
         },
         { --Coastline
-            Vector(0.00, 235.00, 0.00),
-            Vector(0.00, 235.00, 0.00),
-            Vector(0.00, 235.00, 0.00),
+            Vector(0.00, 240.69, 0.00),
+            Vector(0.00, 240.69, 0.00),
+            Vector(0.00, 240.69, 0.00),
         },
         { -- Sunrise
             Vector(0.00, 60.00, 0.00),
@@ -3449,120 +3459,120 @@ rotMap = {
         { -- Standard
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
             Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 0.00, 0.00),
         },
         { -- Leaf
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 300.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
+            Vector{0.00, 300.27, 0.00},
+            Vector{0.00, 0.27, 0.00},
+            Vector{0.00, 120.27, 0.00},
+            Vector{0.00, 0.27, 0.00},
         },
         { -- Snake
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 180.00, 0.00),
-            Vector(0.00, 180.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
+            Vector{0.00, 180.00, 0.00},
+            Vector{0.00, 180.00, 0.00},
+            Vector{0.00, 0.05, 0.00},
+            Vector{0.00, 0.01, 0.00},
         },
     },
     { -- 5 Player
         { -- Standard
             Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 240.00, 0.00),
-            Vector(0.00, 300.00, 0.00),
+            Vector{0.00, 240.00, 0.00},
+            Vector{0.00, 300.00, 0.00},
+            Vector{0.00, 120.02, 0.00},
+            Vector{0.00, 359.99, 0.00},
         },
         { -- Snail
-            Vector(0.00, 60.00, 0.00),
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 240.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 60.00, 0.00),
+            Vector{0.00, 240.00, 0.00},
+            Vector{0.00, 120.02, 0.00},
+            Vector{0.00, 359.99, 0.00},
+            Vector{0.00, 60.01, 0.00},
+            Vector{0.00, 60.00, 0.00},
         },
         { -- Peninsula
-            Vector(0.00, 150.00, 0.00),
-            Vector(0.00, 30.00, 0.00),
-            Vector(0.00, 270.00, 0.00),
-            Vector(0.00, 270.00, 0.00),
-            Vector(0.00, 270.00, 0.00),
+            Vector{0.00, 150.07, 0.00},
+            Vector{0.00, 270.07, 0.00},
+            Vector{0.00, 30.09, 0.00},
+            Vector{0.00, 270.25, 0.00},
+            Vector{0.00, 270.25, 0.00},
         },
         { -- V
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
+            Vector{0.00, 119.99, 0.00},
+            Vector{0.00, 0.01, 0.00},
+            Vector{0.00, 119.99, 0.00},
+            Vector{0.00, 359.99, 0.00},
+            Vector{0.00, 0.01, 0.00},
         },
     },
     { -- 6 Player
         { -- Standard
-            Vector(0.00, 150.00, 0.00),
-            Vector(0.00, 30.00, 0.00),
-            Vector(0.00, 270.00, 0.00),
-            Vector(0.00, 90.00, 0.00),
-            Vector(0.00, 210.00, 0.00),
-            Vector(0.00, 330.00, 0.00),
+            Vector{0.00, 150.01, 0.00},
+            Vector{0.00, 270.00, 0.00},
+            Vector{0.00, 210.00, 0.00},
+            Vector{0.00, 30.01, 0.00},
+            Vector{0.00, 90.00, 0.00},
+            Vector{0.00, 330.00, 0.00},
         },
         { -- Star
-            Vector(0.00, 240.00, 0.00),
-            Vector(0.00, 300.00, 0.00),
-            Vector(0.00, 180.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 60.00, 0.00),
+            Vector{0.00, 330.00, 0.00},
+            Vector{0.00, 30.00, 0.00},
+            Vector{0.00, 90.00, 0.00},
+            Vector{0.00, 149.99, 0.00},
+            Vector{0.00, 210.00, 0.00},
+            Vector{0.00, 269.99, 0.00},
         },
         { -- Flower
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 240.00, 0.00),
-            Vector(0.00, 240.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
+            Vector{0.00, 109.62, 0.00},
+            Vector{0.00, 229.64, 0.00},
+            Vector{0.00, 229.62, 0.00},
+            Vector{0.00, 109.65, 0.00},
+            Vector{0.00, 349.62, 0.00},
+            Vector{0.00, 349.61, 0.00},
         },
         { -- Caldera
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 240.00, 0.00),
-            Vector(0.00, 120.00, 0.00),
-            Vector(0.00, 240.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
+            Vector{0.00, 120.42, 0.00},
+            Vector{0.00, 240.44, 0.00},
+            Vector{0.00, 240.43, 0.00},
+            Vector{0.00, 120.46, 0.00},
+            Vector{0.00, 0.43, 0.00},
+            Vector{0.00, 0.42, 0.00},
         },
     },
 }
 posMapThem = {
     {
-        Vector(-10, 1.06, 10.03), --E
+        Vector{-1.93, 1.07, 20.44}, --NE
     },
     {
-        Vector(12.71, 1.06, 10.03), --E
-        Vector(-6.44, 1.06, 8.15), --W
+        Vector{9.54, 1.07, 18.07}, --E
+        Vector{-10.34, 1.07, 18.04}, --W
     },
     {
-        Vector(12.71, 1.06, 10.03), --E
-        Vector(-6.44, 1.06, 8.15), --W
-        Vector(2.06, 1.06, 25.37), --NE
+        Vector{24.91, 1.07, 10.20}, --E
+        Vector{5.03, 1.07, 10.17}, --W
+        Vector{15.03, 1.07, 27.16}, --NE
     },
     {
-        Vector(18.71, 1.06, 10.03), --E
-        Vector(-0.44, 1.06, 8.15), --W
-        Vector(8.06, 1.06, 25.37), --NE
-        Vector(-11.21, 1.06, 23.49), --NW
+        Vector{29.29, 1.07, 10.20}, --E
+        Vector{9.41, 1.07, 10.17}, --W
+        Vector{19.41, 1.07, 27.16}, --NE
+        Vector{-0.62, 1.07, 27.04}, --NW
     },
     {
-        Vector(18.71, 1.06, 25.03), --E
-        Vector(-0.44, 1.06, 23.15), --W
-        Vector(8.06, 1.06, 40.37), --NE
-        Vector(-11.21, 1.06, 38.49), --NW
-        Vector(29.36, 1.06, 9.69), --SE
+        Vector{30.89, 1.07, 21.51}, --E
+        Vector{11.01, 1.07, 21.48}, --W
+        Vector{21.01, 1.07, 38.47}, --NE
+        Vector{0.98, 1.07, 38.35}, --NW
+        Vector{40.82, 1.07, 4.66}, --SE
     },
     {
-        Vector(18.71, 1.06, 25.03), --E
-        Vector(-0.44, 1.06, 23.15), --W
-        Vector(8.06, 1.06, 40.37), --NE
-        Vector(-11.21, 1.06, 38.49), --NW
-        Vector(29.36, 1.06, 9.69), --SE
-        Vector(10.33, 1.06, 7.81), --SW
+        Vector{33.53, 1.07, 21.51}, --E
+        Vector{13.65, 1.07, 21.48}, --W
+        Vector{23.65, 1.07, 38.47}, --NE
+        Vector{3.62, 1.07, 38.35}, --NW
+        Vector{43.40, 1.07, 4.63}, --SE
+        Vector{23.59, 1.07, 4.55}, --SW
     },
 }
 rotMapThem = {

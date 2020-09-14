@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -83.33772,
+    "posY": 1.09612548,
+    "posZ": 40.4569,
+    "rotX": 0.004446567,
+    "rotY": 179.999786,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Bringer of Dreams and Nightmares",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029062,
+    "g": 0.1603359,
+    "b": 0.151774168
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861330130/8A42A22F71191C85AFFFCC2633337E7679349698/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861334461/BD1D2B8ECA15C989F3D8A910BE17A0D04CC4A9EA/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0458035022,
+        "y": 0.200001329,
+        "z": -0.396365434
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0493572578,
+        "y": 0.200001389,
+        "z": -0.08053478
+      }
+    },
+    {
+      "Position": {
+        "x": -0.272481054,
+        "y": 0.200000823,
+        "z": -0.395271033
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2727038,
+        "y": 0.200000465,
+        "z": -0.08249423
+      }
+    },
+    {
+      "Position": {
+        "x": -0.487300038,
+        "y": 0.2000005,
+        "z": -0.39730522
+      }
+    },
+    {
+      "Position": {
+        "x": -0.490261018,
+        "y": 0.200000569,
+        "z": -0.08148223
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7080333,
+        "y": 0.200000554,
+        "z": -0.396452755
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7112561,
+        "y": 0.20000039,
+        "z": -0.0804196149
+      }
+    },
+    {
+      "Position": {
+        "x": -0.931533456,
+        "y": 0.200000823,
+        "z": -0.3984108
+      }
+    },
+    {
+      "Position": {
+        "x": -0.931684256,
+        "y": 0.200000927,
+        "z": -0.079748325
+      }
+    },
+    {
+      "Position": {
+        "x": -1.15194058,
+        "y": 0.200001359,
+        "z": -0.397012055
+      }
+    }
+  ]
+}

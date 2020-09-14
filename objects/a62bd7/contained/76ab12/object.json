@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.7,
-    "posY": 1.32690525,
-    "posZ": 0.86,
-    "rotX": 7.160846e-08,
-    "rotY": 179.975159,
-    "rotZ": -1.25103622e-06,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.21,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 0.2
   },
   "Nickname": "Scotland Build Reminder",
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 1,
+    "g": 1,
+    "b": 1
   },
   "Locked": false,
   "Grid": true,
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1465311785683030879/8F8C2B7B8C2B0B70EA1EC86C3833BA3C57F41430/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomTile": {
       "Type": 0,
       "Thickness": 0.2,

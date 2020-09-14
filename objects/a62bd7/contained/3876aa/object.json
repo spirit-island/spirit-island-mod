@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.13999,
-    "posY": 1.31504071,
-    "posZ": 0.8599996,
-    "rotX": -0.00106081,
-    "rotY": 180.0167,
-    "rotZ": 0.0006060291,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.21,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 0.2
   },
   "Nickname": "Habsburg Ravage Reminder",
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 1,
+    "g": 1,
+    "b": 1
   },
   "Locked": false,
   "Grid": true,
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1465311785683843948/B4A97A24DF4C8ECC2E24D105841A17A43A0D45DA/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomTile": {
       "Type": 0,
       "Thickness": 0.2,

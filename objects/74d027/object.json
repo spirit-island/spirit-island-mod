@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -118.705078,
-    "posY": 1.08882427,
-    "posZ": -7.54004431,
-    "rotX": 0.00444667,
+    "posX": -116.94,
+    "posY": 1.09016263,
+    "posZ": -4.35,
+    "rotX": 0.00457507139,
     "rotY": 180.0,
-    "rotZ": 180.0,
-    "scaleX": 5.50743055,
+    "rotZ": 180.000381,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.447708
+    "scaleZ": 5.46
   },
   "Nickname": "Starlight Seeks Its Form",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200300187,
-    "g": 0.160345465,
-    "b": 0.151783735
+    "r": 0.200297654,
+    "g": 0.160342932,
+    "b": 0.1517812
   },
   "Locked": true,
   "Grid": true,

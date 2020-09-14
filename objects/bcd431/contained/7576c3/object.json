@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 69.1439743,
-    "posY": 1.48461342,
-    "posZ": 40.39442,
-    "rotX": 1.49043061e-07,
-    "rotY": 180.012741,
-    "rotZ": -0.000144521822,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 6.5,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 6.5
   },
-  "Nickname": "THEMATIC South West",
+  "Nickname": "THEMATIC SW",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 0.8156863,
+    "g": 0.8156863,
+    "b": 0.8156863
   },
   "Locked": false,
   "Grid": false,
@@ -32,13 +32,13 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1478823218923571194/F4E8AAD10A90993376848C4F9D443F447BE9693D/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1588036874658618112/96E981F0A5F80A1E7FB76E53CFAD667EF585C77A/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomToken": {
       "Thickness": 0.4049997,
-      "MergeDistancePixels": 15.0,
+      "MergeDistancePixels": 15,
       "StandUp": false,
       "Stackable": false
     }

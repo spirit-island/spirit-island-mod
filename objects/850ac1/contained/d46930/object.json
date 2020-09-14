@@ -1,14 +1,14 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -71.50952,
-    "posY": 1.3295846,
-    "posZ": 11.3016033,
-    "rotX": -1.2715609e-06,
-    "rotY": 89.9998,
-    "rotZ": 180.0,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 1.05,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 1.05
   },
   "Nickname": "Stage II Command",

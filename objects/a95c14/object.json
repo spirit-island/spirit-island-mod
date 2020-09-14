@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -66.60521,
-    "posY": 1.08973861,
-    "posZ": 4.23995829,
-    "rotX": 0.00444651442,
+    "posX": -66.54,
+    "posY": 1.09107685,
+    "posZ": 6.8485117,
+    "rotX": 0.004446504,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 5.487596,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.44894934
+    "scaleZ": 5.46
   },
   "Nickname": "Shroud of Silent Mist",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200300366,
-    "g": 0.160345644,
-    "b": 0.151783913
+    "r": 0.200297832,
+    "g": 0.160343111,
+    "b": 0.15178138
   },
   "Locked": true,
   "Grid": true,

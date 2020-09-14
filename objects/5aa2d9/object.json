@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -101.339355,
-    "posY": 1.09064746,
-    "posZ": 15.9779892,
-    "rotX": 0.004453183,
-    "rotY": 179.970627,
-    "rotZ": 180.000061,
-    "scaleX": 5.549189,
+    "posX": -100.14,
+    "posY": 1.09194613,
+    "posZ": 18.05,
+    "rotX": 0.00444588438,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.46614838
+    "scaleZ": 5.46
   },
   "Nickname": "Stone's Unyielding Defiance",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200300336,
-    "g": 0.160345614,
-    "b": 0.151783884
+    "r": 0.2002978,
+    "g": 0.160343081,
+    "b": 0.15178135
   },
   "Locked": true,
   "Grid": true,

@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 6.7553525,
-    "posY": 2.74908733,
-    "posZ": -10.4849854,
-    "rotX": 359.711884,
-    "rotY": 0.000339798542,
-    "rotZ": 359.815918,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.825000167,
     "scaleY": 0.825000167,
     "scaleZ": 0.825000167
@@ -41,13 +41,13 @@
     "TypeIndex": 0,
     "CustomShader": {
       "SpecularColor": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
-      "SpecularIntensity": 0.0,
-      "SpecularSharpness": 2.0,
-      "FresnelStrength": 0.0
+      "SpecularIntensity": 0,
+      "SpecularSharpness": 2,
+      "FresnelStrength": 0
     },
     "CastShadows": true
   },
@@ -95,13 +95,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -153,13 +153,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -211,13 +211,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -269,13 +269,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -327,13 +327,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -385,13 +385,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -443,13 +443,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -465,7 +465,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004446972,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 1.34220357e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -501,13 +501,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -523,7 +523,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004447411,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 1.75483891e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -559,13 +559,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -581,7 +581,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.00444689952,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": -2.57582116e-08,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -617,13 +617,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -639,7 +639,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.00444717845,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": -1.95377936e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -675,13 +675,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -697,7 +697,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004446133,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 1.20587686e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -733,13 +733,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -755,7 +755,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004446334,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 1.793478e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -791,13 +791,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -813,7 +813,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004446891,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 1.46637461e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -849,13 +849,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -871,7 +871,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004446565,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 3.784999e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -907,13 +907,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -929,7 +929,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.00444681663,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": -2.248219e-08,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -965,13 +965,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -987,7 +987,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.00444682641,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 7.84619445e-08,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -1023,13 +1023,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -1045,7 +1045,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.00444694934,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 4.34271072e-07,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -1081,13 +1081,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -1103,7 +1103,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004446401,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 1.13574989e-08,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -1139,13 +1139,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -1161,7 +1161,7 @@
         "posY": 0.900946558,
         "posZ": -18.578928,
         "rotX": 0.004446785,
-        "rotY": 180.0,
+        "rotY": 180,
         "rotZ": 8.266411e-08,
         "scaleX": 0.825000167,
         "scaleY": 0.825000167,
@@ -1197,13 +1197,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },

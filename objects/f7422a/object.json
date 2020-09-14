@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -100.14,
+    "posY": 1.09525621,
+    "posZ": 29.2542267,
+    "rotX": 0.00444599427,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Sharp Fangs Behind the Leaves",
+  "Description": "B&C",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029068,
+    "g": 0.160335958,
+    "b": 0.151774228
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609504484/3F3A015C0C48432F8D8D404E182E0A509CA38F06/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609508519/33616004DDC274B95116C3D76059121E8761D4C1/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0264813472,
+        "y": 0.200000465,
+        "z": -0.398959517
+      }
+    },
+    {
+      "Position": {
+        "x": -0.247085437,
+        "y": 0.200000286,
+        "z": -0.397921
+      }
+    },
+    {
+      "Position": {
+        "x": -0.467977166,
+        "y": 0.199999988,
+        "z": -0.399899334
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6887111,
+        "y": 0.199999809,
+        "z": -0.399046838
+      }
+    },
+    {
+      "Position": {
+        "x": -0.909245431,
+        "y": 0.200001061,
+        "z": -0.397997171
+      }
+    },
+    {
+      "Position": {
+        "x": -1.12958,
+        "y": 0.20000042,
+        "z": -0.399634063
+      }
+    },
+    {
+      "Position": {
+        "x": -0.904204547,
+        "y": 0.200001255,
+        "z": -0.0793825
+      }
+    },
+    {
+      "Position": {
+        "x": -0.682799,
+        "y": 0.199999765,
+        "z": -0.08006285
+      }
+    },
+    {
+      "Position": {
+        "x": -0.464810967,
+        "y": 0.200000271,
+        "z": -0.0780622
+      }
+    },
+    {
+      "Position": {
+        "x": -0.244248062,
+        "y": 0.2000008,
+        "z": -0.0821371153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0269631166,
+        "y": 0.200000212,
+        "z": -0.08012214
+      }
+    }
+  ]
+}

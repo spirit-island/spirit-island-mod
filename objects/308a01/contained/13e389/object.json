@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1.53204679,
+    "scaleY": 1,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Blazing Renewal",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 59016,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "590": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859962876/2949715506D6E0C0A00A212CFED762B120963853/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859964189/C21FE8B1440EB0D4E8293B088AE167E69285B286/",
+      "NumWidth": 8,
+      "NumHeight": 4,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Nickname": "Foreboding",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 54703,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "547": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420524573/23A8DEB8A259B4B02E292DE9A3BB6F1FA17D51A3/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420525020/1D682A7DA3C347C5BC8AC03B8E965415ACF3D185/",
+      "NumWidth": 6,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}

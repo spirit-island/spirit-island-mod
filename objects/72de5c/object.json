@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -83.9852142,
-    "posY": 1.08973694,
-    "posZ": 4.21995354,
-    "rotX": 0.00444662943,
-    "rotY": 180.0,
+    "posX": -83.34,
+    "posY": 1.09107614,
+    "posZ": 6.84851265,
+    "rotX": 0.0044483766,
+    "rotY": 180.000153,
     "rotZ": 180.0,
-    "scaleX": 5.527607,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.4221096
+    "scaleZ": 5.46
   },
   "Nickname": "Vengeance As A Burning Plague",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2003006,
-    "g": 0.160345882,
-    "b": 0.151784152
+    "r": 0.200298071,
+    "g": 0.160343349,
+    "b": 0.151781619
   },
   "Locked": true,
   "Grid": true,

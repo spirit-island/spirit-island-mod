@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -118.705109,
-    "posY": 1.08473706,
-    "posZ": 4.219936,
-    "rotX": 0.00444659265,
-    "rotY": 180.0,
-    "rotZ": 180.0,
-    "scaleX": 5.46376562,
+    "posX": -116.94,
+    "posY": 1.08601952,
+    "posZ": 6.85,
+    "rotX": 0.00461760955,
+    "rotY": 179.998169,
+    "rotZ": 180.000519,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.46376562
+    "scaleZ": 5.46
   },
   "Nickname": "Shifting Memory of Ages",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.19999209,
-    "g": 0.156854838,
-    "b": 0.1490117
+    "r": 0.199989557,
+    "g": 0.1568523,
+    "b": 0.149009168
   },
   "Locked": true,
   "Grid": true,

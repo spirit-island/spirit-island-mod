@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -121.22,
-    "posY": 0.89,
-    "posZ": -33.3,
-    "rotX": 0.0,
-    "rotY": 180.0,
-    "rotZ": 0.0,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 5.282891,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 5.282891
   },
   "Nickname": "Rulebook",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 1,
+    "g": 1,
+    "b": 1
   },
   "Locked": false,
   "Grid": true,
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556401995285/140AD18BAE39DCDA671C7A130C1ED7CE1B188EE8/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomTile": {
       "Type": 3,
       "Thickness": 0.2,
@@ -54,16 +54,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -80,8 +80,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556401999686/0736540AAA5BD9E91608BAFFBE17F13F262F5558/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -104,16 +104,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -130,8 +130,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402001409/96295FD9EF3415EF579F765919E56EFDC60360A6/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -154,16 +154,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -180,8 +180,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402001919/22567E5059853F61E8FBB0CD9BA0E057F354BEFE/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -204,16 +204,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -230,8 +230,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402002864/76D6C21131807378432845A6DF67230E06394B4E/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -254,16 +254,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -280,8 +280,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402016888/FD22CE6CD4F99AE310ABA748487C00F3A4F1BB30/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -304,16 +304,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -330,8 +330,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402017273/709F7767349613B97F4898A1F04BB1E739F1E0C4/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -354,16 +354,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -380,8 +380,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402018390/46F1B77808CAA6733512A6C701505F30F1FB4BA4/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -404,16 +404,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -430,8 +430,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402019012/A26AB87EDBA1387DE900CF0086940E55E7D6313F/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -454,16 +454,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -480,8 +480,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402019639/ED44ACA554F72668736240655B0D8BD6D7E6ACB2/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -504,16 +504,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -530,8 +530,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402020097/6C798562AAF8703FBD4A5A452A6244371C70DEFC/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -554,16 +554,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -580,8 +580,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402021099/2B981506611599E1A4063FE17D51860D907467D5/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -604,16 +604,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -630,8 +630,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402021696/A7DB575AE5E299ED3746BCA50967D3C3F3ACB161/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -654,16 +654,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -680,8 +680,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402045793/80072169EEE68532070F5617EA562B6892E2170F/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -704,16 +704,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -730,8 +730,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402046591/C4D310ECBAD6DD9B61C98DF271D4EA4A9AD8DC38/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -754,16 +754,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -780,8 +780,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402047095/C6EE3F787C4D4A251CFB1D1E5E9E979ADBBF30F9/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -804,16 +804,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -830,8 +830,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402047606/01491A816C1102AC10DBB832A05AEB3F4E8BECCA/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -854,16 +854,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -880,8 +880,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402048334/5BC22C64863293D0F54F0A3F2B80AC5D0506E695/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -904,16 +904,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -930,8 +930,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402048842/8254124A3DFB2619964728595130EB79A72FF867/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -954,16 +954,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -980,8 +980,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402049398/6BB0EB49FD0CA2CA6D591614575FC1D4D5372E61/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1004,16 +1004,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1030,8 +1030,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402049991/3633A90D42593B4CCC48D76595B95435245F51D1/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1054,16 +1054,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1080,8 +1080,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402050422/C8EDCC38861C93CE3FEC24F1F236E01E2DCF1DD3/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1104,16 +1104,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1130,8 +1130,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402050873/7E95639EF425E1257DF48051DBC3A314CFFED1A9/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1154,16 +1154,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1180,8 +1180,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402051420/C88D696F3848DD71DB5FE21B65621C60EC188BD8/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1204,16 +1204,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1230,8 +1230,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402052236/D43CA807ECA976A5AFEE155277E6B297340ABE16/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1254,16 +1254,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1280,8 +1280,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402053789/434D1F4703281E0FBEEEADB82CD126B1A3B0B4DB/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1304,16 +1304,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1330,8 +1330,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402054246/79CDD132E46E87169678857419FA5200F8E834E8/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1354,16 +1354,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1380,8 +1380,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402055038/190F56E03DF3A27A09CFDEBB230AE76A21E5A5FB/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1404,16 +1404,16 @@
         "rotY": 179.9893,
         "rotZ": -7.967432e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1430,8 +1430,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402055582/36EEB4A0F34ED94D676C9AAAE41A5E05E1018F41/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1454,16 +1454,16 @@
         "rotY": 179.9893,
         "rotZ": -8.31405146e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1480,8 +1480,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402057116/5E19671D120034C2C0FFD8A45E53D4C151E655CC/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1504,16 +1504,16 @@
         "rotY": 179.9893,
         "rotZ": -8.397922e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1530,8 +1530,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402057818/C8EFE243E8B844CFDEA5BBEF9520C1D71490E9DE/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,
@@ -1554,16 +1554,16 @@
         "rotY": 179.9893,
         "rotZ": -8.397922e-07,
         "scaleX": 5.282891,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 5.282891
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": true,
       "Grid": true,
@@ -1580,8 +1580,8 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402058787/13CBEC6EB240A762CA025FDDDECFA479DC19FC59/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomTile": {
           "Type": 3,
           "Thickness": 0.2,

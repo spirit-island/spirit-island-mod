@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.95,
-    "posY": 0.901774049,
-    "posZ": -15.94,
-    "rotX": 0.00444656052,
-    "rotY": 180.026138,
-    "rotZ": 180.0,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 1.52888727,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 1.52888727
   },
   "Nickname": "Blitz",

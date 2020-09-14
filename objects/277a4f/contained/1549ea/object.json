@@ -1,14 +1,14 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -63.08,
-    "posY": 0.887818635,
-    "posZ": -20.72,
-    "rotX": 0.00444685854,
-    "rotY": 180.0,
-    "rotZ": -3.0648394e-07,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.877173543,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 0.877173543
   },
   "Nickname": "",
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394413305/F746A5F41667583A6C98F67DCF706CBD1854A918/",
     "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/868489312394413103/B0F2D546BBD978061F7B1D4136EB2BEDB2ADAEDD/",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomTile": {
       "Type": 2,
       "Thickness": 0.1,

@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -100.137726,
+    "posY": 1.09699488,
+    "posZ": 51.65,
+    "rotX": 0.00444657961,
+    "rotY": 180.000183,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Lightning's Swift Strike",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200291723,
+    "g": 0.160337,
+    "b": 0.151775271
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861258335/65029A08DBFC66ADAE39B1323A171F4E252F1187/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861242688/C092329FD60F24ADE4127300C0FB15D17B19F1F2/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0306564644,
+        "y": 0.199999452,
+        "z": -0.397712916
+      }
+    },
+    {
+      "Position": {
+        "x": -0.02569941,
+        "y": 0.199999511,
+        "z": -0.08028587
+      }
+    },
+    {
+      "Position": {
+        "x": -0.249543756,
+        "y": 0.199999422,
+        "z": -0.0820599645
+      }
+    },
+    {
+      "Position": {
+        "x": -0.248452485,
+        "y": 0.200001344,
+        "z": -0.399907351
+      }
+    },
+    {
+      "Position": {
+        "x": -0.468979746,
+        "y": 0.200000808,
+        "z": -0.3987777
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4701639,
+        "y": 0.200000674,
+        "z": -0.0810231939
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6877232,
+        "y": 0.1999997,
+        "z": -0.08017701
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6866347,
+        "y": 0.199999839,
+        "z": -0.39803344
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9043547,
+        "y": 0.199999824,
+        "z": -0.4001685
+      }
+    },
+    {
+      "Position": {
+        "x": -1.12483382,
+        "y": 0.200000361,
+        "z": -0.396149784
+      }
+    },
+    {
+      "Position": {
+        "x": -1.338054,
+        "y": 0.199999809,
+        "z": -0.399318874
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "Name": "backgammon_piece_brown",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1.0999999,
+    "scaleY": 1.0999999,
+    "scaleZ": 1.0999999
+  },
+  "Nickname": "Green's Presence",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.191999972,
+    "g": 0.701,
+    "b": 0.167999953
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -5.542714e-06,
+        "y": 0.115254261,
+        "z": 2.9173857e-06
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "Name": "Deck",
+  "Transform": {
+    "posX": -56.2600021,
+    "posY": 0.9501866,
+    "posZ": 54.0599976,
+    "rotX": 1.476011e-08,
+    "rotY": 179.986221,
+    "rotZ": 180.0,
+    "scaleX": 1.09813488,
+    "scaleY": 1.0,
+    "scaleZ": 1.09813488
+  },
+  "Nickname": "Stage I",
+  "Description": "Spirit Island",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    62702,
+    62701,
+    62700,
+    62703
+  ],
+  "CustomDeck": {
+    "627": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656642181/D513756522FBFF4322A1B29CC3765CAF733B0379/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656643324/4298D5385ED18D2F155736CB40DD06A10B2945C5/",
+      "NumWidth": 6,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

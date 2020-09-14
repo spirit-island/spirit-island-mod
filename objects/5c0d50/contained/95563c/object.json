@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1.53204679,
+    "scaleY": 1,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Natrue's Resilience",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 58905,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "589": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859967844/654C42BB397CD10D56FA6C41F9F08228597B1560/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859966097/77D13AE6F8BC3963A9194911D8A509EC060A2134/",
+      "NumWidth": 9,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

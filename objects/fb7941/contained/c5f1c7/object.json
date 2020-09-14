@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -41.1314468,
-    "posY": 0.9711971,
-    "posZ": -27.9503155,
-    "rotX": 0.004447516,
-    "rotY": 179.999741,
-    "rotZ": -1.5252092e-06,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.8,
     "scaleY": 0.8,
     "scaleZ": 0.8
   },
-  "Nickname": "Purple's Defence Reminder Tokens",
+  "Nickname": "Red's Defence Reminder Tokens",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 0.251019567,
-    "b": 0.251019567
+    "r": 1,
+    "g": 0.2510195,
+    "b": 0.2510195
   },
   "Locked": false,
   "Grid": true,

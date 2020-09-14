@@ -1,0 +1,132 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -116.937744,
+    "posY": 1.0969882,
+    "posZ": 51.65,
+    "rotX": 0.00444664061,
+    "rotY": 180.000687,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "River Surges in Sunlight",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200290561,
+    "g": 0.160335839,
+    "b": 0.151774108
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861204875/0C57AD300C1B30650B7EB30D70F4C846D7AD0A96/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1482201742861208054/9E77CC0015DE7D472E7B7E33C0DB0945D221D4D3/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.00428061932,
+        "y": 0.200000346,
+        "z": -0.3987602
+      }
+    },
+    {
+      "Position": {
+        "x": 0.000676797354,
+        "y": 0.200000539,
+        "z": -0.08133314
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2231672,
+        "y": 0.200000077,
+        "z": -0.0831072256
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4437877,
+        "y": 0.2000005,
+        "z": -0.08207044
+      }
+    },
+    {
+      "Position": {
+        "x": -0.661347032,
+        "y": 0.2000006,
+        "z": -0.08122425
+      }
+    },
+    {
+      "Position": {
+        "x": -0.876052856,
+        "y": 0.200000629,
+        "z": -0.08356805
+      }
+    },
+    {
+      "Position": {
+        "x": -1.10293639,
+        "y": 0.200000718,
+        "z": -0.08513827
+      }
+    },
+    {
+      "Position": {
+        "x": -1.09845793,
+        "y": 0.200000554,
+        "z": -0.397197
+      }
+    },
+    {
+      "Position": {
+        "x": -0.877978444,
+        "y": 0.200000957,
+        "z": -0.401215732
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6602589,
+        "y": 0.200000256,
+        "z": -0.3990807
+      }
+    },
+    {
+      "Position": {
+        "x": -0.442603916,
+        "y": 0.1999998,
+        "z": -0.399824917
+      }
+    },
+    {
+      "Position": {
+        "x": -0.22207661,
+        "y": 0.199999854,
+        "z": -0.400954574
+      }
+    }
+  ]
+}

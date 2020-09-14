@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -101.35,
-    "posY": 1.08973694,
-    "posZ": 4.21969938,
-    "rotX": 0.00444671838,
-    "rotY": 180.0,
+    "posX": -100.14,
+    "posY": 1.09107661,
+    "posZ": 6.848513,
+    "rotX": 0.004446495,
+    "rotY": 180.003235,
     "rotZ": 180.0,
-    "scaleX": 5.5092597,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.45085144
+    "scaleZ": 5.46
   },
   "Nickname": "Lure of The Deep Wilderness",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2003004,
-    "g": 0.160345674,
-    "b": 0.151783943
+    "r": 0.200297862,
+    "g": 0.16034314,
+    "b": 0.15178141
   },
   "Locked": true,
   "Grid": true,

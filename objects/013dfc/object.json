@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -101.35,
-    "posY": 1.08882511,
-    "posZ": -7.54180241,
-    "rotX": 0.00445041247,
-    "rotY": 179.970856,
-    "rotZ": 179.999969,
-    "scaleX": 5.48526049,
+    "posX": -100.14,
+    "posY": 1.09,
+    "posZ": -4.346201,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.000992,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.44488239
+    "scaleZ": 5.46
   },
   "Nickname": "Fractured Days Split The Sky",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2003004,
-    "g": 0.160345674,
-    "b": 0.151783943
+    "r": 0.200297862,
+    "g": 0.16034314,
+    "b": 0.15178141
   },
   "Locked": true,
   "Grid": true,

@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1.529637,
+    "scaleY": 1,
+    "scaleZ": 1.529637
+  },
+  "Nickname": "Plows Shatter on Rocky Ground",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 42801,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "428": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420748041/10C8868AFD3C4D26E42FD0A2EAF8B61A415B5771/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420762017/F760E7B09FC7B7A62F050147DE5061C421D3B64F/",
+      "NumWidth": 2,
+      "NumHeight": 2,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

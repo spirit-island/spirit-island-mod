@@ -524,7 +524,7 @@ function examineCard(fearDeck, dividerPos)
             if start ~= nil then
                 stage = tonumber(string.sub(card.lua_script,finish+1))
                 local start2,finish2 = string.find(card.lua_script,"cardInvaderType=")
-                type = string.sub(card.lua_script,finish2+2,start-3)
+                type = string.sub(card.lua_script,finish2+2,start-4)
             end
         else
             stage = card.getVar("cardInvaderStage")
@@ -547,13 +547,17 @@ function examineCard(fearDeck, dividerPos)
                 card.setRotationSmooth(Vector(0,180,0))
             end
             if stage == 2 then
-                if type ~= "C" then
-                    broadcastToAll("Stage II Escalation was revealed from Fear Cards", {1,0,0})
+                if type == "C" then
+                    broadcastToAll("Stage II Invader Card was revealed from the Fear Deck", {1,0,0})
                 else
-                    broadcastToAll("Invader Card was revealed from Fear Cards", {1,0,0})
+                    broadcastToAll("Stage II Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
                 end
-            else
-                broadcastToAll("Invader Card was revealed from Fear Cards", {1,0,0})
+            elseif stage == 3 then
+                if Global.getVar("adversaryCard2") == nil then
+                    broadcastToAll("Stage III Invader Card was revealed from the Fear Deck", {1,0,0})
+                else
+                    broadcastToAll("Stage III Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
+                end
             end
         else
             if fearDeck.tag == "Deck" then

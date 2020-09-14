@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -4.74,
+    "posY": 0.883502245,
+    "posZ": 15.9800005,
+    "rotX": 4.407309e-09,
+    "rotY": 179.9998,
+    "rotZ": -0.000144316858,
+    "scaleX": 2.733795,
+    "scaleY": 1.0,
+    "scaleZ": 2.733795
+  },
+  "Nickname": "Habsburg",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.709803939,
+    "g": 0.709803939,
+    "b": 0.709803939
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 63404,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "634": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1588037098358798662/ECB291381514A11D5EEDEC6DD7AFB783AF55B937/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874658390635/9CEA762D5AC602C5C7A8BF361629E57BB4970C53/",
+      "NumWidth": 2,
+      "NumHeight": 4,
+      "BackIsHidden": true,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}

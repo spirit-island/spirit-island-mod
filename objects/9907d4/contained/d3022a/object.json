@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -140.203491,
-    "posY": 2.11736941,
-    "posZ": 6.37963438,
-    "rotX": 359.984222,
-    "rotY": 180.004761,
-    "rotZ": 0.0014148911,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.367304444,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 0.367304444
   },
   "Nickname": "Element Marker",
   "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 1,
+    "g": 1,
+    "b": 1
   },
   "Locked": false,
   "Grid": true,
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061160800072/356E03A127313540DC16E4896276407DD191D65C/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomToken": {
       "Thickness": 0.2,
-      "MergeDistancePixels": 15.0,
+      "MergeDistancePixels": 15,
       "StandUp": false,
       "Stackable": true
     }
@@ -54,16 +54,16 @@
         "rotY": 179.29689,
         "rotZ": 0.000465820543,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -80,11 +80,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159430031/8AEF5D9B043E25D43334F5986561414ECC8D093F/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }
@@ -104,16 +104,16 @@
         "rotY": 179.296921,
         "rotZ": 0.000462671276,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -130,11 +130,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159430731/B6C368B2F4A576062B82567315176E311CB6858B/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }
@@ -154,16 +154,16 @@
         "rotY": 179.296921,
         "rotZ": 0.0004567281,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -180,11 +180,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159431524/5379D06E34BFA92DF21BC8376FE735AE6C89F1EC/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }
@@ -204,16 +204,16 @@
         "rotY": 179.296982,
         "rotZ": 0.0004663355,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -230,11 +230,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159432183/D9BEAB16F3B8BDFE8620CA0FEDD09B95B3BC38DE/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }
@@ -254,16 +254,16 @@
         "rotY": 179.296982,
         "rotZ": 0.000467600272,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -280,11 +280,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159432741/03708EE546C237D5C21B7CA17BDFCE48A6DD904C/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }
@@ -304,16 +304,16 @@
         "rotY": 179.296982,
         "rotZ": 0.0004608173,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -330,11 +330,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159433337/BE4461323BE5803478AAE4EA7E4CFF4991F4859C/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }
@@ -354,16 +354,16 @@
         "rotY": 179.296982,
         "rotZ": 0.000464525132,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -380,11 +380,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159433759/7AD2FFD068F01A688EEFE173B592057DD70F0920/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }
@@ -404,16 +404,16 @@
         "rotY": 179.296982,
         "rotZ": 0.0004678872,
         "scaleX": 0.367304444,
-        "scaleY": 1.0,
+        "scaleY": 1,
         "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
       "Locked": false,
       "Grid": true,
@@ -430,11 +430,11 @@
       "CustomImage": {
         "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159434382/A3C950059239BA3E52071ACBB8180624E9A0ABF4/",
         "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
+        "ImageScalar": 1,
+        "WidthScale": 0,
         "CustomToken": {
           "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 15,
           "StandUp": false,
           "Stackable": true
         }

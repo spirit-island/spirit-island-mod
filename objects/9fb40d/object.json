@@ -1,12 +1,12 @@
 {
   "Name": "go_game_piece_white",
   "Transform": {
-    "posX": -120.605141,
-    "posY": 1.30869126,
-    "posZ": -4.08,
-    "rotX": -0.004452424,
-    "rotY": 359.878418,
-    "rotZ": 3.685495e-06,
+    "posX": -119.69,
+    "posY": 1.310076,
+    "posZ": -0.62903285,
+    "rotX": -0.00458108168,
+    "rotY": 359.886,
+    "rotZ": -0.000366342632,
     "scaleX": 1.19999993,
     "scaleY": 1.19999993,
     "scaleZ": 1.19999993
@@ -15,9 +15,9 @@
   "Description": "Use these for your \"Growth Begets Growth\" Special Rule",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249972761,
-    "g": 0.249972761,
-    "b": 0.249972761
+    "r": 0.249970108,
+    "g": 0.249970108,
+    "b": 0.249970108
   },
   "Locked": false,
   "Grid": false,

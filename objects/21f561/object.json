@@ -1,0 +1,46 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 1.98000336,
+    "posY": 1.06991518,
+    "posZ": 22.6999969,
+    "rotX": 0.0367896222,
+    "rotY": 0.0164766219,
+    "rotZ": 180.016159,
+    "scaleX": 0.011,
+    "scaleY": 1.0,
+    "scaleZ": 0.01
+  },
+  "Nickname": "Source Spirit",
+  "Description": "Spirit Island - Spirit",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.200292319,
+    "g": 0.1603376,
+    "b": 0.151775867
+  },
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://i.imgur.com/RHNnFsC.jpg",
+    "ImageSecondaryURL": "https://i.imgur.com/ktVG7oY.jpg",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  }
+}

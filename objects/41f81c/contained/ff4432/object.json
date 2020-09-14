@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -37.7406464,
-    "posY": 2.782324,
-    "posZ": -31.0209045,
-    "rotX": 359.957977,
-    "rotY": -3.844146e-05,
-    "rotZ": 0.162252709,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.825000167,
     "scaleY": 0.825000167,
     "scaleZ": 0.825000167
@@ -15,7 +15,7 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
+    "r": 1,
     "g": 0.513937056,
     "b": 0.513937056
   },
@@ -41,13 +41,13 @@
     "TypeIndex": 0,
     "CustomShader": {
       "SpecularColor": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 1,
+        "g": 1,
+        "b": 1
       },
-      "SpecularIntensity": 0.0,
-      "SpecularSharpness": 2.0,
-      "FresnelStrength": 0.0
+      "SpecularIntensity": 0,
+      "SpecularSharpness": 2,
+      "FresnelStrength": 0
     },
     "CastShadows": true
   },
@@ -69,7 +69,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -95,13 +95,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -127,7 +127,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -153,13 +153,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -185,7 +185,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -211,13 +211,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -243,7 +243,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -269,13 +269,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -301,7 +301,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -327,13 +327,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -359,7 +359,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -385,13 +385,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -417,7 +417,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -443,13 +443,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -475,7 +475,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -501,13 +501,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -533,7 +533,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -559,13 +559,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -591,7 +591,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -617,13 +617,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -649,7 +649,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -675,13 +675,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -707,7 +707,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -733,13 +733,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -765,7 +765,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -791,13 +791,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -823,7 +823,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -849,13 +849,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -881,7 +881,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -907,13 +907,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -939,7 +939,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -965,13 +965,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -997,7 +997,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -1023,13 +1023,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -1055,7 +1055,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -1081,13 +1081,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -1113,7 +1113,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -1139,13 +1139,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },
@@ -1171,7 +1171,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
+        "r": 1,
         "g": 0.513937056,
         "b": 0.513937056
       },
@@ -1197,13 +1197,13 @@
         "TypeIndex": 0,
         "CustomShader": {
           "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
+            "r": 1,
+            "g": 1,
+            "b": 1
           },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
+          "SpecularIntensity": 0,
+          "SpecularSharpness": 2,
+          "FresnelStrength": 0
         },
         "CastShadows": true
       },

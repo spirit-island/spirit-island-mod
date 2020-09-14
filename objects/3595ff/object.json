@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.0,
-    "g": 0.0,
-    "b": 0.0
+    "r": 0.301958948,
+    "g": 0.301958948,
+    "b": 0.305880517
   },
   "Locked": true,
   "Grid": true,
@@ -39,8 +39,18 @@
     "NormalURL": "",
     "ColliderURL": "",
     "Convex": false,
-    "MaterialIndex": 0,
+    "MaterialIndex": 3,
     "TypeIndex": 7,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "SpecularIntensity": 0.1,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
     "CastShadows": true
   }
 }

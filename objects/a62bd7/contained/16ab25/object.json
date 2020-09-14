@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.87358,
-    "posY": 1.33528674,
-    "posZ": 0.867182,
-    "rotX": -8.463445e-07,
-    "rotY": 179.996826,
-    "rotZ": -1.3852698e-06,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 0.21,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 0.2
   },
   "Nickname": "Sweden Ravage Reminder",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 1,
+    "g": 1,
+    "b": 1
   },
   "Locked": false,
   "Grid": true,
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412769/7541A3FAECBE82CBBABBF4E963583720857BBADE/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomTile": {
       "Type": 0,
       "Thickness": 0.2,

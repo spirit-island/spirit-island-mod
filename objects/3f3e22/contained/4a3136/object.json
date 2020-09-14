@@ -1,12 +1,12 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": -107.77,
-    "posY": 0.942043841,
-    "posZ": -16.04,
-    "rotX": 0.00444654468,
-    "rotY": 179.981415,
-    "rotZ": -1.6712047e-06,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 3.44935,
     "scaleY": 0.107792191,
     "scaleZ": 4.742856
@@ -15,9 +15,9 @@
   "Description": "Place a card here to spawn buttons.\r\n\r\nSet blight to 1+.\r\n\r\nSet immediate to yes if the card only has immediate effects.\r\n\r\nSet healthy to yes if the card is still healthy on blighted side.\r\n\r\nEvery time you press a button, the card is updated.\r\n\r\nWhen finished, remember to save your object/game!",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0,
+    "r": 1,
+    "g": 1,
+    "b": 1,
     "a": 0.08235294
   },
   "Locked": false,

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 92.45881,
-    "posY": 1.07115662,
-    "posZ": 41.11986,
-    "rotX": 8.87092654e-07,
-    "rotY": 179.987122,
-    "rotZ": -0.0001446646,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 6.5,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 6.5
   },
-  "Nickname": "THEMATIC REDO South East",
+  "Nickname": "THEMATIC SE Re-skinned",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 1,
+    "g": 1,
+    "b": 1
   },
   "Locked": false,
   "Grid": false,
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284038650230561972/36506A48946CF814F3C40E5798348F78C0E86EDD/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomToken": {
       "Thickness": 0.2,
-      "MergeDistancePixels": 15.0,
+      "MergeDistancePixels": 15,
       "StandUp": false,
       "Stackable": false
     }

@@ -1,12 +1,12 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": -107.77,
-    "posY": 0.9376354,
-    "posZ": -23.1,
-    "rotX": 0.004446715,
-    "rotY": 180.004959,
-    "rotZ": 1.3925478e-07,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 3.2,
     "scaleY": 0.1,
     "scaleZ": 4.4
@@ -15,9 +15,9 @@
   "Description": "Place a card here to spawn buttons.\n\nSet elements to \"1\" if the card has it or \"0\" if not.\n\nSet energy to 0-9\n\nEvery time you press a button, the card is updated.\n\nWhen finished, remember to save your object/game!",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0,
+    "r": 1,
+    "g": 1,
+    "b": 1,
     "a": 0.08235294
   },
   "Locked": false,

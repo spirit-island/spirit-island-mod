@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -83.98531,
-    "posY": 1.08882391,
-    "posZ": -7.53995943,
-    "rotX": 0.00444683945,
+    "posX": -83.34,
+    "posY": 1.09020162,
+    "posZ": -4.351486,
+    "rotX": 0.00446306728,
     "rotY": 180.0,
-    "rotZ": 180.0,
-    "scaleX": 5.463006,
+    "rotZ": 180.000046,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.463006
+    "scaleZ": 5.46
   },
   "Nickname": "Downpour Drenches the World",
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200300336,
-    "g": 0.160345614,
-    "b": 0.151783884
+    "r": 0.2002978,
+    "g": 0.160343081,
+    "b": 0.15178135
   },
   "Locked": true,
   "Grid": true,

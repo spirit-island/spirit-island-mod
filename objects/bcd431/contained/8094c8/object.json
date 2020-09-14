@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 66.24177,
-    "posY": 1.51089239,
-    "posZ": -6.07017374,
-    "rotX": 359.472137,
-    "rotY": 180.099274,
-    "rotZ": -0.00020605317,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 0,
+    "rotZ": 0,
     "scaleX": 6.5,
-    "scaleY": 1.0,
+    "scaleY": 1,
     "scaleZ": 6.5
   },
   "Nickname": "THEMATIC E",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "r": 0.8156863,
+    "g": 0.8156863,
+    "b": 0.8156863
   },
   "Locked": false,
   "Grid": false,
@@ -32,13 +32,13 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489506197001478/CDA567B2F473FBB004D98218DC68BFC1C2F98958/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1588036874658484764/9C02BE13834AA75A8474F53A6BEA8BF462244C65/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
+    "ImageScalar": 1,
+    "WidthScale": 0,
     "CustomToken": {
       "Thickness": 0.399999827,
-      "MergeDistancePixels": 15.0,
+      "MergeDistancePixels": 15,
       "StandUp": false,
       "Stackable": false
     }

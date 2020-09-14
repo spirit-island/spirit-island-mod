@@ -1,12 +1,12 @@
 {
   "Name": "backgammon_piece_brown",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": 82.9388657,
+    "posY": 1.09791267,
+    "posZ": 51.47852,
+    "rotX": -5.72856266e-07,
+    "rotY": 0.00678282836,
+    "rotZ": 0.0001442228,
     "scaleX": 1.0999999,
     "scaleY": 1.0999999,
     "scaleZ": 1.0999999

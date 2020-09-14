@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -101.61982,
+    "posY": 0.900081933,
+    "posZ": -37.7801361,
+    "rotX": 0.004446805,
+    "rotY": 179.980789,
+    "rotZ": -1.46550826e-06,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Gift of Power",

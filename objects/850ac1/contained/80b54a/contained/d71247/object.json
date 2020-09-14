@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -98.52125,
+    "posY": 2.08698082,
+    "posZ": -27.6791439,
+    "rotX": 359.98584,
+    "rotY": 178.910339,
+    "rotZ": 0.0619356744,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Strong and Constant Currents",

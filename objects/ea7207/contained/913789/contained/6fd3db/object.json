@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.189445,
+    "posY": 2.10851741,
+    "posZ": -15.9027872,
+    "rotX": 359.918121,
+    "rotY": 178.22731,
+    "rotZ": 0.151245043,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Infested Aquifers",

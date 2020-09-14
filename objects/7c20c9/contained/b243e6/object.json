@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -93.22,
+    "posY": 0.9018638,
+    "posZ": -14.8199978,
+    "rotX": 0.00444655167,
+    "rotY": 180.0001,
+    "rotZ": 1.34931666e-08,
     "scaleX": 1.47602439,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47602439
   },
   "Nickname": "Plaguebearers",

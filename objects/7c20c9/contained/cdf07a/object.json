@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -98.26,
+    "posY": 0.9018638,
+    "posZ": -14.8199968,
+    "rotX": 0.00444707833,
+    "rotY": 180.0,
+    "rotZ": -1.16093581e-07,
     "scaleX": 1.47602439,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47602439
   },
   "Nickname": "Fetid Breath Spreads Infection",

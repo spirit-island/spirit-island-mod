@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -106.66,
+    "posY": 0.9017334,
+    "posZ": -16.4999981,
+    "rotX": 0.0044466774,
+    "rotY": 180.000031,
+    "rotZ": 3.092246e-08,
     "scaleX": 1.529637,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.529637
   },
   "Nickname": "Jagged Shards Push from the Earth",

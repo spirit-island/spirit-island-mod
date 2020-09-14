@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -92.77817,
+    "posY": 2.1196444,
+    "posZ": -8.750956,
+    "rotX": 0.00444670953,
+    "rotY": 180.0,
+    "rotZ": -8.620702e-08,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Swallow the Land-Dwellers",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64302,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "643": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019411822/632B5888BD833BF93CFA10D70FDD90B711ECCEF8/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019414273/89F1BC75CA430D0B38985E635F37A68562694DF3/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -105.539078,
+    "posY": 1.10060716,
+    "posZ": -23.2198639,
+    "rotX": -0.00228224718,
+    "rotY": 180.003784,
+    "rotZ": 1.84874225,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Fire and Flood",

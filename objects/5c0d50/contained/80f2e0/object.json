@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -93.22,
+    "posY": 0.900951147,
+    "posZ": -26.579998,
+    "rotX": 0.004446758,
+    "rotY": 180.0,
+    "rotZ": -4.4419405e-08,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Song of Sanctity",

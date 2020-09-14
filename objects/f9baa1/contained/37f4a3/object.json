@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -35.5937576,
+    "posY": 2.83128834,
+    "posZ": -20.2528725,
+    "rotX": 359.538971,
+    "rotY": 359.812744,
+    "rotZ": 359.6922,
     "scaleX": 0.367304444,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 0.367304444
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1,
-    "g": 1,
-    "b": 1
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
   },
   "Locked": false,
   "Grid": false,
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159432741/03708EE546C237D5C21B7CA17BDFCE48A6DD904C/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomToken": {
       "Thickness": 0.1,
-      "MergeDistancePixels": 15,
+      "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false
     }

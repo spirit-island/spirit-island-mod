@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.786781,
+    "posY": 2.334471,
+    "posZ": -23.1448536,
+    "rotX": 359.9341,
+    "rotY": 179.021484,
+    "rotZ": 0.148828521,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Unleash a Torrent of the Self's Own Essence",

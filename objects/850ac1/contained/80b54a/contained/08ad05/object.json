@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.73423,
+    "posY": 2.250784,
+    "posZ": -23.9865513,
+    "rotX": 0.221430376,
+    "rotY": 178.8964,
+    "rotZ": 0.0330517665,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Gift of Twinned Days",

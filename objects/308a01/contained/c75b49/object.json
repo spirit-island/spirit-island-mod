@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -93.77991,
+    "posY": 0.9015161,
+    "posZ": -19.30008,
+    "rotX": 0.004446472,
+    "rotY": 180.01741,
+    "rotZ": 1.4972693e-06,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Wrap in Wings of Sunlight",

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.703079,
+    "posY": 2.01335549,
+    "posZ": -23.8724689,
+    "rotX": 0.257659346,
+    "rotY": 181.663742,
+    "rotZ": 0.0449547432,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Treacherous Waterways",

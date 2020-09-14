@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -103.86,
+    "posY": 0.901820362,
+    "posZ": -15.38,
+    "rotX": 0.00444675563,
+    "rotY": 180.0,
+    "rotZ": -1.00193747e-08,
     "scaleX": 1.47540212,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47540212
   },
   "Nickname": "Unbearable Deluge",

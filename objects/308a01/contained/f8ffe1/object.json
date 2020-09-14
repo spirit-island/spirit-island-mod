@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -90.41984,
+    "posY": 0.901907265,
+    "posZ": -14.2598515,
+    "rotX": 0.004446542,
+    "rotY": 180.016708,
+    "rotZ": 1.35440246e-06,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Talons of Lightning",

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.822525,
+    "posY": 2.204767,
+    "posZ": -23.248867,
+    "rotX": 0.02189647,
+    "rotY": 176.46759,
+    "rotZ": 0.03116157,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Irresistible Call",

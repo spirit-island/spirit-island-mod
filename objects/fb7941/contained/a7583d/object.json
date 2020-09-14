@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -59.4783554,
+    "posY": 1.52869129,
+    "posZ": -21.3536568,
+    "rotX": -0.00413614325,
+    "rotY": 180.0017,
+    "rotZ": 0.00886192452,
     "scaleX": 0.8,
     "scaleY": 0.8,
     "scaleZ": 0.8
@@ -15,7 +15,7 @@
   "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r\n",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1,
+    "r": 1.0,
     "g": 0.2510197,
     "b": 0.2510197
   },
@@ -41,13 +41,13 @@
     "TypeIndex": 0,
     "CustomShader": {
       "SpecularColor": {
-        "r": 1,
-        "g": 1,
-        "b": 1
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
-      "SpecularIntensity": 0,
-      "SpecularSharpness": 2,
-      "FresnelStrength": 0
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
     },
     "CastShadows": true
   }

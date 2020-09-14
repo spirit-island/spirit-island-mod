@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.684151,
+    "posY": 2.0956943,
+    "posZ": -23.8634987,
+    "rotX": 0.2691723,
+    "rotY": 180.5511,
+    "rotZ": 0.05662521,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Favor of the Sun and Star-Lit Dark",

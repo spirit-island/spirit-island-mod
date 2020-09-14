@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -98.4528656,
+    "posY": 2.284209,
+    "posZ": -27.5871925,
+    "rotX": 0.0142564559,
+    "rotY": 180.310211,
+    "rotZ": 359.8155,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Desiccating Winds",

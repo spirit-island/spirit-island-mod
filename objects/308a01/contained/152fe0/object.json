@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -90.4199,
+    "posY": 0.90151614,
+    "posZ": -19.2998524,
+    "rotX": 0.004446496,
+    "rotY": 180.014542,
+    "rotZ": 1.19620063e-06,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Vengeance of the Dead",

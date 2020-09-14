@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.743584,
+    "posY": 2.169951,
+    "posZ": -15.7188587,
+    "rotX": 0.009989963,
+    "rotY": 178.726074,
+    "rotZ": 359.982971,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Growth Through Sacrifice",

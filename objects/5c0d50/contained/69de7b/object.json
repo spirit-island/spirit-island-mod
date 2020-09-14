@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -97.70031,
+    "posY": 0.9001233,
+    "posZ": -37.2197075,
+    "rotX": 0.004464847,
+    "rotY": 179.989624,
+    "rotZ": -0.000101072183,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Call to Migrate",

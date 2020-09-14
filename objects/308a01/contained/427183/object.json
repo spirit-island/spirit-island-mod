@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -97.13906,
+    "posY": 0.901124954,
+    "posZ": -24.3399162,
+    "rotX": 0.004446801,
+    "rotY": 179.991058,
+    "rotZ": -6.506571e-07,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Mists of Oblivion",

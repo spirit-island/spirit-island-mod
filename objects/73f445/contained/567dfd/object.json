@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -82.58006,
+    "posY": 0.901820362,
+    "posZ": -15.3800039,
+    "rotX": 0.00444658473,
+    "rotY": 180.0,
+    "rotZ": 1.97457609e-07,
     "scaleX": 1.47540212,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47540212
   },
   "Nickname": "Dissolving Vapors",

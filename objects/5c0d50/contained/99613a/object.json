@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -120.100288,
+    "posY": 0.9005165,
+    "posZ": -32.1799965,
+    "rotX": 0.00444648042,
+    "rotY": 179.999329,
+    "rotZ": -9.640534e-08,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Devouring Ants",

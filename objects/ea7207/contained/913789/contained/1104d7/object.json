@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.194366,
+    "posY": 2.08868265,
+    "posZ": -15.8712206,
+    "rotX": 0.00961363,
+    "rotY": 180.919586,
+    "rotZ": 0.193732992,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Pact of the Joined Hunt",

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -108.9,
+    "posY": 0.9016465,
+    "posZ": -17.6199989,
+    "rotX": 0.004446538,
+    "rotY": 179.999878,
+    "rotZ": -2.63319379e-07,
     "scaleX": 1.529637,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.529637
   },
   "Nickname": "Swallowed by the Wilderness",

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -69.3950958,
+    "posY": 1.31466627,
+    "posZ": 0.9681172,
+    "rotX": -5.755437e-07,
+    "rotY": 180.000076,
+    "rotZ": -1.19833123e-06,
     "scaleX": 0.21,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 0.2
   },
   "Nickname": "Ravage Reminder Tile",
   "Description": "Custom",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1,
-    "g": 1,
-    "b": 1
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
   },
   "Locked": false,
   "Grid": true,
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933130017943917/A6DA6B98F353E06AE9BF8BA006F620310F39C5B5/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
       "Thickness": 0.2,

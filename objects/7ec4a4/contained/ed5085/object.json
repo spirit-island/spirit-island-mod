@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -90.40617,
+    "posY": 1.99101853,
+    "posZ": -14.0172052,
+    "rotX": 0.004446764,
+    "rotY": 180.0,
+    "rotZ": -8.828923e-08,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Favors Called Due",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 63801,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "638": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019395652/186F8E89633A7058DFAB373C0F4576D6BFABE57B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019396620/C452E59C256BE9B61A7AB9DE9C9E356DBAB6A577/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

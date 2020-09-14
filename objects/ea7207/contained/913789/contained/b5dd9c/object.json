@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.056305,
+    "posY": 1.84196723,
+    "posZ": -15.9577665,
+    "rotX": 0.152385309,
+    "rotY": 178.791611,
+    "rotZ": 359.974945,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Razor-Sharp Undergrowth",

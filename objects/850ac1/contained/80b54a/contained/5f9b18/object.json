@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.760063,
+    "posY": 2.06812572,
+    "posZ": -24.0840359,
+    "rotX": 0.2501972,
+    "rotY": 179.96907,
+    "rotZ": 0.0611483641,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Weep for What is Lost",

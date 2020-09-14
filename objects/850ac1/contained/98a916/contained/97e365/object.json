@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.825211,
+    "posY": 2.103399,
+    "posZ": -23.18096,
+    "rotX": 0.0531101972,
+    "rotY": 180.894775,
+    "rotZ": 359.911682,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Thickets Erupt with Every Touch of Breeze",

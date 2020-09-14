@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -94.33977,
+    "posY": 0.9004246,
+    "posZ": -33.300312,
+    "rotX": 0.00447572069,
+    "rotY": 179.924057,
+    "rotZ": -0.0002183661,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Gift of Living Energy",

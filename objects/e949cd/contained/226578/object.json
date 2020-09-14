@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -84.2118454,
+    "posY": 2.119748,
+    "posZ": -8.67605,
+    "rotX": 0.004444027,
+    "rotY": 180.000015,
+    "rotZ": 7.839804e-06,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Gift of Flowing Power",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64701,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "647": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019425059/F051C30B910954E4040FAEA24D62EB5204DBADC8/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019427495/5582C32B61F8862B3CABCBF874D3894F41054AEF/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.211838,
+    "posY": 2.06394482,
+    "posZ": -15.9265013,
+    "rotX": 0.10193146,
+    "rotY": 182.719025,
+    "rotZ": 0.242334828,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Scour the Land",

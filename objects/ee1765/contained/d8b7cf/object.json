@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -103.216347,
+    "posY": 2.46748424,
+    "posZ": 18.7285366,
+    "rotX": 359.784,
+    "rotY": 89.98494,
+    "rotZ": 359.644653,
     "scaleX": 0.724999845,
     "scaleY": 0.724999845,
     "scaleZ": 0.724999845
@@ -46,8 +46,8 @@
         "b": 0.5
       },
       "SpecularIntensity": 0.1,
-      "SpecularSharpness": 2,
-      "FresnelStrength": 0
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
     },
     "CastShadows": true
   }

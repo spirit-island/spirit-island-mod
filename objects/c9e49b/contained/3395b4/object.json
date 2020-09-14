@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -91.54,
+    "posY": 0.90177685,
+    "posZ": -15.9399986,
+    "rotX": 0.00444684643,
+    "rotY": 180.0,
+    "rotZ": 1.90623425e-07,
     "scaleX": 1.53145456,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53145456
   },
   "Nickname": "Offer Passage between Worlds",

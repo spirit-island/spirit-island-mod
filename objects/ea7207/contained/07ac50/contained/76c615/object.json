@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.661606,
+    "posY": 2.125201,
+    "posZ": -23.1194153,
+    "rotX": 359.9683,
+    "rotY": 177.665,
+    "rotZ": 359.978058,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Volcanic Eruption",

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.748726,
+    "posY": 2.127959,
+    "posZ": -23.2230949,
+    "rotX": 0.0340922,
+    "rotY": 177.904221,
+    "rotZ": 359.977722,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "The Wounded Wild Turns on its Assailants",

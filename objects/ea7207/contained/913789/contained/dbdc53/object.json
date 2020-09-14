@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.045387,
+    "posY": 2.00330734,
+    "posZ": -15.7130051,
+    "rotX": 0.0145806661,
+    "rotY": 178.977249,
+    "rotZ": 0.292157948,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Tormenting Rotflies",

@@ -1,14 +1,14 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": 78.21473,
+    "posY": 2.17466736,
+    "posZ": 31.9965153,
+    "rotX": -2.74994335e-07,
+    "rotY": 180.000031,
+    "rotZ": -0.000145493366,
     "scaleX": 6.464674,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 6.30348873
   },
   "Nickname": "NORMAL F",
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1588037098358823963/4B2D346AE6DE24BF189F0CCC4D70C40737FF8341/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomToken": {
       "Thickness": 0.3950002,
-      "MergeDistancePixels": 15,
+      "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false
     }

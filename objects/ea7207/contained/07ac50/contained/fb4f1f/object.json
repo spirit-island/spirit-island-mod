@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.98,
+    "posY": 1.15197635,
+    "posZ": -23.78,
+    "rotX": 0.004394956,
+    "rotY": 180.002151,
+    "rotZ": 0.371222168,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Pent-Up Calamity",

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.969452,
+    "posY": 2.070966,
+    "posZ": -23.2162437,
+    "rotX": 359.972565,
+    "rotY": 181.485748,
+    "rotZ": 0.01581838,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Tigers Hunting",

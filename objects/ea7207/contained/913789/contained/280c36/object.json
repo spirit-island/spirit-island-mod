@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.243996,
+    "posY": 1.86662889,
+    "posZ": -15.8655024,
+    "rotX": 0.189807728,
+    "rotY": 177.749344,
+    "rotZ": 0.00103332428,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Sky Stretches to Shore",

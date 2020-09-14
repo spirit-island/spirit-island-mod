@@ -1,14 +1,14 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": 105.486137,
+    "posY": 2.17988253,
+    "posZ": 60.09695,
+    "rotX": 3.87400576e-07,
+    "rotY": 179.999847,
+    "rotZ": -0.00014472616,
     "scaleX": 6.5,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 6.5
   },
   "Nickname": "THEMATIC NW",
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1588036874658489141/A2F7740C248F3CC766EF95C34FE0A7337A85FD84/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomToken": {
       "Thickness": 0.4,
-      "MergeDistancePixels": 15,
+      "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false
     }

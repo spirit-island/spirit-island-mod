@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -97.08927,
+    "posY": 1.99101853,
+    "posZ": -15.1293659,
+    "rotX": 0.00444673747,
+    "rotY": 180.0,
+    "rotZ": -9.493409e-08,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Call on Midnight's Dream",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64202,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "642": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019408954/7A3B9E167C6946A26FF3CD7D1CAD1392683D40FE/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019410460/1A1BD071378183598717A6D9B2F18B722E625AF9/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

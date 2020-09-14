@@ -1,4 +1,4 @@
-sourceSpiritID = "f2a77d"
+sourceSpiritID = "21f561"
 spiritsScanned = {}
 
 function onLoad()

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.903038,
+    "posY": 2.120607,
+    "posZ": -23.95198,
+    "rotX": 0.246990532,
+    "rotY": 179.7824,
+    "rotZ": 0.0601559058,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Territorial Stife",

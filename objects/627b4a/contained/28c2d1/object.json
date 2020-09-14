@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -121.78,
+    "posY": 0.90177685,
+    "posZ": -15.9400034,
+    "rotX": 0.0044465526,
+    "rotY": 180.000046,
+    "rotZ": -6.786888e-08,
     "scaleX": 1.53653038,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53653038
   },
   "Nickname": "Boon of Reimagining",

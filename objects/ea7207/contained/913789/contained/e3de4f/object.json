@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.848167,
+    "posY": 2.22410655,
+    "posZ": -15.6995945,
+    "rotX": 0.00844261,
+    "rotY": 180.661316,
+    "rotZ": 359.983124,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Renewing Rain",

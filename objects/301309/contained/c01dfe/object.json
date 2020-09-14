@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -96.23693,
+    "posY": 1.99101853,
+    "posZ": -13.2575588,
+    "rotX": 0.004446716,
+    "rotY": 180.0,
+    "rotZ": -1.48964219e-07,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "River's Bounty",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 63603,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "636": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019373003/4E6935E11E8D3E66A6ACB0C77396197C418CA539/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019388209/3001BBF2EFC143856BEF84D0C868085C20C1A8EA/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

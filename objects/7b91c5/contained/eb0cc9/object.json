@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -98.85406,
+    "posY": 1.99101853,
+    "posZ": -15.08193,
+    "rotX": 0.00444673747,
+    "rotY": 180.0,
+    "rotZ": -9.405372e-08,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Voice of Thunder",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64003,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "640": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019402359/54A489E9473F32D18D80C223895A46E078F664B4/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019403654/C8B5411172CAE0B30138B21F3BEB5800D8DB1D1B/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

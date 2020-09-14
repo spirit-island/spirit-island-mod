@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -106.1,
+    "posY": 0.901603043,
+    "posZ": -18.1799984,
+    "rotX": 0.00444649672,
+    "rotY": 180.000015,
+    "rotZ": 1.42110707e-07,
     "scaleX": 1.529637,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.529637
   },
   "Nickname": "Study the Invaders' Fears",

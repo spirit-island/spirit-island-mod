@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -105.009621,
+    "posY": 4.796278,
+    "posZ": -22.7135773,
+    "rotX": 14.0455275,
+    "rotY": 177.226166,
+    "rotZ": 347.32016,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Inflame the Fires of Life",

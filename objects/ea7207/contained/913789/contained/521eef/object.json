@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.254112,
+    "posY": 1.961855,
+    "posZ": -16.0865288,
+    "rotX": -0.00418874947,
+    "rotY": 175.490768,
+    "rotZ": 0.153660148,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Disorienting Landscape",

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -80.39,
+    "posY": 0.901330352,
+    "posZ": -20.98,
+    "rotX": 0.00444659125,
+    "rotY": 179.9997,
+    "rotZ": 180.0,
     "scaleX": 1.52888727,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.52888727
   },
   "Nickname": "Rituals of the Destroying Flame",

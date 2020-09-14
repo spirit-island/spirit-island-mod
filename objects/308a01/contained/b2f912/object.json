@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -97.1396942,
+    "posY": 0.9019507,
+    "posZ": -13.69995,
+    "rotX": 0.00444677845,
+    "rotY": 180.014343,
+    "rotZ": 1.25358156e-06,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "The Land Thrashes in Furious Pain",

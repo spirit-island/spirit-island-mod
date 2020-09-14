@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.7444,
+    "posY": 2.08380342,
+    "posZ": -23.4499874,
+    "rotX": 0.008057438,
+    "rotY": 181.317215,
+    "rotZ": -0.004823898,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Spill Bitterness into the Earth",

@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.902245,
+    "posY": 1.98556912,
+    "posZ": -24.0470963,
+    "rotX": 0.252630979,
+    "rotY": 182.308533,
+    "rotZ": 0.048287645,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "The Shore Seethes with Hatred",

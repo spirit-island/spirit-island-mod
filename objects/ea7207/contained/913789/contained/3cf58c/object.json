@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.753845,
+    "posY": 2.08855724,
+    "posZ": -15.6617966,
+    "rotX": 0.0118628424,
+    "rotY": 180.511368,
+    "rotZ": 359.986176,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Confounding Mists",

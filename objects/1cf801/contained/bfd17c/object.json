@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -94.17891,
+    "posY": 2.11978745,
+    "posZ": -8.343232,
+    "rotX": 0.00444671558,
+    "rotY": 180.0,
+    "rotZ": -7.2319736e-08,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Threatening Flamges",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64603,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "646": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019422310/F70850366C652BEB2039B3CC721A8AC47F6ABA18/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019423498/AF61E647C9959C2B519085D76AC0EB035919B2C8/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

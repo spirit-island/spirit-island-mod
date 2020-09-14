@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.237251,
+    "posY": 2.15607762,
+    "posZ": -15.8394375,
+    "rotX": 359.810974,
+    "rotY": 180.395477,
+    "rotZ": 0.0255431775,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Fire in the Sky",

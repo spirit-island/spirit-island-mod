@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -94.3348,
+    "posY": 1.99101853,
+    "posZ": -13.2326107,
+    "rotX": 0.004446718,
+    "rotY": 180.0,
+    "rotZ": -6.124625e-08,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Fields Choked with Growth",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64102,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "641": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019404985/418DAEBA945F4E5305EA22C30FB9A4F2F37135D1/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019406360/F11D269A68AB651A87D1D0876F30503E3B8E36A3/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

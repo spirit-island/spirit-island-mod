@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.806793,
+    "posY": 2.115704,
+    "posZ": -15.7153606,
+    "rotX": 0.0130387424,
+    "rotY": 179.338242,
+    "rotZ": 359.985352,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Promises of Protection",

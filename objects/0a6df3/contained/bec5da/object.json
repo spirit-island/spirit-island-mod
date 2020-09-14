@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": 5.33972359,
+    "posY": 1.00131774,
+    "posZ": -36.0998955,
+    "rotX": 0.0151185868,
+    "rotY": 180.00769,
+    "rotZ": 178.960144,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Sunshine",

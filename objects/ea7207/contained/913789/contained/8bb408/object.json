@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.759773,
+    "posY": 2.255849,
+    "posZ": -15.7596045,
+    "rotX": 0.006548544,
+    "rotY": 179.552444,
+    "rotZ": 359.982758,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Here There be Monsters",

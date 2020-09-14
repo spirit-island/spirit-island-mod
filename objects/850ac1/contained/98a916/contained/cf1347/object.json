@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.82933,
+    "posY": 2.22924066,
+    "posZ": -23.1291637,
+    "rotX": 359.979279,
+    "rotY": 180.6992,
+    "rotZ": 0.0709432438,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Infestation of Venemous Spiders",

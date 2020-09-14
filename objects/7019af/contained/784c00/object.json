@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -50.15453,
+    "posY": 1.32349658,
+    "posZ": 26.6071129,
+    "rotX": -0.000706993742,
+    "rotY": 0.145862967,
+    "rotZ": -0.00101114507,
     "scaleX": 0.3651334,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 0.3651334
   },
   "Nickname": "Disease",
   "Description": "[b]Prevents the next Build[/b] and is then removed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1,
-    "g": 1,
-    "b": 1
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
   },
   "Locked": false,
   "Grid": false,
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390107720/16A30B2C146A05A6475BC8BAAFD5D227CAC6D315/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomToken": {
       "Thickness": 0.200000152,
-      "MergeDistancePixels": 15,
+      "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true
     }

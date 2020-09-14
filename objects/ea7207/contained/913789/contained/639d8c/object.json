@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.247276,
+    "posY": 1.97989488,
+    "posZ": -15.911397,
+    "rotX": 359.8941,
+    "rotY": 181.612854,
+    "rotZ": 0.3375988,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Twilight Fog Brings Madness",

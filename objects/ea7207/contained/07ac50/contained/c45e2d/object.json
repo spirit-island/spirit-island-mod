@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -85.57565,
+    "posY": 2.11973643,
+    "posZ": -10.2238016,
+    "rotX": 0.00444664527,
+    "rotY": 179.999969,
+    "rotZ": 1.22317957e-07,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Instruments of Their Own Ruin",

@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -56.4128723,
-    "posY": 2.28926778,
-    "posZ": 37.42323,
-    "rotX": 359.984039,
-    "rotY": 180.015182,
-    "rotZ": -0.00011564351,
+    "posX": -45.02397,
+    "posY": 2.6568253,
+    "posZ": 40.6568832,
+    "rotX": -0.00349261751,
+    "rotY": 180.015167,
+    "rotZ": 0.00300395046,
     "scaleX": 0.8750001,
     "scaleY": 0.8750001,
     "scaleZ": 0.8750001
   },
-  "Nickname": "Infinite 1 Energy",
+  "Nickname": "1 Energy Bag",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

@@ -12,12 +12,12 @@
     "scaleZ": 0.9
   },
   "Nickname": "Any Element Tokens",
-  "Description": "Change the state to change the element shown\n\nUse these for powers/growths which provide any elements, or when you reveal an any element on your growth track",
+  "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, o,r when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.905,
     "g": 0.898,
-    "b": 0.171972662
+    "b": 0.171972573
   },
   "Locked": true,
   "Grid": true,

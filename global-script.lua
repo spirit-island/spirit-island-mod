@@ -3948,6 +3948,18 @@ function deleteObject(obj)
     elseif obj.getName() == "Badlands" then
         obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
+    elseif obj.getName() == "Element" then
+        obj.setRotation(Vector(0,180,0))
+    elseif obj.getName() == "Element Marker" then
+        obj.setRotation(Vector(0,180,0))
+    elseif obj.getName() == "1 Energy" then
+        obj.setRotation(Vector(0,180,0))
+    elseif obj.getName() == "3 Energy" then
+        obj.setRotation(Vector(0,180,0))
+    elseif obj.getName() == "1 Energy Bag" then
+        obj.setRotation(Vector(0,180,0))
+    elseif obj.getName() == "3 Energy Bag" then
+        obj.setRotation(Vector(0,180,0))                     
     else
         if not obj.getVar("destroyOnTableDrop") then
             removeObject = false

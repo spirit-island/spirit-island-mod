@@ -1,18 +1,18 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -20.8648376,
-    "posY": 1.35579252,
-    "posZ": -14.2704248,
-    "rotX": 8.017227,
-    "rotY": 0.00500702066,
-    "rotZ": 1.00507474,
+    "posX": -18.1123047,
+    "posY": 1.45996606,
+    "posZ": -13.7335691,
+    "rotX": 0.0285309684,
+    "rotY": 0.0178989246,
+    "rotZ": 8.575414,
     "scaleX": 0.37,
     "scaleY": 1.0,
     "scaleZ": 0.37
   },
-  "Nickname": "Any",
-  "Description": "",
+  "Nickname": "Any Element",
+  "Description": "Use these for when a power/event gifts you an element or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,

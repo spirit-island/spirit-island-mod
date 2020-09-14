@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.291763,
+    "posY": 1.8166256,
+    "posZ": -15.8388157,
+    "rotX": 0.136385247,
+    "rotY": 176.986664,
+    "rotZ": 359.967834,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Poisoned Dew",

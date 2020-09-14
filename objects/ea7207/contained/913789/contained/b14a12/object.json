@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.783272,
+    "posY": 2.19702387,
+    "posZ": -15.7687283,
+    "rotX": 0.009553076,
+    "rotY": 180.47728,
+    "rotZ": 359.985535,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Rites of the Land's Rejection",

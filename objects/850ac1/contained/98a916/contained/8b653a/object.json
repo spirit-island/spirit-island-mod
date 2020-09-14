@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.635468,
+    "posY": 2.0293622,
+    "posZ": -23.3784428,
+    "rotX": 0.0129507724,
+    "rotY": 179.518066,
+    "rotZ": -0.00523955049,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Sleep and Never Waken",

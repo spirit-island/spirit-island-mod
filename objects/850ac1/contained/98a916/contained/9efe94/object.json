@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.647957,
+    "posY": 2.110823,
+    "posZ": -23.369318,
+    "rotX": 0.00227066386,
+    "rotY": 180.358429,
+    "rotZ": -0.00348867476,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Storm-Swath",

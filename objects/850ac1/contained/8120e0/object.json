@@ -1,14 +1,14 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": 88.563736,
+    "posY": 2.0318644,
+    "posZ": 77.05812,
+    "rotX": -6.99649139e-09,
+    "rotY": 180.009567,
+    "rotZ": 179.999863,
     "scaleX": 1.5,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.5
   },
   "Nickname": "Blight",

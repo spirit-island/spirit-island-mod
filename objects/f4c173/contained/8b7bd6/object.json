@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
-    "scaleX": 1,
-    "scaleY": 1,
-    "scaleZ": 1
+    "posX": -56.1684875,
+    "posY": 2.431617,
+    "posZ": 32.0984,
+    "rotX": 0.001947976,
+    "rotY": 180.011322,
+    "rotZ": 359.950745,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
   },
   "Nickname": "Dahan: 0 Damage",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1,
-    "g": 1,
-    "b": 1
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
   },
   "Locked": false,
   "Grid": false,
@@ -68,9 +68,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1,
-        "g": 1,
-        "b": 1
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
       "Locked": false,
       "Grid": false,

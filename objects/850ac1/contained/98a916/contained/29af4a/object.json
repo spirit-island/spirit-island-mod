@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.791428,
+    "posY": 2.05643559,
+    "posZ": -23.3742523,
+    "rotX": 0.011345977,
+    "rotY": 180.853668,
+    "rotZ": -0.003068992,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Utter a Curse of Dread and Bone",

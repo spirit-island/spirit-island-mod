@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -86.00916,
+    "posY": 2.11987352,
+    "posZ": -6.4499917,
+    "rotX": 0.00444674352,
+    "rotY": 180.000015,
+    "rotZ": -9.720684e-08,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Terrifying Chase",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64500,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "645": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019418573/BC101BACD6D5C857E590277B0E76568CAB2194E0/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019419583/18BD3CB0B4CF13599691349E35AE37A3E36FEAAE/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

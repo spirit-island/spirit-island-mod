@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -42.4620819,
+    "posY": 1.02160752,
+    "posZ": 25.50275,
+    "rotX": 0.003594623,
+    "rotY": 180.120941,
+    "rotZ": 0.00578754861,
     "scaleX": 1.47602439,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47602439
   },
   "Nickname": "",

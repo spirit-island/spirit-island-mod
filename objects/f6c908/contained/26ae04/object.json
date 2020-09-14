@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -115.06,
+    "posY": 0.90177685,
+    "posZ": -15.9400053,
+    "rotX": 0.00444668,
+    "rotY": 180.000046,
+    "rotZ": 1.585552e-07,
     "scaleX": 1.529637,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.529637
   },
   "Nickname": "Scarred and Stony Land",

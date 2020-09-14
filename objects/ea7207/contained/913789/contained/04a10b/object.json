@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.204521,
+    "posY": 2.207959,
+    "posZ": -15.8850861,
+    "rotX": 359.788361,
+    "rotY": 180.618576,
+    "rotZ": 359.9371,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Prowling Panthers",

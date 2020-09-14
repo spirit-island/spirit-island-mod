@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
-    "scaleX": 1,
-    "scaleY": 1,
-    "scaleZ": 1
+    "posX": -70.61638,
+    "posY": 1.1068089,
+    "posZ": 49.02822,
+    "rotX": 0.00460792845,
+    "rotY": 180.000244,
+    "rotZ": 180.00029,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
   },
   "Nickname": "Might",
   "Description": "",

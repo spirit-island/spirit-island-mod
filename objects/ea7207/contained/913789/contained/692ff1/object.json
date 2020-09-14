@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -102.759033,
+    "posY": 2.06137919,
+    "posZ": -15.7584,
+    "rotX": 0.0120324986,
+    "rotY": 180.012527,
+    "rotZ": 359.987061,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Elusive Ambushes",

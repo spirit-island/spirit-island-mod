@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -83.13983,
+    "posY": 0.9014727,
+    "posZ": -19.8598518,
+    "rotX": 0.004446412,
+    "rotY": 180.0171,
+    "rotZ": 1.41815e-06,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Terrifying Nightmares",

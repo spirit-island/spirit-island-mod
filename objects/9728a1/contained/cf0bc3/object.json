@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -87.46036,
+    "posY": 2.11976647,
+    "posZ": -10.2632236,
+    "rotX": 0.004446735,
+    "rotY": 180.0,
+    "rotZ": -1.26582393e-07,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Towering Wrath",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64401,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "644": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019415579/C5A1B801C1C939191270B21B6B3BA1F191FAA926/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019417046/BA79275A96D8A67963408C7AE4BC6C4158508CCD/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

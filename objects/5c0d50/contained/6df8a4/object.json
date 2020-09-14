@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -90.41924,
+    "posY": 0.900422633,
+    "posZ": -33.3000031,
+    "rotX": 0.00448754244,
+    "rotY": 179.982681,
+    "rotZ": -0.00029578415,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Land of Haunts and Embers",

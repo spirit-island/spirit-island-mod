@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -89.3,
+    "posY": 0.9009946,
+    "posZ": -26.0199986,
+    "rotX": 0.004446521,
+    "rotY": 180.00441,
+    "rotZ": 4.1372158e-07,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Visions of Fiery Doom",

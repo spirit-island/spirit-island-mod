@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.844917,
+    "posY": 2.2584374,
+    "posZ": -23.20557,
+    "rotX": 0.0215433463,
+    "rotY": 181.415421,
+    "rotZ": 359.957245,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Cast Down into the Briny Deep",

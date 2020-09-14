@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -94.9,
+    "posY": 0.901820362,
+    "posZ": -15.3799982,
+    "rotX": 0.00444652839,
+    "rotY": 180.000015,
+    "rotZ": 1.6068654e-08,
     "scaleX": 1.47540212,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47540212
   },
   "Nickname": "Dark Skies Loose a Stinging Rain",

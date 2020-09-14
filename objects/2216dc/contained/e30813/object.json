@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -95.01771,
+    "posY": 1.99101853,
+    "posZ": -13.3742371,
+    "rotX": 0.00444672257,
+    "rotY": 180.0,
+    "rotZ": -1.23652967e-07,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Guard the Healing Land",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 63900,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "639": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019398572/2EC1384B5AB42DBDA1491C231F5DE69C23130434/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019399624/D701AB5CD0EB2A4968382DC19465BAE6733451D2/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

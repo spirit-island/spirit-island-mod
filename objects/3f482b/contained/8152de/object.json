@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.98,
+    "posY": 0.9016465,
+    "posZ": -17.6199989,
+    "rotX": 0.004446421,
+    "rotY": 180.000015,
+    "rotZ": -1.95952925e-08,
     "scaleX": 1.47602439,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47602439
   },
   "Nickname": "Incite the Mob",

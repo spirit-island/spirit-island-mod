@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.97744,
+    "posY": 2.04795074,
+    "posZ": -22.65698,
+    "rotX": 15.8831,
+    "rotY": 178.670654,
+    "rotZ": 346.4257,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Portents of Disaster",

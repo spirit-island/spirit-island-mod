@@ -15,9 +15,9 @@
   "Description": "Use these for powers/growths which provide elements, or when you reveal an element on your growth track",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.191972762,
+    "r": 0.191972673,
     "g": 0.701,
-    "b": 0.167972744
+    "b": 0.167972654
   },
   "Locked": true,
   "Grid": true,

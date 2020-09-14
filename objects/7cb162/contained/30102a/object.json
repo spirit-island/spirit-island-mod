@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -110.58,
+    "posY": 0.901603043,
+    "posZ": -18.1799984,
+    "rotX": 0.004446722,
+    "rotY": 180.000015,
+    "rotZ": -7.51568336e-08,
     "scaleX": 1.47540212,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47540212
   },
   "Nickname": "Pursue with Scratches, Pecks, and Stings",

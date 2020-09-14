@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -85.54869,
+    "posY": 1.99101865,
+    "posZ": -12.8552513,
+    "rotX": 0.00444677658,
+    "rotY": 180.000168,
+    "rotZ": 1.47022249e-07,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Entrap the Forces of Corruption",

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -69.8691,
+    "posY": 1.32431328,
+    "posZ": 0.8681363,
+    "rotX": 5.000578e-07,
+    "rotY": 180.009338,
+    "rotZ": -1.10106669e-06,
     "scaleX": 0.21,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 0.2
   },
   "Nickname": "Scotland Ravage Reminder",
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1,
-    "g": 1,
-    "b": 1
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
   },
   "Locked": false,
   "Grid": true,
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1465311785683846659/EA348A422A63C4F41929D6948766DE874762D59F/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
       "Thickness": 0.2,

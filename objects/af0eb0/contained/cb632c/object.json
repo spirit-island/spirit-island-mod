@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -96.02,
+    "posY": 0.9017334,
+    "posZ": -16.4999981,
+    "rotX": 0.00444658753,
+    "rotY": 180.000046,
+    "rotZ": 1.10894156e-08,
     "scaleX": 1.529637,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.529637
   },
   "Nickname": "Elemental Teachings",

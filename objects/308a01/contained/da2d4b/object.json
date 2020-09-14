@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -76.4189453,
+    "posY": 0.9010815,
+    "posZ": -24.8999729,
+    "rotX": 0.00444670953,
+    "rotY": 179.950455,
+    "rotZ": -3.736919e-06,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Dissolve the Bonds of Kinship",

@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -58.31094,
+    "posY": 3.600003,
+    "posZ": 37.1335678,
+    "rotX": 359.9661,
+    "rotY": 359.9917,
+    "rotZ": 359.687256,
     "scaleX": 0.7,
     "scaleY": 0.7,
     "scaleZ": 0.7
@@ -187,7 +187,7 @@
         "r": 0.7882353,
         "g": 0.6588235,
         "b": 0.48627454,
-        "a": 0
+        "a": 0.0
       },
       "Locked": true,
       "Grid": true,

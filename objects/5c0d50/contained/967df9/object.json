@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -45.6199226,
+    "posY": 1.28808832,
+    "posZ": -10.6099939,
+    "rotX": 0.00380851422,
+    "rotY": 180.0005,
+    "rotZ": 179.962036,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Rouse the Trees and Stones",

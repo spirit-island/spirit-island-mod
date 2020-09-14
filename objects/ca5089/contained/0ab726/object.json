@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -44.637085,
+    "posY": 1.3236829,
+    "posZ": 28.41388,
+    "rotX": -0.00226660538,
+    "rotY": -0.000784763834,
+    "rotZ": 0.0031024483,
     "scaleX": 0.3651334,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 0.3651334
   },
   "Nickname": "Wilds",
   "Description": "[b]Prevents the next Explore[/b] and is then removed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1,
-    "g": 1,
-    "b": 1
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
   },
   "Locked": false,
   "Grid": false,
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390107775/A15E0360DF9BF6142E33211BECD5F940DF689577/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomToken": {
       "Thickness": 0.2,
-      "MergeDistancePixels": 15,
+      "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true
     }

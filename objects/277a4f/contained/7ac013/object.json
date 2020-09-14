@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -80.39,
+    "posY": 0.901762664,
+    "posZ": -15.9400005,
+    "rotX": 0.004446583,
+    "rotY": 180.000839,
+    "rotZ": 180.0,
     "scaleX": 1.52888727,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.52888727
   },
   "Nickname": "Rituals of Terror",

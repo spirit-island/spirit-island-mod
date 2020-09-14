@@ -3,9 +3,9 @@
   "Transform": {
     "posX": -89.33963,
     "posY": 1.13735116,
-    "posZ": 53.82966,
-    "rotX": 0.0044466625,
-    "rotY": 180.001755,
+    "posZ": 53.82965,
+    "rotX": 0.004446794,
+    "rotY": 180.000153,
     "rotZ": 180.0,
     "scaleX": 1.53204679,
     "scaleY": 1.0,
@@ -33,19 +33,19 @@
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
-    59509,
-    59511,
-    59510,
-    59508
+    63800,
+    63803,
+    63802,
+    63801
   ],
   "CustomDeck": {
-    "595": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1588036697673327546/C863AF8895D535238F8DB714B5989235310622E2/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036697673336252/CDCFF234185E3D837AC65F86B5812A39754CC21B/",
-      "NumWidth": 8,
-      "NumHeight": 5,
+    "638": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019395652/186F8E89633A7058DFAB373C0F4576D6BFABE57B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019396620/C452E59C256BE9B61A7AB9DE9C9E356DBAB6A577/",
+      "NumWidth": 4,
+      "NumHeight": 2,
       "BackIsHidden": false,
-      "UniqueBack": true,
+      "UniqueBack": false,
       "Type": 0
     }
   }

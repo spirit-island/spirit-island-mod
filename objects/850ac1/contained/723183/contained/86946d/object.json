@@ -1,14 +1,14 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -18.77738,
+    "posY": 0.9166775,
+    "posZ": 59.660183,
+    "rotX": 0.00444610743,
+    "rotY": 179.96936,
+    "rotZ": 180.0,
     "scaleX": 1.5,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.5
   },
   "Nickname": "",

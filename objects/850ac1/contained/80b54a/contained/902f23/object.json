@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -98.51901,
+    "posY": 2.06111479,
+    "posZ": -27.58801,
+    "rotX": 0.0314755775,
+    "rotY": 179.089081,
+    "rotZ": 0.07959538,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Birds Cry Warning",

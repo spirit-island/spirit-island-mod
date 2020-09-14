@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.419586,
+    "posY": 1.04427338,
+    "posZ": -22.1000481,
+    "rotX": 0.004146813,
+    "rotY": 180.001266,
+    "rotZ": 1.2944181,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Smoothering Infestation",

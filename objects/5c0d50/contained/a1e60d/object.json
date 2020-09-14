@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -116.18,
+    "posY": 0.9005165,
+    "posZ": -32.18,
+    "rotX": 0.0044466136,
+    "rotY": 179.999619,
+    "rotZ": -6.62383357e-08,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Drought",

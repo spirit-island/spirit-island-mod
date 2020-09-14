@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -117.3,
+    "posY": 0.9018638,
+    "posZ": -14.8200035,
+    "rotX": 0.00444661453,
+    "rotY": 180.000046,
+    "rotZ": 1.4271977e-07,
     "scaleX": 1.47540212,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.47540212
   },
   "Nickname": "Absolute Stasis",

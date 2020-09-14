@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -120.100006,
+    "posY": 0.9141797,
+    "posZ": -42.2600632,
+    "rotX": 359.651764,
+    "rotY": 180.0001,
+    "rotZ": 0.00268229516,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Veil to the Night's Hunt",

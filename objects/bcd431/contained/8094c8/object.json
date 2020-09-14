@@ -1,14 +1,14 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": 88.85561,
+    "posY": 2.17726564,
+    "posZ": 53.7616043,
+    "rotX": 6.9539027e-07,
+    "rotY": 180.000946,
+    "rotZ": -0.000144329053,
     "scaleX": 6.5,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 6.5
   },
   "Nickname": "THEMATIC E",
@@ -34,11 +34,11 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1588036874658484764/9C02BE13834AA75A8474F53A6BEA8BF462244C65/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomToken": {
       "Thickness": 0.399999827,
-      "MergeDistancePixels": 15,
+      "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false
     }

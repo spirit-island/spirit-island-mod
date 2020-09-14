@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -94.89973,
+    "posY": 0.9154898,
+    "posZ": -42.8198776,
+    "rotX": 359.618744,
+    "rotY": 179.995361,
+    "rotZ": 0.00295547722,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Rain of Blood",

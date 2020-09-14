@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -124.020111,
+    "posY": 0.9143841,
+    "posZ": -36.6599922,
+    "rotX": 0.3516583,
+    "rotY": 179.999084,
+    "rotZ": -2.45726842e-05,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Entrancing Apparition",

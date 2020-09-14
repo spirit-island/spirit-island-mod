@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.836121,
+    "posY": 2.31250834,
+    "posZ": -23.2453232,
+    "rotX": 0.0294198059,
+    "rotY": 180.339447,
+    "rotZ": 359.961182,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Grant Hatred a Ravenous Form",

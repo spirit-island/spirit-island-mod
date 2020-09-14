@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -83.6999741,
+    "posY": 0.916033745,
+    "posZ": -14.8199816,
+    "rotX": 359.658478,
+    "rotY": 180.015549,
+    "rotZ": 0.000167125429,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Poisoned Land",

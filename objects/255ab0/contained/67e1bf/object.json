@@ -1,15 +1,15 @@
 {
   "Name": "Bag",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
-    "scaleX": 1,
-    "scaleY": 1,
-    "scaleZ": 1
+    "posX": -55.7000046,
+    "posY": 2.46644926,
+    "posZ": 26.6199837,
+    "rotX": 0.0294620078,
+    "rotY": 0.042714946,
+    "rotZ": -0.00135937333,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
   },
   "Nickname": "Counting Bag",
   "Description": "",

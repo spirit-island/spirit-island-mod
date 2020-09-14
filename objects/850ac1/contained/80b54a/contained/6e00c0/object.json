@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -98.66912,
+    "posY": 1.96082485,
+    "posZ": -27.5938988,
+    "rotX": 0.06242961,
+    "rotY": 182.323944,
+    "rotZ": 0.23277171,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Dire Metamorphosis",

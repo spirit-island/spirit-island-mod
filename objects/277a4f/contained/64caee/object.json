@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -73.11,
+    "posY": 0.9009867,
+    "posZ": -26.02,
+    "rotX": 0.00444660243,
+    "rotY": 179.996033,
+    "rotZ": 180.0,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Varied Terrains",

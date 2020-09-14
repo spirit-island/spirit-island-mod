@@ -1,14 +1,14 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -65.9483948,
+    "posY": 1.31462407,
+    "posZ": -0.300860316,
+    "rotX": 359.98,
+    "rotY": 180.003464,
+    "rotZ": 0.000152913446,
     "scaleX": 2.68323278,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 2.68323278
   },
   "Nickname": "Second Adversary Board",
@@ -34,8 +34,8 @@
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1245757231531106518/77039FB53A3990479F77A1CC5335819B317BA401/",
     "ImageSecondaryURL": "",
-    "ImageScalar": 1,
-    "WidthScale": 0,
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
       "Thickness": 0.2,

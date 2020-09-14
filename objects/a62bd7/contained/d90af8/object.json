@@ -1,14 +1,14 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -70.95334,
+    "posY": 1.32921922,
+    "posZ": -0.256502539,
+    "rotX": 8.89847e-06,
+    "rotY": 180.0,
+    "rotZ": 179.99826,
     "scaleX": 1.05,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.05
   },
   "Nickname": "Invader Reminder Card",

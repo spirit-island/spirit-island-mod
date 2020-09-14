@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -104.767181,
+    "posY": 2.255673,
+    "posZ": -23.122076,
+    "rotX": 359.95282,
+    "rotY": 183.029831,
+    "rotZ": 0.0783691,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Trees Radiate Celestial Brilliance",

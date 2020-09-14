@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -65.47508,
+    "posY": 1.39309168,
+    "posZ": -1.01981044,
+    "rotX": 359.9885,
+    "rotY": 269.998962,
+    "rotZ": 0.0007365564,
     "scaleX": 0.8500003,
     "scaleY": 0.8500003,
     "scaleZ": 0.8500003
@@ -43,13 +43,13 @@
     "TypeIndex": 7,
     "CustomShader": {
       "SpecularColor": {
-        "r": 1,
-        "g": 1,
-        "b": 1
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
-      "SpecularIntensity": 0,
-      "SpecularSharpness": 2,
-      "FresnelStrength": 0
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
     },
     "CastShadows": true
   }

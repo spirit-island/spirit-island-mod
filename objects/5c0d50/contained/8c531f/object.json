@@ -1,14 +1,14 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -108.900177,
+    "posY": 0.9158997,
+    "posZ": -42.82009,
+    "rotX": 359.6087,
+    "rotY": 179.993927,
+    "rotZ": 0.00296626985,
     "scaleX": 1.53204679,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
   "Nickname": "Steam Vents",

@@ -1,14 +1,14 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": 0,
-    "posY": 0,
-    "posZ": 0,
-    "rotX": 0,
-    "rotY": 0,
-    "rotZ": 0,
+    "posX": -10.6536722,
+    "posY": 2.1475594,
+    "posZ": -0.515830457,
+    "rotX": 0.00444653165,
+    "rotY": 180.0,
+    "rotZ": 180.0,
     "scaleX": 1.3656503,
-    "scaleY": 1,
+    "scaleY": 1.0,
     "scaleZ": 1.3656503
   },
   "Nickname": "Minor Powers",

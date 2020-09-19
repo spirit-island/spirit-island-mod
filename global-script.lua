@@ -3166,9 +3166,7 @@ end
 ------
 function addSpirit(params)
     -- Ignore Source Spirit
-    if params.spirit.guid == "f2a77d" then return end
-    -- For now, no shroud or fractured since they don’t have cards
-    if params.spirit.guid == "a95c14" or params.spirit.guid == "013dfc" then return end
+    if params.spirit.guid == "21f561" then return end
     table.insert(spiritGuids, params.spirit.guid)
     spiritTags[params.spirit.guid] = params.spirit.getDescription()
 end

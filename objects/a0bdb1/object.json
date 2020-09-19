@@ -15,9 +15,9 @@
   "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, o,r when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.1919721,
+    "r": 0.191972077,
     "g": 0.701,
-    "b": 0.167972088
+    "b": 0.167972058
   },
   "Locked": true,
   "Grid": true,

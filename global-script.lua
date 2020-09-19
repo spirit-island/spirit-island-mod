@@ -2928,7 +2928,7 @@ function SetupInvaderDeck()
     local coastalSetup = false
     if requiresCoastal then
         -- Set Coastal card aside for now
-        local stage2Deck = getObjectFromGUID("fd9c6b")
+        local stage2Deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
         stage2Deck.takeObject({
             guid = "c304c1",
             position = stage2Deck.getPosition() + Vector(0,1,0),
@@ -3948,18 +3948,6 @@ function deleteObject(obj)
     elseif obj.getName() == "Badlands" then
         obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
-    elseif obj.getName() == "Element" then
-        obj.setRotation(Vector(0,180,0))
-    elseif obj.getName() == "Element Marker" then
-        obj.setRotation(Vector(0,180,0))
-    elseif obj.getName() == "1 Energy" then
-        obj.setRotation(Vector(0,180,0))
-    elseif obj.getName() == "3 Energy" then
-        obj.setRotation(Vector(0,180,0))
-    elseif obj.getName() == "1 Energy Bag" then
-        obj.setRotation(Vector(0,180,0))
-    elseif obj.getName() == "3 Energy Bag" then
-        obj.setRotation(Vector(0,180,0))                     
     else
         if not obj.getVar("destroyOnTableDrop") then
             removeObject = false

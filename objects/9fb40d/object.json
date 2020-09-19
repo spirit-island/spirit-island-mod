@@ -3,10 +3,10 @@
   "Transform": {
     "posX": -119.69,
     "posY": 1.310076,
-    "posZ": -0.629033566,
-    "rotX": -0.00458189053,
+    "posZ": -0.629033744,
+    "rotX": -0.004581918,
     "rotY": 359.886,
-    "rotZ": -0.0003661905,
+    "rotZ": -0.000365666667,
     "scaleX": 1.19999993,
     "scaleY": 1.19999993,
     "scaleZ": 1.19999993
@@ -15,9 +15,9 @@
   "Description": "Use these for your \"Growth Begets Growth\" Special Rule",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2499696,
-    "g": 0.2499696,
-    "b": 0.2499696
+    "r": 0.2499694,
+    "g": 0.2499694,
+    "b": 0.2499694
   },
   "Locked": false,
   "Grid": false,

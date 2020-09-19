@@ -860,7 +860,7 @@ function readyCheck()
     if readyCount >= colorCount and colorCount ~= 0 then
         broadcastToAll("All Players are ready!")
         for _,obj in pairs(selectedColors) do
-            obj.setRotation(Vector(0, 180, 180))
+            obj.flip()
         end
     end
 end

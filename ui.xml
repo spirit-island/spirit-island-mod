@@ -180,6 +180,26 @@
         </VerticalLayout>
     </VerticalLayout>
 </Panel>
+<Panel id="panelFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="170" height="80" offsetXY="315 0" rectAlignment="UpperLeft">
+    <HorizontalLayout childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="10">
+        <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+            <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+                <Text fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Fear Pool" color="black" />
+            </Panel>
+            <Panel preferredWidth="80" preferredHeight="80" color="white">
+                <Text id="panelFearPool" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="0" fontSize="40" color="black" />
+            </Panel>
+        </VerticalLayout>
+        <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
+            <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
+                <Text fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Generated Fear" color="black" />
+            </Panel>
+            <Panel preferredWidth="80" preferredHeight="80" color="white">
+                <Text id="panelFearGenerated" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="0" fontSize="40" color="black" />
+            </Panel>
+        </VerticalLayout>
+    </HorizontalLayout>
+</Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">
         <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">▼</Button>
@@ -192,12 +212,13 @@
     <Text id="panelReadyYes" visibility="Invisible" fontsize="36" color="#00FF00">Ready</Text>
     <Text id="panelReadyNo" visibility="Invisible" fontsize="36" color="#FF0000">Not Ready</Text>
 </Panel>
-<Panel id="panelUI" visibility="Invisible" width="160" height="100" rectAlignment="UpperRight" offsetXY="-240 0">
+<Panel id="panelUI" visibility="Invisible" width="160" height="120" rectAlignment="UpperRight" offsetXY="-240 0">
     <VerticalLayout>
         <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Toggle Invader UI</Button>
         <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Toggle Adversary UI</Button>
         <Button onClick="toggleTurnOrderUI" textAlignment="MiddleCenter">Toggle Turn Order UI</Button>
         <Button onClick="toggleTimePassesUI" textAlignment="MiddleCenter">Toggle Time Passes UI</Button>
         <Button onClick="toggleReadyUI" textAlignment="MiddleCenter">Toggle Ready UI</Button>
+        <Button onClick="toggleFearUI" textAlignment="MiddleCenter">Toggle Fear UI</Button>
     </VerticalLayout>
 </Panel>

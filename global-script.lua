@@ -738,8 +738,7 @@ function setupFearTokens()
         end
     end
     fearPool = fearMulti * numPlayers
-    aidBoard.editButton({index = 1, label = tostring(fearPool)})
-    aidBoard.editButton({index = 2, label = 0})
+    aidBoard.call("updateFearUI")
 end
 ----- Minor/Major Power Section
 function SetupPowerDecks()

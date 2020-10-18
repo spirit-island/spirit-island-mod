@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -86.05073,
-    "posY": 1.15091717,
-    "posZ": 32.5631,
-    "rotX": 0.004463164,
-    "rotY": 180.026825,
-    "rotZ": 4.78848269e-05,
+    "posX": -86.4677353,
+    "posY": 1.15076685,
+    "posZ": 30.6288357,
+    "rotX": 0.00446358556,
+    "rotY": 179.988327,
+    "rotZ": 4.4756478e-05,
     "scaleX": 0.724999845,
     "scaleY": 0.724999845,
     "scaleZ": 0.724999845
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.3019575,
-    "g": 0.3019575,
-    "b": 0.305879056
+    "r": 0.181533515,
+    "g": 0.181533515,
+    "b": 0.186404824
   },
   "Locked": false,
   "Grid": false,
@@ -41,9 +41,9 @@
     "TypeIndex": 0,
     "CustomShader": {
       "SpecularColor": {
-        "r": 0.5,
-        "g": 0.5,
-        "b": 0.5
+        "r": 0.6951219,
+        "g": 0.6951219,
+        "b": 0.6951219
       },
       "SpecularIntensity": 0.1,
       "SpecularSharpness": 2.0,

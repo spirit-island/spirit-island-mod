@@ -1,0 +1,47 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 23.260004,
+    "posY": 1.14177144,
+    "posZ": 33.340004,
+    "rotX": -0.00141096115,
+    "rotY": 179.996246,
+    "rotZ": 180.000458,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Transform to a Murderous Darkness",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 65123,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "651": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420392261/6A78F281FE884E408C0CF6FD70DCE5873E849A6A/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874653844133/C21FE8B1440EB0D4E8293B088AE167E69285B286/",
+      "NumWidth": 6,
+      "NumHeight": 4,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

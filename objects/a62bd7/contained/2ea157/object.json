@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -64.88007,
-    "posY": 1.36398351,
-    "posZ": -1.09796953,
-    "rotX": 359.9289,
-    "rotY": 179.953934,
-    "rotZ": 0.06388172,
+    "posX": -29.0509911,
+    "posY": 1.022767,
+    "posZ": 47.9513359,
+    "rotX": 0.004026204,
+    "rotY": 179.958191,
+    "rotZ": -3.82425469e-06,
     "scaleX": 0.6749999,
     "scaleY": 0.6749999,
     "scaleZ": 0.6749999
@@ -15,9 +15,9 @@
   "Description": "France Lv5",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.0,
-    "g": 0.0,
-    "b": 0.0
+    "r": 0.2156862,
+    "g": 0.2156862,
+    "b": 0.2156862
   },
   "Locked": false,
   "Grid": false,

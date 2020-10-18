@@ -1,12 +1,12 @@
 {
-  "Name": "Custom_Tile_Stack",
+  "Name": "Custom_Tile",
   "Transform": {
-    "posX": -86.09,
-    "posY": 1.04037344,
-    "posZ": -2.18,
-    "rotX": 0.004464833,
-    "rotY": 180.000519,
-    "rotZ": 4.72663341e-05,
+    "posX": -81.0839539,
+    "posY": 1.09043837,
+    "posZ": -1.29284382,
+    "rotX": 0.00446297973,
+    "rotY": 180.0029,
+    "rotZ": 4.6422072e-05,
     "scaleX": 0.877173543,
     "scaleY": 1.0,
     "scaleZ": 0.877173543
@@ -17,7 +17,7 @@
   "ColorDiffuse": {
     "r": 0.695121944,
     "g": 0.490944982,
-    "b": 0.354767621
+    "b": 0.354764432
   },
   "Locked": false,
   "Grid": true,
@@ -31,9 +31,6 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "MaterialIndex": -1,
-  "MeshIndex": -1,
-  "Number": 5,
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394413445/4C1E6486A3F45CB50EE3F485A7BB875429E0FA70/",
     "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/868489312394413103/B0F2D546BBD978061F7B1D4136EB2BEDB2ADAEDD/",

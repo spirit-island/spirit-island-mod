@@ -15,9 +15,9 @@
   "Description": "B&C",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200289965,
-    "g": 0.160335243,
-    "b": 0.151773512
+    "r": 0.200286925,
+    "g": 0.1603322,
+    "b": 0.151770473
   },
   "Locked": true,
   "Grid": true,
@@ -32,8 +32,8 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609510803/E9B126010472C8531000592058F08D4FD89E01E5/",
-    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609514110/30A042EE084034FB974AAE436BD39B9D84294BDB/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029467/B0F666B34B1168C995BEA7A4E95705790654E9F0/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029775/422F03AB75EA8F0805D10A5CF362C1218FBCDDA4/",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomTile": {

@@ -1,0 +1,37 @@
+{
+  "Name": "Counter",
+  "Transform": {
+    "posX": -51.21962,
+    "posY": 1.21436334,
+    "posZ": 43.98739,
+    "rotX": 359.876465,
+    "rotY": 0.05662256,
+    "rotZ": 0.163468286,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0823529139,
+    "g": 0.0823529139,
+    "b": 0.0823529139
+  },
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Counter": {
+    "value": 0
+  }
+}

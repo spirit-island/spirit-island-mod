@@ -2,10 +2,10 @@
   "Name": "3DText",
   "Transform": {
     "posX": -48.8954964,
-    "posY": 0.9599881,
-    "posZ": -39.2802734,
+    "posY": 0.95998925,
+    "posZ": -39.28029,
     "rotX": 90.0,
-    "rotY": 0.0,
+    "rotY": -2.358222e-09,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,

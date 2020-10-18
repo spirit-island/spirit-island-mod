@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 84.70681,
-    "posY": 2.38034463,
-    "posZ": 58.9530067,
-    "rotX": 0.00952221453,
-    "rotY": 180.014954,
-    "rotZ": 0.8249007,
+    "posX": 91.37013,
+    "posY": 2.23583317,
+    "posZ": 47.49832,
+    "rotX": -3.50157933e-07,
+    "rotY": 179.995041,
+    "rotZ": -0.000144294463,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEMATIC NW Re-skinned",
+  "Nickname": "THEM NW Re-skinned",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -32,7 +32,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284038650230513412/8FAEE34A0A8CB960C81867DF25589CE20C54A188/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617313684071612327/BCAFF7A46F5717C482E8D1437217458705862051/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

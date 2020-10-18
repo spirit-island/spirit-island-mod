@@ -1,5 +1,5 @@
 ---- Used with Spirit Board Scripts
-counterBag = "5f2acb"
+counterBag = "5f595a"
 minorPowerZone = "cb16ab"
 majorPowerZone = "089896"
 PlayerBags = {
@@ -123,12 +123,23 @@ fearDeckSetupZone = "fbbf69"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
-blightBagInfinite = "3595ff"
+boxBlightBag = "49405b"
 beastsBag = "a42427"
 diseaseBag = "7019af"
 wildsBag = "ca5089"
 strifeBag = "af4e63"
 badlandsBag = "d3f7f8"
+oneEnergyBag = "d336ca"
+threeEnergyBag = "a1b7da"
+defendBags = {
+    Red = "41f81c",
+    Purple = "295558",
+    Yellow = "2d7791",
+    Blue = "81fcb9",
+    Green = "0da348",
+    Brown = "091c06",
+    White = "aaaaab",
+}
 -----
 StandardMapBag = "9760a2"
 ThematicMapBag = "bcd431"
@@ -197,10 +208,7 @@ interactableObjectsToDisableOnLoad = {
 
 ---- TTS Events Section
 function onScriptingButtonDown(index, playerColor)
-    if not gameStarted or gamePaused then
-        return
-    end
-    DropMiniature(index, Player[playerColor].getPointerPosition(), playerColor)
+    DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)
 end
 function onObjectDrop(player_color, dropped_object)
     if gameStarted then
@@ -289,6 +297,13 @@ function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
 
+    clearHotkeys()
+    for _, piece in ipairs(Pieces) do
+        addHotkey("Add " .. piece, function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+            DropPiece(piece, cursorLocation, droppingPlayerColor)
+        end)
+    end
+
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
         if getObjectFromGUID(v) ~= nil then
             getObjectFromGUID(v).setLock(true)
@@ -307,12 +322,17 @@ function onLoad(saved_data)
     cityBag = getObjectFromGUID(cityBag)
     blightBag = getObjectFromGUID(blightBag)
     returnBlightBag = blightBag
-    blightBagInfinite = getObjectFromGUID(blightBagInfinite)
+    boxBlightBag = getObjectFromGUID(boxBlightBag)
     diseaseBag = getObjectFromGUID(diseaseBag)
     wildsBag = getObjectFromGUID(wildsBag)
     beastsBag = getObjectFromGUID(beastsBag)
     strifeBag = getObjectFromGUID(strifeBag)
     badlandsBag = getObjectFromGUID(badlandsBag)
+    oneEnergyBag = getObjectFromGUID(oneEnergyBag)
+    threeEnergyBag = getObjectFromGUID(threeEnergyBag)
+    for index, bagGuid in pairs(defendBags) do
+        defendBags[index] = getObjectFromGUID(bagGuid)
+    end
     -----
     cityHealth = getObjectFromGUID(cityHealth)
     cityDamage = getObjectFromGUID(cityDamage)
@@ -2491,22 +2511,19 @@ function BlightIslandButton(_, playerColor)
     if #blightBag.getObjects() == 0 then -- blightBag must be empty to flip this card!
         if blightedIslandTimer == 0 then
             broadcastToColor("Double-click to go Blighted Island", playerColor, Color.SoftBlue)
+            startLuaCoroutine(Global, "BlightedIslandTimer")
+        elseif blightedIslandTimer == 1 then
+            BlightedIslandFlip()
         end
-        startLuaCoroutine(Global, "BlightedIslandTimer")
+        blightedIslandTimer = blightedIslandTimer + 1
     else
         broadcastToColor("There is still blight on the Blight Card!", playerColor, Color.SoftYellow)
     end
 end
 blightedIslandTimer = 0
 function BlightedIslandTimer()
-    if blightedIslandTimer == 1 then
-        blightedIslandTimer = 0
-        BlightedIslandFlip()
-    else
-        blightedIslandTimer = 1
-        wt(1)
-        blightedIslandTimer = 0
-    end
+    wt(1)
+    blightedIslandTimer = 0
     return 1
 end
 function BlightedIslandFlip()
@@ -2525,7 +2542,7 @@ function BlightedIslandFlip()
             return
         end
     end
-    BlightedIslandFlipPart2()
+    startLuaCoroutine(Global, "BlightedIslandFlipPart2")
 end
 function BlightedIslandFlipPart2()
     if not blightedIslandCard.getVar("healthy") then
@@ -2535,7 +2552,7 @@ function BlightedIslandFlipPart2()
     blightedIslandCard.setRotationSmooth(Vector(0,180,0))
     local numBlight = blightedIslandCard.getVar("blight") * numPlayers
     for i=1, numBlight do
-        blightBag.putObject(blightBagInfinite.takeObject({position = blightBag.getPosition() + Vector(0,1,0)}))
+        blightBag.putObject(boxBlightBag.takeObject({position = blightBag.getPosition() + Vector(0,1,0)}))
     end
     wt(1)
     gamePaused = false -- to re-enable scripting buttons and object cleanup
@@ -2562,7 +2579,7 @@ function setupBlightTokens()
         numBlight = 5 * numPlayers
     end
     for i=1, numBlight do
-        blightBag.putObject(blightBagInfinite.takeObject({
+        blightBag.putObject(boxBlightBag.takeObject({
             position = blightBag.getPosition() + Vector(0,1,0),
             smooth = false,
         }))
@@ -3265,7 +3282,7 @@ function handlePiece(object, depth)
     elseif string.sub(object.getName(),1,6) == "Blight" then
         object = resetPiece(object, Vector(0,180,0), depth)
     elseif string.sub(object.getName(),-7) == "Defence" then
-        object.destruct()
+        if object.getLock() == false then object.destruct() end
         object = nil
     end
     return object
@@ -3609,12 +3626,12 @@ rotMapThem = {
     },
 }
 themGuids = {
-    {"f4fc81"},
-    {"8094c8","10650c"},
-    {"8094c8","10650c","f4fc81"},
-    {"8094c8","10650c","f4fc81","be4ea1"},
-    {"8094c8","10650c","f4fc81","be4ea1","a33e8c"},
-    {"8094c8","10650c","f4fc81","be4ea1","a33e8c","7576c3"},
+    {"bd6555"},
+    {"051c66","9d9b8f"},
+    {"051c66","9d9b8f","bd6555"},
+    {"051c66","9d9b8f","bd6555","e0c325"},
+    {"051c66","9d9b8f","bd6555","e0c325","505d5d"},
+    {"051c66","9d9b8f","bd6555","e0c325","505d5d","0f2e60"},
 }
 themRedoGuids = {
     {"14a35f"},
@@ -3673,7 +3690,7 @@ function MapPlaceCustom()
 end
 
 BETaken = false
-DFTaken = fase
+DFTaken = false
 function MapPlacen(posTable, rotTable)
     for i=1, numPlayers do
         local temp = nil
@@ -3681,13 +3698,13 @@ function MapPlacen(posTable, rotTable)
             local list = StandardMapBag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if numPlayers <=4 and (value.guid == "73f45a" or value.guid == "ee58e3") then
+                if numPlayers <=4 and (value.name == "NORMAL B" or value.name == "NORMAL E") then
                     if not BETaken then
                         BETaken = true
                         index = value.index
                         break
                     end
-                elseif numPlayers <= 4 and (value.guid == "c16a28" or value.guid == "adc8eb") then
+                elseif numPlayers <= 4 and (value.name == "NORMAL D" or value.name == "NORMAL F") then
                     if not DFTaken then
                         DFTaken = true
                         index = value.index
@@ -3832,8 +3849,8 @@ function place(objName, placePos, droppingPlayerColor)
             return
         end
         temp = blightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "BlightInfinite" then
-        temp = blightBagInfinite.takeObject({position=placePos,rotation=Vector(0,180,0)})
+    elseif objName == "Box Blight" then
+        temp = boxBlightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Strife" then
         if BnCAdded or JEAdded then
             temp = strifeBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
@@ -3864,6 +3881,16 @@ function place(objName, placePos, droppingPlayerColor)
         else
             return
         end
+    elseif objName == "Defend Token" then
+        if droppingPlayerColor and defendBags[droppingPlayerColor] then
+            temp = defendBags[droppingPlayerColor].takeObject({position = placePos,rotation = Vector(0,180,0)})
+        else
+            temp = defendBags["White"].takeObject({position = placePos,rotation = Vector(0,180,0)})
+        end
+    elseif objName == "1 Energy" then
+        temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+    elseif objName == "3 Energy" then
+        temp = threeEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     end
     if droppingPlayerColor then
         local dropColor = droppingPlayerColor
@@ -3880,28 +3907,28 @@ function place(objName, placePos, droppingPlayerColor)
     end
 end
 
-function DropMiniature(index, cursorLocation, droppingPlayerColor)
-    if index == 1 then
-        place("Explorer",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 2 then
-        place("Town",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 3 then
-        place("City",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 4 then
-        place("Blight",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 10 then
-        place("Dahan",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 6 then
-        place("Strife",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 7 then
-        place("Beasts",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 8 then
-        place("Wilds",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 9 then
-        place("Disease",cursorLocation + Vector(0,2,0),droppingPlayerColor)
-    elseif index == 5 then
-        place("Badlands",cursorLocation + Vector(0,2,0),droppingPlayerColor)
+Pieces = {
+    "Explorer",
+    "Town",
+    "City",
+    "Blight",
+    "Badlands",
+    "Strife",
+    "Beasts",
+    "Wilds",
+    "Disease",
+    "Dahan",
+    "Defend Token",
+    "1 Energy",
+    "3 Energy",
+    "Box Blight",
+}
+
+function DropPiece(piece, cursorLocation, droppingPlayerColor)
+    if not gameStarted or gamePaused then
+        return
     end
+    place(piece, cursorLocation + Vector(0,2,0), droppingPlayerColor)
 end
 
 zoneDestroyFlag = false
@@ -3916,16 +3943,16 @@ end
 function deleteObject(obj)
     local bag = nil
     local removeObject = true
-    if string.match(obj.getName(),"Dahan") then
+    if string.sub(obj.getName(),1,5) == "Dahan" then
         obj.setRotation(Vector(0,0,0))
         bag = dahanBag
-    elseif string.match(obj.getName(),"Explorer") then
+    elseif string.sub(obj.getName(),1,8) == "Explorer" then
         obj.setRotation(Vector(0,180,0))
         bag = explorerBag
-    elseif string.match(obj.getName(),"Town") then
+    elseif string.sub(obj.getName(),1,4) == "Town" then
         obj.setRotation(Vector(0,180,0))
         bag = townBag
-    elseif string.match(obj.getName(),"City") then
+    elseif string.sub(obj.getName(),1,4) == "City" then
         obj.setRotation(Vector(0,180,0))
         bag = cityBag
     elseif obj.getName() == "Blight" then

@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 66.16454,
-    "posY": 1.49710608,
-    "posZ": -35.9385147,
-    "rotX": 0.00468923151,
-    "rotY": 180.007553,
-    "rotZ": 359.991547,
+    "posX": 91.86193,
+    "posY": 2.17395878,
+    "posZ": 45.695652,
+    "rotX": 4.47209025e-08,
+    "rotY": 179.994568,
+    "rotZ": -0.0001443028,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEMATIC NE Re-skinned",
+  "Nickname": "THEM NE Re-skinned",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -32,7 +32,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1008188423186348080/748FA3D089BF666B45EC8C2BA71CA6F332A899D3/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617313684071905519/D507EC5A4A546FEDB157E4E52E84717281A6F8E9/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

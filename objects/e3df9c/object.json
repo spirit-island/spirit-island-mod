@@ -12,10 +12,10 @@
     "scaleZ": 0.9000001
   },
   "Nickname": "Element Token",
-  "Description": "Use these for when a  powers/events/growths which gift elements, o,r when you reveal an element on your presence tracks",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.117970549,
+    "r": 0.117967375,
     "g": 0.53,
     "b": 1.0
   },

@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 63.5295219,
-    "posY": 2.17978334,
-    "posZ": 42.4198036,
-    "rotX": 9.443033e-05,
-    "rotY": 180.001953,
-    "rotZ": -0.000152443914,
+    "posX": 94.0098953,
+    "posY": 2.16914272,
+    "posZ": 26.5949841,
+    "rotX": -4.76740865e-07,
+    "rotY": 179.995178,
+    "rotZ": -0.000144264559,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEMATIC SW Re-skinned",
+  "Nickname": "THEM SW Re-skinned",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -32,7 +32,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284038650230519011/042972D2295D9FA9485601D515851C9AA27D2D8C/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617313479141324033/1BE39A5C0215AC0446EB74C0AB64A1689B7E91F0/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

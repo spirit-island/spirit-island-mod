@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -85.93985,
-    "posY": 0.9009946,
-    "posZ": -26.0198555,
-    "rotX": 0.00444647344,
-    "rotY": 179.991776,
-    "rotZ": -6.58003955e-07,
+    "posX": -14.2225971,
+    "posY": 1.99101841,
+    "posZ": -7.95595169,
+    "rotX": 0.00444653723,
+    "rotY": 180.0,
+    "rotZ": 3.19312221e-07,
     "scaleX": 1.53204679,
     "scaleY": 1.0,
     "scaleZ": 1.53204679
   },
-  "Nickname": "Natrue's Resilience",
+  "Nickname": "Nature's Resilience",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

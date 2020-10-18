@@ -1,0 +1,47 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -45.74944,
+    "posY": 1.2869767,
+    "posZ": -10.7253819,
+    "rotX": -0.00444655865,
+    "rotY": 180.0,
+    "rotZ": 179.977509,
+    "scaleX": 1.53204679,
+    "scaleY": 1.0,
+    "scaleZ": 1.53204679
+  },
+  "Nickname": "Gift of Power",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64800,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "648": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1645461720879475460/691F5B8F300105D72F44C986122DD3129ED768B5/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756115964/5577A639021512840E77A6FD8D2DF79DB4E1AEE5/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

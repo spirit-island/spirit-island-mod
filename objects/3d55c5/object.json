@@ -1,0 +1,46 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -74.95011,
+    "posY": -0.105459355,
+    "posZ": 56.7081871,
+    "rotX": 0.00447248,
+    "rotY": 179.989182,
+    "rotZ": -2.54456991e-05,
+    "scaleX": 0.8119656,
+    "scaleY": 1.0,
+    "scaleZ": 0.8119656
+  },
+  "Nickname": "NORMAL A",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.8156863,
+    "g": 0.8156863,
+    "b": 0.8156863
+  },
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248751929423/2446A274B3F9D252C217D393E5A0A1C632E7D527/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.39500016,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  }
+}

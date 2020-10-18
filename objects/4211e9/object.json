@@ -1,11 +1,11 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -42.2596169,
+    "posX": -42.26,
     "posY": 0.923605,
-    "posZ": 53.4806023,
-    "rotX": -9.969467e-09,
-    "rotY": 179.929413,
+    "posZ": 54.0600052,
+    "rotX": 3.777259e-09,
+    "rotY": 179.982117,
     "rotZ": 180.0,
     "scaleX": 1.5,
     "scaleY": 1.0,
@@ -15,9 +15,10 @@
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.709803939,
+    "g": 0.709803939,
+    "b": 0.709803939,
+    "a": 0.0
   },
   "Locked": false,
   "Grid": true,

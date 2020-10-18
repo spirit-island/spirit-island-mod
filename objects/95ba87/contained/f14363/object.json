@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 66.6690445,
-    "posY": 1.49705338,
-    "posZ": -36.6481667,
-    "rotX": 0.00341229467,
-    "rotY": 180.002655,
-    "rotZ": -0.000334304466,
+    "posX": 83.76167,
+    "posY": 2.169924,
+    "posZ": 32.15137,
+    "rotX": 7.55321253e-07,
+    "rotY": 180.0018,
+    "rotZ": -0.000144246093,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEMATIC E Re-skinned",
+  "Nickname": "THEM E Re-skinned",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -32,7 +32,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1284038650230528246/496CD85635D1C98402F979B219831E26F3FE15E8/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617313684071921722/072BB2BCC7BD4BA8C1D57347852EB371E05C67DA/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

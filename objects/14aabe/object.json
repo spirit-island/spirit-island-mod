@@ -15,9 +15,9 @@
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200297177,
-    "g": 0.160342455,
-    "b": 0.151780725
+    "r": 0.2002941,
+    "g": 0.160339385,
+    "b": 0.151777655
   },
   "Locked": true,
   "Grid": true,
@@ -32,8 +32,8 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422135061/4021644F5814D58C422A73B1F027A49845C1E8BF/",
-    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1461933821422136766/47BB6966B9963624E88615195FE35ECC93DCEDA5/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753212889/818F2D7BB09AA1D3D675B34F794E8BB407D49442/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753216326/9AD263506D001B58A8190A1FE71DD28519722068/",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomTile": {

@@ -69,9 +69,9 @@ function MapSetup(params)
 
         -- on boards where land #4 starts with Blight, put that blight in land #5 instead
         for i,v in ipairs (params.pieces[4]) do
-            if v == "BlightInfinite" then
+            if v == "Box Blight" then
                 table.remove(params.pieces[4],i)
-                table.insert(params.pieces[5],"BlightInfinite")
+                table.insert(params.pieces[5],"Box Blight")
                 break
             end
         end
@@ -79,7 +79,7 @@ function MapSetup(params)
     if params.level >= 6 then
         -- on each board add 1 Town and 1 Blight to land #8. The Blight comes from the box, not the Blight Card
         table.insert(params.pieces[8],"Town")
-        table.insert(params.pieces[8],"BlightInfinite")
+        table.insert(params.pieces[8],"Box Blight")
     end
     return params.pieces
 end

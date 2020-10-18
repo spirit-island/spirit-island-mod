@@ -144,106 +144,6 @@
       "XmlUI": "",
       "GUID": "493c4f"
     },
-    "4": {
-      "Name": "Custom_Tile",
-      "Transform": {
-        "posX": -120.1,
-        "posY": 0.887781143,
-        "posZ": -20.9800072,
-        "rotX": 0.004446612,
-        "rotY": 179.9893,
-        "rotZ": -7.967432e-07,
-        "scaleX": 5.282891,
-        "scaleY": 1.0,
-        "scaleZ": 5.282891
-      },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402001919/22567E5059853F61E8FBB0CD9BA0E057F354BEFE/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomTile": {
-          "Type": 3,
-          "Thickness": 0.2,
-          "Stackable": false,
-          "Stretch": true
-        }
-      },
-      "LuaScript": "function onLoad(save_state)\r\n    local data = {click_function = \"next\", function_owner = self, label = \">\", position = {0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\n    local data = {click_function = \"prev\", function_owner = self, label = \"<\", position = {-0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\nend\r\n\r\nfunction next()\r\n    local state = self.getStateId()+1\r\n    if state > #self.getStates()+1 then \r\n        state = 1\r\n    end\r\n    self.setState(state)\r\nend\r\n\r\nfunction prev()\r\n    local state = self.getStateId()-1\r\n    if state < 1 then \r\n        state = #self.getStates()+1\r\n    end\r\n    self.setState(state)\r\nend",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "405513"
-    },
-    "5": {
-      "Name": "Custom_Tile",
-      "Transform": {
-        "posX": -120.1,
-        "posY": 0.887781143,
-        "posZ": -20.9800072,
-        "rotX": 0.004446612,
-        "rotY": 179.9893,
-        "rotZ": -7.967432e-07,
-        "scaleX": 5.282891,
-        "scaleY": 1.0,
-        "scaleZ": 5.282891
-      },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402002864/76D6C21131807378432845A6DF67230E06394B4E/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomTile": {
-          "Type": 3,
-          "Thickness": 0.2,
-          "Stackable": false,
-          "Stretch": true
-        }
-      },
-      "LuaScript": "function onLoad(save_state)\r\n    local data = {click_function = \"next\", function_owner = self, label = \">\", position = {0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\n    local data = {click_function = \"prev\", function_owner = self, label = \"<\", position = {-0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\nend\r\n\r\nfunction next()\r\n    local state = self.getStateId()+1\r\n    if state > #self.getStates()+1 then \r\n        state = 1\r\n    end\r\n    self.setState(state)\r\nend\r\n\r\nfunction prev()\r\n    local state = self.getStateId()-1\r\n    if state < 1 then \r\n        state = #self.getStates()+1\r\n    end\r\n    self.setState(state)\r\nend",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "817964"
-    },
     "6": {
       "Name": "Custom_Tile",
       "Transform": {
@@ -1593,6 +1493,106 @@
       "LuaScriptState": "",
       "XmlUI": "",
       "GUID": "72983c"
+    },
+    "4": {
+      "Name": "Custom_Tile",
+      "Transform": {
+        "posX": -121.22,
+        "posY": 0.89,
+        "posZ": -33.3,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 5.282891,
+        "scaleY": 1.0,
+        "scaleZ": 5.282891
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402001919/22567E5059853F61E8FBB0CD9BA0E057F354BEFE/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomTile": {
+          "Type": 3,
+          "Thickness": 0.2,
+          "Stackable": false,
+          "Stretch": true
+        }
+      },
+      "LuaScript": "function onLoad(save_state)\r\n    local data = {click_function = \"next\", function_owner = self, label = \">\", position = {0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\n    local data = {click_function = \"prev\", function_owner = self, label = \"<\", position = {-0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\nend\r\n\r\nfunction next()\r\n    local state = self.getStateId()+1\r\n    if state > #self.getStates()+1 then \r\n        state = 1\r\n    end\r\n    self.setState(state)\r\nend\r\n\r\nfunction prev()\r\n    local state = self.getStateId()-1\r\n    if state < 1 then \r\n        state = #self.getStates()+1\r\n    end\r\n    self.setState(state)\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "GUID": "405513"
+    },
+    "5": {
+      "Name": "Custom_Tile",
+      "Transform": {
+        "posX": -121.22,
+        "posY": 0.89,
+        "posZ": -33.3,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 5.282891,
+        "scaleY": 1.0,
+        "scaleZ": 5.282891
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2427879556402002864/76D6C21131807378432845A6DF67230E06394B4E/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomTile": {
+          "Type": 3,
+          "Thickness": 0.2,
+          "Stackable": false,
+          "Stretch": true
+        }
+      },
+      "LuaScript": "function onLoad(save_state)\r\n    local data = {click_function = \"next\", function_owner = self, label = \">\", position = {0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\n    local data = {click_function = \"prev\", function_owner = self, label = \"<\", position = {-0.8, 0, 1.2}, scale = {0.5, 0.5, 0.5}, width = 400, height = 400, font_size = 400}\r\n    self.createButton(data)\r\nend\r\n\r\nfunction next()\r\n    local state = self.getStateId()+1\r\n    if state > #self.getStates()+1 then \r\n        state = 1\r\n    end\r\n    self.setState(state)\r\nend\r\n\r\nfunction prev()\r\n    local state = self.getStateId()-1\r\n    if state < 1 then \r\n        state = #self.getStates()+1\r\n    end\r\n    self.setState(state)\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "GUID": "817964"
     }
   }
 }

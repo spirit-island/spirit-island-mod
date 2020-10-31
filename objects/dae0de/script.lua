@@ -37,6 +37,9 @@ function getPowerCards(_, color)
     if Global.getVar("numPlayers") <= 2 then
         count = 6
     end
+    if Global.call("getMapCount", {norm = true, them = true}) == 1 then
+        broadcastToColor("Don't forget to gain 1 Time", color, "Blue")
+    end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
     for i=1,count do
         local card = minorPowerDeck.takeObject({

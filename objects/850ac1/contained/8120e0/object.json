@@ -1,17 +1,17 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -43.94,
-    "posY": 1.07425451,
-    "posZ": 48.46,
-    "rotX": -6.99649139e-09,
+    "posX": -14.7812529,
+    "posY": 2.03186059,
+    "posZ": 57.4230042,
+    "rotX": -2.332704e-08,
     "rotY": 180.009567,
-    "rotZ": 179.999863,
+    "rotZ": 180.0,
     "scaleX": 1.5,
     "scaleY": 1.0,
     "scaleZ": 1.5
   },
-  "Nickname": "Blight",
+  "Nickname": "Blight Cards",
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {

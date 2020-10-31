@@ -4,7 +4,7 @@
     "posX": -106.281677,
     "posY": 1.13648176,
     "posZ": 42.6302,
-    "rotX": 0.00444656657,
+    "rotX": 0.00444655446,
     "rotY": 180.003174,
     "rotZ": 180.0,
     "scaleX": 1.53204679,
@@ -40,9 +40,9 @@
   ],
   "CustomDeck": {
     "641": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019404985/418DAEBA945F4E5305EA22C30FB9A4F2F37135D1/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617311764019406360/F11D269A68AB651A87D1D0876F30503E3B8E36A3/",
-      "NumWidth": 4,
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1647714120278002161/5CEB5B8002949D3C775F1225026380C4D2B6569F/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756133984/0A5C95BD5A29D2E6E16F4F74A234790CE1B283BB/",
+      "NumWidth": 3,
       "NumHeight": 2,
       "BackIsHidden": false,
       "UniqueBack": false,

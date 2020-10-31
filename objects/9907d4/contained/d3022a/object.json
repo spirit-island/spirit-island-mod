@@ -2,11 +2,11 @@
   "Name": "Custom_Token",
   "Transform": {
     "posX": -119.340309,
-    "posY": 2.176186,
-    "posZ": 9.087317,
-    "rotX": 358.213348,
-    "rotY": 179.9376,
-    "rotZ": 6.330741,
+    "posY": 2.175854,
+    "posZ": 9.087309,
+    "rotX": 358.217926,
+    "rotY": 179.919174,
+    "rotZ": 6.34409046,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -47,12 +47,12 @@
     "1": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960831,
-        "posZ": 2.54019547,
-        "rotX": 0.00462522265,
-        "rotY": 179.29689,
-        "rotZ": 0.000465820543,
+        "posX": -118.092125,
+        "posY": 1.18607342,
+        "posZ": 7.382926,
+        "rotX": 0.004613939,
+        "rotY": 180.004227,
+        "rotZ": 0.000524857,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -89,7 +89,7 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
       "GUID": "45247f"
@@ -97,12 +97,12 @@
     "2": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960831,
-        "posZ": 2.54019547,
-        "rotX": 0.004619654,
-        "rotY": 179.296921,
-        "rotZ": 0.000462671276,
+        "posX": -118.092125,
+        "posY": 1.18607342,
+        "posZ": 7.382926,
+        "rotX": 0.00461284444,
+        "rotY": 180.004257,
+        "rotZ": 0.0005140417,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -139,20 +139,20 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "051001"
+      "GUID": "387048"
     },
     "3": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960819,
-        "posZ": 2.54019547,
-        "rotX": 0.00461565936,
-        "rotY": 179.296921,
-        "rotZ": 0.0004567281,
+        "posX": -118.092125,
+        "posY": 1.1860733,
+        "posZ": 7.382926,
+        "rotX": 0.004618126,
+        "rotY": 180.004257,
+        "rotZ": 0.0005237384,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -189,7 +189,7 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
       "GUID": "43e20a"
@@ -197,12 +197,12 @@
     "4": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960819,
-        "posZ": 2.54019547,
-        "rotX": 0.00461720675,
-        "rotY": 179.296982,
-        "rotZ": 0.0004663355,
+        "posX": -118.092125,
+        "posY": 1.1860733,
+        "posZ": 7.382926,
+        "rotX": 0.004610859,
+        "rotY": 180.004257,
+        "rotZ": 0.0005263185,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -239,20 +239,20 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "f36f32"
+      "GUID": "bb3991"
     },
     "5": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960819,
-        "posZ": 2.54019547,
-        "rotX": 0.00462846272,
-        "rotY": 179.296982,
-        "rotZ": 0.000467600272,
+        "posX": -118.092125,
+        "posY": 1.1860733,
+        "posZ": 7.382926,
+        "rotX": 0.004618549,
+        "rotY": 180.004257,
+        "rotZ": 0.000522330054,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -289,7 +289,7 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
       "GUID": "8e54ff"
@@ -297,12 +297,12 @@
     "6": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960819,
-        "posZ": 2.54019547,
-        "rotX": 0.00462058652,
-        "rotY": 179.296982,
-        "rotZ": 0.0004608173,
+        "posX": -118.092125,
+        "posY": 1.18607342,
+        "posZ": 7.382926,
+        "rotX": 0.004615608,
+        "rotY": 180.004257,
+        "rotZ": 0.000525381649,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -339,20 +339,20 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "a5895a"
+      "GUID": "684a58"
     },
     "7": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960819,
-        "posZ": 2.54019547,
-        "rotX": 0.004622734,
-        "rotY": 179.296982,
-        "rotZ": 0.000464525132,
+        "posX": -118.092125,
+        "posY": 1.1860733,
+        "posZ": 7.382926,
+        "rotX": 0.00461813156,
+        "rotY": 180.004257,
+        "rotZ": 0.0005252341,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -389,7 +389,7 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
       "GUID": "31443f"
@@ -397,12 +397,12 @@
     "8": {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.940109,
-        "posY": 1.08960819,
-        "posZ": 2.54019547,
-        "rotX": 0.00463105133,
-        "rotY": 179.296982,
-        "rotZ": 0.0004678872,
+        "posX": -118.092125,
+        "posY": 1.18607342,
+        "posZ": 7.382926,
+        "rotX": 0.00461193267,
+        "rotY": 180.004257,
+        "rotZ": 0.00051739777,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -439,7 +439,7 @@
           "Stackable": true
         }
       },
-      "LuaScript": "",
+      "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
       "XmlUI": "",
       "GUID": "372ead"

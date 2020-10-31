@@ -10,6 +10,7 @@ postSetupComplete = false
 hasLossCondition = true
 hasUI = true
 supporting = false
+requirements = true
 
 function PreSetup(params)
     if params.level >= 1 then
@@ -196,4 +197,8 @@ function setupInvaderCard(fearDeckZone, fearCards, depth, zoneGuid)
             obj.setPosition(fearDeck.getPosition() + Vector(0,0.1,0))
         end
     end
+end
+
+function Requirements(params)
+    return params.expansions.bnc or params.expansions.je
 end

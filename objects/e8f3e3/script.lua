@@ -11,6 +11,7 @@ postSetupComplete = false
 hasLossCondition = true
 hasUI = true
 supporting = false
+requirements = true
 
 function onLoad()
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
@@ -200,4 +201,8 @@ function PostSetup(params)
     else
         postSetupComplete = true
     end
+end
+
+function Requirements(params)
+    return params.eventDeck
 end

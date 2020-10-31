@@ -47,11 +47,15 @@ function countItems()
             if entry.getVar("elements") ~= nil then
                 table.insert(elemCardTable, entry)
             end
-        elseif entry.tag == "Generic" then
+        elseif entry.tag == "Chip" then
+            local quantity = entry.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
             if entry.getName() == "1 Energy" then
-                energy = energy - 1
+                energy = energy - (1 * quantity)
             elseif entry.getName() == "3 Energy" then
-                energy = energy - 3
+                energy = energy - (3 * quantity)
             end
         end
     end

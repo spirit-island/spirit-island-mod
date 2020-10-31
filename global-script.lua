@@ -390,7 +390,7 @@ function onLoad(saved_data)
             if not blightedIsland then
                 Wait.condition(addBlightedIslandButton, function() return not aidBoard.spawning end)
             end
-            numPlayers = getMapCount(true, true)
+            numPlayers = getMapCount({norm = true, them = true})
             gamePaused = false
             for _,o in ipairs(getAllObjects()) do
                 local t = o.getTable("posMap")
@@ -1186,11 +1186,11 @@ function SetupGame()
         broadcastToAll("Please wait, an expansion's cards haven't been added yet", Color.SoftYellow)
         return 0
     end
-    if getMapCount(true, true) == 0 and numPlayers == 0 then
+    if getMapCount({norm = true, them = true}) == 0 and numPlayers == 0 then
         broadcastToAll("Select the number of players before starting the game", Color.SoftYellow)
         return 0
     end
-    if getMapCount(true, false) > 0 and getMapCount(false, true) > 0 then
+    if getMapCount({norm = true, them = false}) > 0 and getMapCount({norm = false, them = true}) > 0 then
         broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
         return 0
     end
@@ -1212,7 +1212,7 @@ function SetupGame()
         adversaryLevel2 = 0
     end
     -- Map tiles are guaranteed to be of only one type
-    local mapCount = getMapCount(true, true)
+    local mapCount = getMapCount({norm = true, them = true})
     if mapCount > 0 then
         numPlayers = mapCount
     end
@@ -2058,7 +2058,16 @@ function isSpiritPickable(guid)
 end
 function randomAdversary()
     if not useSecondAdversary then
-        local adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+        local adversary = nil
+        while adversary == nil do
+            adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+            if adversary.getVar("requirements") then
+                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}})
+                if not allowed then
+                    adversary = nil
+                end
+            end
+        end
         local difficulty = adversary.getVar("difficulty")
         local combos = {}
         for i,v in pairs(difficulty) do
@@ -2080,10 +2089,25 @@ function randomAdversary()
             randomAdversary()
         end
     else
-        local adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
-        local adversary2 = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
-        while (#adversaryGuids > 2 and adversary2 == adversary) do
+        local adversary = nil
+        while adversary == nil do
+            adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+            if adversary.getVar("requirements") then
+                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}})
+                if not allowed then
+                    adversary = nil
+                end
+            end
+        end
+        local adversary2 = nil
+        while adversary2 == nil or adversary2 == adversary do
             adversary2 = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+            if adversary2.getVar("requirements") then
+                allowed = adversary2.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}})
+                if not allowed then
+                    adversary2 = nil
+                end
+            end
         end
         local difficulty = adversary.getVar("difficulty")
         local difficulty2 = adversary2.getVar("difficulty")
@@ -3042,7 +3066,7 @@ function SetupMap()
     return 1
 end
 function BoardSetup()
-    if getMapCount(true, true) == 0 then
+    if getMapCount({norm = true, them = true}) == 0 then
         if boardType == "Standard" then
             StandardMapBag.shuffle()
             MapPlacen(posMap[numPlayers][alternateSetupIndex],rotMap[numPlayers][alternateSetupIndex])
@@ -3279,7 +3303,7 @@ function handlePiece(object, depth)
         object = resetPiece(object, Vector(0,180,0), depth)
     elseif string.sub(object.getName(),1,5) == "Dahan" then
         object = resetPiece(object, Vector(0,0,0), depth)
-    elseif string.sub(object.getName(),1,6) == "Blight" then
+    elseif object.getName() == "Blight" then
         object = resetPiece(object, Vector(0,180,0), depth)
     elseif string.sub(object.getName(),-7) == "Defence" then
         if object.getLock() == false then object.destruct() end
@@ -3642,15 +3666,15 @@ themRedoGuids = {
     {"f14363","bdaa82","14a35f","a0e5c0","214c72","ffa7e6"},
 }
 ----
-function getMapCount(norm, them)
+function getMapCount(params)
     local count = 0
     for _,obj in pairs(upCast(seaTile,1,0,0.9)) do
         if obj.name == "Custom_Token" then
             if obj.getBoundsNormalized().size.x > 25 and obj.getBoundsNormalized().size.z > 12 then
                 local prefix = string.sub(obj.getName(),1,4)
-                if norm and prefix == "NORM" then
+                if params.norm and prefix == "NORM" then
                     count = count + 1
-                elseif them and prefix == "THEM" then
+                elseif params.them and prefix == "THEM" then
                     count = count + 1
                 end
             end

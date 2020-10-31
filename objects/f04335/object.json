@@ -2,11 +2,11 @@
   "Name": "backgammon_piece_brown",
   "Transform": {
     "posX": -119.86097,
-    "posY": 1.21708679,
-    "posZ": -2.74159551,
-    "rotX": -0.00457785744,
-    "rotY": 0.007830922,
-    "rotZ": -0.000375860342,
+    "posY": 1.21708691,
+    "posZ": -2.74159575,
+    "rotX": -0.004578073,
+    "rotY": 0.0081283655,
+    "rotZ": -0.00037582728,
     "scaleX": 1.0999999,
     "scaleY": 1.0999999,
     "scaleZ": 1.0999999
@@ -15,9 +15,9 @@
   "Description": "Use these for your \"Growth Begets Growth\" Special Rule",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249996692,
-    "g": 0.249996692,
-    "b": 0.249996692
+    "r": 0.249996,
+    "g": 0.249996,
+    "b": 0.249996
   },
   "Locked": false,
   "Grid": false,

@@ -13,14 +13,13 @@
 
 
 Spawn Tokens:
-Num 0 - Dahans
-Num 1 - Explorers
-Num 2 - Towns
-Num 3 - Cities
+Num 1 - Explorer
+Num 2 - Town
+Num 3 - City
 Num 4 - Blight
 Num 5 - Badlands
 Num 6 - Strife
 Num 7 - Beasts
 Num 8 - Wilds
 Num 9 - Disease
-
+Num 0 - Dahan

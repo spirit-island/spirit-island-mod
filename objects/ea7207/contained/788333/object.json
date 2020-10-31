@@ -1,17 +1,17 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": 68.02185,
-    "posY": 2.03186417,
-    "posZ": 58.103447,
-    "rotX": -5.922477e-08,
+    "posX": -15.2416916,
+    "posY": 2.03186059,
+    "posZ": 58.4615,
+    "rotX": 2.13754383e-08,
     "rotY": 179.984467,
-    "rotZ": 179.999863,
+    "rotZ": 180.0,
     "scaleX": 1.47602439,
     "scaleY": 1.0,
     "scaleZ": 1.47602439
   },
-  "Nickname": "Blight",
+  "Nickname": "Blight Cards",
   "Description": "Branch & Claw Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -43,10 +43,10 @@
   ],
   "CustomDeck": {
     "582": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1482201921609483082/FEBB2C2CEDDED8D0C2C828FE604F68DC5100A917/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1647714120277705829/7435C6485128370C979A591B7D7667172B7852C2/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1482201742859856052/BDB80DB0312A350B5EBDE186D13D0C723B3A5DDF/",
       "NumWidth": 4,
-      "NumHeight": 3,
+      "NumHeight": 2,
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0

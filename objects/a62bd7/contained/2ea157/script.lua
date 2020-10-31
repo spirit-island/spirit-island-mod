@@ -7,7 +7,7 @@ function onObjectEnterContainer(container, enter_object)
         if gameStarted then
             local blightTarget = Global.getVar("numPlayers") * 3
             if #self.getObjects() >= blightTarget then
-                broadcastToAll("There is now 3 blight per player on the adversary card\nReturning the blight to the card due to Slow-healing Ecosystem - France Level 4", "Blue")
+                broadcastToAll("There is now 3 blight per player on the adversary card\nReturning the blight to the card due to Slow-healing Ecosystem - France Level 5", "Blue")
                 local blightBag = Global.getVar("blightBag")
                 for i = 1, blightTarget do
                     blightBag.putObject(self.takeObject({

@@ -159,7 +159,7 @@ function setupGame()
 
     if Global.getVar("adversaryCard") ~= nil then
         UI.setAttribute("panelUIAdversary","active","true")
-        UI.setAttribute("panelUI","height","125")
+        UI.setAttribute("panelUI","height", UI.getAttribute("panelUI", "height") + 20)
     end
 end
 

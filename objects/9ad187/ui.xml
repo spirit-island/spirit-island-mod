@@ -123,7 +123,7 @@
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="randomizers" onValueChanged="toggleRandomizers"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomizers" preferredWidth="390" tooltip="A way to randomise parts of the game, e.g.&#xA;Adversary, Scenario, Board Layout, and Spirit">Show Randomisers</Button></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="exploratory" onValueChanged="toggleExploratory"/><Text class="toggle"/><Button class="toggle" onClick="toggleExploratory" preferredWidth="360" tooltip="Altered versions of parts of the game that R. Eric Ruess&#xA;would like feedback on, but aren't worth official playtesting">Show Exploratory</Button></Cell>
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="exploratory" onValueChanged="toggleExploratory"/><Text class="toggle"/><Button class="toggle" onClick="toggleExploratory" preferredWidth="360" tooltip="Altered versions of parts of the game that R. Eric Reuss&#xA;would like feedback on, but aren't worth official playtesting">Show Exploratory</Button></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

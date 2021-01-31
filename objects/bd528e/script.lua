@@ -20,7 +20,6 @@ function removeTokens(obj)
     for i=1,diff do
         obj.takeObject({}).destruct()
     end
-    obj.setLock(true)
     postSetupComplete = true
 end
 

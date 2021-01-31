@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -99.94,
-    "posY": 0.901820362,
-    "posZ": -15.380003,
-    "rotX": 0.00444670254,
-    "rotY": 179.999924,
-    "rotZ": -2.916649e-07,
-    "scaleX": 1.47540212,
+    "posX": -72.3199844,
+    "posY": 2.11856651,
+    "posZ": -11.5086012,
+    "rotX": 0.004446562,
+    "rotY": 180.0,
+    "rotZ": 3.79847847e-07,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
-  "Nickname": "Foundtains Sink into Mud",
+  "Nickname": "Foundations Sink into Mud",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

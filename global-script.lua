@@ -133,6 +133,23 @@ readyTokens = {
     Green = "88a4c3",
     Orange = "d17f93",
 }
+playerTables = {
+    Red = "dce473",
+    Purple = "c99d4d",
+    Yellow = "794c81",
+    Blue = "125e82",
+    Green = "d7d593",
+    Orange = "33c4af",
+}
+playerBlocks = {
+    Red = "c68e2c",
+    Purple = "661aa3",
+    Yellow = "c3c59b",
+    Blue = "36bbcc",
+    Green = "fac8e4",
+    Orange = "6b5b4b",
+}
+
 interactableObjectsToDisableOnLoad = {
     "57dbb8","fd27d5","25fddc", "d3dd7e", -- tables
     "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
@@ -220,6 +237,9 @@ function onSave()
         panelTurnOrderVisibility = UI.getAttribute("panelTurnOrder","visibility"),
         panelTimePassesVisibility = UI.getAttribute("panelTimePasses","visibility"),
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
+        playerBlocks = convertObjectsToGuids(playerBlocks),
+        playerTables = convertObjectsToGuids(playerTables),
+        elementScanZones = elementScanZones,
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -299,6 +319,13 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         gameStarted = loaded_data.gameStarted
+        if loaded_data.playerBlocks then
+            playerBlocks = loaded_data.playerBlocks
+            playerTables = loaded_data.playerTables
+        end
+        if loaded_data.elementScanZones then
+            elementScanZones = loaded_data.elementScanZones
+        end
         if gameStarted then
             BnCAdded = loaded_data.BnCAdded
             JEAdded = loaded_data.JEAdded
@@ -350,6 +377,8 @@ function onLoad(saved_data)
             cleanupTimerId = Wait.time(cleanupAdversary,1,-1)
         end
     end
+    playerBlocks = convertGuidsToObjects(playerBlocks)
+    playerTables = convertGuidsToObjects(playerTables)
     if Player["White"].seated then Player["White"].changeColor("Red") end
 end
 ----
@@ -399,6 +428,12 @@ function SetupGame()
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
         return 0
     end
+    for color, obj in pairs(playerBlocks) do
+        obj.removeButton(1)
+        obj.setVar("playerColor", nil)
+    end
+    playerBlocks = {}
+
     if adversaryCard == nil then
         adversaryLevel = 0
     end
@@ -1573,6 +1608,7 @@ end
 ----- Post Setup Section
 function PostSetup()
     aidBoard.call("setupGame", {})
+
     local postSetupSteps = 0
     local firstAdversarySetup = false
 
@@ -1780,6 +1816,12 @@ function removeSpirit(params)
     if params.color then
         getObjectFromGUID(elementScanZones[params.color]).clearButtons()
         selectedColors[params.color] = getObjectFromGUID(readyTokens[params.color])
+        local obj = playerBlocks[params.color]
+        if obj then
+            obj.removeButton(1)
+            obj.setVar("playerColor", nil)
+            playerBlocks[params.color] = nil
+        end
     end
 end
 ------
@@ -2752,12 +2794,30 @@ function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
 end
 ---- Block Square Section
 function setupPlayerArea(params)
-    --Sets position/color for the button, spawns it
-    params.obj.createButton({
+    -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
+    local obj = params.obj
+    obj.createButton({
         label="Energy Cost: 0", click_function="nullFunc",
         position={0,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
         font_color={1,1,1}, font_size=500
     })
+
+    local color
+    for k, v in pairs(playerBlocks) do
+        if v.guid == obj.guid then
+            color = k
+            break
+        end
+    end
+    obj.setVar("playerColor", color)  -- May be nil
+    if color then
+        obj.createButton({
+            label="Move to here", click_function="onSwapButtonClicked", function_owner=Global,
+            position={0,2.24,-7.2}, rotation={0,180,0}, height=800, width=4000,
+            font_color={0,0,0}, font_size=500, -- hover_color=color,
+        })
+    end
+
     for _,bag in pairs(params.elementBags) do
         bag.createButton({
             label="0", click_function="nullFunc",
@@ -3083,4 +3143,86 @@ function tCompare(t1,t2)
     return table.concat(newTab,"|")
     end
     if cc2(t1) == cc2(t2) then return true else return false end
+end
+
+function swapPlayerAreas(a, b)
+    local function tableSwap(table)
+        local temp = table[a]
+        table[a] = table[b]
+        table[b] = temp
+    end
+    local function tintSwap(table)
+        local oa = table[a]
+        local ob = table[b]
+        if type(oa) == "string" then
+            oa = getObjectFromGUID(oa)
+            ob = getObjectFromGUID(ob)
+        end
+        local ta = oa.getColorTint()
+        local tb = ob.getColorTint()
+        oa.setColorTint(tb)
+        ob.setColorTint(ta)
+        tableSwap(table)
+    end
+    local function positionSwap(table)
+        local oa = table[a]
+        local ob = table[b]
+        if type(oa) == "string" then
+            oa = getObjectFromGUID(oa)
+            ob = getObjectFromGUID(ob)
+        end
+        local ta = oa.getPosition()
+        local tb = ob.getPosition()
+        oa.setPosition(tb)
+        ob.setPosition(ta)
+    end
+
+    print("Player " .. a .. " is trading places with player " .. b .. ".")
+    for i = 1,2 do
+        local ta = Player[a].getHandTransform(i)
+        local tb = Player[b].getHandTransform(i)
+        Player[a].setHandTransform(tb, i)
+        Player[b].setHandTransform(ta, i)
+    end
+    tintSwap(playerTables)
+    tableSwap(playerBlocks)
+    positionSwap(defendBags)
+    positionSwap(readyTokens)
+    tableSwap(elementScanZones)
+    if playerBlocks[a] then playerBlocks[a].setVar("playerColor", a) end
+    if playerBlocks[b] then playerBlocks[b].setVar("playerColor", b) end
+end
+
+
+-- What to do when the swap player colors button is clicked.
+function onSwapButtonClicked(target_obj, source_color, alt_click)
+    player = Player[source_color]
+    target_color = target_obj.getVar("playerColor")
+    source_obj = playerBlocks[source_color]
+
+    if not target_color then
+        player.print("That seat is already taken.")
+    elseif not source_obj then
+        player.print("You are already seated.")
+    elseif target_color == source_color then
+        -- player.print("Okay, you trade places with yourself.")
+    else
+        swapPlayerAreas(source_color, target_color)
+    end
+end
+-- Given a table of guids, returns a table of objects
+function convertGuidsToObjects(table_in)
+    local table_out = {}
+    for k,guid in pairs(table_in) do
+        table_out[k] = getObjectFromGUID(guid)
+    end
+    return table_out
+end
+-- Given a table of objects, return a table of guids
+function convertObjectsToGuids(table_in)
+    local table_out = {}
+    for k,obj in pairs(table_in) do
+        table_out[k] = obj.guid
+    end
+    return table_out
 end

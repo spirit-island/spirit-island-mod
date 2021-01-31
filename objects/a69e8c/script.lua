@@ -10,7 +10,6 @@ function PostSetup()
         position = {-45.24, 0.84, 36.64},
         rotation = {0,180,0},
         smooth = false,
-        callback_function = function(obj) obj.setLock(true) end,
     })
     postSetupComplete = true
 end

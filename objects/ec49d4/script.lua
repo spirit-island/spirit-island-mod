@@ -55,12 +55,9 @@ function PostSetup()
     Wait.condition(function() bag.shuffle() postSetupComplete = true end, function() return #bag.getObjects() == 18 end)
 end
 function removeTokens(stack)
-    local diff = stack.getQuantity() - 12
-    for i=1,diff do
-        stack.takeObject({}).destruct()
-    end
     local bag = getObjectFromGUID("8d6e45")
-    for i=1,stack.getQuantity() do
+    for i=1,12 do
         bag.putObject(stack.takeObject())
     end
+    stack.destruct()
 end

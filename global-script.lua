@@ -998,7 +998,7 @@ end
 function BlightIslandButton(_, playerColor)
     if #blightBag.getObjects() ~= 0 then -- blightBag must be empty to flip this card!
         broadcastToColor("There is still blight on the Blight Card!", playerColor, Color.SoftYellow)
-    else
+    elseif not gamePaused then
         BlightedIslandFlip()
     end
 end

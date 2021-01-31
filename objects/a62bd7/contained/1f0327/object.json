@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 31.5666618,
-    "posY": 1.0236088,
-    "posZ": 37.1907921,
-    "rotX": 4.50079227e-08,
-    "rotY": 180.0154,
-    "rotZ": -0.000144336911,
-    "scaleX": 1.47426069,
+    "posX": -27.09665,
+    "posY": 1.02378678,
+    "posZ": 31.047369,
+    "rotX": 0.00444677239,
+    "rotY": 180.015381,
+    "rotZ": 1.207043e-06,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47426069
+    "scaleZ": 1.53
   },
   "Nickname": "Slave Rebellion",
   "Description": "Branch & Claw Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

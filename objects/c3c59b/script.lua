@@ -19,8 +19,8 @@ function onLoad()
     for i = 1,8 do
         elementBags[i].createButton({
             label="0", click_function="none", function_owner=self,
-            position={0,2.04,1.2}, rotation={0,0,0}, height=0, width=0,
-            font_color={1,1,1}, font_size=500
+            position={0,2.04,1.05}, rotation={0,0,0}, height=0, width=0,
+            font_color={1,1,1}, font_size=450
         })
     end
     Wait.time(countItems,1,-1)

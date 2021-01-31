@@ -1,9 +1,8 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "10/31/2020 11:37:20 AM",
-  "Gravity": 0.5,
-  "PlayArea": 1.0,
+  "Date": "1/31/2021 1:17:34 PM",
+  "VersionNumber": "v13.0.1",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
   "PlayingTime": [
@@ -21,6 +20,8 @@
     "Strategy Games",
     "Scripting"
   ],
+  "Gravity": 0.5,
+  "PlayArea": 1.0,
   "Table": "Table_None",
   "Sky": "Sky_Forest",
   "Rules": "",
@@ -162,20 +163,6 @@
         }
       },
       {
-        "Color": "Brown",
-        "Transform": {
-          "posX": 88.38669,
-          "posY": 4.10000038,
-          "posZ": -44.16999,
-          "rotX": 0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.41,
-          "scaleY": 6.483764,
-          "scaleZ": 6.517999
-        }
-      },
-      {
         "Color": "Red",
         "Transform": {
           "posX": -26.6134033,
@@ -246,7 +233,21 @@
         }
       },
       {
-        "Color": "Brown",
+        "Color": "Orange",
+        "Transform": {
+          "posX": 88.38669,
+          "posY": 4.10000038,
+          "posZ": -44.16999,
+          "rotX": 0.0,
+          "rotY": 0.0,
+          "rotZ": 0.0,
+          "scaleX": 18.41,
+          "scaleY": 6.483764,
+          "scaleZ": 6.517999
+        }
+      },
+      {
+        "Color": "Orange",
         "Transform": {
           "posX": 88.38669,
           "posY": 4.10000038,
@@ -260,6 +261,9 @@
         }
       }
     ]
+  },
+  "ComponentTags": {
+    "labels": []
   },
   "Turns": {
     "Enable": false,
@@ -591,7 +595,8 @@
         "x": 0.00444660056,
         "y": 179.995163,
         "z": 180.0
-      }
+      },
+      "Tags": []
     },
     {
       "Position": {
@@ -603,7 +608,8 @@
         "x": 0.004446887,
         "y": 180.025269,
         "z": 180.0
-      }
+      },
+      "Tags": []
     },
     {
       "Position": {
@@ -615,7 +621,8 @@
         "x": 0.004446768,
         "y": 180.0,
         "z": 1.48592179e-08
-      }
+      },
+      "Tags": []
     },
     {
       "Position": {
@@ -627,7 +634,8 @@
         "x": 0.00444651628,
         "y": 179.999985,
         "z": 2.47982484e-07
-      }
+      },
+      "Tags": []
     },
     {
       "Position": {
@@ -639,8 +647,8 @@
         "x": 0.00444651069,
         "y": 179.9959,
         "z": -5.555111e-07
-      }
+      },
+      "Tags": []
     }
-  ],
-  "VersionNumber": "v12.4.3"
+  ]
 }

@@ -1,0 +1,42 @@
+{
+  "Name": "Custom_Assetbundle",
+  "Transform": {
+    "posX": 100.4335,
+    "posY": 0.8911349,
+    "posZ": 7.12,
+    "rotX": 0.0,
+    "rotY": 90.0,
+    "rotZ": 0.0,
+    "scaleX": 10.973156,
+    "scaleY": 0.01,
+    "scaleZ": 0.100003541
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.462271452,
+    "g": 0.301450521,
+    "b": 0.285995424
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomAssetbundle": {
+    "AssetbundleURL": "chry.me/tts/3droom/hardwood_table.unity3d",
+    "AssetbundleSecondaryURL": "",
+    "MaterialIndex": 1,
+    "TypeIndex": 4,
+    "LoopingEffectIndex": 0
+  }
+}

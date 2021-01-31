@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -89.34107,
-    "posY": 1.13648164,
-    "posZ": 42.6303253,
-    "rotX": 0.004446567,
-    "rotY": 180.008026,
-    "rotZ": 180.0,
-    "scaleX": 1.53204679,
+    "posX": -89.3396759,
+    "posY": 1.22352588,
+    "posZ": 42.6299667,
+    "rotX": 0.004401878,
+    "rotY": 180.0112,
+    "rotZ": 180.365631,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "",
   "Description": "",
@@ -19,7 +19,8 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
-  "Locked": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
   "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,

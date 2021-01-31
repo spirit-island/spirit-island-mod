@@ -1,9 +1,9 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": -104.42,
+    "posX": -81.24,
     "posY": 0.89,
-    "posZ": -33.3,
+    "posZ": -19.3,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -19,6 +19,7 @@
     "g": 1.0,
     "b": 1.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

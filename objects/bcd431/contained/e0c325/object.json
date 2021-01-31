@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 69.81522,
-    "posY": 2.39335012,
-    "posZ": 57.15937,
-    "rotX": 2.32890415e-07,
-    "rotY": 180.00502,
-    "rotZ": -0.000144708858,
+    "posX": 43.3183632,
+    "posY": 1.5045886,
+    "posZ": 64.4574,
+    "rotX": -4.11689655e-07,
+    "rotY": 180.005234,
+    "rotZ": -0.000144021236,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
@@ -19,6 +19,7 @@
     "g": 0.8156863,
     "b": 0.8156863
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,

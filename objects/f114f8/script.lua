@@ -63,7 +63,7 @@ function AdversaryUI(params)
 end
 
 function MapSetup(params)
-    if params.level >= 2 then
+    if not params.extra and params.level >= 2 then
         -- add 1 City to Land #4
         table.insert(params.pieces[4],"City")
 
@@ -76,7 +76,7 @@ function MapSetup(params)
             end
         end
     end
-    if params.level >= 6 then
+    if not params.extra and params.level >= 6 then
         -- on each board add 1 Town and 1 Blight to land #8. The Blight comes from the box, not the Blight Card
         table.insert(params.pieces[8],"Town")
         table.insert(params.pieces[8],"Box Blight")

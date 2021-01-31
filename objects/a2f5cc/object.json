@@ -1,24 +1,25 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -42.26,
+    "posX": -42.2590866,
     "posY": 1.07425451,
-    "posZ": 45.29963,
-    "rotX": -2.09666752e-07,
+    "posZ": 46.9786835,
+    "rotX": -2.09672493e-07,
     "rotY": 180.011978,
     "rotZ": -1.5743999e-06,
     "scaleX": 0.829393744,
     "scaleY": 0.164254412,
     "scaleZ": 0.829393744
   },
-  "Nickname": "Brown Pieces",
+  "Nickname": "Orange Pieces",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.442980528,
-    "g": 0.230980515,
-    "b": 0.0899841562
+    "r": 0.9529411,
+    "g": 0.551746,
+    "b": 0.109792374
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -52,5 +53,8 @@
       "FresnelStrength": 0.0
     },
     "CastShadows": false
+  },
+  "Bag": {
+    "Order": 0
   }
 }

@@ -3,13 +3,13 @@
   "Transform": {
     "posX": -55.7,
     "posY": 1.003141,
-    "posZ": 49.02,
-    "rotX": 7.37650154e-08,
-    "rotY": 179.979645,
+    "posZ": 49.58,
+    "rotX": -4.017682e-09,
+    "rotY": 179.980225,
     "rotZ": 180.0,
-    "scaleX": 1.47550118,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47550118
+    "scaleZ": 1.53
   },
   "Nickname": "Fear",
   "Description": "Spirit Island",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

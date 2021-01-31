@@ -8,7 +8,7 @@ PlayerBags = {
     ["Yellow"] = "8aad81",
     ["Blue"] = "f9e149",
     ["Green"] = "9f4841",
-    ["Brown"] = "a2f5cc",
+    ["Orange"] = "a2f5cc",
 }
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"
@@ -18,6 +18,7 @@ stage1DeckZone = "cf2635"
 stage2DeckZone = "7f21be"
 stage3DeckZone = "2a9f36"
 adversaryBag = "a62bd7"
+scenarioBag = "c16363"
 ---- Used with ElementsHelper Script
 elementScanZones = {
     ["Red"] = "9fc5a4",
@@ -25,55 +26,8 @@ elementScanZones = {
     ["Yellow"] = "102771",
     ["Blue"] = "6f2249",
     ["Green"] = "190f05",
-    ["Brown"] = "61ac7c",
+    ["Orange"] = "61ac7c",
 }
-----
---[[ unfinished innate code start
-function checkInnates(tableIn)
-    local pCol = tableIn[1]
-    local elementTable = tableIn[2]
-    --log(pCol)
-    --log(elementTable)
-    local board = getSpiritBoard(pCol)
-    --if board == nil then log("nil board!") return end
-    --log(board)
-end
-function getSpiritBoard(pCol)
-    local hits = Physics.cast({
-        origin       = Player[pCol].getHandTransform().position + Vector(0,-3.4,10),
-        direction    = {0,1,0},
-        type         = 3,
-        size         = {1,0.05,1},
-        orientation  = {0,1,0},
-        max_distance = 0,
-        debug        = true,
-    })
-    --log("_")
-    --log(#hits)
-    --return nil
-end
-lightningTab = {
-    {
-        type = 3,
-        num = 3,
-        pos = {-0.207,0.2,0.417},
-    },{
-        type = 4,
-        num = 2,
-        pos = {-0.08,0.2,0.417},
-    }
-}
-function x()
-    if board.getName() == "Lightning's Swift Strike" then
-        for _,group in ipairs (lightningTab) do
-            for _,test in ipairs (group) do
-                log(test)
-            end
-        end
-    end
-end
-]]--
-
 ------ Saved Config Data
 BnCAdded = false
 JEAdded = false
@@ -92,11 +46,11 @@ townBag = "4d3c15"
 cityBag = "a245f8"
 selectedColors = {}
 ------ Unsaved Config Data
-numPlayers = 0
+numPlayers = 1
+numBoards = 1
 useBlightCard = true
 useEventDeck = false
 gamePaused = false
-boardType = "Standard"
 alternateSetupIndex = 1
 canStart = true
 difficulty = 0
@@ -104,10 +58,6 @@ yHeight = 0
 stagesSetup = 0
 cleanupTimerId = 0
 boardsSetup = 0
-spiritGuids = {}
-spiritTags = {}
-spiritChoices = {}
-spiritChoicesLength = 0
 showAdvancedSettings = true
 showRandomizers = false
 minDifficulty = 1
@@ -116,9 +66,11 @@ useSecondAdversary = false
 useRandomAdversary = false
 includeThematic = false
 useRandomBoard = false
+scenarioCard = nil
+useRandomScenario = false
 ------
 aidBoard = "bee103"
-SetupChecker = "ab0a4e"
+SetupChecker = "9ad187"
 fearDeckSetupZone = "fbbf69"
 ------
 dahanBag = "f4c173"
@@ -132,13 +84,13 @@ badlandsBag = "d3f7f8"
 oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
 defendBags = {
-    Red = "41f81c",
-    Purple = "295558",
-    Yellow = "2d7791",
-    Blue = "81fcb9",
-    Green = "0da348",
-    Brown = "091c06",
-    White = "aaaaab",
+    Red = "93e047",
+    Purple = "66ef2a",
+    Yellow = "5f9fff",
+    Blue = "997fba",
+    Green = "ba1f04",
+    Orange = "78a105",
+    White = "1716e3",
 }
 -----
 StandardMapBag = "9760a2"
@@ -165,18 +117,13 @@ adversaryGuids = {
     "1ea4cf", -- Russia
     "37a592", -- Scotland
 }
-boardSetupNames = {
-    "Standard",
-    "Thematic",
-    "Thematic Redo",
-}
 alternateSetupNames = {
-    {"Standard"},
-    {"Standard","Fragment","Opposite Shores"},
-    {"Standard","Coastline","Sunrise"},
-    {"Standard","Leaf","Snake"},
-    {"Standard","Snail","Peninsula","V"},
-    {"Standard","Star","Flower","Caldera"},
+    {[0]="Thematic","Standard"},
+    {[0]="Thematic","Standard","Fragment","Opposite Shores"},
+    {[0]="Thematic","Standard","Coastline","Sunrise"},
+    {[0]="Thematic","Standard","Leaf","Snake"},
+    {[0]="Thematic","Standard","Snail","Peninsula","V"},
+    {[0]="Thematic","Standard","Star","Flower","Caldera"},
 }
 randomChoices = {
     "Random Spirit",
@@ -189,21 +136,22 @@ readyTokens = {
     Yellow = "747fcb",
     Blue = "3c01e2",
     Green = "88a4c3",
-    Brown = "d17f93",
+    Orange = "d17f93",
 }
 interactableObjectsToDisableOnLoad = {
-    "57dbb8","fd27d5","25fddc", -- spirit tables
+    "57dbb8","fd27d5","25fddc", "d3dd7e", -- tables
     "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
     "a8cd8c", -- top row border
     "1be83c", -- right column border
     "108d0b", -- bottom row border
     "c17411", -- left column border
-    "187be2", -- middle column border
+    "187be2", "e79255", -- middle column border
     "055a45", -- middle row border
     "5f4be2", -- sea tile
     "235564", -- white box section
-    "ab0a4e", -- start menu object
+    "9ad187", -- start menu object
     "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player counters
+    "19d429", --Big block
 }
 
 ---- TTS Events Section
@@ -239,7 +187,8 @@ function onObjectEnterScriptingZone(zone, obj)
                 end
             end
         elseif not gameStarted then
-            if obj ~= nil and obj.tag == "Card" and obj.getVar("difficulty") then
+            if obj ~= nil and obj.tag == "Card" and type(obj.getVar("difficulty")) == "table" then
+                -- Adversaries have difficulty tables, Scenarios have difficulty numbers
                 local found = false
                 for _,guid in pairs(adversaryGuids) do
                     if guid == obj.guid then
@@ -250,6 +199,7 @@ function onObjectEnterScriptingZone(zone, obj)
                 if not found then
                     table.insert(adversaryGuids, obj.guid)
                 end
+                SetupChecker.call("addAdversary", {obj=obj})
             end
         end
     end
@@ -315,6 +265,7 @@ function onLoad(saved_data)
     aidBoard = getObjectFromGUID(aidBoard)
     SetupChecker = getObjectFromGUID(SetupChecker)
     adversaryBag = getObjectFromGUID(adversaryBag)
+    scenarioBag = getObjectFromGUID(scenarioBag)
     ------
     dahanBag = getObjectFromGUID(dahanBag)
     explorerBag = getObjectFromGUID(explorerBag)
@@ -390,7 +341,8 @@ function onLoad(saved_data)
             if not blightedIsland then
                 Wait.condition(addBlightedIslandButton, function() return not aidBoard.spawning end)
             end
-            numPlayers = getMapCount({norm = true, them = true})
+            numBoards = getMapCount({norm = true, them = true})
+            numPlayers = numBoards
             gamePaused = false
             for _,o in ipairs(getAllObjects()) do
                 local t = o.getTable("posMap")
@@ -399,475 +351,16 @@ function onLoad(saved_data)
                 end
             end
         else
-            SetupChecker.createButton({ -- index 0
-                click_function = "player1Setup",
-                function_owner = Global,
-                label          = "1",
-                position       = Vector(0,0.3,-9),
-                width          = 1000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 1
-                click_function = "player2Setup",
-                function_owner = Global,
-                label          = "2",
-                position       = Vector(2.5,0.3,-9),
-                width          = 1000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 2
-                click_function = "player3Setup",
-                function_owner = Global,
-                label          = "3",
-                position       = Vector(5,0.3,-9),
-                width          = 1000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 3
-                click_function = "player4Setup",
-                function_owner = Global,
-                label          = "4",
-                position       = Vector(0,0.3,-7.5),
-                width          = 1000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 4
-                click_function = "player5Setup",
-                function_owner = Global,
-                label          = "5",
-                position       = Vector(2.5,0.3,-7.5),
-                width          = 1000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 5
-                click_function = "player6Setup",
-                function_owner = Global,
-                label          = "6",
-                position       = Vector(5,0.3,-7.5),
-                width          = 1000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 6
-                click_function = "SetupGame",
-                function_owner = Global,
-                label          = "Start Game?",
-                position       = Vector(2.5,0.3,8),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 7
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Leading\nAdversary",
-                font_color     = {1,1,1},
-                position       = Vector(0,0.3,-6.25),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 8
-                click_function = "adversaryButton",
-                function_owner = Global,
-                label          = "None",
-                position       = Vector(0,0.3,-5),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "A way to make the game more of a challenge, introducing an escalation effect and other rules.",
-            })
-            SetupChecker.createButton({ -- index 9
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Leading\nAdversary Level",
-                font_color     = {1,1,1},
-                position       = Vector(0,0.3,-3.75),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 10
-                click_function = "levelButton",
-                function_owner = Global,
-                label          = "---",
-                position       = Vector(0,0.3,-2.5),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 11
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Difficulty: 0",
-                font_color     = {1,1,1},
-                position       = Vector(2.5,0.3,-1.25),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 12
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Board Type",
-                font_color     = {1,1,1},
-                position       = Vector(0,0.3,2.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-           SetupChecker.createButton({ -- index 13
-                click_function = "boardTypeF",
-                function_owner = Global,
-                label          = "Standard",
-                position       = Vector(0,0.3,3.5),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "Different island boards that can be played with. The Thematic boards are more difficult but better reflect to shape of the island lore-wise.",
-            })
-            SetupChecker.createButton({ -- index 14
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Board Layout",
-                font_color     = {1,1,1},
-                position       = Vector(5,0.3,2.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 15
-                click_function = "alternateSetupButton",
-                function_owner = Global,
-                label          = "Standard",
-                position       = Vector(5,0.3,3.5),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "Different ways the island boards can be laid out (can only be used on the standard boards).",
-            })
-            SetupChecker.createButton({ -- index 16
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Number of Players",
-                font_color     = {1,1,1},
-                position       = Vector(2.5,0.3,-10),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 17
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Supporting\nAdversary",
-                font_color     = {1,1,1},
-                position       = Vector(5,0.3,-6.25),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 18
-                click_function = "adversaryButton2",
-                function_owner = Global,
-                label          = "None",
-                position       = Vector(5,0.3,-5),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "A way to make the game more of a challenge, playing with two adversaries at the same time.\nOne adversary's escalation will happen in stage 2, and the other's in stage 3, despite there being no escalation symbol.",
-            })
-            SetupChecker.createButton({ -- index 19
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Supporting\nAdversary Level",
-                font_color     = {1,1,1},
-                position       = Vector(5,0.3,-3.75),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 20
-                click_function = "levelButton2",
-                function_owner = Global,
-                label          = "---",
-                position       = Vector(5,0.3,-2.5),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 21
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Blight Card?",
-                font_color     = {1,1,1},
-                position       = Vector(0,0.3,5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 22
-                click_function = "toggleBlightCard",
-                function_owner = Global,
-                label          = "Yes",
-                position       = Vector(0,0.3,6),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "It is recommended to have no blight card for teaching games.",
-            })
-            SetupChecker.createButton({ -- index 23
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Event Deck?",
-                font_color     = {1,1,1},
-                position       = Vector(5,0.3,5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 24
-                click_function = "toggleEventDeck",
-                function_owner = Global,
-                label          = "No",
-                position       = Vector(5,0.3,6),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "If you want to play with expansions, but without the event deck.",
-            })
-            SetupChecker.createButton({ -- index 25
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "Add Expansions",
-                font_color     = {1,1,1},
-                position       = Vector(2.5,0.3,0),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 26
-                click_function = "addExpansionBnC",
-                function_owner = Global,
-                label          = "Branch & Claw",
-                position       = Vector(0,0.3,1),
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "Adds more minor/major/fear/blighted island cards. Introduces event cards and spirit tokens (Beast, Wilds, Disease, Strife)",
-            })
-            SetupChecker.createButton({ -- index 27
-                click_function = "addExpansionJE",
-                function_owner = Global,
-                label          = "Jagged Earth",
-                position       = Vector(5,0.3,1),
-                width          = 0,
-                height         = 0,
-                width          = 2000,
-                height         = 600,
-                font_size      = 290,
-                tooltip        = "Adds more minor/major/fear/blighted island cards. Introduces event cards and spirit tokens (Beast, Wilds, Disease, Strife, Badlands)",
-            })
-            SetupChecker.createButton({ -- index 28
-                click_function = "toggleSettings",
-                function_owner = Global,
-                label          = "Simplify\nSettings",
-                position       = Vector(0,0.3,15),
-                width          = 2000,
-                height         = 750,
-                font_size      = 290,
-                tooltip        = "This simplifies the options available for newer players",
-            })
-            SetupChecker.createButton({ -- index 29
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(17.5,0.3,11.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 30
-                click_function = "randomSpirit",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(15,0.3,12.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "Will randomly give you any spirit",
-            })
-            SetupChecker.createButton({ -- index 31
-                click_function = "randomJESpirit",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(20,0.3,12.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "Will randomly give you a spirit from the Jagged Earth expansion",
-            })
-            SetupChecker.createButton({ -- index 32
-                click_function = "gainSpirit",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(17.5,0.3,14),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "Will give you an option of 4 spirits to choose from in your play area",
-            })
-            SetupChecker.createButton({ -- index 33
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(17.5,0.3,2),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 34
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(17.5,0.3,3),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 35
-                click_function = "changeMin",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(15,0.3,4),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "Sets the minimum difficulty for the adversary or adversary combination",
-            })
-            SetupChecker.createButton({ -- index 36
-                click_function = "changeMax",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(20,0.3,4),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "Sets the maximum difficulty for the adversary or adversary combination",
-            })
-            SetupChecker.createButton({ -- index 37
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(15,0.3,5.25),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 38
-                click_function = "toggleSecondAdvesary",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(15,0.3,6.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "If you would like to play with 1 or 2 adversaries",
-            })
-            SetupChecker.createButton({ -- index 39
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(20,0.3,5.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 40
-                click_function = "toggleRandomAdvesary",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(20,0.3,6.5),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "Determines whether to randomly pick an adversary or adversary combination when game starts",
-            })
-            SetupChecker.createButton({ -- index 41
-                click_function = "toggleRandomizers",
-                function_owner = Global,
-                label          = "Show\nRandomizers",
-                position       = Vector(5,0.3,15),
-                width          = 2000,
-                height         = 750,
-                font_size      = 290,
-                tooltip        = "Shows the Spirit and Adversary Randomizer buttons",
-            })
-            SetupChecker.createButton({ -- index 42
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(17.5,0.3,8),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 43
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(15,0.3,9),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 44
-                click_function = "toggleThematic",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(15,0.3,10),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "If you would like to include thematic setup in the pool of board configurations",
-            })
-            SetupChecker.createButton({ -- index 45
-                click_function = "nullFunc",
-                function_owner = Global,
-                label          = "",
-                font_color     = {1,1,1},
-                position       = Vector(20,0.3,9),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-            })
-            SetupChecker.createButton({ -- index 46
-                click_function = "toggleRandomBoard",
-                function_owner = Global,
-                label          = "",
-                position       = Vector(20,0.3,10),
-                width          = 0,
-                height         = 0,
-                font_size      = 290,
-                tooltip        = "Determines whether to randomly pick a board configuration when game starts",
-            })
+            SetupChecker.UI.setAttribute("panelSetup", "visibility", "")
             cleanupTimerId = Wait.time(cleanupAdversary,1,-1)
         end
     end
     if Player["White"].seated then Player["White"].changeColor("Red") end
 end
 ----
+function StartReadyCheck()
+    Wait.time(readyCheck,1,-1)
+end
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
@@ -884,305 +377,14 @@ function readyCheck()
         end
     end
 end
+function isThematic()
+    return alternateSetupIndex == 0
+end
 ---- Setup Buttons Section
 function nullFunc()
 end
-function player6Setup()
-    numPlayers = 6
-    playerSetup()
-end
-function player5Setup()
-    numPlayers = 5
-    playerSetup()
-end
-function player4Setup()
-    numPlayers = 4
-    playerSetup()
-end
-function player3Setup()
-    numPlayers = 3
-    playerSetup()
-end
-function player2Setup()
-    numPlayers = 2
-    playerSetup()
-end
-function player1Setup()
-    numPlayers = 1
-    playerSetup()
-end
-function playerSetup()
-    local label = "1"
-    if numPlayers == 1 then
-        label = "> "..label.." <"
-    end
-    SetupChecker.editButton({
-        index          = 0,
-        label          = label,
-    })
-
-    local label = "2"
-    if numPlayers == 2 then
-        label = "> "..label.." <"
-    end
-    SetupChecker.editButton({
-        index          = 1,
-        label          = label,
-    })
-
-    local label = "3"
-    if numPlayers == 3 then
-        label = "> "..label.." <"
-    end
-    SetupChecker.editButton({
-        index          = 2,
-        label          = label,
-    })
-
-    local label = "4"
-    if numPlayers == 4 then
-        label = "> "..label.." <"
-    end
-    SetupChecker.editButton({
-        index          = 3,
-        label          = label,
-    })
-
-    local label = "5"
-    if numPlayers == 5 then
-        label = "> "..label.." <"
-    end
-    SetupChecker.editButton({
-        index          = 4,
-        label          = label,
-    })
-
-    local label = "6"
-    if numPlayers == 6 then
-        label = "> "..label.." <"
-    end
-    SetupChecker.editButton({
-        index          = 5,
-        label          = label,
-    })
-    resetAlternateButton()
-end
-function adversaryButton(_, _, alt_click)
-    local adversaryIndex = 1
-    for i = 1, #adversaryGuids do
-        if adversaryCard == nil then
-            adversaryIndex = 1
-            break
-        elseif adversaryGuids[i] == adversaryCard.guid then
-            adversaryIndex = i
-            break
-        end
-    end
-    if alt_click then
-        adversaryIndex = adversaryIndex - 1
-        if adversaryIndex == 0 then
-            adversaryIndex = #adversaryGuids
-        end
-    else
-        adversaryIndex = (adversaryIndex % #adversaryGuids) + 1
-    end
-    adversaryCard = getObjectFromGUID(adversaryGuids[adversaryIndex])
-    local label = "None"
-    if adversaryCard ~= nil then
-        label = adversaryCard.getName()
-    end
-    SetupChecker.editButton({
-        index          = 8,
-        label          = label,
-    })
-    if adversaryIndex == 1 then
-        SetupChecker.editButton({
-            index          = 10,
-            label          = "---",
-        })
-    else
-        SetupChecker.editButton({
-            index          = 10,
-            label          = adversaryLevel,
-        })
-    end
-    updateDifficulty()
-end
-function adversaryButton2(_, _, alt_click)
-    local adversaryIndex = 1
-    for i = 1, #adversaryGuids do
-        if adversaryCard2 == nil then
-            adversaryIndex = 1
-            break
-        elseif adversaryGuids[i] == adversaryCard2.guid then
-            adversaryIndex = i
-            break
-        end
-    end
-    if alt_click then
-        adversaryIndex = adversaryIndex - 1
-        if adversaryIndex == 0 then
-            adversaryIndex = #adversaryGuids
-        end
-    else
-        adversaryIndex = (adversaryIndex % #adversaryGuids) + 1
-    end
-    adversaryCard2 = getObjectFromGUID(adversaryGuids[adversaryIndex])
-    local label = "None"
-    if adversaryCard2 ~= nil then
-        label = adversaryCard2.getName()
-    end
-    SetupChecker.editButton({
-        index          = 18,
-        label          = label,
-    })
-    if adversaryIndex == 1 then
-        SetupChecker.editButton({
-            index          = 20,
-            label          = "---",
-        })
-    else
-        SetupChecker.editButton({
-            index          = 20,
-            label          = adversaryLevel2,
-        })
-    end
-    updateDifficulty()
-end
-function levelButton(_, _, alt_click)
-    if adversaryCard == nil then
-        broadcastToAll("Select an adversary before setting a level", Color.SoftYellow)
-        return
-    end
-    if alt_click then
-        adversaryLevel = (adversaryLevel - 1) % 7
-    else
-        adversaryLevel = (adversaryLevel + 1) % 7
-    end
-    SetupChecker.editButton({
-        index          = 10,
-        label          = adversaryLevel,
-    })
-    updateDifficulty()
-end
-function levelButton2(_, _, alt_click)
-    if adversaryCard2 == nil then
-        broadcastToAll("Select an adversary before setting a level", Color.SoftYellow)
-        return
-    end
-    if alt_click then
-        adversaryLevel2 = (adversaryLevel2  - 1) % 7
-    else
-        adversaryLevel2 = (adversaryLevel2  + 1) % 7
-    end
-    SetupChecker.editButton({
-        index          = 20,
-        label          = adversaryLevel2,
-    })
-    updateDifficulty()
-end
-function boardTypeF(_, color, alt_click)
-    local typeIndex = 1
-    for i = 1, #boardSetupNames do
-        if boardSetupNames[i] == boardType then
-            typeIndex = i
-            break
-        end
-    end
-    if alt_click then
-        typeIndex = typeIndex - 1
-        if typeIndex == 0 then
-            typeIndex = #boardSetupNames
-        end
-    else
-        typeIndex = (typeIndex % #boardSetupNames) + 1
-    end
-    boardType = boardSetupNames[typeIndex]
-    SetupChecker.editButton({
-        index          = 13,
-        label          = boardType,
-    })
-    updateDifficulty()
-end
-function alternateSetupButton(_, color, alt_click)
-    if numPlayers == 0 then
-        broadcastToAll("Select the number of players before changing the board layout", Color.SoftYellow)
-        return
-      end
-    if numPlayers == 1 then
-        broadcastToAll("There aren't any alternate board layouts for one player", Color.SoftYellow)
-        return
-    end
-    if boardType == "Thematic" or boardType == "Thematic Redo" then
-        broadcastToAll("There aren't any alternate board layouts for the Thematic Boards", Color.SoftYellow)
-        return
-    end
-
-    if alt_click then
-        alternateSetupIndex = alternateSetupIndex - 1
-        if alternateSetupIndex == 0 then
-            alternateSetupIndex = #alternateSetupNames[numPlayers]
-        end
-    else
-        alternateSetupIndex = (alternateSetupIndex % #alternateSetupNames[numPlayers]) + 1
-    end
-    SetupChecker.editButton({
-        index          = 15,
-        label          = alternateSetupNames[numPlayers][alternateSetupIndex],
-    })
-end
-function toggleBlightCard()
-    useBlightCard = not useBlightCard
-    if useBlightCard then
-        SetupChecker.editButton({
-            index          = 22,
-            label          = "Yes",
-        })
-    else
-        SetupChecker.editButton({
-            index          = 22,
-            label          = "No",
-        })
-    end
-end
-function toggleEventDeck()
-    if not BnCAdded and not JEAdded then
-        broadcastToAll("The Branch & Claw or Jagged Earth expansions are required to use Event Deck", Color.SoftYellow)
-        return
-    end
-    useEventDeck = not useEventDeck
-    if useEventDeck then
-        SetupChecker.editButton({
-            index          = 24,
-            label          = "Yes",
-        })
-    else
-        SetupChecker.editButton({
-            index          = 24,
-            label          = "No",
-        })
-    end
-end
-function addExpansionBnC()
-    SetupChecker.editButton({
-        index          = 26,
-        label          = "",
-        width          = 0,
-        height         = 0,
-    })
-    Wait.condition(function() startLuaCoroutine(Global, "addBnCCardsCo") end, function() return canStart end)
-end
-function addExpansionJE()
-    SetupChecker.editButton({
-        index          = 27,
-        label          = "",
-        width          = 0,
-        height         = 0,
-    })
-    Wait.condition(function() startLuaCoroutine(Global, "addJECardsCo") end, function() return canStart end)
-end
 function SetupGame()
-    if not canStart then
+    if not SetupChecker.getVar("canStart") then
         broadcastToAll("Please wait, an expansion's cards haven't been added yet", Color.SoftYellow)
         return 0
     end
@@ -1193,9 +395,6 @@ function SetupGame()
     if getMapCount({norm = true, them = false}) > 0 and getMapCount({norm = false, them = true}) > 0 then
         broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
         return 0
-    end
-    if useRandomAdversary then
-        randomAdversary()
     end
     if adversaryCard == nil and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
@@ -1214,847 +413,79 @@ function SetupGame()
     -- Map tiles are guaranteed to be of only one type
     local mapCount = getMapCount({norm = true, them = true})
     if mapCount > 0 then
-        numPlayers = mapCount
+        numBoards = mapCount
+        if SetupChecker.getVar("optionalExtraBoard") then
+            numPlayers = numBoards - 1
+        else
+            numPlayers = numBoards
+        end
+    else
+        if SetupChecker.getVar("optionalExtraBoard") then
+            numBoards = numPlayers + 1
+        else
+            numBoards = numPlayers
+        end
     end
     if useRandomBoard then
         randomBoard()
     end
+    if useRandomScenario then
+        randomScenario()
+    end
+    if useRandomAdversary then
+        randomAdversary()
+    end
 
     Wait.stop(cleanupTimerId)
-    SetupChecker.clearButtons()
+    SetupChecker.call("hideUI", {})
 
     startLuaCoroutine(Global, "PreSetup")
     Wait.condition(function()
         startLuaCoroutine(Global, "SetupFear")
         startLuaCoroutine(Global, "SetupPowerDecks")
         startLuaCoroutine(Global, "SetupBlightCard")
+        startLuaCoroutine(Global, "SetupScenario")
         startLuaCoroutine(Global, "SetupAdversary")
         startLuaCoroutine(Global, "SetupInvaderDeck")
         startLuaCoroutine(Global, "SetupEventDeck")
         startLuaCoroutine(Global, "SetupMap")
     end, function() return stagesSetup == 1 end)
-    Wait.condition(function() startLuaCoroutine(Global, "PostSetup") end, function() return stagesSetup == 8 end)
-    Wait.condition(function() startLuaCoroutine(Global, "StartGame") end, function() return stagesSetup == 9 end)
+    Wait.condition(function() startLuaCoroutine(Global, "PostSetup") end, function() return stagesSetup == 9 end)
+    Wait.condition(function() startLuaCoroutine(Global, "StartGame") end, function() return stagesSetup == 10 end)
 end
-function toggleSettings()
-    showAdvancedSettings = not showAdvancedSettings
-    if showAdvancedSettings then  --Unsimplify
-        SetupChecker.editButton({
-            index = 6,
-            position = Vector(2.5,0.3,8),
-        })
-        SetupChecker.editButton({
-            index = 7,
-            label = "Leading\nAdversary",
-            position = Vector(0,0.3,-6.25),
-        })
-        SetupChecker.editButton({
-            index = 8,
-            position = Vector(0,0.3,-5),
-        })
-        SetupChecker.editButton({
-            index = 9,
-            label = "Leading\nAdversary Level",
-            position = Vector(0,0.3,-3.75),
-        })
-        SetupChecker.editButton({
-            index = 10,
-            position = Vector(0,0.3,-2.5),
-        })
-        SetupChecker.editButton({
-            index = 12,
-            label = "Board Type",
-        })
-        SetupChecker.editButton({
-            index = 13,
-            label = boardType,
-            width = 2000,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 14,
-            label = "Board Layout",
-        })
-        local label = "Standard"
-        if numPlayers ~= 0 then
-            label = alternateSetupNames[numPlayers][alternateSetupIndex]
-        end
-        SetupChecker.editButton({
-            index = 15,
-            label = label,
-            width = 2000,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 17,
-            label = "Supporting\nAdversary",
-        })
-        label = "None"
-        if adversaryCard2 ~= nil then
-            label = adversaryCard2.getName()
-        end
-        SetupChecker.editButton({
-            index = 18,
-            label = label,
-            width = 2000,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 19,
-            label = "Supporting\nAdversary Level",
-        })
-        label = "---"
-        if adversaryCard2 ~= nil then
-            label = adversaryLevel2
-        end
-        SetupChecker.editButton({
-            index = 20,
-            label = label,
-            width  = 2000,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 21,
-            position = Vector(0,0.3,5),
-        })
-        SetupChecker.editButton({
-            index = 22,
-            position = Vector(0,0.3,6),
-        })
-        SetupChecker.editButton({
-            index = 23,
-            position = Vector(5,0.3,5),
-        })
-        SetupChecker.editButton({
-            index = 24,
-            position = Vector(5,0.3,6),
-        })
-        SetupChecker.editButton({
-            index = 28,
-            label = "Simplify\nSettings",
-        })
-    else   --Simplify
-        SetupChecker.editButton({
-            index = 6,
-            position = Vector(2.5,0.3,5.5),
-        })
-        SetupChecker.editButton({
-            index = 7,
-            label = "Adversary",
-            position = Vector(2.5,0.3,-6),
-        })
-        SetupChecker.editButton({
-            index = 8,
-            position = Vector(2.5,0.3,-5),
-        })
-        SetupChecker.editButton({
-            index = 9,
-            label = "Adversary Level",
-            position = Vector(2.5,0.3,-3.5),
-        })
-        SetupChecker.editButton({
-            index = 10,
-            position = Vector(2.5,0.3,-2.5),
-        })
-        SetupChecker.editButton({
-            index = 12,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 13,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 14,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 15,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 17,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 18,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 19,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 20,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 21,
-            position = Vector(0,0.3,2.5),
-        })
-        SetupChecker.editButton({
-            index = 22,
-            position = Vector(0,0.3,3.5),
-        })
-        SetupChecker.editButton({
-            index = 23,
-            position = Vector(5,0.3,2.5),
-        })
-        SetupChecker.editButton({
-            index = 24,
-            position = Vector(5,0.3,3.5),
-        })
-        SetupChecker.editButton({
-            index = 28,
-            label = "Unsimplify\nSettings",
-        })
-    end
-end
-function toggleRandomizers()
-    showRandomizers = not showRandomizers
-    if showRandomizers then
-        SetupChecker.editButton({
-            index = 29,
-            label = "Spirit Randomizer",
-        })
-        SetupChecker.editButton({
-            index = 30,
-            label = "Random Spirit",
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 31,
-            label = "Random JE Spirit",
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 32,
-            label = "\"Gain a Spirit\"",
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 33,
-            label = "Adversary Randomizer",
-        })
-        SetupChecker.editButton({
-            index = 34,
-            label = "Min/Max Difficulty",
-        })
-        SetupChecker.editButton({
-            index = 35,
-            label = minDifficulty,
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 36,
-            label = maxDifficulty,
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 37,
-            label = "Supporting\nAdversary?",
-        })
-        label = "No"
-        if useSecondAdversary then
-            label = "Yes"
-        end
-        SetupChecker.editButton({
-            index = 38,
-            label = label,
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 39,
-            label = "Enable?",
-        })
-        local label = "No"
-        if useRandomAdversary then
-            label = "Yes"
-        end
-        SetupChecker.editButton({
-            index = 40,
-            label = label,
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 41,
-            label = "Hide\nRandomizers",
-        })
-        SetupChecker.editButton({
-            index = 42,
-            label = "Board Randomizers",
-        })
-        SetupChecker.editButton({
-            index = 43,
-            label = "Include Thematic?",
-        })
-        label = "No"
-        if includeThematic then
-            label = "Yes"
-        end
-        SetupChecker.editButton({
-            index = 44,
-            label = label,
-            width = 2200,
-            height = 600,
-        })
-        SetupChecker.editButton({
-            index = 45,
-            label = "Enable?",
-        })
-        local label = "No"
-        if useRandomBoard then
-            label = "Yes"
-        end
-        SetupChecker.editButton({
-            index = 46,
-            label = label,
-            width = 2200,
-            height = 600,
-        })
-    else
-        SetupChecker.editButton({
-            index = 29,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 30,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 31,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 32,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 33,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 34,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 35,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 36,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 37,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 38,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 39,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 40,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 41,
-            label = "Show\nRandomizers",
-        })
-        SetupChecker.editButton({
-            index = 42,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 43,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 44,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-        SetupChecker.editButton({
-            index = 45,
-            label = "",
-        })
-        SetupChecker.editButton({
-            index = 46,
-            label = "",
-            width = 0,
-            height = 0,
-        })
-    end
-end
-function randomSpirit(_, color)
-    local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    spirit.call("PickSpirit", {color = color, random = {aspect = true}})
-    broadcastToColor("Your randomised spirit is "..spirit.getName(), color, "Blue")
-end
-function randomJESpirit(_, color)
-    local guid = spiritGuids[math.random(1,#spiritGuids)]
-    while(spiritTags[guid] ~= "JE") do
-        guid = spiritGuids[math.random(1,#spiritGuids)]
-    end
-    local spirit = getObjectFromGUID(guid)
-    spirit.call("PickSpirit", {color = color, random = {aspect = true}})
-    broadcastToColor("Your randomised Jagged Earth spirit is "..spirit.getName(), color, "Blue")
-end
-function gainSpirit(_, color)
-    local obj = getObjectFromGUID(elementScanZones[color])
-    if obj.getButtons() ~= nil and #obj.getButtons() ~= 0 then
-        broadcastToColor("You already have Spirit options", color, Color.SoftYellow)
-        return
-    elseif getObjectFromGUID(PlayerBags[color]).getObjects() == 0 then
-        broadcastToColor("You already picked a spirit", color, Color.SoftYellow)
-        return
-    end
-    broadcastToColor("Your 4 randomised spirits to choose from are in your play area", color, Color.SoftBlue)
-
-    local spirit1 = getNewSpirit()
-    local spirit2 = getNewSpirit()
-    local spirit3 = getNewSpirit()
-    local spirit4 = getNewSpirit()
-
-    if spirit1 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit1",
-            function_owner = Global,
-            label = spirit1.getName(),
-            position = Vector(0,0,-0.15),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit2 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit2",
-            function_owner = Global,
-            label = spirit2.getName(),
-            position = Vector(0,0,-0.3),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit3 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit3",
-            function_owner = Global,
-            label = spirit3.getName(),
-            position = Vector(0,0,-0.45),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit4 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit4",
-            function_owner = Global,
-            label = spirit4.getName(),
-            position = Vector(0,0,-0.6),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-end
-function changeMin(_, _, alt_click)
-    if alt_click then
-        local minValue = 1
-        if minDifficulty < minValue then
-            broadcastToAll("Min Difficulty Level cannot be lower than "..minValue, Color.SoftYellow)
-            minDifficulty = minValue
-        elseif minDifficulty == minValue then
-            broadcastToAll("Min Difficulty Level cannot be lower than "..minValue, Color.SoftYellow)
-        else
-            minDifficulty = minDifficulty - 1
-        end
-    else
-        if minDifficulty < maxDifficulty then
-            minDifficulty = minDifficulty + 1
-        elseif minDifficulty == maxDifficulty then
-            broadcastToAll("Min Difficulty Level cannot be higher than max", Color.SoftYellow)
-        else
-            broadcastToAll("Min Difficulty Level cannot be higher than max", Color.SoftYellow)
-            minDifficulty = maxDifficulty
-        end
-    end
-    SetupChecker.editButton({
-        index = 35,
-        label = minDifficulty,
-    })
-    updateRandomAdversary()
-end
-function changeMax(_, _, alt_click)
-    if alt_click then
-        if maxDifficulty < minDifficulty then
-            broadcastToAll("Max Difficulty Level cannot be lower than min", Color.SoftYellow)
-            maxDifficulty = minDifficulty
-        elseif maxDifficulty == minDifficulty then
-            broadcastToAll("Max Difficulty Level cannot be lower than min", Color.SoftYellow)
-        else
-            maxDifficulty = maxDifficulty - 1
-        end
-    else
-        local maxValue = 11
-        if useSecondAdversary then
-            maxValue = 16
-        end
-        if maxDifficulty < maxValue then
-            maxDifficulty = maxDifficulty + 1
-        elseif maxDifficulty == maxValue then
-            broadcastToAll("Max Difficulty Level cannot be higher than "..maxValue, Color.SoftYellow)
-        else
-            broadcastToAll("Max Difficulty Level cannot be higher than "..maxValue, Color.SoftYellow)
-            maxDifficulty = maxValue
-        end
-    end
-    SetupChecker.editButton({
-        index = 36,
-        label = maxDifficulty,
-    })
-    updateRandomAdversary()
-end
-function toggleSecondAdvesary()
-    useSecondAdversary = not useSecondAdversary
-    if useSecondAdversary then
-        if maxDifficulty < 2 then
-            maxDifficulty = 2
-            SetupChecker.editButton({
-                index = 36,
-                label = maxDifficulty,
-            })
-        end
-        SetupChecker.editButton({
-            index = 38,
-            label = "Yes",
-        })
-    else
-        if minDifficulty > 11 then
-            minDifficulty = 11
-            SetupChecker.editButton({
-                index = 35,
-                label = minDifficulty,
-            })
-        end
-        if maxDifficulty > 11 then
-            maxDifficulty = 11
-            SetupChecker.editButton({
-                index = 36,
-                label = maxDifficulty,
-            })
-        end
-        SetupChecker.editButton({
-            index = 38,
-            label = "No",
-        })
-    end
-    updateRandomAdversary()
-end
-function toggleRandomAdvesary()
-    useRandomAdversary = not useRandomAdversary
-    if useRandomAdversary then
-        SetupChecker.editButton({
-            index = 40,
-            label = "Yes",
-        })
-    else
-        SetupChecker.editButton({
-            index = 40,
-            label = "No",
-        })
-    end
-end
-function toggleThematic()
-    includeThematic = not includeThematic
-    if includeThematic then
-        SetupChecker.editButton({
-            index = 44,
-            label = "Yes",
-        })
-    else
-        SetupChecker.editButton({
-            index = 44,
-            label = "No",
-        })
-    end
-    updateRandomBoard()
-end
-function toggleRandomBoard()
-    useRandomBoard = not useRandomBoard
-    if useRandomBoard then
-        SetupChecker.editButton({
-            index = 46,
-            label = "Yes",
-        })
-    else
-        SetupChecker.editButton({
-            index = 46,
-            label = "No",
-        })
-    end
-end
----- Setup Button Helpers Section
-function updateDifficulty()
-    difficulty = 0
-    if adversaryCard ~= nil then
-        difficulty = difficulty + adversaryCard.getVar("difficulty")[adversaryLevel]
-    end
-    if adversaryCard2 ~= nil then
-        local difficulty2 = adversaryCard2.getVar("difficulty")[adversaryLevel2]
-        if difficulty > difficulty2 then
-            difficulty = difficulty + (0.5 * difficulty2)
-        else
-            difficulty = (0.5 * difficulty) + difficulty2
-        end
-    end
-    if boardType == "Thematic" or boardType == "Thematic Redo" then
-        if BnCAdded or JEAdded then
-            difficulty = difficulty + 1
-        else
-            difficulty = difficulty + 3
-        end
-    end
-    SetupChecker.editButton({
-        index          = 11,
-        label          = "Difficulty: "..difficulty,
-    })
-end
-function resetAlternateButton()
-    alternateSetupIndex = 1
-    if showAdvancedSettings then
-        SetupChecker.editButton({
-            index = 15,
-            label = alternateSetupNames[numPlayers][alternateSetupIndex],
-        })
-    end
-end
-function updateRandomAdversary()
-    if not useRandomAdversary then
-        useRandomAdversary = true
-        SetupChecker.editButton({
-            index = 40,
-            label = "Yes",
-        })
-    end
-end
-function updateRandomBoard()
-    if not useRandomBoard then
-        useRandomBoard = true
-        SetupChecker.editButton({
-            index = 46,
-            label = "Yes",
-        })
-    end
-end
-function addBnCCardsCo()
-    canStart = false
-    BnCAdded = true
-    updateDifficulty()
-
-    useEventDeck = true
-    SetupChecker.editButton({
-        index = 24,
-        label = "Yes",
-    })
-    local BnCBag = getObjectFromGUID("ea7207")
-
-    local fearDeck = BnCBag.takeObject({guid = "d16f70"})
-    getObjectFromGUID(fearDeckSetupZone).getObjects()[1].putObject(fearDeck)
-    local minorPowers = BnCBag.takeObject({guid = "913789"})
-    getObjectFromGUID(minorPowerZone).getObjects()[1].putObject(minorPowers)
-    local majorPowers = BnCBag.takeObject({guid = "07ac50"})
-    getObjectFromGUID(majorPowerZone).getObjects()[1].putObject(majorPowers)
-    local blightCards = BnCBag.takeObject({guid = "788333"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-    BnCBag.takeObject({
-        guid = "05f7b7",
-        position = getObjectFromGUID("b18505").getPosition(),
-        rotation = {0,180,180},
-    })
-
-    wt(0.5)
-    canStart = true
-    return 1
-end
-
-function addJECardsCo()
-    canStart = false
-    JEAdded = true
-    updateDifficulty()
-
-    useEventDeck = true
-    SetupChecker.editButton({
-        index = 24,
-        label = "Yes",
-    })
-    local JEBag = getObjectFromGUID("850ac1")
-
-    local fearDeck = JEBag.takeObject({guid = "723183"})
-    getObjectFromGUID(fearDeckSetupZone).getObjects()[1].putObject(fearDeck)
-    local minorPowers = JEBag.takeObject({guid = "80b54a"})
-    getObjectFromGUID(minorPowerZone).getObjects()[1].putObject(minorPowers)
-    local majorPowers = JEBag.takeObject({guid = "98a916"})
-    getObjectFromGUID(majorPowerZone).getObjects()[1].putObject(majorPowers)
-    local blightCards = JEBag.takeObject({guid = "8120e0"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-    JEBag.takeObject({
-        guid = "299e38",
-        position = getObjectFromGUID("b18505").getPosition(),
-        rotation = {0,180,180},
-    })
-
-    wt(0.5)
-    canStart = true
-    return 1
-end
-
 function cleanupAdversary()
-    local adversaryRemoved = false
     for i,v in pairs(adversaryGuids) do
         if v ~= "" then
             local obj = getObjectFromGUID(v)
             if obj == nil then
                 table.remove(adversaryGuids, i)
-                adversaryRemoved = true
             end
         end
     end
-    if adversaryRemoved then
-        removeAdversary()
-    end
+    SetupChecker.call("checkAdversaries", {})
 end
-function removeAdversary()
-    local resetCard = false
-    if adversaryCard == nil then
-        resetCard = true
-        SetupChecker.editButton({
-            index          = 8,
-            label          = "None",
-        })
-        SetupChecker.editButton({
-            index          = 10,
-            label          = "---",
-        })
-    end
-    if adversaryCard2 == nil then
-        resetCard = true
-        SetupChecker.editButton({
-            index          = 18,
-            label          = "None",
-        })
-        SetupChecker.editButton({
-            index          = 20,
-            label          = "---",
-        })
-    end
-    if resetCard then
-        updateDifficulty()
-    end
-end
-function getNewSpirit()
-    if spiritChoicesLength >= #spiritGuids then
-        return nil
-    end
-    local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    while (spiritChoices[spirit.getName()]) do
-        spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    end
-    spiritChoices[spirit.getName()] = spirit.guid
-    spiritChoicesLength = spiritChoicesLength + 1
-    return spirit
-end
-function pickSpirit1(obj, color)
-    if elementScanZones[color] ~= obj.guid then return end
-    pickSpirit(obj, 0, color)
-end
-function pickSpirit2(obj, color)
-    if elementScanZones[color] ~= obj.guid then return end
-    pickSpirit(obj, 1, color)
-end
-function pickSpirit3(obj, color)
-    if elementScanZones[color] ~= obj.guid then return end
-    pickSpirit(obj, 2, color)
-end
-function pickSpirit4(obj, color)
-    if elementScanZones[color] ~= obj.guid then return end
-    pickSpirit(obj, 3, color)
-end
-function pickSpirit(obj, index, color)
-    local name = obj.getButtons()[index+1].label
-    if isSpiritPickable(spiritChoices[name]) then
-        getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, random = {aspect = true}})
-        obj.clearButtons()
-    else
-        broadcastToColor("Spirit unavailable getting new one", color, Color.SoftYellow)
-        local spirit = getNewSpirit()
-        if spirit ~= nil then
-            obj.editButton({
-                index = index,
-                label = spirit.getName(),
-            })
-        else
-            obj.editButton({
-                index = index,
-                label = "",
-                width = 0,
-                height = 0,
-            })
+function randomScenario()
+    while scenarioCard == nil do
+        local value = math.random(1,SetupChecker.getVar("numScenarios"))
+        local i = 0
+        for _,guid in pairs(SetupChecker.getVar("scenarios")) do
+            if i == value then
+                scenarioCard = getObjectFromGUID(guid)
+                if scenarioCard.getVar("requirements") then
+                    allowed = scenarioCard.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                    if not allowed then
+                        scenarioCard = nil
+                        break
+                    end
+                end
+                SetupChecker.call("updateDifficulty", {})
+                broadcastToAll("Your randomised scenario is "..scenarioCard.getName(), "Blue")
+                break
+            else
+                i = i + 1
+            end
         end
     end
-end
-function isSpiritPickable(guid)
-    for _,v in pairs(spiritGuids) do
-        if v == guid then
-            return true
-        end
-    end
-    return false
 end
 function randomAdversary()
     if not useSecondAdversary then
@@ -2062,7 +493,7 @@ function randomAdversary()
         while adversary == nil do
             adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
             if adversary.getVar("requirements") then
-                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}})
+                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -2083,7 +514,7 @@ function randomAdversary()
             adversaryLevel = combos[index]
             adversaryCard2 = nil
             adversaryLevel2 = 0
-            updateDifficulty()
+            SetupChecker.call("updateDifficulty", {})
             broadcastToAll("Your randomised adversary is "..adversaryCard.getName(), "Blue")
         else
             randomAdversary()
@@ -2093,7 +524,7 @@ function randomAdversary()
         while adversary == nil do
             adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
             if adversary.getVar("requirements") then
-                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}})
+                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -2103,7 +534,7 @@ function randomAdversary()
         while adversary2 == nil or adversary2 == adversary do
             adversary2 = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
             if adversary2.getVar("requirements") then
-                allowed = adversary2.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}})
+                allowed = adversary2.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary2 = nil
                 end
@@ -2133,7 +564,7 @@ function randomAdversary()
             adversaryLevel = combos[index][1]
             adversaryCard2 = adversary2
             adversaryLevel2 = combos[index][2]
-            updateDifficulty()
+            SetupChecker.call("updateDifficulty", {})
             broadcastToAll("Your randomised adversaries are "..adversaryCard.getName().." and "..adversaryCard2.getName(), "Blue")
         else
             randomAdversary()
@@ -2145,14 +576,8 @@ function randomBoard()
     if includeThematic then
         min = 0
     end
-    local value = math.random(min,#alternateSetupNames[numPlayers])
-    if value == 0 then
-        boardType = boardSetupNames[2]
-        alternateSetupIndex = 1
-    else
-        boardType = boardSetupNames[1]
-        alternateSetupIndex = value
-    end
+    local value = math.random(min,#alternateSetupNames[numBoards])
+    alternateSetupIndex = value
 end
 ----- Pre Setup Section
 function PreSetup()
@@ -2180,6 +605,14 @@ function SetupFear()
     setupFearTokens()
 
     fearCards = {3,3,3}
+    if scenarioCard ~= nil then
+        local extraFearCards = scenarioCard.getVar("fearCards")
+        if extraFearCards ~= nil then
+            fearCards[1] = fearCards[1] + extraFearCards[1]
+            fearCards[2] = fearCards[2] + extraFearCards[2]
+            fearCards[3] = fearCards[3] + extraFearCards[3]
+        end
+    end
     if adversaryCard ~= nil then
         local extraFearCards = adversaryCard.getVar("fearCards")[adversaryLevel]
         fearCards[1] = fearCards[1] + extraFearCards[1]
@@ -2211,8 +644,8 @@ function SetupFear()
             break
         end
         local card = fearDeck.takeObject({
-            position       = zone.getPosition() + Vector(count,0,0),
-            rotation       = Vector(0, 180, 180),
+            position = zone.getPosition() + Vector(count,0,0),
+            rotation = Vector(0, 180, 180),
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -2232,8 +665,8 @@ function SetupFear()
             break
         end
         local card = fearDeck.takeObject({
-            position       = zone.getPosition() + Vector(count,0,0),
-            rotation       = Vector(0, 180, 180),
+            position = zone.getPosition() + Vector(count,0,0),
+            rotation = Vector(0, 180, 180),
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -2253,8 +686,8 @@ function SetupFear()
             break
         end
         local card = fearDeck.takeObject({
-            position       = zone.getPosition() + Vector(count,0,0),
-            rotation       = Vector(0, 180, 180),
+            position = zone.getPosition() + Vector(count,0,0),
+            rotation = Vector(0, 180, 180),
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -2262,11 +695,21 @@ function SetupFear()
     end
 
     Wait.condition(function() group(cardTable) end, function() return cardsLoaded == count end)
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == count end)
+    Wait.condition(function()
+        if scenarioCard ~= nil and scenarioCard.getVar("fearSetup") then
+            scenarioCard.call("FearSetup", { deck = zone.getObjects()[1] })
+            Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard.getVar("fearSetupComplete") end)
+        else
+            stagesSetup = stagesSetup + 1
+        end
+    end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == count end)
     return 1
 end
 function setupFearTokens()
     local fearMulti = 4
+    if SetupChecker.getVar("optionalExtraBoard") then
+        fearMulti = fearMulti + 1
+    end
     if adversaryCard ~= nil then
         local fearTokens = adversaryCard.getVar("fearTokens")
         if fearTokens ~= nil then
@@ -2289,6 +732,7 @@ function SetupPowerDecks()
     getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
 
     SetupChecker.setScale(Vector(1,1,1))
+    SetupChecker.setRotationSmooth(Vector(0,180,0))
     SetupChecker.setPositionSmooth(Vector(-41.95,0.2,-7.97))
 
     Wait.condition(function()
@@ -2307,6 +751,26 @@ function SetupPowerDecks()
             function_owner = Global,
             label          = "Gain a\nMinor",
             position       = Vector(0, 0.8, 2.6),
+            width          = 1600,
+            height         = 1500,
+            font_size      = 500,
+            tooltip        = "Click to learn a Minor Power",
+        })
+        SetupChecker.createButton({
+            click_function = "MajorPowerC",
+            function_owner = Global,
+            label          = "Gain a\nMajor",
+            position       = Vector(146,0.8, -2.2),
+            width          = 1600,
+            height         = 1500,
+            font_size      = 500,
+            tooltip        = "Click to learn a Major Power",
+        })
+        SetupChecker.createButton({
+            click_function = "MinorPowerC",
+            function_owner = Global,
+            label          = "Gain a\nMinor",
+            position       = Vector(146, 0.8, 2.6),
             width          = 1600,
             height         = 1500,
             font_size      = 500,
@@ -2494,7 +958,7 @@ function grabBlightCard(setup)
                 if not useEventDeck and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
                     obj.setRotationSmooth(Vector(0,180,0))
                     grabBlightCard(setup)
-                elseif numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
+                elseif SetupChecker.getVar("optionalSoloBlight") and numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
                     obj.setRotationSmooth(Vector(0,180,0))
                     grabBlightCard(setup)
                 else
@@ -2532,23 +996,11 @@ function addBlightedIslandButton()
     end
 end
 function BlightIslandButton(_, playerColor)
-    if #blightBag.getObjects() == 0 then -- blightBag must be empty to flip this card!
-        if blightedIslandTimer == 0 then
-            broadcastToColor("Double-click to go Blighted Island", playerColor, Color.SoftBlue)
-            startLuaCoroutine(Global, "BlightedIslandTimer")
-        elseif blightedIslandTimer == 1 then
-            BlightedIslandFlip()
-        end
-        blightedIslandTimer = blightedIslandTimer + 1
-    else
+    if #blightBag.getObjects() ~= 0 then -- blightBag must be empty to flip this card!
         broadcastToColor("There is still blight on the Blight Card!", playerColor, Color.SoftYellow)
+    else
+        BlightedIslandFlip()
     end
-end
-blightedIslandTimer = 0
-function BlightedIslandTimer()
-    wt(1)
-    blightedIslandTimer = 0
-    return 1
 end
 function BlightedIslandFlip()
     gamePaused = true -- to disable scripting buttons and object cleanup
@@ -2574,17 +1026,21 @@ function BlightedIslandFlipPart2()
     end
 
     blightedIslandCard.setRotationSmooth(Vector(0,180,0))
-    local numBlight = blightedIslandCard.getVar("blight") * numPlayers
+    local numBlight = blightedIslandCard.getVar("blight") * numBoards
+    if not blightedIslandCard.getVar("healthy") and scenarioCard ~= nil then
+        local blightTokens = scenarioCard.getVar("blightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + (blightTokens * numBoards)
+        end
+    end
     for i=1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({position = blightBag.getPosition() + Vector(0,1,0)}))
     end
     wt(1)
     gamePaused = false -- to re-enable scripting buttons and object cleanup
-    broadcastToAll("Blighted Island", Color.SoftYellow)
-    wt(3)
     broadcastToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
-    wt(5)
-    broadcastToAll("Remember to check the blighted island effect", Color.SoftBlue)
+    wt(1)
+    broadcastToAll("Remember to check the blight card effect", Color.SoftBlue)
     return 1
 end
 function hideBlightButton()
@@ -2598,9 +1054,18 @@ function hideBlightButton()
 end
 function setupBlightTokens()
     blightBag.reset()
-    local numBlight = 2 * numPlayers
+    local numBlight = 2 * numBoards
     if not useBlightCard then
-        numBlight = 5 * numPlayers
+        numBlight = 5 * numBoards
+    end
+    if SetupChecker.getVar("optionalBlightSetup") then
+        numBlight = numBlight + 1
+    end
+    if scenarioCard ~= nil then
+        local blightTokens = scenarioCard.getVar("setupBlightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + (blightTokens * numBoards)
+        end
     end
     for i=1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({
@@ -2608,6 +1073,32 @@ function setupBlightTokens()
             smooth = false,
         }))
     end
+end
+----- Scenario section
+function SetupScenario()
+    for _,guid in pairs(SetupChecker.getVar("scenarios")) do
+        if guid == "" then
+        elseif scenarioCard == nil or scenarioCard.guid ~= guid then
+            getObjectFromGUID(guid).destruct()
+        end
+    end
+
+    if scenarioCard ~= nil then
+        local targetScale = 1.71
+        local currentScale = scenarioCard.getScale()[1]
+        local scaleMult = (currentScale - targetScale)/20
+        for i = 1, 20 do
+            wt(0.02)
+            scenarioCard.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
+        end
+
+        scenarioCard.setLock(true)
+        scenarioCard.setRotationSmooth(Vector(0,180,0))
+        scenarioCard.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)))
+    end
+
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard == nil or not scenarioCard.isSmoothMoving() end)
+    return 1
 end
 ----- Adversary Section
 function SetupAdversary()
@@ -2633,10 +1124,10 @@ function SetupAdversary()
     end
 
     if adversaryCard ~= nil then
-        local targetScale = 1.53
+        local targetScale = 1.71
         local currentScale = adversaryCard.getScale()[1]
         local scaleMult = (currentScale - targetScale)/20
-        for i = 1, 17 do
+        for i = 1, 20 do
             wt(0.02)
             adversaryCard.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
             if adversaryCard2 ~= nil then
@@ -2647,28 +1138,18 @@ function SetupAdversary()
 
     -- Wait until Second Adversary board is in position before moving cards
     Wait.condition(function()
-        if adversaryCard ~= nil then
+        if adversaryCard2 ~= nil then
+            adversaryCard.setLock(true)
+            adversaryCard.setPositionSmooth(secondAdversaryBoard.positionToWorld(Vector(0,0.21,0)))
+            adversaryCard2.setLock(true)
+            adversaryCard2.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)))
+        elseif adversaryCard ~= nil then
             adversaryCard.setLock(true)
             adversaryCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)))
-        end
-        if adversaryCard2 ~= nil then
-            adversaryCard2.setLock(true)
-            adversaryCard2.setPositionSmooth(secondAdversaryBoard.positionToWorld(Vector(0,0.21,0)))
         end
     end, function() return boardSetup end)
 
     reminderSetup()
-
-    if adversaryCard == nil then
-        difficultyString = "No Adversary\nDifficulty "..difficulty
-        difficulty = 0
-    elseif adversaryCard2 == nil then
-        difficultyString = adversaryCard.getName().." Level "..adversaryLevel.."\nDifficulty "..difficulty
-    else
-        difficultyString = adversaryCard2.getName().." Level "..adversaryLevel2.."\n"..adversaryCard.getName().." Level "..adversaryLevel.."\nDifficulty "..difficulty
-    end
-    Wait.condition(createDifficultyButton, function() return boardSetup end)
-
     adversaryUISetup()
 
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return (adversaryCard == nil or not adversaryCard.isSmoothMoving()) and (adversaryCard2 == nil or not adversaryCard2.isSmoothMoving()) end)
@@ -2744,23 +1225,6 @@ function reminderSetup()
         })
         obj.setLock(true)
     end
-end
-function createDifficultyButton()
-    local buttonPos = Vector(-0.9,0,-2.75)
-    if getObjectFromGUID("312e2d") == nil or not Vector.equals(getObjectFromGUID("312e2d").getPosition(), aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84))) then
-        -- not double adversaries
-        buttonPos = Vector(0,0,-2.75)
-    end
-    aidBoard.createButton({
-        click_function = "nullFunc",
-        function_owner = Global,
-        label          = difficultyString,
-        position       = buttonPos,
-        font_size      = 80,
-        font_color     = {1,1,1},
-        width          = 0,
-        height         = 0,
-    })
 end
 function adversaryUISetup()
     local lineCount = 0
@@ -2859,7 +1323,7 @@ function adversaryUISetup()
             UI.setAttribute("panelAdversary2EscalationRandom","active","true")
         end
         if ui.one then
-            UI.setAttribute("panelAdversary2Level1","text",ui.one.name)
+            UI.setAttribute("panelAdversary2Level1","text","1) "..ui.one.name)
             if ui.one.tooltip then
                 UI.setAttribute("panelAdversary2Level1","tooltip",ui.one.tooltip)
             end
@@ -2867,7 +1331,7 @@ function adversaryUISetup()
             lineCount = lineCount + 1
         end
         if ui.two then
-            UI.setAttribute("panelAdversary2Level2","text",ui.two.name)
+            UI.setAttribute("panelAdversary2Level2","text","2) "..ui.two.name)
             if ui.two.tooltip then
                 UI.setAttribute("panelAdversary2Level2","tooltip",ui.two.tooltip)
             end
@@ -2875,7 +1339,7 @@ function adversaryUISetup()
             lineCount = lineCount + 1
         end
         if ui.three then
-            UI.setAttribute("panelAdversary2Level3","text",ui.three.name)
+            UI.setAttribute("panelAdversary2Level3","text","3) "..ui.three.name)
             if ui.three.tooltip then
                 UI.setAttribute("panelAdversary2Level3","tooltip",ui.three.tooltip)
             end
@@ -2883,7 +1347,7 @@ function adversaryUISetup()
             lineCount = lineCount + 1
         end
         if ui.four then
-            UI.setAttribute("panelAdversary2Level4","text",ui.four.name)
+            UI.setAttribute("panelAdversary2Level4","text","4) "..ui.four.name)
             if ui.four.tooltip then
                 UI.setAttribute("panelAdversary2Level4","tooltip",ui.four.tooltip)
             end
@@ -2891,7 +1355,7 @@ function adversaryUISetup()
             lineCount = lineCount + 1
         end
         if ui.five then
-            UI.setAttribute("panelAdversary2Level5","text",ui.five.name)
+            UI.setAttribute("panelAdversary2Level5","text","5) "..ui.five.name)
             if ui.five.tooltip then
                 UI.setAttribute("panelAdversary2Level5","tooltip",ui.five.tooltip)
             end
@@ -2899,7 +1363,7 @@ function adversaryUISetup()
             lineCount = lineCount + 1
         end
         if ui.six then
-            UI.setAttribute("panelAdversary2Level6","text",ui.six.name)
+            UI.setAttribute("panelAdversary2Level6","text","6) "..ui.six.name)
             if ui.six.tooltip then
                 UI.setAttribute("panelAdversary2Level6","tooltip",ui.six.tooltip)
             end
@@ -2952,6 +1416,9 @@ function SetupInvaderDeck()
     end
     if adversaryCard ~= nil and adversaryCard.getVar("invaderDeckSetup") then
         deckTable = adversaryCard.call("InvaderDeckSetup",{level = adversaryLevel, deck = deckTable})
+    end
+    if scenarioCard ~= nil and scenarioCard.getVar("invaderDeckSetup") then
+        deckTable = scenarioCard.call("InvaderDeckSetup",{deck = deckTable})
     end
 
     local requiresCoastal = false
@@ -3038,6 +1505,24 @@ end
 function SetupEventDeck()
     if useEventDeck then
         local deck = getObjectFromGUID("b18505").getObjects()[1]
+        if BnCAdded and SetupChecker.getVar("optionalStrangeMadness") then
+            local BnCBag = getObjectFromGUID("ea7207")
+            local strangeMadness = BnCBag.takeObject({guid = "0edac2"})
+            deck.putObject(strangeMadness)
+        end
+        if BnCAdded and SetupChecker.getVar("exploratoryWar") then
+            deck.takeObject({
+                guid = "cfd4d1",
+                callback_function = function(obj)
+                    print(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        deck.putObject(temp)
+                        deck.shuffle()
+                    end, 1)
+                end,
+            })
+        end
         deck.shuffle()
         deck.setPositionSmooth(getObjectFromGUID(eventDeckZone).getPosition())
         Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return not deck.isSmoothMoving() end)
@@ -3067,40 +1552,67 @@ function SetupMap()
 end
 function BoardSetup()
     if getMapCount({norm = true, them = true}) == 0 then
-        if boardType == "Standard" then
-            StandardMapBag.shuffle()
-            MapPlacen(posMap[numPlayers][alternateSetupIndex],rotMap[numPlayers][alternateSetupIndex])
+        if isThematic() then
+            MapPlacen(posMapThem[numBoards],rotMapThem[numBoards])
         else
-            MapPlacen(posMapThem[numPlayers],rotMapThem[numPlayers])
+            StandardMapBag.shuffle()
+            if scenarioCard ~= nil and scenarioCard.getVar("boardSetup") then
+                local tables = scenarioCard.call("BoardSetup", { boards = numBoards })
+                MapPlacen(tables.posTable,tables.rotTable)
+            else
+                MapPlacen(posMap[numBoards][alternateSetupIndex],rotMap[numBoards][alternateSetupIndex])
+            end
         end
     else
         MapPlaceCustom()
     end
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numPlayers end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numBoards end)
 end
 ----- Post Setup Section
 function PostSetup()
     aidBoard.call("setupGame", {})
+    local postSetupSteps = 0
+    local firstAdversarySetup = false
 
-    local isThematic = boardType ~= "Standard"
-    local adversariesSetup = 0
-    if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
-        adversaryCard.call("PostSetup",{level = adversaryLevel, other={level=adversaryLevel2}, thematic=isThematic})
-        Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard.getVar("postSetupComplete") end)
+    if adversaryCard == nil then
+        difficultyString = difficultyString.."No Adversary\n"
+    elseif adversaryCard2 == nil then
+        difficultyString = difficultyString..adversaryCard.getName().." Level "..adversaryLevel.."\n"
     else
-        adversariesSetup = adversariesSetup + 1
+        difficultyString = difficultyString.."II: "..adversaryCard.getName().." Level "..adversaryLevel.."\n".."III: "..adversaryCard2.getName().." Level "..adversaryLevel2.."\n"
+    end
+    if scenarioCard == nil then
+        difficultyString = difficultyString.."No Scenario\n"
+    else
+        difficultyString = difficultyString..scenarioCard.getName().."\n"
+    end
+    difficultyString = difficultyString.."Difficulty "..difficulty
+    createDifficultyButton()
+
+
+    if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
+        adversaryCard.call("PostSetup",{level = adversaryLevel, other={level=adversaryLevel2}})
+        Wait.condition(function() postSetupSteps = postSetupSteps + 1 firstAdversarySetup = true end, function() return adversaryCard.getVar("postSetupComplete") end)
+    else
+        postSetupSteps = postSetupSteps + 1
+        firstAdversarySetup = true
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("postSetup") then
         -- Wait for first adversary to finish
         Wait.condition(function()
-            adversaryCard2.call("PostSetup",{level = adversaryLevel2, other={level=adversaryLevel}, thematic=isThematic})
-            Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard2.getVar("postSetupComplete") end)
-        end, function() return adversariesSetup == 1 end)
+            adversaryCard2.call("PostSetup",{level = adversaryLevel2, other={level=adversaryLevel}})
+            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return adversaryCard2.getVar("postSetupComplete") end)
+        end, function() return firstAdversarySetup end)
     else
-        adversariesSetup = adversariesSetup + 1
+        postSetupSteps = postSetupSteps + 1
+    end
+    if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
+        scenarioCard.call("PostSetup",{})
+        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
+    else
+        postSetupSteps = postSetupSteps + 1
     end
 
-    local commandSetup = false
     if not useEventDeck and (BnCAdded or JEAdded) then
         local zone = getObjectFromGUID(invaderDeckZone)
         local invaderDeck = zone.getObjects()[1]
@@ -3132,7 +1644,7 @@ function PostSetup()
         setupCommandCard(invaderDeck, stageII, "d46930")
         Wait.condition(function()
             setupCommandCard(invaderDeck, stageIII, "a578fe")
-            Wait.condition(function() commandSetup = true end, function()
+            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
                 local objs = zone.getObjects()
                 return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == #cards + 2
             end)
@@ -3141,11 +1653,54 @@ function PostSetup()
             return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == #cards + 1
         end)
     else
-        commandSetup = true
+        postSetupSteps = postSetupSteps + 1
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return adversariesSetup == 2 and commandSetup end)
+    if SetupChecker.getVar("exploratoryVOTD") then
+        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        deck.takeObject({
+            guid = "152fe0",
+            callback_function = function(obj)
+                local temp = obj.setState(2)
+                Wait.frames(function()
+                    deck.putObject(temp)
+                    deck.shuffle()
+                    postSetupSteps = postSetupSteps + 1
+                end, 1)
+            end,
+        })
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
+    if SetupChecker.getVar("exploratoryBODAN") then
+        local spirit = getObjectFromGUID("606f23").setState(2)
+        if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
+            Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+        else
+            postSetupSteps = postSetupSteps + 1
+        end
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function()log(postSetupSteps) return postSetupSteps == 6 end)
     return 1
+end
+function createDifficultyButton()
+    local buttonPos = Vector(-0.9,0,-2.75)
+    if getObjectFromGUID("312e2d") == nil or not Vector.equals(getObjectFromGUID("312e2d").getPosition(), aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84))) then
+        -- not double adversaries
+        buttonPos = Vector(0,0,-2.75)
+    end
+    aidBoard.createButton({
+        click_function = "nullFunc",
+        function_owner = Global,
+        label          = difficultyString,
+        position       = buttonPos,
+        font_size      = 80,
+        font_color     = {1,1,1},
+        width          = 0,
+        height         = 0,
+    })
 end
 function setupCommandCard(invaderDeck, depth, guid)
     for i=1,depth do
@@ -3165,6 +1720,7 @@ end
 function StartGame()
     gamePaused = false
     gameStarted = true
+    exploratory()
     enableUI()
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
@@ -3176,6 +1732,13 @@ function StartGame()
     elseif adversaryCard ~= nil then
         wt(2)
         broadcastToAll("Your Stage II escalation is "..adversaryCard.getName(), "Blue")
+    end
+    if scenarioCard ~= nil then
+        local broadcast = scenarioCard.getVar("broadcast")
+        if broadcast ~= nil then
+            wt(2)
+            broadcastToAll(broadcast, "Blue")
+        end
     end
     if adversaryCard ~= nil then
         local broadcast = adversaryCard.getVar("broadcast")
@@ -3193,6 +1756,8 @@ function StartGame()
     end
     return 1
 end
+function exploratory()
+end
 function enableUI()
     local visibility = ""
     for _,player in pairs(Player.getPlayers()) do
@@ -3206,18 +1771,10 @@ function enableUI()
 end
 ------
 function addSpirit(params)
-    -- Ignore Source Spirit
-    if params.spirit.guid == "21f561" then return end
-    table.insert(spiritGuids, params.spirit.guid)
-    spiritTags[params.spirit.guid] = params.spirit.getDescription()
+    SetupChecker.call("addSpirit", params)
 end
 function removeSpirit(params)
-    for i,v in pairs(spiritGuids) do
-        if v == params.spirit then
-            table.remove(spiritGuids, i)
-            break
-        end
-    end
+    SetupChecker.call("removeSpirit", params)
     if params.color then
         getObjectFromGUID(elementScanZones[params.color]).clearButtons()
         selectedColors[params.color] = getObjectFromGUID(readyTokens[params.color])
@@ -3281,6 +1838,12 @@ function timePassesCo()
             elseif obj.tag == "Tile" and obj.getVar("elements") ~= nil then
                 if obj.getLock() == false then obj.destruct() end
             end
+        end
+    end
+
+    for _,obj in pairs(selectedColors) do
+        if not obj.is_face_down then
+            obj.flip()
         end
     end
 
@@ -3701,34 +2264,58 @@ function MapPlaceCustom()
     local maps = getMapTiles()
     -- board type is guaranteed to either be thematic or normal, and there has to be at least one map tile in the table
     if string.sub(maps[1].getName(),1,4) == "NORM" then
-        boardType = boardSetupNames[1]
+        alternateSetupIndex = 1
     else
-        boardType = boardSetupNames[2]
+        alternateSetupIndex = 0
     end
 
-    for _,map in pairs(maps) do
+    local rand = 0
+    if SetupChecker.getVar("optionalExtraBoard") then
+        rand = math.random(1,numBoards)
+    end
+    for i,map in pairs(maps) do
         map.setLock(true)
         map.interactable = false
-        setupMap(map)
+        setupMap(map,i==rand)
     end
 end
 
 BETaken = false
 DFTaken = false
 function MapPlacen(posTable, rotTable)
-    for i=1, numPlayers do
+    local rand = 0
+    if SetupChecker.getVar("optionalExtraBoard") then
+        rand = math.random(1,numBoards)
+    end
+    for i=1, numBoards do
         local temp = nil
-        if boardType == "Standard" then
+        if isThematic() then
+            if SetupChecker.getVar("optionalThematicRedo") then
+                temp = MJThematicMapBag.takeObject({
+                    position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
+                    guid = themRedoGuids[numBoards][i],
+                    smooth = false,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                })
+            else
+                temp = ThematicMapBag.takeObject({
+                    position = ThematicMapBag.getPosition() + Vector(0,-5,0),
+                    guid = themGuids[numBoards][i],
+                    smooth = false,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                })
+            end
+        else
             local list = StandardMapBag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if numPlayers <=4 and (value.name == "NORMAL B" or value.name == "NORMAL E") then
+                if numBoards <=4 and (value.name == "NORMAL B" or value.name == "NORMAL E") then
                     if not BETaken then
                         BETaken = true
                         index = value.index
                         break
                     end
-                elseif numPlayers <= 4 and (value.name == "NORMAL D" or value.name == "NORMAL F") then
+                elseif numBoards <= 4 and (value.name == "NORMAL D" or value.name == "NORMAL F") then
                     if not DFTaken then
                         DFTaken = true
                         index = value.index
@@ -3744,42 +2331,37 @@ function MapPlacen(posTable, rotTable)
                 index = index,
                 position = StandardMapBag.getPosition() + Vector(0,-5,0),
                 smooth = false,
-                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i]) end,
-            })
-        elseif boardType == "Thematic" then
-            temp = ThematicMapBag.takeObject({
-                position = ThematicMapBag.getPosition() + Vector(0,-5,0),
-                guid = themGuids[numPlayers][i],
-                smooth = false,
-                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i]) end,
-            })
-        elseif boardType == "Thematic Redo" then
-            temp = MJThematicMapBag.takeObject({
-                position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
-                guid = themRedoGuids[numPlayers][i],
-                smooth = false,
-                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i]) end,
+                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
             })
         end
     end
 end
-function BoardCallback(obj,pos,rot)
+function BoardCallback(obj,pos,rot,extra)
     obj.interactable = false
     obj.setLock(true)
     obj.setRotationSmooth(rot, false, true)
     obj.setPositionSmooth(pos, false, true)
-    Wait.condition(function() setupMap(obj) end, function() return obj.resting and not obj.loading_custom end)
+    Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
 setupMapCoObj = nil
-function setupMap(map)
+function setupMap(map,extra)
     setupMapCoObj = map
-    startLuaCoroutine(Global, "setupMapCo")
+    if extra then
+        startLuaCoroutine(Global, "setupMapCoExtra")
+    else
+        startLuaCoroutine(Global, "setupMapCoNoExtra")
+    end
 end
-function setupMapCo()
+function setupMapCoNoExtra()
+    return setupMapCo(false)
+end
+function setupMapCoExtra()
+    return setupMapCo(true)
+end
+function setupMapCo(extra)
     local map = setupMapCoObj
     local piecesToPlace = map.getTable("pieceMap")
     local posToPlace = map.getTable("posMap")
-
     local originalPieces = map.getTable("pieceMap")
 
     if string.sub(map.getName(),1,4) ~= "THEM" then -- if not a thematic board
@@ -3794,12 +2376,80 @@ function setupMapCo()
         end
     end
 
+    if extra and numPlayers < 5 then
+        local townFound = false
+        local cityFound = false
+        for i=1,#piecesToPlace do
+            for j=#piecesToPlace[i],1,-1 do
+                if string.sub(piecesToPlace[i][j],1,8) == "Explorer" then
+                    table.remove(piecesToPlace[i],j)
+                elseif string.sub(piecesToPlace[i][j],1,4) == "Town" then
+                    if numPlayers == 4 and not townFound then
+                        townFound = true
+                    else
+                        table.remove(piecesToPlace[i],j)
+                    end
+                elseif string.sub(piecesToPlace[i][j],1,4) == "City" then
+                    if numPlayers == 3 and not cityFound and i < 4 then
+                        cityFound = true
+                    else
+                        table.remove(piecesToPlace[i],j)
+                    end
+                end
+            end
+        end
+        if not townFound and numPlayers == 4 then
+            for i=1,3 do
+                for j,v in pairs (originalPieces[i]) do
+                    if string.sub(v,1,4) == "City" then
+                        table.insert(piecesToPlace[i],j, v)
+                        townFound = true
+                        break
+                    end
+                end
+                if townFound then
+                    break
+                end
+            end
+            if not townFound then
+                for i=1,3 do
+                    for j,v in pairs (originalPieces[i]) do
+                        if string.sub(v,1,4) == "Town" then
+                            table.insert(piecesToPlace[i],j, v)
+                            townFound = true
+                            break
+                        end
+                    end
+                    if townFound then
+                        break
+                    end
+                end
+            end
+        elseif not cityFound and numPlayers == 3 then
+            for i=1,3 do
+                for j,v in pairs (originalPieces[i]) do
+                    if string.sub(v,1,4) == "Town" then
+                        table.insert(piecesToPlace[i],j, v)
+                        cityFound = true
+                        break
+                    end
+                end
+                if cityFound then
+                    break
+                end
+            end
+        end
+    end
+
     -- supporting adversary setup should happen first
     if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
-        piecesToPlace = adversaryCard2.call("MapSetup", { level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces})
+        piecesToPlace = adversaryCard2.call("MapSetup", { level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
     end
     if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
-        piecesToPlace = adversaryCard.call("MapSetup", { level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces})
+        piecesToPlace = adversaryCard.call("MapSetup", { level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
+    end
+    if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
+        piecesToPlace = scenarioCard.call("MapSetup", {  pieces = piecesToPlace, original = originalPieces, extra = extra})
     end
 
     for l,landTable in ipairs (piecesToPlace) do

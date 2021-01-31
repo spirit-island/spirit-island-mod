@@ -6,5 +6,5 @@ progressionDeck = {
     {"99613a", false},
     {"2f5ed3", true},
     {"69de7b", false},
-    {"967df9", false},
+    {"59720c", false},
 }

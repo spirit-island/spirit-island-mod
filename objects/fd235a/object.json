@@ -1,0 +1,45 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -104.0709,
+    "posY": 1.24006832,
+    "posZ": -5.835368,
+    "rotX": 9.191892e-07,
+    "rotY": 7.062234e-05,
+    "rotZ": -0.0009884123,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Days That Never Were",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.249988317,
+    "g": 0.249988317,
+    "b": 0.249988317
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": false
+  }
+}

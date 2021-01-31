@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -35.0593147,
-    "posY": 1.09316051,
-    "posZ": 56.94055,
-    "rotX": 8.7467356e-08,
+    "posX": -2.62310243,
+    "posY": 1.09316456,
+    "posZ": 48.452404,
+    "rotX": 9.698009e-08,
     "rotY": 180.024765,
-    "rotZ": 180.0,
-    "scaleX": 1.3656503,
+    "rotZ": 179.999863,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Major Powers",
   "Description": "Branch & Claw Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

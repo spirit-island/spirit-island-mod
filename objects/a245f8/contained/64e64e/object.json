@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -58.31094,
-    "posY": 3.600003,
-    "posZ": 37.1335678,
-    "rotX": 359.9661,
-    "rotY": 359.9917,
-    "rotZ": 359.687256,
+    "posX": -56.0334549,
+    "posY": 3.59785986,
+    "posZ": 37.02631,
+    "rotX": 0.00162351923,
+    "rotY": 0.04122094,
+    "rotZ": -0.0009858548,
     "scaleX": 0.7,
     "scaleY": 0.7,
     "scaleZ": 0.7
@@ -19,6 +19,7 @@
     "g": 0.880506933,
     "b": 0.8526128
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -39,7 +40,7 @@
     "Convex": true,
     "MaterialIndex": 0,
     "TypeIndex": 1,
-    "CastShadows": true
+    "CastShadows": false
   },
   "AttachedSnapPoints": [
     {
@@ -52,6 +53,7 @@
   ],
   "States": {
     "2": {
+      "GUID": "e3c01d",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -52.3826447,
@@ -72,6 +74,7 @@
         "g": 0.880506933,
         "b": 0.8526128
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -97,7 +100,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "e3c01d",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -109,6 +111,7 @@
       ]
     },
     "3": {
+      "GUID": "f014a3",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -49.5699539,
@@ -129,6 +132,7 @@
         "g": 0.880506933,
         "b": 0.8526128
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -154,7 +158,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "f014a3",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -168,6 +171,7 @@
   },
   "ChildObjects": [
     {
+      "GUID": "e34218",
       "Name": "BlockSquare",
       "Transform": {
         "posX": 0.00039760166,
@@ -189,6 +193,7 @@
         "b": 0.48627454,
         "a": 0.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": true,
       "Snap": true,
@@ -204,7 +209,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "e34218",
       "AttachedSnapPoints": [
         {
           "Position": {

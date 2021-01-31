@@ -362,7 +362,7 @@ function removeFear()
         self.editButton({index = 2, label = fearPoolValue-1})
         Global.setVar("generatedFear",fearPoolValue - 1)
 
-        broadcastToAll("Fear Card Taken Back!", {1,0,0})
+        broadcastToAll("Fear Card Taken Back! (This is currently not scripted)", {1,0,0})
     else
         self.editButton({index = 1, label = fearPoolValue + 1})
         Global.setVar("fearPool",fearPoolValue + 1)
@@ -580,7 +580,7 @@ playerReadyGuids = {
     ["Yellow"] = "f348b7",
     ["Blue"] = "69401f",
     ["Green"] = "a46d80",
-    ["Brown"] = "72fd72",
+    ["Orange"] = "72fd72",
 }
 function placeReadyTokens()
     for _,v in pairs (playerReadyGuids) do

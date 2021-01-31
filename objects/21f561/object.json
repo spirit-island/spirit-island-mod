@@ -15,10 +15,11 @@
   "Description": "Spirit Island - Spirit",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200287968,
-    "g": 0.160333246,
-    "b": 0.151771516
+    "r": 0.200281948,
+    "g": 0.160327226,
+    "b": 0.1517655
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,

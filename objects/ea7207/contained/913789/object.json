@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -10.6536722,
-    "posY": 2.1475594,
-    "posZ": -0.515830457,
-    "rotX": 0.00444653165,
-    "rotY": 180.0,
-    "rotZ": 180.0,
-    "scaleX": 1.3656503,
+    "posX": -2.063103,
+    "posY": 1.14130628,
+    "posZ": 53.4924049,
+    "rotX": -1.41433162e-07,
+    "rotY": 180.002731,
+    "rotZ": 179.999863,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Minor Powers",
   "Description": "Branch & Claw Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

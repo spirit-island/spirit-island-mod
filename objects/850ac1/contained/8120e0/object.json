@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -14.7812529,
-    "posY": 2.03186059,
-    "posZ": 57.4230042,
-    "rotX": -2.332704e-08,
-    "rotY": 180.009567,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -17.822916,
+    "posY": 1.02723587,
+    "posZ": 43.7958336,
+    "rotX": 0.000170074287,
+    "rotY": 180.030548,
+    "rotZ": 179.978119,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
   "Nickname": "Blight Cards",
   "Description": "Jagged Earth Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

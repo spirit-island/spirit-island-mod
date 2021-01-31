@@ -125,7 +125,7 @@ function AdversaryUI(params)
 end
 
 function MapSetup(params)
-    if params.level >= 2 then
+    if not params.extra and params.level >= 2 then
         table.insert(params.pieces[2],"Town")
         for i=#params.original, 1, -1 do
             if #params.original[i] == 0 then

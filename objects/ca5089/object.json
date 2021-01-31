@@ -3,7 +3,7 @@
   "Transform": {
     "posX": -55.7,
     "posY": 1.2617377,
-    "posZ": 13.1129971,
+    "posZ": 13.189683,
     "rotX": 3.46921183e-07,
     "rotY": 180.000061,
     "rotZ": -0.000144750447,
@@ -20,6 +20,7 @@
     "b": 0.5568628,
     "a": 0.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -56,6 +57,7 @@
   },
   "ChildObjects": [
     {
+      "GUID": "0ab726",
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.00133869192,
@@ -76,6 +78,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
       "Snap": false,
@@ -102,8 +105,7 @@
       },
       "LuaScript": "highlightOnObjectDrop = true",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "0ab726"
+      "XmlUI": ""
     }
   ]
 }

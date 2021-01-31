@@ -19,6 +19,7 @@
     "g": 0.8117647,
     "b": 0.8117647
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": false,
   "Snap": true,
@@ -39,10 +40,11 @@
     "Convex": true,
     "MaterialIndex": 0,
     "TypeIndex": 1,
-    "CastShadows": true
+    "CastShadows": false
   },
   "States": {
     "2": {
+      "GUID": "58ba36",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -45.49413,
@@ -63,6 +65,7 @@
         "g": 0.658990741,
         "b": 0.488093257
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -88,7 +91,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "58ba36",
       "AttachedSnapPoints": [
         {
           "Position": {

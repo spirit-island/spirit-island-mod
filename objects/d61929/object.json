@@ -1,11 +1,11 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 2.54001212,
+    "posX": 2.5400176,
     "posY": 1.10041249,
-    "posZ": -25.4600449,
-    "rotX": 0.004447089,
-    "rotY": 180.000366,
+    "posZ": -25.4600754,
+    "rotX": 0.00444654236,
+    "rotY": 180.000153,
     "rotZ": 180.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -19,6 +19,7 @@
     "g": 1.0,
     "b": 1.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

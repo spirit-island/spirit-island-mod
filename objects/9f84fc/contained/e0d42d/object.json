@@ -1,0 +1,41 @@
+{
+  "Name": "Custom_PDF",
+  "Transform": {
+    "posX": -89.64,
+    "posY": 0.89,
+    "posZ": -19.3,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 2.61136246,
+    "scaleY": 1.0,
+    "scaleZ": 2.61136246
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomPDF": {
+    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/1458554570423894388/92C2630451C3875011B1059F132B901CBA22B8C8/",
+    "PDFPassword": "",
+    "PDFPage": 0,
+    "PDFPageOffset": 0
+  }
+}

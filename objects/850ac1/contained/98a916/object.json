@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": 48.18039,
-    "posY": 2.108889,
-    "posZ": 59.8374519,
-    "rotX": -6.213825e-08,
-    "rotY": 179.996246,
-    "rotZ": 179.999863,
-    "scaleX": 1.53204679,
+    "posX": -25.09416,
+    "posY": 1.18014824,
+    "posZ": 38.1912651,
+    "rotX": 1.8938663,
+    "rotY": 179.979858,
+    "rotZ": 179.999756,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Major Powers",
   "Description": "Jagged Earth Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

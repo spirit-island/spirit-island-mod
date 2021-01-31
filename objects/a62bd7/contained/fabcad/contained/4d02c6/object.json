@@ -19,6 +19,7 @@
     "g": 0.9511289,
     "b": 0.532911
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -39,7 +40,7 @@
     "Convex": true,
     "MaterialIndex": 0,
     "TypeIndex": 1,
-    "CastShadows": true
+    "CastShadows": false
   },
   "AttachedSnapPoints": [
     {
@@ -52,6 +53,7 @@
   ],
   "States": {
     "2": {
+      "GUID": "588b60",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -48.4327774,
@@ -72,6 +74,7 @@
         "g": 0.9511289,
         "b": 0.532911
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -97,7 +100,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "588b60",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -109,6 +111,7 @@
       ]
     },
     "3": {
+      "GUID": "66b7fd",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -48.4327774,
@@ -129,6 +132,7 @@
         "g": 0.880506933,
         "b": 0.8526128
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -154,7 +158,6 @@
       "LuaScript": "highlightOnObjectDrop = true",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "66b7fd",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -166,6 +169,7 @@
       ]
     },
     "4": {
+      "GUID": "a6922a",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -48.432785,
@@ -186,6 +190,7 @@
         "g": 0.880506933,
         "b": 0.8526128
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -211,7 +216,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "a6922a",
       "AttachedSnapPoints": [
         {
           "Position": {

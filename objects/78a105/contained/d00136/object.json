@@ -1,0 +1,1237 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 79.00565,
+    "posY": 0.957727134,
+    "posZ": -13.6077223,
+    "rotX": -0.0006574675,
+    "rotY": 340.010681,
+    "rotZ": 179.997757,
+    "scaleX": 0.825000167,
+    "scaleY": 0.825000167,
+    "scaleZ": 0.825000167
+  },
+  "Nickname": "Orange's Defence",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.5600457,
+    "b": 0.346475
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364143088/DE223B30F15AA5D860671558C5E35025BE50704A/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  },
+  "States": {
+    "2": {
+      "GUID": "88415b",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 55.55574,
+        "posY": 0.870049238,
+        "posZ": 1.632658,
+        "rotX": 1.099751e-07,
+        "rotY": 180.000275,
+        "rotZ": -0.000144415826,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364143752/8C2E8CF5F4A8D4836ADE637DF8AE6D36E7CD43D8/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "3": {
+      "GUID": "abf86b",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 57.3057442,
+        "posY": 0.870053649,
+        "posZ": 1.632658,
+        "rotX": -1.61688121e-08,
+        "rotY": 180.000259,
+        "rotZ": -0.0001444161,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364144185/02CD164EE9DF59CF732F605FECAC945FC1EAA85F/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "0b5c49",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 59.0557442,
+        "posY": 0.87005806,
+        "posZ": 1.63265979,
+        "rotX": 6.14263e-08,
+        "rotY": 180.000259,
+        "rotZ": -0.000144343372,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364144652/F883F7C04C26D154717793E27F1924D3696591B2/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "c3cfda",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 60.8040276,
+        "posY": 0.8700625,
+        "posZ": 1.63380718,
+        "rotX": 1.37186746e-07,
+        "rotY": 180.059647,
+        "rotZ": -0.000144221718,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201363897359/FFC044E4AEF9E2FEAC170A9B341702AD07B6172B/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "bebc54",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 62.555748,
+        "posY": 0.8700669,
+        "posZ": 1.63265848,
+        "rotX": 1.34002008e-07,
+        "rotY": 180.000351,
+        "rotZ": -0.0001442403,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364145918/E7CE9294A38B24D388225BC5D73CC904BD980925/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "4c9082",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 64.3057556,
+        "posY": 0.8700713,
+        "posZ": 1.63265812,
+        "rotX": 1.25529922e-07,
+        "rotY": 180.00032,
+        "rotZ": -0.000144348145,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364146460/D3A6CF1B2A9376E107295AD85608FA56FBAE31E9/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "9f6cdf",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 66.0557556,
+        "posY": 0.8700757,
+        "posZ": 1.63265908,
+        "rotX": 1.17365381e-07,
+        "rotY": 180.0004,
+        "rotZ": -0.000144298727,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364146880/28393CF7ED11945434E8EF8732251AB37D9095A0/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "9": {
+      "GUID": "3c2378",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 67.8057556,
+        "posY": 0.8700801,
+        "posZ": 1.632659,
+        "rotX": 2.26845831e-09,
+        "rotY": 180.000336,
+        "rotZ": -0.000144277641,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147274/56FEC77EE69EE1262AB0557F106FF849830004A3/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "10": {
+      "GUID": "94897e",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 69.5557556,
+        "posY": 0.870084465,
+        "posZ": 1.63266087,
+        "rotX": -4.049192e-08,
+        "rotY": 180.0002,
+        "rotZ": -0.000144287274,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147630/519B218F2E1C55FEF3ED1DE10A4487AEAD261A39/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "11": {
+      "GUID": "4f1e98",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 71.30576,
+        "posY": 0.8700889,
+        "posZ": 1.6326586,
+        "rotX": 3.04485e-08,
+        "rotY": 180.000458,
+        "rotZ": -0.0001444191,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147944/E182D34A3BC915C85BAF3C6DE1AE3983BE7069D2/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "12": {
+      "GUID": "6f61a9",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 73.05576,
+        "posY": 0.8700933,
+        "posZ": 1.63266182,
+        "rotX": -1.52532156e-08,
+        "rotY": 180.0004,
+        "rotZ": -0.000144384219,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364148294/58073F5410A294807C83E5355F22AFE5EEFA9DDF/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "13": {
+      "GUID": "40653f",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 74.8056,
+        "posY": 0.8700977,
+        "posZ": 1.6321975,
+        "rotX": 5.083931e-08,
+        "rotY": 179.9978,
+        "rotZ": -0.0001443414,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364148920/2B351DDE2786DB15D76603E8A1A54E83F1215DC8/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "14": {
+      "GUID": "286720",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 76.55576,
+        "posY": 0.8701021,
+        "posZ": 1.63266087,
+        "rotX": -2.45438567e-08,
+        "rotY": 180.0002,
+        "rotZ": -0.000144349062,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364149289/775119634E43E4F10CD4F6851E40A73B9ADDD84C/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "15": {
+      "GUID": "f791ee",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 78.30576,
+        "posY": 0.8701065,
+        "posZ": 1.63266087,
+        "rotX": -5.07216882e-08,
+        "rotY": 180.00032,
+        "rotZ": -0.0001442578,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364149667/75FE56B4D44FB19030148F95E04498106F6A8237/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "16": {
+      "GUID": "92192c",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 80.05576,
+        "posY": 0.8701109,
+        "posZ": 1.632661,
+        "rotX": -1.15122791e-08,
+        "rotY": 180.00032,
+        "rotZ": -0.000144432532,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364150330/AD2995CC934CF8FEB85A88BD0911BF2A0D7230EA/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "17": {
+      "GUID": "c23b4f",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 81.80577,
+        "posY": 0.87011534,
+        "posZ": 1.63266182,
+        "rotX": -3.60984531e-09,
+        "rotY": 180.000381,
+        "rotZ": -0.000144203761,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364150737/603DF230287A960A447D0098FDB215849FC577B0/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "18": {
+      "GUID": "6a8929",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 83.55577,
+        "posY": 0.87011975,
+        "posZ": 1.63265824,
+        "rotX": -2.2881764e-08,
+        "rotY": 180.000351,
+        "rotZ": -0.000144202451,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364151443/62EA3636C1489EB7CDB3998833BA0D0A25644543/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "19": {
+      "GUID": "206086",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 85.30577,
+        "posY": 0.870124161,
+        "posZ": 1.632658,
+        "rotX": 1.74869914e-08,
+        "rotY": 180.0004,
+        "rotZ": -0.000144302117,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364152093/4C679BB424CABBBADA764E6C3E2E7206432AEDE4/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "20": {
+      "GUID": "20f6f1",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 87.05578,
+        "posY": 0.8701286,
+        "posZ": 1.63266087,
+        "rotX": -9.713922e-08,
+        "rotY": 180.000336,
+        "rotZ": -0.000144321064,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364152509/5E5D4DB699E1FF2ED5B4843FE72B18A0C9EF05CB/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "21": {
+      "GUID": "70a8c4",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 88.80578,
+        "posY": 0.870133,
+        "posZ": 1.63265848,
+        "rotX": 1.183218e-07,
+        "rotY": 180.0004,
+        "rotZ": -0.000144383332,
+        "scaleX": 0.825000167,
+        "scaleY": 0.825000167,
+        "scaleZ": 0.825000167
+      },
+      "Nickname": "Orange's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.599178731,
+        "b": 0.4015515
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364155259/92FC34777E73F0F5EA7162A11570594C42848B83/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

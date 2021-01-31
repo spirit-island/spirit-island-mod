@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -15.2416916,
-    "posY": 2.03186059,
-    "posZ": 58.4615,
-    "rotX": 2.13754383e-08,
-    "rotY": 179.984467,
-    "rotZ": 180.0,
-    "scaleX": 1.47602439,
+    "posX": -2.62310243,
+    "posY": 1.025768,
+    "posZ": 38.37241,
+    "rotX": -4.30885443e-08,
+    "rotY": 179.979874,
+    "rotZ": 179.999863,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Blight Cards",
   "Description": "Branch & Claw Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

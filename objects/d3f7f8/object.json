@@ -20,6 +20,7 @@
     "b": 0.5568628,
     "a": 0.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -56,6 +57,7 @@
   },
   "ChildObjects": [
     {
+      "GUID": "068e41",
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0389232263,
@@ -76,6 +78,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
       "Snap": false,
@@ -102,8 +105,7 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "068e41"
+      "XmlUI": ""
     }
   ]
 }

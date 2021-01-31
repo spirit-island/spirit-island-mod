@@ -1,12 +1,12 @@
 {
   "Name": "Infinite_Bag",
   "Transform": {
-    "posX": -119.692154,
-    "posY": 1.12923741,
-    "posZ": 9.021167,
-    "rotX": 359.9795,
-    "rotY": 359.1431,
-    "rotZ": -0.00200852216,
+    "posX": -119.69,
+    "posY": 1.12812746,
+    "posZ": 9.019989,
+    "rotX": 359.9801,
+    "rotY": 0.008300512,
+    "rotZ": -3.20410118e-06,
     "scaleX": 0.5812501,
     "scaleY": 0.3875001,
     "scaleZ": 0.5812501
@@ -19,6 +19,7 @@
     "g": 0.372555166,
     "b": 1.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

@@ -1,0 +1,38 @@
+{
+  "Name": "Bag",
+  "Transform": {
+    "posX": -14.5575647,
+    "posY": 1.7924788,
+    "posZ": 43.7845879,
+    "rotX": 2.06751125e-07,
+    "rotY": 0.00193010876,
+    "rotZ": 1.31734953e-06,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Scenario Tokens",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7058823,
+    "g": 0.366520882,
+    "b": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Number": 0
+}

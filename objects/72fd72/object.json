@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -44.36,
-    "posY": 0.82,
-    "posZ": 0.38,
+    "posX": -44.3686752,
+    "posY": 0.8200002,
+    "posZ": 0.379999876,
     "rotX": 0.00444561848,
     "rotY": 180.0,
     "rotZ": -8.01777446e-07,
@@ -11,14 +11,15 @@
     "scaleY": 0.8,
     "scaleZ": 0.5
   },
-  "Nickname": "Brown Ready",
+  "Nickname": "Orange Ready",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6416958,
-    "g": 0.423332572,
-    "b": 0.27780202
+    "r": 0.9529411,
+    "g": 0.551746,
+    "b": 0.109792329
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,

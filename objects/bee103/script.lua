@@ -222,7 +222,7 @@ function advanceInvaderCards()
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
             for _,hit in pairs(hitObjects) do
-                if hit.tag == "Card" and hit.is_face_down == v.faceDown then
+                if hit.type == "Card" and hit.is_face_down == v.faceDown then
                     if i == "Build2" then
                         hit.setRotation(Vector(0,180,0))
                         hit.setPositionSmooth(discardENG)
@@ -275,7 +275,7 @@ function aidPanelScanLoop()
             if i == "Stage" then
                 local currentStage = 0
                 for _,hit in pairs(hitObjects) do
-                    if hit.tag == "Card" or hit.tag == "Deck" then
+                    if hit.type == "Card" or hit.type == "Deck" then
                         if getStage(hit) ~= nil then currentStage = getStage(hit) end
                     end
                 end
@@ -290,7 +290,7 @@ function aidPanelScanLoop()
                 end
             else
                 for _,hit in pairs(hitObjects) do
-                    if hit.tag == "Card" and hit.is_face_down == v.faceDown then
+                    if hit.type == "Card" and hit.is_face_down == v.faceDown then
                         local iType = hit.getVar("cardInvaderType")
                         local iStage = hit.getVar("cardInvaderStage")
                         table.insert(stageTable,iType)
@@ -305,14 +305,14 @@ function aidPanelScanLoop()
 end
 
 function getStage(o)
-    if o.tag == "Card" then
+    if o.type == "Card" then
         local special = o.getVar("special")
         local stage = o.getVar("cardInvaderStage")
         if special then
             stage = stage - 1
         end
         return stage
-    elseif o.tag == "Deck" then
+    elseif o.type == "Deck" then
         local stage = nil
         for _,obj in pairs(o.getObjects()) do
             local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
@@ -425,7 +425,7 @@ function earnFearCard(completedTable, fearDeckZone, earnedPos, dividerPos)
             local card = nil
             card, cardEarned, emptyDeck = examineCard(fearDeck, dividerPos)
             if cardEarned then
-                if fearDeck.tag == "Deck" then
+                if fearDeck.type == "Deck" then
                     card = fearDeck.takeObject({
                         position = earnedPos,
                         rotation = Vector(0, 180, 180),
@@ -469,7 +469,7 @@ end
 function getFearDeck(fearDeckZone)
     local fearDeck = nil
     for _,obj in pairs(fearDeckZone.getObjects()) do
-        if obj.tag == "Deck" or obj.tag == "Card" then
+        if obj.type == "Deck" or obj.type == "Card" then
             if fearDeck == nil or fearDeck.getPosition().y < obj.getPosition().y then
                 fearDeck = obj
             end
@@ -480,7 +480,7 @@ end
 function examineCard(fearDeck, dividerPos)
     local card = nil
     local emptyDeck = false
-    if fearDeck.tag == "Deck" then
+    if fearDeck.type == "Deck" then
         if fearDeck.remainder then
             fearDeck = fearDeck.remainder
             card = fearDeck
@@ -492,7 +492,7 @@ function examineCard(fearDeck, dividerPos)
     end
 
     if card.guid == "2b7d0b" then
-        if fearDeck.tag == "Deck" then
+        if fearDeck.type == "Deck" then
             card = fearDeck.takeObject({
                 position = dividerPos,
                 rotation = Vector(0, 180, 180),
@@ -504,7 +504,7 @@ function examineCard(fearDeck, dividerPos)
         end
         broadcastToAll("Terror Level II Achieved!", {1,0,0})
     elseif card.guid == "4211e9" then
-        if fearDeck.tag == "Deck" then
+        if fearDeck.type == "Deck" then
             card = fearDeck.takeObject({
                 position = dividerPos,
                 rotation = Vector(0, 180, 180),
@@ -519,7 +519,7 @@ function examineCard(fearDeck, dividerPos)
         -- TODO figure out a way to make this more generic
         local stage = nil
         local type = nil
-        if fearDeck.tag == "Deck" then
+        if fearDeck.type == "Deck" then
             local start,finish = string.find(card.lua_script,"cardInvaderStage=")
             if start ~= nil then
                 stage = tonumber(string.sub(card.lua_script,finish+1))
@@ -533,7 +533,7 @@ function examineCard(fearDeck, dividerPos)
 
         if stage ~= nil then
             local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,-1)
-            if fearDeck.tag == "Deck" then
+            if fearDeck.type == "Deck" then
                 card = fearDeck.takeObject({
                     position = pos,
                     rotation = Vector(0,180,0),
@@ -560,14 +560,14 @@ function examineCard(fearDeck, dividerPos)
                 end
             end
         else
-            if fearDeck.tag == "Deck" then
+            if fearDeck.type == "Deck" then
                 return nil, true, emptyDeck
             else
                 return card, true, emptyDeck
             end
         end
     end
-    if fearDeck.tag == "Deck" then
+    if fearDeck.type == "Deck" then
         return nil, false, emptyDeck
     else
         return card, false, emptyDeck
@@ -737,14 +737,14 @@ function scanElements()
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
             --Ignore non-cards
-            if entry.tag == "Card" then
+            if entry.type == "Card" then
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
                         table.insert(elemCardTable, entry)
                     end
                 end
-            elseif entry.tag == "Tile" then
+            elseif entry.type == "Tile" then
                 if entry.getVar("elements") ~= nil then
                     table.insert(elemCardTable, entry)
                 end

@@ -175,7 +175,7 @@ function PostSetup(params)
                 smooth = false,
             })
             Wait.condition(function() postSetupComplete = true end, function()
-                local objs = zone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == count + 1
+                local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
             end)
         else
             postSetupComplete = true

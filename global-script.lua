@@ -180,14 +180,14 @@ end
 function onObjectEnterScriptingZone(zone, obj)
     if zone.guid == "ac4fad" then
         if gameStarted and not gamePaused then
-            if obj.tag ~= "Card" then
+            if obj.type ~= "Card" then
                 if not zoneDestroyFlag then
                     zoneDestroyFlag = true
                     Wait.time(checkZoneDestroy,1)
                 end
             end
         elseif not gameStarted then
-            if obj ~= nil and obj.tag == "Card" and type(obj.getVar("difficulty")) == "table" then
+            if obj ~= nil and obj.type == "Card" and type(obj.getVar("difficulty")) == "table" then
                 -- Adversaries have difficulty tables, Scenarios have difficulty numbers
                 local found = false
                 for _,guid in pairs(adversaryGuids) do
@@ -421,7 +421,14 @@ function SetupGame()
         end
     else
         if SetupChecker.getVar("optionalExtraBoard") then
-            numBoards = numPlayers + 1
+            if numPlayers == 6 then
+                -- There are only currently 6 balanced boards
+                SetupChecker.setVar("optionalExtraBoard", false)
+                SetupChecker.call("updateDifficulty", {})
+                numBoards = numPlayers
+            else
+                numBoards = numPlayers + 1
+            end
         else
             numBoards = numPlayers
         end
@@ -437,7 +444,7 @@ function SetupGame()
     end
 
     Wait.stop(cleanupTimerId)
-    SetupChecker.call("hideUI", {})
+    SetupChecker.call("closeUI", {})
 
     startLuaCoroutine(Global, "PreSetup")
     Wait.condition(function()
@@ -702,7 +709,7 @@ function SetupFear()
         else
             stagesSetup = stagesSetup + 1
         end
-    end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == count end)
+    end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count end)
     return 1
 end
 function setupFearTokens()
@@ -842,14 +849,14 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
 
     local Deck = deckZone.getObjects()
     if Deck[1] == nil then
-    elseif Deck[1].tag == "Card" then
+    elseif Deck[1].type == "Card" then
         Deck[1].setLock(true)
         Deck[1].setPositionSmooth(powerDealCentre + Vector(cardPlaceOffsetXs[1],0,0))
         Deck[1].setRotationSmooth(Vector(0, 180, 0))
         CreatePickPowerButton(Deck[1], clickFunctionName)
         cardToAdd = cardToAdd + 1
         Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not Deck[1].isSmoothMoving() end)
-    elseif Deck[1].tag == "Deck" then
+    elseif Deck[1].type == "Deck" then
         for i=1, math.min(Deck[1].getQuantity(), 4) do
             local tempCard = Deck[1].takeObject({
                 position       = powerDealCentre + Vector(cardPlaceOffsetXs[i],0,0),
@@ -950,7 +957,7 @@ function grabBlightCard(setup)
     local blightDeckZone = getObjectFromGUID("b38ea8")
     local blightDeck = blightDeckZone.getObjects()[1]
     local blightCardPos = aidBoard.positionToWorld(Vector(-1.15,0.11,0.99))
-    if blightDeck.tag == "Deck" then
+    if blightDeck.type == "Deck" then
         blightDeck.shuffle()
         local card = blightDeck.takeObject({
             position = blightDeckZone.getPosition() + Vector(3.92, 1, 0),
@@ -1499,7 +1506,7 @@ function grabInvaderCards(deckTable)
     end
     Wait.condition(function() group(cardTable) end, function() return cardsLoaded == #deckTable end)
     local zone = getObjectFromGUID(invaderDeckZone)
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == #deckTable end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #deckTable end)
 end
 ----- Event Deck Section
 function SetupEventDeck()
@@ -1646,11 +1653,11 @@ function PostSetup()
             setupCommandCard(invaderDeck, stageIII, "a578fe")
             Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
                 local objs = zone.getObjects()
-                return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == #cards + 2
+                return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
             end)
         end, function()
             local objs = zone.getObjects()
-            return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == #cards + 1
+            return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
         end)
     else
         postSetupSteps = postSetupSteps + 1
@@ -1835,7 +1842,7 @@ function timePassesCo()
             if obj.getName() == "Any" then
                 if obj.getStateId() ~= 9 then obj.setState(9) end
                 if obj.getLock() == false then obj.destruct() end
-            elseif obj.tag == "Tile" and obj.getVar("elements") ~= nil then
+            elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
                 if obj.getLock() == false then obj.destruct() end
             end
         end
@@ -1877,7 +1884,7 @@ end
 function resetPiece(object, rotation, depth)
     for _,obj in pairs(upCastRay(object,5)) do
         -- need to store tag since after state change tag isn’t instantly updated
-        local isFigurine = obj.tag == "Figurine"
+        local isFigurine = obj.type == "Figurine"
         obj = handlePiece(obj, depth + 1)
         if obj ~= nil then
             obj.setPositionSmooth(obj.getPosition() + Vector(0,2*depth,0))
@@ -2653,7 +2660,7 @@ function deleteObject(obj)
         end
     end
 
-    if removeObject and (bag == nil or bag.tag == "Infinite") then
+    if removeObject and (bag == nil or bag.type == "Infinite") then
         obj.destruct()
     elseif removeObject then
         obj.highlightOff()
@@ -2737,7 +2744,7 @@ function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
         if tags ~= {} then
             local matchesTag = false
             for _,t in pairs(tags) do
-                if v.hit_object.tag == t then matchesTag = true end
+                if v.hit_object.type == t then matchesTag = true end
             end
             if matchesTag then
                 table.insert(hitObjects,v.hit_object)
@@ -2747,6 +2754,87 @@ function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
         end
     end
     return hitObjects
+end
+---- Block Square Section
+function setupPlayerArea(params)
+    --Sets position/color for the button, spawns it
+    params.obj.createButton({
+        label="Energy Cost: 0", click_function="nullFunc",
+        position={0,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
+        font_color={1,1,1}, font_size=500
+    })
+    for _,bag in pairs(params.elementBags) do
+        bag.createButton({
+            label="0", click_function="nullFunc",
+            position={0,2.04,1.05}, rotation={0,0,0}, height=0, width=0,
+            font_color={1,1,1}, font_size=450
+        })
+    end
+    local energy = 0
+
+    local function elemStrToArr(elemStr)
+        local outArr = {}
+        for i = 1, string.len(elemStr) do
+            table.insert(outArr,(math.floor(string.sub(elemStr, i, i))))
+        end
+        return outArr
+    end
+
+    local function elemCombine(inTableOfElemStrCards)
+        outTable = {0,0,0,0,0,0,0,0}
+        for i = 1, #inTableOfElemStrCards do
+            local elemTable = elemStrToArr(inTableOfElemStrCards[i].getVar("elements"))
+            for j = 1, 8 do
+                outTable[j] = outTable[j] + elemTable[j]
+            end
+            if inTableOfElemStrCards[i].getVar("energy") ~= nil then
+                energy = energy + inTableOfElemStrCards[i].getVar("energy")
+            end
+        end
+        return outTable
+    end
+
+    local function countItems()
+        local totalValue = 0
+        local zone = params.zone
+        local itemsInZone = zone.getObjects()
+        local elemCardTable = {}
+        energy = 0
+        --Go through all items found in the zone
+        for _, entry in ipairs(itemsInZone) do
+            --Ignore non-cards
+            if entry.type == "Card" then
+                --Ignore if no elements entry
+                if entry.getVar("elements") ~= nil then
+                    if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
+                        table.insert(elemCardTable, entry)
+                    end
+                end
+            elseif entry.type == "Tile" then
+                if entry.getVar("elements") ~= nil then
+                    table.insert(elemCardTable, entry)
+                end
+            elseif entry.type == "Chip" then
+                local quantity = entry.getQuantity()
+                if quantity == -1 then
+                    quantity = 1
+                end
+                if entry.getName() == "1 Energy" then
+                    energy = energy - (1 * quantity)
+                elseif entry.getName() == "3 Energy" then
+                    energy = energy - (3 * quantity)
+                end
+            end
+        end
+        combinedElements = elemCombine(elemCardTable)
+        params.obj.editButton({index=0, label="Energy Cost: "..energy})
+        for i,v in ipairs(combinedElements) do
+            params.elementBags[i].editButton({index=0, label=v})
+        end
+        --Updates the number display
+    end
+
+    Wait.time(countItems,1,-1)
 end
 ---- UI Section
 childHeight = 80

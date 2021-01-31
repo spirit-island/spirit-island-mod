@@ -138,7 +138,7 @@ function LimitSetup(params)
         townBag.putObject(tempObject)
         townBag.call("setCallback", {obj=self,func="updateCount"})
         Wait.condition(function() limitSetupComplete = true end, function() return #townBag.getObjects() == townLimit end)
-    end, function() return getObjectFromGUID(id).tag == "Bag" end)
+    end, function() return getObjectFromGUID(id).type == "Bag" end)
 end
 
 function MapSetup(params)
@@ -196,7 +196,7 @@ function PostSetup(params)
                 smooth = false,
             })
             Wait.condition(function() postSetupComplete = true end, function()
-                local objs = zone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == count + 1
+                local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
             end)
         else
             postSetupComplete = true

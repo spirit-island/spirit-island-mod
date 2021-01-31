@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "1/31/2021 2:49:15 PM",
+  "Date": "1/31/2021 3:33:41 PM",
   "VersionNumber": "v13.0.1",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -95,7 +95,7 @@
       {
         "Color": "Red",
         "Transform": {
-          "posX": -26.6134033,
+          "posX": -26.7,
           "posY": 4.10000038,
           "posZ": -44.16999,
           "rotX": 0.0,
@@ -109,7 +109,7 @@
       {
         "Color": "Purple",
         "Transform": {
-          "posX": -3.61337614,
+          "posX": -3.8,
           "posY": 4.10000038,
           "posZ": -44.16999,
           "rotX": 0.0,
@@ -123,7 +123,7 @@
       {
         "Color": "Yellow",
         "Transform": {
-          "posX": 19.3866444,
+          "posX": 19.1,
           "posY": 4.10000038,
           "posZ": -44.16999,
           "rotX": 0.0,
@@ -137,7 +137,7 @@
       {
         "Color": "Blue",
         "Transform": {
-          "posX": 42.3866653,
+          "posX": 42.0,
           "posY": 4.10000038,
           "posZ": -44.16999,
           "rotX": 0.0,
@@ -151,7 +151,7 @@
       {
         "Color": "Green",
         "Transform": {
-          "posX": 65.38666,
+          "posX": 64.9,
           "posY": 4.10000038,
           "posZ": -44.16999,
           "rotX": 0.0,
@@ -165,7 +165,7 @@
       {
         "Color": "Red",
         "Transform": {
-          "posX": -26.6134033,
+          "posX": -26.7,
           "posY": 4.10000038,
           "posZ": -50.9999962,
           "rotX": 0.0,
@@ -179,7 +179,7 @@
       {
         "Color": "Purple",
         "Transform": {
-          "posX": -3.61337614,
+          "posX": -3.8,
           "posY": 4.10000038,
           "posZ": -50.9999962,
           "rotX": 0.0,
@@ -193,7 +193,7 @@
       {
         "Color": "Yellow",
         "Transform": {
-          "posX": 19.3866444,
+          "posX": 19.1,
           "posY": 4.10000038,
           "posZ": -50.9999962,
           "rotX": 0.0,
@@ -207,7 +207,7 @@
       {
         "Color": "Blue",
         "Transform": {
-          "posX": 42.3866653,
+          "posX": 42.0,
           "posY": 4.10000038,
           "posZ": -50.9999962,
           "rotX": 0.0,
@@ -221,7 +221,7 @@
       {
         "Color": "Green",
         "Transform": {
-          "posX": 65.38666,
+          "posX": 64.9,
           "posY": 4.10000038,
           "posZ": -50.9999962,
           "rotX": 0.0,
@@ -235,7 +235,7 @@
       {
         "Color": "Orange",
         "Transform": {
-          "posX": 88.38669,
+          "posX": 87.8,
           "posY": 4.10000038,
           "posZ": -44.16999,
           "rotX": 0.0,
@@ -249,7 +249,7 @@
       {
         "Color": "Orange",
         "Transform": {
-          "posX": 88.38669,
+          "posX": 87.8,
           "posY": 4.10000038,
           "posZ": -50.9999962,
           "rotX": 0.0,

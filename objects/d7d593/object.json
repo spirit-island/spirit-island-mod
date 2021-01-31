@@ -1,13 +1,13 @@
 {
   "Name": "Custom_Assetbundle",
   "Transform": {
-    "posX": 64.97801,
+    "posX": 64.9,
     "posY": 0.59,
     "posZ": -31.9999657,
     "rotX": 0.004446592,
     "rotY": 179.99968,
-    "rotZ": 0.005614384,
-    "scaleX": 2.31,
+    "rotZ": 0.0,
+    "scaleX": 2.3,
     "scaleY": 1.0,
     "scaleZ": 1.59564221
   },

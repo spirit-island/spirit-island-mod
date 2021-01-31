@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.25,
+    "posX": -42.24909,
     "posY": 1.07,
-    "posZ": 43.5930138,
+    "posZ": 45.272068,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -19,6 +19,7 @@
     "g": 0.560111,
     "b": 0.5600328
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -55,6 +56,7 @@
   },
   "ChildObjects": [
     {
+      "GUID": "4b4bdc",
       "Name": "Bag",
       "Transform": {
         "posX": 0.03456322,
@@ -75,6 +77,7 @@
         "g": 0.366520882,
         "b": 0.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": true,
       "Snap": true,
@@ -92,10 +95,10 @@
       "Number": 0,
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "4b4bdc"
+      "XmlUI": ""
     },
     {
+      "GUID": "bc09d0",
       "Name": "Custom_Model",
       "Transform": {
         "posX": 0.0300028156,
@@ -116,6 +119,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
       "Snap": false,
@@ -150,8 +154,7 @@
       },
       "LuaScript": "destroyOnTableDrop=true",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "bc09d0"
+      "XmlUI": ""
     }
   ]
 }

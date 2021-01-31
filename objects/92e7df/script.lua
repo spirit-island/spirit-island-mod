@@ -62,9 +62,6 @@ function onLoad()
     end
     Global.call("addSpirit", {spirit=self})
 end
-function onObjectDestroy(obj)
-    if obj == self then Global.call("removeSpirit", {spirit=self.guid}) end
-end
 
 function PickSpirit(params)
     if params.random.aspect then

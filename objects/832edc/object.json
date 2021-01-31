@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -68.71494,
+    "posX": -68.70481,
     "posY": 1.11076927,
-    "posZ": 53.8448563,
-    "rotX": 0.00441654539,
-    "rotY": 179.987762,
+    "posZ": 53.8457375,
+    "rotX": 0.004416598,
+    "rotY": 179.837692,
     "rotZ": 180.0,
-    "scaleX": 1.53204679,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Progression",
   "Description": "",
@@ -19,7 +19,8 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
-  "Locked": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
   "Grid": true,
   "Snap": false,
   "IgnoreFoW": false,

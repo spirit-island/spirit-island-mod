@@ -19,6 +19,7 @@
     "g": 1.0,
     "b": 1.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -35,7 +36,7 @@
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
     "Convex": true,
     "MaterialIndex": 1,
     "TypeIndex": 1,
@@ -52,6 +53,7 @@
   ],
   "States": {
     "2": {
+      "GUID": "c0d874",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -56.13811,
@@ -72,6 +74,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -97,7 +100,6 @@
       "LuaScript": "highlightOnObjectDrop = true",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "c0d874",
       "AttachedSnapPoints": [
         {
           "Position": {

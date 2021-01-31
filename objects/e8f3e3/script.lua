@@ -12,6 +12,7 @@ hasLossCondition = true
 hasUI = true
 supporting = false
 requirements = true
+thematicRebellion = false
 
 function onLoad()
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
@@ -111,7 +112,7 @@ function LimitSetup(params)
             broadcastToAll("As you are playing with multiple adversaries, you will be playing with additional towns for France's Loss Condition - Sprawling Plantations", Color.SoftBlue)
         end
     end
-    local townLimit = townLimit * Global.getVar("numPlayers")
+    local townLimit = townLimit * Global.getVar("numBoards")
     local townBag = Global.getVar("townBag")
 
     local customO = townBag.getCustomObject()
@@ -141,12 +142,12 @@ function LimitSetup(params)
 end
 
 function MapSetup(params)
-    if params.level >= 3 then
+    if not params.extra and params.level >= 3 then
         -- on each board add 1 Town to the highest-numbered land without a Town. Add 1 Town to land #1
         for i=#params.pieces,1,-1 do
             local landHasTown = false
             for _,v in pairs (params.pieces[i]) do
-                if v == "Town" then
+                if string.sub(v,1,4) == "Town" then
                     landHasTown = true
                     break
                 end
@@ -178,14 +179,16 @@ function PostSetup(params)
         if eventDeck ~= nil then
             local count = #eventDeck.getObjects()
             eventDeck.takeObject({
-                position = eventDeck.getPosition() + Vector(0,3,0)
-            })
-            eventDeck.takeObject({
-                position = eventDeck.getPosition() + Vector(0,2.5,0)
+                position = eventDeck.getPosition() + Vector(0,2,0)
             })
             eventDeck.takeObject({
                 position = eventDeck.getPosition() + Vector(0,2,0)
             })
+            if not thematicRebellion or (thematicRebellion and math.random(1,2) == 1) then
+                eventDeck.takeObject({
+                    position = eventDeck.getPosition() + Vector(0,2,0)
+                })
+            end
             adversaryBag.takeObject({
                 guid = "1f0327",
                 position = eventDeck.getPosition() + Vector(0,0.1,0),

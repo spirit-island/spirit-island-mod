@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -43.94,
+    "posX": -43.9184,
     "posY": 1.07425451,
-    "posZ": 48.65963,
+    "posZ": 40.2319641,
     "rotX": -7.622285e-08,
     "rotY": 0.0,
     "rotZ": -1.20849563e-06,
@@ -19,6 +19,7 @@
     "g": 0.560111,
     "b": 0.5600328
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -53,8 +54,12 @@
     },
     "CastShadows": false
   },
+  "Bag": {
+    "Order": 0
+  },
   "ChildObjects": [
     {
+      "GUID": "af3af1",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -0.0165715683,
@@ -75,6 +80,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": true,
       "Snap": true,
@@ -109,8 +115,7 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "af3af1"
+      "XmlUI": ""
     }
   ]
 }

@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -33.6753,
-    "posY": 1.1075511,
-    "posZ": 49.3787079,
-    "rotX": 6.69602755e-08,
-    "rotY": 180.02063,
+    "posX": -35.4381371,
+    "posY": 1.10760248,
+    "posZ": 49.469902,
+    "rotX": 4.905038e-08,
+    "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.47426069,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47426069
+    "scaleZ": 1.53
   },
   "Nickname": "Event",
   "Description": "Branch & Claw Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,
@@ -33,10 +34,10 @@
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
+    65203,
     65200,
     65201,
     65202,
-    65203,
     65204,
     65205,
     65206,

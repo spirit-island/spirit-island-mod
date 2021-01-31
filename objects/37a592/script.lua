@@ -91,15 +91,15 @@ function AdversaryUI(params)
 end
 
 function MapSetup(params)
-    if params.level >= 2 then
+    if not params.extra and params.level >= 2 then
         table.insert(params.pieces[2],"City")
     end
     return params.pieces
 end
 
 function PostSetup(params)
-    if params.other.level > 0 and params.thematic == "false" then
-        broadcastToAll("Push all Cities not in land #2 to an adjacent Inland land", "Blue")
+    if params.other.level > 0 then
+        broadcastToAll("Push all Adversary Coastal Cities not in land #2 to an adjacent Inland land", "Blue")
     end
     if params.level >= 6 then
         local aidBoard = Global.getVar("aidBoard")

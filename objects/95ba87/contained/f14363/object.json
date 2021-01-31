@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 83.76167,
-    "posY": 2.169924,
-    "posZ": 32.15137,
-    "rotX": 7.55321253e-07,
-    "rotY": 180.0018,
-    "rotZ": -0.000144246093,
+    "posX": 137.862335,
+    "posY": 1.20967579,
+    "posZ": 36.26498,
+    "rotX": 3.6168646e-07,
+    "rotY": 179.995789,
+    "rotZ": -0.000144390448,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
@@ -19,6 +19,7 @@
     "g": 1.0,
     "b": 1.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -32,7 +33,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617313684071921722/072BB2BCC7BD4BA8C1D57347852EB371E05C67DA/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1662353477268238916/E1A72ADACB260F7F93DE360F015509C953CBC1C6/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

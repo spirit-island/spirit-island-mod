@@ -1,12 +1,12 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -90.4199,
-    "posY": 0.90151614,
-    "posZ": -19.2998524,
-    "rotX": 0.004446496,
-    "rotY": 180.014542,
-    "rotZ": 1.19620063e-06,
+    "posX": -5.290277,
+    "posY": 1.99104059,
+    "posZ": -1.22472072,
+    "rotX": 0.00444659265,
+    "rotY": 180.0,
+    "rotZ": 180.0,
     "scaleX": 1.53204679,
     "scaleY": 1.0,
     "scaleZ": 1.53204679
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,
@@ -42,6 +43,60 @@
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0
+    }
+  },
+  "States": {
+    "2": {
+      "GUID": "61da6c",
+      "Name": "CardCustom",
+      "Transform": {
+        "posX": -47.3,
+        "posY": 0.9013854,
+        "posZ": -20.98,
+        "rotX": 0.004446578,
+        "rotY": 180.0,
+        "rotZ": -1.10897673e-07,
+        "scaleX": 1.53,
+        "scaleY": 1.0,
+        "scaleZ": 1.53
+      },
+      "Nickname": "Vengeance of the Dead",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.713235259,
+        "g": 0.713235259,
+        "b": 0.713235259
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": true,
+      "CardID": 65000,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "650": {
+          "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1754683565834654257/2240AD44053F45010A18A8A83BE2D227252C6433/",
+          "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+          "NumWidth": 1,
+          "NumHeight": 1,
+          "BackIsHidden": true,
+          "UniqueBack": false,
+          "Type": 0
+        }
+      },
+      "LuaScript": "elements=\"01100001\"\nenergy=3",
+      "LuaScriptState": "",
+      "XmlUI": ""
     }
   }
 }

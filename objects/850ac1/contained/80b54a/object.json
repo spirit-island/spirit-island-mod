@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -43.94,
-    "posY": 1.07425451,
-    "posZ": 48.46,
-    "rotX": 7.084339e-08,
-    "rotY": 180.000061,
+    "posX": -17.2552052,
+    "posY": 1.152477,
+    "posZ": 38.196022,
+    "rotX": -2.58281347e-07,
+    "rotY": 179.999847,
     "rotZ": 180.0,
-    "scaleX": 1.53204679,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Minor Powers",
   "Description": "Jagged Earth Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,
@@ -43,9 +44,9 @@
     60720,
     60725,
     60726,
+    60710,
     60724,
     60723,
-    60710,
     60709,
     60708,
     60707,

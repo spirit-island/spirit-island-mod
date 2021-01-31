@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -57.9941368,
-    "posY": 3.32746124,
-    "posZ": 33.6188431,
-    "rotX": 359.974243,
-    "rotY": 269.976837,
-    "rotZ": 359.9004,
+    "posX": -55.9782639,
+    "posY": 3.328446,
+    "posZ": 34.7940559,
+    "rotX": 359.990326,
+    "rotY": 269.992981,
+    "rotZ": 359.981842,
     "scaleX": 2.42499876,
     "scaleY": 2.42499876,
     "scaleZ": 2.42499876
@@ -19,6 +19,7 @@
     "g": 0.880506933,
     "b": 0.8526128
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -39,7 +40,7 @@
     "Convex": true,
     "MaterialIndex": 0,
     "TypeIndex": 1,
-    "CastShadows": true
+    "CastShadows": false
   },
   "AttachedSnapPoints": [
     {
@@ -52,6 +53,7 @@
   ],
   "States": {
     "2": {
+      "GUID": "58ba36",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -52.0801659,
@@ -72,6 +74,7 @@
         "g": 0.880506933,
         "b": 0.8526128
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -97,7 +100,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "58ba36",
       "AttachedSnapPoints": [
         {
           "Position": {

@@ -1,0 +1,48 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 8.53,
+    "posY": 0.8835357,
+    "posZ": -1.94,
+    "rotX": 3.16144657e-08,
+    "rotY": 180.012711,
+    "rotZ": 179.999863,
+    "scaleX": 2.73,
+    "scaleY": 1.0,
+    "scaleZ": 2.73
+  },
+  "Nickname": "A Diversity of Spirts",
+  "Description": "Promo Pack #2",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 54000,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "540": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420504441/7D4B9B157F8805D3F5BC78044B0D6861626CBBE1/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420507457/E94CFBDC8C8891794947F64233E71656FC664DDA/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}

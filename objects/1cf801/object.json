@@ -4,12 +4,12 @@
     "posX": -89.3410645,
     "posY": 1.13561153,
     "posZ": 31.42032,
-    "rotX": 0.00446148543,
-    "rotY": 180.008057,
+    "rotX": 0.00446146447,
+    "rotY": 180.008209,
     "rotZ": 180.000046,
-    "scaleX": 1.53204679,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "",
   "Description": "",
@@ -19,7 +19,8 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
-  "Locked": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
   "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,

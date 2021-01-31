@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.2390671,
+    "posX": -42.2381554,
     "posY": 1.071135,
-    "posZ": 40.22936,
+    "posZ": 41.9084129,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -19,6 +19,7 @@
     "g": 0.560111,
     "b": 0.5600328
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -55,6 +56,7 @@
   },
   "ChildObjects": [
     {
+      "GUID": "2585e8",
       "Name": "Custom_Model",
       "Transform": {
         "posX": 0.00584613765,
@@ -75,6 +77,7 @@
         "g": 0.1815368,
         "b": 0.1864081
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
       "Snap": true,
@@ -94,7 +97,7 @@
         "ColliderURL": "",
         "Convex": false,
         "MaterialIndex": 3,
-        "TypeIndex": 0,
+        "TypeIndex": 5,
         "CustomShader": {
           "SpecularColor": {
             "r": 0.6951219,
@@ -110,7 +113,6 @@
       "LuaScript": "highlightOnObjectDrop = true\r\n",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "2585e8",
       "AttachedSnapPoints": [
         {
           "Position": {

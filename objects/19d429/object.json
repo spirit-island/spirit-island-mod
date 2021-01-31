@@ -1,0 +1,35 @@
+{
+  "Name": "BlockRectangle",
+  "Transform": {
+    "posX": -6.366456,
+    "posY": -1.482784,
+    "posZ": 6.670572,
+    "rotX": -0.00445515662,
+    "rotY": 90.0,
+    "rotZ": -1.81447729e-06,
+    "scaleX": 110.10498,
+    "scaleY": 4.020863,
+    "scaleZ": 124.991966
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.1329813,
+    "g": 0.06611892,
+    "b": 0.02154632
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false
+}

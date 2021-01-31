@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -117.686333,
-    "posY": 1.18620157,
-    "posZ": 9.020003,
-    "rotX": 0.00460641738,
-    "rotY": 179.999619,
-    "rotZ": 0.0005292494,
+    "posX": -117.69,
+    "posY": 1.18510985,
+    "posZ": 9.019947,
+    "rotX": 0.004444472,
+    "rotY": 179.9999,
+    "rotZ": 3.83358747e-06,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -19,6 +19,7 @@
     "g": 1.0,
     "b": 1.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,
@@ -45,6 +46,7 @@
   },
   "States": {
     "3": {
+      "GUID": "43e20a",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -65,6 +67,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -91,10 +94,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "43e20a"
+      "XmlUI": ""
     },
     "4": {
+      "GUID": "f36f32",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -115,6 +118,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -141,10 +145,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "f36f32"
+      "XmlUI": ""
     },
     "5": {
+      "GUID": "8e54ff",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -165,6 +169,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -191,10 +196,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "8e54ff"
+      "XmlUI": ""
     },
     "6": {
+      "GUID": "a5895a",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -215,6 +220,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -241,10 +247,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "a5895a"
+      "XmlUI": ""
     },
     "7": {
+      "GUID": "31443f",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -265,6 +271,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -291,10 +298,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "31443f"
+      "XmlUI": ""
     },
     "8": {
+      "GUID": "372ead",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -315,6 +322,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -341,10 +349,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "372ead"
+      "XmlUI": ""
     },
     "9": {
+      "GUID": "ebade9",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -137.9736,
@@ -365,6 +373,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -391,10 +400,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "ebade9"
+      "XmlUI": ""
     },
     "1": {
+      "GUID": "45247f",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -137.9736,
@@ -415,6 +424,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -441,8 +451,7 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "45247f"
+      "XmlUI": ""
     }
   }
 }

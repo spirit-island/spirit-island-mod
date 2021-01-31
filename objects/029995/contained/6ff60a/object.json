@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -87.67,
-    "posY": 0.9006035,
-    "posZ": -31.0600014,
-    "rotX": 0.00444660662,
-    "rotY": 179.9886,
-    "rotZ": -8.76838953e-07,
-    "scaleX": 1.55328667,
+    "posX": -66.1800156,
+    "posY": 0.8633681,
+    "posZ": -20.180006,
+    "rotX": -6.403442e-06,
+    "rotY": 180.000732,
+    "rotZ": -0.004456088,
+    "scaleX": 0.7250594,
     "scaleY": 1.0,
-    "scaleZ": 1.55328667
+    "scaleZ": 0.7250594
   },
   "Nickname": "",
   "Description": "",
@@ -19,8 +19,9 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,

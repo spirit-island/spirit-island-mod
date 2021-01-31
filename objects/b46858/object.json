@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -55.7,
+    "posX": -55.7000465,
     "posY": 0.9405585,
-    "posZ": 43.98,
-    "rotX": -1.70045045e-08,
-    "rotY": 180.0,
+    "posZ": 44.5396423,
+    "rotX": -4.08100664e-09,
+    "rotY": 179.995163,
     "rotZ": 180.0,
-    "scaleX": 1.47602439,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Blight Cards",
   "Description": "Spirit Island",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

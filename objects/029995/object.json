@@ -19,6 +19,7 @@
     "g": 0.560111,
     "b": 0.5600328
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -52,5 +53,8 @@
       "FresnelStrength": 0.0
     },
     "CastShadows": false
+  },
+  "Bag": {
+    "Order": 0
   }
 }

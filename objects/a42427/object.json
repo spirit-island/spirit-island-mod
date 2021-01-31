@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -55.7,
+    "posX": -55.6999741,
     "posY": 1.26173759,
-    "posZ": 16.4730015,
+    "posZ": 16.363369,
     "rotX": -1.08754783e-07,
     "rotY": 179.987823,
     "rotZ": -0.000144587873,
@@ -20,6 +20,7 @@
     "b": 0.5568628,
     "a": 0.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -56,6 +57,7 @@
   },
   "ChildObjects": [
     {
+      "GUID": "791505",
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.04320731,
@@ -76,6 +78,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
       "Snap": false,
@@ -102,8 +105,7 @@
       },
       "LuaScript": "highlightOnObjectDrop = true",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "791505"
+      "XmlUI": ""
     }
   ]
 }

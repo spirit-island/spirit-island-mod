@@ -4,12 +4,12 @@
     "posX": -102.047577,
     "posY": 1.11076868,
     "posZ": 53.82006,
-    "rotX": 0.004446603,
-    "rotY": 179.993881,
+    "rotX": 0.00444656843,
+    "rotY": 179.994064,
     "rotZ": 180.0,
-    "scaleX": 1.53204679,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Progression",
   "Description": "",
@@ -19,7 +19,8 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
-  "Locked": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
   "Grid": true,
   "Snap": false,
   "IgnoreFoW": false,

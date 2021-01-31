@@ -1,0 +1,48 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 21.8,
+    "posY": 0.883569062,
+    "posZ": 7.02,
+    "rotX": -9.515703e-09,
+    "rotY": 179.995987,
+    "rotZ": 179.999863,
+    "scaleX": 2.73,
+    "scaleY": 1.0,
+    "scaleZ": 2.73
+  },
+  "Nickname": "Varied Terrains",
+  "Description": "Promo Pack #2",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 54406,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "544": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420504441/7D4B9B157F8805D3F5BC78044B0D6861626CBBE1/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420507457/E94CFBDC8C8891794947F64233E71656FC664DDA/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}

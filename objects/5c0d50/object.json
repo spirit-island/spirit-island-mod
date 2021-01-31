@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -45.6128769,
+    "posX": -45.62001,
     "posY": 1.08282125,
-    "posZ": -10.61023,
-    "rotX": 0.00444681337,
-    "rotY": 180.006012,
+    "posZ": -10.6100149,
+    "rotX": 0.00444677565,
+    "rotY": 180.006287,
     "rotZ": 180.0,
-    "scaleX": 1.53204679,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Minor Powers",
   "Description": "Spirit Island",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

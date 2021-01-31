@@ -3,13 +3,13 @@
   "Transform": {
     "posX": -89.34304,
     "posY": 1.13229525,
-    "posZ": 20.1400375,
-    "rotX": 0.004447859,
-    "rotY": 179.999023,
+    "posZ": 20.14004,
+    "rotX": 0.004447876,
+    "rotY": 179.999222,
     "rotZ": 180.0,
-    "scaleX": 1.47602439,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "",
   "Description": "",
@@ -19,7 +19,8 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
-  "Locked": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
   "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,

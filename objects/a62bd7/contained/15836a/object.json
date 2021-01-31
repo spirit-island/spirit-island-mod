@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -69.38884,
-    "posY": 1.337278,
-    "posZ": 0.6161761,
-    "rotX": -0.0024121895,
-    "rotY": 180.0018,
-    "rotZ": 0.005895459,
+    "posX": -23.5454865,
+    "posY": 2.00249481,
+    "posZ": 36.3325081,
+    "rotX": 0.0102439318,
+    "rotY": 180.001724,
+    "rotZ": 0.00693910336,
     "scaleX": 0.6749999,
     "scaleY": 0.6749999,
     "scaleZ": 0.6749999
@@ -15,11 +15,12 @@
   "Description": "Russia Lv0",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.06097375,
-    "g": 0.06097375,
-    "b": 0.06097375,
+    "r": 0.06097365,
+    "g": 0.06097365,
+    "b": 0.06097365,
     "a": 0.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": false,
@@ -47,6 +48,7 @@
   },
   "ChildObjects": [
     {
+      "GUID": "445754",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -0.02554342,
@@ -67,6 +69,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
       "Snap": false,
@@ -93,10 +96,10 @@
       },
       "LuaScript": "highlightOnObjectDrop = true",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "445754"
+      "XmlUI": ""
     },
     {
+      "GUID": "56e8c7",
       "Name": "BlockSquare",
       "Transform": {
         "posX": -0.0688346848,
@@ -117,6 +120,7 @@
         "g": 0.0,
         "b": 0.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": true,
       "Snap": true,
@@ -131,10 +135,10 @@
       "Hands": false,
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "56e8c7"
+      "XmlUI": ""
     },
     {
+      "GUID": "51f83b",
       "Name": "BlockSquare",
       "Transform": {
         "posX": -0.008522495,
@@ -155,6 +159,7 @@
         "g": 0.0,
         "b": 0.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": true,
       "Snap": true,
@@ -169,8 +174,7 @@
       "Hands": false,
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "51f83b"
+      "XmlUI": ""
     }
   ]
 }

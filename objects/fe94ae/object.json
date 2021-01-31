@@ -2,23 +2,25 @@
   "Name": "Infinite_Bag",
   "Transform": {
     "posX": -3.00930548,
-    "posY": -0.5,
-    "posZ": -13.6,
+    "posY": -0.73680687,
+    "posZ": -13.5999823,
     "rotX": 1.66476809e-07,
     "rotY": 180.000214,
     "rotZ": -1.5874042e-07,
-    "scaleX": 0.9000001,
+    "scaleX": 1.3,
     "scaleY": 0.9000001,
-    "scaleZ": 0.9000001
+    "scaleZ": 1.3
   },
   "Nickname": "Element Token",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.627,
-    "g": 0.124966688,
-    "b": 0.941
+    "r": 0.854901969,
+    "g": 0.0980341956,
+    "b": 0.09019143,
+    "a": 0.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,

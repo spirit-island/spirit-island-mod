@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,
@@ -30,6 +31,6 @@
   "Tooltip": true,
   "GridProjection": false,
   "Hands": true,
-  "CardID": 60527,
+  "CardID": 65027,
   "SidewaysCard": false
 }

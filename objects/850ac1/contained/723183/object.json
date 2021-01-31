@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -43.94,
-    "posY": 1.07425451,
-    "posZ": 48.46,
-    "rotX": 3.38242359e-08,
-    "rotY": 180.021179,
-    "rotZ": 179.999863,
-    "scaleX": 1.5,
+    "posX": -22.2954578,
+    "posY": 1.04558635,
+    "posZ": 42.67015,
+    "rotX": 0.0047419793,
+    "rotY": 180.021912,
+    "rotZ": 179.9992,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
   "Nickname": "Fear",
   "Description": "Jagged Earth Expansion",
@@ -19,6 +19,7 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

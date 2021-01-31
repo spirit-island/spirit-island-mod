@@ -2,11 +2,11 @@
   "Name": "Custom_Token",
   "Transform": {
     "posX": -115.69,
-    "posY": 1.18618333,
-    "posZ": 9.01998,
-    "rotX": 0.00462091,
-    "rotY": 180.0101,
-    "rotZ": 0.000524719653,
+    "posY": 1.18510973,
+    "posZ": 9.02,
+    "rotX": 0.00443858048,
+    "rotY": 180.01004,
+    "rotZ": 8.200487e-06,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -19,6 +19,7 @@
     "g": 1.0,
     "b": 1.0
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,
@@ -45,6 +46,7 @@
   },
   "States": {
     "1": {
+      "GUID": "45247f",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -65,6 +67,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -91,10 +94,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "45247f"
+      "XmlUI": ""
     },
     "2": {
+      "GUID": "051001",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -115,6 +118,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -141,10 +145,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "051001"
+      "XmlUI": ""
     },
     "3": {
+      "GUID": "43e20a",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -165,6 +169,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -191,10 +196,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "43e20a"
+      "XmlUI": ""
     },
     "5": {
+      "GUID": "8e54ff",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -215,6 +220,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -241,10 +247,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "8e54ff"
+      "XmlUI": ""
     },
     "6": {
+      "GUID": "a5895a",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -265,6 +271,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -291,10 +298,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "a5895a"
+      "XmlUI": ""
     },
     "7": {
+      "GUID": "31443f",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -315,6 +322,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -341,10 +349,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "31443f"
+      "XmlUI": ""
     },
     "8": {
+      "GUID": "372ead",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -141.940109,
@@ -365,6 +373,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -391,10 +400,10 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "372ead"
+      "XmlUI": ""
     },
     "9": {
+      "GUID": "bcfec9",
       "Name": "Custom_Token",
       "Transform": {
         "posX": -136.34,
@@ -415,6 +424,7 @@
         "g": 1.0,
         "b": 1.0
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
       "Snap": true,
@@ -441,8 +451,7 @@
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "bcfec9"
+      "XmlUI": ""
     }
   }
 }

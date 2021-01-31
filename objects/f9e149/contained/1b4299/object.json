@@ -1,0 +1,45 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -23.6110516,
+    "posY": 1.12114465,
+    "posZ": 58.1052856,
+    "rotX": 5.29127249e-07,
+    "rotY": 180.005447,
+    "rotZ": -0.000144397651,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Blue's Presence",
+  "Description": "A piece showing where a spirit lives in a land",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0,
+    "g": 0.0344827175,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": false
+  }
+}

@@ -112,14 +112,16 @@ function MapSetup(params)
         for i=#params.pieces,1,-1 do
             local landHasTownOrCity = false
             for _,v in pairs (params.pieces[i]) do
-                if v == "Town" or v == "City" then
+                if string.sub(v,1,4) == "Town" or string.sub(v,1,4) == "City" then
                     landHasTownOrCity = true
                     break
                 end
             end
             if not landHasTownOrCity then
                 table.insert(params.pieces[i],"Beasts")
-                table.insert(params.pieces[i],"Explorer")
+                if not params.extra then
+                    table.insert(params.pieces[i],"Explorer")
+                end
                 break
             end
         end

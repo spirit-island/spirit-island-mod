@@ -19,6 +19,7 @@
     "g": 0.224694848,
     "b": 0.224694848
   },
+  "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -62,6 +63,7 @@
   ],
   "States": {
     "2": {
+      "GUID": "d624f1",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -72.02217,
@@ -82,6 +84,7 @@
         "g": 0.9511289,
         "b": 0.532911
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -107,7 +110,6 @@
       "LuaScript": "highlightOnObjectDrop = true",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "d624f1",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -119,6 +121,7 @@
       ]
     },
     "3": {
+      "GUID": "ab5f10",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -70.68866,
@@ -139,6 +142,7 @@
         "g": 0.9511289,
         "b": 0.532911
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -164,7 +168,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "ab5f10",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -176,6 +179,7 @@
       ]
     },
     "4": {
+      "GUID": "8d90d9",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -69.38239,
@@ -196,6 +200,7 @@
         "g": 0.8117647,
         "b": 0.8117647
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -221,7 +226,6 @@
       "LuaScript": "highlightOnObjectDrop = true",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "8d90d9",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -233,6 +237,7 @@
       ]
     },
     "5": {
+      "GUID": "58ba36",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -67.99064,
@@ -253,6 +258,7 @@
         "g": 0.880506933,
         "b": 0.8526128
       },
+      "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -278,7 +284,6 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "58ba36",
       "AttachedSnapPoints": [
         {
           "Position": {

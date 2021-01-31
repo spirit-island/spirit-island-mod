@@ -371,7 +371,7 @@ function updateDifficulty()
     if scenario ~= nil then
         difficulty = difficulty + scenario.getVar("difficulty")
     end
-    if optionalExtraBoard and Global.getVar("numPlayers") < 6 then
+    if optionalExtraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
         if alternateSetupIndex == 0 then
@@ -385,10 +385,31 @@ end
 function startGame()
     Global.call("SetupGame", {})
 end
+function showUI()
+    self.UI.setAttribute("panelSetup", "visibility", "")
+    self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
+    if self.UI.getAttribute("optionalRules", "isOn") == "true" then
+        self.UI.setAttribute("panelOptional", "visibility", "")
+    end
+    if self.UI.getAttribute("randomizers", "isOn") == "true" then
+        self.UI.setAttribute("panelRandom", "visibility", "")
+    end
+    if self.UI.getAttribute("exploratory", "isOn") == "true" then
+        self.UI.setAttribute("panelExploratory", "visibility", "")
+    end
+    self.UI.setAttribute("panelAdvesaryScenario", "visibility", "")
+end
 function hideUI()
+    closeUI()
+    self.UI.setAttribute("panelSetupSmall", "visibility", "")
+end
+function closeUI()
     self.UI.setAttribute("panelSetup", "visibility", "Invisible")
+    self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
     self.UI.setAttribute("panelOptional", "visibility", "Invisible")
     self.UI.setAttribute("panelRandom", "visibility", "Invisible")
+    self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
+    self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
 end
 
 function toggleRandomizers()

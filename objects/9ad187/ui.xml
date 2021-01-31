@@ -92,7 +92,7 @@
                 </Cell>
                 <Cell class="boardLayout">
                     <Dropdown id="boardLayout" class="boardLayout" onValueChanged="toggleBoardLayout">
-                        <Option selected="true">Balanced</Option>
+                        <Option selected="true">Standard</Option>
                         <Option>Thematic</Option>
                     </Dropdown>
                 </Cell>
@@ -115,7 +115,8 @@
             </Row>
             <Row class="spacing"/>
             <Row>
-                <Cell columnSpan="2"><Button ignoreLayout="true" width="460" onClick="startGame" colors="#92E5AF|#92E5AF|#72B389|#72B38980">Start Game</Button></Cell>
+                <Cell><Button onClick="startGame" colors="#92E5AF|#92E5AF|#72B389|#72B38980">Start Game</Button></Cell>
+                <Cell><Button onClick="hideUI">Hide UI</Button></Cell>
             </Row>
             <Row class="spacing"/>
             <Row class="toggle">
@@ -124,6 +125,16 @@
             </Row>
             <Row class="toggle">
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="exploratory" onValueChanged="toggleExploratory"/><Text class="toggle"/><Button class="toggle" onClick="toggleExploratory" preferredWidth="360" tooltip="Altered versions of parts of the game that R. Eric Reuss&#xA;would like feedback on, but aren't worth official playtesting">Show Exploratory</Button></Cell>
+            </Row>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelSetupSmall" visibility="Invisible" width="1000" height="2800" position="-2200 -1640 12">
+    <VerticalLayout>
+        <TableLayout rowBackgroundColor="clear">
+            <Row>
+                <Cell><Button onClick="startGame" colors="#92E5AF|#92E5AF|#72B389|#72B38980">Start Game</Button></Cell>
+                <Cell><Button onClick="showUI">Show UI</Button></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
@@ -215,7 +226,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel width="1600" height="2800" position="-886 -1640 12">
+<Panel id="panelAdvesaryScenario" width="1600" height="2800" position="-886 -1640 12">
     <VerticalLayout width="1600">
         <TableLayout>
             <Row class="header">

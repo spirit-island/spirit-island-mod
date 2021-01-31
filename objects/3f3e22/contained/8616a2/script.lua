@@ -23,7 +23,7 @@ function globalUpdate()
 
     for _,v in pairs (getAllObjects()) do
         if v.getGUID() ~= sourceSpiritID then
-            if v.tag == "Tile" then
+            if v.type == "Tile" then
                 if v.name == "Custom_Tile" then
                     local aScript = v.getLuaScript()
                     if aScript ~= nil then
@@ -141,7 +141,7 @@ function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
             if tags ~= {} then
                 local matchesTag = false
                 for _,t in pairs(tags) do
-                    if v.hit_object.tag == t then matchesTag = true end
+                    if v.hit_object.type == t then matchesTag = true end
                 end
                 if matchesTag then
                     table.insert(hitObjects,v.hit_object)

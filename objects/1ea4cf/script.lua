@@ -161,10 +161,10 @@ function PostSetup(params)
         Wait.condition(function()
             setupInvaderCard(fearDeckZone, fearCards, 3, Global.getVar("stage2DeckZone"))
             Wait.condition(function() postSetupComplete = true end, function()
-                objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == count + 2
+                objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 2
             end)
         end, function()
-            objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].tag == "Deck" and #objs[1].getObjects() == count + 1
+            objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
         end)
     else
         postSetupComplete = true
@@ -186,7 +186,7 @@ function setupInvaderCard(fearDeckZone, fearCards, depth, zoneGuid)
     end
     local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
     if obj ~= nil then
-        if obj.tag == "Deck" then
+        if obj.type == "Deck" then
             obj.takeObject({
                 position = obj.getPosition() + Vector(0,1,0),
                 callback_function = function(card)
@@ -194,7 +194,7 @@ function setupInvaderCard(fearDeckZone, fearCards, depth, zoneGuid)
                     card.setPosition(fearDeck.getPosition() + Vector(0,0.1,0))
                 end,
             })
-        elseif obj.tag == "Card" then
+        elseif obj.type == "Card" then
             obj.scale(1.37)
             obj.setPosition(fearDeck.getPosition() + Vector(0,0.1,0))
         end

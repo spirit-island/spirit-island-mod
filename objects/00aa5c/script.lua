@@ -135,13 +135,13 @@ function SetupSpirit(object_pick,player_color)
         -- Setup objects on top of board
         for i,obj in pairs (castObjects) do
             obj.setLock(false)
-            if obj.tag == "Deck" then
+            if obj.type == "Deck" then
                 if string.find(obj.getName(),"Aspects") then
                     HandleAspect(obj, player_color)
                 else
                     obj.deal(#obj.getObjects(),player_color)
                 end
-            elseif obj.tag == "Card" and string.find(obj.getName(),"Progression") then
+            elseif obj.type == "Card" and string.find(obj.getName(),"Progression") then
                 if useProgression then
                     obj.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
                 else

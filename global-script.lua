@@ -2812,9 +2812,10 @@ function setupPlayerArea(params)
     obj.setVar("playerColor", color)  -- May be nil
     if color then
         obj.createButton({
-            label="Move to here", click_function="onSwapButtonClicked", function_owner=Global,
+            label="Swap with " .. color, click_function="onSwapButtonClicked", function_owner=Global,
             position={0,2.24,-7.2}, rotation={0,180,0}, height=800, width=4000,
-            font_color={0,0,0}, font_size=500, -- hover_color=color,
+            font_color={0,0,0}, font_size=500,
+            tooltip="Moves your current player color to be located here.  The color currently seated here will be moved to your current location.",
         })
     end
 
@@ -3154,10 +3155,6 @@ function swapPlayerAreas(a, b)
     local function tintSwap(table)
         local oa = table[a]
         local ob = table[b]
-        if type(oa) == "string" then
-            oa = getObjectFromGUID(oa)
-            ob = getObjectFromGUID(ob)
-        end
         local ta = oa.getColorTint()
         local tb = ob.getColorTint()
         oa.setColorTint(tb)
@@ -3176,8 +3173,16 @@ function swapPlayerAreas(a, b)
         oa.setPosition(tb)
         ob.setPosition(ta)
     end
+    local function updateBlock(color)
+        local o = playerBlocks[color]
+        if not o then
+            return 
+        end
+        o.setVar("playerColor", color)
+        o.editButton({index=1, label="Swap with " .. color})
+    end
 
-    print("Player " .. a .. " is trading places with player " .. b .. ".")
+    print(a .. " is trading places with player " .. b .. ".")
     for i = 1,2 do
         local ta = Player[a].getHandTransform(i)
         local tb = Player[b].getHandTransform(i)
@@ -3189,8 +3194,8 @@ function swapPlayerAreas(a, b)
     positionSwap(defendBags)
     positionSwap(readyTokens)
     tableSwap(elementScanZones)
-    if playerBlocks[a] then playerBlocks[a].setVar("playerColor", a) end
-    if playerBlocks[b] then playerBlocks[b].setVar("playerColor", b) end
+    updateBlock(a)
+    updateBlock(b)
 end
 
 

@@ -96,7 +96,7 @@ function onLoad(saved_data)
         height         = 0,
         scale          = Vector(0.2,0.2,0.2),
         font_size      = 300,
-        tooltip        = "Shows all player’s ready status\n\nFor use with Events, Fear Card, or other effects that need to be tracked"
+        tooltip        = "Shows all playerâ€™s ready status\n\nFor use with Events, Fear Card, or other effects that need to be tracked"
     })
     self.createButton({
         click_function = "toggleElements",
@@ -631,7 +631,7 @@ function toggleReady()
             totalObjects = totalObjects + 1
             Wait.condition(function() objectsMoved = objectsMoved + 1 end, function() return not obj.isSmoothMoving() end)
         end
-        Wait.condition(function() self.editButton({index = 8, label = "Ready Helper", width = 2100, height = 500, tooltip = "Shows all player’s ready status\n\nFor use with Events, Fear Card, or other effects that need to be tracked"}) end, function() return objectsMoved == totalObjects end)
+        Wait.condition(function() self.editButton({index = 8, label = "Ready Helper", width = 2100, height = 500, tooltip = "Shows all playerâ€™s ready status\n\nFor use with Events, Fear Card, or other effects that need to be tracked"}) end, function() return objectsMoved == totalObjects end)
     end
 end
 

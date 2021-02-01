@@ -3169,6 +3169,12 @@ function swapPlayerAreas(a, b)
         oa.setPosition(tb)
         ob.setPosition(ta)
     end
+    local function handSwap(i)
+        local ta = Player[a].getHandTransform(i)
+        local tb = Player[b].getHandTransform(i)
+        Player[a].setHandTransform(tb, i)
+        Player[b].setHandTransform(ta, i)
+    end
     local function updateBlock(color)
         local o = playerBlocks[color]
         if not o then
@@ -3178,12 +3184,8 @@ function swapPlayerAreas(a, b)
         o.editButton({index=1, label="Swap with " .. color})
     end
 
-    print(a .. " is trading places with player " .. b .. ".")
     for i = 1,2 do
-        local ta = Player[a].getHandTransform(i)
-        local tb = Player[b].getHandTransform(i)
-        Player[a].setHandTransform(tb, i)
-        Player[b].setHandTransform(ta, i)
+        handSwap(i)
     end
     tintSwap(playerTables)
     tableSwap(playerBlocks)
@@ -3192,6 +3194,8 @@ function swapPlayerAreas(a, b)
     tableSwap(elementScanZones)
     updateBlock(a)
     updateBlock(b)
+
+    print(a .. " traded places with " .. b .. ".")
 end
 
 

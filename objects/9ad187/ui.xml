@@ -92,7 +92,7 @@
                 </Cell>
                 <Cell class="boardLayout">
                     <Dropdown id="boardLayout" class="boardLayout" onValueChanged="toggleBoardLayout">
-                        <Option selected="true">Standard</Option>
+                        <Option selected="true">Balanced</Option>
                         <Option>Thematic</Option>
                     </Dropdown>
                 </Cell>

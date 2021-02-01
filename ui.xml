@@ -182,10 +182,10 @@
 </Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">
-        <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">â–¼</Button>
+        <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">▼</Button>
     </Panel>
     <Panel id="panelUIToggleHide" visibility="Invisible">
-        <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">â–²</Button>
+        <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">▲</Button>
     </Panel>
 </Panel>
 <Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="180" height="50" rectAlignment="UpperRight" offsetXY="-430 -65">

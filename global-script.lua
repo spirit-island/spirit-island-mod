@@ -118,17 +118,12 @@ adversaryGuids = {
     "37a592", -- Scotland
 }
 alternateSetupNames = {
-    {[0]="Thematic","Standard"},
-    {[0]="Thematic","Standard","Fragment","Opposite Shores"},
-    {[0]="Thematic","Standard","Coastline","Sunrise"},
-    {[0]="Thematic","Standard","Leaf","Snake"},
-    {[0]="Thematic","Standard","Snail","Peninsula","V"},
-    {[0]="Thematic","Standard","Star","Flower","Caldera"},
-}
-randomChoices = {
-    "Random Spirit",
-    "Random JE Spirit",
-    "Pick 4",
+    {[0]="Thematic","Balanced"},
+    {[0]="Thematic","Balanced","Fragment","Opposite Shores"},
+    {[0]="Thematic","Balanced","Coastline","Sunrise"},
+    {[0]="Thematic","Balanced","Leaf","Snake"},
+    {[0]="Thematic","Balanced","Snail","Peninsula","V"},
+    {[0]="Thematic","Balanced","Star","Flower","Caldera"},
 }
 readyTokens = {
     Red = "ab93fc",
@@ -902,7 +897,7 @@ function CreatePickPowerButton(card, clickFunctionName)
     })
 end
 function PickPowerMinor(cardo,playero,alt_click)
-    -- Give card to player regardless of whoâ€™s hand they are in front of
+    -- Give card to player regardless of who's hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -916,7 +911,7 @@ function PickPowerMinor(cardo,playero,alt_click)
     end, function() return not cardo.isSmoothMoving() end)
 end
 function PickPowerMajor(cardo,playero,alt_click)
-    -- Give card to player regardless of whoâ€™s hand they are in front of
+    -- Give card to player regardless of who's hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -981,7 +976,7 @@ function grabBlightCard(setup)
             end,
         })
     else
-        -- if thereâ€™s only a single blight card just use it
+        -- if there's only a single blight card just use it
         blightedIslandCard = blightDeck
         blightedIslandCard.setPositionSmooth(blightCardPos)
         blightedIslandCard.setLock(true)
@@ -1883,7 +1878,7 @@ function handlePiece(object, depth)
 end
 function resetPiece(object, rotation, depth)
     for _,obj in pairs(upCastRay(object,5)) do
-        -- need to store tag since after state change tag isnâ€™t instantly updated
+        -- need to store tag since after state change tag isn't instantly updated
         local isFigurine = obj.type == "Figurine"
         obj = handlePiece(obj, depth + 1)
         if obj ~= nil then

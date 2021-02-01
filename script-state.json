@@ -5,6 +5,14 @@
   "BnCAdded": false,
   "cityBag": "a245f8",
   "difficultyString": "",
+  "elementScanZones": {
+    "Blue": "6f2249",
+    "Green": "190f05",
+    "Orange": "61ac7c",
+    "Purple": "654ab2",
+    "Red": "9fc5a4",
+    "Yellow": "102771"
+  },
   "explorerBag": "613ea4",
   "fearPool": 0,
   "gameStarted": false,
@@ -15,6 +23,22 @@
   "panelReadyVisibility": "Invisible",
   "panelTimePassesVisibility": "Invisible",
   "panelTurnOrderVisibility": "Invisible",
+  "playerBlocks": {
+    "Blue": "36bbcc",
+    "Green": "fac8e4",
+    "Orange": "6b5b4b",
+    "Purple": "661aa3",
+    "Red": "c68e2c",
+    "Yellow": "c3c59b"
+  },
+  "playerTables": {
+    "Blue": "125e82",
+    "Green": "d7d593",
+    "Orange": "33c4af",
+    "Purple": "c99d4d",
+    "Red": "dce473",
+    "Yellow": "794c81"
+  },
   "returnBlightBag": "af50b8",
   "selectedColors": [],
   "townBag": "4d3c15"

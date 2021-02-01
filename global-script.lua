@@ -902,7 +902,7 @@ function CreatePickPowerButton(card, clickFunctionName)
     })
 end
 function PickPowerMinor(cardo,playero,alt_click)
-    -- Give card to player regardless of who’s hand they are in front of
+    -- Give card to player regardless of whoâ€™s hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -916,7 +916,7 @@ function PickPowerMinor(cardo,playero,alt_click)
     end, function() return not cardo.isSmoothMoving() end)
 end
 function PickPowerMajor(cardo,playero,alt_click)
-    -- Give card to player regardless of who’s hand they are in front of
+    -- Give card to player regardless of whoâ€™s hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -981,7 +981,7 @@ function grabBlightCard(setup)
             end,
         })
     else
-        -- if there’s only a single blight card just use it
+        -- if thereâ€™s only a single blight card just use it
         blightedIslandCard = blightDeck
         blightedIslandCard.setPositionSmooth(blightCardPos)
         blightedIslandCard.setLock(true)
@@ -1883,7 +1883,7 @@ function handlePiece(object, depth)
 end
 function resetPiece(object, rotation, depth)
     for _,obj in pairs(upCastRay(object,5)) do
-        -- need to store tag since after state change tag isn’t instantly updated
+        -- need to store tag since after state change tag isnâ€™t instantly updated
         local isFigurine = obj.type == "Figurine"
         obj = handlePiece(obj, depth + 1)
         if obj ~= nil then

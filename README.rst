@@ -1,7 +1,7 @@
 Spirit Island - [By MJ & iakona]
 --------------------------------
 
-This is a mod for Tabletop Simulator of Spirit Island. This copy is an unpacked version using `tabletop-tools <https://pypi.org/project/tabletop-tools/>`.
+This is a mod for Tabletop Simulator of Spirit Island. This copy is an unpacked version using `tabletop-tools <https://pypi.org/project/tabletop-tools/>`_.
 
 To build the mod::
 

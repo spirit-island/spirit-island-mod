@@ -319,13 +319,9 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         gameStarted = loaded_data.gameStarted
-        if loaded_data.playerBlocks then
-            playerBlocks = loaded_data.playerBlocks
-            playerTables = loaded_data.playerTables
-        end
-        if loaded_data.elementScanZones then
-            elementScanZones = loaded_data.elementScanZones
-        end
+        playerBlocks = loaded_data.playerBlocks
+        playerTables = loaded_data.playerTables
+        elementScanZones = loaded_data.elementScanZones
         if gameStarted then
             BnCAdded = loaded_data.BnCAdded
             JEAdded = loaded_data.JEAdded
@@ -932,7 +928,7 @@ function CreatePickPowerButton(card, clickFunctionName)
     })
 end
 function PickPowerMinor(cardo,playero,alt_click)
-    -- Give card to player regardless of who's hand they are in front of
+    -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -946,7 +942,7 @@ function PickPowerMinor(cardo,playero,alt_click)
     end, function() return not cardo.isSmoothMoving() end)
 end
 function PickPowerMajor(cardo,playero,alt_click)
-    -- Give card to player regardless of who's hand they are in front of
+    -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -3206,9 +3202,9 @@ function onSwapButtonClicked(target_obj, source_color, alt_click)
     source_obj = playerBlocks[source_color]
 
     if not target_color then
-        player.print("That seat is already taken.")
+        broadcastToColor("That seat is already taken.", source_color)
     elseif not source_obj then
-        player.print("You are already seated.")
+        broadcastToColor("You have already chosen a spirit.", source_color)
     elseif target_color == source_color then
         -- player.print("Okay, you trade places with yourself.")
     else

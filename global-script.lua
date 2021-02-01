@@ -45,6 +45,22 @@ explorerBag = "613ea4"
 townBag = "4d3c15"
 cityBag = "a245f8"
 selectedColors = {}
+playerTables = {
+    Red = "dce473",
+    Purple = "c99d4d",
+    Yellow = "794c81",
+    Blue = "125e82",
+    Green = "d7d593",
+    Orange = "33c4af",
+}
+playerBlocks = {
+    Red = "c68e2c",
+    Purple = "661aa3",
+    Yellow = "c3c59b",
+    Blue = "36bbcc",
+    Green = "fac8e4",
+    Orange = "6b5b4b",
+}
 ------ Unsaved Config Data
 numPlayers = 1
 numBoards = 1
@@ -133,23 +149,6 @@ readyTokens = {
     Green = "88a4c3",
     Orange = "d17f93",
 }
-playerTables = {
-    Red = "dce473",
-    Purple = "c99d4d",
-    Yellow = "794c81",
-    Blue = "125e82",
-    Green = "d7d593",
-    Orange = "33c4af",
-}
-playerBlocks = {
-    Red = "c68e2c",
-    Purple = "661aa3",
-    Yellow = "c3c59b",
-    Blue = "36bbcc",
-    Green = "fac8e4",
-    Orange = "6b5b4b",
-}
-
 interactableObjectsToDisableOnLoad = {
     "57dbb8","fd27d5","25fddc", "d3dd7e", -- tables
     "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables

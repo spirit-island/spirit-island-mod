@@ -3143,6 +3143,9 @@ function tCompare(t1,t2)
 end
 
 function swapPlayerAreas(a, b)
+    if a == b then
+        return  -- Nothing to do!
+    end
     local function tableSwap(table)
         local temp = table[a]
         table[a] = table[b]
@@ -3209,8 +3212,6 @@ function onSwapButtonClicked(target_obj, source_color, alt_click)
         broadcastToColor("That seat is already taken.", source_color)
     elseif not source_obj then
         broadcastToColor("You have already chosen a spirit.", source_color)
-    elseif target_color == source_color then
-        -- player.print("Okay, you trade places with yourself.")
     else
         swapPlayerAreas(source_color, target_color)
     end

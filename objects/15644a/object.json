@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -44.3628578,
-    "posY": 0.9,
-    "posZ": 16.881012,
-    "rotX": -2.664278e-06,
-    "rotY": 179.958008,
-    "rotZ": -0.000148598963,
-    "scaleX": 0.306216359,
+    "posX": -44.362857818603516,
+    "posY": 0.8999999761581421,
+    "posZ": 16.881011962890625,
+    "rotX": -2.6642780994734494e-06,
+    "rotY": 179.9580078125,
+    "rotZ": -0.00014859896327834576,
+    "scaleX": 0.30621635913848877,
     "scaleY": 1.0,
-    "scaleZ": 0.306216359
+    "scaleZ": 0.30621635913848877
   },
   "Nickname": "Fire",
   "Description": "",
@@ -38,7 +38,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.1,
+      "Thickness": 0.10000000149011612,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false

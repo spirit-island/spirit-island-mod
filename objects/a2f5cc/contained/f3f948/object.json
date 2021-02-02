@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 31.9944382,
-    "posY": 1.01000226,
-    "posZ": 76.3070755,
-    "rotX": -7.4935524e-06,
-    "rotY": 180.011551,
-    "rotZ": -0.000146649967,
-    "scaleX": 0.8,
-    "scaleY": 0.8,
-    "scaleZ": 0.8
+    "posX": 31.99443817138672,
+    "posY": 1.0100022554397583,
+    "posZ": 76.30707550048828,
+    "rotX": -7.4935524025931954e-06,
+    "rotY": 180.0115509033203,
+    "rotZ": -0.00014664996706414968,
+    "scaleX": 0.800000011920929,
+    "scaleY": 0.800000011920929,
+    "scaleZ": 0.800000011920929
   },
   "Nickname": "Orange's Isolate Reminder Tokens",
   "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9529411,
-    "g": 0.551746,
-    "b": 0.109803818
+    "r": 0.9529411196708679,
+    "g": 0.5517460107803345,
+    "b": 0.10980381816625595
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

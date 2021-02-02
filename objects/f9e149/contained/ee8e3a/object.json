@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 37.4202728,
-    "posY": 0.9711474,
-    "posZ": 47.17989,
-    "rotX": 1.2567923e-06,
-    "rotY": 180.009323,
-    "rotZ": -0.000125781356,
-    "scaleX": 0.8,
-    "scaleY": 0.8,
-    "scaleZ": 0.8
+    "posX": 37.42027282714844,
+    "posY": 0.9711474180221558,
+    "posZ": 47.17988967895508,
+    "rotX": 1.2567923022288596e-06,
+    "rotY": 180.0093231201172,
+    "rotZ": -0.00012578135647345334,
+    "scaleX": 0.800000011920929,
+    "scaleY": 0.800000011920929,
+    "scaleZ": 0.800000011920929
   },
   "Nickname": "Blue's Defence Reminder Tokens",
   "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.117999859,
-    "g": 0.53,
+    "r": 0.1179998591542244,
+    "g": 0.5299999713897705,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,

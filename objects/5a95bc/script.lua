@@ -86,7 +86,7 @@ function PostSetup()
     local scenarioBag = Global.getVar("scenarioBag")
     scenarioBag.takeObject({
         guid = "eb0571",
-        position = self.getPosition(),
+        position = self.getPosition() + vector(1.9, 0, 1.9),
         rotation = {0,180,0},
         callback_function = function(obj) obj.setLock(true) end,
     })

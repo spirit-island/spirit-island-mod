@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -81.0839539,
-    "posY": 1.09043837,
-    "posZ": -1.29284394,
-    "rotX": 0.004462997,
-    "rotY": 180.002945,
-    "rotZ": 4.62649332e-05,
-    "scaleX": 0.877173543,
+    "posX": -81.08395385742188,
+    "posY": 1.0904383659362793,
+    "posZ": -1.2928507328033447,
+    "rotX": 0.004462955519556999,
+    "rotY": 180.0029754638672,
+    "rotZ": 4.62370335299056e-05,
+    "scaleX": 0.8771735429763794,
     "scaleY": 1.0,
-    "scaleZ": 0.877173543
+    "scaleZ": 0.8771735429763794
   },
   "Nickname": "Scenario Markers",
   "Description": "Use these to track the uses of your special rule  \"Pour Down Power Across The Land\"",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.695121944,
-    "g": 0.490944982,
-    "b": 0.3547569
+    "r": 0.6951219439506531,
+    "g": 0.4909449815750122,
+    "b": 0.35475677251815796
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 2,
-      "Thickness": 0.1,
+      "Thickness": 0.10000000149011612,
       "Stackable": true,
       "Stretch": true
     }

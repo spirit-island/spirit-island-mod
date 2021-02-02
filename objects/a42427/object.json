@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -55.6999741,
-    "posY": 1.26173759,
-    "posZ": 16.363369,
-    "rotX": -1.08754783e-07,
-    "rotY": 179.987823,
-    "rotZ": -0.000144587873,
-    "scaleX": 0.829393744,
-    "scaleY": 0.03,
-    "scaleZ": 0.829393744
+    "posX": -55.699974060058594,
+    "posY": 1.261737585067749,
+    "posZ": 16.36336898803711,
+    "rotX": -1.0875478295702123e-07,
+    "rotY": 179.98782348632812,
+    "rotZ": -0.00014458787336479872,
+    "scaleX": 0.829393744468689,
+    "scaleY": 0.029999999329447746,
+    "scaleZ": 0.829393744468689
   },
   "Nickname": "Beasts",
   "Description": "Harms Invaders and generates Fear as specified by Powers and Event Cards",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5647059,
-    "g": 0.5568628,
-    "b": 0.5568628,
+    "r": 0.5647059082984924,
+    "g": 0.5568627715110779,
+    "b": 0.5568627715110779,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,
@@ -60,15 +60,15 @@
       "GUID": "791505",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.04320731,
-        "posY": -2.49450731,
-        "posZ": -0.019273689,
-        "rotX": 1.07777305e-05,
-        "rotY": 0.1610012,
-        "rotZ": -2.440019e-06,
-        "scaleX": 0.44024238,
-        "scaleY": 33.3333321,
-        "scaleZ": 0.44024238
+        "posX": 0.043207310140132904,
+        "posY": -2.494507312774658,
+        "posZ": -0.01927368901669979,
+        "rotX": 1.0777730494737625e-05,
+        "rotY": 0.16100120544433594,
+        "rotZ": -2.4400189886364387e-06,
+        "scaleX": 0.44024237990379333,
+        "scaleY": 33.33333206176758,
+        "scaleZ": 0.44024237990379333
       },
       "Nickname": "Beasts",
       "Description": "Harms Invaders and generates Fear as specified by Powers and Event Cards",
@@ -97,7 +97,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.2,
+          "Thickness": 0.20000000298023224,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true

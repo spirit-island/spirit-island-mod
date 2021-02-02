@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 57.943737,
-    "posY": 1.43647,
-    "posZ": -14.319581,
-    "rotX": 0.5428577,
-    "rotY": -0.00109329144,
-    "rotZ": 359.973419,
-    "scaleX": 0.367304444,
+    "posX": 57.9437370300293,
+    "posY": 1.4364700317382812,
+    "posZ": -14.319581031799316,
+    "rotX": 0.5428577065467834,
+    "rotY": -0.0010932914447039366,
+    "rotZ": 359.9734191894531,
+    "scaleX": 0.3673044443130493,
     "scaleY": 1.0,
-    "scaleZ": 0.367304444
+    "scaleZ": 0.3673044443130493
   },
   "Nickname": "Element",
   "Description": "Use these for powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
@@ -38,7 +38,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.1,
+      "Thickness": 0.10000000149011612,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false

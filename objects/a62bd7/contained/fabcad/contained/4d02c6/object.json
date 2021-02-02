@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -42.7650223,
-    "posY": 3.05334115,
-    "posZ": 30.2167282,
-    "rotX": -0.0003965022,
-    "rotY": 269.9604,
-    "rotZ": 0.0005468207,
-    "scaleX": 2.42499876,
-    "scaleY": 2.42499876,
-    "scaleZ": 2.42499876
+    "posX": -42.76502227783203,
+    "posY": 3.0533411502838135,
+    "posZ": 30.21672821044922,
+    "rotX": -0.00039650220423936844,
+    "rotY": 269.96038818359375,
+    "rotZ": 0.0005468206945806742,
+    "scaleX": 2.4249987602233887,
+    "scaleY": 2.4249987602233887,
+    "scaleZ": 2.4249987602233887
   },
   "Nickname": "Town: 0 Damage",
   "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.95565027,
-    "g": 0.9511289,
-    "b": 0.532911
+    "r": 0.955650269985199,
+    "g": 0.9511289000511169,
+    "b": 0.5329110026359558
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -45,9 +45,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -1.67961787e-08,
-        "y": 0.2365209,
-        "z": -1.7728913e-05
+        "x": -1.6796178670119843e-08,
+        "y": 0.2365209013223648,
+        "z": -1.772891300788615e-05
       }
     }
   ],
@@ -56,23 +56,23 @@
       "GUID": "588b60",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -48.4327774,
-        "posY": 1.62141871,
-        "posZ": 26.8560352,
-        "rotX": 0.00444521569,
-        "rotY": 179.788071,
-        "rotZ": -1.46147622e-05,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -48.432777404785156,
+        "posY": 1.6214187145233154,
+        "posZ": 26.856035232543945,
+        "rotX": 0.004445215687155724,
+        "rotY": 179.78807067871094,
+        "rotZ": -1.4614762221754063e-05,
+        "scaleX": 2.4249987602233887,
+        "scaleY": 2.4249987602233887,
+        "scaleZ": 2.4249987602233887
       },
       "Nickname": "Town: 1 Damage",
       "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.95565027,
-        "g": 0.9511289,
-        "b": 0.532911
+        "r": 0.955650269985199,
+        "g": 0.9511289000511169,
+        "b": 0.5329110026359558
       },
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -103,9 +103,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.27269217e-08,
-            "y": 0.210993722,
-            "z": -1.57074774e-05
+            "x": -1.2726921738703822e-08,
+            "y": 0.2109937220811844,
+            "z": -1.5707477359683253e-05
           }
         }
       ]
@@ -114,23 +114,23 @@
       "GUID": "66b7fd",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -48.4327774,
-        "posY": 1.46503365,
-        "posZ": 26.8560371,
-        "rotX": 0.004442784,
-        "rotY": 179.788071,
-        "rotZ": -1.6715956e-05,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -48.432777404785156,
+        "posY": 1.4650336503982544,
+        "posZ": 26.856037139892578,
+        "rotX": 0.0044427840039134026,
+        "rotY": 179.78807067871094,
+        "rotZ": -1.6715956007828936e-05,
+        "scaleX": 2.4249987602233887,
+        "scaleY": 2.4249987602233887,
+        "scaleZ": 2.4249987602233887
       },
       "Nickname": "Town: 2 Damage",
       "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898049,
-        "g": 0.880506933,
-        "b": 0.8526128
+        "r": 0.8898048996925354,
+        "g": 0.8805069327354431,
+        "b": 0.8526127934455872
       },
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -161,9 +161,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.67961787e-08,
-            "y": 0.2365209,
-            "z": -1.7728913e-05
+            "x": -1.6796178670119843e-08,
+            "y": 0.2365209013223648,
+            "z": -1.772891300788615e-05
           }
         }
       ]
@@ -172,23 +172,23 @@
       "GUID": "a6922a",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -48.432785,
-        "posY": 1.62141812,
-        "posZ": 26.8562031,
-        "rotX": 0.004443626,
-        "rotY": 179.792145,
-        "rotZ": -1.60567652e-05,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -48.43278503417969,
+        "posY": 1.6214181184768677,
+        "posZ": 26.856203079223633,
+        "rotX": 0.004443625919520855,
+        "rotY": 179.79214477539062,
+        "rotZ": -1.605676516192034e-05,
+        "scaleX": 2.4249987602233887,
+        "scaleY": 2.4249987602233887,
+        "scaleZ": 2.4249987602233887
       },
       "Nickname": "Town: 3 Damage",
       "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898049,
-        "g": 0.880506933,
-        "b": 0.8526128
+        "r": 0.8898048996925354,
+        "g": 0.8805069327354431,
+        "b": 0.8526127934455872
       },
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -219,9 +219,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.27269217e-08,
-            "y": 0.210993722,
-            "z": -1.57074774e-05
+            "x": -1.2726921738703822e-08,
+            "y": 0.2109937220811844,
+            "z": -1.5707477359683253e-05
           }
         }
       ]

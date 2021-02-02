@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 72.3341141,
-    "posY": 1.47745132,
-    "posZ": 44.7202,
-    "rotX": -1.55582043e-07,
-    "rotY": 179.975143,
-    "rotZ": -0.000144302147,
+    "posX": 72.33411407470703,
+    "posY": 1.4774513244628906,
+    "posZ": 44.72019958496094,
+    "rotX": -1.5558204324861435e-07,
+    "rotY": 179.9751434326172,
+    "rotZ": -0.00014430214650928974,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8156863,
-    "g": 0.8156863,
-    "b": 0.8156863
+    "r": 0.8156862854957581,
+    "g": 0.8156862854957581,
+    "b": 0.8156862854957581
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -38,7 +38,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.39500016,
+      "Thickness": 0.395000159740448,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false

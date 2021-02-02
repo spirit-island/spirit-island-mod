@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 44.3517151,
-    "posY": 1.16000116,
-    "posZ": 73.02105,
-    "rotX": 5.26761745e-09,
-    "rotY": 180.014954,
-    "rotZ": -0.000144954625,
+    "posX": 44.351715087890625,
+    "posY": 1.1600011587142944,
+    "posZ": 73.02104949951172,
+    "rotX": 5.2676174533417e-09,
+    "rotY": 180.01495361328125,
+    "rotZ": -0.00014495462528429925,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,9 +15,9 @@
   "Description": "A piece showing where a spirit lives in a land",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.856,
-    "g": 0.09999936,
-    "b": 0.09399935
+    "r": 0.8560000061988831,
+    "g": 0.09999936074018478,
+    "b": 0.09399934858083725
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

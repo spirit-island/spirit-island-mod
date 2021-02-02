@@ -401,9 +401,10 @@ function fearCardEarned()
     local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
     local earnedPos = self.positionToWorld(Vector(1.15,1,0.98))
     local completedTable = { false, false }
+    local fearDeck = getFearDeck(fearDeckZone)
 
-    earnFearCard(completedTable, fearDeckZone, earnedPos, dividerPos)
-    Wait.condition(function() earnTerrorLevel(completedTable, fearDeckZone, earnedPos, dividerPos) end, function() return completedTable[1] end)
+    earnFearCard(completedTable, fearDeck, earnedPos, dividerPos)
+    Wait.condition(function() earnTerrorLevel(completedTable, fearDeck, earnedPos, dividerPos) end, function() return completedTable[1] end)
 
     Wait.condition(function()
         if #fearDeckZone.getObjects() == 0 then
@@ -412,9 +413,21 @@ function fearCardEarned()
     end, function() return completedTable[2] end)
     return 1
 end
-function earnFearCard(completedTable, fearDeckZone, earnedPos, dividerPos)
-    local fearDeck = getFearDeck(fearDeckZone)
-
+function getFearDeck(fearDeckZone)
+    local fearDeck = nil
+    for _,obj in pairs(fearDeckZone.getObjects()) do
+        if obj.type == "Deck" or obj.type == "Card" then
+            if fearDeck == nil then
+                fearDeck = obj
+            else
+                broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
+                return nil
+            end
+        end
+    end
+    return fearDeck
+end
+function earnFearCard(completedTable, fearDeck, earnedPos, dividerPos)
     -- Handle case where Terror Board is on top of deck
     if fearDeck ~= nil then
         local cardEarned = false
@@ -445,9 +458,7 @@ function earnFearCard(completedTable, fearDeckZone, earnedPos, dividerPos)
         completedTable[1] = true
     end
 end
-function earnTerrorLevel(completedTable, fearDeckZone, earnedPos, dividerPos)
-    local fearDeck = getFearDeck(fearDeckZone)
-
+function earnTerrorLevel(completedTable, fearDeck, earnedPos, dividerPos)
     -- Handle case where Terror Board is uncovered
     if fearDeck ~= nil then
         local topCardIsFear = false
@@ -465,17 +476,6 @@ function earnTerrorLevel(completedTable, fearDeckZone, earnedPos, dividerPos)
     else
         completedTable[2] = true
     end
-end
-function getFearDeck(fearDeckZone)
-    local fearDeck = nil
-    for _,obj in pairs(fearDeckZone.getObjects()) do
-        if obj.type == "Deck" or obj.type == "Card" then
-            if fearDeck == nil or fearDeck.getPosition().y < obj.getPosition().y then
-                fearDeck = obj
-            end
-        end
-    end
-    return fearDeck
 end
 function examineCard(fearDeck, dividerPos)
     local card = nil

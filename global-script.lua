@@ -1,3 +1,6 @@
+---- Versioning
+version = "7.2.8"
+versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
 minorPowerZone = "cb16ab"
@@ -239,6 +242,7 @@ function onSave()
     return saved_data
 end
 function onLoad(saved_data)
+    getObjectFromGUID(versionGuid).setValue("version " .. version)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
 

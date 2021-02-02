@@ -2808,7 +2808,7 @@ function setupPlayerArea(params)
     if color then
         obj.createButton({
             label="Swap with " .. color, click_function="onSwapButtonClicked", function_owner=Global,
-            position={0,2.24,-7.2}, rotation={0,180,0}, height=800, width=4000,
+            position={0,2.24,-24.7}, rotation={0,180,0}, height=800, width=4000,
             font_color={0,0,0}, font_size=500,
             tooltip="Moves your current player color to be located here.  The color currently seated here will be moved to your current location.",
         })
@@ -3197,7 +3197,7 @@ function swapPlayerAreas(a, b)
     updateBlock(a)
     updateBlock(b)
 
-    print(a .. " traded places with " .. b .. ".")
+    print(a .. " swapped places with " .. b .. ".")
 end
 
 

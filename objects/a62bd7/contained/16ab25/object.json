@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.87358,
-    "posY": 1.33528674,
-    "posZ": 0.867182,
-    "rotX": -8.463445e-07,
-    "rotY": 179.996826,
-    "rotZ": -1.3852698e-06,
-    "scaleX": 0.21,
+    "posX": -69.87358093261719,
+    "posY": 1.3352867364883423,
+    "posZ": 0.8671820163726807,
+    "rotX": -8.463445055895136e-07,
+    "rotY": 179.996826171875,
+    "rotZ": -1.385269797538058e-06,
+    "scaleX": 0.20999999344348907,
     "scaleY": 1.0,
-    "scaleZ": 0.2
+    "scaleZ": 0.20000000298023224
   },
   "Nickname": "Sweden Ravage Reminder",
   "Description": "Spirit Island",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "Stackable": false,
       "Stretch": true
     }

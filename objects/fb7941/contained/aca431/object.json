@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 52.0402832,
-    "posY": 1.05113614,
-    "posZ": 52.62556,
-    "rotX": -5.87800751e-05,
-    "rotY": 179.986053,
-    "rotZ": -0.000173219974,
-    "scaleX": 0.8,
-    "scaleY": 0.8,
-    "scaleZ": 0.8
+    "posX": 52.040283203125,
+    "posY": 1.0511361360549927,
+    "posZ": 52.62556076049805,
+    "rotX": -5.8780075050890446e-05,
+    "rotY": 179.98605346679688,
+    "rotZ": -0.00017321997438557446,
+    "scaleX": 0.800000011920929,
+    "scaleY": 0.800000011920929,
+    "scaleZ": 0.800000011920929
   },
   "Nickname": "Red's Defence Reminder Tokens",
   "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.251019329,
-    "b": 0.251019329
+    "g": 0.25101932883262634,
+    "b": 0.25101932883262634
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

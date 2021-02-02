@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -8.500906,
-    "posY": 2.02886844,
-    "posZ": 61.5677757,
-    "rotX": 0.004446453,
-    "rotY": 179.958176,
-    "rotZ": -2.9836167e-06,
-    "scaleX": 0.6749999,
-    "scaleY": 0.6749999,
-    "scaleZ": 0.6749999
+    "posX": -8.500905990600586,
+    "posY": 2.0288684368133545,
+    "posZ": 61.56777572631836,
+    "rotX": 0.0044464529491961,
+    "rotY": 179.9581756591797,
+    "rotZ": -2.9836166959285038e-06,
+    "scaleX": 0.6749998927116394,
+    "scaleY": 0.6749998927116394,
+    "scaleZ": 0.6749998927116394
   },
   "Nickname": "Blight",
   "Description": "France Lv5",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.215686083,
-    "g": 0.215686083,
-    "b": 0.215686083
+    "r": 0.21568608283996582,
+    "g": 0.21568608283996582,
+    "b": 0.21568608283996582
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -49,7 +49,7 @@
         "g": 0.5,
         "b": 0.5
       },
-      "SpecularIntensity": 0.1,
+      "SpecularIntensity": 0.10000000149011612,
       "SpecularSharpness": 2.0,
       "FresnelStrength": 0.0
     },

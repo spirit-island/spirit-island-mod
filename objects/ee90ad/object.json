@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 21.8,
-    "posY": 0.883569062,
-    "posZ": 42.86,
-    "rotX": -4.485361e-08,
-    "rotY": 179.978378,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 21.799999237060547,
+    "posY": 0.883569061756134,
+    "posZ": 42.86000061035156,
+    "rotX": -4.485363902517747e-08,
+    "rotY": 179.97837829589844,
+    "rotZ": 179.99986267089844,
+    "scaleX": 2.7300000190734863,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 2.7300000190734863
   },
   "Nickname": "Dahan Insurrection",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

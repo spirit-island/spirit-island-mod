@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 46.0775566,
-    "posY": 1.0511378,
-    "posZ": 50.821537,
-    "rotX": -8.68616e-06,
-    "rotY": 179.986328,
-    "rotZ": -0.000149788466,
-    "scaleX": 0.8,
-    "scaleY": 0.8,
-    "scaleZ": 0.8
+    "posX": 46.07755661010742,
+    "posY": 1.0511378049850464,
+    "posZ": 50.821537017822266,
+    "rotX": -8.686160072102211e-06,
+    "rotY": 179.986328125,
+    "rotZ": -0.00014978846593294293,
+    "scaleX": 0.800000011920929,
+    "scaleY": 0.800000011920929,
+    "scaleZ": 0.800000011920929
   },
   "Nickname": "Yellow's Defence Reminder Tokens",
   "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.905,
-    "g": 0.898,
-    "b": 0.171999842
+    "r": 0.9049999713897705,
+    "g": 0.8980000019073486,
+    "b": 0.17199984192848206
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

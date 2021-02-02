@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 32.4406,
-    "posY": 1.01000226,
-    "posZ": 72.13741,
-    "rotX": 2.67765472e-06,
-    "rotY": 180.011139,
-    "rotZ": -0.0001555468,
-    "scaleX": 0.8,
-    "scaleY": 0.8,
-    "scaleZ": 0.8
+    "posX": 32.44060134887695,
+    "posY": 1.0100022554397583,
+    "posZ": 72.13741302490234,
+    "rotX": 2.67765472017345e-06,
+    "rotY": 180.01113891601562,
+    "rotZ": -0.00015554680430795997,
+    "scaleX": 0.800000011920929,
+    "scaleY": 0.800000011920929,
+    "scaleZ": 0.800000011920929
   },
   "Nickname": "Purple's Isolate Reminder Tokens",
   "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.627,
-    "g": 0.124999858,
-    "b": 0.941
+    "r": 0.6269999742507935,
+    "g": 0.12499985843896866,
+    "b": 0.9409999847412109
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

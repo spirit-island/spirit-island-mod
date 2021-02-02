@@ -1,11 +1,11 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -20.8000011,
-    "posY": 1.10041249,
-    "posZ": -25.460041,
-    "rotX": 0.004446111,
-    "rotY": 180.000229,
+    "posX": -20.79998779296875,
+    "posY": 1.1004124879837036,
+    "posZ": -25.460050582885742,
+    "rotX": 0.004445998929440975,
+    "rotY": 179.99951171875,
     "rotZ": 180.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 2,
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "Stackable": false,
       "Stretch": true
     }

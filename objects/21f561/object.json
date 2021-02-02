@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 1.98000336,
-    "posY": 1.06991518,
-    "posZ": 22.6999969,
-    "rotX": 0.0367896222,
-    "rotY": 0.0164766219,
-    "rotZ": 180.016159,
-    "scaleX": 0.011,
+    "posX": 1.9800033569335938,
+    "posY": 1.0699151754379272,
+    "posZ": 22.699996948242188,
+    "rotX": 0.03678962215781212,
+    "rotY": 0.016476621851325035,
+    "rotZ": 180.0161590576172,
+    "scaleX": 0.010999999940395355,
     "scaleY": 1.0,
-    "scaleZ": 0.01
+    "scaleZ": 0.009999999776482582
   },
   "Nickname": "Source Spirit",
   "Description": "Spirit Island - Spirit",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200281471,
-    "g": 0.160326749,
-    "b": 0.151765019
+    "r": 0.20028135180473328,
+    "g": 0.16032662987709045,
+    "b": 0.1517648994922638
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "Stackable": false,
       "Stretch": true
     }

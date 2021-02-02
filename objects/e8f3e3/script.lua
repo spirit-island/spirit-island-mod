@@ -167,7 +167,7 @@ function PostSetup(params)
     if params.level >= 5 then
         local returnBlightBag = adversaryBag.takeObject({
             guid = "2ea157",
-            position = self.getPosition(),
+            position = self.getPosition() + vector(1.9, 0, 1.9),
             rotation = {0,180,0},
             callback_function = function(obj) obj.setLock(true) end,
         })

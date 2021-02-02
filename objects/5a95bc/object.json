@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.53,
-    "posY": 0.8835357,
-    "posZ": 15.98,
-    "rotX": -1.11953247e-08,
-    "rotY": 179.999985,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 8.529999732971191,
+    "posY": 0.8835356831550598,
+    "posZ": 15.979999542236328,
+    "rotX": -1.1195324667312434e-08,
+    "rotY": 179.99998474121094,
+    "rotZ": 179.99986267089844,
+    "scaleX": 2.7300000190734863,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 2.7300000190734863
   },
   "Nickname": "The Great River",
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

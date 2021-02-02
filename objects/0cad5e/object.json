@@ -1,23 +1,23 @@
 {
   "Name": "DeckCustom",
   "Transform": {
-    "posX": -55.7,
-    "posY": 1.003141,
-    "posZ": 49.58,
-    "rotX": 1.22738735e-08,
-    "rotY": 179.980225,
+    "posX": -55.70000076293945,
+    "posY": 1.0031410455703735,
+    "posZ": 49.58000183105469,
+    "rotX": 2.111933206094818e-08,
+    "rotY": 179.980224609375,
     "rotZ": 180.0,
-    "scaleX": 1.53,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.53
+    "scaleZ": 1.5299999713897705
   },
   "Nickname": "Fear",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

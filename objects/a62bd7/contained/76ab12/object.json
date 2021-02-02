@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.7,
-    "posY": 1.32690525,
-    "posZ": 0.86,
-    "rotX": 7.160846e-08,
-    "rotY": 179.975159,
-    "rotZ": -1.25103622e-06,
-    "scaleX": 0.21,
+    "posX": -69.69999694824219,
+    "posY": 1.3269052505493164,
+    "posZ": 0.8600000143051147,
+    "rotX": 7.160846138276611e-08,
+    "rotY": 179.97515869140625,
+    "rotZ": -1.2510362239481765e-06,
+    "scaleX": 0.20999999344348907,
     "scaleY": 1.0,
-    "scaleZ": 0.2
+    "scaleZ": 0.20000000298023224
   },
   "Nickname": "Scotland Build Reminder",
   "Description": "Jagged Earth Expansion",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "Stackable": false,
       "Stretch": true
     }

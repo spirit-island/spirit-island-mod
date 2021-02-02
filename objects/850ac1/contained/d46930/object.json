@@ -1,23 +1,23 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -71.50952,
-    "posY": 1.3295846,
-    "posZ": 11.3016033,
-    "rotX": -1.2715609e-06,
-    "rotY": 89.9998,
+    "posX": -71.509521484375,
+    "posY": 1.3295845985412598,
+    "posZ": 11.301603317260742,
+    "rotX": -1.2715609045699239e-06,
+    "rotY": 89.99980163574219,
     "rotZ": 180.0,
-    "scaleX": 1.05,
+    "scaleX": 1.0499999523162842,
     "scaleY": 1.0,
-    "scaleZ": 1.05
+    "scaleZ": 1.0499999523162842
   },
   "Nickname": "Stage II Command",
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

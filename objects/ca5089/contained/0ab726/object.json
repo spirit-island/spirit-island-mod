@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -44.637085,
-    "posY": 1.3236829,
-    "posZ": 28.41388,
-    "rotX": -0.00226660538,
-    "rotY": -0.000784763834,
-    "rotZ": 0.0031024483,
-    "scaleX": 0.3651334,
+    "posX": -44.6370849609375,
+    "posY": 1.3236829042434692,
+    "posZ": 28.41387939453125,
+    "rotX": -0.0022666053846478462,
+    "rotY": -0.0007847638335078955,
+    "rotZ": 0.0031024483032524586,
+    "scaleX": 0.3651334047317505,
     "scaleY": 1.0,
-    "scaleZ": 0.3651334
+    "scaleZ": 0.3651334047317505
   },
   "Nickname": "Wilds",
   "Description": "[b]Prevents the next Explore[/b] and is then removed",
@@ -38,7 +38,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true

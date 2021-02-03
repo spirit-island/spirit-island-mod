@@ -57,20 +57,27 @@ function toggleNumPlayers(_, value)
     if Global.getVar("alternateSetupIndex") > 4 then
         Global.setVar("alternateSetupIndex", 1)
     end
-    Global.setVar("numPlayers", tonumber(value))
-    self.UI.setAttribute("numPlayers", "text", "Number of Players: "..value)
-    self.UI.setAttribute("numPlayersSlider", "value", value)
+    local numPlayers = tonumber(value)
+    if numPlayers > 5 and optionalExtraBoard then
+        numPlayers = 5
+    end
+    Global.setVar("numPlayers", numPlayers)
+    self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
+    self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
     -- Stop previous timer and start a new one
     if updateLayoutsID ~= 0 then
         Wait.stop(updateLayoutsID)
     end
-    updateLayoutsID = Wait.time(function() updateBoardLayouts(value) end, 0.5)
+    updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
 end
-function updateBoardLayouts(value)
+function updateBoardLayouts(numPlayers)
     local t = self.UI.getXmlTable()
+    if optionalExtraBoard then
+        numPlayers = numPlayers + 1
+    end
     for _,v in pairs(t) do
-        updateDropdownList(v, "boardLayout", Global.getVar("alternateSetupNames")[tonumber(value)], Global.getVar("alternateSetupIndex"))
+        updateDropdownList(v, "boardLayout", Global.getVar("alternateSetupNames")[numPlayers], Global.getVar("alternateSetupIndex"))
     end
     self.UI.setXmlTable(t, {})
 end
@@ -396,7 +403,7 @@ function difficultyCheck(params)
         end
     end
     local alternateSetupIndex = Global.getVar("alternateSetupIndex")
-    if alternateSetupIndex == 2 then
+    if alternateSetupIndex == 2 or params.thematic then
         if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
             difficulty = difficulty + 1
         else
@@ -485,13 +492,13 @@ function toggleMinDifficulty(_, value)
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
         Global.setVar("minDifficulty", maxDifficulty)
-        self.UI.setAttribute("minDifficulty", "text", "Min Adversary Difficulty: "..maxDifficulty)
+        self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..maxDifficulty)
         self.UI.setAttribute("minDifficultySlider", "value", maxDifficulty)
         return
     end
 
     Global.setVar("minDifficulty", minDifficulty)
-    self.UI.setAttribute("minDifficulty", "text", "Min Adversary Difficulty: "..value)
+    self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
@@ -499,13 +506,13 @@ function toggleMaxDifficulty(_, value)
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
         Global.setVar("maxDifficulty", minDifficulty)
-        self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..minDifficulty)
+        self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..minDifficulty)
         self.UI.setAttribute("maxDifficultySlider", "value", minDifficulty)
         return
     end
 
     Global.setVar("maxDifficulty", maxDifficulty)
-    self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..value)
+    self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
 end
 
@@ -738,6 +745,17 @@ function toggleExtraBoard()
     optionalExtraBoard = not optionalExtraBoard
     self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
     updateDifficulty()
+
+    local numPlayers = Global.getVar("numPlayers")
+    if optionalExtraBoard and numPlayers > 5 then
+        toggleNumPlayers(nil, 5)
+    else
+        -- Stop previous timer and start a new one
+        if updateLayoutsID ~= 0 then
+            Wait.stop(updateLayoutsID)
+        end
+        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+    end
 end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo

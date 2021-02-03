@@ -157,6 +157,14 @@ interactableObjectsToDisableOnLoad = {
     "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player counters
     "19d429", --Big block
 }
+playerCounters = {
+    ["Red"] = "c68e2c",
+    ["Purple"] = "661aa3",
+    ["Yellow"] = "c3c59b",
+    ["Blue"] = "36bbcc",
+    ["Green"] = "fac8e4",
+    ["Orange"] = "6b5b4b",
+}
 
 ---- TTS Events Section
 function onScriptingButtonDown(index, playerColor)
@@ -318,6 +326,11 @@ function onLoad(saved_data)
     MJThematicMapBag = getObjectFromGUID(MJThematicMapBag)
     seaTile = getObjectFromGUID(seaTile)
     yHeight = seaTile.getPosition().y + 0.1
+    -----
+    for color, counterGUID in pairs(playerCounters) do
+        playerCounters[color] = getObjectFromGUID(counterGUID)
+    end
+    -----
 
     -- Loads the tracking for if the game has started yet
     if saved_data ~= "" then
@@ -378,6 +391,7 @@ function onLoad(saved_data)
         end
     end
     if Player["White"].seated then Player["White"].changeColor("Red") end
+    updateSwitchPlayerButtons()
 end
 ----
 function StartReadyCheck()
@@ -3208,8 +3222,33 @@ function tCompare(t1,t2)
         newTab = {}
         for i,v in ipairs(tab) do
             newTab[i] = table.concat(v,",")
-    end
-    return table.concat(newTab,"|")
+        end
+        return table.concat(newTab,"|")
     end
     if cc2(t1) == cc2(t2) then return true else return false end
+end
+
+function switchPlayer(player, color)
+    player = Player[player.color]
+    player.changeColor(color)
+    Wait.frames(function ()
+        Player[color].lookAt({
+            position = playerCounters[color].getPosition() - Vector(0,0,15),
+            pitch = 70,
+            distance = 30,
+        })
+    end, 2)
+end
+function updateSwitchPlayerButtons()
+    for color, counter in pairs(playerCounters) do
+        if Player[color].seated then
+            -- TODO: Switch visibility to `color`
+            counter.UI.setAttribute("switchPlayer", "visibility", "false")
+        else
+            counter.UI.setAttribute("switchPlayer", "visibility", "")
+        end
+    end
+end
+function onPlayerChangeColor(color)
+    updateSwitchPlayerButtons()
 end

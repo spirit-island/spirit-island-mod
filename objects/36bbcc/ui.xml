@@ -1,0 +1,1 @@
+<Button id="switchPlayer" onClick="Global/switchPlayer(Blue)" position="-600 -1100 -200" width="240" height="80" resizeTextForBestFit="true">Switch Player</Button>

@@ -382,7 +382,7 @@ function updateDifficulty()
         end
     end
     local alternateSetupIndex = Global.getVar("alternateSetupIndex")
-    if alternateSetupIndex == 0 then
+    if alternateSetupIndex == 2 then
         if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
             difficulty = difficulty + 1
         else
@@ -396,7 +396,7 @@ function updateDifficulty()
     if optionalExtraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
-        if alternateSetupIndex == 0 then
+        if alternateSetupIndex == 2 then
             difficulty = difficulty - (intNum / 2)
         end
     end

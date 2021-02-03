@@ -476,7 +476,7 @@ function cleanupAdversary()
     SetupChecker.call("checkAdversaries", {})
 end
 function randomBoard()
-    if difficulty >= maxDifficulty then
+    if SetupChecker.call("difficultyCheck", {thematic = true}) > maxDifficulty then
         -- The difficulty can't be increased anymore so don't use thematic
         includeThematic = false
     end

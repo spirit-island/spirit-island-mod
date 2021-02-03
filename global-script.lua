@@ -118,12 +118,12 @@ adversaryGuids = {
     "37a592", -- Scotland
 }
 alternateSetupNames = {
-    {"Balanced","Thematic","Random"},
-    {"Balanced","Thematic","Random","Fragment","Opposite Shores"},
-    {"Balanced","Thematic","Random","Coastline","Sunrise"},
-    {"Balanced","Thematic","Random","Leaf","Snake"},
-    {"Balanced","Thematic","Random","Snail","Peninsula","V"},
-    {"Balanced","Thematic","Random","Star","Flower","Caldera"},
+    {"Balanced","Thematic","Random","Random with Thematic"},
+    {"Balanced","Thematic","Random","Random with Thematic","Fragment","Opposite Shores"},
+    {"Balanced","Thematic","Random","Random with Thematic","Coastline","Sunrise"},
+    {"Balanced","Thematic","Random","Random with Thematic","Leaf","Snake"},
+    {"Balanced","Thematic","Random","Random with Thematic","Snail","Peninsula","V"},
+    {"Balanced","Thematic","Random","Random with Thematic","Star","Flower","Caldera"},
 }
 readyTokens = {
     Red = "ab93fc",
@@ -591,14 +591,14 @@ function randomAdversary()
     end
 end
 function randomBoard()
-    local min = 3
+    local min = 4
     if includeThematic then
-        min = 2
+        min = 3
     end
     local value = math.random(min,#alternateSetupNames[numBoards])
-    if value == 2 then
+    if value == 3 then
         value = 1
-    elseif value == 3 then
+    elseif value == 4 then
         if includeThematic then
             value = 2
         else
@@ -1937,6 +1937,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{-1.93, 1.07, 20.44}, --NE
         },
         {}, -- Random
+        {}, -- Random with Thematic
     },
     { -- 2 Player
         { -- Standard
@@ -1948,6 +1949,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{-10.34, 1.07, 18.04}, --W
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { -- Fragment
             Vector{-5.20, 1.07, 18.87},
             Vector{10.12, 1.07, 19.08},
@@ -1969,6 +1971,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{15.03, 1.07, 27.16}, --NE
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { -- Coastline
             Vector{-2.47, 1.08, 10.29},
             Vector{15.38, 1.08, 9.96},
@@ -1994,6 +1997,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{-0.62, 1.07, 27.04}, --NW
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { -- Leaf
             Vector{7.05, 1.08, 34.30},
             Vector{20.53, 1.08, 26.36},
@@ -2023,6 +2027,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{40.82, 1.07, 4.66}, --SE
         },
         {}, -- Random
+        {}, -- Random with Thematic
         {  -- Snail
             Vector{26.42, 1.08, 41.16},
             Vector{13.22, 1.08, 33.29},
@@ -2063,6 +2068,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{23.59, 1.07, 4.55}, --SW
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { -- Star
             Vector{33.19, 1.07, 34.36},
             Vector{40.94, 1.07, 20.76},
@@ -2098,6 +2104,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
         },
         {}, -- Random
+        {}, -- Random with Thematic
     },
     { -- 2 Player
         { -- Standard
@@ -2109,6 +2116,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { -- Fragment
             Vector{0.00, 90.00, 0.00},
             Vector{0.00, 330.00, 0.00},
@@ -2130,6 +2138,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { --Coastline
             Vector(0.00, 240.69, 0.00),
             Vector(0.00, 240.69, 0.00),
@@ -2155,6 +2164,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { -- Leaf
             Vector{0.00, 300.27, 0.00},
             Vector{0.00, 0.27, 0.00},
@@ -2184,6 +2194,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
         },
         {}, -- Random
+        {}, -- Random with Thematic
         { -- Snail
             Vector{0.00, 240.00, 0.00},
             Vector{0.00, 120.02, 0.00},
@@ -2223,6 +2234,8 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
+        {}, -- Random
+        {}, -- Random with Thematic
         { -- Star
             Vector{0.00, 330.00, 0.00},
             Vector{0.00, 30.00, 0.00},

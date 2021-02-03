@@ -98,6 +98,7 @@
                         <Option selected="true">Balanced</Option>
                         <Option>Thematic</Option>
                         <Option>Random</Option>
+                        <Option>Random with Thematic</Option>
                     </Dropdown>
                 </Cell>
             </Row>
@@ -190,17 +191,6 @@
             </Row>
             <Row>
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="1" maxValue="11" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="randomAdversary" onValueChanged="toggleRandomAdversary"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomAdversary" preferredWidth="390" tooltip="Randomises a single Adversary within&#xA;the Min/Max Difficulties selected">Random Adversary</Button></Cell>
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="randomSupportingAdversary" onValueChanged="toggleRandomSupportingAdversary"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomSupportingAdversary" preferredWidth="250" tooltip="Instead randomises a Leading&#xA;and Supporting Adversary, with&#xA;a total Difficulty within the range">+Supporting Adversary</Button></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell class="toggle" columnSpan="2"><Text class="toggle"/><Toggle id="randomScenario" onValueChanged="toggleRandomScenario"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomScenario" preferredWidth="370">Random Scenario</Button></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="randomLayout" onValueChanged="toggleRandomLayout"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomLayout" preferredWidth="320" tooltip="Randomises a Board Layout,&#xA;depending on the number of players">Random Layout</Button></Cell>
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="randomLayoutThematic" onValueChanged="toggleRandomLayoutThematic"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomLayoutThematic" preferredWidth="220" tooltip="The Thematic Layout will be included in the randomiser">+Thematic</Button></Cell>
             </Row>
             <Row>
                 <Cell><Button onClick="randomSpirit" tooltip="Will randomly give you any spirit">Random Spirit</Button></Cell>

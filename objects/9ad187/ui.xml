@@ -9,7 +9,7 @@
     <Row class="doubleheader" preferredHeight="120"/>
     <Row class="spacing" preferredHeight="30"/>
     <Toggle textColor="#FFFFFF"/>
-    <Slider wholeNumbers="true"/>
+    <Slider wholeNumbers="true" tooltipFontSize="30" tooltipBackgroundColor="#000000" tooltipPosition="Below"/>
     <Toggle scale="2 2 1"/>
     <Row class="toggle" preferredHeight="60"/>
     <Cell class="toggle" tooltipFontSize="30" childForceExpandWidth="false"/>
@@ -144,7 +144,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2200 -3100 12">
+<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2200 -3000 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -174,23 +174,23 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3695 12">
+<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3525 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
                 <Cell columnSpan="2"><Text>Randomisers</Text></Cell>
             </Row>
             <Row class="header">
-                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Adversary Difficulty: 1</Text></Cell>
+                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Difficulty: 1</Text></Cell>
             </Row>
             <Row>
-                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="1" maxValue="11" value="1" onValueChanged="toggleMinDifficulty"/></Cell>
+                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="1" maxValue="28" value="1" onValueChanged="toggleMinDifficulty"/></Cell>
             </Row>
             <Row class="header">
-                <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Adversary Difficulty: 11</Text></Cell>
+                <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Difficulty: 11</Text></Cell>
             </Row>
             <Row>
-                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="1" maxValue="11" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
+                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="1" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
             <Row>
                 <Cell><Button onClick="randomSpirit" tooltip="Will randomly give you any spirit">Random Spirit</Button></Cell>
@@ -202,7 +202,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-1185 -4216 12">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -4150 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

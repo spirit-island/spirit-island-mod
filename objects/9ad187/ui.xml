@@ -37,6 +37,7 @@
                 <Cell class="leadingAdversary">
                     <Dropdown id="leadingAdversary" class="leadingAdversary" onValueChanged="toggleLeadingAdversary">
                         <Option selected="true">None</Option>
+                        <Option>Random</Option>
                         <Option>Prussia</Option>
                         <Option>England</Option>
                         <Option>Sweden</Option>
@@ -56,6 +57,7 @@
                 <Cell class="supportingAdversary">
                     <Dropdown id="supportingAdversary" class="supportingAdversary" onValueChanged="toggleSupportingAdversary">
                         <Option selected="true">None</Option>
+                        <Option>Random</Option>
                         <Option>Prussia</Option>
                         <Option>England</Option>
                         <Option>Sweden</Option>

@@ -2,6 +2,7 @@ canStart = true
 
 adversaries = {
     ["None"] = "",
+    ["Random"] = "",
     ["Prussia"] = "dd3d47",
     ["England"] = "b765cf",
     ["Sweden"] = "f114f8",
@@ -117,9 +118,16 @@ function updateScenarioSelection(name)
     self.UI.setXmlTable(t, {})
 end
 
+-- TODO fix double adversary randomizer
 function toggleLeadingAdversary(_, value)
-    Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
-    if value == "None" then
+    if value == "Random" then
+        Global.setVar("adversaryCard", nil)
+        Global.setVar("useRandomAdversary", true)
+    else
+        Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
+        Global.setVar("useRandomAdversary", false)
+    end
+    if value == "None" or value == "Random" then
         toggleLeadingLevel(nil, 0)
     else
         updateDifficulty()
@@ -137,8 +145,14 @@ function updateLeadingSelection(name)
     self.UI.setXmlTable(t, {})
 end
 function toggleSupportingAdversary(_, value)
-    Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
-    if value == "None" then
+    if value == "Random" then
+        Global.setVar("adversaryCard2", nil)
+        Global.setVar("useSecondAdversary", true)
+    else
+        Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
+        Global.setVar("useSecondAdversary", false)
+    end
+    if value == "None" or value == "Random" then
         toggleSupportingLevel(nil, 0)
     else
         updateDifficulty()

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 5.684026718139648,
-    "posY": 1.9772472381591797,
-    "posZ": 37.952392578125,
-    "rotX": 0.00446377694606781,
-    "rotY": 180.00047302246094,
-    "rotZ": 1.1392133814069894e-07,
-    "scaleX": 0.20999999344348907,
+    "posX": 5.68402672,
+    "posY": 1.97724724,
+    "posZ": 37.9523926,
+    "rotX": 0.004463777,
+    "rotY": 180.000473,
+    "rotZ": 1.13921338e-07,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "Scotland After Ravage Reminder",
   "Description": "Jagged Earth Expansion",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

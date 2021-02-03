@@ -133,6 +133,14 @@ readyTokens = {
     Green = "88a4c3",
     Orange = "d17f93",
 }
+playerBlocks = {
+    Red = "c68e2c",
+    Purple = "661aa3",
+    Yellow = "c3c59b",
+    Blue = "36bbcc",
+    Green = "fac8e4",
+    Orange = "6b5b4b",
+}
 interactableObjectsToDisableOnLoad = {
     "57dbb8","fd27d5","25fddc", "d3dd7e", -- tables
     "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
@@ -317,6 +325,7 @@ function onLoad(saved_data)
             adversaryLevel2 = loaded_data.adversaryLevel2
             for color,guid in pairs(loaded_data.selectedColors) do
                 selectedColors[color] = getObjectFromGUID(guid)
+                getObjectFromGUID(playerBlocks[color]).call("setupPlayerArea", {})
             end
 
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -1726,6 +1735,7 @@ function StartGame()
     enableUI()
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
+
     broadcastToAll("Game Started!", Table)
     broadcastToAll("Don't forget to do the initial explore action yourself!", Color.SoftBlue)
     if adversaryCard2 ~= nil then
@@ -1780,6 +1790,7 @@ function removeSpirit(params)
     if params.color then
         getObjectFromGUID(elementScanZones[params.color]).clearButtons()
         selectedColors[params.color] = getObjectFromGUID(readyTokens[params.color])
+        getObjectFromGUID(playerBlocks[params.color]).call("setupPlayerArea", {})
     end
 end
 ------

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 36.74855041503906,
-    "posY": 0.9711437225341797,
-    "posZ": 37.7613410949707,
-    "rotX": -1.573745430505369e-05,
-    "rotY": 180.00802612304688,
-    "rotZ": -0.0002022640546783805,
-    "scaleX": 0.800000011920929,
-    "scaleY": 0.800000011920929,
-    "scaleZ": 0.800000011920929
+    "posX": 36.74855,
+    "posY": 0.9711437,
+    "posZ": 37.76134,
+    "rotX": -1.57374543e-05,
+    "rotY": 180.008026,
+    "rotZ": -0.000202264055,
+    "scaleX": 0.8,
+    "scaleY": 0.8,
+    "scaleZ": 0.8
   },
   "Nickname": "Orange's Defence Reminder Tokens",
   "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9529411196708679,
-    "g": 0.5517460107803345,
-    "b": 0.10980381816625595
+    "r": 0.9529411,
+    "g": 0.551746,
+    "b": 0.109803818
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

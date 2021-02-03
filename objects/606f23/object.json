@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -83.33634948730469,
-    "posY": 1.1448583602905273,
-    "posZ": 40.45702362060547,
-    "rotX": 0.004471934866160154,
-    "rotY": 179.9999542236328,
-    "rotZ": 180.36563110351562,
-    "scaleX": 5.460000038146973,
+    "posX": -83.33635,
+    "posY": 1.14485836,
+    "posZ": 40.4570236,
+    "rotX": 0.004471935,
+    "rotY": 179.999954,
+    "rotZ": 180.365631,
+    "scaleX": 5.46,
     "scaleY": 1.0,
-    "scaleZ": 5.460000038146973
+    "scaleZ": 5.46
   },
   "Nickname": "Bringer of Dreams and Nightmares",
   "Description": "Base",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.20027896761894226,
-    "g": 0.16032424569129944,
-    "b": 0.15176251530647278
+    "r": 0.200278252,
+    "g": 0.16032353,
+    "b": 0.1517618
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }
@@ -47,89 +47,89 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -0.045803502202034,
-        "y": 0.2000013291835785,
-        "z": -0.3963654339313507
+        "x": -0.0458035022,
+        "y": 0.200001329,
+        "z": -0.396365434
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.04935725778341293,
-        "y": 0.20000138878822327,
-        "z": -0.08053477853536606
+        "x": -0.0493572578,
+        "y": 0.200001389,
+        "z": -0.08053478
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.2724810540676117,
-        "y": 0.2000008225440979,
-        "z": -0.39527103304862976
+        "x": -0.272481054,
+        "y": 0.200000823,
+        "z": -0.395271033
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.27270379662513733,
-        "y": 0.20000046491622925,
-        "z": -0.08249422907829285
+        "x": -0.2727038,
+        "y": 0.200000465,
+        "z": -0.08249423
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.4873000383377075,
-        "y": 0.20000049471855164,
-        "z": -0.3973052203655243
+        "x": -0.487300038,
+        "y": 0.2000005,
+        "z": -0.39730522
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.4902610182762146,
-        "y": 0.2000005692243576,
-        "z": -0.08148223161697388
+        "x": -0.490261018,
+        "y": 0.200000569,
+        "z": -0.08148223
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.7080333232879639,
-        "y": 0.2000005543231964,
-        "z": -0.39645275473594666
+        "x": -0.7080333,
+        "y": 0.200000554,
+        "z": -0.396452755
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.7112560868263245,
-        "y": 0.20000039041042328,
-        "z": -0.0804196149110794
+        "x": -0.7112561,
+        "y": 0.20000039,
+        "z": -0.0804196149
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.9315334558486938,
-        "y": 0.2000008225440979,
-        "z": -0.3984107971191406
+        "x": -0.931533456,
+        "y": 0.200000823,
+        "z": -0.3984108
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -0.9316842555999756,
-        "y": 0.20000092685222626,
-        "z": -0.07974832504987717
+        "x": -0.931684256,
+        "y": 0.200000927,
+        "z": -0.079748325
       },
       "Tags": []
     },
     {
       "Position": {
-        "x": -1.1519405841827393,
-        "y": 0.20000135898590088,
-        "z": -0.39701205492019653
+        "x": -1.15194058,
+        "y": 0.200001359,
+        "z": -0.397012055
       },
       "Tags": []
     }
@@ -139,23 +139,23 @@
       "GUID": "b28d1d",
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -83.33634948730469,
-        "posY": 1.1448583602905273,
-        "posZ": 40.45702362060547,
-        "rotX": 0.004471934866160154,
-        "rotY": 179.9999542236328,
-        "rotZ": 180.36563110351562,
-        "scaleX": 5.460000038146973,
+        "posX": -83.33635,
+        "posY": 1.14485836,
+        "posZ": 40.4570236,
+        "rotX": 0.004471935,
+        "rotY": 179.999954,
+        "rotZ": 180.365631,
+        "scaleX": 5.46,
         "scaleY": 1.0,
-        "scaleZ": 5.460000038146973
+        "scaleZ": 5.46
       },
       "Nickname": "Bringer of Dreams and Nightmares",
       "Description": "Base",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.20028042793273926,
-        "g": 0.16032570600509644,
-        "b": 0.15176397562026978
+        "r": 0.200280309,
+        "g": 0.160325587,
+        "b": 0.151763856
       },
       "LayoutGroupSortIndex": 0,
       "Locked": true,
@@ -177,100 +177,100 @@
         "WidthScale": 0.0,
         "CustomTile": {
           "Type": 0,
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "Stackable": false,
           "Stretch": true
         }
       },
-      "LuaScript": "-- Spirit Tile for Bone White's Spirit Island Mod v2 --\r\nuseProgression = false\r\nprogressionCard = nil\r\nuseAspect = 2\r\n\r\nfunction onLoad()\r\n    Color.Add(\"SoftBlue\", Color.new(0.45,0.6,0.7))\r\n    if Global.getVar(\"gameStarted\") then return end\r\n    self.createButton({\r\n        click_function = \"SetupSpirit\",\r\n        function_owner = self,\r\n        label          = \"Choose Spirit\",\r\n        position       = Vector(0.7, -0.1, 0.9),\r\n        rotation       = Vector(0,0,180),\r\n        scale = Vector(0.2,0.2,0.2),\r\n        width          = 1800,\r\n        height         = 500,\r\n        font_size      = 300,\r\n    })\r\n    self.createButton({\r\n        click_function = \"ToggleProgression\",\r\n        function_owner = self,\r\n        label          = \"\",\r\n        position       = Vector(-0.7, -0.1, 0.9),\r\n        rotation       = Vector(0,0,180),\r\n        scale = Vector(0.2,0.2,0.2),\r\n        width          = 0,\r\n        height         = 0,\r\n        font_size      = 300,\r\n        tooltip        = \"Enable/Disable Progression Deck\",\r\n    })\r\n    self.createButton({\r\n        click_function = \"ToggleAspect\",\r\n        function_owner = self,\r\n        label          = \"\",\r\n        position       = Vector(0.7, -0.2, 0.4),\r\n        rotation       = Vector(0,0,180),\r\n        scale = Vector(0.2,0.2,0.2),\r\n        width          = 0,\r\n        height         = 0,\r\n        font_size      = 300,\r\n        tooltip        = \"Enable/Disable Aspect Deck\",\r\n    })\r\n    local castObjects = upCast(self,1,0.5)\r\n    for _,obj in pairs (castObjects) do\r\n        if string.find(obj.getName(),\"Progression\") then\r\n            progressionCard = obj\r\n            self.editButton({\r\n                index          = 1,\r\n                label          = \"No Progression\",\r\n                width          = 2000,\r\n                height         = 500,\r\n            })\r\n        elseif string.find(obj.getName(),\"Aspects\") then\r\n            self.editButton({\r\n                index          = 2,\r\n                label          = \"Include Aspects\",\r\n                width          = 2000,\r\n                height         = 500,\r\n            })\r\n        end\r\n    end\r\n    Global.call(\"addSpirit\", {spirit=self})\r\nend\r\n\r\nfunction PickSpirit(params)\r\n    if params.random.aspect then\r\n        useAspect = 1\r\n    end\r\n    SetupSpirit(nil, params.color)\r\nend\r\nfunction SetupSpirit(object_pick,player_color)\r\n    local xPadding = 1.3\r\n    local xOffset = 1\r\n    local PlayerBag = getObjectFromGUID(Global.getTable(\"PlayerBags\")[player_color])\r\n    if #PlayerBag.getObjects() ~= 0 then\r\n        Global.call(\"removeSpirit\", {spirit=self.guid, color=player_color})\r\n        local castObjects = upCast(self,1,0.5)\r\n        local hpos = Player[player_color].getHandTransform().position\r\n        self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))\r\n        self.setRotation(Vector(0,180,0))\r\n        self.setLock(true)\r\n        self.clearButtons()\r\n        local spos = self.getPosition()\r\n        local snaps = self.getSnapPoints()\r\n        local placed = 0\r\n\r\n        -- Setup Presence\r\n        for i = 1,13 do\r\n            local p = snaps[i]\r\n            if i <= #snaps then\r\n                PlayerBag.takeObject({position = self.positionToWorld(p.position)})\r\n            else\r\n                PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})\r\n                placed = placed + 1\r\n            end\r\n        end\r\n\r\n        -- Setup Aid Tokens\r\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, -4)})\r\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, -2)})\r\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, 0)})\r\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -5)})\r\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -3)})\r\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -1)})\r\n\r\n        -- Setup Energy Counter\r\n        local counter = getObjectFromGUID(Global.getVar(\"counterBag\")).takeObject({\r\n            position       = Vector(spos.x,0,spos.z) + Vector(-5,1,5)\r\n        })\r\n        counter.setLock(true)\r\n\r\n        -- Setup Progression Deck if enabled\r\n        if useProgression then\r\n            local minorPowerDeck = getObjectFromGUID(Global.getVar(\"minorPowerZone\")).getObjects()[1]\r\n            local majorPowerDeck = getObjectFromGUID(Global.getVar(\"majorPowerZone\")).getObjects()[1]\r\n            local progressionDeck = progressionCard.getVar(\"progressionDeck\")\r\n            for i,card in pairs(progressionDeck) do\r\n                if card[2] then\r\n                    majorPowerDeck.takeObject({\r\n                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),\r\n                        rotation = Vector(0,180,180),\r\n                        guid = card[1],\r\n                    })\r\n                else\r\n                    minorPowerDeck.takeObject({\r\n                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),\r\n                        rotation = Vector(0,180,180),\r\n                        guid = card[1],\r\n                    })\r\n                end\r\n            end\r\n        end\r\n\r\n        -- Setup objects on top of board\r\n        for i,obj in pairs (castObjects) do\r\n            obj.setLock(false)\r\n            if obj.type == \"Deck\" then\r\n                if string.find(obj.getName(),\"Aspects\") then\r\n                    HandleAspect(obj, player_color)\r\n                else\r\n                    obj.deal(#obj.getObjects(),player_color)\r\n                end\r\n            elseif obj.type == \"Card\" and string.find(obj.getName(),\"Progression\") then\r\n                if useProgression then\r\n                    obj.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))\r\n                else\r\n                    obj.destruct()\r\n                end\r\n            else\r\n                obj.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))\r\n                placed = placed + 1\r\n            end\r\n        end\r\n    else\r\n        broadcastToColor(\"You already picked a spirit\", player_color, \"Red\")\r\n    end\r\nend\r\nfunction HandleAspect(deck, player_color)\r\n    if useAspect == 0 then\r\n        deck.destruct()\r\n    elseif useAspect == 1 then\r\n        local index = math.random(0,#deck.getObjects())\r\n        if index == 0 then\r\n            broadcastToColor(\"Your random Aspect is no Aspect\", player_color, Color.SoftBlue)\r\n            deck.destruct()\r\n        else\r\n            deck.takeObject({\r\n                index = index - 1,\r\n                position = deck.getPosition() + Vector(0,2,0),\r\n                callback_function = function(obj) obj.deal(1, player_color) deck.destruct() broadcastToColor(\"Your random Aspect is \"..obj.getName(), player_color, Color.SoftBlue) end,\r\n            })\r\n            if deck.remainder then deck = deck.remainder end\r\n        end\r\n    else\r\n        deck.deal(#deck.getObjects(), player_color)\r\n    end\r\nend\r\n\r\nfunction ToggleProgression()\r\n    useProgression = not useProgression\r\n    if useProgression then\r\n        self.editButton({\r\n            index          = 1,\r\n            label          = \"Progression\",\r\n        })\r\n    else\r\n        self.editButton({\r\n            index          = 1,\r\n            label          = \"No Progression\",\r\n        })\r\n    end\r\nend\r\nfunction ToggleAspect(_, _, alt_click)\r\n    if alt_click then\r\n        useAspect = (useAspect - 1) % 3\r\n    else\r\n        useAspect = (useAspect + 1) % 3\r\n    end\r\n    if useAspect == 0 then\r\n        self.editButton({\r\n            index          = 2,\r\n            label          = \"No Aspects\",\r\n        })\r\n    elseif useAspect == 1 then\r\n        self.editButton({\r\n            index          = 2,\r\n            label          = \"Random Aspect\",\r\n        })\r\n    else\r\n        self.editButton({\r\n            index          = 2,\r\n            label          = \"Include Aspects\",\r\n        })\r\n    end\r\nend\r\n-----\r\nfunction upCast(obj,dist,offset,multi)\r\n    local dist = dist or 1\r\n    local offset = offset or 0\r\n    local multi = multi or 1\r\n    local oPos = obj.getPosition()\r\n    local oBounds = obj.getBoundsNormalized()\r\n    local oRot = obj.getRotation()\r\n    local orig = Vector(oPos[1],oPos[2]+offset,oPos[3])\r\n    local siz = Vector(oBounds.size.x*multi,dist,oBounds.size.z*multi)\r\n    local orient = Vector(oRot[1],oRot[2],oRot[3])\r\n    local hits = Physics.cast({\r\n        origin       = orig,\r\n        direction    = Vector(0,1,0),\r\n        type         = 3,\r\n        size         = siz,\r\n        orientation  = orient,\r\n        max_distance = 0,\r\n        --debug        = true,\r\n    })\r\n    local hitObjects = {}\r\n    for i,v in pairs(hits) do\r\n        if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end\r\n    end\r\n    return hitObjects\r\nend\r\n",
+      "LuaScript": "-- Spirit Tile for Bone White's Spirit Island Mod v2 --\nuseProgression = false\nprogressionCard = nil\nuseAspect = 2\n\nfunction onLoad()\n    Color.Add(\"SoftBlue\", Color.new(0.45,0.6,0.7))\n    if Global.getVar(\"gameStarted\") then return end\n    self.createButton({\n        click_function = \"SetupSpirit\",\n        function_owner = self,\n        label          = \"Choose Spirit\",\n        position       = Vector(0.7, -0.1, 0.9),\n        rotation       = Vector(0,0,180),\n        scale = Vector(0.2,0.2,0.2),\n        width          = 1800,\n        height         = 500,\n        font_size      = 300,\n    })\n    self.createButton({\n        click_function = \"ToggleProgression\",\n        function_owner = self,\n        label          = \"\",\n        position       = Vector(-0.7, -0.1, 0.9),\n        rotation       = Vector(0,0,180),\n        scale = Vector(0.2,0.2,0.2),\n        width          = 0,\n        height         = 0,\n        font_size      = 300,\n        tooltip        = \"Enable/Disable Progression Deck\",\n    })\n    self.createButton({\n        click_function = \"ToggleAspect\",\n        function_owner = self,\n        label          = \"\",\n        position       = Vector(0.7, -0.2, 0.4),\n        rotation       = Vector(0,0,180),\n        scale = Vector(0.2,0.2,0.2),\n        width          = 0,\n        height         = 0,\n        font_size      = 300,\n        tooltip        = \"Enable/Disable Aspect Deck\",\n    })\n    local castObjects = upCast(self,1,0.5)\n    for _,obj in pairs (castObjects) do\n        if string.find(obj.getName(),\"Progression\") then\n            progressionCard = obj\n            self.editButton({\n                index          = 1,\n                label          = \"No Progression\",\n                width          = 2000,\n                height         = 500,\n            })\n        elseif string.find(obj.getName(),\"Aspects\") then\n            self.editButton({\n                index          = 2,\n                label          = \"Include Aspects\",\n                width          = 2000,\n                height         = 500,\n            })\n        end\n    end\n    Global.call(\"addSpirit\", {spirit=self})\nend\n\nfunction PickSpirit(params)\n    if params.random.aspect then\n        useAspect = 1\n    end\n    SetupSpirit(nil, params.color)\nend\nfunction SetupSpirit(object_pick,player_color)\n    local xPadding = 1.3\n    local xOffset = 1\n    local PlayerBag = getObjectFromGUID(Global.getTable(\"PlayerBags\")[player_color])\n    if #PlayerBag.getObjects() ~= 0 then\n        local castObjects = upCast(self,1,0.5)\n        local hpos = Player[player_color].getHandTransform().position\n        self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))\n        self.setRotation(Vector(0,180,0))\n        self.setLock(true)\n        self.clearButtons()\n        local spos = self.getPosition()\n        local snaps = self.getSnapPoints()\n        local placed = 0\n\n        -- Setup Presence\n        for i = 1,13 do\n            local p = snaps[i]\n            if i <= #snaps then\n                PlayerBag.takeObject({position = self.positionToWorld(p.position)})\n            else\n                PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})\n                placed = placed + 1\n            end\n        end\n\n        -- Setup Ready Token\n        PlayerBag.takeObject({\n            position = Vector(spos.x,0,spos.z) + Vector(6, 1.1, 7),\n            rotation = Vector(0, 180, 180),\n        })\n        Global.call(\"removeSpirit\", {spirit=self.guid, color=player_color})\n\n        -- Setup Aid Tokens\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, -4)})\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, -2)})\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, 0)})\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -5)})\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -3)})\n        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -1)})\n\n        -- Setup Energy Counter\n        local counter = getObjectFromGUID(Global.getVar(\"counterBag\")).takeObject({\n            position       = Vector(spos.x,0,spos.z) + Vector(-5,1,5)\n        })\n        counter.setLock(true)\n\n        -- Setup Progression Deck if enabled\n        if useProgression then\n            local minorPowerDeck = getObjectFromGUID(Global.getVar(\"minorPowerZone\")).getObjects()[1]\n            local majorPowerDeck = getObjectFromGUID(Global.getVar(\"majorPowerZone\")).getObjects()[1]\n            local progressionDeck = progressionCard.getVar(\"progressionDeck\")\n            for i,card in pairs(progressionDeck) do\n                if card[2] then\n                    majorPowerDeck.takeObject({\n                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),\n                        rotation = Vector(0,180,180),\n                        guid = card[1],\n                    })\n                else\n                    minorPowerDeck.takeObject({\n                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),\n                        rotation = Vector(0,180,180),\n                        guid = card[1],\n                    })\n                end\n            end\n        end\n\n        -- Setup objects on top of board\n        for i,obj in pairs (castObjects) do\n            obj.setLock(false)\n            if obj.type == \"Deck\" then\n                if string.find(obj.getName(),\"Aspects\") then\n                    HandleAspect(obj, player_color)\n                else\n                    obj.deal(#obj.getObjects(),player_color)\n                end\n            elseif obj.type == \"Card\" and string.find(obj.getName(),\"Progression\") then\n                if useProgression then\n                    obj.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))\n                else\n                    obj.destruct()\n                end\n            else\n                obj.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))\n                placed = placed + 1\n            end\n        end\n    else\n        broadcastToColor(\"You already picked a spirit\", player_color, \"Red\")\n    end\nend\nfunction HandleAspect(deck, player_color)\n    if useAspect == 0 then\n        deck.destruct()\n    elseif useAspect == 1 then\n        local index = math.random(0,#deck.getObjects())\n        if index == 0 then\n            broadcastToColor(\"Your random Aspect is no Aspect\", player_color, Color.SoftBlue)\n            deck.destruct()\n        else\n            deck.takeObject({\n                index = index - 1,\n                position = deck.getPosition() + Vector(0,2,0),\n                callback_function = function(obj) obj.deal(1, player_color) deck.destruct() broadcastToColor(\"Your random Aspect is \"..obj.getName(), player_color, Color.SoftBlue) end,\n            })\n            if deck.remainder then deck = deck.remainder end\n        end\n    else\n        deck.deal(#deck.getObjects(), player_color)\n    end\nend\n\nfunction ToggleProgression()\n    useProgression = not useProgression\n    if useProgression then\n        self.editButton({\n            index          = 1,\n            label          = \"Progression\",\n        })\n    else\n        self.editButton({\n            index          = 1,\n            label          = \"No Progression\",\n        })\n    end\nend\nfunction ToggleAspect(_, _, alt_click)\n    if alt_click then\n        useAspect = (useAspect - 1) % 3\n    else\n        useAspect = (useAspect + 1) % 3\n    end\n    if useAspect == 0 then\n        self.editButton({\n            index          = 2,\n            label          = \"No Aspects\",\n        })\n    elseif useAspect == 1 then\n        self.editButton({\n            index          = 2,\n            label          = \"Random Aspect\",\n        })\n    else\n        self.editButton({\n            index          = 2,\n            label          = \"Include Aspects\",\n        })\n    end\nend\n-----\nfunction upCast(obj,dist,offset,multi)\n    local dist = dist or 1\n    local offset = offset or 0\n    local multi = multi or 1\n    local oPos = obj.getPosition()\n    local oBounds = obj.getBoundsNormalized()\n    local oRot = obj.getRotation()\n    local orig = Vector(oPos[1],oPos[2]+offset,oPos[3])\n    local siz = Vector(oBounds.size.x*multi,dist,oBounds.size.z*multi)\n    local orient = Vector(oRot[1],oRot[2],oRot[3])\n    local hits = Physics.cast({\n        origin       = orig,\n        direction    = Vector(0,1,0),\n        type         = 3,\n        size         = siz,\n        orientation  = orient,\n        max_distance = 0,\n        --debug        = true,\n    })\n    local hitObjects = {}\n    for i,v in pairs(hits) do\n        if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end\n    end\n    return hitObjects\nend\n",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -0.045803502202034,
-            "y": 0.2000013291835785,
-            "z": -0.3963654339313507
+            "x": -0.0458035022,
+            "y": 0.200001329,
+            "z": -0.396365434
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.04935725778341293,
-            "y": 0.20000138878822327,
-            "z": -0.08053477853536606
+            "x": -0.0493572578,
+            "y": 0.200001389,
+            "z": -0.08053478
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.2724810540676117,
-            "y": 0.2000008225440979,
-            "z": -0.39527103304862976
+            "x": -0.272481054,
+            "y": 0.200000823,
+            "z": -0.395271033
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.27270379662513733,
-            "y": 0.20000046491622925,
-            "z": -0.08249422907829285
+            "x": -0.2727038,
+            "y": 0.200000465,
+            "z": -0.08249423
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.4873000383377075,
-            "y": 0.20000049471855164,
-            "z": -0.3973052203655243
+            "x": -0.487300038,
+            "y": 0.2000005,
+            "z": -0.39730522
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.4902610182762146,
-            "y": 0.2000005692243576,
-            "z": -0.08148223161697388
+            "x": -0.490261018,
+            "y": 0.200000569,
+            "z": -0.08148223
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.7080333232879639,
-            "y": 0.2000005543231964,
-            "z": -0.39645275473594666
+            "x": -0.7080333,
+            "y": 0.200000554,
+            "z": -0.396452755
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.7112560868263245,
-            "y": 0.20000039041042328,
-            "z": -0.0804196149110794
+            "x": -0.7112561,
+            "y": 0.20000039,
+            "z": -0.0804196149
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.9315334558486938,
-            "y": 0.2000008225440979,
-            "z": -0.3984107971191406
+            "x": -0.931533456,
+            "y": 0.200000823,
+            "z": -0.3984108
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.9316842555999756,
-            "y": 0.20000092685222626,
-            "z": -0.07974832504987717
+            "x": -0.931684256,
+            "y": 0.200000927,
+            "z": -0.079748325
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -1.1519405841827393,
-            "y": 0.20000135898590088,
-            "z": -0.39701205492019653
+            "x": -1.15194058,
+            "y": 0.200001359,
+            "z": -0.397012055
           },
           "Tags": []
         }

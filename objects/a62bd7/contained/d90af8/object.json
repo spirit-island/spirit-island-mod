@@ -1,23 +1,23 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -70.95333862304688,
-    "posY": 1.3292192220687866,
-    "posZ": -0.25650253891944885,
-    "rotX": 8.898469786799978e-06,
+    "posX": -70.95334,
+    "posY": 1.32921922,
+    "posZ": -0.256502539,
+    "rotX": 8.89847e-06,
     "rotY": 180.0,
-    "rotZ": 179.99826049804688,
-    "scaleX": 1.0499999523162842,
+    "rotZ": 179.99826,
+    "scaleX": 1.05,
     "scaleY": 1.0,
-    "scaleZ": 1.0499999523162842
+    "scaleZ": 1.05
   },
   "Nickname": "Invader Reminder Card",
   "Description": "Habsburg Lv 5",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.7132352590560913,
-    "g": 0.7132352590560913,
-    "b": 0.7132352590560913
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

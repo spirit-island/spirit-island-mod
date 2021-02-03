@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.1399917602539,
-    "posY": 1.3150407075881958,
-    "posZ": 0.8599995970726013,
-    "rotX": -0.001060810056515038,
-    "rotY": 180.01669311523438,
-    "rotZ": 0.0006060291198082268,
-    "scaleX": 0.20999999344348907,
+    "posX": -69.13999,
+    "posY": 1.31504071,
+    "posZ": 0.8599996,
+    "rotX": -0.00106081,
+    "rotY": 180.0167,
+    "rotZ": 0.0006060291,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "Habsburg Ravage Reminder",
   "Description": "Jagged Earth Expansion",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

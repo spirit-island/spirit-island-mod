@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -115.69000244140625,
-    "posY": 1.1851097345352173,
-    "posZ": 9.020000457763672,
-    "rotX": 0.004448284860700369,
-    "rotY": 180.01004028320312,
-    "rotZ": 3.2926043331826804e-06,
-    "scaleX": 0.3673044443130493,
+    "posX": -115.69,
+    "posY": 1.18510985,
+    "posZ": 9.02,
+    "rotX": 0.004443523,
+    "rotY": 180.01004,
+    "rotZ": 1.07618716e-05,
+    "scaleX": 0.367304444,
     "scaleY": 1.0,
-    "scaleZ": 0.3673044443130493
+    "scaleZ": 0.367304444
   },
   "Nickname": "Element Marker",
   "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -38,7 +38,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true
@@ -49,15 +49,15 @@
       "GUID": "45247f",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.9401092529297,
-        "posY": 1.0896083116531372,
-        "posZ": 2.5401954650878906,
-        "rotX": 0.004625222645699978,
-        "rotY": 179.29689025878906,
-        "rotZ": 0.0004658205434679985,
-        "scaleX": 0.3673044443130493,
+        "posX": -141.940109,
+        "posY": 1.08960831,
+        "posZ": 2.54019547,
+        "rotX": 0.00462522265,
+        "rotY": 179.29689,
+        "rotZ": 0.000465820543,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -86,7 +86,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true
@@ -100,15 +100,15 @@
       "GUID": "051001",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.9401092529297,
-        "posY": 1.0896083116531372,
-        "posZ": 2.5401954650878906,
-        "rotX": 0.004619653802365065,
-        "rotY": 179.2969207763672,
-        "rotZ": 0.00046267127618193626,
-        "scaleX": 0.3673044443130493,
+        "posX": -141.940109,
+        "posY": 1.08960831,
+        "posZ": 2.54019547,
+        "rotX": 0.004619654,
+        "rotY": 179.296921,
+        "rotZ": 0.000462671276,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -137,7 +137,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true
@@ -151,15 +151,15 @@
       "GUID": "43e20a",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.9401092529297,
-        "posY": 1.0896081924438477,
-        "posZ": 2.5401954650878906,
-        "rotX": 0.004615659359842539,
-        "rotY": 179.2969207763672,
-        "rotZ": 0.0004567280993796885,
-        "scaleX": 0.3673044443130493,
+        "posX": -141.940109,
+        "posY": 1.08960819,
+        "posZ": 2.54019547,
+        "rotX": 0.00461565936,
+        "rotY": 179.296921,
+        "rotZ": 0.0004567281,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -188,7 +188,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true
@@ -202,15 +202,15 @@
       "GUID": "8e54ff",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.9401092529297,
-        "posY": 1.0896081924438477,
-        "posZ": 2.5401954650878906,
-        "rotX": 0.004628462716937065,
-        "rotY": 179.29698181152344,
-        "rotZ": 0.00046760027180425823,
-        "scaleX": 0.3673044443130493,
+        "posX": -141.940109,
+        "posY": 1.08960819,
+        "posZ": 2.54019547,
+        "rotX": 0.00462846272,
+        "rotY": 179.296982,
+        "rotZ": 0.000467600272,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -239,7 +239,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true
@@ -253,15 +253,15 @@
       "GUID": "a5895a",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.9401092529297,
-        "posY": 1.0896081924438477,
-        "posZ": 2.5401954650878906,
-        "rotX": 0.004620586521923542,
-        "rotY": 179.29698181152344,
-        "rotZ": 0.0004608173039741814,
-        "scaleX": 0.3673044443130493,
+        "posX": -141.940109,
+        "posY": 1.08960819,
+        "posZ": 2.54019547,
+        "rotX": 0.00462058652,
+        "rotY": 179.296982,
+        "rotZ": 0.0004608173,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -290,7 +290,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true
@@ -304,15 +304,15 @@
       "GUID": "31443f",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.9401092529297,
-        "posY": 1.0896081924438477,
-        "posZ": 2.5401954650878906,
-        "rotX": 0.004622734151780605,
-        "rotY": 179.29698181152344,
-        "rotZ": 0.0004645251319743693,
-        "scaleX": 0.3673044443130493,
+        "posX": -141.940109,
+        "posY": 1.08960819,
+        "posZ": 2.54019547,
+        "rotX": 0.004622734,
+        "rotY": 179.296982,
+        "rotZ": 0.000464525132,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -341,7 +341,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true
@@ -355,15 +355,15 @@
       "GUID": "372ead",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -141.9401092529297,
-        "posY": 1.0896081924438477,
-        "posZ": 2.5401954650878906,
-        "rotX": 0.004631051328033209,
-        "rotY": 179.29698181152344,
-        "rotZ": 0.00046788720646873116,
-        "scaleX": 0.3673044443130493,
+        "posX": -141.940109,
+        "posY": 1.08960819,
+        "posZ": 2.54019547,
+        "rotX": 0.00463105133,
+        "rotY": 179.296982,
+        "rotZ": 0.0004678872,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -392,7 +392,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true
@@ -406,15 +406,15 @@
       "GUID": "bcfec9",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -136.33999633789062,
-        "posY": 1.18486750125885,
-        "posZ": 5.899930477142334,
-        "rotX": 0.004447493702173233,
-        "rotY": 180.0063934326172,
-        "rotZ": 1.413460722687887e-05,
-        "scaleX": 0.3673044443130493,
+        "posX": -136.34,
+        "posY": 1.1848675,
+        "posZ": 5.89993048,
+        "rotX": 0.0044474937,
+        "rotY": 180.0064,
+        "rotZ": 1.41346072e-05,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Element Marker",
       "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
@@ -443,7 +443,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 35.86943817138672,
-    "posY": 0.9711380004882812,
-    "posZ": 52.55974578857422,
-    "rotX": -3.4534652968432056e-06,
-    "rotY": 180.008056640625,
-    "rotZ": -0.00013402751937974244,
-    "scaleX": 0.800000011920929,
-    "scaleY": 0.800000011920929,
-    "scaleZ": 0.800000011920929
+    "posX": 35.86944,
+    "posY": 0.971138,
+    "posZ": 52.5597458,
+    "rotX": -3.4534653e-06,
+    "rotY": 180.008057,
+    "rotZ": -0.000134027519,
+    "scaleX": 0.8,
+    "scaleY": 0.8,
+    "scaleZ": 0.8
   },
   "Nickname": "Purple's Defence Reminder Tokens",
   "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6269999742507935,
-    "g": 0.12499985843896866,
-    "b": 0.9409999847412109
+    "r": 0.627,
+    "g": 0.124999858,
+    "b": 0.941
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,10 +1,10 @@
 {
   "Name": "ScriptingTrigger",
   "Transform": {
-    "posX": -45.619998931884766,
-    "posY": 1.899999976158142,
-    "posZ": -5.570000171661377,
-    "rotX": -0.0,
+    "posX": -45.62,
+    "posY": 1.9,
+    "posZ": -5.57,
+    "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 2.0,
@@ -18,7 +18,7 @@
     "r": 1.0,
     "g": 1.0,
     "b": 1.0,
-    "a": 0.5098039507865906
+    "a": 0.509803951
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -70.36371612548828,
-    "posY": 1.3148484230041504,
-    "posZ": 0.8831464648246765,
-    "rotX": -8.290913342534623e-07,
-    "rotY": 179.98158264160156,
-    "rotZ": -1.3797731526210555e-06,
-    "scaleX": 0.20999999344348907,
+    "posX": -70.3637161,
+    "posY": 1.31484842,
+    "posZ": 0.883146465,
+    "rotX": -8.29091334e-07,
+    "rotY": 179.981583,
+    "rotZ": -1.37977315e-06,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "England Build Reminder",
   "Description": "Spirit Island",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

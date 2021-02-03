@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 36.63603591918945,
-    "posY": 1.0100023746490479,
-    "posZ": 68.1213607788086,
-    "rotX": 1.1342284778947942e-05,
-    "rotY": 180.0142059326172,
-    "rotZ": -0.000151286119944416,
-    "scaleX": 0.800000011920929,
-    "scaleY": 0.800000011920929,
-    "scaleZ": 0.800000011920929
+    "posX": 36.6360359,
+    "posY": 1.01000237,
+    "posZ": 68.12136,
+    "rotX": 1.13422848e-05,
+    "rotY": 180.0142,
+    "rotZ": -0.00015128612,
+    "scaleX": 0.8,
+    "scaleY": 0.8,
+    "scaleZ": 0.8
   },
   "Nickname": "Yellow's Isolate Reminder Tokens",
   "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9049999713897705,
-    "g": 0.8980000019073486,
-    "b": 0.17199984192848206
+    "r": 0.905,
+    "g": 0.898,
+    "b": 0.171999842
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

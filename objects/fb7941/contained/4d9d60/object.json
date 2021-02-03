@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 42.07307815551758,
-    "posY": 1.0100022554397583,
-    "posZ": 70.29033660888672,
-    "rotX": -7.091441148077138e-06,
-    "rotY": 180.0115509033203,
-    "rotZ": -0.00014682715118397027,
-    "scaleX": 0.800000011920929,
-    "scaleY": 0.800000011920929,
-    "scaleZ": 0.800000011920929
+    "posX": 42.07308,
+    "posY": 1.01000226,
+    "posZ": 70.29034,
+    "rotX": -7.091441e-06,
+    "rotY": 180.011551,
+    "rotZ": -0.000146827151,
+    "scaleX": 0.8,
+    "scaleY": 0.8,
+    "scaleZ": 0.8
   },
   "Nickname": "Red's Isolate Reminder Tokens",
   "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.2510194182395935,
-    "b": 0.2510194182395935
+    "g": 0.251019418,
+    "b": 0.251019418
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,22 +1,22 @@
 {
   "Name": "Infinite_Bag",
   "Transform": {
-    "posX": -119.69000244140625,
-    "posY": 1.1281274557113647,
-    "posZ": 9.019988059997559,
-    "rotX": 359.9801025390625,
-    "rotY": 0.008300512097775936,
-    "rotZ": -2.869197942345636e-06,
-    "scaleX": 0.5812500715255737,
-    "scaleY": 0.3875001072883606,
-    "scaleZ": 0.5812500715255737
+    "posX": -119.69,
+    "posY": 1.12812746,
+    "posZ": 9.01997948,
+    "rotX": 359.9801,
+    "rotY": 0.008300512,
+    "rotZ": -2.51835149e-06,
+    "scaleX": 0.5812501,
+    "scaleY": 0.3875001,
+    "scaleZ": 0.5812501
   },
   "Nickname": "Element Markers",
   "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.30588850378990173,
-    "g": 0.3725551664829254,
+    "r": 0.3058885,
+    "g": 0.372555166,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,

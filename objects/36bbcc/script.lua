@@ -1,4 +1,4 @@
-function onLoad()
+function setupPlayerArea()
     Global.call("setupPlayerArea", {
         obj = self,
         elementBags = {

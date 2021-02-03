@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 37.56330490112305,
-    "posY": 0.9711356163024902,
-    "posZ": 37.98540496826172,
-    "rotX": -0.0001252129877684638,
-    "rotY": 89.99445343017578,
-    "rotZ": -4.4397889809033586e-08,
-    "scaleX": 0.20999999344348907,
+    "posX": 37.5633049,
+    "posY": 0.9711356,
+    "posZ": 37.985405,
+    "rotX": -0.000125212988,
+    "rotY": 89.99445,
+    "rotZ": -4.439789e-08,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "Habsburg After Build Reminder",
   "Description": "Jagged Earth Expansion",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

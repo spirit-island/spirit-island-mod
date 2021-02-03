@@ -1,15 +1,15 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": -98.33999633789062,
-    "posY": 0.8899999856948853,
-    "posZ": -19.299999237060547,
+    "posX": -98.34,
+    "posY": 0.89,
+    "posZ": -19.3,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 2.6113624572753906,
+    "scaleX": 2.61136246,
     "scaleY": 1.0,
-    "scaleZ": 2.6113624572753906
+    "scaleZ": 2.61136246
   },
   "Nickname": "",
   "Description": "",

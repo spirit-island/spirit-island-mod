@@ -3242,8 +3242,7 @@ end
 function updateSwitchPlayerButtons()
     for color, counter in pairs(playerCounters) do
         if Player[color].seated then
-            -- TODO: Switch visibility to `color`
-            counter.UI.setAttribute("switchPlayer", "visibility", "false")
+            counter.UI.setAttribute("switchPlayer", "visibility", color)
         else
             counter.UI.setAttribute("switchPlayer", "visibility", "")
         end

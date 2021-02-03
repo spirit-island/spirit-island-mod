@@ -118,12 +118,12 @@ adversaryGuids = {
     "37a592", -- Scotland
 }
 alternateSetupNames = {
-    {"Balanced","Thematic"},
-    {"Balanced","Thematic","Fragment","Opposite Shores"},
-    {"Balanced","Thematic","Coastline","Sunrise"},
-    {"Balanced","Thematic","Leaf","Snake"},
-    {"Balanced","Thematic","Snail","Peninsula","V"},
-    {"Balanced","Thematic","Star","Flower","Caldera"},
+    {"Balanced","Thematic","Random"},
+    {"Balanced","Thematic","Random","Fragment","Opposite Shores"},
+    {"Balanced","Thematic","Random","Coastline","Sunrise"},
+    {"Balanced","Thematic","Random","Leaf","Snake"},
+    {"Balanced","Thematic","Random","Snail","Peninsula","V"},
+    {"Balanced","Thematic","Random","Star","Flower","Caldera"},
 }
 readyTokens = {
     Red = "ab93fc",
@@ -583,13 +583,19 @@ function randomAdversary()
     end
 end
 function randomBoard()
-    local min = 2
+    local min = 3
     if includeThematic then
-        min = 1
+        min = 2
     end
     local value = math.random(min,#alternateSetupNames[numBoards])
-    if not includeThematic and value == 2 then
+    if value == 2 then
         value = 1
+    elseif value == 3 then
+        if includeThematic then
+            value = 2
+        else
+            value = 1
+        end
     end
     alternateSetupIndex = value
 end
@@ -1922,6 +1928,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
         { -- Thematic
             Vector{-1.93, 1.07, 20.44}, --NE
         },
+        {}, -- Random
     },
     { -- 2 Player
         { -- Standard
@@ -1932,6 +1939,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{9.54, 1.07, 18.07}, --E
             Vector{-10.34, 1.07, 18.04}, --W
         },
+        {}, -- Random
         { -- Fragment
             Vector{-5.20, 1.07, 18.87},
             Vector{10.12, 1.07, 19.08},
@@ -1952,6 +1960,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{5.03, 1.07, 10.17}, --W
             Vector{15.03, 1.07, 27.16}, --NE
         },
+        {}, -- Random
         { -- Coastline
             Vector{-2.47, 1.08, 10.29},
             Vector{15.38, 1.08, 9.96},
@@ -1976,6 +1985,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{19.41, 1.07, 27.16}, --NE
             Vector{-0.62, 1.07, 27.04}, --NW
         },
+        {}, -- Random
         { -- Leaf
             Vector{7.05, 1.08, 34.30},
             Vector{20.53, 1.08, 26.36},
@@ -2004,6 +2014,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{0.98, 1.07, 38.35}, --NW
             Vector{40.82, 1.07, 4.66}, --SE
         },
+        {}, -- Random
         {  -- Snail
             Vector{26.42, 1.08, 41.16},
             Vector{13.22, 1.08, 33.29},
@@ -2043,6 +2054,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{43.40, 1.07, 4.63}, --SE
             Vector{23.59, 1.07, 4.55}, --SW
         },
+        {}, -- Random
         { -- Star
             Vector{33.19, 1.07, 34.36},
             Vector{40.94, 1.07, 20.76},
@@ -2077,6 +2089,7 @@ rotMap = {
         { -- Thematic
             Vector(0.00, 180.00, 0.00),
         },
+        {}, -- Random
     },
     { -- 2 Player
         { -- Standard
@@ -2087,6 +2100,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
+        {}, -- Random
         { -- Fragment
             Vector{0.00, 90.00, 0.00},
             Vector{0.00, 330.00, 0.00},
@@ -2107,6 +2121,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
+        {}, -- Random
         { --Coastline
             Vector(0.00, 240.69, 0.00),
             Vector(0.00, 240.69, 0.00),
@@ -2131,6 +2146,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
+        {}, -- Random
         { -- Leaf
             Vector{0.00, 300.27, 0.00},
             Vector{0.00, 0.27, 0.00},
@@ -2159,6 +2175,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
+        {}, -- Random
         { -- Snail
             Vector{0.00, 240.00, 0.00},
             Vector{0.00, 120.02, 0.00},

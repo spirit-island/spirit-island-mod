@@ -53,7 +53,7 @@ end
 
 ---- Setup UI Section
 function toggleNumPlayers(_, value)
-    if Global.getVar("alternateSetupIndex") > 2 then
+    if Global.getVar("alternateSetupIndex") > 3 then
         Global.setVar("alternateSetupIndex", 1)
     end
     Global.setVar("numPlayers", tonumber(value))
@@ -257,6 +257,11 @@ function updateDropdownSelection(t, class, value)
     end
 end
 function toggleBoardLayout(_, value)
+    if value == "Random" then
+        Global.setVar("useRandomBoard", true)
+    else
+        Global.setVar("useRandomBoard", false)
+    end
     local index = 1
     for i,v in pairs(Global.getVar("alternateSetupNames")[Global.getVar("numPlayers")]) do
         if v == value then

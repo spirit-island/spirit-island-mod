@@ -54,7 +54,7 @@ end
 
 ---- Setup UI Section
 function toggleNumPlayers(_, value)
-    if Global.getVar("alternateSetupIndex") > 3 then
+    if Global.getVar("alternateSetupIndex") > 4 then
         Global.setVar("alternateSetupIndex", 1)
     end
     Global.setVar("numPlayers", tonumber(value))
@@ -273,8 +273,13 @@ end
 function toggleBoardLayout(_, value)
     if value == "Random" then
         Global.setVar("useRandomBoard", true)
+        Global.setVar("includeThematic", false)
+    elseif value == "Random with Thematic" then
+        Global.setVar("useRandomBoard", true)
+        Global.setVar("includeThematic", true)
     else
         Global.setVar("useRandomBoard", false)
+        Global.setVar("includeThematic", false)
     end
     local index = 1
     for i,v in pairs(Global.getVar("alternateSetupNames")[Global.getVar("numPlayers")]) do
@@ -460,16 +465,7 @@ function toggleExploratory()
     end
 end
 
-function toggleRandomScenario()
-    local useRandomScenario = Global.getVar("useRandomScenario")
-    useRandomScenario = not useRandomScenario
-    Global.setVar("useRandomScenario", useRandomScenario)
-    self.UI.setAttribute("randomScenario", "isOn", useRandomScenario)
-end
 function toggleMinDifficulty(_, value)
-    Global.setVar("useRandomAdversary", true)
-    self.UI.setAttribute("randomAdversary", "isOn", "true")
-
     local maxDifficulty = Global.getVar("maxDifficulty")
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
@@ -484,9 +480,6 @@ function toggleMinDifficulty(_, value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
-    Global.setVar("useRandomAdversary", true)
-    self.UI.setAttribute("randomAdversary", "isOn", "true")
-
     local minDifficulty = Global.getVar("minDifficulty")
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
@@ -499,62 +492,6 @@ function toggleMaxDifficulty(_, value)
     Global.setVar("maxDifficulty", maxDifficulty)
     self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
-end
-
-function toggleRandomSupportingAdversary()
-    Global.setVar("useRandomAdversary", true)
-    self.UI.setAttribute("randomAdversary", "isOn", "true")
-
-    local useSecondAdversary = Global.getVar("useSecondAdversary")
-    useSecondAdversary = not useSecondAdversary
-    Global.setVar("useSecondAdversary", useSecondAdversary)
-    self.UI.setAttribute("randomSupportingAdversary", "isOn", useSecondAdversary)
-
-    if useSecondAdversary then
-        self.UI.setAttribute("minDifficultySlider", "maxValue", 16)
-        self.UI.setAttribute("maxDifficultySlider", "minValue", 2)
-        self.UI.setAttribute("maxDifficultySlider", "maxValue", 17)
-        if Global.getVar("maxDifficulty") < 2 then
-            Global.setVar("maxDifficulty", 2)
-            self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..2)
-            self.UI.setAttribute("maxDifficultySlider", "value", 2)
-        end
-    else
-        self.UI.setAttribute("minDifficultySlider", "maxValue", 11)
-        self.UI.setAttribute("maxDifficultySlider", "minValue", 1)
-        self.UI.setAttribute("maxDifficultySlider", "maxValue", 11)
-        if Global.getVar("minDifficulty") > 11 then
-            Global.setVar("minDifficulty", 11)
-            self.UI.setAttribute("minDifficulty", "text", "Min Adversary Difficulty: "..11)
-            self.UI.setAttribute("minDifficultySlider", "value", 11)
-        end
-        if Global.getVar("maxDifficulty") > 11 then
-            Global.setVar("maxDifficulty", 11)
-            self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..11)
-            self.UI.setAttribute("maxDifficultySlider", "value", 11)
-        end
-    end
-end
-function toggleRandomAdversary()
-    local useRandomAdversary = Global.getVar("useRandomAdversary")
-    useRandomAdversary = not useRandomAdversary
-    Global.setVar("useRandomAdversary", useRandomAdversary)
-    self.UI.setAttribute("randomAdversary", "isOn", useRandomAdversary)
-end
-function toggleRandomLayoutThematic()
-    Global.setVar("useRandomBoard", true)
-    self.UI.setAttribute("randomLayout", "isOn", "true")
-
-    local includeThematic = Global.getVar("includeThematic")
-    includeThematic = not includeThematic
-    Global.setVar("includeThematic", includeThematic)
-    self.UI.setAttribute("randomLayoutThematic", "isOn", includeThematic)
-end
-function toggleRandomLayout()
-    local useRandomBoard = Global.getVar("useRandomBoard")
-    useRandomBoard = not useRandomBoard
-    Global.setVar("useRandomBoard", useRandomBoard)
-    self.UI.setAttribute("randomLayout", "isOn", useRandomBoard)
 end
 
 function randomSpirit(player)

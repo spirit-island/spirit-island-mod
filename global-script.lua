@@ -118,12 +118,12 @@ adversaryGuids = {
     "37a592", -- Scotland
 }
 alternateSetupNames = {
-    {[0]="Thematic","Balanced"},
-    {[0]="Thematic","Balanced","Fragment","Opposite Shores"},
-    {[0]="Thematic","Balanced","Coastline","Sunrise"},
-    {[0]="Thematic","Balanced","Leaf","Snake"},
-    {[0]="Thematic","Balanced","Snail","Peninsula","V"},
-    {[0]="Thematic","Balanced","Star","Flower","Caldera"},
+    {"Balanced","Thematic"},
+    {"Balanced","Thematic","Fragment","Opposite Shores"},
+    {"Balanced","Thematic","Coastline","Sunrise"},
+    {"Balanced","Thematic","Leaf","Snake"},
+    {"Balanced","Thematic","Snail","Peninsula","V"},
+    {"Balanced","Thematic","Star","Flower","Caldera"},
 }
 readyTokens = {
     Red = "ab93fc",
@@ -382,7 +382,7 @@ function readyCheck()
     end
 end
 function isThematic()
-    return alternateSetupIndex == 0
+    return alternateSetupIndex == 2
 end
 ---- Setup Buttons Section
 function nullFunc()
@@ -583,11 +583,14 @@ function randomAdversary()
     end
 end
 function randomBoard()
-    local min = 1
+    local min = 2
     if includeThematic then
-        min = 0
+        min = 1
     end
     local value = math.random(min,#alternateSetupNames[numBoards])
+    if not includeThematic and value == 2 then
+        value = 1
+    end
     alternateSetupIndex = value
 end
 ----- Pre Setup Section
@@ -1564,7 +1567,7 @@ end
 function BoardSetup()
     if getMapCount({norm = true, them = true}) == 0 then
         if isThematic() then
-            MapPlacen(posMapThem[numBoards],rotMapThem[numBoards])
+            MapPlacen(posMap[numBoards][alternateSetupIndex],rotMap[numBoards][alternateSetupIndex])
         else
             StandardMapBag.shuffle()
             if scenarioCard ~= nil and scenarioCard.getVar("boardSetup") then
@@ -1916,11 +1919,18 @@ posMap = { -- This order should exactly match alternateSetupNames table
         { -- Standard
             Vector(5.96, 1.08, 16.59),
         },
+        { -- Thematic
+            Vector{-1.93, 1.07, 20.44}, --NE
+        },
     },
     { -- 2 Player
         { -- Standard
             Vector(9.13, 1.08, 25.29),
             Vector{0.29, 1.08, 10.21},
+        },
+        { -- Thematic
+            Vector{9.54, 1.07, 18.07}, --E
+            Vector{-10.34, 1.07, 18.04}, --W
         },
         { -- Fragment
             Vector{-5.20, 1.07, 18.87},
@@ -1936,6 +1946,11 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{2.33, 1.08, 26.80},
             Vector{2.46, 1.08, 11.54},
             Vector{15.70, 1.08, 19.37},
+        },
+        { -- Thematic
+            Vector{24.91, 1.07, 10.20}, --E
+            Vector{5.03, 1.07, 10.17}, --W
+            Vector{15.03, 1.07, 27.16}, --NE
         },
         { -- Coastline
             Vector{-2.47, 1.08, 10.29},
@@ -1954,6 +1969,12 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{20.40, 1.08, 26.64},
             Vector{-6.65, 1.08, 11.13},
             Vector{11.27, 1.08, 11.33},
+        },
+        { -- Thematic
+            Vector{29.29, 1.07, 10.20}, --E
+            Vector{9.41, 1.07, 10.17}, --W
+            Vector{19.41, 1.07, 27.16}, --NE
+            Vector{-0.62, 1.07, 27.04}, --NW
         },
         { -- Leaf
             Vector{7.05, 1.08, 34.30},
@@ -1975,6 +1996,13 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{38.99, 1.08, 32.44},
             Vector{12.18, 1.08, 16.81},
             Vector{25.62, 1.08, 9.32},
+        },
+        { -- Thematic
+            Vector{30.89, 1.07, 21.51}, --E
+            Vector{11.01, 1.07, 21.48}, --W
+            Vector{21.01, 1.07, 38.47}, --NE
+            Vector{0.98, 1.07, 38.35}, --NW
+            Vector{40.82, 1.07, 4.66}, --SE
         },
         {  -- Snail
             Vector{26.42, 1.08, 41.16},
@@ -2007,6 +2035,14 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector{35.44, 1.08, 20.02},
             Vector{50.90, 1.08, 20.26},
         },
+        { -- Thematic
+            Vector{33.53, 1.07, 21.51}, --E
+            Vector{13.65, 1.07, 21.48}, --W
+            Vector{23.65, 1.07, 38.47}, --NE
+            Vector{3.62, 1.07, 38.35}, --NW
+            Vector{43.40, 1.07, 4.63}, --SE
+            Vector{23.59, 1.07, 4.55}, --SW
+        },
         { -- Star
             Vector{33.19, 1.07, 34.36},
             Vector{40.94, 1.07, 20.76},
@@ -2038,11 +2074,18 @@ rotMap = {
         { -- Standard
             Vector(0.00, 180.00, 0.00),
         },
+        { -- Thematic
+            Vector(0.00, 180.00, 0.00),
+        },
     },
     { -- 2 Player
         { -- Standard
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
+        },
+        { -- Thematic
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
         },
         { -- Fragment
             Vector{0.00, 90.00, 0.00},
@@ -2058,6 +2101,11 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 60.00, 0.00),
             Vector(0.00, 300.00, 0.00),
+        },
+        { -- Thematic
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
         },
         { --Coastline
             Vector(0.00, 240.69, 0.00),
@@ -2076,6 +2124,12 @@ rotMap = {
             Vector(0.00, 0.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
+        },
+        { -- Thematic
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
         },
         { -- Leaf
             Vector{0.00, 300.27, 0.00},
@@ -2097,6 +2151,13 @@ rotMap = {
             Vector{0.00, 300.00, 0.00},
             Vector{0.00, 120.02, 0.00},
             Vector{0.00, 359.99, 0.00},
+        },
+        { -- Thematic
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
         },
         { -- Snail
             Vector{0.00, 240.00, 0.00},
@@ -2129,6 +2190,14 @@ rotMap = {
             Vector{0.00, 90.00, 0.00},
             Vector{0.00, 330.00, 0.00},
         },
+        { -- Thematic
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+        },
         { -- Star
             Vector{0.00, 330.00, 0.00},
             Vector{0.00, 30.00, 0.00},
@@ -2153,76 +2222,6 @@ rotMap = {
             Vector{0.00, 0.43, 0.00},
             Vector{0.00, 0.42, 0.00},
         },
-    },
-}
-posMapThem = {
-    {
-        Vector{-1.93, 1.07, 20.44}, --NE
-    },
-    {
-        Vector{9.54, 1.07, 18.07}, --E
-        Vector{-10.34, 1.07, 18.04}, --W
-    },
-    {
-        Vector{24.91, 1.07, 10.20}, --E
-        Vector{5.03, 1.07, 10.17}, --W
-        Vector{15.03, 1.07, 27.16}, --NE
-    },
-    {
-        Vector{29.29, 1.07, 10.20}, --E
-        Vector{9.41, 1.07, 10.17}, --W
-        Vector{19.41, 1.07, 27.16}, --NE
-        Vector{-0.62, 1.07, 27.04}, --NW
-    },
-    {
-        Vector{30.89, 1.07, 21.51}, --E
-        Vector{11.01, 1.07, 21.48}, --W
-        Vector{21.01, 1.07, 38.47}, --NE
-        Vector{0.98, 1.07, 38.35}, --NW
-        Vector{40.82, 1.07, 4.66}, --SE
-    },
-    {
-        Vector{33.53, 1.07, 21.51}, --E
-        Vector{13.65, 1.07, 21.48}, --W
-        Vector{23.65, 1.07, 38.47}, --NE
-        Vector{3.62, 1.07, 38.35}, --NW
-        Vector{43.40, 1.07, 4.63}, --SE
-        Vector{23.59, 1.07, 4.55}, --SW
-    },
-}
-rotMapThem = {
-    {
-        Vector(0.00, 180.00, 0.00),
-    },
-    {
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-    },
-    {
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-    },
-    {
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-    },
-    {
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-    },
-    {
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
-        Vector(0.00, 180.00, 0.00),
     },
 }
 themGuids = {
@@ -2279,7 +2278,7 @@ function MapPlaceCustom()
     if string.sub(maps[1].getName(),1,4) == "NORM" then
         alternateSetupIndex = 1
     else
-        alternateSetupIndex = 0
+        alternateSetupIndex = 2
     end
 
     local rand = 0

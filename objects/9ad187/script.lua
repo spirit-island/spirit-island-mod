@@ -104,7 +104,13 @@ function updateDropdownList(t, class, values, selected)
 end
 
 function toggleScenario(_, value)
-    Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
+    if value == "Random" then
+        Global.setVar("scenarioCard", nil)
+        Global.setVar("useRandomScenario", true)
+    else
+        Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
+        Global.setVar("useRandomScenario", false)
+    end
     updateDifficulty()
 
     -- Wait for difficulty to update
@@ -264,7 +270,6 @@ function toggleBoardLayout(_, value)
             index = i
         end
     end
-    print(index)
     Global.setVar("alternateSetupIndex", index)
     updateDifficulty()
 

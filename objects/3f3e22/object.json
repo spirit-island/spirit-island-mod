@@ -6,7 +6,7 @@
     "posZ": -10.9479694,
     "rotX": -0.00443797652,
     "rotY": 359.2509,
-    "rotZ": 5.19846326e-05,
+    "rotZ": 5.19846471e-05,
     "scaleX": 1.0,
     "scaleY": 0.198041528,
     "scaleZ": 1.0
@@ -34,7 +34,6 @@
   "Hands": false,
   "MaterialIndex": -1,
   "MeshIndex": -1,
-  "Number": 0,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1465311980392984528/73227B5349E276006AB38E1027F18255A26EF555/",
     "DiffuseURL": "",

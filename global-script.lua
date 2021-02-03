@@ -400,7 +400,7 @@ function SetupGame()
         broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
         return 0
     end
-    if adversaryCard == nil and adversaryCard2 ~= nil then
+    if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
         return 0
     end
@@ -443,7 +443,7 @@ function SetupGame()
     if useRandomScenario then
         randomScenario()
     end
-    if useRandomAdversary then
+    if useRandomAdversary or useSecondAdversary then
         randomAdversary()
     end
 
@@ -499,38 +499,7 @@ function randomScenario()
     end
 end
 function randomAdversary()
-    if not useSecondAdversary then
-        local adversary = nil
-        while adversary == nil do
-            adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
-            if adversary.getVar("requirements") then
-                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
-                if not allowed then
-                    adversary = nil
-                end
-            end
-        end
-        local difficulty = adversary.getVar("difficulty")
-        local combos = {}
-        for i,v in pairs(difficulty) do
-            if v >= minDifficulty and v <= maxDifficulty then
-                table.insert(combos, i)
-            elseif v > maxDifficulty then
-                break
-            end
-        end
-        if #combos ~= 0 then
-            local index = math.random(1,#combos)
-            adversaryCard = adversary
-            adversaryLevel = combos[index]
-            adversaryCard2 = nil
-            adversaryLevel2 = 0
-            SetupChecker.call("updateDifficulty", {})
-            broadcastToAll("Your randomised adversary is "..adversaryCard.getName(), "Blue")
-        else
-            randomAdversary()
-        end
-    else
+    if useRandomAdversary and useSecondAdversary then
         local adversary = nil
         while adversary == nil do
             adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
@@ -577,6 +546,45 @@ function randomAdversary()
             adversaryLevel2 = combos[index][2]
             SetupChecker.call("updateDifficulty", {})
             broadcastToAll("Your randomised adversaries are "..adversaryCard.getName().." and "..adversaryCard2.getName(), "Blue")
+        else
+            randomAdversary()
+        end
+    else
+        local selectedAdversary = adversaryCard
+        if selectedAdversary == nil then
+            selectedAdversary = adversaryCard2
+        end
+        local adversary = nil
+        while adversary == nil do
+            adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+            if adversary == selectedAdversary then
+                adversary = nil
+            elseif adversary.getVar("requirements") then
+                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                if not allowed then
+                    adversary = nil
+                end
+            end
+        end
+        local combos = {}
+        for i,v in pairs(adversary.getVar("difficulty")) do
+            if v >= minDifficulty and v <= maxDifficulty then
+                table.insert(combos, i)
+            elseif v > maxDifficulty then
+                break
+            end
+        end
+        if #combos ~= 0 then
+            local index = math.random(1,#combos)
+            if adversaryCard == nil then
+                adversaryCard = adversary
+                adversaryLevel = combos[index]
+            else
+                adversaryCard2 = adversary
+                adversaryLevel2 = combos[index]
+            end
+            SetupChecker.call("updateDifficulty", {})
+            broadcastToAll("Your randomised adversary is "..adversary.getName(), "Blue")
         else
             randomAdversary()
         end

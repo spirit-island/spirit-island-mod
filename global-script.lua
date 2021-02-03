@@ -49,7 +49,8 @@ selectedColors = {}
 numPlayers = 1
 numBoards = 1
 useBlightCard = true
-useEventDeck = false
+useBnCEvents = false
+useJEEvents = false
 gamePaused = false
 alternateSetupIndex = 1
 canStart = true
@@ -513,7 +514,7 @@ function randomScenario()
                     break
                 end
                 if scenarioCard.getVar("requirements") then
-                    allowed = scenarioCard.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                    allowed = scenarioCard.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                     if not allowed then
                         scenarioCard = nil
                         break
@@ -543,7 +544,7 @@ function randomAdversary()
         while adversary == nil do
             adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
             if adversary.getVar("requirements") then
-                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -553,7 +554,7 @@ function randomAdversary()
         while adversary2 == nil or adversary2 == adversary do
             adversary2 = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
             if adversary2.getVar("requirements") then
-                allowed = adversary2.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                allowed = adversary2.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary2 = nil
                 end
@@ -594,7 +595,7 @@ function randomAdversary()
         while adversary == nil or adversary == selectedAdversary do
             adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
             if adversary.getVar("requirements") then
-                allowed = adversary.call("Requirements", {eventDeck = useEventDeck, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -677,7 +678,7 @@ function SetupFear()
         fearCards[2] = fearCards[2] + extraFearCards[2]
         fearCards[3] = fearCards[3] + extraFearCards[3]
     end
-    if not useEventDeck and (BnCAdded or JEAdded) then
+    if not useBnCEvents and not useJEEvents and (BncAdded or JEAdded) then
         fearCards[2] = fearCards[2] + 1
     end
 
@@ -1007,7 +1008,7 @@ function grabBlightCard(setup)
         local card = blightDeck.takeObject({
             position = blightDeckZone.getPosition() + Vector(3.92, 1, 0),
             callback_function = function(obj)
-                if not useEventDeck and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
+                if not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
                     obj.setRotationSmooth(Vector(0,180,0))
                     grabBlightCard(setup)
                 elseif SetupChecker.getVar("optionalSoloBlight") and numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
@@ -1555,29 +1556,60 @@ function grabInvaderCards(deckTable)
 end
 ----- Event Deck Section
 function SetupEventDeck()
-    if useEventDeck then
-        local deck = getObjectFromGUID("b18505").getObjects()[1]
-        if BnCAdded and SetupChecker.getVar("optionalStrangeMadness") then
-            local BnCBag = getObjectFromGUID("ea7207")
-            local strangeMadness = BnCBag.takeObject({guid = "0edac2"})
-            deck.putObject(strangeMadness)
-        end
-        if BnCAdded and SetupChecker.getVar("exploratoryWar") then
-            deck.takeObject({
-                guid = "cfd4d1",
-                callback_function = function(obj)
-                    print(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        deck.putObject(temp)
-                        deck.shuffle()
-                    end, 1)
-                end,
+    local decksSetup = 0
+    if useBnCEvents then
+        local BnCBag = getObjectFromGUID("ea7207")
+        local deck = BnCBag.takeObject({
+            guid = "05f7b7",
+            position = getObjectFromGUID(eventDeckZone).getPosition(),
+            rotation = {0,180,180},
+        })
+        Wait.condition(function()
+            if SetupChecker.getVar("exploratoryWar") then
+                deck.takeObject({
+                    guid = "cfd4d1",
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            deck.putObject(temp)
+                            deck.shuffle()
+                            decksSetup = decksSetup + 1
+                        end, 1)
+                    end,
+                })
+            else
+                decksSetup = decksSetup + 1
+            end
+        end, function() return not deck.loading_custom end)
+        if SetupChecker.getVar("optionalStrangeMadness") then
+            local strangeMadness = BnCBag.takeObject({
+                guid = "0edac2",
+                position = getObjectFromGUID(eventDeckZone).getPosition(),
+                rotation = {0,180,180},
             })
+            Wait.condition(function() decksSetup = decksSetup + 1 end, function() return not strangeMadness.loading_custom end)
+        else
+            decksSetup = decksSetup + 1
         end
-        deck.shuffle()
-        deck.setPositionSmooth(getObjectFromGUID(eventDeckZone).getPosition())
-        Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return not deck.isSmoothMoving() end)
+    else
+        decksSetup = decksSetup + 2
+    end
+    if useJEEvents then
+        local JEBag = getObjectFromGUID("850ac1")
+        local deck = JEBag.takeObject({
+            guid = "299e38",
+            position = getObjectFromGUID(eventDeckZone).getPosition(),
+            rotation = {0,180,180},
+        })
+        Wait.condition(function() decksSetup = decksSetup + 1 end, function() return not deck.loading_custom end)
+    else
+        decksSetup = decksSetup + 1
+    end
+    if useBnCEvents or useJEEvents then
+        Wait.condition(function()
+            getObjectFromGUID(eventDeckZone).getObjects()[1].shuffle()
+            stagesSetup = stagesSetup + 1
+        end, function() return decksSetup == 3 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
     else
         stagesSetup = stagesSetup + 1
     end
@@ -1665,7 +1697,7 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
-    if not useEventDeck and (BnCAdded or JEAdded) then
+    if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
         local zone = getObjectFromGUID(invaderDeckZone)
         local invaderDeck = zone.getObjects()[1]
         local cards = invaderDeck.getObjects()

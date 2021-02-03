@@ -114,9 +114,12 @@
                 <Cell><Button id="je" onClick="addJE">Jagged Earth</Button></Cell>
             </Row>
             <Row class="spacing"/>
-            <Row>
+            <Row class="toggle">
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="bncEvents" onValueChanged="toggleBnCEvents"/><Text class="toggle"/><Button id="eventDeckButton" class="toggle" onClick="toggleBnCEvents" preferredWidth="280" text="B&amp;C Events?"></Button></Cell>
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="jeEvents" onValueChanged="toggleJEEvents"/><Text class="toggle"/><Button id="eventDeckButton" class="toggle" onClick="toggleJEEvents" preferredWidth="260">JE Events?</Button></Cell>
+            </Row>
+            <Row class="toggle">
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard"/><Text class="toggle"/><Button class="toggle" onClick="toggleBlightCard" preferredWidth="250">Blight Card?</Button></Cell>
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="eventDeck" onValueChanged="toggleEventDeck"/><Text class="toggle"/><Button id="eventDeckButton" class="toggle" onClick="toggleEventDeck" preferredWidth="260">Event Deck?</Button></Cell>
             </Row>
             <Row class="spacing"/>
             <Row>

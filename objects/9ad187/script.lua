@@ -367,14 +367,28 @@ function addJECo()
 end
 
 function updateDifficulty()
+    local difficulty = difficultyCheck({})
+    Global.setVar("difficulty", difficulty)
+    self.UI.setAttribute("difficulty", "text", "Total Difficulty: "..difficulty)
+end
+function difficultyCheck(params)
     local difficulty = 0
     local leadingAdversary = Global.getVar("adversaryCard")
     if leadingAdversary ~= nil then
         difficulty = difficulty + leadingAdversary.getVar("difficulty")[Global.getVar("adversaryLevel")]
+    elseif params.lead ~= nil then
+        difficulty = difficulty + params.lead
     end
     local supportingAdversary = Global.getVar("adversaryCard2")
     if supportingAdversary ~= nil then
         local difficulty2 = supportingAdversary.getVar("difficulty")[Global.getVar("adversaryLevel2")]
+        if difficulty > difficulty2 then
+            difficulty = difficulty + (0.5 * difficulty2)
+        else
+            difficulty = (0.5 * difficulty) + difficulty2
+        end
+    elseif params.support ~= nil then
+        local difficulty2 = params.support
         if difficulty > difficulty2 then
             difficulty = difficulty + (0.5 * difficulty2)
         else
@@ -392,6 +406,8 @@ function updateDifficulty()
     local scenario = Global.getVar("scenarioCard")
     if scenario ~= nil then
         difficulty = difficulty + scenario.getVar("difficulty")
+    elseif params.scenario ~= nil then
+        difficulty = difficulty + params.scenario
     end
     if optionalExtraBoard then
         local intNum = math.floor(difficulty / 3) + 2
@@ -400,8 +416,7 @@ function updateDifficulty()
             difficulty = difficulty - (intNum / 2)
         end
     end
-    Global.setVar("difficulty", difficulty)
-    self.UI.setAttribute("difficulty", "text", "Total Difficulty: "..difficulty)
+    return difficulty
 end
 
 function startGame()

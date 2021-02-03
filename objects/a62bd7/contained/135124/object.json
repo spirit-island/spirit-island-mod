@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.39509582519531,
-    "posY": 1.3146662712097168,
-    "posZ": 0.9681171774864197,
-    "rotX": -5.755437086918391e-07,
-    "rotY": 180.0000762939453,
-    "rotZ": -1.1983312333541107e-06,
-    "scaleX": 0.20999999344348907,
+    "posX": -69.3950958,
+    "posY": 1.31466627,
+    "posZ": 0.9681172,
+    "rotX": -5.755437e-07,
+    "rotY": 180.000076,
+    "rotZ": -1.19833123e-06,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "Ravage Reminder Tile",
   "Description": "Custom",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

@@ -1,0 +1,51 @@
+{
+  "Name": "BlockSquare",
+  "Transform": {
+    "posX": -107.77,
+    "posY": 0.9385314,
+    "posZ": -16.04,
+    "rotX": 0.00444655772,
+    "rotY": 180.003937,
+    "rotZ": 4.06125355e-06,
+    "scaleX": 3.2,
+    "scaleY": 0.1,
+    "scaleZ": 4.4
+  },
+  "Nickname": "Power Editor",
+  "Description": "Place a card here to spawn buttons.\n\nSet elements to \"1\" if the card has it or \"0\" if not.\n\nSet energy to 0-9\n\nEvery time you press a button, the card is updated.\n\nWhen finished, remember to save your object/game!",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 0.08235294
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 6.7525757e-06,
+        "y": 0.499999523,
+        "z": 1.34354582e-06
+      },
+      "Rotation": {
+        "x": -9.237018e-08,
+        "y": 9.902386e-16,
+        "z": -1.228459e-06
+      },
+      "Tags": []
+    }
+  ]
+}

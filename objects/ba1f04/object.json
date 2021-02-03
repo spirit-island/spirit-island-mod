@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 55.9900016784668,
-    "posY": 0.9542863368988037,
-    "posZ": -13.600000381469727,
-    "rotX": 0.00444740429520607,
+    "posX": 55.99,
+    "posY": 0.954286337,
+    "posZ": -13.6,
+    "rotX": 0.0044474043,
     "rotY": 160.0,
-    "rotZ": 180.00559997558594,
-    "scaleX": 0.5500004291534424,
-    "scaleY": 0.5500004291534424,
-    "scaleZ": 0.5500004291534424
+    "rotZ": 180.0056,
+    "scaleX": 0.5500004,
+    "scaleY": 0.5500004,
+    "scaleZ": 0.5500004
   },
   "Nickname": "Defend Tokens",
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by the specified amount.\n\nChange the state to change the number shown",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5200844407081604,
+    "r": 0.520084441,
     "g": 1.0,
-    "b": 0.4979345202445984
+    "b": 0.49793452
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.13999938964844,
-    "posY": 1.323531150817871,
-    "posZ": 0.8598996996879578,
-    "rotX": 0.004257773514837027,
-    "rotY": 179.99986267089844,
-    "rotZ": 6.347385692606622e-07,
-    "scaleX": 0.20999999344348907,
+    "posX": -69.14,
+    "posY": 1.32353115,
+    "posZ": 0.8598997,
+    "rotX": 0.00425777351,
+    "rotY": 179.999863,
+    "rotZ": 6.34738569e-07,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "Scotland Explore Reminder",
   "Description": "Jagged Earth Expansion",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

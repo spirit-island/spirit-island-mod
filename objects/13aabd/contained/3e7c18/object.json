@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 28.244861602783203,
-    "posY": 1.428061604499817,
-    "posZ": -14.011244773864746,
-    "rotX": 1.5755640268325806,
-    "rotY": 0.013511891476809978,
-    "rotZ": 0.9369102716445923,
-    "scaleX": 0.3700000047683716,
+    "posX": 28.2448616,
+    "posY": 1.4280616,
+    "posZ": -14.0112448,
+    "rotX": 1.575564,
+    "rotY": 0.0135118915,
+    "rotZ": 0.9369103,
+    "scaleX": 0.37,
     "scaleY": 1.0,
-    "scaleZ": 0.3700000047683716
+    "scaleZ": 0.37
   },
   "Nickname": "Any Element",
   "Description": "Use these for when a power/event gifts you an element or when you reveal an element on your presence tracks",
@@ -38,7 +38,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.10000000149011612,
+      "Thickness": 0.1,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false
@@ -49,15 +49,15 @@
       "GUID": "2df11a",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.9509976506233215,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004444629419595003,
-        "rotY": 180.00025939941406,
-        "rotZ": 6.918626809238049e-07,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.950997651,
+        "posZ": -17.9223862,
+        "rotX": 0.00444462942,
+        "rotY": 180.000259,
+        "rotZ": 6.918627e-07,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -86,7 +86,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -100,15 +100,15 @@
       "GUID": "a69e28",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.9509974718093872,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004449456464499235,
-        "rotY": 180.0002899169922,
-        "rotZ": -2.936944383691298e-06,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.9509975,
+        "posZ": -17.9223862,
+        "rotX": 0.00444945646,
+        "rotY": 180.00029,
+        "rotZ": -2.93694438e-06,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -137,7 +137,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -151,15 +151,15 @@
       "GUID": "b5415e",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.950997531414032,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004446858074516058,
-        "rotY": 180.0002899169922,
-        "rotZ": 2.960560550491209e-06,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.950997531,
+        "posZ": -17.9223862,
+        "rotX": 0.004446858,
+        "rotY": 180.00029,
+        "rotZ": 2.96056055e-06,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -188,7 +188,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -202,15 +202,15 @@
       "GUID": "2ce67f",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.950997531414032,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004450332839041948,
-        "rotY": 180.00030517578125,
-        "rotZ": 7.024852493486833e-06,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.950997531,
+        "posZ": -17.9223862,
+        "rotX": 0.004450333,
+        "rotY": 180.0003,
+        "rotZ": 7.02485249e-06,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -239,7 +239,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -253,15 +253,15 @@
       "GUID": "cbf273",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.950997531414032,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004443721380084753,
-        "rotY": 180.00027465820312,
-        "rotZ": 1.4785997564104036e-06,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.950997531,
+        "posZ": -17.9223862,
+        "rotX": 0.00444372138,
+        "rotY": 180.000275,
+        "rotZ": 1.47859976e-06,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -290,7 +290,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -304,15 +304,15 @@
       "GUID": "68e92d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.950997531414032,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004446706268936396,
-        "rotY": 180.00027465820312,
-        "rotZ": -1.7879871165860095e-06,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.950997531,
+        "posZ": -17.9223862,
+        "rotX": 0.00444670627,
+        "rotY": 180.000275,
+        "rotZ": -1.78798712e-06,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -341,7 +341,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -355,15 +355,15 @@
       "GUID": "44c9dc",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.950997531414032,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004449369851499796,
-        "rotY": 180.00027465820312,
-        "rotZ": -2.274652160849655e-06,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.950997531,
+        "posZ": -17.9223862,
+        "rotX": 0.00444937,
+        "rotY": 180.000275,
+        "rotZ": -2.27465216e-06,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -392,7 +392,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -406,15 +406,15 @@
       "GUID": "d56660",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.011430740356445,
-        "posY": 0.950997531414032,
-        "posZ": -17.922386169433594,
-        "rotX": 0.004445594735443592,
-        "rotY": 180.00027465820312,
-        "rotZ": -1.709625507828605e-07,
-        "scaleX": 0.3673044443130493,
+        "posX": -18.01143,
+        "posY": 0.950997531,
+        "posZ": -17.9223862,
+        "rotX": 0.00444559474,
+        "rotY": 180.000275,
+        "rotZ": -1.70962551e-07,
+        "scaleX": 0.367304444,
         "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
+        "scaleZ": 0.367304444
       },
       "Nickname": "Any",
       "Description": "",
@@ -443,7 +443,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false

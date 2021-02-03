@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -22.111562728881836,
-    "posY": 0.9711979031562805,
-    "posZ": 19.63362693786621,
-    "rotX": 0.0044539738446474075,
-    "rotY": 179.9999237060547,
-    "rotZ": -1.9228064047638327e-06,
-    "scaleX": 1.710525631904602,
-    "scaleY": 1.5789467096328735,
-    "scaleZ": 1.710525631904602
+    "posX": -22.1115627,
+    "posY": 0.9711979,
+    "posZ": 19.6336269,
+    "rotX": 0.004453974,
+    "rotY": 179.999924,
+    "rotZ": -1.9228064e-06,
+    "scaleX": 1.71052563,
+    "scaleY": 1.57894671,
+    "scaleZ": 1.71052563
   },
   "Nickname": "Russia + France Explorers",
   "Description": "Russia Lv2+ + France Lv6",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6379856467247009,
-    "g": 0.5369110703468323,
-    "b": 0.9007792472839355
+    "r": 0.637985647,
+    "g": 0.5369111,
+    "b": 0.900779247
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -44.362857818603516,
-    "posY": 0.8999999761581421,
-    "posZ": 12.381011009216309,
-    "rotX": 8.523062206222676e-06,
-    "rotY": 180.0198211669922,
-    "rotZ": -0.0001529942819615826,
-    "scaleX": 0.30621635913848877,
+    "posX": -44.3628578,
+    "posY": 0.9,
+    "posZ": 12.381011,
+    "rotX": 8.523062e-06,
+    "rotY": 180.019821,
+    "rotZ": -0.000152994282,
+    "scaleX": 0.306216359,
     "scaleY": 1.0,
-    "scaleZ": 0.30621635913848877
+    "scaleZ": 0.306216359
   },
   "Nickname": "Earth",
   "Description": "",
@@ -38,7 +38,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.10000000149011612,
+      "Thickness": 0.1,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false

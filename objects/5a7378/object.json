@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -44.368675231933594,
-    "posY": 0.820000171661377,
-    "posZ": 6.380000114440918,
-    "rotX": 0.0044440701603889465,
+    "posX": -44.3686752,
+    "posY": 0.8200002,
+    "posZ": 6.38,
+    "rotX": 0.00444407,
     "rotY": 180.0,
-    "rotZ": 9.105640401685378e-07,
+    "rotZ": 9.1056404e-07,
     "scaleX": 0.5,
-    "scaleY": 0.800000011920929,
+    "scaleY": 0.8,
     "scaleZ": 0.5
   },
   "Nickname": "Purple Ready",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6269999742507935,
-    "g": 0.12498759478330612,
-    "b": 0.9409999847412109
+    "r": 0.627,
+    "g": 0.124986775,
+    "b": 0.941
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

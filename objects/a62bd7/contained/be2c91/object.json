@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.76054382324219,
-    "posY": 1.3146660327911377,
-    "posZ": 0.5421791672706604,
-    "rotX": -1.1243394055782119e-06,
-    "rotY": 179.99166870117188,
-    "rotZ": -1.3251259360913537e-06,
-    "scaleX": 0.20999999344348907,
+    "posX": -69.7605438,
+    "posY": 1.314666,
+    "posZ": 0.542179167,
+    "rotX": -1.12433941e-06,
+    "rotY": 179.991669,
+    "rotZ": -1.32512594e-06,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "France Build Reminder",
   "Description": "Branch & Claw Expansion",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 1.856897234916687,
-    "posY": 1.0236091613769531,
-    "posZ": 40.61240768432617,
-    "rotX": -5.281643566945604e-09,
+    "posX": 1.85689723,
+    "posY": 1.02360916,
+    "posZ": 40.6124077,
+    "rotX": -5.28164357e-09,
     "rotY": 180.0,
-    "rotZ": -0.00014431175077334046,
-    "scaleX": 1.5299999713897705,
+    "rotZ": -0.000144311751,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5299999713897705
+    "scaleZ": 1.53
   },
   "Nickname": "A Strange Madness Among the Beasts",
   "Description": "Branch & Claw Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.7132352590560913,
-    "g": 0.7132352590560913,
-    "b": 0.7132352590560913
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

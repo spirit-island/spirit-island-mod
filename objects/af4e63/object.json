@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.26002883911133,
-    "posY": 1.261771321296692,
-    "posZ": 13.20490837097168,
-    "rotX": 2.692734035747435e-08,
-    "rotY": 179.97900390625,
-    "rotZ": -0.00014426784764509648,
-    "scaleX": 0.829393744468689,
-    "scaleY": 0.029999999329447746,
-    "scaleZ": 0.829393744468689
+    "posX": -42.26003,
+    "posY": 1.26177132,
+    "posZ": 13.2049084,
+    "rotX": 2.692734e-08,
+    "rotY": 179.979,
+    "rotZ": -0.000144267848,
+    "scaleX": 0.829393744,
+    "scaleY": 0.03,
+    "scaleZ": 0.829393744
   },
   "Nickname": "Strife",
   "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5647059082984924,
-    "g": 0.5568627715110779,
-    "b": 0.5568627715110779,
+    "r": 0.5647059,
+    "g": 0.5568628,
+    "b": 0.5568628,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,
@@ -60,15 +60,15 @@
       "GUID": "8a818d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.08476037532091141,
-        "posY": -4.16093111038208,
-        "posZ": -0.06819042563438416,
-        "rotX": -1.5650706700398587e-05,
-        "rotY": 0.04055766388773918,
-        "rotZ": 2.206083308919915e-06,
-        "scaleX": 0.4402415156364441,
-        "scaleY": 33.33333206176758,
-        "scaleZ": 0.4402415156364441
+        "posX": 0.0847603753,
+        "posY": -4.160931,
+        "posZ": -0.0681904256,
+        "rotX": -1.56507067e-05,
+        "rotY": 0.0405576639,
+        "rotZ": 2.20608331e-06,
+        "scaleX": 0.440241516,
+        "scaleY": 33.3333321,
+        "scaleZ": 0.440241516
       },
       "Nickname": "Strife",
       "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",
@@ -97,7 +97,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.10000000149011612,
+          "Thickness": 0.1,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": true

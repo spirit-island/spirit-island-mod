@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 38.41249084472656,
-    "posY": 1.0511417388916016,
-    "posZ": 37.82950210571289,
-    "rotX": -8.099855040200055e-05,
-    "rotY": 179.9852752685547,
-    "rotZ": -0.0001553633774165064,
-    "scaleX": 0.800000011920929,
-    "scaleY": 0.800000011920929,
-    "scaleZ": 0.800000011920929
+    "posX": 38.41249,
+    "posY": 1.05114174,
+    "posZ": 37.8295021,
+    "rotX": -8.099855e-05,
+    "rotY": 179.985275,
+    "rotZ": -0.000155363377,
+    "scaleX": 0.8,
+    "scaleY": 0.8,
+    "scaleZ": 0.8
   },
   "Nickname": "Green's Defence Reminder Tokens",
   "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.19199985265731812,
-    "g": 0.7009999752044678,
-    "b": 0.16799983382225037
+    "r": 0.191999853,
+    "g": 0.701,
+    "b": 0.167999834
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

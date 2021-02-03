@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -22.035930633544922,
-    "posY": 2.077338933944702,
-    "posZ": -16.27950668334961,
-    "rotX": 0.004446919076144695,
+    "posX": -22.03593,
+    "posY": 2.077339,
+    "posZ": -16.2795067,
+    "rotX": 0.004446919,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 0.8771735429763794,
+    "scaleX": 0.877173543,
     "scaleY": 1.0,
-    "scaleZ": 0.8771735429763794
+    "scaleZ": 0.877173543
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6951219439506531,
-    "g": 0.4909449815750122,
-    "b": 0.3547990918159485
+    "r": 0.695121944,
+    "g": 0.490944982,
+    "b": 0.3547991
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 2,
-      "Thickness": 0.10000000149011612,
+      "Thickness": 0.1,
       "Stackable": true,
       "Stretch": true
     }

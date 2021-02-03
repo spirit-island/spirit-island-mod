@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.33729553222656,
-    "posY": 1.31710684299469,
-    "posZ": 0.9922907948493958,
-    "rotX": -4.0689151603601204e-08,
-    "rotY": 179.99078369140625,
-    "rotZ": -1.1137477713418775e-06,
-    "scaleX": 0.20999999344348907,
+    "posX": -69.3372955,
+    "posY": 1.31710684,
+    "posZ": 0.9922908,
+    "rotX": -4.068915e-08,
+    "rotY": 179.990784,
+    "rotZ": -1.11374777e-06,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "Explore Reminder Tile",
   "Description": "Custom",
@@ -39,7 +39,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

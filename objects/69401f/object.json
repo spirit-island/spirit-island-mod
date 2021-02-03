@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -44.368675231933594,
-    "posY": 0.820000171661377,
-    "posZ": 3.380000114440918,
-    "rotX": 0.004448346793651581,
+    "posX": -44.3686752,
+    "posY": 0.8200002,
+    "posZ": 3.38,
+    "rotX": 0.004448347,
     "rotY": 180.0,
-    "rotZ": -3.533949666234548e-07,
+    "rotZ": -3.53394967e-07,
     "scaleX": 0.5,
-    "scaleY": 0.800000011920929,
+    "scaleY": 0.8,
     "scaleZ": 0.5
   },
   "Nickname": "Blue Ready",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.11798759549856186,
-    "g": 0.5299999713897705,
+    "r": 0.117986776,
+    "g": 0.53,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,

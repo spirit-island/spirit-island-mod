@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 28.674226760864258,
-    "posY": 1.010002613067627,
-    "posZ": 66.9381332397461,
-    "rotX": -4.585985607263865e-06,
-    "rotY": 180.01104736328125,
-    "rotZ": -0.00015873329539317638,
-    "scaleX": 0.800000011920929,
-    "scaleY": 0.800000011920929,
-    "scaleZ": 0.800000011920929
+    "posX": 28.6742268,
+    "posY": 1.01000261,
+    "posZ": 66.93813,
+    "rotX": -4.58598561e-06,
+    "rotY": 180.011047,
+    "rotZ": -0.0001587333,
+    "scaleX": 0.8,
+    "scaleY": 0.8,
+    "scaleZ": 0.8
   },
   "Nickname": "Blue's Isolate Reminder Tokens",
   "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.1179998591542244,
-    "g": 0.5299999713897705,
+    "r": 0.117999859,
+    "g": 0.53,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,

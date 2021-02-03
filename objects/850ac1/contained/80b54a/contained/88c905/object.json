@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.4454116821289,
-    "posY": 2.3107850551605225,
-    "posZ": -27.58802604675293,
-    "rotX": 0.01852159947156906,
-    "rotY": 180.83900451660156,
-    "rotZ": 359.79718017578125,
-    "scaleX": 1.5320467948913574,
+    "posX": -98.44541,
+    "posY": 2.310785,
+    "posZ": -27.588026,
+    "rotX": 0.0185216,
+    "rotY": 180.839,
+    "rotZ": 359.79718,
+    "scaleX": 1.53204679,
     "scaleY": 1.0,
-    "scaleZ": 1.5320467948913574
+    "scaleZ": 1.53204679
   },
   "Nickname": "Dry Wood Explodes in Smoldering Splinters",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.7132352590560913,
-    "g": 0.7132352590560913,
-    "b": 0.7132352590560913
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

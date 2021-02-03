@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -50.31209182739258,
-    "posY": 2.6486120223999023,
-    "posZ": 33.40276336669922,
-    "rotX": 0.05354762449860573,
-    "rotY": 359.94189453125,
-    "rotZ": 359.6644592285156,
-    "scaleX": 1.0947368144989014,
-    "scaleY": 1.010526418685913,
-    "scaleZ": 1.0947368144989014
+    "posX": -50.31209,
+    "posY": 2.648612,
+    "posZ": 33.4027634,
+    "rotX": 0.0535476245,
+    "rotY": 359.9419,
+    "rotZ": 359.664459,
+    "scaleX": 1.09473681,
+    "scaleY": 1.01052642,
+    "scaleZ": 1.09473681
   },
   "Nickname": "Explorer: 0 Damage",
   "Description": "They are unable to be removed by fear cards and instead will be pushed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.7960140109062195,
-    "g": 0.6744345426559448,
-    "b": 0.8678564429283142
+    "r": 0.796014,
+    "g": 0.674434543,
+    "b": 0.867856443
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -46,18 +46,18 @@
         "g": 1.0,
         "b": 1.0
       },
-      "SpecularIntensity": 0.20000000298023224,
+      "SpecularIntensity": 0.2,
       "SpecularSharpness": 2.0,
-      "FresnelStrength": 0.4000000059604645
+      "FresnelStrength": 0.4
     },
     "CastShadows": false
   },
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -1.04420877278244e-07,
-        "y": 1.1408876180648804,
-        "z": -8.22646907181479e-05
+        "x": -1.04420877e-07,
+        "y": 1.14088762,
+        "z": -8.226469e-05
       }
     }
   ]

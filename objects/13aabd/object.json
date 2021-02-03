@@ -1,23 +1,23 @@
 {
   "Name": "Infinite_Bag",
   "Transform": {
-    "posX": 27.990694046020508,
-    "posY": -0.7368068695068359,
-    "posZ": -13.599982261657715,
-    "rotX": -4.483388806875155e-07,
+    "posX": 27.990694,
+    "posY": -0.73680687,
+    "posZ": -13.5999823,
+    "rotX": -4.48338881e-07,
     "rotY": 180.0,
-    "rotZ": -0.00014458266377914697,
-    "scaleX": 1.2999999523162842,
-    "scaleY": 0.8999999761581421,
-    "scaleZ": 1.2999999523162842
+    "rotZ": -0.000144582664,
+    "scaleX": 1.3,
+    "scaleY": 0.9,
+    "scaleZ": 1.3
   },
   "Nickname": "Any Element Tokens",
   "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8549019694328308,
-    "g": 0.09803362935781479,
-    "b": 0.09019092470407486,
+    "r": 0.854901969,
+    "g": 0.09803327,
+    "b": 0.09019058,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,

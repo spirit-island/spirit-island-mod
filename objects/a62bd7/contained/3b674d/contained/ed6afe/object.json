@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -50.59273147583008,
-    "posY": 2.648637294769287,
-    "posZ": 36.735145568847656,
-    "rotX": 359.9703674316406,
-    "rotY": 359.99285888671875,
-    "rotZ": 359.96697998046875,
-    "scaleX": 1.0947368144989014,
-    "scaleY": 1.010526418685913,
-    "scaleZ": 1.0947368144989014
+    "posX": -50.59273,
+    "posY": 2.64863729,
+    "posZ": 36.7351456,
+    "rotX": 359.970367,
+    "rotY": 359.992859,
+    "rotZ": 359.96698,
+    "scaleX": 1.09473681,
+    "scaleY": 1.01052642,
+    "scaleZ": 1.09473681
   },
   "Nickname": "Explorer: 0 Damage",
   "Description": "The first time each Action would Destroy Explorer: If possible, 1 of those Explorer is instead Pushed; 1 Fear when you do so.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5187487006187439,
-    "g": 0.552770733833313,
-    "b": 0.8623693585395813
+    "r": 0.5187487,
+    "g": 0.552770734,
+    "b": 0.862369359
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -46,18 +46,18 @@
         "g": 1.0,
         "b": 1.0
       },
-      "SpecularIntensity": 0.20000000298023224,
+      "SpecularIntensity": 0.2,
       "SpecularSharpness": 2.0,
-      "FresnelStrength": 0.4000000059604645
+      "FresnelStrength": 0.4
     },
     "CastShadows": false
   },
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -1.04420877278244e-07,
-        "y": 1.1408876180648804,
-        "z": -8.22646907181479e-05
+        "x": -1.04420877e-07,
+        "y": 1.14088762,
+        "z": -8.226469e-05
       }
     }
   ]

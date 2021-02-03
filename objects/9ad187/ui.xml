@@ -95,6 +95,7 @@
                     <Dropdown id="boardLayout" class="boardLayout" onValueChanged="toggleBoardLayout">
                         <Option selected="true">Balanced</Option>
                         <Option>Thematic</Option>
+                        <Option>Random</Option>
                     </Dropdown>
                 </Cell>
             </Row>

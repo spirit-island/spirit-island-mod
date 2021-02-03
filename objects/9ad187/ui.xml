@@ -75,6 +75,7 @@
                 <Cell class="scenario">
                     <Dropdown id="scenario" class="scenario" onValueChanged="toggleScenario">
                         <Option selected="true">None</Option>
+                        <Option>Random</Option>
                         <Option>Blitz</Option>
                         <Option>Guard the Isle's Heart</Option>
                         <Option>Rituals of Terror</Option>

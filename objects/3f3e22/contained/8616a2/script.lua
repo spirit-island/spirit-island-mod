@@ -18,7 +18,7 @@ end
 
 function globalUpdate()
     local sScript = getObjectFromGUID(sourceSpiritID).getLuaScript()
-    local sStrPos = string.find(sScript,"\r")
+    local sStrPos = string.find(sScript,"\n")
     local sSub = string.sub(sScript,1,sStrPos-10)
 
     for _,v in pairs (getAllObjects()) do
@@ -27,7 +27,7 @@ function globalUpdate()
                 if v.name == "Custom_Tile" then
                     local aScript = v.getLuaScript()
                     if aScript ~= nil then
-                        local aStrPos = string.find(aScript,"\r")
+                        local aStrPos = string.find(aScript,"\n")
                         if aStrPos ~= nil and sStrPos ~= nil then
                             local aSub = string.sub(aScript,1,sStrPos-10)
                             if aSub == sSub then

@@ -112,6 +112,7 @@ function onLoad(saved_data)
     })
     placeReadyTokens()
     placeElementTokens()
+    updateFearUI()
 end
 
 function setupGame()
@@ -159,7 +160,7 @@ function setupGame()
 
     if Global.getVar("adversaryCard") ~= nil then
         UI.setAttribute("panelUIAdversary","active","true")
-        UI.setAttribute("panelUI","height","125")
+        UI.setAttribute("panelUI","height", UI.getAttribute("panelUI", "height") + 20)
     end
 end
 
@@ -333,67 +334,58 @@ function getStage(o)
     return nil
 end
 ---- Fear Section
+function updateFearUI()
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
+    self.editButton({index = 1, label = fearPool})
+    UI.setAttribute("panelFearPool", "text", fearPool)
+    self.editButton({index = 2, label = generatedFear})
+    UI.setAttribute("panelFearGenerated", "text", generatedFear)
+end
 function addFear()
-    local fearPoolValue = self.getButtons()[2].label
-    local generatedFearValue = self.getButtons()[3].label
-    if tonumber(fearPoolValue) == 1 then
-        self.editButton({index = 1, label = generatedFearValue + 1})
-        Global.setVar("fearPool", generatedFearValue + 1)
-
-        self.editButton({index = 2, label = 0})
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
+    if fearPool == 1 then
+        Global.setVar("fearPool", generatedFear + 1)
         Global.setVar("generatedFear", 0)
-
         startLuaCoroutine(self, "fearCardEarned")
     else
-        self.editButton({index = 1, label = fearPoolValue-1})
-        Global.setVar("fearPool", fearPoolValue-1)
-
-        self.editButton({index = 2, label = generatedFearValue+1})
-        Global.setVar("generatedFear", generatedFearValue+1)
+        Global.setVar("fearPool", fearPool - 1)
+        Global.setVar("generatedFear", generatedFear + 1)
     end
+    updateFearUI()
 end
 function removeFear()
-    local fearPoolValue = self.getButtons()[2].label
-    local generatedFearValue = self.getButtons()[3].label
-    if tonumber(generatedFearValue) == 0 then
-        self.editButton({index = 1, label = 1})
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
+    if generatedFear == 0 then
         Global.setVar("fearPool", 1)
-
-        self.editButton({index = 2, label = fearPoolValue-1})
-        Global.setVar("generatedFear",fearPoolValue - 1)
-
+        Global.setVar("generatedFear", fearPool - 1)
         broadcastToAll("Fear Card Taken Back! (This is currently not scripted)", {1,0,0})
     else
-        self.editButton({index = 1, label = fearPoolValue + 1})
-        Global.setVar("fearPool",fearPoolValue + 1)
-
-        self.editButton({index = 2, label = generatedFearValue - 1})
-        Global.setVar("generatedFear",generatedFearValue - 1)
+        Global.setVar("fearPool", fearPool + 1)
+        Global.setVar("generatedFear", generatedFear - 1)
     end
+    updateFearUI()
 end
 function modifyFearPool(obj, color, alt_click)
-    local fearPoolValue = self.getButtons()[2].label
-    local generatedFearValue = self.getButtons()[3].label
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
     if alt_click then
-        if tonumber(fearPoolValue) == 1 and tonumber(generatedFearValue) == 0 then
+        if fearPool == 1 and generatedFear == 0 then
             broadcastToAll("Fear Pool cannot go to zero", {1,0,0})
             return
-        elseif tonumber(fearPoolValue) == 1 then
-            self.editButton({index = 1, label = generatedFearValue})
-            Global.setVar("fearPool", generatedFearValue)
-
-            self.editButton({index = 2, label = 0})
+        elseif fearPool == 1 then
+            Global.setVar("fearPool", generatedFear)
             Global.setVar("generatedFear", 0)
-
             startLuaCoroutine(self, "fearCardEarned")
         else
-            self.editButton({index = 1, label = fearPoolValue-1})
-            Global.setVar("fearPool", fearPoolValue-1)
+            Global.setVar("fearPool", fearPool-1)
         end
     else
-        self.editButton({index = 1, label = fearPoolValue+1})
-        Global.setVar("fearPool", fearPoolValue+1)
+        Global.setVar("fearPool", fearPool+1)
     end
+    updateFearUI()
 end
 
 function fearCardEarned()

@@ -229,6 +229,8 @@ function onSave()
         panelTurnOrderVisibility = UI.getAttribute("panelTurnOrder","visibility"),
         panelTimePassesVisibility = UI.getAttribute("panelTimePasses","visibility"),
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
+        panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
+        panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -257,6 +259,19 @@ function onLoad(saved_data)
             DropPiece(piece, cursorLocation, droppingPlayerColor)
         end)
     end
+
+    addHotkey("Add Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        if not gameStarted or gamePaused then
+            return
+        end
+        aidBoard.call("addFear")
+    end)
+    addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        if not gameStarted or gamePaused then
+            return
+        end
+        aidBoard.call("removeFear")
+    end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
         if getObjectFromGUID(v) ~= nil then
@@ -334,6 +349,8 @@ function onLoad(saved_data)
             UI.setAttribute("panelTurnOrder","visibility",loaded_data.panelTurnOrderVisibility)
             UI.setAttribute("panelTimePasses","visibility",loaded_data.panelTimePassesVisibility)
             UI.setAttribute("panelReady","visibility",loaded_data.panelReadyVisibility)
+            UI.setAttribute("panelFear","visibility",loaded_data.panelFearVisibility)
+            UI.setAttribute("panelBlight","visibility",loaded_data.panelBlightVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
             SetupPowerDecks()
@@ -776,8 +793,7 @@ function setupFearTokens()
         end
     end
     fearPool = fearMulti * numPlayers
-    aidBoard.editButton({index = 1, label = tostring(fearPool)})
-    aidBoard.editButton({index = 2, label = 0})
+    aidBoard.call("updateFearUI")
 end
 ----- Minor/Major Power Section
 function SetupPowerDecks()
@@ -2687,6 +2703,7 @@ function place(objName, placePos, droppingPlayerColor)
     end
 end
 
+-- one-indexed table
 Pieces = {
     "Explorer",
     "Town",
@@ -3066,6 +3083,14 @@ end
 function toggleReadyUI(player)
     colorEnabled = getCurrentState("panelReady", player.color)
     toggleUI("panelReady", player.color, colorEnabled)
+end
+function toggleFearUI(player)
+    colorEnabled = getCurrentState("panelFear", player.color)
+    toggleUI("panelFear", player.color, colorEnabled)
+end
+function toggleBlightUI(player)
+    colorEnabled = getCurrentState("panelBlight", player.color)
+    toggleUI("panelBlight", player.color, colorEnabled)
 end
 function getCurrentState(xmlID, player_color)
     local colorEnabled = false

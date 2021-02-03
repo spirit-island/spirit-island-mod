@@ -11,6 +11,8 @@
   "generatedFear": 0,
   "JEAdded": false,
   "panelAdversaryVisibility": "Invisible",
+  "panelBlightVisibility": "Invisible",
+  "panelFearVisibility": "Invisible",
   "panelInvaderVisibility": "Invisible",
   "panelReadyVisibility": "Invisible",
   "panelTimePassesVisibility": "Invisible",

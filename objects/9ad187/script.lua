@@ -249,15 +249,25 @@ function toggleBlightCard()
     Global.setVar("useBlightCard", useBlightCard)
     self.UI.setAttribute("blightCard", "isOn", useBlightCard)
 end
-function toggleEventDeck()
-    if not Global.getVar("BnCAdded") and not Global.getVar("JEAdded") then
-        self.UI.setAttribute("eventDeck", "isOn", "false")
+function toggleBnCEvents()
+    if not Global.getVar("BnCAdded") then
+        self.UI.setAttribute("bncEvents", "isOn", "false")
         return
     end
-    local useEventDeck = Global.getVar("useEventDeck")
-    useEventDeck = not useEventDeck
-    Global.setVar("useEventDeck", useEventDeck)
-    self.UI.setAttribute("eventDeck", "isOn", useEventDeck)
+    local useBnCEvents = Global.getVar("useBnCEvents")
+    useBnCEvents = not useBnCEvents
+    Global.setVar("useBnCEvents", useBnCEvents)
+    self.UI.setAttribute("bncEvents", "isOn", useBnCEvents)
+end
+function toggleJEEvents()
+    if not Global.getVar("JEAdded") then
+        self.UI.setAttribute("jeEvents", "isOn", "false")
+        return
+    end
+    local useJEEvents = Global.getVar("useJEEvents")
+    useJEEvents = not useJEEvents
+    Global.setVar("useJEEvents", useJEEvents)
+    self.UI.setAttribute("jeEvents", "isOn", useJEEvents)
 end
 
 function updateDropdownSelection(t, class, value)
@@ -310,10 +320,10 @@ end
 
 function addBnC()
     Global.setVar("BnCAdded", true)
-    Global.setVar("useEventDeck", true)
+    Global.setVar("useBnCEvents", true)
 
     self.UI.hide("bnc")
-    self.UI.setAttribute("eventDeck", "isOn", "true")
+    self.UI.setAttribute("bncEvents", "isOn", "true")
     updateDifficulty()
 
     Wait.condition(function() startLuaCoroutine(self, "addBnCCo") end, function() return canStart end)
@@ -330,11 +340,6 @@ function addBnCCo()
     getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
     local blightCards = BnCBag.takeObject({guid = "788333"})
     getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-    BnCBag.takeObject({
-        guid = "05f7b7",
-        position = getObjectFromGUID("b18505").getPosition(),
-        rotation = {0,180,180},
-    })
 
     wt(0.5)
     canStart = true
@@ -342,10 +347,10 @@ function addBnCCo()
 end
 function addJE()
     Global.setVar("JEAdded", true)
-    Global.setVar("useEventDeck", true)
+    Global.setVar("useJEEvents", true)
 
     self.UI.hide("je")
-    self.UI.setAttribute("eventDeck", "isOn", "true")
+    self.UI.setAttribute("jeEvents", "isOn", "true")
     updateDifficulty()
 
     Wait.condition(function() startLuaCoroutine(self, "addJECo") end, function() return canStart end)
@@ -362,11 +367,6 @@ function addJECo()
     getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
     local blightCards = JEBag.takeObject({guid = "8120e0"})
     getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-    JEBag.takeObject({
-        guid = "299e38",
-        position = getObjectFromGUID("b18505").getPosition(),
-        rotation = {0,180,180},
-    })
 
     wt(0.5)
     canStart = true

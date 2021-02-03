@@ -53,7 +53,7 @@ end
 
 ---- Setup UI Section
 function toggleNumPlayers(_, value)
-    if Global.getVar("alternateSetupIndex") > 1 then
+    if Global.getVar("alternateSetupIndex") > 2 then
         Global.setVar("alternateSetupIndex", 1)
     end
     Global.setVar("numPlayers", tonumber(value))
@@ -78,21 +78,14 @@ function updateDropdownList(t, class, values, selected)
         if t.attributes.id == class then
             t.children = {}
             for i,v in pairs(values) do
-                -- Thematic is index 0, but should appear second in list
-                local newIndex = i + 1
-                if i == 0 then
-                    newIndex = 2
-                elseif i == 1 then
-                    newIndex = 1
-                end
-                t.children[newIndex] = {
+                t.children[i] = {
                     tag="Option",
                     value=v,
                     attributes={},
                     children={},
                 }
                 if i == selected then
-                    t.children[newIndex].attributes.selected = "true"
+                    t.children[i].attributes.selected = "true"
                 end
             end
         else

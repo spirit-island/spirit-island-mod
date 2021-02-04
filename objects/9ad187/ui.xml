@@ -163,6 +163,9 @@
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleSlaveRebellion" preferredWidth="760" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Button></Cell>
             </Row>
             <Row class="toggle">
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleBoardPairings" preferredWidth="910" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Button></Cell>
+            </Row>
+            <Row class="toggle">
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="soloBlight" isOn="true" onValueChanged="toggleSoloBlight"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleSoloBlight" preferredWidth="790" tooltip="Blight Cards which only have 2 Blight per Player&#xA;when flipped are not recommended in Solo games">Remove 2 Blight per player cards (Solo)</Button></Cell>
             </Row>
             <Row class="toggle">
@@ -177,7 +180,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3525 12">
+<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3550 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

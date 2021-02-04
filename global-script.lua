@@ -832,6 +832,7 @@ function SetupPowerDecks()
     end, function() return not SetupChecker.isSmoothMoving() end)
     return 1
 end
+handOffset = Vector(0,0,35)
 scriptWorkingCardC = false
 powerColor = nil
 function MajorPowerC(obj, player_color)
@@ -849,17 +850,6 @@ function MinorPowerC(obj, player_color)
     scriptWorkingCardC = true
     powerColor = player_color
     startLuaCoroutine(Global, "MinorPower")
-end
-handOffset = Vector(0,0,35)
-function getPowerZoneObjects(handP)
-    local hits = upCastPosSizRot(
-        handOffset + Vector(handP.x,yHeight,handP.z), -- pos
-        Vector(15,1,4),  -- size
-        Vector(0,0,0),  --  rotation
-        1,  -- distance
-        1,  -- multi
-        {"Card","Deck"})
-    return hits
 end
 function MinorPower()
     local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
@@ -985,6 +975,16 @@ function DiscardPowerCards(handPos, discardZone)
         discardTable[i] = obj
     end
     return discardTable
+end
+function getPowerZoneObjects(handP)
+    local hits = upCastPosSizRot(
+        handOffset + Vector(handP.x,yHeight,handP.z), -- pos
+        Vector(15,1,4),  -- size
+        Vector(0,0,0),  --  rotation
+        1,  -- distance
+        1,  -- multi
+        {"Card","Deck"})
+    return hits
 end
 ----- Blight Section
 blightedIslandCard = nil
@@ -2414,13 +2414,13 @@ function MapPlacen(posTable, rotTable)
             local list = StandardMapBag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if numBoards <=4 and (value.name == "NORMAL B" or value.name == "NORMAL E") then
+                if numBoards <=4 and SetupChecker.getVar("optionalBoardPairings") and (value.name == "NORMAL B" or value.name == "NORMAL E") then
                     if not BETaken then
                         BETaken = true
                         index = value.index
                         break
                     end
-                elseif numBoards <= 4 and (value.name == "NORMAL D" or value.name == "NORMAL F") then
+                elseif numBoards <= 4 and SetupChecker.getVar("optionalBoardPairings") and (value.name == "NORMAL D" or value.name == "NORMAL F") then
                     if not DFTaken then
                         DFTaken = true
                         index = value.index

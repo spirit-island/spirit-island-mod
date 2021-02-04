@@ -184,18 +184,18 @@
     <HorizontalLayout childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="10">
         <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
             <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                <Text fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Fear Pool" color="black" />
+                <Text fontStyle="Bold" text="Generated Fear" color="black" />
             </Panel>
-            <Panel preferredWidth="80" preferredHeight="80" color="white">
-                <Text id="panelFearPool" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="0" fontSize="40" color="black" />
+            <Panel preferredWidth="80" preferredHeight="80">
+                <Button id="panelFearGenerated" fontStyle="Bold" text="0" fontSize="40" textColor="black" onClick="bee103/addFear" />
             </Panel>
         </VerticalLayout>
         <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
             <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                <Text fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Generated Fear" color="black" />
+                <Text fontStyle="Bold" text="Fear Pool" color="black" />
             </Panel>
-            <Panel preferredWidth="80" preferredHeight="80" color="white">
-                <Text id="panelFearGenerated" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="0" fontSize="40" color="black" />
+            <Panel preferredWidth="80" preferredHeight="80">
+                <Button id="panelFearPool" fontStyle="Bold" text="0" fontSize="40" textColor="black" onClick="bee103/removeFear" />
             </Panel>
         </VerticalLayout>
     </HorizontalLayout>
@@ -203,10 +203,10 @@
 <Panel id="panelBlight" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="80" offsetXY="315 -90" rectAlignment="UpperLeft">
     <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
         <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-            <Text fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Blight" color="black" />
+            <Text fontStyle="Bold" text="Blight" color="black" />
         </Panel>
         <Panel preferredWidth="80" preferredHeight="80" color="white">
-            <Text id="panelBlightPool" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="" fontSize="40" color="black" />
+            <Text id="panelBlightPool" fontStyle="Bold" text="" fontSize="40" color="black" />
         </Panel>
     </VerticalLayout>
 </Panel>

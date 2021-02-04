@@ -40,6 +40,7 @@ optionalStrangeMadness = false
 optionalBlightSetup = true
 optionalExtraBoard = false
 optionalThematicRedo = false
+optionalBoardPairings = true
 
 exploratoryVOTD = false
 exploratoryBODAN = false
@@ -827,6 +828,10 @@ end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
+end
+function toggleBoardPairings()
+    optionalBoardPairings = not optionalBoardPairings
+    self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
 end
 
 function toggleVOTD()

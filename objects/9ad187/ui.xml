@@ -184,16 +184,16 @@
                 <Cell columnSpan="2"><Text>Randomisers</Text></Cell>
             </Row>
             <Row class="header">
-                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Difficulty: 1</Text></Cell>
+                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Difficulty: 0</Text></Cell>
             </Row>
             <Row>
-                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="1" maxValue="28" value="1" onValueChanged="toggleMinDifficulty"/></Cell>
+                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="0" maxValue="28" value="0" onValueChanged="toggleMinDifficulty"/></Cell>
             </Row>
             <Row class="header">
                 <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Difficulty: 11</Text></Cell>
             </Row>
             <Row>
-                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="1" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
+                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
             <Row>
                 <Cell><Button onClick="randomSpirit" tooltip="Will randomly give you any spirit">Random Spirit</Button></Cell>

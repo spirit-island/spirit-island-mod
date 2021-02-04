@@ -13,6 +13,7 @@ adversaries = {
 }
 scenarios = {
     ["None"] = "",
+    ["Random"] = "",
     ["Blitz"] = "1b39da",
     ["Guard the Isle's Heart"] = "04397d",
     ["Rituals of Terror"] = "7ac013",
@@ -52,7 +53,7 @@ function onObjectSpawn(obj)
         if objType == "table" then
             addAdversary(obj)
             Global.call("addAdversary", {guid=obj.guid})
-        elseif objType == "string" then
+        elseif objType == "number" then
             -- Scenario
         end
     end
@@ -69,8 +70,8 @@ function onObjectDestroy(obj)
         if objType == "table" then
             removeAdversary(obj)
             Global.call("removeAdversary", {guid=obj.guid})
-        elseif objType == "string" then
-            -- Scenario
+        elseif objType == "number" then
+            removeScenario(obj)
         end
     end
 end
@@ -116,6 +117,40 @@ function updateAdversaryList()
     for _,v in pairs(t) do
         updateDropdownList(v, "leadingAdversary", adversaryList, -1, leadName)
         updateDropdownList(v, "supportingAdversary", adversaryList, -1, supportName)
+    end
+    self.UI.setXmlTable(t, {})
+end
+function removeScenario(obj)
+    for name,guid in pairs(scenarios) do
+        if guid ~= "" and guid == obj.guid then
+            scenarios[name] = nil
+            numScenarios = numScenarios - 1
+            if Global.getVar("scenarioCard") == obj then
+                Global.setVar("scenarioCard", nil)
+                updateDifficulty()
+            end
+            Wait.frames(updateScenarioList, 1)
+            break
+        end
+    end
+end
+function updateScenarioList()
+    local scenarioList = {}
+    for name,_ in pairs(scenarios) do
+        table.insert(scenarioList, name)
+    end
+
+    local scenarioName = "None"
+    local scenario = Global.getVar("scenarioCard")
+    if scenario ~= nil then
+        scenarioName = scenario.getName()
+    elseif Global.getVar("useRandomScenario") then
+        scenarioName = "Random"
+    end
+
+    local t = self.UI.getXmlTable()
+    for _,v in pairs(t) do
+        updateDropdownList(v, "scenario", scenarioList, -1, scenarioName)
     end
     self.UI.setXmlTable(t, {})
 end

@@ -60,7 +60,7 @@ stagesSetup = 0
 boardsSetup = 0
 showAdvancedSettings = true
 showRandomizers = false
-minDifficulty = 1
+minDifficulty = 0
 maxDifficulty = 11
 useRandomAdversary = false
 useSecondAdversary = false
@@ -502,9 +502,11 @@ function randomScenario()
     end
     while scenarioCard == nil do
         local value = math.random(1,SetupChecker.getVar("numScenarios"))
-        local i = 0
+        local i = 1
         for _,guid in pairs(SetupChecker.getVar("scenarios")) do
-            if i == value then
+            if guid == "" then
+                -- noop
+            elseif i == value then
                 scenarioCard = getObjectFromGUID(guid)
                 local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
                 if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then

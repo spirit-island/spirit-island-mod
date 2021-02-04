@@ -46,10 +46,78 @@ exploratoryWar = false
 
 updateLayoutsID = 0
 
+function onObjectSpawn(obj)
+    if obj.type == "Card" then
+        local objType = type(obj.getVar("difficulty"))
+        if objType == "table" then
+            addAdversary(obj)
+            Global.call("addAdversary", {guid=obj.guid})
+        elseif objType == "string" then
+            -- Scenario
+        end
+    end
+end
+function addAdversary(obj)
+    adversaries[obj.getName()] = obj.guid
+    updateAdversaryList()
+end
 function onObjectDestroy(obj)
     if spiritTags[obj.guid] ~= nil then
         removeSpirit({spirit=obj.guid})
+    elseif obj.type == "Card" then
+        local objType = type(obj.getVar("difficulty"))
+        if objType == "table" then
+            removeAdversary(obj)
+            Global.call("removeAdversary", {guid=obj.guid})
+        elseif objType == "string" then
+            -- Scenario
+        end
     end
+end
+function removeAdversary(obj)
+    for name,guid in pairs(adversaries) do
+        if guid ~= "" and guid == obj.guid then
+            adversaries[name] = nil
+            if Global.getVar("adversaryCard") == obj then
+                Global.setVar("adversaryCard", nil)
+                toggleLeadingLevel(nil, 0)
+            end
+            if Global.getVar("adversaryCard2") == obj then
+                Global.setVar("adversaryCard2", nil)
+                toggleSupportingLevel(nil, 0)
+            end
+            Wait.frames(updateAdversaryList, 1)
+            break
+        end
+    end
+end
+function updateAdversaryList()
+    local adversaryList = {}
+    for name,_ in pairs(adversaries) do
+        table.insert(adversaryList, name)
+    end
+
+    local leadName = "None"
+    local adversary = Global.getVar("adversaryCard")
+    if adversary ~= nil then
+        leadName = adversary.getName()
+    elseif Global.getVar("useRandomAdversary") then
+        leadName = "Random"
+    end
+    local supportName = "None"
+    local adversary = Global.getVar("adversaryCard2")
+    if adversary ~= nil then
+        supportName = adversary.getName()
+    elseif Global.getVar("useSecondAdversary") then
+        supportName = "Random"
+    end
+
+    local t = self.UI.getXmlTable()
+    for _,v in pairs(t) do
+        updateDropdownList(v, "leadingAdversary", adversaryList, -1, leadName)
+        updateDropdownList(v, "supportingAdversary", adversaryList, -1, supportName)
+    end
+    self.UI.setXmlTable(t, {})
 end
 
 ---- Setup UI Section
@@ -81,7 +149,7 @@ function updateBoardLayouts(numPlayers)
     end
     self.UI.setXmlTable(t, {})
 end
-function updateDropdownList(t, class, values, selected)
+function updateDropdownList(t, class, values, selectedIndex, selectedValue)
     if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
         if t.attributes.id == class then
             t.children = {}
@@ -92,13 +160,15 @@ function updateDropdownList(t, class, values, selected)
                     attributes={},
                     children={},
                 }
-                if i == selected then
+                if i == selectedIndex then
+                    t.children[i].attributes.selected = "true"
+                elseif v == selectedValue then
                     t.children[i].attributes.selected = "true"
                 end
             end
         else
             for _, v in pairs(t.children) do
-                updateDropdownList(v, class, values, selected)
+                updateDropdownList(v, class, values, selectedIndex, selectedValue)
             end
         end
     end
@@ -203,44 +273,6 @@ function toggleSupportingLevel(player, value)
     self.UI.setAttribute("supportingLevel", "text", "Level: "..value)
     self.UI.setAttribute("supportingLevelSlider", "value", value)
     updateDifficulty()
-end
-function addAdversary(params)
-    adversaries[params.obj.getName()] = params.obj.guid
-    updateAdversaryList()
-end
-function checkAdversaries()
-    local adversaryRemoved = false
-    for name,guid in pairs(adversaries) do
-        if guid ~= "" then
-            local obj = getObjectFromGUID(guid)
-            if obj == nil then
-                adversaries[name] = nil
-                adversaryRemoved = true
-                if Global.getVar("adversaryCard") == nil then
-                    toggleLeadingLevel(nil, 0)
-                end
-                if Global.getVar("adversaryCard2") == nil then
-                    toggleSupportingLevel(nil, 0)
-                end
-            end
-        end
-    end
-    if adversaryRemoved then
-        -- Wait for levels to update
-        Wait.frames(updateAdversaryList, 1)
-    end
-end
-function updateAdversaryList()
-    local adversaryList = {}
-    for name,_ in pairs(adversaries) do
-        table.insert(adversaryList, name)
-    end
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownList(v, "leadingAdversary", adversaryList)
-        updateDropdownList(v, "supportingAdversary", adversaryList)
-    end
-    self.UI.setXmlTable(t, {})
 end
 
 function toggleBlightCard()

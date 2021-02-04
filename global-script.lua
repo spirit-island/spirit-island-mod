@@ -57,14 +57,13 @@ canStart = true
 difficulty = 0
 yHeight = 0
 stagesSetup = 0
-cleanupTimerId = 0
 boardsSetup = 0
 showAdvancedSettings = true
 showRandomizers = false
 minDifficulty = 1
 maxDifficulty = 11
-useSecondAdversary = false
 useRandomAdversary = false
+useSecondAdversary = false
 includeThematic = false
 useRandomBoard = false
 scenarioCard = nil
@@ -189,21 +188,6 @@ function onObjectEnterScriptingZone(zone, obj)
                     zoneDestroyFlag = true
                     Wait.time(checkZoneDestroy,1)
                 end
-            end
-        elseif not gameStarted then
-            if obj ~= nil and obj.type == "Card" and type(obj.getVar("difficulty")) == "table" then
-                -- Adversaries have difficulty tables, Scenarios have difficulty numbers
-                local found = false
-                for _,guid in pairs(adversaryGuids) do
-                    if guid == obj.guid then
-                        found = true
-                        break
-                    end
-                end
-                if not found then
-                    table.insert(adversaryGuids, obj.guid)
-                end
-                SetupChecker.call("addAdversary", {obj=obj})
             end
         end
     end
@@ -374,7 +358,6 @@ function onLoad(saved_data)
             end
         else
             SetupChecker.UI.setAttribute("panelSetup", "visibility", "")
-            cleanupTimerId = Wait.time(cleanupAdversary,1,-1)
         end
     end
     if Player["White"].seated then Player["White"].changeColor("Red") end
@@ -465,7 +448,6 @@ function SetupGame()
         randomAdversary()
     end
 
-    Wait.stop(cleanupTimerId)
     SetupChecker.call("closeUI", {})
 
     startLuaCoroutine(Global, "PreSetup")
@@ -482,16 +464,15 @@ function SetupGame()
     Wait.condition(function() startLuaCoroutine(Global, "PostSetup") end, function() return stagesSetup == 9 end)
     Wait.condition(function() startLuaCoroutine(Global, "StartGame") end, function() return stagesSetup == 10 end)
 end
-function cleanupAdversary()
-    for i,v in pairs(adversaryGuids) do
-        if v ~= "" then
-            local obj = getObjectFromGUID(v)
-            if obj == nil then
-                table.remove(adversaryGuids, i)
-            end
+function addAdversary(params)
+    table.insert(adversaryGuids, params.guid)
+end
+function removeAdversary(params)
+    for i,guid in pairs(adversaryGuids) do
+        if guid ~= "" and guid == params.guid then
+            table.remove(adversaryGuids, i)
         end
     end
-    SetupChecker.call("checkAdversaries", {})
 end
 function randomBoard()
     if SetupChecker.call("difficultyCheck", {thematic = true}) > maxDifficulty then

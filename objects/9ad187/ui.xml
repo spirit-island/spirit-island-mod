@@ -19,7 +19,7 @@
     <Text class="slider" alignment="LowerCenter"/>
 </Defaults>
 
-<Panel id="panelSetup" class="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2200 -1640 12">
+<Panel id="panelSetup" class="leadingAdversary supportingAdversary scenario boardLayout" visibility="" width="1000" height="2800" position="-2200 -1640 12">
     <VerticalLayout class="leadingAdversary supportingAdversary scenario boardLayout">
         <TableLayout class="leadingAdversary supportingAdversary scenario boardLayout">
             <Row class="header">

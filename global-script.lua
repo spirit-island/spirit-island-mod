@@ -45,6 +45,22 @@ explorerBag = "613ea4"
 townBag = "4d3c15"
 cityBag = "a245f8"
 selectedColors = {}
+playerTables = {
+    Red = "dce473",
+    Purple = "c99d4d",
+    Yellow = "794c81",
+    Blue = "125e82",
+    Green = "d7d593",
+    Orange = "33c4af",
+}
+playerBlocks = {
+    Red = "c68e2c",
+    Purple = "661aa3",
+    Yellow = "c3c59b",
+    Blue = "36bbcc",
+    Green = "fac8e4",
+    Orange = "6b5b4b",
+}
 ------ Unsaved Config Data
 numPlayers = 1
 numBoards = 1
@@ -205,6 +221,9 @@ function onSave()
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
         panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
         panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
+        playerBlocks = convertObjectsToGuids(playerBlocks),
+        playerTables = convertObjectsToGuids(playerTables),
+        elementScanZones = elementScanZones,
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -297,6 +316,9 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         gameStarted = loaded_data.gameStarted
+        playerBlocks = loaded_data.playerBlocks
+        playerTables = loaded_data.playerTables
+        elementScanZones = loaded_data.elementScanZones
         if gameStarted then
             BnCAdded = loaded_data.BnCAdded
             JEAdded = loaded_data.JEAdded
@@ -348,6 +370,8 @@ function onLoad(saved_data)
             end
         end
     end
+    playerBlocks = convertGuidsToObjects(playerBlocks)
+    playerTables = convertGuidsToObjects(playerTables)
     if Player["White"].seated then Player["White"].changeColor("Red") end
 end
 ----
@@ -397,6 +421,12 @@ function SetupGame()
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
         return 0
     end
+    for color, obj in pairs(playerBlocks) do
+        obj.removeButton(1)
+        obj.setVar("playerColor", nil)
+    end
+    playerBlocks = {}
+
     if adversaryCard == nil then
         adversaryLevel = 0
     end
@@ -903,7 +933,7 @@ function CreatePickPowerButton(card, clickFunctionName)
     })
 end
 function PickPowerMinor(cardo,playero,alt_click)
-    -- Give card to player regardless of who's hand they are in front of
+    -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -917,7 +947,7 @@ function PickPowerMinor(cardo,playero,alt_click)
     end, function() return not cardo.isSmoothMoving() end)
 end
 function PickPowerMajor(cardo,playero,alt_click)
-    -- Give card to player regardless of who's hand they are in front of
+    -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
 
@@ -1620,6 +1650,7 @@ end
 ----- Post Setup Section
 function PostSetup()
     aidBoard.call("setupGame", {})
+
     local postSetupSteps = 0
     local firstAdversarySetup = false
 
@@ -1829,6 +1860,12 @@ function removeSpirit(params)
         getObjectFromGUID(elementScanZones[params.color]).clearButtons()
         selectedColors[params.color] = getObjectFromGUID(readyTokens[params.color])
         getObjectFromGUID(playerBlocks[params.color]).call("setupPlayerArea", {})
+        local obj = playerBlocks[params.color]
+        if obj then
+            obj.removeButton(1)
+            obj.setVar("playerColor", nil)
+            playerBlocks[params.color] = nil
+        end
     end
 end
 ------
@@ -2822,12 +2859,31 @@ function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
 end
 ---- Block Square Section
 function setupPlayerArea(params)
-    --Sets position/color for the button, spawns it
-    params.obj.createButton({
+    -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
+    local obj = params.obj
+    obj.createButton({
         label="Energy Cost: 0", click_function="nullFunc",
         position={0,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
         font_color={1,1,1}, font_size=500
     })
+
+    local color
+    for k, v in pairs(playerBlocks) do
+        if v.guid == obj.guid then
+            color = k
+            break
+        end
+    end
+    obj.setVar("playerColor", color)  -- May be nil
+    if color then
+        obj.createButton({
+            label="Swap with " .. color, click_function="onSwapButtonClicked", function_owner=Global,
+            position={0,2.24,-24.7}, rotation={0,180,0}, height=800, width=4000,
+            font_color={0,0,0}, font_size=500,
+            tooltip="Moves your current player color to be located here.  The color currently seated here will be moved to your current location.",
+        })
+    end
+
     for _,bag in pairs(params.elementBags) do
         bag.createButton({
             label="0", click_function="nullFunc",
@@ -3161,4 +3217,95 @@ function tCompare(t1,t2)
     return table.concat(newTab,"|")
     end
     if cc2(t1) == cc2(t2) then return true else return false end
+end
+
+function swapPlayerAreas(a, b)
+    if a == b then
+        return  -- Nothing to do!
+    end
+    local function tableSwap(table)
+        local temp = table[a]
+        table[a] = table[b]
+        table[b] = temp
+    end
+    local function tintSwap(table)
+        local oa = table[a]
+        local ob = table[b]
+        local ta = oa.getColorTint()
+        local tb = ob.getColorTint()
+        oa.setColorTint(tb)
+        ob.setColorTint(ta)
+        tableSwap(table)
+    end
+    local function positionSwap(table)
+        local oa = table[a]
+        local ob = table[b]
+        if type(oa) == "string" then
+            oa = getObjectFromGUID(oa)
+            ob = getObjectFromGUID(ob)
+        end
+        local ta = oa.getPosition()
+        local tb = ob.getPosition()
+        oa.setPosition(tb)
+        ob.setPosition(ta)
+    end
+    local function handSwap(i)
+        local ta = Player[a].getHandTransform(i)
+        local tb = Player[b].getHandTransform(i)
+        Player[a].setHandTransform(tb, i)
+        Player[b].setHandTransform(ta, i)
+    end
+    local function updateBlock(color)
+        local o = playerBlocks[color]
+        if not o then
+            return 
+        end
+        o.setVar("playerColor", color)
+        o.editButton({index=1, label="Swap with " .. color})
+    end
+
+    for i = 1,2 do
+        handSwap(i)
+    end
+    tintSwap(playerTables)
+    tableSwap(playerBlocks)
+    positionSwap(defendBags)
+    positionSwap(readyTokens)
+    tableSwap(elementScanZones)
+    updateBlock(a)
+    updateBlock(b)
+
+    print(a .. " swapped places with " .. b .. ".")
+end
+
+
+-- What to do when the swap player colors button is clicked.
+function onSwapButtonClicked(target_obj, source_color, alt_click)
+    player = Player[source_color]
+    target_color = target_obj.getVar("playerColor")
+    source_obj = playerBlocks[source_color]
+
+    if not target_color then
+        broadcastToColor("That seat is already taken.", source_color)
+    elseif not source_obj then
+        broadcastToColor("You have already chosen a spirit.", source_color)
+    else
+        swapPlayerAreas(source_color, target_color)
+    end
+end
+-- Given a table of guids, returns a table of objects
+function convertGuidsToObjects(table_in)
+    local table_out = {}
+    for k,guid in pairs(table_in) do
+        table_out[k] = getObjectFromGUID(guid)
+    end
+    return table_out
+end
+-- Given a table of objects, return a table of guids
+function convertObjectsToGuids(table_in)
+    local table_out = {}
+    for k,obj in pairs(table_in) do
+        table_out[k] = obj.guid
+    end
+    return table_out
 end

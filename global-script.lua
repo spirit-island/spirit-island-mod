@@ -107,16 +107,6 @@ explorerDamage = "574835"
 dahanHealth = "746488"
 dahanDamage = "d936f3"
 -----
-adversaryGuids = {
-    "", -- None
-    "dd3d47", -- Prussia
-    "b765cf", -- England
-    "f114f8", -- Sweden
-    "e8f3e3", -- France
-    "1d9bcd", -- Habsburg
-    "1ea4cf", -- Russia
-    "37a592", -- Scotland
-}
 alternateSetupNames = {
     {"Balanced","Thematic","Random","Random with Thematic"},
     {"Balanced","Thematic","Random","Random with Thematic","Fragment","Opposite Shores"},
@@ -193,7 +183,7 @@ function onObjectEnterScriptingZone(zone, obj)
     end
 end
 function onSave()
-    data_table = {
+    local data_table = {
         BnCAdded = BnCAdded,
         JEAdded =  JEAdded,
         fearPool = fearPool,
@@ -356,8 +346,6 @@ function onLoad(saved_data)
                     o.interactable = false -- sets boards to uninteractable after reload
                 end
             end
-        else
-            SetupChecker.UI.setAttribute("panelSetup", "visibility", "")
         end
     end
     if Player["White"].seated then Player["White"].changeColor("Red") end
@@ -464,16 +452,6 @@ function SetupGame()
     Wait.condition(function() startLuaCoroutine(Global, "PostSetup") end, function() return stagesSetup == 9 end)
     Wait.condition(function() startLuaCoroutine(Global, "StartGame") end, function() return stagesSetup == 10 end)
 end
-function addAdversary(params)
-    table.insert(adversaryGuids, params.guid)
-end
-function removeAdversary(params)
-    for i,guid in pairs(adversaryGuids) do
-        if guid ~= "" and guid == params.guid then
-            table.remove(adversaryGuids, i)
-        end
-    end
-end
 function randomBoard()
     if SetupChecker.call("difficultyCheck", {thematic = true}) > maxDifficulty then
         -- The difficulty can't be increased anymore so don't use thematic
@@ -501,31 +479,19 @@ function randomScenario()
         return
     end
     while scenarioCard == nil do
-        local value = math.random(1,SetupChecker.getVar("numScenarios"))
-        local i = 1
-        for _,guid in pairs(SetupChecker.getVar("scenarios")) do
-            if guid == "" then
-                -- noop
-            elseif i == value then
-                scenarioCard = getObjectFromGUID(guid)
-                local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
-                if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then
-                    scenarioCard = nil
-                    break
-                end
-                if scenarioCard.getVar("requirements") then
-                    allowed = scenarioCard.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
-                    if not allowed then
-                        scenarioCard = nil
-                        break
-                    end
-                end
-                SetupChecker.call("updateDifficulty", {})
-                broadcastToAll("Your randomised scenario is "..scenarioCard.getName(), "Blue")
-                break
-            else
-                i = i + 1
+        scenarioCard = SetupChecker.call("randomScenario",{})
+        local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
+        if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then
+            scenarioCard = nil
+        elseif scenarioCard.getVar("requirements") then
+            local allowed = scenarioCard.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+            if not allowed then
+                scenarioCard = nil
             end
+        else
+            SetupChecker.call("updateDifficulty", {})
+            broadcastToAll("Your randomised scenario is "..scenarioCard.getName(), "Blue")
+            break
         end
     end
 end
@@ -542,9 +508,9 @@ function randomAdversary()
     if useRandomAdversary and useSecondAdversary then
         local adversary = nil
         while adversary == nil do
-            adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+            adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -552,9 +518,9 @@ function randomAdversary()
         end
         local adversary2 = nil
         while adversary2 == nil or adversary2 == adversary do
-            adversary2 = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+            adversary2 = SetupChecker.call("randomAdversary",{})
             if adversary2.getVar("requirements") then
-                allowed = adversary2.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                local allowed = adversary2.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary2 = nil
                 end
@@ -593,9 +559,9 @@ function randomAdversary()
         end
         local adversary = nil
         while adversary == nil or adversary == selectedAdversary do
-            adversary = getObjectFromGUID(adversaryGuids[math.random(2,#adversaryGuids)])
+            adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -1154,7 +1120,7 @@ function SetupScenario()
 end
 ----- Adversary Section
 function SetupAdversary()
-    for _,guid in pairs(adversaryGuids) do
+    for _,guid in pairs(SetupChecker.getVar("adversaries")) do
         if guid == "" then
         elseif (adversaryCard == nil or adversaryCard.guid ~= guid) and (adversaryCard2 == nil or adversaryCard2.guid ~= guid) then
             getObjectFromGUID(guid).destruct()
@@ -2385,10 +2351,10 @@ function MapPlaceCustom()
     end
 end
 
-BETaken = false
-DFTaken = false
 function MapPlacen(posTable, rotTable)
     local rand = 0
+    local BETaken = false
+    local DFTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
         rand = math.random(1,numBoards)
     end

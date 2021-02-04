@@ -11,6 +11,7 @@ adversaries = {
     ["Russia"] = "1ea4cf",
     ["Scotland"] = "37a592",
 }
+numAdversaries = 7
 scenarios = {
     ["None"] = "",
     ["Random"] = "",
@@ -48,18 +49,70 @@ exploratoryWar = false
 
 updateLayoutsID = 0
 
+function onSave()
+    local data_table = {}
+
+    local adversaryList = {}
+    for name,guid in pairs(adversaries) do
+        table.insert(adversaryList, {name=name, guid=guid})
+    end
+    data_table.adversaryList = adversaryList
+
+    local scenarioList = {}
+    for name,guid in pairs(scenarios) do
+        table.insert(scenarioList, {name=name, guid=guid})
+    end
+    data_table.scenarioList = scenarioList
+
+    saved_data = JSON.encode(data_table)
+    return saved_data
+end
+function onLoad(saved_data)
+    if Global.getVar("gameStarted") then
+        self.UI.hide("panelSetup")
+    end
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+
+        adversaries = {}
+        local count = 0
+        for _,params in pairs(loaded_data.adversaryList) do
+            adversaries[params.name] = params.guid
+            if params.guid ~= "" then
+                count = count + 1
+            end
+        end
+        numAdversaries = count
+
+        scenarios = {}
+        count = 0
+        for _,params in pairs(loaded_data.scenarioList) do
+            scenarios[params.name] = params.guid
+            if params.guid ~= "" then
+                count = count + 1
+            end
+        end
+        numScenarios = count
+
+        updateAdversaryList()
+        Wait.frames(updateScenarioList, 1)
+    end
+end
+
 function onObjectSpawn(obj)
     if obj.type == "Card" then
         local objType = type(obj.getVar("difficulty"))
         if objType == "table" then
             addAdversary(obj)
-            Global.call("addAdversary", {guid=obj.guid})
         elseif objType == "number" then
             -- Scenario
         end
     end
 end
 function addAdversary(obj)
+    if adversaries[obj.getName()] == nil then
+        numAdversaries = numAdversaries + 1
+    end
     adversaries[obj.getName()] = obj.guid
     updateAdversaryList()
 end
@@ -70,7 +123,6 @@ function onObjectDestroy(obj)
         local objType = type(obj.getVar("difficulty"))
         if objType == "table" then
             removeAdversary(obj)
-            Global.call("removeAdversary", {guid=obj.guid})
         elseif objType == "number" then
             removeScenario(obj)
         end
@@ -80,6 +132,7 @@ function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
         if guid ~= "" and guid == obj.guid then
             adversaries[name] = nil
+            numAdversaries = numAdversaries - 1
             if Global.getVar("adversaryCard") == obj then
                 Global.setVar("adversaryCard", nil)
                 toggleLeadingLevel(nil, 0)
@@ -154,6 +207,34 @@ function updateScenarioList()
         updateDropdownList(v, "scenario", scenarioList, -1, scenarioName)
     end
     self.UI.setXmlTable(t, {})
+end
+function randomAdversary()
+    local value = math.random(1,numAdversaries)
+    local i = 1
+    for _,guid in pairs(adversaries) do
+        if guid == "" then
+            -- noop
+        elseif i == value then
+            return getObjectFromGUID(guid)
+        else
+            i = i + 1
+        end
+    end
+    return nil
+end
+function randomScenario()
+    local value = math.random(1,numScenarios)
+    local i = 1
+    for _,guid in pairs(scenarios) do
+        if guid == "" then
+            -- noop
+        elseif i == value then
+            return getObjectFromGUID(guid)
+        else
+            i = i + 1
+        end
+    end
+    return nil
 end
 
 ---- Setup UI Section

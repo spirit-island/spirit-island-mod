@@ -4,7 +4,9 @@ versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
 minorPowerZone = "cb16ab"
+minorPowerDiscardZone = "55b275"
 majorPowerZone = "089896"
+majorPowerDiscardZone = "eaf864"
 PlayerBags = {
     ["Red"] = "fb7941",
     ["Purple"] = "8ee413",
@@ -832,13 +834,13 @@ function MinorPowerC(obj, player_color)
 end
 function MinorPower()
     local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
-    local MinorPowerDiscardZone = getObjectFromGUID("55b275")
+    local MinorPowerDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
     DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone, "PickPowerMinor")
     return 1
 end
 function MajorPower()
     local MajorPowerDeckZone = getObjectFromGUID(majorPowerZone)
-    local MajorPowerDiscardZone = getObjectFromGUID("eaf864")
+    local MajorPowerDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
     DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone, "PickPowerMajor")
     return 1
 end
@@ -924,7 +926,7 @@ function PickPowerMinor(cardo,playero,alt_click)
         cardo.setLock(false)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
-            local minorDiscardZone = getObjectFromGUID("55b275")
+            local minorDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
             DiscardPowerCards(handPos, minorDiscardZone)
         end
     end, function() return not cardo.isSmoothMoving() end)
@@ -938,7 +940,7 @@ function PickPowerMajor(cardo,playero,alt_click)
         cardo.setLock(false)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
-            local majorDiscardZone = getObjectFromGUID("eaf864")
+            local majorDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
             DiscardPowerCards(handPos, majorDiscardZone)
         end
     end, function() return not cardo.isSmoothMoving() end)

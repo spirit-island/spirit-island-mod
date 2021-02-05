@@ -212,6 +212,7 @@ function onSave()
         panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
         panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
         panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
+        panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -339,6 +340,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelFear","visibility",loaded_data.panelFearVisibility)
             UI.setAttribute("panelBlight","visibility",loaded_data.panelBlightVisibility)
             UI.setAttribute("panelScore","visibility",loaded_data.panelScoreVisibility)
+            UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
             SetupPowerDecks()
@@ -831,8 +833,14 @@ powerPlayer = nil
 function MajorPowerC(obj, player_color)
     startDealPowerCards("MajorPower", Player[player_color])
 end
+function MajorPowerUI(player)
+    startDealPowerCards("MajorPower", player)
+end
 function MinorPowerC(obj, player_color)
     startDealPowerCards("MinorPower", Player[player_color])
+end
+function MinorPowerUI(player, button)
+    startDealPowerCards("MinorPower", player)
 end
 function startDealPowerCards(coro_name, player)
     -- protection from double clicking
@@ -856,7 +864,7 @@ function MajorPower()
 end
 function DealPowerCards(deckZone, discardZone, clickFunctionName)
     -- clear the zone!
-    local handPos = Player[powerColor].getHandTransform().position
+    local handPos = powerPlayer.getHandTransform().position
     local discardTable = DiscardPowerCards(handPos, discardZone)
     if #discardTable > 0 then
         wt(1)
@@ -3097,6 +3105,10 @@ end
 function toggleBlightUI(player)
     colorEnabled = getCurrentState("panelBlight", player.color)
     toggleUI("panelBlight", player.color, colorEnabled)
+end
+function togglePowerDrawUI(player)
+    colorEnabled = getCurrentState("panelPowerDraw", player.color)
+    toggleUI("panelPowerDraw", player.color, colorEnabled)
 end
 function toggleScoreUI(player)
     colorEnabled = getCurrentState("panelScore", player.color)

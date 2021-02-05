@@ -218,6 +218,9 @@ function onSave()
     if adversaryCard2 ~= nil then
         data_table.adversaryCard2Guid = adversaryCard2.guid
     end
+    if scenarioCard ~= nil then
+        data_table.scenarioCard = scenarioCard.guid
+    end
     local savedSelectedColors = {}
     for color,obj in pairs(selectedColors) do
         savedSelectedColors[color] = obj.guid
@@ -301,23 +304,28 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         gameStarted = loaded_data.gameStarted
-        if gameStarted then
-            BnCAdded = loaded_data.BnCAdded
-            JEAdded = loaded_data.JEAdded
-            fearPool = loaded_data.fearPool
-            generatedFear = loaded_data.generatedFear
-            difficultyString = loaded_data.difficultyString
-            blightedIsland = loaded_data.blightedIsland
-            blightedIslandCard = getObjectFromGUID(loaded_data.blightedIslandGuid)
-            returnBlightBag = getObjectFromGUID(loaded_data.returnBlightBag)
-            explorerBag = getObjectFromGUID(loaded_data.explorerBag)
-            townBag = getObjectFromGUID(loaded_data.townBag)
-            cityBag = getObjectFromGUID(loaded_data.cityBag)
-            adversaryCard = getObjectFromGUID(loaded_data.adversaryCardGuid)
-            adversaryLevel = loaded_data.adversaryLevel
-            adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
-            adversaryLevel2 = loaded_data.adversaryLevel2
+        BnCAdded = loaded_data.BnCAdded
+        JEAdded = loaded_data.JEAdded
+        fearPool = loaded_data.fearPool
+        generatedFear = loaded_data.generatedFear
+        difficultyString = loaded_data.difficultyString
+        blightedIsland = loaded_data.blightedIsland
+        blightedIslandCard = getObjectFromGUID(loaded_data.blightedIslandGuid)
+        returnBlightBag = getObjectFromGUID(loaded_data.returnBlightBag)
+        explorerBag = getObjectFromGUID(loaded_data.explorerBag)
+        townBag = getObjectFromGUID(loaded_data.townBag)
+        cityBag = getObjectFromGUID(loaded_data.cityBag)
+        adversaryCard = getObjectFromGUID(loaded_data.adversaryCardGuid)
+        adversaryLevel = loaded_data.adversaryLevel
+        adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
+        adversaryLevel2 = loaded_data.adversaryLevel2
+        scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
+        for color,guid in pairs(loaded_data.selectedColors) do
+            selectedColors[color] = getObjectFromGUID(guid)
+            getObjectFromGUID(playerBlocks[color]).call("setupPlayerArea", {})
+        end
 
+        if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
             UI.setAttribute("panelAdversary","visibility",loaded_data.panelAdversaryVisibility)
             UI.setAttribute("panelTurnOrder","visibility",loaded_data.panelTurnOrderVisibility)
@@ -346,10 +354,6 @@ function onLoad(saved_data)
                     o.interactable = false -- sets boards to uninteractable after reload
                 end
             end
-        end
-        for color,guid in pairs(loaded_data.selectedColors) do
-            selectedColors[color] = getObjectFromGUID(guid)
-            getObjectFromGUID(playerBlocks[color]).call("setupPlayerArea", {})
         end
     end
     if Player["White"].seated then Player["White"].changeColor("Red") end

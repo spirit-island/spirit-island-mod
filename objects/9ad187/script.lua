@@ -96,8 +96,25 @@ function onLoad(saved_data)
         end
         numScenarios = count
 
-        updateAdversaryList()
-        Wait.frames(updateScenarioList, 1)
+        if not setupStarted then
+            toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
+            toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
+
+            if Global.getVar("BnCAdded") then
+                Global.setVar("useBnCEvents", true)
+                self.UI.hide("bnc")
+                self.UI.setAttribute("bncEvents", "isOn", "true")
+            end
+            if Global.getVar("JEAdded") then
+                Global.setVar("useJEEvents", true)
+                self.UI.hide("je")
+                self.UI.setAttribute("jeEvents", "isOn", "true")
+            end
+
+            Wait.frames(updateAdversaryList, 1)
+            Wait.frames(updateScenarioList, 3)
+            Wait.frames(updateDifficulty, 5)
+        end
     end
 end
 

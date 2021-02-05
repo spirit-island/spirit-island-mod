@@ -447,7 +447,7 @@ function SetupGame()
         randomScenario()
     end
     if useRandomAdversary or useSecondAdversary then
-        randomAdversary()
+        randomAdversary(0)
     end
 
     SetupChecker.call("closeUI", {})
@@ -493,7 +493,14 @@ function randomScenario()
     if difficulty > maxDifficulty then
         return
     end
+    local attempts = 0
     while scenarioCard == nil do
+        if attempts > 1000 then
+            -- TODO find a more elegant solution for detecting bad difficulty ranges
+            broadcastToAll("Was not able to find random scenario to satisfy min/max difficulty specifications", "Red")
+            return
+        end
+        attempts = attempts + 1
         scenarioCard = SetupChecker.call("randomScenario",{})
         local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
         if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then
@@ -510,7 +517,7 @@ function randomScenario()
         end
     end
 end
-function randomAdversary()
+function randomAdversary(attempts)
     if difficulty >= maxDifficulty then
         if adversaryCard == nil and adversaryCard2 ~= nil then
             adversaryCard = adversaryCard2
@@ -518,6 +525,11 @@ function randomAdversary()
             adversaryCard2 = nil
             adversaryLevel2 = 0
         end
+        return
+    end
+    if attempts > 1000 then
+        -- TODO find a more elegant solution for detecting bad difficulty ranges
+        broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", "Red")
         return
     end
     if useRandomAdversary and useSecondAdversary then
@@ -565,7 +577,7 @@ function randomAdversary()
             SetupChecker.call("updateDifficulty", {})
             broadcastToAll("Your randomised adversaries are "..adversaryCard.getName().." and "..adversaryCard2.getName(), "Blue")
         else
-            randomAdversary()
+            randomAdversary(attempts + 1)
         end
     else
         local selectedAdversary = adversaryCard
@@ -609,7 +621,7 @@ function randomAdversary()
             SetupChecker.call("updateDifficulty", {})
             broadcastToAll("Your randomised adversary is "..adversary.getName(), "Blue")
         else
-            randomAdversary()
+            randomAdversary(attempts + 1)
         end
     end
 end

@@ -3,7 +3,7 @@
   "Transform": {
     "posX": -48.94,
     "posY": 0.960650563,
-    "posZ": -39.3050652,
+    "posZ": -39.3050728,
     "rotX": 89.98022,
     "rotY": -3.77318123e-08,
     "rotZ": 0.0,
@@ -33,7 +33,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "version ???",
+    "Text": "version 7.2.8",
     "colorstate": {
       "r": 0.7334495,
       "g": 0.7334495,

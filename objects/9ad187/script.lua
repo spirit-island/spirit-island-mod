@@ -48,6 +48,7 @@ exploratoryBODAN = false
 exploratoryWar = false
 
 updateLayoutsID = 0
+setupStarted = false
 
 function onSave()
     local data_table = {}
@@ -70,6 +71,7 @@ end
 function onLoad(saved_data)
     if Global.getVar("gameStarted") then
         self.UI.hide("panelSetup")
+        setupStarted = true
     end
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
@@ -94,13 +96,30 @@ function onLoad(saved_data)
         end
         numScenarios = count
 
-        updateAdversaryList()
-        Wait.frames(updateScenarioList, 1)
+        if not setupStarted then
+            toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
+            toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
+
+            if Global.getVar("BnCAdded") then
+                Global.setVar("useBnCEvents", true)
+                self.UI.hide("bnc")
+                self.UI.setAttribute("bncEvents", "isOn", "true")
+            end
+            if Global.getVar("JEAdded") then
+                Global.setVar("useJEEvents", true)
+                self.UI.hide("je")
+                self.UI.setAttribute("jeEvents", "isOn", "true")
+            end
+
+            Wait.frames(updateAdversaryList, 1)
+            Wait.frames(updateScenarioList, 3)
+            Wait.frames(updateDifficulty, 5)
+        end
     end
 end
 
 function onObjectSpawn(obj)
-    if obj.type == "Card" then
+    if not setupStarted and obj.type == "Card" then
         local objType = type(obj.getVar("difficulty"))
         if objType == "table" then
             addAdversary(obj)
@@ -119,7 +138,7 @@ end
 function onObjectDestroy(obj)
     if spiritTags[obj.guid] ~= nil then
         removeSpirit({spirit=obj.guid})
-    elseif obj.type == "Card" then
+    elseif not setupStarted and obj.type == "Card" then
         local objType = type(obj.getVar("difficulty"))
         if objType == "table" then
             removeAdversary(obj)
@@ -605,14 +624,28 @@ function closeUI()
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
 end
 
-function toggleRandomizers()
-    local checked = self.UI.getAttribute("randomizers", "isOn")
+function toggleSimpleMode()
+    local checked = self.UI.getAttribute("simpleMode", "isOn")
     if checked == "true" then
-        self.UI.setAttribute("randomizers", "isOn", "false")
+        self.UI.setAttribute("simpleMode", "isOn", "false")
+        self.UI.setAttribute("leadingText", "text", "Adversary")
+        self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
+        self.UI.setAttribute("supportingRow", "visibility", "Invisible")
+        self.UI.setAttribute("events", "visibility", "Invisible")
+        self.UI.setAttribute("optionalCell", "visibility", "Invisible")
+        self.UI.setAttribute("toggles", "visibility", "Invisible")
+        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
         self.UI.setAttribute("panelRandom", "visibility", "Invisible")
+        self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     else
-        self.UI.setAttribute("randomizers", "isOn", "true")
-        self.UI.setAttribute("panelRandom", "visibility", "")
+        self.UI.setAttribute("simpleMode", "isOn", "true")
+        self.UI.setAttribute("leadingText", "text", "Leading Adversary")
+        self.UI.setAttribute("supportingHeader", "visibility", "")
+        self.UI.setAttribute("supportingRow", "visibility", "")
+        self.UI.setAttribute("events", "visibility", "")
+        self.UI.setAttribute("optionalCell", "visibility", "")
+        self.UI.setAttribute("toggles", "visibility", "")
+        showUI()
     end
 end
 function toggleOptionalRules()
@@ -623,6 +656,16 @@ function toggleOptionalRules()
     else
         self.UI.setAttribute("optionalRules", "isOn", "true")
         self.UI.setAttribute("panelOptional", "visibility", "")
+    end
+end
+function toggleRandomizers()
+    local checked = self.UI.getAttribute("randomizers", "isOn")
+    if checked == "true" then
+        self.UI.setAttribute("randomizers", "isOn", "false")
+        self.UI.setAttribute("panelRandom", "visibility", "Invisible")
+    else
+        self.UI.setAttribute("randomizers", "isOn", "true")
+        self.UI.setAttribute("panelRandom", "visibility", "")
     end
 end
 function toggleExploratory()

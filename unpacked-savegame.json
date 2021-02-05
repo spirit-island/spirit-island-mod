@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/4/2021 12:03:36 AM",
+  "Date": "2/4/2021 9:27:36 PM",
   "VersionNumber": "v13.0.3",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -263,7 +263,16 @@
     ]
   },
   "ComponentTags": {
-    "labels": []
+    "labels": [
+      {
+        "displayed": "Blight",
+        "normalized": "blight"
+      },
+      {
+        "displayed": "Dahan",
+        "normalized": "dahan"
+      }
+    ]
   },
   "Turns": {
     "Enable": false,

@@ -23,15 +23,15 @@
     <VerticalLayout class="leadingAdversary supportingAdversary scenario boardLayout">
         <TableLayout class="leadingAdversary supportingAdversary scenario boardLayout">
             <Row class="header">
-                <Cell columnSpan="2"><Text class="slider" id="numPlayers">Number of Players: 1</Text></Cell>
+                <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
             <Row>
                 <Cell columnSpan="2"><Slider id="numPlayersSlider" minValue="1" maxValue="6" value="1" onValueChanged="toggleNumPlayers"/></Cell>
             </Row>
             <Row class="spacing"/>
             <Row class="header">
-                <Cell><Text>Leading Adversary</Text></Cell>
-                <Cell><Text class="slider" id="leadingLevel">Level: 0</Text></Cell>
+                <Cell><Text id="leadingText">Leading Adversary</Text></Cell>
+                <Cell><Text id="leadingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
             <Row class="leadingAdversary">
                 <Cell class="leadingAdversary">
@@ -49,11 +49,11 @@
                 </Cell>
                 <Cell><Slider id="leadingLevelSlider" enabled="false" minValue="0" maxValue="6" value="0" onValueChanged="toggleLeadingLevel"/></Cell>
             </Row>
-            <Row class="header">
+            <Row id="supportingHeader" class="header">
                 <Cell><Text>Supporting Adversary</Text></Cell>
-                <Cell><Text class="slider" id="supportingLevel">Level: 0</Text></Cell>
+                <Cell><Text id="supportingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
-            <Row class="supportingAdversary">
+            <Row id="supportingRow" class="supportingAdversary">
                 <Cell class="supportingAdversary">
                     <Dropdown id="supportingAdversary" class="supportingAdversary" onValueChanged="toggleSupportingAdversary">
                         <Option selected="true">None</Option>
@@ -114,7 +114,7 @@
                 <Cell><Button id="je" onClick="addJE">Jagged Earth</Button></Cell>
             </Row>
             <Row class="spacing"/>
-            <Row class="toggle">
+            <Row id="events" class="toggle">
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="bncEvents" onValueChanged="toggleBnCEvents"/><Text class="toggle"/><Button id="eventDeckButton" class="toggle" onClick="toggleBnCEvents" preferredWidth="280" text="B&amp;C Events?"></Button></Cell>
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="jeEvents" onValueChanged="toggleJEEvents"/><Text class="toggle"/><Button id="eventDeckButton" class="toggle" onClick="toggleJEEvents" preferredWidth="260">JE Events?</Button></Cell>
             </Row>
@@ -128,10 +128,11 @@
             </Row>
             <Row class="spacing"/>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="optionalRules" onValueChanged="toggleOptionalRules"/><Text class="toggle"/><Button class="toggle" onClick="toggleOptionalRules" preferredWidth="390" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Button></Cell>
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="randomizers" onValueChanged="toggleRandomizers"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomizers" preferredWidth="390" tooltip="A way to randomise parts of the game, e.g.&#xA;Adversary, Scenario, Board Layout, and Spirit">Show Randomisers</Button></Cell>
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="simpleMode" isOn="true" onValueChanged="toggleSimpleMode"/><Text class="toggle"/><Button class="toggle" onClick="toggleSimpleMode">Advanced Settings</Button></Cell>
+                <Cell id="optionalCell" class="toggle"><Text class="toggle"/><Toggle id="optionalRules" onValueChanged="toggleOptionalRules"/><Text class="toggle"/><Button class="toggle" onClick="toggleOptionalRules" preferredWidth="390" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Button></Cell>
             </Row>
-            <Row class="toggle">
+            <Row id="toggles" class="toggle">
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="randomizers" onValueChanged="toggleRandomizers"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomizers" preferredWidth="390" tooltip="A way to randomise parts of the game, e.g.&#xA;Adversary, Scenario, Board Layout, and Spirit">Show Randomisers</Button></Cell>
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="exploratory" onValueChanged="toggleExploratory"/><Text class="toggle"/><Button class="toggle" onClick="toggleExploratory" preferredWidth="360" tooltip="Altered versions of parts of the game that R. Eric Reuss&#xA;would like feedback on, but aren't worth official playtesting">Show Exploratory</Button></Cell>
             </Row>
         </TableLayout>

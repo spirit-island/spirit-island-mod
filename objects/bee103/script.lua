@@ -381,6 +381,7 @@ end
 function addFear()
     local fearPool = Global.getVar("fearPool")
     local generatedFear = Global.getVar("generatedFear")
+    if generatedFear == 0 and fearPool == 0 then return end
     if fearPool == 1 then
         Global.setVar("fearPool", generatedFear + 1)
         Global.setVar("generatedFear", 0)
@@ -394,6 +395,7 @@ end
 function removeFear()
     local fearPool = Global.getVar("fearPool")
     local generatedFear = Global.getVar("generatedFear")
+    if generatedFear == 0 and fearPool == 0 then return end
     if generatedFear == 0 then
         Global.setVar("fearPool", 1)
         Global.setVar("generatedFear", fearPool - 1)

@@ -437,6 +437,7 @@ function SetupGame()
     end
 
     SetupChecker.call("closeUI", {})
+    SetupChecker.setVar("setupStarted", true)
 
     startLuaCoroutine(Global, "PreSetup")
     Wait.condition(function()

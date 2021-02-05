@@ -938,7 +938,7 @@ function PickPowerMinor(cardo,playero,alt_click)
         cardo.setLock(false)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
-            local minorDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
+            local minorDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
             DiscardPowerCards(handPos, minorDiscardZone)
         end
     end, function() return not cardo.isSmoothMoving() end)

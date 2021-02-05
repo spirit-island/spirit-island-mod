@@ -152,4 +152,5 @@ function englandSnap(aidBoard)
     end
   end
   aidBoard.setSnapPoints(newSnapPoints)
+  aidBoard.call("updateDiscard", {discard=Vector(-52.90, 1.3, -5.30)})
 end

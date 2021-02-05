@@ -192,6 +192,7 @@ function onSave()
         fearPool = fearPool,
         generatedFear = generatedFear,
         gameStarted = gameStarted,
+        difficulty = difficulty,
         difficultyString = difficultyString,
         blightedIsland = blightedIsland,
         returnBlightBag = returnBlightBag.guid,
@@ -208,6 +209,7 @@ function onSave()
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
         panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
         panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
+        panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -308,6 +310,7 @@ function onLoad(saved_data)
         JEAdded = loaded_data.JEAdded
         fearPool = loaded_data.fearPool
         generatedFear = loaded_data.generatedFear
+        difficulty = loaded_data.difficulty
         difficultyString = loaded_data.difficultyString
         blightedIsland = loaded_data.blightedIsland
         blightedIslandCard = getObjectFromGUID(loaded_data.blightedIslandGuid)
@@ -333,6 +336,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelReady","visibility",loaded_data.panelReadyVisibility)
             UI.setAttribute("panelFear","visibility",loaded_data.panelFearVisibility)
             UI.setAttribute("panelBlight","visibility",loaded_data.panelBlightVisibility)
+            UI.setAttribute("panelScore","visibility",loaded_data.panelScoreVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
             SetupPowerDecks()
@@ -2744,6 +2748,37 @@ function deleteObject(obj)
         bag.putObject(obj)
     end
 end
+----
+function refreshScore()
+    local dahan = #getObjectsWithTag("Dahan")
+    local blight = #getObjectsWithTag("Blight")
+    if SetupChecker.call("isSpiritPickable", {guid="4c061f"}) then
+        -- TODO figure out a more elegant solution here
+        blight = blight - 2
+    end
+
+    local invaderDeck = getObjectFromGUID(invaderDeckZone).getObjects()[1]
+    local deckCount = 0
+    if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
+        if invaderDeck.type == "Deck" then
+            for _,obj in pairs(invaderDeck.getObjects()) do
+                local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
+                stage = tonumber(string.sub(obj.lua_script,finish+1))
+                if stage ~= 100 then
+                    -- non invader cards like Command cards and Habsburg Reminder are stage 100
+                    deckCount = deckCount + 1
+                end
+            end
+        elseif invaderDeck.type == "Card" then
+            deckCount = 1
+        end
+    end
+    local win = 5 * difficulty + 10 + 2 * deckCount + dahan - blight
+    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard", {}) + dahan - blight
+
+    UI.setAttribute("scoreWin", "text", "Victory: "..win)
+    UI.setAttribute("scoreLose", "text", "Defeat: "..lose)
+end
 ---------------
 function wt(some)
     local Time = os.clock() + some
@@ -3049,6 +3084,10 @@ end
 function toggleBlightUI(player)
     colorEnabled = getCurrentState("panelBlight", player.color)
     toggleUI("panelBlight", player.color, colorEnabled)
+end
+function toggleScoreUI(player)
+    colorEnabled = getCurrentState("panelScore", player.color)
+    toggleUI("panelScore", player.color, colorEnabled)
 end
 function getCurrentState(xmlID, player_color)
     local colorEnabled = false

@@ -3408,6 +3408,8 @@ function swapPlayerAreaObjects(a, b)
     if a == b then return end
     local swaps = {[a] = b, [b] = a}
     local tables = {[a] = playerTables[a], [b] = playerTables[b]}
+    local zones = {}
+    local buttons = {}
     local objects = {}
     for color,playerTable in pairs(tables) do
         local t = upCast(playerTable, 50)
@@ -3415,12 +3417,26 @@ function swapPlayerAreaObjects(a, b)
             table.insert(t, obj)
         end
         objects[color] = t
+        local zone = getObjectFromGUID(elementScanZones[color])
+        zones[color] = zone
+        local zoneButtons = zone.getButtons()
+        buttons[color] = zoneButtons
+        if zoneButtons then
+            for i = #zoneButtons - 1, 0, -1 do
+                zone.removeButton(i)
+            end
+        end
     end
     for from,to in pairs(swaps) do
         local transform = tables[to].getPosition() - tables[from].getPosition()
         for _,obj in ipairs(objects[from]) do
             if obj.interactable then
                 obj.setPosition(obj.getPosition() + transform)
+            end
+        end
+        if buttons[from] then
+            for _,button in ipairs(buttons[from]) do
+                zones[to].createButton(button)
             end
         end
     end

@@ -743,62 +743,21 @@ function gainSpirit(player)
     end
     broadcastToColor("Your 4 randomised spirits to choose from are in your play area", player.color, Color.SoftBlue)
 
-    local spirit1 = getNewSpirit()
-    local spirit2 = getNewSpirit()
-    local spirit3 = getNewSpirit()
-    local spirit4 = getNewSpirit()
-
-    if spirit1 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit1",
-            function_owner = self,
-            label = spirit1.getName(),
-            position = Vector(0,0,-0.15),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit2 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit2",
-            function_owner = self,
-            label = spirit2.getName(),
-            position = Vector(0,0,-0.3),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit3 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit3",
-            function_owner = self,
-            label = spirit3.getName(),
-            position = Vector(0,0,-0.45),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit4 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit4",
-            function_owner = self,
-            label = spirit4.getName(),
-            position = Vector(0,0,-0.6),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
+    for i = 1,4 do
+        local s = getNewSpirit()
+        if s then
+            obj.createButton({
+                click_function = "pickSpirit" .. i,
+                function_owner = self,
+                label = s.getName(),
+                position = Vector(0,0,0.3 - 0.15*i),
+                rotation = Vector(0,180,0),
+                scale = Vector(0.1,0.1,0.1),
+                width = 4850,
+                height = 600,
+                font_size = 290,
+            })
+        end
     end
 end
 function getNewSpirit()

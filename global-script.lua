@@ -3227,11 +3227,11 @@ end
 
 function tCompare(t1,t2)
     function cc2(tab)
-        newTab = {}
+        local newTab = {}
         for i,v in ipairs(tab) do
             newTab[i] = table.concat(v,",")
+        end
+        return table.concat(newTab,"|")
     end
-    return table.concat(newTab,"|")
-    end
-    if cc2(t1) == cc2(t2) then return true else return false end
+    return cc2(t1) == cc2(t2)
 end

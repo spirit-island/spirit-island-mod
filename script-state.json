@@ -45,5 +45,7 @@
   },
   "returnBlightBag": "af50b8",
   "selectedColors": [],
-  "townBag": "4d3c15"
+  "townBag": "4d3c15",
+  "showPlayerButtons": true,
+  "showAllMultihandedButtons": false
 }

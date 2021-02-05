@@ -68,6 +68,9 @@ playerBlocks = {
     Orange = "6b5b4b",
 }
 
+showPlayerButtons = true
+showAllMultihandedButtons = false
+
 ------ Unsaved Config Data
 numPlayers = 1
 numBoards = 1
@@ -222,6 +225,8 @@ function onSave()
         panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
         panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
         panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
+        showPlayerButtons = showPlayerButtons,
+        showAllMultihandedButtons = showAllMultihandedButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
         elementScanZones = elementScanZones,
         selectedColors = convertObjectsToGuids(selectedColors)
@@ -336,6 +341,9 @@ function onLoad(saved_data)
         adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
         adversaryLevel2 = loaded_data.adversaryLevel2
         scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
+        showPlayerButtons = loaded_data.showPlayerButtons
+        showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
+
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
             UI.setAttribute("panelAdversary","visibility",loaded_data.panelAdversaryVisibility)
@@ -367,6 +375,7 @@ function onLoad(saved_data)
                 end
             end
         else
+            enableUI()
             if BnCAdded then SetupChecker.UI.hide("bnc") end
             if JEAdded then SetupChecker.UI.hide("je") end
         end
@@ -472,6 +481,8 @@ function SetupGame()
 
     SetupChecker.call("closeUI", {})
     SetupChecker.setVar("setupStarted", true)
+    showPlayerButtons = false
+    updateAllPlayerAreas()
 
     startLuaCoroutine(Global, "PreSetup")
     Wait.condition(function()
@@ -1914,6 +1925,10 @@ quotes = {
 timePassing = false
 function timePassesUI(player)
     if player.color == "Grey" then return end
+    if not gameStarted then
+        player.broadcast("The game must be started first.")
+        return
+    end
     timePasses()
 end
 function timePasses()
@@ -2968,10 +2983,7 @@ function setupPlayerArea(params)
         obj.editButton({index=0, label=""})
     end
 
-    if gameStarted and false then
-        obj.editButton({index=1, label="", height=0, width=0})
-        obj.editButton({index=2, label="", height=0, width=0})
-    else
+    if showPlayerButtons then
         local bg = Color[color]
         local fg
         if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
@@ -2981,9 +2993,12 @@ function setupPlayerArea(params)
         end
         obj.editButton({index=1, label="Sit Here", height=800, width=3300})
         obj.editButton({index=2, label="Pick " .. color, height=800, width=3300, color=bg, font_color=fg})
+    else
+        obj.editButton({index=1, label="", height=0, width=0})
+        obj.editButton({index=2, label="", height=0, width=0})
     end
 
-    if Player[color].seated or not selected then
+    if Player[color].seated or (not selected and not showAllMultihandedButtons) then
         obj.editButton({index=3, label="", height=0, width=0})
     else
         obj.editButton({index=3, label="Play Spirit", height=800, width=3300})
@@ -3227,6 +3242,23 @@ function toggleScoreUI(player)
     colorEnabled = getCurrentState("panelScore", player.color)
     toggleUI("panelScore", player.color, colorEnabled)
 end
+function togglePlayerControls(player)
+    if not player.admin then
+        player.broadcast("Only promoted players can toggle seat controls.")
+        return
+    end
+    showPlayerButtons = not showPlayerButtons
+    updateAllPlayerAreas()
+end
+function toggleMultihanded(player)
+    if not player.admin then
+        player.broadcast("Only promoted players can toggle multihanded options.")
+        return
+    end
+    showAllMultihandedButtons = not showAllMultihandedButtons
+    updateAllPlayerAreas()
+end
+
 function getCurrentState(xmlID, player_color)
     local colorEnabled = false
     local currentVisiTable = getVisiTable(xmlID)

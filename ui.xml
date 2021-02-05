@@ -229,7 +229,13 @@
         <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">&#9650;</Button>
     </Panel>
 </Panel>
-<Panel id="panelUI" visibility="Invisible" width="160" height="160" rectAlignment="UpperRight" offsetXY="-240 0">
+<Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" width="85" height="60" rectAlignment="MiddleLeft" offsetXY="0 -40">
+    <VerticalLayout>
+        <Button onClick="MajorPowerUI" textAlignment="MiddleCenter">Draw Major Power</Button>
+        <Button onClick="MinorPowerUI" textAlignment="MiddleCenter">Draw Minor Power</Button>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelUI" visibility="Invisible" width="160" height="180" rectAlignment="UpperRight" offsetXY="-240 0">
     <VerticalLayout>
         <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Toggle Invader UI</Button>
         <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Toggle Adversary UI</Button>
@@ -239,6 +245,7 @@
         <Button onClick="toggleFearUI" textAlignment="MiddleCenter">Toggle Fear UI</Button>
         <Button onClick="toggleBlightUI" textAlignment="MiddleCenter">Toggle Blight UI</Button>
         <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Toggle Score</Button>
+        <Button onClick="togglePowerDrawUI" textAlignment="MiddleCenter">Toggle Power Draw UI</Button>
         <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltip="Toggles the visibility of the buttons to change player seats or colors.  These are automatically hidden when the game starts, but can be turned back on if desired.">Toggle Seat Controls</Button>
         <Button onClick="toggleMultihanded" textAlignment="MiddleCenter" tooltip="Toggles whether the visibility the 'Play Spirit' buttons appear for all empty seats or only for those who have chosen a spirit.">Toggle Multihanded</Button>
     </VerticalLayout>

@@ -67,6 +67,7 @@ playerBlocks = {
     Green = "fac8e4",
     Orange = "6b5b4b",
 }
+
 ------ Unsaved Config Data
 numPlayers = 1
 numBoards = 1
@@ -223,6 +224,7 @@ function onSave()
         panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
         playerBlocks = convertObjectsToGuids(playerBlocks),
         elementScanZones = elementScanZones,
+        selectedColors = convertObjectsToGuids(selectedColors)
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -236,11 +238,6 @@ function onSave()
     if scenarioCard ~= nil then
         data_table.scenarioCard = scenarioCard.guid
     end
-    local savedSelectedColors = {}
-    for color,obj in pairs(selectedColors) do
-        savedSelectedColors[color] = obj.guid
-    end
-    data_table.selectedColors = savedSelectedColors
     saved_data = JSON.encode(data_table)
     return saved_data
 end
@@ -321,7 +318,7 @@ function onLoad(saved_data)
         gameStarted = loaded_data.gameStarted
         playerBlocks = loaded_data.playerBlocks
         elementScanZones = loaded_data.elementScanZones
-        selectedColors = convertGuidsToObjects(loaded_data.selectedColors)
+        selectedColors = loaded_data.selectedColors
         BnCAdded = loaded_data.BnCAdded
         JEAdded = loaded_data.JEAdded
         fearPool = loaded_data.fearPool
@@ -376,6 +373,8 @@ function onLoad(saved_data)
     end
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
+    selectedColors = convertGuidsToObjects(selectedColors)
+
     if Player["White"].seated then Player["White"].changeColor("Red") end
     updateAllPlayerAreas()
 end
@@ -1875,10 +1874,8 @@ end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
     if params.color then
-        -- getObjectFromGUID(elementScanZones[params.color]).clearButtons()
         selectedColors[params.color] = getObjectFromGUID(readyTokens[params.color])
         updatePlayerArea(params.color)
-        -- playerBlocks[params.color].call("setupPlayerArea", {})
     end
 end
 ------
@@ -3451,8 +3448,6 @@ end
 
 function swapPlayerPresenceColors(fromColor, toColor)
     if fromColor == toColor then return end 
-    readyTokens[fromColor], readyTokens[toColor] = readyTokens[toColor], readyTokens[fromColor] 
-    selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor] 
     local function initData(color, ix)
         bag = getObjectFromGUID(PlayerBags[color])
         return {
@@ -3476,6 +3471,9 @@ function swapPlayerPresenceColors(fromColor, toColor)
     if colors.from.qty == 20 and colors.to.qty == 20 then
         return
     end
+
+    readyTokens[fromColor], readyTokens[toColor] = readyTokens[toColor], readyTokens[fromColor]
+    selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
 
     -- Remove any items still in the bags
     -- NOTE: TTS's documentation suggests we may need to wait a physics frame after doing this,

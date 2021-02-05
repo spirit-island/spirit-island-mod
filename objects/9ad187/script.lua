@@ -48,6 +48,7 @@ exploratoryBODAN = false
 exploratoryWar = false
 
 updateLayoutsID = 0
+setupStarted = false
 
 function onSave()
     local data_table = {}
@@ -70,6 +71,7 @@ end
 function onLoad(saved_data)
     if Global.getVar("gameStarted") then
         self.UI.hide("panelSetup")
+        setupStarted = true
     end
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
@@ -100,7 +102,7 @@ function onLoad(saved_data)
 end
 
 function onObjectSpawn(obj)
-    if obj.type == "Card" then
+    if not setupStarted and obj.type == "Card" then
         local objType = type(obj.getVar("difficulty"))
         if objType == "table" then
             addAdversary(obj)
@@ -119,7 +121,7 @@ end
 function onObjectDestroy(obj)
     if spiritTags[obj.guid] ~= nil then
         removeSpirit({spirit=obj.guid})
-    elseif obj.type == "Card" then
+    elseif not setupStarted and obj.type == "Card" then
         local objType = type(obj.getVar("difficulty"))
         if objType == "table" then
             removeAdversary(obj)

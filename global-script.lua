@@ -1905,6 +1905,7 @@ end
 function timePassesCo()
     for _,object in pairs(upCast(seaTile,1.1,0,0.9)) do
         handlePiece(object, 1)
+        handleReminderTokens(object)
     end
 
     for _,guid in pairs (elementScanZones) do
@@ -1916,6 +1917,7 @@ function timePassesCo()
             elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
                 if obj.getLock() == false then obj.destruct() end
             end
+            handleReminderTokens(obj)
         end
     end
 
@@ -1935,18 +1937,22 @@ function timePassesCo()
     timePassing = false
     return 1
 end
+function getReminderColor(name)
+    return string.match(name, "^(%a*)'s %a* Reminder Tokens")
+end
 function handlePiece(object, depth)
-    if string.sub(object.getName(),1,4) == "City" then
+    local name = object.getName()
+    if string.sub(name,1,4) == "City" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),1,4) == "Town" then
+    elseif string.sub(name,1,4) == "Town" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),1,8) == "Explorer" then
+    elseif string.sub(name,1,8) == "Explorer" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),1,5) == "Dahan" then
+    elseif string.sub(name,1,5) == "Dahan" then
         object = resetPiece(object, Vector(0,0,0), depth)
     elseif object.getName() == "Blight" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),-7) == "Defence" then
+    elseif string.sub(name,-7) == "Defence" then
         if object.getLock() == false then object.destruct() end
         object = nil
     end
@@ -1974,6 +1980,24 @@ function resetPiece(object, rotation, depth)
         object.setPositionSmooth(object.getPosition() + Vector(0,0.5,0))
     end
     return object
+end
+function handleReminderTokens(object)
+    local isoOffset = Vector(-11.2, 2, -1)
+    local defOffset = Vector(-9.5, 2, -1)
+    local name = object.getName()
+    if string.sub(name,-23) == "Isolate Reminder Tokens" then
+        if object.getLock() == false then
+             local color = getReminderColor(name)
+             spos = getObjectFromGUID(elementScanZones[color]).getPosition()
+             object.setPositionSmooth(Vector(spos.x,0,spos.z) + isoOffset)
+        end
+    elseif string.sub(name,-23) == "Defence Reminder Tokens" then
+        if object.getLock() == false then
+             local color = getReminderColor(name)
+             spos = getObjectFromGUID(elementScanZones[color]).getPosition()
+             object.setPositionSmooth(Vector(spos.x,0,spos.z) + defOffset)
+        end
+    end
 end
 ------
 posMap = { -- This order should exactly match alternateSetupNames table

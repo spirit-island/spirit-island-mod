@@ -3874,7 +3874,15 @@ end
 -- Play spirit
 function onClickedPlaySpirit(target_obj, source_color, alt_click)
     local target_color = target_obj.getVar("playerColor")
-    swapPlayerColors(source_color, target_color)
+    if swapPlayerColors(source_color, target_color) then
+        Wait.frames(function ()
+            Player[target_color].lookAt({
+                position = playerBlocks[target_color].getPosition() - Vector(0,0,15),
+                pitch = 70,
+                distance = 30,
+            })
+        end, 2)
+    end
 end
 
 -- Given a table of guids, returns a table of objects

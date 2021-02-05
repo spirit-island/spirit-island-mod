@@ -1,17 +1,17 @@
 {
   "Name": "ScriptingTrigger",
   "Transform": {
-    "posX": -48.98,
+    "posX": -52.79,
     "posY": 1.9,
     "posZ": -10.61,
     "rotX": 0.0,
-    "rotY": -3.73386756e-05,
+    "rotY": 0,
     "rotZ": 0.0,
     "scaleX": 2.0,
     "scaleY": 2.0,
     "scaleZ": 3.0
   },
-  "Nickname": "Minor Power Discard Zone",
+  "Nickname": "Unique Power Discard Zone",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

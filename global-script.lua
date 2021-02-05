@@ -2933,13 +2933,6 @@ function setupPlayerArea(params)
     end
     obj.setVar("playerColor", color)
     local selected = selectedColors[color]
-
-    -- log("setupPlayerArea for color " .. (color or "UNKNOWN"))
-    -- log("Initialized: " .. (initialized and "yes" or "NO"))
-    -- log("Timer ID: " .. (timer or "NONE"))
-    -- log("Selected: " .. (selected and "yes" or "NO"))
-    -- log("-----------")
- 
     if not initialized then
         obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
@@ -3363,9 +3356,6 @@ function swapPlayerAreaColors(a, b)
     if a == b then return end
     local function tableSwap(table)
         table[a], table[b] = table[b], table[a]
-        -- local temp = table[a]
-        -- table[a] = table[b]
-        -- table[b] = temp
     end
     local function tintSwap(table)
         local oa = table[a]
@@ -3409,8 +3399,6 @@ function swapPlayerAreaColors(a, b)
     positionSwap(playerTables)
     tableSwap(playerBlocks)
     positionSwap(defendBags)
-    -- tableSwap(readyTokens)
-    -- tableSwap(selectedColors)
     tableSwap(elementScanZones)
     updatePlayerArea(a)
     updatePlayerArea(b)
@@ -3615,6 +3603,7 @@ end
 function onPlayerChangeColor(player_color)
     -- We technically only need to update both the old and the new player areas, however...
     -- TTS does not let us know what the player's previous color was.
+    -- So update all player areas.
     updateAllPlayerAreas()
 end
 function onPlayerConnect(player)

@@ -271,6 +271,18 @@
       {
         "displayed": "Dahan",
         "normalized": "dahan"
+      },
+      {
+        "displayed": "Major",
+        "normalized": "major"
+      },
+      {
+        "displayed": "Minor",
+        "normalized": "minor"
+      },
+      {
+        "displayed": "Unique",
+        "normalized": "unique"
       }
     ]
   },

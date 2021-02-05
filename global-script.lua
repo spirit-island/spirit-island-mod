@@ -2952,6 +2952,15 @@ function setupPlayerArea(params)
     end
     obj.setVar("playerColor", color)
     local selected = selectedColors[color]
+
+    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
+    if not selected then
+        local readyIndicator = getObjectFromGUID(playerReadyGuids[color])
+        local buttons = readyIndicator.getButtons()
+        if buttons and #buttons > 0 then
+            readyIndicator.editButton({index=0, label=""})
+        end
+    end
     if not initialized then
         obj.setVar("initialized", true)
         -- Energy Cost (button index 0)

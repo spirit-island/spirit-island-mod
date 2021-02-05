@@ -624,14 +624,28 @@ function closeUI()
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
 end
 
-function toggleRandomizers()
-    local checked = self.UI.getAttribute("randomizers", "isOn")
+function toggleSimpleMode()
+    local checked = self.UI.getAttribute("simpleMode", "isOn")
     if checked == "true" then
-        self.UI.setAttribute("randomizers", "isOn", "false")
+        self.UI.setAttribute("simpleMode", "isOn", "false")
+        self.UI.setAttribute("leadingText", "text", "Adversary")
+        self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
+        self.UI.setAttribute("supportingRow", "visibility", "Invisible")
+        self.UI.setAttribute("events", "visibility", "Invisible")
+        self.UI.setAttribute("optionalCell", "visibility", "Invisible")
+        self.UI.setAttribute("toggles", "visibility", "Invisible")
+        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
         self.UI.setAttribute("panelRandom", "visibility", "Invisible")
+        self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     else
-        self.UI.setAttribute("randomizers", "isOn", "true")
-        self.UI.setAttribute("panelRandom", "visibility", "")
+        self.UI.setAttribute("simpleMode", "isOn", "true")
+        self.UI.setAttribute("leadingText", "text", "Leading Adversary")
+        self.UI.setAttribute("supportingHeader", "visibility", "")
+        self.UI.setAttribute("supportingRow", "visibility", "")
+        self.UI.setAttribute("events", "visibility", "")
+        self.UI.setAttribute("optionalCell", "visibility", "")
+        self.UI.setAttribute("toggles", "visibility", "")
+        showUI()
     end
 end
 function toggleOptionalRules()
@@ -642,6 +656,16 @@ function toggleOptionalRules()
     else
         self.UI.setAttribute("optionalRules", "isOn", "true")
         self.UI.setAttribute("panelOptional", "visibility", "")
+    end
+end
+function toggleRandomizers()
+    local checked = self.UI.getAttribute("randomizers", "isOn")
+    if checked == "true" then
+        self.UI.setAttribute("randomizers", "isOn", "false")
+        self.UI.setAttribute("panelRandom", "visibility", "Invisible")
+    else
+        self.UI.setAttribute("randomizers", "isOn", "true")
+        self.UI.setAttribute("panelRandom", "visibility", "")
     end
 end
 function toggleExploratory()

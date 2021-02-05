@@ -313,10 +313,6 @@ function onLoad(saved_data)
             adversaryLevel = loaded_data.adversaryLevel
             adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
             adversaryLevel2 = loaded_data.adversaryLevel2
-            for color,guid in pairs(loaded_data.selectedColors) do
-                selectedColors[color] = getObjectFromGUID(guid)
-                getObjectFromGUID(playerBlocks[color]).call("setupPlayerArea", {})
-            end
 
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
             UI.setAttribute("panelAdversary","visibility",loaded_data.panelAdversaryVisibility)
@@ -346,6 +342,10 @@ function onLoad(saved_data)
                     o.interactable = false -- sets boards to uninteractable after reload
                 end
             end
+        end
+        for color,guid in pairs(loaded_data.selectedColors) do
+            selectedColors[color] = getObjectFromGUID(guid)
+            getObjectFromGUID(playerBlocks[color]).call("setupPlayerArea", {})
         end
     end
     if Player["White"].seated then Player["White"].changeColor("Red") end

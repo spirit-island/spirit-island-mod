@@ -28,6 +28,14 @@ elementScanZones = {
     ["Green"] = "190f05",
     ["Orange"] = "61ac7c",
 }
+playerTables = {
+    Red = "dce473",
+    Purple = "c99d4d",
+    Yellow = "794c81",
+    Blue = "125e82",
+    Green = "d7d593",
+    Orange = "33c4af",
+}
 ------ Saved Config Data
 BnCAdded = false
 JEAdded = false
@@ -45,14 +53,7 @@ explorerBag = "613ea4"
 townBag = "4d3c15"
 cityBag = "a245f8"
 selectedColors = {}
-playerTables = {
-    Red = "dce473",
-    Purple = "c99d4d",
-    Yellow = "794c81",
-    Blue = "125e82",
-    Green = "d7d593",
-    Orange = "33c4af",
-}
+
 playerBlocks = {
     Red = "c68e2c",
     Purple = "661aa3",
@@ -139,14 +140,6 @@ readyTokens = {
     Green = "88a4c3",
     Orange = "d17f93",
 }
-playerBlocks = {
-    Red = "c68e2c",
-    Purple = "661aa3",
-    Yellow = "c3c59b",
-    Blue = "36bbcc",
-    Green = "fac8e4",
-    Orange = "6b5b4b",
-}
 interactableObjectsToDisableOnLoad = {
     "57dbb8","fd27d5","25fddc", "d3dd7e", -- tables
     "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
@@ -222,7 +215,6 @@ function onSave()
         panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
         panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
         playerBlocks = convertObjectsToGuids(playerBlocks),
-        playerTables = convertObjectsToGuids(playerTables),
         elementScanZones = elementScanZones,
     }
     if blightedIslandCard ~= nil then
@@ -317,11 +309,11 @@ function onLoad(saved_data)
         local loaded_data = JSON.decode(saved_data)
         gameStarted = loaded_data.gameStarted
         playerBlocks = loaded_data.playerBlocks
-        playerTables = loaded_data.playerTables
         elementScanZones = loaded_data.elementScanZones
+        selectedColors = convertGuidsToObjects(loaded_data.selectedColors)
+        BnCAdded = loaded_data.BnCAdded
+        JEAdded = loaded_data.JEAdded
         if gameStarted then
-            BnCAdded = loaded_data.BnCAdded
-            JEAdded = loaded_data.JEAdded
             fearPool = loaded_data.fearPool
             generatedFear = loaded_data.generatedFear
             difficultyString = loaded_data.difficultyString
@@ -335,10 +327,9 @@ function onLoad(saved_data)
             adversaryLevel = loaded_data.adversaryLevel
             adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
             adversaryLevel2 = loaded_data.adversaryLevel2
-            for color,guid in pairs(loaded_data.selectedColors) do
-                selectedColors[color] = getObjectFromGUID(guid)
-                getObjectFromGUID(playerBlocks[color]).call("setupPlayerArea", {})
-            end
+            -- for color,guid in pairs(loaded_data.selectedColors) do
+            --     selectedColors[color] = getObjectFromGUID(guid)
+            -- end
 
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
             UI.setAttribute("panelAdversary","visibility",loaded_data.panelAdversaryVisibility)
@@ -368,11 +359,15 @@ function onLoad(saved_data)
                     o.interactable = false -- sets boards to uninteractable after reload
                 end
             end
+        else
+            if BnCAdded then SetupChecker.UI.hide("bnc") end
+            if JEAdded then SetupChecker.UI.hide("je") end
         end
     end
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
     if Player["White"].seated then Player["White"].changeColor("Red") end
+    updateAllPlayerAreas()
 end
 ----
 function StartReadyCheck()
@@ -421,11 +416,11 @@ function SetupGame()
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
         return 0
     end
-    for color, obj in pairs(playerBlocks) do
-        obj.removeButton(1)
-        obj.setVar("playerColor", nil)
-    end
-    playerBlocks = {}
+    -- for color, obj in pairs(playerBlocks) do
+    --     obj.removeButton(1)
+    --     obj.setVar("playerColor", nil)
+    -- end
+    -- playerBlocks = {}
 
     if adversaryCard == nil then
         adversaryLevel = 0
@@ -1857,15 +1852,10 @@ end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
     if params.color then
-        getObjectFromGUID(elementScanZones[params.color]).clearButtons()
+        -- getObjectFromGUID(elementScanZones[params.color]).clearButtons()
         selectedColors[params.color] = getObjectFromGUID(readyTokens[params.color])
-        getObjectFromGUID(playerBlocks[params.color]).call("setupPlayerArea", {})
-        local obj = playerBlocks[params.color]
-        if obj then
-            obj.removeButton(1)
-            obj.setVar("playerColor", nil)
-            playerBlocks[params.color] = nil
-        end
+        updatePlayerArea(params.color)
+        -- playerBlocks[params.color].call("setupPlayerArea", {})
     end
 end
 ------
@@ -2857,16 +2847,29 @@ function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
     end
     return hitObjects
 end
----- Block Square Section
+
+-- Updates the selected player color's player area.  Does nothing if they don't have one.
+-- Returns TRUE if an update occured, FALSE if no such player area existed.
+function updatePlayerArea(color)
+    local obj = playerBlocks[color]
+    if obj then
+        obj.call("setupPlayerArea")
+        return true
+    end
+    return false
+end
+-- Updates all player areas.
+function updateAllPlayerAreas()
+    for _,obj in pairs(playerBlocks) do
+        obj.call("setupPlayerArea")
+    end
+end
+
 function setupPlayerArea(params)
     -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
     local obj = params.obj
-    obj.createButton({
-        label="Energy Cost: 0", click_function="nullFunc",
-        position={0,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
-        font_color={1,1,1}, font_size=500
-    })
-
+    local timer = obj.getVar("timer")  -- May be nil
+    local initialized = obj.getVar("initialized")
     local color
     for k, v in pairs(playerBlocks) do
         if v.guid == obj.guid then
@@ -2874,22 +2877,88 @@ function setupPlayerArea(params)
             break
         end
     end
-    obj.setVar("playerColor", color)  -- May be nil
-    if color then
+    obj.setVar("playerColor", color)
+    local selected = selectedColors[color]
+
+    -- log("setupPlayerArea for color " .. (color or "UNKNOWN"))
+    -- log("Initialized: " .. (initialized and "yes" or "NO"))
+    -- log("Timer ID: " .. (timer or "NONE"))
+    -- log("Selected: " .. (selected and "yes" or "NO"))
+    -- log("-----------")
+ 
+    if not initialized then
+        obj.setVar("initialized", true)
+        -- Energy Cost (button index 0)
         obj.createButton({
-            label="Swap with " .. color, click_function="onSwapButtonClicked", function_owner=Global,
-            position={0,2.24,-24.7}, rotation={0,180,0}, height=800, width=4000,
-            font_color={0,0,0}, font_size=500,
-            tooltip="Moves your current player color to be located here.  The color currently seated here will be moved to your current location.",
+            label="", click_function="nullFunc",
+            position={0,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
+            font_color={1,1,1}, font_size=500
         })
+        -- Sit Here (button index 1)
+        obj.createButton({
+            label="", click_function="onClickedSitHere", function_owner=Global,
+            position={ 7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
+            font_color={0,0,0}, font_size=500,
+            tooltip="Moves your current player color to be located here.  The color currently seated here will be moved to your current location.  Spirit panels and other cards will be relocated if applicable.",
+        })
+        -- Change Color (button index 2)
+        obj.createButton({
+            label="", click_function="onClickedChangeColor", function_owner=Global,
+            position={-7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
+            font_color={0,0,0}, font_size=500,
+            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly.  The player that is this color will be changed to be yours.  Your seating position will not change.",
+        })
+        -- Play Spirit (button index 3)
+        obj.createButton({
+            label="", click_function="onClickedPlaySpirit", function_owner=Global,
+            position={0,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
+            font_color={0,0,0}, font_size=500,
+            tooltip="Switch to play the spirit that is here, changing your player color accordingly.  Only available for spirits without a seated player.  Intended for multi-handed solo games.",
+        })
+        -- Other buttons to follow/be fixed later.
     end
 
+    if selected then
+        obj.editButton({index=0, label="Energy Cost: ?"})
+    else
+        obj.editButton({index=0, label=""})
+    end
+
+    if gameStarted and false then
+        obj.editButton({index=1, label="", height=0, width=0})
+        obj.editButton({index=2, label="", height=0, width=0})
+    else
+        local bg = Color[color]
+        local fg
+        if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
+            fg = {0,0,0}
+        else
+            fg = {1,1,1}
+        end
+        obj.editButton({index=1, label="Sit Here", height=800, width=3300})
+        obj.editButton({index=2, label="Pick " .. color, height=800, width=3300, color=bg, font_color=fg})
+    end
+
+    if Player[color].seated or not selected then
+        obj.editButton({index=3, label="", height=0, width=0})
+    else
+        obj.editButton({index=3, label="Play Spirit", height=800, width=3300})
+    end
+
+    local label = ""
+    if selected then
+        label = "?"
+    end
     for _,bag in pairs(params.elementBags) do
-        bag.createButton({
-            label="0", click_function="nullFunc",
-            position={0,2.04,1.05}, rotation={0,0,0}, height=0, width=0,
-            font_color={1,1,1}, font_size=450
-        })
+        if initialized then
+            bag.editButton({index=0, label=label})
+        else
+            bag.createButton({
+                label=label, click_function="nullFunc",
+                position={0,2.04,1.05}, rotation={0,0,0}, height=0, width=0,
+                font_color={1,1,1}, font_size=450
+            })
+        end
     end
     local energy = 0
 
@@ -2955,7 +3024,20 @@ function setupPlayerArea(params)
         --Updates the number display
     end
 
-    Wait.time(countItems,1,-1)
+    initialized = true
+    obj.setVar("initialized", true)
+
+    if selected then  -- Have a spirit here.
+        countItems()    -- Update counts immediately.
+        if not timer then   -- Timer doesn't already exist.
+            timer = Wait.time(countItems, 1, -1)
+            obj.setVar("timer", timer)
+        end
+    elseif timer then  -- No spirit, but a running timer.
+        Wait.stop(timer)
+        timer = nil
+        obj.setVar("timer", timer)
+    end
 end
 ---- UI Section
 childHeight = 80
@@ -3219,14 +3301,13 @@ function tCompare(t1,t2)
     if cc2(t1) == cc2(t2) then return true else return false end
 end
 
-function swapPlayerAreas(a, b)
-    if a == b then
-        return  -- Nothing to do!
-    end
+function swapPlayerAreaColors(a, b)
+    if a == b then return end
     local function tableSwap(table)
-        local temp = table[a]
-        table[a] = table[b]
-        table[b] = temp
+        table[a], table[b] = table[b], table[a]
+        -- local temp = table[a]
+        -- table[a] = table[b]
+        -- table[b] = temp
     end
     local function tintSwap(table)
         local oa = table[a]
@@ -3267,32 +3348,195 @@ function swapPlayerAreas(a, b)
     for i = 1,2 do
         handSwap(i)
     end
-    tintSwap(playerTables)
+    positionSwap(playerTables)
     tableSwap(playerBlocks)
     positionSwap(defendBags)
-    positionSwap(readyTokens)
+    -- tableSwap(readyTokens)
+    -- tableSwap(selectedColors)
     tableSwap(elementScanZones)
-    updateBlock(a)
-    updateBlock(b)
+    updatePlayerArea(a)
+    updatePlayerArea(b)
+end
 
+function swapPlayerAreaObjects(a, b) 
+    if a == b then return end
+    local swaps = {[a] = b, [b] = a}
+    local tables = {[a] = playerTables[a], [b] = playerTables[b]}
+    local objects = {}
+    for color,playerTable in pairs(tables) do
+        local t = upCast(playerTable, 50)
+        for _,obj in ipairs(Player[color].getHandObjects(2)) do
+            table.insert(t, obj)
+        end
+        objects[color] = t
+    end
+    for from,to in pairs(swaps) do
+        local transform = tables[to].getPosition() - tables[from].getPosition()
+        for _,obj in ipairs(objects[from]) do
+            if obj.interactable then
+                obj.setPosition(obj.getPosition() + transform)
+            end
+        end
+    end
+end
+
+function swapPlayerAreas(a, b)
+    if(a == b) then return end
+    swapPlayerAreaObjects(a, b)
+    swapPlayerAreaColors(a, b)
     print(a .. " swapped places with " .. b .. ".")
 end
 
+function swapPlayerPresenceColors(fromColor, toColor)
+    if fromColor == toColor then return end 
+    readyTokens[fromColor], readyTokens[toColor] = readyTokens[toColor], readyTokens[fromColor] 
+    selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor] 
+    local function initData(color, ix)
+        bag = getObjectFromGUID(PlayerBags[color])
+        return {
+            color = color,
+            ix = ix,
+            bag = bag,
+            qty = bag.getQuantity(),
+            tints = {},
+            objects = {},
+            pattern = color .. "'s (.*)",
+            bagContents = {},
+        }
+    end
+    local colors = {
+        from = initData(fromColor, 1),
+        to = initData(toColor, 2)
+    }
 
--- What to do when the swap player colors button is clicked.
-function onSwapButtonClicked(target_obj, source_color, alt_click)
-    player = Player[source_color]
+    -- If both bags are intact, there's no real point in swapping them.
+    -- Just bail out fast.
+    if colors.from.qty == 20 and colors.to.qty == 20 then
+        return
+    end
+
+    -- Remove any items still in the bags
+    -- NOTE: TTS's documentation suggests we may need to wait a physics frame after doing this,
+    -- but this seems to work fine without doing that.  If something goes awry with this code in the future,
+    -- you might try re-adding the delay.
+    for color,data in pairs(colors) do
+        for i = 1,data.qty do 
+            local obj = data.bag.takeObject({
+                sound=false,
+                position={x=data.ix*2, z=200, y=i*2}    -- Chosen to be out-of-the-way and to prevent items from stacking.
+            })
+            table.insert(data.bagContents, obj)
+        end
+    end
+
+    -- Pass 1: Iterate over all objects looking for "<color>'s X".
+    -- Make a note of what we find and what tint it is.
+    local match = string.match  -- Performance
+    local name, suffix
+    for _,obj in pairs(getAllObjects()) do
+        name = obj.getName()
+        if name then
+            for _,data in pairs(colors) do 
+                suffix = match(name, data.pattern)
+                if suffix then
+                    data.tints[suffix] = obj.getColorTint()
+                    if not data.objects[suffix] then
+                        data.objects[suffix] = {obj}
+                    else
+                        table.insert(data.objects[suffix], obj)
+                    end
+                end
+            end
+        end
+    end
+
+    -- Pass 2: Iterate over found objects and swap color tints and object names.
+    -- After we're done, put objects in their new presence bag, if applicable.
+    for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
+        local a, b = unpack(ab)
+        for suffix, tint in pairs(a.tints) do
+            local newname = a.color .. "'s " .. suffix
+            for _, obj in ipairs(b.objects[suffix]) do
+                obj.setColorTint(tint)
+                obj.setName(newname)
+            end
+        end
+        for i = #b.bagContents,1,-1 do  -- Iterate in reverse order.
+            a.bag.putObject(b.bagContents[i])
+        end
+    end
+end
+
+
+function swapPlayerColors(a, b)
+    if a == b then return end
+    local pa, pb = Player[a], Player[b]
+
+    if not playerBlocks[a] then
+        -- This should only trigger if the player clicking is a non-standard color.
+        if pb.seated then
+            broadcastToColor("Color " .. b .. " is already claimed.  Try another color.", a, Color.Red)
+            return false
+        end
+    end
+
+    if pa.seated then
+        if pb.seated then
+            -- Both players seated.  Need an intermediary.
+            -- Hopefully nobody is... Pink?
+            pb.changeColor("Pink")
+            pa.changeColor(b)
+            Player["Teal"].changeColor(a)
+        else
+            pa.changeColor(b)
+        end
+    else
+        pb.changeColor(a)
+    end
+    return true
+end
+
+function swapSeatColors(a, b)
+    swapPlayerAreaColors(a, b)
+    swapPlayerPresenceColors(a, b)
+    swapPlayerColors(a, b)
+end
+
+-- Trade places with selected seat.
+function onClickedSitHere(target_obj, source_color, alt_click)
+    -- player = Player[source_color]
     target_color = target_obj.getVar("playerColor")
-    source_obj = playerBlocks[source_color]
+    -- source_obj = playerBlocks[source_color]
 
-    if not target_color then
-        broadcastToColor("That seat is already taken.", source_color)
-    elseif not source_obj then
-        broadcastToColor("You have already chosen a spirit.", source_color)
+    if not playerBlocks[source_color] then
+        swapPlayerColors(source_color, target_color)
     else
         swapPlayerAreas(source_color, target_color)
     end
 end
+
+-- Trade colors with selected seat.
+function onClickedChangeColor(target_obj, source_color, alt_click)
+    -- player = Player[source_color]
+    target_color = target_obj.getVar("playerColor")
+    -- source_obj = playerBlocks[source_color]
+
+    if not playerBlocks[source_color] then
+        swapPlayerColors(source_color, target_color)
+    else
+        swapSeatColors(source_color, target_color)
+    end
+end
+
+-- Play spirit
+function onClickedPlaySpirit(target_obj, source_color, alt_click)
+    -- player = Player[source_color]
+    target_color = target_obj.getVar("playerColor")
+    -- source_obj = playerBlocks[source_color]
+
+    swapPlayerColors(source_color, target_color)
+end
+
 -- Given a table of guids, returns a table of objects
 function convertGuidsToObjects(table_in)
     local table_out = {}
@@ -3308,4 +3552,16 @@ function convertObjectsToGuids(table_in)
         table_out[k] = obj.guid
     end
     return table_out
+end
+
+function onPlayerChangeColor(player_color)
+    -- We technically only need to update both the old and the new player areas, however...
+    -- TTS does not let us know what the player's previous color was.
+    updateAllPlayerAreas()
+end
+function onPlayerConnect(player)
+    updatePlayerArea(player.color)
+end
+function onPlayerDisconnect(player)
+    updatePlayerArea(player.color)
 end

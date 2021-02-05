@@ -2167,6 +2167,7 @@ end
 function timePassesCo()
     for _,object in pairs(upCast(seaTile)) do
         handlePiece(object, 0)
+        handleReminderTokens(object)
     end
 
     for color,data in pairs(selectedColors) do
@@ -2248,6 +2249,20 @@ function resetPiece(object, rotation, offset)
     end
     return object
 end
+local function getReminderColor(name)
+    return string.match(name, "^(%a*)'s Reminder Tokens")
+end
+function handleReminderTokens(object)
+    local defOffset = Vector(-9.5, 2, -1)
+    local name = object.getName()
+    if string.sub(name,-15) == "Reminder Tokens" then
+        if object.getLock() == false then
+             local color = getReminderColor(name)
+             local spos = getObjectFromGUID(elementScanZones[color]).getPosition()
+             object.setPositionSmooth(Vector(spos.x,0,spos.z) + defOffset)
+        end
+    end
+end
 function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
     for _, obj in ipairs(zone.getObjects()) do
@@ -2264,6 +2279,7 @@ function handlePlayer(color, data)
         elseif obj.getName() == "Speed Token" then
             obj.destruct()
         end
+        handleReminderTokens(obj)
     end
 
     if data.paid then

@@ -827,22 +827,20 @@ function SetupPowerDecks()
 end
 handOffset = Vector(0,0,35)
 scriptWorkingCardC = false
-powerColor = nil
+powerPlayer = nil
 function MajorPowerC(obj, player_color)
-    -- protection from double clicking
-    if scriptWorkingCardC then return end
-
-    scriptWorkingCardC = true
-    powerColor = player_color
-    startLuaCoroutine(Global, "MajorPower")
+    startDealPowerCards("MajorPower", Player[player_color])
 end
 function MinorPowerC(obj, player_color)
+    startDealPowerCards("MinorPower", Player[player_color])
+end
+function startDealPowerCards(coro_name, player)
     -- protection from double clicking
     if scriptWorkingCardC then return end
 
     scriptWorkingCardC = true
-    powerColor = player_color
-    startLuaCoroutine(Global, "MinorPower")
+    powerPlayer = player
+    startLuaCoroutine(Global, coro_name)
 end
 function MinorPower()
     local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
@@ -1845,6 +1843,7 @@ function enableUI()
     UI.setAttribute("panelUIToggle","active","true")
     UI.setAttribute("panelTimePasses","visibility",visibility)
     UI.setAttribute("panelReady","visibility",visibility)
+    UI.setAttribute("panelPowerDraw","visibility",visibility)
 end
 ------
 function addSpirit(params)

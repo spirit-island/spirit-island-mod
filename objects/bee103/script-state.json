@@ -1,5 +1,7 @@
 {
-  "panelAdversaryVisibilityString": "Invisible",
-  "panelInvaderVisibilityString": "Invisible",
-  "panelTurnOrderVisibilityString": "Invisible"
+  "discard": {
+    "x": -51.25,
+    "y": 1.5,
+    "z": 0.38
+  }
 }

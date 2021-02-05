@@ -1,7 +1,12 @@
+---- Versioning
+version = "1.1.0-beta.3"
+versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
 minorPowerZone = "cb16ab"
+minorPowerDiscardZone = "55b275"
 majorPowerZone = "089896"
+majorPowerDiscardZone = "eaf864"
 PlayerBags = {
     ["Red"] = "fb7941",
     ["Purple"] = "8ee413",
@@ -198,6 +203,7 @@ function onSave()
         fearPool = fearPool,
         generatedFear = generatedFear,
         gameStarted = gameStarted,
+        difficulty = difficulty,
         difficultyString = difficultyString,
         blightedIsland = blightedIsland,
         returnBlightBag = returnBlightBag.guid,
@@ -214,6 +220,7 @@ function onSave()
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
         panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
         panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
+        panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
         playerBlocks = convertObjectsToGuids(playerBlocks),
         elementScanZones = elementScanZones,
     }
@@ -226,6 +233,9 @@ function onSave()
     if adversaryCard2 ~= nil then
         data_table.adversaryCard2Guid = adversaryCard2.guid
     end
+    if scenarioCard ~= nil then
+        data_table.scenarioCard = scenarioCard.guid
+    end
     local savedSelectedColors = {}
     for color,obj in pairs(selectedColors) do
         savedSelectedColors[color] = obj.guid
@@ -235,6 +245,7 @@ function onSave()
     return saved_data
 end
 function onLoad(saved_data)
+    getObjectFromGUID(versionGuid).setValue("version " .. version)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
 
@@ -313,24 +324,22 @@ function onLoad(saved_data)
         selectedColors = convertGuidsToObjects(loaded_data.selectedColors)
         BnCAdded = loaded_data.BnCAdded
         JEAdded = loaded_data.JEAdded
+        fearPool = loaded_data.fearPool
+        generatedFear = loaded_data.generatedFear
+        difficulty = loaded_data.difficulty
+        difficultyString = loaded_data.difficultyString
+        blightedIsland = loaded_data.blightedIsland
+        blightedIslandCard = getObjectFromGUID(loaded_data.blightedIslandGuid)
+        returnBlightBag = getObjectFromGUID(loaded_data.returnBlightBag)
+        explorerBag = getObjectFromGUID(loaded_data.explorerBag)
+        townBag = getObjectFromGUID(loaded_data.townBag)
+        cityBag = getObjectFromGUID(loaded_data.cityBag)
+        adversaryCard = getObjectFromGUID(loaded_data.adversaryCardGuid)
+        adversaryLevel = loaded_data.adversaryLevel
+        adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
+        adversaryLevel2 = loaded_data.adversaryLevel2
+        scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
         if gameStarted then
-            fearPool = loaded_data.fearPool
-            generatedFear = loaded_data.generatedFear
-            difficultyString = loaded_data.difficultyString
-            blightedIsland = loaded_data.blightedIsland
-            blightedIslandCard = getObjectFromGUID(loaded_data.blightedIslandGuid)
-            returnBlightBag = getObjectFromGUID(loaded_data.returnBlightBag)
-            explorerBag = getObjectFromGUID(loaded_data.explorerBag)
-            townBag = getObjectFromGUID(loaded_data.townBag)
-            cityBag = getObjectFromGUID(loaded_data.cityBag)
-            adversaryCard = getObjectFromGUID(loaded_data.adversaryCardGuid)
-            adversaryLevel = loaded_data.adversaryLevel
-            adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
-            adversaryLevel2 = loaded_data.adversaryLevel2
-            -- for color,guid in pairs(loaded_data.selectedColors) do
-            --     selectedColors[color] = getObjectFromGUID(guid)
-            -- end
-
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
             UI.setAttribute("panelAdversary","visibility",loaded_data.panelAdversaryVisibility)
             UI.setAttribute("panelTurnOrder","visibility",loaded_data.panelTurnOrderVisibility)
@@ -338,6 +347,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelReady","visibility",loaded_data.panelReadyVisibility)
             UI.setAttribute("panelFear","visibility",loaded_data.panelFearVisibility)
             UI.setAttribute("panelBlight","visibility",loaded_data.panelBlightVisibility)
+            UI.setAttribute("panelScore","visibility",loaded_data.panelScoreVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
             SetupPowerDecks()
@@ -458,10 +468,11 @@ function SetupGame()
         randomScenario()
     end
     if useRandomAdversary or useSecondAdversary then
-        randomAdversary()
+        randomAdversary(0)
     end
 
     SetupChecker.call("closeUI", {})
+    SetupChecker.setVar("setupStarted", true)
 
     startLuaCoroutine(Global, "PreSetup")
     Wait.condition(function()
@@ -503,7 +514,14 @@ function randomScenario()
     if difficulty > maxDifficulty then
         return
     end
+    local attempts = 0
     while scenarioCard == nil do
+        if attempts > 1000 then
+            -- TODO find a more elegant solution for detecting bad difficulty ranges
+            broadcastToAll("Was not able to find random scenario to satisfy min/max difficulty specifications", "Red")
+            return
+        end
+        attempts = attempts + 1
         scenarioCard = SetupChecker.call("randomScenario",{})
         local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
         if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then
@@ -520,7 +538,7 @@ function randomScenario()
         end
     end
 end
-function randomAdversary()
+function randomAdversary(attempts)
     if difficulty >= maxDifficulty then
         if adversaryCard == nil and adversaryCard2 ~= nil then
             adversaryCard = adversaryCard2
@@ -528,6 +546,11 @@ function randomAdversary()
             adversaryCard2 = nil
             adversaryLevel2 = 0
         end
+        return
+    end
+    if attempts > 1000 then
+        -- TODO find a more elegant solution for detecting bad difficulty ranges
+        broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", "Red")
         return
     end
     if useRandomAdversary and useSecondAdversary then
@@ -575,7 +598,7 @@ function randomAdversary()
             SetupChecker.call("updateDifficulty", {})
             broadcastToAll("Your randomised adversaries are "..adversaryCard.getName().." and "..adversaryCard2.getName(), "Blue")
         else
-            randomAdversary()
+            randomAdversary(attempts + 1)
         end
     else
         local selectedAdversary = adversaryCard
@@ -619,7 +642,7 @@ function randomAdversary()
             SetupChecker.call("updateDifficulty", {})
             broadcastToAll("Your randomised adversary is "..adversary.getName(), "Blue")
         else
-            randomAdversary()
+            randomAdversary(attempts + 1)
         end
     end
 end
@@ -844,13 +867,13 @@ function MinorPowerC(obj, player_color)
 end
 function MinorPower()
     local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
-    local MinorPowerDiscardZone = getObjectFromGUID("55b275")
+    local MinorPowerDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
     DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone, "PickPowerMinor")
     return 1
 end
 function MajorPower()
     local MajorPowerDeckZone = getObjectFromGUID(majorPowerZone)
-    local MajorPowerDiscardZone = getObjectFromGUID("eaf864")
+    local MajorPowerDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
     DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone, "PickPowerMajor")
     return 1
 end
@@ -936,7 +959,7 @@ function PickPowerMinor(cardo,playero,alt_click)
         cardo.setLock(false)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
-            local minorDiscardZone = getObjectFromGUID("55b275")
+            local minorDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
             DiscardPowerCards(handPos, minorDiscardZone)
         end
     end, function() return not cardo.isSmoothMoving() end)
@@ -950,7 +973,7 @@ function PickPowerMajor(cardo,playero,alt_click)
         cardo.setLock(false)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
-            local majorDiscardZone = getObjectFromGUID("eaf864")
+            local majorDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
             DiscardPowerCards(handPos, majorDiscardZone)
         end
     end, function() return not cardo.isSmoothMoving() end)
@@ -2762,6 +2785,37 @@ function deleteObject(obj)
         bag.putObject(obj)
     end
 end
+----
+function refreshScore()
+    local dahan = #getObjectsWithTag("Dahan")
+    local blight = #getObjectsWithTag("Blight")
+    if SetupChecker.call("isSpiritPickable", {guid="4c061f"}) then
+        -- TODO figure out a more elegant solution here
+        blight = blight - 2
+    end
+
+    local invaderDeck = getObjectFromGUID(invaderDeckZone).getObjects()[1]
+    local deckCount = 0
+    if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
+        if invaderDeck.type == "Deck" then
+            for _,obj in pairs(invaderDeck.getObjects()) do
+                local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
+                stage = tonumber(string.sub(obj.lua_script,finish+1))
+                if stage ~= 100 then
+                    -- non invader cards like Command cards and Habsburg Reminder are stage 100
+                    deckCount = deckCount + 1
+                end
+            end
+        elseif invaderDeck.type == "Card" then
+            deckCount = 1
+        end
+    end
+    local win = 5 * difficulty + 10 + 2 * deckCount + dahan - blight
+    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard", {}) + dahan - blight
+
+    UI.setAttribute("scoreWin", "text", "Victory: "..win)
+    UI.setAttribute("scoreLose", "text", "Defeat: "..lose)
+end
 ---------------
 function wt(some)
     local Time = os.clock() + some
@@ -3178,6 +3232,10 @@ end
 function toggleBlightUI(player)
     colorEnabled = getCurrentState("panelBlight", player.color)
     toggleUI("panelBlight", player.color, colorEnabled)
+end
+function toggleScoreUI(player)
+    colorEnabled = getCurrentState("panelScore", player.color)
+    toggleUI("panelScore", player.color, colorEnabled)
 end
 function getCurrentState(xmlID, player_color)
     local colorEnabled = false

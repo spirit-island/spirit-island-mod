@@ -1,4 +1,19 @@
+numCards = 0
+discard = Vector(-51.25, 1.5, 0.38)
+
+function onSave()
+    local data_table = {
+        discard = discard,
+    }
+    saved_data = JSON.encode(data_table)
+    return saved_data
+end
 function onLoad(saved_data)
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        discard = Vector(loaded_data.discard)
+    end
+
     self.createButton({ -- Blighted Island Placeholder
         click_function = "BlightIslandButton",
         function_owner = Global,
@@ -174,6 +189,10 @@ function wt(some)
     end
 end
 
+function updateDiscard(params)
+    discard = params.discard
+end
+
 ---- Invader Card Section
 scanLoopTable= {
     Build2 = {
@@ -198,8 +217,6 @@ scanLoopTable= {
         faceDown = true,
     },
 }
-discard = Vector(-51.25, 1.5, 0.38)
-discardENG = Vector(-52.90, 1.5, -5.30)
 
 function advanceInvaderCards()
     for i,v in pairs(scanLoopTable) do
@@ -226,7 +243,7 @@ function advanceInvaderCards()
                 if hit.type == "Card" and hit.is_face_down == v.faceDown then
                     if i == "Build2" then
                         hit.setRotation(Vector(0,180,0))
-                        hit.setPositionSmooth(discardENG)
+                        hit.setPositionSmooth(discard)
                     elseif i == "Ravage" then
                         local obj = getObjectFromGUID("e5d18b")
                         if obj == nil or not Vector.equals(obj.getPosition(), Vector(-51.23, 1.10, -0.52)) then
@@ -252,6 +269,7 @@ function advanceInvaderCards()
 end
 function aidPanelScanLoop()
     local outTable = {}
+    local count = 0
     for i,v in pairs(scanLoopTable) do
         local stageTable = {}
         local source = self
@@ -295,6 +313,7 @@ function aidPanelScanLoop()
                         local iType = hit.getVar("cardInvaderType")
                         local iStage = hit.getVar("cardInvaderStage")
                         table.insert(stageTable,iType)
+                        count = count + 1
                     end
                 end
             end
@@ -302,7 +321,24 @@ function aidPanelScanLoop()
         ::continueLoop::
         table.insert(outTable,stageTable)
     end
+    numCards = count
     Global.call("updateAidPanel", outTable)
+end
+function countDiscard()
+    local count = 0
+    local hits = Physics.cast({
+        origin       = discard,
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = Vector(1,0.9,1.5),
+        orientation  = Vector(0,90,0),
+        max_distance = 0,
+        --debug        = true,
+    })
+    for _,hit in pairs(hits) do
+        if hit.hit_object ~= self and (hit.hit_object.type == "Deck" or hit.hit_object.type == "Card") then count = count + 1 end
+    end
+    return count
 end
 
 function getStage(o)

@@ -180,6 +180,10 @@
         </VerticalLayout>
     </VerticalLayout>
 </Panel>
+<Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="180" height="50" rectAlignment="UpperRight" offsetXY="-430 -65">
+    <Text id="panelReadyYes" visibility="Invisible" fontsize="36" color="#00FF00">Ready</Text>
+    <Text id="panelReadyNo" visibility="Invisible" fontsize="36" color="#FF0000">Not Ready</Text>
+</Panel>
 <Panel id="panelFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="170" height="80" offsetXY="315 0" rectAlignment="UpperLeft">
     <HorizontalLayout childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="10">
         <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
@@ -210,6 +214,13 @@
         </Panel>
     </VerticalLayout>
 </Panel>
+<Panel id="panelScore" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="120" height="80" color="#00000044" rectAlignment="UpperLeft" offsetXY="410 -90">
+    <VerticalLayout>
+        <Button onClick="refreshScore" fontSize="12" textAlignment="MiddleCenter" minWidth="60">Calculate Score</Button>
+        <Text id="scoreWin" fontSize="20" color="#FFFFFF" alignment="UpperLeft">Victory: 0</Text>
+        <Text id="scoreLose" fontSize="20" color="#FFFFFF" alignment="UpperLeft">Defeat: 0</Text>
+    </VerticalLayout>
+</Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">
         <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">▼</Button>
@@ -218,11 +229,7 @@
         <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">▲</Button>
     </Panel>
 </Panel>
-<Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="180" height="50" rectAlignment="UpperRight" offsetXY="-430 -65">
-    <Text id="panelReadyYes" visibility="Invisible" fontsize="36" color="#00FF00">Ready</Text>
-    <Text id="panelReadyNo" visibility="Invisible" fontsize="36" color="#FF0000">Not Ready</Text>
-</Panel>
-<Panel id="panelUI" visibility="Invisible" width="160" height="140" rectAlignment="UpperRight" offsetXY="-240 0">
+<Panel id="panelUI" visibility="Invisible" width="160" height="160" rectAlignment="UpperRight" offsetXY="-240 0">
     <VerticalLayout>
         <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Toggle Invader UI</Button>
         <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Toggle Adversary UI</Button>
@@ -231,5 +238,6 @@
         <Button onClick="toggleReadyUI" textAlignment="MiddleCenter">Toggle Ready UI</Button>
         <Button onClick="toggleFearUI" textAlignment="MiddleCenter">Toggle Fear UI</Button>
         <Button onClick="toggleBlightUI" textAlignment="MiddleCenter">Toggle Blight UI</Button>
+        <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Toggle Score</Button>
     </VerticalLayout>
 </Panel>

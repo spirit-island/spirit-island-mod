@@ -886,13 +886,16 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     end
 
     local xPadding = 4.4
+    if powerCards > 4 then
+        xPadding = 3.6
+    end
     local cardPlaceOffset = {
         Vector(-(2.5*xPadding)+2*xPadding,0,0),
         Vector(-(2.5*xPadding)+3*xPadding,0,0),
         Vector(-(2.5*xPadding)+1*xPadding,0,0),
         Vector(-(2.5*xPadding)+4*xPadding,0,0),
-        Vector(-(2.5*xPadding)+2*xPadding,0,6),
-        Vector(-(2.5*xPadding)+3*xPadding,0,6),
+        Vector(-(2.5*xPadding)+0*xPadding,0,0),
+        Vector(-(2.5*xPadding)+5*xPadding,0,0),
     }
     local cardToAdd = 1
     local cardsResting = 0
@@ -1005,7 +1008,7 @@ end
 function getPowerZoneObjects(handP)
     local hits = upCastPosSizRot(
         handOffset + Vector(handP.x,yHeight,handP.z), -- pos
-        Vector(15,1,10),  -- size
+        Vector(15,1,4),  -- size
         Vector(0,0,0),  --  rotation
         1,  -- distance
         1,  -- multi

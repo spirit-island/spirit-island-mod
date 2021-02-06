@@ -1094,7 +1094,7 @@ function BlightedIslandFlipPart2()
     end
     wt(1)
     gamePaused = false -- to re-enable scripting buttons and object cleanup
-    broadcastToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
+    broadcastToAll(blightedIslandCard.getName()..": "..numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
     broadcastToAll("Remember to check the blight card effect", Color.SoftBlue)
     return 1

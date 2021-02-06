@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -114.667747,
-    "posY": 0.99080807,
-    "posZ": -18.1296,
-    "rotX": 0.004446718,
-    "rotY": 179.9999,
-    "rotZ": 1.84968883e-07,
-    "scaleX": 1.31135309,
+    "posX": -8.374671,
+    "posY": 1.99083817,
+    "posZ": 7.782879,
+    "rotX": 5.77796563e-05,
+    "rotY": 179.9996,
+    "rotZ": -0.000358224934,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.31135309
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Promising Farmlands",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

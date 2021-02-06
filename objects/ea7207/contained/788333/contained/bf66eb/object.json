@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 39.5,
-    "posY": 0.994454145,
-    "posZ": 49.58,
-    "rotX": -4.87320833e-08,
-    "rotY": 179.984467,
-    "rotZ": 179.999863,
-    "scaleX": 1.47602439,
+    "posX": -8.194507,
+    "posY": 1.99084079,
+    "posZ": 15.5336075,
+    "rotX": 2.16339515e-08,
+    "rotY": 180.0,
+    "rotZ": -0.000144296835,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Aid from Lesser Spirits",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

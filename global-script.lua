@@ -7,6 +7,7 @@ minorPowerZone = "cb16ab"
 minorPowerDiscardZone = "55b275"
 majorPowerZone = "089896"
 majorPowerDiscardZone = "eaf864"
+uniquePowerDiscardZone = "uniquePowerDiscard"
 PlayerBags = {
     ["Red"] = "fb7941",
     ["Purple"] = "8ee413",
@@ -896,7 +897,7 @@ end
 function DealPowerCards(deckZone, discardZone, clickFunctionName)
     -- clear the zone!
     local handPos = powerPlayer.getHandTransform().position
-    local discardTable = DiscardPowerCards(handPos, discardZone)
+    local discardTable = DiscardPowerCards(handPos)
     if #discardTable > 0 then
         wt(1)
     end
@@ -976,7 +977,7 @@ function PickPowerMinor(cardo,playero,alt_click)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
             local minorDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
-            DiscardPowerCards(handPos, minorDiscardZone)
+            DiscardPowerCards(handPos)
         end
     end, function() return not cardo.isSmoothMoving() end)
 end
@@ -989,15 +990,25 @@ function PickPowerMajor(cardo,playero,alt_click)
         cardo.setLock(false)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
-            local majorDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
-            DiscardPowerCards(handPos, majorDiscardZone)
+            DiscardPowerCards(handPos)
         end
     end, function() return not cardo.isSmoothMoving() end)
 end
-function DiscardPowerCards(handPos, discardZone)
+function DiscardPowerCards(handPos)
     local discardTable = {}
     local cardZoneObjects = getPowerZoneObjects(handPos)
     for i, obj in ipairs(cardZoneObjects) do
+        local discardZone
+        if obj.hasTag("Major") then
+            discardZone = getObjectFromGUID(majorPowerDiscardZone)
+        elseif obj.hasTag("Minor") then
+            discardZone = getObjectFromGUID(minorPowerDiscardZone)
+        elseif obj.hasTag("Unique") then
+            discardZone = getObjectFromGUID(uniquePowerDiscardZone)
+        else
+            -- Discard unknown cards to the unique power discard
+            discardZone = getObjectFromGUID(uniquePowerDiscardZone)
+        end
         obj.setPositionSmooth(discardZone.getPosition() + Vector(0,i,0), false, true)
         obj.setRotationSmooth(Vector(0, 180, 0), false, true)
         obj.clearButtons()
@@ -3392,13 +3403,13 @@ end
 
 function tCompare(t1,t2)
     function cc2(tab)
-        newTab = {}
+        local newTab = {}
         for i,v in ipairs(tab) do
             newTab[i] = table.concat(v,",")
+        end
+        return table.concat(newTab,"|")
     end
-    return table.concat(newTab,"|")
-    end
-    if cc2(t1) == cc2(t2) then return true else return false end
+    return cc2(t1) == cc2(t2)
 end
 
 function swapPlayerAreaColors(a, b)

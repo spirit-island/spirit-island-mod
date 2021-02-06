@@ -78,6 +78,7 @@ useRandomScenario = false
 aidBoard = "bee103"
 SetupChecker = "9ad187"
 fearDeckSetupZone = "fbbf69"
+sourceSpirit = "21f561"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -266,6 +267,7 @@ function onLoad(saved_data)
     SetupChecker = getObjectFromGUID(SetupChecker)
     adversaryBag = getObjectFromGUID(adversaryBag)
     scenarioBag = getObjectFromGUID(scenarioBag)
+    sourceSpirit = getObjectFromGUID(sourceSpirit)
     ------
     dahanBag = getObjectFromGUID(dahanBag)
     explorerBag = getObjectFromGUID(explorerBag)
@@ -360,11 +362,9 @@ function onLoad(saved_data)
         end
     end
     if Player["White"].seated then Player["White"].changeColor("Red") end
+    Wait.time(spiritUpdater, 10, -1)
 end
 ----
-function StartReadyCheck()
-    Wait.time(readyCheck,1,-1)
-end
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
@@ -2829,6 +2829,36 @@ function refreshScore()
 
     UI.setAttribute("scoreWin", "text", "Victory: "..win)
     UI.setAttribute("scoreLose", "text", "Defeat: "..lose)
+end
+-----
+spiritsScanned = {}
+function spiritUpdater()
+    local sScript = sourceSpirit.getLuaScript()
+    local sStrPos = string.find(sScript,"\n")
+    if sStrPos == nil then
+        return
+    end
+    local sHeader = string.sub(sScript,1,sStrPos-10)
+
+    for _,v in pairs (getAllObjects()) do
+        if spiritsScanned[v.guid] then
+        elseif v ~= sourceSpirit and v.type == "Tile" and v.name == "Custom_Tile" then
+            local aScript = v.getLuaScript()
+            if aScript ~= nil then
+                local aStrPos = string.find(aScript,"\n")
+                if aStrPos ~= nil then
+                    local aHeader = string.sub(aScript,1,sStrPos-10)
+                    if aHeader == sHeader and aScript ~= sScript then
+                        spiritsScanned[v.guid] = true
+                        v.setLuaScript(sScript)
+                        v = v.reload()
+                        v.highlightOn("Brown",10)
+                        broadcastToAll(v.getName().." has been updated to the current version!")
+                    end
+                end
+            end
+        end
+    end
 end
 ---------------
 function wt(some)

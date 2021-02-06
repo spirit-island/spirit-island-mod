@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -114.499428,
-    "posY": 0.9970573,
-    "posZ": -17.4411869,
-    "rotX": 0.004446747,
-    "rotY": 179.999878,
-    "rotZ": 2.14615028e-07,
-    "scaleX": 1.31135309,
+    "posX": -7.375907,
+    "posY": 1.99082744,
+    "posZ": 9.489412,
+    "rotX": 9.100781e-09,
+    "rotY": 179.997391,
+    "rotZ": -0.00014433694,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.31135309
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Disintegrating Ecosystem",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

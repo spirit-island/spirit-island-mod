@@ -1,17 +1,17 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 17.1,
-    "posY": 0.916720867,
-    "posZ": 60.2199974,
-    "rotX": 0.004446599,
-    "rotY": 180.000229,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -4.80809546,
+    "posY": 1.99084079,
+    "posZ": 21.3720627,
+    "rotX": -1.75679e-08,
+    "rotY": 180.00087,
+    "rotZ": -0.000144327118,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Unnatural Proliferation",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

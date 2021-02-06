@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -115.039558,
-    "posY": 0.984415233,
-    "posZ": -18.516222,
-    "rotX": 0.00444671465,
-    "rotY": 179.999939,
-    "rotZ": 2.14716422e-07,
-    "scaleX": 1.31135309,
+    "posX": -3.77631283,
+    "posY": 1.99084115,
+    "posZ": 13.7859688,
+    "rotX": -5.806709e-09,
+    "rotY": 180.000122,
+    "rotZ": -0.0001443175,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.31135309
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Erosion of Will",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

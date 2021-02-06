@@ -1,17 +1,17 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 13.7400007,
-    "posY": 0.916720867,
-    "posZ": 60.2199974,
-    "rotX": 0.0044466136,
-    "rotY": 179.9871,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -7.110479,
+    "posY": 1.99084079,
+    "posZ": 19.27385,
+    "rotX": 2.747913e-09,
+    "rotY": 179.997147,
+    "rotZ": -0.000144314923,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Untended Land Crumbles",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

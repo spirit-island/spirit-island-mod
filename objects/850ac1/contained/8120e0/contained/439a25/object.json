@@ -1,17 +1,17 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 23.8200016,
-    "posY": 0.916720867,
-    "posZ": 60.2199974,
-    "rotX": 0.00444660336,
-    "rotY": 179.999756,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -10.0592813,
+    "posY": 1.99084079,
+    "posZ": 19.0507946,
+    "rotX": 3.52613618e-08,
+    "rotY": 180.000031,
+    "rotZ": -0.000144376914,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "All Things Weaken",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

@@ -221,6 +221,12 @@
         <Text id="scoreLose" fontSize="20" color="#FFFFFF" alignment="UpperLeft">Defeat: 0</Text>
     </VerticalLayout>
 </Panel>
+<Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" width="60" height="120" rectAlignment="MiddleLeft" offsetXY="0 -50">
+    <VerticalLayout>
+        <Button onClick="MajorPowerUI" textAlignment="MiddleCenter">Gain a Major Power</Button>
+        <Button onClick="MinorPowerUI" textAlignment="MiddleCenter">Gain a Minor Power</Button>
+    </VerticalLayout>
+</Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">
         <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">▼</Button>
@@ -228,12 +234,6 @@
     <Panel id="panelUIToggleHide" visibility="Invisible">
         <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">▲</Button>
     </Panel>
-</Panel>
-<Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" width="85" height="60" rectAlignment="MiddleLeft" offsetXY="0 -40">
-    <VerticalLayout>
-        <Button onClick="MajorPowerUI" textAlignment="MiddleCenter">Draw Major Power</Button>
-        <Button onClick="MinorPowerUI" textAlignment="MiddleCenter">Draw Minor Power</Button>
-    </VerticalLayout>
 </Panel>
 <Panel id="panelUI" visibility="Invisible" width="160" height="180" rectAlignment="UpperRight" offsetXY="-240 0">
     <VerticalLayout>

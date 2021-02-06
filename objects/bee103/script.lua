@@ -379,6 +379,9 @@ function updateFearUI()
     UI.setAttribute("panelFearGenerated", "text", generatedFear)
 end
 function addFear()
+    if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
+        return
+    end
     local fearPool = Global.getVar("fearPool")
     local generatedFear = Global.getVar("generatedFear")
     if fearPool == 1 then
@@ -392,6 +395,9 @@ function addFear()
     updateFearUI()
 end
 function removeFear()
+    if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
+        return
+    end
     local fearPool = Global.getVar("fearPool")
     local generatedFear = Global.getVar("generatedFear")
     if generatedFear == 0 then

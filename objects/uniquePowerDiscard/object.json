@@ -1,23 +1,24 @@
 {
-  "Name": "3DText",
+  "Name": "ScriptingTrigger",
   "Transform": {
-    "posX": -48.5232544,
-    "posY": 0.9595538,
-    "posZ": 31.9703674,
-    "rotX": 90.0,
-    "rotY": 4.6979053e-06,
+    "posX": -52.79,
+    "posY": 1.9,
+    "posZ": -10.61,
+    "rotX": 0.0,
+    "rotY": 0,
     "rotZ": 0.0,
-    "scaleX": 1.0,
-    "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleX": 2.0,
+    "scaleY": 2.0,
+    "scaleZ": 3.0
   },
-  "Nickname": "",
+  "Nickname": "Unique Power Discard Zone",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,
-    "b": 1.0
+    "b": 1.0,
+    "a": 0.509803951
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,
@@ -31,14 +32,5 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
-  "Text": {
-    "Text": "2",
-    "colorstate": {
-      "r": 0.1882353,
-      "g": 0.8627451,
-      "b": 0.1764706
-    },
-    "fontSize": 64
-  }
+  "Hands": false
 }

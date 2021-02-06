@@ -1,5 +1,4 @@
 sourceSpiritID = "21f561"
-spiritsScanned = {}
 
 function onLoad()
     self.createButton({
@@ -12,41 +11,7 @@ function onLoad()
         height = 0,
     })
     Wait.time(scan, 0.5, -1)
-    Wait.time(globalUpdate, 10, -1)
     rescan = false
-end
-
-function globalUpdate()
-    local sScript = getObjectFromGUID(sourceSpiritID).getLuaScript()
-    local sStrPos = string.find(sScript,"\n")
-    local sSub = string.sub(sScript,1,sStrPos-10)
-
-    for _,v in pairs (getAllObjects()) do
-        if v.getGUID() ~= sourceSpiritID then
-            if v.type == "Tile" then
-                if v.name == "Custom_Tile" then
-                    local aScript = v.getLuaScript()
-                    if aScript ~= nil then
-                        local aStrPos = string.find(aScript,"\n")
-                        if aStrPos ~= nil and sStrPos ~= nil then
-                            local aSub = string.sub(aScript,1,sStrPos-10)
-                            if aSub == sSub then
-                                if aScript ~= sScript then
-                                    if not spiritsScanned[v.guid] then
-                                        spiritsScanned[v.guid] = true
-                                        v.setLuaScript(sScript)
-                                        v = v.reload()
-                                        v.highlightOn("Brown",10)
-                                        broadcastToAll(v.getName().." has been updated to the current version!")
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
 end
 
 function scan()

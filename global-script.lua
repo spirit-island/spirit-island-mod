@@ -831,24 +831,44 @@ end
 handOffset = Vector(0,0,35)
 scriptWorkingCardC = false
 powerPlayer = nil
-function MajorPowerC(obj, player_color)
-    startDealPowerCards("MajorPower", Player[player_color])
+powerCards = 4
+function MajorPowerC(obj, player_color, alt_click)
+    local cards = 4
+    if alt_click then
+	cards = 2
+    end
+    startDealPowerCards("MajorPower", Player[player_color], cards)
 end
-function MajorPowerUI(player)
-    startDealPowerCards("MajorPower", player)
+function MajorPowerUI(player, button)
+    local cards = 4
+    -- button is "-1"/"1" for left click/single touch
+    if math.abs(button) > 1 then
+    	cards = 2
+    end
+    startDealPowerCards("MajorPower", player, cards)
 end
-function MinorPowerC(obj, player_color)
-    startDealPowerCards("MinorPower", Player[player_color])
+function MinorPowerC(obj, player_color, alt_click)
+    local cards = 4
+    if alt_click then
+	cards = 6
+    end
+    startDealPowerCards("MinorPower", Player[player_color], cards)
 end
 function MinorPowerUI(player, button)
-    startDealPowerCards("MinorPower", player)
+    local cards = 4
+    -- button is "-1"/"1" for left click/single touch
+    if math.abs(button) > 1 then
+    	cards = 6
+    end
+    startDealPowerCards("MinorPower", player, cards)
 end
-function startDealPowerCards(coro_name, player)
+function startDealPowerCards(coro_name, player, cardCount)
     -- protection from double clicking
     if scriptWorkingCardC then return end
 
     scriptWorkingCardC = true
     powerPlayer = player
+    powerCards = cardCount
     startLuaCoroutine(Global, coro_name)
 end
 function MinorPower()
@@ -872,11 +892,13 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     end
 
     local xPadding = 4.4
-    local cardPlaceOffsetXs = {
-        -(2.5*xPadding)+1*xPadding,
-        -(2.5*xPadding)+2*xPadding,
-        -(2.5*xPadding)+3*xPadding,
-        -(2.5*xPadding)+4*xPadding,
+    local cardPlaceOffset = {
+        Vector(-(2.5*xPadding)+2*xPadding,0,0),
+        Vector(-(2.5*xPadding)+3*xPadding,0,0),
+        Vector(-(2.5*xPadding)+1*xPadding,0,0),
+        Vector(-(2.5*xPadding)+4*xPadding,0,0),
+        Vector(-(2.5*xPadding)+2*xPadding,0,6),
+        Vector(-(2.5*xPadding)+3*xPadding,0,6),
     }
     local cardToAdd = 1
     local cardsResting = 0
@@ -886,15 +908,15 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     if Deck[1] == nil then
     elseif Deck[1].type == "Card" then
         Deck[1].setLock(true)
-        Deck[1].setPositionSmooth(powerDealCentre + Vector(cardPlaceOffsetXs[1],0,0))
+        Deck[1].setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
         Deck[1].setRotationSmooth(Vector(0, 180, 0))
         CreatePickPowerButton(Deck[1], clickFunctionName)
         cardToAdd = cardToAdd + 1
         Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not Deck[1].isSmoothMoving() end)
     elseif Deck[1].type == "Deck" then
-        for i=1, math.min(Deck[1].getQuantity(), 4) do
+        for i=1, math.min(Deck[1].getQuantity(), powerCards) do
             local tempCard = Deck[1].takeObject({
-                position       = powerDealCentre + Vector(cardPlaceOffsetXs[i],0,0),
+                position       = powerDealCentre + cardPlaceOffset[i],
                 flip           = true
             })
             tempCard.setLock(true)
@@ -903,14 +925,14 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
-    if cardToAdd <= 4 then
+    if cardToAdd <= powerCards then
         Deck = discardZone.getObjects()
         Deck[1].setPositionSmooth(deckZone.getPosition(), false, true)
         Deck[1].setRotationSmooth(Vector(0, 180, 180), false, true)
         Deck[1].shuffle()
         wt(0.5)
 
-        for i=cardToAdd, math.min(Deck[1].getQuantity(), 4) do
+        for i=cardToAdd, math.min(Deck[1].getQuantity(), powerCards) do
             local tempCard = Deck[1].takeObject({
                 position       = powerDealCentre + Vector(cardPlaceOffsetXs[i],0,0),
                 flip           = true
@@ -989,7 +1011,7 @@ end
 function getPowerZoneObjects(handP)
     local hits = upCastPosSizRot(
         handOffset + Vector(handP.x,yHeight,handP.z), -- pos
-        Vector(15,1,4),  -- size
+        Vector(15,1,10),  -- size
         Vector(0,0,0),  --  rotation
         1,  -- distance
         1,  -- multi

@@ -828,7 +828,7 @@ powerCards = 4
 function MajorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
-	cards = 2
+        cards = 2
     end
     startDealPowerCards("MajorPower", Player[player_color], cards)
 end
@@ -843,7 +843,7 @@ end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
-	cards = 6
+        cards = 6
     end
     startDealPowerCards("MinorPower", Player[player_color], cards)
 end

@@ -2013,6 +2013,12 @@ function resetPiece(object, rotation, depth)
     return object
 end
 ------
+scaleFactors = {
+    -- Note that we scale the boards up more than the position, so the gaps
+    -- don't increase in size.
+    [true]={name = "Large", position = 1.09, size = 1.1},
+    [false]={name = "Standard", position = 1, size = 1},
+}
 posMap = { -- This order should exactly match alternateSetupNames table
     { -- 1 player
         { -- Standard
@@ -2422,6 +2428,15 @@ function MapPlacen(posTable, rotTable)
     if SetupChecker.getVar("optionalExtraBoard") then
         rand = math.random(1,numBoards)
     end
+
+    -- We use the average position of the boards in the island layout
+    -- as the origin to scale from.
+    local scaleOrigin = Vector(0,0,0)
+    for i=1, numBoards do
+        scaleOrigin = scaleOrigin + posTable[i]
+    end
+    scaleOrigin = scaleOrigin * (1./ numBoards)
+
     for i=1, numBoards do
         local temp = nil
         if isThematic() then
@@ -2430,14 +2445,14 @@ function MapPlacen(posTable, rotTable)
                     position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themRedoGuids[numBoards][i],
                     smooth = false,
-                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
                 })
             else
                 temp = ThematicMapBag.takeObject({
                     position = ThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themGuids[numBoards][i],
                     smooth = false,
-                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
                 })
             end
         else
@@ -2466,16 +2481,18 @@ function MapPlacen(posTable, rotTable)
                 index = index,
                 position = StandardMapBag.getPosition() + Vector(0,-5,0),
                 smooth = false,
-                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
             })
         end
     end
 end
-function BoardCallback(obj,pos,rot,extra)
+function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
     obj.setRotationSmooth(rot, false, true)
-    obj.setPositionSmooth(pos, false, true)
+    local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
+    obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
+    obj.scale(scaleFactor.size)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
 setupMapCoObj = nil

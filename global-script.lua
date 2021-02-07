@@ -74,6 +74,7 @@ includeThematic = false
 useRandomBoard = false
 scenarioCard = nil
 useRandomScenario = false
+useBoards = nil
 ------
 aidBoard = "bee103"
 SetupChecker = "9ad187"
@@ -1893,6 +1894,14 @@ function removeSpirit(params)
         getObjectFromGUID(playerBlocks[params.color]).call("setupPlayerArea", {})
     end
 end
+function getEmptySeat()
+    for color,guid in pairs(PlayerBags) do
+        if #getObjectFromGUID(guid).getObjects() ~= 0 then
+            return color
+        end
+    end
+    return nil
+end
 ------
 quotes = {
     {"Time passes, and little by little everything that we have spoken in falsehood becomes true.","Marcel Proust"},
@@ -2371,15 +2380,10 @@ themRedoGuids = {
 function getMapCount(params)
     local count = 0
     for _,obj in pairs(upCast(seaTile,1,0,0.9)) do
-        if obj.name == "Custom_Token" then
-            if obj.getBoundsNormalized().size.x > 25 and obj.getBoundsNormalized().size.z > 12 then
-                local prefix = string.sub(obj.getName(),1,4)
-                if params.norm and prefix == "NORM" then
-                    count = count + 1
-                elseif params.them and prefix == "THEM" then
-                    count = count + 1
-                end
-            end
+        if params.norm and obj.hasTag("Balanced") then
+            count = count + 1
+        elseif params.them and obj.hasTag("Thematic") then
+            count = count + 1
         end
     end
     return count
@@ -2388,12 +2392,8 @@ end
 function getMapTiles()
     local mapTiles = {}
     for _,obj in pairs(upCast(seaTile,1,0,0.9)) do
-        if obj.name == "Custom_Token" then
-            if obj.getBoundsNormalized().size.x > 25 and obj.getBoundsNormalized().size.z > 12 then
-                if string.sub(obj.getName(),1,4) == "NORM" or "THEM" then
-                    table.insert(mapTiles,obj)
-                end
-            end
+        if obj.hasTag("Balanced") or obj.hasTag("Thematic") then
+            table.insert(mapTiles,obj)
         end
     end
     return mapTiles
@@ -2402,11 +2402,12 @@ end
 function MapPlaceCustom()
     local maps = getMapTiles()
     -- board type is guaranteed to either be thematic or normal, and there has to be at least one map tile in the table
-    if string.sub(maps[1].getName(),1,4) == "NORM" then
+    if maps[1].hasTag("Balanced") then
         alternateSetupIndex = 1
     else
         alternateSetupIndex = 2
     end
+    SetupChecker.call("updateDifficulty", {})
 
     local rand = 0
     if SetupChecker.getVar("optionalExtraBoard") then
@@ -2456,18 +2457,27 @@ function MapPlacen(posTable, rotTable)
         else
             local list = StandardMapBag.getObjects()
             local index = 1
+            local count = 1
             for _,value in pairs(list) do
-                if numBoards <=4 and SetupChecker.getVar("optionalBoardPairings") and (value.name == "NORMAL B" or value.name == "NORMAL E") then
-                    if not BETaken then
-                        BETaken = true
+                if useBoards and useBoards[count] ~= nil then
+                    if value.name == useBoards[count] then
                         index = value.index
+                        count = count + 1
                         break
                     end
-                elseif numBoards <= 4 and SetupChecker.getVar("optionalBoardPairings") and (value.name == "NORMAL D" or value.name == "NORMAL F") then
-                    if not DFTaken then
-                        DFTaken = true
-                        index = value.index
-                        break
+                elseif numBoards <= 4 and SetupChecker.getVar("optionalBoardPairings") then
+                    if value.name == "B" or value.name == "E" then
+                        if not BETaken then
+                            BETaken = true
+                            index = value.index
+                            break
+                        end
+                    elseif value.name == "D" or value.name == "F" then
+                        if not DFTaken then
+                            DFTaken = true
+                            index = value.index
+                            break
+                        end
                     end
                 else
                     index = value.index
@@ -2902,8 +2912,7 @@ function upCastRay(obj,dist)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        local prefix = string.sub(v.hit_object.getName(),1,4)
-        if v.hit_object ~= obj and prefix ~= "NORM" and prefix ~= "THEM" then
+        if v.hit_object ~= obj and not obj.hasTag("Balanced") and not obj.hasTag("Thematic") then
             table.insert(hitObjects,v.hit_object)
         end
     end

@@ -2,6 +2,7 @@
 useProgression = false
 progressionCard = nil
 useAspect = 2
+aspect = nil
 
 function onLoad()
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
@@ -64,8 +65,15 @@ function onLoad()
 end
 
 function PickSpirit(params)
-    if params.random.aspect then
-        useAspect = 1
+    if params.aspect then
+        if params.aspect == "Random" then
+            useAspect = 1
+        elseif params.aspect == "" then
+            useAspect = 0
+        else
+            useAspect = 3
+            aspect = params.aspect
+        end
     end
     SetupSpirit(nil, params.color)
 end
@@ -159,7 +167,7 @@ function SetupSpirit(object_pick,player_color)
             end
         end
     else
-        broadcastToColor("You already picked a spirit", player_color, "Red")
+        Player[player_color].broadcast("You already picked a spirit", "Red")
     end
 end
 function HandleAspect(deck, player_color)
@@ -168,15 +176,33 @@ function HandleAspect(deck, player_color)
     elseif useAspect == 1 then
         local index = math.random(0,#deck.getObjects())
         if index == 0 then
-            broadcastToColor("Your random Aspect is no Aspect", player_color, Color.SoftBlue)
+            Player[player_color].broadcast("Your random Aspect is no Aspect", Color.SoftBlue)
             deck.destruct()
         else
             deck.takeObject({
                 index = index - 1,
                 position = deck.getPosition() + Vector(0,2,0),
-                callback_function = function(obj) obj.deal(1, player_color) deck.destruct() broadcastToColor("Your random Aspect is "..obj.getName(), player_color, Color.SoftBlue) end,
+                callback_function = function(obj) obj.deal(1, player_color) deck.destruct() Player[player_color].broadcast("Your random Aspect is "..obj.getName(), Color.SoftBlue) end,
             })
             if deck.remainder then deck = deck.remainder end
+        end
+    elseif useAspect == 3 then
+        local found = false
+        for index, data in pairs(deck.getObjects()) do
+            if data.name == aspect then
+                found = true
+                deck.takeObject({
+                    index = data.index,
+                    position = deck.getPosition() + Vector(0,2,0),
+                    callback_function = function(obj) obj.deal(1, player_color) deck.destruct() end,
+                })
+                if deck.remainder then deck = deck.remainder end
+                break
+            end
+        end
+        if not found then
+            deck.destruct()
+            Player[player_color].broadcast("Unable to find aspect "..aspect, "Red")
         end
     else
         deck.deal(#deck.getObjects(), player_color)

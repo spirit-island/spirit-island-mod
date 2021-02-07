@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/7/2021 12:37:04 PM",
+  "Date": "2/7/2021 3:22:41 PM",
   "VersionNumber": "v13.0.4",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -125,6 +125,14 @@
       {
         "displayed": "Destroy",
         "normalized": "destroy"
+      },
+      {
+        "displayed": "Balanced",
+        "normalized": "balanced"
+      },
+      {
+        "displayed": "Thematic",
+        "normalized": "thematic"
       }
     ]
   },
@@ -270,6 +278,17 @@
         "b": 0.5
       },
       "id": 12
+    },
+    "13": {
+      "title": "Game Config",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 13
     }
   },
   "CameraStates": [

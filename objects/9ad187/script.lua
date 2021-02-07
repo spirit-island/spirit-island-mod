@@ -36,6 +36,8 @@ spiritTags = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
+notebookConfig = false
+
 optionalSoloBlight = true
 optionalStrangeMadness = false
 optionalBlightSetup = true
@@ -276,6 +278,26 @@ function toggleNumPlayers(_, value)
     end
     updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
 end
+function updateNumPlayers(value, updateUI)
+    if Global.getVar("alternateSetupIndex") > 4 then
+        Global.setVar("alternateSetupIndex", 1)
+    end
+    local numPlayers = tonumber(value)
+    if numPlayers > 5 and optionalExtraBoard then
+        numPlayers = 5
+    end
+    Global.setVar("numPlayers", numPlayers)
+    if updateUI then
+        self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
+        self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+
+        -- Stop previous timer and start a new one
+        if updateLayoutsID ~= 0 then
+            Wait.stop(updateLayoutsID)
+        end
+        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+    end
+end
 function updateBoardLayouts(numPlayers)
     local t = self.UI.getXmlTable()
     if optionalExtraBoard then
@@ -312,6 +334,9 @@ function updateDropdownList(t, class, values, selectedIndex, selectedValue)
 end
 
 function toggleScenario(_, value)
+    updateScenario(value, true)
+end
+function updateScenario(value, updateUI)
     if value == "Random" then
         Global.setVar("scenarioCard", nil)
         Global.setVar("useRandomScenario", true)
@@ -321,8 +346,10 @@ function toggleScenario(_, value)
     end
     updateDifficulty()
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateScenarioSelection(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateScenarioSelection(value) end, 1)
+    end
 end
 function updateScenarioSelection(name)
     local t = self.UI.getXmlTable()
@@ -332,8 +359,10 @@ function updateScenarioSelection(name)
     self.UI.setXmlTable(t, {})
 end
 
--- TODO fix double adversary randomizer
 function toggleLeadingAdversary(_, value)
+    updateLeadingAdversary(value, true)
+end
+function updateLeadingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard", nil)
         Global.setVar("useRandomAdversary", true)
@@ -342,14 +371,18 @@ function toggleLeadingAdversary(_, value)
         Global.setVar("useRandomAdversary", false)
     end
     if value == "None" or value == "Random" then
-        toggleLeadingLevel(nil, 0)
+        updateLeadingLevel(0, updateUI)
     else
         updateDifficulty()
-        self.UI.setAttribute("leadingLevelSlider", "enabled", "true")
+        if updateUI then
+            self.UI.setAttribute("leadingLevelSlider", "enabled", "true")
+        end
     end
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateLeadingSelection(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateLeadingSelection(value) end, 1)
+    end
 end
 function updateLeadingSelection(name)
     local t = self.UI.getXmlTable()
@@ -359,6 +392,9 @@ function updateLeadingSelection(name)
     self.UI.setXmlTable(t, {})
 end
 function toggleSupportingAdversary(_, value)
+    updateSupportingAdversary(value, true)
+end
+function updateSupportingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard2", nil)
         Global.setVar("useSecondAdversary", true)
@@ -367,14 +403,18 @@ function toggleSupportingAdversary(_, value)
         Global.setVar("useSecondAdversary", false)
     end
     if value == "None" or value == "Random" then
-        toggleSupportingLevel(nil, 0)
+        updateSupportingLevel(0, updateUI)
     else
         updateDifficulty()
-        self.UI.setAttribute("supportingLevelSlider", "enabled", "true")
+        if updateUI then
+            self.UI.setAttribute("supportingLevelSlider", "enabled", "true")
+        end
     end
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateSupportingSelection(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateSupportingSelection(value) end, 1)
+    end
 end
 function updateSupportingSelection(name)
     local t = self.UI.getXmlTable()
@@ -383,32 +423,42 @@ function updateSupportingSelection(name)
     end
     self.UI.setXmlTable(t, {})
 end
-function toggleLeadingLevel(player, value)
+function toggleLeadingLevel(_, value)
+    updateLeadingLevel(value, true)
+end
+function updateLeadingLevel(value, updateUI)
     if Global.getVar("adversaryCard") == nil then
         Global.setVar("adversaryLevel", 0)
         value = 0
+        if updateUI then
+            self.UI.setAttribute("leadingLevelSlider", "enabled", "false")
+        end
     else
         Global.setVar("adversaryLevel", tonumber(value))
     end
-    if player == nil then
-        self.UI.setAttribute("leadingLevelSlider", "enabled", "false")
+    if updateUI then
+        self.UI.setAttribute("leadingLevel", "text", "Level: "..value)
+        self.UI.setAttribute("leadingLevelSlider", "value", value)
     end
-    self.UI.setAttribute("leadingLevel", "text", "Level: "..value)
-    self.UI.setAttribute("leadingLevelSlider", "value", value)
     updateDifficulty()
 end
-function toggleSupportingLevel(player, value)
+function toggleSupportingLevel(_, value)
+    updateSupportingLevel(value, true)
+end
+function updateSupportingLevel(value, updateUI)
     if Global.getVar("adversaryCard2") == nil then
         Global.setVar("adversaryLevel2", 0)
         value = 0
+        if updateUI then
+            self.UI.setAttribute("supportingLevelSlider", "enabled", "false")
+        end
     else
         Global.setVar("adversaryLevel2", tonumber(value))
     end
-    if player == nil then
-        self.UI.setAttribute("supportingLevelSlider", "enabled", "false")
+    if updateUI then
+        self.UI.setAttribute("supportingLevel", "text", "Level: "..value)
+        self.UI.setAttribute("supportingLevelSlider", "value", value)
     end
-    self.UI.setAttribute("supportingLevel", "text", "Level: "..value)
-    self.UI.setAttribute("supportingLevelSlider", "value", value)
     updateDifficulty()
 end
 
@@ -417,6 +467,10 @@ function toggleBlightCard()
     useBlightCard = not useBlightCard
     Global.setVar("useBlightCard", useBlightCard)
     self.UI.setAttribute("blightCard", "isOn", useBlightCard)
+end
+function toggleNotebookConfig()
+    notebookConfig = not notebookConfig
+    self.UI.setAttribute("notebookConfig", "isOn", notebookConfig)
 end
 function toggleBnCEvents()
     if not Global.getVar("BnCAdded") then
@@ -457,6 +511,9 @@ function updateDropdownSelection(t, class, value)
     end
 end
 function toggleBoardLayout(_, value)
+    updateBoardLayout(value, true)
+end
+function updateBoardLayout(value, updateUI)
     if value == "Random" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", false)
@@ -476,10 +533,12 @@ function toggleBoardLayout(_, value)
     Global.setVar("alternateSetupIndex", index)
     updateDifficulty()
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateBoardLayout(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateBoardLayoutSelection(value) end, 1)
+    end
 end
-function updateBoardLayout(name)
+function updateBoardLayoutSelection(name)
     local t = self.UI.getXmlTable()
     for _,v in pairs(t) do
         updateDropdownSelection(v, "boardLayout", name)
@@ -596,8 +655,71 @@ function difficultyCheck(params)
 end
 
 function startGame()
-    Global.call("SetupGame", {})
+    if notebookConfig then
+        loadConfig()
+    end
+    Wait.condition(function() Global.call("SetupGame", {}) end, function() return canStart end)
 end
+function loadConfig()
+    for _,data in pairs(Notes.getNotebookTabs()) do
+        if data.title == "Game Config" then
+            local saved_data = JSON.decode(data.body)
+            if saved_data.numPlayers then
+                updateNumPlayers(saved_data.numPlayers, false)
+            end
+            if saved_data.boardLayout then
+                updateBoardLayout(saved_data.boardLayout, false)
+            end
+            if saved_data.boards then
+                Global.setTable("useBoards", saved_data.boards)
+            end
+            if saved_data.adversary then
+                updateLeadingAdversary(saved_data.adversary, false)
+            end
+            if saved_data.adversaryLevel then
+                updateLeadingLevel(saved_data.adversaryLevel, false)
+            end
+            if saved_data.adversary2 then
+                updateSupportingAdversary(saved_data.adversary2, false)
+            end
+            if saved_data.adversaryLevel2 then
+                updateSupportingLevel(saved_data.adversaryLevel2, false)
+            end
+            if saved_data.scenario then
+                updateScenario(saved_data.scenario, false)
+            end
+            if saved_data.spirits then
+                for name,aspect in pairs(saved_data.spirits) do
+                    PickSpirit(name, aspect)
+                end
+            end
+            if saved_data.bnc then
+                addBnC()
+            end
+            if saved_data.je then
+                addJE()
+            end
+            break
+        end
+    end
+end
+function PickSpirit(name, aspect)
+    for _,spirit in pairs(getObjectsWithTag("Spirit")) do
+        if spirit.getName() == name then
+            if isSpiritPickable({guid = spirit.guid}) then
+                -- TODO need to figure out how to handle this once seat swapping code is in
+                local color = Global.call("getEmptySeat", {})
+                if color ~= nil then
+                    spirit.call("PickSpirit", {color = color, aspect = aspect})
+                else
+                    broadcastToAll("Unable to pick "..name..", no seats left", "Red")
+                end
+            end
+            break
+        end
+    end
+end
+
 function showUI()
     self.UI.setAttribute("panelSetup", "visibility", "")
     self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
@@ -716,7 +838,7 @@ function randomSpirit(player)
     end
 
     local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    spirit.call("PickSpirit", {color = player.color, random = {aspect = true}})
+    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
     broadcastToColor("Your randomised spirit is "..spirit.getName(), player.color, "Blue")
 end
 function randomJESpirit(player)
@@ -730,7 +852,7 @@ function randomJESpirit(player)
         guid = spiritGuids[math.random(1,#spiritGuids)]
     end
     local spirit = getObjectFromGUID(guid)
-    spirit.call("PickSpirit", {color = player.color, random = {aspect = true}})
+    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
     broadcastToColor("Your randomised Jagged Earth spirit is "..spirit.getName(), player.color, "Blue")
 end
 function gainSpirit(player)
@@ -833,7 +955,7 @@ end
 function pickSpirit(obj, index, color)
     local name = obj.getButtons()[index+1].label
     if isSpiritPickable({guid = spiritChoices[name]}) then
-        getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, random = {aspect = true}})
+        getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, aspect = "Random"})
         obj.clearButtons()
     else
         broadcastToColor("Spirit unavailable getting new one", color, Color.SoftYellow)

@@ -3501,7 +3501,7 @@ end
 
 function swapPlayerPresenceColors(fromColor, toColor)
     if fromColor == toColor then return end 
-    local function initData(color, ix)
+    local function initData(color, ix, oppositeColor)
         bag = getObjectFromGUID(PlayerBags[color])
         return {
             color = color,
@@ -3512,38 +3512,41 @@ function swapPlayerPresenceColors(fromColor, toColor)
             objects = {},
             pattern = color .. "'s (.*)",
             bagContents = {},
+            defendTint = defendBags[oppositeColor].getColorTint(),
+            oppositeColor = oppositeColor
         }
     end
     local colors = {
-        from = initData(fromColor, 1),
-        to = initData(toColor, 2)
+        from = initData(fromColor, 1, toColor),
+        to = initData(toColor, 2, fromColor)
     }
 
-    -- If both bags are intact, there's no real point in swapping them.
+    -- If both bags are full, there's not a lot of work to do.
+    -- Unfortunately, we still need to loop through other things because of defend tokens that aren't in bags.
+    local fastSwap = (colors.from.qty == 20 and colors.to.qty == 20)
     -- Just bail out fast.
-    if colors.from.qty == 20 and colors.to.qty == 20 then
-        return
-    end
 
     readyTokens[fromColor], readyTokens[toColor] = readyTokens[toColor], readyTokens[fromColor]
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
 
-    -- Remove any items still in the bags
-    -- NOTE: TTS's documentation suggests we may need to wait a physics frame after doing this,
-    -- but this seems to work fine without doing that.  If something goes awry with this code in the future,
-    -- you might try re-adding the delay.
-    for color,data in pairs(colors) do
-        for i = 1,data.qty do 
-            local obj = data.bag.takeObject({
-                sound=false,
-                position={x=data.ix*2, z=200, y=i*2}    -- Chosen to be out-of-the-way and to prevent items from stacking.
-            })
-            table.insert(data.bagContents, obj)
+    if not fastSwap then
+        -- Remove any items still in the bags
+        -- NOTE: TTS's documentation suggests we may need to wait a physics frame after doing this,
+        -- but this seems to work fine without doing that.  If something goes awry with this code in the future,
+        -- you might try re-adding the delay.
+        for color,data in pairs(colors) do
+            for i = 1,data.qty do 
+                local obj = data.bag.takeObject({
+                    sound=false,
+                    position={x=data.ix*2, z=200, y=i*2}    -- Chosen to be out-of-the-way and to prevent items from stacking.
+                })
+                table.insert(data.bagContents, obj)
+            end
         end
     end
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
-    -- Make a note of what we find and what tint it is.
+    -- Make a note of what we find and what tint it is.  Handle Defence tokens in this pass.
     local match = string.match  -- Performance
     local name, suffix
     for _,obj in pairs(getAllObjects()) do
@@ -3552,11 +3555,20 @@ function swapPlayerPresenceColors(fromColor, toColor)
             for _,data in pairs(colors) do 
                 suffix = match(name, data.pattern)
                 if suffix then
-                    data.tints[suffix] = obj.getColorTint()
-                    if not data.objects[suffix] then
-                        data.objects[suffix] = {obj}
-                    else
-                        table.insert(data.objects[suffix], obj)
+                    if suffix == 'Defence' then  -- Defense tokens are special.
+                        -- local state = obj.getStateId()
+                        -- local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
+                        -- destroyObject(obj)
+                        -- data.defendBag.takeObject(attrs)
+                        obj.setColorTint(data.defendTint)
+                        obj.setName(data.oppositeColor .. "'s Defence")
+                    elseif not fastMode then
+                        data.tints[suffix] = obj.getColorTint()
+                        if not data.objects[suffix] then
+                            data.objects[suffix] = {obj}
+                        else
+                            table.insert(data.objects[suffix], obj)
+                        end
                     end
                 end
             end
@@ -3565,6 +3577,10 @@ function swapPlayerPresenceColors(fromColor, toColor)
 
     -- Pass 2: Iterate over found objects and swap color tints and object names.
     -- After we're done, put objects in their new presence bag, if applicable.
+    if fastMode then
+        -- All's we did is maybe recolor some defence tokens, so we can skip the rest of this.
+        return
+    end
     for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
         local a, b = unpack(ab)
         for suffix, tint in pairs(a.tints) do

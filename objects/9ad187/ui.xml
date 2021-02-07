@@ -179,7 +179,7 @@
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleThematicRedo" preferredWidth="780" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Button></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="scaleBoard" onValueChanged="toggleScale"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleScale" preferredWidth="360" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Boards</Button></Cell>
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="scaleBoard" onValueChanged="toggleScale"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleScale" preferredWidth="500" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Island Boards</Button></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

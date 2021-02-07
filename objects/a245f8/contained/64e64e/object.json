@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -56.0334549,
-    "posY": 3.59785986,
-    "posZ": 37.02631,
-    "rotX": 0.00162351923,
-    "rotY": 0.04122094,
-    "rotZ": -0.0009858548,
+    "posX": -55.85643,
+    "posY": 3.32441974,
+    "posZ": 36.56853,
+    "rotX": -0.000207855323,
+    "rotY": 0.0374118,
+    "rotZ": -0.000159482021,
     "scaleX": 0.7,
     "scaleY": 0.7,
     "scaleZ": 0.7
@@ -19,6 +19,9 @@
     "g": 0.880506933,
     "b": 0.8526128
   },
+  "Tags": [
+    "Highlight"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
@@ -48,68 +51,11 @@
         "x": 0.000401051948,
         "y": 2.58995056,
         "z": -7.258526e-05
-      }
+      },
+      "Tags": []
     }
   ],
   "States": {
-    "2": {
-      "GUID": "e3c01d",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -52.3826447,
-        "posY": 0.858104646,
-        "posZ": 37.1844063,
-        "rotX": 0.00445027556,
-        "rotY": 180.0017,
-        "rotZ": -1.12444241e-06,
-        "scaleX": 0.7,
-        "scaleY": 0.7,
-        "scaleZ": 0.7
-      },
-      "Nickname": "City: 1 Damage",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.8898049,
-        "g": 0.880506933,
-        "b": 0.8526128
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
-        "DiffuseURL": "",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 0,
-        "TypeIndex": 1,
-        "CastShadows": true
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "AttachedSnapPoints": [
-        {
-          "Position": {
-            "x": -4.10268029e-07,
-            "y": 2.05453777,
-            "z": -0.000149369938
-          }
-        }
-      ]
-    },
     "3": {
       "GUID": "f014a3",
       "Name": "Custom_Model",
@@ -165,6 +111,65 @@
             "y": 2.36952138,
             "z": -0.0001029958
           }
+        }
+      ]
+    },
+    "2": {
+      "GUID": "e3c01d",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -55.39616,
+        "posY": 0.8574139,
+        "posZ": 28.2866554,
+        "rotX": 0.00443716254,
+        "rotY": 180.038055,
+        "rotZ": 3.36565859e-06,
+        "scaleX": 0.7,
+        "scaleY": 0.7,
+        "scaleZ": 0.7
+      },
+      "Nickname": "City: 1 Damage",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898049,
+        "g": 0.880506933,
+        "b": 0.8526128
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -4.10268029e-07,
+            "y": 2.05453777,
+            "z": -0.000149369938
+          },
+          "Tags": []
         }
       ]
     }

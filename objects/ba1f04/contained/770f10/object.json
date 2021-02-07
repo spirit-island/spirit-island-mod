@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 0.53368187
   },
+  "Tags": [
+    "Destroy"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
@@ -75,6 +78,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -108,7 +114,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -134,6 +140,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -167,7 +176,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -193,6 +202,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -226,7 +238,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -252,6 +264,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -285,7 +300,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -311,6 +326,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -344,7 +362,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -370,6 +388,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -403,7 +424,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -429,6 +450,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -462,7 +486,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -488,6 +512,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -521,7 +548,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -547,6 +574,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -580,7 +610,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -606,6 +636,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -639,7 +672,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -665,6 +698,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -698,7 +734,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -724,6 +760,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -757,7 +796,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -783,6 +822,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -816,7 +858,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -842,6 +884,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -875,7 +920,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -901,6 +946,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -934,7 +982,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -960,6 +1008,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -993,7 +1044,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -1019,6 +1070,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -1052,7 +1106,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -1078,6 +1132,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -1111,7 +1168,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -1137,6 +1194,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -1170,7 +1230,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -1196,6 +1256,9 @@
         "g": 1.0,
         "b": 0.53368187
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -1229,7 +1292,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     }

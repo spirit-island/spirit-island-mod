@@ -1,17 +1,17 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 10.3799963,
-    "posY": 0.916720867,
-    "posZ": 60.2199974,
-    "rotX": 0.004446597,
-    "rotY": 179.982529,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -9.77564049,
+    "posY": 1.99080276,
+    "posZ": 16.369669,
+    "rotX": -8.934011e-06,
+    "rotY": 180.000626,
+    "rotZ": -0.000136339411,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Power Corrodes the Spirit",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -35,7 +35,7 @@
   "CardID": 63200,
   "SidewaysCard": false,
   "CustomDeck": {
-    "607": {
+    "632": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420289048/F435DFD1E777BB8925AC360D567BD72F0B447EA8/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874653838794/BDB80DB0312A350B5EBDE186D13D0C723B3A5DDF/",
       "NumWidth": 1,

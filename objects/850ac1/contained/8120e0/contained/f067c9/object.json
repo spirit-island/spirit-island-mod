@@ -1,17 +1,17 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 20.460001,
-    "posY": 0.916720867,
-    "posZ": 60.2199974,
-    "rotX": 0.00444661127,
-    "rotY": 180.000031,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -9.707116,
+    "posY": 1.99084079,
+    "posZ": 18.4369545,
+    "rotX": -1.232706e-07,
+    "rotY": 180.000046,
+    "rotZ": -0.000144298785,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Strong Earth Shatters Slowly",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

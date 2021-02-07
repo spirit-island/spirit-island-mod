@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.1.0-beta.3"
+version = "1.1.0-beta.4"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -99,6 +99,7 @@ useRandomScenario = false
 aidBoard = "bee103"
 SetupChecker = "9ad187"
 fearDeckSetupZone = "fbbf69"
+sourceSpirit = "21f561"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -261,15 +262,9 @@ function onLoad(saved_data)
     end
 
     addHotkey("Add Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        if not gameStarted or gamePaused then
-            return
-        end
         aidBoard.call("addFear")
     end)
     addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        if not gameStarted or gamePaused then
-            return
-        end
         aidBoard.call("removeFear")
     end)
 
@@ -285,6 +280,7 @@ function onLoad(saved_data)
     SetupChecker = getObjectFromGUID(SetupChecker)
     adversaryBag = getObjectFromGUID(adversaryBag)
     scenarioBag = getObjectFromGUID(scenarioBag)
+    sourceSpirit = getObjectFromGUID(sourceSpirit)
     ------
     dahanBag = getObjectFromGUID(dahanBag)
     explorerBag = getObjectFromGUID(explorerBag)
@@ -389,11 +385,9 @@ function onLoad(saved_data)
 
     if Player["White"].seated then Player["White"].changeColor("Red") end
     updateAllPlayerAreas()
+    Wait.time(spiritUpdater, 10, -1)
 end
 ----
-function StartReadyCheck()
-    Wait.time(readyCheck,1,-1)
-end
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
@@ -856,24 +850,44 @@ end
 handOffset = Vector(0,0,35)
 scriptWorkingCardC = false
 powerPlayer = nil
-function MajorPowerC(obj, player_color)
-    startDealPowerCards("MajorPower", Player[player_color])
+powerCards = 4
+function MajorPowerC(obj, player_color, alt_click)
+    local cards = 4
+    if alt_click then
+	cards = 2
+    end
+    startDealPowerCards("MajorPower", Player[player_color], cards)
 end
-function MajorPowerUI(player)
-    startDealPowerCards("MajorPower", player)
+function MajorPowerUI(player, button)
+    local cards = 4
+    -- button is "-1"/"1" for left click/single touch
+    if math.abs(button) > 1 then
+    	cards = 2
+    end
+    startDealPowerCards("MajorPower", player, cards)
 end
-function MinorPowerC(obj, player_color)
-    startDealPowerCards("MinorPower", Player[player_color])
+function MinorPowerC(obj, player_color, alt_click)
+    local cards = 4
+    if alt_click then
+	cards = 6
+    end
+    startDealPowerCards("MinorPower", Player[player_color], cards)
 end
 function MinorPowerUI(player, button)
-    startDealPowerCards("MinorPower", player)
+    local cards = 4
+    -- button is "-1"/"1" for left click/single touch
+    if math.abs(button) > 1 then
+    	cards = 6
+    end
+    startDealPowerCards("MinorPower", player, cards)
 end
-function startDealPowerCards(coro_name, player)
+function startDealPowerCards(coro_name, player, cardCount)
     -- protection from double clicking
     if scriptWorkingCardC then return end
 
     scriptWorkingCardC = true
     powerPlayer = player
+    powerCards = cardCount
     startLuaCoroutine(Global, coro_name)
 end
 function MinorPower()
@@ -897,11 +911,16 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     end
 
     local xPadding = 4.4
-    local cardPlaceOffsetXs = {
-        -(2.5*xPadding)+1*xPadding,
-        -(2.5*xPadding)+2*xPadding,
-        -(2.5*xPadding)+3*xPadding,
-        -(2.5*xPadding)+4*xPadding,
+    if powerCards > 4 then
+        xPadding = 3.6
+    end
+    local cardPlaceOffset = {
+        Vector(-(2.5*xPadding)+2*xPadding,0,0),
+        Vector(-(2.5*xPadding)+3*xPadding,0,0),
+        Vector(-(2.5*xPadding)+1*xPadding,0,0),
+        Vector(-(2.5*xPadding)+4*xPadding,0,0),
+        Vector(-(2.5*xPadding)+0*xPadding,0,0),
+        Vector(-(2.5*xPadding)+5*xPadding,0,0),
     }
     local cardToAdd = 1
     local cardsResting = 0
@@ -911,15 +930,15 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     if Deck[1] == nil then
     elseif Deck[1].type == "Card" then
         Deck[1].setLock(true)
-        Deck[1].setPositionSmooth(powerDealCentre + Vector(cardPlaceOffsetXs[1],0,0))
+        Deck[1].setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
         Deck[1].setRotationSmooth(Vector(0, 180, 0))
         CreatePickPowerButton(Deck[1], clickFunctionName)
         cardToAdd = cardToAdd + 1
         Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not Deck[1].isSmoothMoving() end)
     elseif Deck[1].type == "Deck" then
-        for i=1, math.min(Deck[1].getQuantity(), 4) do
+        for i=1, math.min(Deck[1].getQuantity(), powerCards) do
             local tempCard = Deck[1].takeObject({
-                position       = powerDealCentre + Vector(cardPlaceOffsetXs[i],0,0),
+                position       = powerDealCentre + cardPlaceOffset[i],
                 flip           = true
             })
             tempCard.setLock(true)
@@ -928,14 +947,14 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
-    if cardToAdd <= 4 then
+    if cardToAdd <= powerCards then
         Deck = discardZone.getObjects()
         Deck[1].setPositionSmooth(deckZone.getPosition(), false, true)
         Deck[1].setRotationSmooth(Vector(0, 180, 180), false, true)
         Deck[1].shuffle()
         wt(0.5)
 
-        for i=cardToAdd, math.min(Deck[1].getQuantity(), 4) do
+        for i=cardToAdd, math.min(Deck[1].getQuantity(), powerCards) do
             local tempCard = Deck[1].takeObject({
                 position       = powerDealCentre + Vector(cardPlaceOffsetXs[i],0,0),
                 flip           = true
@@ -1125,7 +1144,7 @@ function BlightedIslandFlipPart2()
     end
     wt(1)
     gamePaused = false -- to re-enable scripting buttons and object cleanup
-    broadcastToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
+    broadcastToAll(blightedIslandCard.getName()..": "..numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
     broadcastToAll("Remember to check the blight card effect", Color.SoftBlue)
     return 1
@@ -2023,13 +2042,19 @@ function resetPiece(object, rotation, depth)
     return object
 end
 ------
+scaleFactors = {
+    -- Note that we scale the boards up more than the position, so the gaps
+    -- don't increase in size.
+    [true]={name = "Large", position = 1.09, size = 1.1},
+    [false]={name = "Standard", position = 1, size = 1},
+}
 posMap = { -- This order should exactly match alternateSetupNames table
-    { -- 1 player
+    { -- 1 Player
         { -- Standard
             Vector(5.96, 1.08, 16.59),
         },
         { -- Thematic
-            Vector{-1.93, 1.07, 20.44}, --NE
+            Vector(-1.93, 1.08, 20.44), -- NE
         },
         {}, -- Random
         {}, -- Random with Thematic
@@ -2037,156 +2062,156 @@ posMap = { -- This order should exactly match alternateSetupNames table
     { -- 2 Player
         { -- Standard
             Vector(9.13, 1.08, 25.29),
-            Vector{0.29, 1.08, 10.21},
+            Vector(0.29, 1.08, 10.21),
         },
         { -- Thematic
-            Vector{9.54, 1.07, 18.07}, --E
-            Vector{-10.34, 1.07, 18.04}, --W
+            Vector(9.54, 1.08, 18.07), -- E
+            Vector(-10.34, 1.08, 18.04), -- W
         },
         {}, -- Random
         {}, -- Random with Thematic
         { -- Fragment
-            Vector{-5.20, 1.07, 18.87},
-            Vector{10.12, 1.07, 19.08},
+            Vector(-5.20, 1.08, 18.87),
+            Vector(10.12, 1.08, 19.08),
         },
         { -- Opposite Shores
-            Vector{-4.22, 1.07, 18.91},
-            Vector{13.78, 1.07, 19.09},
+            Vector(-4.22, 1.08, 18.91),
+            Vector(13.78, 1.08, 19.09),
         },
     },
     { -- 3 Player
         { -- Standard
-            Vector{2.33, 1.08, 26.80},
-            Vector{2.46, 1.08, 11.54},
-            Vector{15.70, 1.08, 19.37},
+            Vector(2.33, 1.08, 26.80),
+            Vector(2.46, 1.08, 11.54),
+            Vector(15.70, 1.08, 19.37),
         },
         { -- Thematic
-            Vector{24.91, 1.07, 10.20}, --E
-            Vector{5.03, 1.07, 10.17}, --W
-            Vector{15.03, 1.07, 27.16}, --NE
+            Vector(24.91, 1.08, 10.20), -- E
+            Vector(5.03, 1.08, 10.17), -- W
+            Vector(15.03, 1.08, 27.16), -- NE
         },
         {}, -- Random
         {}, -- Random with Thematic
         { -- Coastline
-            Vector{-2.47, 1.08, 10.29},
-            Vector{15.38, 1.08, 9.96},
-            Vector{33.22, 1.08, 9.58},
+            Vector(-2.47, 1.08, 10.29),
+            Vector(15.38, 1.08, 9.96),
+            Vector(33.22, 1.08, 9.58),
         },
         { -- Sunrise
-            Vector{-6.01, 1.07, 10.63},
-            Vector{7.19, 1.07, 18.54},
-            Vector{20.60, 1.07, 10.69},
+            Vector(-6.01, 1.08, 10.63),
+            Vector(7.19, 1.08, 18.54),
+            Vector(20.60, 1.08, 10.69),
         },
     },
     { -- 4 Player
         { -- Standard
-            Vector{2.36, 1.08, 26.47},
-            Vector{20.40, 1.08, 26.64},
-            Vector{-6.65, 1.08, 11.13},
-            Vector{11.27, 1.08, 11.33},
+            Vector(2.36, 1.08, 26.47),
+            Vector(20.40, 1.08, 26.64),
+            Vector(-6.65, 1.08, 11.13),
+            Vector(11.27, 1.08, 11.33),
         },
         { -- Thematic
-            Vector{29.29, 1.07, 10.20}, --E
-            Vector{9.41, 1.07, 10.17}, --W
-            Vector{19.41, 1.07, 27.16}, --NE
-            Vector{-0.62, 1.07, 27.04}, --NW
+            Vector(29.29, 1.08, 10.20), -- E
+            Vector(9.41, 1.08, 10.17), -- W
+            Vector(19.41, 1.08, 27.16), -- NE
+            Vector(-0.62, 1.08, 27.04), -- NW
         },
         {}, -- Random
         {}, -- Random with Thematic
         { -- Leaf
-            Vector{7.05, 1.08, 34.30},
-            Vector{20.53, 1.08, 26.36},
-            Vector{-2.00, 1.08, 18.53},
-            Vector{11.39, 1.08, 10.92},
+            Vector(7.05, 1.08, 34.30),
+            Vector(20.53, 1.08, 26.36),
+            Vector(-2.00, 1.08, 18.53),
+            Vector(11.39, 1.08, 10.92),
         },
-        { --Snake
-            Vector{35.36, 1.08, 37.55},
-            Vector{8.26, 1.08, 22.19},
-            Vector{26.45, 1.08, 22.36},
-            Vector{-0.73, 1.08, 7.00},
+        { -- Snake
+            Vector(35.36, 1.08, 37.55),
+            Vector(8.26, 1.08, 22.19),
+            Vector(26.45, 1.08, 22.36),
+            Vector(-0.73, 1.08, 7.00),
         },
     },
     { -- 5 Player
         { -- Standard
-            Vector{3.32, 1.08, 32.42},
-            Vector{25.46, 1.08, 24.68},
-            Vector{38.99, 1.08, 32.44},
-            Vector{12.18, 1.08, 16.81},
-            Vector{25.62, 1.08, 9.32},
+            Vector(3.32, 1.08, 32.42),
+            Vector(25.46, 1.08, 24.68),
+            Vector(38.99, 1.08, 32.44),
+            Vector(12.18, 1.08, 16.81),
+            Vector(25.62, 1.08, 9.32),
         },
         { -- Thematic
-            Vector{30.89, 1.07, 21.51}, --E
-            Vector{11.01, 1.07, 21.48}, --W
-            Vector{21.01, 1.07, 38.47}, --NE
-            Vector{0.98, 1.07, 38.35}, --NW
-            Vector{40.82, 1.07, 4.66}, --SE
+            Vector(30.89, 1.08, 23.51), -- E
+            Vector(11.01, 1.08, 23.48), -- W
+            Vector(21.01, 1.08, 40.47), -- NE
+            Vector(0.98, 1.08, 40.35), -- NW
+            Vector(40.82, 1.08, 6.66), -- SE
         },
         {}, -- Random
         {}, -- Random with Thematic
-        {  -- Snail
-            Vector{26.42, 1.08, 41.16},
-            Vector{13.22, 1.08, 33.29},
-            Vector{26.68, 1.08, 25.70},
-            Vector{8.72, 1.08, 10.08},
-            Vector{26.67, 1.08, 9.98},
+        { -- Snail
+            Vector(26.42, 1.08, 41.16),
+            Vector(13.22, 1.08, 33.29),
+            Vector(26.68, 1.08, 25.70),
+            Vector(8.72, 1.08, 10.08),
+            Vector(26.67, 1.08, 9.98),
         },
         { -- Peninsula
-            Vector{10.81, 1.08, 32.03},
-            Vector{26.27, 1.08, 32.27},
-            Vector{18.66, 1.08, 18.81},
-            Vector{41.71, 1.07, 23.07},
-            Vector{57.12, 1.07, 13.96},
+            Vector(10.81, 1.08, 32.03),
+            Vector(26.27, 1.08, 32.27),
+            Vector(18.66, 1.08, 18.81),
+            Vector(41.71, 1.08, 23.07),
+            Vector(57.12, 1.08, 13.96),
         },
         { -- V
-            Vector{0.17, 1.07, 33.75},
-            Vector{40.67, 1.07, 41.60},
-            Vector{8.96, 1.07, 18.16},
-            Vector{31.52, 1.07, 26.14},
-            Vector{22.40, 1.07, 10.67},
+            Vector(0.17, 1.08, 33.75),
+            Vector(40.67, 1.08, 41.60),
+            Vector(8.96, 1.08, 18.16),
+            Vector(31.52, 1.08, 26.14),
+            Vector(22.40, 1.08, 10.67),
         },
     },
     { -- 6 Player
         { -- Standard
-            Vector{4.31, 1.08, 29.13},
-            Vector{19.72, 1.08, 29.32},
-            Vector{43.04, 1.08, 33.51},
-            Vector{12.25, 1.08, 15.90},
-            Vector{35.44, 1.08, 20.02},
-            Vector{50.90, 1.08, 20.26},
+            Vector(4.31, 1.08, 29.13),
+            Vector(19.72, 1.08, 29.32),
+            Vector(43.04, 1.08, 33.51),
+            Vector(12.25, 1.08, 15.90),
+            Vector(35.44, 1.08, 20.02),
+            Vector(50.90, 1.08, 20.26),
         },
         { -- Thematic
-            Vector{33.53, 1.07, 21.51}, --E
-            Vector{13.65, 1.07, 21.48}, --W
-            Vector{23.65, 1.07, 38.47}, --NE
-            Vector{3.62, 1.07, 38.35}, --NW
-            Vector{43.40, 1.07, 4.63}, --SE
-            Vector{23.59, 1.07, 4.55}, --SW
+            Vector(33.53, 1.08, 23.51), -- E
+            Vector(13.65, 1.08, 23.48), -- W
+            Vector(23.65, 1.08, 40.47), -- NE
+            Vector(3.62, 1.08, 40.35), -- NW
+            Vector(43.40, 1.08, 6.63), -- SE
+            Vector(23.59, 1.08, 6.55), -- SW
         },
         {}, -- Random
         {}, -- Random with Thematic
         { -- Star
-            Vector{33.19, 1.07, 34.36},
-            Vector{40.94, 1.07, 20.76},
-            Vector{33.16, 1.07, 7.18},
-            Vector{17.52, 1.07, 7.25},
-            Vector{9.71, 1.07, 20.79},
-            Vector{17.50, 1.07, 34.33},
+            Vector(33.19, 1.08, 40.36),
+            Vector(40.94, 1.08, 26.76),
+            Vector(33.16, 1.08, 13.18),
+            Vector(17.52, 1.08, 13.25),
+            Vector(9.71, 1.08, 26.79),
+            Vector(17.50, 1.08, 40.33),
         },
         { -- Flower
-            Vector{7.70, 1.07, 41.68},
-            Vector{30.85, 1.07, 38.06},
-            Vector{48.54, 1.07, 41.11},
-            Vector{19.22, 1.07, 27.92},
-            Vector{33.81, 1.07, 22.91},
-            Vector{27.62, 1.07, 6.07},
+            Vector(22.76, 1.08, 43.03),
+            Vector(33.80, 1.08, 22.36),
+            Vector(46.88, 1.08, 10.07),
+            Vector(18.70, 1.08, 25.55),
+            Vector(23.48, 1.08, 10.88),
+            Vector(6.30, 1.08, 5.69),
         },
         { -- Caldera
-            Vector{-0.20, 1.07, 31.44},
-            Vector{13.16, 1.07, 39.17},
-            Vector{31.10, 1.07, 38.86},
-            Vector{8.54, 1.07, 15.76},
-            Vector{31.18, 1.07, 23.41},
-            Vector{21.95, 1.07, 8.04},
+            Vector(-0.20, 1.08, 31.44),
+            Vector(13.16, 1.08, 39.17),
+            Vector(31.10, 1.08, 38.86),
+            Vector(8.54, 1.08, 15.76),
+            Vector(31.18, 1.08, 23.41),
+            Vector(21.95, 1.08, 8.04),
         },
     },
 }
@@ -2340,12 +2365,12 @@ rotMap = {
             Vector{0.00, 269.99, 0.00},
         },
         { -- Flower
-            Vector{0.00, 109.62, 0.00},
-            Vector{0.00, 229.64, 0.00},
-            Vector{0.00, 229.62, 0.00},
-            Vector{0.00, 109.65, 0.00},
-            Vector{0.00, 349.62, 0.00},
-            Vector{0.00, 349.61, 0.00},
+            Vector{0.00, 162.62, 0.00},
+            Vector{0.00, 282.64, 0.00},
+            Vector{0.00, 282.62, 0.00},
+            Vector{0.00, 162.65, 0.00},
+            Vector{0.00, 42.62, 0.00},
+            Vector{0.00, 42.61, 0.00},
         },
         { -- Caldera
             Vector{0.00, 120.42, 0.00},
@@ -2432,6 +2457,15 @@ function MapPlacen(posTable, rotTable)
     if SetupChecker.getVar("optionalExtraBoard") then
         rand = math.random(1,numBoards)
     end
+
+    -- We use the average position of the boards in the island layout
+    -- as the origin to scale from.
+    local scaleOrigin = Vector(0,0,0)
+    for i=1, numBoards do
+        scaleOrigin = scaleOrigin + posTable[i]
+    end
+    scaleOrigin = scaleOrigin * (1./ numBoards)
+
     for i=1, numBoards do
         local temp = nil
         if isThematic() then
@@ -2440,14 +2474,14 @@ function MapPlacen(posTable, rotTable)
                     position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themRedoGuids[numBoards][i],
                     smooth = false,
-                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
                 })
             else
                 temp = ThematicMapBag.takeObject({
                     position = ThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themGuids[numBoards][i],
                     smooth = false,
-                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
                 })
             end
         else
@@ -2476,16 +2510,18 @@ function MapPlacen(posTable, rotTable)
                 index = index,
                 position = StandardMapBag.getPosition() + Vector(0,-5,0),
                 smooth = false,
-                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
             })
         end
     end
 end
-function BoardCallback(obj,pos,rot,extra)
+function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
     obj.setRotationSmooth(rot, false, true)
-    obj.setPositionSmooth(pos, false, true)
+    local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
+    obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
+    obj.scale(scaleFactor.size)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
 setupMapCoObj = nil
@@ -2839,6 +2875,36 @@ function refreshScore()
 
     UI.setAttribute("scoreWin", "text", "Victory: "..win)
     UI.setAttribute("scoreLose", "text", "Defeat: "..lose)
+end
+-----
+spiritsScanned = {}
+function spiritUpdater()
+    local sScript = sourceSpirit.getLuaScript()
+    local sStrPos = string.find(sScript,"\n")
+    if sStrPos == nil then
+        return
+    end
+    local sHeader = string.sub(sScript,1,sStrPos-10)
+
+    for _,v in pairs (getAllObjects()) do
+        if spiritsScanned[v.guid] then
+        elseif v ~= sourceSpirit and v.type == "Tile" and v.name == "Custom_Tile" then
+            local aScript = v.getLuaScript()
+            if aScript ~= nil then
+                local aStrPos = string.find(aScript,"\n")
+                if aStrPos ~= nil then
+                    local aHeader = string.sub(aScript,1,sStrPos-10)
+                    if aHeader == sHeader and aScript ~= sScript then
+                        spiritsScanned[v.guid] = true
+                        v.setLuaScript(sScript)
+                        v = v.reload()
+                        v.highlightOn("Brown",10)
+                        broadcastToAll(v.getName().." has been updated to the current version!")
+                    end
+                end
+            end
+        end
+    end
 end
 ---------------
 function wt(some)

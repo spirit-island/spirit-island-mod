@@ -191,8 +191,8 @@ function updateAdversaryList()
 
     local t = self.UI.getXmlTable()
     for _,v in pairs(t) do
-        updateDropdownList(v, "leadingAdversary", adversaryList, -1, leadName)
-        updateDropdownList(v, "supportingAdversary", adversaryList, -1, supportName)
+        updateDropdownList(v, "leadingAdversary", adversaryList, leadName)
+        updateDropdownList(v, "supportingAdversary", adversaryList, supportName)
     end
     self.UI.setXmlTable(t, {})
 end
@@ -226,7 +226,7 @@ function updateScenarioList()
 
     local t = self.UI.getXmlTable()
     for _,v in pairs(t) do
-        updateDropdownList(v, "scenario", scenarioList, -1, scenarioName)
+        updateDropdownList(v, "scenario", scenarioList, scenarioName)
     end
     self.UI.setXmlTable(t, {})
 end
@@ -264,9 +264,6 @@ function toggleNumPlayers(_, value)
     updateNumPlayers(value, true)
 end
 function updateNumPlayers(value, updateUI)
-    if Global.getVar("alternateSetupIndex") > 4 then
-        Global.setVar("alternateSetupIndex", 1)
-    end
     local numPlayers = tonumber(value)
     if numPlayers > 5 and optionalExtraBoard then
         numPlayers = 5
@@ -285,15 +282,28 @@ function updateNumPlayers(value, updateUI)
 end
 function updateBoardLayouts(numPlayers)
     local t = self.UI.getXmlTable()
+    local numBoards = numPlayers
     if optionalExtraBoard then
-        numPlayers = numPlayers + 1
+        numBoards = numPlayers + 1
     end
+    layoutNames = {
+        "Balanced",
+        "Thematic",
+        "Random",
+        "Random with Thematic",
+        table.unpack(Global.getVar("alternateBoardLayoutNames")[numBoards])
+    }
+
+    if not tFind(layoutNames, Global.getVar("boardLayout")) then
+        Global.setVar("boardLayout", "Balanced")
+    end
+
     for _,v in pairs(t) do
-        updateDropdownList(v, "boardLayout", Global.getVar("alternateSetupNames")[numPlayers], Global.getVar("alternateSetupIndex"))
+        updateDropdownList(v, "boardLayout", layoutNames, Global.getVar("boardLayout"))
     end
     self.UI.setXmlTable(t, {})
 end
-function updateDropdownList(t, class, values, selectedIndex, selectedValue)
+function updateDropdownList(t, class, values, selectedValue)
     if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
         if t.attributes.id == class then
             t.children = {}
@@ -304,15 +314,13 @@ function updateDropdownList(t, class, values, selectedIndex, selectedValue)
                     attributes={},
                     children={},
                 }
-                if i == selectedIndex then
-                    t.children[i].attributes.selected = "true"
-                elseif v == selectedValue then
+                if v == selectedValue then
                     t.children[i].attributes.selected = "true"
                 end
             end
         else
             for _, v in pairs(t.children) do
-                updateDropdownList(v, class, values, selectedIndex, selectedValue)
+                updateDropdownList(v, class, values, selectedValue)
             end
         end
     end
@@ -509,13 +517,7 @@ function updateBoardLayout(value, updateUI)
         Global.setVar("useRandomBoard", false)
         Global.setVar("includeThematic", false)
     end
-    local index = 1
-    for i,v in pairs(Global.getVar("alternateSetupNames")[Global.getVar("numPlayers")]) do
-        if v == value then
-            index = i
-        end
-    end
-    Global.setVar("alternateSetupIndex", index)
+    Global.setVar("boardLayout", value)
     updateDifficulty()
 
     if updateUI then
@@ -615,8 +617,8 @@ function difficultyCheck(params)
             difficulty = (0.5 * difficulty) + difficulty2
         end
     end
-    local alternateSetupIndex = Global.getVar("alternateSetupIndex")
-    if alternateSetupIndex == 2 or params.thematic then
+    local boardLayout = Global.getVar("boardLayout")
+    if boardLayout == "Thematic" or params.thematic then
         if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
             difficulty = difficulty + 1
         else
@@ -632,7 +634,7 @@ function difficultyCheck(params)
     if optionalExtraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
-        if alternateSetupIndex == 2 or params.thematic then
+        if boardLayout == "Thematic" or params.thematic then
             difficulty = difficulty - (intNum / 2)
         end
     end
@@ -1088,4 +1090,13 @@ function wt(some)
     while os.clock() < Time do
         coroutine.yield(0)
     end
+end
+
+function tFind(table, needle)
+    for i, value in pairs(table) do
+        if value == needle then
+            return i
+        end
+    end
+    return nil
 end

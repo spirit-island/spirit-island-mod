@@ -3699,10 +3699,7 @@ end
 
 -- Trade places with selected seat.
 function onClickedSitHere(target_obj, source_color, alt_click)
-    -- player = Player[source_color]
-    target_color = target_obj.getVar("playerColor")
-    -- source_obj = playerBlocks[source_color]
-
+    local target_color = target_obj.getVar("playerColor")
     if not playerBlocks[source_color] then
         swapPlayerColors(source_color, target_color)
     else
@@ -3712,9 +3709,7 @@ end
 
 -- Trade colors with selected seat.
 function onClickedChangeColor(target_obj, source_color, alt_click)
-    -- player = Player[source_color]
-    target_color = target_obj.getVar("playerColor")
-    -- source_obj = playerBlocks[source_color]
+    local target_color = target_obj.getVar("playerColor")
 
     if not playerBlocks[source_color] then
         swapPlayerColors(source_color, target_color)
@@ -3725,9 +3720,7 @@ end
 
 -- Play spirit
 function onClickedPlaySpirit(target_obj, source_color, alt_click)
-    -- player = Player[source_color]
-    target_color = target_obj.getVar("playerColor")
-    -- source_obj = playerBlocks[source_color]
+    local target_color = target_obj.getVar("playerColor")
 
     swapPlayerColors(source_color, target_color)
 end

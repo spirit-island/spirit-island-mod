@@ -137,7 +137,7 @@ function addAdversary(obj)
     updateAdversaryList()
 end
 function onObjectDestroy(obj)
-    if spiritTags[obj.guid] ~= nil then
+    if obj.hasTag("Spirit") then
         removeSpirit({spirit=obj.guid})
     elseif not setupStarted and obj.type == "Card" then
         local objType = type(obj.getVar("difficulty"))

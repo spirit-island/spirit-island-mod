@@ -15,10 +15,13 @@
   "Description": "B&C",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200277865,
-    "g": 0.160323143,
-    "b": 0.151761413
+    "r": 0.200277746,
+    "g": 0.160323024,
+    "b": 0.1517613
   },
+  "Tags": [
+    "Spirit"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,

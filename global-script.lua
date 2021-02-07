@@ -2851,28 +2851,13 @@ end
 spiritsScanned = {}
 function spiritUpdater()
     local sScript = sourceSpirit.getLuaScript()
-    local sStrPos = string.find(sScript,"\n")
-    if sStrPos == nil then
-        return
-    end
-    local sHeader = string.sub(sScript,1,sStrPos-10)
-
-    for _,v in pairs (getAllObjects()) do
-        if spiritsScanned[v.guid] then
-        elseif v ~= sourceSpirit and v.type == "Tile" and v.name == "Custom_Tile" then
-            local aScript = v.getLuaScript()
-            if aScript ~= nil then
-                local aStrPos = string.find(aScript,"\n")
-                if aStrPos ~= nil then
-                    local aHeader = string.sub(aScript,1,sStrPos-10)
-                    if aHeader == sHeader and aScript ~= sScript then
-                        spiritsScanned[v.guid] = true
-                        v.setLuaScript(sScript)
-                        v = v.reload()
-                        v.highlightOn("Brown",10)
-                        broadcastToAll(v.getName().." has been updated to the current version!")
-                    end
-                end
+    for _,v in pairs(getObjectsWithTag("Spirit")) do
+        if not spiritsScanned[v.guid] then
+            spiritsScanned[v.guid] = true
+            if v.getLuaScript() ~= sScript then
+                v.setLuaScript(sScript)
+                v = v.reload()
+                broadcastToAll(v.getName().." has been updated to the current version!")
             end
         end
     end

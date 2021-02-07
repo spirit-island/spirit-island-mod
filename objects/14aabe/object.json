@@ -15,10 +15,13 @@
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200285017,
-    "g": 0.1603303,
-    "b": 0.151768565
+    "r": 0.2002849,
+    "g": 0.160330176,
+    "b": 0.151768446
   },
+  "Tags": [
+    "Spirit"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,

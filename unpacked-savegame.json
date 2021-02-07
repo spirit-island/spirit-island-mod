@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/7/2021 10:12:42 AM",
+  "Date": "2/7/2021 10:58:50 AM",
   "VersionNumber": "v13.0.4",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -113,6 +113,10 @@
       {
         "displayed": "Unique",
         "normalized": "unique"
+      },
+      {
+        "displayed": "Spirit",
+        "normalized": "spirit"
       }
     ]
   },

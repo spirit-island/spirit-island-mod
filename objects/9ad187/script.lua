@@ -833,17 +833,17 @@ end
 
 function randomSpirit(player)
     if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        broadcastToColor("You already picked a spirit", player.color, "Red")
+        Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
 
     local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
     spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
-    broadcastToColor("Your randomised spirit is "..spirit.getName(), player.color, "Blue")
+    Player[player.color].broadcast("Your randomised spirit is "..spirit.getName(), "Blue")
 end
 function randomJESpirit(player)
     if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        broadcastToColor("You already picked a spirit", player.color, "Red")
+        Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
 
@@ -853,18 +853,18 @@ function randomJESpirit(player)
     end
     local spirit = getObjectFromGUID(guid)
     spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
-    broadcastToColor("Your randomised Jagged Earth spirit is "..spirit.getName(), player.color, "Blue")
+    Player[player.color].broadcast("Your randomised Jagged Earth spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
     if obj.getButtons() ~= nil and #obj.getButtons() ~= 0 then
-        broadcastToColor("You already have Spirit options", player.color, Color.SoftYellow)
+        Player[player.color].broadcast("You already have Spirit options", Color.SoftYellow)
         return
     elseif #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        broadcastToColor("You already picked a spirit", player.color, "Red")
+        Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
-    broadcastToColor("Your 4 randomised spirits to choose from are in your play area", player.color, Color.SoftBlue)
+    Player[player.color].broadcast("Your 4 randomised spirits to choose from are in your play area", Color.SoftBlue)
 
     local spirit1 = getNewSpirit()
     local spirit2 = getNewSpirit()
@@ -958,7 +958,7 @@ function pickSpirit(obj, index, color)
         getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, aspect = "Random"})
         obj.clearButtons()
     else
-        broadcastToColor("Spirit unavailable getting new one", color, Color.SoftYellow)
+        Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
         local spirit = getNewSpirit()
         if spirit ~= nil then
             obj.editButton({

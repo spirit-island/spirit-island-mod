@@ -116,7 +116,7 @@ dahanDamage = "d936f3"
 -----
 alternateSetupNames = {
     {"Balanced","Thematic","Random","Random with Thematic"},
-    {"Balanced","Thematic","Random","Random with Thematic","Fragment","Opposite Shores"},
+    {"Balanced","Thematic","Random","Random with Thematic","Fragment","Opposite Shores","Fragment 2","Top to Top","Coastline"},
     {"Balanced","Thematic","Random","Random with Thematic","Coastline","Sunrise"},
     {"Balanced","Thematic","Random","Random with Thematic","Leaf","Snake"},
     {"Balanced","Thematic","Random","Random with Thematic","Snail","Peninsula","V"},
@@ -2049,6 +2049,18 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector(-4.22, 1.08, 18.91),
             Vector(13.78, 1.08, 19.09),
         },
+        { -- Fragment 2
+            Vector(-5.44, 1.08, 18.99),
+            Vector(10.12, 1.08, 19.08),
+        },
+        { -- Top to Top
+            Vector(9.13, 1.08, 25.29),
+            Vector(-0.06, 1.08, 9.62),
+        },
+        { -- Coastline
+            Vector(2.54, 1.08, 10.34),
+            Vector(20.38, 1.08, 9.96),
+        },
     },
     { -- 3 Player
         { -- Standard
@@ -2215,6 +2227,18 @@ rotMap = {
         { -- Opposite Shores
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
+        },
+        { -- Fragment 2
+            Vector(0.00, 270.00, 0.00),
+            Vector(0.00, 330.00, 0.00),
+        },
+        { -- Top to Top
+            Vector(0.00, 0.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+        },
+        { -- Coastline
+            Vector(0.00, 240.69, 0.00),
+            Vector(0.00, 240.69, 0.00),
         },
     },
     { -- 3 Player

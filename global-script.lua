@@ -2436,6 +2436,7 @@ function MapPlacen(posTable, rotTable)
     end
     scaleOrigin = scaleOrigin * (1./ numBoards)
 
+    local count = 1
     for i=1, numBoards do
         local temp = nil
         if isThematic() then
@@ -2457,7 +2458,6 @@ function MapPlacen(posTable, rotTable)
         else
             local list = StandardMapBag.getObjects()
             local index = 1
-            local count = 1
             for _,value in pairs(list) do
                 if useBoards and useBoards[count] ~= nil then
                     if value.name == useBoards[count] then

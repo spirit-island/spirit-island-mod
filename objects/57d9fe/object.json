@@ -1,0 +1,44 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": -48.94001007080078,
+    "posY": 0.9606502056121826,
+    "posZ": -39.30508804321289,
+    "rotX": 89.98021697998047,
+    "rotY": -3.7725303769775564e-08,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "version 1.1.0",
+    "colorstate": {
+      "r": 0.7334495186805725,
+      "g": 0.7334495186805725,
+      "b": 0.7334495186805725
+    },
+    "fontSize": 64
+  }
+}

@@ -2,6 +2,7 @@ canStart = true
 
 adversaries = {
     ["None"] = "",
+    ["Random"] = "",
     ["Prussia"] = "dd3d47",
     ["England"] = "b765cf",
     ["Sweden"] = "f114f8",
@@ -10,8 +11,10 @@ adversaries = {
     ["Russia"] = "1ea4cf",
     ["Scotland"] = "37a592",
 }
+numAdversaries = 7
 scenarios = {
     ["None"] = "",
+    ["Random"] = "",
     ["Blitz"] = "1b39da",
     ["Guard the Isle's Heart"] = "04397d",
     ["Rituals of Terror"] = "7ac013",
@@ -38,73 +41,283 @@ optionalStrangeMadness = false
 optionalBlightSetup = true
 optionalExtraBoard = false
 optionalThematicRedo = false
+optionalBoardPairings = true
 
 exploratoryVOTD = false
 exploratoryBODAN = false
 exploratoryWar = false
 
 updateLayoutsID = 0
+setupStarted = false
 
+function onSave()
+    local data_table = {}
+
+    local adversaryList = {}
+    for name,guid in pairs(adversaries) do
+        table.insert(adversaryList, {name=name, guid=guid})
+    end
+    data_table.adversaryList = adversaryList
+
+    local scenarioList = {}
+    for name,guid in pairs(scenarios) do
+        table.insert(scenarioList, {name=name, guid=guid})
+    end
+    data_table.scenarioList = scenarioList
+
+    saved_data = JSON.encode(data_table)
+    return saved_data
+end
+function onLoad(saved_data)
+    if Global.getVar("gameStarted") then
+        self.UI.hide("panelSetup")
+        setupStarted = true
+    end
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+
+        adversaries = {}
+        local count = 0
+        for _,params in pairs(loaded_data.adversaryList) do
+            adversaries[params.name] = params.guid
+            if params.guid ~= "" then
+                count = count + 1
+            end
+        end
+        numAdversaries = count
+
+        scenarios = {}
+        count = 0
+        for _,params in pairs(loaded_data.scenarioList) do
+            scenarios[params.name] = params.guid
+            if params.guid ~= "" then
+                count = count + 1
+            end
+        end
+        numScenarios = count
+
+        if not setupStarted then
+            toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
+            toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
+
+            if Global.getVar("BnCAdded") then
+                Global.setVar("useBnCEvents", true)
+                self.UI.hide("bnc")
+                self.UI.setAttribute("bncEvents", "isOn", "true")
+            end
+            if Global.getVar("JEAdded") then
+                Global.setVar("useJEEvents", true)
+                self.UI.hide("je")
+                self.UI.setAttribute("jeEvents", "isOn", "true")
+            end
+
+            Wait.frames(updateAdversaryList, 1)
+            Wait.frames(updateScenarioList, 3)
+            Wait.frames(updateDifficulty, 5)
+        end
+    end
+end
+
+function onObjectSpawn(obj)
+    if not setupStarted and obj.type == "Card" then
+        local objType = type(obj.getVar("difficulty"))
+        if objType == "table" then
+            addAdversary(obj)
+        elseif objType == "number" then
+            -- Scenario
+        end
+    end
+end
+function addAdversary(obj)
+    if adversaries[obj.getName()] == nil then
+        numAdversaries = numAdversaries + 1
+    end
+    adversaries[obj.getName()] = obj.guid
+    updateAdversaryList()
+end
 function onObjectDestroy(obj)
     if spiritTags[obj.guid] ~= nil then
         removeSpirit({spirit=obj.guid})
+    elseif not setupStarted and obj.type == "Card" then
+        local objType = type(obj.getVar("difficulty"))
+        if objType == "table" then
+            removeAdversary(obj)
+        elseif objType == "number" then
+            removeScenario(obj)
+        end
     end
+end
+function removeAdversary(obj)
+    for name,guid in pairs(adversaries) do
+        if guid ~= "" and guid == obj.guid then
+            adversaries[name] = nil
+            numAdversaries = numAdversaries - 1
+            if Global.getVar("adversaryCard") == obj then
+                Global.setVar("adversaryCard", nil)
+                toggleLeadingLevel(nil, 0)
+            end
+            if Global.getVar("adversaryCard2") == obj then
+                Global.setVar("adversaryCard2", nil)
+                toggleSupportingLevel(nil, 0)
+            end
+            Wait.frames(updateAdversaryList, 1)
+            break
+        end
+    end
+end
+function updateAdversaryList()
+    local adversaryList = {}
+    for name,_ in pairs(adversaries) do
+        table.insert(adversaryList, name)
+    end
+
+    local leadName = "None"
+    local adversary = Global.getVar("adversaryCard")
+    if adversary ~= nil then
+        leadName = adversary.getName()
+    elseif Global.getVar("useRandomAdversary") then
+        leadName = "Random"
+    end
+    local supportName = "None"
+    local adversary = Global.getVar("adversaryCard2")
+    if adversary ~= nil then
+        supportName = adversary.getName()
+    elseif Global.getVar("useSecondAdversary") then
+        supportName = "Random"
+    end
+
+    local t = self.UI.getXmlTable()
+    for _,v in pairs(t) do
+        updateDropdownList(v, "leadingAdversary", adversaryList, -1, leadName)
+        updateDropdownList(v, "supportingAdversary", adversaryList, -1, supportName)
+    end
+    self.UI.setXmlTable(t, {})
+end
+function removeScenario(obj)
+    for name,guid in pairs(scenarios) do
+        if guid ~= "" and guid == obj.guid then
+            scenarios[name] = nil
+            numScenarios = numScenarios - 1
+            if Global.getVar("scenarioCard") == obj then
+                Global.setVar("scenarioCard", nil)
+                updateDifficulty()
+            end
+            Wait.frames(updateScenarioList, 1)
+            break
+        end
+    end
+end
+function updateScenarioList()
+    local scenarioList = {}
+    for name,_ in pairs(scenarios) do
+        table.insert(scenarioList, name)
+    end
+
+    local scenarioName = "None"
+    local scenario = Global.getVar("scenarioCard")
+    if scenario ~= nil then
+        scenarioName = scenario.getName()
+    elseif Global.getVar("useRandomScenario") then
+        scenarioName = "Random"
+    end
+
+    local t = self.UI.getXmlTable()
+    for _,v in pairs(t) do
+        updateDropdownList(v, "scenario", scenarioList, -1, scenarioName)
+    end
+    self.UI.setXmlTable(t, {})
+end
+function randomAdversary()
+    local value = math.random(1,numAdversaries)
+    local i = 1
+    for _,guid in pairs(adversaries) do
+        if guid == "" then
+            -- noop
+        elseif i == value then
+            return getObjectFromGUID(guid)
+        else
+            i = i + 1
+        end
+    end
+    return nil
+end
+function randomScenario()
+    local value = math.random(1,numScenarios)
+    local i = 1
+    for _,guid in pairs(scenarios) do
+        if guid == "" then
+            -- noop
+        elseif i == value then
+            return getObjectFromGUID(guid)
+        else
+            i = i + 1
+        end
+    end
+    return nil
 end
 
 ---- Setup UI Section
 function toggleNumPlayers(_, value)
-    if Global.getVar("alternateSetupIndex") > 1 then
+    if Global.getVar("alternateSetupIndex") > 4 then
         Global.setVar("alternateSetupIndex", 1)
     end
-    Global.setVar("numPlayers", tonumber(value))
-    self.UI.setAttribute("numPlayers", "text", "Number of Players: "..value)
-    self.UI.setAttribute("numPlayersSlider", "value", value)
+    local numPlayers = tonumber(value)
+    if numPlayers > 5 and optionalExtraBoard then
+        numPlayers = 5
+    end
+    Global.setVar("numPlayers", numPlayers)
+    self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
+    self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
     -- Stop previous timer and start a new one
     if updateLayoutsID ~= 0 then
         Wait.stop(updateLayoutsID)
     end
-    updateLayoutsID = Wait.time(function() updateBoardLayouts(value) end, 0.5)
+    updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
 end
-function updateBoardLayouts(value)
+function updateBoardLayouts(numPlayers)
     local t = self.UI.getXmlTable()
+    if optionalExtraBoard then
+        numPlayers = numPlayers + 1
+    end
     for _,v in pairs(t) do
-        updateDropdownList(v, "boardLayout", Global.getVar("alternateSetupNames")[tonumber(value)], Global.getVar("alternateSetupIndex"))
+        updateDropdownList(v, "boardLayout", Global.getVar("alternateSetupNames")[numPlayers], Global.getVar("alternateSetupIndex"))
     end
     self.UI.setXmlTable(t, {})
 end
-function updateDropdownList(t, class, values, selected)
+function updateDropdownList(t, class, values, selectedIndex, selectedValue)
     if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
         if t.attributes.id == class then
             t.children = {}
             for i,v in pairs(values) do
-                -- Thematic is index 0, but should appear second in list
-                local newIndex = i + 1
-                if i == 0 then
-                    newIndex = 2
-                elseif i == 1 then
-                    newIndex = 1
-                end
-                t.children[newIndex] = {
+                t.children[i] = {
                     tag="Option",
                     value=v,
                     attributes={},
                     children={},
                 }
-                if i == selected then
-                    t.children[newIndex].attributes.selected = "true"
+                if i == selectedIndex then
+                    t.children[i].attributes.selected = "true"
+                elseif v == selectedValue then
+                    t.children[i].attributes.selected = "true"
                 end
             end
         else
             for _, v in pairs(t.children) do
-                updateDropdownList(v, class, values, selected)
+                updateDropdownList(v, class, values, selectedIndex, selectedValue)
             end
         end
     end
 end
 
 function toggleScenario(_, value)
-    Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
+    if value == "Random" then
+        Global.setVar("scenarioCard", nil)
+        Global.setVar("useRandomScenario", true)
+    else
+        Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
+        Global.setVar("useRandomScenario", false)
+    end
     updateDifficulty()
 
     -- Wait for difficulty to update
@@ -118,9 +331,16 @@ function updateScenarioSelection(name)
     self.UI.setXmlTable(t, {})
 end
 
+-- TODO fix double adversary randomizer
 function toggleLeadingAdversary(_, value)
-    Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
-    if value == "None" then
+    if value == "Random" then
+        Global.setVar("adversaryCard", nil)
+        Global.setVar("useRandomAdversary", true)
+    else
+        Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
+        Global.setVar("useRandomAdversary", false)
+    end
+    if value == "None" or value == "Random" then
         toggleLeadingLevel(nil, 0)
     else
         updateDifficulty()
@@ -138,8 +358,14 @@ function updateLeadingSelection(name)
     self.UI.setXmlTable(t, {})
 end
 function toggleSupportingAdversary(_, value)
-    Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
-    if value == "None" then
+    if value == "Random" then
+        Global.setVar("adversaryCard2", nil)
+        Global.setVar("useSecondAdversary", true)
+    else
+        Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
+        Global.setVar("useSecondAdversary", false)
+    end
+    if value == "None" or value == "Random" then
         toggleSupportingLevel(nil, 0)
     else
         updateDifficulty()
@@ -184,44 +410,6 @@ function toggleSupportingLevel(player, value)
     self.UI.setAttribute("supportingLevelSlider", "value", value)
     updateDifficulty()
 end
-function addAdversary(params)
-    adversaries[params.obj.getName()] = params.obj.guid
-    updateAdversaryList()
-end
-function checkAdversaries()
-    local adversaryRemoved = false
-    for name,guid in pairs(adversaries) do
-        if guid ~= "" then
-            local obj = getObjectFromGUID(guid)
-            if obj == nil then
-                adversaries[name] = nil
-                adversaryRemoved = true
-                if Global.getVar("adversaryCard") == nil then
-                    toggleLeadingLevel(nil, 0)
-                end
-                if Global.getVar("adversaryCard2") == nil then
-                    toggleSupportingLevel(nil, 0)
-                end
-            end
-        end
-    end
-    if adversaryRemoved then
-        -- Wait for levels to update
-        Wait.frames(updateAdversaryList, 1)
-    end
-end
-function updateAdversaryList()
-    local adversaryList = {}
-    for name,_ in pairs(adversaries) do
-        table.insert(adversaryList, name)
-    end
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownList(v, "leadingAdversary", adversaryList)
-        updateDropdownList(v, "supportingAdversary", adversaryList)
-    end
-    self.UI.setXmlTable(t, {})
-end
 
 function toggleBlightCard()
     local useBlightCard = Global.getVar("useBlightCard")
@@ -229,15 +417,25 @@ function toggleBlightCard()
     Global.setVar("useBlightCard", useBlightCard)
     self.UI.setAttribute("blightCard", "isOn", useBlightCard)
 end
-function toggleEventDeck()
-    if not Global.getVar("BnCAdded") and not Global.getVar("JEAdded") then
-        self.UI.setAttribute("eventDeck", "isOn", "false")
+function toggleBnCEvents()
+    if not Global.getVar("BnCAdded") then
+        self.UI.setAttribute("bncEvents", "isOn", "false")
         return
     end
-    local useEventDeck = Global.getVar("useEventDeck")
-    useEventDeck = not useEventDeck
-    Global.setVar("useEventDeck", useEventDeck)
-    self.UI.setAttribute("eventDeck", "isOn", useEventDeck)
+    local useBnCEvents = Global.getVar("useBnCEvents")
+    useBnCEvents = not useBnCEvents
+    Global.setVar("useBnCEvents", useBnCEvents)
+    self.UI.setAttribute("bncEvents", "isOn", useBnCEvents)
+end
+function toggleJEEvents()
+    if not Global.getVar("JEAdded") then
+        self.UI.setAttribute("jeEvents", "isOn", "false")
+        return
+    end
+    local useJEEvents = Global.getVar("useJEEvents")
+    useJEEvents = not useJEEvents
+    Global.setVar("useJEEvents", useJEEvents)
+    self.UI.setAttribute("jeEvents", "isOn", useJEEvents)
 end
 
 function updateDropdownSelection(t, class, value)
@@ -258,13 +456,22 @@ function updateDropdownSelection(t, class, value)
     end
 end
 function toggleBoardLayout(_, value)
+    if value == "Random" then
+        Global.setVar("useRandomBoard", true)
+        Global.setVar("includeThematic", false)
+    elseif value == "Random with Thematic" then
+        Global.setVar("useRandomBoard", true)
+        Global.setVar("includeThematic", true)
+    else
+        Global.setVar("useRandomBoard", false)
+        Global.setVar("includeThematic", false)
+    end
     local index = 1
     for i,v in pairs(Global.getVar("alternateSetupNames")[Global.getVar("numPlayers")]) do
         if v == value then
             index = i
         end
     end
-    print(index)
     Global.setVar("alternateSetupIndex", index)
     updateDifficulty()
 
@@ -281,10 +488,10 @@ end
 
 function addBnC()
     Global.setVar("BnCAdded", true)
-    Global.setVar("useEventDeck", true)
+    Global.setVar("useBnCEvents", true)
 
     self.UI.hide("bnc")
-    self.UI.setAttribute("eventDeck", "isOn", "true")
+    self.UI.setAttribute("bncEvents", "isOn", "true")
     updateDifficulty()
 
     Wait.condition(function() startLuaCoroutine(self, "addBnCCo") end, function() return canStart end)
@@ -301,11 +508,6 @@ function addBnCCo()
     getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
     local blightCards = BnCBag.takeObject({guid = "788333"})
     getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-    BnCBag.takeObject({
-        guid = "05f7b7",
-        position = getObjectFromGUID("b18505").getPosition(),
-        rotation = {0,180,180},
-    })
 
     wt(0.5)
     canStart = true
@@ -313,10 +515,10 @@ function addBnCCo()
 end
 function addJE()
     Global.setVar("JEAdded", true)
-    Global.setVar("useEventDeck", true)
+    Global.setVar("useJEEvents", true)
 
     self.UI.hide("je")
-    self.UI.setAttribute("eventDeck", "isOn", "true")
+    self.UI.setAttribute("jeEvents", "isOn", "true")
     updateDifficulty()
 
     Wait.condition(function() startLuaCoroutine(self, "addJECo") end, function() return canStart end)
@@ -333,11 +535,6 @@ function addJECo()
     getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
     local blightCards = JEBag.takeObject({guid = "8120e0"})
     getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-    JEBag.takeObject({
-        guid = "299e38",
-        position = getObjectFromGUID("b18505").getPosition(),
-        rotation = {0,180,180},
-    })
 
     wt(0.5)
     canStart = true
@@ -345,10 +542,17 @@ function addJECo()
 end
 
 function updateDifficulty()
+    local difficulty = difficultyCheck({})
+    Global.setVar("difficulty", difficulty)
+    self.UI.setAttribute("difficulty", "text", "Total Difficulty: "..difficulty)
+end
+function difficultyCheck(params)
     local difficulty = 0
     local leadingAdversary = Global.getVar("adversaryCard")
     if leadingAdversary ~= nil then
         difficulty = difficulty + leadingAdversary.getVar("difficulty")[Global.getVar("adversaryLevel")]
+    elseif params.lead ~= nil then
+        difficulty = difficulty + params.lead
     end
     local supportingAdversary = Global.getVar("adversaryCard2")
     if supportingAdversary ~= nil then
@@ -358,9 +562,16 @@ function updateDifficulty()
         else
             difficulty = (0.5 * difficulty) + difficulty2
         end
+    elseif params.support ~= nil then
+        local difficulty2 = params.support
+        if difficulty > difficulty2 then
+            difficulty = difficulty + (0.5 * difficulty2)
+        else
+            difficulty = (0.5 * difficulty) + difficulty2
+        end
     end
     local alternateSetupIndex = Global.getVar("alternateSetupIndex")
-    if alternateSetupIndex == 0 then
+    if alternateSetupIndex == 2 or params.thematic then
         if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
             difficulty = difficulty + 1
         else
@@ -370,16 +581,17 @@ function updateDifficulty()
     local scenario = Global.getVar("scenarioCard")
     if scenario ~= nil then
         difficulty = difficulty + scenario.getVar("difficulty")
+    elseif params.scenario ~= nil then
+        difficulty = difficulty + params.scenario
     end
     if optionalExtraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
-        if alternateSetupIndex == 0 then
+        if alternateSetupIndex == 2 then
             difficulty = difficulty - (intNum / 2)
         end
     end
-    Global.setVar("difficulty", difficulty)
-    self.UI.setAttribute("difficulty", "text", "Total Difficulty: "..difficulty)
+    return difficulty
 end
 
 function startGame()
@@ -412,14 +624,28 @@ function closeUI()
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
 end
 
-function toggleRandomizers()
-    local checked = self.UI.getAttribute("randomizers", "isOn")
+function toggleSimpleMode()
+    local checked = self.UI.getAttribute("simpleMode", "isOn")
     if checked == "true" then
-        self.UI.setAttribute("randomizers", "isOn", "false")
+        self.UI.setAttribute("simpleMode", "isOn", "false")
+        self.UI.setAttribute("leadingText", "text", "Adversary")
+        self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
+        self.UI.setAttribute("supportingRow", "visibility", "Invisible")
+        self.UI.setAttribute("events", "visibility", "Invisible")
+        self.UI.setAttribute("optionalCell", "visibility", "Invisible")
+        self.UI.setAttribute("toggles", "visibility", "Invisible")
+        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
         self.UI.setAttribute("panelRandom", "visibility", "Invisible")
+        self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     else
-        self.UI.setAttribute("randomizers", "isOn", "true")
-        self.UI.setAttribute("panelRandom", "visibility", "")
+        self.UI.setAttribute("simpleMode", "isOn", "true")
+        self.UI.setAttribute("leadingText", "text", "Leading Adversary")
+        self.UI.setAttribute("supportingHeader", "visibility", "")
+        self.UI.setAttribute("supportingRow", "visibility", "")
+        self.UI.setAttribute("events", "visibility", "")
+        self.UI.setAttribute("optionalCell", "visibility", "")
+        self.UI.setAttribute("toggles", "visibility", "")
+        showUI()
     end
 end
 function toggleOptionalRules()
@@ -430,6 +656,16 @@ function toggleOptionalRules()
     else
         self.UI.setAttribute("optionalRules", "isOn", "true")
         self.UI.setAttribute("panelOptional", "visibility", "")
+    end
+end
+function toggleRandomizers()
+    local checked = self.UI.getAttribute("randomizers", "isOn")
+    if checked == "true" then
+        self.UI.setAttribute("randomizers", "isOn", "false")
+        self.UI.setAttribute("panelRandom", "visibility", "Invisible")
+    else
+        self.UI.setAttribute("randomizers", "isOn", "true")
+        self.UI.setAttribute("panelRandom", "visibility", "")
     end
 end
 function toggleExploratory()
@@ -443,101 +679,33 @@ function toggleExploratory()
     end
 end
 
-function toggleRandomScenario()
-    local useRandomScenario = Global.getVar("useRandomScenario")
-    useRandomScenario = not useRandomScenario
-    Global.setVar("useRandomScenario", useRandomScenario)
-    self.UI.setAttribute("randomScenario", "isOn", useRandomScenario)
-end
 function toggleMinDifficulty(_, value)
-    Global.setVar("useRandomAdversary", true)
-    self.UI.setAttribute("randomAdversary", "isOn", "true")
-
     local maxDifficulty = Global.getVar("maxDifficulty")
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
         Global.setVar("minDifficulty", maxDifficulty)
-        self.UI.setAttribute("minDifficulty", "text", "Min Adversary Difficulty: "..maxDifficulty)
+        self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..maxDifficulty)
         self.UI.setAttribute("minDifficultySlider", "value", maxDifficulty)
         return
     end
 
     Global.setVar("minDifficulty", minDifficulty)
-    self.UI.setAttribute("minDifficulty", "text", "Min Adversary Difficulty: "..value)
+    self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
-    Global.setVar("useRandomAdversary", true)
-    self.UI.setAttribute("randomAdversary", "isOn", "true")
-
     local minDifficulty = Global.getVar("minDifficulty")
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
         Global.setVar("maxDifficulty", minDifficulty)
-        self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..minDifficulty)
+        self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..minDifficulty)
         self.UI.setAttribute("maxDifficultySlider", "value", minDifficulty)
         return
     end
 
     Global.setVar("maxDifficulty", maxDifficulty)
-    self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..value)
+    self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
-end
-
-function toggleRandomSupportingAdversary()
-    Global.setVar("useRandomAdversary", true)
-    self.UI.setAttribute("randomAdversary", "isOn", "true")
-
-    local useSecondAdversary = Global.getVar("useSecondAdversary")
-    useSecondAdversary = not useSecondAdversary
-    Global.setVar("useSecondAdversary", useSecondAdversary)
-    self.UI.setAttribute("randomSupportingAdversary", "isOn", useSecondAdversary)
-
-    if useSecondAdversary then
-        self.UI.setAttribute("minDifficultySlider", "maxValue", 16)
-        self.UI.setAttribute("maxDifficultySlider", "minValue", 2)
-        self.UI.setAttribute("maxDifficultySlider", "maxValue", 17)
-        if Global.getVar("maxDifficulty") < 2 then
-            Global.setVar("maxDifficulty", 2)
-            self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..2)
-            self.UI.setAttribute("maxDifficultySlider", "value", 2)
-        end
-    else
-        self.UI.setAttribute("minDifficultySlider", "maxValue", 11)
-        self.UI.setAttribute("maxDifficultySlider", "minValue", 1)
-        self.UI.setAttribute("maxDifficultySlider", "maxValue", 11)
-        if Global.getVar("minDifficulty") > 11 then
-            Global.setVar("minDifficulty", 11)
-            self.UI.setAttribute("minDifficulty", "text", "Min Adversary Difficulty: "..11)
-            self.UI.setAttribute("minDifficultySlider", "value", 11)
-        end
-        if Global.getVar("maxDifficulty") > 11 then
-            Global.setVar("maxDifficulty", 11)
-            self.UI.setAttribute("maxDifficulty", "text", "Max Adversary Difficulty: "..11)
-            self.UI.setAttribute("maxDifficultySlider", "value", 11)
-        end
-    end
-end
-function toggleRandomAdversary()
-    local useRandomAdversary = Global.getVar("useRandomAdversary")
-    useRandomAdversary = not useRandomAdversary
-    Global.setVar("useRandomAdversary", useRandomAdversary)
-    self.UI.setAttribute("randomAdversary", "isOn", useRandomAdversary)
-end
-function toggleRandomLayoutThematic()
-    Global.setVar("useRandomBoard", true)
-    self.UI.setAttribute("randomLayout", "isOn", "true")
-
-    local includeThematic = Global.getVar("includeThematic")
-    includeThematic = not includeThematic
-    Global.setVar("includeThematic", includeThematic)
-    self.UI.setAttribute("randomLayoutThematic", "isOn", includeThematic)
-end
-function toggleRandomLayout()
-    local useRandomBoard = Global.getVar("useRandomBoard")
-    useRandomBoard = not useRandomBoard
-    Global.setVar("useRandomBoard", useRandomBoard)
-    self.UI.setAttribute("randomLayout", "isOn", useRandomBoard)
 end
 
 function randomSpirit(player)
@@ -769,10 +937,25 @@ function toggleExtraBoard()
     optionalExtraBoard = not optionalExtraBoard
     self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
     updateDifficulty()
+
+    local numPlayers = Global.getVar("numPlayers")
+    if optionalExtraBoard and numPlayers > 5 then
+        toggleNumPlayers(nil, 5)
+    else
+        -- Stop previous timer and start a new one
+        if updateLayoutsID ~= 0 then
+            Wait.stop(updateLayoutsID)
+        end
+        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+    end
 end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
+end
+function toggleBoardPairings()
+    optionalBoardPairings = not optionalBoardPairings
+    self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
 end
 
 function toggleVOTD()

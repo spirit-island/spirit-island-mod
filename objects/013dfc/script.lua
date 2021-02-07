@@ -74,7 +74,6 @@ function SetupSpirit(object_pick,player_color)
     local xOffset = 1
     local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
     if #PlayerBag.getObjects() ~= 0 then
-        Global.call("removeSpirit", {spirit=self.guid, color=player_color})
         local castObjects = upCast(self,1,0.5)
         local hpos = Player[player_color].getHandTransform().position
         self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))
@@ -95,6 +94,13 @@ function SetupSpirit(object_pick,player_color)
                 placed = placed + 1
             end
         end
+
+        -- Setup Ready Token
+        PlayerBag.takeObject({
+            position = Vector(spos.x,0,spos.z) + Vector(6, 1.1, 7),
+            rotation = Vector(0, 180, 180),
+        })
+        Global.call("removeSpirit", {spirit=self.guid, color=player_color})
 
         -- Setup Aid Tokens
         PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, -4)})

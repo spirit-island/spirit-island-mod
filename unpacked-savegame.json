@@ -1,8 +1,8 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/2/2021 6:19:25 PM",
-  "VersionNumber": "v13.0.2",
+  "Date": "2/7/2021 6:51:59 PM",
+  "VersionNumber": "v13.0.4",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
   "PlayingTime": [
@@ -90,180 +90,31 @@
   "Hands": {
     "Enable": true,
     "DisableUnused": false,
-    "Hiding": 2,
-    "HandTransforms": [
-      {
-        "Color": "Red",
-        "Transform": {
-          "posX": -26.700000762939453,
-          "posY": 4.100000381469727,
-          "posZ": -44.16999053955078,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 6.517999172210693
-        }
-      },
-      {
-        "Color": "Purple",
-        "Transform": {
-          "posX": -3.799999952316284,
-          "posY": 4.100000381469727,
-          "posZ": -44.16999053955078,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 6.517999172210693
-        }
-      },
-      {
-        "Color": "Yellow",
-        "Transform": {
-          "posX": 19.100000381469727,
-          "posY": 4.100000381469727,
-          "posZ": -44.16999053955078,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 6.517999172210693
-        }
-      },
-      {
-        "Color": "Blue",
-        "Transform": {
-          "posX": 42.0,
-          "posY": 4.100000381469727,
-          "posZ": -44.16999053955078,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 6.517999172210693
-        }
-      },
-      {
-        "Color": "Green",
-        "Transform": {
-          "posX": 64.9000015258789,
-          "posY": 4.100000381469727,
-          "posZ": -44.16999053955078,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 6.517999172210693
-        }
-      },
-      {
-        "Color": "Red",
-        "Transform": {
-          "posX": -26.700000762939453,
-          "posY": 4.100000381469727,
-          "posZ": -50.999996185302734,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 5.214399337768555
-        }
-      },
-      {
-        "Color": "Purple",
-        "Transform": {
-          "posX": -3.799999952316284,
-          "posY": 4.100000381469727,
-          "posZ": -50.999996185302734,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.410114288330078,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 5.214399337768555
-        }
-      },
-      {
-        "Color": "Yellow",
-        "Transform": {
-          "posX": 19.100000381469727,
-          "posY": 4.100000381469727,
-          "posZ": -50.999996185302734,
-          "rotX": 0.0,
-          "rotY": -3.210985935847406e-29,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 5.214399337768555
-        }
-      },
-      {
-        "Color": "Blue",
-        "Transform": {
-          "posX": 42.0,
-          "posY": 4.100000381469727,
-          "posZ": -50.999996185302734,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 5.214399337768555
-        }
-      },
-      {
-        "Color": "Green",
-        "Transform": {
-          "posX": 64.9000015258789,
-          "posY": 4.100000381469727,
-          "posZ": -50.999996185302734,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 5.214399337768555
-        }
-      },
-      {
-        "Color": "Orange",
-        "Transform": {
-          "posX": 87.80000305175781,
-          "posY": 4.100000381469727,
-          "posZ": -44.16999053955078,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 6.517999172210693
-        }
-      },
-      {
-        "Color": "Orange",
-        "Transform": {
-          "posX": 87.80000305175781,
-          "posY": 4.100000381469727,
-          "posZ": -50.999996185302734,
-          "rotX": -0.0,
-          "rotY": 0.0,
-          "rotZ": 0.0,
-          "scaleX": 18.40999984741211,
-          "scaleY": 6.483764171600342,
-          "scaleZ": 5.214399337768555
-        }
-      }
-    ]
+    "Hiding": 2
   },
   "ComponentTags": {
-    "labels": []
+    "labels": [
+      {
+        "displayed": "Blight",
+        "normalized": "blight"
+      },
+      {
+        "displayed": "Dahan",
+        "normalized": "dahan"
+      },
+      {
+        "displayed": "Major",
+        "normalized": "major"
+      },
+      {
+        "displayed": "Minor",
+        "normalized": "minor"
+      },
+      {
+        "displayed": "Unique",
+        "normalized": "unique"
+      }
+    ]
   },
   "Turns": {
     "Enable": false,
@@ -622,7 +473,9 @@
         "y": 180.0,
         "z": 1.4859217856155738e-08
       },
-      "Tags": []
+      "Tags": [
+        "Unique"
+      ]
     },
     {
       "Position": {
@@ -635,7 +488,9 @@
         "y": 179.99998474121094,
         "z": 2.4798248432489345e-07
       },
-      "Tags": []
+      "Tags": [
+        "Minor"
+      ]
     },
     {
       "Position": {
@@ -648,7 +503,9 @@
         "y": 179.9958953857422,
         "z": -5.555111215471698e-07
       },
-      "Tags": []
+      "Tags": [
+        "Major"
+      ]
     }
   ]
 }

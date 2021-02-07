@@ -58,7 +58,7 @@ useBlightCard = true
 useBnCEvents = false
 useJEEvents = false
 gamePaused = false
-alternateSetupIndex = 1
+boardLayout = "Balanced"
 canStart = true
 difficulty = 0
 yHeight = 0
@@ -123,13 +123,13 @@ explorerDamage = "574835"
 dahanHealth = "746488"
 dahanDamage = "d936f3"
 -----
-alternateSetupNames = {
-    {"Balanced","Thematic","Random","Random with Thematic"},
-    {"Balanced","Thematic","Random","Random with Thematic","Fragment","Opposite Shores"},
-    {"Balanced","Thematic","Random","Random with Thematic","Coastline","Sunrise"},
-    {"Balanced","Thematic","Random","Random with Thematic","Leaf","Snake"},
-    {"Balanced","Thematic","Random","Random with Thematic","Snail","Peninsula","V"},
-    {"Balanced","Thematic","Random","Random with Thematic","Star","Flower","Caldera"},
+alternateBoardLayoutNames = {
+    {},
+    {"Fragment","Opposite Shores"},
+    {"Coastline","Sunrise"},
+    {"Leaf","Snake"},
+    {"Snail","Peninsula","V"},
+    {"Star","Flower","Caldera"},
 }
 playerBlocks = {
     Red = "c68e2c",
@@ -384,7 +384,7 @@ function readyCheck()
     end
 end
 function isThematic()
-    return alternateSetupIndex == 2
+    return boardLayout == "Thematic"
 end
 ---- Setup Buttons Section
 function nullFunc()
@@ -471,21 +471,18 @@ function randomBoard()
         -- The difficulty can't be increased anymore so don't use thematic
         includeThematic = false
     end
-    local min = 4
+    local min = 0
     if includeThematic then
-        min = 3
+        min = -1
     end
-    local value = math.random(min,#alternateSetupNames[numBoards])
-    if value == 3 then
-        value = 1
-    elseif value == 4 then
-        if includeThematic then
-            value = 2
-        else
-            value = 1
-        end
+    local value = math.random(min,#alternateBoardLayoutNames[numBoards])
+    if value == 0 then
+        boardLayout = "Balanced"
+    elseif value == -1 then
+        boardLayout = "Thematic"
+    else
+        boardLayout = alternateBoardLayoutNames[numBoards][value]
     end
-    alternateSetupIndex = value
     SetupChecker.call("updateDifficulty", {})
 end
 function randomScenario()
@@ -1667,14 +1664,14 @@ end
 function BoardSetup()
     if getMapCount({norm = true, them = true}) == 0 then
         if isThematic() then
-            MapPlacen(posMap[numBoards][alternateSetupIndex],rotMap[numBoards][alternateSetupIndex])
+            MapPlacen(posMap[numBoards][boardLayout],rotMap[numBoards][boardLayout])
         else
             StandardMapBag.shuffle()
             if scenarioCard ~= nil and scenarioCard.getVar("boardSetup") then
                 local tables = scenarioCard.call("BoardSetup", { boards = numBoards })
                 MapPlacen(tables.posTable,tables.rotTable)
             else
-                MapPlacen(posMap[numBoards][alternateSetupIndex],rotMap[numBoards][alternateSetupIndex])
+                MapPlacen(posMap[numBoards][boardLayout],rotMap[numBoards][boardLayout])
             end
         end
     else
@@ -2033,121 +2030,111 @@ scaleFactors = {
     [true]={name = "Large", position = 1.09, size = 1.1},
     [false]={name = "Standard", position = 1, size = 1},
 }
-posMap = { -- This order should exactly match alternateSetupNames table
-    { -- 1 Player
-        { -- Standard
+posMap = {
+    { -- 1 Board
+        ["Balanced"] = {
             Vector(5.96, 1.08, 16.59),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(-1.93, 1.08, 20.44), -- NE
         },
-        {}, -- Random
-        {}, -- Random with Thematic
     },
-    { -- 2 Player
-        { -- Standard
+    { -- 2 Board
+        ["Balanced"] = {
             Vector(9.13, 1.08, 25.29),
             Vector(0.29, 1.08, 10.21),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(9.54, 1.08, 18.07), -- E
             Vector(-10.34, 1.08, 18.04), -- W
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Fragment
+        ["Fragment"] = {
             Vector(-5.20, 1.08, 18.87),
             Vector(10.12, 1.08, 19.08),
         },
-        { -- Opposite Shores
+        ["Opposite Shores"] = {
             Vector(-4.22, 1.08, 18.91),
             Vector(13.78, 1.08, 19.09),
         },
     },
-    { -- 3 Player
-        { -- Standard
+    { -- 3 Board
+        ["Balanced"] = {
             Vector(2.33, 1.08, 26.80),
             Vector(2.46, 1.08, 11.54),
             Vector(15.70, 1.08, 19.37),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(24.91, 1.08, 10.20), -- E
             Vector(5.03, 1.08, 10.17), -- W
             Vector(15.03, 1.08, 27.16), -- NE
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Coastline
+        ["Coastline"] = {
             Vector(-2.47, 1.08, 10.29),
             Vector(15.38, 1.08, 9.96),
             Vector(33.22, 1.08, 9.58),
         },
-        { -- Sunrise
+        ["Sunrise"] = {
             Vector(-6.01, 1.08, 10.63),
             Vector(7.19, 1.08, 18.54),
             Vector(20.60, 1.08, 10.69),
         },
     },
-    { -- 4 Player
-        { -- Standard
+    { -- 4 Board
+        ["Balanced"] = {
             Vector(2.36, 1.08, 26.47),
             Vector(20.40, 1.08, 26.64),
             Vector(-6.65, 1.08, 11.13),
             Vector(11.27, 1.08, 11.33),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(29.29, 1.08, 10.20), -- E
             Vector(9.41, 1.08, 10.17), -- W
             Vector(19.41, 1.08, 27.16), -- NE
             Vector(-0.62, 1.08, 27.04), -- NW
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Leaf
+        ["Leaf"] = {
             Vector(7.05, 1.08, 34.30),
             Vector(20.53, 1.08, 26.36),
             Vector(-2.00, 1.08, 18.53),
             Vector(11.39, 1.08, 10.92),
         },
-        { -- Snake
+        ["Snake"] = {
             Vector(35.36, 1.08, 37.55),
             Vector(8.26, 1.08, 22.19),
             Vector(26.45, 1.08, 22.36),
             Vector(-0.73, 1.08, 7.00),
         },
     },
-    { -- 5 Player
-        { -- Standard
+    { -- 5 Board
+        ["Balanced"] = {
             Vector(3.32, 1.08, 32.42),
             Vector(25.46, 1.08, 24.68),
             Vector(38.99, 1.08, 32.44),
             Vector(12.18, 1.08, 16.81),
             Vector(25.62, 1.08, 9.32),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(30.89, 1.08, 23.51), -- E
             Vector(11.01, 1.08, 23.48), -- W
             Vector(21.01, 1.08, 40.47), -- NE
             Vector(0.98, 1.08, 40.35), -- NW
             Vector(40.82, 1.08, 6.66), -- SE
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Snail
+        ["Snail"] = {
             Vector(26.42, 1.08, 41.16),
             Vector(13.22, 1.08, 33.29),
             Vector(26.68, 1.08, 25.70),
             Vector(8.72, 1.08, 10.08),
             Vector(26.67, 1.08, 9.98),
         },
-        { -- Peninsula
+        ["Peninsula"] = {
             Vector(10.81, 1.08, 32.03),
             Vector(26.27, 1.08, 32.27),
             Vector(18.66, 1.08, 18.81),
             Vector(41.71, 1.08, 23.07),
             Vector(57.12, 1.08, 13.96),
         },
-        { -- V
+        ["V"] = {
             Vector(0.17, 1.08, 33.75),
             Vector(40.67, 1.08, 41.60),
             Vector(8.96, 1.08, 18.16),
@@ -2155,8 +2142,8 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector(22.40, 1.08, 10.67),
         },
     },
-    { -- 6 Player
-        { -- Standard
+    { -- 6 Board
+        ["Balanced"] = {
             Vector(4.31, 1.08, 29.13),
             Vector(19.72, 1.08, 29.32),
             Vector(43.04, 1.08, 33.51),
@@ -2164,7 +2151,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector(35.44, 1.08, 20.02),
             Vector(50.90, 1.08, 20.26),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(33.53, 1.08, 23.51), -- E
             Vector(13.65, 1.08, 23.48), -- W
             Vector(23.65, 1.08, 40.47), -- NE
@@ -2172,9 +2159,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector(43.40, 1.08, 6.63), -- SE
             Vector(23.59, 1.08, 6.55), -- SW
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Star
+        ["Star"] = {
             Vector(33.19, 1.08, 40.36),
             Vector(40.94, 1.08, 26.76),
             Vector(33.16, 1.08, 13.18),
@@ -2182,7 +2167,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector(9.71, 1.08, 26.79),
             Vector(17.50, 1.08, 40.33),
         },
-        { -- Flower
+        ["Flower"] = {
             Vector(22.76, 1.08, 43.03),
             Vector(33.80, 1.08, 22.36),
             Vector(46.88, 1.08, 10.07),
@@ -2190,7 +2175,7 @@ posMap = { -- This order should exactly match alternateSetupNames table
             Vector(23.48, 1.08, 10.88),
             Vector(6.30, 1.08, 5.69),
         },
-        { -- Caldera
+        ["Caldera"] = {
             Vector(-0.20, 1.08, 31.44),
             Vector(13.16, 1.08, 39.17),
             Vector(31.10, 1.08, 38.86),
@@ -2201,120 +2186,110 @@ posMap = { -- This order should exactly match alternateSetupNames table
     },
 }
 rotMap = {
-    { -- 1 Player
-        { -- Standard
+    { -- 1 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
     },
-    { -- 2 Player
-        { -- Standard
+    { -- 2 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Fragment
+        ["Fragment"] = {
             Vector{0.00, 90.00, 0.00},
             Vector{0.00, 330.00, 0.00},
         },
-        { -- Opposite Shores
+        ["Opposite Shores"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
     },
-    { -- 3 Player
-        { -- Standard
+    { -- 3 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 60.00, 0.00),
             Vector(0.00, 300.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { --Coastline
+        ["Coastline"] = {
             Vector(0.00, 240.69, 0.00),
             Vector(0.00, 240.69, 0.00),
             Vector(0.00, 240.69, 0.00),
         },
-        { -- Sunrise
+        ["Sunrise"] = {
             Vector(0.00, 60.00, 0.00),
             Vector(0.00, 300.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
     },
-    { -- 4 Player
-        { -- Standard
+    { -- 4 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Leaf
+        ["Leaf"] = {
             Vector{0.00, 300.27, 0.00},
             Vector{0.00, 0.27, 0.00},
             Vector{0.00, 120.27, 0.00},
             Vector{0.00, 0.27, 0.00},
         },
-        { -- Snake
+        ["Snake"] = {
             Vector{0.00, 180.00, 0.00},
             Vector{0.00, 180.00, 0.00},
             Vector{0.00, 0.05, 0.00},
             Vector{0.00, 0.01, 0.00},
         },
     },
-    { -- 5 Player
-        { -- Standard
+    { -- 5 Board
+        ["Balanced"] = {
             Vector(0.00, 120.00, 0.00),
             Vector{0.00, 240.00, 0.00},
             Vector{0.00, 300.00, 0.00},
             Vector{0.00, 120.02, 0.00},
             Vector{0.00, 359.99, 0.00},
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Snail
+        ["Snail"] = {
             Vector{0.00, 240.00, 0.00},
             Vector{0.00, 120.02, 0.00},
             Vector{0.00, 359.99, 0.00},
             Vector{0.00, 60.01, 0.00},
             Vector{0.00, 60.00, 0.00},
         },
-        { -- Peninsula
+        ["Peninsula"] = {
             Vector{0.00, 150.07, 0.00},
             Vector{0.00, 270.07, 0.00},
             Vector{0.00, 30.09, 0.00},
             Vector{0.00, 270.25, 0.00},
             Vector{0.00, 270.25, 0.00},
         },
-        { -- V
+        ["V"] = {
             Vector{0.00, 119.99, 0.00},
             Vector{0.00, 0.01, 0.00},
             Vector{0.00, 119.99, 0.00},
@@ -2322,8 +2297,8 @@ rotMap = {
             Vector{0.00, 0.01, 0.00},
         },
     },
-    { -- 6 Player
-        { -- Standard
+    { -- 6 Board
+        ["Balanced"] = {
             Vector{0.00, 150.01, 0.00},
             Vector{0.00, 270.00, 0.00},
             Vector{0.00, 210.00, 0.00},
@@ -2331,7 +2306,7 @@ rotMap = {
             Vector{0.00, 90.00, 0.00},
             Vector{0.00, 330.00, 0.00},
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
@@ -2339,9 +2314,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Star
+        ["Star"] = {
             Vector{0.00, 330.00, 0.00},
             Vector{0.00, 30.00, 0.00},
             Vector{0.00, 90.00, 0.00},
@@ -2349,7 +2322,7 @@ rotMap = {
             Vector{0.00, 210.00, 0.00},
             Vector{0.00, 269.99, 0.00},
         },
-        { -- Flower
+        ["Flower"] = {
             Vector{0.00, 162.62, 0.00},
             Vector{0.00, 282.64, 0.00},
             Vector{0.00, 282.62, 0.00},
@@ -2357,7 +2330,7 @@ rotMap = {
             Vector{0.00, 42.62, 0.00},
             Vector{0.00, 42.61, 0.00},
         },
-        { -- Caldera
+        ["Caldera"] = {
             Vector{0.00, 120.42, 0.00},
             Vector{0.00, 240.44, 0.00},
             Vector{0.00, 240.43, 0.00},
@@ -2410,9 +2383,9 @@ function MapPlaceCustom()
     local maps = getMapTiles()
     -- board type is guaranteed to either be thematic or normal, and there has to be at least one map tile in the table
     if maps[1].hasTag("Balanced") then
-        alternateSetupIndex = 1
+        boardLayout = "Custom"
     else
-        alternateSetupIndex = 2
+        boardLayout = "Thematic"
     end
     SetupChecker.call("updateDifficulty", {})
 

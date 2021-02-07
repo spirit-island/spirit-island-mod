@@ -3562,7 +3562,7 @@ function swapPlayerAreas(a, b)
     if(a == b) then return end
     swapPlayerAreaObjects(a, b)
     swapPlayerAreaColors(a, b)
-    print(a .. " swapped places with " .. b .. ".")
+    printToAll(a .. " swapped places with " .. b .. ".", Color[a])
 end
 
 function swapPlayerPresenceColors(fromColor, toColor)

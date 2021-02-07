@@ -229,10 +229,10 @@
 </Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">
-        <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">&#9660;</Button>
+        <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">&#9660;<!-- Down arrow --></Button>
     </Panel>
     <Panel id="panelUIToggleHide" visibility="Invisible">
-        <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">&#9650;</Button>
+        <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">&#9650;<!-- Up arrow --></Button>
     </Panel>
 </Panel>
 <Panel id="panelUI" visibility="Invisible" width="160" height="180" rectAlignment="UpperRight" offsetXY="-240 0">
@@ -246,7 +246,7 @@
         <Button onClick="toggleBlightUI" textAlignment="MiddleCenter">Toggle Blight UI</Button>
         <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Toggle Score</Button>
         <Button onClick="togglePowerDrawUI" textAlignment="MiddleCenter">Toggle Power Draw UI</Button>
-        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltip="Toggles the visibility of the buttons to change player seats or colors.  These are automatically hidden when the game starts, but can be turned back on if desired.">Toggle Seat Controls</Button>
-        <Button onClick="toggleMultihanded" textAlignment="MiddleCenter" tooltip="Toggles whether the visibility the 'Play Spirit' buttons appear for all empty seats or only for those who have chosen a spirit.">Toggle Multihanded</Button>
+        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles the visibility of the buttons to change player seats or colors.  These are automatically hidden when the game starts, but can be turned back on if desired.">Toggle Seat Controls</Button>
+        <Button onClick="toggleMultihanded" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles whether the visibility the 'Play Spirit' buttons appear for all empty seats or only for those who have chosen a spirit.">Toggle Multihanded</Button>
     </VerticalLayout>
 </Panel>

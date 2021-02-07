@@ -3473,15 +3473,6 @@ function swapPlayerAreaColors(a, b)
     local function tableSwap(table)
         table[a], table[b] = table[b], table[a]
     end
-    local function tintSwap(table)
-        local oa = table[a]
-        local ob = table[b]
-        local ta = oa.getColorTint()
-        local tb = ob.getColorTint()
-        oa.setColorTint(tb)
-        ob.setColorTint(ta)
-        tableSwap(table)
-    end
     local function positionSwap(table)
         local oa = table[a]
         local ob = table[b]
@@ -3499,14 +3490,6 @@ function swapPlayerAreaColors(a, b)
         local tb = Player[b].getHandTransform(i)
         Player[a].setHandTransform(tb, i)
         Player[b].setHandTransform(ta, i)
-    end
-    local function updateBlock(color)
-        local o = playerBlocks[color]
-        if not o then
-            return 
-        end
-        o.setVar("playerColor", color)
-        o.editButton({index=1, label="Swap with " .. color})
     end
 
     for i = 1,2 do

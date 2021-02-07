@@ -437,12 +437,6 @@ function SetupGame()
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
         return 0
     end
-    -- for color, obj in pairs(playerBlocks) do
-    --     obj.removeButton(1)
-    --     obj.setVar("playerColor", nil)
-    -- end
-    -- playerBlocks = {}
-
     if adversaryCard == nil then
         adversaryLevel = 0
     end
@@ -3109,10 +3103,6 @@ function setupPlayerArea(params)
         end
         --Updates the number display
     end
-
-    initialized = true
-    obj.setVar("initialized", true)
-
     if selected then  -- Have a spirit here.
         countItems()    -- Update counts immediately.
         if not timer then   -- Timer doesn't already exist.
@@ -3609,7 +3599,7 @@ function swapPlayerColors(a, b)
             -- Hopefully nobody is... Pink?
             pb.changeColor("Pink")
             pa.changeColor(b)
-            Player["Teal"].changeColor(a)
+            Player["Pink"].changeColor(a)
         else
             pa.changeColor(b)
         end

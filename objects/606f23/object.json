@@ -15,10 +15,13 @@
   "Description": "Base",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200277418,
-    "g": 0.1603227,
-    "b": 0.151760966
+    "r": 0.200277269,
+    "g": 0.160322547,
+    "b": 0.151760817
   },
+  "Tags": [
+    "Spirit"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,
@@ -153,10 +156,13 @@
       "Description": "Base",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.200280309,
-        "g": 0.160325587,
-        "b": 0.151763856
+        "r": 0.200280279,
+        "g": 0.160325557,
+        "b": 0.151763827
       },
+      "Tags": [
+        "Spirit"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": true,

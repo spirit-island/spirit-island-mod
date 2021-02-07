@@ -47,6 +47,9 @@ end
 
 function createButtons(obj)
     if getObjectFromGUID(sourceSpiritID).getLuaScript() == obj.getLuaScript() then
+        if not obj.hasTag("Spirit") then
+            obj.addTag("Spirit")
+        end
         self.createButton({
             click_function = "nullFunc",
             label          = "Spirit Validated",
@@ -74,6 +77,7 @@ function createButtons(obj)
 end
 
 function makeSpirit(obj)
+    obj.addTag("Spirit")
     obj.setLuaScript(getObjectFromGUID(sourceSpiritID).getLuaScript())
     obj.reload()
     rescan = true

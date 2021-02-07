@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -69.12919,
-    "posY": 3.06197047,
-    "posZ": -5.408385,
-    "rotX": 359.9928,
-    "rotY": 269.883545,
-    "rotZ": -0.00293987244,
+    "posX": -44.5807343,
+    "posY": 3.052778,
+    "posZ": 30.3205738,
+    "rotX": -0.0008674473,
+    "rotY": 269.984283,
+    "rotZ": 0.00381323625,
     "scaleX": 2.42499876,
     "scaleY": 2.42499876,
     "scaleZ": 2.42499876
@@ -16,9 +16,12 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.6538587,
-    "g": 0.224694848,
-    "b": 0.224694848
+    "g": 0.224694729,
+    "b": 0.224694729
   },
+  "Tags": [
+    "Highlight"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
@@ -58,7 +61,8 @@
         "x": -7.861015e-06,
         "y": 0.236517608,
         "z": -6.140141e-05
-      }
+      },
+      "Tags": []
     }
   ],
   "States": {
@@ -107,7 +111,7 @@
         "TypeIndex": 1,
         "CastShadows": true
       },
-      "LuaScript": "highlightOnObjectDrop = true",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [
@@ -223,7 +227,7 @@
         "TypeIndex": 1,
         "CastShadows": true
       },
-      "LuaScript": "highlightOnObjectDrop = true",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [

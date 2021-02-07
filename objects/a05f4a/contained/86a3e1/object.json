@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 5.36278963,
-    "posY": 1.43504918,
-    "posZ": -14.258873,
-    "rotX": 0.289762348,
-    "rotY": 0.00151165819,
-    "rotZ": 0.1635594,
+    "posX": 4.577763,
+    "posY": 1.47165632,
+    "posZ": -14.4364462,
+    "rotX": 2.75107169,
+    "rotY": 359.8476,
+    "rotZ": 358.642242,
     "scaleX": 0.37,
     "scaleY": 1.0,
     "scaleZ": 0.37
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Destroy"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
@@ -49,12 +52,12 @@
       "GUID": "2df11a",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.950997651,
-        "posZ": -17.9223862,
-        "rotX": 0.00444462942,
-        "rotY": 180.000259,
-        "rotZ": 6.918627e-07,
+        "posX": -17.224535,
+        "posY": 0.9509925,
+        "posZ": -17.9865532,
+        "rotX": 0.00444687437,
+        "rotY": 180.0004,
+        "rotZ": -1.53990356e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -67,6 +70,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -92,7 +98,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"10000000\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"10000000\"",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -100,12 +106,12 @@
       "GUID": "a69e28",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.9509975,
-        "posZ": -17.9223862,
-        "rotX": 0.00444945646,
-        "rotY": 180.00029,
-        "rotZ": -2.93694438e-06,
+        "posX": -17.224535,
+        "posY": 0.9509926,
+        "posZ": -17.9865532,
+        "rotX": 0.00444839569,
+        "rotY": 180.0004,
+        "rotZ": -1.55673706e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -118,6 +124,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -143,7 +152,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"01000000\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"01000000\"",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -151,12 +160,12 @@
       "GUID": "b5415e",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.950997531,
-        "posZ": -17.9223862,
-        "rotX": 0.004446858,
-        "rotY": 180.00029,
-        "rotZ": 2.96056055e-06,
+        "posX": -17.224535,
+        "posY": 0.950992644,
+        "posZ": -17.9865532,
+        "rotX": 0.004445168,
+        "rotY": 180.0004,
+        "rotZ": -7.776555e-07,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -169,6 +178,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -194,7 +206,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"00100000\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"00100000\"",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -202,12 +214,12 @@
       "GUID": "2ce67f",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.950997531,
-        "posZ": -17.9223862,
-        "rotX": 0.004450333,
-        "rotY": 180.0003,
-        "rotZ": 7.02485249e-06,
+        "posX": -17.224535,
+        "posY": 0.9509926,
+        "posZ": -17.9865532,
+        "rotX": 0.004444039,
+        "rotY": 180.0004,
+        "rotZ": -1.63921175e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -220,6 +232,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -245,7 +260,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"00010000\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"00010000\"",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -253,12 +268,12 @@
       "GUID": "cbf273",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.950997531,
-        "posZ": -17.9223862,
-        "rotX": 0.00444372138,
-        "rotY": 180.000275,
-        "rotZ": 1.47859976e-06,
+        "posX": -17.224535,
+        "posY": 0.9509925,
+        "posZ": -17.9865532,
+        "rotX": 0.00445548072,
+        "rotY": 180.0004,
+        "rotZ": -1.41862711e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -271,6 +286,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -296,7 +314,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"00001000\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"00001000\"",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -304,12 +322,12 @@
       "GUID": "68e92d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.950997531,
-        "posZ": -17.9223862,
-        "rotX": 0.00444670627,
-        "rotY": 180.000275,
-        "rotZ": -1.78798712e-06,
+        "posX": -17.224535,
+        "posY": 0.9509926,
+        "posZ": -17.9865532,
+        "rotX": 0.00444784248,
+        "rotY": 180.0004,
+        "rotZ": -1.742296e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -322,6 +340,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -347,7 +368,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"00000100\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"00000100\"",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -355,12 +376,12 @@
       "GUID": "44c9dc",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.950997531,
-        "posZ": -17.9223862,
-        "rotX": 0.00444937,
-        "rotY": 180.000275,
-        "rotZ": -2.27465216e-06,
+        "posX": -17.224535,
+        "posY": 0.9509926,
+        "posZ": -17.9865532,
+        "rotX": 0.004447475,
+        "rotY": 180.0004,
+        "rotZ": -4.88227442e-07,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -373,6 +394,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -398,7 +422,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"00000010\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"00000010\"",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -406,12 +430,12 @@
       "GUID": "d56660",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -18.01143,
-        "posY": 0.950997531,
-        "posZ": -17.9223862,
-        "rotX": 0.00444559474,
-        "rotY": 180.000275,
-        "rotZ": -1.70962551e-07,
+        "posX": -17.224535,
+        "posY": 0.9509925,
+        "posZ": -17.9865532,
+        "rotX": 0.004446206,
+        "rotY": 180.0004,
+        "rotZ": 1.35202606e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -424,6 +448,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -449,7 +476,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "elements=\"00000001\"\ndestroyOnTableDrop=true",
+      "LuaScript": "elements=\"00000001\"",
       "LuaScriptState": "",
       "XmlUI": ""
     }

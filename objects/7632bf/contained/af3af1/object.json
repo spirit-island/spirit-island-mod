@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.10545,
-    "posY": 1.73402953,
-    "posZ": 43.6483345,
-    "rotX": 359.985779,
-    "rotY": -0.0014773187,
-    "rotZ": 0.139656678,
+    "posX": -42.335907,
+    "posY": 1.74518836,
+    "posZ": 45.0391579,
+    "rotX": 0.5668614,
+    "rotY": -0.000779419555,
+    "rotZ": 359.892761,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Destroy"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

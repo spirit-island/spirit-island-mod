@@ -160,20 +160,18 @@ function onScriptingButtonDown(index, playerColor)
 end
 function onObjectDrop(player_color, dropped_object)
     if gameStarted then
-        if dropped_object.getVar("highlightOnObjectDrop") ~= nil then
-            if dropped_object.getVar("highlightOnObjectDrop") then
-                local dropColor = player_color
-                if player_color == "Blue" then
-                    dropColor = {0.118, 0.53, 1}
-                elseif player_color == "Red" then
-                    dropColor = {0.856, 0.1, 0.094}
-                elseif player_color == "Yellow" then
-                    dropColor = {0.905, 0.898, 0.172}
-                elseif player_color == "Purple" then
-                    dropColor = {0.627, 0.125, 0.941}
-                end
-                dropped_object.highlightOn(dropColor, 60)
+        if dropped_object.hasTag("Highlight") then
+            local dropColor = player_color
+            if player_color == "Blue" then
+                dropColor = {0.118, 0.53, 1}
+            elseif player_color == "Red" then
+                dropColor = {0.856, 0.1, 0.094}
+            elseif player_color == "Yellow" then
+                dropColor = {0.905, 0.898, 0.172}
+            elseif player_color == "Purple" then
+                dropColor = {0.627, 0.125, 0.941}
             end
+            dropped_object.highlightOn(dropColor, 60)
         end
     end
 end
@@ -2801,7 +2799,7 @@ function deleteObject(obj)
         obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
     else
-        if not obj.getVar("destroyOnTableDrop") then
+        if not obj.hasTag("Destroy") then
             removeObject = false
         end
     end

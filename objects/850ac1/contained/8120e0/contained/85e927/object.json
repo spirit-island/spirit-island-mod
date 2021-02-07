@@ -1,17 +1,17 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 7.020342826843262,
-    "posY": 0.9167208671569824,
-    "posZ": 60.220001220703125,
-    "rotX": 0.004446591716259718,
-    "rotY": 180.00140380859375,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -12.186081886291504,
+    "posY": 1.9908435344696045,
+    "posZ": 15.897998809814453,
+    "rotX": 9.178713662549853e-05,
+    "rotY": 179.99940490722656,
+    "rotZ": -0.0007258097175508738,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.5299999713897705
   },
-  "Nickname": "",
+  "Nickname": "Thriving Communities",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -35,7 +35,7 @@
   "CardID": 63100,
   "SidewaysCard": false,
   "CustomDeck": {
-    "606": {
+    "631": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420290776/790BF5EF3368E3F24BB6F7EA6ED7B1781755F573/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874653838794/BDB80DB0312A350B5EBDE186D13D0C723B3A5DDF/",
       "NumWidth": 1,

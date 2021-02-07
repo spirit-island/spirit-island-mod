@@ -1,4 +1,19 @@
+numCards = 0
+discard = Vector(-51.25, 1.5, 0.38)
+
+function onSave()
+    local data_table = {
+        discard = discard,
+    }
+    saved_data = JSON.encode(data_table)
+    return saved_data
+end
 function onLoad(saved_data)
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        discard = Vector(loaded_data.discard)
+    end
+
     self.createButton({ -- Blighted Island Placeholder
         click_function = "BlightIslandButton",
         function_owner = Global,
@@ -112,6 +127,7 @@ function onLoad(saved_data)
     })
     placeReadyTokens()
     placeElementTokens()
+    updateFearUI()
 end
 
 function setupGame()
@@ -159,7 +175,7 @@ function setupGame()
 
     if Global.getVar("adversaryCard") ~= nil then
         UI.setAttribute("panelUIAdversary","active","true")
-        UI.setAttribute("panelUI","height","125")
+        UI.setAttribute("panelUI","height", UI.getAttribute("panelUI", "height") + 20)
     end
 end
 
@@ -171,6 +187,10 @@ function wt(some)
     while os.clock() < Time do
         coroutine.yield(0)
     end
+end
+
+function updateDiscard(params)
+    discard = params.discard
 end
 
 ---- Invader Card Section
@@ -197,8 +217,6 @@ scanLoopTable= {
         faceDown = true,
     },
 }
-discard = Vector(-51.25, 1.5, 0.38)
-discardENG = Vector(-52.90, 1.5, -5.30)
 
 function advanceInvaderCards()
     for i,v in pairs(scanLoopTable) do
@@ -225,7 +243,7 @@ function advanceInvaderCards()
                 if hit.type == "Card" and hit.is_face_down == v.faceDown then
                     if i == "Build2" then
                         hit.setRotation(Vector(0,180,0))
-                        hit.setPositionSmooth(discardENG)
+                        hit.setPositionSmooth(discard)
                     elseif i == "Ravage" then
                         local obj = getObjectFromGUID("e5d18b")
                         if obj == nil or not Vector.equals(obj.getPosition(), Vector(-51.23, 1.10, -0.52)) then
@@ -251,6 +269,7 @@ function advanceInvaderCards()
 end
 function aidPanelScanLoop()
     local outTable = {}
+    local count = 0
     for i,v in pairs(scanLoopTable) do
         local stageTable = {}
         local source = self
@@ -294,6 +313,7 @@ function aidPanelScanLoop()
                         local iType = hit.getVar("cardInvaderType")
                         local iStage = hit.getVar("cardInvaderStage")
                         table.insert(stageTable,iType)
+                        count = count + 1
                     end
                 end
             end
@@ -301,7 +321,24 @@ function aidPanelScanLoop()
         ::continueLoop::
         table.insert(outTable,stageTable)
     end
+    numCards = count
     Global.call("updateAidPanel", outTable)
+end
+function countDiscard()
+    local count = 0
+    local hits = Physics.cast({
+        origin       = discard,
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = Vector(1,0.9,1.5),
+        orientation  = Vector(0,90,0),
+        max_distance = 0,
+        --debug        = true,
+    })
+    for _,hit in pairs(hits) do
+        if hit.hit_object ~= self and (hit.hit_object.type == "Deck" or hit.hit_object.type == "Card") then count = count + 1 end
+    end
+    return count
 end
 
 function getStage(o)
@@ -333,67 +370,64 @@ function getStage(o)
     return nil
 end
 ---- Fear Section
+function updateFearUI()
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
+    self.editButton({index = 1, label = fearPool})
+    UI.setAttribute("panelFearPool", "text", fearPool)
+    self.editButton({index = 2, label = generatedFear})
+    UI.setAttribute("panelFearGenerated", "text", generatedFear)
+end
 function addFear()
-    local fearPoolValue = self.getButtons()[2].label
-    local generatedFearValue = self.getButtons()[3].label
-    if tonumber(fearPoolValue) == 1 then
-        self.editButton({index = 1, label = generatedFearValue + 1})
-        Global.setVar("fearPool", generatedFearValue + 1)
-
-        self.editButton({index = 2, label = 0})
+    if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
+        return
+    end
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
+    if fearPool == 1 then
+        Global.setVar("fearPool", generatedFear + 1)
         Global.setVar("generatedFear", 0)
-
         startLuaCoroutine(self, "fearCardEarned")
     else
-        self.editButton({index = 1, label = fearPoolValue-1})
-        Global.setVar("fearPool", fearPoolValue-1)
-
-        self.editButton({index = 2, label = generatedFearValue+1})
-        Global.setVar("generatedFear", generatedFearValue+1)
+        Global.setVar("fearPool", fearPool - 1)
+        Global.setVar("generatedFear", generatedFear + 1)
     end
+    updateFearUI()
 end
 function removeFear()
-    local fearPoolValue = self.getButtons()[2].label
-    local generatedFearValue = self.getButtons()[3].label
-    if tonumber(generatedFearValue) == 0 then
-        self.editButton({index = 1, label = 1})
+    if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
+        return
+    end
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
+    if generatedFear == 0 then
         Global.setVar("fearPool", 1)
-
-        self.editButton({index = 2, label = fearPoolValue-1})
-        Global.setVar("generatedFear",fearPoolValue - 1)
-
+        Global.setVar("generatedFear", fearPool - 1)
         broadcastToAll("Fear Card Taken Back! (This is currently not scripted)", {1,0,0})
     else
-        self.editButton({index = 1, label = fearPoolValue + 1})
-        Global.setVar("fearPool",fearPoolValue + 1)
-
-        self.editButton({index = 2, label = generatedFearValue - 1})
-        Global.setVar("generatedFear",generatedFearValue - 1)
+        Global.setVar("fearPool", fearPool + 1)
+        Global.setVar("generatedFear", generatedFear - 1)
     end
+    updateFearUI()
 end
 function modifyFearPool(obj, color, alt_click)
-    local fearPoolValue = self.getButtons()[2].label
-    local generatedFearValue = self.getButtons()[3].label
+    local fearPool = Global.getVar("fearPool")
+    local generatedFear = Global.getVar("generatedFear")
     if alt_click then
-        if tonumber(fearPoolValue) == 1 and tonumber(generatedFearValue) == 0 then
+        if fearPool == 1 and generatedFear == 0 then
             broadcastToAll("Fear Pool cannot go to zero", {1,0,0})
             return
-        elseif tonumber(fearPoolValue) == 1 then
-            self.editButton({index = 1, label = generatedFearValue})
-            Global.setVar("fearPool", generatedFearValue)
-
-            self.editButton({index = 2, label = 0})
+        elseif fearPool == 1 then
+            Global.setVar("fearPool", generatedFear)
             Global.setVar("generatedFear", 0)
-
             startLuaCoroutine(self, "fearCardEarned")
         else
-            self.editButton({index = 1, label = fearPoolValue-1})
-            Global.setVar("fearPool", fearPoolValue-1)
+            Global.setVar("fearPool", fearPool-1)
         end
     else
-        self.editButton({index = 1, label = fearPoolValue+1})
-        Global.setVar("fearPool", fearPoolValue+1)
+        Global.setVar("fearPool", fearPool+1)
     end
+    updateFearUI()
 end
 
 function fearCardEarned()

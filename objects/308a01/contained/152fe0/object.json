@@ -19,6 +19,9 @@
     "g": 0.7132352590560913,
     "b": 0.7132352590560913
   },
+  "Tags": [
+    "Major"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
@@ -68,6 +71,9 @@
         "g": 0.7132352590560913,
         "b": 0.7132352590560913
       },
+      "Tags": [
+        "Major"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,

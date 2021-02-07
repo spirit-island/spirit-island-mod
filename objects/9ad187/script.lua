@@ -261,22 +261,7 @@ end
 
 ---- Setup UI Section
 function toggleNumPlayers(_, value)
-    if Global.getVar("alternateSetupIndex") > 4 then
-        Global.setVar("alternateSetupIndex", 1)
-    end
-    local numPlayers = tonumber(value)
-    if numPlayers > 5 and optionalExtraBoard then
-        numPlayers = 5
-    end
-    Global.setVar("numPlayers", numPlayers)
-    self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
-    self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
-
-    -- Stop previous timer and start a new one
-    if updateLayoutsID ~= 0 then
-        Wait.stop(updateLayoutsID)
-    end
-    updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+    updateNumPlayers(value, true)
 end
 function updateNumPlayers(value, updateUI)
     if Global.getVar("alternateSetupIndex") > 4 then
@@ -647,7 +632,7 @@ function difficultyCheck(params)
     if optionalExtraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
-        if alternateSetupIndex == 2 then
+        if alternateSetupIndex == 2 or params.thematic then
             difficulty = difficulty - (intNum / 2)
         end
     end

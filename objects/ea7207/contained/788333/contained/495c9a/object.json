@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -114.670883,
-    "posY": 1.006682,
-    "posZ": -17.4767513,
-    "rotX": 0.004446683,
-    "rotY": 179.999847,
-    "rotZ": 1.64058378e-07,
-    "scaleX": 1.31135309,
+    "posX": -6.50336075,
+    "posY": 1.99084079,
+    "posZ": 9.553906,
+    "rotX": 3.01216652e-09,
+    "rotY": 180.008423,
+    "rotZ": -0.000144309757,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.31135309
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Back against the Wall",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

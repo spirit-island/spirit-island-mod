@@ -1,17 +1,17 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 3.099999,
-    "posY": 0.916720867,
-    "posZ": 60.2199974,
-    "rotX": 0.004446605,
-    "rotY": 180.009537,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -8.519289,
+    "posY": 1.99084091,
+    "posZ": 15.8881874,
+    "rotX": -1.07916613e-07,
+    "rotY": 179.9748,
+    "rotZ": -0.0001443358,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "Invaders Find the Land to their Liking",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

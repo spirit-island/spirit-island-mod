@@ -42,6 +42,7 @@ optionalBlightSetup = true
 optionalExtraBoard = false
 optionalThematicRedo = false
 optionalBoardPairings = true
+optionalScaleBoard = false
 
 exploratoryVOTD = false
 exploratoryBODAN = false
@@ -915,6 +916,10 @@ end
 function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
+end
+function toggleScale()
+    optionalScaleBoard = not optionalScaleBoard
+    self.UI.setAttribute("scaleBoard", "isOn", optionalScaleBoard)
 end
 
 function toggleVOTD()

@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -115.040924,
-    "posY": 0.979972363,
-    "posZ": -17.5452938,
-    "rotX": 0.00444670767,
-    "rotY": 179.999924,
-    "rotZ": 2.18393012e-07,
-    "scaleX": 1.31135309,
+    "posX": -2.74201226,
+    "posY": 1.99084115,
+    "posZ": 12.7876921,
+    "rotX": 2.64219153e-08,
+    "rotY": 180.007782,
+    "rotZ": -0.000144318037,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.31135309
+    "scaleZ": 1.53
   },
-  "Nickname": "",
+  "Nickname": "A Pall upon the Land",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

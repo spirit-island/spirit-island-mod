@@ -178,10 +178,13 @@
             <Row class="toggle">
                 <Cell class="toggle"><Text class="toggle"/><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleThematicRedo" preferredWidth="780" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Button></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell class="toggle"><Text class="toggle"/><Toggle id="scaleBoard" onValueChanged="toggleScale"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleScale" preferredWidth="360" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Boards</Button></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3550 12">
+<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3625 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -209,7 +212,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -4150 12">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -4225 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

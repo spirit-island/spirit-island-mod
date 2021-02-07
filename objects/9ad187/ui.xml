@@ -116,6 +116,7 @@
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Blight Card?</Toggle></Cell>
+                <Cell><Toggle id="notebookConfig" onValueChanged="toggleNotebookConfig">Use Notebook Config?</Toggle></Cell>
             </Row>
             <Row class="spacing"/>
             <Row>

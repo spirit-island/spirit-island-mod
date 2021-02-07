@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 140.545822,
-    "posY": 1.20967615,
-    "posZ": 15.7890282,
-    "rotX": -5.85428268e-07,
-    "rotY": 179.96315,
-    "rotZ": -0.000144045858,
+    "posX": -41.96466,
+    "posY": 1.63872182,
+    "posZ": 50.2085571,
+    "rotX": 356.575836,
+    "rotY": 179.998856,
+    "rotZ": 0.297285974,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM SE Re-skinned",
+  "Nickname": "SE",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

@@ -3647,7 +3647,9 @@ end
 
 
 function swapPlayerColors(a, b)
-    if a == b then return end
+    if a == b then
+        return false
+    end
     local pa, pb = Player[a], Player[b]
 
     if not playerBlocks[a] then
@@ -3660,11 +3662,23 @@ function swapPlayerColors(a, b)
 
     if pa.seated then
         if pb.seated then
-            -- Both players seated.  Need an intermediary.
-            -- Hopefully nobody is... Pink?
-            pb.changeColor("Pink")
-            pa.changeColor(b)
-            Player["Pink"].changeColor(a)
+            if pa.steam_id == pb.steam_id then  -- Hotseat game
+                -- Hotseat games may lose track of the player when their color changes for strange reasons -- mainly because they're prompted to reenter their name again.
+                broadcastToAll("Note: Color swapping may be unstable in hotseat games.", Color.SoftYellow)
+            end
+            -- Need a temporary color to seat the player at to swap colors.  Favor those not used by the game first, followed by those used by the game.
+            -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
+            local tempColor
+            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"}) do
+                if pa.changeColor(tempColor) then
+                    pb.changeColor(a)
+                    pa.changeColor(b)
+                    return true
+                end
+            end
+            -- If we reach here, we failed to change colors.  Shouldn't happen.  Just in case it does.
+            broadcastToColor("Unable to swap colors with " .. b .. ".  (All player colors are in use?)", a, Color.Red)
+            return false
         else
             pa.changeColor(b)
         end
@@ -3675,9 +3689,11 @@ function swapPlayerColors(a, b)
 end
 
 function swapSeatColors(a, b)
+    if not swapPlayerColors(a, b) then
+        return
+    end
     swapPlayerAreaColors(a, b)
     swapPlayerPresenceColors(a, b)
-    swapPlayerColors(a, b)
 end
 
 -- Trade places with selected seat.
@@ -3693,7 +3709,6 @@ end
 -- Trade colors with selected seat.
 function onClickedChangeColor(target_obj, source_color, alt_click)
     local target_color = target_obj.getVar("playerColor")
-
     if not playerBlocks[source_color] then
         swapPlayerColors(source_color, target_color)
     else
@@ -3704,7 +3719,6 @@ end
 -- Play spirit
 function onClickedPlaySpirit(target_obj, source_color, alt_click)
     local target_color = target_obj.getVar("playerColor")
-
     swapPlayerColors(source_color, target_color)
 end
 

@@ -3607,8 +3607,9 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     if specialTokens[suffix] then
                         local state = obj.getStateId()
                         local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
+                        local locked = obj.getLock()
                         destroyObject(obj)
-                        specialTokens[suffix][data.oppositeColor].takeObject(attrs)
+                        specialTokens[suffix][data.oppositeColor].takeObject(attrs).setLock(locked)
                     elseif not fastMode then
                         data.tints[suffix] = obj.getColorTint()
                         if not data.objects[suffix] then

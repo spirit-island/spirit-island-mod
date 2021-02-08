@@ -3559,7 +3559,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
             objects = {},
             pattern = color .. "'s (.*)",
             bagContents = {},
-            defendTint = defendBags[oppositeColor].getColorTint(),
+            defendBag = defendBags[oppositeColor],
             oppositeColor = oppositeColor
         }
     end
@@ -3603,12 +3603,10 @@ function swapPlayerPresenceColors(fromColor, toColor)
                 suffix = match(name, data.pattern)
                 if suffix then
                     if suffix == 'Defence' then  -- Defense tokens are special.
-                        -- local state = obj.getStateId()
-                        -- local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
-                        -- destroyObject(obj)
-                        -- data.defendBag.takeObject(attrs)
-                        obj.setColorTint(data.defendTint)
-                        obj.setName(data.oppositeColor .. "'s Defence")
+                        local state = obj.getStateId()
+                        local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
+                        destroyObject(obj)
+                        data.defendBag.takeObject(attrs)
                     elseif not fastMode then
                         data.tints[suffix] = obj.getColorTint()
                         if not data.objects[suffix] then

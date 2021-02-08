@@ -2501,6 +2501,9 @@ function MapPlacen(posTable, rotTable)
                             index = value.index
                             break
                         end
+                    else
+                        index = value.index
+                        break
                     end
                 else
                     index = value.index

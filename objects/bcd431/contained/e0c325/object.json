@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 43.318363189697266,
-    "posY": 1.5045886039733887,
-    "posZ": 64.4573974609375,
-    "rotX": -4.116896548111981e-07,
-    "rotY": 180.00523376464844,
-    "rotZ": -0.00014402123633772135,
+    "posX": -43.34217834472656,
+    "posY": 1.6238863468170166,
+    "posZ": 50.757598876953125,
+    "rotX": 356.7244873046875,
+    "rotY": 180.01382446289062,
+    "rotZ": 0.25759077072143555,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM NW",
+  "Nickname": "NW",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 0.8156862854957581,
     "b": 0.8156862854957581
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

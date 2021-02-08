@@ -221,7 +221,7 @@
         <Text id="scoreLose" fontSize="20" color="#FFFFFF" alignment="UpperLeft">Defeat: 0</Text>
     </VerticalLayout>
 </Panel>
-<Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" width="60" height="120" rectAlignment="MiddleLeft" offsetXY="0 -50">
+<Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="120" rectAlignment="MiddleLeft" offsetXY="0 -50">
     <VerticalLayout>
         <Button onClick="MajorPowerUI" textAlignment="MiddleCenter">Gain a Major Power</Button>
         <Button onClick="MinorPowerUI" textAlignment="MiddleCenter">Gain a Minor Power</Button>

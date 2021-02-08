@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 137.86233520507812,
-    "posY": 1.2096757888793945,
-    "posZ": 36.26498031616211,
-    "rotX": 3.61686460337296e-07,
-    "rotY": 179.99578857421875,
-    "rotZ": -0.00014439044753089547,
+    "posX": -42.67243957519531,
+    "posY": 1.652131199836731,
+    "posZ": 51.04427719116211,
+    "rotX": 357.1436462402344,
+    "rotY": 180.01210021972656,
+    "rotZ": 0.7443141341209412,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM E Re-skinned",
+  "Nickname": "E",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

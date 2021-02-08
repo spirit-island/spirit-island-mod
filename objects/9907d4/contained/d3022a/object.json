@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -119.3403091430664,
-    "posY": 2.175853967666626,
-    "posZ": 9.087308883666992,
-    "rotX": 358.2179260253906,
-    "rotY": 179.91917419433594,
-    "rotZ": 6.344090461730957,
+    "posX": -119.383544921875,
+    "posY": 2.1762313842773438,
+    "posZ": 9.166265487670898,
+    "rotX": 356.8241882324219,
+    "rotY": 179.8223876953125,
+    "rotZ": 5.860360622406006,
     "scaleX": 0.3673044443130493,
     "scaleY": 1.0,
     "scaleZ": 0.3673044443130493
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Destroy"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,
@@ -45,373 +48,16 @@
     }
   },
   "States": {
-    "1": {
-      "GUID": "45247f",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860734224319458,
-        "posZ": 7.382925987243652,
-        "rotX": 0.004613939207047224,
-        "rotY": 180.0042266845703,
-        "rotZ": 0.0005248570232652128,
-        "scaleX": 0.3673044443130493,
-        "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
-      },
-      "Nickname": "Element Marker",
-      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159430031/8AEF5D9B043E25D43334F5986561414ECC8D093F/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "destroyOnTableDrop=true",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "2": {
-      "GUID": "387048",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860734224319458,
-        "posZ": 7.382925987243652,
-        "rotX": 0.0046128444373607635,
-        "rotY": 180.00425720214844,
-        "rotZ": 0.000514041690621525,
-        "scaleX": 0.3673044443130493,
-        "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
-      },
-      "Nickname": "Element Marker",
-      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159430731/B6C368B2F4A576062B82567315176E311CB6858B/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "destroyOnTableDrop=true",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "3": {
-      "GUID": "43e20a",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860733032226562,
-        "posZ": 7.382925987243652,
-        "rotX": 0.004618125967681408,
-        "rotY": 180.00425720214844,
-        "rotZ": 0.0005237383884377778,
-        "scaleX": 0.3673044443130493,
-        "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
-      },
-      "Nickname": "Element Marker",
-      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159431524/5379D06E34BFA92DF21BC8376FE735AE6C89F1EC/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "destroyOnTableDrop=true",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "4": {
-      "GUID": "bb3991",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860733032226562,
-        "posZ": 7.382925987243652,
-        "rotX": 0.004610858857631683,
-        "rotY": 180.00425720214844,
-        "rotZ": 0.0005263185012154281,
-        "scaleX": 0.3673044443130493,
-        "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
-      },
-      "Nickname": "Element Marker",
-      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159432183/D9BEAB16F3B8BDFE8620CA0FEDD09B95B3BC38DE/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "destroyOnTableDrop=true",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "5": {
-      "GUID": "8e54ff",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860733032226562,
-        "posZ": 7.382925987243652,
-        "rotX": 0.004618548788130283,
-        "rotY": 180.00425720214844,
-        "rotZ": 0.0005223300540819764,
-        "scaleX": 0.3673044443130493,
-        "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
-      },
-      "Nickname": "Element Marker",
-      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159432741/03708EE546C237D5C21B7CA17BDFCE48A6DD904C/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "destroyOnTableDrop=true",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "6": {
-      "GUID": "684a58",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860734224319458,
-        "posZ": 7.382925987243652,
-        "rotX": 0.004615608137100935,
-        "rotY": 180.00425720214844,
-        "rotZ": 0.0005253816489130259,
-        "scaleX": 0.3673044443130493,
-        "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
-      },
-      "Nickname": "Element Marker",
-      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159433337/BE4461323BE5803478AAE4EA7E4CFF4991F4859C/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "destroyOnTableDrop=true",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "7": {
-      "GUID": "31443f",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860733032226562,
-        "posZ": 7.382925987243652,
-        "rotX": 0.004618131555616856,
-        "rotY": 180.00425720214844,
-        "rotZ": 0.0005252340924926102,
-        "scaleX": 0.3673044443130493,
-        "scaleY": 1.0,
-        "scaleZ": 0.3673044443130493
-      },
-      "Nickname": "Element Marker",
-      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159433759/7AD2FFD068F01A688EEFE173B592057DD70F0920/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "destroyOnTableDrop=true",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
     "8": {
       "GUID": "372ead",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -118.09212493896484,
-        "posY": 1.1860734224319458,
-        "posZ": 7.382925987243652,
-        "rotX": 0.004611932672560215,
-        "rotY": 180.00425720214844,
-        "rotZ": 0.0005173977697268128,
+        "posX": -119.53949737548828,
+        "posY": 1.1849113702774048,
+        "posZ": 6.4601335525512695,
+        "rotX": 0.004445639904588461,
+        "rotY": 179.99893188476562,
+        "rotZ": 1.100656754715601e-05,
         "scaleX": 0.3673044443130493,
         "scaleY": 1.0,
         "scaleZ": 0.3673044443130493
@@ -424,6 +70,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": true,
@@ -449,7 +98,385 @@
           "Stackable": true
         }
       },
-      "LuaScript": "destroyOnTableDrop=true",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "31443f",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -119.53949737548828,
+        "posY": 1.1849112510681152,
+        "posZ": 6.4601335525512695,
+        "rotX": 0.004455422982573509,
+        "rotY": 179.9989471435547,
+        "rotZ": -1.5483509514524485e-06,
+        "scaleX": 0.3673044443130493,
+        "scaleY": 1.0,
+        "scaleZ": 0.3673044443130493
+      },
+      "Nickname": "Element Marker",
+      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159433759/7AD2FFD068F01A688EEFE173B592057DD70F0920/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "684a58",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -119.53949737548828,
+        "posY": 1.1849113702774048,
+        "posZ": 6.4601335525512695,
+        "rotX": 0.0044439686462283134,
+        "rotY": 179.9989471435547,
+        "rotZ": 6.310330263659125e-06,
+        "scaleX": 0.3673044443130493,
+        "scaleY": 1.0,
+        "scaleZ": 0.3673044443130493
+      },
+      "Nickname": "Element Marker",
+      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159433337/BE4461323BE5803478AAE4EA7E4CFF4991F4859C/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "8e54ff",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -119.53949737548828,
+        "posY": 1.1849113702774048,
+        "posZ": 6.4601335525512695,
+        "rotX": 0.004450751934200525,
+        "rotY": 179.9989471435547,
+        "rotZ": 1.4336892490973696e-05,
+        "scaleX": 0.3673044443130493,
+        "scaleY": 1.0,
+        "scaleZ": 0.3673044443130493
+      },
+      "Nickname": "Element Marker",
+      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159432741/03708EE546C237D5C21B7CA17BDFCE48A6DD904C/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "bb3991",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -119.53949737548828,
+        "posY": 1.1849113702774048,
+        "posZ": 6.4601335525512695,
+        "rotX": 0.004447339102625847,
+        "rotY": 179.9989471435547,
+        "rotZ": 9.673164640844334e-06,
+        "scaleX": 0.3673044443130493,
+        "scaleY": 1.0,
+        "scaleZ": 0.3673044443130493
+      },
+      "Nickname": "Element Marker",
+      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159432183/D9BEAB16F3B8BDFE8620CA0FEDD09B95B3BC38DE/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "3": {
+      "GUID": "43e20a",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -119.53949737548828,
+        "posY": 1.1849114894866943,
+        "posZ": 6.4601335525512695,
+        "rotX": 0.004453254863619804,
+        "rotY": 179.9989471435547,
+        "rotZ": 8.403042556892615e-06,
+        "scaleX": 0.3673044443130493,
+        "scaleY": 1.0,
+        "scaleZ": 0.3673044443130493
+      },
+      "Nickname": "Element Marker",
+      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159431524/5379D06E34BFA92DF21BC8376FE735AE6C89F1EC/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "2": {
+      "GUID": "387048",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -119.37142181396484,
+        "posY": 1.1849838495254517,
+        "posZ": 7.3939995765686035,
+        "rotX": 0.004446071106940508,
+        "rotY": 179.9989471435547,
+        "rotZ": 8.203720426536165e-06,
+        "scaleX": 0.3673044443130493,
+        "scaleY": 1.0,
+        "scaleZ": 0.3673044443130493
+      },
+      "Nickname": "Element Marker",
+      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159430731/B6C368B2F4A576062B82567315176E311CB6858B/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "1": {
+      "GUID": "45247f",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -119.37142181396484,
+        "posY": 1.184983730316162,
+        "posZ": 7.3939995765686035,
+        "rotX": 0.004435568116605282,
+        "rotY": 179.9989471435547,
+        "rotZ": -4.244217052473687e-06,
+        "scaleX": 0.3673044443130493,
+        "scaleY": 1.0,
+        "scaleZ": 0.3673044443130493
+      },
+      "Nickname": "Element Marker",
+      "Description": "1 = Sun\n2 = Moon\n3 = Fire\n4 = Wind\n5 = Water\n6 = Earth\n7 = Plants\n8 = Animals\n9 = Blank/Any",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/930436061159430031/8AEF5D9B043E25D43334F5986561414ECC8D093F/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": true
+        }
+      },
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     }

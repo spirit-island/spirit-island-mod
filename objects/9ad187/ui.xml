@@ -111,12 +111,11 @@
             </Row>
             <Row class="spacing"/>
             <Row id="events" class="toggle">
-                <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">B&amp;C Events?</Toggle></Cell>
-                <Cell><Toggle id="jeEvents" onValueChanged="toggleJEEvents">JE Events?</Toggle></Cell>
+                <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">B&amp;C Events</Toggle></Cell>
+                <Cell><Toggle id="jeEvents" onValueChanged="toggleJEEvents">JE Events</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Blight Card?</Toggle></Cell>
-                <Cell><Toggle id="notebookConfig" onValueChanged="toggleNotebookConfig">Use Notebook Config?</Toggle></Cell>
+                <Cell><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Blight Card</Toggle></Cell>
             </Row>
             <Row class="spacing"/>
             <Row>

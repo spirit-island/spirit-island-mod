@@ -2120,7 +2120,23 @@ function handlePiece(object, offset)
     elseif object.getName() == "Blight" then
         object = resetPiece(object, Vector(0,180,0), offset)
     elseif string.sub(object.getName(),-6) == "Defend" then
-        if object.getLock() == false then
+        -- Reset defense tokens to highest locked state.
+        -- Lock status is linked tied to a specific state.
+        local state = #object.getStates() + 1
+        local searching = true
+
+        if object.getStateId() ~= state then
+            object = object.setState(state)
+        end
+        while searching and state >= 1 do
+            if object.getLock() == true then
+                searching = false
+            else
+                state = state - 1
+                if state >= 1 then object = object.setState(state) end
+            end
+        end
+        if searching then
             object.destruct()
             object = nil
         end

@@ -745,6 +745,9 @@ function toggleSimpleMode()
         self.UI.setAttribute("panelOptional", "visibility", "Invisible")
         self.UI.setAttribute("panelRandom", "visibility", "Invisible")
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
+
+        Global.setVar("showPlayerButtons", false)
+        Global.call("updateAllPlayerAreas", nil)
     else
         self.UI.setAttribute("simpleMode", "isOn", "true")
         self.UI.setAttribute("leadingText", "text", "Leading Adversary")
@@ -754,6 +757,9 @@ function toggleSimpleMode()
         self.UI.setAttribute("optionalCell", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "")
         showUI()
+
+        Global.setVar("showPlayerButtons", true)
+        Global.call("updateAllPlayerAreas", nil)
     end
 end
 function toggleOptionalRules()

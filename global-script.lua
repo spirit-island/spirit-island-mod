@@ -375,8 +375,6 @@ function onLoad(saved_data)
                     o.interactable = false -- sets boards to uninteractable after reload
                 end
             end
-        else
-            enableUI()
         end
     end
     playerBlocks = convertGuidsToObjects(playerBlocks)
@@ -1960,10 +1958,6 @@ quotes = {
 timePassing = false
 function timePassesUI(player)
     if player.color == "Grey" then return end
-    if not gameStarted then
-        player.broadcast("The game must be started first.")
-        return
-    end
     timePasses()
 end
 function timePasses()
@@ -3502,7 +3496,7 @@ function swapPlayerAreaColors(a, b)
     updatePlayerArea(b)
 end
 
-function swapPlayerAreaObjects(a, b) 
+function swapPlayerAreaObjects(a, b)
     if a == b then return end
     local swaps = {[a] = b, [b] = a}
     local tables = {[a] = playerTables[a], [b] = playerTables[b]}
@@ -3548,7 +3542,7 @@ function swapPlayerAreas(a, b)
 end
 
 function swapPlayerPresenceColors(fromColor, toColor)
-    if fromColor == toColor then return end 
+    if fromColor == toColor then return end
     local function initData(color, ix, oppositeColor)
         bag = getObjectFromGUID(PlayerBags[color])
         return {
@@ -3585,7 +3579,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
         -- but this seems to work fine without doing that.  If something goes awry with this code in the future,
         -- you might try re-adding the delay.
         for color,data in pairs(colors) do
-            for i = 1,data.qty do 
+            for i = 1,data.qty do
                 local obj = data.bag.takeObject({
                     sound=false,
                     position={x=data.ix*2, z=200, y=i*2}    -- Chosen to be out-of-the-way and to prevent items from stacking.
@@ -3596,13 +3590,13 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
-    -- Make a note of what we find and what tint it is.  Handle Defence tokens in this pass.
+    -- Make a note of what we find and what tint it is. Handle Isolate and Defence tokens in this pass.
     local match = string.match  -- Performance
     local name, suffix
     for _,obj in pairs(getAllObjects()) do
         name = obj.getName()
         if name then
-            for _,data in pairs(colors) do 
+            for _,data in pairs(colors) do
                 suffix = match(name, data.pattern)
                 if suffix then
                     if specialTokens[suffix] then
@@ -3629,7 +3623,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     -- Pass 2: Iterate over found objects and swap color tints and object names.
     -- After we're done, put objects in their new presence bag, if applicable.
     if fastMode then
-        -- All's we did is maybe recolor some defence tokens, so we can skip the rest of this.
+        -- All's we did is maybe recolor some isolate and defence tokens, so we can skip the rest of this.
         return
     end
     for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do

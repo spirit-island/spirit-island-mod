@@ -1912,6 +1912,7 @@ function addSpirit(params)
 end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
+    getObjectFromGUID(elementScanZones[params.color]).clearButtons()
     selectedColors[params.color] = params.ready
     updatePlayerArea(params.color)
 end

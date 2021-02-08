@@ -101,12 +101,12 @@ defendBags = {
     White = "1716e3",
 }
 isolateBags = {
-    Red = "107ffa",
-    Purple = "732eac",
-    Yellow = "05859c",
-    Blue = "5a1d9b",
-    Green = "1c6c2b",
-    Orange = "79b05b",
+    Red = "ddd376",
+    Purple = "9f5d0d",
+    Yellow = "12d056",
+    Blue = "a1f5b5",
+    Green = "d9dc6d",
+    Orange = "18c282",
 }
 -----
 StandardMapBag = "9760a2"
@@ -1991,10 +1991,7 @@ function handlePiece(object, depth)
     elseif string.sub(object.getName(),-7) == "Defence" then
         if object.getLock() == false then object.destruct() end
         object = nil
-    elseif string.sub(object.getName(),-23) == "Defence Reminder Tokens" then
-        if object.getLock() == false then object.destruct() end
-        object = nil
-    elseif string.sub(object.getName(),-23) == "Isolate Reminder Tokens" then
+    elseif string.sub(object.getName(),-7) == "Isolate" then
         if object.getLock() == false then object.destruct() end
         object = nil
     end

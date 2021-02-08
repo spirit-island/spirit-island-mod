@@ -644,6 +644,7 @@ function loadConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
         if data.title == "Game Config" then
             if data.body == "" then return end
+            broadcastToAll("Loading config data from notebook", Color.SoftYellow)
             local saved_data = JSON.decode(data.body)
             if saved_data.numPlayers then
                 updateNumPlayers(saved_data.numPlayers, false)

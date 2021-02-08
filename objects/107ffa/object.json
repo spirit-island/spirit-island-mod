@@ -4,7 +4,7 @@
     "posX": -35.01,
     "posY": 0.8934701,
     "posZ": -13.6,
-    "rotX": -2.137342e-07,
+    "rotX": -2.13734239e-07,
     "rotY": 179.968658,
     "rotZ": 0.0,
     "scaleX": 0.55,
@@ -15,9 +15,9 @@
   "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.0588225648,
-    "g": 0.0588225648,
-    "b": 0.0588225648,
+    "r": 0.05882252,
+    "g": 0.05882252,
+    "b": 0.05882252,
     "a": 0.340148747
   },
   "LayoutGroupSortIndex": 0,

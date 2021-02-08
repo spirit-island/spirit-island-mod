@@ -131,6 +131,14 @@ alternateBoardLayoutNames = {
     {"Snail","Peninsula","V"},
     {"Star","Flower","Caldera"},
 }
+readyTokens = {
+    Red = "ab93fc",
+    Purple = "d61929",
+    Yellow = "747fcb",
+    Blue = "3c01e2",
+    Green = "88a4c3",
+    Orange = "d17f93",
+}
 playerBlocks = {
     Red = "c68e2c",
     Purple = "661aa3",
@@ -2056,6 +2064,18 @@ posMap = {
             Vector(-4.22, 1.08, 18.91),
             Vector(13.78, 1.08, 19.09),
         },
+        { -- Fragment 2
+            Vector(-5.44, 1.08, 18.99),
+            Vector(10.12, 1.08, 19.08),
+        },
+        { -- Top to Top
+            Vector(9.13, 1.08, 25.29),
+            Vector(-0.06, 1.08, 9.62),
+        },
+        { -- Coastline
+            Vector(2.54, 1.08, 10.34),
+            Vector(20.38, 1.08, 9.96),
+        },
     },
     { -- 3 Board
         ["Balanced"] = {
@@ -2210,6 +2230,18 @@ rotMap = {
         ["Opposite Shores"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
+        },
+        { -- Fragment 2
+            Vector(0.00, 270.00, 0.00),
+            Vector(0.00, 330.00, 0.00),
+        },
+        { -- Top to Top
+            Vector(0.00, 0.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+        },
+        { -- Coastline
+            Vector(0.00, 240.69, 0.00),
+            Vector(0.00, 240.69, 0.00),
         },
     },
     { -- 3 Board

@@ -2832,12 +2832,13 @@ function deleteObject(obj)
 end
 ----
 function refreshScore()
-    local dahan = #getObjectsWithTag("Dahan")
+    local dahan = math.floor(#getObjectsWithTag("Dahan") / numBoards)
     local blight = #getObjectsWithTag("Blight")
     if SetupChecker.call("isSpiritPickable", {guid="4c061f"}) then
         -- TODO figure out a more elegant solution here
         blight = blight - 2
     end
+    blight = math.floor(blight / numBoards)
 
     local invaderDeck = getObjectFromGUID(invaderDeckZone).getObjects()[1]
     local deckCount = 0

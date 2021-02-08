@@ -15,10 +15,13 @@
   "Description": "Base",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200278938,
-    "g": 0.160324216,
-    "b": 0.151762486
+    "r": 0.200276881,
+    "g": 0.16032216,
+    "b": 0.151760429
   },
+  "Tags": [
+    "Spirit"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": true,
   "Grid": true,

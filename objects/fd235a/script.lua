@@ -15,7 +15,7 @@ end
 
 function getPowerCards(_, color)
     if not Global.getVar("gameStarted") then
-        broadcastToColor("Please wait for the game to start before pressing button!", color, "Red")
+        Player[color].broadcast("Please wait for the game to start before pressing button!", "Red")
         return
     end
 
@@ -29,7 +29,7 @@ function getPowerCards(_, color)
        end
     end
     if not found then
-        broadcastToColor("You have not picked Fractured Days Split the Sky!", color, "Red")
+        Player[color].broadcast("You have not picked Fractured Days Split the Sky!", "Red")
         return
     end
 
@@ -38,7 +38,7 @@ function getPowerCards(_, color)
         count = 6
     end
     if Global.call("getMapCount", {norm = true, them = true}) == 1 then
-        broadcastToColor("Don't forget to gain 1 Time", color, "Blue")
+        Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
     end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
     for i=1,count do

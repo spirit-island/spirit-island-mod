@@ -15,7 +15,7 @@ end
 
 function setupDeepSlumber(_, color)
     if not Global.getVar("gameStarted") then
-        broadcastToColor("Please wait for the game to start before pressing button!", color, "Red")
+        Player[color].broadcast("Please wait for the game to start before pressing button!", "Red")
         return
     end
 
@@ -31,7 +31,7 @@ function setupDeepSlumber(_, color)
        end
     end
     if not found then
-        broadcastToColor("You have not picked Serpent Slumbering Beneath the Island!", color, "Red")
+        Player[color].broadcast("You have not picked Serpent Slumbering Beneath the Island!", "Red")
         return
     end
 

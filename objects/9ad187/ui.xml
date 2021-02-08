@@ -1,21 +1,17 @@
 <Defaults>
-    <Text color="#FFFFFF" fontSize="44" verticalOverflow="Overflow"/>
-    <Button fontSize="44" tooltipFontSize="30" tooltipBackgroundColor="#000000"/>
-    <Dropdown fontSize="44" tooltipFontSize="30" tooltipBackgroundColor="#000000" resizeTextMaxSize="44" itemHeight="52" scrollSensitivity="44" dropdownHeight="520" resizeTextForBestFit="true" textAlignment="MiddleCenter"/>
     <VerticalLayout width="1000" rectAlignment="MiddleLeft"/>
     <TableLayout autoCalculateHeight="true" cellPadding="20 20 0 0" rowBackgroundColor="#325742" cellBackgroundColor="clear"/>
     <Row preferredHeight="100"/>
     <Row class="header" preferredHeight="60"/>
     <Row class="doubleheader" preferredHeight="120"/>
     <Row class="spacing" preferredHeight="30"/>
-    <Toggle textColor="#FFFFFF"/>
-    <Slider wholeNumbers="true" tooltipFontSize="30" tooltipBackgroundColor="#000000" tooltipPosition="Below"/>
-    <Toggle scale="2 2 1"/>
     <Row class="toggle" preferredHeight="60"/>
-    <Cell class="toggle" tooltipFontSize="30" childForceExpandWidth="false"/>
-    <Text class="toggle" minWidth="10"/>
-    <Button class="toggle" fontSize="44" colors="clear|clear|clear|clear" textColor="#FFFFFF" preferredWidth="420" textAlignment="MiddleLeft"/>
-    <Button class="doubletoggle" fontSize="44" colors="clear|clear|clear|clear" textColor="#FFFFFF" preferredWidth="920" textAlignment="MiddleLeft"/>
+
+    <Text color="#FFFFFF" fontSize="44" verticalOverflow="Overflow"/>
+    <Button fontSize="44" tooltipFontSize="30" tooltipBackgroundColor="#000000"/>
+    <Dropdown fontSize="44" tooltipFontSize="30" tooltipBackgroundColor="#000000" resizeTextMaxSize="44" itemHeight="52" scrollSensitivity="44" dropdownHeight="520" resizeTextForBestFit="true" textAlignment="MiddleCenter"/>
+    <Toggle toggleWidth="40" toggleHeight="40" textColor="#FFFFFF" fontSize="40" verticalOverflow="Overflow" tooltipFontSize="30" tooltipBackgroundColor="#000000" />
+    <Slider wholeNumbers="true" tooltipFontSize="30" tooltipBackgroundColor="#000000" tooltipPosition="Below"/>
     <Text class="slider" alignment="LowerCenter"/>
 </Defaults>
 
@@ -110,16 +106,16 @@
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
             </Row>
             <Row>
-                <Cell><Button id="bnc" onClick="addBnC">Branch &amp; Claw </Button></Cell>
+                <Cell><Button id="bnc" onClick="addBnC">Branch &amp; Claw</Button></Cell>
                 <Cell><Button id="je" onClick="addJE">Jagged Earth</Button></Cell>
             </Row>
             <Row class="spacing"/>
             <Row id="events" class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="bncEvents" onValueChanged="toggleBnCEvents"/><Text class="toggle"/><Button id="eventDeckButton" class="toggle" onClick="toggleBnCEvents" preferredWidth="280" text="B&amp;C Events?"></Button></Cell>
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="jeEvents" onValueChanged="toggleJEEvents"/><Text class="toggle"/><Button id="eventDeckButton" class="toggle" onClick="toggleJEEvents" preferredWidth="260">JE Events?</Button></Cell>
+                <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">B&amp;C Events</Toggle></Cell>
+                <Cell><Toggle id="jeEvents" onValueChanged="toggleJEEvents">JE Events</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard"/><Text class="toggle"/><Button class="toggle" onClick="toggleBlightCard" preferredWidth="250">Blight Card?</Button></Cell>
+                <Cell><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Blight Card</Toggle></Cell>
             </Row>
             <Row class="spacing"/>
             <Row>
@@ -128,12 +124,12 @@
             </Row>
             <Row class="spacing"/>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="simpleMode" isOn="true" onValueChanged="toggleSimpleMode"/><Text class="toggle"/><Button class="toggle" onClick="toggleSimpleMode">Advanced Settings</Button></Cell>
-                <Cell id="optionalCell" class="toggle"><Text class="toggle"/><Toggle id="optionalRules" onValueChanged="toggleOptionalRules"/><Text class="toggle"/><Button class="toggle" onClick="toggleOptionalRules" preferredWidth="390" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Button></Cell>
+                <Cell><Toggle id="simpleMode" isOn="true" onValueChanged="toggleSimpleMode">Advanced Settings</Toggle></Cell>
+                <Cell id="optionalCell"><Toggle id="optionalRules" onValueChanged="toggleOptionalRules" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
             </Row>
             <Row id="toggles" class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="randomizers" onValueChanged="toggleRandomizers"/><Text class="toggle"/><Button class="toggle" onClick="toggleRandomizers" preferredWidth="390" tooltip="A way to randomise parts of the game, e.g.&#xA;Adversary, Scenario, Board Layout, and Spirit">Show Randomisers</Button></Cell>
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="exploratory" onValueChanged="toggleExploratory"/><Text class="toggle"/><Button class="toggle" onClick="toggleExploratory" preferredWidth="360" tooltip="Altered versions of parts of the game that R. Eric Reuss&#xA;would like feedback on, but aren't worth official playtesting">Show Exploratory</Button></Cell>
+                <Cell><Toggle id="randomizers" onValueChanged="toggleRandomizers" tooltip="A way to randomise parts of the game, e.g.&#xA;Adversary, Scenario, Board Layout, and Spirit">Show Randomisers</Toggle></Cell>
+                <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
@@ -155,31 +151,31 @@
                 <Cell><Text>Variant Rules</Text></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="extraBoard" onValueChanged="toggleExtraBoard"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleExtraBoard" preferredWidth="520" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Button></Cell>
+                <Cell><Toggle id="extraBoard" onValueChanged="toggleExtraBoard" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="strangeMadness" onValueChanged="toggleStrangeMadness"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleStrangeMadness" preferredWidth="810" tooltip="An Event that was removed for being too swingy, you&#xA;should not add this with Russia or Many Minds in play">Add "A Strange Madness Among Beasts" Event</Button></Cell>
+                <Cell><Toggle id="strangeMadness" onValueChanged="toggleStrangeMadness" tooltip="An Event that was removed for being too swingy, you&#xA;should not add this with Russia or Many Minds in play">Add "A Strange Madness Among Beasts" Event</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleSlaveRebellion" preferredWidth="760" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Button></Cell>
+                <Cell><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleBoardPairings" preferredWidth="910" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Button></Cell>
+                <Cell><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="soloBlight" isOn="true" onValueChanged="toggleSoloBlight"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleSoloBlight" preferredWidth="790" tooltip="Blight Cards which only have 2 Blight per Player&#xA;when flipped are not recommended in Solo games">Remove 2 Blight per player cards (Solo)</Button></Cell>
+                <Cell><Toggle id="soloBlight" isOn="true" onValueChanged="toggleSoloBlight" tooltip="Blight Cards which only have 2 Blight per Player&#xA;when flipped are not recommended in Solo games">Remove 2 Blight per player cards (Solo)</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleEngland6" preferredWidth="620" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat is as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Button></Cell>
+                <Cell><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat is as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleBlightSetup" preferredWidth="540" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Button></Cell>
+                <Cell><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleThematicRedo" preferredWidth="780" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Button></Cell>
+                <Cell><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="scaleBoard" onValueChanged="toggleScale"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleScale" preferredWidth="360" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Boards</Button></Cell>
+                <Cell><Toggle id="scaleBoard" onValueChanged="toggleScale" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Island Boards</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
@@ -219,13 +215,13 @@
                 <Cell><Text>Exploratory Testing</Text></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="votd" onValueChanged="toggleVOTD"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleVOTD" preferredWidth="470" tooltip="The Damage dealt after Destruction is instead&#xA;equal to the Health of the Piece Destroyed">Vengeance of the Dead</Button></Cell>
+                <Cell><Toggle id="votd" onValueChanged="toggleVOTD" tooltip="The Damage dealt after Destruction is instead&#xA;equal to the Health of the Piece Destroyed">Vengeance of the Dead</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="bodan" onValueChanged="toggleBODAN"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleBODAN" preferredWidth="690" tooltip="The Bottom Track is more viable, including more ANYs&#xA;and a way to gain Minors similar to Many Minds">Bringer of Dreams and Nightmares</Button></Cell>
+                <Cell><Toggle id="bodan" onValueChanged="toggleBODAN" tooltip="The Bottom Track is more viable,&#xA;including more ANYs and a way to&#xA;gain Minors similar to Many Minds">Bringer of Dreams and Nightmares</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell class="toggle"><Text class="toggle"/><Toggle id="war" onValueChanged="toggleWar"/><Text class="toggle"/><Button class="doubletoggle" onClick="toggleWar" preferredWidth="650" tooltip="The Damage dealt is instead half (round&#xA;down) the energy of the Major discarded">War Touches the Island's Shores</Button></Cell>
+                <Cell><Toggle id="war" onValueChanged="toggleWar" tooltip="The Damage dealt is instead half (round&#xA;down) the energy of the Major discarded">War Touches the Island's Shores</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

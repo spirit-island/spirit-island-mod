@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 91.3754654,
-    "posY": 2.2412746,
-    "posZ": 48.313324,
-    "rotX": 4.40703758e-07,
-    "rotY": 180.010452,
-    "rotZ": -0.000144622536,
+    "posX": -46.9354477,
+    "posY": 1.60885465,
+    "posZ": 51.1040878,
+    "rotX": 356.9639,
+    "rotY": 179.974487,
+    "rotZ": 359.332642,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "NORMAL E",
+  "Nickname": "E",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 0.8156863,
     "b": 0.8156863
   },
+  "Tags": [
+    "Balanced"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

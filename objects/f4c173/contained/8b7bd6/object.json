@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -56.08066,
-    "posY": 2.15778351,
-    "posZ": 31.7264023,
-    "rotX": 4.07840071e-06,
-    "rotY": 180.005417,
-    "rotZ": -1.00101988e-06,
+    "posX": -56.12206,
+    "posY": 2.157765,
+    "posZ": 31.4289761,
+    "rotX": 4.347706e-06,
+    "rotY": 180.005524,
+    "rotZ": -9.767426e-07,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -20,7 +20,8 @@
     "b": 1.0
   },
   "Tags": [
-    "Dahan"
+    "Dahan",
+    "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
@@ -60,12 +61,12 @@
       "GUID": "c0d874",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -53.8668633,
-        "posY": 1.22804916,
-        "posZ": 28.2039948,
-        "rotX": 0.00443225261,
-        "rotY": 180.004959,
-        "rotZ": 1.34697586e-06,
+        "posX": -47.2790031,
+        "posY": 1.22802985,
+        "posZ": 27.9567146,
+        "rotX": 0.00443227636,
+        "rotY": 180.0051,
+        "rotZ": 2.035853e-06,
         "scaleX": 1.89999938,
         "scaleY": 1.89999938,
         "scaleZ": 1.89999938
@@ -104,7 +105,7 @@
         "TypeIndex": 1,
         "CastShadows": true
       },
-      "LuaScript": "highlightOnObjectDrop = true",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [

@@ -375,8 +375,6 @@ function onLoad(saved_data)
             end
         else
             enableUI()
-            if BnCAdded then SetupChecker.UI.hide("bnc") end
-            if JEAdded then SetupChecker.UI.hide("je") end
         end
     end
     playerBlocks = convertGuidsToObjects(playerBlocks)

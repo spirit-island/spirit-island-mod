@@ -36,8 +36,6 @@ spiritTags = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
-notebookConfig = false
-
 optionalSoloBlight = true
 optionalStrangeMadness = false
 optionalBlightSetup = true
@@ -72,6 +70,7 @@ function onSave()
     return saved_data
 end
 function onLoad(saved_data)
+    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
     if Global.getVar("gameStarted") then
         self.UI.hide("panelSetup")
         setupStarted = true
@@ -461,10 +460,6 @@ function toggleBlightCard()
     Global.setVar("useBlightCard", useBlightCard)
     self.UI.setAttribute("blightCard", "isOn", useBlightCard)
 end
-function toggleNotebookConfig()
-    notebookConfig = not notebookConfig
-    self.UI.setAttribute("notebookConfig", "isOn", notebookConfig)
-end
 function toggleBnCEvents()
     if not Global.getVar("BnCAdded") then
         self.UI.setAttribute("bncEvents", "isOn", "false")
@@ -642,14 +637,13 @@ function difficultyCheck(params)
 end
 
 function startGame()
-    if notebookConfig then
-        loadConfig()
-    end
+    loadConfig()
     Wait.condition(function() Global.call("SetupGame", {}) end, function() return canStart end)
 end
 function loadConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
         if data.title == "Game Config" then
+            if data.body == "" then return end
             local saved_data = JSON.decode(data.body)
             if saved_data.numPlayers then
                 updateNumPlayers(saved_data.numPlayers, false)
@@ -685,6 +679,9 @@ function loadConfig()
             end
             if saved_data.je then
                 addJE()
+            end
+            if saved_data.broadcast then
+                broadcastToAll(saved_data.broadcast, Color.SoftYellow)
             end
             break
         end

@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 113.58532,
-    "posY": 1.17118609,
-    "posZ": 35.5709572,
-    "rotX": 2.1751238e-07,
-    "rotY": 179.975037,
-    "rotZ": -0.000144847931,
+    "posX": -41.90059,
+    "posY": 1.60624993,
+    "posZ": 52.1399269,
+    "rotX": 357.316528,
+    "rotY": 179.930634,
+    "rotZ": 0.9831639,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM W Re-skinned",
+  "Nickname": "W",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

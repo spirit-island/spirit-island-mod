@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -69.30332,
-    "posY": 3.332465,
-    "posZ": -3.501074,
-    "rotX": 359.979,
-    "rotY": 359.987457,
-    "rotZ": 359.974274,
+    "posX": -45.13013,
+    "posY": 3.32415318,
+    "posZ": 33.35167,
+    "rotX": -5.138884e-06,
+    "rotY": 359.9907,
+    "rotZ": -2.015882e-06,
     "scaleX": 0.7,
     "scaleY": 0.7,
     "scaleZ": 0.7
@@ -16,9 +16,12 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.6538587,
-    "g": 0.224694848,
-    "b": 0.224694848
+    "g": 0.224694729,
+    "b": 0.224694729
   },
+  "Tags": [
+    "Highlight"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
@@ -58,7 +61,8 @@
         "x": 0.005140699,
         "y": 2.65924859,
         "z": 0.000129623353
-      }
+      },
+      "Tags": []
     }
   ],
   "States": {
@@ -107,7 +111,7 @@
         "TypeIndex": 1,
         "CastShadows": true
       },
-      "LuaScript": "highlightOnObjectDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [

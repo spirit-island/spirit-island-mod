@@ -1,0 +1,57 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": 79.99,
+    "posY": 0.9480581,
+    "posZ": -13.6,
+    "rotX": -1.40060945e-06,
+    "rotY": 180.000122,
+    "rotZ": 180.0002,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
+  },
+  "Nickname": "Isolate Tokens",
+  "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.5600457,
+    "b": 0.34647432
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1751307208884018861/C5790838C4A91618B9B075D695CBD8D6B48CD424/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 7,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

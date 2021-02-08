@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 66.4151,
-    "posY": 1.47743642,
-    "posZ": 64.2690353,
-    "rotX": -5.66497761e-07,
-    "rotY": 180.012726,
-    "rotZ": -0.000143875819,
+    "posX": -45.235054,
+    "posY": 1.66499937,
+    "posZ": 50.2438545,
+    "rotX": 356.620758,
+    "rotY": 180.006424,
+    "rotZ": 0.491364032,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM NE",
+  "Nickname": "NE",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 0.8156863,
     "b": 0.8156863
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

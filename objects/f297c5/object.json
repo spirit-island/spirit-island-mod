@@ -4,9 +4,9 @@
     "posX": -119.55,
     "posY": 1.24023008,
     "posZ": -3.72338867,
-    "rotX": -0.004579064,
-    "rotY": 0.00300877844,
-    "rotZ": -0.000374833849,
+    "rotX": -0.00457883533,
+    "rotY": 0.004193944,
+    "rotZ": -0.000375157077,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,9 +15,9 @@
   "Description": "Use these for your \"Growth Begets Growth\" Special Rule",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249984562,
-    "g": 0.249984562,
-    "b": 0.249984562
+    "r": 0.249981344,
+    "g": 0.249981344,
+    "b": 0.249981344
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

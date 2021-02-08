@@ -100,6 +100,14 @@ defendBags = {
     Orange = "78a105",
     White = "1716e3",
 }
+isolateBags = {
+    Red = "107ffa",
+    Purple = "732eac",
+    Yellow = "05859c",
+    Blue = "5a1d9b",
+    Green = "1c6c2b",
+    Orange = "79b05b",
+}
 -----
 StandardMapBag = "9760a2"
 ThematicMapBag = "bcd431"
@@ -220,8 +228,8 @@ function onSave()
         data_table.scenarioCard = scenarioCard.guid
     end
     local savedSelectedColors = {}
-    for color,data in pairs(selectedColors) do
-        savedSelectedColors[color] = {ready=data.ready.guid, defend=data.defend.guid, isolate=data.isolate.guid}
+    for color,obj in pairs(selectedColors) do
+        savedSelectedColors[color] = obj.guid
     end
     data_table.selectedColors = savedSelectedColors
     saved_data = JSON.encode(data_table)
@@ -277,6 +285,9 @@ function onLoad(saved_data)
     for index, bagGuid in pairs(defendBags) do
         defendBags[index] = getObjectFromGUID(bagGuid)
     end
+    for index, bagGuid in pairs(isolateBags) do
+        isolateBags[index] = getObjectFromGUID(bagGuid)
+    end
     -----
     cityHealth = getObjectFromGUID(cityHealth)
     cityDamage = getObjectFromGUID(cityDamage)
@@ -314,12 +325,8 @@ function onLoad(saved_data)
         adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
         adversaryLevel2 = loaded_data.adversaryLevel2
         scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
-        for color,data in pairs(loaded_data.selectedColors) do
-            selectedColors[color] = {
-                ready = getObjectFromGUID(data.ready),
-                defend = getObjectFromGUID(data.defend),
-                isolate = getObjectFromGUID(data.isolate),
-            }
+        for color,guid in pairs(loaded_data.selectedColors) do
+            selectedColors[color] = getObjectFromGUID(guid)
             getObjectFromGUID(playerBlocks[color]).call("setupPlayerArea", {})
         end
 
@@ -363,16 +370,16 @@ end
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
-    for _,data in pairs(selectedColors) do
-        if not data.ready.is_face_down and data.ready.resting then
+    for _,obj in pairs(selectedColors) do
+        if not obj.is_face_down and obj.resting then
             readyCount = readyCount + 1
         end
         colorCount = colorCount + 1
     end
     if readyCount >= colorCount and colorCount ~= 0 then
         broadcastToAll("All Players are ready!")
-        for _,data in pairs(selectedColors) do
-            data.ready.flip()
+        for _,obj in pairs(selectedColors) do
+            obj.flip()
         end
     end
 end
@@ -1885,7 +1892,7 @@ end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
     getObjectFromGUID(elementScanZones[params.color]).clearButtons()
-    selectedColors[params.color] = {ready=params.ready, defend=params.defend, isolate=params.isolate}
+    selectedColors[params.color] = params.ready
     getObjectFromGUID(playerBlocks[params.color]).call("setupPlayerArea", {})
 end
 function getEmptySeat()
@@ -1957,9 +1964,9 @@ function timePassesCo()
         end
     end
 
-    for _,data in pairs(selectedColors) do
-        if not data.ready.is_face_down then
-            data.ready.flip()
+    for _,obj in pairs(selectedColors) do
+        if not obj.is_face_down then
+            obj.flip()
         end
     end
 
@@ -2721,13 +2728,9 @@ function place(objName, placePos, droppingPlayerColor)
         else
             temp = defendBags["White"].takeObject({position = placePos,rotation = Vector(0,180,0)})
         end
-    elseif objName == "Defend Reminder Token" then
-        if droppingPlayerColor and selectedColors[droppingPlayerColor] then
-            temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,180)})
-        end
     elseif objName == "Isolate Token" then
-        if droppingPlayerColor and selectedColors[droppingPlayerColor] then
-            temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,180)})
+        if droppingPlayerColor and isolateBags[droppingPlayerColor] then
+            temp = isolateBags[droppingPlayerColor].takeObject({position = placePos,rotation = Vector(0,180,180)})
         end
     elseif objName == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -2762,7 +2765,6 @@ Pieces = {
     "Disease",
     "Dahan",
     "Defend Token",
-    "Defend Reminder Token",
     "Isolate Token",
     "1 Energy",
     "3 Energy",

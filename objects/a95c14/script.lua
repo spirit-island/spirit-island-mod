@@ -109,16 +109,7 @@ function SetupSpirit(object_pick,player_color)
             rotation = Vector(0, 180, 180),
         })
 
-        -- Setup Aid Token Bags
-        local defend = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-9.7, 0.9, 0),
-            rotation = Vector(0,0,0),
-        })
-        defend.setLock(true)
-        local isolate = PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.7, 0.9, -1.7)})
-        isolate.setLock(true)
-
-        Global.call("removeSpirit", {spirit=self.guid, color=player_color, ready=ready, defend=defend, isolate=isolate})
+        Global.call("removeSpirit", {spirit=self.guid, color=player_color, ready=ready})
 
         -- Setup Energy Counter
         local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})

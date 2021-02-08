@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -104.070892,
+    "posX": -104.070877,
     "posY": 1.24006832,
     "posZ": -5.835368,
-    "rotX": 6.320975e-07,
-    "rotY": 0.000133370966,
-    "rotZ": -0.0009894519,
+    "rotX": 1.99354147e-07,
+    "rotY": 0.000135761613,
+    "rotZ": -0.0009883951,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249982029,
-    "g": 0.249982029,
-    "b": 0.249982029
+    "r": 0.249981791,
+    "g": 0.249981791,
+    "b": 0.249981791
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

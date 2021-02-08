@@ -246,7 +246,7 @@
         <Button onClick="toggleBlightUI" textAlignment="MiddleCenter">Toggle Blight UI</Button>
         <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Toggle Score</Button>
         <Button onClick="togglePowerDrawUI" textAlignment="MiddleCenter">Toggle Power Draw UI</Button>
-        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles the visibility of the buttons to change player seats or colors.&#xA;These are automatically hidden when the game starts, but can be turned back on if desired.">Toggle Seat Controls</Button>
-        <Button onClick="toggleMultihanded" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles whether the visibility the 'Play Spirit' buttons appear for all empty seats&#xA;or only for those who have chosen a spirit.">Toggle Multihanded</Button>
+        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles the visibility of the buttons to&#xA;change player seats or colors. These&#xA;are hidden when the game starts,&#xA;but can be turned back on if desired.">Toggle Seat Controls</Button>
+        <Button onClick="toggleMultihanded" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles whether the visibility the 'Play&#xA;Spirit' buttons appear for all empty seats&#xA;or only for those who have chosen a spirit.">Toggle Multihanded</Button>
     </VerticalLayout>
 </Panel>

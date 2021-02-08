@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 112.5791244506836,
-    "posY": 2.2253057956695557,
-    "posZ": 68.12276458740234,
-    "rotX": 8.477068718093506e-07,
-    "rotY": 180.0298309326172,
-    "rotZ": -0.00014340243069455028,
+    "posX": -48.965152740478516,
+    "posY": 1.4568349123001099,
+    "posZ": 53.78864669799805,
+    "rotX": 359.91168212890625,
+    "rotY": 179.98086547851562,
+    "rotZ": 359.92352294921875,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "NORMAL B",
+  "Nickname": "B",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 0.8156862854957581,
     "b": 0.8156862854957581
   },
+  "Tags": [
+    "Balanced"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

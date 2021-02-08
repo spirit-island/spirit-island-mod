@@ -69,6 +69,9 @@
         "g": 1.0,
         "b": 1.0
       },
+      "Tags": [
+        "Highlight"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
@@ -94,7 +97,7 @@
           "Stackable": true
         }
       },
-      "LuaScript": "highlightOnObjectDrop = true",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     },

@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 116.93761444091797,
-    "posY": 1.1736935377120972,
-    "posZ": 17.133991241455078,
-    "rotX": -7.785755542499828e-07,
-    "rotY": 180.0076446533203,
-    "rotZ": -0.00014452300092671067,
+    "posX": -41.62031555175781,
+    "posY": 1.6311506032943726,
+    "posZ": 50.80231857299805,
+    "rotX": 356.919677734375,
+    "rotY": 179.9784698486328,
+    "rotZ": 0.7838918566703796,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM SW Re-skinned",
+  "Nickname": "SW",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

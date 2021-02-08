@@ -77,6 +77,9 @@
         "g": 0.18153679370880127,
         "b": 0.18640810251235962
       },
+      "Tags": [
+        "Highlight"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": true,
       "Grid": false,
@@ -110,7 +113,7 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "highlightOnObjectDrop = true\r\n",
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [

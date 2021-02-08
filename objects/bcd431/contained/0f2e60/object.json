@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 51.91643142700195,
-    "posY": 1.5013148784637451,
-    "posZ": 26.36989402770996,
-    "rotX": 2.384108302067034e-05,
-    "rotY": 179.98606872558594,
-    "rotZ": 0.10014665126800537,
+    "posX": -43.21746063232422,
+    "posY": 1.6133239269256592,
+    "posZ": 50.89387893676758,
+    "rotX": 356.7159729003906,
+    "rotY": 179.98826599121094,
+    "rotZ": 0.2495347261428833,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM SW",
+  "Nickname": "SW",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 0.8156862854957581,
     "b": 0.8156862854957581
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

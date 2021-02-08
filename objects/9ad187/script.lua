@@ -42,6 +42,7 @@ optionalBlightSetup = true
 optionalExtraBoard = false
 optionalThematicRedo = false
 optionalBoardPairings = true
+optionalScaleBoard = false
 
 exploratoryVOTD = false
 exploratoryBODAN = false
@@ -69,6 +70,7 @@ function onSave()
     return saved_data
 end
 function onLoad(saved_data)
+    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
     if Global.getVar("gameStarted") then
         self.UI.hide("panelSetup")
         setupStarted = true
@@ -136,7 +138,7 @@ function addAdversary(obj)
     updateAdversaryList()
 end
 function onObjectDestroy(obj)
-    if spiritTags[obj.guid] ~= nil then
+    if obj.hasTag("Spirit") then
         removeSpirit({spirit=obj.guid})
     elseif not setupStarted and obj.type == "Card" then
         local objType = type(obj.getVar("difficulty"))
@@ -188,8 +190,8 @@ function updateAdversaryList()
 
     local t = self.UI.getXmlTable()
     for _,v in pairs(t) do
-        updateDropdownList(v, "leadingAdversary", adversaryList, -1, leadName)
-        updateDropdownList(v, "supportingAdversary", adversaryList, -1, supportName)
+        updateDropdownList(v, "leadingAdversary", adversaryList, leadName)
+        updateDropdownList(v, "supportingAdversary", adversaryList, supportName)
     end
     self.UI.setXmlTable(t, {})
 end
@@ -223,7 +225,7 @@ function updateScenarioList()
 
     local t = self.UI.getXmlTable()
     for _,v in pairs(t) do
-        updateDropdownList(v, "scenario", scenarioList, -1, scenarioName)
+        updateDropdownList(v, "scenario", scenarioList, scenarioName)
     end
     self.UI.setXmlTable(t, {})
 end
@@ -258,34 +260,49 @@ end
 
 ---- Setup UI Section
 function toggleNumPlayers(_, value)
-    if Global.getVar("alternateSetupIndex") > 4 then
-        Global.setVar("alternateSetupIndex", 1)
-    end
+    updateNumPlayers(value, true)
+end
+function updateNumPlayers(value, updateUI)
     local numPlayers = tonumber(value)
     if numPlayers > 5 and optionalExtraBoard then
         numPlayers = 5
     end
     Global.setVar("numPlayers", numPlayers)
-    self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
-    self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+    if updateUI then
+        self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
+        self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
-    -- Stop previous timer and start a new one
-    if updateLayoutsID ~= 0 then
-        Wait.stop(updateLayoutsID)
+        -- Stop previous timer and start a new one
+        if updateLayoutsID ~= 0 then
+            Wait.stop(updateLayoutsID)
+        end
+        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
     end
-    updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
 end
 function updateBoardLayouts(numPlayers)
     local t = self.UI.getXmlTable()
+    local numBoards = numPlayers
     if optionalExtraBoard then
-        numPlayers = numPlayers + 1
+        numBoards = numPlayers + 1
     end
+    layoutNames = {
+        "Balanced",
+        "Thematic",
+        "Random",
+        "Random with Thematic",
+        table.unpack(Global.getVar("alternateBoardLayoutNames")[numBoards])
+    }
+
+    if not tFind(layoutNames, Global.getVar("boardLayout")) then
+        Global.setVar("boardLayout", "Balanced")
+    end
+
     for _,v in pairs(t) do
-        updateDropdownList(v, "boardLayout", Global.getVar("alternateSetupNames")[numPlayers], Global.getVar("alternateSetupIndex"))
+        updateDropdownList(v, "boardLayout", layoutNames, Global.getVar("boardLayout"))
     end
     self.UI.setXmlTable(t, {})
 end
-function updateDropdownList(t, class, values, selectedIndex, selectedValue)
+function updateDropdownList(t, class, values, selectedValue)
     if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
         if t.attributes.id == class then
             t.children = {}
@@ -296,21 +313,22 @@ function updateDropdownList(t, class, values, selectedIndex, selectedValue)
                     attributes={},
                     children={},
                 }
-                if i == selectedIndex then
-                    t.children[i].attributes.selected = "true"
-                elseif v == selectedValue then
+                if v == selectedValue then
                     t.children[i].attributes.selected = "true"
                 end
             end
         else
             for _, v in pairs(t.children) do
-                updateDropdownList(v, class, values, selectedIndex, selectedValue)
+                updateDropdownList(v, class, values, selectedValue)
             end
         end
     end
 end
 
 function toggleScenario(_, value)
+    updateScenario(value, true)
+end
+function updateScenario(value, updateUI)
     if value == "Random" then
         Global.setVar("scenarioCard", nil)
         Global.setVar("useRandomScenario", true)
@@ -320,8 +338,10 @@ function toggleScenario(_, value)
     end
     updateDifficulty()
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateScenarioSelection(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateScenarioSelection(value) end, 1)
+    end
 end
 function updateScenarioSelection(name)
     local t = self.UI.getXmlTable()
@@ -331,8 +351,10 @@ function updateScenarioSelection(name)
     self.UI.setXmlTable(t, {})
 end
 
--- TODO fix double adversary randomizer
 function toggleLeadingAdversary(_, value)
+    updateLeadingAdversary(value, true)
+end
+function updateLeadingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard", nil)
         Global.setVar("useRandomAdversary", true)
@@ -341,14 +363,18 @@ function toggleLeadingAdversary(_, value)
         Global.setVar("useRandomAdversary", false)
     end
     if value == "None" or value == "Random" then
-        toggleLeadingLevel(nil, 0)
+        updateLeadingLevel(0, updateUI)
     else
         updateDifficulty()
-        self.UI.setAttribute("leadingLevelSlider", "enabled", "true")
+        if updateUI then
+            self.UI.setAttribute("leadingLevelSlider", "enabled", "true")
+        end
     end
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateLeadingSelection(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateLeadingSelection(value) end, 1)
+    end
 end
 function updateLeadingSelection(name)
     local t = self.UI.getXmlTable()
@@ -358,6 +384,9 @@ function updateLeadingSelection(name)
     self.UI.setXmlTable(t, {})
 end
 function toggleSupportingAdversary(_, value)
+    updateSupportingAdversary(value, true)
+end
+function updateSupportingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard2", nil)
         Global.setVar("useSecondAdversary", true)
@@ -366,14 +395,18 @@ function toggleSupportingAdversary(_, value)
         Global.setVar("useSecondAdversary", false)
     end
     if value == "None" or value == "Random" then
-        toggleSupportingLevel(nil, 0)
+        updateSupportingLevel(0, updateUI)
     else
         updateDifficulty()
-        self.UI.setAttribute("supportingLevelSlider", "enabled", "true")
+        if updateUI then
+            self.UI.setAttribute("supportingLevelSlider", "enabled", "true")
+        end
     end
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateSupportingSelection(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateSupportingSelection(value) end, 1)
+    end
 end
 function updateSupportingSelection(name)
     local t = self.UI.getXmlTable()
@@ -382,32 +415,42 @@ function updateSupportingSelection(name)
     end
     self.UI.setXmlTable(t, {})
 end
-function toggleLeadingLevel(player, value)
+function toggleLeadingLevel(_, value)
+    updateLeadingLevel(value, true)
+end
+function updateLeadingLevel(value, updateUI)
     if Global.getVar("adversaryCard") == nil then
         Global.setVar("adversaryLevel", 0)
         value = 0
+        if updateUI then
+            self.UI.setAttribute("leadingLevelSlider", "enabled", "false")
+        end
     else
         Global.setVar("adversaryLevel", tonumber(value))
     end
-    if player == nil then
-        self.UI.setAttribute("leadingLevelSlider", "enabled", "false")
+    if updateUI then
+        self.UI.setAttribute("leadingLevel", "text", "Level: "..value)
+        self.UI.setAttribute("leadingLevelSlider", "value", value)
     end
-    self.UI.setAttribute("leadingLevel", "text", "Level: "..value)
-    self.UI.setAttribute("leadingLevelSlider", "value", value)
     updateDifficulty()
 end
-function toggleSupportingLevel(player, value)
+function toggleSupportingLevel(_, value)
+    updateSupportingLevel(value, true)
+end
+function updateSupportingLevel(value, updateUI)
     if Global.getVar("adversaryCard2") == nil then
         Global.setVar("adversaryLevel2", 0)
         value = 0
+        if updateUI then
+            self.UI.setAttribute("supportingLevelSlider", "enabled", "false")
+        end
     else
         Global.setVar("adversaryLevel2", tonumber(value))
     end
-    if player == nil then
-        self.UI.setAttribute("supportingLevelSlider", "enabled", "false")
+    if updateUI then
+        self.UI.setAttribute("supportingLevel", "text", "Level: "..value)
+        self.UI.setAttribute("supportingLevelSlider", "value", value)
     end
-    self.UI.setAttribute("supportingLevel", "text", "Level: "..value)
-    self.UI.setAttribute("supportingLevelSlider", "value", value)
     updateDifficulty()
 end
 
@@ -456,6 +499,9 @@ function updateDropdownSelection(t, class, value)
     end
 end
 function toggleBoardLayout(_, value)
+    updateBoardLayout(value, true)
+end
+function updateBoardLayout(value, updateUI)
     if value == "Random" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", false)
@@ -466,19 +512,15 @@ function toggleBoardLayout(_, value)
         Global.setVar("useRandomBoard", false)
         Global.setVar("includeThematic", false)
     end
-    local index = 1
-    for i,v in pairs(Global.getVar("alternateSetupNames")[Global.getVar("numPlayers")]) do
-        if v == value then
-            index = i
-        end
-    end
-    Global.setVar("alternateSetupIndex", index)
+    Global.setVar("boardLayout", value)
     updateDifficulty()
 
-    -- Wait for difficulty to update
-    Wait.frames(function() updateBoardLayout(value) end, 1)
+    if updateUI then
+        -- Wait for difficulty to update
+        Wait.frames(function() updateBoardLayoutSelection(value) end, 1)
+    end
 end
-function updateBoardLayout(name)
+function updateBoardLayoutSelection(name)
     local t = self.UI.getXmlTable()
     for _,v in pairs(t) do
         updateDropdownSelection(v, "boardLayout", name)
@@ -570,8 +612,8 @@ function difficultyCheck(params)
             difficulty = (0.5 * difficulty) + difficulty2
         end
     end
-    local alternateSetupIndex = Global.getVar("alternateSetupIndex")
-    if alternateSetupIndex == 2 or params.thematic then
+    local boardLayout = Global.getVar("boardLayout")
+    if boardLayout == "Thematic" or params.thematic then
         if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
             difficulty = difficulty + 1
         else
@@ -587,7 +629,7 @@ function difficultyCheck(params)
     if optionalExtraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
-        if alternateSetupIndex == 2 then
+        if boardLayout == "Thematic" or params.thematic then
             difficulty = difficulty - (intNum / 2)
         end
     end
@@ -595,8 +637,74 @@ function difficultyCheck(params)
 end
 
 function startGame()
-    Global.call("SetupGame", {})
+    loadConfig()
+    Wait.condition(function() Global.call("SetupGame", {}) end, function() return canStart end)
 end
+function loadConfig()
+    for _,data in pairs(Notes.getNotebookTabs()) do
+        if data.title == "Game Config" then
+            if data.body == "" then return end
+            broadcastToAll("Loading config data from notebook", Color.SoftYellow)
+            local saved_data = JSON.decode(data.body)
+            if saved_data.numPlayers then
+                updateNumPlayers(saved_data.numPlayers, false)
+            end
+            if saved_data.boardLayout then
+                updateBoardLayout(saved_data.boardLayout, false)
+            end
+            if saved_data.boards then
+                Global.setTable("useBoards", saved_data.boards)
+            end
+            if saved_data.adversary then
+                updateLeadingAdversary(saved_data.adversary, false)
+            end
+            if saved_data.adversaryLevel then
+                updateLeadingLevel(saved_data.adversaryLevel, false)
+            end
+            if saved_data.adversary2 then
+                updateSupportingAdversary(saved_data.adversary2, false)
+            end
+            if saved_data.adversaryLevel2 then
+                updateSupportingLevel(saved_data.adversaryLevel2, false)
+            end
+            if saved_data.scenario then
+                updateScenario(saved_data.scenario, false)
+            end
+            if saved_data.spirits then
+                for name,aspect in pairs(saved_data.spirits) do
+                    PickSpirit(name, aspect)
+                end
+            end
+            if saved_data.bnc then
+                addBnC()
+            end
+            if saved_data.je then
+                addJE()
+            end
+            if saved_data.broadcast then
+                broadcastToAll(saved_data.broadcast, Color.SoftYellow)
+            end
+            break
+        end
+    end
+end
+function PickSpirit(name, aspect)
+    for _,spirit in pairs(getObjectsWithTag("Spirit")) do
+        if spirit.getName() == name then
+            if isSpiritPickable({guid = spirit.guid}) then
+                -- TODO need to figure out how to handle this once seat swapping code is in
+                local color = Global.call("getEmptySeat", {})
+                if color ~= nil then
+                    spirit.call("PickSpirit", {color = color, aspect = aspect})
+                else
+                    broadcastToAll("Unable to pick "..name..", no seats left", "Red")
+                end
+            end
+            break
+        end
+    end
+end
+
 function showUI()
     self.UI.setAttribute("panelSetup", "visibility", "")
     self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
@@ -710,17 +818,17 @@ end
 
 function randomSpirit(player)
     if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        broadcastToColor("You already picked a spirit", player.color, "Red")
+        Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
 
     local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    spirit.call("PickSpirit", {color = player.color, random = {aspect = true}})
-    broadcastToColor("Your randomised spirit is "..spirit.getName(), player.color, "Blue")
+    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
+    Player[player.color].broadcast("Your randomised spirit is "..spirit.getName(), "Blue")
 end
 function randomJESpirit(player)
     if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        broadcastToColor("You already picked a spirit", player.color, "Red")
+        Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
 
@@ -729,19 +837,19 @@ function randomJESpirit(player)
         guid = spiritGuids[math.random(1,#spiritGuids)]
     end
     local spirit = getObjectFromGUID(guid)
-    spirit.call("PickSpirit", {color = player.color, random = {aspect = true}})
-    broadcastToColor("Your randomised Jagged Earth spirit is "..spirit.getName(), player.color, "Blue")
+    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
+    Player[player.color].broadcast("Your randomised Jagged Earth spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
     if obj.getButtons() ~= nil and #obj.getButtons() ~= 0 then
-        broadcastToColor("You already have Spirit options", player.color, Color.SoftYellow)
+        Player[player.color].broadcast("You already have Spirit options", Color.SoftYellow)
         return
     elseif #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        broadcastToColor("You already picked a spirit", player.color, "Red")
+        Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
-    broadcastToColor("Your 4 randomised spirits to choose from are in your play area", player.color, Color.SoftBlue)
+    Player[player.color].broadcast("Your 4 randomised spirits to choose from are in your play area", Color.SoftBlue)
 
     local spirit1 = getNewSpirit()
     local spirit2 = getNewSpirit()
@@ -832,10 +940,10 @@ end
 function pickSpirit(obj, index, color)
     local name = obj.getButtons()[index+1].label
     if isSpiritPickable({guid = spiritChoices[name]}) then
-        getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, random = {aspect = true}})
+        getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, aspect = "Random"})
         obj.clearButtons()
     else
-        broadcastToColor("Spirit unavailable getting new one", color, Color.SoftYellow)
+        Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
         local spirit = getNewSpirit()
         if spirit ~= nil then
             obj.editButton({
@@ -957,6 +1065,10 @@ function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
 end
+function toggleScale()
+    optionalScaleBoard = not optionalScaleBoard
+    self.UI.setAttribute("scaleBoard", "isOn", optionalScaleBoard)
+end
 
 function toggleVOTD()
     exploratoryVOTD = not exploratoryVOTD
@@ -976,4 +1088,13 @@ function wt(some)
     while os.clock() < Time do
         coroutine.yield(0)
     end
+end
+
+function tFind(table, needle)
+    for i, value in pairs(table) do
+        if value == needle then
+            return i
+        end
+    end
+    return nil
 end

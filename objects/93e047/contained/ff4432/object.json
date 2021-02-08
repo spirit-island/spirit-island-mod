@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -36.04867172241211,
-    "posY": 0.9570778608322144,
-    "posZ": -13.408267974853516,
-    "rotX": 0.00172214035410434,
-    "rotY": 340.0122985839844,
-    "rotZ": 179.99847412109375,
+    "posX": -35.82770538330078,
+    "posY": 0.9708023071289062,
+    "posZ": -13.399394989013672,
+    "rotX": -5.349499770090915e-05,
+    "rotY": 339.9891662597656,
+    "rotZ": 179.99969482421875,
     "scaleX": 0.8250001668930054,
     "scaleY": 0.8250001668930054,
     "scaleZ": 0.8250001668930054
@@ -19,6 +19,9 @@
     "g": 0.5139370560646057,
     "b": 0.5139370560646057
   },
+  "Tags": [
+    "Destroy"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
@@ -53,1137 +56,16 @@
     "CastShadows": true
   },
   "States": {
-    "2": {
-      "GUID": "bc5c70",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791069030761719,
-        "rotX": 0.0044471630826592445,
-        "rotY": 179.99642944335938,
-        "rotZ": -1.622012678126339e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364143752/8C2E8CF5F4A8D4836ADE637DF8AE6D36E7CD43D8/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "3": {
-      "GUID": "090b8f",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791067123413086,
-        "rotX": 0.004446628037840128,
-        "rotY": 179.99647521972656,
-        "rotZ": -1.6575380868744105e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364144185/02CD164EE9DF59CF732F605FECAC945FC1EAA85F/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "4": {
-      "GUID": "559cc6",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791065216064453,
-        "rotX": 0.00444712582975626,
-        "rotY": 179.9965057373047,
-        "rotZ": -1.640448135731276e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364144652/F883F7C04C26D154717793E27F1924D3696591B2/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "5": {
-      "GUID": "51b34d",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.79106330871582,
-        "rotX": 0.004446923267096281,
-        "rotY": 179.9965362548828,
-        "rotZ": -1.6311038052663207e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201363897359/FFC044E4AEF9E2FEAC170A9B341702AD07B6172B/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "6": {
-      "GUID": "3471c4",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791061401367188,
-        "rotX": 0.004447754938155413,
-        "rotY": 179.9964599609375,
-        "rotZ": -1.611992047401145e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364145918/E7CE9294A38B24D388225BC5D73CC904BD980925/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "7": {
-      "GUID": "4254a5",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791059494018555,
-        "rotX": 0.004447048529982567,
-        "rotY": 179.99642944335938,
-        "rotZ": -1.626082848815713e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364146460/D3A6CF1B2A9376E107295AD85608FA56FBAE31E9/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "8": {
-      "GUID": "a4b8d3",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791055679321289,
-        "rotX": 0.004447591491043568,
-        "rotY": 179.9963836669922,
-        "rotZ": -1.6139589206431992e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364146880/28393CF7ED11945434E8EF8732251AB37D9095A0/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "10": {
-      "GUID": "e83273",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791051864624023,
-        "rotX": 0.004446707665920258,
-        "rotY": 179.996337890625,
-        "rotZ": -1.6619876987533644e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147630/519B218F2E1C55FEF3ED1DE10A4487AEAD261A39/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "11": {
-      "GUID": "58b4ac",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.79104995727539,
-        "rotX": 0.004447665996849537,
-        "rotY": 179.99630737304688,
-        "rotZ": -1.5984647689037956e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147944/E182D34A3BC915C85BAF3C6DE1AE3983BE7069D2/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "12": {
-      "GUID": "49fb36",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791047096252441,
-        "rotX": 0.004446974955499172,
-        "rotY": 179.99620056152344,
-        "rotZ": -1.6474064977956004e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364148294/58073F5410A294807C83E5355F22AFE5EEFA9DDF/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "13": {
-      "GUID": "b05ca0",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791046142578125,
-        "rotX": 0.004446917679160833,
-        "rotY": 179.9961700439453,
-        "rotZ": -1.6281006537610665e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364148920/2B351DDE2786DB15D76603E8A1A54E83F1215DC8/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "14": {
-      "GUID": "662e78",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.79104232788086,
-        "rotX": 0.00444771908223629,
-        "rotY": 179.99612426757812,
-        "rotZ": -1.609777427802328e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364149289/775119634E43E4F10CD4F6851E40A73B9ADDD84C/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "15": {
-      "GUID": "01af03",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791040420532227,
-        "rotX": 0.004447587765753269,
-        "rotY": 179.99609375,
-        "rotZ": -1.618946589587722e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364149667/75FE56B4D44FB19030148F95E04498106F6A8237/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "16": {
-      "GUID": "a3bffb",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791037559509277,
-        "rotX": 0.0044471025466918945,
-        "rotY": 179.99603271484375,
-        "rotZ": -1.6445941582787782e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364150330/AD2995CC934CF8FEB85A88BD0911BF2A0D7230EA/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "9": {
-      "GUID": "2e115a",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791029930114746,
-        "rotX": 0.004447821993380785,
-        "rotY": 179.9959259033203,
-        "rotZ": -1.596120091562625e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147274/56FEC77EE69EE1262AB0557F106FF849830004A3/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "17": {
-      "GUID": "a44ff7",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.79102611541748,
-        "rotX": 0.004447083454579115,
-        "rotY": 179.99581909179688,
-        "rotZ": -1.6418296581832692e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364150737/603DF230287A960A447D0098FDB215849FC577B0/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "18": {
-      "GUID": "33f920",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791023254394531,
-        "rotX": 0.004447528161108494,
-        "rotY": 179.99569702148438,
-        "rotZ": -1.6033669453463517e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364151443/62EA3636C1489EB7CDB3998833BA0D0A25644543/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "19": {
-      "GUID": "6264b0",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791021347045898,
-        "rotX": 0.004447131417691708,
-        "rotY": 179.9956817626953,
-        "rotZ": -1.6367133866879158e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364152093/4C679BB424CABBBADA764E6C3E2E7206432AEDE4/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "20": {
-      "GUID": "bc09d0",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791020393371582,
-        "rotX": 0.0044467211700975895,
-        "rotY": 179.9956512451172,
-        "rotZ": -1.6621354006929323e-05,
-        "scaleX": 0.8250001668930054,
-        "scaleY": 0.8250001668930054,
-        "scaleZ": 0.8250001668930054
-      },
-      "Nickname": "Red's Defence",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.5139370560646057,
-        "b": 0.5139370560646057
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364152509/5E5D4DB699E1FF2ED5B4843FE72B18A0C9EF05CB/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
     "21": {
       "GUID": "cd370a",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -42.307315826416016,
-        "posY": 0.9042847156524658,
-        "posZ": -14.791017532348633,
-        "rotX": 0.004447738640010357,
-        "rotY": 179.9956817626953,
-        "rotZ": -1.602521660970524e-05,
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923486709594727,
+        "rotX": 0.004447472747415304,
+        "rotY": 180.01171875,
+        "rotZ": 1.0796312608363223e-06,
         "scaleX": 0.8250001668930054,
         "scaleY": 0.8250001668930054,
         "scaleZ": 0.8250001668930054
@@ -1196,6 +78,9 @@
         "g": 0.5139370560646057,
         "b": 0.5139370560646057
       },
+      "Tags": [
+        "Destroy"
+      ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
       "Grid": false,
@@ -1229,7 +114,1185 @@
         },
         "CastShadows": true
       },
-      "LuaScript": "destroyOnTableDrop = true\r\n",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "19": {
+      "GUID": "6264b0",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.92353630065918,
+        "rotX": 0.004446863662451506,
+        "rotY": 180.01136779785156,
+        "rotZ": 4.989923354514758e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364152093/4C679BB424CABBBADA764E6C3E2E7206432AEDE4/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "20": {
+      "GUID": "bc09d0",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923540115356445,
+        "rotX": 0.0044468967244029045,
+        "rotY": 180.01133728027344,
+        "rotZ": 1.1202811265320634e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364152509/5E5D4DB699E1FF2ED5B4843FE72B18A0C9EF05CB/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "18": {
+      "GUID": "33f920",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923540115356445,
+        "rotX": 0.004446201492100954,
+        "rotY": 180.0113067626953,
+        "rotZ": 8.033925951167475e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364151443/62EA3636C1489EB7CDB3998833BA0D0A25644543/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "17": {
+      "GUID": "a44ff7",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923547744750977,
+        "rotX": 0.004447084851562977,
+        "rotY": 180.0112762451172,
+        "rotZ": 7.366603540504002e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364150737/603DF230287A960A447D0098FDB215849FC577B0/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "16": {
+      "GUID": "a3bffb",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923547744750977,
+        "rotX": 0.004447050392627716,
+        "rotY": 180.01124572753906,
+        "rotZ": 7.416341532007209e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364150330/AD2995CC934CF8FEB85A88BD0911BF2A0D7230EA/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "15": {
+      "GUID": "01af03",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923555374145508,
+        "rotX": 0.004446414764970541,
+        "rotY": 180.01121520996094,
+        "rotZ": 1.045667090693314e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364149667/75FE56B4D44FB19030148F95E04498106F6A8237/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "14": {
+      "GUID": "662e78",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923559188842773,
+        "rotX": 0.004446590784937143,
+        "rotY": 180.01119995117188,
+        "rotZ": 9.999246231018333e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364149289/775119634E43E4F10CD4F6851E40A73B9ADDD84C/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "13": {
+      "GUID": "b05ca0",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.92356300354004,
+        "rotX": 0.004446632228791714,
+        "rotY": 180.01116943359375,
+        "rotZ": 1.0404415888842777e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364148920/2B351DDE2786DB15D76603E8A1A54E83F1215DC8/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "12": {
+      "GUID": "49fb36",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923566818237305,
+        "rotX": 0.0044466727413237095,
+        "rotY": 180.01113891601562,
+        "rotZ": 5.968802270217566e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364148294/58073F5410A294807C83E5355F22AFE5EEFA9DDF/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "11": {
+      "GUID": "58b4ac",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923574447631836,
+        "rotX": 0.004447260871529579,
+        "rotY": 180.0111083984375,
+        "rotZ": 9.738987500895746e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147944/E182D34A3BC915C85BAF3C6DE1AE3983BE7069D2/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "10": {
+      "GUID": "e83273",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.9235782623291,
+        "rotX": 0.00444695632904768,
+        "rotY": 180.01107788085938,
+        "rotZ": 9.966861398424953e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147630/519B218F2E1C55FEF3ED1DE10A4487AEAD261A39/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "9": {
+      "GUID": "2e115a",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923582077026367,
+        "rotX": 0.004447189625352621,
+        "rotY": 180.01104736328125,
+        "rotZ": 1.0208573257841635e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364147274/56FEC77EE69EE1262AB0557F106FF849830004A3/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "a4b8d3",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923585891723633,
+        "rotX": 0.004446759819984436,
+        "rotY": 180.01101684570312,
+        "rotZ": 1.0862576118597644e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364146880/28393CF7ED11945434E8EF8732251AB37D9095A0/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "4254a5",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.9235897064209,
+        "rotX": 0.004446675535291433,
+        "rotY": 180.010986328125,
+        "rotZ": 1.0493492936802795e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364146460/D3A6CF1B2A9376E107295AD85608FA56FBAE31E9/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "3471c4",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.92359733581543,
+        "rotX": 0.0044462126679718494,
+        "rotY": 180.01095581054688,
+        "rotZ": 9.163026675196306e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364145918/E7CE9294A38B24D388225BC5D73CC904BD980925/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "51b34d",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.92360496520996,
+        "rotX": 0.004447083920240402,
+        "rotY": 180.0109405517578,
+        "rotZ": 1.0082138715006295e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201363897359/FFC044E4AEF9E2FEAC170A9B341702AD07B6172B/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "559cc6",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923608779907227,
+        "rotX": 0.004446741659194231,
+        "rotY": 180.0109100341797,
+        "rotZ": 1.0918067800957942e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364144652/F883F7C04C26D154717793E27F1924D3696591B2/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "3": {
+      "GUID": "090b8f",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923612594604492,
+        "rotX": 0.004446433391422033,
+        "rotY": 180.01087951660156,
+        "rotZ": 8.891266816135612e-07,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364144185/02CD164EE9DF59CF732F605FECAC945FC1EAA85F/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "2": {
+      "GUID": "bc5c70",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -34.51076126098633,
+        "posY": 0.9009974002838135,
+        "posZ": -17.923620223999023,
+        "rotX": 0.004446901381015778,
+        "rotY": 180.01084899902344,
+        "rotZ": 1.2036050520691788e-06,
+        "scaleX": 0.8250001668930054,
+        "scaleY": 0.8250001668930054,
+        "scaleZ": 0.8250001668930054
+      },
+      "Nickname": "Red's Defence",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5139370560646057,
+        "b": 0.5139370560646057
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1322320201364143752/8C2E8CF5F4A8D4836ADE637DF8AE6D36E7CD43D8/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     }

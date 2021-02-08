@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -56.03345489501953,
-    "posY": 3.5978598594665527,
-    "posZ": 37.026309967041016,
-    "rotX": 0.001623519230633974,
-    "rotY": 0.04122094064950943,
-    "rotZ": -0.000985854770988226,
+    "posX": -55.85643005371094,
+    "posY": 3.3244197368621826,
+    "posZ": 36.56853103637695,
+    "rotX": -0.00020785532251466066,
+    "rotY": 0.037411801517009735,
+    "rotZ": -0.0001594820205355063,
     "scaleX": 0.699999988079071,
     "scaleY": 0.699999988079071,
     "scaleZ": 0.699999988079071
@@ -19,6 +19,9 @@
     "g": 0.8805069327354431,
     "b": 0.8526127934455872
   },
+  "Tags": [
+    "Highlight"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,
@@ -48,68 +51,11 @@
         "x": 0.0004010519478470087,
         "y": 2.5899505615234375,
         "z": -7.258525874931365e-05
-      }
+      },
+      "Tags": []
     }
   ],
   "States": {
-    "2": {
-      "GUID": "e3c01d",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -52.38264465332031,
-        "posY": 0.8581046462059021,
-        "posZ": 37.18440628051758,
-        "rotX": 0.0044502755627036095,
-        "rotY": 180.00169372558594,
-        "rotZ": -1.1244424058531877e-06,
-        "scaleX": 0.699999988079071,
-        "scaleY": 0.699999988079071,
-        "scaleZ": 0.699999988079071
-      },
-      "Nickname": "City: 1 Damage",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.8898048996925354,
-        "g": 0.8805069327354431,
-        "b": 0.8526127934455872
-      },
-      "LayoutGroupSortIndex": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
-        "DiffuseURL": "",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 0,
-        "TypeIndex": 1,
-        "CastShadows": true
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "AttachedSnapPoints": [
-        {
-          "Position": {
-            "x": -4.1026802932719875e-07,
-            "y": 2.054537773132324,
-            "z": -0.00014936993829905987
-          }
-        }
-      ]
-    },
     "3": {
       "GUID": "f014a3",
       "Name": "Custom_Model",
@@ -165,6 +111,65 @@
             "y": 2.369521379470825,
             "z": -0.0001029958002618514
           }
+        }
+      ]
+    },
+    "2": {
+      "GUID": "e3c01d",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -55.39616012573242,
+        "posY": 0.8574138879776001,
+        "posZ": 28.28665542602539,
+        "rotX": 0.0044371625408530235,
+        "rotY": 180.03805541992188,
+        "rotZ": 3.365658585607889e-06,
+        "scaleX": 0.699999988079071,
+        "scaleY": 0.699999988079071,
+        "scaleZ": 0.699999988079071
+      },
+      "Nickname": "City: 1 Damage",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898048996925354,
+        "g": 0.8805069327354431,
+        "b": 0.8526127934455872
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -4.1026802932719875e-07,
+            "y": 2.054537773132324,
+            "z": -0.00014936993829905987
+          },
+          "Tags": []
         }
       ]
     }

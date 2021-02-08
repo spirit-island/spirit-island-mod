@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 108.36380767822266,
-    "posY": 1.168672800064087,
-    "posZ": 55.42160415649414,
-    "rotX": 4.2702350810941425e-07,
-    "rotY": 179.9984130859375,
-    "rotZ": -0.0001445546222385019,
+    "posX": -39.04057693481445,
+    "posY": 1.5727663040161133,
+    "posZ": 51.956298828125,
+    "rotX": 357.3387451171875,
+    "rotY": 180.02267456054688,
+    "rotZ": 0.8622584342956543,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM NW Re-skinned",
+  "Nickname": "NW",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

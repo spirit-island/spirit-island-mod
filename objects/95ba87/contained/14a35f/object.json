@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 132.92752075195312,
-    "posY": 1.2094396352767944,
-    "posZ": 55.73064422607422,
-    "rotX": 1.4548657389923392e-08,
-    "rotY": 180.01275634765625,
-    "rotZ": -0.00014396340702660382,
+    "posX": -42.83628463745117,
+    "posY": 1.5933080911636353,
+    "posZ": 51.98454666137695,
+    "rotX": 357.0477600097656,
+    "rotY": 179.91705322265625,
+    "rotZ": 0.4622405767440796,
     "scaleX": 6.5,
     "scaleY": 1.0,
     "scaleZ": 6.5
   },
-  "Nickname": "THEM NE Re-skinned",
+  "Nickname": "NE",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Thematic"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": false,

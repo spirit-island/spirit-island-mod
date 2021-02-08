@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.1.0"
+version = "1.2.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -58,7 +58,7 @@ useBlightCard = true
 useBnCEvents = false
 useJEEvents = false
 gamePaused = false
-alternateSetupIndex = 1
+boardLayout = "Balanced"
 canStart = true
 difficulty = 0
 yHeight = 0
@@ -74,6 +74,7 @@ includeThematic = false
 useRandomBoard = false
 scenarioCard = nil
 useRandomScenario = false
+useBoards = nil
 ------
 aidBoard = "bee103"
 SetupChecker = "9ad187"
@@ -99,6 +100,14 @@ defendBags = {
     Orange = "78a105",
     White = "1716e3",
 }
+isolateBags = {
+    Red = "ddd376",
+    Purple = "9f5d0d",
+    Yellow = "12d056",
+    Blue = "a1f5b5",
+    Green = "d9dc6d",
+    Orange = "18c282",
+}
 -----
 StandardMapBag = "9760a2"
 ThematicMapBag = "bcd431"
@@ -114,21 +123,13 @@ explorerDamage = "574835"
 dahanHealth = "746488"
 dahanDamage = "d936f3"
 -----
-alternateSetupNames = {
-    {"Balanced","Thematic","Random","Random with Thematic"},
-    {"Balanced","Thematic","Random","Random with Thematic","Fragment","Opposite Shores"},
-    {"Balanced","Thematic","Random","Random with Thematic","Coastline","Sunrise"},
-    {"Balanced","Thematic","Random","Random with Thematic","Leaf","Snake"},
-    {"Balanced","Thematic","Random","Random with Thematic","Snail","Peninsula","V"},
-    {"Balanced","Thematic","Random","Random with Thematic","Star","Flower","Caldera"},
-}
-readyTokens = {
-    Red = "ab93fc",
-    Purple = "d61929",
-    Yellow = "747fcb",
-    Blue = "3c01e2",
-    Green = "88a4c3",
-    Orange = "d17f93",
+alternateBoardLayoutNames = {
+    {},
+    {"Fragment","Opposite Shores"},
+    {"Coastline","Sunrise"},
+    {"Leaf","Snake"},
+    {"Snail","Peninsula","V"},
+    {"Star","Flower","Caldera"},
 }
 playerBlocks = {
     Red = "c68e2c",
@@ -160,20 +161,18 @@ function onScriptingButtonDown(index, playerColor)
 end
 function onObjectDrop(player_color, dropped_object)
     if gameStarted then
-        if dropped_object.getVar("highlightOnObjectDrop") ~= nil then
-            if dropped_object.getVar("highlightOnObjectDrop") then
-                local dropColor = player_color
-                if player_color == "Blue" then
-                    dropColor = {0.118, 0.53, 1}
-                elseif player_color == "Red" then
-                    dropColor = {0.856, 0.1, 0.094}
-                elseif player_color == "Yellow" then
-                    dropColor = {0.905, 0.898, 0.172}
-                elseif player_color == "Purple" then
-                    dropColor = {0.627, 0.125, 0.941}
-                end
-                dropped_object.highlightOn(dropColor, 60)
+        if dropped_object.hasTag("Highlight") then
+            local dropColor = player_color
+            if player_color == "Blue" then
+                dropColor = {0.118, 0.53, 1}
+            elseif player_color == "Red" then
+                dropColor = {0.856, 0.1, 0.094}
+            elseif player_color == "Yellow" then
+                dropColor = {0.905, 0.898, 0.172}
+            elseif player_color == "Purple" then
+                dropColor = {0.627, 0.125, 0.941}
             end
+            dropped_object.highlightOn(dropColor, 60)
         end
     end
 end
@@ -286,6 +285,9 @@ function onLoad(saved_data)
     for index, bagGuid in pairs(defendBags) do
         defendBags[index] = getObjectFromGUID(bagGuid)
     end
+    for index, bagGuid in pairs(isolateBags) do
+        isolateBags[index] = getObjectFromGUID(bagGuid)
+    end
     -----
     cityHealth = getObjectFromGUID(cityHealth)
     cityDamage = getObjectFromGUID(cityDamage)
@@ -382,7 +384,7 @@ function readyCheck()
     end
 end
 function isThematic()
-    return alternateSetupIndex == 2
+    return boardLayout == "Thematic"
 end
 ---- Setup Buttons Section
 function nullFunc()
@@ -469,21 +471,18 @@ function randomBoard()
         -- The difficulty can't be increased anymore so don't use thematic
         includeThematic = false
     end
-    local min = 4
+    local min = 0
     if includeThematic then
-        min = 3
+        min = -1
     end
-    local value = math.random(min,#alternateSetupNames[numBoards])
-    if value == 3 then
-        value = 1
-    elseif value == 4 then
-        if includeThematic then
-            value = 2
-        else
-            value = 1
-        end
+    local value = math.random(min,#alternateBoardLayoutNames[numBoards])
+    if value == 0 then
+        boardLayout = "Balanced"
+    elseif value == -1 then
+        boardLayout = "Thematic"
+    else
+        boardLayout = alternateBoardLayoutNames[numBoards][value]
     end
-    alternateSetupIndex = value
     SetupChecker.call("updateDifficulty", {})
 end
 function randomScenario()
@@ -829,7 +828,7 @@ powerCards = 4
 function MajorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
-	cards = 2
+        cards = 2
     end
     startDealPowerCards("MajorPower", Player[player_color], cards)
 end
@@ -844,7 +843,7 @@ end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
-	cards = 6
+        cards = 6
     end
     startDealPowerCards("MinorPower", Player[player_color], cards)
 end
@@ -1078,7 +1077,7 @@ function addBlightedIslandButton()
 end
 function BlightIslandButton(_, playerColor)
     if #blightBag.getObjects() ~= 0 then -- blightBag must be empty to flip this card!
-        broadcastToColor("There is still blight on the Blight Card!", playerColor, Color.SoftYellow)
+        Player[playerColor].broadcast("There is still blight on the Blight Card!", Color.SoftYellow)
     elseif not gamePaused then
         BlightedIslandFlip()
     end
@@ -1665,14 +1664,14 @@ end
 function BoardSetup()
     if getMapCount({norm = true, them = true}) == 0 then
         if isThematic() then
-            MapPlacen(posMap[numBoards][alternateSetupIndex],rotMap[numBoards][alternateSetupIndex])
+            MapPlacen(posMap[numBoards][boardLayout],rotMap[numBoards][boardLayout])
         else
             StandardMapBag.shuffle()
             if scenarioCard ~= nil and scenarioCard.getVar("boardSetup") then
                 local tables = scenarioCard.call("BoardSetup", { boards = numBoards })
                 MapPlacen(tables.posTable,tables.rotTable)
             else
-                MapPlacen(posMap[numBoards][alternateSetupIndex],rotMap[numBoards][alternateSetupIndex])
+                MapPlacen(posMap[numBoards][boardLayout],rotMap[numBoards][boardLayout])
             end
         end
     else
@@ -1889,11 +1888,17 @@ function addSpirit(params)
 end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
-    if params.color then
-        getObjectFromGUID(elementScanZones[params.color]).clearButtons()
-        selectedColors[params.color] = getObjectFromGUID(readyTokens[params.color])
-        getObjectFromGUID(playerBlocks[params.color]).call("setupPlayerArea", {})
+    getObjectFromGUID(elementScanZones[params.color]).clearButtons()
+    selectedColors[params.color] = params.ready
+    getObjectFromGUID(playerBlocks[params.color]).call("setupPlayerArea", {})
+end
+function getEmptySeat()
+    for color,guid in pairs(PlayerBags) do
+        if #getObjectFromGUID(guid).getObjects() ~= 0 then
+            return color
+        end
     end
+    return nil
 end
 ------
 quotes = {
@@ -1986,6 +1991,9 @@ function handlePiece(object, depth)
     elseif string.sub(object.getName(),-7) == "Defence" then
         if object.getLock() == false then object.destruct() end
         object = nil
+    elseif string.sub(object.getName(),-7) == "Isolate" then
+        if object.getLock() == false then object.destruct() end
+        object = nil
     end
     return object
 end
@@ -2013,288 +2021,296 @@ function resetPiece(object, rotation, depth)
     return object
 end
 ------
-posMap = { -- This order should exactly match alternateSetupNames table
-    { -- 1 player
-        { -- Standard
+scaleFactors = {
+    -- Note that we scale the boards up more than the position, so the gaps
+    -- don't increase in size.
+    [true]={name = "Large", position = 1.09, size = 1.1},
+    [false]={name = "Standard", position = 1, size = 1},
+}
+posMap = {
+    { -- 1 Board
+        ["Balanced"] = {
             Vector(5.96, 1.08, 16.59),
         },
-        { -- Thematic
-            Vector{-1.93, 1.07, 20.44}, --NE
+        ["Thematic"] = {
+            Vector(-1.93, 1.08, 20.44), -- NE
         },
-        {}, -- Random
-        {}, -- Random with Thematic
     },
-    { -- 2 Player
-        { -- Standard
+    { -- 2 Board
+        ["Balanced"] = {
             Vector(9.13, 1.08, 25.29),
-            Vector{0.29, 1.08, 10.21},
+            Vector(0.29, 1.08, 10.21),
         },
-        { -- Thematic
-            Vector{9.54, 1.07, 18.07}, --E
-            Vector{-10.34, 1.07, 18.04}, --W
+        ["Thematic"] = {
+            Vector(9.54, 1.08, 18.07), -- E
+            Vector(-10.34, 1.08, 18.04), -- W
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Fragment
-            Vector{-5.20, 1.07, 18.87},
-            Vector{10.12, 1.07, 19.08},
+        ["Top to Top"] = {
+            Vector(9.13, 1.08, 25.29),
+            Vector(-0.06, 1.08, 9.62),
         },
-        { -- Opposite Shores
-            Vector{-4.22, 1.07, 18.91},
-            Vector{13.78, 1.07, 19.09},
+        ["Coastline"] = {
+            Vector(20.38, 1.08, 9.96),
+            Vector(2.54, 1.08, 10.34),
         },
-    },
-    { -- 3 Player
-        { -- Standard
-            Vector{2.33, 1.08, 26.80},
-            Vector{2.46, 1.08, 11.54},
-            Vector{15.70, 1.08, 19.37},
+        ["Opposite Shores"] = {
+            Vector(-4.22, 1.08, 18.91),
+            Vector(13.78, 1.08, 19.09),
         },
-        { -- Thematic
-            Vector{24.91, 1.07, 10.20}, --E
-            Vector{5.03, 1.07, 10.17}, --W
-            Vector{15.03, 1.07, 27.16}, --NE
+        ["Fragment"] = {
+            Vector(-5.20, 1.08, 18.87),
+            Vector(10.12, 1.08, 19.08),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Coastline
-            Vector{-2.47, 1.08, 10.29},
-            Vector{15.38, 1.08, 9.96},
-            Vector{33.22, 1.08, 9.58},
-        },
-        { -- Sunrise
-            Vector{-6.01, 1.07, 10.63},
-            Vector{7.19, 1.07, 18.54},
-            Vector{20.60, 1.07, 10.69},
+        ["Inverted Fragment"] = {
+            Vector(-5.44, 1.08, 18.99),
+            Vector(10.12, 1.08, 19.08),
         },
     },
-    { -- 4 Player
-        { -- Standard
-            Vector{2.36, 1.08, 26.47},
-            Vector{20.40, 1.08, 26.64},
-            Vector{-6.65, 1.08, 11.13},
-            Vector{11.27, 1.08, 11.33},
+    { -- 3 Board
+        ["Balanced"] = {
+            Vector(2.33, 1.08, 26.80),
+            Vector(2.46, 1.08, 11.54),
+            Vector(15.70, 1.08, 19.37),
         },
-        { -- Thematic
-            Vector{29.29, 1.07, 10.20}, --E
-            Vector{9.41, 1.07, 10.17}, --W
-            Vector{19.41, 1.07, 27.16}, --NE
-            Vector{-0.62, 1.07, 27.04}, --NW
+        ["Thematic"] = {
+            Vector(24.91, 1.08, 10.20), -- E
+            Vector(5.03, 1.08, 10.17), -- W
+            Vector(15.03, 1.08, 27.16), -- NE
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Leaf
-            Vector{7.05, 1.08, 34.30},
-            Vector{20.53, 1.08, 26.36},
-            Vector{-2.00, 1.08, 18.53},
-            Vector{11.39, 1.08, 10.92},
+        ["Coastline"] = {
+            Vector(-2.47, 1.08, 10.29),
+            Vector(15.38, 1.08, 9.96),
+            Vector(33.22, 1.08, 9.58),
         },
-        { --Snake
-            Vector{35.36, 1.08, 37.55},
-            Vector{8.26, 1.08, 22.19},
-            Vector{26.45, 1.08, 22.36},
-            Vector{-0.73, 1.08, 7.00},
+        ["Sunrise"] = {
+            Vector(-6.01, 1.08, 10.63),
+            Vector(7.19, 1.08, 18.54),
+            Vector(20.60, 1.08, 10.69),
         },
     },
-    { -- 5 Player
-        { -- Standard
-            Vector{3.32, 1.08, 32.42},
-            Vector{25.46, 1.08, 24.68},
-            Vector{38.99, 1.08, 32.44},
-            Vector{12.18, 1.08, 16.81},
-            Vector{25.62, 1.08, 9.32},
+    { -- 4 Board
+        ["Balanced"] = {
+            Vector(2.36, 1.08, 26.47),
+            Vector(20.40, 1.08, 26.64),
+            Vector(-6.65, 1.08, 11.13),
+            Vector(11.27, 1.08, 11.33),
         },
-        { -- Thematic
-            Vector{30.89, 1.07, 21.51}, --E
-            Vector{11.01, 1.07, 21.48}, --W
-            Vector{21.01, 1.07, 38.47}, --NE
-            Vector{0.98, 1.07, 38.35}, --NW
-            Vector{40.82, 1.07, 4.66}, --SE
+        ["Thematic"] = {
+            Vector(29.29, 1.08, 10.20), -- E
+            Vector(9.41, 1.08, 10.17), -- W
+            Vector(19.41, 1.08, 27.16), -- NE
+            Vector(-0.62, 1.08, 27.04), -- NW
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        {  -- Snail
-            Vector{26.42, 1.08, 41.16},
-            Vector{13.22, 1.08, 33.29},
-            Vector{26.68, 1.08, 25.70},
-            Vector{8.72, 1.08, 10.08},
-            Vector{26.67, 1.08, 9.98},
+        ["Leaf"] = {
+            Vector(7.05, 1.08, 34.30),
+            Vector(20.53, 1.08, 26.36),
+            Vector(-2.00, 1.08, 18.53),
+            Vector(11.39, 1.08, 10.92),
         },
-        { -- Peninsula
-            Vector{10.81, 1.08, 32.03},
-            Vector{26.27, 1.08, 32.27},
-            Vector{18.66, 1.08, 18.81},
-            Vector{41.71, 1.07, 23.07},
-            Vector{57.12, 1.07, 13.96},
-        },
-        { -- V
-            Vector{0.17, 1.07, 33.75},
-            Vector{40.67, 1.07, 41.60},
-            Vector{8.96, 1.07, 18.16},
-            Vector{31.52, 1.07, 26.14},
-            Vector{22.40, 1.07, 10.67},
+        ["Snake"] = {
+            Vector(35.36, 1.08, 37.55),
+            Vector(8.26, 1.08, 22.19),
+            Vector(26.45, 1.08, 22.36),
+            Vector(-0.73, 1.08, 7.00),
         },
     },
-    { -- 6 Player
-        { -- Standard
-            Vector{4.31, 1.08, 29.13},
-            Vector{19.72, 1.08, 29.32},
-            Vector{43.04, 1.08, 33.51},
-            Vector{12.25, 1.08, 15.90},
-            Vector{35.44, 1.08, 20.02},
-            Vector{50.90, 1.08, 20.26},
+    { -- 5 Board
+        ["Balanced"] = {
+            Vector(3.32, 1.08, 32.42),
+            Vector(25.46, 1.08, 24.68),
+            Vector(38.99, 1.08, 32.44),
+            Vector(12.18, 1.08, 16.81),
+            Vector(25.62, 1.08, 9.32),
         },
-        { -- Thematic
-            Vector{33.53, 1.07, 21.51}, --E
-            Vector{13.65, 1.07, 21.48}, --W
-            Vector{23.65, 1.07, 38.47}, --NE
-            Vector{3.62, 1.07, 38.35}, --NW
-            Vector{43.40, 1.07, 4.63}, --SE
-            Vector{23.59, 1.07, 4.55}, --SW
+        ["Thematic"] = {
+            Vector(30.89, 1.08, 23.51), -- E
+            Vector(11.01, 1.08, 23.48), -- W
+            Vector(21.01, 1.08, 40.47), -- NE
+            Vector(0.98, 1.08, 40.35), -- NW
+            Vector(40.82, 1.08, 6.66), -- SE
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Star
-            Vector{33.19, 1.07, 34.36},
-            Vector{40.94, 1.07, 20.76},
-            Vector{33.16, 1.07, 7.18},
-            Vector{17.52, 1.07, 7.25},
-            Vector{9.71, 1.07, 20.79},
-            Vector{17.50, 1.07, 34.33},
+        ["Snail"] = {
+            Vector(26.42, 1.08, 41.16),
+            Vector(13.22, 1.08, 33.29),
+            Vector(26.68, 1.08, 25.70),
+            Vector(8.72, 1.08, 10.08),
+            Vector(26.67, 1.08, 9.98),
         },
-        { -- Flower
-            Vector{7.70, 1.07, 41.68},
-            Vector{30.85, 1.07, 38.06},
-            Vector{48.54, 1.07, 41.11},
-            Vector{19.22, 1.07, 27.92},
-            Vector{33.81, 1.07, 22.91},
-            Vector{27.62, 1.07, 6.07},
+        ["Peninsula"] = {
+            Vector(10.81, 1.08, 32.03),
+            Vector(26.27, 1.08, 32.27),
+            Vector(18.66, 1.08, 18.81),
+            Vector(41.71, 1.08, 23.07),
+            Vector(57.12, 1.08, 13.96),
         },
-        { -- Caldera
-            Vector{-0.20, 1.07, 31.44},
-            Vector{13.16, 1.07, 39.17},
-            Vector{31.10, 1.07, 38.86},
-            Vector{8.54, 1.07, 15.76},
-            Vector{31.18, 1.07, 23.41},
-            Vector{21.95, 1.07, 8.04},
+        ["V"] = {
+            Vector(0.17, 1.08, 33.75),
+            Vector(40.67, 1.08, 41.60),
+            Vector(8.96, 1.08, 18.16),
+            Vector(31.52, 1.08, 26.14),
+            Vector(22.40, 1.08, 10.67),
+        },
+    },
+    { -- 6 Board
+        ["Balanced"] = {
+            Vector(4.31, 1.08, 29.13),
+            Vector(19.72, 1.08, 29.32),
+            Vector(43.04, 1.08, 33.51),
+            Vector(12.25, 1.08, 15.90),
+            Vector(35.44, 1.08, 20.02),
+            Vector(50.90, 1.08, 20.26),
+        },
+        ["Thematic"] = {
+            Vector(33.53, 1.08, 23.51), -- E
+            Vector(13.65, 1.08, 23.48), -- W
+            Vector(23.65, 1.08, 40.47), -- NE
+            Vector(3.62, 1.08, 40.35), -- NW
+            Vector(43.40, 1.08, 6.63), -- SE
+            Vector(23.59, 1.08, 6.55), -- SW
+        },
+        ["Star"] = {
+            Vector(33.19, 1.08, 40.36),
+            Vector(40.94, 1.08, 26.76),
+            Vector(33.16, 1.08, 13.18),
+            Vector(17.52, 1.08, 13.25),
+            Vector(9.71, 1.08, 26.79),
+            Vector(17.50, 1.08, 40.33),
+        },
+        ["Flower"] = {
+            Vector(22.76, 1.08, 43.03),
+            Vector(33.80, 1.08, 22.36),
+            Vector(46.88, 1.08, 10.07),
+            Vector(18.70, 1.08, 25.55),
+            Vector(23.48, 1.08, 10.88),
+            Vector(6.30, 1.08, 5.69),
+        },
+        ["Caldera"] = {
+            Vector(-0.20, 1.08, 31.44),
+            Vector(13.16, 1.08, 39.17),
+            Vector(31.10, 1.08, 38.86),
+            Vector(8.54, 1.08, 15.76),
+            Vector(31.18, 1.08, 23.41),
+            Vector(21.95, 1.08, 8.04),
         },
     },
 }
 rotMap = {
-    { -- 1 Player
-        { -- Standard
+    { -- 1 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
     },
-    { -- 2 Player
-        { -- Standard
+    { -- 2 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Fragment
+        ["Top to Top"] = {
+            Vector(0.00, 0.00, 0.00),
+            Vector(0.00, 180.00, 0.00),
+        },
+        ["Coastline"] = {
+            Vector(0.00, 240.69, 0.00),
+            Vector(0.00, 240.69, 0.00),
+        },
+        ["Opposite Shores"] = {
+            Vector(0.00, 180.00, 0.00),
+            Vector(0.00, 0.00, 0.00),
+        },
+        ["Fragment"] = {
             Vector{0.00, 90.00, 0.00},
             Vector{0.00, 330.00, 0.00},
         },
-        { -- Opposite Shores
-            Vector(0.00, 180.00, 0.00),
-            Vector(0.00, 0.00, 0.00),
+        ["Inverted Fragment"] = {
+            Vector(0.00, 270.00, 0.00),
+            Vector(0.00, 330.00, 0.00),
         },
     },
-    { -- 3 Player
-        { -- Standard
+    { -- 3 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 60.00, 0.00),
             Vector(0.00, 300.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { --Coastline
+        ["Coastline"] = {
             Vector(0.00, 240.69, 0.00),
             Vector(0.00, 240.69, 0.00),
             Vector(0.00, 240.69, 0.00),
         },
-        { -- Sunrise
+        ["Sunrise"] = {
             Vector(0.00, 60.00, 0.00),
             Vector(0.00, 300.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
     },
-    { -- 4 Player
-        { -- Standard
+    { -- 4 Board
+        ["Balanced"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 0.00, 0.00),
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Leaf
+        ["Leaf"] = {
             Vector{0.00, 300.27, 0.00},
             Vector{0.00, 0.27, 0.00},
             Vector{0.00, 120.27, 0.00},
             Vector{0.00, 0.27, 0.00},
         },
-        { -- Snake
+        ["Snake"] = {
             Vector{0.00, 180.00, 0.00},
             Vector{0.00, 180.00, 0.00},
             Vector{0.00, 0.05, 0.00},
             Vector{0.00, 0.01, 0.00},
         },
     },
-    { -- 5 Player
-        { -- Standard
+    { -- 5 Board
+        ["Balanced"] = {
             Vector(0.00, 120.00, 0.00),
             Vector{0.00, 240.00, 0.00},
             Vector{0.00, 300.00, 0.00},
             Vector{0.00, 120.02, 0.00},
             Vector{0.00, 359.99, 0.00},
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Snail
+        ["Snail"] = {
             Vector{0.00, 240.00, 0.00},
             Vector{0.00, 120.02, 0.00},
             Vector{0.00, 359.99, 0.00},
             Vector{0.00, 60.01, 0.00},
             Vector{0.00, 60.00, 0.00},
         },
-        { -- Peninsula
+        ["Peninsula"] = {
             Vector{0.00, 150.07, 0.00},
             Vector{0.00, 270.07, 0.00},
             Vector{0.00, 30.09, 0.00},
             Vector{0.00, 270.25, 0.00},
             Vector{0.00, 270.25, 0.00},
         },
-        { -- V
+        ["V"] = {
             Vector{0.00, 119.99, 0.00},
             Vector{0.00, 0.01, 0.00},
             Vector{0.00, 119.99, 0.00},
@@ -2302,8 +2318,8 @@ rotMap = {
             Vector{0.00, 0.01, 0.00},
         },
     },
-    { -- 6 Player
-        { -- Standard
+    { -- 6 Board
+        ["Balanced"] = {
             Vector{0.00, 150.01, 0.00},
             Vector{0.00, 270.00, 0.00},
             Vector{0.00, 210.00, 0.00},
@@ -2311,7 +2327,7 @@ rotMap = {
             Vector{0.00, 90.00, 0.00},
             Vector{0.00, 330.00, 0.00},
         },
-        { -- Thematic
+        ["Thematic"] = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
@@ -2319,9 +2335,7 @@ rotMap = {
             Vector(0.00, 180.00, 0.00),
             Vector(0.00, 180.00, 0.00),
         },
-        {}, -- Random
-        {}, -- Random with Thematic
-        { -- Star
+        ["Star"] = {
             Vector{0.00, 330.00, 0.00},
             Vector{0.00, 30.00, 0.00},
             Vector{0.00, 90.00, 0.00},
@@ -2329,15 +2343,15 @@ rotMap = {
             Vector{0.00, 210.00, 0.00},
             Vector{0.00, 269.99, 0.00},
         },
-        { -- Flower
-            Vector{0.00, 109.62, 0.00},
-            Vector{0.00, 229.64, 0.00},
-            Vector{0.00, 229.62, 0.00},
-            Vector{0.00, 109.65, 0.00},
-            Vector{0.00, 349.62, 0.00},
-            Vector{0.00, 349.61, 0.00},
+        ["Flower"] = {
+            Vector{0.00, 162.62, 0.00},
+            Vector{0.00, 282.64, 0.00},
+            Vector{0.00, 282.62, 0.00},
+            Vector{0.00, 162.65, 0.00},
+            Vector{0.00, 42.62, 0.00},
+            Vector{0.00, 42.61, 0.00},
         },
-        { -- Caldera
+        ["Caldera"] = {
             Vector{0.00, 120.42, 0.00},
             Vector{0.00, 240.44, 0.00},
             Vector{0.00, 240.43, 0.00},
@@ -2367,15 +2381,10 @@ themRedoGuids = {
 function getMapCount(params)
     local count = 0
     for _,obj in pairs(upCast(seaTile,1,0,0.9)) do
-        if obj.name == "Custom_Token" then
-            if obj.getBoundsNormalized().size.x > 25 and obj.getBoundsNormalized().size.z > 12 then
-                local prefix = string.sub(obj.getName(),1,4)
-                if params.norm and prefix == "NORM" then
-                    count = count + 1
-                elseif params.them and prefix == "THEM" then
-                    count = count + 1
-                end
-            end
+        if params.norm and obj.hasTag("Balanced") then
+            count = count + 1
+        elseif params.them and obj.hasTag("Thematic") then
+            count = count + 1
         end
     end
     return count
@@ -2384,12 +2393,8 @@ end
 function getMapTiles()
     local mapTiles = {}
     for _,obj in pairs(upCast(seaTile,1,0,0.9)) do
-        if obj.name == "Custom_Token" then
-            if obj.getBoundsNormalized().size.x > 25 and obj.getBoundsNormalized().size.z > 12 then
-                if string.sub(obj.getName(),1,4) == "NORM" or "THEM" then
-                    table.insert(mapTiles,obj)
-                end
-            end
+        if obj.hasTag("Balanced") or obj.hasTag("Thematic") then
+            table.insert(mapTiles,obj)
         end
     end
     return mapTiles
@@ -2398,11 +2403,12 @@ end
 function MapPlaceCustom()
     local maps = getMapTiles()
     -- board type is guaranteed to either be thematic or normal, and there has to be at least one map tile in the table
-    if string.sub(maps[1].getName(),1,4) == "NORM" then
-        alternateSetupIndex = 1
+    if maps[1].hasTag("Balanced") then
+        boardLayout = "Custom"
     else
-        alternateSetupIndex = 2
+        boardLayout = "Thematic"
     end
+    SetupChecker.call("updateDifficulty", {})
 
     local rand = 0
     if SetupChecker.getVar("optionalExtraBoard") then
@@ -2422,6 +2428,16 @@ function MapPlacen(posTable, rotTable)
     if SetupChecker.getVar("optionalExtraBoard") then
         rand = math.random(1,numBoards)
     end
+
+    -- We use the average position of the boards in the island layout
+    -- as the origin to scale from.
+    local scaleOrigin = Vector(0,0,0)
+    for i=1, numBoards do
+        scaleOrigin = scaleOrigin + posTable[i]
+    end
+    scaleOrigin = scaleOrigin * (1./ numBoards)
+
+    local count = 1
     for i=1, numBoards do
         local temp = nil
         if isThematic() then
@@ -2430,31 +2446,39 @@ function MapPlacen(posTable, rotTable)
                     position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themRedoGuids[numBoards][i],
                     smooth = false,
-                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
                 })
             else
                 temp = ThematicMapBag.takeObject({
                     position = ThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themGuids[numBoards][i],
                     smooth = false,
-                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                    callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
                 })
             end
         else
             local list = StandardMapBag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if numBoards <=4 and SetupChecker.getVar("optionalBoardPairings") and (value.name == "NORMAL B" or value.name == "NORMAL E") then
-                    if not BETaken then
-                        BETaken = true
+                if useBoards and useBoards[count] ~= nil then
+                    if value.name == useBoards[count] then
                         index = value.index
+                        count = count + 1
                         break
                     end
-                elseif numBoards <= 4 and SetupChecker.getVar("optionalBoardPairings") and (value.name == "NORMAL D" or value.name == "NORMAL F") then
-                    if not DFTaken then
-                        DFTaken = true
-                        index = value.index
-                        break
+                elseif numBoards <= 4 and SetupChecker.getVar("optionalBoardPairings") then
+                    if value.name == "B" or value.name == "E" then
+                        if not BETaken then
+                            BETaken = true
+                            index = value.index
+                            break
+                        end
+                    elseif value.name == "D" or value.name == "F" then
+                        if not DFTaken then
+                            DFTaken = true
+                            index = value.index
+                            break
+                        end
                     end
                 else
                     index = value.index
@@ -2466,16 +2490,18 @@ function MapPlacen(posTable, rotTable)
                 index = index,
                 position = StandardMapBag.getPosition() + Vector(0,-5,0),
                 smooth = false,
-                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand) end,
+                callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
             })
         end
     end
 end
-function BoardCallback(obj,pos,rot,extra)
+function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
     obj.setRotationSmooth(rot, false, true)
-    obj.setPositionSmooth(pos, false, true)
+    local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
+    obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
+    obj.scale(scaleFactor.size)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
 setupMapCoObj = nil
@@ -2696,6 +2722,10 @@ function place(objName, placePos, droppingPlayerColor)
         else
             temp = defendBags["White"].takeObject({position = placePos,rotation = Vector(0,180,0)})
         end
+    elseif objName == "Isolate Token" then
+        if droppingPlayerColor and isolateBags[droppingPlayerColor] then
+            temp = isolateBags[droppingPlayerColor].takeObject({position = placePos,rotation = Vector(0,180,180)})
+        end
     elseif objName == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "3 Energy" then
@@ -2729,6 +2759,7 @@ Pieces = {
     "Disease",
     "Dahan",
     "Defend Token",
+    "Isolate Token",
     "1 Energy",
     "3 Energy",
     "Box Blight",
@@ -2784,7 +2815,7 @@ function deleteObject(obj)
         obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
     else
-        if not obj.getVar("destroyOnTableDrop") then
+        if not obj.hasTag("Destroy") then
             removeObject = false
         end
     end
@@ -2801,12 +2832,13 @@ function deleteObject(obj)
 end
 ----
 function refreshScore()
-    local dahan = #getObjectsWithTag("Dahan")
+    local dahan = math.floor(#getObjectsWithTag("Dahan") / numBoards)
     local blight = #getObjectsWithTag("Blight")
     if SetupChecker.call("isSpiritPickable", {guid="4c061f"}) then
         -- TODO figure out a more elegant solution here
         blight = blight - 2
     end
+    blight = math.floor(blight / numBoards)
 
     local invaderDeck = getObjectFromGUID(invaderDeckZone).getObjects()[1]
     local deckCount = 0
@@ -2834,28 +2866,13 @@ end
 spiritsScanned = {}
 function spiritUpdater()
     local sScript = sourceSpirit.getLuaScript()
-    local sStrPos = string.find(sScript,"\n")
-    if sStrPos == nil then
-        return
-    end
-    local sHeader = string.sub(sScript,1,sStrPos-10)
-
-    for _,v in pairs (getAllObjects()) do
-        if spiritsScanned[v.guid] then
-        elseif v ~= sourceSpirit and v.type == "Tile" and v.name == "Custom_Tile" then
-            local aScript = v.getLuaScript()
-            if aScript ~= nil then
-                local aStrPos = string.find(aScript,"\n")
-                if aStrPos ~= nil then
-                    local aHeader = string.sub(aScript,1,sStrPos-10)
-                    if aHeader == sHeader and aScript ~= sScript then
-                        spiritsScanned[v.guid] = true
-                        v.setLuaScript(sScript)
-                        v = v.reload()
-                        v.highlightOn("Brown",10)
-                        broadcastToAll(v.getName().." has been updated to the current version!")
-                    end
-                end
+    for _,v in pairs(getObjectsWithTag("Spirit")) do
+        if not spiritsScanned[v.guid] then
+            spiritsScanned[v.guid] = true
+            if v.getLuaScript() ~= sScript then
+                v.setLuaScript(sScript)
+                v = v.reload()
+                broadcastToAll(v.getName().." has been updated to the current version!")
             end
         end
     end
@@ -2902,8 +2919,7 @@ function upCastRay(obj,dist)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        local prefix = string.sub(v.hit_object.getName(),1,4)
-        if v.hit_object ~= obj and prefix ~= "NORM" and prefix ~= "THEM" then
+        if v.hit_object ~= obj and not obj.hasTag("Balanced") and not obj.hasTag("Thematic") then
             table.insert(hitObjects,v.hit_object)
         end
     end

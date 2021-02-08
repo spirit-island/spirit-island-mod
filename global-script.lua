@@ -123,7 +123,6 @@ explorerDamage = "574835"
 dahanHealth = "746488"
 dahanDamage = "d936f3"
 -----
-<<<<<<< HEAD
 alternateBoardLayoutNames = {
     {},
     {"Fragment","Opposite Shores"},
@@ -131,14 +130,6 @@ alternateBoardLayoutNames = {
     {"Leaf","Snake"},
     {"Snail","Peninsula","V"},
     {"Star","Flower","Caldera"},
-=======
-alternateSetupNames = {
-    {"Balanced","Thematic","Random","Random with Thematic"},
-    {"Balanced","Thematic","Random","Random with Thematic","Fragment","Opposite Shores","Fragment 2","Top to Top","Coastline"},
-    {"Balanced","Thematic","Random","Random with Thematic","Coastline","Sunrise"},
-    {"Balanced","Thematic","Random","Random with Thematic","Leaf","Snake"},
-    {"Balanced","Thematic","Random","Random with Thematic","Snail","Peninsula","V"},
-    {"Balanced","Thematic","Random","Random with Thematic","Star","Flower","Caldera"},
 }
 readyTokens = {
     Red = "ab93fc",
@@ -147,7 +138,6 @@ readyTokens = {
     Blue = "3c01e2",
     Green = "88a4c3",
     Orange = "d17f93",
->>>>>>> 083baf90de511445022c442d26f706eeffc54752
 }
 playerBlocks = {
     Red = "c68e2c",

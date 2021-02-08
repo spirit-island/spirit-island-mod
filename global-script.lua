@@ -3573,7 +3573,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
 
     -- If both bags are full, there's not a lot of work to do.
     -- Unfortunately, we still need to loop through other things because of defend tokens that aren't in bags.
-    local fastSwap = (colors.from.qty == 20 and colors.to.qty == 20)
+    local fastSwap = (colors.from.qty == 14 and colors.to.qty == 14)
     -- Just bail out fast.
 
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]

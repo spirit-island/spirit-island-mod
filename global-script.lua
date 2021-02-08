@@ -3495,6 +3495,7 @@ function swapPlayerAreaColors(a, b)
     positionSwap(playerTables)
     tableSwap(playerBlocks)
     positionSwap(defendBags)
+    positionSwap(isolateBags)
     tableSwap(elementScanZones)
     updatePlayerArea(a)
     updatePlayerArea(b)
@@ -3558,13 +3559,16 @@ function swapPlayerPresenceColors(fromColor, toColor)
             objects = {},
             pattern = color .. "'s (.*)",
             bagContents = {},
-            defendBag = defendBags[oppositeColor],
-            oppositeColor = oppositeColor
+            oppositeColor = oppositeColor,
         }
     end
     local colors = {
         from = initData(fromColor, 1, toColor),
         to = initData(toColor, 2, fromColor)
+    }
+    local specialTokens = {
+        Defence = defendBags,
+        Isolate = isolateBags,
     }
 
     -- If both bags are full, there's not a lot of work to do.
@@ -3600,11 +3604,11 @@ function swapPlayerPresenceColors(fromColor, toColor)
             for _,data in pairs(colors) do 
                 suffix = match(name, data.pattern)
                 if suffix then
-                    if suffix == 'Defence' then  -- Defense tokens are special.
+                    if specialTokens[suffix] then
                         local state = obj.getStateId()
                         local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
                         destroyObject(obj)
-                        data.defendBag.takeObject(attrs)
+                        specialTokens[suffix][data.oppositeColor].takeObject(attrs)
                     elseif not fastMode then
                         data.tints[suffix] = obj.getColorTint()
                         if not data.objects[suffix] then

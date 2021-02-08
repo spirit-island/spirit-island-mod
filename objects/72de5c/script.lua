@@ -104,24 +104,24 @@ function SetupSpirit(object_pick,player_color)
         end
 
         -- Setup Ready Token
-        PlayerBag.takeObject({
+        local ready = PlayerBag.takeObject({
             position = Vector(spos.x,0,spos.z) + Vector(6, 1.1, 7),
             rotation = Vector(0, 180, 180),
         })
-        Global.call("removeSpirit", {spirit=self.guid, color=player_color})
 
-        -- Setup Aid Tokens
-        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, -4)})
-        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, -2)})
-        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-10.2, 1.3, 0)})
-        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -5)})
-        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -3)})
-        PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.2, 1.1, -1)})
+        -- Setup Aid Token Bags
+        local defend = PlayerBag.takeObject({
+            position = Vector(spos.x,0,spos.z) + Vector(-9.7, 0.9, 0),
+            rotation = Vector(0,0,0),
+        })
+        defend.setLock(true)
+        local isolate = PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-9.7, 0.9, -1.7)})
+        isolate.setLock(true)
+
+        Global.call("removeSpirit", {spirit=self.guid, color=player_color, ready=ready, defend=defend, isolate=isolate})
 
         -- Setup Energy Counter
-        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({
-            position       = Vector(spos.x,0,spos.z) + Vector(-5,1,5)
-        })
+        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
         counter.setLock(true)
 
         -- Setup Progression Deck if enabled

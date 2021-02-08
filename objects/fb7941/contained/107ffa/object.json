@@ -1,0 +1,109 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": -45.6531067,
+    "posY": 1.25425589,
+    "posZ": 48.51381,
+    "rotX": 0.00089461013,
+    "rotY": 179.9687,
+    "rotZ": -1.56256988e-06,
+    "scaleX": 0.799999833,
+    "scaleY": 0.799999833,
+    "scaleZ": 0.799999833
+  },
+  "Nickname": "Red's Isolate Reminder Tokens",
+  "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0588228479,
+    "g": 0.0588228479,
+    "b": 0.0588228479,
+    "a": 0.340148747
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": false,
+    "MaterialIndex": 0,
+    "TypeIndex": 7,
+    "CastShadows": true
+  },
+  "ChildObjects": [
+    {
+      "GUID": "d296dd",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 3.40953719e-13,
+        "posY": 0.1933487,
+        "posZ": 2.22108747e-06,
+        "rotX": -0.000309934869,
+        "rotY": 180.000015,
+        "rotZ": 180.0,
+        "scaleX": 1.00000024,
+        "scaleY": 1.00000024,
+        "scaleZ": 1.00000024
+      },
+      "Nickname": "Red's Isolate Reminder Tokens",
+      "Description": "Skip Explore in this land\r\n[i] ~and~ [/i]\r\nInvaders do not consider this land to be adjacent to any others (if you wish)\r",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.2510188,
+        "b": 0.2510188
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1245756976902427233/41B5563AC05F6F344F3EEC127D415E6F23661639/",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "Convex": false,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
+}

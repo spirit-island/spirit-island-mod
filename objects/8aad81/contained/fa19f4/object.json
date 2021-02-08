@@ -1,0 +1,109 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": -42.41175,
+    "posY": 1.25425613,
+    "posZ": 48.6749954,
+    "rotX": 0.000888693554,
+    "rotY": 179.993744,
+    "rotZ": 1.5101007e-07,
+    "scaleX": 0.799999833,
+    "scaleY": 0.799999833,
+    "scaleZ": 0.799999833
+  },
+  "Nickname": "Yellow's Defence Reminder Tokens",
+  "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0588228479,
+    "g": 0.0588228479,
+    "b": 0.0588228479,
+    "a": 0.340148747
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": false,
+    "MaterialIndex": 0,
+    "TypeIndex": 7,
+    "CastShadows": true
+  },
+  "ChildObjects": [
+    {
+      "GUID": "152594",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 0.196656778,
+        "posZ": 3.15232029e-07,
+        "rotX": -5.008755e-06,
+        "rotY": 89.99987,
+        "rotZ": 180.000092,
+        "scaleX": 1.00000024,
+        "scaleY": 1.00000012,
+        "scaleZ": 1.00000024
+      },
+      "Nickname": "Yellow's Defence Reminder Tokens",
+      "Description": "Guard a land against Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.905,
+        "g": 0.898,
+        "b": 0.171999484
+      },
+      "LayoutGroupSortIndex": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109174/7B1C203C001E522EB47374C09461EAC2A71E59EB/",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+        "Convex": false,
+        "MaterialIndex": 3,
+        "TypeIndex": 7,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
+}

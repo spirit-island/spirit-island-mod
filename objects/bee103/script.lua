@@ -336,7 +336,13 @@ function countDiscard()
         --debug        = true,
     })
     for _,hit in pairs(hits) do
-        if hit.hit_object ~= self and (hit.hit_object.type == "Deck" or hit.hit_object.type == "Card") then count = count + 1 end
+        if hit.hit_object ~= self then
+            if hit.hit_object.type == "Card" then
+                count = count + 1
+            elseif hit.hit_object.type == "Deck" then
+                count = count + #hit.hit_object.getObjects()
+            end
+        end
     end
     return count
 end

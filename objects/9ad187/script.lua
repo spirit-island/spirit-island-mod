@@ -54,6 +54,8 @@ setupStarted = false
 function onSave()
     local data_table = {}
 
+    data_table.optionalBlightSetup = optionalBlightSetup
+
     local adversaryList = {}
     for name,guid in pairs(adversaries) do
         table.insert(adversaryList, {name=name, guid=guid})
@@ -77,6 +79,9 @@ function onLoad(saved_data)
     end
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
+
+        optionalBlightSetup = loaded_data.optionalBlightSetup
+        self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
 
         adversaries = {}
         local count = 0

@@ -120,7 +120,8 @@ function onLoad(saved_data)
 
             Wait.frames(updateAdversaryList, 1)
             Wait.frames(updateScenarioList, 3)
-            Wait.frames(updateDifficulty, 5)
+            Wait.frames(function() toggleNumPlayers(nil, Global.getVar("numPlayers")) end, 5)
+            Wait.frames(updateDifficulty, 7)
         end
     end
 end

@@ -219,6 +219,9 @@ function onSave()
         cityBag = cityBag.guid,
         adversaryLevel = adversaryLevel,
         adversaryLevel2 = adversaryLevel2,
+        boardLayout = boardLayout,
+        boards = boards,
+        numPlayers = numPlayers,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -343,6 +346,9 @@ function onLoad(saved_data)
         adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
         adversaryLevel2 = loaded_data.adversaryLevel2
         scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
+        boardLayout = loaded_data.boardLayout
+        boards = loaded_data.boards
+        numPlayers = loaded_data.numPlayers
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
 
@@ -369,7 +375,6 @@ function onLoad(saved_data)
                 Wait.condition(addBlightedIslandButton, function() return not aidBoard.spawning end)
             end
             numBoards = getMapCount({norm = true, them = true})
-            numPlayers = numBoards
             gamePaused = false
             for _,o in ipairs(getAllObjects()) do
                 local t = o.getTable("posMap")

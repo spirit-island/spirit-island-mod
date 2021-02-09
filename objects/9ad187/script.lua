@@ -652,8 +652,18 @@ function loadConfig()
             if saved_data.boardLayout then
                 updateBoardLayout(saved_data.boardLayout, false)
             end
+            if saved_data.extraBoard ~= nil then
+                if saved_data.extraBoard then
+                    optionalExtraBoard = true
+                else
+                    optionalExtraBoard = false
+                end
+            end
             if saved_data.boards then
                 Global.setTable("useBoards", saved_data.boards)
+            end
+            if saved_data.blightCard then
+                Global.setVar("blightCard", saved_data.blightCard)
             end
             if saved_data.adversary then
                 updateLeadingAdversary(saved_data.adversary, false)

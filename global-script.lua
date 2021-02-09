@@ -96,6 +96,7 @@ useRandomBoard = false
 scenarioCard = nil
 useRandomScenario = false
 useBoards = nil
+blightCard = nil
 ------
 aidBoard = "bee103"
 SetupChecker = "9ad187"
@@ -1047,43 +1048,41 @@ function SetupBlightCard()
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return blightedIsland or (blightedIslandCard ~= nil and not blightedIslandCard.isSmoothMoving()) end)
     return 1
 end
-function grabBlightCard(setup)
+function grabBlightCard(start)
     local blightDeckZone = getObjectFromGUID("b38ea8")
     local blightDeck = blightDeckZone.getObjects()[1]
-    local blightCardPos = aidBoard.positionToWorld(Vector(-1.15,0.11,0.99))
     if blightDeck.type == "Deck" then
         blightDeck.shuffle()
         local card = blightDeck.takeObject({
             position = blightDeckZone.getPosition() + Vector(3.92, 1, 0),
             callback_function = function(obj)
-                if not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
+                if blightCard and blightCard ~= obj.getName() then
                     obj.setRotationSmooth(Vector(0,180,0))
-                    grabBlightCard(setup)
+                    grabBlightCard(start)
+                elseif not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
+                    obj.setRotationSmooth(Vector(0,180,0))
+                    grabBlightCard(start)
                 elseif SetupChecker.getVar("optionalSoloBlight") and numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
                     obj.setRotationSmooth(Vector(0,180,0))
-                    grabBlightCard(setup)
+                    grabBlightCard(start)
                 else
-                    blightedIslandCard = obj
-                    blightedIslandCard.setPositionSmooth(blightCardPos)
-                    blightedIslandCard.setLock(true)
-                    if setup then
-                        addBlightedIslandButton()
-                    else
-                        startLuaCoroutine(Global, "BlightedIslandFlipPart2")
-                    end
+                    setupBlightCard(start, obj)
                 end
             end,
         })
     else
         -- if there's only a single blight card just use it
-        blightedIslandCard = blightDeck
-        blightedIslandCard.setPositionSmooth(blightCardPos)
-        blightedIslandCard.setLock(true)
-        if setup then
-            addBlightedIslandButton()
-        else
-            startLuaCoroutine(Global, "BlightedIslandFlipPart2")
-        end
+        setupBlightCard(start, blightDeck)
+    end
+end
+function setupBlightCard(start, card)
+    blightedIslandCard = card
+    blightedIslandCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-1.15,0.11,0.99)))
+    blightedIslandCard.setLock(true)
+    if start then
+        addBlightedIslandButton()
+    else
+        startLuaCoroutine(Global, "BlightedIslandFlipPart2")
     end
 end
 function addBlightedIslandButton()

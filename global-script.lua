@@ -2730,7 +2730,7 @@ function refreshScore()
             deckCount = 1
         end
     end
-    local win = 5 * difficulty + 10 + 2 * deckCount + dahan - blight
+    local win = math.floor(5 * difficulty) + 10 + 2 * deckCount + dahan - blight
     local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard", {}) + dahan - blight
 
     UI.setAttribute("scoreWin", "text", "Victory: "..win)

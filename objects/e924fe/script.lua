@@ -1,4 +1,6 @@
 difficulty=0
+
+requirements = true
 postSetup = true
 postSetupComplete = false
 
@@ -18,6 +20,9 @@ function onLoad()
     end
 end
 
+function Requirements(params)
+    return params.adversary
+end
 function PostSetup(params)
     self.createButton({
         click_function = "ExportConfig",

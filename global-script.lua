@@ -49,11 +49,13 @@ fearPool = 0
 generatedFear = 0
 gameStarted = false
 difficultyString = ""
+blightedIslandCard = nil
 blightedIsland = false
 adversaryCard = nil
 adversaryLevel = 0
 adversaryCard2 = nil
 adversaryLevel2 = 0
+scenarioCard = nil
 returnBlightBag = nil
 explorerBag = "613ea4"
 townBag = "4d3c15"
@@ -93,9 +95,8 @@ useRandomAdversary = false
 useSecondAdversary = false
 includeThematic = false
 useRandomBoard = false
-scenarioCard = nil
 useRandomScenario = false
-useBoards = nil
+boards = {}
 blightCard = nil
 ------
 aidBoard = "bee103"
@@ -1037,7 +1038,6 @@ function getPowerZoneObjects(handP)
     return hits
 end
 ----- Blight Section
-blightedIslandCard = nil
 function SetupBlightCard()
     if useBlightCard then
         grabBlightCard(true)
@@ -1131,6 +1131,10 @@ function BlightedIslandFlipPart2()
         local blightTokens = scenarioCard.getVar("blightTokens")
         if blightTokens ~= nil then
             numBlight = numBlight + (blightTokens * numBoards)
+        end
+        blightTokens = scenarioCard.getVar("blightCount")
+        if blightTokens ~= nil then
+            numBlight = blightTokens
         end
     end
     for i=1, numBlight do
@@ -2481,10 +2485,9 @@ function MapPlacen(posTable, rotTable)
             local list = StandardMapBag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if useBoards and useBoards[count] ~= nil then
-                    if value.name == useBoards[count] then
+                if boards[count] ~= nil then
+                    if value.name == boards[count] then
                         index = value.index
-                        count = count + 1
                         break
                     end
                 elseif numBoards <= 4 and SetupChecker.getVar("optionalBoardPairings") then
@@ -2516,6 +2519,10 @@ function MapPlacen(posTable, rotTable)
                 smooth = false,
                 callback_function = function(obj) BoardCallback(obj,posTable[i], rotTable[i],i==rand, scaleOrigin) end,
             })
+            if boards[count] == nil then
+                table.insert(boards, temp.getName())
+            end
+            count = count + 1
         end
     end
 end

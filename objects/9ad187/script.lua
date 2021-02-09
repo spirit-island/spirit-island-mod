@@ -660,10 +660,17 @@ function loadConfig()
                 end
             end
             if saved_data.boards then
-                Global.setTable("useBoards", saved_data.boards)
+                Global.setTable("boards", saved_data.boards)
             end
             if saved_data.blightCard then
                 Global.setVar("blightCard", saved_data.blightCard)
+            end
+            -- TODO find a more generic way of handling this
+            if saved_data.secondWaveBlight then
+                local card = getObjectFromGUID(scenarios["Second Wave"])
+                if card ~= nil then
+                    card.setVar("blightCount", saved_data.secondWaveBlight)
+                end
             end
             if saved_data.adversary then
                 updateLeadingAdversary(saved_data.adversary, false)

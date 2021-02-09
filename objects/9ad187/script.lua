@@ -656,6 +656,12 @@ function loadConfig()
                 updateNumPlayers(saved_data.numPlayers, false)
             end
             if saved_data.boardLayout then
+                -- Convert from reddit community names to ones used by our mod
+                if saved_data.boardLayout == "Standard" then
+                    saved_data.boardLayout = "Balanced"
+                elseif saved_data.boardLayout == "Fragment 2" then
+                    saved_data.boardLayout = "Inverted Fragment"
+                end
                 updateBoardLayout(saved_data.boardLayout, false)
             end
             if saved_data.extraBoard ~= nil then

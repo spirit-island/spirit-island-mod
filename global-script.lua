@@ -525,7 +525,13 @@ function randomScenario()
         if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then
             scenarioCard = nil
         elseif scenarioCard.getVar("requirements") then
-            local allowed = scenarioCard.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+            local allowed = scenarioCard.call("Requirements", {
+                eventDeck = useBnCEvents or useJEEvents,
+                blightCard = useBlightCard,
+                expansions = {bnc = BnCAdded, je = JEAdded},
+                thematic = isThematic(),
+                adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or useRandomAdversary or useSecondAdversary,
+            })
             if not allowed then
                 scenarioCard = nil
             end

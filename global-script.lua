@@ -1928,8 +1928,17 @@ function removeSpirit(params)
     updatePlayerArea(params.color)
 end
 function getEmptySeat()
-    for color,guid in pairs(PlayerBags) do
-        if #getObjectFromGUID(guid).getObjects() ~= 0 then
+    local orderedBlockGuids = {
+        "c68e2c",
+        "661aa3",
+        "c3c59b",
+        "36bbcc",
+        "fac8e4",
+        "6b5b4b",
+    }
+    for _,guid in pairs(orderedBlockGuids) do
+        local color = getObjectFromGUID(guid).getVar("playerColor")
+        if #getObjectFromGUID(PlayerBags[color]).getObjects() ~= 0 then
             return color
         end
     end

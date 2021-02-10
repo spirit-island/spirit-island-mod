@@ -748,7 +748,6 @@ function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
         if spirit.getName() == name then
             if isSpiritPickable({guid = spirit.guid}) then
-                -- TODO need to figure out how to handle this once seat swapping code is in
                 local color = Global.call("getEmptySeat", {})
                 if color ~= nil then
                     spirit.call("PickSpirit", {color = color, aspect = aspect})

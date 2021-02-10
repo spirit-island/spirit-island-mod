@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -4.850635,
-    "posY": 1.47545445,
-    "posZ": -14.4385605,
-    "rotX": 4.13543653,
-    "rotY": 0.195162177,
-    "rotZ": 0.902784348,
+    "posX": -3.75442743,
+    "posY": 1.28565216,
+    "posZ": -14.1249809,
+    "rotX": 1.08016038,
+    "rotY": 359.981964,
+    "rotZ": 0.48476392,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "Tags": [
+    "Air",
     "Destroy"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/9/2021 11:22:03 PM",
+  "Date": "2/9/2021 11:40:07 PM",
   "VersionNumber": "v13.0.4",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -137,6 +137,38 @@
       {
         "displayed": "Invader Card",
         "normalized": "invader_card"
+      },
+      {
+        "displayed": "Sun",
+        "normalized": "sun"
+      },
+      {
+        "displayed": "Moon",
+        "normalized": "moon"
+      },
+      {
+        "displayed": "Fire",
+        "normalized": "fire"
+      },
+      {
+        "displayed": "Air",
+        "normalized": "air"
+      },
+      {
+        "displayed": "Water",
+        "normalized": "water"
+      },
+      {
+        "displayed": "Earth",
+        "normalized": "earth"
+      },
+      {
+        "displayed": "Plant",
+        "normalized": "plant"
+      },
+      {
+        "displayed": "Animal",
+        "normalized": "animal"
       }
     ]
   },

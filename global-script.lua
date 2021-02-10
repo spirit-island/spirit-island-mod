@@ -2953,7 +2953,7 @@ function setupPlayerArea(params)
         if selected then
             position.y = -0.74
         else
-            position.y = -1
+            position.y = -1.4
         end
         bag.setPosition(position)
 

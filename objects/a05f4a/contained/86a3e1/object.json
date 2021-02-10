@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 4.577763,
-    "posY": 1.47165632,
-    "posZ": -14.4364462,
-    "rotX": 2.75107169,
-    "rotY": 359.8476,
-    "rotZ": 358.642242,
+    "posX": 5.72800159,
+    "posY": 1.286557,
+    "posZ": -13.9736967,
+    "rotX": 1.08022857,
+    "rotY": 359.991272,
+    "rotZ": 359.073,
     "scaleX": 0.37,
     "scaleY": 1.0,
     "scaleZ": 0.37
@@ -52,12 +52,12 @@
       "GUID": "2df11a",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.9509925,
-        "posZ": -17.9865532,
-        "rotX": 0.00444687437,
-        "rotY": 180.0004,
-        "rotZ": -1.53990356e-06,
+        "posX": -17.7759819,
+        "posY": 0.919864655,
+        "posZ": -11.9513674,
+        "rotX": 5.017329e-06,
+        "rotY": 180.000015,
+        "rotZ": -0.00014204465,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -71,7 +71,8 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Sun"
       ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -106,12 +107,12 @@
       "GUID": "a69e28",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.9509926,
-        "posZ": -17.9865532,
-        "rotX": 0.00444839569,
-        "rotY": 180.0004,
-        "rotZ": -1.55673706e-06,
+        "posX": -17.7759819,
+        "posY": 0.919864535,
+        "posZ": -11.9513674,
+        "rotX": -1.11919269e-06,
+        "rotY": 180.000015,
+        "rotZ": -0.000145074766,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -125,7 +126,8 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Moon"
       ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -160,12 +162,12 @@
       "GUID": "b5415e",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.950992644,
-        "posZ": -17.9865532,
-        "rotX": 0.004445168,
-        "rotY": 180.0004,
-        "rotZ": -7.776555e-07,
+        "posX": -17.7759819,
+        "posY": 0.919864535,
+        "posZ": -11.9513674,
+        "rotX": -3.66052518e-06,
+        "rotY": 180.000015,
+        "rotZ": -0.000144406746,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -179,7 +181,8 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Fire"
       ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -214,12 +217,12 @@
       "GUID": "2ce67f",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.9509926,
-        "posZ": -17.9865532,
-        "rotX": 0.004444039,
-        "rotY": 180.0004,
-        "rotZ": -1.63921175e-06,
+        "posX": -17.7759819,
+        "posY": 0.919864535,
+        "posZ": -11.9513674,
+        "rotX": -1.62263166e-06,
+        "rotY": 180.000015,
+        "rotZ": -0.000144522011,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -233,6 +236,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Air",
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
@@ -268,12 +272,12 @@
       "GUID": "cbf273",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.9509925,
-        "posZ": -17.9865532,
-        "rotX": 0.00445548072,
-        "rotY": 180.0004,
-        "rotZ": -1.41862711e-06,
+        "posX": -17.7759819,
+        "posY": 0.9198646,
+        "posZ": -11.9513674,
+        "rotX": -1.10260908e-06,
+        "rotY": 180.000015,
+        "rotZ": -0.000142395278,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -287,7 +291,8 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Water"
       ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -322,12 +327,12 @@
       "GUID": "68e92d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.9509926,
-        "posZ": -17.9865532,
-        "rotX": 0.00444784248,
-        "rotY": 180.0004,
-        "rotZ": -1.742296e-06,
+        "posX": -17.7759819,
+        "posY": 0.9198646,
+        "posZ": -11.9513674,
+        "rotX": -1.15345529e-06,
+        "rotY": 180.000015,
+        "rotZ": -0.0001449377,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -341,7 +346,8 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Earth"
       ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -376,12 +382,12 @@
       "GUID": "44c9dc",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.9509926,
-        "posZ": -17.9865532,
-        "rotX": 0.004447475,
-        "rotY": 180.0004,
-        "rotZ": -4.88227442e-07,
+        "posX": -17.7759819,
+        "posY": 0.9198646,
+        "posZ": -11.9513674,
+        "rotX": 3.01715453e-08,
+        "rotY": 180.000015,
+        "rotZ": -0.000144219826,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -395,7 +401,8 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Plant"
       ],
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -430,12 +437,12 @@
       "GUID": "d56660",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.224535,
-        "posY": 0.9509925,
-        "posZ": -17.9865532,
-        "rotX": 0.004446206,
-        "rotY": 180.0004,
-        "rotZ": 1.35202606e-06,
+        "posX": -17.7759819,
+        "posY": 0.919864655,
+        "posZ": -11.9513674,
+        "rotX": -9.51891366e-07,
+        "rotY": 180.000015,
+        "rotZ": -0.000141408571,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
@@ -449,6 +456,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Animal",
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,

@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 0.84149605,
-    "posY": 1.54917026,
-    "posZ": -14.1750126,
-    "rotX": 1.13058138,
-    "rotY": -0.00397589058,
-    "rotZ": 359.66037,
+    "posX": 1.92181182,
+    "posY": 1.28964007,
+    "posZ": -13.8962708,
+    "rotX": 1.48186028,
+    "rotY": 359.991516,
+    "rotZ": 359.550629,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -20,7 +20,8 @@
     "b": 1.0
   },
   "Tags": [
-    "Destroy"
+    "Destroy",
+    "Plant"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

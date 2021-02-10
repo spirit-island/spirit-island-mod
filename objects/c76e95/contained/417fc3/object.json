@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -32.34874,
-    "posY": 1.54938793,
-    "posZ": -14.0922642,
-    "rotX": 0.835183263,
-    "rotY": 0.00619743345,
-    "rotZ": 359.209076,
+    "posX": -30.6917763,
+    "posY": 1.28883934,
+    "posZ": -13.5718861,
+    "rotX": 359.771118,
+    "rotY": -0.00321073318,
+    "rotZ": 1.600101,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -20,7 +20,8 @@
     "b": 1.0
   },
   "Tags": [
-    "Destroy"
+    "Destroy",
+    "Moon"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

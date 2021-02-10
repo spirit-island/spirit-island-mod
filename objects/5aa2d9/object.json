@@ -2,9 +2,9 @@
   "Name": "Custom_Tile",
   "Transform": {
     "posX": -100.14,
-    "posY": 1.09080982,
+    "posY": 1.09081006,
     "posZ": 18.04997,
-    "rotX": 0.004444857,
+    "rotX": 0.00444464665,
     "rotY": 180.0,
     "rotZ": 180.0,
     "scaleX": 5.46,
@@ -15,15 +15,15 @@
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200282872,
-    "g": 0.16032815,
-    "b": 0.151766419
+    "r": 0.200282723,
+    "g": 0.160328,
+    "b": 0.15176627
   },
   "Tags": [
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,
-  "Locked": true,
+  "Locked": false,
   "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,

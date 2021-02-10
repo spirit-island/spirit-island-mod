@@ -3,10 +3,10 @@
   "Transform": {
     "posX": -86.59866,
     "posY": 1.09044278,
-    "posZ": -1.29297185,
-    "rotX": 0.004462895,
-    "rotY": 180.003,
-    "rotZ": 4.63582364e-05,
+    "posZ": -1.29298651,
+    "rotX": 0.00446311058,
+    "rotY": 180.003021,
+    "rotZ": 4.61227864e-05,
     "scaleX": 0.877173543,
     "scaleY": 1.0,
     "scaleZ": 0.877173543
@@ -17,10 +17,10 @@
   "ColorDiffuse": {
     "r": 0.695121944,
     "g": 0.490944982,
-    "b": 0.354753822
+    "b": 0.354753673
   },
   "LayoutGroupSortIndex": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,

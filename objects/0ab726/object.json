@@ -4,9 +4,9 @@
     "posX": -119.549026,
     "posY": 1.19543147,
     "posZ": 31.5048981,
-    "rotX": 0.00444884459,
-    "rotY": 180.008743,
-    "rotZ": -2.07756429e-07,
+    "rotX": 0.004446755,
+    "rotY": 180.008759,
+    "rotZ": 9.033573e-06,
     "scaleX": 0.3651334,
     "scaleY": 1.0,
     "scaleZ": 0.3651334
@@ -23,7 +23,7 @@
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": false,
   "Snap": false,
   "IgnoreFoW": false,

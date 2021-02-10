@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/9/2021 8:01:23 PM",
+  "Date": "2/9/2021 8:18:56 PM",
   "VersionNumber": "v13.0.4",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -133,6 +133,10 @@
       {
         "displayed": "Thematic",
         "normalized": "thematic"
+      },
+      {
+        "displayed": "Invader Card",
+        "normalized": "invader_card"
       }
     ]
   },

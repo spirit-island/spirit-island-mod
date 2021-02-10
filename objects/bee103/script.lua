@@ -295,21 +295,20 @@ function aidPanelScanLoop()
                 local currentStage = 0
                 for _,hit in pairs(hitObjects) do
                     if hit.type == "Card" or hit.type == "Deck" then
-                        if getStage(hit) ~= nil then currentStage = getStage(hit) end
+                        local stage = getStage(hit)
+                        if stage ~= nil then currentStage = stage end
                     end
                 end
                 if currentStage == 1 then
                     table.insert(stageTable,"a")
-                end
-                if currentStage == 2  then
+                elseif currentStage == 2  then
                     table.insert(stageTable,"b")
-                end
-                if currentStage == 3 then
+                elseif currentStage == 3 then
                     table.insert(stageTable,"c")
                 end
             else
                 for _,hit in pairs(hitObjects) do
-                    if hit.type == "Card" and hit.is_face_down == v.faceDown then
+                    if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
                         local iType = hit.getVar("cardInvaderType")
                         local iStage = hit.getVar("cardInvaderStage")
                         table.insert(stageTable,iType)
@@ -337,10 +336,17 @@ function countDiscard()
     })
     for _,hit in pairs(hits) do
         if hit.hit_object ~= self then
-            if hit.hit_object.type == "Card" then
+            if hit.hit_object.type == "Card" and hit.hit_object.hasTag("Invader Card") then
                 count = count + 1
             elseif hit.hit_object.type == "Deck" then
-                count = count + #hit.hit_object.getObjects()
+                for _,obj in pairs(hit.hit_object.getObjects()) do
+                    for _,tag in pairs(obj.tags) do
+                        if tag == "Invader Card" then
+                            count = count + 1
+                            break
+                        end
+                    end
+                end
             end
         end
     end
@@ -358,15 +364,18 @@ function getStage(o)
     elseif o.type == "Deck" then
         local stage = nil
         for _,obj in pairs(o.getObjects()) do
-            local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
-            stage = tonumber(string.sub(obj.lua_script,finish+1))
-            if stage == 100 then
-                -- non invader cards like Command cards and Habsburg Reminder are stage 100
-                stage = nil
-            else
+            local found = false
+            for _,tag in pairs(obj.tags) do
+                if tag == "Invader Card" then
+                    found = true
+                    break
+                end
+            end
+            if found then
+                local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
+                stage = tonumber(string.sub(obj.lua_script,finish+1))
                 -- Prussia early stage 3 should count as stage 2
-                local special = string.find(obj.lua_script,"special=")
-                if special ~= nil then
+                if string.find(obj.lua_script,"special=") ~= nil then
                     stage = stage - 1
                 end
                 return stage

@@ -2728,14 +2728,18 @@ function refreshScore()
     if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
         if invaderDeck.type == "Deck" then
             for _,obj in pairs(invaderDeck.getObjects()) do
-                local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
-                stage = tonumber(string.sub(obj.lua_script,finish+1))
-                if stage ~= 100 then
-                    -- non invader cards like Command cards and Habsburg Reminder are stage 100
+                local found = false
+                for _,tag in pairs(obj.tags) do
+                    if tag == "Invader Card" then
+                        found = true
+                        break
+                    end
+                end
+                if found then
                     deckCount = deckCount + 1
                 end
             end
-        elseif invaderDeck.type == "Card" then
+        elseif invaderDeck.type == "Card" and invaderDeck.hasTag("Invader Card") then
             deckCount = 1
         end
     end

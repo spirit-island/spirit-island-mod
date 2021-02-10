@@ -565,48 +565,33 @@ function examineCard(fearDeck, dividerPos)
         end
         broadcastToAll("Terror Level III Achieved!", {1,0,0})
     else
-        -- TODO figure out a way to make this more generic
-        local stage = nil
-        local type = nil
+        local invaderCard = false
         if fearDeck.type == "Deck" then
-            local start,finish = string.find(card.lua_script,"cardInvaderStage=")
-            if start ~= nil then
-                stage = tonumber(string.sub(card.lua_script,finish+1))
-                local start2,finish2 = string.find(card.lua_script,"cardInvaderType=")
-                type = string.sub(card.lua_script,finish2+2,start-4)
+            for _,tag in pairs(card.tags) do
+                if tag == "Invader Card" then
+                    invaderCard = true
+                    break
+                end
             end
         else
-            stage = card.getVar("cardInvaderStage")
-            type = card.getVar("cardInvaderType")
+            invaderCard = card.hasTag("Invader Card")
         end
 
-        if stage ~= nil then
+        if invaderCard then
             local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,-1)
             if fearDeck.type == "Deck" then
                 card = fearDeck.takeObject({
                     position = pos,
                     rotation = Vector(0,180,0),
                     -- Russia puts invader cards in this deck at a scale factor of 1.37
-                    callback_function = function(obj) obj.scale(1/1.37) end,
+                    callback_function = function(obj) obj.scale(1/1.37) invaderCardBroadcast(obj) end,
                 })
             else
                 -- Russia puts invader cards in this deck at a scale factor of 1.37
                 card.scale(1/1.37)
                 card.setPositionSmooth(pos)
                 card.setRotationSmooth(Vector(0,180,0))
-            end
-            if stage == 2 then
-                if type == "C" then
-                    broadcastToAll("Stage II Invader Card was revealed from the Fear Deck", {1,0,0})
-                else
-                    broadcastToAll("Stage II Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
-                end
-            elseif stage == 3 then
-                if Global.getVar("adversaryCard2") == nil then
-                    broadcastToAll("Stage III Invader Card was revealed from the Fear Deck", {1,0,0})
-                else
-                    broadcastToAll("Stage III Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
-                end
+                invaderCardBroadcast(card)
             end
         else
             if fearDeck.type == "Deck" then
@@ -620,6 +605,22 @@ function examineCard(fearDeck, dividerPos)
         return nil, false, emptyDeck
     else
         return card, false, emptyDeck
+    end
+end
+function invaderCardBroadcast(card)
+    local stage = card.getVar("cardInvaderStage")
+    if stage == 2 then
+        if card.getVar("cardInvaderType") == "C" then
+            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck", {1,0,0})
+        else
+            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
+        end
+    elseif stage == 3 then
+        if Global.getVar("adversaryCard2") == nil then
+            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck", {1,0,0})
+        else
+            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
+        end
     end
 end
 ---- Ready Helper Section

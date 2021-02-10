@@ -2728,15 +2728,11 @@ function refreshScore()
     if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
         if invaderDeck.type == "Deck" then
             for _,obj in pairs(invaderDeck.getObjects()) do
-                local found = false
                 for _,tag in pairs(obj.tags) do
                     if tag == "Invader Card" then
-                        found = true
+                        deckCount = deckCount + 1
                         break
                     end
-                end
-                if found then
-                    deckCount = deckCount + 1
                 end
             end
         elseif invaderDeck.type == "Card" and invaderDeck.hasTag("Invader Card") then

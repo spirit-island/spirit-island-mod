@@ -2,11 +2,11 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -119.55,
-    "posY": 1.2404058,
+    "posY": 1.24040568,
     "posZ": -1.52335322,
-    "rotX": -0.004578447,
-    "rotY": 0.00274499832,
-    "rotZ": -0.000375589938,
+    "rotX": -0.004579248,
+    "rotY": 0.0027856722,
+    "rotZ": -0.000374852825,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,9 +15,9 @@
   "Description": "Use these for your \"Growth Begets Growth\" Special Rule",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249981344,
-    "g": 0.249981344,
-    "b": 0.249981344
+    "r": 0.249981165,
+    "g": 0.249981165,
+    "b": 0.249981165
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

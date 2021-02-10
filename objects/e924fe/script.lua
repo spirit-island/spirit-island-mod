@@ -97,6 +97,7 @@ function updateNotebook(json)
 
     -- editNotebookTab currently has a bug where it updates the wrong tab
     --[[for _,data in pairs(Notes.getNotebookTabs()) do
+        print( data.index, " => ", _ )
         if data.title == "Game Config" then
             Notes.editNotebookTab({
                 index = data.index,

@@ -2940,6 +2940,14 @@ function setupPlayerArea(params)
         label = "?"
     end
     for _,bag in pairs(params.elementBags) do
+        local position = bag.getPosition()
+        if selected then
+            position.y = -0.74
+        else
+            position.y = -1
+        end
+        bag.setPosition(position)
+
         if initialized then
             bag.editButton({index=0, label=label})
         else
@@ -2950,6 +2958,28 @@ function setupPlayerArea(params)
             })
         end
     end
+    local position = params.anyBag.getPosition()
+    if selected then
+        position.y = -0.74
+    else
+        position.y = -1
+    end
+    params.anyBag.setPosition(position)
+    position = defendBags[color].getPosition()
+    if selected then
+        position.y = 0.95
+    else
+        position.y = 0.5
+    end
+    defendBags[color].setPosition(position)
+    position = isolateBags[color].getPosition()
+    if selected then
+        position.y = 0.95
+    else
+        position.y = 0.5
+    end
+    isolateBags[color].setPosition(position)
+
     local energy = 0
 
     local function elemStrToArr(elemStr)

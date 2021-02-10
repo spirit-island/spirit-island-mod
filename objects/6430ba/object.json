@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -86.09299,
+    "posX": -86.10849,
     "posY": 1.15076661,
-    "posZ": 30.628624,
-    "rotX": 0.00446226168,
-    "rotY": 179.986633,
-    "rotZ": 4.50637563e-05,
+    "posZ": 30.6286011,
+    "rotX": 0.00446141837,
+    "rotY": 179.986664,
+    "rotZ": 4.397369e-05,
     "scaleX": 0.724999845,
     "scaleY": 0.724999845,
     "scaleZ": 0.724999845
@@ -15,16 +15,16 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.181513369,
-    "g": 0.181513369,
-    "b": 0.186384678
+    "r": 0.181513071,
+    "g": 0.181513071,
+    "b": 0.18638438
   },
   "Tags": [
     "Blight",
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,

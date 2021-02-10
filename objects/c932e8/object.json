@@ -4,9 +4,9 @@
     "posX": -69.53602,
     "posY": 1.24513221,
     "posZ": 27.6409874,
-    "rotX": -0.004450074,
-    "rotY": 359.8641,
-    "rotZ": 5.06561946e-06,
+    "rotX": -0.00444985647,
+    "rotY": 359.864075,
+    "rotZ": 4.851605e-06,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,12 +15,12 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249981165,
-    "g": 0.249981165,
-    "b": 0.249981165
+    "r": 0.249980837,
+    "g": 0.249980837,
+    "b": 0.249980837
   },
   "LayoutGroupSortIndex": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,

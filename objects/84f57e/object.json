@@ -2,11 +2,11 @@
   "Name": "Custom_Tile",
   "Transform": {
     "posX": -82.9221954,
-    "posY": 1.09043992,
-    "posZ": -1.29297733,
-    "rotX": 0.00446311757,
-    "rotY": 180.0001,
-    "rotZ": 4.594282e-05,
+    "posY": 1.0904398,
+    "posZ": -1.2929914,
+    "rotX": 0.00446321536,
+    "rotY": 180.000122,
+    "rotZ": 4.61983327e-05,
     "scaleX": 0.877173543,
     "scaleY": 1.0,
     "scaleZ": 0.877173543
@@ -17,10 +17,10 @@
   "ColorDiffuse": {
     "r": 0.695121944,
     "g": 0.490944982,
-    "b": 0.354753822
+    "b": 0.354753673
   },
   "LayoutGroupSortIndex": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,

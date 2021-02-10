@@ -107,6 +107,10 @@ function onLoad(saved_data)
             toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
             toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
 
+            local numPlayers = Global.getVar("numPlayers")
+            self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
+            self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+
             if Global.getVar("BnCAdded") then
                 Global.setVar("useBnCEvents", true)
                 self.UI.hide("bnc")
@@ -118,10 +122,15 @@ function onLoad(saved_data)
                 self.UI.setAttribute("jeEvents", "isOn", "true")
             end
 
-            Wait.frames(updateAdversaryList, 1)
-            Wait.frames(updateScenarioList, 3)
-            Wait.frames(function() toggleNumPlayers(nil, Global.getVar("numPlayers")) end, 5)
-            Wait.frames(updateDifficulty, 7)
+            -- queue up all dropdown changes as once
+            Wait.frames(function()
+                local t = self.UI.getXmlTable()
+                t = updateAdversaryList(t)
+                t = updateScenarioList(t)
+                t = updateBoardLayouts(numPlayers, t)
+                self.UI.setXmlTable(t, {})
+                Wait.frames(updateDifficulty, 1)
+            end, 2)
         end
     end
 end
@@ -173,7 +182,7 @@ function removeAdversary(obj)
         end
     end
 end
-function updateAdversaryList()
+function updateAdversaryList(xmlTable)
     local adversaryList = {}
     for name,_ in pairs(adversaries) do
         table.insert(adversaryList, name)
@@ -194,12 +203,18 @@ function updateAdversaryList()
         supportName = "Random"
     end
 
-    local t = self.UI.getXmlTable()
+    local t = xmlTable
+    if xmlTable == nil then
+        t = self.UI.getXmlTable()
+    end
     for _,v in pairs(t) do
         updateDropdownList(v, "leadingAdversary", adversaryList, leadName)
         updateDropdownList(v, "supportingAdversary", adversaryList, supportName)
     end
-    self.UI.setXmlTable(t, {})
+    if xmlTable == nil then
+        self.UI.setXmlTable(t, {})
+    end
+    return t
 end
 function removeScenario(obj)
     for name,guid in pairs(scenarios) do
@@ -215,7 +230,7 @@ function removeScenario(obj)
         end
     end
 end
-function updateScenarioList()
+function updateScenarioList(xmlTable)
     local scenarioList = {}
     for name,_ in pairs(scenarios) do
         table.insert(scenarioList, name)
@@ -229,11 +244,17 @@ function updateScenarioList()
         scenarioName = "Random"
     end
 
-    local t = self.UI.getXmlTable()
+    local t = xmlTable
+    if xmlTable == nil then
+        t = self.UI.getXmlTable()
+    end
     for _,v in pairs(t) do
         updateDropdownList(v, "scenario", scenarioList, scenarioName)
     end
-    self.UI.setXmlTable(t, {})
+    if xmlTable == nil then
+        self.UI.setXmlTable(t, {})
+    end
+    return t
 end
 function randomAdversary()
     local value = math.random(1,numAdversaries)
@@ -285,8 +306,7 @@ function updateNumPlayers(value, updateUI)
         updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
     end
 end
-function updateBoardLayouts(numPlayers)
-    local t = self.UI.getXmlTable()
+function updateBoardLayouts(numPlayers, xmlTable)
     local numBoards = numPlayers
     if optionalExtraBoard then
         numBoards = numPlayers + 1
@@ -303,10 +323,17 @@ function updateBoardLayouts(numPlayers)
         Global.setVar("boardLayout", "Balanced")
     end
 
+    local t = xmlTable
+    if xmlTable == nil then
+        t = self.UI.getXmlTable()
+    end
     for _,v in pairs(t) do
         updateDropdownList(v, "boardLayout", layoutNames, Global.getVar("boardLayout"))
     end
-    self.UI.setXmlTable(t, {})
+    if xmlTable == nil then
+        self.UI.setXmlTable(t, {})
+    end
+    return t
 end
 function updateDropdownList(t, class, values, selectedValue)
     if t.attributes.class ~= nil and string.match(t.attributes.class, class) then

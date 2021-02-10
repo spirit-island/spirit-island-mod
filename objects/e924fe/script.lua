@@ -90,14 +90,7 @@ function ExportConfig()
     updateNotebook(JSON.encode_pretty(data))
 end
 function updateNotebook(json)
-    Notes.addNotebookTab({
-        title = "Exported Game Config",
-        body = json,
-    })
-
-    -- editNotebookTab currently has a bug where it updates the wrong tab
-    --[[for _,data in pairs(Notes.getNotebookTabs()) do
-        print( data.index, " => ", _ )
+    for _,data in pairs(Notes.getNotebookTabs()) do
         if data.title == "Game Config" then
             Notes.editNotebookTab({
                 index = data.index,
@@ -105,5 +98,5 @@ function updateNotebook(json)
             })
             break
         end
-    end]]--
+    end
 end

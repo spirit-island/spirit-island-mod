@@ -1,12 +1,12 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -51.7789536,
-    "posY": 1.00267267,
+    "posX": -51.779995,
+    "posY": 0.99889797,
     "posZ": 54.06,
-    "rotX": 359.992828,
-    "rotY": 179.925125,
-    "rotZ": 0.007124294,
+    "rotX": 0.00324629038,
+    "rotY": 180.015213,
+    "rotZ": 180.003067,
     "scaleX": 1.09813488,
     "scaleY": 1.0,
     "scaleZ": 1.09813488
@@ -19,6 +19,9 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "Tags": [
+    "Invader Card"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,

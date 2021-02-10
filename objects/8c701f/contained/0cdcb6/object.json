@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -20.436121,
-    "posY": 1.550175,
-    "posZ": -14.0769205,
-    "rotX": 0.6962274,
-    "rotY": 0.009167797,
-    "rotZ": 359.2906,
+    "posX": -19.71371,
+    "posY": 1.284192,
+    "posZ": -13.40998,
+    "rotX": 359.804871,
+    "rotY": 0.0112926876,
+    "rotZ": 359.477448,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "Tags": [
+    "Animal",
     "Destroy"
   ],
   "LayoutGroupSortIndex": 0,

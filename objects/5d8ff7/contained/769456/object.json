@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -24.0060959,
-    "posY": 1.55018723,
-    "posZ": -14.087656,
-    "rotX": 1.30732548,
-    "rotY": 0.00102244178,
-    "rotZ": 0.101086259,
+    "posX": -23.3602428,
+    "posY": 1.2880913,
+    "posZ": -13.5197535,
+    "rotX": 359.624573,
+    "rotY": 0.004920208,
+    "rotZ": 358.4903,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -20,7 +20,8 @@
     "b": 1.0
   },
   "Tags": [
-    "Destroy"
+    "Destroy",
+    "Earth"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

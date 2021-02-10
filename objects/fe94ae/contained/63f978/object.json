@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -3.066239,
-    "posY": 1.470672,
-    "posZ": -14.605669,
-    "rotX": 2.07365966,
-    "rotY": 0.05963505,
-    "rotZ": 359.696472,
+    "posX": -1.81289065,
+    "posY": 1.28693187,
+    "posZ": -13.9995184,
+    "rotX": 1.28336632,
+    "rotY": 0.006054597,
+    "rotZ": 0.5687822,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -20,7 +20,8 @@
     "b": 1.0
   },
   "Tags": [
-    "Destroy"
+    "Destroy",
+    "Water"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

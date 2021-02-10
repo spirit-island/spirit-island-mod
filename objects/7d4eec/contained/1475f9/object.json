@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -29.8593082,
-    "posY": 1.53910565,
-    "posZ": -14.3622255,
-    "rotX": 0.9787177,
-    "rotY": 0.0305477474,
-    "rotZ": 0.05356466,
+    "posX": -28.8707,
+    "posY": 1.29430139,
+    "posZ": -13.5221195,
+    "rotX": 359.467224,
+    "rotY": 359.99408,
+    "rotZ": 1.15774977,
     "scaleX": 0.367304444,
     "scaleY": 1.0,
     "scaleZ": 0.367304444
@@ -20,7 +20,8 @@
     "b": 1.0
   },
   "Tags": [
-    "Destroy"
+    "Destroy",
+    "Fire"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

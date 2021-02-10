@@ -794,19 +794,15 @@ function scanElements()
                         table.insert(elemCardTable, entry)
                     end
                 end
-            elseif entry.type == "Tile" then
-                if entry.getVar("elements") ~= nil then
-                    table.insert(elemCardTable, entry)
-                end
             end
         end
     end
     local combinedElements = elemCombine(elemCardTable)
-    for i,v in ipairs (combinedElements) do
-        local obj = getObjectFromGUID(elementGuids[i])
-        obj.editButton({
+    local elementsTable = {"Sun","Moon","Fire","Air","Water","Earth","Plant","Animal"}
+    for i,total in ipairs(combinedElements) do
+        getObjectFromGUID(elementGuids[i]).editButton({
             index = 0,
-            label = v,
+            label = total + #getObjectsWithTag(elementsTable[i]),
         })
     end
 end

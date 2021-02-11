@@ -32,12 +32,12 @@ function MapSetup(params)
 
     for i=1,#params.original do
         for j=#params.original[i],1,-1 do
-            if string.sub(params.original[i][j],1,5) == "Wilds"
-                    or string.sub(params.original[i][j],1,7) == "Disease"
-                    or string.sub(params.original[i][j],1,6) == "Beasts"
-                    or string.sub(params.original[i][j],1,8) == "Badlands"
-                    or string.sub(params.original[i][j],1,5) == "Dahan"
-                    or string.sub(params.original[i][j],1,10) == "Box Blight" then
+            if params.original[i][j] == "Wilds"
+                    or params.original[i][j] == "Disease"
+                    or params.original[i][j] == "Beasts"
+                    or params.original[i][j] == "Badlands"
+                    or params.original[i][j] == "Dahan"
+                    or params.original[i][j] == "Box Blight" then
                 table.remove(params.pieces[i],j)
             elseif string.sub(params.original[i][j],1,9) == "ExplorerS"
                     or string.sub(params.original[i][j],1,5) == "TownS"

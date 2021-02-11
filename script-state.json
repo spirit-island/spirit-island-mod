@@ -4,7 +4,6 @@
   "blightedIsland": false,
   "BnCAdded": false,
   "boardLayout": "Balanced",
-  "boards": [],
   "cityBag": "a245f8",
   "difficulty": 0,
   "difficultyString": "",
@@ -40,6 +39,7 @@
     "Yellow": "c3c59b"
   },
   "returnBlightBag": "af50b8",
+  "selectedBoards": [],
   "selectedColors": [],
   "showAllMultihandedButtons": false,
   "showPlayerButtons": true,

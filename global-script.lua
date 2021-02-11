@@ -96,7 +96,7 @@ useSecondAdversary = false
 includeThematic = false
 useRandomBoard = false
 useRandomScenario = false
-boards = {}
+selectedBoards = {}
 blightCard = nil
 ------
 aidBoard = "bee103"
@@ -220,7 +220,7 @@ function onSave()
         adversaryLevel = adversaryLevel,
         adversaryLevel2 = adversaryLevel2,
         boardLayout = boardLayout,
-        boards = boards,
+        selectedBoards = selectedBoards,
         numPlayers = numPlayers,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
@@ -347,7 +347,7 @@ function onLoad(saved_data)
         adversaryLevel2 = loaded_data.adversaryLevel2
         scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
         boardLayout = loaded_data.boardLayout
-        boards = loaded_data.boards
+        selectedBoards = loaded_data.selectedBoards
         numPlayers = loaded_data.numPlayers
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
@@ -2337,8 +2337,8 @@ function MapPlacen(boards)
             local list = StandardMapBag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if boards[count] ~= nil then
-                    if value.name == boards[count] then
+                if selectedBoards[count] ~= nil then
+                    if value.name == selectedBoards[count] then
                         index = value.index
                         break
                     end
@@ -2371,8 +2371,8 @@ function MapPlacen(boards)
                 smooth = false,
                 callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
             })
-            if boards[count] == nil then
-                table.insert(boards, temp.getName())
+            if selectedBoards[count] == nil then
+                table.insert(selectedBoards, temp.getName())
             end
             count = count + 1
         end
@@ -2485,15 +2485,15 @@ function setupMapCo(extra)
         end
     end
 
-    -- supporting adversary setup should happen first
+    if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
+        piecesToPlace = scenarioCard.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
+    end
+    -- supporting adversary setup should happen before primary
     if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
-        piecesToPlace = adversaryCard2.call("MapSetup", { level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
+        piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
     end
     if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
-        piecesToPlace = adversaryCard.call("MapSetup", { level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
-    end
-    if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
-        piecesToPlace = scenarioCard.call("MapSetup", {  pieces = piecesToPlace, original = originalPieces, extra = extra})
+        piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
     end
 
     for l,landTable in ipairs (piecesToPlace) do

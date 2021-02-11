@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -55.7071381,
-    "posY": 1.40748084,
-    "posZ": 16.1771832,
-    "rotX": 0.0008896383,
-    "rotY": 0.0298986267,
-    "rotZ": 2.76434166e-05,
+    "posX": -55.72968,
+    "posY": 1.407473,
+    "posZ": 16.402771,
+    "rotX": -8.577924e-06,
+    "rotY": 0.0298977736,
+    "rotZ": -6.516354e-07,
     "scaleX": 0.3651334,
     "scaleY": 1.0,
     "scaleZ": 0.3651334
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "Tags": [
+    "Beasts",
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,

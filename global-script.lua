@@ -1719,6 +1719,7 @@ function PostSetup()
 
     local postSetupSteps = 0
     local firstAdversarySetup = false
+    local exploratoryPowersDone = false
 
     if adversaryCard == nil then
         difficultyString = difficultyString.."No Adversary\n"
@@ -1735,6 +1736,34 @@ function PostSetup()
     difficultyString = difficultyString.."Difficulty "..difficulty
     createDifficultyButton()
 
+    if SetupChecker.getVar("exploratoryVOTD") then
+        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        deck.takeObject({
+            guid = "152fe0",
+            callback_function = function(obj)
+                local temp = obj.setState(2)
+                Wait.frames(function()
+                    deck.putObject(temp)
+                    deck.shuffle()
+                    postSetupSteps = postSetupSteps + 1
+                    exploratoryPowersDone = true
+                end, 1)
+            end,
+        })
+    else
+        postSetupSteps = postSetupSteps + 1
+        exploratoryPowersDone = true
+    end
+    if SetupChecker.getVar("exploratoryBODAN") then
+        local spirit = getObjectFromGUID("606f23").setState(2)
+        if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
+            Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+        else
+            postSetupSteps = postSetupSteps + 1
+        end
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
 
     if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
         adversaryCard.call("PostSetup",{level = adversaryLevel, other={level=adversaryLevel2}})
@@ -1753,8 +1782,11 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
     if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        scenarioCard.call("PostSetup",{})
-        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
+        -- Wait for all exploratory powers to have state changed
+        Wait.condition(function()
+            scenarioCard.call("PostSetup",{})
+            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
+        end, function() return exploratoryPowersDone end)
     else
         postSetupSteps = postSetupSteps + 1
     end
@@ -1802,32 +1834,6 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
-    if SetupChecker.getVar("exploratoryVOTD") then
-        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
-        deck.takeObject({
-            guid = "152fe0",
-            callback_function = function(obj)
-                local temp = obj.setState(2)
-                Wait.frames(function()
-                    deck.putObject(temp)
-                    deck.shuffle()
-                    postSetupSteps = postSetupSteps + 1
-                end, 1)
-            end,
-        })
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
-    if SetupChecker.getVar("exploratoryBODAN") then
-        local spirit = getObjectFromGUID("606f23").setState(2)
-        if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
-            Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
-        else
-            postSetupSteps = postSetupSteps + 1
-        end
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function()log(postSetupSteps) return postSetupSteps == 6 end)
     return 1
 end

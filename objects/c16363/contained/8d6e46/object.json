@@ -1,17 +1,17 @@
 {
   "Name": "Bag",
   "Transform": {
-    "posX": -47.9198,
-    "posY": 1.07671511,
-    "posZ": 40.79033,
-    "rotX": -2.18799032e-05,
-    "rotY": 0.000319591578,
-    "rotZ": 0.000100350058,
+    "posX": -14.5575647,
+    "posY": 1.7924788,
+    "posZ": 43.7845879,
+    "rotX": 2.06751125e-07,
+    "rotY": 0.00193010876,
+    "rotZ": 1.31734953e-06,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "Stage III Powers Bag",
+  "Nickname": "Scenario Tokens",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -34,8 +34,5 @@
   "Hands": false,
   "MaterialIndex": -1,
   "MeshIndex": -1,
-  "Number": 0,
-  "Bag": {
-    "Order": 0
-  }
+  "Number": 0
 }

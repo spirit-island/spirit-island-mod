@@ -93,6 +93,14 @@ function PostSetup(params)
         height         = 500,
         font_size      = 300,
     })
+    local scenarioBag = Global.getVar("scenarioBag")
+    local powersBag = scenarioBag.takeObject({
+        guid = "8d6e45",
+        position = {-45.24, 0.84, 36.64},
+        rotation = {0,180,0},
+        smooth = false,
+        callback_function = function(obj) obj.setLock(true) end,
+    })
 
     local config = readConfig()
     if config and config.secondWave then
@@ -101,6 +109,44 @@ function PostSetup(params)
         end
         if config.secondWave.wave then
             broadcastToAll("Adversary Blight should have come from the card not the box, so you might need to manually fix this", "Red")
+        end
+        if config.secondWave.powers then
+            local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
+            local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
+            for guid,tag in pairs(config.secondWave.powers) do
+                if tag == "Minor" then
+                    local card = minorPowerDeck.takeObject({
+                        guid = guid,
+                        smooth = false,
+                    })
+                    powersBag.putObject(card)
+                elseif tag == "Major" then
+                    local card = majorPowerDeck.takeObject({
+                        guid = guid,
+                        smooth = false,
+                    })
+                    powersBag.putObject(card)
+                elseif tag == "Unique" then
+                    local objs = getObjectsWithTag("Unique")
+                    for _,obj in pairs(objs) do
+                        if obj.type == "Deck" then
+                            for _,data in pairs(obj.getObjects()) do
+                                if data.guid == guid then
+                                    local card = obj.takeObject({
+                                        guid = guid,
+                                        smooth = false,
+                                    })
+                                    powersBag.putObject(card)
+                                end
+                            end
+                        elseif obj.type == "Card" then
+                            if obj.guid == guid then
+                                powersBag.putObject(obj)
+                            end
+                        end
+                    end
+                end
+            end
         end
     end
 
@@ -117,6 +163,15 @@ function readConfig()
 end
 
 function ExportConfig()
+    local powersBag = getObjectFromGUID("8d6e45")
+    local bagPowers = nil
+    if powersBag ~= nil then
+        bagPowers = powersBag.getObjects()
+        if #bagPowers == 0 then
+            broadcastToAll("Powers Bag is currently empty, did you forget to add the power cards for next game in there?", "Red")
+            return
+        end
+    end
     self.clearButtons()
     local data = {}
     data.secondWave = {}
@@ -130,7 +185,10 @@ function ExportConfig()
     data.numPlayers = Global.getVar("numPlayers")
     data.boardLayout = Global.getVar("boardLayout")
     data.extraBoard = (Global.getVar("numBoards") - data.numPlayers) == 1
-    data.boards = Global.getTable("selectedBoards")
+    local selectedBoards = Global.getTable("selectedBoards")
+    if selectedBoards and #selectedBoards > 0 then
+        data.boards = selectedBoards
+    end
     local obj = Global.getVar("blightedIslandCard")
     -- Only store the blight card and count if the island is blighted
     if obj ~= nil and Global.getVar("blightedIsland") then
@@ -180,6 +238,32 @@ function ExportConfig()
     end
     if Global.getVar("JEAdded") then
         table.insert(data.expansions, "je")
+    end
+    if powersBag ~= nil then
+        local powers = {}
+        local inserted = false
+        for i,card in pairs(bagPowers) do
+            local tag = ""
+            for _,cardTag in pairs(card.tags) do
+                if cardTag == "Minor" then
+                    tag = cardTag
+                    break
+                elseif cardTag == "Major" then
+                    tag = cardTag
+                    break
+                elseif cardTag == "Unique" then
+                    tag = cardTag
+                    break
+                end
+            end
+            if tag ~= "" then
+                powers[card.guid] = tag
+                inserted = true
+            end
+        end
+        if inserted then
+            data.secondWave.powers = powers
+        end
     end
     updateNotebook(JSON.encode_pretty(data))
 end

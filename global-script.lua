@@ -2408,7 +2408,7 @@ function setupMapCo(extra)
     local posToPlace = map.getTable("posMap")
     local originalPieces = map.getTable("pieceMap")
 
-    if string.sub(map.getName(),1,4) ~= "THEM" then -- if not a thematic board
+    if not map.hasTag("Thematic") then -- if not a thematic board
         if BnCAdded or JEAdded then -- during Setup put 1 Beast and 1 Disease on each island board
             for i=1,#piecesToPlace do
                 if #piecesToPlace[i] == 0 then

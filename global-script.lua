@@ -2542,6 +2542,7 @@ function place(objName, placePos, droppingPlayerColor)
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
                 broadcastToAll("There are no Towns left to place", Color.SoftYellow)
+                -- TODO extract this logic into adversary
                 if (adversaryCard ~= nil and adversaryCard.getName() == "France") or (adversaryCard2 ~= nil and adversaryCard2.getName() == "France") then
                     broadcastToAll("France wins via Additional Loss Condition!", Color.SoftYellow)
                 end

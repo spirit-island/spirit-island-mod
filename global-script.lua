@@ -2512,14 +2512,12 @@ function place(objName, placePos, droppingPlayerColor)
         if BnCAdded or JEAdded then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
-    end
-    if objName == "TownS" then
+    elseif objName == "TownS" then
         place("Town",placePos,droppingPlayerColor)
         if BnCAdded or JEAdded then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
-    end
-    if objName == "ExplorerS" then
+    elseif objName == "ExplorerS" then
         place("Explorer",placePos,droppingPlayerColor)
         if BnCAdded or JEAdded then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)

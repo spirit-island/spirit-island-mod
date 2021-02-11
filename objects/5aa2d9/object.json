@@ -3,8 +3,8 @@
   "Transform": {
     "posX": -100.14,
     "posY": 1.09081006,
-    "posZ": 18.0499477,
-    "rotX": 0.004445769,
+    "posZ": 18.0499325,
+    "rotX": 0.00444550626,
     "rotY": 180.0,
     "rotZ": 180.0,
     "scaleX": 5.46,
@@ -15,15 +15,15 @@
   "Description": "JE",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2002824,
-    "g": 0.160327673,
-    "b": 0.151765943
+    "r": 0.200282127,
+    "g": 0.1603274,
+    "b": 0.151765674
   },
   "Tags": [
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,

@@ -699,25 +699,24 @@ function loadConfig()
                 end
             end
             if saved_data.boards then
-                Global.setTable("boards", saved_data.boards)
+                Global.setTable("selectedBoards", saved_data.boards)
             end
             if saved_data.blightCard then
                 Global.setVar("blightCard", saved_data.blightCard)
             end
-            -- TODO find a more generic way of handling this
-            if saved_data.secondWaveBlight then
-                local card = getObjectFromGUID(scenarios["Second Wave"])
-                if card ~= nil then
-                    card.setVar("blightCount", saved_data.secondWaveBlight)
-                end
-            end
             if saved_data.adversary then
+                if saved_data.adversary == "Bradenburg-Prussia" then
+                    saved_data.adversary = "Prussia"
+                end
                 updateLeadingAdversary(saved_data.adversary, false)
             end
             if saved_data.adversaryLevel then
                 updateLeadingLevel(saved_data.adversaryLevel, false)
             end
             if saved_data.adversary2 then
+                if saved_data.adversary2 == "Bradenburg-Prussia" then
+                    saved_data.adversary2 = "Prussia"
+                end
                 updateSupportingAdversary(saved_data.adversary2, false)
             end
             if saved_data.adversaryLevel2 then
@@ -731,11 +730,14 @@ function loadConfig()
                     PickSpirit(name, aspect)
                 end
             end
-            if saved_data.bnc then
-                addBnC()
-            end
-            if saved_data.je then
-                addJE()
+            if saved_data.expansions then
+                for _,expansion in pairs(saved_data.expansions) do
+                    if expansion == "bnc" then
+                        addBnC()
+                    elseif expansion == "je" then
+                        addJE()
+                    end
+                end
             end
             if saved_data.broadcast then
                 broadcastToAll(saved_data.broadcast, Color.SoftYellow)

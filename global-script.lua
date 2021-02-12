@@ -1999,14 +1999,46 @@ function timePassesCo()
         handlePiece(object, 1)
     end
 
-    for _,guid in pairs (elementScanZones) do
-        local zone = getObjectFromGUID(guid)
+    for color,_ in pairs(selectedColors) do
+        local zone = getObjectFromGUID(elementScanZones[color])
+        local energy = playerBlocks[color].getButtons()[1].label
+        energy = tonumber(string.sub(energy, 14, -1))
+        if energy == nil then
+            energy = 0
+        end
         for _, obj in ipairs(zone.getObjects()) do
             if obj.getName() == "Any" then
                 if obj.getStateId() ~= 9 then obj.setState(9) end
                 if obj.getLock() == false then obj.destruct() end
             elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
                 if obj.getLock() == false then obj.destruct() end
+            elseif obj.type == "Chip" then
+                local quantity = obj.getQuantity()
+                if quantity == -1 then
+                    quantity = 1
+                end
+                if obj.getName() == "1 Energy" then
+                    if energy >= 0 then
+                        obj.destruct()
+                    else
+                        energy = energy + 1
+                    end
+                elseif obj.getName() == "3 Energy" then
+                    if energy >= 0 then
+                        obj.destruct()
+                    elseif energy >= -2 then
+                        obj.destruct()
+                        for i=energy,-1 do
+                            oneEnergyBag.takeObject({
+                                position = zone.getPosition()+Vector(-4.5,2,-1+i*2),
+                                rotation = Vector(0,180,0),
+                            })
+                        end
+                        energy = 0
+                    else
+                        energy = energy + 3
+                    end
+                end
             end
         end
     end

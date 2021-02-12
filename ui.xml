@@ -33,18 +33,18 @@
                 <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
                         <Panel id="panelRavage11" preferredWidth="40" preferredHeight="40" color="yellow">
-                            <Text id="panelRavage11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="S" fontSize="20" color="black" />
+                            <Text id="panelRavage11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                         <Panel id="panelRavage12" preferredWidth="40" preferredHeight="40" color="blue">
-                            <Text id="panelRavage12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                            <Text id="panelRavage12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                     </VerticalLayout>
                     <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
                         <Panel id="panelRavage21" preferredWidth="40" preferredHeight="40" color="green">
-                            <Text id="panelRavage21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                            <Text id="panelRavage21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                         <Panel id="panelRavage22" preferredWidth="40" preferredHeight="40" color="grey">
-                            <Text id="panelRavage22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                            <Text id="panelRavage22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
@@ -58,18 +58,18 @@
                 <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="false">
                     <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
                         <Panel id="panelBuild11" preferredWidth="40" preferredHeight="40" color="yellow">
-                            <Text id="panelBuild11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="S" fontSize="20" color="black" />
+                            <Text id="panelBuild11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                         <Panel id="panelBuild12" preferredWidth="40" preferredHeight="40" color="blue">
-                            <Text id="panelBuild12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                            <Text id="panelBuild12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                     </VerticalLayout>
                     <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
                         <Panel id="panelBuild21" preferredWidth="40" preferredHeight="40" color="green">
-                            <Text id="panelBuild21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                            <Text id="panelBuild21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                         <Panel id="panelBuild22" preferredWidth="40" preferredHeight="40" color="grey">
-                            <Text id="panelBuild22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                            <Text id="panelBuild22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
@@ -83,18 +83,18 @@
                 <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
                         <Panel id="panelExplore11" preferredWidth="40" preferredHeight="40" color="yellow">
-                            <Text id="panelExplore11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="S" fontSize="20" color="black" />
+                            <Text id="panelExplore11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                         <Panel id="panelExplore12" preferredWidth="40" preferredHeight="40" color="blue">
-                            <Text id="panelExplore12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                            <Text id="panelExplore12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                     </VerticalLayout>
                     <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
                         <Panel id="panelExplore21" preferredWidth="40" preferredHeight="40" color="green">
-                            <Text id="panelExplore21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                            <Text id="panelExplore21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                         <Panel id="panelExplore22" preferredWidth="40" preferredHeight="40" color="grey">
-                            <Text id="panelExplore22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                            <Text id="panelExplore22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
@@ -229,10 +229,10 @@
 </Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">
-        <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">▼</Button>
+        <Button onClick="showButtons" fontSize="12" textAlignment="MiddleCenter">&#9660;<!-- Down arrow --></Button>
     </Panel>
     <Panel id="panelUIToggleHide" visibility="Invisible">
-        <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">▲</Button>
+        <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">&#9650;<!-- Up arrow --></Button>
     </Panel>
 </Panel>
 <Panel id="panelUI" visibility="Invisible" width="160" height="180" rectAlignment="UpperRight" offsetXY="-240 0">
@@ -246,5 +246,7 @@
         <Button onClick="toggleBlightUI" textAlignment="MiddleCenter">Toggle Blight UI</Button>
         <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Toggle Score</Button>
         <Button onClick="togglePowerDrawUI" textAlignment="MiddleCenter">Toggle Power Draw UI</Button>
+        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles the visibility of the buttons to&#xA;change player seats or colors. These&#xA;are hidden when the game starts,&#xA;but can be turned back on if desired.">Toggle Seat Controls</Button>
+        <Button onClick="toggleMultihanded" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles whether the visibility the 'Play&#xA;Spirit' buttons appear for all empty seats&#xA;or only for those who have chosen a spirit.">Toggle Multihanded</Button>
     </VerticalLayout>
 </Panel>

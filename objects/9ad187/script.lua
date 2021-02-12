@@ -50,9 +50,12 @@ exploratoryWar = false
 
 updateLayoutsID = 0
 setupStarted = false
+recentlyNotifiedRandom = false
 
 function onSave()
     local data_table = {}
+
+    data_table.optionalBlightSetup = optionalBlightSetup
 
     local adversaryList = {}
     for name,guid in pairs(adversaries) do
@@ -78,6 +81,9 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
 
+        optionalBlightSetup = loaded_data.optionalBlightSetup
+        self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
+
         adversaries = {}
         local count = 0
         for _,params in pairs(loaded_data.adversaryList) do
@@ -102,6 +108,10 @@ function onLoad(saved_data)
             toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
             toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
 
+            local numPlayers = Global.getVar("numPlayers")
+            self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
+            self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+
             if Global.getVar("BnCAdded") then
                 Global.setVar("useBnCEvents", true)
                 self.UI.hide("bnc")
@@ -113,9 +123,15 @@ function onLoad(saved_data)
                 self.UI.setAttribute("jeEvents", "isOn", "true")
             end
 
-            Wait.frames(updateAdversaryList, 1)
-            Wait.frames(updateScenarioList, 3)
-            Wait.frames(updateDifficulty, 5)
+            -- queue up all dropdown changes as once
+            Wait.frames(function()
+                local t = self.UI.getXmlTable()
+                t = updateAdversaryList(t)
+                t = updateScenarioList(t)
+                t = updateBoardLayouts(numPlayers, t)
+                self.UI.setXmlTable(t, {})
+                Wait.frames(updateDifficulty, 1)
+            end, 2)
         end
     end
 end
@@ -167,7 +183,7 @@ function removeAdversary(obj)
         end
     end
 end
-function updateAdversaryList()
+function updateAdversaryList(xmlTable)
     local adversaryList = {}
     for name,_ in pairs(adversaries) do
         table.insert(adversaryList, name)
@@ -188,12 +204,18 @@ function updateAdversaryList()
         supportName = "Random"
     end
 
-    local t = self.UI.getXmlTable()
+    local t = xmlTable
+    if xmlTable == nil then
+        t = self.UI.getXmlTable()
+    end
     for _,v in pairs(t) do
         updateDropdownList(v, "leadingAdversary", adversaryList, leadName)
         updateDropdownList(v, "supportingAdversary", adversaryList, supportName)
     end
-    self.UI.setXmlTable(t, {})
+    if xmlTable == nil then
+        self.UI.setXmlTable(t, {})
+    end
+    return t
 end
 function removeScenario(obj)
     for name,guid in pairs(scenarios) do
@@ -209,7 +231,7 @@ function removeScenario(obj)
         end
     end
 end
-function updateScenarioList()
+function updateScenarioList(xmlTable)
     local scenarioList = {}
     for name,_ in pairs(scenarios) do
         table.insert(scenarioList, name)
@@ -223,11 +245,17 @@ function updateScenarioList()
         scenarioName = "Random"
     end
 
-    local t = self.UI.getXmlTable()
+    local t = xmlTable
+    if xmlTable == nil then
+        t = self.UI.getXmlTable()
+    end
     for _,v in pairs(t) do
         updateDropdownList(v, "scenario", scenarioList, scenarioName)
     end
-    self.UI.setXmlTable(t, {})
+    if xmlTable == nil then
+        self.UI.setXmlTable(t, {})
+    end
+    return t
 end
 function randomAdversary()
     local value = math.random(1,numAdversaries)
@@ -279,8 +307,7 @@ function updateNumPlayers(value, updateUI)
         updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
     end
 end
-function updateBoardLayouts(numPlayers)
-    local t = self.UI.getXmlTable()
+function updateBoardLayouts(numPlayers, xmlTable)
     local numBoards = numPlayers
     if optionalExtraBoard then
         numBoards = numPlayers + 1
@@ -297,10 +324,17 @@ function updateBoardLayouts(numPlayers)
         Global.setVar("boardLayout", "Balanced")
     end
 
+    local t = xmlTable
+    if xmlTable == nil then
+        t = self.UI.getXmlTable()
+    end
     for _,v in pairs(t) do
         updateDropdownList(v, "boardLayout", layoutNames, Global.getVar("boardLayout"))
     end
-    self.UI.setXmlTable(t, {})
+    if xmlTable == nil then
+        self.UI.setXmlTable(t, {})
+    end
+    return t
 end
 function updateDropdownList(t, class, values, selectedValue)
     if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
@@ -650,18 +684,40 @@ function loadConfig()
                 updateNumPlayers(saved_data.numPlayers, false)
             end
             if saved_data.boardLayout then
+                -- Convert from reddit community names to ones used by our mod
+                if saved_data.boardLayout == "Standard" then
+                    saved_data.boardLayout = "Balanced"
+                elseif saved_data.boardLayout == "Fragment 2" then
+                    saved_data.boardLayout = "Inverted Fragment"
+                end
                 updateBoardLayout(saved_data.boardLayout, false)
             end
+            if saved_data.extraBoard ~= nil then
+                if saved_data.extraBoard then
+                    optionalExtraBoard = true
+                else
+                    optionalExtraBoard = false
+                end
+            end
             if saved_data.boards then
-                Global.setTable("useBoards", saved_data.boards)
+                Global.setTable("selectedBoards", saved_data.boards)
+            end
+            if saved_data.blightCard then
+                Global.setVar("blightCard", saved_data.blightCard)
             end
             if saved_data.adversary then
+                if saved_data.adversary == "Bradenburg-Prussia" then
+                    saved_data.adversary = "Prussia"
+                end
                 updateLeadingAdversary(saved_data.adversary, false)
             end
             if saved_data.adversaryLevel then
                 updateLeadingLevel(saved_data.adversaryLevel, false)
             end
             if saved_data.adversary2 then
+                if saved_data.adversary2 == "Bradenburg-Prussia" then
+                    saved_data.adversary2 = "Prussia"
+                end
                 updateSupportingAdversary(saved_data.adversary2, false)
             end
             if saved_data.adversaryLevel2 then
@@ -675,11 +731,14 @@ function loadConfig()
                     PickSpirit(name, aspect)
                 end
             end
-            if saved_data.bnc then
-                addBnC()
-            end
-            if saved_data.je then
-                addJE()
+            if saved_data.expansions then
+                for _,expansion in pairs(saved_data.expansions) do
+                    if expansion == "bnc" then
+                        addBnC()
+                    elseif expansion == "je" then
+                        addJE()
+                    end
+                end
             end
             if saved_data.broadcast then
                 broadcastToAll(saved_data.broadcast, Color.SoftYellow)
@@ -692,7 +751,6 @@ function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
         if spirit.getName() == name then
             if isSpiritPickable({guid = spirit.guid}) then
-                -- TODO need to figure out how to handle this once seat swapping code is in
                 local color = Global.call("getEmptySeat", {})
                 if color ~= nil then
                     spirit.call("PickSpirit", {color = color, aspect = aspect})
@@ -745,6 +803,9 @@ function toggleSimpleMode()
         self.UI.setAttribute("panelOptional", "visibility", "Invisible")
         self.UI.setAttribute("panelRandom", "visibility", "Invisible")
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
+
+        Global.setVar("showPlayerButtons", false)
+        Global.call("updateAllPlayerAreas", nil)
     else
         self.UI.setAttribute("simpleMode", "isOn", "true")
         self.UI.setAttribute("leadingText", "text", "Leading Adversary")
@@ -754,6 +815,9 @@ function toggleSimpleMode()
         self.UI.setAttribute("optionalCell", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "")
         showUI()
+
+        Global.setVar("showPlayerButtons", true)
+        Global.call("updateAllPlayerAreas", nil)
     end
 end
 function toggleOptionalRules()
@@ -788,6 +852,7 @@ function toggleExploratory()
 end
 
 function toggleMinDifficulty(_, value)
+    randomCheck()
     local maxDifficulty = Global.getVar("maxDifficulty")
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
@@ -802,6 +867,7 @@ function toggleMinDifficulty(_, value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
+    randomCheck()
     local minDifficulty = Global.getVar("minDifficulty")
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
@@ -814,6 +880,18 @@ function toggleMaxDifficulty(_, value)
     Global.setVar("maxDifficulty", maxDifficulty)
     self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
+end
+function randomCheck()
+    if recentlyNotifiedRandom then
+        return
+    elseif not Global.getVar("useRandomAdversary")
+            and not Global.getVar("useSecondAdversary")
+            and not Global.getVar("useRandomBoard")
+            and not Global.getVar("useRandomScenario") then
+        recentlyNotifiedRandom = true
+        Wait.time(function() recentlyNotifiedRandom = false end, 2)
+        broadcastToAll("No \"Random\" options are currently selected", "Red")
+    end
 end
 
 function randomSpirit(player)
@@ -851,62 +929,21 @@ function gainSpirit(player)
     end
     Player[player.color].broadcast("Your 4 randomised spirits to choose from are in your play area", Color.SoftBlue)
 
-    local spirit1 = getNewSpirit()
-    local spirit2 = getNewSpirit()
-    local spirit3 = getNewSpirit()
-    local spirit4 = getNewSpirit()
-
-    if spirit1 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit1",
-            function_owner = self,
-            label = spirit1.getName(),
-            position = Vector(0,0,-0.15),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit2 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit2",
-            function_owner = self,
-            label = spirit2.getName(),
-            position = Vector(0,0,-0.3),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit3 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit3",
-            function_owner = self,
-            label = spirit3.getName(),
-            position = Vector(0,0,-0.45),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
-    end
-    if spirit4 ~= nil then
-        obj.createButton({
-            click_function = "pickSpirit4",
-            function_owner = self,
-            label = spirit4.getName(),
-            position = Vector(0,0,-0.6),
-            rotation = Vector(0,180,0),
-            scale = Vector(0.1,0.1,0.1),
-            width = 4850,
-            height = 600,
-            font_size = 290,
-        })
+    for i = 1,4 do
+        local s = getNewSpirit()
+        if s then
+            obj.createButton({
+                click_function = "pickSpirit" .. i,
+                function_owner = self,
+                label = s.getName(),
+                position = Vector(0,0,0.3 - 0.15*i),
+                rotation = Vector(0,180,0),
+                scale = Vector(0.1,0.1,0.1),
+                width = 4850,
+                height = 600,
+                font_size = 290,
+            })
+        end
     end
 end
 function getNewSpirit()

@@ -11,6 +11,7 @@ function setupPlayerArea()
             getObjectFromGUID("7625bc"),
             getObjectFromGUID("48cf16"),
         },
+        anyBag = getObjectFromGUID("a0bdb1"),
         zone = getObjectFromGUID("190f05")
     })
 end

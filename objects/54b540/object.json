@@ -4,9 +4,9 @@
     "posX": -69.1500015258789,
     "posY": 1.2467676401138306,
     "posZ": 20.219999313354492,
-    "rotX": 0.00446734856814146,
+    "rotX": 0.004475729074329138,
     "rotY": 179.9999237060547,
-    "rotZ": 1.1935092516068835e-05,
+    "rotZ": -3.2661798741173698e-06,
     "scaleX": 0.3651334047317505,
     "scaleY": 1.0,
     "scaleZ": 0.3651334047317505
@@ -20,10 +20,11 @@
     "b": 1.0
   },
   "Tags": [
+    "Beasts",
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": false,
   "Snap": false,
   "IgnoreFoW": false,

@@ -37,6 +37,7 @@
       "name": "Scotland"
     }
   ],
+  "optionalBlightSetup": true,
   "scenarioList": [
     {
       "guid": "",

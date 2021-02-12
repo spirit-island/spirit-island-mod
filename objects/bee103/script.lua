@@ -295,21 +295,20 @@ function aidPanelScanLoop()
                 local currentStage = 0
                 for _,hit in pairs(hitObjects) do
                     if hit.type == "Card" or hit.type == "Deck" then
-                        if getStage(hit) ~= nil then currentStage = getStage(hit) end
+                        local stage = getStage(hit)
+                        if stage ~= nil then currentStage = stage end
                     end
                 end
                 if currentStage == 1 then
                     table.insert(stageTable,"a")
-                end
-                if currentStage == 2  then
+                elseif currentStage == 2  then
                     table.insert(stageTable,"b")
-                end
-                if currentStage == 3 then
+                elseif currentStage == 3 then
                     table.insert(stageTable,"c")
                 end
             else
                 for _,hit in pairs(hitObjects) do
-                    if hit.type == "Card" and hit.is_face_down == v.faceDown then
+                    if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
                         local iType = hit.getVar("cardInvaderType")
                         local iStage = hit.getVar("cardInvaderStage")
                         table.insert(stageTable,iType)
@@ -336,7 +335,20 @@ function countDiscard()
         --debug        = true,
     })
     for _,hit in pairs(hits) do
-        if hit.hit_object ~= self and (hit.hit_object.type == "Deck" or hit.hit_object.type == "Card") then count = count + 1 end
+        if hit.hit_object ~= self then
+            if hit.hit_object.type == "Card" and hit.hit_object.hasTag("Invader Card") then
+                count = count + 1
+            elseif hit.hit_object.type == "Deck" then
+                for _,obj in pairs(hit.hit_object.getObjects()) do
+                    for _,tag in pairs(obj.tags) do
+                        if tag == "Invader Card" then
+                            count = count + 1
+                            break
+                        end
+                    end
+                end
+            end
+        end
     end
     return count
 end
@@ -352,15 +364,18 @@ function getStage(o)
     elseif o.type == "Deck" then
         local stage = nil
         for _,obj in pairs(o.getObjects()) do
-            local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
-            stage = tonumber(string.sub(obj.lua_script,finish+1))
-            if stage == 100 then
-                -- non invader cards like Command cards and Habsburg Reminder are stage 100
-                stage = nil
-            else
+            local found = false
+            for _,tag in pairs(obj.tags) do
+                if tag == "Invader Card" then
+                    found = true
+                    break
+                end
+            end
+            if found then
+                local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
+                stage = tonumber(string.sub(obj.lua_script,finish+1))
                 -- Prussia early stage 3 should count as stage 2
-                local special = string.find(obj.lua_script,"special=")
-                if special ~= nil then
+                if string.find(obj.lua_script,"special=") ~= nil then
                     stage = stage - 1
                 end
                 return stage
@@ -550,48 +565,33 @@ function examineCard(fearDeck, dividerPos)
         end
         broadcastToAll("Terror Level III Achieved!", {1,0,0})
     else
-        -- TODO figure out a way to make this more generic
-        local stage = nil
-        local type = nil
+        local invaderCard = false
         if fearDeck.type == "Deck" then
-            local start,finish = string.find(card.lua_script,"cardInvaderStage=")
-            if start ~= nil then
-                stage = tonumber(string.sub(card.lua_script,finish+1))
-                local start2,finish2 = string.find(card.lua_script,"cardInvaderType=")
-                type = string.sub(card.lua_script,finish2+2,start-4)
+            for _,tag in pairs(card.tags) do
+                if tag == "Invader Card" then
+                    invaderCard = true
+                    break
+                end
             end
         else
-            stage = card.getVar("cardInvaderStage")
-            type = card.getVar("cardInvaderType")
+            invaderCard = card.hasTag("Invader Card")
         end
 
-        if stage ~= nil then
+        if invaderCard then
             local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,-1)
             if fearDeck.type == "Deck" then
                 card = fearDeck.takeObject({
                     position = pos,
                     rotation = Vector(0,180,0),
                     -- Russia puts invader cards in this deck at a scale factor of 1.37
-                    callback_function = function(obj) obj.scale(1/1.37) end,
+                    callback_function = function(obj) obj.scale(1/1.37) invaderCardBroadcast(obj) end,
                 })
             else
                 -- Russia puts invader cards in this deck at a scale factor of 1.37
                 card.scale(1/1.37)
                 card.setPositionSmooth(pos)
                 card.setRotationSmooth(Vector(0,180,0))
-            end
-            if stage == 2 then
-                if type == "C" then
-                    broadcastToAll("Stage II Invader Card was revealed from the Fear Deck", {1,0,0})
-                else
-                    broadcastToAll("Stage II Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
-                end
-            elseif stage == 3 then
-                if Global.getVar("adversaryCard2") == nil then
-                    broadcastToAll("Stage III Invader Card was revealed from the Fear Deck", {1,0,0})
-                else
-                    broadcastToAll("Stage III Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
-                end
+                invaderCardBroadcast(card)
             end
         else
             if fearDeck.type == "Deck" then
@@ -605,6 +605,22 @@ function examineCard(fearDeck, dividerPos)
         return nil, false, emptyDeck
     else
         return card, false, emptyDeck
+    end
+end
+function invaderCardBroadcast(card)
+    local stage = card.getVar("cardInvaderStage")
+    if stage == 2 then
+        if card.getVar("cardInvaderType") == "C" then
+            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck", {1,0,0})
+        else
+            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
+        end
+    elseif stage == 3 then
+        if Global.getVar("adversaryCard2") == nil then
+            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck", {1,0,0})
+        else
+            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
+        end
     end
 end
 ---- Ready Helper Section
@@ -778,19 +794,15 @@ function scanElements()
                         table.insert(elemCardTable, entry)
                     end
                 end
-            elseif entry.type == "Tile" then
-                if entry.getVar("elements") ~= nil then
-                    table.insert(elemCardTable, entry)
-                end
             end
         end
     end
     local combinedElements = elemCombine(elemCardTable)
-    for i,v in ipairs (combinedElements) do
-        local obj = getObjectFromGUID(elementGuids[i])
-        obj.editButton({
+    local elementsTable = {"Sun","Moon","Fire","Air","Water","Earth","Plant","Animal"}
+    for i,total in ipairs(combinedElements) do
+        getObjectFromGUID(elementGuids[i]).editButton({
             index = 0,
-            label = v,
+            label = total + #getObjectsWithTag(elementsTable[i]),
         })
     end
 end

@@ -3,14 +3,24 @@
   "adversaryLevel2": 0,
   "blightedIsland": false,
   "BnCAdded": false,
+  "boardLayout": "Balanced",
   "cityBag": "a245f8",
   "difficulty": 0,
   "difficultyString": "",
+  "elementScanZones": {
+    "Blue": "6f2249",
+    "Green": "190f05",
+    "Orange": "61ac7c",
+    "Purple": "654ab2",
+    "Red": "9fc5a4",
+    "Yellow": "102771"
+  },
   "explorerBag": "613ea4",
   "fearPool": 0,
   "gameStarted": false,
   "generatedFear": 0,
   "JEAdded": false,
+  "numPlayers": 1,
   "panelAdversaryVisibility": "Invisible",
   "panelBlightVisibility": "Invisible",
   "panelFearVisibility": "Invisible",
@@ -20,7 +30,18 @@
   "panelScoreVisibility": "Invisible",
   "panelTimePassesVisibility": "Invisible",
   "panelTurnOrderVisibility": "Invisible",
+  "playerBlocks": {
+    "Blue": "36bbcc",
+    "Green": "fac8e4",
+    "Orange": "6b5b4b",
+    "Purple": "661aa3",
+    "Red": "c68e2c",
+    "Yellow": "c3c59b"
+  },
   "returnBlightBag": "af50b8",
+  "selectedBoards": [],
   "selectedColors": [],
+  "showAllMultihandedButtons": false,
+  "showPlayerButtons": true,
   "townBag": "4d3c15"
 }

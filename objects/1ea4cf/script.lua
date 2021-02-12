@@ -12,6 +12,13 @@ hasUI = true
 supporting = false
 requirements = true
 
+destroyed = 0
+checkLossID = 0
+
+function onLoad(saved_data)
+    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
+end
+
 function PreSetup(params)
     if params.level >= 1 then
         local explorerDamage = Global.getVar("explorerDamage")
@@ -77,6 +84,7 @@ function AdversaryUI(params)
         destroyedBeastsBag.call("setCallback", {obj=self,func="updateCount"})
         updateCount({count=#destroyedBeastsBag.getObjects()})
     end
+    checkLossID = Wait.time(checkLoss, 5, -1)
 
     ui.escalation = {}
     ui.escalation.tooltip = "On each board: Add 2 Explorer (total)\namong land with Beasts. If you can't\ninstead add 2 Explorer among lands\nwith Beasts on a different board."
@@ -104,6 +112,7 @@ function AdversaryUI(params)
 end
 
 function updateCount(params)
+    destroyed = params.count
     Global.call("UpdateAdversaryLossCounter",{count=params.count,supporting=supporting})
 end
 
@@ -198,6 +207,26 @@ function setupInvaderCard(fearDeckZone, fearCards, depth, zoneGuid)
             obj.scale(1.37)
             obj.setPosition(fearDeck.getPosition() + Vector(0,0.1,0))
         end
+    end
+end
+function checkLoss()
+    local beasts = #getObjectsWithTag("Beasts")
+    local SetupChecker = Global.getVar("SetupChecker")
+    if SetupChecker.call("isSpiritPickable", {guid="f7422a"}) then
+        -- TODO figure out a more elegant solution here
+        beasts = beasts - 1
+    end
+    if SetupChecker.call("isSpiritPickable", {guid="a576cc"}) then
+        -- TODO figure out a more elegant solution here
+        beasts = beasts - 1
+    end
+    if SetupChecker.call("isSpiritPickable", {guid="b35fd5"}) then
+        -- TODO figure out a more elegant solution here
+        beasts = beasts - 1
+    end
+    if destroyed > beasts then
+        broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
+        Wait.stop(checkLossID)
     end
 end
 

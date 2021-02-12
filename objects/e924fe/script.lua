@@ -30,19 +30,19 @@ function MapSetup(params)
         return params.pieces
     end
 
-    for i=1,#params.original do
-        for j=#params.original[i],1,-1 do
-            if params.original[i][j] == "Wilds"
-                    or params.original[i][j] == "Disease"
-                    or params.original[i][j] == "Beasts"
-                    or params.original[i][j] == "Badlands"
-                    or params.original[i][j] == "Dahan"
-                    or params.original[i][j] == "Box Blight" then
+    for i=1,#params.pieces do
+        for j=#params.pieces[i],1,-1 do
+            if params.pieces[i][j] == "Wilds"
+                    or params.pieces[i][j] == "Disease"
+                    or params.pieces[i][j] == "Beasts"
+                    or params.pieces[i][j] == "Badlands"
+                    or params.pieces[i][j] == "Dahan"
+                    or params.pieces[i][j] == "Box Blight" then
                 table.remove(params.pieces[i],j)
-            elseif string.sub(params.original[i][j],1,9) == "ExplorerS"
-                    or string.sub(params.original[i][j],1,5) == "TownS"
-                    or string.sub(params.original[i][j],1,5) == "CityS" then
-                params.pieces[i][j] = string.sub(params.original[i][j],1,-2)
+            elseif string.sub(params.pieces[i][j],1,9) == "ExplorerS"
+                    or string.sub(params.pieces[i][j],1,5) == "TownS"
+                    or string.sub(params.pieces[i][j],1,5) == "CityS" then
+                params.pieces[i][j] = string.sub(params.pieces[i][j],1,-2)
             end
         end
     end
@@ -190,10 +190,11 @@ function ExportConfig()
         data.boards = selectedBoards
     end
     local obj = Global.getVar("blightedIslandCard")
-    -- Only store the blight card and count if the island is blighted
-    if obj ~= nil and Global.getVar("blightedIsland") then
+    if not obj.is_face_down then
         data.blightCard = obj.getName()
-
+    end
+    if obj ~= nil and Global.getVar("blightedIsland") then
+        -- Only store the blight card and count if the island is blighted
         obj = Global.getVar("blightBag")
         local multiplier = data.secondWave.wave
         data.secondWave.blight = #obj.getObjects() - (multiplier * Global.getVar("numBoards"))

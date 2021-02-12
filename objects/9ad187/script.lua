@@ -50,6 +50,7 @@ exploratoryWar = false
 
 updateLayoutsID = 0
 setupStarted = false
+recentlyNotifiedRandom = false
 
 function onSave()
     local data_table = {}
@@ -851,6 +852,7 @@ function toggleExploratory()
 end
 
 function toggleMinDifficulty(_, value)
+    randomCheck()
     local maxDifficulty = Global.getVar("maxDifficulty")
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
@@ -865,6 +867,7 @@ function toggleMinDifficulty(_, value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
+    randomCheck()
     local minDifficulty = Global.getVar("minDifficulty")
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
@@ -877,6 +880,18 @@ function toggleMaxDifficulty(_, value)
     Global.setVar("maxDifficulty", maxDifficulty)
     self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
+end
+function randomCheck()
+    if recentlyNotifiedRandom then
+        return
+    elseif not Global.getVar("useRandomAdversary")
+            and not Global.getVar("useSecondAdversary")
+            and not Global.getVar("useRandomBoard")
+            and not Global.getVar("useRandomScenario") then
+        recentlyNotifiedRandom = true
+        Wait.time(function() recentlyNotifiedRandom = false end, 2)
+        broadcastToAll("No \"Random\" options are currently selected", "Red")
+    end
 end
 
 function randomSpirit(player)

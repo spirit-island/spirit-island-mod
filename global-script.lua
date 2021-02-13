@@ -3700,7 +3700,7 @@ function swapPlayerColors(a, b)
     if not playerBlocks[a] then
         -- This should only trigger if the player clicking is a non-standard color.
         if pb.seated then
-            broadcastToColor("Color " .. b .. " is already claimed.  Try another color.", a, Color.Red)
+            Player[a].broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
             return false
         end
     end
@@ -3722,7 +3722,7 @@ function swapPlayerColors(a, b)
                 end
             end
             -- If we reach here, we failed to change colors.  Shouldn't happen.  Just in case it does.
-            broadcastToColor("Unable to swap colors with " .. b .. ".  (All player colors are in use?)", a, Color.Red)
+            Player[a].broadcast("Unable to swap colors with " .. b .. ".  (All player colors are in use?)", Color.Red)
             return false
         else
             pa.changeColor(b)

@@ -105,15 +105,15 @@ function SetupSpirit(object_pick,player_color)
 
         -- Setup Ready Token
         local ready = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(6, 1.1, 7),
+            position = Vector(spos.x,0,spos.z) + Vector(7, 1.1, 7),
             rotation = Vector(0, 180, 180),
         })
-
-        Global.call("removeSpirit", {spirit=self.guid, color=player_color, ready=ready})
 
         -- Setup Energy Counter
         local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
         counter.setLock(true)
+
+        Global.call("removeSpirit", {spirit=self.guid, color=player_color, ready=ready, counter=counter})
 
         -- Setup Progression Deck if enabled
         if useProgression then

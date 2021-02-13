@@ -241,8 +241,7 @@ function onSave()
         showPlayerButtons = showPlayerButtons,
         showAllMultihandedButtons = showAllMultihandedButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
-        elementScanZones = elementScanZones,
-        selectedColors = convertObjectsToGuids(selectedColors)
+        elementScanZones = elementScanZones
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -256,6 +255,15 @@ function onSave()
     if scenarioCard ~= nil then
         data_table.scenarioCard = scenarioCard.guid
     end
+    local selectedTable = {}
+    for color,data in pairs(selectedColors) do
+        local colorTable = {ready=data.ready.guid, paid=data.paid}
+        if data.counter ~= nil then
+            colorTable.counter = data.counter.guid
+        end
+        selectedTable[color] = colorTable
+    end
+    data_table.selectedColors = selectedTable
     saved_data = JSON.encode(data_table)
     return saved_data
 end
@@ -392,7 +400,13 @@ function onLoad(saved_data)
     end
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
-    selectedColors = convertGuidsToObjects(selectedColors)
+    for color,data in pairs(selectedColors) do
+        local colorTable = {ready=getObjectFromGUID(data.ready), paid=data.paid}
+        if data.counter ~= nil then
+            colorTable.counter = getObjectFromGUID(data.counter)
+        end
+        selectedColors[color] = colorTable
+    end
 
     if Player["White"].seated then Player["White"].changeColor("Red") end
     updateAllPlayerAreas()
@@ -402,16 +416,16 @@ end
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
-    for _,obj in pairs(selectedColors) do
-        if not obj.is_face_down and obj.resting then
+    for _,data in pairs(selectedColors) do
+        if not data.ready.is_face_down and data.ready.resting then
             readyCount = readyCount + 1
         end
         colorCount = colorCount + 1
     end
     if readyCount >= colorCount and colorCount ~= 0 then
         broadcastToAll("All Players are ready!")
-        for _,obj in pairs(selectedColors) do
-            obj.flip()
+        for _,data in pairs(selectedColors) do
+            data.ready.flip()
         end
     end
 end
@@ -1936,7 +1950,7 @@ end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
     getObjectFromGUID(elementScanZones[params.color]).clearButtons()
-    selectedColors[params.color] = params.ready
+    selectedColors[params.color] = {ready=params.ready, counter=params.counter, paid=false}
     updatePlayerArea(params.color)
 end
 function getEmptySeat()
@@ -2005,8 +2019,8 @@ function timePassesCo()
         handlePiece(object, 1)
     end
 
-    for color,token in pairs(selectedColors) do
-        handlePlayer(color, token)
+    for color,data in pairs(selectedColors) do
+        handlePlayer(color, data)
     end
 
     broadcastToAll("Time Passes...", Color.SoftBlue)
@@ -2062,51 +2076,22 @@ function resetPiece(object, rotation, depth)
     end
     return object
 end
-function handlePlayer(color, token)
+function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
-    local energy = playerBlocks[color].getButtons()[1].label
-    energy = tonumber(string.sub(energy, 14, -1))
-    if energy == nil then
-        energy = 0
-    end
     for _, obj in ipairs(zone.getObjects()) do
         if obj.getName() == "Any" then
             if obj.getStateId() ~= 9 then obj.setState(9) end
             if obj.getLock() == false then obj.destruct() end
         elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
-        elseif obj.type == "Chip" then
-            local quantity = obj.getQuantity()
-            if quantity == -1 then
-                quantity = 1
-            end
-            if obj.getName() == "1 Energy" then
-                if energy >= 0 then
-                    obj.destruct()
-                else
-                    energy = energy + 1
-                end
-            elseif obj.getName() == "3 Energy" then
-                if energy >= 0 then
-                    obj.destruct()
-                elseif energy >= -2 then
-                    obj.destruct()
-                    for i=energy,-1 do
-                        oneEnergyBag.takeObject({
-                            position = zone.getPosition()+Vector(-4.5,2,-1+i*2),
-                            rotation = Vector(0,180,0),
-                        })
-                    end
-                    energy = 0
-                else
-                    energy = energy + 3
-                end
-            end
         end
     end
 
-    if not token.is_face_down then
-        token.flip()
+    if data.paid then
+        playerBlocks[color].editButton({index=4, label="Pay", click_function="payEnergy", color="Red"})
+    end
+    if not data.token.is_face_down then
+        data.token.flip()
     end
 end
 ------
@@ -2941,29 +2926,41 @@ function setupPlayerArea(params)
             label="", click_function="onClickedSitHere", function_owner=Global,
             position={ 7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
             font_color={0,0,0}, font_size=500,
-            tooltip="Moves your current player color to be located here.  The color currently seated here will be moved to your current location.  Spirit panels and other cards will be relocated if applicable.",
+            tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
         })
         -- Change Color (button index 2)
         obj.createButton({
             label="", click_function="onClickedChangeColor", function_owner=Global,
             position={-7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
             font_color={0,0,0}, font_size=500,
-            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly.  The player that is this color will be changed to be yours.  Your seating position will not change.",
+            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
         })
         -- Play Spirit (button index 3)
         obj.createButton({
             label="", click_function="onClickedPlaySpirit", function_owner=Global,
             position={0,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
             font_color={0,0,0}, font_size=500,
-            tooltip="Switch to play the spirit that is here, changing your player color accordingly.  Only available for spirits without a seated player.  Intended for multi-handed solo games.",
+            tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+        })
+        -- Pay Energy (button index 4)
+        obj.createButton({
+            label="", click_function="nullFunc", function_owner=Global,
+            position={-5,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
         })
         -- Other buttons to follow/be fixed later.
     end
 
     if selected then
         obj.editButton({index=0, label="Energy Cost: ?"})
+        if selected.paid then
+            obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200})
+        else
+            obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200})
+        end
     else
         obj.editButton({index=0, label=""})
+        obj.editButton({index=4, label="", click_function="nullFunc", height=0, width=0})
     end
 
     if showPlayerButtons then
@@ -3106,6 +3103,136 @@ function setupPlayerArea(params)
         timer = nil
         obj.setVar("timer", timer)
     end
+end
+function payEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif alt_click then
+        return
+    elseif playerBlocks[source_color] ~= target_obj then
+        return
+    end
+
+    local paid = updateEnergyCounter(source_color, false)
+    if not paid then
+        paid = payEnergyTokens(source_color)
+    end
+    if paid then
+        selectedColors[source_color].paid = true
+        target_obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green"})
+    else
+        Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
+    end
+end
+function updateEnergyCounter(color, refund)
+    if selectedColors[color].counter == nil then
+        return false
+    end
+    local cost = getEnergyLabel(color)
+    local energy = selectedColors[color].counter.getValue()
+    if not refund and cost > energy then
+        return false
+    end
+    if refund then
+        cost = cost * -1
+    end
+    selectedColors[color].counter.setValue(energy - cost)
+    return true
+end
+function payEnergyTokens(color)
+    local energy = getEnergyLabel(color)
+    if energy > 0 then
+        return false
+    end
+    local zone = getObjectFromGUID(elementScanZones[color])
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                if energy >= 0 then
+                    obj.destruct()
+                else
+                    energy = energy + 1
+                end
+            elseif obj.getName() == "3 Energy" then
+                if energy >= 0 then
+                    obj.destruct()
+                elseif energy >= -2 then
+                    obj.destruct()
+                    for i=energy,-1 do
+                        oneEnergyBag.takeObject({
+                            position = zone.getPosition()+Vector(-4.5,2,-3),
+                            rotation = Vector(0,180,0),
+                        })
+                    end
+                    energy = 0
+                else
+                    energy = energy + 3
+                end
+            end
+        end
+    end
+    return true
+end
+function getEnergyLabel(color)
+    local energy = playerBlocks[color].getButtons()[1].label
+    energy = tonumber(string.sub(energy, 14, -1))
+    if energy == nil then
+        energy = 0
+    end
+    return energy
+end
+function refundEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif not alt_click then
+        return
+    elseif playerBlocks[source_color] ~= target_obj then
+        return
+    end
+
+    local refunded = updateEnergyCounter(source_color, true)
+    if not refunded then
+        refunded = refundEnergyTokens(source_color)
+    end
+    if refunded then
+        selectedColors[source_color].paid = false
+        target_obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red"})
+    else
+        Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
+    end
+end
+function refundEnergyTokens(color)
+    local energy = 0
+    local zone = getObjectFromGUID(elementScanZones[color])
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.type == "Card" then
+            --Ignore if no elements entry
+            if obj.getVar("energy") ~= nil then
+                if not obj.is_face_down and obj.getPosition().z > zone.getPosition().z then
+                    energy = energy + obj.getVar("energy")
+                end
+            end
+        end
+    end
+    while energy >= 3 do
+        threeEnergyBag.takeObject({
+            position = zone.getPosition()+Vector(-4.5,2,-5),
+            rotation = Vector(0,180,0),
+        })
+        energy = energy - 3
+    end
+    while energy >= 1 do
+        oneEnergyBag.takeObject({
+            position = zone.getPosition()+Vector(-4.5,2,-3),
+            rotation = Vector(0,180,0),
+        })
+        energy = energy - 1
+    end
+    return true
 end
 ---- UI Section
 childHeight = 80

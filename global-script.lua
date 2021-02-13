@@ -3208,14 +3208,14 @@ function refundEnergyTokens(color, energy)
     local zone = getObjectFromGUID(elementScanZones[color])
     while energy >= 3 do
         threeEnergyBag.takeObject({
-            position = zone.getPosition()+Vector(-4.5,2,-5),
+            position = zone.getPosition()+Vector(-10,2,-5),
             rotation = Vector(0,180,0),
         })
         energy = energy - 3
     end
     while energy >= 1 do
         oneEnergyBag.takeObject({
-            position = zone.getPosition()+Vector(-4.5,2,-3),
+            position = zone.getPosition()+Vector(-10,2,-3),
             rotation = Vector(0,180,0),
         })
         energy = energy - 1

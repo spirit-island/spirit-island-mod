@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.3.0"
+version = "1.3.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -202,6 +202,12 @@ function onObjectEnterScriptingZone(zone, obj)
             end
         end
     end
+end
+function onObjectLeaveContainer(container, object)
+    if container ~= StandardMapBag and container ~= ThematicMapBag and container ~= MJThematicMapBag then
+        return
+    end
+    object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
 end
 function onSave()
     local data_table = {
@@ -915,7 +921,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     local handPos = powerPlayer.getHandTransform().position
     local discardTable = DiscardPowerCards(handPos)
     if #discardTable > 0 then
-        wt(1)
+        wt(0.1)
     end
 
     local xPadding = 4.4
@@ -930,50 +936,50 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
         Vector(-(2.5*xPadding)+0*xPadding,0,0),
         Vector(-(2.5*xPadding)+5*xPadding,0,0),
     }
-    local cardToAdd = 1
+    local cardsAdded = 0
     local cardsResting = 0
     local powerDealCentre = handOffset + Vector(handPos.x,yHeight,handPos.z)
 
-    local Deck = deckZone.getObjects()
-    if Deck[1] == nil then
-    elseif Deck[1].type == "Card" then
-        Deck[1].setLock(true)
-        Deck[1].setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
-        Deck[1].setRotationSmooth(Vector(0, 180, 0))
-        CreatePickPowerButton(Deck[1], clickFunctionName)
-        cardToAdd = cardToAdd + 1
-        Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not Deck[1].isSmoothMoving() end)
-    elseif Deck[1].type == "Deck" then
-        for i=1, math.min(Deck[1].getQuantity(), powerCards) do
-            local tempCard = Deck[1].takeObject({
-                position       = powerDealCentre + cardPlaceOffset[i],
-                flip           = true
+    local deck = deckZone.getObjects()[1]
+    if deck == nil then
+    elseif deck.type == "Card" then
+        deck.setLock(true)
+        deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
+        deck.setRotationSmooth(Vector(0, 180, 0))
+        CreatePickPowerButton(deck, clickFunctionName)
+        cardsAdded = cardsAdded + 1
+        Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
+    elseif deck.type == "Deck" then
+        for i=1, math.min(deck.getQuantity(), powerCards) do
+            local tempCard = deck.takeObject({
+                position = powerDealCentre + cardPlaceOffset[i],
+                flip = true,
             })
             tempCard.setLock(true)
             CreatePickPowerButton(tempCard, clickFunctionName)
-            cardToAdd = cardToAdd + 1
+            cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
-    if cardToAdd <= powerCards then
-        Deck = discardZone.getObjects()
-        Deck[1].setPositionSmooth(deckZone.getPosition(), false, true)
-        Deck[1].setRotationSmooth(Vector(0, 180, 180), false, true)
-        Deck[1].shuffle()
+    if cardsAdded < powerCards then
+        deck = discardZone.getObjects()[1]
+        deck.setPositionSmooth(deckZone.getPosition(), false, true)
+        deck.setRotationSmooth(Vector(0, 180, 180), false, true)
+        deck.shuffle()
         wt(0.5)
 
-        for i=cardToAdd, math.min(Deck[1].getQuantity(), powerCards) do
-            local tempCard = Deck[1].takeObject({
-                position       = powerDealCentre + Vector(cardPlaceOffsetXs[i],0,0),
-                flip           = true
+        for i=cardsAdded, math.min(deck.getQuantity(), powerCards) do
+            local tempCard = deck.takeObject({
+                position = powerDealCentre + cardPlaceOffset[i],
+                flip = true,
             })
             tempCard.setLock(true)
             CreatePickPowerButton(tempCard, clickFunctionName)
-            cardToAdd = cardToAdd + 1
+            cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
-    Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardToAdd - 1 end)
+    Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
 function CreatePickPowerButton(card, clickFunctionName)
     card.createButton({
@@ -1912,16 +1918,16 @@ end
 function exploratory()
 end
 function enableUI()
-    local visibility = ""
-    for _,player in pairs(Player.getPlayers()) do
-        if player.seated then
-            visibility = visibility..player.color.."|"
+    local colors = {}
+    for color,_ in pairs(PlayerBags) do
+        if selectedColors[color] or Player[color].seated then
+            table.insert(colors, color)
         end
     end
     UI.setAttribute("panelUIToggle","active","true")
-    UI.setAttribute("panelTimePasses","visibility",visibility)
-    UI.setAttribute("panelReady","visibility",visibility)
-    UI.setAttribute("panelPowerDraw","visibility",visibility)
+    setVisiTable("panelTimePasses", colors)
+    setVisiTable("panelReady", colors)
+    setVisiTable("panelPowerDraw", colors)
 end
 ------
 function addSpirit(params)
@@ -1999,54 +2005,8 @@ function timePassesCo()
         handlePiece(object, 1)
     end
 
-    for color,_ in pairs(selectedColors) do
-        local zone = getObjectFromGUID(elementScanZones[color])
-        local energy = playerBlocks[color].getButtons()[1].label
-        energy = tonumber(string.sub(energy, 14, -1))
-        if energy == nil then
-            energy = 0
-        end
-        for _, obj in ipairs(zone.getObjects()) do
-            if obj.getName() == "Any" then
-                if obj.getStateId() ~= 9 then obj.setState(9) end
-                if obj.getLock() == false then obj.destruct() end
-            elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
-                if obj.getLock() == false then obj.destruct() end
-            elseif obj.type == "Chip" then
-                local quantity = obj.getQuantity()
-                if quantity == -1 then
-                    quantity = 1
-                end
-                if obj.getName() == "1 Energy" then
-                    if energy >= 0 then
-                        obj.destruct()
-                    else
-                        energy = energy + 1
-                    end
-                elseif obj.getName() == "3 Energy" then
-                    if energy >= 0 then
-                        obj.destruct()
-                    elseif energy >= -2 then
-                        obj.destruct()
-                        for i=energy,-1 do
-                            oneEnergyBag.takeObject({
-                                position = zone.getPosition()+Vector(-4.5,2,-1+i*2),
-                                rotation = Vector(0,180,0),
-                            })
-                        end
-                        energy = 0
-                    else
-                        energy = energy + 3
-                    end
-                end
-            end
-        end
-    end
-
-    for _,obj in pairs(selectedColors) do
-        if not obj.is_face_down then
-            obj.flip()
-        end
+    for color,token in pairs(selectedColors) do
+        handlePlayer(color, token)
     end
 
     broadcastToAll("Time Passes...", Color.SoftBlue)
@@ -2085,7 +2045,7 @@ function resetPiece(object, rotation, depth)
         local isFigurine = obj.type == "Figurine"
         obj = handlePiece(obj, depth + 1)
         if obj ~= nil then
-            obj.setPositionSmooth(obj.getPosition() + Vector(0,2*depth,0))
+            obj.setPositionSmooth(obj.getPosition() + Vector(0,depth,0))
         end
         if isFigurine then
             -- Figurines are Invaders, Dahan, and Blight, you should only handle the one directly above you
@@ -2102,12 +2062,59 @@ function resetPiece(object, rotation, depth)
     end
     return object
 end
+function handlePlayer(color, token)
+    local zone = getObjectFromGUID(elementScanZones[color])
+    local energy = playerBlocks[color].getButtons()[1].label
+    energy = tonumber(string.sub(energy, 14, -1))
+    if energy == nil then
+        energy = 0
+    end
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.getName() == "Any" then
+            if obj.getStateId() ~= 9 then obj.setState(9) end
+            if obj.getLock() == false then obj.destruct() end
+        elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
+            if obj.getLock() == false then obj.destruct() end
+        elseif obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                if energy >= 0 then
+                    obj.destruct()
+                else
+                    energy = energy + 1
+                end
+            elseif obj.getName() == "3 Energy" then
+                if energy >= 0 then
+                    obj.destruct()
+                elseif energy >= -2 then
+                    obj.destruct()
+                    for i=energy,-1 do
+                        oneEnergyBag.takeObject({
+                            position = zone.getPosition()+Vector(-4.5,2,-1+i*2),
+                            rotation = Vector(0,180,0),
+                        })
+                    end
+                    energy = 0
+                else
+                    energy = energy + 3
+                end
+            end
+        end
+    end
+
+    if not token.is_face_down then
+        token.flip()
+    end
+end
 ------
 scaleFactors = {
     -- Note that we scale the boards up more than the position, so the gaps
     -- don't increase in size.
-    [true]={name = "Large", position = 1.09, size = 1.1},
-    [false]={name = "Standard", position = 1, size = 1},
+    [true]={name = "Large", position = 1.09, size = Vector(7.15, 1, 7.15)},
+    [false]={name = "Standard", position = 1, size = Vector(6.5, 1, 6.5)},
 }
 boardLayouts = {
     { -- 1 Board
@@ -2422,7 +2429,6 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.setRotationSmooth(rot, false, true)
     local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
-    obj.scale(scaleFactor.size)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
 setupMapCoObj = nil
@@ -2832,7 +2838,7 @@ function upCast(obj,dist,offset,multi)
 end
 function upCastRay(obj,dist)
     local hits = Physics.cast({
-        origin = obj.getPosition(),
+        origin = obj.getPosition() + Vector(0,1,0),
         direction = Vector(0,1,0),
         max_distance = dist,
         --debug = true,
@@ -3595,8 +3601,8 @@ function swapPlayerColors(a, b)
             local tempColor
             for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"}) do
                 if pa.changeColor(tempColor) then
-                    pb.changeColor(a)
-                    pa.changeColor(b)
+                    Wait.frames(function() pb.changeColor(a) end, 1)
+                    Wait.frames(function() Player[tempColor].changeColor(b) end, 2)
                     return true
                 end
             end
@@ -3673,5 +3679,7 @@ function onPlayerConnect(player)
     updatePlayerArea(player.color)
 end
 function onPlayerDisconnect(player)
-    updatePlayerArea(player.color)
+    if #Player.getPlayers() or #Player.getSpectators() then
+        updatePlayerArea(player.color)
+    end
 end

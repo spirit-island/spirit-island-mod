@@ -1918,16 +1918,16 @@ end
 function exploratory()
 end
 function enableUI()
-    local visibility = ""
-    for _,player in pairs(Player.getPlayers()) do
-        if player.seated then
-            visibility = visibility..player.color.."|"
+    local colors = {}
+    for color,_ in pairs(PlayerBags) do
+        if selectedColors[color] or Player[color].seated then
+            table.insert(colors, color)
         end
     end
     UI.setAttribute("panelUIToggle","active","true")
-    UI.setAttribute("panelTimePasses","visibility",visibility)
-    UI.setAttribute("panelReady","visibility",visibility)
-    UI.setAttribute("panelPowerDraw","visibility",visibility)
+    setVisiTable("panelTimePasses", colors)
+    setVisiTable("panelReady", colors)
+    setVisiTable("panelPowerDraw", colors)
 end
 ------
 function addSpirit(params)

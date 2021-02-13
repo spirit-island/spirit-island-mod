@@ -2075,7 +2075,7 @@ function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
     for _, obj in ipairs(zone.getObjects()) do
         if obj.getName() == "Any" then
-            if obj.getStateId() ~= 9 then obj.setState(9) end
+            if obj.getStateId() ~= 9 then obj = obj.setState(9) end
             if obj.getLock() == false then obj.destruct() end
         elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end

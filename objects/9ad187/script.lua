@@ -1,4 +1,5 @@
-canStart = true
+bncDone = false
+jeDone = false
 
 adversaries = {
     ["None"] = "",
@@ -114,12 +115,12 @@ function onLoad(saved_data)
 
             if Global.getVar("BnCAdded") then
                 Global.setVar("useBnCEvents", true)
-                self.UI.hide("bnc")
+                self.UI.setAttribute("bnc", "isOn", "true")
                 self.UI.setAttribute("bncEvents", "isOn", "true")
             end
             if Global.getVar("JEAdded") then
                 Global.setVar("useJEEvents", true)
-                self.UI.hide("je")
+                self.UI.setAttribute("je", "isOn", "true")
                 self.UI.setAttribute("jeEvents", "isOn", "true")
             end
 
@@ -488,11 +489,23 @@ function updateSupportingLevel(value, updateUI)
     updateDifficulty()
 end
 
-function toggleBlightCard()
-    local useBlightCard = Global.getVar("useBlightCard")
-    useBlightCard = not useBlightCard
-    Global.setVar("useBlightCard", useBlightCard)
-    self.UI.setAttribute("blightCard", "isOn", useBlightCard)
+function toggleBnC()
+    local BnCAdded = Global.getVar("BnCAdded")
+    BnCAdded = not BnCAdded
+    Global.setVar("BnCAdded", BnCAdded)
+    self.UI.setAttribute("bnc", "isOn", BnCAdded)
+    Global.setVar("useBnCEvents", BnCAdded)
+    self.UI.setAttribute("bncEvents", "isOn", BnCAdded)
+    updateDifficulty()
+end
+function toggleJE()
+    local JEAdded = Global.getVar("JEAdded")
+    JEAdded = not JEAdded
+    Global.setVar("JEAdded", JEAdded)
+    self.UI.setAttribute("je", "isOn", JEAdded)
+    Global.setVar("useJEEvents", JEAdded)
+    self.UI.setAttribute("jeEvents", "isOn", JEAdded)
+    updateDifficulty()
 end
 function toggleBnCEvents()
     if not Global.getVar("BnCAdded") then
@@ -513,6 +526,12 @@ function toggleJEEvents()
     useJEEvents = not useJEEvents
     Global.setVar("useJEEvents", useJEEvents)
     self.UI.setAttribute("jeEvents", "isOn", useJEEvents)
+end
+function toggleBlightCard()
+    local useBlightCard = Global.getVar("useBlightCard")
+    useBlightCard = not useBlightCard
+    Global.setVar("useBlightCard", useBlightCard)
+    self.UI.setAttribute("blightCard", "isOn", useBlightCard)
 end
 
 function updateDropdownSelection(t, class, value)
@@ -560,61 +579,6 @@ function updateBoardLayoutSelection(name)
         updateDropdownSelection(v, "boardLayout", name)
     end
     self.UI.setXmlTable(t, {})
-end
-
-function addBnC()
-    Global.setVar("BnCAdded", true)
-    Global.setVar("useBnCEvents", true)
-
-    self.UI.hide("bnc")
-    self.UI.setAttribute("bncEvents", "isOn", "true")
-    updateDifficulty()
-
-    Wait.condition(function() startLuaCoroutine(self, "addBnCCo") end, function() return canStart end)
-end
-function addBnCCo()
-    canStart = false
-    local BnCBag = getObjectFromGUID("ea7207")
-
-    local fearDeck = BnCBag.takeObject({guid = "d16f70"})
-    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
-    local minorPowers = BnCBag.takeObject({guid = "913789"})
-    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
-    local majorPowers = BnCBag.takeObject({guid = "07ac50"})
-    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
-    local blightCards = BnCBag.takeObject({guid = "788333"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-
-    wt(0.5)
-    canStart = true
-    return 1
-end
-function addJE()
-    Global.setVar("JEAdded", true)
-    Global.setVar("useJEEvents", true)
-
-    self.UI.hide("je")
-    self.UI.setAttribute("jeEvents", "isOn", "true")
-    updateDifficulty()
-
-    Wait.condition(function() startLuaCoroutine(self, "addJECo") end, function() return canStart end)
-end
-function addJECo()
-    canStart = false
-    local JEBag = getObjectFromGUID("850ac1")
-
-    local fearDeck = JEBag.takeObject({guid = "723183"})
-    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
-    local minorPowers = JEBag.takeObject({guid = "80b54a"})
-    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
-    local majorPowers = JEBag.takeObject({guid = "98a916"})
-    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
-    local blightCards = JEBag.takeObject({guid = "8120e0"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-
-    wt(0.5)
-    canStart = true
-    return 1
 end
 
 function updateDifficulty()
@@ -672,7 +636,17 @@ end
 
 function startGame()
     loadConfig()
-    Wait.condition(function() Global.call("SetupGame", {}) end, function() return canStart end)
+    if Global.getVar("BnCAdded") then
+        startLuaCoroutine(self, "addBnCCo")
+    else
+        bncDone = true
+    end
+    if Global.getVar("JEAdded") then
+        startLuaCoroutine(self, "addJECo")
+    else
+        jeDone = true
+    end
+    Wait.condition(function() Global.call("SetupGame", {}) end, function() return bncDone and jeDone end)
 end
 function loadConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -732,17 +706,29 @@ function loadConfig()
                 end
             end
             if saved_data.expansions then
+                local expansions = {}
                 for _,expansion in pairs(saved_data.expansions) do
-                    if expansion == "bnc" then
-                        addBnC()
-                    elseif expansion == "je" then
-                        addJE()
-                    end
+                    expansions[expansion] = true
+                end
+                if expansions.bnc then
+                    Global.setVar("BnCAdded", true)
+                    Global.setVar("useBnCEvents", true)
+                else
+                    Global.setVar("BnCAdded", false)
+                    Global.setVar("useBnCEvents", false)
+                end
+                if expansions.je then
+                    Global.setVar("JEAdded", true)
+                    Global.setVar("useJEEvents", true)
+                else
+                    Global.setVar("JEAdded", false)
+                    Global.setVar("useJEEvents", false)
                 end
             end
             if saved_data.broadcast then
                 broadcastToAll(saved_data.broadcast, Color.SoftYellow)
             end
+            updateDifficulty()
             break
         end
     end
@@ -761,6 +747,38 @@ function PickSpirit(name, aspect)
             break
         end
     end
+end
+function addBnCCo()
+    local BnCBag = getObjectFromGUID("ea7207")
+
+    local fearDeck = BnCBag.takeObject({guid = "d16f70"})
+    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+    local minorPowers = BnCBag.takeObject({guid = "913789"})
+    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
+    local majorPowers = BnCBag.takeObject({guid = "07ac50"})
+    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
+    local blightCards = BnCBag.takeObject({guid = "788333"})
+    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+
+    wt(0.5)
+    bncDone = true
+    return 1
+end
+function addJECo()
+    local JEBag = getObjectFromGUID("850ac1")
+
+    local fearDeck = JEBag.takeObject({guid = "723183"})
+    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+    local minorPowers = JEBag.takeObject({guid = "80b54a"})
+    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
+    local majorPowers = JEBag.takeObject({guid = "98a916"})
+    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
+    local blightCards = JEBag.takeObject({guid = "8120e0"})
+    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+
+    wt(0.5)
+    jeDone = true
+    return 1
 end
 
 function showUI()

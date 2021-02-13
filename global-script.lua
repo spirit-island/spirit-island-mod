@@ -2044,7 +2044,7 @@ function handlePiece(object, depth)
         object = resetPiece(object, Vector(0,0,0), depth)
     elseif object.getName() == "Blight" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),-7) == "Defend" then
+    elseif string.sub(object.getName(),-7) == "Defence" then
         if object.getLock() == false then object.destruct() end
         object = nil
     elseif string.sub(object.getName(),-7) == "Isolate" then
@@ -2088,7 +2088,7 @@ function handlePlayer(color, data)
     end
 
     if data.paid then
-        playerBlocks[color].editButton({index=4, label="Pay", click_function="payEnergy", color="Red"})
+        playerBlocks[color].editButton({index=4, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
     end
     if not data.ready.is_face_down then
         data.ready.flip()
@@ -2954,9 +2954,9 @@ function setupPlayerArea(params)
     if selected then
         obj.editButton({index=0, label="Energy Cost: ?"})
         if selected.paid then
-            obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200})
+            obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200, tooltip="Right click to refund energy for your cards"})
         else
-            obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200})
+            obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200, tooltip="Left click to pay energy for your cards"})
         end
     else
         obj.editButton({index=0, label=""})
@@ -3109,7 +3109,7 @@ function payEnergy(target_obj, source_color, alt_click)
     end
     if paid then
         selectedColors[source_color].paid = true
-        target_obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green"})
+        target_obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
@@ -3196,7 +3196,7 @@ function refundEnergy(target_obj, source_color, alt_click)
     end
     if refunded then
         selectedColors[source_color].paid = false
-        target_obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red"})
+        target_obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
@@ -3611,7 +3611,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
         to = initData(toColor, 2, fromColor)
     }
     local specialTokens = {
-        Defend = defendBags,
+        Defence = defendBags,
         Isolate = isolateBags,
     }
 
@@ -3639,7 +3639,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
-    -- Make a note of what we find and what tint it is. Handle Isolate and Defend tokens in this pass.
+    -- Make a note of what we find and what tint it is. Handle Isolate and Defence tokens in this pass.
     local match = string.match  -- Performance
     local name, suffix
     for _,obj in pairs(getAllObjects()) do
@@ -3672,7 +3672,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     -- Pass 2: Iterate over found objects and swap color tints and object names.
     -- After we're done, put objects in their new presence bag, if applicable.
     if fastMode then
-        -- All's we did is maybe recolor some isolate and defend tokens, so we can skip the rest of this.
+        -- All's we did is maybe recolor some isolate and defence tokens, so we can skip the rest of this.
         return
     end
     for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do

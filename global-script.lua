@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.3.1-beta.1"
+version = "1.3.1-beta.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -1927,16 +1927,16 @@ end
 function exploratory()
 end
 function enableUI()
-    local visibility = ""
-    for _,player in pairs(Player.getPlayers()) do
-        if player.seated then
-            visibility = visibility..player.color.."|"
+    local colors = {}
+    for color,_ in pairs(PlayerBags) do
+        if selectedColors[color] or Player[color].seated then
+            table.insert(colors, color)
         end
     end
     UI.setAttribute("panelUIToggle","active","true")
-    UI.setAttribute("panelTimePasses","visibility",visibility)
-    UI.setAttribute("panelReady","visibility",visibility)
-    UI.setAttribute("panelPowerDraw","visibility",visibility)
+    setVisiTable("panelTimePasses", colors)
+    setVisiTable("panelReady", colors)
+    setVisiTable("panelPowerDraw", colors)
 end
 ------
 function addSpirit(params)
@@ -3715,8 +3715,8 @@ function swapPlayerColors(a, b)
             local tempColor
             for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"}) do
                 if pa.changeColor(tempColor) then
-                    pb.changeColor(a)
-                    pa.changeColor(b)
+                    Wait.frames(function() pb.changeColor(a) end, 1)
+                    Wait.frames(function() Player[tempColor].changeColor(b) end, 2)
                     return true
                 end
             end
@@ -3793,5 +3793,7 @@ function onPlayerConnect(player)
     updatePlayerArea(player.color)
 end
 function onPlayerDisconnect(player)
-    updatePlayerArea(player.color)
+    if #Player.getPlayers() or #Player.getSpectators() then
+        updatePlayerArea(player.color)
+    end
 end

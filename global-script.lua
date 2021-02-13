@@ -3073,16 +3073,6 @@ function setupPlayerArea(params)
                 if entry.getVar("elements") ~= nil then
                     table.insert(elemCardTable, entry)
                 end
-            elseif entry.type == "Chip" then
-                local quantity = entry.getQuantity()
-                if quantity == -1 then
-                    quantity = 1
-                end
-                if entry.getName() == "1 Energy" then
-                    energy = energy - (1 * quantity)
-                elseif entry.getName() == "3 Energy" then
-                    energy = energy - (3 * quantity)
-                end
             end
         end
         combinedElements = elemCombine(elemCardTable)
@@ -3140,40 +3130,46 @@ function updateEnergyCounter(color, refund)
     return true
 end
 function payEnergyTokens(color)
-    local energy = getEnergyLabel(color)
-    if energy > 0 then
-        return false
-    end
+    local cost = getEnergyLabel(color)
+    local energy = 0
     local zone = getObjectFromGUID(elementScanZones[color])
-    for _, obj in ipairs(zone.getObjects()) do
+    local objects = zone.getObjects()
+    for _, obj in ipairs(objects) do
         if obj.type == "Chip" then
             local quantity = obj.getQuantity()
             if quantity == -1 then
                 quantity = 1
             end
             if obj.getName() == "1 Energy" then
-                if energy >= 0 then
-                    obj.destruct()
-                else
-                    energy = energy + 1
-                end
+                energy = energy + (1 * quantity)
             elseif obj.getName() == "3 Energy" then
-                if energy >= 0 then
-                    obj.destruct()
-                elseif energy >= -2 then
-                    obj.destruct()
-                    for i=energy,-1 do
-                        oneEnergyBag.takeObject({
-                            position = zone.getPosition()+Vector(-4.5,2,-3),
-                            rotation = Vector(0,180,0),
-                        })
-                    end
-                    energy = 0
-                else
-                    energy = energy + 3
-                end
+                energy = energy + (3 * quantity)
             end
         end
+    end
+    if cost > energy then
+        return false
+    end
+    for _, obj in ipairs(objects) do
+        if obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                cost = cost - (1 * quantity)
+                obj.destruct()
+            elseif obj.getName() == "3 Energy" then
+                cost = cost - (3 * quantity)
+                obj.destruct()
+            end
+            if cost <= 0 then
+                break
+            end
+        end
+    end
+    if cost < 0 then
+        refundEnergyTokens(color, -cost)
     end
     return true
 end
@@ -3196,7 +3192,7 @@ function refundEnergy(target_obj, source_color, alt_click)
 
     local refunded = updateEnergyCounter(source_color, true)
     if not refunded then
-        refunded = refundEnergyTokens(source_color)
+        refunded = refundEnergyTokens(source_color, nil)
     end
     if refunded then
         selectedColors[source_color].paid = false
@@ -3205,19 +3201,11 @@ function refundEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
 end
-function refundEnergyTokens(color)
-    local energy = 0
-    local zone = getObjectFromGUID(elementScanZones[color])
-    for _, obj in ipairs(zone.getObjects()) do
-        if obj.type == "Card" then
-            --Ignore if no elements entry
-            if obj.getVar("energy") ~= nil then
-                if not obj.is_face_down and obj.getPosition().z > zone.getPosition().z then
-                    energy = energy + obj.getVar("energy")
-                end
-            end
-        end
+function refundEnergyTokens(color, energy)
+    if energy == nil then
+        energy = getEnergyLabel(color)
     end
+    local zone = getObjectFromGUID(elementScanZones[color])
     while energy >= 3 do
         threeEnergyBag.takeObject({
             position = zone.getPosition()+Vector(-4.5,2,-5),

@@ -3601,8 +3601,8 @@ function swapPlayerColors(a, b)
             local tempColor
             for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"}) do
                 if pa.changeColor(tempColor) then
-                    pb.changeColor(a)
-                    pa.changeColor(b)
+                    Wait.frames(function() pb.ChangeColor(a) end, 1)
+                    Wait.frames(function() Player[tempColor].ChangeColor(b) end, 2)
                     return true
                 end
             end
@@ -3679,5 +3679,7 @@ function onPlayerConnect(player)
     updatePlayerArea(player.color)
 end
 function onPlayerDisconnect(player)
-    updatePlayerArea(player.color)
+    if #Player.getPlayers() or #Player.getSpectators() then
+        updatePlayerArea(player.color)
+    end
 end

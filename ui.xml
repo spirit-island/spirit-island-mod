@@ -115,7 +115,7 @@
 <Panel id="panelTimePasses" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="60" rectAlignment="UpperRight" offsetXY="-430 0">
     <Button onClick="timePassesUI" textAlignment="MiddleCenter">Time Passes</Button>
 </Panel>
-<Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="225" height="335" color="#00000044" rectAlignment="UpperLeft" offsetXY="80 0">
+<Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="225" height="345" color="#00000044" rectAlignment="UpperLeft" offsetXY="80 0">
     <VerticalLayout>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Spirit Phase</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Growth</Text>

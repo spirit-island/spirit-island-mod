@@ -3601,8 +3601,8 @@ function swapPlayerColors(a, b)
             local tempColor
             for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"}) do
                 if pa.changeColor(tempColor) then
-                    Wait.frames(function() pb.ChangeColor(a) end, 1)
-                    Wait.frames(function() Player[tempColor].ChangeColor(b) end, 2)
+                    Wait.frames(function() pb.changeColor(a) end, 1)
+                    Wait.frames(function() Player[tempColor].changeColor(b) end, 2)
                     return true
                 end
             end

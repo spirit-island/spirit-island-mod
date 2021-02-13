@@ -3115,7 +3115,7 @@ function payEnergy(target_obj, source_color, alt_click)
     end
 end
 function updateEnergyCounter(color, refund)
-    if selectedColors[color].counter == nil then
+    if selectedColors[color].counter == nil or not selectedColors[color].counter.getLock() then
         return false
     end
     local cost = getEnergyLabel(color)

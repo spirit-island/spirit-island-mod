@@ -42,7 +42,7 @@ function onLoad()
         font_size      = 300,
         tooltip        = "Enable/Disable Aspect Deck",
     })
-    local castObjects = upCast(self,1,0.5)
+    local castObjects = upCast(self,1,0.58)
     for _,obj in pairs (castObjects) do
         if string.find(obj.getName(),"Progression") then
             progressionCard = obj
@@ -82,7 +82,7 @@ function SetupSpirit(object_pick,player_color)
     local xOffset = 1
     local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
     if #PlayerBag.getObjects() ~= 0 then
-        local castObjects = upCast(self,1,0.5)
+        local castObjects = upCast(self,1,0.58)
         local hpos = Player[player_color].getHandTransform().position
         self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))
         self.setRotation(Vector(0,180,0))

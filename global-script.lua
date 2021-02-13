@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.3.0-beta.4"
+version = "1.3.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -1999,54 +1999,8 @@ function timePassesCo()
         handlePiece(object, 1)
     end
 
-    for color,_ in pairs(selectedColors) do
-        local zone = getObjectFromGUID(elementScanZones[color])
-        local energy = playerBlocks[color].getButtons()[1].label
-        energy = tonumber(string.sub(energy, 14, -1))
-        if energy == nil then
-            energy = 0
-        end
-        for _, obj in ipairs(zone.getObjects()) do
-            if obj.getName() == "Any" then
-                if obj.getStateId() ~= 9 then obj.setState(9) end
-                if obj.getLock() == false then obj.destruct() end
-            elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
-                if obj.getLock() == false then obj.destruct() end
-            elseif obj.type == "Chip" then
-                local quantity = obj.getQuantity()
-                if quantity == -1 then
-                    quantity = 1
-                end
-                if obj.getName() == "1 Energy" then
-                    if energy >= 0 then
-                        obj.destruct()
-                    else
-                        energy = energy + 1
-                    end
-                elseif obj.getName() == "3 Energy" then
-                    if energy >= 0 then
-                        obj.destruct()
-                    elseif energy >= -2 then
-                        obj.destruct()
-                        for i=energy,-1 do
-                            oneEnergyBag.takeObject({
-                                position = zone.getPosition()+Vector(-4.5,2,-1+i*2),
-                                rotation = Vector(0,180,0),
-                            })
-                        end
-                        energy = 0
-                    else
-                        energy = energy + 3
-                    end
-                end
-            end
-        end
-    end
-
-    for _,obj in pairs(selectedColors) do
-        if not obj.is_face_down then
-            obj.flip()
-        end
+    for color,token in pairs(selectedColors) do
+        handlePlayer(color, token)
     end
 
     broadcastToAll("Time Passes...", Color.SoftBlue)
@@ -2085,7 +2039,7 @@ function resetPiece(object, rotation, depth)
         local isFigurine = obj.type == "Figurine"
         obj = handlePiece(obj, depth + 1)
         if obj ~= nil then
-            obj.setPositionSmooth(obj.getPosition() + Vector(0,2*depth,0))
+            obj.setPositionSmooth(obj.getPosition() + Vector(0,depth,0))
         end
         if isFigurine then
             -- Figurines are Invaders, Dahan, and Blight, you should only handle the one directly above you
@@ -2101,6 +2055,53 @@ function resetPiece(object, rotation, depth)
         object.setPositionSmooth(object.getPosition() + Vector(0,0.5,0))
     end
     return object
+end
+function handlePlayer(color, token)
+    local zone = getObjectFromGUID(elementScanZones[color])
+    local energy = playerBlocks[color].getButtons()[1].label
+    energy = tonumber(string.sub(energy, 14, -1))
+    if energy == nil then
+        energy = 0
+    end
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.getName() == "Any" then
+            if obj.getStateId() ~= 9 then obj.setState(9) end
+            if obj.getLock() == false then obj.destruct() end
+        elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
+            if obj.getLock() == false then obj.destruct() end
+        elseif obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                if energy >= 0 then
+                    obj.destruct()
+                else
+                    energy = energy + 1
+                end
+            elseif obj.getName() == "3 Energy" then
+                if energy >= 0 then
+                    obj.destruct()
+                elseif energy >= -2 then
+                    obj.destruct()
+                    for i=energy,-1 do
+                        oneEnergyBag.takeObject({
+                            position = zone.getPosition()+Vector(-4.5,2,-1+i*2),
+                            rotation = Vector(0,180,0),
+                        })
+                    end
+                    energy = 0
+                else
+                    energy = energy + 3
+                end
+            end
+        end
+    end
+
+    if not token.is_face_down then
+        token.flip()
+    end
 end
 ------
 scaleFactors = {
@@ -2832,7 +2833,7 @@ function upCast(obj,dist,offset,multi)
 end
 function upCastRay(obj,dist)
     local hits = Physics.cast({
-        origin = obj.getPosition(),
+        origin = obj.getPosition() + Vector(0,1,0),
         direction = Vector(0,1,0),
         max_distance = dist,
         --debug = true,

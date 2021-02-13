@@ -2044,7 +2044,7 @@ function handlePiece(object, depth)
         object = resetPiece(object, Vector(0,0,0), depth)
     elseif object.getName() == "Blight" then
         object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),-7) == "Defence" then
+    elseif string.sub(object.getName(),-7) == "Defend" then
         if object.getLock() == false then object.destruct() end
         object = nil
     elseif string.sub(object.getName(),-7) == "Isolate" then
@@ -3611,7 +3611,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
         to = initData(toColor, 2, fromColor)
     }
     local specialTokens = {
-        Defence = defendBags,
+        Defend = defendBags,
         Isolate = isolateBags,
     }
 
@@ -3639,7 +3639,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
-    -- Make a note of what we find and what tint it is. Handle Isolate and Defence tokens in this pass.
+    -- Make a note of what we find and what tint it is. Handle Isolate and Defend tokens in this pass.
     local match = string.match  -- Performance
     local name, suffix
     for _,obj in pairs(getAllObjects()) do
@@ -3672,7 +3672,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     -- Pass 2: Iterate over found objects and swap color tints and object names.
     -- After we're done, put objects in their new presence bag, if applicable.
     if fastMode then
-        -- All's we did is maybe recolor some isolate and defence tokens, so we can skip the rest of this.
+        -- All's we did is maybe recolor some isolate and defend tokens, so we can skip the rest of this.
         return
     end
     for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do

@@ -921,7 +921,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     local handPos = powerPlayer.getHandTransform().position
     local discardTable = DiscardPowerCards(handPos)
     if #discardTable > 0 then
-        wt(1)
+        wt(0.1)
     end
 
     local xPadding = 4.4
@@ -936,50 +936,50 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
         Vector(-(2.5*xPadding)+0*xPadding,0,0),
         Vector(-(2.5*xPadding)+5*xPadding,0,0),
     }
-    local cardToAdd = 1
+    local cardsAdded = 0
     local cardsResting = 0
     local powerDealCentre = handOffset + Vector(handPos.x,yHeight,handPos.z)
 
-    local Deck = deckZone.getObjects()
-    if Deck[1] == nil then
-    elseif Deck[1].type == "Card" then
-        Deck[1].setLock(true)
-        Deck[1].setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
-        Deck[1].setRotationSmooth(Vector(0, 180, 0))
-        CreatePickPowerButton(Deck[1], clickFunctionName)
-        cardToAdd = cardToAdd + 1
-        Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not Deck[1].isSmoothMoving() end)
-    elseif Deck[1].type == "Deck" then
-        for i=1, math.min(Deck[1].getQuantity(), powerCards) do
-            local tempCard = Deck[1].takeObject({
-                position       = powerDealCentre + cardPlaceOffset[i],
-                flip           = true
+    local deck = deckZone.getObjects()[1]
+    if deck == nil then
+    elseif deck.type == "Card" then
+        deck.setLock(true)
+        deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
+        deck.setRotationSmooth(Vector(0, 180, 0))
+        CreatePickPowerButton(deck, clickFunctionName)
+        cardsAdded = cardsAdded + 1
+        Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
+    elseif deck.type == "Deck" then
+        for i=1, math.min(deck.getQuantity(), powerCards) do
+            local tempCard = deck.takeObject({
+                position = powerDealCentre + cardPlaceOffset[i],
+                flip = true,
             })
             tempCard.setLock(true)
             CreatePickPowerButton(tempCard, clickFunctionName)
-            cardToAdd = cardToAdd + 1
+            cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
-    if cardToAdd <= powerCards then
-        Deck = discardZone.getObjects()
-        Deck[1].setPositionSmooth(deckZone.getPosition(), false, true)
-        Deck[1].setRotationSmooth(Vector(0, 180, 180), false, true)
-        Deck[1].shuffle()
+    if cardsAdded < powerCards then
+        deck = discardZone.getObjects()[1]
+        deck.setPositionSmooth(deckZone.getPosition(), false, true)
+        deck.setRotationSmooth(Vector(0, 180, 180), false, true)
+        deck.shuffle()
         wt(0.5)
 
-        for i=cardToAdd, math.min(Deck[1].getQuantity(), powerCards) do
-            local tempCard = Deck[1].takeObject({
-                position       = powerDealCentre + Vector(cardPlaceOffsetXs[i],0,0),
-                flip           = true
+        for i=cardsAdded, math.min(deck.getQuantity(), powerCards) do
+            local tempCard = deck.takeObject({
+                position = powerDealCentre + cardPlaceOffset[i],
+                flip = true,
             })
             tempCard.setLock(true)
             CreatePickPowerButton(tempCard, clickFunctionName)
-            cardToAdd = cardToAdd + 1
+            cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
-    Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardToAdd - 1 end)
+    Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
 function CreatePickPowerButton(card, clickFunctionName)
     card.createButton({

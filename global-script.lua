@@ -2079,6 +2079,10 @@ function handlePlayer(color, data)
             if obj.getLock() == false then obj.destruct() end
         elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
+        elseif string.sub(obj.getName(),-6) == "Defend" then
+            obj.destruct()
+        elseif string.sub(obj.getName(),-7) == "Isolate" then
+            obj.destruct()
         end
     end
 

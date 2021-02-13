@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 1.98000336,
-    "posY": 1.06991518,
-    "posZ": 22.6999969,
+    "posX": 1.98,
+    "posY": -1.72,
+    "posZ": 61.45,
     "rotX": 0.0367896222,
     "rotY": 0.0164766219,
     "rotZ": 180.016159,
@@ -15,9 +15,9 @@
   "Description": "Spirit Island - Spirit",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200277776,
-    "g": 0.160323054,
-    "b": 0.151761323
+    "r": 0.200277627,
+    "g": 0.1603229,
+    "b": 0.151761174
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

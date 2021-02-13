@@ -82,7 +82,6 @@ useBnCEvents = false
 useJEEvents = false
 gamePaused = false
 boardLayout = "Balanced"
-canStart = true
 difficulty = 0
 yHeight = 0
 stagesSetup = 0
@@ -436,25 +435,21 @@ end
 function nullFunc()
 end
 function SetupGame()
-    if not SetupChecker.getVar("canStart") then
-        broadcastToAll("Please wait, an expansion's cards haven't been added yet", Color.SoftYellow)
-        return 0
-    end
     if getMapCount({norm = true, them = true}) == 0 and numPlayers == 0 then
         broadcastToAll("Select the number of players before starting the game", Color.SoftYellow)
-        return 0
+        return
     end
     if getMapCount({norm = true, them = false}) > 0 and getMapCount({norm = false, them = true}) > 0 then
         broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
-        return 0
+        return
     end
     if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
-        return 0
+        return
     end
     if adversaryCard ~= nil and adversaryCard == adversaryCard2 then
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
-        return 0
+        return
     end
     if adversaryCard == nil then
         adversaryLevel = 0

@@ -203,6 +203,12 @@ function onObjectEnterScriptingZone(zone, obj)
         end
     end
 end
+function onObjectLeaveContainer(container, object)
+    if container ~= StandardMapBag and container ~= ThematicMapBag and container ~= MJThematicMapBag then
+        return
+    end
+    object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
+end
 function onSave()
     local data_table = {
         BnCAdded = BnCAdded,
@@ -2107,8 +2113,8 @@ end
 scaleFactors = {
     -- Note that we scale the boards up more than the position, so the gaps
     -- don't increase in size.
-    [true]={name = "Large", position = 1.09, size = 1.1},
-    [false]={name = "Standard", position = 1, size = 1},
+    [true]={name = "Large", position = 1.09, size = Vector(7.15, 1, 7.15)},
+    [false]={name = "Standard", position = 1, size = Vector(6.5, 1, 6.5)},
 }
 boardLayouts = {
     { -- 1 Board
@@ -2423,7 +2429,6 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.setRotationSmooth(rot, false, true)
     local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
-    obj.scale(scaleFactor.size)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
 setupMapCoObj = nil

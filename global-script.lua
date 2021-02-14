@@ -3858,13 +3858,22 @@ function onPlayerChangeColor(player_color)
     -- We technically only need to update both the old and the new player areas, however...
     -- TTS does not let us know what the player's previous color was.
     -- So update all player areas.
-    updateAllPlayerAreas()
+    for color,_ in pairs(playerBlocks) do
+        updatePlaySpiritButton(color)
+    end
 end
 function onPlayerConnect(player)
-    updatePlayerArea(player.color)
+    updatePlaySpiritButton(player.color)
 end
 function onPlayerDisconnect(player)
     if #Player.getPlayers() or #Player.getSpectators() then
-        updatePlayerArea(player.color)
+        updatePlaySpiritButton(player.color)
+    end
+end
+function updatePlaySpiritButton(color)
+    if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
+        playerBlocks[color].editButton({index=3, label="", height=0, width=0})
+    else
+        playerBlocks[color].editButton({index=3, label="Play Spirit", height=800, width=3300})
     end
 end

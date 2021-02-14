@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.181511819,
-    "g": 0.181511819,
-    "b": 0.186383128
+    "r": 0.181510687,
+    "g": 0.181510687,
+    "b": 0.186382
   },
   "Tags": [
     "Blight",
@@ -41,7 +41,7 @@
     "DiffuseURL": "",
     "NormalURL": "",
     "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
-    "Convex": false,
+    "Convex": true,
     "MaterialIndex": 3,
     "TypeIndex": 0,
     "CustomShader": {

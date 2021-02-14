@@ -193,7 +193,7 @@ end
 function onObjectCollisionEnter(hit_object, collision_info)
     if hit_object == seaTile then
         if collision_info.collision_object.type ~= "Card" then
-            deleteObject(collision_info.collision_object)
+            deleteObject(collision_info.collision_object, false)
         end
     end
 end
@@ -279,6 +279,19 @@ function onLoad(saved_data)
     end)
     addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("removeFear")
+    end)
+
+    addHotkey("Remove Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        local obj = Player[droppingPlayerColor].getHoverObject()
+        if obj ~= nil and not obj.getLock() then
+            deleteObject(obj, false)
+        end
+    end)
+    addHotkey("Destroy Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        local obj = Player[droppingPlayerColor].getHoverObject()
+        if obj ~= nil and not obj.getLock() then
+            deleteObject(obj, true)
+        end
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
@@ -2729,7 +2742,7 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
     place(piece, cursorLocation + Vector(0,2,0), droppingPlayerColor)
 end
 
-function deleteObject(obj)
+function deleteObject(obj, fear)
     local bag = nil
     local removeObject = true
     if string.sub(obj.getName(),1,5) == "Dahan" then
@@ -2741,9 +2754,18 @@ function deleteObject(obj)
     elseif string.sub(obj.getName(),1,4) == "Town" then
         obj.setRotation(Vector(0,180,0))
         bag = townBag
+        if fear then
+            aidBoard.call("addFear")
+            aidBoard.call("addFear")
+        end
     elseif string.sub(obj.getName(),1,4) == "City" then
         obj.setRotation(Vector(0,180,0))
         bag = cityBag
+        if fear then
+            aidBoard.call("addFear")
+            aidBoard.call("addFear")
+            aidBoard.call("addFear")
+        end
     elseif obj.getName() == "Blight" then
         obj.setRotation(Vector(0,180,0))
         bag = returnBlightBag

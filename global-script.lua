@@ -363,7 +363,7 @@ function onLoad(saved_data)
         boardLayout = loaded_data.boardLayout
         selectedBoards = loaded_data.selectedBoards
         numPlayers = loaded_data.numPlayers
-        --blightCards = loaded_data.blightCards
+        blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
 
@@ -411,6 +411,7 @@ function onLoad(saved_data)
 
     if Player["White"].seated then Player["White"].changeColor("Red") end
     updateAllPlayerAreas()
+    setupSwapButtons()
     Wait.time(spiritUpdater, 10, -1)
 end
 ----
@@ -495,7 +496,7 @@ function SetupGame()
     SetupChecker.call("closeUI", {})
     SetupChecker.setVar("setupStarted", true)
     showPlayerButtons = false
-    updateAllPlayerAreas()
+    updateSwapButtons()
 
     startLuaCoroutine(Global, "PreSetup")
     Wait.condition(function()
@@ -2135,7 +2136,7 @@ function handlePlayer(color, data)
     end
 
     if data.paid then
-        playerBlocks[color].editButton({index=4, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        playerBlocks[color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         data.paid = false
     end
     if not data.ready.is_face_down then
@@ -2961,81 +2962,26 @@ function setupPlayerArea(params)
             readyIndicator.editButton({index=0, label=""})
         end
     end
-    if not initialized then
+    if not initialized and selected then
         obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
         obj.createButton({
-            label="", click_function="nullFunc",
-            position={0,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
+            label="Energy Cost: ?", click_function="nullFunc",
+            position={0,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
-        -- Sit Here (button index 1)
-        obj.createButton({
-            label="", click_function="onClickedSitHere", function_owner=Global,
-            position={ 7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
-            font_color={0,0,0}, font_size=500,
-            tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
-        })
-        -- Change Color (button index 2)
-        obj.createButton({
-            label="", click_function="onClickedChangeColor", function_owner=Global,
-            position={-7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
-            font_color={0,0,0}, font_size=500,
-            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
-        })
-        -- Play Spirit (button index 3)
-        obj.createButton({
-            label="", click_function="onClickedPlaySpirit", function_owner=Global,
-            position={0,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
-            font_color={0,0,0}, font_size=500,
-            tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
-        })
-        -- Pay Energy (button index 4)
+        -- Pay Energy (button index 1)
         obj.createButton({
             label="", click_function="nullFunc", function_owner=Global,
-            position={-5,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={-5,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Other buttons to follow/be fixed later.
+    elseif initialized and not selected then
+        obj.setVar("initialized", false)
+        obj.clearButtons()
     end
 
-    if selected then
-        obj.editButton({index=0, label="Energy Cost: ?"})
-        if selected.paid then
-            obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200, tooltip="Right click to refund energy for your cards"})
-        else
-            obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200, tooltip="Left click to pay energy for your cards"})
-        end
-    else
-        obj.editButton({index=0, label=""})
-        obj.editButton({index=4, label="", click_function="nullFunc", height=0, width=0})
-    end
-
-    if showPlayerButtons then
-        local bg = Color[color]
-        local fg
-        if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
-            fg = {0,0,0}
-        else
-            fg = {1,1,1}
-        end
-        obj.editButton({index=1, label="Sit Here", height=800, width=3300})
-        obj.editButton({index=2, label="Pick " .. color, height=800, width=3300, color=bg, font_color=fg})
-    else
-        obj.editButton({index=1, label="", height=0, width=0})
-        obj.editButton({index=2, label="", height=0, width=0})
-    end
-
-    if Player[color].seated or (not selected and not showAllMultihandedButtons) then
-        obj.editButton({index=3, label="", height=0, width=0})
-    else
-        obj.editButton({index=3, label="Play Spirit", height=800, width=3300})
-    end
-
-    local label = ""
-    if selected then
-        label = "?"
-    end
     for _,bag in pairs(params.elementBags) do
         local position = bag.getPosition()
         if selected then
@@ -3045,14 +2991,14 @@ function setupPlayerArea(params)
         end
         bag.setPosition(position)
 
-        if initialized then
-            bag.editButton({index=0, label=label})
-        else
+        if not initialized and selected then
             bag.createButton({
-                label=label, click_function="nullFunc",
+                label="?", click_function="nullFunc",
                 position={0,2.04,1.05}, rotation={0,0,0}, height=0, width=0,
                 font_color={1,1,1}, font_size=450
             })
+        elseif initialized and not selected then
+            bag.clearButtons()
         end
     end
     local position = params.anyBag.getPosition()
@@ -3076,6 +3022,21 @@ function setupPlayerArea(params)
         position.y = 0.5
     end
     isolateBags[color].setPosition(position)
+
+    if not selected then
+        if timer then  -- No spirit, but a running timer.
+            Wait.stop(timer)
+            timer = nil
+            obj.setVar("timer", timer)
+        end
+        return
+    end
+
+    if selected.paid then
+        obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200, tooltip="Right click to refund energy for your cards"})
+    else
+        obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200, tooltip="Left click to pay energy for your cards"})
+    end
 
     local energy = 0
 
@@ -3130,15 +3091,9 @@ function setupPlayerArea(params)
         end
         --Updates the number display
     end
-    if selected then  -- Have a spirit here.
-        countItems()    -- Update counts immediately.
-        if not timer then   -- Timer doesn't already exist.
-            timer = Wait.time(countItems, 1, -1)
-            obj.setVar("timer", timer)
-        end
-    elseif timer then  -- No spirit, but a running timer.
-        Wait.stop(timer)
-        timer = nil
+    countItems()    -- Update counts immediately.
+    if not timer then   -- Timer doesn't already exist.
+        timer = Wait.time(countItems, 1, -1)
         obj.setVar("timer", timer)
     end
 end
@@ -3157,7 +3112,7 @@ function payEnergy(target_obj, source_color, alt_click)
     end
     if paid then
         selectedColors[source_color].paid = true
-        target_obj.editButton({index=4, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
+        target_obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
@@ -3244,7 +3199,7 @@ function refundEnergy(target_obj, source_color, alt_click)
     end
     if refunded then
         selectedColors[source_color].paid = false
-        target_obj.editButton({index=4, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        target_obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
@@ -3269,6 +3224,60 @@ function refundEnergyTokens(color, energy)
         energy = energy - 1
     end
     return true
+end
+
+function setupSwapButtons()
+    for color,obj in pairs(playerTables) do
+        obj.setVar("playerColor", color)
+        -- Sit Here (button index 0)
+        obj.createButton({
+            label="", click_function="onClickedSitHere", function_owner=Global,
+            position={-3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0,
+            font_color={0,0,0}, font_size=250,
+            tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+        })
+        -- Change Color (button index 1)
+        obj.createButton({
+            label="", click_function="onClickedChangeColor", function_owner=Global,
+            position={3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0,
+            font_color={0,0,0}, font_size=250,
+            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
+        })
+        -- Play Spirit (button index 2)
+        obj.createButton({
+            label="", click_function="onClickedPlaySpirit", function_owner=Global,
+            position={0,0.4,4.75}, rotation={0,0,0}, height=0, width=0,
+            font_color={0,0,0}, font_size=250,
+            tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+        })
+    end
+    updateSwapButtons()
+end
+function updateSwapButtons()
+    for color,obj in pairs(playerTables) do
+        if showPlayerButtons then
+            local bg = Color[color]
+            local fg
+            if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
+                fg = {0,0,0}
+            else
+                fg = {1,1,1}
+            end
+            obj.editButton({index=0, label="Sit Here", height=500, width=1500})
+            obj.editButton({index=1, label="Pick " .. color, height=500, width=1500, color=bg, font_color=fg})
+        else
+            obj.editButton({index=0, label="", height=0, width=0})
+            obj.editButton({index=1, label="", height=0, width=0})
+        end
+        updatePlaySpiritButton(color)
+    end
+end
+function updatePlaySpiritButton(color)
+    if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
+        playerTables[color].editButton({index=2, label="", height=0, width=0})
+    else
+        playerTables[color].editButton({index=2, label="Play Spirit", height=500, width=1500})
+    end
 end
 ---- UI Section
 childHeight = 80
@@ -3424,7 +3433,7 @@ function togglePlayerControls(player)
         return
     end
     showPlayerButtons = not showPlayerButtons
-    updateAllPlayerAreas()
+    updateSwapButtons()
 end
 function toggleMultihanded(player)
     if not player.admin then
@@ -3432,7 +3441,7 @@ function toggleMultihanded(player)
         return
     end
     showAllMultihandedButtons = not showAllMultihandedButtons
-    updateAllPlayerAreas()
+    updateSwapButtons()
 end
 
 function getCurrentState(xmlID, player_color)
@@ -3808,8 +3817,8 @@ function swapSeatColors(a, b)
     if not swapPlayerColors(a, b) then
         return
     end
-    swapPlayerAreaColors(a, b)
     swapPlayerPresenceColors(a, b)
+    swapPlayerAreaColors(a, b)
 end
 
 -- Trade places with selected seat.
@@ -3869,12 +3878,5 @@ end
 function onPlayerDisconnect(player)
     if #Player.getPlayers() or #Player.getSpectators() then
         updatePlaySpiritButton(player.color)
-    end
-end
-function updatePlaySpiritButton(color)
-    if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
-        playerBlocks[color].editButton({index=3, label="", height=0, width=0})
-    else
-        playerBlocks[color].editButton({index=3, label="Play Spirit", height=800, width=3300})
     end
 end

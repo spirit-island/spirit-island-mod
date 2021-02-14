@@ -2136,6 +2136,7 @@ function handlePlayer(color, data)
 
     if data.paid then
         playerBlocks[color].editButton({index=4, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        data.paid = false
     end
     if not data.ready.is_face_down then
         data.ready.flip()

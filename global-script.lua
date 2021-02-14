@@ -190,15 +190,10 @@ function onObjectDrop(player_color, dropped_object)
         end
     end
 end
-function onObjectEnterScriptingZone(zone, obj)
-    if zone.guid == "ac4fad" then
-        if gameStarted and not gamePaused then
-            if obj.type ~= "Card" then
-                if not zoneDestroyFlag then
-                    zoneDestroyFlag = true
-                    Wait.time(checkZoneDestroy,1)
-                end
-            end
+function onObjectCollisionEnter(hit_object, collision_info)
+    if hit_object == seaTile then
+        if collision_info.collision_object.type ~= "Card" then
+            deleteObject(collision_info.collision_object)
         end
     end
 end
@@ -379,6 +374,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
+            seaTile.registerCollisions(false)
             SetupPowerDecks()
             Wait.condition(function()
                 aidBoard.call("setupGame", {})
@@ -1938,6 +1934,7 @@ function StartGame()
     gameStarted = true
     exploratory()
     enableUI()
+    seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
 
@@ -2732,15 +2729,6 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
     place(piece, cursorLocation + Vector(0,2,0), droppingPlayerColor)
 end
 
-zoneDestroyFlag = false
-function checkZoneDestroy()
-     if not zoneDestroyFlag then return end
-
-    for _,obj in pairs(getObjectFromGUID("ac4fad").getObjects()) do
-        deleteObject(obj)
-    end
-    zoneDestroyFlag = false
-end
 function deleteObject(obj)
     local bag = nil
     local removeObject = true

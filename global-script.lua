@@ -3737,7 +3737,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 end
 
-
+colorLock = false
 function swapPlayerColors(a, b)
     if a == b then
         return false
@@ -3747,10 +3747,16 @@ function swapPlayerColors(a, b)
     if not playerBlocks[a] then
         -- This should only trigger if the player clicking is a non-standard color.
         if pb.seated then
-            Player[a].broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
+            pa.broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
             return false
         end
     end
+
+    if colorLock then
+        pa.broadcast("There's already a color swap in progress, please wait and try again", Color.SoftYellow)
+        return
+    end
+    colorLock = true
 
     if pa.seated then
         if pb.seated then
@@ -3758,26 +3764,43 @@ function swapPlayerColors(a, b)
                 -- Hotseat games may lose track of the player when their color changes for strange reasons -- mainly because they're prompted to reenter their name again.
                 broadcastToAll("Note: Color swapping may be unstable in hotseat games.", Color.SoftYellow)
             end
-            -- Need a temporary color to seat the player at to swap colors.  Favor those not used by the game first, followed by those used by the game.
+            -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
             -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
             local tempColor
-            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"}) do
+            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
                 if pa.changeColor(tempColor) then
-                    Wait.frames(function() pb.changeColor(a) end, 1)
-                    Wait.frames(function() Player[tempColor].changeColor(b) end, 2)
+                    Wait.frames(function()
+                        pb.changeColor(a)
+                        Wait.frames(function()
+                            Player[tempColor].changeColor(b)
+                            Wait.frames(function()
+                                colorLock = false
+                            end, 1)
+                        end, 1)
+                    end, 1)
                     return true
                 end
             end
-            -- If we reach here, we failed to change colors.  Shouldn't happen.  Just in case it does.
-            Player[a].broadcast("Unable to swap colors with " .. b .. ".  (All player colors are in use?)", Color.Red)
-            return false
+            -- If we reach here, we failed to change colors. Shouldn't happen. Just in case it does.
+            pa.broadcast("Unable to swap colors with " .. b .. ". (All player colors are in use?)", Color.Red)
         else
-            pa.changeColor(b)
+            if pa.changeColor(b) then
+                Wait.frames(function()
+                    colorLock = false
+                end, 1)
+                return true
+            end
         end
-    else
-        pb.changeColor(a)
+    elseif pb.seated then
+        if pb.changeColor(a) then
+            Wait.frames(function()
+                colorLock = false
+            end, 1)
+            return true
+        end
     end
-    return true
+    colorLock = false
+    return false
 end
 
 function swapSeatColors(a, b)

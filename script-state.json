@@ -1,6 +1,7 @@
 {
   "adversaryLevel": 0,
   "adversaryLevel2": 0,
+  "blightCards": [],
   "blightedIsland": false,
   "BnCAdded": false,
   "boardLayout": "Balanced",

@@ -676,8 +676,8 @@ function loadConfig()
             if saved_data.boards then
                 Global.setTable("selectedBoards", saved_data.boards)
             end
-            if saved_data.blightCard then
-                Global.setVar("blightCard", saved_data.blightCard)
+            if saved_data.blightCards then
+                Global.setTable("blightCards", saved_data.blightCards)
             end
             if saved_data.adversary then
                 if saved_data.adversary == "Bradenburg-Prussia" then

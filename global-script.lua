@@ -61,6 +61,8 @@ explorerBag = "613ea4"
 townBag = "4d3c15"
 cityBag = "a245f8"
 selectedColors = {}
+selectedBoards = {}
+blightCards = {}
 
 playerBlocks = {
     Red = "c68e2c",
@@ -95,8 +97,6 @@ useSecondAdversary = false
 includeThematic = false
 useRandomBoard = false
 useRandomScenario = false
-selectedBoards = {}
-blightCard = nil
 ------
 aidBoard = "bee103"
 SetupChecker = "9ad187"
@@ -227,6 +227,7 @@ function onSave()
         boardLayout = boardLayout,
         selectedBoards = selectedBoards,
         numPlayers = numPlayers,
+        blightCards = blightCards,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -362,6 +363,7 @@ function onLoad(saved_data)
         boardLayout = loaded_data.boardLayout
         selectedBoards = loaded_data.selectedBoards
         numPlayers = loaded_data.numPlayers
+        --blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
 
@@ -1075,17 +1077,16 @@ function SetupBlightCard()
     return 1
 end
 function grabBlightCard(start)
-    local blightDeckZone = getObjectFromGUID("b38ea8")
-    local blightDeck = blightDeckZone.getObjects()[1]
-    if blightDeck.type == "Deck" then
+    local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+
+    if findNextBlightCard(start, blightDeck) then
+        return
+    elseif blightDeck.type == "Deck" then
         blightDeck.shuffle()
         local card = blightDeck.takeObject({
-            position = blightDeckZone.getPosition() + Vector(3.92, 1, 0),
+            position = blightDeck.getPosition() + Vector(3.92, 1, 0),
             callback_function = function(obj)
-                if blightCard and blightCard ~= obj.getName() then
-                    obj.setRotationSmooth(Vector(0,180,0))
-                    grabBlightCard(start)
-                elseif not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
+                if not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
                     obj.setRotationSmooth(Vector(0,180,0))
                     grabBlightCard(start)
                 elseif SetupChecker.getVar("optionalSoloBlight") and numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
@@ -1100,6 +1101,48 @@ function grabBlightCard(start)
         -- if there's only a single blight card just use it
         setupBlightCard(start, blightDeck)
     end
+end
+function findNextBlightCard(start, blightDeck)
+    local index = getBlightCardIndex()
+    if index < 0 then
+        index = 1
+    else
+        index = index + 1
+    end
+    for i=index,#blightCards do
+        if blightDeck.type == "Deck" then
+            for j,data in pairs(blightDeck.getObjects()) do
+                if data.name == blightCards[i] then
+                    local card = blightDeck.takeObject({
+                        index = data.index,
+                        position = blightDeck.getPosition() + Vector(3.92, 1, 0),
+                        callback_function = function(obj) setupBlightCard(start, obj) end,
+                    })
+                    return true
+                end
+            end
+        else
+            if blightDeck.getName() == blightCards[i] then
+                setupBlightCard(start, blightDeck)
+                return true
+            end
+        end
+    end
+    -- If the remaining cards can't be found remove them
+    for i=#blightCards,index,-1 do
+        table.remove(blightCards, i)
+    end
+    return false
+end
+function getBlightCardIndex()
+    if blightedIslandCard ~= nil then
+        for i,cardName in pairs(blightCards) do
+            if cardName == blightedIslandCard.getName() then
+                return i
+            end
+        end
+    end
+    return -1
 end
 function setupBlightCard(start, card)
     blightedIslandCard = card
@@ -1149,6 +1192,11 @@ end
 function BlightedIslandFlipPart2()
     if not blightedIslandCard.getVar("healthy") then
         hideBlightButton()
+    end
+
+    local index = getBlightCardIndex()
+    if index == -1 then
+        table.insert(blightCards, blightedIslandCard.getName())
     end
 
     blightedIslandCard.setRotationSmooth(Vector(0,180,0))

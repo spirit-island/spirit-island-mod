@@ -3906,22 +3906,25 @@ end
 function applyPowerCardContextMenuItem(card)
     card.addContextMenuItem(
         "Forget",
-        function(player_color)
+        function()
             -- This ugliness is because setPositionSmooth doesn't work from a hand.
-            ensureCardInPlay(player_color, card)
+            ensureCardInPlay(card)
             discardPowerCardFromPlay(card, 1)
         end,
         false)
 end
 
--- ensureCardInPlay moves the supplied card from the indicator player_color's
--- hand to a safe location, if it's in any of their hands.
-function ensureCardInPlay(player_color, card)
-    for handIndex=1,numHandsPerPlayer do
-        for _, obj in ipairs(Player[player_color].getHandObjects(handIndex)) do
-            if obj.guid == card.guid then
-                local cpos = card.getPosition()
-                card.setPosition(Vector(cpos.x, 0, cpos.z))
+-- ensureCardInPlay moves the supplied card from a player's hand to a safe
+-- location, if it's in a hand.
+function ensureCardInPlay(card)
+    for playerColor, _ in pairs(selectedColors) do
+        for handIndex=1,numHandsPerPlayer do
+            for _, obj in ipairs(Player[playerColor].getHandObjects(handIndex)) do
+                if obj.guid == card.guid then
+                    local cpos = card.getPosition()
+                    card.setPosition(Vector(cpos.x, 0, cpos.z))
+                    return
+                end
             end
         end
     end

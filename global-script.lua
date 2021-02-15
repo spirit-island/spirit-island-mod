@@ -2070,7 +2070,7 @@ function timePasses()
 end
 function timePassesCo()
     for _,object in pairs(upCast(seaTile,1.1,0,0.9)) do
-        handlePiece(object, 1)
+        handlePiece(object, 0)
     end
 
     for color,data in pairs(selectedColors) do
@@ -2087,17 +2087,17 @@ function timePassesCo()
     timePassing = false
     return 1
 end
-function handlePiece(object, depth)
+function handlePiece(object, offset)
     if string.sub(object.getName(),1,4) == "City" then
-        object = resetPiece(object, Vector(0,180,0), depth)
+        object = resetPiece(object, Vector(0,180,0), offset)
     elseif string.sub(object.getName(),1,4) == "Town" then
-        object = resetPiece(object, Vector(0,180,0), depth)
+        object = resetPiece(object, Vector(0,180,0), offset)
     elseif string.sub(object.getName(),1,8) == "Explorer" then
-        object = resetPiece(object, Vector(0,180,0), depth)
+        object = resetPiece(object, Vector(0,180,0), offset)
     elseif string.sub(object.getName(),1,5) == "Dahan" then
-        object = resetPiece(object, Vector(0,0,0), depth)
+        object = resetPiece(object, Vector(0,0,0), offset)
     elseif object.getName() == "Blight" then
-        object = resetPiece(object, Vector(0,180,0), depth)
+        object = resetPiece(object, Vector(0,180,0), offset)
     elseif string.sub(object.getName(),-6) == "Defend" then
         if object.getLock() == false then object.destruct() end
         object = nil
@@ -2107,26 +2107,34 @@ function handlePiece(object, depth)
     end
     return object
 end
-function resetPiece(object, rotation, depth)
+function resetPiece(object, rotation, offset)
+    local objOffset = 0
+    if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+        objOffset = 1
+    elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
+        objOffset = 1
+    end
+    local loopOffset = 0
     for _,obj in pairs(upCastRay(object,5)) do
         -- need to store tag since after state change tag isn't instantly updated
         local isFigurine = obj.type == "Figurine"
-        obj = handlePiece(obj, depth + 1)
+        obj = handlePiece(obj, offset + objOffset)
         if obj ~= nil then
-            obj.setPositionSmooth(obj.getPosition() + Vector(0,depth,0))
+            obj.setPositionSmooth(obj.getPosition() + Vector(0,offset + objOffset + loopOffset,0))
         end
         if isFigurine then
             -- Figurines are Invaders, Dahan, and Blight, you should only handle the one directly above you
             break
         end
+        loopOffset = loopOffset + 0.1
     end
     if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         object.setRotationSmooth(rotation)
-        object.setPositionSmooth(object.getPosition() + Vector(0,0.5,0))
+        object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
         object = object.setState(1)
     elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
         object.setRotationSmooth(rotation)
-        object.setPositionSmooth(object.getPosition() + Vector(0,0.5,0))
+        object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
     end
     return object
 end
@@ -2882,7 +2890,7 @@ function upCast(obj,dist,offset,multi)
 end
 function upCastRay(obj,dist)
     local hits = Physics.cast({
-        origin = obj.getPosition() + Vector(0,1,0),
+        origin = obj.getBoundsNormalized().center,
         direction = Vector(0,1,0),
         max_distance = dist,
         --debug = true,

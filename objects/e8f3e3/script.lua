@@ -14,8 +14,26 @@ supporting = false
 requirements = true
 thematicRebellion = false
 
+slaveRebellion = "1f0327"
+
 function onLoad()
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+end
+
+function onObjectSpawn(obj)
+    if obj.guid == slaveRebellion then
+        obj.createButton({
+            click_function = "setupSlaveRebellion",
+            function_owner = self,
+            label          = "Return",
+            position       = Vector(0,0.3,1.47),
+            width          = 700,
+            scale          = Vector(0.9,1,0.5),
+            height         = 200,
+            font_size      = 180,
+            tooltip = "Return Slave Rebellion back to the Event Deck as per Setup"
+        })
+    end
 end
 
 function PreSetup(params)
@@ -174,36 +192,38 @@ function PostSetup(params)
         Global.setVar("returnBlightBag", returnBlightBag)
     end
     if params.level >= 2 then
+        local card = adversaryBag.takeObject({guid = slaveRebellion})
+        local count = setupSlaveRebellion(card)
         local zone = getObjectFromGUID(Global.getVar("eventDeckZone"))
-        local eventDeck = zone.getObjects()[1]
-        if eventDeck ~= nil then
-            local count = #eventDeck.getObjects()
-            eventDeck.takeObject({
-                position = eventDeck.getPosition() + Vector(0,2,0)
-            })
-            eventDeck.takeObject({
-                position = eventDeck.getPosition() + Vector(0,2,0)
-            })
-            if not thematicRebellion or (thematicRebellion and math.random(1,2) == 1) then
-                eventDeck.takeObject({
-                    position = eventDeck.getPosition() + Vector(0,2,0)
-                })
-            end
-            adversaryBag.takeObject({
-                guid = "1f0327",
-                position = eventDeck.getPosition() + Vector(0,0.1,0),
-                rotation = {0,180,180},
-                smooth = false,
-            })
-            Wait.condition(function() postSetupComplete = true end, function()
-                local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
-            end)
-        else
-            postSetupComplete = true
-        end
+        Wait.condition(function() postSetupComplete = true end, function()
+            local objs = zone.getObjects() return #objs == 1 and ((objs[1].type == "Deck" and #objs[1].getObjects() == count) or objs[1].type == "Card")
+        end)
     else
         postSetupComplete = true
     end
+end
+function setupSlaveRebellion(card)
+    local zone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+    local eventDeck = zone.getObjects()[1]
+    local count = 0
+    if eventDeck ~= nil then
+        count = #eventDeck.getObjects()
+        eventDeck.takeObject({
+            position = eventDeck.getPosition() + Vector(0,2,0)
+        })
+        eventDeck.takeObject({
+            position = eventDeck.getPosition() + Vector(0,2,0)
+        })
+        if not thematicRebellion or (thematicRebellion and math.random(1,2) == 1) then
+            eventDeck.takeObject({
+                position = eventDeck.getPosition() + Vector(0,2,0)
+            })
+        end
+    end
+    count = count + 1
+    card.setRotationSmooth(Vector(0,180,180), false, true)
+    card.setPositionSmooth(zone.getPosition() + Vector(0,0.1,0), false, true)
+    return count
 end
 
 function Requirements(params)

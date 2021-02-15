@@ -3917,9 +3917,9 @@ end
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe
 -- location, if it's in a hand.
 function ensureCardInPlay(card)
-    for playerColor, _ in pairs(selectedColors) do
+    for color, _ in pairs(PlayerBags) do
         for handIndex=1,numHandsPerPlayer do
-            for _, obj in ipairs(Player[playerColor].getHandObjects(handIndex)) do
+            for _, obj in ipairs(Player[color].getHandObjects(handIndex)) do
                 if obj.guid == card.guid then
                     local cpos = card.getPosition()
                     card.setPosition(Vector(cpos.x, 0, cpos.z))

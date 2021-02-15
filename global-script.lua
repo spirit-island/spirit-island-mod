@@ -1068,7 +1068,7 @@ function discardPowerCardFromPlay(card, discardHeight)
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     end
     card.setPositionSmooth(discardZone.getPosition() + Vector(0,discardHeight,0), false, true)
-    card.setRotationSmooth(Vector(0, 180, 0), false, true)
+    card.setRotation(Vector(0, 180, 0))
 end
 
 function getPowerZoneObjects(handP)

@@ -3886,7 +3886,8 @@ function onPlayerConnect(player)
     updatePlaySpiritButton(player.color)
 end
 function onPlayerDisconnect(player)
-    if #Player.getPlayers() or #Player.getSpectators() then
-        updatePlaySpiritButton(player.color)
+    if #Player.getPlayers() == 0 and #Player.getSpectators() == 0 then
+        return
     end
+    updatePlaySpiritButton(player.color)
 end

@@ -16,8 +16,19 @@ thematicRebellion = false
 
 slaveRebellion = "1f0327"
 
-function onLoad()
+function onSave()
+    local data_table = {
+        thematicRebellion = thematicRebellion
+    }
+    saved_data = JSON.encode(data_table)
+    return saved_data
+end
+function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        thematicRebellion = loaded_data.thematicRebellion
+    end
 end
 
 function onObjectSpawn(obj)

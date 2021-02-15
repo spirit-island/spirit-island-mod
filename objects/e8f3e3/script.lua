@@ -33,18 +33,25 @@ end
 
 function onObjectSpawn(obj)
     if obj.guid == slaveRebellion then
+        local scale = flipVector(Vector(obj.getScale()))
         obj.createButton({
             click_function = "setupSlaveRebellion",
             function_owner = self,
-            label          = "Return Card",
-            position       = Vector(0,0.3,1.47),
-            width          = 1000,
-            scale          = Vector(0.9,1,0.5),
-            height         = 200,
-            font_size      = 180,
+            label          = "Return to Deck",
+            position       = Vector(0,0.3,1.43),
+            width          = 1100,
+            scale          = scale,
+            height         = 160,
+            font_size      = 150,
             tooltip = "Return Slave Rebellion back to the Event Deck as per Setup"
         })
     end
+end
+function flipVector(vec)
+    vec.x = 1/vec.x
+    vec.y = 1/vec.y
+    vec.z = 1/vec.z
+    return vec
 end
 
 function PreSetup(params)

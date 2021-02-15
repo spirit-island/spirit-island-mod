@@ -1011,15 +1011,16 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
 function CreatePickPowerButton(card, clickFunctionName)
+    local scale = flipVector(Vector(card.getScale()))
     card.createButton({
         click_function = clickFunctionName,
         function_owner = Global,
         label          = "Pick Power",
-        position       = Vector(0,0.3,1.47),
+        position       = Vector(0,0.3,1.43),
         width          = 900,
-        scale            = Vector(0.9,1,0.5),
-        height         = 200,
-        font_size      = 180,
+        scale          = scale,
+        height         = 160,
+        font_size      = 150,
         tooltip = "Pick Power Card to your hand"
     })
 end
@@ -3259,29 +3260,37 @@ end
 function setupSwapButtons()
     for color,obj in pairs(playerTables) do
         obj.setVar("playerColor", color)
+        local scale = flipVector(Vector(obj.getScale()))
+        scale = scale * 2
         -- Sit Here (button index 0)
         obj.createButton({
             label="", click_function="onClickedSitHere", function_owner=Global,
-            position={-3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0,
+            position={-3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
         })
         -- Change Color (button index 1)
         obj.createButton({
             label="", click_function="onClickedChangeColor", function_owner=Global,
-            position={3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0,
+            position={3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
         })
         -- Play Spirit (button index 2)
         obj.createButton({
             label="", click_function="onClickedPlaySpirit", function_owner=Global,
-            position={0,0.4,4.75}, rotation={0,0,0}, height=0, width=0,
+            position={0,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
         })
     end
     updateSwapButtons()
+end
+function flipVector(vec)
+    vec.x = 1/vec.x
+    vec.y = 1/vec.y
+    vec.z = 1/vec.z
+    return vec
 end
 function updateSwapButtons()
     for color,obj in pairs(playerTables) do
@@ -3293,8 +3302,8 @@ function updateSwapButtons()
             else
                 fg = {1,1,1}
             end
-            obj.editButton({index=0, label="Sit Here", height=500, width=1500})
-            obj.editButton({index=1, label="Pick " .. color, height=500, width=1500, color=bg, font_color=fg})
+            obj.editButton({index=0, label="Sit Here", height=400, width=1500})
+            obj.editButton({index=1, label="Pick " .. color, height=400, width=1500, color=bg, font_color=fg})
         else
             obj.editButton({index=0, label="", height=0, width=0})
             obj.editButton({index=1, label="", height=0, width=0})
@@ -3306,7 +3315,7 @@ function updatePlaySpiritButton(color)
     if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
         playerTables[color].editButton({index=2, label="", height=0, width=0})
     else
-        playerTables[color].editButton({index=2, label="Play Spirit", height=500, width=1500})
+        playerTables[color].editButton({index=2, label="Play Spirit", height=400, width=1500})
     end
 end
 ---- UI Section

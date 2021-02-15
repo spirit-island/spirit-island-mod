@@ -155,6 +155,9 @@ function addAdversary(obj)
     updateAdversaryList()
 end
 function onObjectDestroy(obj)
+    if #Player.getPlayers() == 0 and #Player.getSpectators() == 0 then
+        return
+    end
     if obj.hasTag("Spirit") then
         removeSpirit({spirit=obj.guid})
     elseif not setupStarted and obj.type == "Card" then

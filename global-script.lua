@@ -1,6 +1,8 @@
 ---- Versioning
 version = "1.4.0-beta.3"
 versionGuid = "57d9fe"
+---- constants ----
+numHandsPerPlayer = 2
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
 minorPowerZone = "cb16ab"
@@ -1049,25 +1051,29 @@ function DiscardPowerCards(handPos)
     local discardTable = {}
     local cardZoneObjects = getPowerZoneObjects(handPos)
     for i, obj in ipairs(cardZoneObjects) do
-        local discardZone
-        if obj.hasTag("Major") then
-            discardZone = getObjectFromGUID(majorPowerDiscardZone)
-        elseif obj.hasTag("Minor") then
-            discardZone = getObjectFromGUID(minorPowerDiscardZone)
-        elseif obj.hasTag("Unique") then
-            discardZone = getObjectFromGUID(uniquePowerDiscardZone)
-        else
-            -- Discard unknown cards to the unique power discard
-            discardZone = getObjectFromGUID(uniquePowerDiscardZone)
-        end
-        obj.setPositionSmooth(discardZone.getPosition() + Vector(0,i,0), false, true)
-        obj.setRotationSmooth(Vector(0, 180, 0), false, true)
+        discardPowerCardFromPlay(obj, i)
         obj.clearButtons()
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
         discardTable[i] = obj
     end
     return discardTable
 end
+function discardPowerCardFromPlay(card, discardHeight)
+    local discardZone
+    if card.hasTag("Major") then
+        discardZone = getObjectFromGUID(majorPowerDiscardZone)
+    elseif card.hasTag("Minor") then
+        discardZone = getObjectFromGUID(minorPowerDiscardZone)
+    elseif card.hasTag("Unique") then
+        discardZone = getObjectFromGUID(uniquePowerDiscardZone)
+    else
+        -- Discard unknown cards to the unique power discard
+        discardZone = getObjectFromGUID(uniquePowerDiscardZone)
+    end
+    card.setPositionSmooth(discardZone.getPosition() + Vector(0,discardHeight,0), false, true)
+    card.setRotation(Vector(0, 180, 0))
+end
+
 function getPowerZoneObjects(handP)
     local hits = upCastPosSizRot(
         handOffset + Vector(handP.x,yHeight,handP.z), -- pos
@@ -3901,4 +3907,37 @@ function onPlayerDisconnect(player)
         return
     end
     updatePlaySpiritButton(player.color)
+end
+
+function onObjectSpawn(obj)
+    if obj.hasTag("Minor") or obj.hasTag("Major") or obj.hasTag("Unique") then
+        applyPowerCardContextMenuItem(obj)
+    end
+end
+
+function applyPowerCardContextMenuItem(card)
+    card.addContextMenuItem(
+        "Forget",
+        function()
+            -- This ugliness is because setPositionSmooth doesn't work from a hand.
+            ensureCardInPlay(card)
+            discardPowerCardFromPlay(card, 1)
+        end,
+        false)
+end
+
+-- ensureCardInPlay moves the supplied card from a player's hand to a safe
+-- location, if it's in a hand.
+function ensureCardInPlay(card)
+    for color, _ in pairs(PlayerBags) do
+        for handIndex=1,numHandsPerPlayer do
+            for _, obj in ipairs(Player[color].getHandObjects(handIndex)) do
+                if obj.guid == card.guid then
+                    local cpos = card.getPosition()
+                    card.setPosition(Vector(cpos.x, 0, cpos.z))
+                    return
+                end
+            end
+        end
+    end
 end

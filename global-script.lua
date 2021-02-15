@@ -285,7 +285,6 @@ function onLoad(saved_data)
     addHotkey("Advance Invader Cards", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("advanceInvaderCards")
     end)
-
     addHotkey("Remove Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         local obj = Player[droppingPlayerColor].getHoverObject()
         if obj ~= nil and not obj.getLock() then
@@ -297,6 +296,10 @@ function onLoad(saved_data)
         if obj ~= nil and not obj.getLock() then
             deleteObject(obj, true)
         end
+    end)
+    addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        ensureCardInPlay(hoveredObject)
+        discardPowerCardFromPlay(hoveredObject, 1)
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do

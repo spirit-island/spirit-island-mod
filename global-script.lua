@@ -3898,8 +3898,7 @@ function onPlayerDisconnect(player)
 end
 
 function onObjectSpawn(obj)
-    local is_power_card = obj.hasTag("Minor") or obj.hasTag("Major") or obj.hasTag("Unique")
-    if is_power_card then
+    if obj.hasTag("Minor") or obj.hasTag("Major") or obj.hasTag("Unique") then
         applyPowerCardContextMenuItem(obj)
     end
 end

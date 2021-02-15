@@ -25,9 +25,9 @@ function onObjectSpawn(obj)
         obj.createButton({
             click_function = "setupSlaveRebellion",
             function_owner = self,
-            label          = "Return",
+            label          = "Return Card",
             position       = Vector(0,0.3,1.47),
-            width          = 700,
+            width          = 1000,
             scale          = Vector(0.9,1,0.5),
             height         = 200,
             font_size      = 180,

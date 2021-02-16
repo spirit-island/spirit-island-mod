@@ -657,84 +657,89 @@ function loadConfig()
             if data.body == "" then return end
             broadcastToAll("Loading config data from notebook", Color.SoftYellow)
             local saved_data = JSON.decode(data.body)
-            if saved_data.numPlayers then
-                updateNumPlayers(saved_data.numPlayers, false)
+            broadcast = loadData(saved_data)
+            if data.broadcast then
+                broadcastToAll(data.broadcast, Color.SoftYellow)
             end
-            if saved_data.boardLayout then
-                -- Convert from reddit community names to ones used by our mod
-                if saved_data.boardLayout == "Standard" then
-                    saved_data.boardLayout = "Balanced"
-                elseif saved_data.boardLayout == "Fragment 2" then
-                    saved_data.boardLayout = "Inverted Fragment"
-                end
-                updateBoardLayout(saved_data.boardLayout, false)
-            end
-            if saved_data.extraBoard ~= nil then
-                if saved_data.extraBoard then
-                    optionalExtraBoard = true
-                else
-                    optionalExtraBoard = false
-                end
-            end
-            if saved_data.boards then
-                Global.setTable("selectedBoards", saved_data.boards)
-            end
-            if saved_data.blightCards then
-                Global.setTable("blightCards", saved_data.blightCards)
-            end
-            if saved_data.adversary then
-                if saved_data.adversary == "Bradenburg-Prussia" then
-                    saved_data.adversary = "Prussia"
-                end
-                updateLeadingAdversary(saved_data.adversary, false)
-            end
-            if saved_data.adversaryLevel then
-                updateLeadingLevel(saved_data.adversaryLevel, false)
-            end
-            if saved_data.adversary2 then
-                if saved_data.adversary2 == "Bradenburg-Prussia" then
-                    saved_data.adversary2 = "Prussia"
-                end
-                updateSupportingAdversary(saved_data.adversary2, false)
-            end
-            if saved_data.adversaryLevel2 then
-                updateSupportingLevel(saved_data.adversaryLevel2, false)
-            end
-            if saved_data.scenario then
-                updateScenario(saved_data.scenario, false)
-            end
-            if saved_data.spirits then
-                for name,aspect in pairs(saved_data.spirits) do
-                    PickSpirit(name, aspect)
-                end
-            end
-            if saved_data.expansions then
-                local expansions = {}
-                for _,expansion in pairs(saved_data.expansions) do
-                    expansions[expansion] = true
-                end
-                if expansions.bnc then
-                    Global.setVar("BnCAdded", true)
-                    Global.setVar("useBnCEvents", true)
-                else
-                    Global.setVar("BnCAdded", false)
-                    Global.setVar("useBnCEvents", false)
-                end
-                if expansions.je then
-                    Global.setVar("JEAdded", true)
-                    Global.setVar("useJEEvents", true)
-                else
-                    Global.setVar("JEAdded", false)
-                    Global.setVar("useJEEvents", false)
-                end
-            end
-            if saved_data.broadcast then
-                broadcastToAll(saved_data.broadcast, Color.SoftYellow)
-            end
-            updateDifficulty()
             break
         end
     end
+end
+function loadData(data)
+    log(data)
+    if data.numPlayers then
+        updateNumPlayers(data.numPlayers, false)
+    end
+    if data.boardLayout then
+        -- Convert from reddit community names to ones used by our mod
+        if data.boardLayout == "Standard" then
+            data.boardLayout = "Balanced"
+        elseif data.boardLayout == "Fragment 2" then
+            data.boardLayout = "Inverted Fragment"
+        end
+        updateBoardLayout(data.boardLayout, false)
+    end
+    if data.extraBoard ~= nil then
+        if data.extraBoard then
+            optionalExtraBoard = true
+        else
+            optionalExtraBoard = false
+        end
+    end
+    if data.boards then
+        Global.setTable("selectedBoards", data.boards)
+    end
+    if data.blightCards then
+        Global.setTable("blightCards", data.blightCards)
+    end
+    if data.adversary then
+        if data.adversary == "Bradenburg-Prussia" then
+            data.adversary = "Prussia"
+        end
+        updateLeadingAdversary(data.adversary, false)
+    end
+    if data.adversaryLevel then
+        updateLeadingLevel(data.adversaryLevel, false)
+    end
+    if data.adversary2 then
+        if data.adversary2 == "Bradenburg-Prussia" then
+            data.adversary2 = "Prussia"
+        end
+        updateSupportingAdversary(data.adversary2, false)
+    end
+    if data.adversaryLevel2 then
+        updateSupportingLevel(data.adversaryLevel2, false)
+    end
+    if data.scenario then
+        updateScenario(data.scenario, false)
+    end
+    if data.spirits then
+        for name,aspect in pairs(data.spirits) do
+            PickSpirit(name, aspect)
+        end
+    end
+    if data.expansions then
+        local expansions = {}
+        for _,expansion in pairs(data.expansions) do
+            expansions[expansion] = true
+        end
+        if expansions.bnc then
+            Global.setVar("BnCAdded", true)
+            Global.setVar("useBnCEvents", true)
+        else
+            Global.setVar("BnCAdded", false)
+            Global.setVar("useBnCEvents", false)
+        end
+        if expansions.je then
+            Global.setVar("JEAdded", true)
+            Global.setVar("useJEEvents", true)
+        else
+            Global.setVar("JEAdded", false)
+            Global.setVar("useJEEvents", false)
+        end
+    end
+    updateDifficulty()
+    return data.broadcast
 end
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do

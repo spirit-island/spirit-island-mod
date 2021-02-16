@@ -668,7 +668,7 @@ end
 function loadData(data)
     log(data)
     if data.numPlayers then
-        updateNumPlayers(data.numPlayers, false)
+        updateNumPlayers(data.numPlayers, true)
     end
     if data.boardLayout then
         -- Convert from reddit community names to ones used by our mod
@@ -677,7 +677,7 @@ function loadData(data)
         elseif data.boardLayout == "Fragment 2" then
             data.boardLayout = "Inverted Fragment"
         end
-        updateBoardLayout(data.boardLayout, false)
+        updateBoardLayout(data.boardLayout, true)
     end
     if data.extraBoard ~= nil then
         if data.extraBoard then
@@ -686,6 +686,7 @@ function loadData(data)
             optionalExtraBoard = false
         end
     end
+    -- FIXME: Make this visible in the UI when set
     if data.boards then
         Global.setTable("selectedBoards", data.boards)
     end
@@ -696,28 +697,29 @@ function loadData(data)
         if data.adversary == "Bradenburg-Prussia" then
             data.adversary = "Prussia"
         end
-        updateLeadingAdversary(data.adversary, false)
+        updateLeadingAdversary(data.adversary, true)
     end
     if data.adversaryLevel then
-        updateLeadingLevel(data.adversaryLevel, false)
+        updateLeadingLevel(data.adversaryLevel, true)
     end
     if data.adversary2 then
         if data.adversary2 == "Bradenburg-Prussia" then
             data.adversary2 = "Prussia"
         end
-        updateSupportingAdversary(data.adversary2, false)
+        updateSupportingAdversary(data.adversary2, true)
     end
     if data.adversaryLevel2 then
-        updateSupportingLevel(data.adversaryLevel2, false)
+        updateSupportingLevel(data.adversaryLevel2, true)
     end
     if data.scenario then
-        updateScenario(data.scenario, false)
+        updateScenario(data.scenario, true)
     end
     if data.spirits then
         for name,aspect in pairs(data.spirits) do
             PickSpirit(name, aspect)
         end
     end
+    -- FIXME: Update the UI with these settings
     if data.expansions then
         local expansions = {}
         for _,expansion in pairs(data.expansions) do

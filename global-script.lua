@@ -2102,21 +2102,33 @@ function timePassesCo()
 end
 function handlePiece(object, offset)
     if string.sub(object.getName(),1,4) == "City" then
-        object = resetPiece(object, Vector(0,180,0), offset)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,180,0), offset)
+        end
     elseif string.sub(object.getName(),1,4) == "Town" then
-        object = resetPiece(object, Vector(0,180,0), offset)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,180,0), offset)
+        end
     elseif string.sub(object.getName(),1,8) == "Explorer" then
-        object = resetPiece(object, Vector(0,180,0), offset)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,180,0), offset)
+        end
     elseif string.sub(object.getName(),1,5) == "Dahan" then
-        object = resetPiece(object, Vector(0,0,0), offset)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,0,0), offset)
+        end
     elseif object.getName() == "Blight" then
         object = resetPiece(object, Vector(0,180,0), offset)
     elseif string.sub(object.getName(),-6) == "Defend" then
-        if object.getLock() == false then object.destruct() end
-        object = nil
+        if object.getLock() == false then
+            object.destruct()
+            object = nil
+        end
     elseif string.sub(object.getName(),-7) == "Isolate" then
-        if object.getLock() == false then object.destruct() end
-        object = nil
+        if object.getLock() == false then
+            object.destruct()
+            object = nil
+        end
     end
     return object
 end

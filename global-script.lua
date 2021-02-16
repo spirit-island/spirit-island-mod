@@ -2375,6 +2375,48 @@ themRedoGuids = {
     ["SE"] = "214c72",
 }
 ----
+function GenerateMapData()
+    boards = getMapTiles()
+    while true do
+        local moving = false
+        for i, obj in pairs(boards) do
+            if obj.isSmoothMoving() then
+                moving = true
+                break
+            end
+        end
+        if not moving then break end
+        coroutine.yield()
+    end
+    noteLines = {}
+    table.insert(noteLines, "boardLayout = {")
+    table.insert(noteLines, "    -- ...")
+    table.insert(noteLines, "    { -- <num> Boards")
+    table.insert(noteLines, "        -- ...")
+    table.insert(noteLines, "        [\"<map name>\"] = {")
+    for i, board in pairs(boards) do
+        local pos, rot = board.getPosition(), board.getRotation()
+        local themBoard = ""
+        if board.hasTag("Thematic") then
+            themBoard = ", board = \"" .. board.getName() .. "\""
+        end
+        local t = string.format(
+            "{ pos = Vector(%.2f, %.2f, %.2f), rot = Vector(%.2f, %.2f, %.2f)%s },",
+            pos.x, pos.y, pos.z,
+            rot.x, rot.y, rot.z,
+            themBoard
+        )
+        table.insert(noteLines, "            " .. t)
+    end
+    table.insert(noteLines, "        },")
+    table.insert(noteLines, "        -- ...")
+    table.insert(noteLines, "}")
+    Notes.addNotebookTab({
+        title = "New Map Layout",
+        body = table.concat(noteLines, "\n") .. "\n",
+    })
+end
+----
 function getMapCount(params)
     local count = 0
     for _,obj in pairs(upCast(seaTile,1,0,0.9)) do

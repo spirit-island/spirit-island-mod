@@ -116,6 +116,7 @@
             <Row class="spacing"/>
             <Row class="toggle">
                 <Cell><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Blight Card</Toggle></Cell>
+                <Cell><Button onClick="loadConfig" tooltip="Load configuration from 'Game Config' notebook tabe.">Load Config</Button></Cell>
             </Row>
             <Row class="spacing"/>
             <Row>

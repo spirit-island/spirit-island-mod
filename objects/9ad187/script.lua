@@ -952,11 +952,11 @@ function gainSpirit(player)
 
     for i = 1,4 do
         local spirit, aspect = getNewSpirit()
-        local label = spirit.getName()
-        if aspect ~= nil and aspect ~= "" then
-            label = label.."-"..aspect
-        end
         if spirit then
+            local label = spirit.getName()
+            if aspect ~= nil and aspect ~= "" then
+                label = label.."-"..aspect
+            end
             obj.createButton({
                 click_function = "pickSpirit" .. i,
                 function_owner = self,
@@ -1040,14 +1040,11 @@ function addSpirit(params)
     -- Ignore Source Spirit
     if params.spirit.guid == "21f561" then return end
 
-    -- If spirit has multiple states remove the other copies of it from the spirit table
-    local states = params.spirit.getStates()
-    if states ~= nil and #states ~= 0 then
-        for _,state in pairs(states) do
-            if spiritTags[state.guid] ~= nil then
-                removeSpirit({spirit=state.guid})
-                spiritTags[state.guid] = nil
-            end
+    -- In case of state change, update existing choice with new guid
+    for name,_ in pairs(spiritChoices) do
+        if name == params.spirit.getName() then
+            spiritChoices[name].guid = params.spirit.guid
+            break
         end
     end
 
@@ -1061,6 +1058,13 @@ function removeSpirit(params)
             break
         end
     end
+    for name,data in pairs(spiritChoices) do
+        if data.guid == params.spirit then
+            spiritChoicesLength = spiritChoicesLength - 1
+            break
+        end
+    end
+    spiritTags[params.spirit] = nil
 end
 
 function toggleSoloBlight()

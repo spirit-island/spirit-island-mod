@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.4.0-beta.5"
+version = "1.4.0-beta.6"
 versionGuid = "57d9fe"
 ---- constants ----
 numHandsPerPlayer = 2

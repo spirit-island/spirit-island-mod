@@ -1,8 +1,6 @@
 ---- Versioning
 version = "1.4.0-beta.6"
 versionGuid = "57d9fe"
----- constants ----
-numHandsPerPlayer = 2
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
 minorPowerZone = "cb16ab"
@@ -3965,8 +3963,8 @@ end
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe
 -- location, if it's in a hand.
 function ensureCardInPlay(card)
-    for color, _ in pairs(PlayerBags) do
-        for handIndex=1,numHandsPerPlayer do
+    for _, color in pairs(Player.getAvailableColors()) do
+        for handIndex=1,Player[color].getHandCount() do
             for _, obj in ipairs(Player[color].getHandObjects(handIndex)) do
                 if obj.guid == card.guid then
                     local cpos = card.getPosition()

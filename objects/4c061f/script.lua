@@ -64,6 +64,19 @@ function onLoad()
     Global.call("addSpirit", {spirit=self})
 end
 
+function RandomAspect()
+    for _,obj in pairs(upCast(self)) do
+        if obj.type == "Deck" and obj.getName() == "Aspects" then
+            local objs = obj.getObjects()
+            local index = math.random(0,#objs)
+            if index == 0 then
+                return ""
+            end
+            return objs[index].name
+        end
+    end
+    return nil
+end
 function PickSpirit(params)
     if params.aspect then
         if params.aspect == "Random" then
@@ -141,7 +154,7 @@ function SetupSpirit(object_pick,player_color)
         for i,obj in pairs(castObjects) do
             obj.setLock(false)
             if obj.type == "Deck" then
-                if string.find(obj.getName(),"Aspects") then
+                if obj.getName() == "Aspects" then
                     HandleAspect(obj, player_color)
                 else
                     obj.deal(#obj.getObjects(),player_color)

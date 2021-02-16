@@ -951,12 +951,16 @@ function gainSpirit(player)
     Player[player.color].broadcast("Your 4 randomised spirits to choose from are in your play area", Color.SoftBlue)
 
     for i = 1,4 do
-        local s = getNewSpirit()
-        if s then
+        local spirit, aspect = getNewSpirit()
+        local label = spirit.getName()
+        if aspect ~= nil and aspect ~= "" then
+            label = label.."-"..aspect
+        end
+        if spirit then
             obj.createButton({
                 click_function = "pickSpirit" .. i,
                 function_owner = self,
-                label = s.getName(),
+                label = label,
                 position = Vector(0,0,0.3 - 0.15*i),
                 rotation = Vector(0,180,0),
                 scale = Vector(0.1,0.1,0.1),
@@ -975,9 +979,10 @@ function getNewSpirit()
     while (spiritChoices[spirit.getName()]) do
         spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
     end
-    spiritChoices[spirit.getName()] = spirit.guid
+    local aspect = spirit.call("RandomAspect", {})
+    spiritChoices[spirit.getName()] = {guid=spirit.guid, aspect=aspect}
     spiritChoicesLength = spiritChoicesLength + 1
-    return spirit
+    return spirit, aspect
 end
 function pickSpirit1(obj, color)
     if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
@@ -997,8 +1002,13 @@ function pickSpirit4(obj, color)
 end
 function pickSpirit(obj, index, color)
     local name = obj.getButtons()[index+1].label
-    if isSpiritPickable({guid = spiritChoices[name]}) then
-        getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, aspect = "Random"})
+    local start,_ = string.find(name, "-")
+    if start ~= nil then
+        name = string.sub(name, 1, start-1)
+    end
+    local data = spiritChoices[name]
+    if isSpiritPickable({guid = data.guid}) then
+        getObjectFromGUID(data.guid).call("PickSpirit", {color = color, aspect = data.aspect})
         obj.clearButtons()
     else
         Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)

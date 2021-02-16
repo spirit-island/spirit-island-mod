@@ -2202,12 +2202,17 @@ function resetPiece(object, rotation, offset)
 end
 function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
+    local spiritBoardTopEdge = zone.getPosition().z
     for _, obj in ipairs(zone.getObjects()) do
         if obj.getName() == "Any" then
             if obj.getStateId() ~= 9 then obj = obj.setState(9) end
-            if obj.getLock() == false then obj.destruct() end
+            if obj.getLock() == false and obj.getPosition().z > spiritBoardTopEdge then
+                obj.destruct()
+            end
         elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
-            if obj.getLock() == false then obj.destruct() end
+            if obj.getLock() == false and obj.getPosition().z > spiritBoardTopEdge then
+                obj.destruct()
+            end
         elseif string.sub(obj.getName(),-6) == "Defend" then
             obj.destruct()
         elseif string.sub(obj.getName(),-7) == "Isolate" then

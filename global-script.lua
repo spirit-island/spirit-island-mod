@@ -286,20 +286,20 @@ function onLoad(saved_data)
         aidBoard.call("advanceInvaderCards")
     end)
     addHotkey("Remove Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        local obj = Player[droppingPlayerColor].getHoverObject()
-        if obj ~= nil and not obj.getLock() then
-            deleteObject(obj, false)
+        if hoveredObject ~= nil and not hoveredObject.getLock() then
+            deleteObject(hoveredObject, false)
         end
     end)
     addHotkey("Destroy Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        local obj = Player[droppingPlayerColor].getHoverObject()
-        if obj ~= nil and not obj.getLock() then
-            deleteObject(obj, true)
+        if hoveredObject ~= nil and not hoveredObject.getLock() then
+            deleteObject(hoveredObject, true)
         end
     end)
     addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        ensureCardInPlay(hoveredObject)
-        discardPowerCardFromPlay(hoveredObject, 1)
+        if isPowerCard(hoveredObject) then
+            ensureCardInPlay(hoveredObject)
+            discardPowerCardFromPlay(hoveredObject, 1)
+        end
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
@@ -3941,12 +3941,17 @@ function onPlayerDisconnect(player)
     updatePlaySpiritButton(player.color)
 end
 
+function isPowerCard(card)
+    if card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique")) then
+        return true
+    end
+    return false
+end
 function onObjectSpawn(obj)
-    if obj.hasTag("Minor") or obj.hasTag("Major") or obj.hasTag("Unique") then
+    if isPowerCard(obj) then
         applyPowerCardContextMenuItem(obj)
     end
 end
-
 function applyPowerCardContextMenuItem(card)
     card.addContextMenuItem(
         "Forget",
@@ -3957,7 +3962,6 @@ function applyPowerCardContextMenuItem(card)
         end,
         false)
 end
-
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe
 -- location, if it's in a hand.
 function ensureCardInPlay(card)

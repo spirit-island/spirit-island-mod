@@ -997,7 +997,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
         deck.shuffle()
         wt(0.5)
 
-        for i=cardsAdded, math.min(deck.getQuantity(), powerCards) do
+        for i=cardsAdded+1, math.min(deck.getQuantity(), powerCards) do
             local tempCard = deck.takeObject({
                 position = powerDealCentre + cardPlaceOffset[i],
                 flip = true,

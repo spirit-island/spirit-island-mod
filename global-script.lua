@@ -145,6 +145,14 @@ explorerDamage = "574835"
 dahanHealth = "746488"
 dahanDamage = "d936f3"
 -----
+secondHandDiscardPositions = {
+    Red = Vector(-26.70, 2.97, -51.00),
+    Purple = Vector(-3.80, 2.97, -51.00),
+    Yellow = Vector(19.10, 2.97, -51.00),
+    Blue = Vector(42.00, 2.97, -51.00),
+    Green = Vector(64.90, 2.97, -51.00),
+    Orange = Vector(87.80, 2.97, -51.00),
+}
 alternateBoardLayoutNames = {
     {},
     {"Fragment","Opposite Shores"},
@@ -3982,17 +3990,24 @@ function onPlayerDisconnect(player)
 end
 
 function isPowerCard(card)
-    if card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique")) then
-        return true
-    end
-    return false
+    return card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique"))
 end
 function onObjectSpawn(obj)
     if isPowerCard(obj) then
-        applyPowerCardContextMenuItem(obj)
+        applyPowerCardContextMenuItems(obj)
     end
 end
-function applyPowerCardContextMenuItem(card)
+function applyPowerCardContextMenuItems(card)
+    card.addContextMenuItem(
+        "Discard (to 2nd hand)",
+        function(player_color)
+            if not isObjectInHand(card, player_color, 2) then
+                -- `deal` is buggy and seems to have magic logic associated
+                -- with card visibility.
+                card.setPosition(secondHandDiscardPositions[player_color])
+            end
+        end,
+        false)
     card.addContextMenuItem(
         "Forget",
         function()
@@ -4007,13 +4022,20 @@ end
 function ensureCardInPlay(card)
     for _, color in pairs(Player.getAvailableColors()) do
         for handIndex=1,Player[color].getHandCount() do
-            for _, obj in ipairs(Player[color].getHandObjects(handIndex)) do
-                if obj.guid == card.guid then
-                    local cpos = card.getPosition()
-                    card.setPosition(Vector(cpos.x, 0, cpos.z))
-                    return
-                end
+            if isObjectInHand(card, color, handIndex) then
+                local cpos = card.getPosition()
+                card.setPosition(Vector(cpos.x, 0, cpos.z))
+                return
             end
         end
     end
+end
+
+function isObjectInHand(obj, color, handIndex)
+    for _, handObj in ipairs(Player[color].getHandObjects(handIndex)) do
+        if obj.guid == handObj.guid then
+            return true
+        end
+    end
+    return false
 end

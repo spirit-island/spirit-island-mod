@@ -10,6 +10,8 @@ postSetupComplete = false
 hasLossCondition = true
 hasUI = true
 
+highImmigrationDiscardPosition = Vector(-52.90, 1.3, -5.30)
+
 function onSave()
     data_table = {
         build2 = UI.getAttribute("panelBuild2","active"),
@@ -144,13 +146,22 @@ function PostSetup(params)
 end
 
 function englandSnap(aidBoard)
-  local snapPoints = aidBoard.getSnapPoints()
-  local newSnapPoints = {}
-  for i,v in ipairs(snapPoints) do
-    if v.rotation.y <= 269 or v.rotation.y >= 271 then
-      table.insert(newSnapPoints,v)
+    local snapPoints = aidBoard.getSnapPoints()
+    local newSnapPoints = {}
+    for i,v in ipairs(snapPoints) do
+        if table.concat(v.tags, "|") ~= "Invader Card" then
+            table.insert(newSnapPoints,v)
+        end
     end
-  end
-  aidBoard.setSnapPoints(newSnapPoints)
-  aidBoard.call("updateDiscard", {discard=Vector(-52.90, 1.3, -5.30)})
+    aidBoard.setSnapPoints(newSnapPoints)
+    aidBoard.call("updateDiscard", {discard=highImmigrationDiscardPosition})
+
+    snapPoints = Global.getSnapPoints()
+    table.insert(snapPoints, {
+        position = highImmigrationDiscardPosition,
+        rotation = Vector(0, 180, 0),
+        rotation_snap = true,
+        tags = {"Invader Card"},
+    })
+    Global.setSnapPoints(snapPoints)
 end

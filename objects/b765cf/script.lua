@@ -10,7 +10,9 @@ postSetupComplete = false
 hasLossCondition = true
 hasUI = true
 
+highImmigration = "e5d18b"
 highImmigrationDiscardPosition = Vector(-52.90, 1.3, -5.30)
+originalDiscardPosition = Vector(-51.25, 1.5, 0.38)
 
 function onSave()
     data_table = {
@@ -23,9 +25,59 @@ end
 function onLoad(saved_data)
     loaded_data = JSON.decode(saved_data)
     if loaded_data.build2 == "true" then
-        UI.setAttribute("panelBuild2","active","true")
+        UI.setAttribute("panelBuild2","active",true)
         UI.setAttribute("panelInvader","width","470")
     end
+end
+
+function onObjectPickUp(player_color, picked_up_object)
+    if picked_up_object.guid == highImmigration then
+        UI.setAttribute("panelBuild2","active",false)
+        UI.setAttribute("panelInvader","width","380")
+        local aidBoard = Global.getVar("aidBoard")
+        moveDiscard(aidBoard)
+        removeEnglandSnap(aidBoard)
+    end
+end
+function moveDiscard(aidBoard)
+    local currentDiscard = aidBoard.getTable("currentDiscard")
+    local hits = Physics.cast({
+        origin       = currentDiscard,
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = Vector(1,0.9,1.5),
+        orientation  = Vector(0,90,0),
+        max_distance = 0,
+        --debug        = true,
+    })
+    for _,hit in pairs(hits) do
+        if hit.hit_object ~= aidBoard then
+            if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
+                hit.hit_object.setPosition(originalDiscardPosition)
+                hit.hit_object.setRotation(Vector(0,90,0))
+            end
+        end
+    end
+end
+function removeEnglandSnap(aidBoard)
+    local snapPoints = Global.getSnapPoints()
+    local newSnapPoints = {}
+    for i,v in ipairs(snapPoints) do
+        if table.concat(v.tags, "|") ~= "Invader Card" then
+            table.insert(newSnapPoints,v)
+        end
+    end
+    Global.setSnapPoints(newSnapPoints)
+
+    snapPoints = aidBoard.getSnapPoints()
+    table.insert(snapPoints, {
+        position = Vector(0.41, 0.05, 1.77),
+        rotation = Vector(0, 270, 0),
+        rotation_snap = true,
+        tags = {"Invader Card"},
+    })
+    aidBoard.setSnapPoints(snapPoints)
+    aidBoard.setTable("currentDiscard", originalDiscardPosition)
 end
 
 function PreSetup(params)
@@ -130,13 +182,13 @@ function PostSetup(params)
         local aidBoard = Global.getVar("aidBoard")
         local adversaryBag = Global.getVar("adversaryBag")
         adversaryBag.takeObject({
-            guid = "e5d18b",
+            guid = highImmigration,
             position = aidBoard.positionToWorld(Vector(0.41,0.1,1.93)),
             rotation = {0,180,0},
             callback_function = function(obj) obj.setLock(true) end,
         })
 
-        UI.setAttribute("panelBuild2","active","true")
+        UI.setAttribute("panelBuild2","active",true)
         UI.setAttribute("panelInvader","width","470")
         englandSnap(aidBoard)
         Wait.condition(function() postSetupComplete = true end, function() return not aidBoard.isSmoothMoving() end)
@@ -154,7 +206,7 @@ function englandSnap(aidBoard)
         end
     end
     aidBoard.setSnapPoints(newSnapPoints)
-    aidBoard.call("updateDiscard", {discard=highImmigrationDiscardPosition})
+    aidBoard.setTable("currentDiscard", highImmigrationDiscardPosition)
 
     snapPoints = Global.getSnapPoints()
     table.insert(snapPoints, {

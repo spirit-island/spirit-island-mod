@@ -189,10 +189,6 @@ function wt(some)
     end
 end
 
-function updateDiscard(params)
-    discard = params.discard
-end
-
 ---- Invader Card Section
 scanLoopTable= {
     Build2 = {
@@ -245,8 +241,7 @@ function advanceInvaderCards()
                         hit.setRotation(Vector(0,180,0))
                         hit.setPositionSmooth(discard)
                     elseif i == "Ravage" then
-                        local obj = getObjectFromGUID("e5d18b")
-                        if obj == nil or not Vector.equals(obj.getPosition(), Vector(-51.23, 1.10, -0.52)) then
+                        if not UI.getAttribute("panelBuild2","active") then
                             hit.setRotation(Vector(0,90,0))
                             hit.setPositionSmooth(discard)
                         else

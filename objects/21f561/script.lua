@@ -42,7 +42,7 @@ function onLoad()
         font_size      = 300,
         tooltip        = "Enable/Disable Aspect Deck",
     })
-    local castObjects = upCast(self,1,0.5)
+    local castObjects = upCast(self)
     for _,obj in pairs (castObjects) do
         if string.find(obj.getName(),"Progression") then
             progressionCard = obj
@@ -64,6 +64,19 @@ function onLoad()
     Global.call("addSpirit", {spirit=self})
 end
 
+function RandomAspect()
+    for _,obj in pairs(upCast(self)) do
+        if obj.type == "Deck" and obj.getName() == "Aspects" then
+            local objs = obj.getObjects()
+            local index = math.random(0,#objs)
+            if index == 0 then
+                return ""
+            end
+            return objs[index].name
+        end
+    end
+    return nil
+end
 function PickSpirit(params)
     if params.aspect then
         if params.aspect == "Random" then
@@ -82,7 +95,7 @@ function SetupSpirit(object_pick,player_color)
     local xOffset = 1
     local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
     if #PlayerBag.getObjects() ~= 0 then
-        local castObjects = upCast(self,1,0.5)
+        local castObjects = upCast(self)
         local hpos = Player[player_color].getHandTransform().position
         self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))
         self.setRotation(Vector(0,180,0))
@@ -105,15 +118,15 @@ function SetupSpirit(object_pick,player_color)
 
         -- Setup Ready Token
         local ready = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(6, 1.1, 7),
+            position = Vector(spos.x,0,spos.z) + Vector(7, 1.1, 7),
             rotation = Vector(0, 180, 180),
         })
-
-        Global.call("removeSpirit", {spirit=self.guid, color=player_color, ready=ready})
 
         -- Setup Energy Counter
         local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
         counter.setLock(true)
+
+        Global.call("removeSpirit", {spirit=self.guid, color=player_color, ready=ready, counter=counter})
 
         -- Setup Progression Deck if enabled
         if useProgression then
@@ -138,15 +151,15 @@ function SetupSpirit(object_pick,player_color)
         end
 
         -- Setup objects on top of board
-        for i,obj in pairs (castObjects) do
+        for i,obj in pairs(castObjects) do
             obj.setLock(false)
             if obj.type == "Deck" then
-                if string.find(obj.getName(),"Aspects") then
+                if obj.getName() == "Aspects" then
                     HandleAspect(obj, player_color)
                 else
                     obj.deal(#obj.getObjects(),player_color)
                 end
-            elseif obj.type == "Card" and string.find(obj.getName(),"Progression") then
+            elseif obj.type == "Card" and obj.getName() == "Progression" then
                 if useProgression then
                     obj.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
                 else
@@ -238,22 +251,13 @@ function ToggleAspect(_, _, alt_click)
     end
 end
 -----
-function upCast(obj,dist,offset,multi)
-    local dist = dist or 1
-    local offset = offset or 0
-    local multi = multi or 1
-    local oPos = obj.getPosition()
-    local oBounds = obj.getBoundsNormalized()
-    local oRot = obj.getRotation()
-    local orig = Vector(oPos[1],oPos[2]+offset,oPos[3])
-    local siz = Vector(oBounds.size.x*multi,dist,oBounds.size.z*multi)
-    local orient = Vector(oRot[1],oRot[2],oRot[3])
+function upCast(obj)
     local hits = Physics.cast({
-        origin       = orig,
+        origin       = obj.getPosition() + Vector(0,0.1,0),
         direction    = Vector(0,1,0),
         type         = 3,
-        size         = siz,
-        orientation  = orient,
+        size         = obj.getBoundsNormalized().size,
+        orientation  = obj.getRotation(),
         max_distance = 0,
         --debug        = true,
     })

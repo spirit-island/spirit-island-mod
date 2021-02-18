@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.3.1"
+version = "1.4.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -61,6 +61,8 @@ explorerBag = "613ea4"
 townBag = "4d3c15"
 cityBag = "a245f8"
 selectedColors = {}
+selectedBoards = {}
+blightCards = {}
 
 playerBlocks = {
     Red = "c68e2c",
@@ -82,7 +84,6 @@ useBnCEvents = false
 useJEEvents = false
 gamePaused = false
 boardLayout = "Balanced"
-canStart = true
 difficulty = 0
 yHeight = 0
 stagesSetup = 0
@@ -96,8 +97,6 @@ useSecondAdversary = false
 includeThematic = false
 useRandomBoard = false
 useRandomScenario = false
-selectedBoards = {}
-blightCard = nil
 ------
 aidBoard = "bee103"
 SetupChecker = "9ad187"
@@ -191,15 +190,10 @@ function onObjectDrop(player_color, dropped_object)
         end
     end
 end
-function onObjectEnterScriptingZone(zone, obj)
-    if zone.guid == "ac4fad" then
-        if gameStarted and not gamePaused then
-            if obj.type ~= "Card" then
-                if not zoneDestroyFlag then
-                    zoneDestroyFlag = true
-                    Wait.time(checkZoneDestroy,1)
-                end
-            end
+function onObjectCollisionEnter(hit_object, collision_info)
+    if hit_object == seaTile then
+        if collision_info.collision_object.type ~= "Card" then
+            deleteObject(collision_info.collision_object, false)
         end
     end
 end
@@ -228,6 +222,7 @@ function onSave()
         boardLayout = boardLayout,
         selectedBoards = selectedBoards,
         numPlayers = numPlayers,
+        blightCards = blightCards,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -241,8 +236,7 @@ function onSave()
         showPlayerButtons = showPlayerButtons,
         showAllMultihandedButtons = showAllMultihandedButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
-        elementScanZones = elementScanZones,
-        selectedColors = convertObjectsToGuids(selectedColors)
+        elementScanZones = elementScanZones
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -256,6 +250,15 @@ function onSave()
     if scenarioCard ~= nil then
         data_table.scenarioCard = scenarioCard.guid
     end
+    local selectedTable = {}
+    for color,data in pairs(selectedColors) do
+        local colorTable = {ready=data.ready.guid, paid=data.paid}
+        if data.counter ~= nil then
+            colorTable.counter = data.counter.guid
+        end
+        selectedTable[color] = colorTable
+    end
+    data_table.selectedColors = selectedTable
     saved_data = JSON.encode(data_table)
     return saved_data
 end
@@ -276,6 +279,25 @@ function onLoad(saved_data)
     end)
     addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("removeFear")
+    end)
+    addHotkey("Advance Invader Cards", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        aidBoard.call("advanceInvaderCards")
+    end)
+    addHotkey("Remove Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        if hoveredObject ~= nil and not hoveredObject.getLock() then
+            deleteObject(hoveredObject, false)
+        end
+    end)
+    addHotkey("Destroy Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        if hoveredObject ~= nil and not hoveredObject.getLock() then
+            deleteObject(hoveredObject, true)
+        end
+    end)
+    addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        if isPowerCard(hoveredObject) then
+            ensureCardInPlay(hoveredObject)
+            discardPowerCardFromPlay(hoveredObject, 1)
+        end
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
@@ -355,6 +377,7 @@ function onLoad(saved_data)
         boardLayout = loaded_data.boardLayout
         selectedBoards = loaded_data.selectedBoards
         numPlayers = loaded_data.numPlayers
+        blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
 
@@ -370,6 +393,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
+            seaTile.registerCollisions(false)
             SetupPowerDecks()
             Wait.condition(function()
                 aidBoard.call("setupGame", {})
@@ -392,26 +416,33 @@ function onLoad(saved_data)
     end
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
-    selectedColors = convertGuidsToObjects(selectedColors)
+    for color,data in pairs(selectedColors) do
+        local colorTable = {ready=getObjectFromGUID(data.ready), paid=data.paid}
+        if data.counter ~= nil then
+            colorTable.counter = getObjectFromGUID(data.counter)
+        end
+        selectedColors[color] = colorTable
+    end
 
     if Player["White"].seated then Player["White"].changeColor("Red") end
     updateAllPlayerAreas()
+    setupSwapButtons()
     Wait.time(spiritUpdater, 10, -1)
 end
 ----
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
-    for _,obj in pairs(selectedColors) do
-        if not obj.is_face_down and obj.resting then
+    for _,data in pairs(selectedColors) do
+        if not data.ready.is_face_down and data.ready.resting then
             readyCount = readyCount + 1
         end
         colorCount = colorCount + 1
     end
     if readyCount >= colorCount and colorCount ~= 0 then
         broadcastToAll("All Players are ready!")
-        for _,obj in pairs(selectedColors) do
-            obj.flip()
+        for _,data in pairs(selectedColors) do
+            data.ready.flip()
         end
     end
 end
@@ -422,25 +453,21 @@ end
 function nullFunc()
 end
 function SetupGame()
-    if not SetupChecker.getVar("canStart") then
-        broadcastToAll("Please wait, an expansion's cards haven't been added yet", Color.SoftYellow)
-        return 0
-    end
     if getMapCount({norm = true, them = true}) == 0 and numPlayers == 0 then
         broadcastToAll("Select the number of players before starting the game", Color.SoftYellow)
-        return 0
+        return
     end
     if getMapCount({norm = true, them = false}) > 0 and getMapCount({norm = false, them = true}) > 0 then
         broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
-        return 0
+        return
     end
     if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
-        return 0
+        return
     end
     if adversaryCard ~= nil and adversaryCard == adversaryCard2 then
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
-        return 0
+        return
     end
     if adversaryCard == nil then
         adversaryLevel = 0
@@ -484,7 +511,7 @@ function SetupGame()
     SetupChecker.call("closeUI", {})
     SetupChecker.setVar("setupStarted", true)
     showPlayerButtons = false
-    updateAllPlayerAreas()
+    updateSwapButtons()
 
     startLuaCoroutine(Global, "PreSetup")
     Wait.condition(function()
@@ -968,7 +995,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
         deck.shuffle()
         wt(0.5)
 
-        for i=cardsAdded, math.min(deck.getQuantity(), powerCards) do
+        for i=cardsAdded+1, math.min(deck.getQuantity(), powerCards) do
             local tempCard = deck.takeObject({
                 position = powerDealCentre + cardPlaceOffset[i],
                 flip = true,
@@ -982,15 +1009,16 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
 function CreatePickPowerButton(card, clickFunctionName)
+    local scale = flipVector(Vector(card.getScale()))
     card.createButton({
         click_function = clickFunctionName,
         function_owner = Global,
         label          = "Pick Power",
-        position       = Vector(0,0.3,1.47),
+        position       = Vector(0,0.3,1.43),
         width          = 900,
-        scale            = Vector(0.9,1,0.5),
-        height         = 200,
-        font_size      = 180,
+        scale          = scale,
+        height         = 160,
+        font_size      = 150,
         tooltip = "Pick Power Card to your hand"
     })
 end
@@ -1025,25 +1053,29 @@ function DiscardPowerCards(handPos)
     local discardTable = {}
     local cardZoneObjects = getPowerZoneObjects(handPos)
     for i, obj in ipairs(cardZoneObjects) do
-        local discardZone
-        if obj.hasTag("Major") then
-            discardZone = getObjectFromGUID(majorPowerDiscardZone)
-        elseif obj.hasTag("Minor") then
-            discardZone = getObjectFromGUID(minorPowerDiscardZone)
-        elseif obj.hasTag("Unique") then
-            discardZone = getObjectFromGUID(uniquePowerDiscardZone)
-        else
-            -- Discard unknown cards to the unique power discard
-            discardZone = getObjectFromGUID(uniquePowerDiscardZone)
-        end
-        obj.setPositionSmooth(discardZone.getPosition() + Vector(0,i,0), false, true)
-        obj.setRotationSmooth(Vector(0, 180, 0), false, true)
+        discardPowerCardFromPlay(obj, i)
         obj.clearButtons()
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
         discardTable[i] = obj
     end
     return discardTable
 end
+function discardPowerCardFromPlay(card, discardHeight)
+    local discardZone
+    if card.hasTag("Major") then
+        discardZone = getObjectFromGUID(majorPowerDiscardZone)
+    elseif card.hasTag("Minor") then
+        discardZone = getObjectFromGUID(minorPowerDiscardZone)
+    elseif card.hasTag("Unique") then
+        discardZone = getObjectFromGUID(uniquePowerDiscardZone)
+    else
+        -- Discard unknown cards to the unique power discard
+        discardZone = getObjectFromGUID(uniquePowerDiscardZone)
+    end
+    card.setPositionSmooth(discardZone.getPosition() + Vector(0,discardHeight,0), false, true)
+    card.setRotation(Vector(0, 180, 0))
+end
+
 function getPowerZoneObjects(handP)
     local hits = upCastPosSizRot(
         handOffset + Vector(handP.x,yHeight,handP.z), -- pos
@@ -1066,17 +1098,16 @@ function SetupBlightCard()
     return 1
 end
 function grabBlightCard(start)
-    local blightDeckZone = getObjectFromGUID("b38ea8")
-    local blightDeck = blightDeckZone.getObjects()[1]
-    if blightDeck.type == "Deck" then
+    local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+
+    if findNextBlightCard(start, blightDeck) then
+        return
+    elseif blightDeck.type == "Deck" then
         blightDeck.shuffle()
         local card = blightDeck.takeObject({
-            position = blightDeckZone.getPosition() + Vector(3.92, 1, 0),
+            position = blightDeck.getPosition() + Vector(3.92, 1, 0),
             callback_function = function(obj)
-                if blightCard and blightCard ~= obj.getName() then
-                    obj.setRotationSmooth(Vector(0,180,0))
-                    grabBlightCard(start)
-                elseif not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
+                if not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
                     obj.setRotationSmooth(Vector(0,180,0))
                     grabBlightCard(start)
                 elseif SetupChecker.getVar("optionalSoloBlight") and numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
@@ -1091,6 +1122,48 @@ function grabBlightCard(start)
         -- if there's only a single blight card just use it
         setupBlightCard(start, blightDeck)
     end
+end
+function findNextBlightCard(start, blightDeck)
+    local index = getBlightCardIndex()
+    if index < 0 then
+        index = 1
+    else
+        index = index + 1
+    end
+    for i=index,#blightCards do
+        if blightDeck.type == "Deck" then
+            for j,data in pairs(blightDeck.getObjects()) do
+                if data.name == blightCards[i] then
+                    local card = blightDeck.takeObject({
+                        index = data.index,
+                        position = blightDeck.getPosition() + Vector(3.92, 1, 0),
+                        callback_function = function(obj) setupBlightCard(start, obj) end,
+                    })
+                    return true
+                end
+            end
+        else
+            if blightDeck.getName() == blightCards[i] then
+                setupBlightCard(start, blightDeck)
+                return true
+            end
+        end
+    end
+    -- If the remaining cards can't be found remove them
+    for i=#blightCards,index,-1 do
+        table.remove(blightCards, i)
+    end
+    return false
+end
+function getBlightCardIndex()
+    if blightedIslandCard ~= nil then
+        for i,cardName in pairs(blightCards) do
+            if cardName == blightedIslandCard.getName() then
+                return i
+            end
+        end
+    end
+    return -1
 end
 function setupBlightCard(start, card)
     blightedIslandCard = card
@@ -1140,6 +1213,11 @@ end
 function BlightedIslandFlipPart2()
     if not blightedIslandCard.getVar("healthy") then
         hideBlightButton()
+    end
+
+    local index = getBlightCardIndex()
+    if index == -1 then
+        table.insert(blightCards, blightedIslandCard.getName())
     end
 
     blightedIslandCard.setRotationSmooth(Vector(0,180,0))
@@ -1880,6 +1958,7 @@ function StartGame()
     gameStarted = true
     exploratory()
     enableUI()
+    seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
 
@@ -1936,7 +2015,7 @@ end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
     getObjectFromGUID(elementScanZones[params.color]).clearButtons()
-    selectedColors[params.color] = params.ready
+    selectedColors[params.color] = {ready=params.ready, counter=params.counter, paid=false}
     updatePlayerArea(params.color)
 end
 function getEmptySeat()
@@ -2002,11 +2081,11 @@ function timePasses()
 end
 function timePassesCo()
     for _,object in pairs(upCast(seaTile,1.1,0,0.9)) do
-        handlePiece(object, 1)
+        handlePiece(object, 0)
     end
 
-    for color,token in pairs(selectedColors) do
-        handlePlayer(color, token)
+    for color,data in pairs(selectedColors) do
+        handlePlayer(color, data)
     end
 
     broadcastToAll("Time Passes...", Color.SoftBlue)
@@ -2019,94 +2098,90 @@ function timePassesCo()
     timePassing = false
     return 1
 end
-function handlePiece(object, depth)
+function handlePiece(object, offset)
     if string.sub(object.getName(),1,4) == "City" then
-        object = resetPiece(object, Vector(0,180,0), depth)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,180,0), offset)
+        end
     elseif string.sub(object.getName(),1,4) == "Town" then
-        object = resetPiece(object, Vector(0,180,0), depth)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,180,0), offset)
+        end
     elseif string.sub(object.getName(),1,8) == "Explorer" then
-        object = resetPiece(object, Vector(0,180,0), depth)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,180,0), offset)
+        end
     elseif string.sub(object.getName(),1,5) == "Dahan" then
-        object = resetPiece(object, Vector(0,0,0), depth)
+        if object.getLock() == false then
+            object = resetPiece(object, Vector(0,0,0), offset)
+        end
     elseif object.getName() == "Blight" then
-        object = resetPiece(object, Vector(0,180,0), depth)
-    elseif string.sub(object.getName(),-7) == "Defence" then
-        if object.getLock() == false then object.destruct() end
-        object = nil
+        object = resetPiece(object, Vector(0,180,0), offset)
+    elseif string.sub(object.getName(),-6) == "Defend" then
+        if object.getLock() == false then
+            object.destruct()
+            object = nil
+        end
     elseif string.sub(object.getName(),-7) == "Isolate" then
-        if object.getLock() == false then object.destruct() end
-        object = nil
+        if object.getLock() == false then
+            object.destruct()
+            object = nil
+        end
     end
     return object
 end
-function resetPiece(object, rotation, depth)
+function resetPiece(object, rotation, offset)
+    local objOffset = 0
+    if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+        objOffset = 1
+    elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
+        objOffset = 1
+    end
+    local loopOffset = 0
     for _,obj in pairs(upCastRay(object,5)) do
         -- need to store tag since after state change tag isn't instantly updated
         local isFigurine = obj.type == "Figurine"
-        obj = handlePiece(obj, depth + 1)
+        obj = handlePiece(obj, offset + objOffset)
         if obj ~= nil then
-            obj.setPositionSmooth(obj.getPosition() + Vector(0,depth,0))
+            obj.setPositionSmooth(obj.getPosition() + Vector(0,offset + objOffset + loopOffset,0))
         end
         if isFigurine then
             -- Figurines are Invaders, Dahan, and Blight, you should only handle the one directly above you
             break
         end
+        loopOffset = loopOffset + 0.1
     end
     if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         object.setRotationSmooth(rotation)
-        object.setPositionSmooth(object.getPosition() + Vector(0,0.5,0))
+        object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
         object = object.setState(1)
     elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
         object.setRotationSmooth(rotation)
-        object.setPositionSmooth(object.getPosition() + Vector(0,0.5,0))
+        object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
     end
     return object
 end
-function handlePlayer(color, token)
+function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
-    local energy = playerBlocks[color].getButtons()[1].label
-    energy = tonumber(string.sub(energy, 14, -1))
-    if energy == nil then
-        energy = 0
-    end
     for _, obj in ipairs(zone.getObjects()) do
         if obj.getName() == "Any" then
-            if obj.getStateId() ~= 9 then obj.setState(9) end
+            if obj.getStateId() ~= 9 then obj = obj.setState(9) end
             if obj.getLock() == false then obj.destruct() end
         elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
-        elseif obj.type == "Chip" then
-            local quantity = obj.getQuantity()
-            if quantity == -1 then
-                quantity = 1
-            end
-            if obj.getName() == "1 Energy" then
-                if energy >= 0 then
-                    obj.destruct()
-                else
-                    energy = energy + 1
-                end
-            elseif obj.getName() == "3 Energy" then
-                if energy >= 0 then
-                    obj.destruct()
-                elseif energy >= -2 then
-                    obj.destruct()
-                    for i=energy,-1 do
-                        oneEnergyBag.takeObject({
-                            position = zone.getPosition()+Vector(-4.5,2,-1+i*2),
-                            rotation = Vector(0,180,0),
-                        })
-                    end
-                    energy = 0
-                else
-                    energy = energy + 3
-                end
-            end
+        elseif string.sub(obj.getName(),-6) == "Defend" then
+            obj.destruct()
+        elseif string.sub(obj.getName(),-7) == "Isolate" then
+            obj.destruct()
         end
     end
 
-    if not token.is_face_down then
-        token.flip()
+    if data.paid then
+        playerBlocks[color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        data.paid = false
+    end
+    if not data.ready.is_face_down then
+        data.ready.flip()
     end
 end
 ------
@@ -2299,6 +2374,48 @@ themRedoGuids = {
     ["SW"] = "ffa7e6",
     ["SE"] = "214c72",
 }
+----
+function GenerateMapData()
+    boards = getMapTiles()
+    while true do
+        local moving = false
+        for i, obj in pairs(boards) do
+            if obj.isSmoothMoving() then
+                moving = true
+                break
+            end
+        end
+        if not moving then break end
+        coroutine.yield()
+    end
+    noteLines = {}
+    table.insert(noteLines, "boardLayout = {")
+    table.insert(noteLines, "    -- ...")
+    table.insert(noteLines, "    { -- <num> Boards")
+    table.insert(noteLines, "        -- ...")
+    table.insert(noteLines, "        [\"<map name>\"] = {")
+    for i, board in pairs(boards) do
+        local pos, rot = board.getPosition(), board.getRotation()
+        local themBoard = ""
+        if board.hasTag("Thematic") then
+            themBoard = ", board = \"" .. board.getName() .. "\""
+        end
+        local t = string.format(
+            "{ pos = Vector(%.2f, %.2f, %.2f), rot = Vector(%.2f, %.2f, %.2f)%s },",
+            pos.x, pos.y, pos.z,
+            rot.x, rot.y, rot.z,
+            themBoard
+        )
+        table.insert(noteLines, "            " .. t)
+    end
+    table.insert(noteLines, "        },")
+    table.insert(noteLines, "        -- ...")
+    table.insert(noteLines, "}")
+    Notes.addNotebookTab({
+        title = "New Map Layout",
+        body = table.concat(noteLines, "\n") .. "\n",
+    })
+end
 ----
 function getMapCount(params)
     local count = 0
@@ -2698,16 +2815,7 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
     place(piece, cursorLocation + Vector(0,2,0), droppingPlayerColor)
 end
 
-zoneDestroyFlag = false
-function checkZoneDestroy()
-     if not zoneDestroyFlag then return end
-
-    for _,obj in pairs(getObjectFromGUID("ac4fad").getObjects()) do
-        deleteObject(obj)
-    end
-    zoneDestroyFlag = false
-end
-function deleteObject(obj)
+function deleteObject(obj, fear)
     local bag = nil
     local removeObject = true
     if string.sub(obj.getName(),1,5) == "Dahan" then
@@ -2719,9 +2827,18 @@ function deleteObject(obj)
     elseif string.sub(obj.getName(),1,4) == "Town" then
         obj.setRotation(Vector(0,180,0))
         bag = townBag
+        if fear then
+            aidBoard.call("addFear")
+            aidBoard.call("addFear")
+        end
     elseif string.sub(obj.getName(),1,4) == "City" then
         obj.setRotation(Vector(0,180,0))
         bag = cityBag
+        if fear then
+            aidBoard.call("addFear")
+            aidBoard.call("addFear")
+            aidBoard.call("addFear")
+        end
     elseif obj.getName() == "Blight" then
         obj.setRotation(Vector(0,180,0))
         bag = returnBlightBag
@@ -2838,7 +2955,7 @@ function upCast(obj,dist,offset,multi)
 end
 function upCastRay(obj,dist)
     local hits = Physics.cast({
-        origin = obj.getPosition() + Vector(0,1,0),
+        origin = obj.getBoundsNormalized().center,
         direction = Vector(0,1,0),
         max_distance = dist,
         --debug = true,
@@ -2928,69 +3045,26 @@ function setupPlayerArea(params)
             readyIndicator.editButton({index=0, label=""})
         end
     end
-    if not initialized then
+    if not initialized and selected then
         obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
         obj.createButton({
-            label="", click_function="nullFunc",
-            position={0,2.24,-11.2}, rotation={0,180,0}, height=0, width=0,
+            label="Energy Cost: ?", click_function="nullFunc",
+            position={0,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
-        -- Sit Here (button index 1)
+        -- Pay Energy (button index 1)
         obj.createButton({
-            label="", click_function="onClickedSitHere", function_owner=Global,
-            position={ 7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
-            font_color={0,0,0}, font_size=500,
-            tooltip="Moves your current player color to be located here.  The color currently seated here will be moved to your current location.  Spirit panels and other cards will be relocated if applicable.",
-        })
-        -- Change Color (button index 2)
-        obj.createButton({
-            label="", click_function="onClickedChangeColor", function_owner=Global,
-            position={-7,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
-            font_color={0,0,0}, font_size=500,
-            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly.  The player that is this color will be changed to be yours.  Your seating position will not change.",
-        })
-        -- Play Spirit (button index 3)
-        obj.createButton({
-            label="", click_function="onClickedPlaySpirit", function_owner=Global,
-            position={0,2.24,-24.7}, rotation={0,180,0}, height=0, width=0,
-            font_color={0,0,0}, font_size=500,
-            tooltip="Switch to play the spirit that is here, changing your player color accordingly.  Only available for spirits without a seated player.  Intended for multi-handed solo games.",
+            label="", click_function="nullFunc", function_owner=Global,
+            position={-5,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
         })
         -- Other buttons to follow/be fixed later.
+    elseif initialized and not selected then
+        obj.setVar("initialized", false)
+        obj.clearButtons()
     end
 
-    if selected then
-        obj.editButton({index=0, label="Energy Cost: ?"})
-    else
-        obj.editButton({index=0, label=""})
-    end
-
-    if showPlayerButtons then
-        local bg = Color[color]
-        local fg
-        if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
-            fg = {0,0,0}
-        else
-            fg = {1,1,1}
-        end
-        obj.editButton({index=1, label="Sit Here", height=800, width=3300})
-        obj.editButton({index=2, label="Pick " .. color, height=800, width=3300, color=bg, font_color=fg})
-    else
-        obj.editButton({index=1, label="", height=0, width=0})
-        obj.editButton({index=2, label="", height=0, width=0})
-    end
-
-    if Player[color].seated or (not selected and not showAllMultihandedButtons) then
-        obj.editButton({index=3, label="", height=0, width=0})
-    else
-        obj.editButton({index=3, label="Play Spirit", height=800, width=3300})
-    end
-
-    local label = ""
-    if selected then
-        label = "?"
-    end
     for _,bag in pairs(params.elementBags) do
         local position = bag.getPosition()
         if selected then
@@ -3000,14 +3074,14 @@ function setupPlayerArea(params)
         end
         bag.setPosition(position)
 
-        if initialized then
-            bag.editButton({index=0, label=label})
-        else
+        if not initialized and selected then
             bag.createButton({
-                label=label, click_function="nullFunc",
+                label="?", click_function="nullFunc",
                 position={0,2.04,1.05}, rotation={0,0,0}, height=0, width=0,
                 font_color={1,1,1}, font_size=450
             })
+        elseif initialized and not selected then
+            bag.clearButtons()
         end
     end
     local position = params.anyBag.getPosition()
@@ -3031,6 +3105,21 @@ function setupPlayerArea(params)
         position.y = 0.5
     end
     isolateBags[color].setPosition(position)
+
+    if not selected then
+        if timer then  -- No spirit, but a running timer.
+            Wait.stop(timer)
+            timer = nil
+            obj.setVar("timer", timer)
+        end
+        return
+    end
+
+    if selected.paid then
+        obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200, tooltip="Right click to refund energy for your cards"})
+    else
+        obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200, tooltip="Left click to pay energy for your cards"})
+    end
 
     local energy = 0
 
@@ -3076,16 +3165,6 @@ function setupPlayerArea(params)
                 if entry.getVar("elements") ~= nil then
                     table.insert(elemCardTable, entry)
                 end
-            elseif entry.type == "Chip" then
-                local quantity = entry.getQuantity()
-                if quantity == -1 then
-                    quantity = 1
-                end
-                if entry.getName() == "1 Energy" then
-                    energy = energy - (1 * quantity)
-                elseif entry.getName() == "3 Energy" then
-                    energy = energy - (3 * quantity)
-                end
             end
         end
         combinedElements = elemCombine(elemCardTable)
@@ -3095,16 +3174,200 @@ function setupPlayerArea(params)
         end
         --Updates the number display
     end
-    if selected then  -- Have a spirit here.
-        countItems()    -- Update counts immediately.
-        if not timer then   -- Timer doesn't already exist.
-            timer = Wait.time(countItems, 1, -1)
-            obj.setVar("timer", timer)
-        end
-    elseif timer then  -- No spirit, but a running timer.
-        Wait.stop(timer)
-        timer = nil
+    countItems()    -- Update counts immediately.
+    if not timer then   -- Timer doesn't already exist.
+        timer = Wait.time(countItems, 1, -1)
         obj.setVar("timer", timer)
+    end
+end
+function payEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif alt_click then
+        return
+    elseif playerBlocks[source_color] ~= target_obj then
+        return
+    end
+
+    local paid = updateEnergyCounter(source_color, false)
+    if not paid then
+        paid = payEnergyTokens(source_color)
+    end
+    if paid then
+        selectedColors[source_color].paid = true
+        target_obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
+    else
+        Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
+    end
+end
+function updateEnergyCounter(color, refund)
+    if selectedColors[color].counter == nil or not selectedColors[color].counter.getLock() then
+        return false
+    end
+    local cost = getEnergyLabel(color)
+    local energy = selectedColors[color].counter.getValue()
+    if not refund and cost > energy then
+        return false
+    end
+    if refund then
+        cost = cost * -1
+    end
+    selectedColors[color].counter.setValue(energy - cost)
+    return true
+end
+function payEnergyTokens(color)
+    local cost = getEnergyLabel(color)
+    local energy = 0
+    local zone = getObjectFromGUID(elementScanZones[color])
+    local objects = zone.getObjects()
+    for _, obj in ipairs(objects) do
+        if obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                energy = energy + (1 * quantity)
+            elseif obj.getName() == "3 Energy" then
+                energy = energy + (3 * quantity)
+            end
+        end
+    end
+    if cost > energy then
+        return false
+    end
+    for _, obj in ipairs(objects) do
+        if obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                cost = cost - (1 * quantity)
+                obj.destruct()
+            elseif obj.getName() == "3 Energy" then
+                cost = cost - (3 * quantity)
+                obj.destruct()
+            end
+            if cost <= 0 then
+                break
+            end
+        end
+    end
+    if cost < 0 then
+        refundEnergyTokens(color, -cost)
+    end
+    return true
+end
+function getEnergyLabel(color)
+    local energy = playerBlocks[color].getButtons()[1].label
+    energy = tonumber(string.sub(energy, 14, -1))
+    if energy == nil then
+        energy = 0
+    end
+    return energy
+end
+function refundEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif not alt_click then
+        return
+    elseif playerBlocks[source_color] ~= target_obj then
+        return
+    end
+
+    local refunded = updateEnergyCounter(source_color, true)
+    if not refunded then
+        refunded = refundEnergyTokens(source_color, nil)
+    end
+    if refunded then
+        selectedColors[source_color].paid = false
+        target_obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+    else
+        Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
+    end
+end
+function refundEnergyTokens(color, energy)
+    if energy == nil then
+        energy = getEnergyLabel(color)
+    end
+    local zone = getObjectFromGUID(elementScanZones[color])
+    while energy >= 3 do
+        threeEnergyBag.takeObject({
+            position = zone.getPosition()+Vector(-10,2,-5),
+            rotation = Vector(0,180,0),
+        })
+        energy = energy - 3
+    end
+    while energy >= 1 do
+        oneEnergyBag.takeObject({
+            position = zone.getPosition()+Vector(-10,2,-3),
+            rotation = Vector(0,180,0),
+        })
+        energy = energy - 1
+    end
+    return true
+end
+
+function setupSwapButtons()
+    for color,obj in pairs(playerTables) do
+        obj.setVar("playerColor", color)
+        local scale = flipVector(Vector(obj.getScale()))
+        scale = scale * 2
+        -- Sit Here (button index 0)
+        obj.createButton({
+            label="", click_function="onClickedSitHere", function_owner=Global,
+            position={-3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            font_color={0,0,0}, font_size=250,
+            tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+        })
+        -- Change Color (button index 1)
+        obj.createButton({
+            label="", click_function="onClickedChangeColor", function_owner=Global,
+            position={3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            font_color={0,0,0}, font_size=250,
+            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
+        })
+        -- Play Spirit (button index 2)
+        obj.createButton({
+            label="", click_function="onClickedPlaySpirit", function_owner=Global,
+            position={0,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            font_color={0,0,0}, font_size=250,
+            tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+        })
+    end
+    updateSwapButtons()
+end
+function flipVector(vec)
+    vec.x = 1/vec.x
+    vec.y = 1/vec.y
+    vec.z = 1/vec.z
+    return vec
+end
+function updateSwapButtons()
+    for color,obj in pairs(playerTables) do
+        if showPlayerButtons then
+            local bg = Color[color]
+            local fg
+            if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
+                fg = {0,0,0}
+            else
+                fg = {1,1,1}
+            end
+            obj.editButton({index=0, label="Sit Here", height=400, width=1500})
+            obj.editButton({index=1, label="Pick " .. color, height=400, width=1500, color=bg, font_color=fg})
+        else
+            obj.editButton({index=0, label="", height=0, width=0})
+            obj.editButton({index=1, label="", height=0, width=0})
+        end
+        updatePlaySpiritButton(color)
+    end
+end
+function updatePlaySpiritButton(color)
+    if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
+        playerTables[color].editButton({index=2, label="", height=0, width=0})
+    else
+        playerTables[color].editButton({index=2, label="Play Spirit", height=400, width=1500})
     end
 end
 ---- UI Section
@@ -3261,7 +3524,7 @@ function togglePlayerControls(player)
         return
     end
     showPlayerButtons = not showPlayerButtons
-    updateAllPlayerAreas()
+    updateSwapButtons()
 end
 function toggleMultihanded(player)
     if not player.admin then
@@ -3269,7 +3532,7 @@ function toggleMultihanded(player)
         return
     end
     showAllMultihandedButtons = not showAllMultihandedButtons
-    updateAllPlayerAreas()
+    updateSwapButtons()
 end
 
 function getCurrentState(xmlID, player_color)
@@ -3496,7 +3759,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
         to = initData(toColor, 2, fromColor)
     }
     local specialTokens = {
-        Defence = defendBags,
+        Defend = defendBags,
         Isolate = isolateBags,
     }
 
@@ -3524,7 +3787,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
-    -- Make a note of what we find and what tint it is. Handle Isolate and Defence tokens in this pass.
+    -- Make a note of what we find and what tint it is. Handle Isolate and Defend tokens in this pass.
     local match = string.match  -- Performance
     local name, suffix
     for _,obj in pairs(getAllObjects()) do
@@ -3557,7 +3820,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     -- Pass 2: Iterate over found objects and swap color tints and object names.
     -- After we're done, put objects in their new presence bag, if applicable.
     if fastMode then
-        -- All's we did is maybe recolor some isolate and defence tokens, so we can skip the rest of this.
+        -- All's we did is maybe recolor some isolate and defend tokens, so we can skip the rest of this.
         return
     end
     for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
@@ -3575,7 +3838,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 end
 
-
+colorLock = false
 function swapPlayerColors(a, b)
     if a == b then
         return false
@@ -3585,10 +3848,16 @@ function swapPlayerColors(a, b)
     if not playerBlocks[a] then
         -- This should only trigger if the player clicking is a non-standard color.
         if pb.seated then
-            broadcastToColor("Color " .. b .. " is already claimed.  Try another color.", a, Color.Red)
+            pa.broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
             return false
         end
     end
+
+    if colorLock then
+        pa.broadcast("There's already a color swap in progress, please wait and try again", Color.SoftYellow)
+        return
+    end
+    colorLock = true
 
     if pa.seated then
         if pb.seated then
@@ -3596,34 +3865,51 @@ function swapPlayerColors(a, b)
                 -- Hotseat games may lose track of the player when their color changes for strange reasons -- mainly because they're prompted to reenter their name again.
                 broadcastToAll("Note: Color swapping may be unstable in hotseat games.", Color.SoftYellow)
             end
-            -- Need a temporary color to seat the player at to swap colors.  Favor those not used by the game first, followed by those used by the game.
+            -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
             -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
             local tempColor
-            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"}) do
+            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
                 if pa.changeColor(tempColor) then
-                    Wait.frames(function() pb.changeColor(a) end, 1)
-                    Wait.frames(function() Player[tempColor].changeColor(b) end, 2)
+                    Wait.frames(function()
+                        pb.changeColor(a)
+                        Wait.frames(function()
+                            Player[tempColor].changeColor(b)
+                            Wait.frames(function()
+                                colorLock = false
+                            end, 1)
+                        end, 1)
+                    end, 1)
                     return true
                 end
             end
-            -- If we reach here, we failed to change colors.  Shouldn't happen.  Just in case it does.
-            broadcastToColor("Unable to swap colors with " .. b .. ".  (All player colors are in use?)", a, Color.Red)
-            return false
+            -- If we reach here, we failed to change colors. Shouldn't happen. Just in case it does.
+            pa.broadcast("Unable to swap colors with " .. b .. ". (All player colors are in use?)", Color.Red)
         else
-            pa.changeColor(b)
+            if pa.changeColor(b) then
+                Wait.frames(function()
+                    colorLock = false
+                end, 1)
+                return true
+            end
         end
-    else
-        pb.changeColor(a)
+    elseif pb.seated then
+        if pb.changeColor(a) then
+            Wait.frames(function()
+                colorLock = false
+            end, 1)
+            return true
+        end
     end
-    return true
+    colorLock = false
+    return false
 end
 
 function swapSeatColors(a, b)
     if not swapPlayerColors(a, b) then
         return
     end
-    swapPlayerAreaColors(a, b)
     swapPlayerPresenceColors(a, b)
+    swapPlayerAreaColors(a, b)
 end
 
 -- Trade places with selected seat.
@@ -3649,7 +3935,15 @@ end
 -- Play spirit
 function onClickedPlaySpirit(target_obj, source_color, alt_click)
     local target_color = target_obj.getVar("playerColor")
-    swapPlayerColors(source_color, target_color)
+    if swapPlayerColors(source_color, target_color) then
+        Wait.frames(function ()
+            Player[target_color].lookAt({
+                position = playerBlocks[target_color].getPosition() - Vector(0,0,15),
+                pitch = 70,
+                distance = 30,
+            })
+        end, 2)
+    end
 end
 
 -- Given a table of guids, returns a table of objects
@@ -3673,13 +3967,53 @@ function onPlayerChangeColor(player_color)
     -- We technically only need to update both the old and the new player areas, however...
     -- TTS does not let us know what the player's previous color was.
     -- So update all player areas.
-    updateAllPlayerAreas()
+    for color,_ in pairs(playerBlocks) do
+        updatePlaySpiritButton(color)
+    end
 end
 function onPlayerConnect(player)
-    updatePlayerArea(player.color)
+    updatePlaySpiritButton(player.color)
 end
 function onPlayerDisconnect(player)
-    if #Player.getPlayers() or #Player.getSpectators() then
-        updatePlayerArea(player.color)
+    if #Player.getPlayers() == 0 and #Player.getSpectators() == 0 then
+        return
+    end
+    updatePlaySpiritButton(player.color)
+end
+
+function isPowerCard(card)
+    if card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique")) then
+        return true
+    end
+    return false
+end
+function onObjectSpawn(obj)
+    if isPowerCard(obj) then
+        applyPowerCardContextMenuItem(obj)
+    end
+end
+function applyPowerCardContextMenuItem(card)
+    card.addContextMenuItem(
+        "Forget",
+        function()
+            -- This ugliness is because setPositionSmooth doesn't work from a hand.
+            ensureCardInPlay(card)
+            discardPowerCardFromPlay(card, 1)
+        end,
+        false)
+end
+-- ensureCardInPlay moves the supplied card from a player's hand to a safe
+-- location, if it's in a hand.
+function ensureCardInPlay(card)
+    for _, color in pairs(Player.getAvailableColors()) do
+        for handIndex=1,Player[color].getHandCount() do
+            for _, obj in ipairs(Player[color].getHandObjects(handIndex)) do
+                if obj.guid == card.guid then
+                    local cpos = card.getPosition()
+                    card.setPosition(Vector(cpos.x, 0, cpos.z))
+                    return
+                end
+            end
+        end
     end
 end

@@ -189,13 +189,11 @@ function ExportConfig()
     if selectedBoards and #selectedBoards > 0 then
         data.boards = selectedBoards
     end
-    local obj = Global.getVar("blightedIslandCard")
-    if not obj.is_face_down then
-        data.blightCard = obj.getName()
-    end
-    if obj ~= nil and Global.getVar("blightedIsland") then
-        -- Only store the blight card and count if the island is blighted
-        obj = Global.getVar("blightBag")
+    data.blightCards = Global.getTable("blightCards")
+    local blightedIsland = Global.getVar("blightedIsland")
+    if blightedIsland then
+        -- Only store the blight count if the island is blighted
+        local obj = Global.getVar("blightBag")
         local multiplier = data.secondWave.wave
         data.secondWave.blight = #obj.getObjects() - (multiplier * Global.getVar("numBoards"))
         if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
@@ -203,12 +201,12 @@ function ExportConfig()
         end
         data.secondWave.blight = math.max(data.secondWave.blight, 0)
     end
-    obj = Global.getVar("adversaryCard")
+    local obj = Global.getVar("adversaryCard")
     if obj ~= nil then
         data.adversary = obj.getName()
         data.adversaryLevel = Global.getVar("adversaryLevel")
         -- If the island is not blighted increase adversary level by 1
-        if not data.blightCard and data.adversaryLevel < 6 then
+        if not blightedIsland and data.adversaryLevel < 6 then
             data.adversaryLevel = data.adversaryLevel + 1
         end
     else
@@ -220,7 +218,7 @@ function ExportConfig()
         data.adversary2 = obj.getName()
         data.adversaryLevel2 = Global.getVar("adversaryLevel2")
         -- If the island is not blighted increase adversary level by 1
-        if not data.blightCard and data.adversaryLevel2 < 6 then
+        if not blightedIsland and data.adversaryLevel2 < 6 then
             data.adversaryLevel2 = data.adversaryLevel2 + 1
         end
     else

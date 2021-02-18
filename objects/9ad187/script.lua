@@ -1,4 +1,5 @@
-canStart = true
+bncDone = false
+jeDone = false
 
 adversaries = {
     ["None"] = "",
@@ -114,12 +115,12 @@ function onLoad(saved_data)
 
             if Global.getVar("BnCAdded") then
                 Global.setVar("useBnCEvents", true)
-                self.UI.hide("bnc")
+                self.UI.setAttribute("bnc", "isOn", "true")
                 self.UI.setAttribute("bncEvents", "isOn", "true")
             end
             if Global.getVar("JEAdded") then
                 Global.setVar("useJEEvents", true)
-                self.UI.hide("je")
+                self.UI.setAttribute("je", "isOn", "true")
                 self.UI.setAttribute("jeEvents", "isOn", "true")
             end
 
@@ -154,6 +155,9 @@ function addAdversary(obj)
     updateAdversaryList()
 end
 function onObjectDestroy(obj)
+    if #Player.getPlayers() == 0 and #Player.getSpectators() == 0 then
+        return
+    end
     if obj.hasTag("Spirit") then
         removeSpirit({spirit=obj.guid})
     elseif not setupStarted and obj.type == "Card" then
@@ -488,11 +492,23 @@ function updateSupportingLevel(value, updateUI)
     updateDifficulty()
 end
 
-function toggleBlightCard()
-    local useBlightCard = Global.getVar("useBlightCard")
-    useBlightCard = not useBlightCard
-    Global.setVar("useBlightCard", useBlightCard)
-    self.UI.setAttribute("blightCard", "isOn", useBlightCard)
+function toggleBnC()
+    local BnCAdded = Global.getVar("BnCAdded")
+    BnCAdded = not BnCAdded
+    Global.setVar("BnCAdded", BnCAdded)
+    self.UI.setAttribute("bnc", "isOn", BnCAdded)
+    Global.setVar("useBnCEvents", BnCAdded)
+    self.UI.setAttribute("bncEvents", "isOn", BnCAdded)
+    updateDifficulty()
+end
+function toggleJE()
+    local JEAdded = Global.getVar("JEAdded")
+    JEAdded = not JEAdded
+    Global.setVar("JEAdded", JEAdded)
+    self.UI.setAttribute("je", "isOn", JEAdded)
+    Global.setVar("useJEEvents", JEAdded)
+    self.UI.setAttribute("jeEvents", "isOn", JEAdded)
+    updateDifficulty()
 end
 function toggleBnCEvents()
     if not Global.getVar("BnCAdded") then
@@ -513,6 +529,12 @@ function toggleJEEvents()
     useJEEvents = not useJEEvents
     Global.setVar("useJEEvents", useJEEvents)
     self.UI.setAttribute("jeEvents", "isOn", useJEEvents)
+end
+function toggleBlightCard()
+    local useBlightCard = Global.getVar("useBlightCard")
+    useBlightCard = not useBlightCard
+    Global.setVar("useBlightCard", useBlightCard)
+    self.UI.setAttribute("blightCard", "isOn", useBlightCard)
 end
 
 function updateDropdownSelection(t, class, value)
@@ -560,61 +582,6 @@ function updateBoardLayoutSelection(name)
         updateDropdownSelection(v, "boardLayout", name)
     end
     self.UI.setXmlTable(t, {})
-end
-
-function addBnC()
-    Global.setVar("BnCAdded", true)
-    Global.setVar("useBnCEvents", true)
-
-    self.UI.hide("bnc")
-    self.UI.setAttribute("bncEvents", "isOn", "true")
-    updateDifficulty()
-
-    Wait.condition(function() startLuaCoroutine(self, "addBnCCo") end, function() return canStart end)
-end
-function addBnCCo()
-    canStart = false
-    local BnCBag = getObjectFromGUID("ea7207")
-
-    local fearDeck = BnCBag.takeObject({guid = "d16f70"})
-    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
-    local minorPowers = BnCBag.takeObject({guid = "913789"})
-    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
-    local majorPowers = BnCBag.takeObject({guid = "07ac50"})
-    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
-    local blightCards = BnCBag.takeObject({guid = "788333"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-
-    wt(0.5)
-    canStart = true
-    return 1
-end
-function addJE()
-    Global.setVar("JEAdded", true)
-    Global.setVar("useJEEvents", true)
-
-    self.UI.hide("je")
-    self.UI.setAttribute("jeEvents", "isOn", "true")
-    updateDifficulty()
-
-    Wait.condition(function() startLuaCoroutine(self, "addJECo") end, function() return canStart end)
-end
-function addJECo()
-    canStart = false
-    local JEBag = getObjectFromGUID("850ac1")
-
-    local fearDeck = JEBag.takeObject({guid = "723183"})
-    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
-    local minorPowers = JEBag.takeObject({guid = "80b54a"})
-    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
-    local majorPowers = JEBag.takeObject({guid = "98a916"})
-    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
-    local blightCards = JEBag.takeObject({guid = "8120e0"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-
-    wt(0.5)
-    canStart = true
-    return 1
 end
 
 function updateDifficulty()
@@ -672,7 +639,17 @@ end
 
 function startGame()
     loadConfig()
-    Wait.condition(function() Global.call("SetupGame", {}) end, function() return canStart end)
+    if Global.getVar("BnCAdded") then
+        startLuaCoroutine(self, "addBnCCo")
+    else
+        bncDone = true
+    end
+    if Global.getVar("JEAdded") then
+        startLuaCoroutine(self, "addJECo")
+    else
+        jeDone = true
+    end
+    Wait.condition(function() Global.call("SetupGame", {}) end, function() return bncDone and jeDone end)
 end
 function loadConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -702,8 +679,8 @@ function loadConfig()
             if saved_data.boards then
                 Global.setTable("selectedBoards", saved_data.boards)
             end
-            if saved_data.blightCard then
-                Global.setVar("blightCard", saved_data.blightCard)
+            if saved_data.blightCards then
+                Global.setTable("blightCards", saved_data.blightCards)
             end
             if saved_data.adversary then
                 if saved_data.adversary == "Bradenburg-Prussia" then
@@ -732,17 +709,29 @@ function loadConfig()
                 end
             end
             if saved_data.expansions then
+                local expansions = {}
                 for _,expansion in pairs(saved_data.expansions) do
-                    if expansion == "bnc" then
-                        addBnC()
-                    elseif expansion == "je" then
-                        addJE()
-                    end
+                    expansions[expansion] = true
+                end
+                if expansions.bnc then
+                    Global.setVar("BnCAdded", true)
+                    Global.setVar("useBnCEvents", true)
+                else
+                    Global.setVar("BnCAdded", false)
+                    Global.setVar("useBnCEvents", false)
+                end
+                if expansions.je then
+                    Global.setVar("JEAdded", true)
+                    Global.setVar("useJEEvents", true)
+                else
+                    Global.setVar("JEAdded", false)
+                    Global.setVar("useJEEvents", false)
                 end
             end
             if saved_data.broadcast then
                 broadcastToAll(saved_data.broadcast, Color.SoftYellow)
             end
+            updateDifficulty()
             break
         end
     end
@@ -761,6 +750,38 @@ function PickSpirit(name, aspect)
             break
         end
     end
+end
+function addBnCCo()
+    local BnCBag = getObjectFromGUID("ea7207")
+
+    local fearDeck = BnCBag.takeObject({guid = "d16f70"})
+    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+    local minorPowers = BnCBag.takeObject({guid = "913789"})
+    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
+    local majorPowers = BnCBag.takeObject({guid = "07ac50"})
+    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
+    local blightCards = BnCBag.takeObject({guid = "788333"})
+    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+
+    wt(0.5)
+    bncDone = true
+    return 1
+end
+function addJECo()
+    local JEBag = getObjectFromGUID("850ac1")
+
+    local fearDeck = JEBag.takeObject({guid = "723183"})
+    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+    local minorPowers = JEBag.takeObject({guid = "80b54a"})
+    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
+    local majorPowers = JEBag.takeObject({guid = "98a916"})
+    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
+    local blightCards = JEBag.takeObject({guid = "8120e0"})
+    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+
+    wt(0.5)
+    jeDone = true
+    return 1
 end
 
 function showUI()
@@ -930,12 +951,16 @@ function gainSpirit(player)
     Player[player.color].broadcast("Your 4 randomised spirits to choose from are in your play area", Color.SoftBlue)
 
     for i = 1,4 do
-        local s = getNewSpirit()
-        if s then
+        local spirit, aspect = getNewSpirit()
+        if spirit then
+            local label = spirit.getName()
+            if aspect ~= nil and aspect ~= "" then
+                label = label.."-"..aspect
+            end
             obj.createButton({
                 click_function = "pickSpirit" .. i,
                 function_owner = self,
-                label = s.getName(),
+                label = label,
                 position = Vector(0,0,0.3 - 0.15*i),
                 rotation = Vector(0,180,0),
                 scale = Vector(0.1,0.1,0.1),
@@ -954,9 +979,10 @@ function getNewSpirit()
     while (spiritChoices[spirit.getName()]) do
         spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
     end
-    spiritChoices[spirit.getName()] = spirit.guid
+    local aspect = spirit.call("RandomAspect", {})
+    spiritChoices[spirit.getName()] = {guid=spirit.guid, aspect=aspect}
     spiritChoicesLength = spiritChoicesLength + 1
-    return spirit
+    return spirit, aspect
 end
 function pickSpirit1(obj, color)
     if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
@@ -976,8 +1002,13 @@ function pickSpirit4(obj, color)
 end
 function pickSpirit(obj, index, color)
     local name = obj.getButtons()[index+1].label
-    if isSpiritPickable({guid = spiritChoices[name]}) then
-        getObjectFromGUID(spiritChoices[name]).call("PickSpirit", {color = color, aspect = "Random"})
+    local start,_ = string.find(name, "-")
+    if start ~= nil then
+        name = string.sub(name, 1, start-1)
+    end
+    local data = spiritChoices[name]
+    if isSpiritPickable({guid = data.guid}) then
+        getObjectFromGUID(data.guid).call("PickSpirit", {color = color, aspect = data.aspect})
         obj.clearButtons()
     else
         Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
@@ -1009,14 +1040,11 @@ function addSpirit(params)
     -- Ignore Source Spirit
     if params.spirit.guid == "21f561" then return end
 
-    -- If spirit has multiple states remove the other copies of it from the spirit table
-    local states = params.spirit.getStates()
-    if states ~= nil and #states ~= 0 then
-        for _,state in pairs(states) do
-            if spiritTags[state.guid] ~= nil then
-                removeSpirit({spirit=state.guid})
-                spiritTags[state.guid] = nil
-            end
+    -- In case of state change, update existing choice with new guid
+    for name,_ in pairs(spiritChoices) do
+        if name == params.spirit.getName() then
+            spiritChoices[name].guid = params.spirit.guid
+            break
         end
     end
 
@@ -1030,6 +1058,13 @@ function removeSpirit(params)
             break
         end
     end
+    for name,data in pairs(spiritChoices) do
+        if data.guid == params.spirit then
+            spiritChoicesLength = spiritChoicesLength - 1
+            break
+        end
+    end
+    spiritTags[params.spirit] = nil
 end
 
 function toggleSoloBlight()

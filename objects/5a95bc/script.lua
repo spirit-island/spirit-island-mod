@@ -45,7 +45,7 @@ function Requirements(params)
     return not params.thematic
 end
 function BoardSetup(params)
-    return boardLayout[params.boards]
+    return boardLayouts[params.boards]
 end
 function PostSetup()
     local scenarioBag = Global.getVar("scenarioBag")

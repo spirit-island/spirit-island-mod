@@ -40,7 +40,7 @@ function onObjectPickUp(player_color, picked_up_object)
     end
 end
 function moveDiscard(aidBoard)
-    local currentDiscard = aidBoard.getTable("currentDiscard")
+    local currentDiscard = aidBoard.getTable("discard")
     local hits = Physics.cast({
         origin       = currentDiscard,
         direction    = Vector(0,1,0),
@@ -77,7 +77,7 @@ function removeEnglandSnap(aidBoard)
         tags = {"Invader Card"},
     })
     aidBoard.setSnapPoints(snapPoints)
-    aidBoard.setTable("currentDiscard", originalDiscardPosition)
+    aidBoard.setTable("discard", originalDiscardPosition)
 end
 
 function PreSetup(params)
@@ -206,7 +206,7 @@ function englandSnap(aidBoard)
         end
     end
     aidBoard.setSnapPoints(newSnapPoints)
-    aidBoard.setTable("currentDiscard", highImmigrationDiscardPosition)
+    aidBoard.setTable("discard", highImmigrationDiscardPosition)
 
     snapPoints = Global.getSnapPoints()
     table.insert(snapPoints, {

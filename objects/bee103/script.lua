@@ -241,11 +241,12 @@ function advanceInvaderCards()
                         hit.setRotation(Vector(0,180,0))
                         hit.setPositionSmooth(discard)
                     elseif i == "Ravage" then
-                        if not UI.getAttribute("panelBuild2","active") then
+                        local build2 = UI.getAttribute("panelBuild2","active")
+                        if not build2 or build2 == "false" or build2 == "False" then
                             hit.setRotation(Vector(0,90,0))
                             hit.setPositionSmooth(discard)
                         else
-                            source = obj
+                            source = getObjectFromGUID("e5d18b")
                             local nextO = source.positionToWorld(scanLoopTable["Build2"].origin)
                             hit.setPositionSmooth(Vector(nextO[1],nextO[2]+0.2,hit.getPosition().z))
                         end

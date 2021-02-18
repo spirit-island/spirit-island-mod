@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.4.1-beta.1"
+version = "1.4.2-beta.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"

@@ -3048,13 +3048,13 @@ function setupPlayerArea(params)
         -- Energy Cost (button index 0)
         obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
-            position={0,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={0.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
         obj.createButton({
             label="", click_function="nullFunc", function_owner=Global,
-            position={-5,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Other buttons to follow/be fixed later.

@@ -52,7 +52,7 @@ function toggleObjects()
     if empty then
         for guid,_ in pairs(contents) do
             local obj = getObjectFromGUID(guid)
-            if obj ~= nil then
+            if obj ~= nil and obj.getLock() then
                 obj.setLock(false)
                 self.putObject(obj)
                 count = count + 1

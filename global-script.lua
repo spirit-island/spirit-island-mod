@@ -2829,13 +2829,11 @@ function deleteObject(obj, fear)
         bag = townBag
         if fear then
             aidBoard.call("addFear")
-            aidBoard.call("addFear")
         end
     elseif string.sub(obj.getName(),1,4) == "City" then
         obj.setRotation(Vector(0,180,0))
         bag = cityBag
         if fear then
-            aidBoard.call("addFear")
             aidBoard.call("addFear")
             aidBoard.call("addFear")
         end

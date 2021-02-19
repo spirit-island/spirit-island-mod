@@ -3136,7 +3136,8 @@ function setupPlayerArea(params)
             for j = 1, 8 do
                 outTable[j] = outTable[j] + elemTable[j]
             end
-            if inTableOfElemStrCards[i].getVar("energy") ~= nil then
+            -- Skip counting locked card's energy (Aid from Lesser Spirits)
+            if not inTableOfElemStrCards[i].getLock() and inTableOfElemStrCards[i].getVar("energy") ~= nil then
                 energy = energy + inTableOfElemStrCards[i].getVar("energy")
             end
         end

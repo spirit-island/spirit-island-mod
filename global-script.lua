@@ -839,6 +839,24 @@ function SetupPowerDecks()
     getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
     getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
 
+    exploratoryPowersDone = false
+    if not gameStarted and SetupChecker.getVar("exploratoryVOTD") then
+        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        deck.takeObject({
+            guid = "152fe0",
+            callback_function = function(obj)
+                local temp = obj.setState(2)
+                Wait.frames(function()
+                    deck.putObject(temp)
+                    deck.shuffle()
+                    exploratoryPowersDone = true
+                end, 1)
+            end,
+        })
+    else
+        exploratoryPowersDone = true
+    end
+
     SetupChecker.setScale(Vector(1,1,1))
     SetupChecker.setRotationSmooth(Vector(0,180,0))
     SetupChecker.setPositionSmooth(Vector(-41.95,0.2,-7.97))
@@ -885,7 +903,7 @@ function SetupPowerDecks()
             tooltip        = "Click to learn a Minor Power",
         })
         stagesSetup = stagesSetup + 1
-    end, function() return not SetupChecker.isSmoothMoving() end)
+    end, function() return not SetupChecker.isSmoothMoving() and exploratoryPowersDone end)
     return 1
 end
 handOffset = Vector(0,0,35)
@@ -1803,7 +1821,6 @@ function PostSetup()
 
     local postSetupSteps = 0
     local firstAdversarySetup = false
-    local exploratoryPowersDone = false
 
     if adversaryCard == nil then
         difficultyString = difficultyString.."No Adversary\n"
@@ -1820,24 +1837,6 @@ function PostSetup()
     difficultyString = difficultyString.."Difficulty "..difficulty
     createDifficultyButton()
 
-    if SetupChecker.getVar("exploratoryVOTD") then
-        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
-        deck.takeObject({
-            guid = "152fe0",
-            callback_function = function(obj)
-                local temp = obj.setState(2)
-                Wait.frames(function()
-                    deck.putObject(temp)
-                    deck.shuffle()
-                    postSetupSteps = postSetupSteps + 1
-                    exploratoryPowersDone = true
-                end, 1)
-            end,
-        })
-    else
-        postSetupSteps = postSetupSteps + 1
-        exploratoryPowersDone = true
-    end
     if SetupChecker.getVar("exploratoryBODAN") then
         local spirit = getObjectFromGUID("606f23").setState(2)
         if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
@@ -1866,11 +1865,8 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
     if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        -- Wait for all exploratory powers to have state changed
-        Wait.condition(function()
-            scenarioCard.call("PostSetup",{})
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
-        end, function() return exploratoryPowersDone end)
+        scenarioCard.call("PostSetup",{})
+        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
     end
@@ -1918,7 +1914,7 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function()log(postSetupSteps) return postSetupSteps == 6 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function()log(postSetupSteps) return postSetupSteps == 5 end)
     return 1
 end
 function createDifficultyButton()
@@ -1956,7 +1952,6 @@ end
 function StartGame()
     gamePaused = false
     gameStarted = true
-    exploratory()
     enableUI()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
@@ -1993,8 +1988,6 @@ function StartGame()
         end
     end
     return 1
-end
-function exploratory()
 end
 function enableUI()
     local colors = {}
@@ -3363,6 +3356,7 @@ function updateSwapButtons()
     end
 end
 function updatePlaySpiritButton(color)
+    if color == "Grey" then return end
     if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
         playerTables[color].editButton({index=2, label="", height=0, width=0})
     else

@@ -1872,44 +1872,47 @@ function PostSetup()
     end
 
     if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
-        local zone = getObjectFromGUID(invaderDeckZone)
-        local invaderDeck = zone.getObjects()[1]
-        local cards = invaderDeck.getObjects()
-        local stageII = nil
-        local stageIII = nil
-        for _,card in pairs(cards) do
-            local start,finish = string.find(card.lua_script,"cardInvaderStage=")
-            if start ~= nil then
-                local stage = tonumber(string.sub(card.lua_script,finish+1))
-                local special = string.find(card.lua_script,"special=")
-                if special ~= nil then
-                    stage = stage - 1
-                end
-                if stage == 2 and stageII == nil then
-                    stageII = card.index
-                elseif stage == 3 and stageIII == nil then
-                    stageIII = card.index
-                end
-            end
-            if stageII ~= nil and stageIII ~= nil then
-                break
-            end
-        end
-        if stageII == nil then stageII = 0 end
-        if stageIII == nil then stageIII = 0 end
-        if stageII <= stageIII then stageIII = stageIII + 1 end
-
-        setupCommandCard(invaderDeck, stageII, "d46930")
+        -- Setup up command cards last
         Wait.condition(function()
-            setupCommandCard(invaderDeck, stageIII, "a578fe")
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
+            local zone = getObjectFromGUID(invaderDeckZone)
+            local invaderDeck = zone.getObjects()[1]
+            local cards = invaderDeck.getObjects()
+            local stageII = nil
+            local stageIII = nil
+            for _,card in pairs(cards) do
+                local start,finish = string.find(card.lua_script,"cardInvaderStage=")
+                if start ~= nil then
+                    local stage = tonumber(string.sub(card.lua_script,finish+1))
+                    local special = string.find(card.lua_script,"special=")
+                    if special ~= nil then
+                        stage = stage - 1
+                    end
+                    if stage == 2 and stageII == nil then
+                        stageII = card.index
+                    elseif stage == 3 and stageIII == nil then
+                        stageIII = card.index
+                    end
+                end
+                if stageII ~= nil and stageIII ~= nil then
+                    break
+                end
+            end
+            if stageII == nil then stageII = 0 end
+            if stageIII == nil then stageIII = 0 end
+            if stageII <= stageIII then stageIII = stageIII + 1 end
+
+            setupCommandCard(invaderDeck, stageII, "d46930")
+            Wait.condition(function()
+                setupCommandCard(invaderDeck, stageIII, "a578fe")
+                Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
+                    local objs = zone.getObjects()
+                    return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
+                end)
+            end, function()
                 local objs = zone.getObjects()
-                return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
+                return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function()
-            local objs = zone.getObjects()
-            return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
-        end)
+        end, function() return postSetupSteps == 4 end)
     else
         postSetupSteps = postSetupSteps + 1
     end

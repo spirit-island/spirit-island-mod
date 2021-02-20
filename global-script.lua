@@ -1917,7 +1917,7 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function()log(postSetupSteps) return postSetupSteps == 5 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 5 end)
     return 1
 end
 function createDifficultyButton()

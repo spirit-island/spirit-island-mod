@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.51901,
-    "posY": 2.06111479,
-    "posZ": -27.58801,
-    "rotX": 0.0314755775,
-    "rotY": 179.089081,
-    "rotZ": 0.07959538,
-    "scaleX": 1.53204679,
+    "posX": -34.4186745,
+    "posY": 1.4008162,
+    "posZ": 20.504118,
+    "rotX": 0.2696388,
+    "rotY": 181.298126,
+    "rotZ": 11.3377829,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Birds Cry Warning",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

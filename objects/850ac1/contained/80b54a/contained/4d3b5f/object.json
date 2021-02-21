@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.808556,
-    "posY": 1.93165576,
-    "posZ": -23.9646912,
-    "rotX": 0.256556451,
-    "rotY": 177.5074,
-    "rotZ": 0.0275348872,
-    "scaleX": 1.53204679,
+    "posX": -29.8877621,
+    "posY": 1.04552114,
+    "posZ": 20.5208378,
+    "rotX": 359.9191,
+    "rotY": 179.261124,
+    "rotZ": 5.065429,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Sear Anger into the Wild Lands",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.167023,
-    "posY": 2.13395333,
-    "posZ": -15.9390888,
-    "rotX": 359.8459,
-    "rotY": 178.8509,
-    "rotZ": 0.120353445,
-    "scaleX": 1.3656503,
+    "posX": -47.25595,
+    "posY": 1.266964,
+    "posZ": 28.4587135,
+    "rotX": 0.0196980461,
+    "rotY": 180.32045,
+    "rotZ": 4.024182,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Fleshrot Fever",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

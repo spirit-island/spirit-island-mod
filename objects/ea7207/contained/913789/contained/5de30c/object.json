@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.211838,
-    "posY": 2.06394482,
-    "posZ": -15.9265013,
-    "rotX": 0.10193146,
-    "rotY": 182.719025,
-    "rotZ": 0.242334828,
-    "scaleX": 1.3656503,
+    "posX": -49.0073662,
+    "posY": 1.28537512,
+    "posZ": 28.898941,
+    "rotX": 359.9699,
+    "rotY": 179.205185,
+    "rotZ": 6.6827774,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Scour the Land",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

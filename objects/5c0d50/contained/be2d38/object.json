@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -108.9,
-    "posY": 0.900081933,
-    "posZ": -37.78,
-    "rotX": 0.004446743,
-    "rotY": 179.999344,
-    "rotZ": 1.42775917e-07,
-    "scaleX": 1.53204679,
+    "posX": -46.14974,
+    "posY": 2.19213462,
+    "posZ": -10.7440195,
+    "rotX": 0.0028329785,
+    "rotY": 177.874756,
+    "rotZ": 359.990967,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Delusions of Danger",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

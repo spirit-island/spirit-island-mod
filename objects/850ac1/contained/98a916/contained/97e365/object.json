@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.825211,
-    "posY": 2.103399,
-    "posZ": -23.18096,
-    "rotX": 0.0531101972,
-    "rotY": 180.894775,
-    "rotZ": 359.911682,
-    "scaleX": 1.53204679,
+    "posX": -40.9344,
+    "posY": 1.30042207,
+    "posZ": 27.33387,
+    "rotX": 359.6179,
+    "rotY": 179.597656,
+    "rotZ": 3.21675467,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Thickets Erupt with Every Touch of Breeze",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -120.100029,
-    "posY": 0.9001254,
-    "posZ": -37.220047,
-    "rotX": 0.004446606,
-    "rotY": 179.999741,
-    "rotZ": -2.099192e-08,
-    "scaleX": 1.53204679,
+    "posX": -46.16931,
+    "posY": 2.27376175,
+    "posZ": -10.7100658,
+    "rotX": 0.00258227182,
+    "rotY": 180.501862,
+    "rotZ": 359.9909,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Enticing Splendor",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

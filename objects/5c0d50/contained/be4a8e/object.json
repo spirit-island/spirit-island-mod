@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -101.620178,
-    "posY": 0.915729344,
-    "posZ": -42.8198471,
-    "rotX": 359.615356,
-    "rotY": 179.997131,
-    "rotZ": 0.00275289756,
-    "scaleX": 1.53204679,
+    "posX": -45.9844627,
+    "posY": 1.92036879,
+    "posZ": -10.743556,
+    "rotX": 359.97406,
+    "rotY": 180.5892,
+    "rotZ": 359.92688,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Pull Beneath the Hungry Earth",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.760574,
-    "posY": 2.13800168,
-    "posZ": -23.4572449,
-    "rotX": 0.00077257707,
-    "rotY": 174.16925,
-    "rotZ": -0.00283683836,
-    "scaleX": 1.53204679,
+    "posX": -43.3812752,
+    "posY": 1.25150251,
+    "posZ": 27.73908,
+    "rotX": 359.985321,
+    "rotY": 179.702087,
+    "rotZ": 8.551619,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Draw Towards a Consuming Void",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.42513,
-    "posY": 2.037552,
-    "posZ": -27.57433,
-    "rotX": 0.0207730979,
-    "rotY": 180.23616,
-    "rotZ": 0.169021845,
-    "scaleX": 1.53204679,
+    "posX": -28.3090973,
+    "posY": 1.39281118,
+    "posZ": 20.7794113,
+    "rotX": 0.296788216,
+    "rotY": 185.5433,
+    "rotZ": 2.86651587,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Blood Draws Predators",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

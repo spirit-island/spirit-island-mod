@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.684151,
-    "posY": 2.0956943,
-    "posZ": -23.8634987,
-    "rotX": 0.2691723,
-    "rotY": 180.5511,
-    "rotZ": 0.05662521,
-    "scaleX": 1.53204679,
+    "posX": -33.4678535,
+    "posY": 1.10043836,
+    "posZ": 20.6442547,
+    "rotX": 359.9545,
+    "rotY": 179.651413,
+    "rotZ": 5.381564,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Favor of the Sun and Star-Lit Dark",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.898018,
-    "posY": 2.016927,
-    "posZ": -23.4669914,
-    "rotX": 359.977234,
-    "rotY": 179.3532,
-    "rotZ": 0.0173292588,
-    "scaleX": 1.3656503,
+    "posX": -41.8405533,
+    "posY": 1.31486714,
+    "posZ": 28.2963867,
+    "rotX": 1.285353,
+    "rotY": 183.476257,
+    "rotZ": 5.772804,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Pyroclastic Flow",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.69869,
-    "posY": 0.914697051,
-    "posZ": -32.73981,
-    "rotX": 359.657,
-    "rotY": 180.060089,
-    "rotZ": -3.77480719e-05,
-    "scaleX": 1.53204679,
+    "posX": -46.019268,
+    "posY": 2.0475595,
+    "posZ": -10.67902,
+    "rotX": 0.06676678,
+    "rotY": 180.666275,
+    "rotZ": 359.7139,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Purifying Flame",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

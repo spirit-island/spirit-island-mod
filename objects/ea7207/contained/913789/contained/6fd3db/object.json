@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.189445,
-    "posY": 2.10851741,
-    "posZ": -15.9027872,
-    "rotX": 359.918121,
-    "rotY": 178.22731,
-    "rotZ": 0.151245043,
-    "scaleX": 1.3656503,
+    "posX": -44.45151,
+    "posY": 1.31932127,
+    "posZ": 28.4547844,
+    "rotX": 0.0240121447,
+    "rotY": 180.360016,
+    "rotZ": 4.106675,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Infested Aquifers",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

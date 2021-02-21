@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -95.01771,
-    "posY": 1.99101853,
-    "posZ": -13.3742371,
-    "rotX": 0.00444672257,
-    "rotY": 180.0,
-    "rotZ": -1.23652967e-07,
-    "scaleX": 1.53204679,
+    "posX": -71.5797958,
+    "posY": 1.18939161,
+    "posZ": 53.8248558,
+    "rotX": 0.00489086052,
+    "rotY": 180.00145,
+    "rotZ": 0.169540256,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Guard the Healing Land",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

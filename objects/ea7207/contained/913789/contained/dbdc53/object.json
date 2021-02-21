@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.045387,
-    "posY": 2.00330734,
-    "posZ": -15.7130051,
-    "rotX": 0.0145806661,
-    "rotY": 178.977249,
-    "rotZ": 0.292157948,
-    "scaleX": 1.3656503,
+    "posX": -51.1699257,
+    "posY": 1.27731574,
+    "posZ": 28.8386955,
+    "rotX": 0.00744819967,
+    "rotY": 180.254349,
+    "rotZ": 2.79597926,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Tormenting Rotflies",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.2344437,
-    "posY": 1.30334592,
-    "posZ": -10.7696228,
-    "rotX": -5.30218669e-09,
-    "rotY": 180.0,
-    "rotZ": 179.769257,
-    "scaleX": 1.53204679,
+    "posX": -46.61847,
+    "posY": 2.121713,
+    "posZ": -11.1499844,
+    "rotX": 0.0215988867,
+    "rotY": 176.2643,
+    "rotZ": 0.05252382,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Rouse the Trees and Stones",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

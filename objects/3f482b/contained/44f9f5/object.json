@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -99.94,
-    "posY": 0.9016465,
-    "posZ": -17.6199989,
-    "rotX": 0.004446603,
+    "posX": -88.57573,
+    "posY": 1.17907226,
+    "posZ": 20.4035263,
+    "rotX": 0.00582979,
     "rotY": 180.0,
-    "rotZ": 1.43281426e-07,
-    "scaleX": 1.47602439,
+    "rotZ": -0.0009770453,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Impersonate Authority",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

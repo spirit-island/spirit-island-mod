@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -86.00916,
-    "posY": 2.11987352,
-    "posZ": -6.4499917,
-    "rotX": 0.00444674352,
-    "rotY": 180.000015,
-    "rotZ": -9.720684e-08,
-    "scaleX": 1.53204679,
+    "posX": -106.30751,
+    "posY": 1.19829893,
+    "posZ": 31.436245,
+    "rotX": 0.00460107066,
+    "rotY": 180.0,
+    "rotZ": -7.499418e-05,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Terrifying Chase",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

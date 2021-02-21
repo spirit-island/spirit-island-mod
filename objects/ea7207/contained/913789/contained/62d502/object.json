@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.30468,
-    "posY": 1.91598606,
-    "posZ": -16.1345425,
-    "rotX": 0.147502363,
-    "rotY": 180.8361,
-    "rotZ": 0.07044557,
-    "scaleX": 1.3656503,
+    "posX": -48.135746,
+    "posY": 1.31600714,
+    "posZ": 28.8295631,
+    "rotX": 0.006875486,
+    "rotY": 180.317383,
+    "rotZ": 3.07313,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Call to Trade",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

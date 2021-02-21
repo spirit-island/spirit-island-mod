@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.824936,
-    "posY": 2.04229021,
-    "posZ": -24.0149689,
-    "rotX": 0.26281485,
-    "rotY": 182.321411,
-    "rotZ": 0.06741159,
-    "scaleX": 1.53204679,
+    "posX": -35.5421944,
+    "posY": 1.16645384,
+    "posZ": 20.4594116,
+    "rotX": 359.95224,
+    "rotY": 179.945923,
+    "rotZ": 5.9553647,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Flow Downriver, Blow Downwind",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

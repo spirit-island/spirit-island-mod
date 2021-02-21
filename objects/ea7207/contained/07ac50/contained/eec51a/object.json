@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -86.862236,
-    "posY": 2.11978173,
-    "posZ": -9.434889,
-    "rotX": 0.0044467207,
-    "rotY": 180.000244,
-    "rotZ": -1.91243572e-08,
-    "scaleX": 1.3656503,
+    "posX": -40.02,
+    "posY": 1.6562165,
+    "posZ": 28.3,
+    "rotX": -0.000317432132,
+    "rotY": 180.0,
+    "rotZ": 183.020691,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Unlock the Gates of Deepest Power",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

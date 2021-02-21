@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.9914856,
-    "posY": 1.99101853,
-    "posZ": -13.7607851,
-    "rotX": 0.004446746,
-    "rotY": 180.0,
-    "rotZ": -1.15708872e-07,
-    "scaleX": 1.53204679,
+    "posX": -106.3772,
+    "posY": 1.23922622,
+    "posZ": 42.5090981,
+    "rotX": 0.00263582752,
+    "rotY": 180.004074,
+    "rotZ": 182.102448,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Stem the Flow of Fresh Water",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

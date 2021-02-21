@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -111.7,
-    "posY": 0.9017334,
-    "posZ": -16.4999981,
-    "rotX": 0.00444644131,
-    "rotY": 180.000015,
-    "rotZ": 7.633478e-08,
-    "scaleX": 1.53145456,
+    "posX": -72.63884,
+    "posY": 1.1983124,
+    "posZ": -3.18579769,
+    "rotX": 0.00376300444,
+    "rotY": 179.999985,
+    "rotZ": 180.115692,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53145456
+    "scaleZ": 1.53
   },
   "Nickname": "A Circuitous and Wending Journey",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.76786,
-    "posY": 2.077328,
-    "posZ": -23.1890488,
-    "rotX": 0.0439725034,
-    "rotY": 180.196442,
-    "rotZ": 359.871552,
-    "scaleX": 1.53204679,
+    "posX": -44.6293221,
+    "posY": 1.2185092,
+    "posZ": 27.2999344,
+    "rotX": 0.06786119,
+    "rotY": 179.048981,
+    "rotZ": 3.15282226,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Vanish Softly Away, Forgotten by All",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

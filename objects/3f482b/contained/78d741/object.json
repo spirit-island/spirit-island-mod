@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -112.82,
-    "posY": 0.9016465,
-    "posZ": -17.6200047,
-    "rotX": 0.00444654934,
-    "rotY": 180.000031,
-    "rotZ": 3.06548831e-09,
-    "scaleX": 1.47602439,
+    "posX": -88.57569,
+    "posY": 1.17961311,
+    "posZ": 20.40353,
+    "rotX": 0.00169531885,
+    "rotY": 180.0,
+    "rotZ": 180.021957,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Unexpected Tigers",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

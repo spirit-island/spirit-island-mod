@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -116.93631,
-    "posY": 0.901365042,
-    "posZ": -21.2466,
-    "rotX": 0.00444677426,
-    "rotY": 179.999954,
-    "rotZ": 1.92109066e-08,
-    "scaleX": 1.53204679,
+    "posX": -121.806938,
+    "posY": 1.24431443,
+    "posZ": 20.3913574,
+    "rotX": 359.963379,
+    "rotY": 180.0021,
+    "rotZ": 357.816437,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Rain of Ash",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.237251,
-    "posY": 2.15607762,
-    "posZ": -15.8394375,
-    "rotX": 359.810974,
-    "rotY": 180.395477,
-    "rotZ": 0.0255431775,
-    "scaleX": 1.3656503,
+    "posX": -46.2757721,
+    "posY": 1.28690326,
+    "posZ": 28.4575462,
+    "rotX": 0.02304528,
+    "rotY": 180.3516,
+    "rotZ": 4.0988946,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Fire in the Sky",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

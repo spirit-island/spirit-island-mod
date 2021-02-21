@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.243996,
-    "posY": 1.86662889,
-    "posZ": -15.8655024,
-    "rotX": 0.189807728,
-    "rotY": 177.749344,
-    "rotZ": 0.00103332428,
-    "scaleX": 1.3656503,
+    "posX": -45.3720474,
+    "posY": 1.41872764,
+    "posZ": 28.83931,
+    "rotX": 359.978241,
+    "rotY": 180.2162,
+    "rotZ": 2.229919,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Sky Stretches to Shore",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

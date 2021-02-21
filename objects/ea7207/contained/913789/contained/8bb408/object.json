@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.759773,
-    "posY": 2.255849,
-    "posZ": -15.7596045,
-    "rotX": 0.006548544,
-    "rotY": 179.552444,
-    "rotZ": 359.982758,
-    "scaleX": 1.3656503,
+    "posX": -48.8601532,
+    "posY": 1.15445709,
+    "posZ": 28.3138924,
+    "rotX": 0.0235543065,
+    "rotY": 180.529312,
+    "rotZ": 4.481254,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Here There be Monsters",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

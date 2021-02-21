@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.61351,
-    "posY": 1.99101853,
-    "posZ": -12.3962555,
-    "rotX": 0.004446738,
-    "rotY": 180.000015,
-    "rotZ": -1.2905403e-07,
-    "scaleX": 1.53204679,
+    "posX": -122.02092,
+    "posY": 1.18384171,
+    "posZ": 42.64795,
+    "rotX": 0.00494299,
+    "rotY": 180.000046,
+    "rotZ": 180.007736,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Sudden Ambush",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

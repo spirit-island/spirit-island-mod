@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.579834,
-    "posY": 2.14653182,
-    "posZ": -24.0409489,
-    "rotX": 0.24121961,
-    "rotY": 176.178741,
-    "rotZ": 0.0102814389,
-    "scaleX": 1.53204679,
+    "posX": -25.7839069,
+    "posY": 1.05440319,
+    "posZ": 20.3095455,
+    "rotX": 0.09325176,
+    "rotY": 192.956131,
+    "rotZ": 5.35168552,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Unquenchable Flames",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

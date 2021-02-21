@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -96.5895157,
-    "posY": 1.99101853,
-    "posZ": -13.4648991,
-    "rotX": 0.004446736,
-    "rotY": 180.0,
-    "rotZ": -1.4561229e-07,
-    "scaleX": 1.53204679,
+    "posX": -106.375229,
+    "posY": 1.19544828,
+    "posZ": 42.50939,
+    "rotX": 0.0166306663,
+    "rotY": 179.999954,
+    "rotZ": 180.16481,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Gift of Proliferation",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

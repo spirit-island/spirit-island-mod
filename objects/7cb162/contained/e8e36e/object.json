@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -105.54,
-    "posY": 0.901603043,
-    "posZ": -18.1799984,
-    "rotX": 0.004446565,
-    "rotY": 180.0,
-    "rotZ": -3.84429555e-08,
-    "scaleX": 1.47540212,
+    "posX": -72.9928741,
+    "posY": 1.364286,
+    "posZ": 20.2823124,
+    "rotX": 0.00267460127,
+    "rotY": 179.999832,
+    "rotZ": 184.4176,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "A Dreadful Tide of Scurrying Flesh",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

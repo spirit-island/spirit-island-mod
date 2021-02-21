@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -112.26,
-    "posY": 0.9014292,
-    "posZ": -20.4199982,
-    "rotX": 0.0044466923,
-    "rotY": 180.0,
-    "rotZ": 7.272764e-08,
-    "scaleX": 1.53204679,
+    "posX": -123.07058,
+    "posY": 1.17939425,
+    "posZ": 18.9213123,
+    "rotX": 0.00644841045,
+    "rotY": 179.999969,
+    "rotZ": 359.994263,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Pyroclastic Bombardment",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

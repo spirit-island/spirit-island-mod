@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.647957,
-    "posY": 2.110823,
-    "posZ": -23.369318,
-    "rotX": 0.00227066386,
-    "rotY": 180.358429,
-    "rotZ": -0.00348867476,
-    "scaleX": 1.53204679,
+    "posX": -40.59431,
+    "posY": 1.11935079,
+    "posZ": 27.6235256,
+    "rotX": 0.00573959341,
+    "rotY": 179.525421,
+    "rotZ": 6.01332664,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Storm-Swath",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

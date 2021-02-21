@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -105.539093,
-    "posY": 1.10983932,
-    "posZ": -23.2198639,
-    "rotX": -0.00243972149,
-    "rotY": 180.003235,
-    "rotZ": 1.85991693,
-    "scaleX": 1.3656503,
+    "posX": -42.20529,
+    "posY": 1.05986512,
+    "posZ": 28.66166,
+    "rotX": 0.0127270427,
+    "rotY": 179.997772,
+    "rotZ": 1.874144,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Flow Like Water, Reach Like Air",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

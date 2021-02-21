@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -108.900177,
-    "posY": 0.9158997,
-    "posZ": -42.82009,
-    "rotX": 359.6087,
-    "rotY": 179.993927,
-    "rotZ": 0.00296626985,
-    "scaleX": 1.53204679,
+    "posX": -46.752533,
+    "posY": 2.04585886,
+    "posZ": -11.0879345,
+    "rotX": 359.974731,
+    "rotY": 179.496445,
+    "rotZ": 359.960449,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Steam Vents",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -105.538582,
-    "posY": 0.915801764,
-    "posZ": -42.8201866,
-    "rotX": 359.611145,
-    "rotY": 179.913818,
-    "rotZ": 0.00354409288,
-    "scaleX": 1.53204679,
+    "posX": -45.9169731,
+    "posY": 1.94564664,
+    "posZ": -10.65095,
+    "rotX": 359.9846,
+    "rotY": 183.407227,
+    "rotZ": 359.858765,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Encompassing Ward",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

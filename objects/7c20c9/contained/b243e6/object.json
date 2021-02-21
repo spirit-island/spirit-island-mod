@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -93.22,
-    "posY": 0.9018638,
-    "posZ": -14.8199978,
-    "rotX": 0.00444655167,
-    "rotY": 180.0001,
-    "rotZ": 1.34931666e-08,
-    "scaleX": 1.47602439,
+    "posX": -89.3,
+    "posY": 1.16930771,
+    "posZ": 9.259999,
+    "rotX": 0.00653451448,
+    "rotY": 180.000427,
+    "rotZ": -0.00262099644,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Plaguebearers",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

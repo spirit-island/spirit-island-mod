@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -113.37989,
-    "posY": 0.9000788,
-    "posZ": -37.7801,
-    "rotX": 0.00446633762,
-    "rotY": 179.992264,
-    "rotZ": -0.00013725282,
-    "scaleX": 1.53204679,
+    "posX": -45.9529877,
+    "posY": 2.07451034,
+    "posZ": -10.7281342,
+    "rotX": 0.0638260245,
+    "rotY": 181.503128,
+    "rotZ": 359.6846,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Elemental Boon",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

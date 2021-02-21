@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -40.5593071,
-    "posY": 1.99101853,
-    "posZ": -7.556363,
-    "rotX": 0.00444683945,
-    "rotY": 179.999954,
-    "rotZ": 8.548903e-08,
-    "scaleX": 1.53204679,
+    "posX": -40.2336464,
+    "posY": 1.28180563,
+    "posZ": 28.2701035,
+    "rotX": 0.546171248,
+    "rotY": 185.2629,
+    "rotZ": 8.495168,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Sea Monsters",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

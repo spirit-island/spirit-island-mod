@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.979706,
-    "posY": 0.9005165,
-    "posZ": -32.1800156,
-    "rotX": 0.00444646552,
-    "rotY": 179.995361,
-    "rotZ": -2.343791e-07,
-    "scaleX": 1.53204679,
+    "posX": -46.3161,
+    "posY": 2.019543,
+    "posZ": -11.1188927,
+    "rotX": 359.955231,
+    "rotY": 179.686844,
+    "rotZ": 359.9499,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Voracious Growth",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

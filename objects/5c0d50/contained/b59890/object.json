@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -112.26,
-    "posY": 0.9005165,
-    "posZ": -32.18,
-    "rotX": 0.004446744,
-    "rotY": 179.999313,
-    "rotZ": 1.07825983e-07,
-    "scaleX": 1.53204679,
+    "posX": -45.9935226,
+    "posY": 1.89390993,
+    "posZ": -10.62153,
+    "rotX": 359.977783,
+    "rotY": 178.837051,
+    "rotZ": 359.893646,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Dark and Tangled Woods",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

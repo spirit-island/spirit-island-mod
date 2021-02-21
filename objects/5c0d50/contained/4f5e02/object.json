@@ -1,15 +1,15 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -45.74944,
-    "posY": 1.2869767,
-    "posZ": -10.7253819,
-    "rotX": -0.00444655865,
-    "rotY": 180.0,
-    "rotZ": 179.977509,
-    "scaleX": 1.53204679,
+    "posX": -45.8928223,
+    "posY": 2.0233953,
+    "posZ": -10.6648769,
+    "rotX": 0.0452187769,
+    "rotY": 179.399078,
+    "rotZ": 359.7741,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Gift of Power",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

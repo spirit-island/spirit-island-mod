@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.97744,
-    "posY": 2.04795074,
-    "posZ": -22.65698,
-    "rotX": 15.8831,
-    "rotY": 178.670654,
-    "rotZ": 346.4257,
-    "scaleX": 1.3656503,
+    "posX": -45.1863976,
+    "posY": 1.24560714,
+    "posZ": 28.31644,
+    "rotX": 359.9852,
+    "rotY": 181.452835,
+    "rotZ": 3.35521555,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Portents of Disaster",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

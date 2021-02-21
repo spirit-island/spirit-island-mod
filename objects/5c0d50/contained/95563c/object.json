@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -14.2225971,
-    "posY": 1.99101841,
-    "posZ": -7.95595169,
-    "rotX": 0.00444653723,
-    "rotY": 180.0,
-    "rotZ": 3.19312221e-07,
-    "scaleX": 1.53204679,
+    "posX": -45.9080124,
+    "posY": 1.97221231,
+    "posZ": -10.602767,
+    "rotX": 359.983856,
+    "rotY": 180.244354,
+    "rotZ": 359.828217,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Nature's Resilience",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

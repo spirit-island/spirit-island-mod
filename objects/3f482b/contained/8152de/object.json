@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.98,
-    "posY": 0.9016465,
-    "posZ": -17.6199989,
-    "rotX": 0.004446421,
-    "rotY": 180.000015,
-    "rotZ": -1.95952925e-08,
-    "scaleX": 1.47602439,
+    "posX": -88.57573,
+    "posY": 1.16902,
+    "posZ": 20.4035263,
+    "rotX": 0.005943858,
+    "rotY": 180.0,
+    "rotZ": -0.00105161138,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Incite the Mob",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

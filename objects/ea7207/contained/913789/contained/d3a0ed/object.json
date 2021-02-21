@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.169258,
-    "posY": 2.04589748,
-    "posZ": -15.92872,
-    "rotX": 0.02869046,
-    "rotY": 179.039185,
-    "rotZ": 0.286086559,
-    "scaleX": 1.3656503,
+    "posX": -48.23705,
+    "posY": 1.24618471,
+    "posZ": 28.4608822,
+    "rotX": 0.0141727179,
+    "rotY": 180.281372,
+    "rotZ": 3.53027248,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Absorb Corruption",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

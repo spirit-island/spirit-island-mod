@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -50.09969,
-    "posY": 1.34166193,
-    "posZ": 45.09996,
-    "rotX": -9.04569461e-05,
-    "rotY": 180.00061,
-    "rotZ": 185.471786,
-    "scaleX": 1.53204679,
+    "posX": -42.82,
+    "posY": 3.51544452,
+    "posZ": 27.18,
+    "rotX": 1.78850377,
+    "rotY": 179.70195,
+    "rotZ": 166.769943,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Forests of Living Obsidian",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

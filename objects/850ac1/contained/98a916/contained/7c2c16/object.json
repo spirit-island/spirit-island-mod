@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 23.260004,
-    "posY": 1.14177144,
-    "posZ": 33.340004,
-    "rotX": -0.00141096115,
-    "rotY": 179.996246,
-    "rotZ": 180.000458,
-    "scaleX": 1.53204679,
+    "posX": -42.82,
+    "posY": 1.65654683,
+    "posZ": 27.18,
+    "rotX": 1.83694935,
+    "rotY": 179.80545,
+    "rotZ": 165.3556,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Transform to a Murderous Darkness",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

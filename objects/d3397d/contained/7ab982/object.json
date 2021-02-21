@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -92.72434,
-    "posY": 2.11976337,
-    "posZ": -8.036941,
-    "rotX": 0.004446757,
+    "posX": -106.30751,
+    "posY": 1.18857813,
+    "posZ": 31.436245,
+    "rotX": 0.00464445073,
     "rotY": 180.0,
-    "rotZ": -9.74754855e-08,
-    "scaleX": 1.53204679,
+    "rotZ": 180.000244,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Too Near the Jungle",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

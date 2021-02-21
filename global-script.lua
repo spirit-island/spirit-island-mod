@@ -63,6 +63,7 @@ cityBag = "a245f8"
 selectedColors = {}
 selectedBoards = {}
 blightCards = {}
+fastDiscount = 0
 
 playerBlocks = {
     Red = "c68e2c",
@@ -224,6 +225,7 @@ function onSave()
         selectedBoards = selectedBoards,
         numPlayers = numPlayers,
         blightCards = blightCards,
+        fastDiscount = fastDiscount,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -381,6 +383,7 @@ function onLoad(saved_data)
         blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
+        fastDiscount = loaded_data.fastDiscount
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -3135,9 +3138,13 @@ function setupPlayerArea(params)
             for j = 1, 8 do
                 outTable[j] = outTable[j] + elemTable[j]
             end
+            local cost = inTableOfElemStrCards[i].getVar("energy")
             -- Skip counting locked card's energy (Aid from Lesser Spirits)
-            if not inTableOfElemStrCards[i].getLock() and inTableOfElemStrCards[i].getVar("energy") ~= nil then
-                energy = energy + inTableOfElemStrCards[i].getVar("energy")
+            if not inTableOfElemStrCards[i].getLock() and cost ~= nil then
+                energy = energy + cost
+                if inTableOfElemStrCards[i].hasTag("Fast") then
+                    energy = energy - fastDiscount
+                end
             end
         end
         return outTable
@@ -3189,7 +3196,7 @@ function payEnergy(target_obj, source_color, alt_click)
 
     local paid = updateEnergyCounter(source_color, false)
     if not paid then
-        paid = payEnergyTokens(source_color)
+        paid = payEnergyTokens(source_color, nil)
     end
     if paid then
         selectedColors[source_color].paid = true
@@ -3204,17 +3211,19 @@ function updateEnergyCounter(color, refund)
     end
     local cost = getEnergyLabel(color)
     local energy = selectedColors[color].counter.getValue()
-    if not refund and cost > energy then
-        return false
-    end
     if refund then
         cost = cost * -1
+    end
+    if cost > energy then
+        return false
     end
     selectedColors[color].counter.setValue(energy - cost)
     return true
 end
-function payEnergyTokens(color)
-    local cost = getEnergyLabel(color)
+function payEnergyTokens(color, cost)
+    if cost == nil then
+        cost = getEnergyLabel(color)
+    end
     local energy = 0
     local zone = getObjectFromGUID(elementScanZones[color])
     local objects = zone.getObjects()
@@ -3285,24 +3294,27 @@ function refundEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
 end
-function refundEnergyTokens(color, energy)
-    if energy == nil then
-        energy = getEnergyLabel(color)
+function refundEnergyTokens(color, cost)
+    if cost == nil then
+        cost = getEnergyLabel(color)
+    end
+    if cost < 0 then
+        return payEnergyTokens(color, -cost)
     end
     local zone = getObjectFromGUID(elementScanZones[color])
-    while energy >= 3 do
+    while cost >= 3 do
         threeEnergyBag.takeObject({
             position = zone.getPosition()+Vector(-10,2,-5),
             rotation = Vector(0,180,0),
         })
-        energy = energy - 3
+        cost = cost - 3
     end
-    while energy >= 1 do
+    while cost >= 1 do
         oneEnergyBag.takeObject({
             position = zone.getPosition()+Vector(-10,2,-3),
             rotation = Vector(0,180,0),
         })
-        energy = energy - 1
+        cost = cost - 1
     end
     return true
 end

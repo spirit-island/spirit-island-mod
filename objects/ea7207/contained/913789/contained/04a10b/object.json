@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.204521,
-    "posY": 2.207959,
-    "posZ": -15.8850861,
-    "rotX": 359.788361,
-    "rotY": 180.618576,
-    "rotZ": 359.9371,
-    "scaleX": 1.3656503,
+    "posX": -50.66012,
+    "posY": 1.4014771,
+    "posZ": 28.8593712,
+    "rotX": 359.883667,
+    "rotY": 179.940338,
+    "rotZ": 6.682782,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Prowling Panthers",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

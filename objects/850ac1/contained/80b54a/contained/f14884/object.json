@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.49277,
-    "posY": 2.25784135,
-    "posZ": -27.5501385,
-    "rotX": 359.98877,
-    "rotY": 178.849,
-    "rotZ": 359.823883,
-    "scaleX": 1.53204679,
+    "posX": -29.2600021,
+    "posY": 1.35696435,
+    "posZ": 20.8679066,
+    "rotX": 0.2792808,
+    "rotY": 185.521088,
+    "rotZ": 2.89505219,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Carapaced Land",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

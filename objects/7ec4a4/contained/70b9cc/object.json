@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -92.70122,
-    "posY": 1.99101853,
-    "posZ": -14.0951691,
-    "rotX": 0.00444672629,
-    "rotY": 180.000015,
-    "rotZ": -1.18275985e-07,
-    "scaleX": 1.53204679,
+    "posX": -88.3693161,
+    "posY": 1.18473947,
+    "posZ": 53.8296356,
+    "rotX": 0.004404696,
+    "rotY": 179.999939,
+    "rotZ": -0.00476100948,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Mantle of Dread",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

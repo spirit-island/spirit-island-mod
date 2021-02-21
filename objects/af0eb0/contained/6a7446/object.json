@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -106.1,
-    "posY": 0.901603043,
-    "posZ": -18.1799984,
-    "rotX": 0.00444649672,
-    "rotY": 180.000015,
-    "rotZ": 1.42110707e-07,
-    "scaleX": 1.529637,
+    "posX": -123.097122,
+    "posY": 1.17735744,
+    "posZ": 9.158252,
+    "rotX": -0.0015533797,
+    "rotY": 179.999985,
+    "rotZ": 180.147079,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Study the Invaders' Fears",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

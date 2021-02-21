@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -101.62,
-    "posY": 0.937620163,
-    "posZ": -15.9400005,
-    "rotX": 0.00359476148,
-    "rotY": 179.9522,
-    "rotZ": -3.33329922e-06,
-    "scaleX": 1.53204679,
+    "posX": -31.06,
+    "posY": 3.12471247,
+    "posZ": 17.66,
+    "rotX": 5.94026327,
+    "rotY": 179.997833,
+    "rotZ": 180.113373,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Dire Metamorphosis",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

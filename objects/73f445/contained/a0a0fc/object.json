@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -77.54,
-    "posY": 0.9018638,
-    "posZ": -14.8199978,
-    "rotX": 0.00444658054,
-    "rotY": 180.0,
-    "rotZ": 2.62465054e-08,
-    "scaleX": 1.47540212,
+    "posX": -72.5,
+    "posY": 1.18387628,
+    "posZ": 9.26,
+    "rotX": 359.9872,
+    "rotY": 179.999939,
+    "rotZ": 0.0006537794,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "The Fog Closes in",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

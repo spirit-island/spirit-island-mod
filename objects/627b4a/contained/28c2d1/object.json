@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -121.78,
-    "posY": 0.90177685,
-    "posZ": -15.9400034,
-    "rotX": 0.0044465526,
-    "rotY": 180.000046,
-    "rotZ": -6.786888e-08,
-    "scaleX": 1.53653038,
+    "posX": -122.9,
+    "posY": 1.17804933,
+    "posZ": -1.94000173,
+    "rotX": 0.00660905568,
+    "rotY": 179.999985,
+    "rotZ": -0.00243876339,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53653038
+    "scaleZ": 1.53
   },
   "Nickname": "Boon of Reimagining",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

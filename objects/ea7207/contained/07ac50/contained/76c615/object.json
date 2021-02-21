@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.661606,
-    "posY": 2.125201,
-    "posZ": -23.1194153,
-    "rotX": 359.9683,
-    "rotY": 177.665,
-    "rotZ": 359.978058,
-    "scaleX": 1.3656503,
+    "posX": -37.744442,
+    "posY": 1.31661844,
+    "posZ": 28.2115669,
+    "rotX": 359.210022,
+    "rotY": 185.734116,
+    "rotZ": 3.884828,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Volcanic Eruption",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

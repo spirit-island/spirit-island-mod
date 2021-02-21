@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.48343,
-    "posY": 2.20702076,
-    "posZ": -27.629797,
-    "rotX": 359.926025,
-    "rotY": 179.796066,
-    "rotZ": 359.837158,
-    "scaleX": 1.53204679,
+    "posX": -33.3015175,
+    "posY": 1.31830728,
+    "posZ": 20.4833374,
+    "rotX": 0.182773024,
+    "rotY": 182.324539,
+    "rotZ": 11.3395605,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Thriving Chokefungus",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

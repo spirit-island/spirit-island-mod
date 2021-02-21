@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -107.22,
-    "posY": 0.9017334,
-    "posZ": -16.4999981,
-    "rotX": 0.00444639567,
-    "rotY": 180.000015,
-    "rotZ": 1.29572e-07,
-    "scaleX": 1.53145456,
+    "posX": -72.63884,
+    "posY": 1.20675957,
+    "posZ": -3.18579769,
+    "rotX": 0.03576536,
+    "rotY": 179.999908,
+    "rotZ": 180.211945,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53145456
+    "scaleZ": 1.53
   },
   "Nickname": "Ways of Shore and Heartland",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

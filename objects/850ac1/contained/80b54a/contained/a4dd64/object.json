@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -84.48442,
-    "posY": 2.119703,
-    "posZ": -11.255785,
-    "rotX": 0.004446716,
-    "rotY": 180.000031,
-    "rotZ": -3.31764653e-07,
-    "scaleX": 1.53204679,
+    "posX": -27.852684,
+    "posY": 1.03216863,
+    "posZ": 20.6846466,
+    "rotX": 0.0008772791,
+    "rotY": 178.446579,
+    "rotZ": 4.20050573,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Hazards Spread Across the Island",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

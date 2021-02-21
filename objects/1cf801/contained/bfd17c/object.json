@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.17891,
-    "posY": 2.11978745,
-    "posZ": -8.343232,
-    "rotX": 0.00444671558,
-    "rotY": 180.0,
-    "rotZ": -7.2319736e-08,
-    "scaleX": 1.53204679,
+    "posX": -88.34328,
+    "posY": 1.29076219,
+    "posZ": 31.3518982,
+    "rotX": 0.00442728167,
+    "rotY": 179.9986,
+    "rotZ": 176.770935,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Threatening Flamges",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

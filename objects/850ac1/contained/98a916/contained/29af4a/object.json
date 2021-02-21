@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.791428,
-    "posY": 2.05643559,
-    "posZ": -23.3742523,
-    "rotX": 0.011345977,
-    "rotY": 180.853668,
-    "rotZ": -0.003068992,
-    "scaleX": 1.53204679,
+    "posX": -41.549778,
+    "posY": 1.08078122,
+    "posZ": 27.6161976,
+    "rotX": 0.00614382839,
+    "rotY": 179.524857,
+    "rotZ": 6.014494,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Utter a Curse of Dread and Bone",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

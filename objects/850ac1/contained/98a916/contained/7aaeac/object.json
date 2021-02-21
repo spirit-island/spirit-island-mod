@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.858994,
-    "posY": 2.15368772,
-    "posZ": -23.06536,
-    "rotX": 0.04297383,
-    "rotY": 181.094864,
-    "rotZ": 0.03303798,
-    "scaleX": 1.53204679,
+    "posX": -40.7383881,
+    "posY": 1.18067491,
+    "posZ": 28.1830425,
+    "rotX": 0.107041389,
+    "rotY": 181.20372,
+    "rotZ": 7.01201534,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Voice of Command",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

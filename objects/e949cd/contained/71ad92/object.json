@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -63.52822,
-    "posY": 2.120958,
-    "posZ": 6.837858,
-    "rotX": 0.00444622664,
-    "rotY": 179.999985,
-    "rotZ": 9.883965e-06,
-    "scaleX": 1.53204679,
+    "posX": -72.6145248,
+    "posY": 1.1942091,
+    "posZ": 31.4292278,
+    "rotX": -0.005529738,
+    "rotY": 179.999969,
+    "rotZ": 180.196426,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Elemental Aegis",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

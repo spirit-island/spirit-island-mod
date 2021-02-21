@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.61194,
-    "posY": 1.99101853,
-    "posZ": -12.1740923,
-    "rotX": 0.004446727,
-    "rotY": 180.0,
-    "rotZ": -9.654111e-08,
-    "scaleX": 1.53204679,
+    "posX": -122.020927,
+    "posY": 1.19923449,
+    "posZ": 42.64795,
+    "rotX": 0.00452123,
+    "rotY": 179.999847,
+    "rotZ": 1.50932674e-05,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Manifestation of Power and Glory",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

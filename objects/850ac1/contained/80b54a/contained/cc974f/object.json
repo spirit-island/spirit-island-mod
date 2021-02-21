@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.4704056,
-    "posY": 2.183535,
-    "posZ": -27.46291,
-    "rotX": 359.916565,
-    "rotY": 181.252274,
-    "rotZ": 359.910919,
-    "scaleX": 1.53204679,
+    "posX": -32.280056,
+    "posY": 1.20020664,
+    "posZ": 20.4037743,
+    "rotX": 0.0291767549,
+    "rotY": 183.0936,
+    "rotZ": 9.336676,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Sunset's Fire Flows Across the Land",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

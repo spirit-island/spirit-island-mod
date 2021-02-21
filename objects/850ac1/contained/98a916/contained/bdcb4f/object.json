@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.767181,
-    "posY": 2.255673,
-    "posZ": -23.122076,
-    "rotX": 359.95282,
-    "rotY": 183.029831,
-    "rotZ": 0.0783691,
-    "scaleX": 1.53204679,
+    "posX": -39.95519,
+    "posY": 1.33442128,
+    "posZ": 27.3408451,
+    "rotX": 359.611023,
+    "rotY": 179.593552,
+    "rotZ": 3.20574427,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Trees Radiate Celestial Brilliance",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

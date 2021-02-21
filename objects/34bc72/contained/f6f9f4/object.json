@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -95.87215,
-    "posY": 1.99101853,
-    "posZ": -13.9191942,
-    "rotX": 0.00444674445,
-    "rotY": 180.0,
-    "rotZ": -9.978725e-08,
-    "scaleX": 1.53204679,
+    "posX": -89.62705,
+    "posY": 1.2648226,
+    "posZ": 42.6247025,
+    "rotX": 0.00300219748,
+    "rotY": 180.000885,
+    "rotZ": 0.3643338,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Dread Apparitions",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

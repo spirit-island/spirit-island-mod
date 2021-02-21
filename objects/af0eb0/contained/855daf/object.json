@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.18,
-    "posY": 0.9016465,
-    "posZ": -17.6199989,
-    "rotX": 0.004446613,
-    "rotY": 180.000046,
-    "rotZ": 2.2016107e-07,
-    "scaleX": 1.529637,
+    "posX": -123.097122,
+    "posY": 1.1867764,
+    "posZ": 9.158253,
+    "rotX": 0.022815479,
+    "rotY": 179.998428,
+    "rotZ": 0.02558704,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Share Secrets of Survival",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

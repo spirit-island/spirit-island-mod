@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -95.1962051,
-    "posY": 1.99101853,
-    "posZ": -14.3080359,
-    "rotX": 0.00444670534,
-    "rotY": 180.0,
-    "rotZ": -1.46000559e-07,
-    "scaleX": 1.53204679,
+    "posX": -71.57952,
+    "posY": 1.17481983,
+    "posZ": 53.8248558,
+    "rotX": 0.00836511049,
+    "rotY": 179.999939,
+    "rotZ": 0.00215556659,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "A Year of Perfect Stillness",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

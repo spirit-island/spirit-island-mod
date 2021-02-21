@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -110.58,
-    "posY": 0.901603043,
-    "posZ": -18.1799984,
-    "rotX": 0.004446722,
-    "rotY": 180.000015,
-    "rotZ": -7.51568336e-08,
-    "scaleX": 1.47540212,
+    "posX": -72.9928741,
+    "posY": 1.25519156,
+    "posZ": 20.28231,
+    "rotX": -0.00354590244,
+    "rotY": 179.999969,
+    "rotZ": 180.182144,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "Pursue with Scratches, Pecks, and Stings",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

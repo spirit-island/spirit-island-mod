@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.844917,
-    "posY": 2.2584374,
-    "posZ": -23.20557,
-    "rotX": 0.0215433463,
-    "rotY": 181.415421,
-    "rotZ": 359.957245,
-    "scaleX": 1.3656503,
+    "posX": -43.5833969,
+    "posY": 1.23406041,
+    "posZ": 28.093441,
+    "rotX": 359.664917,
+    "rotY": 182.637192,
+    "rotZ": 5.44889832,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Cast Down into the Briny Deep",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

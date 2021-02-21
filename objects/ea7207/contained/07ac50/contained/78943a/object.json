@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.419586,
-    "posY": 1.04427338,
-    "posZ": -22.1000481,
-    "rotX": 0.004146813,
-    "rotY": 180.001266,
-    "rotZ": 1.2944181,
-    "scaleX": 1.3656503,
+    "posX": -43.9395142,
+    "posY": 1.09024906,
+    "posZ": 28.3005047,
+    "rotX": 359.970245,
+    "rotY": 179.996185,
+    "rotZ": 183.4343,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Smoothering Infestation",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

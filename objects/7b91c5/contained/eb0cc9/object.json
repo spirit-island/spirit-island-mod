@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.85406,
-    "posY": 1.99101853,
-    "posZ": -15.08193,
-    "rotX": 0.00444673747,
-    "rotY": 180.0,
-    "rotZ": -9.405372e-08,
-    "scaleX": 1.53204679,
+    "posX": -122.02092,
+    "posY": 1.17420876,
+    "posZ": 42.64795,
+    "rotX": 0.004971858,
+    "rotY": 180.000046,
+    "rotZ": 180.008209,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Voice of Thunder",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

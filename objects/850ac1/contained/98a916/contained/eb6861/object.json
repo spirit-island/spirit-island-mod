@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.829323,
-    "posY": 2.05192685,
-    "posZ": -23.14434,
-    "rotX": 0.0219551083,
-    "rotY": 180.73082,
-    "rotZ": 359.84082,
-    "scaleX": 1.53204679,
+    "posX": -43.73032,
+    "posY": 1.24476719,
+    "posZ": 27.3145275,
+    "rotX": 0.06281382,
+    "rotY": 179.047775,
+    "rotZ": 3.3380847,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Angry Bears",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

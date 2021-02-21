@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.3348,
-    "posY": 1.99101853,
-    "posZ": -13.2326107,
-    "rotX": 0.004446718,
-    "rotY": 180.0,
-    "rotZ": -6.124625e-08,
-    "scaleX": 1.53204679,
+    "posX": -106.375229,
+    "posY": 1.174309,
+    "posZ": 42.50939,
+    "rotX": 0.0025225142,
+    "rotY": 179.999954,
+    "rotZ": -0.0013261931,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Fields Choked with Growth",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

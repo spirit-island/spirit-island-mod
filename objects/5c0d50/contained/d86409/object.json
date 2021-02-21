@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -108.340004,
-    "posY": 0.900473058,
-    "posZ": -32.74,
-    "rotX": 0.004446764,
-    "rotY": 180.000717,
-    "rotZ": 4.418359e-08,
-    "scaleX": 1.53204679,
+    "posX": -46.6649055,
+    "posY": 1.94027221,
+    "posZ": -11.1165066,
+    "rotX": 359.940063,
+    "rotY": 178.862579,
+    "rotZ": 359.987762,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Quicken the Earth's Struggles",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

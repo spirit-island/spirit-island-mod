@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.830368,
-    "posY": 2.30809116,
-    "posZ": -23.1861,
-    "rotX": 359.942352,
-    "rotY": 179.65477,
-    "rotZ": 0.138729453,
-    "scaleX": 1.53204679,
+    "posX": -42.74625,
+    "posY": 1.23451531,
+    "posZ": 27.34364,
+    "rotX": 359.6287,
+    "rotY": 179.367126,
+    "rotZ": 3.23378253,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Dream of the Untouched Land",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

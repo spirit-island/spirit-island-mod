@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.4.1"
+version = "1.4.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -839,6 +839,24 @@ function SetupPowerDecks()
     getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
     getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
 
+    exploratoryPowersDone = false
+    if not gameStarted and SetupChecker.getVar("exploratoryVOTD") then
+        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        deck.takeObject({
+            guid = "152fe0",
+            callback_function = function(obj)
+                local temp = obj.setState(2)
+                Wait.frames(function()
+                    deck.putObject(temp)
+                    deck.shuffle()
+                    exploratoryPowersDone = true
+                end, 1)
+            end,
+        })
+    else
+        exploratoryPowersDone = true
+    end
+
     SetupChecker.setScale(Vector(1,1,1))
     SetupChecker.setRotationSmooth(Vector(0,180,0))
     SetupChecker.setPositionSmooth(Vector(-41.95,0.2,-7.97))
@@ -885,7 +903,7 @@ function SetupPowerDecks()
             tooltip        = "Click to learn a Minor Power",
         })
         stagesSetup = stagesSetup + 1
-    end, function() return not SetupChecker.isSmoothMoving() end)
+    end, function() return not SetupChecker.isSmoothMoving() and exploratoryPowersDone end)
     return 1
 end
 handOffset = Vector(0,0,35)
@@ -1803,7 +1821,6 @@ function PostSetup()
 
     local postSetupSteps = 0
     local firstAdversarySetup = false
-    local exploratoryPowersDone = false
 
     if adversaryCard == nil then
         difficultyString = difficultyString.."No Adversary\n"
@@ -1820,24 +1837,6 @@ function PostSetup()
     difficultyString = difficultyString.."Difficulty "..difficulty
     createDifficultyButton()
 
-    if SetupChecker.getVar("exploratoryVOTD") then
-        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
-        deck.takeObject({
-            guid = "152fe0",
-            callback_function = function(obj)
-                local temp = obj.setState(2)
-                Wait.frames(function()
-                    deck.putObject(temp)
-                    deck.shuffle()
-                    postSetupSteps = postSetupSteps + 1
-                    exploratoryPowersDone = true
-                end, 1)
-            end,
-        })
-    else
-        postSetupSteps = postSetupSteps + 1
-        exploratoryPowersDone = true
-    end
     if SetupChecker.getVar("exploratoryBODAN") then
         local spirit = getObjectFromGUID("606f23").setState(2)
         if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
@@ -1866,59 +1865,59 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
     if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        -- Wait for all exploratory powers to have state changed
-        Wait.condition(function()
-            scenarioCard.call("PostSetup",{})
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
-        end, function() return exploratoryPowersDone end)
+        scenarioCard.call("PostSetup",{})
+        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
     end
 
     if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
-        local zone = getObjectFromGUID(invaderDeckZone)
-        local invaderDeck = zone.getObjects()[1]
-        local cards = invaderDeck.getObjects()
-        local stageII = nil
-        local stageIII = nil
-        for _,card in pairs(cards) do
-            local start,finish = string.find(card.lua_script,"cardInvaderStage=")
-            if start ~= nil then
-                local stage = tonumber(string.sub(card.lua_script,finish+1))
-                local special = string.find(card.lua_script,"special=")
-                if special ~= nil then
-                    stage = stage - 1
-                end
-                if stage == 2 and stageII == nil then
-                    stageII = card.index
-                elseif stage == 3 and stageIII == nil then
-                    stageIII = card.index
-                end
-            end
-            if stageII ~= nil and stageIII ~= nil then
-                break
-            end
-        end
-        if stageII == nil then stageII = 0 end
-        if stageIII == nil then stageIII = 0 end
-        if stageII <= stageIII then stageIII = stageIII + 1 end
-
-        setupCommandCard(invaderDeck, stageII, "d46930")
+        -- Setup up command cards last
         Wait.condition(function()
-            setupCommandCard(invaderDeck, stageIII, "a578fe")
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
+            local zone = getObjectFromGUID(invaderDeckZone)
+            local invaderDeck = zone.getObjects()[1]
+            local cards = invaderDeck.getObjects()
+            local stageII = nil
+            local stageIII = nil
+            for _,card in pairs(cards) do
+                local start,finish = string.find(card.lua_script,"cardInvaderStage=")
+                if start ~= nil then
+                    local stage = tonumber(string.sub(card.lua_script,finish+1))
+                    local special = string.find(card.lua_script,"special=")
+                    if special ~= nil then
+                        stage = stage - 1
+                    end
+                    if stage == 2 and stageII == nil then
+                        stageII = card.index
+                    elseif stage == 3 and stageIII == nil then
+                        stageIII = card.index
+                    end
+                end
+                if stageII ~= nil and stageIII ~= nil then
+                    break
+                end
+            end
+            if stageII == nil then stageII = 0 end
+            if stageIII == nil then stageIII = 0 end
+            if stageII <= stageIII then stageIII = stageIII + 1 end
+
+            setupCommandCard(invaderDeck, stageII, "d46930")
+            Wait.condition(function()
+                setupCommandCard(invaderDeck, stageIII, "a578fe")
+                Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
+                    local objs = zone.getObjects()
+                    return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
+                end)
+            end, function()
                 local objs = zone.getObjects()
-                return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
+                return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function()
-            local objs = zone.getObjects()
-            return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
-        end)
+        end, function() return postSetupSteps == 4 end)
     else
         postSetupSteps = postSetupSteps + 1
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function()log(postSetupSteps) return postSetupSteps == 6 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 5 end)
     return 1
 end
 function createDifficultyButton()
@@ -1956,7 +1955,6 @@ end
 function StartGame()
     gamePaused = false
     gameStarted = true
-    exploratory()
     enableUI()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
@@ -1993,8 +1991,6 @@ function StartGame()
         end
     end
     return 1
-end
-function exploratory()
 end
 function enableUI()
     local colors = {}
@@ -2829,13 +2825,11 @@ function deleteObject(obj, fear)
         bag = townBag
         if fear then
             aidBoard.call("addFear")
-            aidBoard.call("addFear")
         end
     elseif string.sub(obj.getName(),1,4) == "City" then
         obj.setRotation(Vector(0,180,0))
         bag = cityBag
         if fear then
-            aidBoard.call("addFear")
             aidBoard.call("addFear")
             aidBoard.call("addFear")
         end
@@ -3050,13 +3044,13 @@ function setupPlayerArea(params)
         -- Energy Cost (button index 0)
         obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
-            position={0,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={0.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
         obj.createButton({
             label="", click_function="nullFunc", function_owner=Global,
-            position={-5,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Other buttons to follow/be fixed later.
@@ -3138,7 +3132,8 @@ function setupPlayerArea(params)
             for j = 1, 8 do
                 outTable[j] = outTable[j] + elemTable[j]
             end
-            if inTableOfElemStrCards[i].getVar("energy") ~= nil then
+            -- Skip counting locked card's energy (Aid from Lesser Spirits)
+            if not inTableOfElemStrCards[i].getLock() and inTableOfElemStrCards[i].getVar("energy") ~= nil then
                 energy = energy + inTableOfElemStrCards[i].getVar("energy")
             end
         end
@@ -3364,6 +3359,7 @@ function updateSwapButtons()
     end
 end
 function updatePlaySpiritButton(color)
+    if color == "Grey" then return end
     if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
         playerTables[color].editButton({index=2, label="", height=0, width=0})
     else

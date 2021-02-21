@@ -105,17 +105,9 @@
             <Row class="header">
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
             </Row>
-            <Row id="events" class="toggle">
+            <Row class="toggle">
                 <Cell><Toggle id="bnc" onValueChanged="toggleBnC">Branch &amp; Claw</Toggle></Cell>
                 <Cell><Toggle id="je" onValueChanged="toggleJE">Jagged Earth</Toggle></Cell>
-            </Row>
-            <Row id="events" class="toggle">
-                <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">B&amp;C Events</Toggle></Cell>
-                <Cell><Toggle id="jeEvents" onValueChanged="toggleJEEvents">JE Events</Toggle></Cell>
-            </Row>
-            <Row class="spacing"/>
-            <Row class="toggle">
-                <Cell><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Blight Card</Toggle></Cell>
             </Row>
             <Row class="spacing"/>
             <Row>
@@ -144,43 +136,50 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2200 -3000 12">
+<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2200 -2825 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
-                <Cell><Text>Variant Rules</Text></Cell>
+                <Cell columnSpan="2"><Text>Variant Rules</Text></Cell>
+            </Row>
+            <Row id="events" class="toggle">
+                <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">Use B&amp;C Events</Toggle></Cell>
+                <Cell><Toggle id="jeEvents" onValueChanged="toggleJEEvents">Use JE Events</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="extraBoard" onValueChanged="toggleExtraBoard" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="strangeMadness" onValueChanged="toggleStrangeMadness" tooltip="An Event that was removed for being too swingy, you&#xA;should not add this with Russia or Many Minds in play">Add "A Strange Madness Among Beasts" Event</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="extraBoard" onValueChanged="toggleExtraBoard" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="strangeMadness" onValueChanged="toggleStrangeMadness" tooltip="An Event that was removed for being too swingy, you&#xA;should not add this with Russia or Many Minds in play">Add "A Strange Madness Among Beasts" Event</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="soloBlight" isOn="true" onValueChanged="toggleSoloBlight" tooltip="Blight Cards which only have 2 Blight per Player&#xA;when flipped are not recommended in Solo games">Remove 2 Blight per player cards (Solo)</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat is as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="soloBlight" isOn="true" onValueChanged="toggleSoloBlight" tooltip="Blight Cards which only have 2 Blight per Player&#xA;when flipped are not recommended in Solo games">Remove 2 Blight per player cards (Solo)</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat is as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell><Toggle id="scaleBoard" onValueChanged="toggleScale" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Island Boards</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="scaleBoard" onValueChanged="toggleScale" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Island Boards</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3625 12">
+<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3575 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -208,7 +207,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -4225 12">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -4175 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

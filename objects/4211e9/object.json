@@ -4,9 +4,9 @@
     "posX": -42.2612648,
     "posY": 0.923605,
     "posZ": 54.06114,
-    "rotX": 1.28255087e-08,
+    "rotX": -1.81697268e-10,
     "rotY": 180.000549,
-    "rotZ": -1.266421e-06,
+    "rotZ": -1.26313648e-06,
     "scaleX": 1.5,
     "scaleY": 1.0,
     "scaleZ": 1.5
@@ -20,6 +20,9 @@
     "b": 0.709803939,
     "a": 0.0
   },
+  "Tags": [
+    "Fear"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,

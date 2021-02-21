@@ -1,15 +1,15 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -15.3682032,
-    "posY": 0.9166774,
-    "posZ": 59.6603,
-    "rotX": 0.00444660662,
-    "rotY": 180.00975,
-    "rotZ": 180.0,
-    "scaleX": 1.5,
+    "posX": -46.1800041,
+    "posY": 0.9888579,
+    "posZ": 27.74,
+    "rotX": 0.005117071,
+    "rotY": 180.0,
+    "rotZ": -0.001902116,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53
   },
   "Nickname": "",
   "Description": "",
@@ -19,6 +19,9 @@
     "g": 0.713235259,
     "b": 0.713235259
   },
+  "Tags": [
+    "Fear"
+  ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,
   "Grid": true,

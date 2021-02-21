@@ -461,13 +461,25 @@ end
 function getFearDeck(fearDeckZone)
     local fearDeck = nil
     for _,obj in pairs(fearDeckZone.getObjects()) do
-        if obj.type == "Deck" or obj.type == "Card" then
-            if fearDeck == nil then
-                fearDeck = obj
-            else
-                broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
-                return nil
+        if obj.type == "Deck" then
+            local found = false
+            for _,o in pairs(obj.getObjects()) do
+                for _,tag in pairs(o.tags) do
+                    if tag == "Fear" then
+                        fearDeck = obj
+                        found = true
+                        break
+                    end
+                end
+                if found then
+                    break
+                end
             end
+        elseif obj.type == "Card" and obj.hasTag("Fear") then
+            fearDeck = obj
+        else
+            broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
+            return nil
         end
     end
     return fearDeck

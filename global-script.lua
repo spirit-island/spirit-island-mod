@@ -64,6 +64,7 @@ selectedColors = {}
 selectedBoards = {}
 blightCards = {}
 fastDiscount = 0
+currentPhase = 1
 
 playerBlocks = {
     Red = "c68e2c",
@@ -226,6 +227,7 @@ function onSave()
         numPlayers = numPlayers,
         blightCards = blightCards,
         fastDiscount = fastDiscount,
+        currentPhase = currentPhase,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -384,6 +386,7 @@ function onLoad(saved_data)
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
         fastDiscount = loaded_data.fastDiscount
+        currentPhase = loaded_data.currentPhase
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -397,6 +400,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
+            updateCurrentPhase(false)
             seaTile.registerCollisions(false)
             SetupPowerDecks()
             Wait.condition(function()
@@ -2089,6 +2093,10 @@ function timePassesCo()
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end
+
+    updateCurrentPhase(true)
+    currentPhase = 1
+    updateCurrentPhase(false)
 
     broadcastToAll("Time Passes...", Color.SoftBlue)
     local quote = quotes[math.random(#quotes)]
@@ -4027,4 +4035,58 @@ function ensureCardInPlay(card)
             end
         end
     end
+end
+
+function enterSpiritPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 1 then return end
+    broadcastToAll("Entering Spirit Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 1
+    updateCurrentPhase(false)
+end
+function enterFastPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 2 then return end
+    broadcastToAll("Entering Fast Power Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 2
+    updateCurrentPhase(false)
+end
+function enterInvaderPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 3 then return end
+    broadcastToAll("Entering Invader Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 3
+    updateCurrentPhase(false)
+end
+function enterSlowPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 4 then return end
+    broadcastToAll("Entering Slow Power Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 4
+    updateCurrentPhase(false)
+end
+function updateCurrentPhase(clear)
+    local id = ""
+    if currentPhase == 1 then
+        id = "spiritPhase"
+    elseif currentPhase == 2 then
+        id = "fastPhase"
+    elseif currentPhase == 3 then
+        id = "invaderPhase"
+    elseif currentPhase == 4 then
+        id = "slowPhase"
+    end
+    local attributes = {
+        textColor = "#FFFFFF"
+    }
+    if clear then
+        attributes.text = string.sub(UI.getAttribute(id, "text"), 2)
+    else
+        attributes.text = ">"..UI.getAttribute(id, "text")
+    end
+    UI.setAttributes(id, attributes)
 end

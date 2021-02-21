@@ -117,12 +117,12 @@
 </Panel>
 <Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="225" height="345" color="#00000044" rectAlignment="UpperLeft" offsetXY="80 0">
     <VerticalLayout>
-        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Spirit Phase</Text>
+        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">&gt;Spirit Phase</Button>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Growth</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Gain Energy</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Choose Powers</Text>
-        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Fast Power Phase</Text>
-        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Invader Phase</Text>
+        <Button id="fastPhase" onClick="enterFastPhase" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Fast Power Phase</Button>
+        <Button id="invaderPhase" onClick="enterInvaderPhase" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Invader Phase</Button>
         <Text id="panelTurnOrderBlight" active="false" fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Blighted Island</Text>
         <Text id="panelTurnOrderEvent" active="false" fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Event</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Fear</Text>
@@ -130,8 +130,8 @@
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Build</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Explore</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Advance Invader Cards</Text>
-        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Slow Power Phase</Text>
-        <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft" fontStyle="bold">Time Passes</Text>
+        <Button id="slowPhase" onClick="enterSlowPhase" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Slow Power Phase</Button>
+        <Button id="timePassesPhase" onClick="timePassesUI" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Time Passes</Button>
     </VerticalLayout>
 </Panel>
 <Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#00000044" rectAlignment="LowerRight" offsetXY="0 260">

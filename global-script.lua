@@ -171,6 +171,7 @@ interactableObjectsToDisableOnLoad = {
 
 ---- TTS Events Section
 function onScriptingButtonDown(index, playerColor)
+    if playerColor == "Grey" then return end
     DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)
 end
 function onObjectDrop(player_color, dropped_object)
@@ -918,6 +919,7 @@ function MajorPowerC(obj, player_color, alt_click)
     startDealPowerCards("MajorPower", Player[player_color], cards)
 end
 function MajorPowerUI(player, button)
+    if player.color == "Grey" then return end
     local cards = 4
     -- button is "-1"/"1" for left click/single touch
     if math.abs(button) > 1 then
@@ -933,6 +935,7 @@ function MinorPowerC(obj, player_color, alt_click)
     startDealPowerCards("MinorPower", Player[player_color], cards)
 end
 function MinorPowerUI(player, button)
+    if player.color == "Grey" then return end
     local cards = 4
     -- button is "-1"/"1" for left click/single touch
     if math.abs(button) > 1 then

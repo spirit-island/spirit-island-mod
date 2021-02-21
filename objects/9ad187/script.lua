@@ -52,6 +52,7 @@ exploratoryWar = false
 updateLayoutsID = 0
 setupStarted = false
 recentlyNotifiedRandom = false
+exit = false
 
 function onSave()
     local data_table = {}
@@ -154,8 +155,11 @@ function addAdversary(obj)
     adversaries[obj.getName()] = obj.guid
     updateAdversaryList()
 end
+function onDestroy()
+    exit = true
+end
 function onObjectDestroy(obj)
-    if #Player.getPlayers() == 0 and #Player.getSpectators() == 0 then
+    if exit then
         return
     end
     if obj.hasTag("Spirit") then

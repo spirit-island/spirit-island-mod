@@ -4074,7 +4074,7 @@ function moveObjectToHand(card, playerColor, handIndex)
         elseif handTransform.right.z == 1 then
             moveTo.z = moveTo.z + handTransform.scale.z/2
         else
-            broadcastToColor("Couldn't determine left-to-right direction for hand.", playerColor, Color.Red)
+            Player[playerColor]("Couldn't determine left-to-right direction for hand.", Color.Red)
             return
         end
         card.setPosition(moveTo)

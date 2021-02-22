@@ -3855,7 +3855,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         obj = specialTokens[suffix][data.oppositeColor].takeObject(attrs)
                         obj.setLock(locked)
                         obj.setState(state)
-                    elseif not fastMode then
+                    elseif not fastSwap then
                         data.tints[suffix] = obj.getColorTint()
                         if not data.objects[suffix] then
                             data.objects[suffix] = {obj}
@@ -3870,7 +3870,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
 
     -- Pass 2: Iterate over found objects and swap color tints and object names.
     -- After we're done, put objects in their new presence bag, if applicable.
-    if fastMode then
+    if fastSwap then
         -- All's we did is maybe recolor some isolate and defend tokens, so we can skip the rest of this.
         return
     end

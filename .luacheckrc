@@ -40,5 +40,4 @@ ignore = {
     -- To be triaged
     "412",
     "411",
-    "421",
 }

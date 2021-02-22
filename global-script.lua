@@ -3472,9 +3472,9 @@ currentTable = {
     {},
 }
 
-function visiStringToTable(inString,delim)
+function visiStringToTable(inString, delim)
     if inString == "Invisible" then inString = "" end
-    local delim = delim or "|"
+    delim = delim or "|"
     local stringI = 1
     local outTable = {}
     while stringI < #inString do
@@ -3489,8 +3489,8 @@ function visiStringToTable(inString,delim)
     end
     return outTable
 end
-function visiTableToString(inTable,delim)
-    local delim = delim or "|"
+function visiTableToString(inTable, delim)
+    delim = delim or "|"
     local outString = ""
     for _, v in ipairs(inTable) do
         outString = outString..v..delim

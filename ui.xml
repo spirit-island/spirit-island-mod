@@ -134,7 +134,7 @@
         <Button id="timePassesPhase" onClick="timePassesUI" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Time Passes</Button>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#00000044" rectAlignment="LowerRight" offsetXY="0 260">
+<Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#00000044" rectAlignment="LowerRight" offsetXY="0 270">
     <VerticalLayout>
         <VerticalLayout id="panelAdversaryHelper">
             <Text id="panelAdversaryName" fontsize="16" color="#FFFFFF" alignment="UpperLeft" fontStyle="Bold"></Text>

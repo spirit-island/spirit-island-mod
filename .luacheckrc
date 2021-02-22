@@ -33,14 +33,12 @@ files["objects/**/*.lua"] = {
 max_line_length = false
 
 -- Ignores.
-allow_defined_top = true
+allow_defined = true
 ignore = {
     "131", -- unused global variable, we should annotate the ones we expect
     "542", -- empty if branch  (usually has a comment)
     -- To be triaged
     "111",
-    "112",
-    "113",
     "211",
     "412",
     "212",

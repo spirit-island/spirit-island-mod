@@ -5,7 +5,6 @@ read_globals = {
     "JSON",
     "Notes",
     "Physics",
-    "Physiscs",
     "Player",
     "Table",
     "UI",

@@ -2519,17 +2519,16 @@ function MapPlacen(boards)
 
     local count = 1
     for i, board in pairs(boards) do
-        local temp = nil
         if isThematic() then
             if SetupChecker.getVar("optionalThematicRedo") then
-                temp = MJThematicMapBag.takeObject({
+                MJThematicMapBag.takeObject({
                     position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themRedoGuids[board.board],
                     smooth = false,
                     callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
                 })
             else
-                temp = ThematicMapBag.takeObject({
+                ThematicMapBag.takeObject({
                     position = ThematicMapBag.getPosition() + Vector(0,-5,0),
                     guid = themGuids[board.board],
                     smooth = false,
@@ -2568,14 +2567,14 @@ function MapPlacen(boards)
                 end
             end
 
-            temp = StandardMapBag.takeObject({
+            local boardObject= StandardMapBag.takeObject({
                 index = index,
                 position = StandardMapBag.getPosition() + Vector(0,-5,0),
                 smooth = false,
                 callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
             })
             if selectedBoards[count] == nil then
-                table.insert(selectedBoards, temp.getName())
+                table.insert(selectedBoards, boardObject.getName())
             end
             count = count + 1
         end
@@ -3501,7 +3500,6 @@ function visiStringToTable(inString,delim)
             stringI = delimPos+1
         else
             table.insert(outTable,string.sub(inString,stringI))
-            stringI = #inString
             break
         end
     end
@@ -3657,7 +3655,7 @@ function alert(a)
     UI.setAttribute("panel"..a.."0".."text", "color", invaderFontColors["E"])
 end
 function set(a,b,c,d,e)
-    local tOff = 0
+    local tOff
     if e >= 2 then
         if b == 1 then
             tOff = 40

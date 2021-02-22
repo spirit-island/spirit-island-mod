@@ -145,14 +145,6 @@ explorerDamage = "574835"
 dahanHealth = "746488"
 dahanDamage = "d936f3"
 -----
-secondHandDiscardPositions = {
-    Red = Vector(-26.70, 2.97, -51.00),
-    Purple = Vector(-3.80, 2.97, -51.00),
-    Yellow = Vector(19.10, 2.97, -51.00),
-    Blue = Vector(42.00, 2.97, -51.00),
-    Green = Vector(64.90, 2.97, -51.00),
-    Orange = Vector(87.80, 2.97, -51.00),
-}
 alternateBoardLayoutNames = {
     {},
     {"Fragment","Opposite Shores"},
@@ -4004,11 +3996,7 @@ function applyPowerCardContextMenuItems(card)
     card.addContextMenuItem(
         "Discard (to 2nd hand)",
         function(player_color)
-            if not isObjectInHand(card, player_color, 2) then
-                -- `deal` is buggy and seems to have magic logic associated
-                -- with card visibility.
-                card.setPosition(secondHandDiscardPositions[player_color])
-            end
+            moveObjectToHand(card, player_color, 2)
         end,
         false)
     card.addContextMenuItem(
@@ -4020,6 +4008,26 @@ function applyPowerCardContextMenuItems(card)
         end,
         false)
 end
+function moveObjectToHand(card, playerColor, handIndex)
+    if not isObjectInHand(card, playerColor, handIndex) then
+        -- `deal` is buggy and seems to have magic logic associated
+        -- with card visibility.
+        local handTransform = Player[playerColor].getHandTransform(handIndex)
+        local moveTo = handTransform.position
+        if handTransform.right.x == 1 then
+            moveTo.x = moveTo.x + handTransform.scale.x/2
+        elseif handTransform.right.y == 1 then
+            moveTo.y = moveTo.y + handTransform.scale.y/2
+        elseif handTransform.right.z == 1 then
+            moveTo.z = moveTo.z + handTransform.scale.z/2
+        else
+            broadcastToColor("Couldn't determine left-to-right direction for hand.", playerColor, Color.Red)
+            return
+        end
+        card.setPosition(moveTo)
+    end
+end
+
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe
 -- location, if it's in a hand.
 function ensureCardInPlay(card)

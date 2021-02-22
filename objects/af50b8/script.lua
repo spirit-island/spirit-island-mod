@@ -3,7 +3,12 @@ function onObjectLeaveContainer(container, leave_object)
         upd()
         if leave_object.getName() == "Blight" then
             if #self.getObjects() == 0 then
-                broadcastToAll("Blight Container is now empty", {1,0.4,0})
+                if Global.getVar("blightedIsland") then
+                    broadcastToAll("Blight Container is now empty", "Red")
+                    broadcastToAll("Invaders win via Blight Loss Condition!", "Red")
+                else
+                    broadcastToAll("Blight Container is now empty", {1,0.4,0})
+                end
             end
         end
     end

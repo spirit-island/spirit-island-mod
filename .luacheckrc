@@ -13,15 +13,14 @@ read_globals = {
     "addHotkey",
     "broadcastToAll",
     "clearHotkeys",
+    "destroyObject",
     "getAllObjects",
     "getObjectFromGUID",
     "getObjectsWithTag",
+    "group",
     "printToAll",
     "setLookingForPlayers",
     "startLuaCoroutine",
-    "destroyObject",
-    "group",
-    "broadcastToColor",
 }
 -- Additionally `self` is defined for object scripts, and it has mutable fields.
 files["objects/**/*.lua"] = {

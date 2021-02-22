@@ -39,7 +39,6 @@ ignore = {
     "212", -- unused argument; name is used as documentation
     -- To be triaged
     "412",
-    "311",
     "411",
     "421",
 }

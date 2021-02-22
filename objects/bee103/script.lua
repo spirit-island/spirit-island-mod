@@ -357,7 +357,6 @@ function getStage(o)
         end
         return stage
     elseif o.type == "Deck" then
-        local stage = nil
         for _,obj in pairs(o.getObjects()) do
             local found = false
             for _,tag in pairs(obj.tags) do
@@ -368,7 +367,7 @@ function getStage(o)
             end
             if found then
                 local _, finish = string.find(obj.lua_script,"cardInvaderStage=")
-                stage = tonumber(string.sub(obj.lua_script,finish+1))
+                local stage = tonumber(string.sub(obj.lua_script,finish+1))
                 -- Prussia early stage 3 should count as stage 2
                 if string.find(obj.lua_script,"special=") ~= nil then
                     stage = stage - 1
@@ -534,7 +533,7 @@ function earnTerrorLevel(completedTable, fearDeck, earnedPos, dividerPos)
     end
 end
 function examineCard(fearDeck, dividerPos)
-    local card = nil
+    local card
     local emptyDeck = false
     if fearDeck.type == "Deck" then
         if fearDeck.remainder then

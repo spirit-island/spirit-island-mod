@@ -950,7 +950,7 @@ function MajorPowerUI(player, button)
     local cards = 4
     -- button is "-1"/"1" for left click/single touch
     if math.abs(button) > 1 then
-    	cards = 2
+        cards = 2
     end
     startDealPowerCards("MajorPower", player, cards)
 end
@@ -966,7 +966,7 @@ function MinorPowerUI(player, button)
     local cards = 4
     -- button is "-1"/"1" for left click/single touch
     if math.abs(button) > 1 then
-    	cards = 6
+        cards = 6
     end
     startDealPowerCards("MinorPower", player, cards)
 end

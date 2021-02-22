@@ -774,7 +774,7 @@ function SetupFear()
     local cardsLoaded = 0
 
     fearDeck.shuffle()
-    for w=1, fearCards[3] do
+    for _ = 1, fearCards[3] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", "Red")
             break
@@ -795,7 +795,7 @@ function SetupFear()
     table.insert(cardTable, card)
 
     fearDeck.shuffle()
-    for w=1, fearCards[2] do
+    for _ = 1, fearCards[2] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", "Red")
             break
@@ -816,7 +816,7 @@ function SetupFear()
     table.insert(cardTable, card)
 
     fearDeck.shuffle()
-    for w=1, fearCards[1] do
+    for _ = 1, fearCards[1] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", "Red")
             break
@@ -1178,7 +1178,7 @@ function findNextBlightCard(start, blightDeck)
     end
     for i=index,#blightCards do
         if blightDeck.type == "Deck" then
-            for j,data in pairs(blightDeck.getObjects()) do
+            for _, data in pairs(blightDeck.getObjects()) do
                 if data.name == blightCards[i] then
                     blightDeck.takeObject({
                         index = data.index,
@@ -1278,7 +1278,7 @@ function BlightedIslandFlipPart2()
             numBlight = blightTokens
         end
     end
-    for i=1, numBlight do
+    for _ = 1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({position = blightBag.getPosition() + Vector(0,1,0)}))
     end
     wt(1)
@@ -1312,7 +1312,7 @@ function setupBlightTokens()
             numBlight = numBlight + (blightTokens * numBoards)
         end
     end
-    for i=1, numBlight do
+    for _ = 1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({
             position = blightBag.getPosition() + Vector(0,1,0),
             smooth = false,
@@ -2420,7 +2420,7 @@ function GenerateMapData()
     local boards = getMapTiles()
     while true do
         local moving = false
-        for i, obj in pairs(boards) do
+        for _, obj in pairs(boards) do
             if obj.isSmoothMoving() then
                 moving = true
                 break
@@ -2435,7 +2435,7 @@ function GenerateMapData()
     table.insert(noteLines, "    { -- <num> Boards")
     table.insert(noteLines, "        -- ...")
     table.insert(noteLines, "        [\"<map name>\"] = {")
-    for i, board in pairs(boards) do
+    for _, board in pairs(boards) do
         local pos, rot = board.getPosition(), board.getRotation()
         local themBoard = ""
         if board.hasTag("Thematic") then
@@ -3510,7 +3510,7 @@ end
 function visiTableToString(inTable,delim)
     local delim = delim or "|"
     local outString = ""
-    for i,v in ipairs(inTable) do
+    for _, v in ipairs(inTable) do
         outString = outString..v..delim
     end
     local outString = string.sub(outString, 1, #outString-1)
@@ -3823,7 +3823,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
         -- NOTE: TTS's documentation suggests we may need to wait a physics frame after doing this,
         -- but this seems to work fine without doing that.  If something goes awry with this code in the future,
         -- you might try re-adding the delay.
-        for color,data in pairs(colors) do
+        for _, data in pairs(colors) do
             for i = 1,data.qty do
                 local obj = data.bag.takeObject({
                     sound=false,

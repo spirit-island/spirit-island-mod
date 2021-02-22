@@ -1060,7 +1060,7 @@ function removeSpirit(params)
             break
         end
     end
-    for name,data in pairs(spiritChoices) do
+    for _, data in pairs(spiritChoices) do
         if data.guid == params.spirit then
             spiritChoicesLength = spiritChoicesLength - 1
             break

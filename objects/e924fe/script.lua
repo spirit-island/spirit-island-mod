@@ -4,6 +4,7 @@ requirements = true
 mapSetup = true
 postSetup = true
 postSetupComplete = false
+blightCount = nil
 
 function onLoad()
     if Global.getVar("gameStarted") then

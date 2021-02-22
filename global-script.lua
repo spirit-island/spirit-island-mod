@@ -1078,7 +1078,6 @@ function PickPowerMinor(cardo,playero,alt_click)
         cardo.setLock(false)
         if not alt_click then
             local handPos = Player[playero].getHandTransform().position
-            local minorDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
             DiscardPowerCards(handPos)
         end
     end, function() return not cardo.isSmoothMoving() end)
@@ -1151,7 +1150,7 @@ function grabBlightCard(start)
         return
     elseif blightDeck.type == "Deck" then
         blightDeck.shuffle()
-        local card = blightDeck.takeObject({
+        blightDeck.takeObject({
             position = blightDeck.getPosition() + Vector(3.92, 1, 0),
             callback_function = function(obj)
                 if not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
@@ -1181,7 +1180,7 @@ function findNextBlightCard(start, blightDeck)
         if blightDeck.type == "Deck" then
             for j,data in pairs(blightDeck.getObjects()) do
                 if data.name == blightCards[i] then
-                    local card = blightDeck.takeObject({
+                    blightDeck.takeObject({
                         index = data.index,
                         position = blightDeck.getPosition() + Vector(3.92, 1, 0),
                         callback_function = function(obj) setupBlightCard(start, obj) end,
@@ -3190,7 +3189,6 @@ function setupPlayerArea(params)
     end
 
     local function countItems()
-        local totalValue = 0
         local zone = params.zone
         local itemsInZone = zone.getObjects()
         local elemCardTable = {}
@@ -3917,7 +3915,6 @@ function swapPlayerColors(a, b)
             end
             -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
             -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
-            local tempColor
             for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
                 if pa.changeColor(tempColor) then
                     Wait.frames(function()

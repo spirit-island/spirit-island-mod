@@ -37,7 +37,7 @@ function onLoad()
 end
 
 function updateButton()
-    label = "Show\nReminders"
+    local label = "Show\nReminders"
     if empty then
         label = "Hide\nReminders"
     end
@@ -85,6 +85,7 @@ function toggleObjects()
         end
         empty = true
     end
+    local timerID
     timerID = Wait.time(function()
         if count == objectsMoved then
             updateButton()

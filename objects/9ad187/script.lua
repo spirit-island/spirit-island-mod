@@ -71,8 +71,7 @@ function onSave()
     end
     data_table.scenarioList = scenarioList
 
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
@@ -321,7 +320,7 @@ function updateBoardLayouts(numPlayers, xmlTable)
     if optionalExtraBoard then
         numBoards = numPlayers + 1
     end
-    layoutNames = {
+    local layoutNames = {
         "Balanced",
         "Thematic",
         "Random",

@@ -266,8 +266,7 @@ function onSave()
         selectedTable[color] = colorTable
     end
     data_table.selectedColors = selectedTable
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 function onLoad(saved_data)
     getObjectFromGUID(versionGuid).setValue("version " .. version)
@@ -741,7 +740,7 @@ end
 function SetupFear()
     setupFearTokens()
 
-    fearCards = {3,3,3}
+    local fearCards = {3,3,3}
     if scenarioCard ~= nil then
         local extraFearCards = scenarioCard.getVar("fearCards")
         if extraFearCards ~= nil then
@@ -867,7 +866,7 @@ function SetupPowerDecks()
     getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
     getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
 
-    exploratoryPowersDone = false
+    local exploratoryPowersDone = false
     if not gameStarted and SetupChecker.getVar("exploratoryVOTD") then
         local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
         deck.takeObject({
@@ -2419,7 +2418,7 @@ themRedoGuids = {
 }
 ----
 function GenerateMapData()
-    boards = getMapTiles()
+    local boards = getMapTiles()
     while true do
         local moving = false
         for i, obj in pairs(boards) do
@@ -2431,7 +2430,7 @@ function GenerateMapData()
         if not moving then break end
         coroutine.yield()
     end
-    noteLines = {}
+    local noteLines = {}
     table.insert(noteLines, "boardLayout = {")
     table.insert(noteLines, "    -- ...")
     table.insert(noteLines, "    { -- <num> Boards")
@@ -3172,7 +3171,7 @@ function setupPlayerArea(params)
     end
 
     local function elemCombine(inTableOfElemStrCards)
-        outTable = {0,0,0,0,0,0,0,0}
+        local outTable = {0,0,0,0,0,0,0,0}
         for i = 1, #inTableOfElemStrCards do
             local elemTable = elemStrToArr(inTableOfElemStrCards[i].getVar("elements"))
             for j = 1, 8 do
@@ -3212,7 +3211,7 @@ function setupPlayerArea(params)
                 end
             end
         end
-        combinedElements = elemCombine(elemCardTable)
+        local combinedElements = elemCombine(elemCardTable)
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i,v in ipairs(combinedElements) do
             params.elementBags[i].editButton({index=0, label=v})
@@ -3534,39 +3533,39 @@ function hideButtons(player)
     toggleUI("panelUI", player.color, true)
 end
 function toggleInvaderUI(player)
-    colorEnabled = getCurrentState("panelInvader", player.color)
+    local colorEnabled = getCurrentState("panelInvader", player.color)
     toggleUI("panelInvader", player.color, colorEnabled)
 end
 function toggleAdversaryUI(player)
-    colorEnabled = getCurrentState("panelAdversary", player.color)
+    local colorEnabled = getCurrentState("panelAdversary", player.color)
     toggleUI("panelAdversary", player.color, colorEnabled)
 end
 function toggleTurnOrderUI(player)
-    colorEnabled = getCurrentState("panelTurnOrder", player.color)
+    local colorEnabled = getCurrentState("panelTurnOrder", player.color)
     toggleUI("panelTurnOrder", player.color, colorEnabled)
 end
 function toggleTimePassesUI(player)
-    colorEnabled = getCurrentState("panelTimePasses", player.color)
+    local colorEnabled = getCurrentState("panelTimePasses", player.color)
     toggleUI("panelTimePasses", player.color, colorEnabled)
 end
 function toggleReadyUI(player)
-    colorEnabled = getCurrentState("panelReady", player.color)
+    local colorEnabled = getCurrentState("panelReady", player.color)
     toggleUI("panelReady", player.color, colorEnabled)
 end
 function toggleFearUI(player)
-    colorEnabled = getCurrentState("panelFear", player.color)
+    local colorEnabled = getCurrentState("panelFear", player.color)
     toggleUI("panelFear", player.color, colorEnabled)
 end
 function toggleBlightUI(player)
-    colorEnabled = getCurrentState("panelBlight", player.color)
+    local colorEnabled = getCurrentState("panelBlight", player.color)
     toggleUI("panelBlight", player.color, colorEnabled)
 end
 function togglePowerDrawUI(player)
-    colorEnabled = getCurrentState("panelPowerDraw", player.color)
+    local colorEnabled = getCurrentState("panelPowerDraw", player.color)
     toggleUI("panelPowerDraw", player.color, colorEnabled)
 end
 function toggleScoreUI(player)
-    colorEnabled = getCurrentState("panelScore", player.color)
+    local colorEnabled = getCurrentState("panelScore", player.color)
     toggleUI("panelScore", player.color, colorEnabled)
 end
 function togglePlayerControls(player)
@@ -3618,7 +3617,7 @@ function updateAidPanel(tabIn)
     currentTable = tabIn
     for i,tType in pairs({"Build2","Ravage","Build","Explore","Stage"}) do
         hideAll(tType)
-        cTab = tabIn[i]
+        local cTab = tabIn[i]
         for Ti,T in pairs (cTab) do
             for c = 1,string.len(T) do
                 local char = string.sub(T,c,c)
@@ -3698,7 +3697,7 @@ function size(a,b,c,d,e)
 end
 
 function tCompare(t1,t2)
-    function cc2(tab)
+    local function cc2(tab)
         local newTab = {}
         for i,v in ipairs(tab) do
             newTab[i] = table.concat(v,",")
@@ -3792,7 +3791,7 @@ end
 function swapPlayerPresenceColors(fromColor, toColor)
     if fromColor == toColor then return end
     local function initData(color, ix, oppositeColor)
-        bag = getObjectFromGUID(PlayerBags[color])
+        local bag = getObjectFromGUID(PlayerBags[color])
         return {
             color = color,
             ix = ix,

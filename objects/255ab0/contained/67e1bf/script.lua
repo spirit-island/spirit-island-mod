@@ -9,7 +9,7 @@ function onObjectLeaveContainer(container, leave_object)
     if container == self then upd() end
 end
 function upd()
-    objects = {}
+    local objects = {}
     for i,obj in pairs (self.getObjects()) do
         if objects[obj.name] == nil then
             objects[obj.name] = 1
@@ -24,7 +24,7 @@ function upd()
         keyset[n]=k
     end
     table.sort(keyset)
-    strings = {}
+    local strings = {}
     for i,objName in pairs (keyset) do
         table.insert(strings,objects[objName].." x "..objName)
     end

@@ -1,3 +1,5 @@
+local rescan
+
 function onLoad()
     self.createButton({
         click_function = "nullFunc",
@@ -176,7 +178,7 @@ end
 
 function hexToDec(inp)
     inp = string.lower(inp)
-    colors = {}
+    local colors = {}
     colors["R"] = string.sub(inp,1,1)
     colors["r"] = string.sub(inp,2,2)
     colors["G"] = string.sub(inp,3,3)
@@ -191,9 +193,9 @@ function hexToDec(inp)
         if c == "e" then colors[i] = 14 end
         if c == "f" then colors[i] = 15 end
     end
-    red = colors["R"]*16+colors["r"]
-    green = colors["G"]*16+colors["g"]
-    blue = colors["B"]*16+colors["b"]
+    local red = colors["R"]*16+colors["r"]
+    local green = colors["G"]*16+colors["g"]
+    local blue = colors["B"]*16+colors["b"]
     return {red/255,green/255,blue/255}
 end
 
@@ -202,7 +204,7 @@ function editEnergy(obj,cardEnergy,energy,elements)
 
     energy = math.max(0,cardEnergy+energy)
     obj.setVar("energy",energy)
-    scriptString = "elements=\""..elements.."\"\nenergy="..energy
+    local scriptString = "elements=\""..elements.."\"\nenergy="..energy
     obj.setLuaScript(scriptString)
     obj.reload()
     rescan = true
@@ -211,11 +213,11 @@ end
 
 function editElement(obj,elements,e,cardEnergy)
     elements = elemStrToArr(elements)
-    elementsOut = ""
-    j = math.abs(e)
+    local elementsOut = ""
+    local j = math.abs(e)
     if e > 0 then e = 1 else e = -1 end
     for i = 1,8 do
-        currentElement = elements[i]
+        local currentElement = elements[i]
         if j == i then
             elementsOut = elementsOut..math.min(9,math.max(0,currentElement+e))
         else
@@ -223,7 +225,7 @@ function editElement(obj,elements,e,cardEnergy)
         end
     end
     obj.setVar("elements",elementsOut)
-    scriptString = "elements=\""..elementsOut.."\"\nenergy="..cardEnergy
+    local scriptString = "elements=\""..elementsOut.."\"\nenergy="..cardEnergy
     obj.setLuaScript(scriptString)
     obj.reload()
     rescan = true
@@ -232,7 +234,7 @@ end
 
 
 function elemStrToArr (elemStr)
-    outArr = {}
+    local outArr = {}
     for i = 1, string.len(elemStr) do
         table.insert(outArr,(math.floor(string.sub(elemStr, i, i))))
     end

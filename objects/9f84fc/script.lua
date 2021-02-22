@@ -24,7 +24,7 @@ function onLoad()
 end
 
 function updateButton()
-    label = "Show\nRulebooks"
+    local label = "Show\nRulebooks"
     if empty then
         label = "Hide\nRulebooks"
     end
@@ -73,6 +73,7 @@ function toggleObjects()
         end
         empty = true
     end
+    local timerID
     timerID = Wait.time(function()
         if count == objectsMoved then
             updateButton()

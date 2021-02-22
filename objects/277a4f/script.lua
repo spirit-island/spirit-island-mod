@@ -48,7 +48,7 @@ function onLoad()
 end
 
 function updateButton()
-    label = "Show\nScenarios"
+    local label = "Show\nScenarios"
     if empty then
         label = "Hide\nScenarios"
     end
@@ -96,6 +96,7 @@ function toggleObjects()
         end
         empty = true
     end
+    local timerID
     timerID = Wait.time(function()
         if count == objectsMoved then
             updateButton()

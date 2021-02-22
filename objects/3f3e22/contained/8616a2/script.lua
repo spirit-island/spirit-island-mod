@@ -1,5 +1,7 @@
 sourceSpiritID = "21f561"
 
+local rescan
+
 function onLoad()
     self.createButton({
         click_function = "nullFunc",
@@ -33,7 +35,7 @@ function scan()
     end
     if rescan or #self.getButtons() == 1 then
         rescan = false
-        obje = objs[1]
+        local obje = objs[1]
         createButtons(obje)
     end
 end

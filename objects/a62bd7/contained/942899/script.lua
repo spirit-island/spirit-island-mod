@@ -3,6 +3,8 @@ offset = {-1.3,1.5,0}
 rotation = {0,270,40}
 color = {0.95,0.95,0.95}
 
+local callbackObj, callbackFunc
+
 function onLoad(saved_data)
     upd()
 end

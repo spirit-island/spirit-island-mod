@@ -40,6 +40,19 @@ boardLayouts = {
         { pos = Vector(73.90, 1.08, 8.82), rot = Vector(0.00, 240.69, 0.00) },
     },
 }
+escaped = 0
+checkLossID = 0
+
+function onLoad()
+    if Global.getVar("gameStarted") then
+        local lossBag = getObjectFromGUID("eb0571")
+        if lossBag ~= nil then
+            lossBag.call("setCallback", {obj=self,func="updateCount"})
+            updateCount({count=#lossBag.getObjects()})
+        end
+        checkLossID = Wait.time(checkLoss, 5, -1)
+    end
+end
 
 function Requirements(params)
     return not params.thematic
@@ -53,7 +66,22 @@ function PostSetup()
         guid = "eb0571",
         position = self.getPosition() + vector(1.9, 0, 1.9),
         rotation = {0,180,0},
-        callback_function = function(obj) obj.setLock(true) end,
+        callback_function = function(obj)
+            obj.setLock(true)
+            obj.call("setCallback", {obj=self,func="updateCount"})
+            updateCount({count=#obj.getObjects()})
+        end,
     })
+    checkLossID = Wait.time(checkLoss, 5, -1)
     postSetupComplete = true
+end
+function updateCount(params)
+    escaped = params.count
+end
+
+function checkLoss()
+    if escaped > 3 * Global.getVar("numBoards") then
+        broadcastToAll("Invaders wins via Scenario Additional Loss Condition!", "Red")
+        Wait.stop(checkLossID)
+    end
 end

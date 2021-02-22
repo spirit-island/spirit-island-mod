@@ -3226,16 +3226,15 @@ function payEnergy(target_obj, source_color, alt_click)
         return
     elseif alt_click then
         return
-    elseif playerBlocks[source_color] ~= target_obj then
-        return
     end
 
-    local paid = updateEnergyCounter(source_color, false)
+    local color = target_obj.getVar("playerColor")
+    local paid = updateEnergyCounter(color, false)
     if not paid then
-        paid = payEnergyTokens(source_color, nil)
+        paid = payEnergyTokens(color, nil)
     end
     if paid then
-        selectedColors[source_color].paid = true
+        selectedColors[color].paid = true
         target_obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
@@ -3315,16 +3314,15 @@ function refundEnergy(target_obj, source_color, alt_click)
         return
     elseif not alt_click then
         return
-    elseif playerBlocks[source_color] ~= target_obj then
-        return
     end
 
-    local refunded = updateEnergyCounter(source_color, true)
+    local color = target_obj.getVar("playerColor")
+    local refunded = updateEnergyCounter(color, true)
     if not refunded then
-        refunded = refundEnergyTokens(source_color, nil)
+        refunded = refundEnergyTokens(color, nil)
     end
     if refunded then
-        selectedColors[source_color].paid = false
+        selectedColors[color].paid = false
         target_obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)

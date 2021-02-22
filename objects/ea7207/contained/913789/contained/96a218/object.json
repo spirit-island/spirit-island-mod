@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.841469,
-    "posY": 2.14275551,
-    "posZ": -15.740181,
-    "rotX": 0.0110649122,
-    "rotY": 180.725128,
-    "rotZ": 359.986053,
-    "scaleX": 1.3656503,
+    "posX": -45.25297,
+    "posY": 1.483118,
+    "posZ": 28.919035,
+    "rotX": 359.932281,
+    "rotY": 178.9824,
+    "rotZ": 5.65977764,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Swarming Wasps",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

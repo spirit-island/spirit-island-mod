@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -110.58,
-    "posY": 0.90177685,
-    "posZ": -15.94,
-    "rotX": 0.00444661034,
-    "rotY": 180.000015,
-    "rotZ": -1.41936354e-07,
-    "scaleX": 1.529637,
+    "posX": -106.677757,
+    "posY": 1.18909669,
+    "posZ": 20.2720947,
+    "rotX": -0.0055903676,
+    "rotY": 179.99472,
+    "rotZ": 180.2462,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Stubborn Solidity",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

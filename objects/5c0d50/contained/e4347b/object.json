@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.13904,
-    "posY": 0.9009077,
-    "posZ": -27.1399288,
-    "rotX": 0.00444645435,
-    "rotY": 179.9987,
-    "rotZ": -1.94379908e-07,
-    "scaleX": 1.53204679,
+    "posX": -46.54607,
+    "posY": 2.097154,
+    "posZ": -11.0067005,
+    "rotX": 0.0294832364,
+    "rotY": 181.629013,
+    "rotZ": -0.00134136842,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Reaching Grasp",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

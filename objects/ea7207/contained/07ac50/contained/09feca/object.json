@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -105.539017,
-    "posY": 1.09106064,
-    "posZ": -22.6600227,
-    "rotX": 0.009049601,
-    "rotY": 179.999191,
-    "rotZ": 1.83900857,
-    "scaleX": 1.3656503,
+    "posX": -42.51931,
+    "posY": 1.11584044,
+    "posZ": 28.40337,
+    "rotX": 359.96048,
+    "rotY": 179.220825,
+    "rotZ": 183.468124,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Strangling Firevine",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

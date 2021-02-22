@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.35842,
-    "posY": 2.109436,
-    "posZ": -27.33719,
-    "rotX": 0.0373646952,
-    "rotY": 180.735931,
-    "rotZ": -0.00163537834,
-    "scaleX": 1.53204679,
+    "posX": -30.49714,
+    "posY": 1.23271871,
+    "posZ": 20.5643559,
+    "rotX": 0.296038926,
+    "rotY": 186.445847,
+    "rotZ": 7.89841557,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Scream Disease into the Wind",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

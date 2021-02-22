@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.149788,
-    "posY": 1.89221227,
-    "posZ": -15.9326315,
-    "rotX": 0.200335979,
-    "rotY": 186.965408,
-    "rotZ": 0.111741282,
-    "scaleX": 1.3656503,
+    "posX": -46.2162247,
+    "posY": 1.37323,
+    "posZ": 28.8425236,
+    "rotX": 359.979279,
+    "rotY": 180.2174,
+    "rotZ": 2.23172426,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Animated Wrackroot",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

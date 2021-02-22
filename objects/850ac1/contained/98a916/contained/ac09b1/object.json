@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.610382,
-    "posY": 1.99966037,
-    "posZ": -23.13926,
-    "rotX": 0.008733961,
-    "rotY": 178.675644,
-    "rotZ": 359.829376,
-    "scaleX": 1.53204679,
+    "posX": -45.58627,
+    "posY": 1.18637276,
+    "posZ": 27.2840519,
+    "rotX": 0.06786113,
+    "rotY": 179.049011,
+    "rotZ": 3.15282249,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Weave Together the Fabric of Place",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

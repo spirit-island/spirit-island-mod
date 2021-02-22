@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.899193,
-    "posY": 2.285498,
-    "posZ": -23.24247,
-    "rotX": 0.025941357,
-    "rotY": 181.207565,
-    "rotZ": 359.954285,
-    "scaleX": 1.3656503,
+    "posX": -45.2613564,
+    "posY": 1.23815978,
+    "posZ": 28.1708241,
+    "rotX": 359.6456,
+    "rotY": 182.636383,
+    "rotZ": 5.47013426,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Bloodwrack Plague",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

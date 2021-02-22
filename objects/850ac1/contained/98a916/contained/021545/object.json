@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.748726,
-    "posY": 2.127959,
-    "posZ": -23.2230949,
-    "rotX": 0.0340922,
-    "rotY": 177.904221,
-    "rotZ": 359.977722,
-    "scaleX": 1.53204679,
+    "posX": -42.81965,
+    "posY": 1.29105067,
+    "posZ": 28.2994747,
+    "rotX": 0.302057475,
+    "rotY": 179.976135,
+    "rotZ": 6.894258,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "The Wounded Wild Turns on its Assailants",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

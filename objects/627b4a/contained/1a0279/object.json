@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -106.66,
-    "posY": 0.90177685,
-    "posZ": -15.9400005,
-    "rotX": 0.00444680545,
-    "rotY": 180.000046,
-    "rotZ": 3.845847e-08,
-    "scaleX": 1.53653038,
+    "posX": -123.46,
+    "posY": 1.16843951,
+    "posZ": -1.940001,
+    "rotX": 0.005690577,
+    "rotY": 180.0,
+    "rotZ": -0.00201052451,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53653038
+    "scaleZ": 1.53
   },
   "Nickname": "Gather the Scattered Light of Stars",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

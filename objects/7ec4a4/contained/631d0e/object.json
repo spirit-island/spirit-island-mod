@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -95.85048,
-    "posY": 1.99101853,
-    "posZ": -14.054409,
-    "rotX": 0.004446755,
+    "posX": -88.36909,
+    "posY": 1.19685972,
+    "posZ": 53.8296356,
+    "rotX": 0.000340137165,
     "rotY": 180.0,
-    "rotZ": -9.200109e-08,
-    "scaleX": 1.53204679,
+    "rotZ": 180.143021,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Concealing Shadows",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

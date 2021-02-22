@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.10952,
-    "posY": 1.99102,
-    "posZ": -13.08583,
-    "rotX": 0.00444670953,
-    "rotY": 180.0,
-    "rotZ": -1.11134128e-07,
-    "scaleX": 1.53204679,
+    "posX": -107.4435,
+    "posY": 1.25090826,
+    "posZ": 53.8303223,
+    "rotX": 0.00266954163,
+    "rotY": 179.999939,
+    "rotZ": 181.742447,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Harbingers of the Lightning",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

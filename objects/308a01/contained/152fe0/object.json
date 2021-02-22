@@ -1,12 +1,12 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -5.290277,
-    "posY": 1.99104059,
-    "posZ": -1.22472072,
-    "rotX": 0.00444659265,
-    "rotY": 180.0,
-    "rotZ": 180.0,
+    "posX": -46.2621269,
+    "posY": 2.26369,
+    "posZ": -5.7614975,
+    "rotX": 359.9701,
+    "rotY": 177.684464,
+    "rotZ": 0.06948304,
     "scaleX": 1.53204679,
     "scaleY": 1.0,
     "scaleZ": 1.53204679
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,
@@ -53,12 +54,12 @@
       "GUID": "61da6c",
       "Name": "CardCustom",
       "Transform": {
-        "posX": -47.3,
-        "posY": 0.9013854,
-        "posZ": -20.98,
-        "rotX": 0.004446578,
-        "rotY": 180.0,
-        "rotZ": -1.10897673e-07,
+        "posX": -25.45811,
+        "posY": 0.9139042,
+        "posZ": -15.3798771,
+        "rotX": 359.832123,
+        "rotY": 180.10463,
+        "rotZ": -0.0003969753,
         "scaleX": 1.53,
         "scaleY": 1.0,
         "scaleZ": 1.53
@@ -72,6 +73,7 @@
         "b": 0.713235259
       },
       "Tags": [
+        "Fast",
         "Major"
       ],
       "LayoutGroupSortIndex": 0,

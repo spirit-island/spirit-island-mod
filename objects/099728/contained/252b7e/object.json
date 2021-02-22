@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -100.5,
-    "posY": 0.901689947,
-    "posZ": -17.0599976,
-    "rotX": 0.004446663,
-    "rotY": 179.999786,
-    "rotZ": -6.61579946e-08,
-    "scaleX": 1.529637,
+    "posX": -105.403709,
+    "posY": 1.17885053,
+    "posZ": 9.12731,
+    "rotX": 0.006298102,
+    "rotY": 180.0,
+    "rotZ": -0.000309840136,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Softly Beckon Ever Inward",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

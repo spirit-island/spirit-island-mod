@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -90.17741,
-    "posY": 2.11985826,
-    "posZ": -8.667993,
-    "rotX": 0.00444675377,
+    "posX": -106.30751,
+    "posY": 1.19838107,
+    "posZ": 31.436245,
+    "rotX": 0.004591374,
     "rotY": 180.0,
-    "rotZ": -6.72841e-08,
-    "scaleX": 1.53204679,
+    "rotZ": 180.000168,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Teeth Gleam from Darkness",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

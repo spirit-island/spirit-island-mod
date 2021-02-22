@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -117.86,
-    "posY": 0.9017334,
-    "posZ": -16.4999981,
-    "rotX": 0.004446557,
-    "rotY": 180.000015,
-    "rotZ": -1.486853e-08,
-    "scaleX": 1.53653038,
+    "posX": -122.9,
+    "posY": 1.18034136,
+    "posZ": -1.94000149,
+    "rotX": 0.00345866615,
+    "rotY": 180.000031,
+    "rotZ": 179.862915,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53653038
+    "scaleZ": 1.53
   },
   "Nickname": "Peace of the Nighttime Sky",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -101.06,
-    "posY": 0.9016465,
-    "posZ": -17.6199989,
-    "rotX": 0.00444676774,
-    "rotY": 179.999969,
-    "rotZ": 2.43601939e-08,
-    "scaleX": 1.47540212,
+    "posX": -72.9928741,
+    "posY": 1.23443913,
+    "posZ": 20.28231,
+    "rotX": 0.005974058,
+    "rotY": 180.0,
+    "rotZ": -0.00254370458,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "Boon of Swarming Bedevilment",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

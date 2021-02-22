@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -85.84773,
-    "posY": 2.21967769,
-    "posZ": -9.964406,
-    "rotX": 0.00444646738,
-    "rotY": 180.000732,
-    "rotZ": 3.824316e-08,
-    "scaleX": 1.3656503,
+    "posX": -48.420002,
+    "posY": 1.45515943,
+    "posZ": 28.3,
+    "rotX": 2.60654283,
+    "rotY": 180.092728,
+    "rotZ": 183.792816,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Teeming Rivers",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

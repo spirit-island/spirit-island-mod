@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.4528656,
-    "posY": 2.284209,
-    "posZ": -27.5871925,
-    "rotX": 0.0142564559,
-    "rotY": 180.310211,
-    "rotZ": 359.8155,
-    "scaleX": 1.53204679,
+    "posX": -30.1540432,
+    "posY": 1.32158113,
+    "posZ": 20.95057,
+    "rotX": 0.279284924,
+    "rotY": 185.524445,
+    "rotZ": 2.89506841,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Desiccating Winds",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

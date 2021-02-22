@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.44391,
-    "posY": 2.232959,
-    "posZ": -27.5695763,
-    "rotX": 359.96228,
-    "rotY": 179.265457,
-    "rotZ": 359.823029,
-    "scaleX": 1.53204679,
+    "posX": -27.3584538,
+    "posY": 1.42861128,
+    "posZ": 20.6909447,
+    "rotX": 0.3082972,
+    "rotY": 185.549652,
+    "rotZ": 2.85242033,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Gift of Nature's Connection",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

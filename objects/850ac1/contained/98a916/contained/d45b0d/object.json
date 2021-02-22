@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -89.62979,
-    "posY": 1.99101865,
-    "posZ": -13.119628,
-    "rotX": 0.00444681151,
-    "rotY": 179.999924,
-    "rotZ": -2.521588e-07,
-    "scaleX": 1.53204679,
+    "posX": -38.7881126,
+    "posY": 1.15728557,
+    "posZ": 27.6547184,
+    "rotX": 359.945648,
+    "rotY": 178.802261,
+    "rotZ": 7.14045763,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Bargains of Power and Protection",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

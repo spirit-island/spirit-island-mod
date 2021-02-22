@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.49183,
-    "posY": 2.15781164,
-    "posZ": -27.5324669,
-    "rotX": 359.96347,
-    "rotY": 180.03862,
-    "rotZ": 359.929321,
-    "scaleX": 1.53204679,
+    "posX": -31.440937,
+    "posY": 1.1558578,
+    "posZ": 20.3586445,
+    "rotX": 0.00675743166,
+    "rotY": 183.475616,
+    "rotZ": 9.33933,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Set Them on an Ever-Twisting Trail",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

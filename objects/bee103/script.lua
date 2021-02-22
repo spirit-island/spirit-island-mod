@@ -189,10 +189,6 @@ function wt(some)
     end
 end
 
-function updateDiscard(params)
-    discard = params.discard
-end
-
 ---- Invader Card Section
 scanLoopTable= {
     Build2 = {
@@ -245,12 +241,12 @@ function advanceInvaderCards()
                         hit.setRotation(Vector(0,180,0))
                         hit.setPositionSmooth(discard)
                     elseif i == "Ravage" then
-                        local obj = getObjectFromGUID("e5d18b")
-                        if obj == nil or not Vector.equals(obj.getPosition(), Vector(-51.23, 1.10, -0.52)) then
+                        local build2 = UI.getAttribute("panelBuild2","active")
+                        if not build2 or build2 == "false" or build2 == "False" then
                             hit.setRotation(Vector(0,90,0))
                             hit.setPositionSmooth(discard)
                         else
-                            source = obj
+                            source = getObjectFromGUID("e5d18b")
                             local nextO = source.positionToWorld(scanLoopTable["Build2"].origin)
                             hit.setPositionSmooth(Vector(nextO[1],nextO[2]+0.2,hit.getPosition().z))
                         end
@@ -465,13 +461,25 @@ end
 function getFearDeck(fearDeckZone)
     local fearDeck = nil
     for _,obj in pairs(fearDeckZone.getObjects()) do
-        if obj.type == "Deck" or obj.type == "Card" then
-            if fearDeck == nil then
-                fearDeck = obj
-            else
-                broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
-                return nil
+        if obj.type == "Deck" then
+            local found = false
+            for _,o in pairs(obj.getObjects()) do
+                for _,tag in pairs(o.tags) do
+                    if tag == "Fear" then
+                        fearDeck = obj
+                        found = true
+                        break
+                    end
+                end
+                if found then
+                    break
+                end
             end
+        elseif obj.type == "Card" and obj.hasTag("Fear") then
+            fearDeck = obj
+        else
+            broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
+            return nil
         end
     end
     return fearDeck

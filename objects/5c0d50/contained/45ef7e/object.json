@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.8198853,
-    "posY": 0.931876838,
-    "posZ": -42.8199577,
-    "rotX": 359.616821,
-    "rotY": 179.9963,
-    "rotZ": 0.5582615,
-    "scaleX": 1.53204679,
+    "posX": -46.03111,
+    "posY": 2.30617046,
+    "posZ": -10.6803532,
+    "rotX": 0.004202765,
+    "rotY": 180.174149,
+    "rotZ": 359.992981,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Shadow of the Burning Forest",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

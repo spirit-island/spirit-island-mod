@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -90.4196243,
-    "posY": 0.9142957,
-    "posZ": -37.7800179,
-    "rotX": 0.351508021,
-    "rotY": 180.009674,
-    "rotZ": 0.000135081209,
-    "scaleX": 1.53204679,
+    "posX": -45.9724426,
+    "posY": 2.12660933,
+    "posZ": -10.7168245,
+    "rotX": 0.0376059,
+    "rotY": 180.026108,
+    "rotZ": 359.6353,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Lure of the Unknown",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

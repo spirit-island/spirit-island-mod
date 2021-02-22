@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -116.18,
-    "posY": 0.9005165,
-    "posZ": -32.18,
-    "rotX": 0.0044466136,
-    "rotY": 179.999619,
-    "rotZ": -6.62383357e-08,
-    "scaleX": 1.53204679,
+    "posX": -46.1197548,
+    "posY": 1.8411907,
+    "posZ": -10.773901,
+    "rotX": 359.9697,
+    "rotY": 181.5265,
+    "rotZ": 359.926575,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Drought",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

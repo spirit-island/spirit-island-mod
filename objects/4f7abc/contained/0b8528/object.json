@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -90.04555,
-    "posY": 2.11969876,
-    "posZ": -11.3675165,
-    "rotX": 0.00444677332,
-    "rotY": 180.0,
-    "rotZ": -1.1180137e-07,
-    "scaleX": 1.53204679,
+    "posX": -73.06,
+    "posY": 1.18971753,
+    "posZ": 43.98,
+    "rotX": 0.004366244,
+    "rotY": 179.999939,
+    "rotZ": -0.000199528731,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Grasping Tide",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

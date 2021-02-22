@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -24.1811485,
-    "posY": 2.410017,
-    "posZ": -14.5374393,
-    "rotX": 0.004446706,
-    "rotY": 180.0,
-    "rotZ": -9.9503815e-08,
-    "scaleX": 1.53204679,
+    "posX": -13.7983761,
+    "posY": 1.98474419,
+    "posZ": 4.956896,
+    "rotX": -1.84436839e-08,
+    "rotY": 180.000366,
+    "rotZ": -0.000144345715,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Entrancing Apparitions",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

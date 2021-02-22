@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -93.3641052,
-    "posY": 1.99101853,
-    "posZ": -14.4903584,
-    "rotX": 0.0044467086,
-    "rotY": 180.0,
-    "rotZ": -1.0024862e-07,
-    "scaleX": 1.53204679,
+    "posX": -122.935295,
+    "posY": 1.175252,
+    "posZ": 53.8187866,
+    "rotX": 0.003956173,
+    "rotY": 179.999985,
+    "rotZ": -0.00264495541,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Wash Away",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

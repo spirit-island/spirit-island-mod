@@ -1,3 +1,6 @@
+types = {"Minor", "Major", "Unique"}
+speeds = {"Fast", "Slow"}
+
 function onLoad()
     self.createButton({
         click_function = "nullFunc",
@@ -39,14 +42,21 @@ function scan()
         if obj.getVar("elements") ~= nil then
             elements = obj.getVar("elements")
         end
-        local tag = ""
-        for _,cardTag in pairs(tags) do
-            if obj.hasTag(cardTag) then
-                tag = cardTag
+        local type = ""
+        for _,tag in pairs(types) do
+            if obj.hasTag(tag) then
+                type = tag
                 break
             end
         end
-        createButtons(obj,energy,elements,tag)
+        local speed = ""
+        for _,tag in pairs(speeds) do
+            if obj.hasTag(tag) then
+                speed = tag
+                break
+            end
+        end
+        createButtons(obj,energy,elements,type,speed)
     end
 end
 
@@ -70,7 +80,6 @@ elementColors = {
     "3db23f",
     "d8232c",
 }
-tags = {"Minor", "Major", "Unique"}
 
 function clearButtons()
     local buttons = self.getButtons()
@@ -79,7 +88,7 @@ function clearButtons()
     end
 end
 
-function createButtons(card, cardEnergy, cardElements, tag)
+function createButtons(card, cardEnergy, cardElements, type, speed)
     local zPadding = 0.1
     clearButtons()
     for i = 1,8 do
@@ -87,7 +96,7 @@ function createButtons(card, cardEnergy, cardElements, tag)
             click_function = "button"..i,
             function_owner = self,
             label          = "-",
-            position       = {0.92,0.1,i*zPadding-(10*zPadding/2)},
+            position       = {0.92,0.1,i*zPadding-(11*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 400,
             height         = 400,
@@ -102,7 +111,7 @@ function createButtons(card, cardEnergy, cardElements, tag)
             click_function = "button"..i+8,
             function_owner = self,
             label          = "+",
-            position       = {1.18,0.1,i*zPadding-(10*zPadding/2)},
+            position       = {1.18,0.1,i*zPadding-(11*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 400,
             height         = 400,
@@ -116,7 +125,7 @@ function createButtons(card, cardEnergy, cardElements, tag)
         self.createButton({
             click_function = "nullFunc",
             label          = elementNames[i],
-            position       = {0.7,0.1,i*zPadding-(10*zPadding/2)},
+            position       = {0.7,0.1,i*zPadding-(11*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 1600,
             height         = 400,
@@ -128,7 +137,7 @@ function createButtons(card, cardEnergy, cardElements, tag)
         self.createButton({
             click_function = "nullFunc",
             label          = string.sub(cardElements,i,i),
-            position       = {1.05,0.1,i*zPadding-(10*zPadding/2)},
+            position       = {1.05,0.1,i*zPadding-(11*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 800,
             height         = 400,
@@ -178,10 +187,11 @@ function createButtons(card, cardEnergy, cardElements, tag)
     })
     local func = function() editEnergy(card,cardEnergy,1,cardElements) end
     self.setVar("button18",func)
+
     self.createButton({
         click_function = "nullFunc",
         label          = "Tag",
-        position       = {0.615,0.1,9*zPadding-(10*zPadding/2)},
+        position       = {0.615,0.1,9*zPadding-(11*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 800,
         height         = 400,
@@ -191,18 +201,18 @@ function createButtons(card, cardEnergy, cardElements, tag)
         click_function = "button19",
         function_owner = self,
         label          = "<",
-        position       = {0.75,0.1,9*zPadding-(10*zPadding/2)},
+        position       = {0.75,0.1,9*zPadding-(11*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
         height         = 400,
         font_size      = 360,
     })
-    local func = function() editTag(card,-1) end
+    local func = function() editTag(card,-1,types) end
     self.setVar("button19",func)
     self.createButton({
         click_function = "nullFunc",
-        label          = tag,
-        position       = {0.965,0.1,9*zPadding-(10*zPadding/2)},
+        label          = type,
+        position       = {0.965,0.1,9*zPadding-(11*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 1600,
         height         = 400,
@@ -212,14 +222,57 @@ function createButtons(card, cardEnergy, cardElements, tag)
         click_function = "button20",
         function_owner = self,
         label          = ">",
-        position       = {1.18,0.1,9*zPadding-(10*zPadding/2)},
+        position       = {1.18,0.1,9*zPadding-(11*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
         height         = 400,
         font_size      = 360,
     })
-    local func = function() editTag(card,1) end
+    local func = function() editTag(card,1,types) end
     self.setVar("button20",func)
+
+    self.createButton({
+        click_function = "nullFunc",
+        label          = "Speed",
+        position       = {0.648,0.1,10*zPadding-(11*zPadding/2)},
+        scale          = {0.1,0.1,0.1},
+        width          = 1100,
+        height         = 400,
+        font_size      = 360,
+    })
+    self.createButton({
+        click_function = "button21",
+        function_owner = self,
+        label          = "<",
+        position       = {0.81,0.1,10*zPadding-(11*zPadding/2)},
+        scale          = {0.1,0.1,0.1},
+        width          = 400,
+        height         = 400,
+        font_size      = 360,
+    })
+    local func = function() editTag(card,-1,speeds) end
+    self.setVar("button21",func)
+    self.createButton({
+        click_function = "nullFunc",
+        label          = speed,
+        position       = {0.995,0.1,10*zPadding-(11*zPadding/2)},
+        scale          = {0.1,0.1,0.1},
+        width          = 1300,
+        height         = 400,
+        font_size      = 360,
+    })
+    self.createButton({
+        click_function = "button22",
+        function_owner = self,
+        label          = ">",
+        position       = {1.18,0.1,10*zPadding-(11*zPadding/2)},
+        scale          = {0.1,0.1,0.1},
+        width          = 400,
+        height         = 400,
+        font_size      = 360,
+    })
+    local func = function() editTag(card,1,speeds) end
+    self.setVar("button22",func)
 end
 
 function hexToDec(inp)
@@ -285,8 +338,7 @@ function editElement(obj,elements,e,cardEnergy)
     scan()
 end
 
-function editTag(obj, modifier)
-    local tags = {"Minor", "Major", "Unique"}
+function editTag(obj, modifier, tags)
     local index = 0
     for i,tag in pairs(tags) do
         if obj.hasTag(tag) then

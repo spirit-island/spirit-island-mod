@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -92.77817,
-    "posY": 2.1196444,
-    "posZ": -8.750956,
-    "rotX": 0.00444670953,
-    "rotY": 180.0,
-    "rotZ": -8.620702e-08,
-    "scaleX": 1.53204679,
+    "posX": -72.49999,
+    "posY": 1.18379056,
+    "posZ": 43.9800034,
+    "rotX": 0.00382811762,
+    "rotY": 179.996216,
+    "rotZ": 180.003555,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Swallow the Land-Dwellers",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

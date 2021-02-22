@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -105.009621,
-    "posY": 4.796278,
-    "posZ": -22.7135773,
-    "rotX": 14.0455275,
-    "rotY": 177.226166,
-    "rotZ": 347.32016,
-    "scaleX": 1.3656503,
+    "posX": -44.2892952,
+    "posY": 1.27470946,
+    "posZ": 28.2945385,
+    "rotX": 359.98587,
+    "rotY": 181.4505,
+    "rotZ": 3.35273075,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Inflame the Fires of Life",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

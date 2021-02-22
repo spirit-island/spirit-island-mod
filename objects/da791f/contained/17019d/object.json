@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -103.86,
-    "posY": 0.9014292,
-    "posZ": -20.4199982,
-    "rotX": 0.00444659125,
-    "rotY": 180.0,
-    "rotZ": 2.25059893e-07,
-    "scaleX": 1.53204679,
+    "posX": -121.806877,
+    "posY": 1.24081492,
+    "posZ": 20.3913116,
+    "rotX": 359.967041,
+    "rotY": 179.993027,
+    "rotZ": 177.682983,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Exaltation of Molten Stone",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

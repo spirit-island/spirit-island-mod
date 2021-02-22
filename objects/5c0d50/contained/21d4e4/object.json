@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.89973,
-    "posY": 0.9154898,
-    "posZ": -42.8198776,
-    "rotX": 359.618744,
-    "rotY": 179.995361,
-    "rotZ": 0.00295547722,
-    "scaleX": 1.53204679,
+    "posX": -46.7115746,
+    "posY": 1.99369955,
+    "posZ": -11.04506,
+    "rotX": 359.959534,
+    "rotY": 181.543823,
+    "rotZ": 359.975433,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Rain of Blood",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

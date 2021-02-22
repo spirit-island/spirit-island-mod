@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -110.051712,
-    "posY": 0.901906,
-    "posZ": -14.2757273,
-    "rotX": 0.004446501,
-    "rotY": 180.000031,
-    "rotZ": 4.78494862e-08,
-    "scaleX": 1.47540212,
+    "posX": -105.371895,
+    "posY": 1.2966305,
+    "posZ": -3.11082077,
+    "rotX": 357.374329,
+    "rotY": 180.0274,
+    "rotZ": 179.626282,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "The Past Returns Again",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

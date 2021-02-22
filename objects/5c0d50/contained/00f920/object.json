@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.33977,
-    "posY": 0.9004246,
-    "posZ": -33.300312,
-    "rotX": 0.00447572069,
-    "rotY": 179.924057,
-    "rotZ": -0.0002183661,
-    "scaleX": 1.53204679,
+    "posX": -46.5240746,
+    "posY": 2.1477778,
+    "posZ": -11.0775747,
+    "rotX": 359.99118,
+    "rotY": 178.796738,
+    "rotZ": 0.06427766,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Gift of Living Energy",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

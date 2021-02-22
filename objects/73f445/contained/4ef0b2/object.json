@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -88.18,
-    "posY": 0.9018638,
-    "posZ": -14.8199978,
-    "rotX": 0.004446551,
-    "rotY": 180.0,
-    "rotZ": 9.102109e-08,
-    "scaleX": 1.47540212,
+    "posX": -72.49984,
+    "posY": 1.18356788,
+    "posZ": 9.820025,
+    "rotX": 0.00372007815,
+    "rotY": 180.000259,
+    "rotZ": 179.938126,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "Unnerving Pall",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

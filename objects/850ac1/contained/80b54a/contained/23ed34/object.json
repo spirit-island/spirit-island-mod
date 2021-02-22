@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.713181,
-    "posY": 1.90410411,
-    "posZ": -24.0169125,
-    "rotX": 0.251600653,
-    "rotY": 181.1563,
-    "rotZ": 0.0476893,
-    "scaleX": 1.53204679,
+    "posX": -28.8093433,
+    "posY": 1.00938487,
+    "posZ": 20.6602974,
+    "rotX": 0.0017865781,
+    "rotY": 178.446671,
+    "rotZ": 4.211509,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Bats Scout for Raids by Darkness",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

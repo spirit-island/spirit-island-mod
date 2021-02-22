@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.18,
-    "posY": 0.9017334,
-    "posZ": -16.4999981,
-    "rotX": 0.0044467207,
-    "rotY": 180.000015,
-    "rotZ": -4.10283079e-08,
-    "scaleX": 1.53145456,
+    "posX": -72.638855,
+    "posY": 1.19587278,
+    "posZ": -3.185805,
+    "rotX": 0.0134156141,
+    "rotY": 179.999039,
+    "rotZ": 359.9916,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53145456
+    "scaleZ": 1.53
   },
   "Nickname": "Paths Tied by Nature",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

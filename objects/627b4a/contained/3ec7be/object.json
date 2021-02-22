@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -112.26,
-    "posY": 0.9017334,
-    "posZ": -16.4999981,
-    "rotX": 0.00444646925,
-    "rotY": 180.000015,
-    "rotZ": -5.32562039e-09,
-    "scaleX": 1.53653038,
+    "posX": -122.900414,
+    "posY": 1.184855,
+    "posZ": -1.94002974,
+    "rotX": 0.00215626368,
+    "rotY": 180.000549,
+    "rotZ": 180.1066,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53653038
+    "scaleZ": 1.53
   },
   "Nickname": "Shape the Self Anew",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

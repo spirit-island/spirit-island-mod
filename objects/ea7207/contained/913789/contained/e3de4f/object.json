@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.848167,
-    "posY": 2.22410655,
-    "posZ": -15.6995945,
-    "rotX": 0.00844261,
-    "rotY": 180.661316,
-    "rotZ": 359.983124,
-    "scaleX": 1.3656503,
+    "posX": -47.9046326,
+    "posY": 1.19210815,
+    "posZ": 28.3054276,
+    "rotX": 0.0235543847,
+    "rotY": 180.529312,
+    "rotZ": 4.481254,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Renewing Rain",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -110.019905,
-    "posY": 0.90177685,
-    "posZ": -15.9400063,
-    "rotX": 0.004446839,
-    "rotY": 180.000122,
-    "rotZ": 9.08506e-08,
-    "scaleX": 1.47602439,
+    "posX": -89.8611145,
+    "posY": 1.1784271,
+    "posZ": 9.82015,
+    "rotX": 359.982758,
+    "rotY": 179.998047,
+    "rotZ": 180.30513,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Fiery Vengeance",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

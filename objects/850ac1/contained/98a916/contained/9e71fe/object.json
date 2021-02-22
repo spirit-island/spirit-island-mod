@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.822525,
-    "posY": 2.204767,
-    "posZ": -23.248867,
-    "rotX": 0.02189647,
-    "rotY": 176.46759,
-    "rotZ": 0.03116157,
-    "scaleX": 1.53204679,
+    "posX": -41.7209167,
+    "posY": 1.208514,
+    "posZ": 28.2037716,
+    "rotX": 0.107087418,
+    "rotY": 181.202286,
+    "rotZ": 7.01201248,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Irresistible Call",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

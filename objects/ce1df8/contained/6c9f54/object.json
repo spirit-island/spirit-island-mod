@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -106.362137,
-    "posY": 1.17995334,
-    "posZ": -1.97331786,
-    "rotX": 359.993347,
-    "rotY": 180.024521,
-    "rotZ": 180.0006,
-    "scaleX": 1.47540212,
+    "posX": -105.372993,
+    "posY": 1.305831,
+    "posZ": -3.10965919,
+    "rotX": 357.848083,
+    "rotY": 180.016312,
+    "rotZ": 178.947891,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "Blur the Arc of Years",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -89.3,
-    "posY": 0.9009946,
-    "posZ": -26.0199986,
-    "rotX": 0.004446521,
-    "rotY": 180.00441,
-    "rotZ": 4.1372158e-07,
-    "scaleX": 1.53204679,
+    "posX": -45.9696274,
+    "posY": 2.153188,
+    "posZ": -10.702528,
+    "rotX": 0.0454560332,
+    "rotY": 179.991837,
+    "rotZ": 359.626343,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Visions of Fiery Doom",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

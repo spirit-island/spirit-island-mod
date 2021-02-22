@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -120.100288,
-    "posY": 0.9005165,
-    "posZ": -32.1799965,
-    "rotX": 0.00444648042,
-    "rotY": 179.999329,
-    "rotZ": -9.640534e-08,
-    "scaleX": 1.53204679,
+    "posX": -46.27674,
+    "posY": 2.219323,
+    "posZ": -10.722023,
+    "rotX": 0.00271084532,
+    "rotY": 179.66777,
+    "rotZ": 359.991241,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Devouring Ants",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

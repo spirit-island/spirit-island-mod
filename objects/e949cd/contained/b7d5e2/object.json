@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -73.52583,
-    "posY": 2.19618869,
-    "posZ": 4.579678,
-    "rotX": 0.00444648461,
+    "posX": -73.8104248,
+    "posY": 1.18822157,
+    "posZ": 31.4360313,
+    "rotX": 0.0302174743,
     "rotY": 180.0,
-    "rotZ": -1.857744e-07,
-    "scaleX": 1.53204679,
+    "rotZ": 180.017838,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Absorb Essence",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

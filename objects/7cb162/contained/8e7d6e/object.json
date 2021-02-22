@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -116.74,
-    "posY": 0.9015596,
-    "posZ": -18.7400036,
-    "rotX": 0.00444655446,
-    "rotY": 179.999908,
-    "rotZ": -1.90513987e-08,
-    "scaleX": 1.47540212,
+    "posX": -72.99288,
+    "posY": 1.24406588,
+    "posZ": 20.28231,
+    "rotX": 0.005934531,
+    "rotY": 180.0,
+    "rotZ": -0.00247138552,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "Ever-Multiplying Swarm",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

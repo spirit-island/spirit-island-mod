@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -113.377441,
-    "posY": 0.9015596,
-    "posZ": -18.7400036,
-    "rotX": 0.00444657728,
-    "rotY": 179.999771,
-    "rotZ": 1.49708924e-07,
-    "scaleX": 1.529637,
+    "posX": -105.403709,
+    "posY": 1.16921532,
+    "posZ": 9.12731,
+    "rotX": 0.006396735,
+    "rotY": 180.0,
+    "rotZ": -0.0003137448,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Perils of the Deepest Island",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

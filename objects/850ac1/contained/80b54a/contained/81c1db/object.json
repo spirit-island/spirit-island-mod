@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -101.426216,
-    "posY": 0.9017306,
-    "posZ": -16.5364571,
-    "rotX": 0.004446576,
-    "rotY": 179.9409,
-    "rotZ": -4.57692067e-06,
-    "scaleX": 1.53204679,
+    "posX": -31.06,
+    "posY": 1.51332772,
+    "posZ": 17.66,
+    "rotX": 6.6026454,
+    "rotY": 180.034988,
+    "rotZ": 180.135208,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Domesticated Animals Go Berserk",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

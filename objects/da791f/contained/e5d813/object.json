@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.7,
-    "posY": 0.9014726,
-    "posZ": -19.8599987,
-    "rotX": 0.00444655167,
-    "rotY": 179.999985,
-    "rotZ": -1.66630461e-08,
-    "scaleX": 1.53204679,
+    "posX": -121.806374,
+    "posY": 1.2443285,
+    "posZ": 20.3912048,
+    "rotX": 359.954651,
+    "rotY": 179.9961,
+    "rotZ": 177.8325,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Lava Flows",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

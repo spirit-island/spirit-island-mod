@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -85.45949,
-    "posY": 2.220001,
-    "posZ": -9.837697,
-    "rotX": 0.00444672443,
-    "rotY": 180.0,
-    "rotZ": -9.973241e-08,
-    "scaleX": 1.53204679,
+    "posX": -123.1214,
+    "posY": 1.19818687,
+    "posZ": 31.44992,
+    "rotX": 0.00460159639,
+    "rotY": 179.999634,
+    "rotZ": -0.000119545053,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Sacrosanct Wilderness",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

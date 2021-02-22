@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.690254,
-    "posY": 1.95880461,
-    "posZ": -23.9616127,
-    "rotX": 0.254511446,
-    "rotY": 178.085052,
-    "rotZ": 0.0296131633,
-    "scaleX": 1.53204679,
+    "posX": -30.7855282,
+    "posY": 1.03090584,
+    "posZ": 20.51069,
+    "rotX": 0.0245259181,
+    "rotY": 179.2593,
+    "rotZ": 4.735855,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Sucking Ooze",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

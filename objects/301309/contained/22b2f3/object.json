@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.71269,
-    "posY": 1.99101853,
-    "posZ": -14.6040516,
-    "rotX": 0.004446702,
-    "rotY": 180.0,
-    "rotZ": -1.36223633e-07,
-    "scaleX": 1.53204679,
+    "posX": -122.93737,
+    "posY": 1.24301863,
+    "posZ": 53.8184853,
+    "rotX": 0.0024200324,
+    "rotY": 180.0056,
+    "rotZ": 182.302826,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Boon of Vigor",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

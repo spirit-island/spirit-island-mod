@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.624352,
-    "posY": 2.19830036,
-    "posZ": -23.9714642,
-    "rotX": 0.2033734,
-    "rotY": 180.9753,
-    "rotZ": 0.0730581358,
-    "scaleX": 1.53204679,
+    "posX": -26.6615448,
+    "posY": 1.05860853,
+    "posZ": 20.5024128,
+    "rotX": 0.08117149,
+    "rotY": 192.879608,
+    "rotZ": 5.47238827,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Like Calls to Like",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

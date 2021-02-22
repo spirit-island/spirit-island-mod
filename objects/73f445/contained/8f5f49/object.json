@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -93.22,
-    "posY": 0.90177685,
-    "posZ": -15.9399986,
-    "rotX": 0.00444677239,
-    "rotY": 180.0,
-    "rotZ": 4.365425e-09,
-    "scaleX": 1.47540212,
+    "posX": -72.49999,
+    "posY": 1.16915953,
+    "posZ": 9.820004,
+    "rotX": -0.00145543949,
+    "rotY": 179.999817,
+    "rotZ": 180.008209,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "Flowing and Silent Forms Dart by",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.98,
-    "posY": 0.9018638,
-    "posZ": -14.8199987,
-    "rotX": 0.004446609,
-    "rotY": 180.000092,
-    "rotZ": -1.95454547e-07,
-    "scaleX": 1.47602439,
+    "posX": -89.86,
+    "posY": 1.24367881,
+    "posZ": 9.82,
+    "rotX": 0.0026283178,
+    "rotY": 179.999924,
+    "rotZ": 181.81044,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47602439
+    "scaleZ": 1.53
   },
   "Nickname": "Strike Low with Sudden Fevers",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

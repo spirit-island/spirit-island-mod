@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.742584,
-    "posY": 2.09777141,
-    "posZ": -23.3538914,
-    "rotX": 359.9742,
-    "rotY": 181.924072,
-    "rotZ": -0.003088098,
-    "scaleX": 1.3656503,
+    "posX": -36.93435,
+    "posY": 1.338035,
+    "posZ": 28.1320343,
+    "rotX": 359.212067,
+    "rotY": 185.572311,
+    "rotZ": 3.88720918,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Sweep into the Sea",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

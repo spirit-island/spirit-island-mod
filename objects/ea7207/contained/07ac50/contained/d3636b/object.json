@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.876839,
-    "posY": 2.23199081,
-    "posZ": -23.2786,
-    "rotX": 0.0213541836,
-    "rotY": 180.530609,
-    "rotZ": 359.947357,
-    "scaleX": 1.3656503,
+    "posX": -38.64168,
+    "posY": 1.30758774,
+    "posZ": 28.2230682,
+    "rotX": 359.596954,
+    "rotY": 185.694244,
+    "rotZ": 5.70245934,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Unrelenting Growth",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

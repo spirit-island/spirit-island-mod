@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -88.6283,
-    "posY": 2.20046759,
-    "posZ": -6.498837,
-    "rotX": 0.00444673933,
-    "rotY": 180.000015,
-    "rotZ": -8.845587e-08,
-    "scaleX": 1.53204679,
+    "posX": -106.30751,
+    "posY": 1.17343462,
+    "posZ": 31.4362411,
+    "rotX": 0.00748053053,
+    "rotY": 179.999985,
+    "rotZ": -0.001564076,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Prey on the Builders",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

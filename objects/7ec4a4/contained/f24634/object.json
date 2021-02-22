@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -93.6705551,
-    "posY": 1.99101853,
-    "posZ": -14.1055555,
-    "rotX": 0.00444674259,
-    "rotY": 180.0,
-    "rotZ": -8.576805e-08,
-    "scaleX": 1.53204679,
+    "posX": -88.36931,
+    "posY": 1.24355149,
+    "posZ": 53.8296356,
+    "rotX": 0.00266481331,
+    "rotY": 179.999847,
+    "rotZ": 183.285324,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Crops Wither and Fade",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

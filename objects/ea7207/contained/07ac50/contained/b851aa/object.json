@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.764519,
-    "posY": 2.04369259,
-    "posZ": -22.9758472,
-    "rotX": 359.976563,
-    "rotY": 181.617416,
-    "rotZ": 0.0139054107,
-    "scaleX": 1.3656503,
+    "posX": -42.6475334,
+    "posY": 1.31964707,
+    "posZ": 28.3431435,
+    "rotX": 1.30474448,
+    "rotY": 183.038651,
+    "rotZ": 5.76292324,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Insatiable Hunger of the Swarm",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.14,
-    "posY": 0.9017334,
-    "posZ": -16.4999981,
-    "rotX": 0.00444656424,
-    "rotY": 180.0,
-    "rotZ": -1.57721772e-07,
-    "scaleX": 1.53145456,
+    "posX": -72.63885,
+    "posY": 1.18624353,
+    "posZ": -3.185805,
+    "rotX": 0.0136788916,
+    "rotY": 180.001541,
+    "rotZ": 359.991577,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53145456
+    "scaleZ": 1.53
   },
   "Nickname": "Aid from the Spirit-Speakers",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.770782,
-    "posY": 2.20503616,
-    "posZ": -23.2749481,
-    "rotX": 0.008573708,
-    "rotY": 174.282242,
-    "rotZ": 359.949829,
-    "scaleX": 1.3656503,
+    "posX": -43.94029,
+    "posY": 1.08195662,
+    "posZ": 28.860096,
+    "rotX": 0.00155119214,
+    "rotY": 180.017487,
+    "rotZ": 2.04263186,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Manifest Incarnation",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

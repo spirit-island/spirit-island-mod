@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.784668,
-    "posY": 2.28113866,
-    "posZ": -23.1955662,
-    "rotX": 359.944336,
-    "rotY": 180.346619,
-    "rotZ": 0.120670557,
-    "scaleX": 1.53204679,
+    "posX": -41.79056,
+    "posY": 1.266999,
+    "posZ": 27.3541832,
+    "rotX": 359.6165,
+    "rotY": 179.363937,
+    "rotZ": 3.21800113,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Melt Earth into Quicksand",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

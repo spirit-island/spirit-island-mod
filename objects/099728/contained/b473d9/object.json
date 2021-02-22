@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -108.9,
-    "posY": 0.9016465,
-    "posZ": -17.6199989,
-    "rotX": 0.004446538,
-    "rotY": 179.999878,
-    "rotZ": -2.63319379e-07,
-    "scaleX": 1.529637,
+    "posX": -105.403137,
+    "posY": 1.18165922,
+    "posZ": 9.127314,
+    "rotX": 0.00249528466,
+    "rotY": 180.0,
+    "rotZ": 180.385941,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Swallowed by the Wilderness",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

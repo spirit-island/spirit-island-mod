@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.52125,
-    "posY": 2.08698082,
-    "posZ": -27.6791439,
-    "rotX": 359.98584,
-    "rotY": 178.910339,
-    "rotZ": 0.0619356744,
-    "scaleX": 1.53204679,
+    "posX": -32.2759056,
+    "posY": 1.30821955,
+    "posZ": 20.9466476,
+    "rotX": 0.200162411,
+    "rotY": 182.569473,
+    "rotZ": 3.20831013,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Strong and Constant Currents",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

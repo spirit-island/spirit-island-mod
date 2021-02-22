@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -93.22,
-    "posY": 0.900951147,
-    "posZ": -26.579998,
-    "rotX": 0.004446758,
-    "rotY": 180.0,
-    "rotZ": -4.4419405e-08,
-    "scaleX": 1.53204679,
+    "posX": -46.579525,
+    "posY": 2.17305517,
+    "posZ": -11.0516691,
+    "rotX": 359.958923,
+    "rotY": 181.833008,
+    "rotZ": 0.0852251,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Song of Sanctity",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

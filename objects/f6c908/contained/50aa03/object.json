@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -101.62,
-    "posY": 0.901820362,
-    "posZ": -15.38,
-    "rotX": 0.00444652652,
-    "rotY": 180.000046,
-    "rotZ": 4.83143765e-08,
-    "scaleX": 1.529637,
+    "posX": -106.676689,
+    "posY": 1.19383264,
+    "posZ": 20.2720165,
+    "rotX": 0.004550171,
+    "rotY": 179.999924,
+    "rotZ": -0.00014623889,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Plows Shatter on Rocky Ground",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

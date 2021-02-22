@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -113.38,
-    "posY": 0.9016465,
-    "posZ": -17.6200047,
-    "rotX": 0.004446613,
-    "rotY": 180.000061,
-    "rotZ": 2.82949259e-07,
-    "scaleX": 1.529637,
+    "posX": -123.097122,
+    "posY": 1.18445492,
+    "posZ": 9.158251,
+    "rotX": 0.00318282866,
+    "rotY": 179.999969,
+    "rotZ": 180.169968,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.529637
+    "scaleZ": 1.53
   },
   "Nickname": "Boon of Ancient Memories",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

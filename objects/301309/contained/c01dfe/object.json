@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -96.23693,
-    "posY": 1.99101853,
-    "posZ": -13.2575588,
-    "rotX": 0.004446716,
-    "rotY": 180.0,
-    "rotZ": -1.48964219e-07,
-    "scaleX": 1.53204679,
+    "posX": -122.935272,
+    "posY": 1.19008827,
+    "posZ": 53.8187866,
+    "rotX": 0.0009796413,
+    "rotY": 179.999985,
+    "rotZ": 179.972763,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "River's Bounty",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

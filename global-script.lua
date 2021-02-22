@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.4.0-beta.7"
+version = "1.5.0-beta.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -63,6 +63,8 @@ cityBag = "a245f8"
 selectedColors = {}
 selectedBoards = {}
 blightCards = {}
+fastDiscount = 0
+currentPhase = 1
 
 playerBlocks = {
     Red = "c68e2c",
@@ -171,6 +173,7 @@ interactableObjectsToDisableOnLoad = {
 
 ---- TTS Events Section
 function onScriptingButtonDown(index, playerColor)
+    if playerColor == "Grey" then return end
     DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)
 end
 function onObjectDrop(player_color, dropped_object)
@@ -223,6 +226,8 @@ function onSave()
         selectedBoards = selectedBoards,
         numPlayers = numPlayers,
         blightCards = blightCards,
+        fastDiscount = fastDiscount,
+        currentPhase = currentPhase,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -385,6 +390,8 @@ function onLoad(saved_data)
         blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
+        fastDiscount = loaded_data.fastDiscount
+        currentPhase = loaded_data.currentPhase
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -398,6 +405,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
+            updateCurrentPhase(false)
             seaTile.registerCollisions(false)
             SetupPowerDecks()
             Wait.condition(function()
@@ -844,6 +852,24 @@ function SetupPowerDecks()
     getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
     getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
 
+    exploratoryPowersDone = false
+    if not gameStarted and SetupChecker.getVar("exploratoryVOTD") then
+        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        deck.takeObject({
+            guid = "152fe0",
+            callback_function = function(obj)
+                local temp = obj.setState(2)
+                Wait.frames(function()
+                    deck.putObject(temp)
+                    deck.shuffle()
+                    exploratoryPowersDone = true
+                end, 1)
+            end,
+        })
+    else
+        exploratoryPowersDone = true
+    end
+
     SetupChecker.setScale(Vector(1,1,1))
     SetupChecker.setRotationSmooth(Vector(0,180,0))
     SetupChecker.setPositionSmooth(Vector(-41.95,0.2,-7.97))
@@ -890,7 +916,7 @@ function SetupPowerDecks()
             tooltip        = "Click to learn a Minor Power",
         })
         stagesSetup = stagesSetup + 1
-    end, function() return not SetupChecker.isSmoothMoving() end)
+    end, function() return not SetupChecker.isSmoothMoving() and exploratoryPowersDone end)
     return 1
 end
 handOffset = Vector(0,0,35)
@@ -905,6 +931,7 @@ function MajorPowerC(obj, player_color, alt_click)
     startDealPowerCards("MajorPower", Player[player_color], cards)
 end
 function MajorPowerUI(player, button)
+    if player.color == "Grey" then return end
     local cards = 4
     -- button is "-1"/"1" for left click/single touch
     if math.abs(button) > 1 then
@@ -920,6 +947,7 @@ function MinorPowerC(obj, player_color, alt_click)
     startDealPowerCards("MinorPower", Player[player_color], cards)
 end
 function MinorPowerUI(player, button)
+    if player.color == "Grey" then return end
     local cards = 4
     -- button is "-1"/"1" for left click/single touch
     if math.abs(button) > 1 then
@@ -1808,7 +1836,6 @@ function PostSetup()
 
     local postSetupSteps = 0
     local firstAdversarySetup = false
-    local exploratoryPowersDone = false
 
     if adversaryCard == nil then
         difficultyString = difficultyString.."No Adversary\n"
@@ -1825,24 +1852,6 @@ function PostSetup()
     difficultyString = difficultyString.."Difficulty "..difficulty
     createDifficultyButton()
 
-    if SetupChecker.getVar("exploratoryVOTD") then
-        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
-        deck.takeObject({
-            guid = "152fe0",
-            callback_function = function(obj)
-                local temp = obj.setState(2)
-                Wait.frames(function()
-                    deck.putObject(temp)
-                    deck.shuffle()
-                    postSetupSteps = postSetupSteps + 1
-                    exploratoryPowersDone = true
-                end, 1)
-            end,
-        })
-    else
-        postSetupSteps = postSetupSteps + 1
-        exploratoryPowersDone = true
-    end
     if SetupChecker.getVar("exploratoryBODAN") then
         local spirit = getObjectFromGUID("606f23").setState(2)
         if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
@@ -1871,59 +1880,59 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
     if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        -- Wait for all exploratory powers to have state changed
-        Wait.condition(function()
-            scenarioCard.call("PostSetup",{})
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
-        end, function() return exploratoryPowersDone end)
+        scenarioCard.call("PostSetup",{})
+        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
     end
 
     if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
-        local zone = getObjectFromGUID(invaderDeckZone)
-        local invaderDeck = zone.getObjects()[1]
-        local cards = invaderDeck.getObjects()
-        local stageII = nil
-        local stageIII = nil
-        for _,card in pairs(cards) do
-            local start,finish = string.find(card.lua_script,"cardInvaderStage=")
-            if start ~= nil then
-                local stage = tonumber(string.sub(card.lua_script,finish+1))
-                local special = string.find(card.lua_script,"special=")
-                if special ~= nil then
-                    stage = stage - 1
-                end
-                if stage == 2 and stageII == nil then
-                    stageII = card.index
-                elseif stage == 3 and stageIII == nil then
-                    stageIII = card.index
-                end
-            end
-            if stageII ~= nil and stageIII ~= nil then
-                break
-            end
-        end
-        if stageII == nil then stageII = 0 end
-        if stageIII == nil then stageIII = 0 end
-        if stageII <= stageIII then stageIII = stageIII + 1 end
-
-        setupCommandCard(invaderDeck, stageII, "d46930")
+        -- Setup up command cards last
         Wait.condition(function()
-            setupCommandCard(invaderDeck, stageIII, "a578fe")
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
+            local zone = getObjectFromGUID(invaderDeckZone)
+            local invaderDeck = zone.getObjects()[1]
+            local cards = invaderDeck.getObjects()
+            local stageII = nil
+            local stageIII = nil
+            for _,card in pairs(cards) do
+                local start,finish = string.find(card.lua_script,"cardInvaderStage=")
+                if start ~= nil then
+                    local stage = tonumber(string.sub(card.lua_script,finish+1))
+                    local special = string.find(card.lua_script,"special=")
+                    if special ~= nil then
+                        stage = stage - 1
+                    end
+                    if stage == 2 and stageII == nil then
+                        stageII = card.index
+                    elseif stage == 3 and stageIII == nil then
+                        stageIII = card.index
+                    end
+                end
+                if stageII ~= nil and stageIII ~= nil then
+                    break
+                end
+            end
+            if stageII == nil then stageII = 0 end
+            if stageIII == nil then stageIII = 0 end
+            if stageII <= stageIII then stageIII = stageIII + 1 end
+
+            setupCommandCard(invaderDeck, stageII, "d46930")
+            Wait.condition(function()
+                setupCommandCard(invaderDeck, stageIII, "a578fe")
+                Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
+                    local objs = zone.getObjects()
+                    return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
+                end)
+            end, function()
                 local objs = zone.getObjects()
-                return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
+                return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function()
-            local objs = zone.getObjects()
-            return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
-        end)
+        end, function() return postSetupSteps == 4 end)
     else
         postSetupSteps = postSetupSteps + 1
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function()log(postSetupSteps) return postSetupSteps == 6 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 5 end)
     return 1
 end
 function createDifficultyButton()
@@ -1961,7 +1970,6 @@ end
 function StartGame()
     gamePaused = false
     gameStarted = true
-    exploratory()
     enableUI()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
@@ -1998,8 +2006,6 @@ function StartGame()
         end
     end
     return 1
-end
-function exploratory()
 end
 function enableUI()
     local colors = {}
@@ -2092,6 +2098,10 @@ function timePassesCo()
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end
+
+    updateCurrentPhase(true)
+    currentPhase = 1
+    updateCurrentPhase(false)
 
     broadcastToAll("Time Passes...", Color.SoftBlue)
     local quote = quotes[math.random(#quotes)]
@@ -2834,13 +2844,11 @@ function deleteObject(obj, fear)
         bag = townBag
         if fear then
             aidBoard.call("addFear")
-            aidBoard.call("addFear")
         end
     elseif string.sub(obj.getName(),1,4) == "City" then
         obj.setRotation(Vector(0,180,0))
         bag = cityBag
         if fear then
-            aidBoard.call("addFear")
             aidBoard.call("addFear")
             aidBoard.call("addFear")
         end
@@ -3055,13 +3063,13 @@ function setupPlayerArea(params)
         -- Energy Cost (button index 0)
         obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
-            position={0,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={0.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
         obj.createButton({
             label="", click_function="nullFunc", function_owner=Global,
-            position={-5,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Other buttons to follow/be fixed later.
@@ -3143,8 +3151,13 @@ function setupPlayerArea(params)
             for j = 1, 8 do
                 outTable[j] = outTable[j] + elemTable[j]
             end
-            if inTableOfElemStrCards[i].getVar("energy") ~= nil then
-                energy = energy + inTableOfElemStrCards[i].getVar("energy")
+            local cost = inTableOfElemStrCards[i].getVar("energy")
+            -- Skip counting locked card's energy (Aid from Lesser Spirits)
+            if not inTableOfElemStrCards[i].getLock() and cost ~= nil then
+                energy = energy + cost
+                if inTableOfElemStrCards[i].hasTag("Fast") then
+                    energy = energy - fastDiscount
+                end
             end
         end
         return outTable
@@ -3196,7 +3209,7 @@ function payEnergy(target_obj, source_color, alt_click)
 
     local paid = updateEnergyCounter(source_color, false)
     if not paid then
-        paid = payEnergyTokens(source_color)
+        paid = payEnergyTokens(source_color, nil)
     end
     if paid then
         selectedColors[source_color].paid = true
@@ -3211,17 +3224,19 @@ function updateEnergyCounter(color, refund)
     end
     local cost = getEnergyLabel(color)
     local energy = selectedColors[color].counter.getValue()
-    if not refund and cost > energy then
-        return false
-    end
     if refund then
         cost = cost * -1
+    end
+    if cost > energy then
+        return false
     end
     selectedColors[color].counter.setValue(energy - cost)
     return true
 end
-function payEnergyTokens(color)
-    local cost = getEnergyLabel(color)
+function payEnergyTokens(color, cost)
+    if cost == nil then
+        cost = getEnergyLabel(color)
+    end
     local energy = 0
     local zone = getObjectFromGUID(elementScanZones[color])
     local objects = zone.getObjects()
@@ -3292,24 +3307,27 @@ function refundEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
 end
-function refundEnergyTokens(color, energy)
-    if energy == nil then
-        energy = getEnergyLabel(color)
+function refundEnergyTokens(color, cost)
+    if cost == nil then
+        cost = getEnergyLabel(color)
+    end
+    if cost < 0 then
+        return payEnergyTokens(color, -cost)
     end
     local zone = getObjectFromGUID(elementScanZones[color])
-    while energy >= 3 do
+    while cost >= 3 do
         threeEnergyBag.takeObject({
             position = zone.getPosition()+Vector(-10,2,-5),
             rotation = Vector(0,180,0),
         })
-        energy = energy - 3
+        cost = cost - 3
     end
-    while energy >= 1 do
+    while cost >= 1 do
         oneEnergyBag.takeObject({
             position = zone.getPosition()+Vector(-10,2,-3),
             rotation = Vector(0,180,0),
         })
-        energy = energy - 1
+        cost = cost - 1
     end
     return true
 end
@@ -3369,6 +3387,7 @@ function updateSwapButtons()
     end
 end
 function updatePlaySpiritButton(color)
+    if color == "Grey" then return end
     if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
         playerTables[color].editButton({index=2, label="", height=0, width=0})
     else
@@ -4047,6 +4066,7 @@ function ensureCardInPlay(card)
     end
 end
 
+
 function isObjectInHand(obj, color, handIndex)
     for _, handObj in ipairs(Player[color].getHandObjects(handIndex)) do
         if obj.guid == handObj.guid then
@@ -4054,4 +4074,58 @@ function isObjectInHand(obj, color, handIndex)
         end
     end
     return false
+end
+
+function enterSpiritPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 1 then return end
+    broadcastToAll("Entering Spirit Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 1
+    updateCurrentPhase(false)
+end
+function enterFastPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 2 then return end
+    broadcastToAll("Entering Fast Power Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 2
+    updateCurrentPhase(false)
+end
+function enterInvaderPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 3 then return end
+    broadcastToAll("Entering Invader Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 3
+    updateCurrentPhase(false)
+end
+function enterSlowPhase(player)
+    if player.color == "Grey" then return end
+    if currentPhase == 4 then return end
+    broadcastToAll("Entering Slow Power Phase", Color.SoftYellow)
+    updateCurrentPhase(true)
+    currentPhase = 4
+    updateCurrentPhase(false)
+end
+function updateCurrentPhase(clear)
+    local id = ""
+    if currentPhase == 1 then
+        id = "spiritPhase"
+    elseif currentPhase == 2 then
+        id = "fastPhase"
+    elseif currentPhase == 3 then
+        id = "invaderPhase"
+    elseif currentPhase == 4 then
+        id = "slowPhase"
+    end
+    local attributes = {
+        textColor = "#FFFFFF"
+    }
+    if clear then
+        attributes.text = string.sub(UI.getAttribute(id, "text"), 2)
+    else
+        attributes.text = ">"..UI.getAttribute(id, "text")
+    end
+    UI.setAttributes(id, attributes)
 end

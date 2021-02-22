@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.74704,
-    "posY": 2.17918515,
-    "posZ": -23.1720276,
-    "rotX": 0.0324694179,
-    "rotY": 180.858551,
-    "rotZ": 359.986267,
-    "scaleX": 1.53204679,
+    "posX": -39.89649,
+    "posY": 1.156564,
+    "posZ": 28.1652946,
+    "rotX": 0.1168163,
+    "rotY": 181.202271,
+    "rotZ": 7.066956,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Settle in Hunting-Grounds",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

@@ -48,15 +48,15 @@ function onLoad()
             progressionCard = obj
             self.editButton({
                 index          = 1,
-                label          = "No Progression",
-                width          = 2000,
+                label          = "Progression: No",
+                width          = 2200,
                 height         = 500,
             })
         elseif string.find(obj.getName(),"Aspects") then
             self.editButton({
                 index          = 2,
-                label          = "Include Aspects",
-                width          = 2000,
+                label          = "Aspects: All",
+                width          = 2300,
                 height         = 500,
             })
         end
@@ -218,12 +218,12 @@ function ToggleProgression()
     if useProgression then
         self.editButton({
             index          = 1,
-            label          = "Progression",
+            label          = "Progression: Yes",
         })
     else
         self.editButton({
             index          = 1,
-            label          = "No Progression",
+            label          = "Progression: No",
         })
     end
 end
@@ -236,17 +236,17 @@ function ToggleAspect(_, _, alt_click)
     if useAspect == 0 then
         self.editButton({
             index          = 2,
-            label          = "No Aspects",
+            label          = "Aspects: None",
         })
     elseif useAspect == 1 then
         self.editButton({
             index          = 2,
-            label          = "Random Aspect",
+            label          = "Aspects: Random",
         })
     else
         self.editButton({
             index          = 2,
-            label          = "Include Aspects",
+            label          = "Aspects: All",
         })
     end
 end

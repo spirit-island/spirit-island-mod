@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -85.63985,
-    "posY": 2.11968541,
-    "posZ": -11.1202755,
-    "rotX": 0.0044466285,
-    "rotY": 179.999924,
-    "rotZ": -4.85641856e-08,
-    "scaleX": 1.3656503,
+    "posX": -43.3799973,
+    "posY": 1.14448965,
+    "posZ": 28.86,
+    "rotX": 0.00302529242,
+    "rotY": 180.0,
+    "rotZ": 180.003754,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Death Falls Gently from Open Blossoms",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

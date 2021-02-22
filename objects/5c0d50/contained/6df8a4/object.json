@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -90.41924,
-    "posY": 0.900422633,
-    "posZ": -33.3000031,
-    "rotX": 0.00448754244,
-    "rotY": 179.982681,
-    "rotZ": -0.00029578415,
-    "scaleX": 1.53204679,
+    "posX": -46.00962,
+    "posY": 2.09971976,
+    "posZ": -10.687398,
+    "rotX": 0.04226691,
+    "rotY": 178.440948,
+    "rotZ": 359.6396,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Land of Haunts and Embers",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

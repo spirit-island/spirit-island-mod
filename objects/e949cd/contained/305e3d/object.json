@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -82.31706,
-    "posY": 2.11973333,
-    "posZ": -8.505602,
-    "rotX": 0.00444674,
+    "posX": -72.6145248,
+    "posY": 1.17343879,
+    "posZ": 31.4292259,
+    "rotX": 0.00726947561,
     "rotY": 180.0,
-    "rotZ": -1.27566111e-07,
-    "scaleX": 1.53204679,
+    "rotZ": -0.00168524287,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Gift of the Primordial Deeps",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

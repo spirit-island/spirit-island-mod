@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -93.5416641,
-    "posY": 2.11979914,
-    "posZ": -9.446335,
-    "rotX": 0.00444678543,
-    "rotY": 180.0,
-    "rotZ": -1.12617478e-07,
-    "scaleX": 1.53204679,
+    "posX": -72.5,
+    "posY": 1.19061708,
+    "posZ": 43.420002,
+    "rotX": 0.009875633,
+    "rotY": 179.999863,
+    "rotZ": 179.975052,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Tidal Boon",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -120.100006,
-    "posY": 0.9141797,
-    "posZ": -42.2600632,
-    "rotX": 359.651764,
-    "rotY": 180.0001,
-    "rotZ": 0.00268229516,
-    "scaleX": 1.53204679,
+    "posX": -46.4572067,
+    "posY": 2.07073116,
+    "posZ": -11.0917339,
+    "rotX": 0.00160801609,
+    "rotY": 179.489563,
+    "rotZ": 359.9869,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Veil to the Night's Hunt",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

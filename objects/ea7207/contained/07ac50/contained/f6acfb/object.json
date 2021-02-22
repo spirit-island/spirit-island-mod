@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.969452,
-    "posY": 2.070966,
-    "posZ": -23.2162437,
-    "rotX": 359.972565,
-    "rotY": 181.485748,
-    "rotZ": 0.01581838,
-    "scaleX": 1.3656503,
+    "posX": -39.446125,
+    "posY": 1.31163979,
+    "posZ": 28.303751,
+    "rotX": 359.6091,
+    "rotY": 185.418427,
+    "rotZ": 5.70457172,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Tigers Hunting",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

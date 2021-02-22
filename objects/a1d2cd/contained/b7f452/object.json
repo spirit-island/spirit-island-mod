@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.69303,
-    "posY": 1.99101853,
-    "posZ": -13.6441793,
-    "rotX": 0.00444681663,
-    "rotY": 180.000015,
-    "rotZ": -6.080581e-08,
-    "scaleX": 1.53204679,
+    "posX": -106.279305,
+    "posY": 1.205462,
+    "posZ": 53.813015,
+    "rotX": 0.0044549075,
+    "rotY": 180.002823,
+    "rotZ": 0.5126933,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Raging Storm",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

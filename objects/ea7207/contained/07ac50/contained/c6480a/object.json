@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.42025,
-    "posY": 1.04920781,
-    "posZ": -23.2199154,
-    "rotX": 0.004410791,
-    "rotY": 180.004272,
-    "rotZ": 1.56773353,
-    "scaleX": 1.3656503,
+    "posX": -43.3268967,
+    "posY": 1.08545876,
+    "posZ": 28.3923683,
+    "rotX": 359.961121,
+    "rotY": 179.220871,
+    "rotZ": 183.4672,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Twisted Flowers Murmur Ultimatums",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

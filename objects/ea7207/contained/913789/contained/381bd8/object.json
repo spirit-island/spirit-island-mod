@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -105.012146,
-    "posY": 2.03471375,
-    "posZ": -22.74349,
-    "rotX": 16.06093,
-    "rotY": 178.429672,
-    "rotZ": 346.002533,
-    "scaleX": 1.3656503,
+    "posX": -43.38,
+    "posY": 1.428858,
+    "posZ": 28.3,
+    "rotX": 0.04145507,
+    "rotY": 181.131592,
+    "rotZ": 5.81001663,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Gold's Allure",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

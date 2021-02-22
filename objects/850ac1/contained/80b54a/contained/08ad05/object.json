@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.73423,
-    "posY": 2.250784,
-    "posZ": -23.9865513,
-    "rotX": 0.221430376,
-    "rotY": 178.8964,
-    "rotZ": 0.0330517665,
-    "scaleX": 1.53204679,
+    "posX": -28.5448341,
+    "posY": 1.10745478,
+    "posZ": 20.35154,
+    "rotX": 0.0526005737,
+    "rotY": 188.2335,
+    "rotZ": 6.857391,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Gift of Twinned Days",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

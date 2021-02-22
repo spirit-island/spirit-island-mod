@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -91.54,
-    "posY": 0.90177685,
-    "posZ": -15.9399986,
-    "rotX": 0.00444684643,
-    "rotY": 180.0,
-    "rotZ": 1.90623425e-07,
-    "scaleX": 1.53145456,
+    "posX": -72.63885,
+    "posY": 1.17657471,
+    "posZ": -3.1858058,
+    "rotX": 0.0148288943,
+    "rotY": 179.999542,
+    "rotZ": 359.990082,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53145456
+    "scaleZ": 1.53
   },
   "Nickname": "Offer Passage between Worlds",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

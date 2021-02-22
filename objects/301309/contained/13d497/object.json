@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -92.378334,
-    "posY": 1.99101853,
-    "posZ": -13.9887514,
-    "rotX": 0.00444676,
-    "rotY": 180.0,
-    "rotZ": -9.289047e-08,
-    "scaleX": 1.53204679,
+    "posX": -122.935295,
+    "posY": 1.18487656,
+    "posZ": 53.8187866,
+    "rotX": 0.00397027563,
+    "rotY": 179.999939,
+    "rotZ": -0.00271873432,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Flash Floods",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

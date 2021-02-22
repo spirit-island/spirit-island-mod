@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.836121,
-    "posY": 2.31250834,
-    "posZ": -23.2453232,
-    "rotX": 0.0294198059,
-    "rotY": 180.339447,
-    "rotZ": 359.961182,
-    "scaleX": 1.3656503,
+    "posX": -44.3908,
+    "posY": 1.23471737,
+    "posZ": 28.1306915,
+    "rotX": 359.6568,
+    "rotY": 182.636765,
+    "rotZ": 5.45450544,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Grant Hatred a Ravenous Form",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Major"
+    "Major",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

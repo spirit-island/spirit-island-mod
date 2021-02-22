@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.4822,
-    "posY": 2.135366,
-    "posZ": -27.7079144,
-    "rotX": 359.98645,
-    "rotY": 178.8725,
-    "rotZ": 0.02318852,
-    "scaleX": 1.53204679,
+    "posX": -29.4310265,
+    "posY": 1.1366663,
+    "posZ": 20.4735928,
+    "rotX": 0.0371767245,
+    "rotY": 188.335358,
+    "rotZ": 7.06655645,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Renewing Boon",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

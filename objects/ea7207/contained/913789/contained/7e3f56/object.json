@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.268494,
-    "posY": 2.02219248,
-    "posZ": -15.9249315,
-    "rotX": 359.899323,
-    "rotY": 181.855774,
-    "rotZ": 0.3271615,
-    "scaleX": 1.3656503,
+    "posX": -47.28994,
+    "posY": 1.32437789,
+    "posZ": 28.8664,
+    "rotX": 359.978424,
+    "rotY": 180.064,
+    "rotZ": 2.2333734,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Call to Ferocity",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

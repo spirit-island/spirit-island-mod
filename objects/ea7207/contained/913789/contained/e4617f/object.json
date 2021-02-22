@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.098618,
-    "posY": 1.93663681,
-    "posZ": -15.5006065,
-    "rotX": 0.07911134,
-    "rotY": 179.746643,
-    "rotZ": 0.117578559,
-    "scaleX": 1.3656503,
+    "posX": -49.03453,
+    "posY": 1.28430021,
+    "posZ": 28.8346348,
+    "rotX": 0.0103013227,
+    "rotY": 180.319946,
+    "rotZ": 3.074587,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Cycles of Time and Tide",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

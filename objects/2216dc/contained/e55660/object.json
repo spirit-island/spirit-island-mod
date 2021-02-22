@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -96.51485,
-    "posY": 1.99101937,
-    "posZ": -13.6861658,
-    "rotX": 0.00444670068,
-    "rotY": 180.0,
-    "rotZ": -1.41262049e-07,
-    "scaleX": 1.53204679,
+    "posX": -71.57948,
+    "posY": 1.17843676,
+    "posZ": 53.8248558,
+    "rotX": 0.00280680438,
+    "rotY": 180.000031,
+    "rotZ": 179.978226,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Rituals of Destruction",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

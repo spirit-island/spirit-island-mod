@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -98.48972,
-    "posY": 1.99101853,
-    "posZ": -13.816721,
-    "rotX": 0.004446736,
-    "rotY": 180.000015,
-    "rotZ": -1.451e-07,
-    "scaleX": 1.53204679,
+    "posX": -89.62738,
+    "posY": 1.32434475,
+    "posZ": 42.6247177,
+    "rotX": 0.002404198,
+    "rotY": 179.999939,
+    "rotZ": 178.26709,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Dreams of the Dahan",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

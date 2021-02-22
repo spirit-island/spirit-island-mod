@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -92.58671,
-    "posY": 2.11970234,
-    "posZ": -8.688022,
-    "rotX": 0.00444673141,
-    "rotY": 180.0,
-    "rotZ": -1.28714959e-07,
-    "scaleX": 1.53204679,
+    "posX": -88.3431854,
+    "posY": 1.28318608,
+    "posZ": 31.352087,
+    "rotX": 0.00453657238,
+    "rotY": 180.004913,
+    "rotZ": 176.481155,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Flame's Fury",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

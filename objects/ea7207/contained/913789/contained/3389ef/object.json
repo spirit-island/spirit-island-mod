@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -102.806793,
-    "posY": 2.115704,
-    "posZ": -15.7153606,
-    "rotX": 0.0130387424,
-    "rotY": 179.338242,
-    "rotZ": 359.985352,
-    "scaleX": 1.3656503,
+    "posX": -46.2089043,
+    "posY": 1.52787733,
+    "posZ": 28.90222,
+    "rotX": 359.931671,
+    "rotY": 178.988358,
+    "rotZ": 5.659771,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Promises of Protection",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

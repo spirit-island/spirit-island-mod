@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -90.1846,
-    "posY": 2.11974216,
-    "posZ": -9.095265,
-    "rotX": 0.00444672955,
-    "rotY": 180.000015,
-    "rotZ": -1.26343252e-07,
-    "scaleX": 1.53204679,
+    "posX": -88.34425,
+    "posY": 1.28056169,
+    "posZ": 31.3518257,
+    "rotX": 0.0033366303,
+    "rotY": 179.9964,
+    "rotZ": 356.486145,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Asphyxiating Smoke",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

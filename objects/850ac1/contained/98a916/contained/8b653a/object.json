@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.635468,
-    "posY": 2.0293622,
-    "posZ": -23.3784428,
-    "rotX": 0.0129507724,
-    "rotY": 179.518066,
-    "rotZ": -0.00523955049,
-    "scaleX": 1.53204679,
+    "posX": -39.5791664,
+    "posY": 1.13702083,
+    "posZ": 27.6403027,
+    "rotX": 359.945648,
+    "rotY": 178.802032,
+    "rotZ": 7.140458,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Sleep and Never Waken",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

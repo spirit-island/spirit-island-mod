@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -96.58,
-    "posY": 0.901603043,
-    "posZ": -18.1799984,
-    "rotX": 0.00444659032,
-    "rotY": 179.999939,
-    "rotZ": 5.988511e-08,
-    "scaleX": 1.47540212,
+    "posX": -72.9928741,
+    "posY": 1.40112686,
+    "posZ": 20.2823124,
+    "rotX": 359.835815,
+    "rotY": 179.9721,
+    "rotZ": 185.120956,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.47540212
+    "scaleZ": 1.53
   },
   "Nickname": "Guide the Way on Feathered Wings",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

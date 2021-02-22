@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -116.18,
-    "posY": 0.926801,
-    "posZ": -42.2600021,
-    "rotX": 0.005715758,
-    "rotY": 180.015518,
-    "rotZ": 0.00272437418,
-    "scaleX": 1.53204679,
+    "posX": -46.0631523,
+    "posY": 1.99617684,
+    "posZ": -10.8679552,
+    "rotX": 0.0121273752,
+    "rotY": 177.848053,
+    "rotZ": 359.7842,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Call of the Dahan Ways",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

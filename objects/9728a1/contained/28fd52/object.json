@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -88.7811661,
-    "posY": 2.11970615,
-    "posZ": -11.2864027,
-    "rotX": 0.004446727,
-    "rotY": 180.0,
-    "rotZ": -6.040925e-08,
-    "scaleX": 1.53204679,
+    "posX": -123.1214,
+    "posY": 1.30775356,
+    "posZ": 31.44992,
+    "rotX": 0.00265870569,
+    "rotY": 179.999832,
+    "rotZ": 184.235535,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Regrow from Roots",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -92.8058548,
-    "posY": 1.99101853,
-    "posZ": -14.3027258,
-    "rotX": 0.00444675,
-    "rotY": 180.000015,
-    "rotZ": -1.223254e-07,
-    "scaleX": 1.53204679,
+    "posX": -106.279312,
+    "posY": 1.18479311,
+    "posZ": 53.81301,
+    "rotX": 0.00745759346,
+    "rotY": 179.999619,
+    "rotZ": -0.003586012,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Shatter Homesteads",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,

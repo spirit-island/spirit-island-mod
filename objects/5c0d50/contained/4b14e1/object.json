@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -94.33913,
-    "posY": 0.9142991,
-    "posZ": -37.7799377,
-    "rotX": 0.3516918,
-    "rotY": 179.997162,
-    "rotZ": -6.262218e-06,
-    "scaleX": 1.53204679,
+    "posX": -46.45688,
+    "posY": 1.96687078,
+    "posZ": -11.0363379,
+    "rotX": 359.948761,
+    "rotY": 181.9828,
+    "rotZ": 359.980621,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Gnawing Rootbiters",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

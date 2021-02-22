@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -100.498924,
-    "posY": 0.9009077,
-    "posZ": -27.1399746,
-    "rotX": 0.00444664573,
-    "rotY": 180.0096,
-    "rotZ": 5.57226656e-07,
-    "scaleX": 1.53204679,
+    "posX": -45.9208755,
+    "posY": 1.86828411,
+    "posZ": -10.7375336,
+    "rotX": 359.9741,
+    "rotY": 177.478821,
+    "rotZ": 359.932251,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Drift down into Slumber",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Minor"
   ],
   "LayoutGroupSortIndex": 0,

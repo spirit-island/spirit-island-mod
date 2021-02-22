@@ -52,6 +52,7 @@ exploratoryWar = false
 updateLayoutsID = 0
 setupStarted = false
 recentlyNotifiedRandom = false
+exit = false
 
 function onSave()
     local data_table = {}
@@ -154,8 +155,11 @@ function addAdversary(obj)
     adversaries[obj.getName()] = obj.guid
     updateAdversaryList()
 end
+function onDestroy()
+    exit = true
+end
 function onObjectDestroy(obj)
-    if #Player.getPlayers() == 0 and #Player.getSpectators() == 0 then
+    if exit then
         return
     end
     if obj.hasTag("Spirit") then
@@ -818,7 +822,6 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
         self.UI.setAttribute("supportingRow", "visibility", "Invisible")
-        self.UI.setAttribute("events", "visibility", "Invisible")
         self.UI.setAttribute("optionalCell", "visibility", "Invisible")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
         self.UI.setAttribute("panelOptional", "visibility", "Invisible")
@@ -832,7 +835,6 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Leading Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "")
         self.UI.setAttribute("supportingRow", "visibility", "")
-        self.UI.setAttribute("events", "visibility", "")
         self.UI.setAttribute("optionalCell", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "")
         showUI()

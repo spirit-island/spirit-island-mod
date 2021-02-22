@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -104.902245,
-    "posY": 1.98556912,
-    "posZ": -24.0470963,
-    "rotX": 0.252630979,
-    "rotY": 182.308533,
-    "rotZ": 0.048287645,
-    "scaleX": 1.53204679,
+    "posX": -31.6120262,
+    "posY": 1.06530857,
+    "posZ": 20.6583977,
+    "rotX": 359.990448,
+    "rotY": 178.89621,
+    "rotZ": 5.28529072,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "The Shore Seethes with Hatred",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -85.57565,
-    "posY": 2.11973643,
-    "posZ": -10.2238016,
-    "rotX": 0.00444664527,
+    "posX": -42.82,
+    "posY": 1.20804989,
+    "posZ": 28.3,
+    "rotX": 0.0035600774,
     "rotY": 179.999969,
-    "rotZ": 1.22317957e-07,
-    "scaleX": 1.3656503,
+    "rotZ": 178.295059,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.53
   },
   "Nickname": "Instruments of Their Own Ruin",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.713235259
   },
   "Tags": [
+    "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -97.70031,
-    "posY": 0.9001233,
-    "posZ": -37.2197075,
-    "rotX": 0.004464847,
-    "rotY": 179.989624,
-    "rotZ": -0.000101072183,
-    "scaleX": 1.53204679,
+    "posX": -15.56327,
+    "posY": 1.98474419,
+    "posZ": 3.81487775,
+    "rotX": 7.315009e-08,
+    "rotY": 180.00029,
+    "rotZ": -0.000144328209,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.53
   },
   "Nickname": "Call to Migrate",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.713235259
   },
   "Tags": [
-    "Minor"
+    "Minor",
+    "Slow"
   ],
   "LayoutGroupSortIndex": 0,
   "Locked": false,

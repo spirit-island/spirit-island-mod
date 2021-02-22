@@ -2716,7 +2716,7 @@ function place(objName, placePos, droppingPlayerColor)
     if objName == "Explorer" then
         if explorerBag.getCustomObject().type ~= 7 then
             if #explorerBag.getObjects() == 0 then
-                broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
+                broadcastToAll("There are no Explorers left to place", "Red")
                 return
             end
         end
@@ -2724,10 +2724,10 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Town" then
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
-                broadcastToAll("There are no Towns left to place", Color.SoftYellow)
+                broadcastToAll("There are no Towns left to place", "Red")
                 -- TODO extract this logic into adversary
                 if (adversaryCard ~= nil and adversaryCard.getName() == "France") or (adversaryCard2 ~= nil and adversaryCard2.getName() == "France") then
-                    broadcastToAll("France wins via Additional Loss Condition!", Color.SoftYellow)
+                    broadcastToAll("France wins via Additional Loss Condition!", "Red")
                 end
                 return
             end
@@ -2736,7 +2736,7 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "City" then
         if cityBag.getCustomObject().type ~= 7 then
             if #cityBag.getObjects() == 0 then
-                broadcastToAll("There are no Cities left to place", Color.SoftYellow)
+                broadcastToAll("There are no Cities left to place", "Red")
                 return
             end
         end
@@ -2744,14 +2744,14 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Dahan" then
         if dahanBag.getCustomObject().type ~= 7 then
             if #dahanBag.getObjects() == 0 then
-                broadcastToAll("There are no Dahan left to place", Color.SoftYellow)
+                broadcastToAll("There are no Dahan left to place", "Red")
                 return
             end
         end
         temp = dahanBag.takeObject({position=placePos,rotation=Vector(0,0,0)})
     elseif objName == "Blight" then
         if #blightBag.getObjects() == 0 then
-            broadcastToAll("There is no Blight left to place", Color.SoftYellow)
+            broadcastToAll("There is no Blight left to place", "Red")
             return
         end
         temp = blightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})

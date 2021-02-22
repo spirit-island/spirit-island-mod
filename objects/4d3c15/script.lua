@@ -27,7 +27,7 @@ function upd()
         font_size      = size,
         font_color     = color,
     })
-    if #self.getObjects() == 0 and Global.getVar("gameStarted") then broadcastToAll("0 Towns left in supply", "Red") end
+    if #self.getObjects() == 0 and Global.getVar("gameStarted") then broadcastToAll("Town Bag is now empty", {1,0.4,0}) end
     if callbackObj ~= nil and callbackFunc ~= nil then
         callbackObj.call(callbackFunc, {count=#self.getObjects()})
     end

@@ -9,6 +9,7 @@ function onSave()
     return saved_data
 end
 function onLoad(saved_data)
+    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         discard = Vector(loaded_data.discard)
@@ -505,7 +506,7 @@ function earnFearCard(completedTable, fearDeck, earnedPos, dividerPos)
                     card.setRotationSmooth(Vector(0, 180, 180))
                     emptyDeck = true
                 end
-                broadcastToAll("Fear Card Earned!", {1,0,0})
+                broadcastToAll("Fear Card Earned!", Color.SoftBlue)
             end
             cardsMoved = cardsMoved + 1
             Wait.condition(function() movesCompleted = movesCompleted + 1 end, function() return card == nil or not card.isSmoothMoving() end)

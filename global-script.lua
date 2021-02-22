@@ -762,7 +762,7 @@ function SetupFear()
         fearCards[2] = fearCards[2] + extraFearCards[2]
         fearCards[3] = fearCards[3] + extraFearCards[3]
     end
-    if not useBnCEvents and not useJEEvents and (BncAdded or JEAdded) then
+    if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
         fearCards[2] = fearCards[2] + 1
     end
 

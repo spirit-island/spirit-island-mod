@@ -3012,7 +3012,6 @@ end
 function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
     local rot = rot or Vector(0,0,0)
     local dist = dist or 1
-    local offset = offset or 0
     local multi = multi or 1
     local tags = tags or {}
     local oBounds = size

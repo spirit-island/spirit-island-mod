@@ -299,6 +299,11 @@ function onLoad(saved_data)
             discardPowerCardFromPlay(hoveredObject, 1)
         end
     end)
+    addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        if isPowerCard(hoveredObject) then
+            moveObjectToHand(hoveredObject, droppingPlayerColor, 2)
+        end
+    end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
         if getObjectFromGUID(v) ~= nil then

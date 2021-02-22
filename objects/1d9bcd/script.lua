@@ -92,6 +92,7 @@ function AdversaryUI(params)
     ui.loss.counter = {}
     ui.loss.counter.text = "Blight Count: "
     ui.loss.counter.buttons = true
+    ui.loss.counter.callback = "updateCount"
     Global.call("UpdateAdversaryLossCounter",{count=count,supporting=supporting})
 
     ui.escalation = {}
@@ -122,6 +123,11 @@ function AdversaryUI(params)
         ui.six.tooltip = "Ravages do +2 Damage (total) if any\nadjacent lands have Town. (This does not\ncause lands without Invaders to Ravage.)"
     end
     return ui
+end
+function updateCount(params)
+    if params.count > Global.getVar("numBoards") then
+        broadcastToAll("Habsburg wins via Additional Loss Condition!", "Red")
+    end
 end
 
 function MapSetup(params)

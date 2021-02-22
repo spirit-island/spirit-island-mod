@@ -43,6 +43,7 @@ playerTables = {
     Orange = "33c4af",
 }
 ------ Saved Config Data
+numPlayers = 1
 BnCAdded = false
 JEAdded = false
 fearPool = 0
@@ -79,7 +80,6 @@ showPlayerButtons = true
 showAllMultihandedButtons = false
 
 ------ Unsaved Config Data
-numPlayers = 1
 numBoards = 1
 useBlightCard = true
 useBnCEvents = false
@@ -99,6 +99,8 @@ useSecondAdversary = false
 includeThematic = false
 useRandomBoard = false
 useRandomScenario = false
+adversaryLossCallback = nil
+adversaryLossCallback2 = nil
 ------
 aidBoard = "bee103"
 SetupChecker = "9ad187"
@@ -430,7 +432,7 @@ function onLoad(saved_data)
             if not blightedIsland then
                 Wait.condition(addBlightedIslandButton, function() return not aidBoard.spawning end)
             end
-            numBoards = getMapCount({norm = true, them = true})
+            numBoards = #selectedBoards
             gamePaused = false
             for _,o in ipairs(getAllObjects()) do
                 local t = o.getTable("posMap")
@@ -1488,6 +1490,9 @@ function adversaryUISetup()
                 if ui.loss.counter.buttons then
                     UI.setAttribute("panelAdversaryLossCounterMinus","active","true")
                     UI.setAttribute("panelAdversaryLossCounterPlus","active","true")
+                    if ui.loss.counter.callback then
+                        adversaryLossCallback = ui.loss.counter.callback
+                    end
                 end
             end
         end
@@ -1559,6 +1564,9 @@ function adversaryUISetup()
                 if ui.loss.counter.buttons then
                     UI.setAttribute("panelAdversary2LossCounterMinus","active","true")
                     UI.setAttribute("panelAdversary2LossCounterPlus","active","true")
+                    if ui.loss.counter.callback then
+                        adversaryLossCallback2 = ui.loss.counter.callback
+                    end
                 end
             end
         end
@@ -1640,6 +1648,13 @@ function UpdateAdversaryLossCounter(params)
     local id = "panelAdversaryLossCounterCount"
     if params.supporting then
         id = "panelAdversary2LossCounterCount"
+        if adversaryLossCallback2 ~= nil then
+            adversaryCard2.call(adversaryLossCallback2, {count=params.count})
+        end
+    else
+        if adversaryLossCallback ~= nil then
+            adversaryCard.call(adversaryLossCallback, {count=params.count})
+        end
     end
     UI.setAttribute(id,"text",params.count)
 end

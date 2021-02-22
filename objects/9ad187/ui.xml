@@ -109,6 +109,9 @@
                 <Cell><Toggle id="bnc" onValueChanged="toggleBnC">Branch &amp; Claw</Toggle></Cell>
                 <Cell><Toggle id="je" onValueChanged="toggleJE">Jagged Earth</Toggle></Cell>
             </Row>
+            <Row id="blightCardRow" class="toggle" visibility="Invisible">
+                <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
+            </Row>
             <Row class="spacing"/>
             <Row>
                 <Cell><Button onClick="startGame" colors="#92E5AF|#92E5AF|#72B389|#72B38980">Start Game</Button></Cell>

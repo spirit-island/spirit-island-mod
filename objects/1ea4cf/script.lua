@@ -142,7 +142,7 @@ function PostSetup(params)
     local adversaryBag = Global.getVar("adversaryBag")
     adversaryBag.takeObject({
         guid = "15836a",
-        position = self.getPosition() + vector(1.9, 0, 1.9),
+        position = self.getPosition() + Vector(1.9, 0, 1.9),
         rotation = {0,180,0},
         callback_function = function(obj)
             obj.setLock(true)

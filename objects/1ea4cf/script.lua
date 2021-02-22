@@ -170,10 +170,10 @@ function PostSetup(params)
         Wait.condition(function()
             setupInvaderCard(fearDeckZone, fearCards, 3, Global.getVar("stage2DeckZone"))
             Wait.condition(function() postSetupComplete = true end, function()
-                objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 2
+                local objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 2
             end)
         end, function()
-            objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
+            local objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
         end)
     else
         postSetupComplete = true

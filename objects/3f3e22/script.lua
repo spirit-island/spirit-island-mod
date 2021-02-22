@@ -24,7 +24,7 @@ function onLoad()
 end
 
 function updateButton()
-    label = "Show\nEditors"
+    local label = "Show\nEditors"
     if empty then
         label = "Hide\nEditors"
     end
@@ -72,6 +72,7 @@ function toggleObjects()
         end
         empty = true
     end
+    local timerID
     timerID = Wait.time(function()
         if count == objectsMoved then
             updateButton()

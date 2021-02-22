@@ -194,7 +194,7 @@ end
 
 function editBlight(obj,cardBlight,blight,cardImmediate,cardHealthy)
     blight = math.max(1,cardBlight+blight)
-    scriptString = "blight="..blight
+    local scriptString = "blight="..blight
     if cardImmediate then
         scriptString = scriptString.."\nimmediate=true"
     end
@@ -207,7 +207,7 @@ function editBlight(obj,cardBlight,blight,cardImmediate,cardHealthy)
     scan()
 end
 function editImmediate(obj,cardBlight,immediate,cardHealthy)
-    scriptString = "blight="..cardBlight
+    local scriptString = "blight="..cardBlight
     if immediate then
         scriptString = scriptString.."\nimmediate=true"
     end
@@ -220,7 +220,7 @@ function editImmediate(obj,cardBlight,immediate,cardHealthy)
     scan()
 end
 function editHealthy(obj,cardBlight,cardImmediate,healthy)
-    scriptString = "blight="..cardBlight
+    local scriptString = "blight="..cardBlight
     if cardImmediate then
         scriptString = scriptString.."\nimmediate=true"
     end

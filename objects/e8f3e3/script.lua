@@ -20,8 +20,7 @@ function onSave()
     local data_table = {
         thematicRebellion = thematicRebellion
     }
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))

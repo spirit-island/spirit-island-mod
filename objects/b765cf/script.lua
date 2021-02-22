@@ -15,15 +15,14 @@ highImmigrationDiscardPosition = Vector(-52.90, 1.3, -5.30)
 originalDiscardPosition = Vector(-51.25, 1.5, 0.38)
 
 function onSave()
-    data_table = {
+    local data_table = {
         build2 = UI.getAttribute("panelBuild2","active"),
     }
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 
 function onLoad(saved_data)
-    loaded_data = JSON.decode(saved_data)
+    local loaded_data = JSON.decode(saved_data)
     if loaded_data.build2 == "true" then
         UI.setAttribute("panelBuild2","active",true)
         UI.setAttribute("panelInvader","width","470")

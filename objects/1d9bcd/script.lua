@@ -19,15 +19,14 @@ function onSave()
         count = Global.UI.getAttribute("panelAdversaryLossCounterCount","text")
     end
     if count == nil then count = 0 end
-    data_table = {
+    local data_table = {
         count = count,
     }
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 
 function onLoad(saved_data)
-    loaded_data = JSON.decode(saved_data)
+    local loaded_data = JSON.decode(saved_data)
     count = loaded_data.count
 end
 

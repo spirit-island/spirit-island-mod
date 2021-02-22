@@ -151,7 +151,7 @@ function SetupSpirit(object_pick,player_color)
         end
 
         -- Setup objects on top of board
-        for i,obj in pairs(castObjects) do
+        for _, obj in pairs(castObjects) do
             obj.setLock(false)
             if obj.type == "Deck" then
                 if obj.getName() == "Aspects" then
@@ -192,7 +192,7 @@ function HandleAspect(deck, player_color)
         end
     elseif useAspect == 3 then
         local found = false
-        for index, data in pairs(deck.getObjects()) do
+        for _, data in pairs(deck.getObjects()) do
             if data.name == aspect then
                 found = true
                 deck.takeObject({
@@ -262,7 +262,7 @@ function upCast(obj)
         --debug        = true,
     })
     local hitObjects = {}
-    for i,v in pairs(hits) do
+    for _, v in pairs(hits) do
         if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end
     end
     return hitObjects

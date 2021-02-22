@@ -41,7 +41,7 @@ function getPowerCards(_, color)
         broadcastToColor("Don't forget to gain 1 Time", color, "Blue")
     end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
-    for i=1,count do
+    for _=1,count do
         local card = minorPowerDeck.takeObject({
             flip = true,
         })
@@ -49,7 +49,7 @@ function getPowerCards(_, color)
         card.deal(1, color, 2)
     end
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
-    for i=1,count do
+    for _ = 1, count do
         local card = majorPowerDeck.takeObject({
             flip = true,
         })

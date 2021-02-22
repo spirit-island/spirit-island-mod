@@ -164,7 +164,7 @@ function LimitSetup(params)
             rotation = Vector(0,180,0),
         })
         -- Loop starts at 2 since tempObject will be added to the bag at the end
-        for i=2,townLimit do
+        for _ = 2, townLimit do
             townBag.putObject(tempObject.clone({
                 position = townBag.getPosition() + Vector(0,3,0),
                 rotation = Vector(0,180,0),

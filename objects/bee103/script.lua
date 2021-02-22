@@ -734,7 +734,7 @@ elementGuids = {
 }
 
 function placeElementTokens()
-    for i,v in pairs (elementGuids) do
+    for _, v in pairs (elementGuids) do
         local obj = getObjectFromGUID(v)
         local pos = obj.getPosition()
         if pos.x - self.getPosition().x > 10 then

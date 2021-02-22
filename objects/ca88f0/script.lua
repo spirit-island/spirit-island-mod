@@ -30,7 +30,7 @@ function PostSetup()
     scenarioBag.shuffle()
 
     local numBoards = Global.getVar("numBoards")
-    for i=1,numBoards+1 do
+    for _ = 1, numBoards + 1 do
         bag.putObject(scenarioBag.takeObject({
             rotation = {0,180,180},
             smooth = false,
@@ -42,7 +42,7 @@ end
 function removeTokens(stack)
     local bag = getObjectFromGUID("8d6e45")
     local numBoards = Global.getVar("numBoards")
-    for i=1,3 * numBoards - 1 do
+    for _ = 1, 3 * numBoards - 1 do
         bag.putObject(stack.takeObject())
     end
     stack.destruct()

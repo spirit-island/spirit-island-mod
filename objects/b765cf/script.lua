@@ -61,7 +61,7 @@ end
 function removeEnglandSnap(aidBoard)
     local snapPoints = Global.getSnapPoints()
     local newSnapPoints = {}
-    for i,v in ipairs(snapPoints) do
+    for _, v in ipairs(snapPoints) do
         if table.concat(v.tags, "|") ~= "Invader Card" then
             table.insert(newSnapPoints,v)
         end
@@ -199,7 +199,7 @@ end
 function englandSnap(aidBoard)
     local snapPoints = aidBoard.getSnapPoints()
     local newSnapPoints = {}
-    for i,v in ipairs(snapPoints) do
+    for _, v in ipairs(snapPoints) do
         if table.concat(v.tags, "|") ~= "Invader Card" then
             table.insert(newSnapPoints,v)
         end

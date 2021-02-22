@@ -56,7 +56,7 @@ function PostSetup()
 end
 function removeTokens(stack)
     local bag = getObjectFromGUID("8d6e45")
-    for i=1,12 do
+    for _ = 1, 12 do
         bag.putObject(stack.takeObject())
     end
     stack.destruct()

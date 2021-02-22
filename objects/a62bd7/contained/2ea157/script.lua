@@ -9,7 +9,7 @@ function onObjectEnterContainer(container, enter_object)
             if #self.getObjects() >= blightTarget then
                 broadcastToAll("There is now 3 blight per player on the adversary card\nReturning the blight to the card due to Slow-healing Ecosystem - France Level 5", "Blue")
                 local blightBag = Global.getVar("blightBag")
-                for i = 1, blightTarget do
+                for _ = 1, blightTarget do
                     blightBag.putObject(self.takeObject({
                         position = vecSum(blightBag.getPosition(),{0,1,0}),
                         smooth = false,

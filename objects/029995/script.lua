@@ -74,11 +74,11 @@ function toggleObjects()
         end
         empty = false
     else
-        for _,obj in pairs(self.getObjects()) do
+        for _, bagObject in pairs(self.getObjects()) do
             self.takeObject({
-                guid = obj.guid,
-                position = contents[obj.guid][1],
-                rotation = contents[obj.guid][2],
+                guid = bagObject.guid,
+                position = contents[bagObject.guid][1],
+                rotation = contents[bagObject.guid][2],
                 callback_function = function(obj) obj.setLock(true) objectsMoved = objectsMoved + 1 end,
             })
             count = count + 1

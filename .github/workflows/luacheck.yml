@@ -1,0 +1,25 @@
+---
+name: Linting
+
+on:
+    push:
+        branches: [main, beta]
+    pull_request:
+        branches: [main, beta]
+
+jobs:
+    luacheck:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup luacheck
+              run: |
+                  sudo apt-get install -y lua5.2 luarocks liblua5.2-dev build-essential
+                  luarocks --local --lua-version 5.2 install luacheck
+                  echo "$(luarocks path --lr-bin)" >> $GITHUB_PATH
+            - name: Run luacheck
+              run: |
+                  echo "::add-matcher::${{github.workspace}}/.github/luacheck-matcher.json"
+                  luacheck . --codes -q --formatter plain --ranges
+                  echo "::remove-matcher owner=luacheck-error::"
+                  echo "::remove-matcher owner=luacheck-warning::"

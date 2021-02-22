@@ -7,7 +7,7 @@ end
 
 function next()
     local state = self.getStateId()+1
-    if state > #self.getStates()+1 then 
+    if state > #self.getStates()+1 then
         state = 1
     end
     self.setState(state)
@@ -15,7 +15,7 @@ end
 
 function prev()
     local state = self.getStateId()-1
-    if state < 1 then 
+    if state < 1 then
         state = #self.getStates()+1
     end
     self.setState(state)

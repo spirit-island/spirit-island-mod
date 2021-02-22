@@ -1,3 +1,5 @@
+local rescan
+
 function onLoad()
     self.createButton({
         click_function = "nullFunc",

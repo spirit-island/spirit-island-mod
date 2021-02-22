@@ -1,5 +1,7 @@
 sourceSpiritID = "21f561"
 
+local rescan
+
 function onLoad()
     self.createButton({
         click_function = "nullFunc",

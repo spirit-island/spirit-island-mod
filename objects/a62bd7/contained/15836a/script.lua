@@ -1,3 +1,5 @@
+local callbackObj, callbackFunc
+
 function onObjectLeaveContainer(container, leave_object)
     if container == self then upd() end
 end

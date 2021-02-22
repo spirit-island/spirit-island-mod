@@ -1,6 +1,8 @@
 types = {"Minor", "Major", "Unique"}
 speeds = {"Fast", "Slow"}
 
+local rescan
+
 function onLoad()
     self.createButton({
         click_function = "nullFunc",

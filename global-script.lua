@@ -3990,6 +3990,9 @@ function onPlayerDisconnect(player)
 end
 
 function isPowerCard(card)
+    if card == nil then
+        return false
+    end
     return card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique"))
 end
 function onObjectSpawn(obj)

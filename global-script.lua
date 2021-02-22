@@ -299,12 +299,25 @@ function onLoad(saved_data)
         end
     end)
     addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
+            if isPowerCard(obj) then
+                -- This ugliness is because setPositionSmooth doesn't work from a hand.
+                ensureCardInPlay(obj)
+                discardPowerCardFromPlay(obj, 1)
+            end
+        end
         if isPowerCard(hoveredObject) then
+            -- This ugliness is because setPositionSmooth doesn't work from a hand.
             ensureCardInPlay(hoveredObject)
             discardPowerCardFromPlay(hoveredObject, 1)
         end
     end)
     addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
+            if isPowerCard(obj) then
+                moveObjectToHand(obj, droppingPlayerColor, 2)
+            end
+        end
         if isPowerCard(hoveredObject) then
             moveObjectToHand(hoveredObject, droppingPlayerColor, 2)
         end
@@ -4020,15 +4033,23 @@ function applyPowerCardContextMenuItems(card)
     card.addContextMenuItem(
         "Discard (to 2nd hand)",
         function(player_color)
-            moveObjectToHand(card, player_color, 2)
+            for _,obj in pairs(Player[player_color].getSelectedObjects()) do
+                if isPowerCard(obj) then
+                    moveObjectToHand(obj, player_color, 2)
+                end
+            end
         end,
         false)
     card.addContextMenuItem(
         "Forget",
-        function()
-            -- This ugliness is because setPositionSmooth doesn't work from a hand.
-            ensureCardInPlay(card)
-            discardPowerCardFromPlay(card, 1)
+        function(player_color)
+            for _,obj in pairs(Player[player_color].getSelectedObjects()) do
+                if isPowerCard(obj) then
+                    -- This ugliness is because setPositionSmooth doesn't work from a hand.
+                    ensureCardInPlay(obj)
+                    discardPowerCardFromPlay(obj, 1)
+                end
+            end
         end,
         false)
 end
@@ -4049,6 +4070,7 @@ function moveObjectToHand(card, playerColor, handIndex)
             return
         end
         card.setPosition(moveTo)
+        card.setRotation(Vector(0, 180, 0))
     end
 end
 

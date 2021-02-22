@@ -306,7 +306,6 @@ function aidPanelScanLoop()
                 for _,hit in pairs(hitObjects) do
                     if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
                         local iType = hit.getVar("cardInvaderType")
-                        local iStage = hit.getVar("cardInvaderStage")
                         table.insert(stageTable,iType)
                         count = count + 1
                     end
@@ -368,7 +367,7 @@ function getStage(o)
                 end
             end
             if found then
-                local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
+                local _, finish = string.find(obj.lua_script,"cardInvaderStage=")
                 stage = tonumber(string.sub(obj.lua_script,finish+1))
                 -- Prussia early stage 3 should count as stage 2
                 if string.find(obj.lua_script,"special=") ~= nil then

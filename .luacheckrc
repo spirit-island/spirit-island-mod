@@ -38,7 +38,6 @@ ignore = {
     "131", -- unused global variable, we should annotate the ones we expect
     "542", -- empty if branch  (usually has a comment)
     -- To be triaged
-    "211",
     "412",
     "212",
     "213",

@@ -304,6 +304,11 @@ function onLoad(saved_data)
             discardPowerCardFromPlay(hoveredObject, 1)
         end
     end)
+    addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        if isPowerCard(hoveredObject) then
+            moveObjectToHand(hoveredObject, droppingPlayerColor, 2)
+        end
+    end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
         if getObjectFromGUID(v) ~= nil then
@@ -4001,17 +4006,23 @@ function onPlayerDisconnect(player)
 end
 
 function isPowerCard(card)
-    if card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique")) then
-        return true
+    if card == nil then
+        return false
     end
-    return false
+    return card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique"))
 end
 function onObjectSpawn(obj)
     if isPowerCard(obj) then
-        applyPowerCardContextMenuItem(obj)
+        applyPowerCardContextMenuItems(obj)
     end
 end
-function applyPowerCardContextMenuItem(card)
+function applyPowerCardContextMenuItems(card)
+    card.addContextMenuItem(
+        "Discard (to 2nd hand)",
+        function(player_color)
+            moveObjectToHand(card, player_color, 2)
+        end,
+        false)
     card.addContextMenuItem(
         "Forget",
         function()
@@ -4021,20 +4032,48 @@ function applyPowerCardContextMenuItem(card)
         end,
         false)
 end
+function moveObjectToHand(card, playerColor, handIndex)
+    if not isObjectInHand(card, playerColor, handIndex) then
+        -- `deal` is buggy and seems to have magic logic associated
+        -- with card visibility.
+        local handTransform = Player[playerColor].getHandTransform(handIndex)
+        local moveTo = handTransform.position
+        if handTransform.right.x == 1 then
+            moveTo.x = moveTo.x + handTransform.scale.x/2
+        elseif handTransform.right.y == 1 then
+            moveTo.y = moveTo.y + handTransform.scale.y/2
+        elseif handTransform.right.z == 1 then
+            moveTo.z = moveTo.z + handTransform.scale.z/2
+        else
+            broadcastToColor("Couldn't determine left-to-right direction for hand.", playerColor, Color.Red)
+            return
+        end
+        card.setPosition(moveTo)
+    end
+end
+
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe
 -- location, if it's in a hand.
 function ensureCardInPlay(card)
     for _, color in pairs(Player.getAvailableColors()) do
         for handIndex=1,Player[color].getHandCount() do
-            for _, obj in ipairs(Player[color].getHandObjects(handIndex)) do
-                if obj.guid == card.guid then
-                    local cpos = card.getPosition()
-                    card.setPosition(Vector(cpos.x, 0, cpos.z))
-                    return
-                end
+            if isObjectInHand(card, color, handIndex) then
+                local cpos = card.getPosition()
+                card.setPosition(Vector(cpos.x, 0, cpos.z))
+                return
             end
         end
     end
+end
+
+
+function isObjectInHand(obj, color, handIndex)
+    for _, handObj in ipairs(Player[color].getHandObjects(handIndex)) do
+        if obj.guid == handObj.guid then
+            return true
+        end
+    end
+    return false
 end
 
 function enterSpiritPhase(player)

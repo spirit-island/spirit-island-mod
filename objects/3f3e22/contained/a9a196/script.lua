@@ -17,14 +17,7 @@ function onLoad()
 end
 
 function scan()
-    local objs = upCastPosSizRot(
-        {self.getPosition().x,self.getPosition().y+0.1,self.getPosition().z},
-        {0,1,0},
-        {0,0,0},
-        0.4,
-        0.2,
-        {"Card"}
-    )
+    local objs = upCast(self, 0.4, 0.1, {"Card"})
     if #objs == 0 then
         clearButtons()
         return
@@ -360,33 +353,27 @@ function editTag(obj, modifier, tags)
     scan()
 end
 
-function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
-    local rot = rot or Vector(0,0,0)
-    local dist = dist or 1
-    local multi = multi or 1
-    local tags = tags or {}
-    local oBounds = size
-    local oRot = rot
-    local orig = Vector(oPos[1],oPos[2],oPos[3])
-    local siz = Vector(oBounds[1]*multi,dist,oBounds[3]*multi)
-    local orient = Vector(oRot[1],oRot[2],oRot[3])
+function upCast(obj,dist,offset,types)
+    dist = dist or 1
+    offset = offset or 0
+    types = types or {}
     local hits = Physics.cast({
-        origin       = orig,
+        origin       = obj.getPosition() + Vector(0,offset,0),
         direction    = Vector(0,1,0),
         type         = 3,
-        size         = siz,
-        orientation  = orient,
-        max_distance = 0,
+        size         = obj.getBoundsNormalized().size,
+        orientation  = obj.getRotation(),
+        max_distance = dist,
         --debug        = true,
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if tags ~= {} then
-            local matchesTag = false
-            for _,t in pairs(tags) do
-                if v.hit_object.type == t then matchesTag = true end
+        if types ~= {} then
+            local matchesType = false
+            for _,t in pairs(types) do
+                if v.hit_object.type == t then matchesType = true end
             end
-            if matchesTag then
+            if matchesType then
                 table.insert(hitObjects,v.hit_object)
             end
         else

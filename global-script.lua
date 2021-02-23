@@ -3210,8 +3210,11 @@ function payEnergy(target_obj, source_color, alt_click)
     elseif alt_click then
         return
     end
-
     local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
     local paid = updateEnergyCounter(color, false)
     if not paid then
         paid = payEnergyTokens(color, nil)
@@ -3298,8 +3301,11 @@ function refundEnergy(target_obj, source_color, alt_click)
     elseif not alt_click then
         return
     end
-
     local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
     local refunded = updateEnergyCounter(color, true)
     if not refunded then
         refunded = refundEnergyTokens(color, nil)

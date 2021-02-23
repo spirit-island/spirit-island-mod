@@ -1125,10 +1125,9 @@ end
 function getPowerZoneObjects(handP)
     local hits = upCastPosSizRot(
         handOffset + Vector(handP.x,yHeight,handP.z), -- pos
-        Vector(15,1,4),  -- size
+        Vector(15,0.1,4),  -- size
         Vector(0,0,0),  --  rotation
-        1,  -- distance
-        1,  -- multi
+        0,  -- distance
         {"Card","Deck"})
     return hits
 end
@@ -2117,7 +2116,7 @@ function timePasses()
     end
 end
 function timePassesCo()
-    for _,object in pairs(upCast(seaTile,1.1,0,0.9)) do
+    for _,object in pairs(upCast(seaTile)) do
         handlePiece(object, 0)
     end
 
@@ -2460,7 +2459,7 @@ end
 ----
 function getMapCount(params)
     local count = 0
-    for _,obj in pairs(upCast(seaTile,1,0,0.9)) do
+    for _,obj in pairs(upCast(seaTile)) do
         if params.norm and obj.hasTag("Balanced") then
             count = count + 1
         elseif params.them and obj.hasTag("Thematic") then
@@ -2472,7 +2471,7 @@ end
 
 function getMapTiles()
     local mapTiles = {}
-    for _,obj in pairs(upCast(seaTile,1,0,0.9)) do
+    for _,obj in pairs(upCast(seaTile)) do
         if obj.hasTag("Balanced") or obj.hasTag("Thematic") then
             table.insert(mapTiles,obj)
         end
@@ -2966,23 +2965,16 @@ function wt(some)
     end
 end
 --------------------
-function upCast(obj,dist,offset,multi)
-    local dist = dist or 1
-    local offset = offset or 0
-    local multi = multi or 1
-    local oPos = obj.getPosition()
-    local oBounds = obj.getBoundsNormalized()
-    local oRot = obj.getRotation()
-    local orig = Vector(oPos[1],oPos[2]+offset,oPos[3])
-    local siz = Vector(oBounds.size.x*multi,dist,oBounds.size.z*multi)
-    local orient = Vector(oRot[1],oRot[2],oRot[3])
+function upCast(obj,dist,offset)
+    dist = dist or 1
+    offset = offset or 0
     local hits = Physics.cast({
-        origin       = orig,
+        origin       = obj.getPosition() + Vector(0,offset,0),
         direction    = Vector(0,1,0),
         type         = 3,
-        size         = siz,
-        orientation  = orient,
-        max_distance = 0,
+        size         = obj.getBoundsNormalized().size,
+        orientation  = obj.getRotation(),
+        max_distance = dist,
         --debug        = true,
     })
     local hitObjects = {}
@@ -3006,33 +2998,27 @@ function upCastRay(obj,dist)
     end
     return hitObjects
 end
-function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
-    local rot = rot or Vector(0,0,0)
-    local dist = dist or 1
-    local multi = multi or 1
-    local tags = tags or {}
-    local oBounds = size
-    local oRot = rot
-    local orig = Vector(oPos[1],oPos[2],oPos[3])
-    local siz = Vector(oBounds[1]*multi,dist,oBounds[3]*multi)
-    local orient = Vector(oRot[1],oRot[2],oRot[3])
+function upCastPosSizRot(pos,size,rot,dist,types)
+    rot = rot or Vector(0,0,0)
+    dist = dist or 1
+    types = types or {}
     local hits = Physics.cast({
-        origin       = orig,
+        origin       = pos,
         direction    = Vector(0,1,0),
         type         = 3,
-        size         = siz,
-        orientation  = orient,
-        max_distance = 0,
+        size         = size,
+        orientation  = rot,
+        max_distance = dist,
         --debug        = true,
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if tags ~= {} then
-            local matchesTag = false
-            for _,t in pairs(tags) do
-                if v.hit_object.type == t then matchesTag = true end
+        if types ~= {} then
+            local matchesType = false
+            for _,t in pairs(types) do
+                if v.hit_object.type == t then matchesType = true end
             end
-            if matchesTag then
+            if matchesType then
                 table.insert(hitObjects,v.hit_object)
             end
         else

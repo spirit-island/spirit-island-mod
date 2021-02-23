@@ -168,7 +168,7 @@ interactableObjectsToDisableOnLoad = {
     "055a45", -- middle row border
     "5f4be2", -- sea tile
     "235564", -- white box section
-    "9ad187", -- start menu object
+    "SetupChecker", -- start menu object
     "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player counters
     "19d429", --Big block
 }
@@ -2124,10 +2124,6 @@ function timePassesCo()
         handlePlayer(color, data)
     end
 
-    updateCurrentPhase(true)
-    currentPhase = 1
-    updateCurrentPhase(false)
-
     broadcastToAll("Time Passes...", Color.SoftBlue)
     local quote = quotes[math.random(#quotes)]
     wt(2)
@@ -2135,6 +2131,7 @@ function timePassesCo()
     wt(2)
     broadcastToAll("- " .. quote[2], {0.9,0.9,0.9})
     wt(2)
+    enterSpiritPhase(nil)
     timePassing = false
     return 1
 end
@@ -4091,7 +4088,7 @@ function isObjectInHand(obj, color, handIndex)
 end
 
 function enterSpiritPhase(player)
-    if player.color == "Grey" then return end
+    if player and player.color == "Grey" then return end
     if currentPhase == 1 then return end
     broadcastToAll("Entering Spirit Phase", Color.SoftYellow)
     updateCurrentPhase(true)
@@ -4137,9 +4134,9 @@ function updateCurrentPhase(clear)
         textColor = "#FFFFFF"
     }
     if clear then
-        attributes.text = string.sub(UI.getAttribute(id, "text"), 2)
+        attributes.text = string.sub(UI.getAttribute(id, "text"), 2, -2)
     else
-        attributes.text = ">"..UI.getAttribute(id, "text")
+        attributes.text = ">"..UI.getAttribute(id, "text").."<"
     end
     UI.setAttributes(id, attributes)
 end

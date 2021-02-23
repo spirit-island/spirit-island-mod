@@ -117,7 +117,7 @@
 </Panel>
 <Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="225" height="345" color="#00000044" rectAlignment="UpperLeft" offsetXY="80 0">
     <VerticalLayout>
-        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">&gt;Spirit Phase</Button>
+        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="20" textColor="#FFFFFF" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">&gt;Spirit Phase&lt;</Button>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Growth</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Gain Energy</Text>
         <Text fontSize="20" color="#FFFFFF" alignment="UpperLeft">-Choose Powers</Text>

@@ -26,5 +26,5 @@ jobs:
             - uses: actions/upload-artifact@v2
               with:
                   name: spirit-island-ci
-                  path: build/savegame.json
+                  path: build/packed-savegame.json
                   if-no-files-found: error

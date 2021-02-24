@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -107.22,
-    "posY": 1.19029784,
-    "posZ": 47.9,
-    "rotX": -6.78097535e-07,
-    "rotY": 359.980072,
-    "rotZ": -1.13878127e-06,
-    "scaleX": 0.5,
-    "scaleY": 0.5,
-    "scaleZ": 0.5
+    "posX": 79.82,
+    "posY": 1.00843024,
+    "posZ": -13.6999979,
+    "rotX": 0.0008921783,
+    "rotY": -0.00264143944,
+    "rotZ": -4.115338e-05,
+    "scaleX": 0.9,
+    "scaleY": 0.9,
+    "scaleZ": 0.9
   },
-  "Nickname": "Speed Token",
-  "Description": "Place this on a Power to show you have changed its speed. This only has a functional difference when playing with the Blitz Scenario.",
+  "Nickname": "Orange's Isolate",
+  "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 1.0,
-    "b": 1.0
+    "g": 0.5929512,
+    "b": 0.160783857
   },
   "Tags": [
     "Destroy"
@@ -37,7 +37,7 @@
   "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472357120/FC4801548E77C92B92D3F915DC81CA604DC8176A/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
     "NormalURL": "",
     "ColliderURL": "",
     "Convex": true,

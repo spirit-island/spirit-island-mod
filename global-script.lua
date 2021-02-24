@@ -119,21 +119,21 @@ oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
 speedBag = "65fc65"
 defendBags = {
-    Red = "93e047",
-    Purple = "66ef2a",
-    Yellow = "5f9fff",
-    Blue = "997fba",
-    Green = "ba1f04",
-    Orange = "78a105",
+    Red = "aad2a3",
+    Purple = "f15d5c",
+    Yellow = "772ebb",
+    Blue = "f5652f",
+    Green = "57264f",
+    Orange = "13959c",
     White = "1716e3",
 }
 isolateBags = {
-    Red = "ddd376",
-    Purple = "9f5d0d",
-    Yellow = "12d056",
-    Blue = "a1f5b5",
-    Green = "d9dc6d",
-    Orange = "18c282",
+    Red = "f73834",
+    Purple = "5e8d9b",
+    Yellow = "fa4196",
+    Blue = "80d97c",
+    Green = "d66cd2",
+    Orange = "0c9976",
 }
 -----
 StandardMapBag = "9760a2"
@@ -2807,7 +2807,7 @@ function place(objName, placePos, droppingPlayerColor)
         end
     elseif objName == "Isolate Token" then
         if droppingPlayerColor and isolateBags[droppingPlayerColor] then
-            temp = isolateBags[droppingPlayerColor].takeObject({position = placePos,rotation = Vector(0,180,180)})
+            temp = isolateBags[droppingPlayerColor].takeObject({position = placePos,rotation = Vector(0,180,0)})
         end
     elseif objName == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})

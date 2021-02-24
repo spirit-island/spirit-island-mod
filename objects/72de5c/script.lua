@@ -4,6 +4,8 @@ progressionCard = nil
 useAspect = 2
 aspect = nil
 
+local Raycast = require("Raycast")
+
 function onLoad()
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     if Global.getVar("gameStarted") then return end
@@ -42,7 +44,7 @@ function onLoad()
         font_size      = 300,
         tooltip        = "Enable/Disable Aspect Deck",
     })
-    local castObjects = upCast(self)
+    local castObjects = Raycast.upCast(self)
     for _,obj in pairs (castObjects) do
         if string.find(obj.getName(),"Progression") then
             progressionCard = obj
@@ -65,7 +67,7 @@ function onLoad()
 end
 
 function RandomAspect()
-    for _,obj in pairs(upCast(self)) do
+    for _,obj in pairs(Raycast.upCast(self)) do
         if obj.type == "Deck" and obj.getName() == "Aspects" then
             local objs = obj.getObjects()
             local index = math.random(0,#objs)
@@ -95,7 +97,7 @@ function SetupSpirit(object_pick,player_color)
     local xOffset = 1
     local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
     if #PlayerBag.getObjects() ~= 0 then
-        local castObjects = upCast(self)
+        local castObjects = Raycast.upCast(self, nil, 0.1)
         local hpos = Player[player_color].getHandTransform().position
         self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))
         self.setRotation(Vector(0,180,0))
@@ -249,21 +251,4 @@ function ToggleAspect(_, _, alt_click)
             label          = "Aspects: All",
         })
     end
-end
------
-function upCast(obj)
-    local hits = Physics.cast({
-        origin       = obj.getPosition() + Vector(0,0.1,0),
-        direction    = Vector(0,1,0),
-        type         = 3,
-        size         = obj.getBoundsNormalized().size,
-        orientation  = obj.getRotation(),
-        max_distance = 0,
-        --debug        = true,
-    })
-    local hitObjects = {}
-    for _, v in pairs(hits) do
-        if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end
-    end
-    return hitObjects
 end

@@ -174,6 +174,8 @@ interactableObjectsToDisableOnLoad = {
     "19d429", --Big block
 }
 
+local Raycast = require('Raycast')
+
 ---- TTS Events Section
 function onScriptingButtonDown(index, playerColor)
     if playerColor == "Grey" then return end
@@ -1125,7 +1127,7 @@ function discardPowerCardFromPlay(card, discardHeight)
 end
 
 function getPowerZoneObjects(handP)
-    local hits = upCastPosSizRot(
+    local hits = Raycast.upCastPosSizRot(
         handOffset + Vector(handP.x,yHeight,handP.z), -- pos
         Vector(15,0.1,4),  -- size
         Vector(0,0,0),  --  rotation
@@ -2118,7 +2120,7 @@ function timePasses()
     end
 end
 function timePassesCo()
-    for _,object in pairs(upCast(seaTile)) do
+    for _,object in pairs(Raycast.upCast(seaTile)) do
         handlePiece(object, 0)
     end
 
@@ -2177,7 +2179,7 @@ function resetPiece(object, rotation, offset)
         objOffset = 1
     end
     local loopOffset = 0
-    for _,obj in pairs(upCastRay(object,5)) do
+    for _,obj in pairs(Raycast.upCastRay(object,5)) do
         -- need to store tag since after state change tag isn't instantly updated
         local isFigurine = obj.type == "Figurine"
         obj = handlePiece(obj, offset + objOffset)
@@ -2460,7 +2462,7 @@ end
 ----
 function getMapCount(params)
     local count = 0
-    for _,obj in pairs(upCast(seaTile)) do
+    for _,obj in pairs(Raycast.upCast(seaTile)) do
         if params.norm and obj.hasTag("Balanced") then
             count = count + 1
         elseif params.them and obj.hasTag("Thematic") then
@@ -2472,7 +2474,7 @@ end
 
 function getMapTiles()
     local mapTiles = {}
-    for _,obj in pairs(upCast(seaTile)) do
+    for _,obj in pairs(Raycast.upCast(seaTile)) do
         if obj.hasTag("Balanced") or obj.hasTag("Thematic") then
             table.insert(mapTiles,obj)
         end
@@ -2969,68 +2971,6 @@ function wt(some)
     end
 end
 --------------------
-function upCast(obj,dist,offset)
-    dist = dist or 1
-    offset = offset or 0
-    local hits = Physics.cast({
-        origin       = obj.getPosition() + Vector(0,offset,0),
-        direction    = Vector(0,1,0),
-        type         = 3,
-        size         = obj.getBoundsNormalized().size,
-        orientation  = obj.getRotation(),
-        max_distance = dist,
-        --debug        = true,
-    })
-    local hitObjects = {}
-    for _,v in pairs(hits) do
-        if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end
-    end
-    return hitObjects
-end
-function upCastRay(obj,dist)
-    local hits = Physics.cast({
-        origin = obj.getBoundsNormalized().center,
-        direction = Vector(0,1,0),
-        max_distance = dist,
-        --debug = true,
-    })
-    local hitObjects = {}
-    for _,v in pairs(hits) do
-        if v.hit_object ~= obj and not obj.hasTag("Balanced") and not obj.hasTag("Thematic") then
-            table.insert(hitObjects,v.hit_object)
-        end
-    end
-    return hitObjects
-end
-function upCastPosSizRot(pos,size,rot,dist,types)
-    rot = rot or Vector(0,0,0)
-    dist = dist or 1
-    types = types or {}
-    local hits = Physics.cast({
-        origin       = pos,
-        direction    = Vector(0,1,0),
-        type         = 3,
-        size         = size,
-        orientation  = rot,
-        max_distance = dist,
-        --debug        = true,
-    })
-    local hitObjects = {}
-    for _,v in pairs(hits) do
-        if types ~= {} then
-            local matchesType = false
-            for _,t in pairs(types) do
-                if v.hit_object.type == t then matchesType = true end
-            end
-            if matchesType then
-                table.insert(hitObjects,v.hit_object)
-            end
-        else
-            table.insert(hitObjects,v.hit_object)
-        end
-    end
-    return hitObjects
-end
 
 -- Updates the selected player color's player area.  Does nothing if they don't have one.
 -- Returns TRUE if an update occured, FALSE if no such player area existed.
@@ -3761,7 +3701,7 @@ function swapPlayerAreaObjects(a, b)
     local buttons = {}
     local objects = {}
     for color,playerTable in pairs(tables) do
-        local t = upCast(playerTable, 50)
+        local t = Raycast.upCast(playerTable, 50)
         for _,obj in ipairs(Player[color].getHandObjects(2)) do
             table.insert(t, obj)
         end

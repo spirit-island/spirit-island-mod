@@ -19,12 +19,12 @@ jobs:
             - name: Install dependencies
               run: |
                   python -m pip install --upgrade pip
-                  pip install tabletop-tools
+                  pip install tabletop-tools==0.2.0
             - name: Build mod
               run: |
                   tts repack
             - uses: actions/upload-artifact@v2
               with:
                   name: spirit-island-ci
-                  path: build/packed-savegame.json
+                  path: build/savegame.json
                   if-no-files-found: error

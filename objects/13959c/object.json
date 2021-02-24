@@ -2,11 +2,11 @@
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
     "posX": 77.99,
-    "posY": 0.95,
+    "posY": 0.5,
     "posZ": -13.6,
-    "rotX": 2.49083882e-07,
+    "rotX": 2.49084e-07,
     "rotY": 179.978226,
-    "rotZ": 0.00020605074,
+    "rotZ": 0.000206050972,
     "scaleX": 0.55,
     "scaleY": 0.55,
     "scaleZ": 0.55
@@ -17,17 +17,17 @@
   "ColorDiffuse": {
     "r": 1.0,
     "g": 0.5929512,
-    "b": 0.16078338
+    "b": 0.1607829
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,
-  "Grid": true,
-  "Snap": true,
+  "Grid": false,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
   "Autoraise": true,
-  "Sticky": true,
+  "Sticky": false,
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,

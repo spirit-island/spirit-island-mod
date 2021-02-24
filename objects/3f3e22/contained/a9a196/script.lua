@@ -292,16 +292,22 @@ function hexToDec(inp)
     local blue = colors["B"]*16+colors["b"]
     return {red/255,green/255,blue/255}
 end
-function editEnergy(obj,cardEnergy,energy,elements)
-    hexToDec(elementColors[1])
 
-    energy = math.max(0,cardEnergy+energy)
-    obj.setVar("energy",energy)
-    local scriptString = "elements=\""..elements.."\"\nenergy="..energy
+local function updateCard(obj, energy, elements)
+    obj.setVar("energy", energy)
+    obj.setVar("elements", elements)
+    local scriptString = "elements=\"" .. elements .. "\"\nenergy=" .. energy .. "\n"
     obj.setLuaScript(scriptString)
     obj.reload()
     rescan = true
     scan()
+end
+
+function editEnergy(obj,cardEnergy,energy,elements)
+    hexToDec(elementColors[1])
+
+    energy = math.max(0,cardEnergy+energy)
+    updateCard(obj, energy, elements)
 end
 
 function editElement(obj,elements,e,cardEnergy)
@@ -325,12 +331,7 @@ function editElement(obj,elements,e,cardEnergy)
             elementsOut = elementsOut..currentElement
         end
     end
-    obj.setVar("elements",elementsOut)
-    local scriptString = "elements=\""..elementsOut.."\"\nenergy="..cardEnergy
-    obj.setLuaScript(scriptString)
-    obj.reload()
-    rescan = true
-    scan()
+    updateCard(obj, cardEnergy, elementsOut)
 end
 
 function editTag(obj, modifier, tags)

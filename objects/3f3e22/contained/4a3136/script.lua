@@ -187,45 +187,29 @@ function createButtons(card,cardBlight,cardImmediate,cardHealthy)
     self.setVar("button6",func)
 end
 
-function editBlight(obj,cardBlight,blight,cardImmediate,cardHealthy)
-    blight = math.max(1,cardBlight+blight)
-    local scriptString = "blight="..blight
-    if cardImmediate then
-        scriptString = scriptString.."\nimmediate=true"
-    end
-    if cardHealthy then
-        scriptString = scriptString.."\nhealthy=true"
-    end
-    obj.setLuaScript(scriptString)
-    obj.reload()
-    rescan = true
-    scan()
-end
-function editImmediate(obj,cardBlight,immediate,cardHealthy)
-    local scriptString = "blight="..cardBlight
+local function updateCard(obj, blight, immediate, healthy)
+    local scriptString = "blight=" .. blight
     if immediate then
-        scriptString = scriptString.."\nimmediate=true"
-    end
-    if cardHealthy then
-        scriptString = scriptString.."\nhealthy=true"
-    end
-    obj.setLuaScript(scriptString)
-    obj.reload()
-    rescan = true
-    scan()
-end
-function editHealthy(obj,cardBlight,cardImmediate,healthy)
-    local scriptString = "blight="..cardBlight
-    if cardImmediate then
-        scriptString = scriptString.."\nimmediate=true"
+        scriptString = scriptString .. "\nimmediate=true"
     end
     if healthy then
-        scriptString = scriptString.."\nhealthy=true"
+        scriptString = scriptString .. "\nhealthy=true"
     end
-    obj.setLuaScript(scriptString)
+    obj.setLuaScript(scriptString .. "\n")
     obj.reload()
     rescan = true
     scan()
+end
+
+function editBlight(obj, cardBlight, blightChange, cardImmediate, cardHealthy)
+    local newBlight = math.max(1, cardBlight + blightChange)
+    updateCard(obj, newBlight, cardImmediate, cardHealthy)
+end
+function editImmediate(obj, cardBlight, immediate, cardHealthy)
+    updateCard(obj, cardBlight, immediate, cardHealthy)
+end
+function editHealthy(obj, cardBlight, cardImmediate, healthy)
+    updateCard(obj, cardBlight, cardImmediate, healthy)
 end
 
 function upCast(obj,dist,offset,types)

@@ -3271,11 +3271,29 @@ function payEnergyTokens(color, cost)
                 quantity = 1
             end
             if obj.getName() == "1 Energy" then
-                cost = cost - (1 * quantity)
-                obj.destruct()
+                for i=1,quantity do
+                    if i == quantity then
+                        obj.destruct()
+                    else
+                        obj.takeObject({}).destruct()
+                    end
+                    cost = cost - 1
+                    if cost <= 0 then
+                        break
+                    end
+                end
             elseif obj.getName() == "3 Energy" then
-                cost = cost - (3 * quantity)
-                obj.destruct()
+                for i=1,quantity do
+                    if i == quantity then
+                        obj.destruct()
+                    else
+                        obj.takeObject({}).destruct()
+                    end
+                    cost = cost - 3
+                    if cost <= 0 then
+                        break
+                    end
+                end
             end
             if cost <= 0 then
                 break
@@ -3329,6 +3347,7 @@ function refundEnergyTokens(color, cost)
         threeEnergyBag.takeObject({
             position = zone.getPosition()+Vector(-10,2,-5),
             rotation = Vector(0,180,0),
+            smooth = false,
         })
         cost = cost - 3
     end
@@ -3336,6 +3355,7 @@ function refundEnergyTokens(color, cost)
         oneEnergyBag.takeObject({
             position = zone.getPosition()+Vector(-10,2,-3),
             rotation = Vector(0,180,0),
+            smooth = false,
         })
         cost = cost - 1
     end

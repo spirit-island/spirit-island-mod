@@ -1,6 +1,8 @@
 types = {"Minor", "Major", "Unique"}
 speeds = {"Fast", "Slow"}
 
+local Raycast = require('Raycast')
+
 local rescan
 
 function onLoad()
@@ -17,7 +19,7 @@ function onLoad()
 end
 
 function scan()
-    local objs = upCast(self, 0.4, 0.1, {"Card"})
+    local objs = Raycast.upCast(self, 0.4, 0.1, {"Card"})
     if #objs == 0 then
         clearButtons()
         return
@@ -351,34 +353,4 @@ function editTag(obj, modifier, tags)
     end
     rescan = true
     scan()
-end
-
-function upCast(obj,dist,offset,types)
-    dist = dist or 1
-    offset = offset or 0
-    types = types or {}
-    local hits = Physics.cast({
-        origin       = obj.getPosition() + Vector(0,offset,0),
-        direction    = Vector(0,1,0),
-        type         = 3,
-        size         = obj.getBoundsNormalized().size,
-        orientation  = obj.getRotation(),
-        max_distance = dist,
-        --debug        = true,
-    })
-    local hitObjects = {}
-    for _,v in pairs(hits) do
-        if types ~= {} then
-            local matchesType = false
-            for _,t in pairs(types) do
-                if v.hit_object.type == t then matchesType = true end
-            end
-            if matchesType then
-                table.insert(hitObjects,v.hit_object)
-            end
-        else
-            table.insert(hitObjects,v.hit_object)
-        end
-    end
-    return hitObjects
 end

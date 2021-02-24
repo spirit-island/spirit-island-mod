@@ -23,15 +23,18 @@ read_globals = {
     "startLuaCoroutine",
 }
 -- Additionally `self` is defined for object scripts, and it has mutable fields.
-files["objects/**/*.lua"] = {
-    globals = {"self"},
-}
+files["objects/**/*.lua"].globals = {"self"}
+
 
 -- Don't have a maximum line length.
 max_line_length = false
 
 -- Ignores.
-allow_defined_top = true
+
+-- Allow implicitly defining globals in root modules.
+files['script.lua'].allow_defined_top = true
+files['objects/**/*.lua'].allow_defined_top = true
+
 ignore = {
     "131", -- unused global variable, we should annotate the ones we expect
     "542", -- empty if branch  (usually has a comment)

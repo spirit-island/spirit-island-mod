@@ -461,7 +461,7 @@ function readyCheck()
     local colorCount = 0
     local readyCount = 0
     for _,data in pairs(selectedColors) do
-        if not data.ready.is_face_down and data.ready.resting then
+        if data.ready.is_face_down and data.ready.resting then
             readyCount = readyCount + 1
         end
         colorCount = colorCount + 1
@@ -2217,7 +2217,7 @@ function handlePlayer(color, data)
         playerBlocks[color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         data.paid = false
     end
-    if not data.ready.is_face_down then
+    if data.ready.is_face_down then
         data.ready.flip()
     end
 end

@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 23.8171368,
+    "posY": 0.05113511,
+    "posZ": -6.13707829,
+    "rotX": 359.6186,
+    "rotY": 359.986816,
+    "rotZ": 1.80361545,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "1 Energy",
+  "Description": "Pays for Power Cards. Carries over from turn to turn.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Destroy"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472358304/A200B815400F7CF50C47E4EBE30AA806B52787A7/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": true
+  }
+}

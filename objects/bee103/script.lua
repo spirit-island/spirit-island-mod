@@ -697,7 +697,7 @@ function scanReady()
     local no = {}
     for color,guid in pairs(playerReadyGuids) do
         if selectedColors[color] then
-            if selectedColors[color].resting and not selectedColors[color].is_face_down then
+            if selectedColors[color].ready.resting and selectedColors[color].ready.is_face_down then
                 getObjectFromGUID(guid).editButton({
                     index=0,
                     label="Yes",

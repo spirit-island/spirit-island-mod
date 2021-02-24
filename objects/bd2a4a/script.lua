@@ -95,7 +95,7 @@ function SetupSpirit(object_pick,player_color)
     local xOffset = 1
     local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
     if #PlayerBag.getObjects() ~= 0 then
-        local castObjects = upCast(self)
+        local castObjects = upCast(self, nil, 0.1)
         local hpos = Player[player_color].getHandTransform().position
         self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))
         self.setRotation(Vector(0,180,0))
@@ -251,14 +251,16 @@ function ToggleAspect(_, _, alt_click)
     end
 end
 -----
-function upCast(obj)
+function upCast(obj, dist, offset)
+    dist = dist or 1
+    offset = offset or 0
     local hits = Physics.cast({
-        origin       = obj.getPosition() + Vector(0,0.1,0),
+        origin       = obj.getPosition() + Vector(0,offset,0),
         direction    = Vector(0,1,0),
         type         = 3,
         size         = obj.getBoundsNormalized().size,
         orientation  = obj.getRotation(),
-        max_distance = 0,
+        max_distance = dist,
         --debug        = true,
     })
     local hitObjects = {}

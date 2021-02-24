@@ -4,12 +4,12 @@
     "posX": -107.22,
     "posY": 1.09670484,
     "posZ": 47.9000053,
-    "rotX": 0.00444918964,
-    "rotY": 179.999985,
-    "rotZ": 5.99094847e-06,
-    "scaleX": 1.0,
-    "scaleY": 1.0,
-    "scaleZ": 1.0
+    "rotX": 0.004446865,
+    "rotY": 179.999939,
+    "rotZ": 5.07275536e-06,
+    "scaleX": 0.75,
+    "scaleY": 0.75,
+    "scaleZ": 0.75
   },
   "Nickname": "Speed Token Bag",
   "Description": "Place this on a Power to show you have changed its speed. This only has a functional difference when playing with the Blitz Scenario.",

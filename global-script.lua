@@ -117,6 +117,7 @@ strifeBag = "af4e63"
 badlandsBag = "d3f7f8"
 oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
+speedBag = "65fc65"
 defendBags = {
     Red = "93e047",
     Purple = "66ef2a",
@@ -301,13 +302,13 @@ function onLoad(saved_data)
     end)
     addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
-            if isPowerCard(obj) then
+            if isPowerCard({card=obj}) then
                 -- This ugliness is because setPositionSmooth doesn't work from a hand.
                 ensureCardInPlay(obj)
                 discardPowerCardFromPlay(obj, 1)
             end
         end
-        if isPowerCard(hoveredObject) then
+        if isPowerCard({card=hoveredObject}) then
             -- This ugliness is because setPositionSmooth doesn't work from a hand.
             ensureCardInPlay(hoveredObject)
             discardPowerCardFromPlay(hoveredObject, 1)
@@ -315,11 +316,11 @@ function onLoad(saved_data)
     end)
     addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
-            if isPowerCard(obj) then
+            if isPowerCard({card=obj}) then
                 moveObjectToHand(obj, droppingPlayerColor, 2)
             end
         end
-        if isPowerCard(hoveredObject) then
+        if isPowerCard({card=hoveredObject}) then
             moveObjectToHand(hoveredObject, droppingPlayerColor, 2)
         end
     end)
@@ -352,6 +353,7 @@ function onLoad(saved_data)
     badlandsBag = getObjectFromGUID(badlandsBag)
     oneEnergyBag = getObjectFromGUID(oneEnergyBag)
     threeEnergyBag = getObjectFromGUID(threeEnergyBag)
+    speedBag = getObjectFromGUID(speedBag)
     for index, bagGuid in pairs(defendBags) do
         defendBags[index] = getObjectFromGUID(bagGuid)
     end
@@ -2210,6 +2212,8 @@ function handlePlayer(color, data)
             obj.destruct()
         elseif string.sub(obj.getName(),-7) == "Isolate" then
             obj.destruct()
+        elseif obj.getName() == "Speed Token" then
+            obj.destruct()
         end
     end
 
@@ -2809,6 +2813,8 @@ function place(objName, placePos, droppingPlayerColor)
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "3 Energy" then
         temp = threeEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+    elseif objName == "Speed Token" then
+        temp = speedBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     end
     if droppingPlayerColor then
         local dropColor = droppingPlayerColor
@@ -2842,6 +2848,7 @@ Pieces = {
     "1 Energy",
     "3 Energy",
     "Box Blight",
+    "Speed Token",
 }
 
 function DropPiece(piece, cursorLocation, droppingPlayerColor)
@@ -3162,7 +3169,7 @@ function setupPlayerArea(params)
             -- Skip counting locked card's energy (Aid from Lesser Spirits)
             if not inTableOfElemStrCards[i].getLock() and cost ~= nil then
                 energy = energy + cost
-                if inTableOfElemStrCards[i].hasTag("Fast") then
+                if (inTableOfElemStrCards[i].hasTag("Fast") and not inTableOfElemStrCards[i].hasTag("Temporary Slow")) or inTableOfElemStrCards[i].hasTag("Temporary Fast") then
                     energy = energy - fastDiscount
                 end
             end
@@ -4033,14 +4040,14 @@ function onPlayerDisconnect(player)
     updatePlaySpiritButton(player.color)
 end
 
-function isPowerCard(card)
-    if card == nil then
+function isPowerCard(params)
+    if params.card == nil then
         return false
     end
-    return card.type == "Card" and (card.hasTag("Minor") or card.hasTag("Major") or card.hasTag("Unique"))
+    return params.card.type == "Card" and (params.card.hasTag("Minor") or params.card.hasTag("Major") or params.card.hasTag("Unique"))
 end
 function onObjectSpawn(obj)
-    if isPowerCard(obj) then
+    if isPowerCard({card=obj}) then
         applyPowerCardContextMenuItems(obj)
     end
 end
@@ -4049,7 +4056,7 @@ function applyPowerCardContextMenuItems(card)
         "Discard (to 2nd hand)",
         function(player_color)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
-                if isPowerCard(obj) then
+                if isPowerCard({card=obj}) then
                     moveObjectToHand(obj, player_color, 2)
                 end
             end
@@ -4059,7 +4066,7 @@ function applyPowerCardContextMenuItems(card)
         "Forget",
         function(player_color)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
-                if isPowerCard(obj) then
+                if isPowerCard({card=obj}) then
                     -- This ugliness is because setPositionSmooth doesn't work from a hand.
                     ensureCardInPlay(obj)
                     discardPowerCardFromPlay(obj, 1)

@@ -3284,6 +3284,8 @@ function payEnergyTokens(color, cost)
     local energy = 0
     local zone = getObjectFromGUID(elementScanZones[color])
     local objects = zone.getObjects()
+    local energyTokens = {{}, {}}
+    local oneEnergyTotal = 0
     for _, obj in ipairs(objects) do
         if obj.type == "Chip" then
             local quantity = obj.getQuantity()
@@ -3291,46 +3293,91 @@ function payEnergyTokens(color, cost)
                 quantity = 1
             end
             if obj.getName() == "1 Energy" then
-                energy = energy + (1 * quantity)
+                energy = energy + quantity
+                oneEnergyTotal = oneEnergyTotal + quantity
+                table.insert(energyTokens[1], obj)
             elseif obj.getName() == "3 Energy" then
                 energy = energy + (3 * quantity)
+                table.insert(energyTokens[2], obj)
             end
         end
     end
     if cost > energy then
         return false
     end
-    for _, obj in ipairs(objects) do
-        if obj.type == "Chip" then
-            local quantity = obj.getQuantity()
-            if quantity == -1 then
-                quantity = 1
-            end
-            if obj.getName() == "1 Energy" then
-                for i=1,quantity do
-                    if i == quantity then
-                        obj.destruct()
-                    else
-                        obj.takeObject({}).destruct()
-                    end
-                    cost = cost - 1
-                    if cost <= 0 then
-                        break
-                    end
+    -- Only spend 3 energy tokens until you don't go negative unless there aren't enough 1 energy tokens
+    for i=#energyTokens[2],1,-1 do
+        if cost <= 2 and oneEnergyTotal >= 2 then
+            break
+        end
+        local obj = energyTokens[2][i]
+        local quantity = obj.getQuantity()
+        if quantity == -1 then
+            quantity = 1
+        end
+        for j=1,quantity do
+            if j == quantity then
+                if obj.remainder then
+                    obj = obj.remainder
                 end
-            elseif obj.getName() == "3 Energy" then
-                for i=1,quantity do
-                    if i == quantity then
-                        obj.destruct()
-                    else
-                        obj.takeObject({}).destruct()
-                    end
-                    cost = cost - 3
-                    if cost <= 0 then
-                        break
-                    end
-                end
+                obj.destruct()
+                table.remove(energyTokens[2], i)
+            else
+                obj.takeObject({}).destruct()
             end
+            cost = cost - 3
+            if cost <= 2 and oneEnergyTotal >= 2 then
+                break
+            end
+        end
+    end
+    -- Then spend 1 energy token
+    for i=#energyTokens[1],1,-1 do
+        if cost <= 0 then
+            break
+        end
+        local obj = energyTokens[1][i]
+        local quantity = obj.getQuantity()
+        if quantity == -1 then
+            quantity = 1
+        end
+        for j=1,quantity do
+            if j == quantity then
+                if obj.remainder then
+                    obj = obj.remainder
+                end
+                obj.destruct()
+                table.remove(energyTokens[1], i)
+            else
+                obj.takeObject({}).destruct()
+            end
+            cost = cost - 1
+            if cost <= 0 then
+                break
+            end
+        end
+    end
+    -- Now go back and spend remaining 3 energy tokens if needed
+    for i=#energyTokens[2],1,-1 do
+        if cost <= 0 then
+            break
+        end
+        local obj = energyTokens[2][i]
+        local quantity = obj.getQuantity()
+        if quantity == -1 then
+            quantity = 1
+        end
+        for j=1,quantity do
+            if j == quantity then
+                if obj.remainder then
+                    obj = obj.remainder
+                end
+                obj.destruct()
+                table.remove(energyTokens[2], i)
+            else
+                obj.takeObject({}).destruct()
+            end
+            cost = cost - 3
             if cost <= 0 then
                 break
             end

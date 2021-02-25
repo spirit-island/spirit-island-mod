@@ -3876,12 +3876,11 @@ function swapPlayerPresenceColors(fromColor, toColor)
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
     -- Make a note of what we find and what tint it is. Handle Isolate and Defend tokens in this pass.
     local match = string.match  -- Performance
-    local name, suffix
     for _,obj in pairs(getAllObjects()) do
-        name = obj.getName()
+        local name = obj.getName()
         if name then
             for _,data in pairs(colors) do
-                suffix = match(name, data.pattern)
+                local suffix = match(name, data.pattern)
                 if suffix then
                     if specialTokens[suffix] then
                         local state = obj.getStateId()
@@ -3929,7 +3928,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         end
                         obj.setColorTint(tint)
                         obj.setName(newname)
-                        obj = obj.setState(originalState)
+                        _ = obj.setState(originalState)
                     end
                 end
             end

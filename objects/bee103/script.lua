@@ -1,5 +1,6 @@
 numCards = 0
 discard = Vector(-51.25, 1.5, 0.38)
+xDiff = 6
 
 function onSave()
     local data_table = {
@@ -72,7 +73,7 @@ function onLoad(saved_data)
         click_function = "advanceInvaderCards",
         function_owner = self,
         label          = "",
-        position       = Vector(1.58,0,1.874),
+        position       = Vector(1.78,0,1.874),
         width          = 0,
         height         = 0,
         scale          = Vector(0.2,0.2,0.2),
@@ -125,6 +126,18 @@ function onLoad(saved_data)
         font_size      = 300,
         tooltip        = "Sums all players elemental contributions\n\nFor use with Events that read \"Aided by\""
     })
+    self.createButton({
+        click_function = "flipExploreCard",
+        function_owner = self,
+        label          = "",
+        position       = Vector(1.58,0,1.874),
+        rotation       = Vector(0,270,0),
+        width          = 0,
+        height         = 0,
+        scale          = Vector(0.2,0.2,0.2),
+        font_size      = 300,
+        tooltip        = "Flip over the top Invader Card"
+    })
     placeReadyTokens()
     placeElementTokens()
     updateFearUI()
@@ -155,6 +168,12 @@ function setupGame()
         width = 2100,
         height = 500,
     })
+    self.editButton({
+        index = 10,
+        label = "Explore",
+        width = 1500,
+        height = 500,
+    })
     Wait.time(aidPanelScanLoop,1,-1)
     Wait.time(scanReady,1,-1)
 
@@ -179,7 +198,6 @@ function setupGame()
     end
 end
 
-xDiff = 6
 function blankFunc()
 end
 function wt(some)
@@ -190,6 +208,22 @@ function wt(some)
 end
 
 ---- Invader Card Section
+function flipExploreCard()
+    local objs = Global.getVar("invaderDeckZone").getObjects()
+    if #objs ~= 1 then
+        -- already have a faceup card
+        return
+    end
+    if objs[1].type == "Deck" then
+        objs[1].takeObject({
+            position = objs[1].getPosition() + Vector(0,.5,0),
+            flip = true,
+        })
+    elseif objs[1].type == "Card" then
+        objs[1].flip()
+    end
+end
+
 scanLoopTable= {
     Build2 = {
         sourceGUID = "e5d18b",

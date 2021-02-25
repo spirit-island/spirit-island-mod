@@ -307,15 +307,6 @@ function onLoad(saved_data)
         end)
     end
 
-    addHotkey("Add Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        aidBoard.call("addFear")
-    end)
-    addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        aidBoard.call("removeFear")
-    end)
-    addHotkey("Advance Invader Cards", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        aidBoard.call("advanceInvaderCards")
-    end)
     addHotkey("Remove Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
             deleteObject(hoveredObject, false)
@@ -326,6 +317,20 @@ function onLoad(saved_data)
             deleteObject(hoveredObject, true)
         end
     end)
+
+    addHotkey("Add Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        aidBoard.call("addFear")
+    end)
+    addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        aidBoard.call("removeFear")
+    end)
+    addHotkey("Flip Explore Card", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        aidBoard.call("flipExploreCard")
+    end)
+    addHotkey("Advance Invader Cards", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+        aidBoard.call("advanceInvaderCards")
+    end)
+
     addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
@@ -363,6 +368,7 @@ function onLoad(saved_data)
     SetupChecker = getObjectFromGUID(SetupChecker)
     adversaryBag = getObjectFromGUID(adversaryBag)
     scenarioBag = getObjectFromGUID(scenarioBag)
+    invaderDeckZone = getObjectFromGUID(invaderDeckZone)
     sourceSpirit = getObjectFromGUID(sourceSpirit)
     ------
     dahanBag = getObjectFromGUID(dahanBag)
@@ -1736,7 +1742,6 @@ function SetupInvaderDeck()
     return 1
 end
 function grabInvaderCards(deckTable)
-    local zone = getObjectFromGUID(invaderDeckZone)
     local stage1Deck = getObjectFromGUID(stage1DeckZone).getObjects()[1]
     local stage2Deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
     local stage3Deck = getObjectFromGUID(stage3DeckZone).getObjects()[1]
@@ -1751,19 +1756,19 @@ function grabInvaderCards(deckTable)
         local char = deckTable[i]
         if char == 1 then
             local card = stage1Deck.takeObject({
-                position = zone.getPosition() + Vector(-#deckTable+i,0,0),
+                position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 2 then
             local card = stage2Deck.takeObject({
-                position = zone.getPosition() + Vector(-#deckTable+i,0,0),
+                position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 3 or char == "3*" then
             local card = stage3Deck.takeObject({
-                position = zone.getPosition() + Vector(-#deckTable+i,0,0),
+                position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
                 callback_function = function(obj)
                     cardsLoaded = cardsLoaded + 1
                     if char == "3*" then
@@ -1776,15 +1781,14 @@ function grabInvaderCards(deckTable)
             table.insert(cardTable, card)
         elseif char == "C" then
             local card = getObjectFromGUID("c304c1")
-            card.setPositionSmooth(zone.getPosition() + Vector(-#deckTable+i,0,0))
+            card.setPositionSmooth(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
             card.setRotationSmooth(Vector(0,180,180))
             cardsLoaded = cardsLoaded + 1
             table.insert(cardTable, card)
         end
     end
     Wait.condition(function() group(cardTable) end, function() return cardsLoaded == #deckTable end)
-    local zone = getObjectFromGUID(invaderDeckZone)
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #deckTable end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() local objs = invaderDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #deckTable end)
 end
 ----- Event Deck Section
 function SetupEventDeck()
@@ -1942,8 +1946,7 @@ function PostSetup()
     if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
         -- Setup up command cards last
         Wait.condition(function()
-            local zone = getObjectFromGUID(invaderDeckZone)
-            local invaderDeck = zone.getObjects()[1]
+            local invaderDeck = invaderDeckZone.getObjects()[1]
             local cards = invaderDeck.getObjects()
             local stageII = nil
             local stageIII = nil
@@ -1973,11 +1976,11 @@ function PostSetup()
             Wait.condition(function()
                 setupCommandCard(invaderDeck, stageIII, "a578fe")
                 Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function()
-                    local objs = zone.getObjects()
+                    local objs = invaderDeckZone.getObjects()
                     return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 2
                 end)
             end, function()
-                local objs = zone.getObjects()
+                local objs = invaderDeckZone.getObjects()
                 return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
         end, function() return postSetupSteps == 4 end)
@@ -2950,7 +2953,7 @@ function refreshScore()
     end
     blight = math.floor(blight / numBoards)
 
-    local invaderDeck = getObjectFromGUID(invaderDeckZone).getObjects()[1]
+    local invaderDeck = invaderDeckZone.getObjects()[1]
     local deckCount = 0
     if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
         if invaderDeck.type == "Deck" then

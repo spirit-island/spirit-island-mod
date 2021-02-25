@@ -3861,16 +3861,14 @@ function swapPlayerPresenceColors(fromColor, toColor)
 
     if not fastSwap then
         -- Remove any items still in the bags
-        -- NOTE: TTS's documentation suggests we may need to wait a physics frame after doing this,
-        -- but this seems to work fine without doing that.  If something goes awry with this code in the future,
-        -- you might try re-adding the delay.
         for _, data in pairs(colors) do
             for i = 1,data.qty do
-                local obj = data.bag.takeObject({
-                    sound=false,
-                    position=Vector(data.ix*2, i*2, 200)    -- Chosen to be out-of-the-way and to prevent items from stacking.
+                data.bag.takeObject({
+                    sound = false,
+                    position = Vector(data.ix*2, i*2, 200),    -- Chosen to be out-of-the-way and to prevent items from stacking.
+                    smooth = false,
+                    callback_function = function(obj) table.insert(data.bagContents, obj.guid) end,
                 })
-                table.insert(data.bagContents, obj)
             end
         end
     end
@@ -3912,19 +3910,34 @@ function swapPlayerPresenceColors(fromColor, toColor)
         -- All's we did is maybe recolor some isolate and defend tokens, so we can skip the rest of this.
         return
     end
-    for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
-        local a, b = unpack(ab)
-        for suffix, tint in pairs(a.tints) do
-            local newname = a.color .. "'s " .. suffix
-            for _, obj in ipairs(b.objects[suffix]) do
-                obj.setColorTint(tint)
-                obj.setName(newname)
+    Wait.frames(function()
+        for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
+            local a, b = unpack(ab)
+            for suffix, tint in pairs(a.tints) do
+                local newname = a.color .. "'s " .. suffix
+                for _, obj in ipairs(b.objects[suffix]) do
+                    obj.setColorTint(tint)
+                    obj.setName(newname)
+                    if suffix == "Presence" then
+                        local originalState = obj.getStateId()
+                        if obj.getStateId() == 1 then
+                            obj = obj.setState(2)
+                            -- TODO fix decal
+                        else
+                            -- TODO fix decal
+                            obj = obj.setState(1)
+                        end
+                        obj.setColorTint(tint)
+                        obj.setName(newname)
+                        obj = obj.setState(originalState)
+                    end
+                end
+            end
+            for i = #b.bagContents,1,-1 do  -- Iterate in reverse order.
+                a.bag.putObject(getObjectFromGUID(b.bagContents[i]))
             end
         end
-        for i = #b.bagContents,1,-1 do  -- Iterate in reverse order.
-            a.bag.putObject(b.bagContents[i])
-        end
-    end
+    end, 1)
 end
 
 colorLock = false

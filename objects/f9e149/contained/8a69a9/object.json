@@ -1,0 +1,122 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -45.7398872,
+    "posY": 1.40302312,
+    "posZ": 47.1367455,
+    "rotX": -6.655152e-07,
+    "rotY": 179.989563,
+    "rotZ": -1.40620534e-06,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Blue's Presence",
+  "Description": "A piece showing where a spirit lives in a land",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0,
+    "g": 0.0344827175,
+    "b": 1.0
+  },
+  "Tags": [
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": false
+  },
+  "States": {
+    "2": {
+      "GUID": "520d53",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -48.7551956,
+        "posY": 1.06,
+        "posZ": 47.6655731,
+        "rotX": 2.941466e-07,
+        "rotY": 179.9896,
+        "rotZ": -1.40974464e-06,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Blue's Presence",
+      "Description": "A piece showing where a spirit lives in a land",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.0,
+        "g": 0.0344827175,
+        "b": 1.0
+      },
+      "Tags": [
+        "Presence"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": true,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 5,
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedDecals": [
+        {
+          "Transform": {
+            "posX": 0.0,
+            "posY": -0.14,
+            "posZ": 0.0,
+            "rotX": 90.0,
+            "rotY": 180.0,
+            "rotZ": 0.0,
+            "scaleX": 3.0,
+            "scaleY": 3.0,
+            "scaleZ": 3.0
+          },
+          "CustomDecal": {
+            "Name": "Blue's Sacred Site",
+            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1752434562676881841/9B1B1859A3BCE1EE2EC77AE688E13E937CB08F09/",
+            "Size": 1.0
+          }
+        }
+      ]
+    }
+  }
+}

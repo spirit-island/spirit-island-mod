@@ -1,0 +1,122 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -42.37145,
+    "posY": 1.395096,
+    "posZ": 48.59978,
+    "rotX": 1.75421064e-07,
+    "rotY": 179.975647,
+    "rotZ": -1.58322155e-06,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Yellow's Presence",
+  "Description": "A piece showing where a spirit lives in a land",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.9893046,
+    "b": 0.0
+  },
+  "Tags": [
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": false
+  },
+  "States": {
+    "2": {
+      "GUID": "6c3b43",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -49.3940353,
+        "posY": 1.06000006,
+        "posZ": 48.5174828,
+        "rotX": -1.28878312e-07,
+        "rotY": 179.975632,
+        "rotZ": -8.68495931e-07,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Yellow's Presence",
+      "Description": "A piece showing where a spirit lives in a land",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.9893046,
+        "b": 0.0
+      },
+      "Tags": [
+        "Presence"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": true,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 5,
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedDecals": [
+        {
+          "Transform": {
+            "posX": 0.0,
+            "posY": -0.14,
+            "posZ": 0.0,
+            "rotX": 90.0,
+            "rotY": 180.0,
+            "rotZ": 0.0,
+            "scaleX": 3.0,
+            "scaleY": 3.0,
+            "scaleZ": 3.0
+          },
+          "CustomDecal": {
+            "Name": "Yellow's Sacred Site",
+            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1752434562676889038/323BA470D164E4C6D36713E34F20E578C0A3F94A/",
+            "Size": 1.0
+          }
+        }
+      ]
+    }
+  }
+}

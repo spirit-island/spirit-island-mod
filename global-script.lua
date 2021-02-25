@@ -208,18 +208,36 @@ function onObjectEnterContainer(container, object)
         if container.getQuantity() == 2 then
             -- This will trigger twice when a chip container is formed
             -- Not sure of a way around it, but with setDecals it's harmless
-            container.setDecals({
-                {
-                    name     = "API Icon",
-                    url      = "https://api.tabletopsimulator.com/img/TSIcon.png",
-                    position = {0, -0.14, 0},
-                    rotation = {90, 180, 0},
-                    scale    = {3, 3, 3},
-                },
-            })
+            makeSacredSite(container)
         end
         return
     end
+end
+function makeSacredSite(obj)
+    local color = string.sub(obj.getName(),1,-12)
+    local url = ""
+    if color == "Red" then
+        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676874388/C51FB839BC19E2E94CE837708F00B462DAC1C89D/"
+    elseif color == "Purple" then
+        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676885555/CD5BF2645FDC5B6AEFAA98C7D76BBD7015E18B93/"
+    elseif color == "Yellow" then
+        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676889038/323BA470D164E4C6D36713E34F20E578C0A3F94A/"
+    elseif color == "Blue" then
+        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676881841/9B1B1859A3BCE1EE2EC77AE688E13E937CB08F09/"
+    elseif color == "Green" then
+        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676883074/3419998A3044C614DBAEDC710658F3A4CB7D8CF3/"
+    elseif color == "Orange" then
+        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676884361/85EE264FD32632A9DD3828EA9538FDBC4F2FBC22/"
+    end
+    obj.setDecals({
+        {
+            name     = color.."'s Sacred Site",
+            url      = url,
+            position = {0, -0.14, 0},
+            rotation = {90, 180, 0},
+            scale    = {3, 3, 3},
+        },
+    })
 end
 function onObjectLeaveContainer(container, object)
     if container.hasTag("Presence") and object.hasTag("Presence") then
@@ -3968,13 +3986,19 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         local originalState = obj.getStateId()
                         if obj.getStateId() == 1 then
                             obj = obj.setState(2)
-                            -- TODO fix decal
                         else
-                            -- TODO fix decal
+                            if obj.getDecals() then
+                                makeSacredSite(obj)
+                            end
                             obj = obj.setState(1)
                         end
                         obj.setColorTint(tint)
                         obj.setName(newname)
+                        if originalState == 1 then
+                            if obj.getDecals() then
+                                makeSacredSite(obj)
+                            end
+                        end
                         _ = obj.setState(originalState)
                     end
                 end

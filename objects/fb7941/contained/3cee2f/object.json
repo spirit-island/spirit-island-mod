@@ -1,0 +1,122 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -45.6907,
+    "posY": 1.395096,
+    "posZ": 48.6741257,
+    "rotX": -3.1520193e-07,
+    "rotY": 179.99498,
+    "rotZ": -1.50698816e-06,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Red's Presence",
+  "Description": "A piece showing where a spirit lives in a land",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.856,
+    "g": 0.09999665,
+    "b": 0.09399662
+  },
+  "Tags": [
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": false
+  },
+  "States": {
+    "2": {
+      "GUID": "2679f1",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -44.41775,
+        "posY": 1.042147,
+        "posZ": 35.28256,
+        "rotX": 0.004464193,
+        "rotY": 179.995041,
+        "rotZ": 2.39514043e-06,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Red's Presence",
+      "Description": "A piece showing where a spirit lives in a land",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.856,
+        "g": 0.09999681,
+        "b": 0.0939968154
+      },
+      "Tags": [
+        "Presence"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 5,
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedDecals": [
+        {
+          "Transform": {
+            "posX": 0.0,
+            "posY": -0.14,
+            "posZ": 0.0,
+            "rotX": 90.0,
+            "rotY": 180.0,
+            "rotZ": 0.0,
+            "scaleX": 3.0,
+            "scaleY": 3.0,
+            "scaleZ": 3.0
+          },
+          "CustomDecal": {
+            "Name": "API Icon",
+            "ImageURL": "https://api.tabletopsimulator.com/img/TSIcon.png",
+            "Size": 1.0
+          }
+        }
+      ]
+    }
+  }
+}

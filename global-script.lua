@@ -203,11 +203,37 @@ function onObjectCollisionEnter(hit_object, collision_info)
         end
     end
 end
-function onObjectLeaveContainer(container, object)
-    if container ~= StandardMapBag and container ~= ThematicMapBag and container ~= MJThematicMapBag then
+function onObjectEnterContainer(container, object)
+    if container.hasTag("Presence") and object.hasTag("Presence") then
+        if container.getQuantity() == 2 then
+            -- This will trigger twice when a chip container is formed
+            -- Not sure of a way around it, but with setDecals it's harmless
+            container.setDecals({
+                {
+                    name     = "API Icon",
+                    url      = "https://api.tabletopsimulator.com/img/TSIcon.png",
+                    position = {0, -0.14, 0},
+                    rotation = {90, 180, 0},
+                    scale    = {3, 3, 3},
+                },
+            })
+        end
         return
     end
-    object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
+end
+function onObjectLeaveContainer(container, object)
+    if container.hasTag("Presence") and object.hasTag("Presence") then
+        if container.getQuantity() == 1 and container.remainder.getStateId() ~= 2 then
+            container.remainder.setDecals({})
+        end
+        if object.getStateId() ~= 2 then
+            object.setDecals({})
+        end
+        return
+    elseif container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag then
+        object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
+        return
+    end
 end
 function onSave()
     local data_table = {

@@ -3868,7 +3868,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
             for i = 1,data.qty do
                 local obj = data.bag.takeObject({
                     sound=false,
-                    position={x=data.ix*2, z=200, y=i*2}    -- Chosen to be out-of-the-way and to prevent items from stacking.
+                    position=Vector(data.ix*2, i*2, 200)    -- Chosen to be out-of-the-way and to prevent items from stacking.
                 })
                 table.insert(data.bagContents, obj)
             end
@@ -3891,8 +3891,8 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         local locked = obj.getLock()
                         destroyObject(obj)
                         obj = specialTokens[suffix][data.oppositeColor].takeObject(attrs)
+                        obj = obj.setState(state)
                         obj.setLock(locked)
-                        obj.setState(state)
                     elseif not fastSwap then
                         data.tints[suffix] = obj.getColorTint()
                         if not data.objects[suffix] then

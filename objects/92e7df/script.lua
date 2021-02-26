@@ -122,6 +122,13 @@ function SetupSpirit(object_pick,player_color)
             rotation = Vector(0, 180, 0),
         })
 
+        -- Setup Aid Tokens
+        local scanPos = getObjectFromGUID(Global.getTable("elementScanZones")[player_color]).getPosition()
+        local defOffset = Vector(scanPos.x,0,scanPos.z) + Vector(-9.5, 2, -1)
+        for i = 1,6 do
+            PlayerBag.takeObject({position = defOffset + Vector(0,0.1*i,0)})
+        end
+
         -- Setup Energy Counter
         local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
         counter.setLock(true)

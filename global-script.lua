@@ -9,12 +9,12 @@ majorPowerZone = "089896"
 majorPowerDiscardZone = "eaf864"
 uniquePowerDiscardZone = "uniquePowerDiscard"
 PlayerBags = {
-    ["Red"] = "fb7941",
-    ["Purple"] = "8ee413",
-    ["Yellow"] = "8aad81",
-    ["Blue"] = "f9e149",
-    ["Green"] = "9f4841",
-    ["Orange"] = "a2f5cc",
+    ["Red"] = "PlayerBagRed",
+    ["Purple"] = "PlayerBagPurple",
+    ["Yellow"] = "PlayerBagYellow",
+    ["Blue"] = "PlayerBagBlue",
+    ["Green"] = "PlayerBagGreen",
+    ["Orange"] = "PlayerBagOrange",
 }
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"

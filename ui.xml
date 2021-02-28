@@ -1,6 +1,6 @@
 <Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="250" color="#00000044" rectAlignment="UpperCenter" offsetXY="0 -70">
-    <Image image="Invader Phase" preserveAspect="true" />
-    <HorizontalLayout id="hLTypes" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="19" offsetXY="-2 16">
+    <Image id="invaderImage" image="Invader Phase" preserveAspect="true" />
+    <HorizontalLayout id="invaderLayout" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="19" offsetXY="-2 16">
         <Panel id="panelBuild2" active="false" preferredWidth="60" preferredHeight="60">
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
@@ -47,8 +47,8 @@
         </Panel>
         <Panel id="panelBuild" preferredWidth="60" preferredHeight="60">
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
-                <HorizontalLayout childForceExpandWidth="true" childForceExpandHeight="false">
-                    <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                         <Panel id="panelBuild11">
                             <Text id="panelBuild11text" fontStyle="Bold" />
                         </Panel>
@@ -56,7 +56,7 @@
                             <Text id="panelBuild12text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
-                    <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                         <Panel id="panelBuild21">
                             <Text id="panelBuild21text" fontStyle="Bold" />
                         </Panel>

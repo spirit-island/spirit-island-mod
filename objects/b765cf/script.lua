@@ -24,15 +24,13 @@ end
 function onLoad(saved_data)
     local loaded_data = JSON.decode(saved_data)
     if loaded_data.build2 == "true" then
-        UI.setAttribute("panelBuild2","active",true)
-        UI.setAttribute("panelInvader","width","470")
+        toggleInvaderUI(true)
     end
 end
 
 function onObjectPickUp(player_color, picked_up_object)
     if picked_up_object.guid == highImmigration then
-        UI.setAttribute("panelBuild2","active",false)
-        UI.setAttribute("panelInvader","width","380")
+        toggleInvaderUI(false)
         local aidBoard = Global.getVar("aidBoard")
         moveDiscard(aidBoard)
         removeEnglandSnap(aidBoard)
@@ -187,12 +185,31 @@ function PostSetup(params)
             callback_function = function(obj) obj.setLock(true) end,
         })
 
-        UI.setAttribute("panelBuild2","active",true)
-        UI.setAttribute("panelInvader","width","470")
+        toggleInvaderUI(true)
         englandSnap(aidBoard)
         Wait.condition(function() postSetupComplete = true end, function() return not aidBoard.isSmoothMoving() end)
     else
         postSetupComplete = true
+    end
+end
+
+function toggleInvaderUI(england)
+    if england then
+        Global.setVar("childHeight", 50)
+        Global.setVar("childWidth", 50)
+        Global.setVar("childFontSize", 26)
+        UI.setAttribute("invaderImage", "image", "England Invader Phase")
+        UI.setAttribute("invaderLayout", "spacing", 0)
+        UI.setAttribute("invaderLayout", "offsetXY", "4 11")
+        UI.setAttribute("panelBuild2", "active", true)
+    else
+        Global.setVar("childHeight", 60)
+        Global.setVar("childWidth", 60)
+        Global.setVar("childFontSize", 20)
+        UI.setAttribute("invaderImage", "image", "Invader Phase")
+        UI.setAttribute("invaderLayout", "spacing", 19)
+        UI.setAttribute("invaderLayout", "offsetXY", "-2 16")
+        UI.setAttribute("panelBuild2", "active", false)
     end
 end
 

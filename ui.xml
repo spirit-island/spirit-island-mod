@@ -1,113 +1,92 @@
-<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="380" height="100" color="#00000044" rectAlignment="UpperCenter" offsetXY="0 -70">
-    <HorizontalLayout id="hLTypes" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="10">
-        <Panel id="panelBuild2" active="false" preferredWidth="80" preferredHeight="80">
-            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-                <Panel id="panelBuild20" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                    <Text id="panelBuild2text" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Build2" color="black" />
-                </Panel>
-                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                        <Panel id="panelBuild211" preferredWidth="40" preferredHeight="40" color="yellow">
-                            <Text id="panelBuild211text" fontStyle="Bold" preferredWidth="40" preferredHeight="2" text="S" fontSize="20" color="black" />
+<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="250" color="#00000044" rectAlignment="UpperCenter" offsetXY="0 -70">
+    <Image image="Invader Phase" preserveAspect="true" />
+    <HorizontalLayout id="hLTypes" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="19" offsetXY="-2 16">
+        <Panel id="panelBuild2" active="false" preferredWidth="60" preferredHeight="60">
+            <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelBuild211">
+                            <Text id="panelBuild211text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelBuild212" preferredWidth="40" preferredHeight="40" color="blue">
-                            <Text id="panelBuild212text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="W" fontSize="20" color="black" />
+                        <Panel id="panelBuild212">
+                            <Text id="panelBuild212text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                        <Panel id="panelBuild221" preferredWidth="40" preferredHeight="40" color="green">
-                            <Text id="panelBuild221text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="J" fontSize="20" color="black" />
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelBuild221">
+                            <Text id="panelBuild221text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelBuild222" preferredWidth="40" preferredHeight="40" color="grey">
-                            <Text id="panelBuild222text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="M" fontSize="20" color="black" />
+                        <Panel id="panelBuild222">
+                            <Text id="panelBuild222text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
-        <Panel id="panelRavage" preferredWidth="80" preferredHeight="80">
-            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-                <Panel id="panelRavage0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                    <Text id="panelRavagetext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Ravage" color="black" />
-                </Panel>
-                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                        <Panel id="panelRavage11" preferredWidth="40" preferredHeight="40" color="yellow">
-                            <Text id="panelRavage11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+        <Panel id="panelRavage" preferredWidth="60" preferredHeight="60">
+            <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelRavage11">
+                            <Text id="panelRavage11text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelRavage12" preferredWidth="40" preferredHeight="40" color="blue">
-                            <Text id="panelRavage12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                        <Panel id="panelRavage12">
+                            <Text id="panelRavage12text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                        <Panel id="panelRavage21" preferredWidth="40" preferredHeight="40" color="green">
-                            <Text id="panelRavage21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelRavage21">
+                            <Text id="panelRavage21text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelRavage22" preferredWidth="40" preferredHeight="40" color="grey">
-                            <Text id="panelRavage22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                        <Panel id="panelRavage22">
+                            <Text id="panelRavage22text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
-        <Panel id="panelBuild" preferredWidth="80" preferredHeight="80">
-            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-                <Panel id="panelBuild0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                    <Text id="panelBuildtext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Build" color="black" />
-                </Panel>
-                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="false">
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-                        <Panel id="panelBuild11" preferredWidth="40" preferredHeight="40" color="yellow">
-                            <Text id="panelBuild11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+        <Panel id="panelBuild" preferredWidth="60" preferredHeight="60">
+            <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                <HorizontalLayout childForceExpandWidth="true" childForceExpandHeight="false">
+                    <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                        <Panel id="panelBuild11">
+                            <Text id="panelBuild11text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelBuild12" preferredWidth="40" preferredHeight="40" color="blue">
-                            <Text id="panelBuild12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                        <Panel id="panelBuild12">
+                            <Text id="panelBuild12text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-                        <Panel id="panelBuild21" preferredWidth="40" preferredHeight="40" color="green">
-                            <Text id="panelBuild21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                    <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                        <Panel id="panelBuild21">
+                            <Text id="panelBuild21text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelBuild22" preferredWidth="40" preferredHeight="40" color="grey">
-                            <Text id="panelBuild22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                        <Panel id="panelBuild22">
+                            <Text id="panelBuild22text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
-        <Panel id="panelExplore" preferredWidth="80" preferredHeight="80">
-            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-                <Panel id="panelExplore0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                    <Text id="panelExploretext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Explore" color="black" />
-                </Panel>
-                <HorizontalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                        <Panel id="panelExplore11" preferredWidth="40" preferredHeight="40" color="yellow">
-                            <Text id="panelExplore11text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+        <Panel id="panelExplore" preferredWidth="60" preferredHeight="60">
+            <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
+                <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelExplore11">
+                            <Text id="panelExplore11text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelExplore12" preferredWidth="40" preferredHeight="40" color="blue">
-                            <Text id="panelExplore12text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                        <Panel id="panelExplore12">
+                            <Text id="panelExplore12text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
-                    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="false" childForceExpandHeight="false">
-                        <Panel id="panelExplore21" preferredWidth="40" preferredHeight="40" color="green">
-                            <Text id="panelExplore21text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelExplore21">
+                            <Text id="panelExplore21text" fontStyle="Bold" />
                         </Panel>
-                        <Panel id="panelExplore22" preferredWidth="40" preferredHeight="40" color="grey">
-                            <Text id="panelExplore22text" fontStyle="Bold" preferredWidth="40" preferredHeight="40" text="?" fontSize="20" color="black" />
+                        <Panel id="panelExplore22">
+                            <Text id="panelExplore22text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
-            </VerticalLayout>
-        </Panel>
-        <Panel id="panelStage" preferredWidth="80" preferredHeight="80">
-            <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-                <Panel id="panelStage0" preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                    <Text id="panelStagetext" fontStyle="Bold" preferredWidth="80" preferredHeight="20" text="Stage" color="black" />
-                </Panel>
-                <Panel id="panelStage11" preferredWidth="80" preferredHeight="80" color="white">
-                    <Text id="panelStage11text" fontStyle="Bold" preferredWidth="80" preferredHeight="80" text="I" fontSize="40" color="black" />
-                </Panel>
             </VerticalLayout>
         </Panel>
     </HorizontalLayout>

@@ -3524,63 +3524,63 @@ function updatePlaySpiritButton(color)
     end
 end
 ---- UI Section
-childHeight = 80
-childWidth = 80
-childFontSize = 40
+childHeight = 60
+childWidth = 60
+childFontSize = 30
 
 titleBGColorNA="#666666"
 titleColorNA="#222222"
 titleBGColor="#CCCCCC"
 titleColor="black"
 
-invaderColors ={
+invaderColors = {
+    "white", -- Stage I
+    "white", -- Stage II
+    "white", -- Stage III
     S = "yellow",
     M = "#666666",
     W = "#AAEEFF",
     J = "green",
     C = "blue",
-    a = "white", -- Stage I
-    b = "white", -- Stage II
-    c = "white", -- Stage III
     n = "#444444", -- no cards
     E = "#FF3300", -- Stage EMPTY
     ["_"] = "#444444" -- No Explore
 }
-invaderFontColors ={
+invaderFontColors = {
+    "black", -- Stage I
+    "black", -- Stage II
+    "black", -- Stage III
     S = "black",
     M = "black",
     W = "black",
     J = "black",
     C = "black",
-    a = "black", -- Stage I
-    b = "black", -- Stage II
-    c = "black", -- Stage III
     n = "#666666", -- no cards
     E = "black", -- Stage EMPTY
     ["_"] = "#666666" -- No Explore
 }
-tooltips ={
+tooltips = {
+    "Stage I",
+    "Stage II",
+    "Stage III",
     S = "Sands",
     M = "Mountains",
     W = "Wetlands",
     J = "Jungle",
     C = "Coastal",
-    a = "Stage I",
-    b = "Stage II",
-    c = "Stage III",
     n = "NO ACTION", -- no cards
     E = "YOU LOSE WHEN THE\nINVADERS NEXT\nEXPLORE", -- Stage EMPTY
     ["_"] = "UNKNOWN UNTIL\nNEXT INVADER PHASE" -- No Explore
 }
-textOut ={
+textOut = {
+    "I", -- Stage I
+    "II", -- Stage II
+    "III", -- Stage III
     S = "S",
     M = "M",
     W = "W",
     J = "J",
     C = "C",
-    a = "I", -- Stage I
-    b = "II", -- Stage II
-    c = "III", -- Stage III
     n = "NO ACTION", -- no cards
     E = "EMPTY", -- Stage EMPTY
     ["_"] = "?" -- No Explore
@@ -3709,14 +3709,14 @@ function toggleUI(xmlID, player_color, colorEnabled)
     setVisiTable(xmlID,newVisiTable)
 end
 function updateAidPanel(tabIn)
-    if tCompare(tabIn,currentTable) then
+    if invaderCompare(tabIn,currentTable) then
         return
     end
     currentTable = tabIn
-    for i,tType in pairs({"Build2","Ravage","Build","Explore","Stage"}) do
+    for i,tType in pairs({"Build2","Ravage","Build","Explore"}) do
         hideAll(tType)
         local cTab = tabIn[i]
-        for Ti,T in pairs (cTab) do
+        for Ti,T in pairs(cTab) do
             for c = 1,string.len(T) do
                 local char = string.sub(T,c,c)
                 set(tType,Ti,c,char,#cTab)
@@ -3725,22 +3725,25 @@ function updateAidPanel(tabIn)
             end
         end
         if #cTab == 0 then
-            dark(tType)
-            size(tType,1,1,"n")
             if tType == "Explore" then
-                set(tType,1,1,"_",1)
+                if tabIn["Stage"] ~= 0 then
+                    set(tType,1,1,tabIn["Stage"],1)
+                    size(tType,1,1,1,1)
+                    show(tType,1,1)
+                else
+                    alert(tType)
+                    size(tType,1,1,"E")
+                    set(tType,1,1,"E",1)
+                    show(tType,1,1)
+                end
             else
+                dark(tType)
+                size(tType,1,1,"n")
                 set(tType,1,1,"n",1)
+                show(tType,1,1)
             end
-            show(tType,1,1)
         else
             light(tType)
-        end
-        if #cTab == 0 and tType == "Stage" then
-            alert(tType)
-            size(tType,1,1,"E")
-            set(tType,1,1,"E",1)
-            show(tType,1,1)
         end
     end
 end
@@ -3794,11 +3797,12 @@ function size(a,b,c,d,e)
     end
 end
 
-function tCompare(t1,t2)
+function invaderCompare(t1,t2)
     local function cc2(tab)
         local newTab = {}
+        newTab[1] = tab["Stage"]
         for i,v in ipairs(tab) do
-            newTab[i] = table.concat(v,",")
+            newTab[i+1] = table.concat(v,",")
         end
         return table.concat(newTab,"|")
     end

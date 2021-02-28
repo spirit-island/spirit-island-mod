@@ -242,10 +242,6 @@ scanLoopTable= {
         origin = Vector(-1.23,0.5,1.874),
         faceDown = false,
     },
-    Stage = {
-        origin = Vector(-1.23,0.5,1.874),
-        faceDown = true,
-    },
 }
 
 function advanceInvaderCards()
@@ -321,34 +317,40 @@ function aidPanelScanLoop()
             for _,hit in pairs(hits) do
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
-            if i == "Stage" then
-                local currentStage = 0
-                for _,hit in pairs(hitObjects) do
-                    if hit.type == "Card" or hit.type == "Deck" then
-                        local stage = getStage(hit)
-                        if stage ~= nil then currentStage = stage end
-                    end
-                end
-                if currentStage == 1 then
-                    table.insert(stageTable,"a")
-                elseif currentStage == 2  then
-                    table.insert(stageTable,"b")
-                elseif currentStage == 3 then
-                    table.insert(stageTable,"c")
-                end
-            else
-                for _,hit in pairs(hitObjects) do
-                    if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
-                        local iType = hit.getVar("cardInvaderType")
-                        table.insert(stageTable,iType)
-                        count = count + 1
-                    end
+            for _,hit in pairs(hitObjects) do
+                if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
+                    local iType = hit.getVar("cardInvaderType")
+                    table.insert(stageTable,iType)
+                    count = count + 1
                 end
             end
         end
         ::continueLoop::
         table.insert(outTable,stageTable)
     end
+
+    local hits = Physics.cast({
+        origin       = self.positionToWorld(scanLoopTable["Explore"].origin),
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = Vector(1,0.9,1.5),
+        orientation  = self.getRotation(),
+        max_distance = 0,
+        --debug        = true,
+    })
+    local hitObjects = {}
+    for _,hit in pairs(hits) do
+        if hit.hit_object ~= self then table.insert(hitObjects,hit.hit_object) end
+    end
+    local currentStage = 0
+    for _,hit in pairs(hitObjects) do
+        if hit.type == "Card" or hit.type == "Deck" then
+            local stage = getStage(hit)
+            if stage ~= nil then currentStage = stage end
+        end
+    end
+    outTable["Stage"] = currentStage
+
     numCards = count
     Global.call("updateAidPanel", outTable)
 end

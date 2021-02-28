@@ -2991,6 +2991,12 @@ function refreshScore()
     UI.setAttribute("scoreWin", "text", win)
     UI.setAttribute("scoreLose", "text", lose)
 end
+function flipReady(player)
+    if player.color == "Grey" then return end
+    if selectedColors[player.color] then
+        selectedColors[player.color].ready.flip()
+    end
+end
 -----
 spiritsScanned = {}
 function spiritUpdater()

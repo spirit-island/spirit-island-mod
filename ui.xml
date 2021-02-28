@@ -159,9 +159,9 @@
         </VerticalLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="180" height="50" rectAlignment="UpperRight" offsetXY="-430 -65">
-    <Text id="panelReadyYes" visibility="Invisible" fontsize="36" color="#00FF00">Ready</Text>
-    <Text id="panelReadyNo" visibility="Invisible" fontsize="36" color="#FF0000">Not Ready</Text>
+<Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="60" rectAlignment="UpperRight" offsetXY="-430 -65">
+    <Button id="panelReadyYes" onClick="flipReady" visibility="Invisible" image="Ready" preserveAspect="true" />
+    <Button id="panelReadyNo" onClick="flipReady" visibility="Invisible" image="Not Ready" preserveAspect="true" />
 </Panel>
 <Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="250" offsetXY="315 -90" rectAlignment="UpperLeft">
     <Image image="Fear and Blight" preserveAspect="true" />

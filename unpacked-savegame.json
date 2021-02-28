@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/28/2021 2:40:32 PM",
+  "Date": "2/28/2021 2:48:36 PM",
   "VersionNumber": "v13.0.5",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -440,6 +440,14 @@
     {
       "Name": "Fear and Blight",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170290816/21A67948DBB0983A23C96544D77493C05225B39D/"
+    },
+    {
+      "Name": "Ready",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
+    },
+    {
+      "Name": "Not Ready",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
     }
   ],
   "SnapPoints": [

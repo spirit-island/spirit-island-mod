@@ -163,17 +163,17 @@
     <Button id="panelReadyYes" onClick="flipReady" visibility="Invisible" image="Ready" preserveAspect="true" />
     <Button id="panelReadyNo" onClick="flipReady" visibility="Invisible" image="Not Ready" preserveAspect="true" />
 </Panel>
-<Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="250" offsetXY="315 -90" rectAlignment="UpperLeft">
+<Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" offsetXY="315 -90" rectAlignment="UpperLeft">
     <Image image="Fear and Blight" preserveAspect="true" />
     <Text id="panelBlightPool" fontStyle="Bold" fontSize="50" offsetXY="-60 5" text="" />
-    <Button id="panelFearGenerated" onClick="bee103/addFear" colors="clear|clear|clear|clear" height="24%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="25 5" text="0" />
+    <Button id="panelFearGenerated" onClick="bee103/addFear" colors="clear|clear|clear|clear" height="54%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="25 5" text="0" />
     <Text fontStyle="Bold" fontSize="50" offsetXY="50 5" text="/" />
-    <Button id="panelFearPool" onClick="bee103/removeFear" colors="clear|clear|clear|clear" height="24%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="75 5" text="0" />
+    <Button id="panelFearPool" onClick="bee103/removeFear" colors="clear|clear|clear|clear" height="54%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="75 5" text="0" />
 </Panel>
-<Panel id="panelScore" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="95" height="80" rectAlignment="UpperLeft" offsetXY="410 -90">
+<Panel id="panelScore" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="70" height="60" rectAlignment="UpperLeft" offsetXY="410 -90">
     <Button onClick="refreshScore" image="Score Button" preserveAspect="true" />
-    <Text id="scoreWin" fontSize="18" color="black" offsetXY="10 -1">0</Text>
-    <Text id="scoreLose" fontSize="18" color="black" offsetXY="10 -17">0</Text>
+    <Text id="scoreWin" fontSize="12" color="black" offsetXY="10 0">0</Text>
+    <Text id="scoreLose" fontSize="12" color="black" offsetXY="10 -12">0</Text>
 </Panel>
 <Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="70" height="120" rectAlignment="MiddleLeft" offsetXY="0 -50">
     <VerticalLayout>

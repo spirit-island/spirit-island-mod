@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/28/2021 10:42:41 AM",
+  "Date": "2/28/2021 2:40:32 PM",
   "VersionNumber": "v13.0.5",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -415,19 +415,19 @@
   "CustomUIAssets": [
     {
       "Name": "Minor Power Button",
-      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170292154/B1DAF0BD1E8EF066981F54057B08046037E94CE9/"
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238465994/54DB140D0CA8DB242C18451FB8ADEDFC9A0F52E9/"
     },
     {
       "Name": "Major Power Button",
-      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170291534/BBBBE128B6F3486F65CE885BB66153C7C6BD7F74/"
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238465273/236533C933B35F03B3B22DD138184E57479D5C12/"
     },
     {
       "Name": "Time Passes Button",
-      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170294224/DC9B6C4D76B7567F7A7CB45AE29404A4009F1B1A/"
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238467685/126385ECD895CF83094C3FF48F6DF76A6E562151/"
     },
     {
       "Name": "Score Button",
-      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170293532/62E08E9D8E043D93F21AF5BFD65B17A2271E43E3/"
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238467021/9C006B350D9140B48777EEE2B20D13C93C32A747/"
     },
     {
       "Name": "Invader Phase",

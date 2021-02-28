@@ -154,7 +154,7 @@ function PostSetup(params)
         })
     end
     if params.level >= 5 then
-        local zone = getObjectFromGUID(Global.getVar("invaderDeckZone"))
+        local zone = Global.getVar("invaderDeckZone")
         local invaderDeck = zone.getObjects()[1]
         if invaderDeck ~= nil then
             local count = #invaderDeck.getObjects()

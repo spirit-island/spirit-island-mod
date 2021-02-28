@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/24/2021 6:49:15 PM",
+  "Date": "2/28/2021 10:42:41 AM",
   "VersionNumber": "v13.0.5",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -412,6 +412,36 @@
     }
   ],
   "DecalPallet": [],
+  "CustomUIAssets": [
+    {
+      "Name": "Minor Power Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170292154/B1DAF0BD1E8EF066981F54057B08046037E94CE9/"
+    },
+    {
+      "Name": "Major Power Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170291534/BBBBE128B6F3486F65CE885BB66153C7C6BD7F74/"
+    },
+    {
+      "Name": "Time Passes Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170294224/DC9B6C4D76B7567F7A7CB45AE29404A4009F1B1A/"
+    },
+    {
+      "Name": "Score Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170293532/62E08E9D8E043D93F21AF5BFD65B17A2271E43E3/"
+    },
+    {
+      "Name": "Invader Phase",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170292813/534E1E93C6D11A32A5CE3AF7A775BE184F0319F9/"
+    },
+    {
+      "Name": "England Invader Phase",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170289817/E9883BE27B72DDE7E1859B1FA54977756358666A/"
+    },
+    {
+      "Name": "Fear and Blight",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170290816/21A67948DBB0983A23C96544D77493C05225B39D/"
+    }
+  ],
   "SnapPoints": [
     {
       "Position": {

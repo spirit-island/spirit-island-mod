@@ -4295,7 +4295,7 @@ function updateCurrentPhase(clear)
         id = "slowPhase"
     end
     local attributes = {
-        textColor = "#FFFFFF"
+        textColor = "#323232"
     }
     if clear then
         attributes.text = string.sub(UI.getAttribute(id, "text"), 2, -2)

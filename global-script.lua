@@ -3533,6 +3533,7 @@ end
 childHeight = 60
 childWidth = 60
 childFontSize = 30
+forceInvaderUpdate = false
 
 titleBGColorNA="#666666"
 titleColorNA="#222222"
@@ -3715,9 +3716,10 @@ function toggleUI(xmlID, player_color, colorEnabled)
     setVisiTable(xmlID,newVisiTable)
 end
 function updateAidPanel(tabIn)
-    if invaderCompare(tabIn,currentTable) then
+    if not forceInvaderUpdate and invaderCompare(tabIn,currentTable) then
         return
     end
+    forceInvaderUpdate = false
     currentTable = tabIn
     for i,tType in pairs({"Build2","Ravage","Build","Explore"}) do
         hideAll(tType)

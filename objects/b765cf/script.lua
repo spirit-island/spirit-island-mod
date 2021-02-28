@@ -205,12 +205,13 @@ function toggleInvaderUI(england)
     else
         Global.setVar("childHeight", 60)
         Global.setVar("childWidth", 60)
-        Global.setVar("childFontSize", 20)
+        Global.setVar("childFontSize", 30)
         UI.setAttribute("invaderImage", "image", "Invader Phase")
         UI.setAttribute("invaderLayout", "spacing", 19)
         UI.setAttribute("invaderLayout", "offsetXY", "-2 16")
         UI.setAttribute("panelBuild2", "active", false)
     end
+    Global.setVar("forceInvaderUpdate", true)
 end
 
 function englandSnap(aidBoard)

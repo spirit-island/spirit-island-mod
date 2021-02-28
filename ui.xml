@@ -184,40 +184,17 @@
     <Text id="panelReadyYes" visibility="Invisible" fontsize="36" color="#00FF00">Ready</Text>
     <Text id="panelReadyNo" visibility="Invisible" fontsize="36" color="#FF0000">Not Ready</Text>
 </Panel>
-<Panel id="panelFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="170" height="80" offsetXY="315 0" rectAlignment="UpperLeft">
-    <HorizontalLayout childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="10">
-        <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-            <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                <Text fontStyle="Bold" text="Generated Fear" color="black" />
-            </Panel>
-            <Panel preferredWidth="80" preferredHeight="80">
-                <Button id="panelFearGenerated" fontStyle="Bold" text="0" fontSize="40" textColor="black" onClick="bee103/addFear" />
-            </Panel>
-        </VerticalLayout>
-        <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-            <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-                <Text fontStyle="Bold" text="Fear Pool" color="black" />
-            </Panel>
-            <Panel preferredWidth="80" preferredHeight="80">
-                <Button id="panelFearPool" fontStyle="Bold" text="0" fontSize="40" textColor="black" onClick="bee103/removeFear" />
-            </Panel>
-        </VerticalLayout>
-    </HorizontalLayout>
-</Panel>
-<Panel id="panelBlight" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="80" offsetXY="315 -90" rectAlignment="UpperLeft">
-    <VerticalLayout childAlignment="TopCenter" childForceExpandWidth="true" childForceExpandHeight="true">
-        <Panel preferredWidth="80" preferredHeight="20" color="#CCCCCC">
-            <Text fontStyle="Bold" text="Blight" color="black" />
-        </Panel>
-        <Panel preferredWidth="80" preferredHeight="80" color="white">
-            <Text id="panelBlightPool" fontStyle="Bold" text="" fontSize="40" color="black" />
-        </Panel>
-    </VerticalLayout>
+<Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="250" offsetXY="315 -90" rectAlignment="UpperLeft">
+    <Image image="Fear and Blight" preserveAspect="true" />
+    <Text id="panelBlightPool" fontStyle="Bold" fontSize="50" offsetXY="-60 5" text="" />
+    <Button id="panelFearGenerated" onClick="bee103/addFear" colors="clear|clear|clear|clear" height="24%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="25 5" text="0" />
+    <Text fontStyle="Bold" fontSize="50" offsetXY="50 5" text="/" />
+    <Button id="panelFearPool" onClick="bee103/removeFear" colors="clear|clear|clear|clear" height="24%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="75 5" text="0" />
 </Panel>
 <Panel id="panelScore" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="80" rectAlignment="UpperLeft" offsetXY="410 -90">
     <Button onClick="refreshScore" image="Score Button" preserveAspect="true" />
-    <Text id="scoreWin" fontSize="12" color="#000000" offsetXY="5 0">0</Text>
-    <Text id="scoreLose" fontSize="12" color="#000000" offsetXY="5 -12">0</Text>
+    <Text id="scoreWin" fontSize="12" color="black" offsetXY="5 0">0</Text>
+    <Text id="scoreLose" fontSize="12" color="black" offsetXY="5 -12">0</Text>
 </Panel>
 <Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="120" rectAlignment="MiddleLeft" offsetXY="0 -50">
     <VerticalLayout>
@@ -240,8 +217,7 @@
         <Button onClick="toggleTurnOrderUI" textAlignment="MiddleCenter">Toggle Turn Order UI</Button>
         <Button onClick="toggleTimePassesUI" textAlignment="MiddleCenter">Toggle Time Passes UI</Button>
         <Button onClick="toggleReadyUI" textAlignment="MiddleCenter">Toggle Ready UI</Button>
-        <Button onClick="toggleFearUI" textAlignment="MiddleCenter">Toggle Fear UI</Button>
-        <Button onClick="toggleBlightUI" textAlignment="MiddleCenter">Toggle Blight UI</Button>
+        <Button onClick="toggleBlightFearUI" textAlignment="MiddleCenter">Toggle Blight &amp; Fear UI</Button>
         <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Toggle Score</Button>
         <Button onClick="togglePowerDrawUI" textAlignment="MiddleCenter">Toggle Power Draw UI</Button>
         <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles the visibility of the buttons to&#xA;change player seats or colors. These&#xA;are hidden when the game starts,&#xA;but can be turned back on if desired.">Toggle Seat Controls</Button>

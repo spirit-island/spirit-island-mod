@@ -417,9 +417,31 @@ function updateFearUI()
     local fearPool = Global.getVar("fearPool")
     local generatedFear = Global.getVar("generatedFear")
     self.editButton({index = 1, label = fearPool})
-    UI.setAttribute("panelFearPool", "text", fearPool)
+    local attributes = {
+        textColor = "#323232",
+        text = fearPool
+    }
+    if fearPool > 9 then
+        attributes.offsetXY = "90 5"
+        attributes.width = "28%"
+    else
+        attributes.offsetXY = "75 5"
+        attributes.width = "16%"
+    end
+    UI.setAttributes("panelFearPool", attributes)
     self.editButton({index = 2, label = generatedFear})
-    UI.setAttribute("panelFearGenerated", "text", generatedFear)
+    attributes = {
+        textColor = "#323232",
+        text = generatedFear
+    }
+    if generatedFear > 9 then
+        attributes.offsetXY = "10 5"
+        attributes.width = "28%"
+    else
+        attributes.offsetXY = "25 5"
+        attributes.width = "16%"
+    end
+    UI.setAttributes("panelFearGenerated", attributes)
 end
 function addFear()
     if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then

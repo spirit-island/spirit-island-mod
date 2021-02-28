@@ -281,8 +281,7 @@ function onSave()
         panelTurnOrderVisibility = UI.getAttribute("panelTurnOrder","visibility"),
         panelTimePassesVisibility = UI.getAttribute("panelTimePasses","visibility"),
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
-        panelFearVisibility = UI.getAttribute("panelFear", "visibility"),
-        panelBlightVisibility = UI.getAttribute("panelBlight", "visibility"),
+        panelBlightFearVisibility = UI.getAttribute("panelBlightFear", "visibility"),
         panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
         panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
         showPlayerButtons = showPlayerButtons,
@@ -465,8 +464,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelTurnOrder","visibility",loaded_data.panelTurnOrderVisibility)
             UI.setAttribute("panelTimePasses","visibility",loaded_data.panelTimePassesVisibility)
             UI.setAttribute("panelReady","visibility",loaded_data.panelReadyVisibility)
-            UI.setAttribute("panelFear","visibility",loaded_data.panelFearVisibility)
-            UI.setAttribute("panelBlight","visibility",loaded_data.panelBlightVisibility)
+            UI.setAttribute("panelBlightFear","visibility",loaded_data.panelBlightFearVisibility)
             UI.setAttribute("panelScore","visibility",loaded_data.panelScoreVisibility)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
@@ -3656,13 +3654,9 @@ function toggleReadyUI(player)
     local colorEnabled = getCurrentState("panelReady", player.color)
     toggleUI("panelReady", player.color, colorEnabled)
 end
-function toggleFearUI(player)
-    local colorEnabled = getCurrentState("panelFear", player.color)
-    toggleUI("panelFear", player.color, colorEnabled)
-end
-function toggleBlightUI(player)
-    local colorEnabled = getCurrentState("panelBlight", player.color)
-    toggleUI("panelBlight", player.color, colorEnabled)
+function toggleBlightFearUI(player)
+    local colorEnabled = getCurrentState("panelBlightFear", player.color)
+    toggleUI("panelBlightFear", player.color, colorEnabled)
 end
 function togglePowerDrawUI(player)
     local colorEnabled = getCurrentState("panelPowerDraw", player.color)

@@ -1,7 +1,7 @@
-<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="250" color="#00000044" rectAlignment="UpperCenter" offsetXY="0 -70">
-    <Image id="invaderImage" image="Invader Phase" preserveAspect="true" />
-    <HorizontalLayout id="invaderLayout" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="19" offsetXY="-2 16">
-        <Panel id="panelBuild2" active="false" preferredWidth="60" preferredHeight="60">
+<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" rectAlignment="UpperCenter" offsetXY="0 -70">
+    <Image id="invaderImage" image="Invader Phase Stage" preserveAspect="true" />
+    <HorizontalLayout id="invaderLayout" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="16" offsetXY="0 8">
+        <Panel id="panelBuild2" active="false" preferredWidth="64" preferredHeight="64">
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
@@ -23,7 +23,7 @@
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
-        <Panel id="panelRavage" preferredWidth="60" preferredHeight="60">
+        <Panel id="panelRavage" preferredWidth="64" preferredHeight="64">
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
@@ -45,7 +45,7 @@
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
-        <Panel id="panelBuild" preferredWidth="60" preferredHeight="60">
+        <Panel id="panelBuild" preferredWidth="64" preferredHeight="64">
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
@@ -67,7 +67,7 @@
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
-        <Panel id="panelExplore" preferredWidth="60" preferredHeight="60">
+        <Panel id="panelExplore" preferredWidth="64" preferredHeight="64">
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">

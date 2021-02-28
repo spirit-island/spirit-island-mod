@@ -3530,8 +3530,8 @@ function updatePlaySpiritButton(color)
     end
 end
 ---- UI Section
-childHeight = 60
-childWidth = 60
+childHeight = 64
+childWidth = 64
 childFontSize = 30
 forceInvaderUpdate = false
 
@@ -3734,6 +3734,7 @@ function updateAidPanel(tabIn)
         end
         if #cTab == 0 then
             if tType == "Explore" then
+                toggleInvaderPhaseImage(false)
                 if tabIn["Stage"] ~= 0 then
                     set(tType,1,1,tabIn["Stage"],1)
                     size(tType,1,1,1,1)
@@ -3751,8 +3752,20 @@ function updateAidPanel(tabIn)
                 show(tType,1,1)
             end
         else
+            if tType == "Explore" then
+                toggleInvaderPhaseImage(true)
+            end
             light(tType)
         end
+    end
+end
+function toggleInvaderPhaseImage(explore)
+    local current = UI.getAttribute("invaderImage", "image")
+    local start, _ = string.find(current,"Stage")
+    if start == nil and not explore then
+        UI.setAttribute("invaderImage", "image", current.." Stage")
+    elseif start ~= nil and explore then
+        UI.setAttribute("invaderImage", "image", string.sub(current, 1, start - 2))
     end
 end
 function dark(a)

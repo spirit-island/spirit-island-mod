@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "2/28/2021 2:48:36 PM",
+  "Date": "2/28/2021 5:03:04 PM",
   "VersionNumber": "v13.0.5",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -431,11 +431,11 @@
     },
     {
       "Name": "Invader Phase",
-      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170292813/534E1E93C6D11A32A5CE3AF7A775BE184F0319F9/"
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239106638/CD27277D950CAA810286918B7A4C76CD525A67B0/"
     },
     {
       "Name": "England Invader Phase",
-      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434924170289817/E9883BE27B72DDE7E1859B1FA54977756358666A/"
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238900672/AC51C1FD6F62E69654B8843DC554B948150E874E/"
     },
     {
       "Name": "Fear and Blight",
@@ -448,6 +448,14 @@
     {
       "Name": "Not Ready",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
+    },
+    {
+      "Name": "Invader Phase Stage",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239107401/7F05D052B123145085C2E6FBBBB63760212C078B/"
+    },
+    {
+      "Name": "England Invader Phase Stage",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238899967/B8A467C06F6B2DB519B368C6CF74217273C3D1B3/"
     }
   ],
   "SnapPoints": [

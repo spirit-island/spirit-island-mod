@@ -101,6 +101,7 @@ useRandomBoard = false
 useRandomScenario = false
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
+fearCards = {3,3,3}
 ------
 aidBoard = "bee103"
 SetupChecker = "SetupChecker"
@@ -792,7 +793,6 @@ end
 function SetupFear()
     setupFearTokens()
 
-    local fearCards = {3,3,3}
     if scenarioCard ~= nil then
         local extraFearCards = scenarioCard.getVar("fearCards")
         if extraFearCards ~= nil then

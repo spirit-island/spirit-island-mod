@@ -122,11 +122,24 @@ function SetupSpirit(object_pick,player_color)
             rotation = Vector(0, 180, 0),
         })
 
-        -- Setup Aid Tokens
-        local scanPos = getObjectFromGUID(Global.getTable("elementScanZones")[player_color]).getPosition()
-        local defOffset = Vector(scanPos.x,0,scanPos.z) + Vector(-9.5, 2, -1)
-        for i = 1,6 do
-            PlayerBag.takeObject({position = defOffset + Vector(0,0.1*i,0)})
+        -- Setup Reminder Tokens
+        if getObjectFromGUID("SetupChecker").getVar("optionalIncludeReminderTokens") then
+            local scanPos = getObjectFromGUID(Global.getTable("elementScanZones")[player_color]).getPosition()
+            local defOffset = Vector(scanPos.x,0,scanPos.z) + Vector(-9.5, 2, -1)
+            for i = 1,6 do
+                PlayerBag.takeObject({
+                    position = defOffset + Vector(0, 0.1*i, 0)
+                })
+            end
+        else
+            -- If we aren't using reminder tokens, destory them from the bags so we can
+            -- use the emptiness of the bags to determine if a color has a spirit.
+            for _ = 1,6 do
+                PlayerBag.takeObject({
+                    position = Vector(0, -5, 0), -- under the table
+                    callback_function = function(obj) obj.destroy() end,
+                })
+            end
         end
 
         -- Setup Energy Counter

@@ -49,6 +49,9 @@ exploratoryVOTD = false
 exploratoryBODAN = false
 exploratoryWar = false
 
+-- Hidden options
+optionalIncludeReminderTokens = false
+
 updateLayoutsID = 0
 setupStarted = false
 recentlyNotifiedRandom = false

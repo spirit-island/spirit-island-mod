@@ -118,7 +118,7 @@ function SetupSpirit(object_pick,player_color)
 
         -- Setup Ready Token
         local ready = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(7, 1.1, 7),
+            position = Vector(spos.x,0,spos.z) + Vector(7.5, 1.1, 6.5),
             rotation = Vector(0, 180, 0),
         })
 

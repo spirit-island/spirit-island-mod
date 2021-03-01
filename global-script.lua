@@ -106,7 +106,7 @@ fearCards = {3,3,3}
 aidBoard = "bee103"
 SetupChecker = "SetupChecker"
 fearDeckSetupZone = "fbbf69"
-sourceSpirit = "21f561"
+sourceSpirit = "SourceSpirit"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"

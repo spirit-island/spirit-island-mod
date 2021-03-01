@@ -1,4 +1,4 @@
-sourceSpiritID = "21f561"
+sourceSpiritID = "SourceSpirit"
 
 local rescan
 

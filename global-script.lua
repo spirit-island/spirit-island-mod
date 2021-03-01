@@ -170,7 +170,7 @@ interactableObjectsToDisableOnLoad = {
     "055a45", -- middle row border
     "5f4be2", -- sea tile
     "235564", -- white box section
-    "SetupChecker", -- start menu object
+    "SetupChecker", "SourceSpirit",
     "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player counters
     "19d429", --Big block
 }

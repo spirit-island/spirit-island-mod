@@ -1,5 +1,5 @@
 ---- Versioning
-version = "1.5.0-beta.5"
+version = "1.5.0-beta.7"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "5f595a"
@@ -101,11 +101,12 @@ useRandomBoard = false
 useRandomScenario = false
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
+fearCards = {3,3,3}
 ------
 aidBoard = "bee103"
 SetupChecker = "SetupChecker"
 fearDeckSetupZone = "fbbf69"
-sourceSpirit = "21f561"
+sourceSpirit = "SourceSpirit"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -169,7 +170,7 @@ interactableObjectsToDisableOnLoad = {
     "055a45", -- middle row border
     "5f4be2", -- sea tile
     "235564", -- white box section
-    "SetupChecker", -- start menu object
+    "SetupChecker", "SourceSpirit",
     "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player counters
     "19d429", --Big block
 }
@@ -797,7 +798,6 @@ end
 function SetupFear()
     setupFearTokens()
 
-    local fearCards = {3,3,3}
     if scenarioCard ~= nil then
         local extraFearCards = scenarioCard.getVar("fearCards")
         if extraFearCards ~= nil then
@@ -2172,30 +2172,31 @@ function timePassesCo()
     return 1
 end
 function handlePiece(object, offset)
-    if string.sub(object.getName(),1,4) == "City" then
+    local name = object.getName()
+    if string.sub(name, 1, 4) == "City" then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset)
         end
-    elseif string.sub(object.getName(),1,4) == "Town" then
+    elseif string.sub(name, 1, 4) == "Town" then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset)
         end
-    elseif string.sub(object.getName(),1,8) == "Explorer" then
+    elseif string.sub(name, 1, 8) == "Explorer" then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset)
         end
-    elseif string.sub(object.getName(),1,5) == "Dahan" then
+    elseif string.sub(name, 1, 5) == "Dahan" then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,0,0), offset)
         end
-    elseif object.getName() == "Blight" then
+    elseif name == "Blight" then
         object = resetPiece(object, Vector(0,180,0), offset)
-    elseif string.sub(object.getName(),-6) == "Defend" then
+    elseif string.sub(name, -6) == "Defend" then
         if object.getLock() == false then
             object.destruct()
             object = nil
         end
-    elseif string.sub(object.getName(),-7) == "Isolate" then
+    elseif string.sub(name, -7) == "Isolate" then
         if object.getLock() == false then
             object.destruct()
             object = nil
@@ -2237,14 +2238,15 @@ end
 function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
     for _, obj in ipairs(zone.getObjects()) do
-        if obj.getName() == "Any" then
+        local name = obj.getName()
+        if name == "Any" then
             if obj.getStateId() ~= 9 then obj = obj.setState(9) end
             if obj.getLock() == false then obj.destruct() end
         elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
-        elseif string.sub(obj.getName(),-6) == "Defend" then
+        elseif string.sub(name, -6) == "Defend" then
             obj.destruct()
-        elseif string.sub(obj.getName(),-7) == "Isolate" then
+        elseif string.sub(name, -7) == "Isolate" then
             obj.destruct()
         elseif obj.getName() == "Speed Token" then
             obj.destruct()

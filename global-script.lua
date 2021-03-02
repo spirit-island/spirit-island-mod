@@ -1671,7 +1671,7 @@ function adversaryUISetup()
             lineCount = lineCount + 1
         end
     end
-    UI.setAttribute("panelAdversary","height",lineCount*20)
+    UI.setAttribute("panelAdversary","height",lineCount*18)
 end
 function decrementLossCounter(player, countID)
     if player.color == "Grey" then return end

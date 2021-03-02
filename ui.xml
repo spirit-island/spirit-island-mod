@@ -1,4 +1,11 @@
-<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" rectAlignment="UpperCenter" offsetXY="0 -70">
+<Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" rectAlignment="UpperRight" offsetXY="0 -221">
+    <Image image="Fear and Blight" preserveAspect="true" />
+    <Text id="panelBlightPool" fontStyle="Bold" fontSize="50" offsetXY="-60 5" text="" />
+    <Button id="panelFearGenerated" onClick="bee103/addFear" colors="clear|clear|clear|clear" height="54%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="25 5" text="0" />
+    <Text fontStyle="Bold" fontSize="50" offsetXY="50 5" text="/" />
+    <Button id="panelFearPool" onClick="bee103/removeFear" colors="clear|clear|clear|clear" height="54%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="75 5" text="0" />
+</Panel>
+<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" rectAlignment="UpperRight" offsetXY="0 -325">
     <Image id="invaderImage" image="Invader Phase Stage" preserveAspect="true" />
     <HorizontalLayout id="invaderLayout" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="16" offsetXY="0 8">
         <Panel id="panelBuild2" active="false" preferredWidth="64" preferredHeight="64">
@@ -91,29 +98,7 @@
         </Panel>
     </HorizontalLayout>
 </Panel>
-<Panel id="panelTimePasses" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="70" height="60" rectAlignment="UpperRight" offsetXY="-430 0">
-    <Button onClick="timePassesUI" image="Time Passes Button" preserveAspect="true" />
-</Panel>
-<Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="225" height="345" color="#C6DA8B" rectAlignment="UpperLeft" offsetXY="80 0">
-    <VerticalLayout>
-        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="20" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">&gt;Spirit Phase&lt;</Button>
-        <Text fontSize="20" alignment="UpperLeft">-Growth</Text>
-        <Text fontSize="20" alignment="UpperLeft">-Gain Energy</Text>
-        <Text fontSize="20" alignment="UpperLeft">-Choose Powers</Text>
-        <Button id="fastPhase" onClick="enterFastPhase" fontSize="20" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Fast Power Phase</Button>
-        <Button id="invaderPhase" onClick="enterInvaderPhase" fontSize="20" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Invader Phase</Button>
-        <Text id="panelTurnOrderBlight" active="false" fontSize="20" alignment="UpperLeft">-Blighted Island</Text>
-        <Text id="panelTurnOrderEvent" active="false" fontSize="20" alignment="UpperLeft">-Event</Text>
-        <Text fontSize="20" alignment="UpperLeft">-Fear</Text>
-        <Text fontSize="20" alignment="UpperLeft">-Ravage</Text>
-        <Text fontSize="20" alignment="UpperLeft">-Build</Text>
-        <Text fontSize="20" alignment="UpperLeft">-Explore</Text>
-        <Text fontSize="20" alignment="UpperLeft">-Advance Invader Cards</Text>
-        <Button id="slowPhase" onClick="enterSlowPhase" fontSize="20" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Slow Power Phase</Button>
-        <Button id="timePassesPhase" onClick="timePassesUI" fontSize="20" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="23" colors="clear|clear|clear|clear">Time Passes</Button>
-    </VerticalLayout>
-</Panel>
-<Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 270">
+<Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 305">
     <VerticalLayout>
         <VerticalLayout id="panelAdversaryHelper">
             <Text id="panelAdversaryName" fontsize="16" alignment="UpperLeft" fontStyle="Bold"></Text>
@@ -135,7 +120,7 @@
             <Text id="panelAdversaryLevel6" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
         </VerticalLayout>
         <VerticalLayout id="panelAdversary2Helper" active="false">
-            <Text></Text>
+            <Text fontSize="4"></Text>
             <Text id="panelAdversary2Name" fontsize="16" alignment="UpperLeft" fontStyle="Bold"></Text>
             <VerticalLayout id="panelAdversary2Loss" active="false">
                 <Text id="panelAdversary2LossText" fontsize="16" alignment="UpperLeft" tooltipPosition="Left">Additional Loss Condition</Text>
@@ -159,27 +144,42 @@
         </VerticalLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="60" rectAlignment="UpperRight" offsetXY="-430 -65">
+<Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="300" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 0">
+    <VerticalLayout>
+        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">&gt;Spirit Phase&lt;</Button>
+        <Text fontSize="16" alignment="UpperLeft">-Growth</Text>
+        <Text fontSize="16" alignment="UpperLeft">-Gain Energy</Text>
+        <Text fontSize="16" alignment="UpperLeft">-Choose Powers</Text>
+        <Button id="fastPhase" onClick="enterFastPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Fast Power Phase</Button>
+        <Button id="invaderPhase" onClick="enterInvaderPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Invader Phase</Button>
+        <Text id="panelTurnOrderBlight" active="false" fontSize="16" alignment="UpperLeft">-Blighted Island</Text>
+        <Text id="panelTurnOrderEvent" active="false" fontSize="16" alignment="UpperLeft">-Event</Text>
+        <Text fontSize="16" alignment="UpperLeft">-Fear</Text>
+        <Text fontSize="16" alignment="UpperLeft">-Ravage</Text>
+        <Text fontSize="16" alignment="UpperLeft">-Build</Text>
+        <Text fontSize="16" alignment="UpperLeft">-Explore</Text>
+        <Text fontSize="16" alignment="UpperLeft">-Advance Invader Cards</Text>
+        <Button id="slowPhase" onClick="enterSlowPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Slow Power Phase</Button>
+        <Button id="timePassesPhase" onClick="timePassesUI" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Time Passes</Button>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="60" rectAlignment="UpperRight" offsetXY="-430 0">
     <Button id="panelReadyYes" onClick="flipReady" visibility="Invisible" image="Ready" preserveAspect="true" />
     <Button id="panelReadyNo" onClick="flipReady" visibility="Invisible" image="Not Ready" preserveAspect="true" />
-</Panel>
-<Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" offsetXY="315 -90" rectAlignment="UpperLeft">
-    <Image image="Fear and Blight" preserveAspect="true" />
-    <Text id="panelBlightPool" fontStyle="Bold" fontSize="50" offsetXY="-60 5" text="" />
-    <Button id="panelFearGenerated" onClick="bee103/addFear" colors="clear|clear|clear|clear" height="54%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="25 5" text="0" />
-    <Text fontStyle="Bold" fontSize="50" offsetXY="50 5" text="/" />
-    <Button id="panelFearPool" onClick="bee103/removeFear" colors="clear|clear|clear|clear" height="54%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="75 5" text="0" />
-</Panel>
-<Panel id="panelScore" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="70" height="60" rectAlignment="UpperLeft" offsetXY="410 -90">
-    <Button onClick="refreshScore" image="Score Button" preserveAspect="true" />
-    <Text id="scoreWin" fontSize="12" color="black" offsetXY="10 0">0</Text>
-    <Text id="scoreLose" fontSize="12" color="black" offsetXY="10 -12">0</Text>
 </Panel>
 <Panel id="panelPowerDraw" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="70" height="120" rectAlignment="MiddleLeft" offsetXY="0 -50">
     <VerticalLayout>
         <Button onClick="MajorPowerUI" image="Major Power Button" preserveAspect="true" />
         <Button onClick="MinorPowerUI" image="Minor Power Button" preserveAspect="true" />
     </VerticalLayout>
+</Panel>
+<Panel id="panelTimePasses" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="70" height="60" rectAlignment="MiddleLeft" offsetXY="0 -140">
+    <Button onClick="timePassesUI" image="Time Passes Button" preserveAspect="true" />
+</Panel>
+<Panel id="panelScore" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="70" height="60" rectAlignment="MiddleLeft" offsetXY="0 -200">
+    <Button onClick="refreshScore" image="Score Button" preserveAspect="true" />
+    <Text id="scoreWin" fontSize="12" color="black" offsetXY="10 0">0</Text>
+    <Text id="scoreLose" fontSize="12" color="black" offsetXY="10 -12">0</Text>
 </Panel>
 <Panel id="panelUIToggle" active="false" width="22" height="22" rectAlignment="UpperRight" offsetXY="-402 0">
     <Panel id="panelUIToggleShow" visibility="">

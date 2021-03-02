@@ -516,11 +516,18 @@ function readyCheck()
         end
         colorCount = colorCount + 1
     end
-    if readyCount >= colorCount and colorCount ~= 0 then
-        broadcastToAll("All Players are ready!")
-        for _,data in pairs(selectedColors) do
-            data.ready.flip()
-        end
+    if colorCount == 0 or readyCount < colorCount then
+        return
+    end
+
+    broadcastToAll("All Players are ready!")
+    for _,data in pairs(selectedColors) do
+        data.ready.flip()
+    end
+    if currentPhase == 1 then
+        enterFastPhase(nil)
+    elseif currentPhase == 2 then
+        enterInvaderPhase(nil)
     end
 end
 function isThematic()
@@ -4249,7 +4256,7 @@ function enterSpiritPhase(player)
     updateCurrentPhase(false)
 end
 function enterFastPhase(player)
-    if player.color == "Grey" then return end
+    if player and player.color == "Grey" then return end
     if currentPhase == 2 then return end
     broadcastToAll("Entering Fast Power Phase", Color.SoftYellow)
     updateCurrentPhase(true)
@@ -4257,7 +4264,7 @@ function enterFastPhase(player)
     updateCurrentPhase(false)
 end
 function enterInvaderPhase(player)
-    if player.color == "Grey" then return end
+    if player and player.color == "Grey" then return end
     if currentPhase == 3 then return end
     broadcastToAll("Entering Invader Phase", Color.SoftYellow)
     updateCurrentPhase(true)
@@ -4265,7 +4272,7 @@ function enterInvaderPhase(player)
     updateCurrentPhase(false)
 end
 function enterSlowPhase(player)
-    if player.color == "Grey" then return end
+    if player and player.color == "Grey" then return end
     if currentPhase == 4 then return end
     broadcastToAll("Entering Slow Power Phase", Color.SoftYellow)
     updateCurrentPhase(true)

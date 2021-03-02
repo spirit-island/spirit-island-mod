@@ -292,6 +292,7 @@ function advanceInvaderCards()
         end
         ::continueAdvance::
     end
+    Global.call("enterSlowPhase", nil)
 end
 function aidPanelScanLoop()
     local outTable = {}

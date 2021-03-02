@@ -2090,6 +2090,8 @@ function enableUI()
     setVisiTable("panelTimePasses", colors)
     setVisiTable("panelReady", colors)
     setVisiTable("panelPowerDraw", colors)
+    setVisiTable("panelUI", colors)
+    setVisiTable("panelUIToggleHide", colors)
 end
 ------
 function addSpirit(params)
@@ -3644,6 +3646,8 @@ end
 function toggleInvaderUI(player)
     local colorEnabled = getCurrentState("panelInvader", player.color)
     toggleUI("panelInvader", player.color, colorEnabled)
+    local colorEnabled = getCurrentState("panelBlightFear", player.color)
+    toggleUI("panelBlightFear", player.color, colorEnabled)
 end
 function toggleAdversaryUI(player)
     local colorEnabled = getCurrentState("panelAdversary", player.color)
@@ -3653,25 +3657,17 @@ function toggleTurnOrderUI(player)
     local colorEnabled = getCurrentState("panelTurnOrder", player.color)
     toggleUI("panelTurnOrder", player.color, colorEnabled)
 end
-function toggleTimePassesUI(player)
-    local colorEnabled = getCurrentState("panelTimePasses", player.color)
-    toggleUI("panelTimePasses", player.color, colorEnabled)
-end
-function toggleReadyUI(player)
-    local colorEnabled = getCurrentState("panelReady", player.color)
-    toggleUI("panelReady", player.color, colorEnabled)
-end
-function toggleBlightFearUI(player)
-    local colorEnabled = getCurrentState("panelBlightFear", player.color)
-    toggleUI("panelBlightFear", player.color, colorEnabled)
-end
-function togglePowerDrawUI(player)
-    local colorEnabled = getCurrentState("panelPowerDraw", player.color)
-    toggleUI("panelPowerDraw", player.color, colorEnabled)
-end
 function toggleScoreUI(player)
     local colorEnabled = getCurrentState("panelScore", player.color)
     toggleUI("panelScore", player.color, colorEnabled)
+end
+function toggleButtonUI(player)
+    local colorEnabled = getCurrentState("panelPowerDraw", player.color)
+    toggleUI("panelPowerDraw", player.color, colorEnabled)
+    local colorEnabled = getCurrentState("panelTimePasses", player.color)
+    toggleUI("panelTimePasses", player.color, colorEnabled)
+    local colorEnabled = getCurrentState("panelReady", player.color)
+    toggleUI("panelReady", player.color, colorEnabled)
 end
 function togglePlayerControls(player)
     if not player.admin then
@@ -3679,13 +3675,6 @@ function togglePlayerControls(player)
         return
     end
     showPlayerButtons = not showPlayerButtons
-    updateSwapButtons()
-end
-function toggleMultihanded(player)
-    if not player.admin then
-        player.broadcast("Only promoted players can toggle multihanded options.")
-        return
-    end
     showAllMultihandedButtons = not showAllMultihandedButtons
     updateSwapButtons()
 end
@@ -4298,9 +4287,9 @@ function updateCurrentPhase(clear)
         textColor = "#323232"
     }
     if clear then
-        attributes.text = string.sub(UI.getAttribute(id, "text"), 2, -2)
+        attributes.text = string.sub(UI.getAttribute(id, "text"), 3, -3)
     else
-        attributes.text = ">"..UI.getAttribute(id, "text").."<"
+        attributes.text = ">>"..UI.getAttribute(id, "text").."<<"
     end
     UI.setAttributes(id, attributes)
 end

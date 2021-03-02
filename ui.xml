@@ -146,19 +146,19 @@
 </Panel>
 <Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="300" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 0">
     <VerticalLayout>
-        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">&gt;Spirit Phase&lt;</Button>
-        <Text fontSize="16" alignment="UpperLeft">-Growth</Text>
-        <Text fontSize="16" alignment="UpperLeft">-Gain Energy</Text>
-        <Text fontSize="16" alignment="UpperLeft">-Choose Powers</Text>
+        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">&gt;&gt;Spirit Phase&lt;&lt;</Button>
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Growth" />
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Gain Energy" />
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Choose Powers" />
         <Button id="fastPhase" onClick="enterFastPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Fast Power Phase</Button>
         <Button id="invaderPhase" onClick="enterInvaderPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Invader Phase</Button>
-        <Text id="panelTurnOrderBlight" active="false" fontSize="16" alignment="UpperLeft">-Blighted Island</Text>
-        <Text id="panelTurnOrderEvent" active="false" fontSize="16" alignment="UpperLeft">-Event</Text>
-        <Text fontSize="16" alignment="UpperLeft">-Fear</Text>
-        <Text fontSize="16" alignment="UpperLeft">-Ravage</Text>
-        <Text fontSize="16" alignment="UpperLeft">-Build</Text>
-        <Text fontSize="16" alignment="UpperLeft">-Explore</Text>
-        <Text fontSize="16" alignment="UpperLeft">-Advance Invader Cards</Text>
+        <Text id="panelTurnOrderBlight" active="false" fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Blighted Island" />
+        <Text id="panelTurnOrderEvent" active="false" fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Event (except first turn)" />
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Fear" />
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Ravage" />
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Build" />
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Explore" />
+        <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Advance Invader Cards" />
         <Button id="slowPhase" onClick="enterSlowPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Slow Power Phase</Button>
         <Button id="timePassesPhase" onClick="timePassesUI" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Time Passes</Button>
     </VerticalLayout>
@@ -189,17 +189,13 @@
         <Button onClick="hideButtons" fontSize="12" textAlignment="MiddleCenter">&#9650;<!-- Up arrow --></Button>
     </Panel>
 </Panel>
-<Panel id="panelUI" visibility="Invisible" width="160" height="180" rectAlignment="UpperRight" offsetXY="-240 0">
+<Panel id="panelUI" visibility="Invisible" width="130" height="110" rectAlignment="UpperRight" offsetXY="-265 0">
     <VerticalLayout>
-        <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Toggle Invader UI</Button>
-        <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Toggle Adversary UI</Button>
-        <Button onClick="toggleTurnOrderUI" textAlignment="MiddleCenter">Toggle Turn Order UI</Button>
-        <Button onClick="toggleTimePassesUI" textAlignment="MiddleCenter">Toggle Time Passes UI</Button>
-        <Button onClick="toggleReadyUI" textAlignment="MiddleCenter">Toggle Ready UI</Button>
-        <Button onClick="toggleBlightFearUI" textAlignment="MiddleCenter">Toggle Blight &amp; Fear UI</Button>
-        <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Toggle Score</Button>
-        <Button onClick="togglePowerDrawUI" textAlignment="MiddleCenter">Toggle Power Draw UI</Button>
-        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles the visibility of the buttons to&#xA;change player seats or colors. These&#xA;are hidden when the game starts,&#xA;but can be turned back on if desired.">Toggle Seat Controls</Button>
-        <Button onClick="toggleMultihanded" textAlignment="MiddleCenter" tooltipPosition="Left" tooltip="Toggles whether the visibility the 'Play&#xA;Spirit' buttons appear for all empty seats&#xA;or only for those who have chosen a spirit.">Toggle Multihanded</Button>
+        <Button onClick="toggleButtonUI" textAlignment="MiddleCenter">Core Buttons</Button>
+        <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Invader Board</Button>
+        <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Adversary</Button>
+        <Button onClick="toggleTurnOrderUI" textAlignment="MiddleCenter">Turn Order</Button>
+        <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Scoring</Button>
+        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left">Seat Control</Button>
     </VerticalLayout>
 </Panel>

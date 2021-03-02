@@ -966,26 +966,6 @@ function SetupPowerDecks()
             font_size      = 500,
             tooltip        = "Click to learn a Minor Power",
         })
-        SetupChecker.createButton({
-            click_function = "MajorPowerC",
-            function_owner = Global,
-            label          = "Gain a\nMajor",
-            position       = Vector(146,0.8, -2.2),
-            width          = 1600,
-            height         = 1500,
-            font_size      = 500,
-            tooltip        = "Click to learn a Major Power",
-        })
-        SetupChecker.createButton({
-            click_function = "MinorPowerC",
-            function_owner = Global,
-            label          = "Gain a\nMinor",
-            position       = Vector(146, 0.8, 2.6),
-            width          = 1600,
-            height         = 1500,
-            font_size      = 500,
-            tooltip        = "Click to learn a Minor Power",
-        })
         stagesSetup = stagesSetup + 1
     end, function() return not SetupChecker.isSmoothMoving() and exploratoryPowersDone end)
     return 1

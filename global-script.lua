@@ -4250,7 +4250,7 @@ end
 function enterSpiritPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 1 then return end
-    broadcastToAll("Entering Spirit Phase", Color.SoftYellow)
+    broadcastToAll("Entering Spirit Phase", Color.SoftBlue)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
@@ -4258,7 +4258,7 @@ end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 2 then return end
-    broadcastToAll("Entering Fast Power Phase", Color.SoftYellow)
+    broadcastToAll("Entering Fast Power Phase", Color.SoftBlue)
     updateCurrentPhase(true)
     currentPhase = 2
     updateCurrentPhase(false)
@@ -4266,7 +4266,7 @@ end
 function enterInvaderPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 3 then return end
-    broadcastToAll("Entering Invader Phase", Color.SoftYellow)
+    broadcastToAll("Entering Invader Phase", Color.SoftBlue)
     updateCurrentPhase(true)
     currentPhase = 3
     updateCurrentPhase(false)
@@ -4274,7 +4274,7 @@ end
 function enterSlowPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 4 then return end
-    broadcastToAll("Entering Slow Power Phase", Color.SoftYellow)
+    broadcastToAll("Entering Slow Power Phase", Color.SoftBlue)
     updateCurrentPhase(true)
     currentPhase = 4
     updateCurrentPhase(false)

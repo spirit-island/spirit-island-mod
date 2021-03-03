@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 55.1800041,
-    "posY": 1.0095799,
-    "posZ": -13.7002335,
-    "rotX": 359.922333,
-    "rotY": 0.000907846843,
-    "rotZ": 5.37934029e-05,
+    "posX": 54.7564468,
+    "posY": 1.01951671,
+    "posZ": -13.6349335,
+    "rotX": 4.25025775e-08,
+    "rotY": 0.0354750939,
+    "rotZ": -7.01945755e-05,
     "scaleX": 0.9,
     "scaleY": 0.9,
     "scaleZ": 0.9
@@ -15,9 +15,9 @@
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.335314155,
+    "r": 0.33531183,
     "g": 1.0,
-    "b": 0.3018711
+    "b": 0.301868767
   },
   "Tags": [
     "Destroy"
@@ -37,7 +37,7 @@
   "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472353822/EBBFC6111AEF16B1F6DDDF19A429539EB91690A8/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1752434924170706662/37F12EB9D68832E2A4292A7DD2309A767066C5B1/",
     "NormalURL": "",
     "ColliderURL": "",
     "Convex": true,
@@ -50,12 +50,12 @@
       "GUID": "95e8c7",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -20.7139587,
-        "posY": 0.04999999,
-        "posZ": 4.344649,
-        "rotX": -1.17855143e-06,
-        "rotY": 180.0176,
-        "rotZ": 1.2857997e-07,
+        "posX": -20.9637012,
+        "posY": 0.0499999747,
+        "posZ": 4.15918,
+        "rotX": -1.082561e-06,
+        "rotY": 180.017548,
+        "rotZ": 7.349454e-08,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -64,9 +64,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -83,10 +83,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472359567/FE20BDB04AAFB7957812494AE76C2FF2B01BA8DF/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1752434998239416952/A5C04560A7C7D4568F12B5B22F8C79E20DA97AD4/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -102,12 +102,12 @@
       "GUID": "a53627",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.6463947,
-        "posY": 0.04999998,
-        "posZ": 4.344641,
-        "rotX": -1.08684628e-06,
-        "rotY": 179.97435,
-        "rotZ": 1.7037e-07,
+        "posX": -18.8967228,
+        "posY": 0.0500000119,
+        "posZ": 4.15910769,
+        "rotX": -1.10080464e-06,
+        "rotY": 179.974335,
+        "rotZ": 2.07190354e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -116,9 +116,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -135,10 +135,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472360097/9369A05D8A95EF6AF5D0C161EF1E24E67B14F425/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1752434998239417943/7A1A46FB3C6E42A0B2EDA5DA824D1D227CB2C9D3/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -154,12 +154,12 @@
       "GUID": "1eca0f",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -16.578619,
-        "posY": 0.049999997,
-        "posZ": 4.34466,
-        "rotX": -1.0959219e-06,
-        "rotY": 180.034225,
-        "rotZ": 1.96031863e-07,
+        "posX": -16.8280849,
+        "posY": 0.0499999821,
+        "posZ": 4.15922,
+        "rotX": -1.141222e-06,
+        "rotY": 180.03421,
+        "rotZ": 1.54438723e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -168,9 +168,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -187,10 +187,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472361521/47D1C03EB6093970E82C463D987B5CCCD7728119/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1752434998239419091/631262890558109776FBBCA85247DB7B63E1C948/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -206,12 +206,12 @@
       "GUID": "2c0808",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -14.511076,
-        "posY": 0.0499999747,
-        "posZ": 4.34464264,
-        "rotX": -1.021258e-06,
+        "posX": -14.7612791,
+        "posY": 0.0499999672,
+        "posZ": 4.15909147,
+        "rotX": -1.09375651e-06,
         "rotY": 179.978271,
-        "rotZ": 1.753683e-07,
+        "rotZ": 1.347936e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -220,9 +220,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -239,10 +239,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472360562/05AD7707D38BB6F6683A0A0E7BB267CC39A07483/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1752434998239424662/7B918036CE1AC4ECA1D4577A006AFB0C82B9F52B/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -258,12 +258,12 @@
       "GUID": "9de1f8",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -12.4434185,
+        "posX": -12.6936255,
         "posY": 0.0499999747,
-        "posZ": 4.34464264,
-        "rotX": -1.068774e-06,
+        "posZ": 4.15909052,
+        "rotX": -1.16876743e-06,
         "rotY": 179.978348,
-        "rotZ": 2.421907e-07,
+        "rotZ": 2.04423586e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -272,9 +272,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -291,10 +291,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472362003/AE77CF37FBDC4D9B810663C8C2BEE078F01B4F92/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1752434998239420892/C6B35383C9121D8F8FB5A0455F3762963812A676/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -310,12 +310,12 @@
       "GUID": "3cfd28",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -10.3757277,
+        "posX": -10.6257086,
         "posY": 0.049999956,
-        "posZ": 4.34464931,
-        "rotX": -1.07647259e-06,
+        "posZ": 4.159126,
+        "rotX": -1.15205921e-06,
         "rotY": 179.995178,
-        "rotZ": 2.06550979e-07,
+        "rotZ": 8.385815e-08,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -324,9 +324,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -343,10 +343,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472362483/9E2586902079B12185790774F2051D417547C615/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680632550/1FF8BBCE9A786BD94EA18BC16EE919B3F6C2E008/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -362,12 +362,12 @@
       "GUID": "f9e628",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -8.308099,
-        "posY": 0.0499999523,
-        "posZ": 4.344646,
-        "rotX": -1.055247e-06,
-        "rotY": 179.9847,
-        "rotZ": 1.98500729e-07,
+        "posX": -8.558253,
+        "posY": 0.0499999635,
+        "posZ": 4.159119,
+        "rotX": -1.14770239e-06,
+        "rotY": 179.98468,
+        "rotZ": 2.43485346e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -376,9 +376,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -395,10 +395,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472363008/3782ECD352B289560C679385F0CC4F95E43FA937/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680637473/42DC69F871E095AD782B24059FE69EF2BF6CFC14/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -414,12 +414,12 @@
       "GUID": "dc90b4",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -6.240393,
-        "posY": 0.04999993,
-        "posZ": 4.344651,
-        "rotX": -1.08777886e-06,
-        "rotY": 180.00975,
-        "rotZ": 2.15487e-07,
+        "posX": -6.490212,
+        "posY": 0.04999996,
+        "posZ": 4.159165,
+        "rotX": -9.967929e-07,
+        "rotY": 180.0097,
+        "rotZ": 1.6875012e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -428,9 +428,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -447,10 +447,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472363575/4059F851443D30CAD9C652371DA5EDD7D68B6082/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680638930/C288F06421E07AB75EC9D34D66AA35728E75CC59/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -466,12 +466,12 @@
       "GUID": "51faae",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -4.172712,
-        "posY": 0.0499999449,
-        "posZ": 4.344658,
-        "rotX": -1.05897163e-06,
-        "rotY": 180.021576,
-        "rotZ": 5.987748e-08,
+        "posX": -4.422362,
+        "posY": 0.04999994,
+        "posZ": 4.159221,
+        "rotX": -1.0610795e-06,
+        "rotY": 180.021561,
+        "rotZ": 8.101622e-08,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -480,9 +480,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -499,10 +499,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472365848/1FD70B65B96AFE3CF1F2F932751E8C7E85FD5D6C/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680643307/464FE0E85EC18E3506CA1004A20D054B451EDA20/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -518,12 +518,12 @@
       "GUID": "c1e220",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -2.105058,
-        "posY": 0.04999993,
-        "posZ": 4.344655,
-        "rotX": -1.07295182e-06,
-        "rotY": 180.021545,
-        "rotZ": 2.00266172e-07,
+        "posX": -2.35470843,
+        "posY": 0.0499999449,
+        "posZ": 4.15921831,
+        "rotX": -1.15854607e-06,
+        "rotY": 180.021515,
+        "rotZ": 1.33320412e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -532,9 +532,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -551,10 +551,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472366444/B1437BD5869F0D6F12F20E6F3A9234AB5F64C190/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680646407/347AF776079EE246E02833DD475D56B8DAD8AEE5/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -570,12 +570,12 @@
       "GUID": "5928bd",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -0.0374948867,
-        "posY": 0.0499999449,
-        "posZ": 4.344641,
-        "rotX": -1.11394638e-06,
+        "posX": -0.287781715,
+        "posY": 0.0499999374,
+        "posZ": 4.159106,
+        "rotX": -1.25856661e-06,
         "rotY": 179.974457,
-        "rotZ": 1.83581037e-07,
+        "rotZ": 9.665697e-08,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -584,9 +584,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -603,10 +603,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472367075/92F762A06EDCCE5A39CFE60B2BC22C89AC4F5302/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680647764/2CB13E50712BF2BEA9455D9714B8C0D9DEF03D11/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -622,12 +622,12 @@
       "GUID": "1acbc5",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 2.03015828,
-        "posY": 0.04999993,
-        "posZ": 4.344641,
-        "rotX": -1.06233608e-06,
+        "posX": 1.77987206,
+        "posY": 0.0499999374,
+        "posZ": 4.159106,
+        "rotX": -9.900424e-07,
         "rotY": 179.9744,
-        "rotZ": 1.36865665e-07,
+        "rotZ": 1.98809488e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -636,9 +636,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -655,10 +655,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472367705/4B35F2FE12D4BA4D211263227E6E0D23A79290B7/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680648985/36F955A2B0167BF2CFEDCFEF772CE011FD392A0A/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -674,12 +674,12 @@
       "GUID": "001ae9",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 4.097913,
-        "posY": 0.0499999076,
-        "posZ": 4.34465742,
-        "rotX": -1.05621768e-06,
+        "posX": 3.84830785,
+        "posY": 0.0499999262,
+        "posZ": 4.159203,
+        "rotX": -1.08122663e-06,
         "rotY": 180.025681,
-        "rotZ": 2.23726815e-07,
+        "rotZ": 1.453526e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -688,9 +688,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -707,10 +707,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472369839/6D9F0F1937D964240977D95FD435C7E3C4B60BAB/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680650668/D511A5956BD87A8BC6A5900D27B49E471FF147F9/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -726,12 +726,12 @@
       "GUID": "e2bb68",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 6.165562,
-        "posY": 0.04999991,
-        "posZ": 4.344657,
-        "rotX": -1.16037393e-06,
-        "rotY": 180.022018,
-        "rotZ": 1.21106339e-07,
+        "posX": 5.915899,
+        "posY": 0.0499999076,
+        "posZ": 4.15921831,
+        "rotX": -1.08834922e-06,
+        "rotY": 180.022,
+        "rotZ": 1.500398e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -740,9 +740,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -759,10 +759,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472370447/0C535D7025E35A0848522632BC2F060C3F37E876/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680651535/BECAAFE8F9E01B301647CD4DDEAD60D36D3BBA01/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -778,12 +778,12 @@
       "GUID": "0dd1d8",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 8.233216,
-        "posY": 0.0499999076,
-        "posZ": 4.344657,
-        "rotX": -1.1169202e-06,
-        "rotY": 180.022034,
-        "rotZ": 1.784635e-07,
+        "posX": 7.983582,
+        "posY": 0.0499999225,
+        "posZ": 4.15921831,
+        "rotX": -1.084924e-06,
+        "rotY": 180.022018,
+        "rotZ": 1.20723655e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -792,9 +792,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -811,10 +811,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472370915/DB32D6717966AC78BE9CEC87FE8637A75795E20B/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680652526/16D832CFD5521C7C587512F41A7013CCAF40DC1E/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -830,12 +830,12 @@
       "GUID": "3e211a",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 10.3008614,
-        "posY": 0.0499998964,
-        "posZ": 4.3446455,
-        "rotX": -1.0445608e-06,
-        "rotY": 180.021423,
-        "rotZ": 1.8171913e-07,
+        "posX": 10.0511751,
+        "posY": 0.0499999151,
+        "posZ": 4.15921068,
+        "rotX": -1.03144544e-06,
+        "rotY": 180.021378,
+        "rotZ": 6.191659e-08,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -844,9 +844,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -863,10 +863,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472371384/DBE71CE639F1860C37DA148DA517594C4CD8B21F/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680653412/0B53E622D74277FF1DDB0BF0E698CCCAA4D96B73/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -882,12 +882,12 @@
       "GUID": "b063db",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 12.3684912,
-        "posY": 0.04999989,
-        "posZ": 4.344662,
-        "rotX": -1.10186454e-06,
+        "posX": 12.1185274,
+        "posY": 0.0499999,
+        "posZ": 4.15916872,
+        "rotX": -1.06125094e-06,
         "rotY": 179.9993,
-        "rotZ": 1.55449854e-07,
+        "rotZ": 1.77292961e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -896,9 +896,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -915,10 +915,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472373466/3AE0E5B9050032DBD7699B8A4271393CD5B2F55F/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680654412/6074A9C83FC03421DD3EFEE5D347DEDC022ADB1E/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -934,12 +934,12 @@
       "GUID": "459b3d",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 14.4361353,
-        "posY": 0.04999989,
-        "posZ": 4.34464931,
-        "rotX": -1.03323771e-06,
+        "posX": 14.1861658,
+        "posY": 0.0499998964,
+        "posZ": 4.159158,
+        "rotX": -1.0759851e-06,
         "rotY": 179.9995,
-        "rotZ": 1.76148376e-07,
+        "rotZ": 1.81069552e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -948,9 +948,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -967,10 +967,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472374086/299F8C156F7B9E9B6655E9F25199DD3DE8C890B8/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680655320/4752298B0D66FD7647BA5FA7774895DADDB09563/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -986,12 +986,12 @@
       "GUID": "1a90cd",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 16.5038013,
-        "posY": 0.0499998853,
-        "posZ": 4.34465027,
-        "rotX": -1.11402994e-06,
+        "posX": 16.2538853,
+        "posY": 0.04999988,
+        "posZ": 4.15915537,
+        "rotX": -1.13416388e-06,
         "rotY": 180.0,
-        "rotZ": 1.28317708e-07,
+        "rotZ": 1.65417021e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -1000,9 +1000,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353119,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301868826
       },
       "Tags": [
         "Destroy"
@@ -1019,10 +1019,10 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472374619/F8C87B59A0C6BB9AA9649248D57D5EBE0A9EEFD8/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680656424/340BB9951AF477B3A2FC169FD7368F281A12B092/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -1038,12 +1038,12 @@
       "GUID": "a87f00",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 18.6096935,
-        "posY": 0.04999988,
-        "posZ": 4.302483,
-        "rotX": -1.08963286e-06,
-        "rotY": 180.029892,
-        "rotZ": 1.14971556e-07,
+        "posX": 18.36014,
+        "posY": 0.0499999,
+        "posZ": 4.117068,
+        "rotX": -1.13379281e-06,
+        "rotY": 180.029877,
+        "rotZ": 1.43999486e-07,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -1052,9 +1052,9 @@
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.335314244,
+        "r": 0.3353141,
         "g": 1.0,
-        "b": 0.301871151
+        "b": 0.301871032
       },
       "Tags": [
         "Destroy"
@@ -1079,7 +1079,7 @@
         "ColliderURL": "",
         "Convex": true,
         "MaterialIndex": 1,
-        "TypeIndex": 0,
+        "TypeIndex": 5,
         "CastShadows": true
       },
       "LuaScript": "",

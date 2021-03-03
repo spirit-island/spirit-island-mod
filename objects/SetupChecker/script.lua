@@ -795,9 +795,6 @@ function showUI()
     if self.UI.getAttribute("optionalRules", "isOn") == "true" then
         self.UI.setAttribute("panelOptional", "visibility", "")
     end
-    if self.UI.getAttribute("randomizers", "isOn") == "true" then
-        self.UI.setAttribute("panelRandom", "visibility", "")
-    end
     if self.UI.getAttribute("exploratory", "isOn") == "true" then
         self.UI.setAttribute("panelExploratory", "visibility", "")
     end
@@ -811,7 +808,6 @@ function closeUI()
     self.UI.setAttribute("panelSetup", "visibility", "Invisible")
     self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
     self.UI.setAttribute("panelOptional", "visibility", "Invisible")
-    self.UI.setAttribute("panelRandom", "visibility", "Invisible")
     self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
 end
@@ -823,11 +819,14 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
         self.UI.setAttribute("supportingRow", "visibility", "Invisible")
+        self.UI.setAttribute("minTextRow", "visibility", "Invisible")
+        self.UI.setAttribute("minRow", "visibility", "Invisible")
+        self.UI.setAttribute("maxTextRow", "visibility", "Invisible")
+        self.UI.setAttribute("maxRow", "visibility", "Invisible")
         self.UI.setAttribute("blightCardRow", "visibility", "")
         self.UI.setAttribute("optionalCell", "visibility", "Invisible")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
         self.UI.setAttribute("panelOptional", "visibility", "Invisible")
-        self.UI.setAttribute("panelRandom", "visibility", "Invisible")
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
 
         Global.setVar("showPlayerButtons", false)
@@ -837,6 +836,10 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Leading Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "")
         self.UI.setAttribute("supportingRow", "visibility", "")
+        self.UI.setAttribute("minTextRow", "visibility", "")
+        self.UI.setAttribute("minRow", "visibility", "")
+        self.UI.setAttribute("maxTextRow", "visibility", "")
+        self.UI.setAttribute("maxRow", "visibility", "")
         self.UI.setAttribute("blightCardRow", "visibility", "Invisible")
         self.UI.setAttribute("optionalCell", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "")
@@ -856,16 +859,6 @@ function toggleOptionalRules()
         self.UI.setAttribute("panelOptional", "visibility", "")
     end
 end
-function toggleRandomizers()
-    local checked = self.UI.getAttribute("randomizers", "isOn")
-    if checked == "true" then
-        self.UI.setAttribute("randomizers", "isOn", "false")
-        self.UI.setAttribute("panelRandom", "visibility", "Invisible")
-    else
-        self.UI.setAttribute("randomizers", "isOn", "true")
-        self.UI.setAttribute("panelRandom", "visibility", "")
-    end
-end
 function toggleExploratory()
     local checked = self.UI.getAttribute("exploratory", "isOn")
     if checked == "true" then
@@ -883,13 +876,13 @@ function toggleMinDifficulty(_, value)
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
         Global.setVar("minDifficulty", maxDifficulty)
-        self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..maxDifficulty)
+        self.UI.setAttribute("minDifficulty", "text", "Min Random Difficulty: "..maxDifficulty)
         self.UI.setAttribute("minDifficultySlider", "value", maxDifficulty)
         return
     end
 
     Global.setVar("minDifficulty", minDifficulty)
-    self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..value)
+    self.UI.setAttribute("minDifficulty", "text", "Min Random Difficulty: "..value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
@@ -898,13 +891,13 @@ function toggleMaxDifficulty(_, value)
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
         Global.setVar("maxDifficulty", minDifficulty)
-        self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..minDifficulty)
+        self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..minDifficulty)
         self.UI.setAttribute("maxDifficultySlider", "value", minDifficulty)
         return
     end
 
     Global.setVar("maxDifficulty", maxDifficulty)
-    self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..value)
+    self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
 end
 function randomCheck()
@@ -920,29 +913,63 @@ function randomCheck()
     end
 end
 
+function toggleSpirit(_,_,id)
+    local checked = self.UI.getAttribute(id, "isOn")
+    if checked == "true" then
+        self.UI.setAttribute(id, "isOn", "false")
+    else
+        self.UI.setAttribute(id, "isOn", "true")
+    end
+end
+function getSpiritTags()
+    local tags = {}
+    local added = false
+    if self.UI.getAttribute("spiritBase", "isOn") == "true" then
+        tags["Base"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritBnC", "isOn") == "true" then
+        tags["B&C"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritJE", "isOn") == "true" then
+        tags["JE"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritCustom", "isOn") == "true" then
+        tags[""] = true
+        added = true
+    end
+    if not added then
+        return nil
+    end
+    return tags
+end
 function randomSpirit(player)
     if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
         Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
 
-    local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
-    Player[player.color].broadcast("Your randomised spirit is "..spirit.getName(), "Blue")
-end
-function randomJESpirit(player)
-    if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", "Red")
+    local tags = getSpiritTags()
+    if tags == nil then
+        Player[player.color].broadcast("You have no tags selected", "Red")
         return
     end
 
     local guid = spiritGuids[math.random(1,#spiritGuids)]
-    while(spiritTags[guid] ~= "JE") do
+    local count = 0
+    while(not tags[spiritTags[guid]] and count < 100) do
         guid = spiritGuids[math.random(1,#spiritGuids)]
+        count = count + 1
+    end
+    if count >= 100 then
+        Player[player.color].broadcast("No suitable spirit was found", "Red")
+        return
     end
     local spirit = getObjectFromGUID(guid)
     spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
-    Player[player.color].broadcast("Your randomised Jagged Earth spirit is "..spirit.getName(), "Blue")
+    Player[player.color].broadcast("Your randomised spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
@@ -953,11 +980,17 @@ function gainSpirit(player)
         Player[player.color].broadcast("You already picked a spirit", "Red")
         return
     end
-    Player[player.color].broadcast("Your 4 randomised spirits to choose from are in your play area", Color.SoftBlue)
+    local tags = getSpiritTags()
+    if tags == nil then
+        Player[player.color].broadcast("You have no tags selected", "Red")
+        return
+    end
 
+    local count = 0
     for i = 1,4 do
-        local spirit, aspect = getNewSpirit()
+        local spirit, aspect = getNewSpirit(tags)
         if spirit then
+            count = count + 1
             local label = spirit.getName()
             if aspect ~= nil and aspect ~= "" then
                 label = label.."-"..aspect
@@ -975,14 +1008,24 @@ function gainSpirit(player)
             })
         end
     end
+    if count > 0 then
+        Player[player.color].broadcast("Your randomised spirits to choose from are in your play area", Color.SoftBlue)
+    else
+        Player[player.color].broadcast("No suitable spirits were found", "Red")
+    end
 end
-function getNewSpirit()
+function getNewSpirit(tags)
     if spiritChoicesLength >= #spiritGuids then
         return nil
     end
     local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    while (spiritChoices[spirit.getName()]) do
+    local count = 0
+    while((not tags[spiritTags[spirit.guid]] or spiritChoices[spirit.getName()]) and count < 100) do
         spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
+        count = count + 1
+    end
+    if count >= 100 then
+        return nil
     end
     local aspect = spirit.call("RandomAspect", {})
     spiritChoices[spirit.getName()] = {guid=spirit.guid, aspect=aspect}
@@ -1016,14 +1059,20 @@ function pickSpirit(obj, index, color)
         getObjectFromGUID(data.guid).call("PickSpirit", {color = color, aspect = data.aspect})
         obj.clearButtons()
     else
-        Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
-        local spirit = getNewSpirit()
+        local tags = getSpiritTags()
+        if tags == nil then
+            Player[color].broadcast("You have no tags selected", "Red")
+            return
+        end
+        local spirit = getNewSpirit(tags)
         if spirit ~= nil then
+            Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
             obj.editButton({
                 index = index,
                 label = spirit.getName(),
             })
         else
+            Player[color].broadcast("No suitable replacment was found", "Red")
             obj.editButton({
                 index = index,
                 label = "",

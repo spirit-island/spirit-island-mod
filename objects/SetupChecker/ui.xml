@@ -15,7 +15,7 @@
     <Text class="slider" alignment="LowerCenter"/>
 </Defaults>
 
-<Panel id="panelSetup" class="leadingAdversary supportingAdversary scenario boardLayout" visibility="" width="1000" height="2800" position="-2200 -1640 12">
+<Panel id="panelSetup" class="leadingAdversary supportingAdversary scenario boardLayout" width="1000" height="2800" position="-2200 -1640 12">
     <VerticalLayout class="leadingAdversary supportingAdversary scenario boardLayout">
         <TableLayout class="leadingAdversary supportingAdversary scenario boardLayout">
             <Row class="header">
@@ -101,6 +101,18 @@
             <Row class="header">
                 <Cell columnSpan="2"><Text id="difficulty">Total Difficulty: 0</Text></Cell>
             </Row>
+            <Row id="minTextRow" class="header">
+                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Random Difficulty: 0</Text></Cell>
+            </Row>
+            <Row id="minRow">
+                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="0" maxValue="28" value="0" onValueChanged="toggleMinDifficulty"/></Cell>
+            </Row>
+            <Row id="maxTextRow" class="header">
+                <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Random Difficulty: 11</Text></Cell>
+            </Row>
+            <Row id="maxRow">
+                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
+            </Row>
             <Row class="spacing"/>
             <Row class="header">
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
@@ -123,7 +135,6 @@
                 <Cell id="optionalCell"><Toggle id="optionalRules" onValueChanged="toggleOptionalRules" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
             </Row>
             <Row id="toggles" class="toggle">
-                <Cell><Toggle id="randomizers" onValueChanged="toggleRandomizers" tooltip="A way to randomise parts of the game, e.g.&#xA;Adversary, Scenario, Board Layout, and Spirit">Show Randomisers</Toggle></Cell>
                 <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
             </Row>
         </TableLayout>
@@ -139,7 +150,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2200 -2825 12">
+<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2200 -3150 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -182,35 +193,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3575 12">
-    <VerticalLayout>
-        <TableLayout>
-            <Row class="header">
-                <Cell columnSpan="2"><Text>Randomisers</Text></Cell>
-            </Row>
-            <Row class="header">
-                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Difficulty: 0</Text></Cell>
-            </Row>
-            <Row>
-                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="0" maxValue="28" value="0" onValueChanged="toggleMinDifficulty"/></Cell>
-            </Row>
-            <Row class="header">
-                <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Difficulty: 11</Text></Cell>
-            </Row>
-            <Row>
-                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
-            </Row>
-            <Row>
-                <Cell><Button onClick="randomSpirit" tooltip="Will randomly give you any spirit">Random Spirit</Button></Cell>
-                <Cell><Button onClick="randomJESpirit" tooltip="Will randomly give you a spirit from Jagged Earth">Random JE Spirit</Button></Cell>
-            </Row>
-            <Row>
-                <Cell columnSpan="2"><Button ignoreLayout="true" width="460" onClick="gainSpirit" tooltip="Will give you an option of 4 spirits to choose from in your play area">"Gain a Spirit"</Button></Cell>
-            </Row>
-        </TableLayout>
-    </VerticalLayout>
-</Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -4175 12">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -3900 12">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -235,6 +218,25 @@
                 <Cell columnSpan="2"><Text text="Adversaries &amp; Scenarios"/></Cell>
             </Row>
             <Row preferredHeight="2510"/>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelSpirit" width="1000" height="2800" position="-3240 -4500 8">
+    <VerticalLayout width="900">
+        <TableLayout rowBackgroundColor="clear">
+            <Row class="header">
+                <Cell columnSpan="4"><Text>Spirit Randomizers</Text></Cell>
+            </Row>
+            <Row>
+                <Cell columnSpan="2"><Button onClick="randomSpirit" tooltip="Will randomly give you any spirit which has one of those tags">Random Spirit</Button></Cell>
+                <Cell><Toggle id="spiritBase" onValueChanged="toggleSpirit" isOn="true" tooltip="Include base game spirits in randomizer">Base</Toggle></Cell>
+                <Cell><Toggle id="spiritBnC" onValueChanged="toggleSpirit" isOn="true" tooltip="Include branch and claw and promo pack 1 spirits in randomizer">B&amp;C</Toggle></Cell>
+            </Row>
+            <Row>
+                <Cell columnSpan="2"><Button onClick="gainSpirit" tooltip="Will give you an option of 4 spirits with those tags to choose from in your play area">"Gain a Spirit"</Button></Cell>
+                <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth and promo pack 2 spirits in randomizer">JE</Toggle></Cell>
+                <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

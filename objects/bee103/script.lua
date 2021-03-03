@@ -321,7 +321,8 @@ function aidPanelScanLoop()
             for _,hit in pairs(hitObjects) do
                 if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
                     local iType = hit.getVar("cardInvaderType")
-                    table.insert(stageTable,iType)
+                    local escalate = hit.getVar("cardInvaderStage") == 2 and iType ~= "C"
+                    table.insert(stageTable,{type=iType,escalate=escalate})
                     count = count + 1
                 end
             end

@@ -3704,32 +3704,32 @@ function updateAidPanel(tabIn)
     currentTable = tabIn
     for i,tType in pairs({"Build2","Ravage","Build","Explore"}) do
         hideAll(tType)
-        local cTab = tabIn[i]
-        for Ti,T in pairs(cTab) do
-            for c = 1,string.len(T) do
-                local char = string.sub(T,c,c)
-                set(tType,Ti,c,char,#cTab)
-                size(tType,Ti,c,#cTab,string.len(T))
-                show(tType,Ti,c)
+        local cards = tabIn[i]
+        for j,card in pairs(cards) do
+            for k = 1,string.len(card.type) do
+                local type = string.sub(card.type,k,k)
+                set(tType,j,k,type,#cards,card.escalate)
+                size(tType,j,k,#cards,string.len(card.type))
+                show(tType,j,k)
             end
         end
-        if #cTab == 0 then
+        if #cards == 0 then
             if tType == "Explore" then
                 toggleInvaderPhaseImage(false)
                 if tabIn["Stage"] ~= 0 then
-                    set(tType,1,1,tabIn["Stage"],1)
+                    set(tType,1,1,tabIn["Stage"],1,false)
                     size(tType,1,1,1,1)
                     show(tType,1,1)
                 else
                     alert(tType)
                     size(tType,1,1,"E")
-                    set(tType,1,1,"E",1)
+                    set(tType,1,1,"E",1,false)
                     show(tType,1,1)
                 end
             else
                 dark(tType)
                 size(tType,1,1,"n")
-                set(tType,1,1,"n",1)
+                set(tType,1,1,"n",1,false)
                 show(tType,1,1)
             end
         else
@@ -3761,7 +3761,7 @@ function alert(a)
     UI.setAttribute("panel"..a.."0", "color", invaderColors["E"])
     UI.setAttribute("panel"..a.."0".."text", "color", invaderFontColors["E"])
 end
-function set(a,b,c,d,e)
+function set(a,b,c,d,e, escalate)
     local tOff
     if e >= 2 then
         if b == 1 then
@@ -3772,8 +3772,14 @@ function set(a,b,c,d,e)
     else
         tOff = 10
     end
-    UI.setAttributes("panel"..a..b..c, {color = invaderColors[d], tooltip = tooltips[d], tooltipPosition="Below", tooltipOffset=tOff})
-    UI.setAttributes("panel"..a..b..c.."text", {color = invaderFontColors[d], text = textOut[d]})
+    local tooltip = tooltips[d]
+    local text = textOut[d]
+    if escalate then
+        tooltip = tooltip.." with Escalation"
+        text = text.."ₑ"
+    end
+    UI.setAttributes("panel"..a..b..c, {color = invaderColors[d], tooltip = tooltip, tooltipPosition="Below", tooltipOffset=tOff})
+    UI.setAttributes("panel"..a..b..c.."text", {color = invaderFontColors[d], text = text})
 end
 function hideAll(a)
     UI.setAttribute("panel"..a..11, "active", false)
@@ -3804,7 +3810,10 @@ function invaderCompare(t1,t2)
         local newTab = {}
         newTab[1] = tab["Stage"]
         for i,v in ipairs(tab) do
-            newTab[i+1] = table.concat(v,",")
+            newTab[i+1] = ""
+            for j,w in ipairs(v) do
+                newTab[i+1] = newTab[i+1]..w.type..tostring(w.escalation)
+            end
         end
         return table.concat(newTab,"|")
     end

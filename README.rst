@@ -7,7 +7,7 @@ To build the mod::
 
     $ tts repack
 
-This will put the module at ``build/savegame.json``. You can also pass a path for where to build the module.
+This will put the module at ``build/packed-savegame.json``. You can also pass a path for where to build the module.
 
 You can also use::
 

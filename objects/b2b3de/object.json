@@ -4,7 +4,7 @@
     "posX": -114.68,
     "posY": 1.09035408,
     "posZ": -1.289856,
-    "rotX": 0.004575314,
+    "rotX": 0.004575316,
     "rotY": 180.002869,
     "rotZ": 0.0003740965,
     "scaleX": 0.877173543,
@@ -12,12 +12,12 @@
     "scaleZ": 0.877173543
   },
   "Nickname": "Scenario Markers",
-  "Description": "Use these to track the uses of your special rule  \"Pour Down Power Across The Land\"",
+  "Description": "Use these to cover up the unavailable growth options from your special rule  \"Growth Begets Growth\"",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.695121944,
     "g": 0.490944982,
-    "b": 0.3547528
+    "b": 0.354752928
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

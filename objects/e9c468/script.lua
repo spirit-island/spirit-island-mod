@@ -3,10 +3,17 @@ useProgression = false
 progressionCard = nil
 useAspect = 2
 aspect = nil
+broadcast = nil
 
-function onLoad()
+function onLoad(saved_data)
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        broadcast = loaded_data.broadcast
+    end
+
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     if Global.getVar("gameStarted") then return end
+
     self.createButton({
         click_function = "SetupSpirit",
         function_owner = self,
@@ -169,6 +176,10 @@ function SetupSpirit(object_pick,player_color)
                 obj.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))
                 placed = placed + 1
             end
+        end
+
+        if broadcast ~= nil then
+            Player[player_color].broadcast(broadcast, Color.SoftBlue)
         end
     else
         Player[player_color].broadcast("You already picked a spirit", "Red")

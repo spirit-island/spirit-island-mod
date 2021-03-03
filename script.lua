@@ -1274,6 +1274,9 @@ function BlightIslandButton(_, playerColor)
         BlightedIslandFlip()
     end
 end
+function BlightIslandButtonUI(player)
+    BlightIslandButton(nil, player.color)
+end
 function BlightedIslandFlip()
     gamePaused = true -- to disable scripting buttons and object cleanup
     if not blightedIslandCard.is_face_down then

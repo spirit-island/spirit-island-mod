@@ -9,8 +9,6 @@
 
 
 
-
-
 Spawn Objects:
 Num 1 - Explorer
 Num 2 - Town
@@ -22,4 +20,6 @@ Num 7 - Beasts
 Num 8 - Wilds
 Num 9 - Disease
 Num 0 - Dahan
-For more keybindings: Options -> Game Keys
+
+For more keybindings:
+Options -> Game Keys

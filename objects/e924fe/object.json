@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 21.8,
-    "posY": 0.883569062,
-    "posZ": 24.94,
-    "rotX": -1.04751257e-08,
-    "rotY": 179.99942,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 18.001709,
+    "posY": 0.8636051,
+    "posZ": 37.6787643,
+    "rotX": 2.57211252e-09,
+    "rotY": 179.999954,
+    "rotZ": 180.0,
+    "scaleX": 1.92426074,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 1.92426074
   },
   "Nickname": "Second Wave",
   "Description": "Branch & Claw Expansion",

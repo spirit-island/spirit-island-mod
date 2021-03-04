@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.53,
-    "posY": 0.8835357,
-    "posZ": 15.98,
-    "rotX": -1.11953247e-08,
-    "rotY": 179.999985,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 8.889444,
+    "posY": 0.8636051,
+    "posZ": 31.6802025,
+    "rotX": -1.947613e-08,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.92426074,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 1.92426074
   },
   "Nickname": "The Great River",
   "Description": "Jagged Earth Expansion",

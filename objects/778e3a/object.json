@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -118.36,
-    "posY": 1.090378,
-    "posZ": -1.289856,
+    "posX": 37.3834,
+    "posY": 1.090379,
+    "posZ": 75.49843,
     "rotX": 0.00457538944,
     "rotY": 180.002655,
     "rotZ": 0.00037389042,
@@ -12,12 +12,12 @@
     "scaleZ": 0.877173543
   },
   "Nickname": "Scenario Markers",
-  "Description": "Use these to track the uses of your special rule  \"Pour Down Power Across The Land\"",
+  "Description": "Use these for your \"Growth Begets Growth\" Special Rule",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.695121944,
     "g": 0.490944982,
-    "b": 0.3547528
+    "b": 0.354752332
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

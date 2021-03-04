@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 21.8,
-    "posY": 0.883569062,
-    "posZ": 7.02,
-    "rotX": -9.515703e-09,
-    "rotY": 179.995987,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 18.0017052,
+    "posY": 0.8636051,
+    "posZ": 25.69277,
+    "rotX": -3.81827059e-09,
+    "rotY": 179.999908,
+    "rotZ": 180.0,
+    "scaleX": 1.92426074,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 1.92426074
   },
   "Nickname": "Varied Terrains",
   "Description": "Promo Pack #2",

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -4.74,
-    "posY": 0.883502245,
-    "posZ": 24.94,
-    "rotX": 7.559543e-09,
-    "rotY": 180.0,
-    "rotZ": -0.000144324222,
-    "scaleX": 2.733795,
+    "posX": -0.222833455,
+    "posY": 0.8636051,
+    "posZ": 37.7798233,
+    "rotX": -9.761462e-09,
+    "rotY": 180.000458,
+    "rotZ": 1.22977117e-09,
+    "scaleX": 1.92783785,
     "scaleY": 1.0,
-    "scaleZ": 2.733795
+    "scaleZ": 1.92783785
   },
   "Nickname": "France",
   "Description": "",

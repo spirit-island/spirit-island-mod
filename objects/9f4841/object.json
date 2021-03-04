@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -43.9390869,
-    "posY": 1.07425451,
-    "posZ": 46.9786835,
-    "rotX": -9.54598e-08,
+    "posX": -50.01,
+    "posY": 1.07425463,
+    "posZ": 59.65,
+    "rotX": -9.546036e-08,
     "rotY": 180.031113,
     "rotZ": -9.704523e-07,
-    "scaleX": 0.829393744,
-    "scaleY": 0.164254412,
-    "scaleZ": 0.829393744
+    "scaleX": 0.72703,
+    "scaleY": 0.143982142,
+    "scaleZ": 0.72703
   },
   "Nickname": "Green Pieces",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.191960514,
+    "r": 0.191959262,
     "g": 0.701,
-    "b": 0.1679605
+    "b": 0.167959243
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -42.2590866,
-    "posY": 1.07425451,
-    "posZ": 48.6586838,
+    "posX": -48.51,
+    "posY": 1.07425463,
+    "posZ": 61.1,
     "rotX": -2.16043944e-07,
     "rotY": 180.012619,
     "rotZ": -1.316518e-06,
-    "scaleX": 0.829393744,
-    "scaleY": 0.164254412,
-    "scaleZ": 0.829393744
+    "scaleX": 0.72703,
+    "scaleY": 0.143982142,
+    "scaleZ": 0.72703
   },
   "Nickname": "Yellow Pieces",
   "Description": "",
@@ -17,7 +17,7 @@
   "ColorDiffuse": {
     "r": 0.905,
     "g": 0.898,
-    "b": 0.171960443
+    "b": 0.171959192
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

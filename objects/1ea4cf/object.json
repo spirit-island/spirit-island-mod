@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -4.74,
-    "posY": 0.883502245,
-    "posZ": 7.02,
-    "rotX": -6.899133e-09,
-    "rotY": 180.000046,
-    "rotZ": -0.000144325677,
-    "scaleX": 2.733795,
+    "posX": -0.222833678,
+    "posY": 0.8636051,
+    "posZ": 25.77192,
+    "rotX": 6.993957e-09,
+    "rotY": 179.999969,
+    "rotZ": -3.34787575e-09,
+    "scaleX": 1.92783785,
     "scaleY": 1.0,
-    "scaleZ": 2.733795
+    "scaleZ": 1.92783785
   },
   "Nickname": "Russia",
   "Description": "",

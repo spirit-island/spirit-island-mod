@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.53,
-    "posY": 0.8835357,
-    "posZ": -1.94,
-    "rotX": 3.16144657e-08,
-    "rotY": 180.012711,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 8.889444,
+    "posY": 0.8636051,
+    "posZ": 19.6942024,
+    "rotX": -4.54374227e-09,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.92426074,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 1.92426074
   },
   "Nickname": "A Diversity of Spirts",
   "Description": "Promo Pack #2",

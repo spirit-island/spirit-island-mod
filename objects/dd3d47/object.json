@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -4.74,
-    "posY": 0.883502245,
-    "posZ": 51.82,
-    "rotX": -1.69022574e-08,
+    "posX": -0.222833112,
+    "posY": 0.8636051,
+    "posZ": 55.7916832,
+    "rotX": -2.024515e-09,
     "rotY": 180.0,
-    "rotZ": -0.000144315738,
-    "scaleX": 2.733795,
+    "rotZ": -8.065024e-10,
+    "scaleX": 1.92783785,
     "scaleY": 1.0,
-    "scaleZ": 2.733795
+    "scaleZ": 1.92783785
   },
   "Nickname": "Prussia",
   "Description": "",

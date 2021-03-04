@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -42.2479,
-    "posY": 1.07425439,
-    "posZ": 40.2315369,
+    "posX": -41.01,
+    "posY": 1.07425451,
+    "posZ": 59.65,
     "rotX": 2.345854e-08,
     "rotY": 180.007217,
     "rotZ": -1.1871623e-06,
-    "scaleX": 0.829393744,
-    "scaleY": 0.164254412,
-    "scaleZ": 0.829393744
+    "scaleX": 0.72703,
+    "scaleY": 0.143982142,
+    "scaleZ": 0.72703
   },
   "Nickname": "Branch & Claw",
   "Description": "",

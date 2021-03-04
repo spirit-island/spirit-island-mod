@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.24909,
-    "posY": 1.06999993,
-    "posZ": 43.5946121,
+    "posX": -44.01,
+    "posY": 1.07,
+    "posZ": 59.65,
     "rotX": -2.74146373e-07,
     "rotY": 180.03418,
     "rotZ": -1.31972172e-06,
-    "scaleX": 0.83,
-    "scaleY": 0.16,
-    "scaleZ": 0.83
+    "scaleX": 0.72739017,
+    "scaleY": 0.140219778,
+    "scaleZ": 0.72739017
   },
   "Nickname": "3 Energy Tokens",
   "Description": "",
@@ -53,69 +53,5 @@
       "FresnelStrength": 0.0
     },
     "CastShadows": true
-  },
-  "ChildObjects": [
-    {
-      "GUID": "fd69e2",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": 0.03475583,
-        "posY": 1.01192069,
-        "posZ": 0.006514917,
-        "rotX": 3.26046262e-07,
-        "rotY": 359.964478,
-        "rotZ": 1.937919e-07,
-        "scaleX": 0.8451721,
-        "scaleY": 0.0438432954,
-        "scaleZ": 0.8451721
-      },
-      "Nickname": "3 Energy",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "Tags": [
-        "Destroy"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112311/DDF02E59ED1921D81C838CCDFEE9C6969DEFFE96/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 5,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    }
-  ]
+  }
 }

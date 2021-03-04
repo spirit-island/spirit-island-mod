@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.53,
-    "posY": 0.8835357,
-    "posZ": 42.86,
-    "rotX": -2.48709e-09,
-    "rotY": 180.000839,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 8.889444,
+    "posY": 0.8636051,
+    "posZ": 49.65921,
+    "rotX": -2.60648148e-09,
+    "rotY": 179.999985,
+    "rotZ": 180.0,
+    "scaleX": 1.92426074,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 1.92426074
   },
   "Nickname": "Rituals of Terror",
   "Description": "Spirit Island",

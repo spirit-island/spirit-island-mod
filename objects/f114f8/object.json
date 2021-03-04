@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -4.74,
-    "posY": 0.883502245,
-    "posZ": 33.9,
-    "rotX": 1.30870195e-08,
-    "rotY": 180.0,
-    "rotZ": -0.000144320991,
-    "scaleX": 2.733795,
+    "posX": -0.22283347,
+    "posY": 0.8636051,
+    "posZ": 43.78378,
+    "rotX": 4.94687269e-09,
+    "rotY": 179.998566,
+    "rotZ": -1.202818e-09,
+    "scaleX": 1.92783785,
     "scaleY": 1.0,
-    "scaleZ": 2.733795
+    "scaleZ": 1.92783785
   },
   "Nickname": "Sweden",
   "Description": "",

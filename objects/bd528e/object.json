@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.53,
-    "posY": 0.8835357,
-    "posZ": 33.9,
-    "rotX": -3.490941e-09,
-    "rotY": 179.9985,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 8.889439,
+    "posY": 0.8636051,
+    "posZ": 43.66621,
+    "rotX": -1.20589061e-09,
+    "rotY": 179.999954,
+    "rotZ": 180.0,
+    "scaleX": 1.92426074,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 1.92426074
   },
   "Nickname": "Ward the Shores",
   "Description": "Branch & Claw Expansion",

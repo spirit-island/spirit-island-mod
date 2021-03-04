@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -43.9184,
-    "posY": 1.07425451,
-    "posZ": 40.2319641,
+    "posX": -42.51,
+    "posY": 1.07425463,
+    "posZ": 59.65,
     "rotX": -7.622285e-08,
     "rotY": 0.0,
     "rotZ": -1.20849563e-06,
-    "scaleX": 0.829393744,
-    "scaleY": 0.164254412,
-    "scaleZ": 0.829393744
+    "scaleX": 0.72703,
+    "scaleY": 0.143982142,
+    "scaleZ": 0.72703
   },
   "Nickname": "Jagged Earth",
   "Description": "",

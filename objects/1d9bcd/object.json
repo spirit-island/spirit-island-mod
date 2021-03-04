@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -4.74,
-    "posY": 0.883502245,
-    "posZ": 15.98,
-    "rotX": 4.407309e-09,
-    "rotY": 179.9998,
-    "rotZ": -0.000144316858,
-    "scaleX": 2.733795,
+    "posX": -0.222833574,
+    "posY": 0.8636051,
+    "posZ": 31.775877,
+    "rotX": 3.329585e-09,
+    "rotY": 180.000137,
+    "rotZ": 2.11048157e-09,
+    "scaleX": 1.92783785,
     "scaleY": 1.0,
-    "scaleZ": 2.733795
+    "scaleZ": 1.92783785
   },
   "Nickname": "Habsburg",
   "Description": "",

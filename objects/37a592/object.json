@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -4.74,
-    "posY": 0.883502245,
-    "posZ": -1.94,
-    "rotX": -2.02254089e-08,
+    "posX": -0.22283338,
+    "posY": 0.8636051,
+    "posZ": 19.7679615,
+    "rotX": 2.06081055e-10,
     "rotY": 180.0,
-    "rotZ": -0.0001443154,
-    "scaleX": 2.733795,
+    "rotZ": -6.46938725e-09,
+    "scaleX": 1.92783785,
     "scaleY": 1.0,
-    "scaleZ": 2.733795
+    "scaleZ": 1.92783785
   },
   "Nickname": "Scotland",
   "Description": "",

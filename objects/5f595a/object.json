@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -43.9150658,
-    "posY": 1.06999969,
-    "posZ": 41.9139824,
+    "posX": -47.01,
+    "posY": 1.06999981,
+    "posZ": 59.65,
     "rotX": -7.00364851e-08,
     "rotY": 3.07359478e-05,
     "rotZ": 1.36716324e-06,
-    "scaleX": 0.83,
-    "scaleY": 0.16,
-    "scaleZ": 0.83
+    "scaleX": 0.72739017,
+    "scaleY": 0.140219778,
+    "scaleZ": 0.72739017
   },
   "Nickname": "Energy Counters",
   "Description": "",

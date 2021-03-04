@@ -4,9 +4,9 @@
     "posX": 33.99,
     "posY": 0.5,
     "posZ": -13.6,
-    "rotX": 5.512274e-08,
+    "rotX": 5.51227544e-08,
     "rotY": 179.985336,
-    "rotZ": 0.000206459415,
+    "rotZ": 0.000206460027,
     "scaleX": 0.55,
     "scaleY": 0.55,
     "scaleZ": 0.55
@@ -15,7 +15,7 @@
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.282351524,
+    "r": 0.2823502,
     "g": 0.7141388,
     "b": 1.0
   },

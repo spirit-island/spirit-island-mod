@@ -15,9 +15,9 @@
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.335312963,
+    "r": 0.335311651,
     "g": 1.0,
-    "b": 0.3018699
+    "b": 0.3018686
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

@@ -15,9 +15,9 @@
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.335312963,
+    "r": 0.335311651,
     "g": 1.0,
-    "b": 0.3018699
+    "b": 0.3018686
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

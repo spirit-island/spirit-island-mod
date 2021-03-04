@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -81.08351,
-    "posY": 1.09043837,
-    "posZ": -1.29298532,
+    "posX": 74.65986,
+    "posY": 1.09043932,
+    "posZ": 75.4953,
     "rotX": 0.00446281349,
     "rotY": 180.002869,
     "rotZ": 4.64339173e-05,
@@ -12,12 +12,12 @@
     "scaleZ": 0.877173543
   },
   "Nickname": "Scenario Markers",
-  "Description": "Use these to track the uses of your special rule  \"Pour Down Power Across The Land\"",
+  "Description": "Use these to track the uses of your \"Pour Down Power Across The Land\" Special Rule",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.695121944,
     "g": 0.490944982,
-    "b": 0.354753
+    "b": 0.354752332
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

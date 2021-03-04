@@ -1,15 +1,15 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": -81.24,
-    "posY": 0.89,
-    "posZ": -19.3,
+    "posX": 105.02,
+    "posY": 0.8,
+    "posZ": 7.02,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 2.609013,
+    "scaleX": 2.4833858,
     "scaleY": 1.0,
-    "scaleZ": 2.609013
+    "scaleZ": 2.4833858
   },
   "Nickname": "Rulebook",
   "Description": "Jagged Earth Expansion",

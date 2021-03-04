@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 21.8,
-    "posY": 0.883569062,
-    "posZ": 51.82,
-    "rotX": 6.13032158e-09,
-    "rotY": 180.000351,
-    "rotZ": 179.999863,
-    "scaleX": 2.73,
+    "posX": 18.0017128,
+    "posY": 0.8636051,
+    "posZ": 55.6577568,
+    "rotX": -1.75933224e-09,
+    "rotY": 179.999954,
+    "rotZ": 180.0,
+    "scaleX": 1.92426074,
     "scaleY": 1.0,
-    "scaleZ": 2.73
+    "scaleZ": 1.92426074
   },
   "Nickname": "Guard the Isle's Heart",
   "Description": "Spirit Island",

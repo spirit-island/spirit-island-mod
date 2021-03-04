@@ -6,7 +6,7 @@
     "posZ": -13.6,
     "rotX": -2.07634621e-08,
     "rotY": 179.975983,
-    "rotZ": 0.00020606826,
+    "rotZ": 0.000206068871,
     "scaleX": 0.55,
     "scaleY": 0.55,
     "scaleZ": 0.55
@@ -17,7 +17,7 @@
   "ColorDiffuse": {
     "r": 1.0,
     "g": 0.990781367,
-    "b": 0.138080329
+    "b": 0.138079077
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

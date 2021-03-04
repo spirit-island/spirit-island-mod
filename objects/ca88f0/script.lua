@@ -7,7 +7,7 @@ postSetupComplete=false
 function PostSetup()
     local scenarioBag = Global.getVar("scenarioBag")
     local bag = scenarioBag.takeObject({
-        guid = "8d6e45",
+        guid = "8d6e46",
         position = {-44.08, 0.71, 34.11},
         rotation = {0,0,0},
         smooth = false,
@@ -40,7 +40,7 @@ function PostSetup()
     Wait.condition(function() bag.shuffle() postSetupComplete = true end, function() return #bag.getObjects() == numBoards * 4 end)
 end
 function removeTokens(stack)
-    local bag = getObjectFromGUID("8d6e45")
+    local bag = getObjectFromGUID("8d6e46")
     local numBoards = Global.getVar("numBoards")
     for _ = 1, 3 * numBoards - 1 do
         bag.putObject(stack.takeObject())

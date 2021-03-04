@@ -760,14 +760,14 @@ function scanReady()
             if selectedColors[color].ready.resting and selectedColors[color].ready.is_face_down then
                 getObjectFromGUID(guid).editButton({
                     index=0,
-                    label="Yes",
+                    label="✓",
                     font_color="Green",
                 })
                 table.insert(yes, color)
             else
                 getObjectFromGUID(guid).editButton({
                     index=0,
-                    label="No",
+                    label="X",
                     font_color="Red",
                 })
                 table.insert(no, color)

@@ -935,6 +935,50 @@ function SetupPowerDecks()
     else
         exploratoryPowersDone = true
     end
+    SetupChecker.createButton({
+        click_function = "MajorPowerC",
+        function_owner = Global,
+        label          = "Gain a\nMajor",
+        position       = Vector(31.75, -0.1, -29.5),
+        rotation       = Vector(0, 180, 0),
+        width          = 800,
+        height         = 750,
+        font_size      = 250,
+        tooltip        = "Click to learn a Major Power",
+    })
+    SetupChecker.createButton({
+        click_function = "MinorPowerC",
+        function_owner = Global,
+        label          = "Gain a\nMinor",
+        position       = Vector(29.75, -0.1, -29.5),
+        rotation       = Vector(0, 180, 0),
+        width          = 800,
+        height         = 750,
+        font_size      = 250,
+        tooltip        = "Click to learn a Minor Power",
+    })
+    SetupChecker.createButton({
+        click_function = "MajorPowerC",
+        function_owner = Global,
+        label          = "Gain a\nMajor",
+        position       = Vector(-31.75, -0.1, -29.5),
+        rotation       = Vector(0, 180, 0),
+        width          = 800,
+        height         = 750,
+        font_size      = 250,
+        tooltip        = "Click to learn a Major Power",
+    })
+    SetupChecker.createButton({
+        click_function = "MinorPowerC",
+        function_owner = Global,
+        label          = "Gain a\nMinor",
+        position       = Vector(-29.75, -0.1, -29.5),
+        rotation       = Vector(0, 180, 0),
+        width          = 800,
+        height         = 750,
+        font_size      = 250,
+        tooltip        = "Click to learn a Minor Power",
+    })
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return exploratoryPowersDone end)
     return 1
 end
@@ -942,6 +986,13 @@ handOffset = Vector(0,0,36)
 scriptWorkingCardC = false
 powerPlayer = nil
 powerCards = 4
+function MajorPowerC(obj, player_color, alt_click)
+    local cards = 4
+    if alt_click then
+        cards = 2
+    end
+    startDealPowerCards("MajorPower", Player[player_color], cards)
+end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
     local cards = 4
@@ -950,6 +1001,13 @@ function MajorPowerUI(player, button)
         cards = 2
     end
     startDealPowerCards("MajorPower", player, cards)
+end
+function MinorPowerC(obj, player_color, alt_click)
+    local cards = 4
+    if alt_click then
+        cards = 6
+    end
+    startDealPowerCards("MinorPower", Player[player_color], cards)
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end

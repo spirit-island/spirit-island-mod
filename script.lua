@@ -938,7 +938,7 @@ function SetupPowerDecks()
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return exploratoryPowersDone end)
     return 1
 end
-handOffset = Vector(0,0,35)
+handOffset = Vector(0,0,36)
 scriptWorkingCardC = false
 powerPlayer = nil
 powerCards = 4

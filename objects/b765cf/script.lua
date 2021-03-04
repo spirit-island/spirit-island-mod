@@ -11,8 +11,8 @@ hasLossCondition = true
 hasUI = true
 
 highImmigration = "e5d18b"
-highImmigrationDiscardPosition = Vector(-52.90, 1.3, -5.30)
-originalDiscardPosition = Vector(-51.25, 1.5, 0.38)
+highImmigrationDiscardPosition = Vector(-46.18, 0.82, -4.18)
+originalDiscardPosition = Vector(-46.21, 1.5, 0.33)
 
 function onSave()
     local data_table = {
@@ -228,7 +228,7 @@ function englandSnap(aidBoard)
     snapPoints = Global.getSnapPoints()
     table.insert(snapPoints, {
         position = highImmigrationDiscardPosition,
-        rotation = Vector(0, 180, 0),
+        rotation = Vector(0, 90, 0),
         rotation_snap = true,
         tags = {"Invader Card"},
     })

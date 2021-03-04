@@ -1,5 +1,5 @@
 numCards = 0
-discard = Vector(-51.25, 1.5, 0.38)
+discard = Vector(-46.21, 1.5, 0.33)
 tokenOffset = Vector(10,0.1,0)
 
 function onSave()
@@ -268,7 +268,7 @@ function advanceInvaderCards()
             for _,hit in pairs(hitObjects) do
                 if hit.type == "Card" and hit.is_face_down == v.faceDown then
                     if i == "Build2" then
-                        hit.setRotation(Vector(0,180,0))
+                        hit.setRotation(Vector(0,90,0))
                         hit.setPositionSmooth(discard)
                     elseif i == "Ravage" then
                         local build2 = UI.getAttribute("panelBuild2","active")

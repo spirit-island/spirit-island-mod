@@ -378,7 +378,7 @@ function updateScenario(value, updateUI)
     else
         Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
         Global.setVar("useRandomScenario", false)
-        checkToDisableRandomDifficulty()
+        checkRandomDifficulty(false)
     end
     updateDifficulty()
 
@@ -406,7 +406,7 @@ function updateLeadingAdversary(value, updateUI)
     else
         Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
         Global.setVar("useRandomAdversary", false)
-        checkToDisableRandomDifficulty()
+        checkRandomDifficulty(false)
     end
     if value == "None" or value == "Random" then
         updateLeadingLevel(0, updateUI)
@@ -440,7 +440,7 @@ function updateSupportingAdversary(value, updateUI)
     else
         Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
         Global.setVar("useSecondAdversary", false)
-        checkToDisableRandomDifficulty()
+        checkRandomDifficulty(false)
     end
     if value == "None" or value == "Random" then
         updateSupportingLevel(0, updateUI)
@@ -580,7 +580,7 @@ function updateBoardLayout(value, updateUI)
     else
         Global.setVar("useRandomBoard", false)
         Global.setVar("includeThematic", false)
-        checkToDisableRandomDifficulty()
+        checkRandomDifficulty(false)
     end
     Global.setVar("boardLayout", value)
     updateDifficulty()
@@ -830,10 +830,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
         self.UI.setAttribute("supportingRow", "visibility", "Invisible")
-        self.UI.setAttribute("minTextRow", "visibility", "Invisible")
-        self.UI.setAttribute("minRow", "visibility", "Invisible")
-        self.UI.setAttribute("maxTextRow", "visibility", "Invisible")
-        self.UI.setAttribute("maxRow", "visibility", "Invisible")
+        checkRandomDifficulty(false)
         self.UI.setAttribute("blightCardRow", "visibility", "")
         self.UI.setAttribute("optionalCell", "visibility", "Invisible")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
@@ -848,10 +845,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Leading Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "")
         self.UI.setAttribute("supportingRow", "visibility", "")
-        self.UI.setAttribute("minTextRow", "visibility", "")
-        self.UI.setAttribute("minRow", "visibility", "")
-        self.UI.setAttribute("maxTextRow", "visibility", "")
-        self.UI.setAttribute("maxRow", "visibility", "")
+        checkRandomDifficulty(true)
         self.UI.setAttribute("blightCardRow", "visibility", "Invisible")
         self.UI.setAttribute("optionalCell", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "")
@@ -916,15 +910,20 @@ function enableRandomDifficulty()
     self.UI.setAttribute("maxTextRow", "visibility", "")
     self.UI.setAttribute("maxRow", "visibility", "")
 end
-function checkToDisableRandomDifficulty()
-    if not Global.getVar("useRandomAdversary")
-            and not Global.getVar("useSecondAdversary")
-            and not Global.getVar("useRandomBoard")
-            and not Global.getVar("useRandomScenario") then
-        self.UI.setAttribute("minTextRow", "visibility", "Invisible")
-        self.UI.setAttribute("minRow", "visibility", "Invisible")
-        self.UI.setAttribute("maxTextRow", "visibility", "Invisible")
-        self.UI.setAttribute("maxRow", "visibility", "Invisible")
+function checkRandomDifficulty(enable)
+    local visibility = ""
+    if not enable then
+        visibility = "Invisible"
+    end
+    local random = Global.getVar("useRandomAdversary")
+            or Global.getVar("useSecondAdversary")
+            or Global.getVar("useRandomBoard")
+            or Global.getVar("useRandomScenario")
+    if random == enable then
+        self.UI.setAttribute("minTextRow", "visibility", visibility)
+        self.UI.setAttribute("minRow", "visibility", visibility)
+        self.UI.setAttribute("maxTextRow", "visibility", visibility)
+        self.UI.setAttribute("maxRow", "visibility", visibility)
     end
 end
 

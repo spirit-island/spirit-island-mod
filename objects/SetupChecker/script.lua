@@ -799,6 +799,7 @@ function showUI()
         self.UI.setAttribute("panelExploratory", "visibility", "")
     end
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "")
+    self.UI.setAttribute("panelSpirit", "visibility", "")
 end
 function hideUI()
     closeUI()
@@ -810,6 +811,7 @@ function closeUI()
     self.UI.setAttribute("panelOptional", "visibility", "Invisible")
     self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
+    self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
 end
 
 function toggleSimpleMode()

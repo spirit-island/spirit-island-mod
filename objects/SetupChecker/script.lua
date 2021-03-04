@@ -572,7 +572,7 @@ function updateBoardLayout(value, updateUI)
     if value == "Random" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", false)
-        enableRandomDifficulty()
+        checkRandomDifficulty(false)
     elseif value == "Random with Thematic" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", true)
@@ -917,7 +917,7 @@ function checkRandomDifficulty(enable)
     end
     local random = Global.getVar("useRandomAdversary")
             or Global.getVar("useSecondAdversary")
-            or Global.getVar("useRandomBoard")
+            or Global.getVar("includeThematic")
             or Global.getVar("useRandomScenario")
     if random == enable then
         self.UI.setAttribute("minTextRow", "visibility", visibility)

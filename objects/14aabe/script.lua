@@ -104,7 +104,7 @@ function SetupSpirit(object_pick,player_color)
     if #PlayerBag.getObjects() ~= 0 then
         local castObjects = upCast(self)
         local hpos = Player[player_color].getHandTransform().position
-        self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))
+        self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,13.9))
         self.setRotation(Vector(0,180,0))
         self.setLock(true)
         self.clearButtons()

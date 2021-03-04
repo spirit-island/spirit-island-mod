@@ -101,16 +101,16 @@
             <Row class="header">
                 <Cell columnSpan="2"><Text id="difficulty">Total Difficulty: 0</Text></Cell>
             </Row>
-            <Row id="minTextRow" class="header">
+            <Row id="minTextRow" class="header" visibility="Invisible">
                 <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Random Difficulty: 0</Text></Cell>
             </Row>
-            <Row id="minRow">
+            <Row id="minRow" visibility="Invisible">
                 <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="0" maxValue="28" value="0" onValueChanged="toggleMinDifficulty"/></Cell>
             </Row>
-            <Row id="maxTextRow" class="header">
+            <Row id="maxTextRow" class="header" visibility="Invisible">
                 <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Random Difficulty: 11</Text></Cell>
             </Row>
-            <Row id="maxRow">
+            <Row id="maxRow" visibility="Invisible">
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
             <Row class="spacing"/>

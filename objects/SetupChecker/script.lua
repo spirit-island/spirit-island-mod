@@ -52,7 +52,6 @@ exploratoryWar = false
 
 updateLayoutsID = 0
 setupStarted = false
-recentlyNotifiedRandom = false
 exit = false
 
 function onSave()
@@ -375,9 +374,11 @@ function updateScenario(value, updateUI)
     if value == "Random" then
         Global.setVar("scenarioCard", nil)
         Global.setVar("useRandomScenario", true)
+        enableRandomDifficulty()
     else
         Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
         Global.setVar("useRandomScenario", false)
+        checkToDisableRandomDifficulty()
     end
     updateDifficulty()
 
@@ -401,9 +402,11 @@ function updateLeadingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard", nil)
         Global.setVar("useRandomAdversary", true)
+        enableRandomDifficulty()
     else
         Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
         Global.setVar("useRandomAdversary", false)
+        checkToDisableRandomDifficulty()
     end
     if value == "None" or value == "Random" then
         updateLeadingLevel(0, updateUI)
@@ -433,9 +436,11 @@ function updateSupportingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard2", nil)
         Global.setVar("useSecondAdversary", true)
+        enableRandomDifficulty()
     else
         Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
         Global.setVar("useSecondAdversary", false)
+        checkToDisableRandomDifficulty()
     end
     if value == "None" or value == "Random" then
         updateSupportingLevel(0, updateUI)
@@ -567,12 +572,15 @@ function updateBoardLayout(value, updateUI)
     if value == "Random" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", false)
+        enableRandomDifficulty()
     elseif value == "Random with Thematic" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", true)
+        enableRandomDifficulty()
     else
         Global.setVar("useRandomBoard", false)
         Global.setVar("includeThematic", false)
+        checkToDisableRandomDifficulty()
     end
     Global.setVar("boardLayout", value)
     updateDifficulty()
@@ -875,7 +883,6 @@ function toggleExploratory()
 end
 
 function toggleMinDifficulty(_, value)
-    randomCheck()
     local maxDifficulty = Global.getVar("maxDifficulty")
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
@@ -890,7 +897,6 @@ function toggleMinDifficulty(_, value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
-    randomCheck()
     local minDifficulty = Global.getVar("minDifficulty")
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
@@ -904,16 +910,21 @@ function toggleMaxDifficulty(_, value)
     self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
 end
-function randomCheck()
-    if recentlyNotifiedRandom then
-        return
-    elseif not Global.getVar("useRandomAdversary")
+function enableRandomDifficulty()
+    self.UI.setAttribute("minTextRow", "visibility", "")
+    self.UI.setAttribute("minRow", "visibility", "")
+    self.UI.setAttribute("maxTextRow", "visibility", "")
+    self.UI.setAttribute("maxRow", "visibility", "")
+end
+function checkToDisableRandomDifficulty()
+    if not Global.getVar("useRandomAdversary")
             and not Global.getVar("useSecondAdversary")
             and not Global.getVar("useRandomBoard")
             and not Global.getVar("useRandomScenario") then
-        recentlyNotifiedRandom = true
-        Wait.time(function() recentlyNotifiedRandom = false end, 2)
-        broadcastToAll("No \"Random\" options are currently selected", Color.Red)
+        self.UI.setAttribute("minTextRow", "visibility", "Invisible")
+        self.UI.setAttribute("minRow", "visibility", "Invisible")
+        self.UI.setAttribute("maxTextRow", "visibility", "Invisible")
+        self.UI.setAttribute("maxRow", "visibility", "Invisible")
     end
 end
 

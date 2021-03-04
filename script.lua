@@ -1615,7 +1615,10 @@ function adversaryUISetup()
             lineCount = lineCount + 1
         end
     end
-    UI.setAttribute("panelAdversary","height",lineCount*18)
+    local height = lineCount*18
+    UI.setAttribute("panelAdversary","height",height)
+    UI.setAttribute("panelInvader","offsetXY","0 "..305+5+height)
+    UI.setAttribute("panelBlightFear","offsetXY","0 "..305+5+104+height)
 end
 function decrementLossCounter(player, countID)
     if player.color == "Grey" then return end

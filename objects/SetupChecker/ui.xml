@@ -140,7 +140,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelSetupSmall" visibility="Invisible" width="1000" height="2800" position="-2200 -1640 12">
+<Panel id="panelSetupSmall" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 12">
     <VerticalLayout>
         <TableLayout rowBackgroundColor="clear">
             <Row>

@@ -935,6 +935,7 @@ function SetupPowerDecks()
     else
         exploratoryPowersDone = true
     end
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return exploratoryPowersDone end)
     return 1
 end
 handOffset = Vector(0,0,35)

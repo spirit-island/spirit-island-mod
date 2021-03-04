@@ -1,6 +1,6 @@
 numCards = 0
 discard = Vector(-51.25, 1.5, 0.38)
-xDiff = 6
+tokenOffset = Vector(10,0.1,0)
 
 function onSave()
     local data_table = {
@@ -703,7 +703,7 @@ function placeReadyTokens()
         local obj = getObjectFromGUID(v)
         local pos = obj.getPosition()
         if pos.x - self.getPosition().x > 10 then
-            obj.setPosition(pos - Vector(xDiff,0,0))
+            obj.setPosition(pos - tokenOffset)
         end
         obj.createButton({
             click_function="blankFunc",
@@ -734,7 +734,7 @@ function toggleReady()
         for _,v in pairs (playerReadyGuids) do
             local obj = getObjectFromGUID(v)
             local pos = obj.getPosition()
-            obj.setPositionSmooth(pos + Vector(xDiff, 0, 0))
+            obj.setPositionSmooth(pos + tokenOffset)
             totalObjects = totalObjects + 1
             Wait.condition(function() objectsMoved = objectsMoved + 1 end, function() return not obj.isSmoothMoving() end)
         end
@@ -743,7 +743,7 @@ function toggleReady()
         for _,v in pairs (playerReadyGuids) do
             local obj = getObjectFromGUID(v)
             local pos = obj.getPosition()
-            obj.setPositionSmooth(pos - Vector(xDiff, 0, 0))
+            obj.setPositionSmooth(pos - tokenOffset)
             totalObjects = totalObjects + 1
             Wait.condition(function() objectsMoved = objectsMoved + 1 end, function() return not obj.isSmoothMoving() end)
         end
@@ -797,7 +797,7 @@ function placeElementTokens()
         local obj = getObjectFromGUID(v)
         local pos = obj.getPosition()
         if pos.x - self.getPosition().x > 10 then
-            obj.setPosition(pos - Vector(xDiff,0,0))
+            obj.setPosition(pos - tokenOffset)
         end
         obj.createButton({
             click_function="blankFunc",
@@ -829,7 +829,7 @@ function toggleElements()
         for _,v in pairs (elementGuids) do
             local obj = getObjectFromGUID(v)
             local pos = obj.getPosition()
-            obj.setPositionSmooth(pos + Vector(xDiff, 0, 0))
+            obj.setPositionSmooth(pos + tokenOffset)
             totalObjects = totalObjects + 1
             Wait.condition(function() objectsMoved = objectsMoved + 1 end, function() return not obj.isSmoothMoving() end)
         end
@@ -838,7 +838,7 @@ function toggleElements()
         for _,v in pairs (elementGuids) do
             local obj = getObjectFromGUID(v)
             local pos = obj.getPosition()
-            obj.setPositionSmooth(pos - Vector(xDiff, 0, 0))
+            obj.setPositionSmooth(pos - tokenOffset)
             totalObjects = totalObjects + 1
             Wait.condition(function() objectsMoved = objectsMoved + 1 end, function() return not obj.isSmoothMoving() end)
         end

@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "3/3/2021 6:49:23 PM",
+  "Date": "3/3/2021 7:54:46 PM",
   "VersionNumber": "v13.0.5",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -189,6 +189,34 @@
       {
         "displayed": "Presence",
         "normalized": "presence"
+      },
+      {
+        "displayed": "Base",
+        "normalized": "base"
+      },
+      {
+        "displayed": "Low",
+        "normalized": "low"
+      },
+      {
+        "displayed": "Moderate",
+        "normalized": "moderate"
+      },
+      {
+        "displayed": "High",
+        "normalized": "high"
+      },
+      {
+        "displayed": "BnC",
+        "normalized": "bnc"
+      },
+      {
+        "displayed": "JE",
+        "normalized": "je"
+      },
+      {
+        "displayed": "Very High",
+        "normalized": "very_high"
       }
     ]
   },

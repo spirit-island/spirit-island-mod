@@ -15,11 +15,13 @@
   "Description": "Base",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2002691,
-    "g": 0.160314381,
-    "b": 0.151752651
+    "r": 0.200269043,
+    "g": 0.160314322,
+    "b": 0.151752591
   },
   "Tags": [
+    "Base",
+    "High",
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,

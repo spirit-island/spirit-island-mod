@@ -15,11 +15,13 @@
   "Description": "B&C",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200274318,
-    "g": 0.1603196,
-    "b": 0.151757866
+    "r": 0.200274259,
+    "g": 0.160319537,
+    "b": 0.1517578
   },
   "Tags": [
+    "BnC",
+    "High",
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,

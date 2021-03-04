@@ -34,6 +34,7 @@ numScenarios = 13
 
 spiritGuids = {}
 spiritTags = {}
+spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
@@ -749,7 +750,7 @@ function PickSpirit(name, aspect)
                 if color ~= nil then
                     spirit.call("PickSpirit", {color = color, aspect = aspect})
                 else
-                    broadcastToAll("Unable to pick "..name..", no seats left", "Red")
+                    broadcastToAll("Unable to pick "..name..", no seats left", Color.Red)
                 end
             end
             break
@@ -912,7 +913,7 @@ function randomCheck()
             and not Global.getVar("useRandomScenario") then
         recentlyNotifiedRandom = true
         Wait.time(function() recentlyNotifiedRandom = false end, 2)
-        broadcastToAll("No \"Random\" options are currently selected", "Red")
+        broadcastToAll("No \"Random\" options are currently selected", Color.Red)
     end
 end
 
@@ -932,7 +933,7 @@ function getSpiritTags()
         added = true
     end
     if self.UI.getAttribute("spiritBnC", "isOn") == "true" then
-        tags["B&C"] = true
+        tags["BnC"] = true
         added = true
     end
     if self.UI.getAttribute("spiritJE", "isOn") == "true" then
@@ -948,31 +949,60 @@ function getSpiritTags()
     end
     return tags
 end
+function getSpiritComplexities()
+    local complexities = {}
+    local added = false
+    if self.UI.getAttribute("spiritLow", "isOn") == "true" then
+        complexities["Low"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritModerate", "isOn") == "true" then
+        complexities["Moderate"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritHigh", "isOn") == "true" then
+        complexities["High"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritVeryHigh", "isOn") == "true" then
+        complexities["Very High"] = true
+        added = true
+    end
+    if not added then
+        return nil
+    end
+    return complexities
+end
 function randomSpirit(player)
     if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", "Red")
+        Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
 
     local tags = getSpiritTags()
     if tags == nil then
-        Player[player.color].broadcast("You have no tags selected", "Red")
+        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        return
+    end
+    local complexities = getSpiritComplexities()
+    if complexities == nil then
+        Player[player.color].broadcast("You have no complexities selected", Color.Red)
         return
     end
 
     local guid = spiritGuids[math.random(1,#spiritGuids)]
     local count = 0
-    while(not tags[spiritTags[guid]] and count < 100) do
+    while((not tags[spiritTags[guid]] or not complexities[spiritComplexities[guid]]) and count < 100) do
         guid = spiritGuids[math.random(1,#spiritGuids)]
         count = count + 1
     end
     if count >= 100 then
-        Player[player.color].broadcast("No suitable spirit was found", "Red")
+        Player[player.color].broadcast("No suitable spirit was found", Color.Red)
         return
     end
     local spirit = getObjectFromGUID(guid)
     spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
-    Player[player.color].broadcast("Your randomised spirit is "..spirit.getName(), "Blue")
+    Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
@@ -980,18 +1010,23 @@ function gainSpirit(player)
         Player[player.color].broadcast("You already have Spirit options", Color.SoftYellow)
         return
     elseif #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", "Red")
+        Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
     local tags = getSpiritTags()
     if tags == nil then
-        Player[player.color].broadcast("You have no tags selected", "Red")
+        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        return
+    end
+    local complexities = getSpiritComplexities()
+    if complexities == nil then
+        Player[player.color].broadcast("You have no complexities selected", Color.Red)
         return
     end
 
     local count = 0
     for i = 1,4 do
-        local spirit, aspect = getNewSpirit(tags)
+        local spirit, aspect = getNewSpirit(tags, complexities)
         if spirit then
             count = count + 1
             local label = spirit.getName()
@@ -1012,18 +1047,18 @@ function gainSpirit(player)
         end
     end
     if count > 0 then
-        Player[player.color].broadcast("Your randomised spirits to choose from are in your play area", Color.SoftBlue)
+        Player[player.color].broadcast("Your randomized spirits to choose from are in your play area", Color.SoftBlue)
     else
-        Player[player.color].broadcast("No suitable spirits were found", "Red")
+        Player[player.color].broadcast("No suitable spirits were found", Color.Red)
     end
 end
-function getNewSpirit(tags)
+function getNewSpirit(tags, complexities)
     if spiritChoicesLength >= #spiritGuids then
         return nil
     end
     local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
     local count = 0
-    while((not tags[spiritTags[spirit.guid]] or spiritChoices[spirit.getName()]) and count < 100) do
+    while((not tags[spiritTags[spirit.guid]] or not complexities[spiritComplexities[spirit.guid]] or spiritChoices[spirit.getName()]) and count < 100) do
         spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
         count = count + 1
     end
@@ -1064,10 +1099,15 @@ function pickSpirit(obj, index, color)
     else
         local tags = getSpiritTags()
         if tags == nil then
-            Player[color].broadcast("You have no tags selected", "Red")
+            Player[color].broadcast("You have no expansions selected", Color.Red)
             return
         end
-        local spirit = getNewSpirit(tags)
+        local complexities = getSpiritComplexities()
+        if complexities == nil then
+            Player[color].broadcast("You have no complexities selected", Color.Red)
+            return
+        end
+        local spirit = getNewSpirit(tags, complexities)
         if spirit ~= nil then
             Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
             obj.editButton({
@@ -1075,7 +1115,7 @@ function pickSpirit(obj, index, color)
                 label = spirit.getName(),
             })
         else
-            Player[color].broadcast("No suitable replacment was found", "Red")
+            Player[color].broadcast("No suitable replacment was found", Color.Red)
             obj.editButton({
                 index = index,
                 label = "",
@@ -1106,7 +1146,28 @@ function addSpirit(params)
     end
 
     table.insert(spiritGuids, params.spirit.guid)
-    spiritTags[params.spirit.guid] = params.spirit.getDescription()
+
+    local expansion = ""
+    if params.spirit.hasTag("Base") then
+        expansion = "Base"
+    elseif params.spirit.hasTag("BnC") then
+        expansion = "BnC"
+    elseif params.spirit.hasTag("JE") then
+        expansion = "JE"
+    end
+    spiritTags[params.spirit.guid] = expansion
+
+    local complexity = ""
+    if params.spirit.hasTag("Low") then
+        complexity = "Low"
+    elseif params.spirit.hasTag("Moderate") then
+        complexity = "Moderate"
+    elseif params.spirit.hasTag("High") then
+        complexity = "High"
+    elseif params.spirit.hasTag("Very High") then
+        complexity = "Very High"
+    end
+    spiritComplexities[params.spirit.guid] = complexity
 end
 function removeSpirit(params)
     for i,guid in pairs(spiritGuids) do
@@ -1122,6 +1183,7 @@ function removeSpirit(params)
         end
     end
     spiritTags[params.spirit] = nil
+    spiritComplexities[params.spirit] = nil
 end
 
 function toggleSoloBlight()

@@ -235,19 +235,19 @@
             </Row>
             <Row>
                 <Cell><Toggle id="spiritBase" onValueChanged="toggleSpirit" isOn="true" tooltip="Include base game spirits in randomizer">Base</Toggle></Cell>
-                <Cell><Toggle id="" onValueChanged="toggleSpirit" isOn="true" tooltip="">Low</Toggle></Cell>
+                <Cell><Toggle id="spiritLow" onValueChanged="toggleSpirit" isOn="true">Low</Toggle></Cell>
             </Row>
             <Row>
                 <Cell><Toggle id="spiritBnC" onValueChanged="toggleSpirit" isOn="true" tooltip="Include branch and claw and promo pack 1 spirits in randomizer">B&amp;C + P1</Toggle></Cell>
-                <Cell><Toggle id="" onValueChanged="toggleSpirit" isOn="true" tooltip="">Moderate</Toggle></Cell>
+                <Cell><Toggle id="spiritModerate" onValueChanged="toggleSpirit" isOn="true">Moderate</Toggle></Cell>
             </Row>
             <Row>
                 <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth and promo pack 2 spirits in randomizer">JE + P2</Toggle></Cell>
-                <Cell><Toggle id="" onValueChanged="toggleSpirit" isOn="true" tooltip="">High</Toggle></Cell>
+                <Cell><Toggle id="spiritHigh" onValueChanged="toggleSpirit" isOn="true">High</Toggle></Cell>
             </Row>
             <Row>
                 <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
-                <Cell><Toggle id="" onValueChanged="toggleSpirit" isOn="true" tooltip="">Very High</Toggle></Cell>
+                <Cell><Toggle id="spiritVeryHigh" onValueChanged="toggleSpirit" isOn="true">Very High</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

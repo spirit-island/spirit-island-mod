@@ -32,11 +32,11 @@ function onObjectPickUp(player_color, picked_up_object)
     if picked_up_object.guid == highImmigration then
         toggleInvaderUI(false)
         local aidBoard = Global.getVar("aidBoard")
-        moveDiscard(aidBoard)
+        moveDiscard(aidBoard, picked_up_object)
         removeEnglandSnap(aidBoard)
     end
 end
-function moveDiscard(aidBoard)
+function moveDiscard(aidBoard, immigrationTile)
     local currentDiscard = aidBoard.getTable("discard")
     local hits = Physics.cast({
         origin       = currentDiscard,
@@ -52,6 +52,26 @@ function moveDiscard(aidBoard)
             if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
                 hit.hit_object.setPosition(originalDiscardPosition)
                 hit.hit_object.setRotation(Vector(0,90,0))
+            end
+        end
+    end
+
+    hits = Physics.cast({
+        origin       = immigrationTile.getPosition(),
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = Vector(1,0.9,1.5),
+        orientation  = Vector(0,90,0),
+        max_distance = 0,
+        --debug        = true,
+    })
+    for _,hit in pairs(hits) do
+        if hit.hit_object ~= immigrationTile then
+            if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
+                Wait.frames(function()
+                    hit.hit_object.setPosition(originalDiscardPosition + Vector(0,0.5,0))
+                    hit.hit_object.setRotation(Vector(0,90,0))
+                end, 1)
             end
         end
     end

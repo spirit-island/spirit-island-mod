@@ -85,13 +85,14 @@ end
 
 function createButtons(card, cardEnergy, cardElements, type, speed)
     local zPadding = 0.1
+    local zOffset = 9.25
     clearButtons()
     for i = 1,8 do
         self.createButton({
             click_function = "button"..i,
             function_owner = self,
             label          = "-",
-            position       = {0.92,0.1,i*zPadding-(11*zPadding/2)},
+            position       = {0.92,0.1,i*zPadding-(zOffset*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 400,
             height         = 400,
@@ -106,7 +107,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
             click_function = "button"..i+8,
             function_owner = self,
             label          = "+",
-            position       = {1.18,0.1,i*zPadding-(11*zPadding/2)},
+            position       = {1.18,0.1,i*zPadding-(zOffset*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 400,
             height         = 400,
@@ -120,7 +121,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         self.createButton({
             click_function = "nullFunc",
             label          = elementNames[i],
-            position       = {0.7,0.1,i*zPadding-(11*zPadding/2)},
+            position       = {0.7,0.1,i*zPadding-(zOffset*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 1600,
             height         = 400,
@@ -132,7 +133,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         self.createButton({
             click_function = "nullFunc",
             label          = string.sub(cardElements,i,i),
-            position       = {1.05,0.1,i*zPadding-(11*zPadding/2)},
+            position       = {1.05,0.1,i*zPadding-(zOffset*zPadding/2)},
             scale          = {0.1,0.1,0.1},
             width          = 800,
             height         = 400,
@@ -143,42 +144,42 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
     self.createButton({
         click_function = "nullFunc",
         label          = "Energy",
-        position       = {-0.2,0.1,-0.6},
+        position       = {0.7,0.1,-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 1600,
-        height         = 500,
-        font_size      = 460,
+        height         = 400,
+        font_size      = 360,
     })
     self.createButton({
         click_function = "button17",
         function_owner = self,
         label          = "-",
-        position       = {0.2,0.1,-0.6},
+        position       = {0.92,0.1,-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
-        height         = 500,
-        font_size      = 460,
+        height         = 400,
+        font_size      = 360,
     })
     local func = function() editEnergy(card,cardEnergy,-1,cardElements) end
     self.setVar("button17",func)
     self.createButton({
         click_function = "nullFunc",
         label          = cardEnergy,
-        position       = {0.3,0.1,-0.6},
+        position       = {1.05,0.1,-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
-        width          = 400,
-        height         = 500,
-        font_size      = 460,
+        width          = 800,
+        height         = 400,
+        font_size      = 360,
     })
     self.createButton({
         click_function = "button18",
         function_owner = self,
         label          = "+",
-        position       = {0.4,0.1,-0.6},
+        position       = {1.18,0.1,-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
-        height         = 500,
-        font_size      = 460,
+        height         = 400,
+        font_size      = 360,
     })
     local func = function() editEnergy(card,cardEnergy,1,cardElements) end
     self.setVar("button18",func)
@@ -186,7 +187,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
     self.createButton({
         click_function = "nullFunc",
         label          = "Tag",
-        position       = {0.615,0.1,9*zPadding-(11*zPadding/2)},
+        position       = {0.615,0.1,9*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 800,
         height         = 400,
@@ -196,7 +197,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         click_function = "button19",
         function_owner = self,
         label          = "<",
-        position       = {0.75,0.1,9*zPadding-(11*zPadding/2)},
+        position       = {0.75,0.1,9*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
         height         = 400,
@@ -207,7 +208,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
     self.createButton({
         click_function = "nullFunc",
         label          = type,
-        position       = {0.965,0.1,9*zPadding-(11*zPadding/2)},
+        position       = {0.965,0.1,9*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 1600,
         height         = 400,
@@ -217,7 +218,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         click_function = "button20",
         function_owner = self,
         label          = ">",
-        position       = {1.18,0.1,9*zPadding-(11*zPadding/2)},
+        position       = {1.18,0.1,9*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
         height         = 400,
@@ -229,7 +230,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
     self.createButton({
         click_function = "nullFunc",
         label          = "Speed",
-        position       = {0.648,0.1,10*zPadding-(11*zPadding/2)},
+        position       = {0.648,0.1,10*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 1100,
         height         = 400,
@@ -239,7 +240,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         click_function = "button21",
         function_owner = self,
         label          = "<",
-        position       = {0.81,0.1,10*zPadding-(11*zPadding/2)},
+        position       = {0.81,0.1,10*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
         height         = 400,
@@ -250,7 +251,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
     self.createButton({
         click_function = "nullFunc",
         label          = speed,
-        position       = {0.995,0.1,10*zPadding-(11*zPadding/2)},
+        position       = {0.995,0.1,10*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 1300,
         height         = 400,
@@ -260,7 +261,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         click_function = "button22",
         function_owner = self,
         label          = ">",
-        position       = {1.18,0.1,10*zPadding-(11*zPadding/2)},
+        position       = {1.18,0.1,10*zPadding-(zOffset*zPadding/2)},
         scale          = {0.1,0.1,0.1},
         width          = 400,
         height         = 400,

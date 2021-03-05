@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "3/4/2021 10:59:00 PM",
+  "Date": "3/4/2021 11:02:22 PM",
   "VersionNumber": "v13.0.5",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -500,6 +500,30 @@
     {
       "Name": "Up Arrow",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219944339/EB4D863CFEC287CCCC3EFEB950949B22BDBE5258/"
+    },
+    {
+      "Name": "Dropdown Core Buttons",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219904645/3F8E3D33F8C4169C84C4D7657F3148FE4E1D7D14/"
+    },
+    {
+      "Name": "Dropdown Invader Board",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219905379/4CBE4398D6A1E936FBE1753CF639ECBEC630257E/"
+    },
+    {
+      "Name": "Dropdown Adversary",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219902527/E939E56C9B302B9E2A9DB2567573354371A12E18/"
+    },
+    {
+      "Name": "Dropdown Turn Order",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219915181/B2051EB6A00C5FE4823408737B0DBAD4993462AC/"
+    },
+    {
+      "Name": "Dropdown Scoring",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219906839/F2837D447A09B7718F35C669D13197C82E3741A6/"
+    },
+    {
+      "Name": "Dropdown Seat Controls",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219907769/D82CD49A9281ADD08A1A9F09908260359FFF1DD6/"
     }
   ],
   "SnapPoints": [

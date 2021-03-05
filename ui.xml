@@ -190,13 +190,13 @@
         <Button onClick="hideButtons" image="Up Arrow" preserveAspect="true" />
     </Panel>
 </Panel>
-<Panel id="panelUI" visibility="Invisible" width="130" height="110" rectAlignment="UpperRight" offsetXY="-265 0">
+<Panel id="panelUI" visibility="Invisible" width="130" height="150" rectAlignment="UpperRight" offsetXY="-265 0">
     <VerticalLayout>
-        <Button onClick="toggleButtonUI" textAlignment="MiddleCenter">Core Buttons</Button>
-        <Button onClick="toggleInvaderUI" textAlignment="MiddleCenter">Invader Board</Button>
-        <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" textAlignment="MiddleCenter">Adversary</Button>
-        <Button onClick="toggleTurnOrderUI" textAlignment="MiddleCenter">Turn Order</Button>
-        <Button onClick="toggleScoreUI" textAlignment="MiddleCenter">Scoring</Button>
-        <Button onClick="togglePlayerControls" textAlignment="MiddleCenter" tooltipPosition="Left">Seat Control</Button>
+        <Button onClick="toggleButtonUI" image="Dropdown Core Buttons" preserveAspect="true" />
+        <Button onClick="toggleInvaderUI" image="Dropdown Invader Board" preserveAspect="true" />
+        <Button id="panelUIAdversary" active="false" onClick="toggleAdversaryUI" image="Dropdown Adversary" preserveAspect="true" />
+        <Button onClick="toggleTurnOrderUI" image="Dropdown Turn Order" preserveAspect="true" />
+        <Button onClick="toggleScoreUI" image="Dropdown Scoring" preserveAspect="true" />
+        <Button onClick="togglePlayerControls" image="Dropdown Seat Controls" preserveAspect="true" />
     </VerticalLayout>
 </Panel>

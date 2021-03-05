@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 5.72800159,
-    "posY": 1.286557,
-    "posZ": -13.9736967,
-    "rotX": 1.08022857,
-    "rotY": 359.991272,
-    "rotZ": 359.073,
+    "posX": 6.48329973,
+    "posY": 1.5397383,
+    "posZ": -14.017972,
+    "rotX": 0.93564105,
+    "rotY": 0.02074694,
+    "rotZ": 1.22134566,
     "scaleX": 0.37,
     "scaleY": 1.0,
     "scaleZ": 0.37
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "Tags": [
+    "Any",
     "Destroy"
   ],
   "LayoutGroupSortIndex": 0,
@@ -52,17 +53,17 @@
       "GUID": "2df11a",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.919864655,
-        "posZ": -11.9513674,
-        "rotX": 5.017329e-06,
-        "rotY": 180.000015,
-        "rotZ": -0.00014204465,
+        "posX": -20.53024,
+        "posY": 0.8638792,
+        "posZ": -21.4040051,
+        "rotX": 0.004447406,
+        "rotY": 180.0,
+        "rotZ": -4.11566418e-07,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Sun",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -71,6 +72,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Any",
         "Destroy",
         "Sun"
       ],
@@ -107,17 +109,17 @@
       "GUID": "a69e28",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.919864535,
-        "posZ": -11.9513674,
-        "rotX": -1.11919269e-06,
-        "rotY": 180.000015,
-        "rotZ": -0.000145074766,
+        "posX": -20.53024,
+        "posY": 0.863879263,
+        "posZ": -21.4040051,
+        "rotX": 0.00444498472,
+        "rotY": 180.000031,
+        "rotZ": -5.502274e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Moon",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -126,6 +128,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Any",
         "Destroy",
         "Moon"
       ],
@@ -162,17 +165,17 @@
       "GUID": "b5415e",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.919864535,
-        "posZ": -11.9513674,
-        "rotX": -3.66052518e-06,
-        "rotY": 180.000015,
-        "rotZ": -0.000144406746,
+        "posX": -20.53024,
+        "posY": 0.863879263,
+        "posZ": -21.4040051,
+        "rotX": 0.00444935635,
+        "rotY": 180.000031,
+        "rotZ": 4.40738631e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Fire",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -181,6 +184,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Any",
         "Destroy",
         "Fire"
       ],
@@ -217,17 +221,17 @@
       "GUID": "2ce67f",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.919864535,
-        "posZ": -11.9513674,
-        "rotX": -1.62263166e-06,
-        "rotY": 180.000015,
-        "rotZ": -0.000144522011,
+        "posX": -20.53024,
+        "posY": 0.8638793,
+        "posZ": -21.4040051,
+        "rotX": 0.004455456,
+        "rotY": 180.000031,
+        "rotZ": -1.46526168e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Air",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -237,6 +241,7 @@
       },
       "Tags": [
         "Air",
+        "Any",
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
@@ -272,17 +277,17 @@
       "GUID": "cbf273",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.9198646,
-        "posZ": -11.9513674,
-        "rotX": -1.10260908e-06,
-        "rotY": 180.000015,
-        "rotZ": -0.000142395278,
+        "posX": -20.53024,
+        "posY": 0.8638792,
+        "posZ": -21.4040051,
+        "rotX": 0.004445588,
+        "rotY": 180.000031,
+        "rotZ": 7.846314e-07,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Water",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -291,6 +296,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Any",
         "Destroy",
         "Water"
       ],
@@ -327,17 +333,17 @@
       "GUID": "68e92d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.9198646,
-        "posZ": -11.9513674,
-        "rotX": -1.15345529e-06,
-        "rotY": 180.000015,
-        "rotZ": -0.0001449377,
+        "posX": -20.53024,
+        "posY": 0.8638792,
+        "posZ": -21.4040051,
+        "rotX": 0.00444815168,
+        "rotY": 180.000031,
+        "rotZ": 2.67365544e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Earth",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -346,6 +352,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Any",
         "Destroy",
         "Earth"
       ],
@@ -382,17 +389,17 @@
       "GUID": "44c9dc",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.9198646,
-        "posZ": -11.9513674,
-        "rotX": 3.01715453e-08,
-        "rotY": 180.000015,
-        "rotZ": -0.000144219826,
+        "posX": -20.53024,
+        "posY": 0.8638794,
+        "posZ": -21.4040051,
+        "rotX": 0.004448321,
+        "rotY": 180.000031,
+        "rotZ": -5.19321532e-07,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Plant",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -401,6 +408,7 @@
         "b": 1.0
       },
       "Tags": [
+        "Any",
         "Destroy",
         "Plant"
       ],
@@ -437,17 +445,17 @@
       "GUID": "d56660",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -17.7759819,
-        "posY": 0.919864655,
-        "posZ": -11.9513674,
-        "rotX": -9.51891366e-07,
-        "rotY": 180.000015,
-        "rotZ": -0.000141408571,
+        "posX": -20.53024,
+        "posY": 0.8638794,
+        "posZ": -21.4040051,
+        "rotX": 0.00445102155,
+        "rotY": 180.000031,
+        "rotZ": 2.17602746e-06,
         "scaleX": 0.367304444,
         "scaleY": 1.0,
         "scaleZ": 0.367304444
       },
-      "Nickname": "Any",
+      "Nickname": "Animal",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -457,6 +465,7 @@
       },
       "Tags": [
         "Animal",
+        "Any",
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,

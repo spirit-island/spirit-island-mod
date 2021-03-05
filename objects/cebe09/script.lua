@@ -3,10 +3,17 @@ useProgression = false
 progressionCard = nil
 useAspect = 2
 aspect = nil
+broadcast = nil
 
-function onLoad()
+function onLoad(saved_data)
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        broadcast = loaded_data.broadcast
+    end
+
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     if Global.getVar("gameStarted") then return end
+
     self.createButton({
         click_function = "SetupSpirit",
         function_owner = self,
@@ -48,15 +55,15 @@ function onLoad()
             progressionCard = obj
             self.editButton({
                 index          = 1,
-                label          = "No Progression",
-                width          = 2000,
+                label          = "Progression: No",
+                width          = 2200,
                 height         = 500,
             })
         elseif string.find(obj.getName(),"Aspects") then
             self.editButton({
                 index          = 2,
-                label          = "Include Aspects",
-                width          = 2000,
+                label          = "Aspects: All",
+                width          = 2300,
                 height         = 500,
             })
         end
@@ -118,8 +125,8 @@ function SetupSpirit(object_pick,player_color)
 
         -- Setup Ready Token
         local ready = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(7, 1.1, 7),
-            rotation = Vector(0, 180, 180),
+            position = Vector(spos.x,0,spos.z) + Vector(7.5, 1.1, 6.5),
+            rotation = Vector(0, 180, 0),
         })
 
         -- Setup Energy Counter
@@ -151,7 +158,7 @@ function SetupSpirit(object_pick,player_color)
         end
 
         -- Setup objects on top of board
-        for i,obj in pairs(castObjects) do
+        for _, obj in pairs(castObjects) do
             obj.setLock(false)
             if obj.type == "Deck" then
                 if obj.getName() == "Aspects" then
@@ -169,6 +176,10 @@ function SetupSpirit(object_pick,player_color)
                 obj.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))
                 placed = placed + 1
             end
+        end
+
+        if broadcast ~= nil then
+            Player[player_color].broadcast(broadcast, Color.SoftBlue)
         end
     else
         Player[player_color].broadcast("You already picked a spirit", "Red")
@@ -192,7 +203,7 @@ function HandleAspect(deck, player_color)
         end
     elseif useAspect == 3 then
         local found = false
-        for index, data in pairs(deck.getObjects()) do
+        for _, data in pairs(deck.getObjects()) do
             if data.name == aspect then
                 found = true
                 deck.takeObject({
@@ -218,12 +229,12 @@ function ToggleProgression()
     if useProgression then
         self.editButton({
             index          = 1,
-            label          = "Progression",
+            label          = "Progression: Yes",
         })
     else
         self.editButton({
             index          = 1,
-            label          = "No Progression",
+            label          = "Progression: No",
         })
     end
 end
@@ -236,17 +247,17 @@ function ToggleAspect(_, _, alt_click)
     if useAspect == 0 then
         self.editButton({
             index          = 2,
-            label          = "No Aspects",
+            label          = "Aspects: None",
         })
     elseif useAspect == 1 then
         self.editButton({
             index          = 2,
-            label          = "Random Aspect",
+            label          = "Aspects: Random",
         })
     else
         self.editButton({
             index          = 2,
-            label          = "Include Aspects",
+            label          = "Aspects: All",
         })
     end
 end
@@ -262,7 +273,7 @@ function upCast(obj)
         --debug        = true,
     })
     local hitObjects = {}
-    for i,v in pairs(hits) do
+    for _, v in pairs(hits) do
         if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end
     end
     return hitObjects

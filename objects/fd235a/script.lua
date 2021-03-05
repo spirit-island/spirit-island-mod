@@ -41,12 +41,12 @@ function getPowerCards(_, color)
         Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
     end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
-    for i=1,count do
+    for _ = 1, count do
         local card = minorPowerDeck.takeObject({flip = true})
         card.setPosition(Player[color].getHandTransform(2).position + Vector(-10,0,0))
     end
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
-    for i=1,count do
+    for _ = 1, count do
         local card = majorPowerDeck.takeObject({flip = true})
         card.setPosition(Player[color].getHandTransform(2).position + Vector(10,0,0))
     end

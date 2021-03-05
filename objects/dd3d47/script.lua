@@ -41,7 +41,7 @@ function InvaderDeckSetup(params)
         for i=1,#params.deck do
             if stageII == nil and (params.deck[i] == 2 or params.deck[i] == "C") then
                 stageII = i
-            elseif value == 3 then
+            elseif params.deck[i] == 3 then
                 stageIII = i
             end
         end

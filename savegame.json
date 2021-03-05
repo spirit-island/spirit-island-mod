@@ -1,0 +1,488 @@
+{
+  "SaveName": "Spirit Island [By MJ & iakona]",
+  "GameMode": "Spirit Island [By MJ & iakona]",
+  "Date": "3/5/2021 7:49:09 PM",
+  "VersionNumber": "v13.0.5",
+  "GameType": "Game",
+  "GameComplexity": "Medium Complexity",
+  "PlayingTime": [
+    30,
+    180
+  ],
+  "PlayerCounts": [
+    1,
+    6
+  ],
+  "Tags": [
+    "Cooperative Games",
+    "Thematic Games",
+    "Board Games",
+    "Strategy Games",
+    "Scripting"
+  ],
+  "Gravity": 0.5,
+  "PlayArea": 1.0,
+  "Table": "Table_None",
+  "Sky": "Sky_Forest",
+  "Rules": "",
+  "MusicPlayer": {
+    "RepeatSong": true,
+    "PlaylistEntry": 0,
+    "CurrentAudioTitle": "Zen",
+    "CurrentAudioURL": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
+    "AudioLibrary": [
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
+        "Item2": "Zen"
+      }
+    ]
+  },
+  "Grid": {
+    "Type": 0,
+    "Lines": false,
+    "Color": {
+      "r": 0.0353257916867733,
+      "g": 0.18965785205364227,
+      "b": 0.19686415791511536
+    },
+    "Opacity": 0.75,
+    "ThickLines": true,
+    "Snapping": true,
+    "Offset": false,
+    "BothSnapping": false,
+    "xSize": 0.5600000023841858,
+    "ySize": 0.5600000023841858,
+    "PosOffset": {
+      "x": 0.30000001192092896,
+      "y": 1.0,
+      "z": 0.30000001192092896
+    }
+  },
+  "Lighting": {
+    "LightIntensity": 0.5400000214576721,
+    "LightColor": {
+      "r": 1.0,
+      "g": 0.980400025844574,
+      "b": 0.8902000188827515
+    },
+    "AmbientIntensity": 1.2999999523162842,
+    "AmbientType": 0,
+    "AmbientSkyColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientEquatorColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientGroundColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "ReflectionIntensity": 1.0,
+    "LutIndex": 0,
+    "LutContribution": 1.0,
+    "LutURL": ""
+  },
+  "Hands": {
+    "Enable": true,
+    "DisableUnused": false,
+    "Hiding": 2
+  },
+  "ComponentTags": {
+    "labels": [
+      {
+        "displayed": "Blight",
+        "normalized": "blight"
+      },
+      {
+        "displayed": "Dahan",
+        "normalized": "dahan"
+      },
+      {
+        "displayed": "Major",
+        "normalized": "major"
+      },
+      {
+        "displayed": "Minor",
+        "normalized": "minor"
+      },
+      {
+        "displayed": "Unique",
+        "normalized": "unique"
+      },
+      {
+        "displayed": "Spirit",
+        "normalized": "spirit"
+      },
+      {
+        "displayed": "Highlight",
+        "normalized": "highlight"
+      },
+      {
+        "displayed": "Destroy",
+        "normalized": "destroy"
+      },
+      {
+        "displayed": "Balanced",
+        "normalized": "balanced"
+      },
+      {
+        "displayed": "Thematic",
+        "normalized": "thematic"
+      },
+      {
+        "displayed": "Invader Card",
+        "normalized": "invader_card"
+      },
+      {
+        "displayed": "Sun",
+        "normalized": "sun"
+      },
+      {
+        "displayed": "Moon",
+        "normalized": "moon"
+      },
+      {
+        "displayed": "Fire",
+        "normalized": "fire"
+      },
+      {
+        "displayed": "Air",
+        "normalized": "air"
+      },
+      {
+        "displayed": "Water",
+        "normalized": "water"
+      },
+      {
+        "displayed": "Earth",
+        "normalized": "earth"
+      },
+      {
+        "displayed": "Plant",
+        "normalized": "plant"
+      },
+      {
+        "displayed": "Animal",
+        "normalized": "animal"
+      },
+      {
+        "displayed": "Beasts",
+        "normalized": "beasts"
+      },
+      {
+        "displayed": "Fear",
+        "normalized": "fear"
+      },
+      {
+        "displayed": "Fast",
+        "normalized": "fast"
+      },
+      {
+        "displayed": "Slow",
+        "normalized": "slow"
+      },
+      {
+        "displayed": "Presence",
+        "normalized": "presence"
+      }
+    ]
+  },
+  "Turns": {
+    "Enable": false,
+    "Type": 0,
+    "TurnOrder": [],
+    "Reverse": false,
+    "SkipEmpty": false,
+    "DisableInteractions": false,
+    "PassTurns": true,
+    "TurnColor": ""
+  },
+  "TabStates": {
+    "0": {
+      "title": "Rules",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 0
+    },
+    "1": {
+      "title": "Game Config",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 1
+    },
+    "2": {
+      "title": "Sample of Custom Adversary Scripting",
+      "body": "difficulty={[0]=0,0,0,0,0,0,0}\r\nfearCards={[0]={0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}}\r\nfearTokens={[0]=0,0,0,0,0,0,0}\r\nbroadcast={\r\n    [0] = nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n}\r\npreSetup = true\r\npreSetupComplete = false\r\nreminderSetup = true\r\ninvaderDeckSetup = true\r\nlimitSetup = true\r\nlimitSetupComplete = false\r\nmapSetup = true\r\npostSetup = true\r\npostSetupComplete = false\r\nhasLossCondition = true\r\nhasUI = true\r\nrequirements = true\n\r\n-- This function is used for things that need to be done before other setup steps, i.e. swapping out component bags\r\nfunction PreSetup(params)\r\n    preSetupComplete = true\r\nend\r\n\r\n-- This function is only needed if you have custom reminder tiles\r\nfunction ReminderSetup(params)\r\n    return {}\r\nend\r\n\r\n-- This function allows you to change the invader deck\r\nfunction InvaderDeckSetup(params)\r\n    return params.deck\r\nend\r\n\r\n-- This function is used to have adversary abilities show up in UI\r\nfunction AdversaryUI(params)\r\nend\r\n\r\n-- This function is called before MapSetup which allows you to set component limits, i.e. France towns\r\nfunction LimitSetup(params)\r\n    limitSetupComplete = true\r\nend\r\n\r\n-- This function is used to add extra pieces on each island board\r\nfunction MapSetup(params)\r\n    return params.pieces\r\nend\r\n\r\n-- This function is used for setup that needs to happen afterwards, i.e. France Slave Rebellion\r\nfunction PostSetup(params)\r\n    postSetupComplete = true\r\nend\r\n\n-- This function is used for random adversary to see if any requirements like event deck or tokens are needed\nfunction Requirements(params)\n    return true\nend\n",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 2
+    }
+  },
+  "CameraStates": [
+    null,
+    {
+      "Position": {
+        "x": -26.941726684570312,
+        "y": -2.5,
+        "z": -28.409921646118164
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 36.92628479003906,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": -26.941726684570312,
+        "y": 34.20247268676758,
+        "z": -32.4693717956543
+      }
+    },
+    {
+      "Position": {
+        "x": -4.716699123382568,
+        "y": -2.5,
+        "z": -28.409921646118164
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 36.92628479003906,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": -4.716699123382568,
+        "y": 34.20247268676758,
+        "z": -32.4693717956543
+      }
+    },
+    {
+      "Position": {
+        "x": 18.09076499938965,
+        "y": -2.5,
+        "z": -28.409921646118164
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 36.92628479003906,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 18.09076499938965,
+        "y": 34.20247268676758,
+        "z": -32.4693717956543
+      }
+    },
+    {
+      "Position": {
+        "x": 41.21006393432617,
+        "y": -2.5,
+        "z": -28.409921646118164
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 36.92628479003906,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 41.21006393432617,
+        "y": 34.20247268676758,
+        "z": -32.4693717956543
+      }
+    },
+    {
+      "Position": {
+        "x": 63.877071380615234,
+        "y": -2.5,
+        "z": -28.409921646118164
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 36.92628479003906,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 63.877071380615234,
+        "y": 34.20247268676758,
+        "z": -32.4693717956543
+      }
+    },
+    {
+      "Position": {
+        "x": 87.33662414550781,
+        "y": -2.5,
+        "z": -28.409921646118164
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 36.92628479003906,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 87.33662414550781,
+        "y": 34.20247268676758,
+        "z": -32.4693717956543
+      }
+    },
+    {
+      "Position": {
+        "x": 29.143659591674805,
+        "y": -2.5,
+        "z": 27.90720558166504
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 73.05065155029297,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 29.143659591674805,
+        "y": 70.1078872680664,
+        "z": 19.87646484375
+      }
+    },
+    {
+      "Position": {
+        "x": -48.38931655883789,
+        "y": -2.5,
+        "z": 6.611774921417236
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 36.33530807495117,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": -48.38931655883789,
+        "y": 33.61507797241211,
+        "z": 2.6172945499420166
+      }
+    },
+    {
+      "Position": {
+        "x": -88.9902572631836,
+        "y": -2.5,
+        "z": -22.927257537841797
+      },
+      "Rotation": {
+        "x": 83.68850708007812,
+        "y": -1.1871874505686719e-07,
+        "z": 0.0
+      },
+      "Distance": 40.84674835205078,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": -88.9902572631836,
+        "y": 38.09917449951172,
+        "z": -27.41769790649414
+      }
+    }
+  ],
+  "DecalPallet": [],
+  "SnapPoints": [
+    {
+      "Position": {
+        "x": -45.619998931884766,
+        "y": 0.9611349105834961,
+        "z": -5.85999870300293
+      },
+      "Rotation": {
+        "x": 0.004446600563824177,
+        "y": 179.9951629638672,
+        "z": 180.0
+      },
+      "Tags": []
+    },
+    {
+      "Position": {
+        "x": -45.62001037597656,
+        "y": 0.9611349105834961,
+        "z": -10.609999656677246
+      },
+      "Rotation": {
+        "x": 0.004446886945515871,
+        "y": 180.0252685546875,
+        "z": 180.0
+      },
+      "Tags": []
+    },
+    {
+      "Position": {
+        "x": -52.65472412109375,
+        "y": 0.9611349105834961,
+        "z": -10.609999656677246
+      },
+      "Rotation": {
+        "x": 0.004446768201887608,
+        "y": 180.0,
+        "z": 1.4859217856155738e-08
+      },
+      "Tags": [
+        "Unique"
+      ]
+    },
+    {
+      "Position": {
+        "x": -49.11412048339844,
+        "y": 0.9611349105834961,
+        "z": -10.609999656677246
+      },
+      "Rotation": {
+        "x": 0.004446516279131174,
+        "y": 179.99998474121094,
+        "z": 2.4798248432489345e-07
+      },
+      "Tags": [
+        "Minor"
+      ]
+    },
+    {
+      "Position": {
+        "x": -49.11412048339844,
+        "y": 0.9611349105834961,
+        "z": -5.860074043273926
+      },
+      "Rotation": {
+        "x": 0.004446510691195726,
+        "y": 179.9958953857422,
+        "z": -5.555111215471698e-07
+      },
+      "Tags": [
+        "Major"
+      ]
+    }
+  ]
+}

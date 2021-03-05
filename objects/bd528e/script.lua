@@ -17,7 +17,7 @@ function PostSetup()
 end
 function removeTokens(obj)
     local diff = obj.getQuantity() - (Global.getVar("numBoards") * 4)
-    for i=1,diff do
+    for _ = 1, diff do
         obj.takeObject({}).destruct()
     end
     postSetupComplete = true

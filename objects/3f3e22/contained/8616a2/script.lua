@@ -1,4 +1,6 @@
-sourceSpiritID = "21f561"
+sourceSpiritID = "SourceSpirit"
+
+local rescan
 
 function onLoad()
     self.createButton({
@@ -15,14 +17,7 @@ function onLoad()
 end
 
 function scan()
-    local objs = upCastPosSizRot(
-        {self.getPosition().x,self.getPosition().y+0.2,self.getPosition().z},
-        {0,1,0},
-        {0,0,0},
-        0.4,
-        0.2,
-        {"Tile"}
-    )
+    local objs = upCast(self, 0.4, 0.1, {"Tile"})
     if #objs == 0 then
         clearButtons()
         return
@@ -33,7 +28,7 @@ function scan()
     end
     if rescan or #self.getButtons() == 1 then
         rescan = false
-        obje = objs[1]
+        local obje = objs[1]
         createButtons(obje)
     end
 end
@@ -84,40 +79,31 @@ function makeSpirit(obj)
     scan()
 end
 
-function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
-    local rot = rot or {0,0,0}
-    local dist = dist or 1
-    local offset = offset or 0
-    local multi = multi or 1
-    local tags = tags or {}
-    local oBounds = size
-    local oRot = rot
-    local orig = {oPos[1],oPos[2],oPos[3]}
-    local siz = {oBounds[1]*multi,dist,oBounds[3]*multi}
-    local orient = {oRot[1],oRot[2],oRot[3]}
+function upCast(obj,dist,offset,types)
+    dist = dist or 1
+    offset = offset or 0
+    types = types or {}
     local hits = Physics.cast({
-        origin       = orig,
-        direction    = {0,1,0},
+        origin       = obj.getPosition() + Vector(0,offset,0),
+        direction    = Vector(0,1,0),
         type         = 3,
-        size         = siz,
-        orientation  = orient,
-        max_distance = 0,
+        size         = obj.getBoundsNormalized().size,
+        orientation  = obj.getRotation(),
+        max_distance = dist,
         --debug        = true,
     })
     local hitObjects = {}
-    for i,v in pairs(hits) do
-        if v.hit_object ~= obj then
-            if tags ~= {} then
-                local matchesTag = false
-                for _,t in pairs(tags) do
-                    if v.hit_object.type == t then matchesTag = true end
-                end
-                if matchesTag then
-                    table.insert(hitObjects,v.hit_object)
-                end
-            else
+    for _,v in pairs(hits) do
+        if types ~= {} then
+            local matchesType = false
+            for _,t in pairs(types) do
+                if v.hit_object.type == t then matchesType = true end
+            end
+            if matchesType then
                 table.insert(hitObjects,v.hit_object)
             end
+        else
+            table.insert(hitObjects,v.hit_object)
         end
     end
     return hitObjects

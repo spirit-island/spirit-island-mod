@@ -1,0 +1,122 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -42.13264846801758,
+    "posY": 1.4030241966247559,
+    "posZ": 46.949161529541016,
+    "rotX": 3.2526168070035055e-07,
+    "rotY": 179.9775390625,
+    "rotZ": -1.777192551344342e-06,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Orange's Presence",
+  "Description": "A piece showing where a spirit lives in a land",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.9529411196708679,
+    "g": 0.5517460107803345,
+    "b": 0.10980311781167984
+  },
+  "Tags": [
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": false
+  },
+  "States": {
+    "2": {
+      "GUID": "7687b3",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -48.89189147949219,
+        "posY": 1.059999942779541,
+        "posZ": 47.50254440307617,
+        "rotX": -2.1183270249025554e-08,
+        "rotY": 179.9773712158203,
+        "rotZ": -1.3397203701970284e-06,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Orange's Presence",
+      "Description": "A piece showing where a spirit lives in a land",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.9529411196708679,
+        "g": 0.5517460107803345,
+        "b": 0.10980311781167984
+      },
+      "Tags": [
+        "Presence"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 5,
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedDecals": [
+        {
+          "Transform": {
+            "posX": 0.0,
+            "posY": -0.14000000059604645,
+            "posZ": 0.0,
+            "rotX": 90.0,
+            "rotY": 180.0,
+            "rotZ": 0.0,
+            "scaleX": 3.0,
+            "scaleY": 3.0,
+            "scaleZ": 3.0
+          },
+          "CustomDecal": {
+            "Name": "Orange's Sacred Site",
+            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1752434562676884361/85EE264FD32632A9DD3828EA9538FDBC4F2FBC22/",
+            "Size": 1.0
+          }
+        }
+      ]
+    }
+  }
+}

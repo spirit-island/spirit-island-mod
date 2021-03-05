@@ -142,7 +142,7 @@ function PostSetup(params)
     local adversaryBag = Global.getVar("adversaryBag")
     adversaryBag.takeObject({
         guid = "15836a",
-        position = self.getPosition() + vector(1.9, 0, 1.9),
+        position = self.getPosition() + Vector(1.9, 0, 1.9),
         rotation = {0,180,0},
         callback_function = function(obj)
             obj.setLock(true)
@@ -170,10 +170,10 @@ function PostSetup(params)
         Wait.condition(function()
             setupInvaderCard(fearDeckZone, fearCards, 3, Global.getVar("stage2DeckZone"))
             Wait.condition(function() postSetupComplete = true end, function()
-                objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 2
+                local objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 2
             end)
         end, function()
-            objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
+            local objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
         end)
     else
         postSetupComplete = true
@@ -225,7 +225,7 @@ function checkLoss()
         beasts = beasts - 1
     end
     if destroyed > beasts then
-        broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
+        broadcastToAll("Russia wins via Additional Loss Condition!", "Red")
         Wait.stop(checkLossID)
     end
 end

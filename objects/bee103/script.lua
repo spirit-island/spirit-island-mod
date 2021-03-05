@@ -1,14 +1,15 @@
 numCards = 0
 discard = Vector(-51.25, 1.5, 0.38)
+xDiff = 6
 
 function onSave()
     local data_table = {
         discard = discard,
     }
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 function onLoad(saved_data)
+    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         discard = Vector(loaded_data.discard)
@@ -72,7 +73,7 @@ function onLoad(saved_data)
         click_function = "advanceInvaderCards",
         function_owner = self,
         label          = "",
-        position       = Vector(1.58,0,1.874),
+        position       = Vector(1.78,0,1.874),
         width          = 0,
         height         = 0,
         scale          = Vector(0.2,0.2,0.2),
@@ -125,6 +126,18 @@ function onLoad(saved_data)
         font_size      = 300,
         tooltip        = "Sums all players elemental contributions\n\nFor use with Events that read \"Aided by\""
     })
+    self.createButton({
+        click_function = "flipExploreCard",
+        function_owner = self,
+        label          = "",
+        position       = Vector(1.58,0,1.874),
+        rotation       = Vector(0,270,0),
+        width          = 0,
+        height         = 0,
+        scale          = Vector(0.2,0.2,0.2),
+        font_size      = 300,
+        tooltip        = "Flip over the top Invader Card"
+    })
     placeReadyTokens()
     placeElementTokens()
     updateFearUI()
@@ -155,6 +168,12 @@ function setupGame()
         width = 2100,
         height = 500,
     })
+    self.editButton({
+        index = 10,
+        label = "Explore",
+        width = 1500,
+        height = 500,
+    })
     Wait.time(aidPanelScanLoop,1,-1)
     Wait.time(scanReady,1,-1)
 
@@ -179,7 +198,6 @@ function setupGame()
     end
 end
 
-xDiff = 6
 function blankFunc()
 end
 function wt(some)
@@ -190,6 +208,22 @@ function wt(some)
 end
 
 ---- Invader Card Section
+function flipExploreCard()
+    local objs = Global.getVar("invaderDeckZone").getObjects()
+    if #objs ~= 1 then
+        -- already have a faceup card
+        return
+    end
+    if objs[1].type == "Deck" then
+        objs[1].takeObject({
+            position = objs[1].getPosition() + Vector(0,.5,0),
+            flip = true,
+        })
+    elseif objs[1].type == "Card" then
+        objs[1].flip()
+    end
+end
+
 scanLoopTable= {
     Build2 = {
         sourceGUID = "e5d18b",
@@ -306,7 +340,6 @@ function aidPanelScanLoop()
                 for _,hit in pairs(hitObjects) do
                     if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
                         local iType = hit.getVar("cardInvaderType")
-                        local iStage = hit.getVar("cardInvaderStage")
                         table.insert(stageTable,iType)
                         count = count + 1
                     end
@@ -358,7 +391,6 @@ function getStage(o)
         end
         return stage
     elseif o.type == "Deck" then
-        local stage = nil
         for _,obj in pairs(o.getObjects()) do
             local found = false
             for _,tag in pairs(obj.tags) do
@@ -368,8 +400,8 @@ function getStage(o)
                 end
             end
             if found then
-                local start,finish = string.find(obj.lua_script,"cardInvaderStage=")
-                stage = tonumber(string.sub(obj.lua_script,finish+1))
+                local _, finish = string.find(obj.lua_script,"cardInvaderStage=")
+                local stage = tonumber(string.sub(obj.lua_script,finish+1))
                 -- Prussia early stage 3 should count as stage 2
                 if string.find(obj.lua_script,"special=") ~= nil then
                     stage = stage - 1
@@ -461,13 +493,25 @@ end
 function getFearDeck(fearDeckZone)
     local fearDeck = nil
     for _,obj in pairs(fearDeckZone.getObjects()) do
-        if obj.type == "Deck" or obj.type == "Card" then
-            if fearDeck == nil then
-                fearDeck = obj
-            else
-                broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
-                return nil
+        if obj.type == "Deck" then
+            local found = false
+            for _,o in pairs(obj.getObjects()) do
+                for _,tag in pairs(o.tags) do
+                    if tag == "Fear" then
+                        fearDeck = obj
+                        found = true
+                        break
+                    end
+                end
+                if found then
+                    break
+                end
             end
+        elseif obj.type == "Card" and obj.hasTag("Fear") then
+            fearDeck = obj
+        else
+            broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
+            return nil
         end
     end
     return fearDeck
@@ -493,7 +537,7 @@ function earnFearCard(completedTable, fearDeck, earnedPos, dividerPos)
                     card.setRotationSmooth(Vector(0, 180, 180))
                     emptyDeck = true
                 end
-                broadcastToAll("Fear Card Earned!", {1,0,0})
+                broadcastToAll("Fear Card Earned!", Color.SoftBlue)
             end
             cardsMoved = cardsMoved + 1
             Wait.condition(function() movesCompleted = movesCompleted + 1 end, function() return card == nil or not card.isSmoothMoving() end)
@@ -523,7 +567,7 @@ function earnTerrorLevel(completedTable, fearDeck, earnedPos, dividerPos)
     end
 end
 function examineCard(fearDeck, dividerPos)
-    local card = nil
+    local card
     local emptyDeck = false
     if fearDeck.type == "Deck" then
         if fearDeck.remainder then
@@ -687,7 +731,7 @@ function scanReady()
     local no = {}
     for color,guid in pairs(playerReadyGuids) do
         if selectedColors[color] then
-            if selectedColors[color].resting and not selectedColors[color].is_face_down then
+            if selectedColors[color].ready.resting and selectedColors[color].ready.is_face_down then
                 getObjectFromGUID(guid).editButton({
                     index=0,
                     label="Yes",
@@ -723,7 +767,7 @@ elementGuids = {
 }
 
 function placeElementTokens()
-    for i,v in pairs (elementGuids) do
+    for _, v in pairs (elementGuids) do
         local obj = getObjectFromGUID(v)
         local pos = obj.getPosition()
         if pos.x - self.getPosition().x > 10 then

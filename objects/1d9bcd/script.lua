@@ -19,15 +19,14 @@ function onSave()
         count = Global.UI.getAttribute("panelAdversaryLossCounterCount","text")
     end
     if count == nil then count = 0 end
-    data_table = {
+    local data_table = {
         count = count,
     }
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 
 function onLoad(saved_data)
-    loaded_data = JSON.decode(saved_data)
+    local loaded_data = JSON.decode(saved_data)
     count = loaded_data.count
 end
 
@@ -92,6 +91,7 @@ function AdversaryUI(params)
     ui.loss.counter = {}
     ui.loss.counter.text = "Blight Count: "
     ui.loss.counter.buttons = true
+    ui.loss.counter.callback = "updateCount"
     Global.call("UpdateAdversaryLossCounter",{count=count,supporting=supporting})
 
     ui.escalation = {}
@@ -123,6 +123,11 @@ function AdversaryUI(params)
     end
     return ui
 end
+function updateCount(params)
+    if params.count > Global.getVar("numBoards") then
+        broadcastToAll("Habsburg wins via Additional Loss Condition!", "Red")
+    end
+end
 
 function MapSetup(params)
     if not params.extra and params.level >= 2 then
@@ -149,7 +154,7 @@ function PostSetup(params)
         })
     end
     if params.level >= 5 then
-        local zone = getObjectFromGUID(Global.getVar("invaderDeckZone"))
+        local zone = Global.getVar("invaderDeckZone")
         local invaderDeck = zone.getObjects()[1]
         if invaderDeck ~= nil then
             local count = #invaderDeck.getObjects()

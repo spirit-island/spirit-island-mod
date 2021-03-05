@@ -12,12 +12,12 @@
     "scaleZ": 0.8771735429763794
   },
   "Nickname": "Scenario Markers",
-  "Description": "Use these to track the uses of your special rule  \"Pour Down Power Across The Land\"",
+  "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.6951219439506531,
     "g": 0.4909449815750122,
-    "b": 0.35475292801856995
+    "b": 0.354752779006958
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

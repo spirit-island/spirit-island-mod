@@ -3,6 +3,8 @@ offset = {-1.3,1.5,0}
 rotation = {0,270,40}
 color = {0.95,0.95,0.95}
 
+local callbackObj, callbackFunc
+
 function onLoad(saved_data)
     upd()
 end
@@ -27,7 +29,7 @@ function upd()
         font_size      = size,
         font_color     = color,
     })
-    if #self.getObjects() == 0 and Global.getVar("gameStarted") then broadcastToAll("0 Towns left in supply", "Red") end
+    if #self.getObjects() == 0 and Global.getVar("gameStarted") then broadcastToAll("Town Bag is now empty", {1,0.4,0}) end
     if callbackObj ~= nil and callbackFunc ~= nil then
         callbackObj.call(callbackFunc, {count=#self.getObjects()})
     end

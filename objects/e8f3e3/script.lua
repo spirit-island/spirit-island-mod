@@ -20,8 +20,7 @@ function onSave()
     local data_table = {
         thematicRebellion = thematicRebellion
     }
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
@@ -33,25 +32,18 @@ end
 
 function onObjectSpawn(obj)
     if obj.guid == slaveRebellion then
-        local scale = flipVector(Vector(obj.getScale()))
         obj.createButton({
             click_function = "setupSlaveRebellion",
             function_owner = self,
             label          = "Return to Deck",
             position       = Vector(0,0.3,1.43),
             width          = 1100,
-            scale          = scale,
+            scale          = Vector(0.65,1,0.65),
             height         = 160,
             font_size      = 150,
             tooltip = "Return Slave Rebellion back to the Event Deck as per Setup"
         })
     end
-end
-function flipVector(vec)
-    vec.x = 1/vec.x
-    vec.y = 1/vec.y
-    vec.z = 1/vec.z
-    return vec
 end
 
 function PreSetup(params)
@@ -165,7 +157,7 @@ function LimitSetup(params)
             rotation = Vector(0,180,0),
         })
         -- Loop starts at 2 since tempObject will be added to the bag at the end
-        for i=2,townLimit do
+        for _ = 2, townLimit do
             townBag.putObject(tempObject.clone({
                 position = townBag.getPosition() + Vector(0,3,0),
                 rotation = Vector(0,180,0),
@@ -203,7 +195,7 @@ function PostSetup(params)
     if params.level >= 5 then
         local returnBlightBag = adversaryBag.takeObject({
             guid = "2ea157",
-            position = self.getPosition() + vector(1.9, 0, 1.9),
+            position = self.getPosition() + Vector(1.9, 0, 1.9),
             rotation = {0,180,0},
             callback_function = function(obj) obj.setLock(true) end,
         })

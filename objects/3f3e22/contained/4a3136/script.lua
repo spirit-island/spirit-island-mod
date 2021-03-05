@@ -1,3 +1,5 @@
+local rescan
+
 function onLoad()
     self.createButton({
         click_function = "nullFunc",
@@ -12,14 +14,7 @@ function onLoad()
 end
 
 function scan()
-    local objs = upCastPosSizRot(
-        {self.getPosition().x,self.getPosition().y+0.1,self.getPosition().z},
-        {0,1,0},
-        {0,0,0},
-        0.4,
-        0.2,
-        {"Card"}
-    )
+    local objs = upCast(self, 0.4, 0.1, {"Card"})
     if #objs == 0 then
         clearButtons()
         return
@@ -192,81 +187,56 @@ function createButtons(card,cardBlight,cardImmediate,cardHealthy)
     self.setVar("button6",func)
 end
 
-function editBlight(obj,cardBlight,blight,cardImmediate,cardHealthy)
-    blight = math.max(1,cardBlight+blight)
-    scriptString = "blight="..blight
-    if cardImmediate then
-        scriptString = scriptString.."\nimmediate=true"
-    end
-    if cardHealthy then
-        scriptString = scriptString.."\nhealthy=true"
-    end
-    obj.setLuaScript(scriptString)
-    obj.reload()
-    rescan = true
-    scan()
-end
-function editImmediate(obj,cardBlight,immediate,cardHealthy)
-    scriptString = "blight="..cardBlight
+local function updateCard(obj, blight, immediate, healthy)
+    local scriptString = "blight=" .. blight
     if immediate then
-        scriptString = scriptString.."\nimmediate=true"
-    end
-    if cardHealthy then
-        scriptString = scriptString.."\nhealthy=true"
-    end
-    obj.setLuaScript(scriptString)
-    obj.reload()
-    rescan = true
-    scan()
-end
-function editHealthy(obj,cardBlight,cardImmediate,healthy)
-    scriptString = "blight="..cardBlight
-    if cardImmediate then
-        scriptString = scriptString.."\nimmediate=true"
+        scriptString = scriptString .. "\nimmediate=true"
     end
     if healthy then
-        scriptString = scriptString.."\nhealthy=true"
+        scriptString = scriptString .. "\nhealthy=true"
     end
-    obj.setLuaScript(scriptString)
+    obj.setLuaScript(scriptString .. "\n")
     obj.reload()
     rescan = true
     scan()
 end
 
-function upCastPosSizRot(oPos,size,rot,dist,multi,tags)
-    local rot = rot or {0,0,0}
-    local dist = dist or 1
-    local offset = offset or 0
-    local multi = multi or 1
-    local tags = tags or {}
-    local oBounds = size
-    local oRot = rot
-    local orig = {oPos[1],oPos[2],oPos[3]}
-    local siz = {oBounds[1]*multi,dist,oBounds[3]*multi}
-    local orient = {oRot[1],oRot[2],oRot[3]}
+function editBlight(obj, cardBlight, blightChange, cardImmediate, cardHealthy)
+    local newBlight = math.max(1, cardBlight + blightChange)
+    updateCard(obj, newBlight, cardImmediate, cardHealthy)
+end
+function editImmediate(obj, cardBlight, immediate, cardHealthy)
+    updateCard(obj, cardBlight, immediate, cardHealthy)
+end
+function editHealthy(obj, cardBlight, cardImmediate, healthy)
+    updateCard(obj, cardBlight, cardImmediate, healthy)
+end
+
+function upCast(obj,dist,offset,types)
+    dist = dist or 1
+    offset = offset or 0
+    types = types or {}
     local hits = Physics.cast({
-        origin       = orig,
-        direction    = {0,1,0},
+        origin       = obj.getPosition() + Vector(0,offset,0),
+        direction    = Vector(0,1,0),
         type         = 3,
-        size         = siz,
-        orientation  = orient,
-        max_distance = 0,
+        size         = obj.getBoundsNormalized().size,
+        orientation  = obj.getRotation(),
+        max_distance = dist,
         --debug        = true,
     })
     local hitObjects = {}
-    for i,v in pairs(hits) do
-        if v.hit_object ~= obj then
-            if tags ~= {} then
-                local matchesTag = false
-                for _,t in pairs(tags) do
-                    if v.hit_object.type == t then matchesTag = true end
-                end
-                if matchesTag then
-                    table.insert(hitObjects,v.hit_object)
-                end
-            else
+    for _,v in pairs(hits) do
+        if types ~= {} then
+            local matchesType = false
+            for _,t in pairs(types) do
+                if v.hit_object.type == t then matchesType = true end
+            end
+            if matchesType then
                 table.insert(hitObjects,v.hit_object)
             end
+        else
+            table.insert(hitObjects,v.hit_object)
         end
     end
     return hitObjects

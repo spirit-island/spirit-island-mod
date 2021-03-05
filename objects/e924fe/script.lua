@@ -4,6 +4,7 @@ requirements = true
 mapSetup = true
 postSetup = true
 postSetupComplete = false
+blightCount = nil
 
 function onLoad()
     if Global.getVar("gameStarted") then
@@ -241,7 +242,7 @@ function ExportConfig()
     if powersBag ~= nil then
         local powers = {}
         local inserted = false
-        for i,card in pairs(bagPowers) do
+        for _, card in pairs(bagPowers) do
             local tag = ""
             for _,cardTag in pairs(card.tags) do
                 if cardTag == "Minor" then

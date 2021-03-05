@@ -9,8 +9,8 @@ function onObjectLeaveContainer(container, leave_object)
     if container == self then upd() end
 end
 function upd()
-    objects = {}
-    for i,obj in pairs (self.getObjects()) do
+    local objects = {}
+    for _, obj in pairs (self.getObjects()) do
         if objects[obj.name] == nil then
             objects[obj.name] = 1
         else
@@ -19,13 +19,13 @@ function upd()
     end
     local keyset = {}
     local n = 0
-    for k,v in pairs(objects) do
+    for k, _ in pairs(objects) do
         n=n+1
         keyset[n]=k
     end
     table.sort(keyset)
-    strings = {}
-    for i,objName in pairs (keyset) do
+    local strings = {}
+    for _, objName in pairs (keyset) do
         table.insert(strings,objects[objName].." x "..objName)
     end
     self.clearButtons()

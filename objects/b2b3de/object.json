@@ -1,0 +1,47 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -114.68000030517578,
+    "posY": 1.090354084968567,
+    "posZ": -1.28985595703125,
+    "rotX": 0.004575320519506931,
+    "rotY": 180.00286865234375,
+    "rotZ": 0.00037409650394693017,
+    "scaleX": 0.8771735429763794,
+    "scaleY": 1.0,
+    "scaleZ": 0.8771735429763794
+  },
+  "Nickname": "Spare Piece",
+  "Description": "Use these to cover up the unavailable growth options from your special rule  \"Growth Begets Growth\"",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.6951219439506531,
+    "g": 0.4909449815750122,
+    "b": 0.354752779006958
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394413445/4C1E6486A3F45CB50EE3F485A7BB875429E0FA70/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/868489312394413103/B0F2D546BBD978061F7B1D4136EB2BEDB2ADAEDD/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 2,
+      "Thickness": 0.10000000149011612,
+      "Stackable": true,
+      "Stretch": true
+    }
+  }
+}

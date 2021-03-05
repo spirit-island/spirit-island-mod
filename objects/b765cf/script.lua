@@ -15,15 +15,14 @@ highImmigrationDiscardPosition = Vector(-52.90, 1.3, -5.30)
 originalDiscardPosition = Vector(-51.25, 1.5, 0.38)
 
 function onSave()
-    data_table = {
+    local data_table = {
         build2 = UI.getAttribute("panelBuild2","active"),
     }
-    saved_data = JSON.encode(data_table)
-    return saved_data
+    return JSON.encode(data_table)
 end
 
 function onLoad(saved_data)
-    loaded_data = JSON.decode(saved_data)
+    local loaded_data = JSON.decode(saved_data)
     if loaded_data.build2 == "true" then
         UI.setAttribute("panelBuild2","active",true)
         UI.setAttribute("panelInvader","width","470")
@@ -35,11 +34,11 @@ function onObjectPickUp(player_color, picked_up_object)
         UI.setAttribute("panelBuild2","active",false)
         UI.setAttribute("panelInvader","width","380")
         local aidBoard = Global.getVar("aidBoard")
-        moveDiscard(aidBoard)
+        moveDiscard(aidBoard, picked_up_object)
         removeEnglandSnap(aidBoard)
     end
 end
-function moveDiscard(aidBoard)
+function moveDiscard(aidBoard, immigrationTile)
     local currentDiscard = aidBoard.getTable("discard")
     local hits = Physics.cast({
         origin       = currentDiscard,
@@ -58,11 +57,31 @@ function moveDiscard(aidBoard)
             end
         end
     end
+
+    hits = Physics.cast({
+        origin       = immigrationTile.getPosition(),
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = Vector(1,0.9,1.5),
+        orientation  = Vector(0,90,0),
+        max_distance = 0,
+        --debug        = true,
+    })
+    for _,hit in pairs(hits) do
+        if hit.hit_object ~= immigrationTile then
+            if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
+                Wait.frames(function()
+                    hit.hit_object.setPosition(originalDiscardPosition + Vector(0,0.5,0))
+                    hit.hit_object.setRotation(Vector(0,90,0))
+                end, 1)
+            end
+        end
+    end
 end
 function removeEnglandSnap(aidBoard)
     local snapPoints = Global.getSnapPoints()
     local newSnapPoints = {}
-    for i,v in ipairs(snapPoints) do
+    for _, v in ipairs(snapPoints) do
         if table.concat(v.tags, "|") ~= "Invader Card" then
             table.insert(newSnapPoints,v)
         end
@@ -200,7 +219,7 @@ end
 function englandSnap(aidBoard)
     local snapPoints = aidBoard.getSnapPoints()
     local newSnapPoints = {}
-    for i,v in ipairs(snapPoints) do
+    for _, v in ipairs(snapPoints) do
         if table.concat(v.tags, "|") ~= "Invader Card" then
             table.insert(newSnapPoints,v)
         end

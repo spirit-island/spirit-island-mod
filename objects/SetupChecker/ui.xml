@@ -187,13 +187,10 @@
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="scaleBoard" onValueChanged="toggleScale" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Island Boards</Toggle></Cell>
-            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3750 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3690 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

@@ -1,3 +1,7 @@
+<Defaults>
+    <Text tooltipBackgroundColor="black" />
+</Defaults>
+
 <Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" rectAlignment="LowerRight" offsetXY="0 409">
     <Image image="Fear and Blight" preserveAspect="true" />
     <Text id="panelBlightPool" fontStyle="Bold" fontSize="50" offsetXY="-60 5" text="" />

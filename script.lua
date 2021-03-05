@@ -3723,7 +3723,7 @@ function updateAidPanel(tabIn)
         for j,card in pairs(cards) do
             for k = 1,string.len(card.type) do
                 local type = string.sub(card.type,k,k)
-                set(tType,j,k,type,#cards,card.escalate)
+                set(tType,j,k,types,card.escalate)
                 size(tType,j,k,#cards,string.len(card.type))
                 show(tType,j,k)
             end
@@ -3732,19 +3732,19 @@ function updateAidPanel(tabIn)
             if tType == "Explore" then
                 toggleInvaderPhaseImage(false)
                 if tabIn["Stage"] ~= 0 then
-                    set(tType,1,1,tabIn["Stage"],1,false)
+                    set(tType,1,1,tabIn["Stage"],false)
                     size(tType,1,1,1,1)
                     show(tType,1,1)
                 else
                     alert(tType)
                     size(tType,1,1,"E")
-                    set(tType,1,1,"E",1,false)
+                    set(tType,1,1,"E",false)
                     show(tType,1,1)
                 end
             else
                 dark(tType)
                 size(tType,1,1,"n")
-                set(tType,1,1,"n",1,false)
+                set(tType,1,1,"n",false)
                 show(tType,1,1)
             end
         else
@@ -3776,24 +3776,14 @@ function alert(a)
     UI.setAttribute("panel"..a.."0", "color", invaderColors["E"])
     UI.setAttribute("panel"..a.."0".."text", "color", invaderFontColors["E"])
 end
-function set(a,b,c,d,e, escalate)
-    local tOff
-    if e >= 2 then
-        if b == 1 then
-            tOff = 40
-        else
-            tOff = 8
-        end
-    else
-        tOff = 10
-    end
+function set(a,b,c,d, escalate)
     local tooltip = tooltips[d]
     local text = textOut[d]
     if escalate then
         tooltip = tooltip.." with Escalation"
         text = text.."ₑ"
     end
-    UI.setAttributes("panel"..a..b..c, {color = invaderColors[d], tooltip = tooltip, tooltipPosition="Below", tooltipOffset=tOff})
+    UI.setAttributes("panel"..a..b..c, {color = invaderColors[d], tooltip = tooltip, tooltipPosition="Above"})
     UI.setAttributes("panel"..a..b..c.."text", {color = invaderFontColors[d], text = text})
 end
 function hideAll(a)

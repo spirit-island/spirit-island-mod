@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
   "GameMode": "Spirit Island [By MJ & iakona]",
-  "Date": "3/4/2021 5:46:06 PM",
+  "Date": "3/4/2021 10:59:00 PM",
   "VersionNumber": "v13.0.5",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -492,6 +492,14 @@
     {
       "Name": "England Invader Phase Stage",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238899967/B8A467C06F6B2DB519B368C6CF74217273C3D1B3/"
+    },
+    {
+      "Name": "Down Arrow",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219943368/8277DA4C674207C55915F1876E8D30777BE2DAC4/"
+    },
+    {
+      "Name": "Up Arrow",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219944339/EB4D863CFEC287CCCC3EFEB950949B22BDBE5258/"
     }
   ],
   "SnapPoints": [

@@ -3723,7 +3723,7 @@ function updateAidPanel(tabIn)
         for j,card in pairs(cards) do
             for k = 1,string.len(card.type) do
                 local type = string.sub(card.type,k,k)
-                set(tType,j,k,types,card.escalate)
+                set(tType,j,k,type,card.escalate)
                 size(tType,j,k,#cards,string.len(card.type))
                 show(tType,j,k)
             end

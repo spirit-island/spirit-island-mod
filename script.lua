@@ -4089,12 +4089,77 @@ function swapPlayerColors(a, b)
     return false
 end
 
+function swapPlayerUI(a, b, xmlID)
+    local aEnabled = false
+    local bEnabled = false
+    local currentVisiTable = getVisiTable(xmlID)
+    for _,color in ipairs(currentVisiTable) do
+        if color == a then
+            aEnabled = true
+        elseif color == b then
+            bEnabled = true
+        end
+    end
+    if aEnabled == bEnabled then
+        return nil
+    end
+
+    local newVisiTable = {}
+    for _,color in ipairs(currentVisiTable) do
+        if (color ~= a and aEnabled) or (color ~= b and bEnabled) then
+            table.insert(newVisiTable,color)
+        end
+    end
+    if aEnabled then
+        table.insert(newVisiTable,b)
+    else
+        table.insert(newVisiTable,a)
+    end
+    return newVisiTable
+end
+function swapPlayerUIs(a, b)
+    local newVisiTable = swapPlayerUI(a, b, "panelUIToggleHide")
+    if newVisiTable ~= nil then
+        setVisiTable("panelUIToggleHide",newVisiTable)
+        setVisiTable("panelUI",newVisiTable)
+    end
+
+    newVisiTable = swapPlayerUI(a, b, "panelInvader")
+    if newVisiTable ~= nil then
+        setVisiTable("panelInvader",newVisiTable)
+        setVisiTable("panelBlightFear",newVisiTable)
+    end
+
+    newVisiTable = swapPlayerUI(a, b, "panelAdversary")
+    if newVisiTable ~= nil then
+        setVisiTable("panelAdversary",newVisiTable)
+    end
+
+    newVisiTable = swapPlayerUI(a, b, "panelTurnOrder")
+    if newVisiTable ~= nil then
+        setVisiTable("panelTurnOrder",newVisiTable)
+    end
+
+    newVisiTable = swapPlayerUI(a, b, "panelScore")
+    if newVisiTable ~= nil then
+        setVisiTable("panelScore",newVisiTable)
+    end
+
+    newVisiTable = swapPlayerUI(a, b, "panelPowerDraw")
+    if newVisiTable ~= nil then
+        setVisiTable("panelPowerDraw",newVisiTable)
+        setVisiTable("panelTimePasses",newVisiTable)
+        setVisiTable("panelReady",newVisiTable)
+    end
+end
+
 function swapSeatColors(a, b)
     if not swapPlayerColors(a, b) then
         return
     end
     swapPlayerPresenceColors(a, b)
     swapPlayerAreaColors(a, b)
+    swapPlayerUIs(a, b)
 end
 
 -- Trade places with selected seat.

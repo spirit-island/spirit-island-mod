@@ -151,12 +151,12 @@
 </Panel>
 <Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="300" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 0">
     <VerticalLayout>
-        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">&gt;&gt;Spirit Phase&lt;&lt;</Button>
+        <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear" text="&gt;&gt;Spirit Phase&lt;&lt;" />
         <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Growth" />
         <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Gain Energy" />
         <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Choose Powers" />
-        <Button id="fastPhase" onClick="enterFastPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Fast Power Phase</Button>
-        <Button id="invaderPhase" onClick="enterInvaderPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Invader Phase</Button>
+        <Button id="fastPhase" onClick="enterFastPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear" text="Fast Power Phase" />
+        <Button id="invaderPhase" onClick="enterInvaderPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear" text="Invader Phase" />
         <Text id="panelTurnOrderBlight" active="false" fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Blighted Island" />
         <Text id="panelTurnOrderEvent" active="false" fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Event (except first turn)" />
         <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Fear" />
@@ -164,8 +164,8 @@
         <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Build" />
         <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Explore" />
         <Text fontSize="16" alignment="UpperLeft" text="&#8195;&#8226; Advance Invader Cards" />
-        <Button id="slowPhase" onClick="enterSlowPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Slow Power Phase</Button>
-        <Button id="timePassesPhase" onClick="timePassesUI" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear">Time Passes</Button>
+        <Button id="slowPhase" onClick="enterSlowPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear" text="Slow Power Phase" />
+        <Button id="timePassesPhase" onClick="timePassesUI" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear" text="Time Passes" />
     </VerticalLayout>
 </Panel>
 <Panel id="panelReady" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="60" height="60" rectAlignment="UpperRight" offsetXY="-430 0">

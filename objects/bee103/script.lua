@@ -297,7 +297,7 @@ end
 function aidPanelScanLoop()
     local outTable = {}
     local count = 0
-    for i,v in pairs(scanLoopTable) do
+    for _,v in pairs(scanLoopTable) do
         local stageTable = {}
         local source = self
         if v.sourceGUID ~= nil then

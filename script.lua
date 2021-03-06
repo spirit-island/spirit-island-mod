@@ -3816,7 +3816,7 @@ function invaderCompare(t1,t2)
         newTab[1] = tab["Stage"]
         for i,v in ipairs(tab) do
             newTab[i+1] = ""
-            for j,w in ipairs(v) do
+            for _,w in ipairs(v) do
                 newTab[i+1] = newTab[i+1]..w.type..tostring(w.escalation)
             end
         end

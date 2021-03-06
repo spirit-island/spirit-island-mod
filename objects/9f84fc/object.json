@@ -2,11 +2,11 @@
   "Name": "Custom_Model_Bag",
   "Transform": {
     "posX": 107.449638,
-    "posY": 1.00114059,
+    "posY": 0.6,
     "posZ": 61.0363731,
-    "rotX": 1.15854732e-07,
-    "rotY": 359.977417,
-    "rotZ": 2.31727029e-07,
+    "rotX": 0.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 0.198041528,
     "scaleZ": 1.0

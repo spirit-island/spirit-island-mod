@@ -3849,7 +3849,7 @@ function swapPlayerAreaColors(a, b)
         Player[b].setHandTransform(ta, i)
     end
 
-    for i = 1,2 do
+    for i = 1,3 do
         handSwap(i)
     end
     positionSwap(playerTables)

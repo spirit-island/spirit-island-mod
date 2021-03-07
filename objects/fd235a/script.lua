@@ -19,6 +19,15 @@ function getPowerCards(_, color)
         return
     end
 
+    local handZone = Player[color].getHandTransform(2)
+    local newHandZone = {
+        position = handZone.position,
+        rotation = handZone.rotation,
+        scale = handZone.scale,
+    }
+    newHandZone.position.z = newHandZone.position.z - 5.5
+    Player[color].setHandTransform(newHandZone, 3)
+
     local zone = getObjectFromGUID(Global.getVar("elementScanZones")[color])
     local objs = zone.getObjects()
     local found = false
@@ -43,12 +52,12 @@ function getPowerCards(_, color)
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
     for _ = 1, count do
         local card = minorPowerDeck.takeObject({flip = true})
-        card.setPosition(Player[color].getHandTransform(2).position + Vector(-10,0,0))
+        card.setPosition(newHandZone.position + Vector(-10,0,0))
     end
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
     for _ = 1, count do
         local card = majorPowerDeck.takeObject({flip = true})
-        card.setPosition(Player[color].getHandTransform(2).position + Vector(10,0,0))
+        card.setPosition(newHandZone.position + Vector(10,0,0))
     end
     self.destruct()
 end

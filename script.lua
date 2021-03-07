@@ -2268,6 +2268,8 @@ function handlePlayer(color, data)
             obj.destruct()
         elseif obj.getName() == "Speed Token" then
             obj.destruct()
+        elseif obj.type == "Card" and not obj.getLock() then
+            obj.setPosition(Player[color].getHandTransform(2).position + Vector(10,0,0))
         end
     end
 

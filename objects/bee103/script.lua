@@ -292,7 +292,9 @@ function advanceInvaderCards()
         end
         ::continueAdvance::
     end
-    Global.call("enterSlowPhase", nil)
+    if Global.getVar("currentPhase") == 3 then
+        Global.call("enterSlowPhase", nil)
+    end
 end
 function aidPanelScanLoop()
     local outTable = {}

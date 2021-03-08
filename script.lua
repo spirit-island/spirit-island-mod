@@ -103,7 +103,7 @@ adversaryLossCallback = nil
 adversaryLossCallback2 = nil
 fearCards = {3,3,3}
 ------
-aidBoard = "bee103"
+aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
 fearDeckSetupZone = "fbbf69"
 sourceSpirit = "SourceSpirit"

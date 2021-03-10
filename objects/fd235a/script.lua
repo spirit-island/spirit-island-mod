@@ -14,6 +14,11 @@ function onLoad()
 end
 
 function getPowerCards(_, color)
+    doSpiritSetup{color=color}
+end
+
+function doSpiritSetup(params)
+    local color = params.color
     if not Global.getVar("gameStarted") then
         Player[color].broadcast("Please wait for the game to start before pressing button!", "Red")
         return

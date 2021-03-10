@@ -678,7 +678,7 @@ function loadConfig()
 end
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
-        if spirit.getName() == name then
+        if spirit.getName():lower() == name:lower() then
             if isSpiritPickable({guid = spirit.guid}) then
                 local color = Global.call("getEmptySeat", {})
                 if color ~= nil then

@@ -2596,7 +2596,12 @@ function MapPlacen(boards)
             local index = 1
             for _,value in pairs(list) do
                 if selectedBoards[count] ~= nil then
-                    if value.name == selectedBoards[count] then
+                    local selectedBoard = selectedBoards[count]
+                    if type(selectedBoard) == "table" then
+                        PlaceSpiritEmblem(board.pos, board.rot, scaleOrigin, selectedBoard.spirit)
+                        selectedBoard = selectedBoard.board
+                    end
+                    if value.name == selectedBoard then
                         index = value.index
                         break
                     end
@@ -2643,6 +2648,29 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
+end
+function PlaceSpiritEmblem(pos, rot, scaleOrigin, spirit)
+    local emblemBag = getObjectFromGUID("spiritEmblems")
+    local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
+    local basePos = scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin
+    local offset = scaleFactor.position*Vector(16,0,-3):rotateOver('y', rot.y)
+    local list = emblemBag.getObjects()
+    local index = 1
+    for _, value in pairs(list) do
+        if value.name:lower() == spirit:lower() then
+            index = value.index
+            break
+        end
+    end
+    emblemBag.takeObject({
+        index = index,
+        position = emblemBag.getPosition() + Vector(0,-5,0),
+        smooth = false,
+        callback_function = function(obj)
+            obj.setLock(true)
+            obj.setPositionSmooth(basePos + offset, false, true)
+        end
+    })
 end
 setupMapCoObj = nil
 function setupMap(map,extra)

@@ -127,11 +127,11 @@ function onLoad(saved_data)
 
             -- queue up all dropdown changes as once
             Wait.frames(function()
-                local t = self.UI.getXmlTable()
-                t = updateAdversaryList(t)
-                t = updateScenarioList(t)
-                t = updateBoardLayouts(numPlayers, t)
-                self.UI.setXmlTable(t, {})
+                updateXml{
+                    updateAdversaryList(),
+                    updateScenarioList(),
+                    updateBoardLayouts(numPlayers),
+                }
                 Wait.frames(updateDifficulty, 1)
             end, 2)
         end
@@ -153,7 +153,7 @@ function addAdversary(obj)
         numAdversaries = numAdversaries + 1
     end
     adversaries[obj.getName()] = obj.guid
-    updateAdversaryList()
+    updateXml{updateAdversaryList()}
 end
 function onDestroy()
     exit = true
@@ -186,12 +186,12 @@ function removeAdversary(obj)
                 Global.setVar("adversaryCard2", nil)
                 toggleSupportingLevel(nil, 0)
             end
-            Wait.frames(updateAdversaryList, 1)
+            Wait.frames(function() updateXml{updateAdversaryList()} end, 1)
             break
         end
     end
 end
-function updateAdversaryList(xmlTable)
+function updateAdversaryList()
     local adversaryList = {}
     for name,_ in pairs(adversaries) do
         table.insert(adversaryList, name)
@@ -212,18 +212,11 @@ function updateAdversaryList(xmlTable)
         supportName = "Random"
     end
 
-    local t = xmlTable
-    if xmlTable == nil then
-        t = self.UI.getXmlTable()
-    end
-    for _,v in pairs(t) do
-        updateDropdownList(v, "leadingAdversary", adversaryList, leadName)
-        updateDropdownList(v, "supportingAdversary", adversaryList, supportName)
-    end
-    if xmlTable == nil then
-        self.UI.setXmlTable(t, {})
-    end
-    return t
+    local updateLeading = updateDropdownList("leadingAdversary", adversaryList, leadName)
+    local updateSupporting = updateDropdownList("supportingAdversary", adversaryList, supportName)
+    -- Note: short-circuiting here is fine, as neither function will return
+    -- true, if the other would have effects on t.
+    return function (t) return updateLeading(t) or updateSupporting(t) end
 end
 function removeScenario(obj)
     for name,guid in pairs(scenarios) do
@@ -234,12 +227,12 @@ function removeScenario(obj)
                 Global.setVar("scenarioCard", nil)
                 updateDifficulty()
             end
-            Wait.frames(updateScenarioList, 1)
+            Wait.frames(function () updateXml{updateScenarioList()} end, 1)
             break
         end
     end
 end
-function updateScenarioList(xmlTable)
+function updateScenarioList()
     local scenarioList = {}
     for name,_ in pairs(scenarios) do
         table.insert(scenarioList, name)
@@ -253,17 +246,7 @@ function updateScenarioList(xmlTable)
         scenarioName = "Random"
     end
 
-    local t = xmlTable
-    if xmlTable == nil then
-        t = self.UI.getXmlTable()
-    end
-    for _,v in pairs(t) do
-        updateDropdownList(v, "scenario", scenarioList, scenarioName)
-    end
-    if xmlTable == nil then
-        self.UI.setXmlTable(t, {})
-    end
-    return t
+    return updateDropdownList("scenario", scenarioList, scenarioName)
 end
 function randomAdversary()
     local value = math.random(1,numAdversaries)
@@ -312,10 +295,10 @@ function updateNumPlayers(value, updateUI)
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml{updateBoardLayouts(numPlayers)} end, 0.5)
     end
 end
-function updateBoardLayouts(numPlayers, xmlTable)
+function updateBoardLayouts(numPlayers)
     local numBoards = numPlayers
     if optionalExtraBoard then
         numBoards = numPlayers + 1
@@ -332,39 +315,7 @@ function updateBoardLayouts(numPlayers, xmlTable)
         Global.setVar("boardLayout", "Balanced")
     end
 
-    local t = xmlTable
-    if xmlTable == nil then
-        t = self.UI.getXmlTable()
-    end
-    for _,v in pairs(t) do
-        updateDropdownList(v, "boardLayout", layoutNames, Global.getVar("boardLayout"))
-    end
-    if xmlTable == nil then
-        self.UI.setXmlTable(t, {})
-    end
-    return t
-end
-function updateDropdownList(t, class, values, selectedValue)
-    if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
-        if t.attributes.id == class then
-            t.children = {}
-            for i,v in pairs(values) do
-                t.children[i] = {
-                    tag="Option",
-                    value=v,
-                    attributes={},
-                    children={},
-                }
-                if v == selectedValue then
-                    t.children[i].attributes.selected = "true"
-                end
-            end
-        else
-            for _, v in pairs(t.children) do
-                updateDropdownList(v, class, values, selectedValue)
-            end
-        end
-    end
+    return updateDropdownList("boardLayout", layoutNames, Global.getVar("boardLayout"))
 end
 
 function toggleScenario(_, value)
@@ -388,11 +339,9 @@ function updateScenario(value, updateUI)
     end
 end
 function updateScenarioSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "scenario", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("scenario", name),
+    }
 end
 
 function toggleLeadingAdversary(_, value)
@@ -423,11 +372,9 @@ function updateLeadingAdversary(value, updateUI)
     end
 end
 function updateLeadingSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "leadingAdversary", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("leadingAdversary", name),
+    }
 end
 function toggleSupportingAdversary(_, value)
     updateSupportingAdversary(value, true)
@@ -457,11 +404,9 @@ function updateSupportingAdversary(value, updateUI)
     end
 end
 function updateSupportingSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "supportingAdversary", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("supportingAdversary", name)
+    }
 end
 function toggleLeadingLevel(_, value)
     updateLeadingLevel(value, true)
@@ -548,23 +493,6 @@ function toggleBlightCard()
     self.UI.setAttribute("blightCard2", "isOn", useBlightCard)
 end
 
-function updateDropdownSelection(t, class, value)
-    if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
-        if t.attributes.id == class then
-            for _,v in pairs(t.children) do
-                if v.value == value then
-                    v.attributes.selected = "true"
-                elseif v.attributes.selected == "true" then
-                    v.attributes.selected = "false"
-                end
-            end
-        else
-            for _, v in pairs(t.children) do
-                updateDropdownSelection(v, class, value)
-            end
-        end
-    end
-end
 function toggleBoardLayout(_, value)
     updateBoardLayout(value, true)
 end
@@ -591,11 +519,9 @@ function updateBoardLayout(value, updateUI)
     end
 end
 function updateBoardLayoutSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "boardLayout", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("boardLayout", name),
+    }
 end
 
 function updateDifficulty()
@@ -1255,7 +1181,7 @@ function toggleExtraBoard()
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml{updateBoardLayouts(numPlayers)} end, 0.5)
     end
 end
 function toggleThematicRedo()
@@ -1294,4 +1220,86 @@ function tFind(table, needle)
         end
     end
     return nil
+end
+---
+
+--- Update the UI XML of the current object.
+-- This takes a list of function to use to update the XML table.
+-- Each function should take a table element, update it with any relevant changes
+-- and return `true` if updateXml should recurse into the children of the element.
+-- Note: The functions should be prepared to be called on child elements, even if
+-- recursion was not requested.
+-- @param updateFunctions The list of functions to use to update the table
+function updateXml(updateFunctions)
+    local function recurse(t)
+        local shouldRecurse = false
+        for _, f in pairs(updateFunctions) do
+            if f(t) then
+                shouldRecurse = true
+            end
+        end
+        if shouldRecurse then
+            for _, v in pairs(t.children) do
+                recurse(v)
+            end
+        end
+    end
+    local t = self.UI.getXmlTable()
+    for _,v in pairs(t) do
+        recurse(v)
+    end
+    self.UI.setXmlTable(t, {})
+end
+--- Apply an XML UI update function on an element with a specific id
+-- This returns a function suitable to pass to `updateXml` that applies the
+-- given function to the element with the given id. All the parent elements of the
+-- desired element must have the id present in the `recurse` attribute for this to
+-- find the element.
+-- @param id The id of the element to update
+-- @param f The function that updates the element
+function matchRecurse(id, f)
+    return function (t)
+        if t.attributes.recurse ~= nil and string.match(t.attributes.recurse, id) then
+            if t.attributes.id == id then
+                f(t)
+            else
+                return true
+            end
+        end
+        return false
+    end
+end
+--- Update a dropdown list to have the given items and selected item
+-- @param id The id of the dropdown to update
+-- @param values The list of values for the dropdown
+-- @param selectedValue The value to mark as selected.
+function updateDropdownList(id, values, selectedValue)
+    return matchRecurse(id, function (t)
+        t.children = {}
+        for i,v in pairs(values) do
+            t.children[i] = {
+                tag="Option",
+                value=v,
+                attributes={},
+                children={},
+            }
+            if v == selectedValue then
+                t.children[i].attributes.selected = "true"
+            end
+        end
+    end)
+end
+--- Update a dropdown list selection
+-- @param id The id of the dropdown to update
+-- @param selectedValue The value to mark as selected.
+function updateDropdownSelection(id, value)
+    return matchRecurse(id, function (t)
+        for _,v in pairs(t.children) do
+            if v.value == value then
+                v.attributes.selected = "true"
+            elseif v.attributes.selected == "true" then
+                v.attributes.selected = "false"
+            end
+        end
+    end)
 end

@@ -15,9 +15,9 @@
     <Text class="slider" alignment="LowerCenter"/>
 </Defaults>
 
-<Panel id="panelSetup" class="leadingAdversary supportingAdversary scenario boardLayout" width="1000" height="2800" position="-2000 -1500 14">
-    <VerticalLayout class="leadingAdversary supportingAdversary scenario boardLayout">
-        <TableLayout class="leadingAdversary supportingAdversary scenario boardLayout">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" width="1000" height="2800" position="-2000 -1500 14">
+    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
+        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
             <Row class="header">
                 <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
@@ -29,9 +29,9 @@
                 <Cell><Text id="leadingText">Leading Adversary</Text></Cell>
                 <Cell><Text id="leadingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
-            <Row class="leadingAdversary">
-                <Cell class="leadingAdversary">
-                    <Dropdown id="leadingAdversary" class="leadingAdversary" onValueChanged="toggleLeadingAdversary">
+            <Row recurse="leadingAdversary">
+                <Cell recurse="leadingAdversary">
+                    <Dropdown id="leadingAdversary" recurse="leadingAdversary" onValueChanged="toggleLeadingAdversary">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
                         <Option>Prussia</Option>
@@ -49,9 +49,9 @@
                 <Cell><Text>Supporting Adversary</Text></Cell>
                 <Cell><Text id="supportingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
-            <Row id="supportingRow" class="supportingAdversary">
-                <Cell class="supportingAdversary">
-                    <Dropdown id="supportingAdversary" class="supportingAdversary" onValueChanged="toggleSupportingAdversary">
+            <Row id="supportingRow" recurse="supportingAdversary">
+                <Cell recurse="supportingAdversary">
+                    <Dropdown id="supportingAdversary" recurse="supportingAdversary" onValueChanged="toggleSupportingAdversary">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
                         <Option>Prussia</Option>
@@ -69,9 +69,9 @@
                 <Cell><Text>Scenario</Text></Cell>
                 <Cell><Text>Board Layout</Text></Cell>
             </Row>
-            <Row class="scenario boardLayout">
-                <Cell class="scenario">
-                    <Dropdown id="scenario" class="scenario" onValueChanged="toggleScenario">
+            <Row recurse="scenario boardLayout">
+                <Cell recurse="scenario">
+                    <Dropdown id="scenario" recurse="scenario" onValueChanged="toggleScenario">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
                         <Option>Blitz</Option>
@@ -89,8 +89,8 @@
                         <Option>A Diversity of Spirits</Option>
                     </Dropdown>
                 </Cell>
-                <Cell class="boardLayout">
-                    <Dropdown id="boardLayout" class="boardLayout" onValueChanged="toggleBoardLayout">
+                <Cell recurse="boardLayout">
+                    <Dropdown id="boardLayout" recurse="boardLayout" onValueChanged="toggleBoardLayout">
                         <Option selected="true">Balanced</Option>
                         <Option>Thematic</Option>
                         <Option>Random</Option>

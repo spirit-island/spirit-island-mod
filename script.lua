@@ -2047,6 +2047,7 @@ end
 function StartGame()
     gamePaused = false
     gameStarted = true
+    runSpiritSetup()
     enableUI()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
@@ -2097,6 +2098,16 @@ function enableUI()
     setVisiTable("panelPowerDraw", colors)
     setVisiTable("panelUI", colors)
     setVisiTable("panelUIToggleHide", colors)
+end
+function runSpiritSetup()
+    for color, _ in pairs(selectedColors) do
+        local zone = getObjectFromGUID(elementScanZones[color])
+        for _, obj in ipairs(zone.getObjects()) do
+            if obj.hasTag("Spirit Setup") then
+                obj.call("doSpiritSetup", {color=color})
+            end
+        end
+    end
 end
 ------
 function addSpirit(params)

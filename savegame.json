@@ -225,6 +225,10 @@
       {
         "displayed": "Element Marker",
         "normalized": "element_marker"
+      },
+      {
+        "displayed": "Spirit Setup",
+        "normalized": "spirit_setup"
       }
     ]
   },

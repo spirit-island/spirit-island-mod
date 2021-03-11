@@ -1,0 +1,41 @@
+{
+  "Name": "Custom_Board",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
+    "scaleX": 0.3,
+    "scaleY": 0.3,
+    "scaleZ": 0.3
+  },
+  "Nickname": "Downpour Drenches the World",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7867647,
+    "g": 0.7867647,
+    "b": 0.7867647
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1649969653504192849/0C9F7BB46AF07181DF67808AC05912B07D2E1B5F/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1,
+    "WidthScale": 1
+  }
+}

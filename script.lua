@@ -501,6 +501,7 @@ function onLoad(saved_data)
     if Player["White"].seated then Player["White"].changeColor("Red") end
     updateAllPlayerAreas()
     setupSwapButtons()
+    updateCurrentPhase(false)
     Wait.time(spiritUpdater, 10, -1)
 end
 ----

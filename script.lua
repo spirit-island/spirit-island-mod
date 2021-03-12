@@ -479,7 +479,7 @@ function onLoad(saved_data)
             end
             numBoards = #selectedBoards
             gamePaused = false
-            for _,obj in ipairs(getAllObjects()) do
+            for _,obj in ipairs(getObjects()) do
                 if isIslandBoard(obj) then
                     obj.interactable = false -- sets boards to uninteractable after reload
                 elseif isPowerCard({card=obj}) then
@@ -3971,7 +3971,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
     -- Make a note of what we find and what tint it is. Handle Isolate and Defend tokens in this pass.
     local match = string.match  -- Performance
-    for _,obj in pairs(getAllObjects()) do
+    for _,obj in pairs(getObjects()) do
         local name = obj.getName()
         if name then
             for _,data in pairs(colors) do

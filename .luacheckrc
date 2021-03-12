@@ -14,7 +14,7 @@ read_globals = {
     "broadcastToAll",
     "clearHotkeys",
     "destroyObject",
-    "getAllObjects",
+    "getObjects",
     "getObjectFromGUID",
     "getObjectsWithTag",
     "group",

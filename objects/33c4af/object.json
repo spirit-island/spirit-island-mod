@@ -3,13 +3,13 @@
   "Transform": {
     "posX": 87.7999954,
     "posY": 0.81,
-    "posZ": -31.2853,
+    "posZ": -29.9,
     "rotX": 0.004446592,
     "rotY": 179.99968,
     "rotZ": 0.0,
     "scaleX": 2.3,
     "scaleY": 0.01,
-    "scaleZ": 1.66551065
+    "scaleZ": 1.42
   },
   "Nickname": "",
   "Description": "",
@@ -17,7 +17,7 @@
   "ColorDiffuse": {
     "r": 0.9985294,
     "g": 0.7233105,
-    "b": 0.424022049
+    "b": 0.42402187
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

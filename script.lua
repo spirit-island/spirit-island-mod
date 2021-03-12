@@ -3500,21 +3500,21 @@ function setupSwapButtons()
         -- Sit Here (button index 0)
         obj.createButton({
             label="", click_function="onClickedSitHere", function_owner=Global,
-            position={-3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={-3.25,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
         })
         -- Change Color (button index 1)
         obj.createButton({
             label="", click_function="onClickedChangeColor", function_owner=Global,
-            position={3.25,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={3.25,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
         })
         -- Play Spirit (button index 2)
         obj.createButton({
             label="", click_function="onClickedPlaySpirit", function_owner=Global,
-            position={0,0.4,4.75}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={0,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
         })

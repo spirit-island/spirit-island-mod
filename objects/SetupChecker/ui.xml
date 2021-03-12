@@ -15,7 +15,7 @@
     <Text class="slider" alignment="LowerCenter"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" width="1000" height="2800" position="-2000 -1500 14">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
     <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
         <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
             <Row class="header">
@@ -208,7 +208,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdvesaryScenario" width="1400" height="2600" position="-750 -1400 14">
+<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1400" height="2600" position="-750 -1400 14">
     <VerticalLayout width="1150">
         <TableLayout>
             <Row class="header">
@@ -218,7 +218,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelSpirit" width="1000" height="2800" position="3225 100 10">
+<Panel id="panelSpirit" visibility="Invisible" width="1000" height="2800" position="3225 100 10">
     <VerticalLayout width="550">
         <TableLayout rowBackgroundColor="clear">
             <Row class="header">

@@ -76,8 +76,9 @@ end
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
-    if Global.getVar("gameStarted") then
-        closeUI()
+    if not Global.getVar("gameStarted") then
+        showUI()
+    else
         setupStarted = true
     end
     if saved_data ~= "" then

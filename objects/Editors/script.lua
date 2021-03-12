@@ -1,8 +1,8 @@
 empty = false
 contents = {
-    ["SpiritEditor"] = {105.02, 0.85, 54.06},
-    ["BlightCardEditor"] = {101.10, 0.86, 42.86},
-    ["PowerEditor"] = {108.38, 0.85, 42.84},
+    ["SpiritEditor"] = {105.22, 0.85, 52.59},
+    ["BlightCardEditor"] = {109.33, 0.86, 42.86},
+    ["PowerEditor"] = {98.98, 0.85, 42.86},
 }
 
 function onLoad()

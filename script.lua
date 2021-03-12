@@ -479,10 +479,11 @@ function onLoad(saved_data)
             end
             numBoards = #selectedBoards
             gamePaused = false
-            for _,o in ipairs(getAllObjects()) do
-                local t = o.getTable("posMap")
-                if t ~= nil and t ~= {} then
-                    o.interactable = false -- sets boards to uninteractable after reload
+            for _,obj in ipairs(getAllObjects()) do
+                if isIslandBoard(obj) then
+                    obj.interactable = false -- sets boards to uninteractable after reload
+                elseif isPowerCard({card=obj}) then
+                    applyPowerCardContextMenuItems(obj)
                 end
             end
         end
@@ -2541,7 +2542,7 @@ end
 function getMapTiles()
     local mapTiles = {}
     for _,obj in pairs(upCast(seaTile)) do
-        if obj.hasTag("Balanced") or obj.hasTag("Thematic") then
+        if isIslandBoard(obj) then
             table.insert(mapTiles,obj)
         end
     end
@@ -3070,7 +3071,7 @@ function upCastRay(obj,dist)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if v.hit_object ~= obj and not obj.hasTag("Balanced") and not obj.hasTag("Thematic") then
+        if v.hit_object ~= obj and not isIslandBoard(v.hit_object) then
             table.insert(hitObjects,v.hit_object)
         end
     end
@@ -4245,6 +4246,12 @@ function onPlayerDisconnect(player)
     updatePlaySpiritButton(player.color)
 end
 
+function isIslandBoard(obj)
+    if obj == nil then
+        return false
+    end
+    return obj.hasTag("Balanced") or obj.hasTag("Thematic")
+end
 function isPowerCard(params)
     if params.card == nil then
         return false

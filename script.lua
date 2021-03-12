@@ -3081,7 +3081,6 @@ end
 function upCastPosSizRot(pos,size,rot,dist,types)
     rot = rot or Vector(0,0,0)
     dist = dist or 1
-    types = types or {}
     local hits = Physics.cast({
         origin       = pos,
         direction    = Vector(0,1,0),
@@ -3093,7 +3092,7 @@ function upCastPosSizRot(pos,size,rot,dist,types)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if types ~= {} then
+        if types ~= nil then
             local matchesType = false
             for _,t in pairs(types) do
                 if v.hit_object.type == t then matchesType = true end

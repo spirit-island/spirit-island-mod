@@ -12,17 +12,7 @@ function RandomAspect()
     return sourceSpirit.call("randomAspect", {obj = self})
 end
 function PickSpirit(params)
-    if params.aspect then
-        if params.aspect == "Random" then
-            useAspect = 1
-        elseif params.aspect == "" then
-            useAspect = 0
-        else
-            useAspect = 3
-            aspect = params.aspect
-        end
-    end
-    SetupSpirit(nil, params.color)
+    sourceSpirit.call("pickSpirit", {obj = self, color = params.color, aspect = params.aspect})
 end
 function SetupSpirit(_, player_color)
     sourceSpirit.call("setupSpirit", {obj = self, color = player_color})
@@ -109,6 +99,19 @@ function randomAspect(params)
         end
     end
     return nil
+end
+function pickSpirit(params)
+    if params.aspect then
+        if params.aspect == "Random" then
+            params.obj.setVar("useAspect", 1)
+        elseif params.aspect == "" then
+            params.obj.setVar("useAspect", 0)
+        else
+            params.obj.setVar("useAspect", 3)
+            params.obj.setVar("aspect", params.aspect)
+        end
+    end
+    setupSpirit({obj = params.obj, color = params.color})
 end
 function setupSpirit(params)
     local xPadding = 1.3

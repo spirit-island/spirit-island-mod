@@ -15,9 +15,9 @@
   "Description": "Base",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200268686,
-    "g": 0.160313964,
-    "b": 0.151752234
+    "r": 0.200268358,
+    "g": 0.160313636,
+    "b": 0.1517519
   },
   "Tags": [
     "Base",
@@ -158,9 +158,9 @@
       "Description": "Base",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.20027861,
-        "g": 0.160323888,
-        "b": 0.151762158
+        "r": 0.200278461,
+        "g": 0.160323739,
+        "b": 0.151762009
       },
       "Tags": [
         "Base",
@@ -192,7 +192,7 @@
           "Stretch": true
         }
       },
-      "LuaScript": "-- Spirit Panel for MJ & iakona's Spirit Island Mod --\nuseProgression = false\nprogressionCard = nil\nuseAspect = 2\naspect = nil\nbroadcast = nil\nsourceSpirit = nil\n\nfunction onLoad(saved_data)\n    Color.Add(\"SoftBlue\", Color.new(0.45,0.6,0.7))\n    sourceSpirit = getObjectFromGUID(\"SourceSpirit\")\n    sourceSpirit.call(\"load\", {obj = self, saved_data = saved_data})\nend\n\nfunction RandomAspect()\n    return sourceSpirit.call(\"randomAspect\", {obj = self})\nend\nfunction PickSpirit(params)\n    if params.aspect then\n        if params.aspect == \"Random\" then\n            useAspect = 1\n        elseif params.aspect == \"\" then\n            useAspect = 0\n        else\n            useAspect = 3\n            aspect = params.aspect\n        end\n    end\n    SetupSpirit(nil, params.color)\nend\nfunction SetupSpirit(_, player_color)\n    sourceSpirit.call(\"setupSpirit\", {obj = self, color = player_color})\nend\nfunction ToggleProgression()\n    sourceSpirit.call(\"toggleProgression\", {obj = self})\nend\nfunction ToggleAspect(_, _, alt_click)\n    sourceSpirit.call(\"toggleAspect\", {obj = self, alt_click = alt_click})\nend\n",
+      "LuaScript": "-- Spirit Panel for MJ & iakona's Spirit Island Mod --\nuseProgression = false\nprogressionCard = nil\nuseAspect = 2\naspect = nil\nbroadcast = nil\nsourceSpirit = nil\n\nfunction onLoad(saved_data)\n    Color.Add(\"SoftBlue\", Color.new(0.45,0.6,0.7))\n    sourceSpirit = getObjectFromGUID(\"SourceSpirit\")\n    sourceSpirit.call(\"load\", {obj = self, saved_data = saved_data})\nend\n\nfunction RandomAspect()\n    return sourceSpirit.call(\"randomAspect\", {obj = self})\nend\nfunction PickSpirit(params)\n    if params.aspect then\n        if params.aspect == \"Random\" then\n            useAspect = 1\n        elseif params.aspect == \"\" then\n            useAspect = 0\n        else\n            useAspect = 3\n            aspect = params.aspect\n        end\n    end\n    SetupSpirit(nil, params.color)\nend\nfunction SetupSpirit(_, player_color)\n    sourceSpirit.call(\"setupSpirit\", {obj = self, color = player_color})\nend\nfunction ToggleProgression()\n    sourceSpirit.call(\"toggleProgression\", {obj = self})\nend\nfunction ToggleAspect(_, _, alt_click)\n    sourceSpirit.call(\"toggleAspect\", {obj = self, alt_click = alt_click})\nend",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [

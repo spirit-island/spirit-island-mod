@@ -3266,6 +3266,34 @@ function setupPlayerArea(params)
         return cost
     end
 
+    local function calculateTrackElements(spiritBoard)
+        local elements = Elements:new()
+        if spiritBoard.script_state ~= "" then
+            local trackElements = spiritBoard.getVar("trackElements")
+            if trackElements ~= nil then
+                for _, trackElem in pairs(trackElements) do
+                    local hits = Physics.cast{
+                        origin = spiritBoard.positionToWorld(trackElem.position), -- pos
+                        direction = Vector(0, 1, 0),
+                        max_distance = 1,
+                        type = 1, --ray
+                    }
+                    local hasPresence = false
+                    for _, hit in pairs(hits) do
+                        if hit.hit_object.hasTag("Presence") then
+                            hasPresence = true
+                            break
+                        end
+                    end
+                    if not hasPresence then
+                        elements:add(trackElem.elements)
+                    end
+                end
+            end
+        end
+        return elements
+    end
+
     local function countItems()
         local zone = params.zone
         local itemsInZone = zone.getObjects()
@@ -3274,7 +3302,9 @@ function setupPlayerArea(params)
         --Go through all items found in the zone
         for _, entry in ipairs(itemsInZone) do
             --Ignore non-cards
-            if entry.type == "Card" then
+            if entry.hasTag("spirit") then
+                elements:add(calculateTrackElements(entry))
+            elseif entry.type == "Card" then
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then

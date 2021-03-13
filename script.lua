@@ -2,19 +2,19 @@
 version = "2.0.0-beta.7"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
-counterBag = "5f595a"
+counterBag = "EnergyCounters"
 minorPowerZone = "cb16ab"
 minorPowerDiscardZone = "55b275"
 majorPowerZone = "089896"
 majorPowerDiscardZone = "eaf864"
 uniquePowerDiscardZone = "uniquePowerDiscard"
 PlayerBags = {
-    ["Red"] = "fb7941",
-    ["Purple"] = "8ee413",
-    ["Yellow"] = "8aad81",
-    ["Blue"] = "f9e149",
-    ["Green"] = "9f4841",
-    ["Orange"] = "a2f5cc",
+    ["Red"] = "PlayerBagRed",
+    ["Purple"] = "PlayerBagPurple",
+    ["Yellow"] = "PlayerBagYellow",
+    ["Blue"] = "PlayerBagBlue",
+    ["Green"] = "PlayerBagGreen",
+    ["Orange"] = "PlayerBagOrange",
 }
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"
@@ -23,8 +23,8 @@ fearDeckZone = "bd8761"
 stage1DeckZone = "cf2635"
 stage2DeckZone = "7f21be"
 stage3DeckZone = "2a9f36"
-adversaryBag = "a62bd7"
-scenarioBag = "c16363"
+adversaryBag = "AdversaryBag"
+scenarioBag = "ScenarioBag"
 ---- Used with ElementsHelper Script
 elementScanZones = {
     ["Red"] = "9fc5a4",
@@ -110,7 +110,7 @@ sourceSpirit = "SourceSpirit"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
-boxBlightBag = "49405b"
+boxBlightBag = "BoxBlightBag"
 beastsBag = "a42427"
 diseaseBag = "7019af"
 wildsBag = "ca5089"
@@ -137,9 +137,9 @@ isolateBags = {
     Orange = "0c9976",
 }
 -----
-StandardMapBag = "9760a2"
-ThematicMapBag = "bcd431"
-MJThematicMapBag = "95ba87"
+StandardMapBag = "BalancedMapBag"
+ThematicMapBag = "ThematicMapBag"
+MJThematicMapBag = "MJThematicMapBag"
 seaTile = "5f4be2"
 -----
 cityHealth = "22928c"
@@ -1817,7 +1817,7 @@ end
 function SetupEventDeck()
     local decksSetup = 0
     if useBnCEvents then
-        local BnCBag = getObjectFromGUID("ea7207")
+        local BnCBag = getObjectFromGUID("BnCBag")
         local deck = BnCBag.takeObject({
             guid = "05f7b7",
             position = getObjectFromGUID(eventDeckZone).getPosition(),
@@ -1854,7 +1854,7 @@ function SetupEventDeck()
         decksSetup = decksSetup + 2
     end
     if useJEEvents then
-        local JEBag = getObjectFromGUID("850ac1")
+        local JEBag = getObjectFromGUID("JEBag")
         local deck = JEBag.takeObject({
             guid = "299e38",
             position = getObjectFromGUID(eventDeckZone).getPosition(),
@@ -2037,7 +2037,7 @@ function setupCommandCard(invaderDeck, depth, guid)
             position = invaderDeck.getPosition() + Vector(0,2+(depth-i)*0.5,0)
         })
     end
-    local JEBag = getObjectFromGUID("850ac1")
+    local JEBag = getObjectFromGUID("JEBag")
     JEBag.takeObject({
         guid = guid,
         position = invaderDeck.getPosition() + Vector(0,0.1,0),

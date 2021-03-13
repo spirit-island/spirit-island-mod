@@ -693,7 +693,7 @@ function PickSpirit(name, aspect)
     end
 end
 function addBnCCo()
-    local BnCBag = getObjectFromGUID("ea7207")
+    local BnCBag = getObjectFromGUID("BnCBag")
 
     local fearDeck = BnCBag.takeObject({guid = "d16f70"})
     getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
@@ -709,7 +709,7 @@ function addBnCCo()
     return 1
 end
 function addJECo()
-    local JEBag = getObjectFromGUID("850ac1")
+    local JEBag = getObjectFromGUID("JEBag")
 
     local fearDeck = JEBag.takeObject({guid = "723183"})
     getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)

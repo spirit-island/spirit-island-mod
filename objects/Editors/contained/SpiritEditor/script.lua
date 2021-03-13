@@ -1,6 +1,7 @@
 sourceSpiritID = "SourceSpirit"
 
 local rescan
+local currentSpirit
 
 function onLoad()
     self.createButton({
@@ -12,24 +13,32 @@ function onLoad()
         width = 0,
         height = 0,
     })
+    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     Wait.time(scan, 0.5, -1)
     rescan = false
 end
 
 function scan()
     local objs = upCast(self, 0.4, 0.1, {"Tile"})
-    if #objs == 0 then
-        clearButtons()
-        return
+    local spiritBoard
+    for _, hit in pairs(objs) do
+        if hit.getVar("elements") ~= nil or hit.hasTag("Any") then
+            -- pass
+        elseif spiritBoard ~= nil then
+            currentSpirit = nil
+            clearButtons()
+            return
+        else
+            spiritBoard = hit
+        end
     end
-    if #objs > 1 then
+    currentSpirit = spiritBoard
+    if spiritBoard == nil then
+        currentSpirit = nil
         clearButtons()
-        return
-    end
-    if rescan or #self.getButtons() == 1 then
+    elseif rescan or #self.getButtons() == 1 then
         rescan = false
-        local obje = objs[1]
-        createButtons(obje)
+        createButtons(spiritBoard)
     end
 end
 
@@ -70,6 +79,97 @@ function createButtons(obj)
 
     local func = function() makeSpirit(obj) end
     self.setVar("button1",func)
+end
+
+---
+local Elements = {}
+Elements.__index = Elements
+function Elements:new(init)
+    local outTable = {0,0,0,0,0,0,0,0}
+    setmetatable(outTable, self)
+    outTable:add(init)
+    return outTable
+end
+function Elements:add(other)
+    if other == nil then
+        return
+    elseif type(other) == "table" then
+        for i = 1, 8 do
+            self[i] = self[i] + other[i]
+        end
+    elseif type(other) == "string" then
+        for i = 1, string.len(other) do
+            self[i] = self[i] + math.floor(string.sub(other, i, i))
+        end
+    end
+end
+function Elements:__tostring()
+    return table.concat(self, "")
+end
+---
+
+local function round(val, quantum)
+    return math.floor(val/quantum+0.5)*quantum
+end
+
+function updateElements(player)
+    if currentSpirit == nil then
+        return
+    end
+    local hits = upCast(currentSpirit, 0.4, 0.1, {"Tile"})
+    local trackElements = {}
+    local function insert(position, elements)
+        for _, entry in pairs(trackElements) do
+            if entry.position == position then
+                entry.elements:add(elements)
+                return
+            end
+        end
+        table.insert(trackElements, {
+            position=position,
+            elements=Elements:new(elements)
+        })
+    end
+    for _, entry in pairs(hits) do
+        if entry.getVar("elements") ~= nil then
+            local pos = currentSpirit.positionToLocal(entry.getPosition())
+            pos = Vector(round(pos.x,0.01), 0, round(pos.z,0.01))
+            insert(pos, entry.getVar("elements"))
+            entry.destroy()
+        end
+    end
+    for _, trackElement in pairs(trackElements) do
+        trackElement.elements = tostring(trackElement.elements)
+    end
+    table.sort(trackElements, function (a, b) return a.position.x < b.position.x or (a.position.x == b.position.x and a.position.z < a.position.z) end)
+    local state = {}
+    if currentSpirit.script_state ~= "" then
+        state = JSON.decode(currentSpirit.script_state)
+    end
+    state.trackElements = trackElements
+    currentSpirit.script_state = JSON.encode(state)
+    currentSpirit.setTable("trackElements", trackElements)
+    player.broadcast("Updated elements for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
+end
+
+function populateElements()
+    if currentSpirit == nil then
+        return
+    end
+    local trackElements = currentSpirit.getVar("trackElements")
+    local anyBag = getObjectFromGUID("AnyElements")
+    for _, trackElement in pairs(trackElements) do
+        local elements = Elements:new(trackElement.elements)
+        local position = currentSpirit.positionToWorld(trackElement.position)
+        for i, count in ipairs(elements) do
+            for j = 1, count do
+                anyBag.takeObject{
+                    position = position + j * Vector(0, 1, 0),
+                    callback_function = function(obj) obj.setState(i) end,
+                }
+            end
+        end
+    end
 end
 
 function makeSpirit(obj)

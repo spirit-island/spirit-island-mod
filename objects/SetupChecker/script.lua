@@ -53,6 +53,7 @@ exploratoryWar = false
 updateLayoutsID = 0
 setupStarted = false
 exit = false
+sourceSpirit = nil
 
 function onSave()
     local data_table = {}
@@ -137,6 +138,7 @@ function onLoad(saved_data)
             end, 2)
         end
     end
+    sourceSpirit = getObjectFromGUID("SourceSpirit")
 end
 
 function onObjectSpawn(obj)
@@ -683,7 +685,7 @@ function PickSpirit(name, aspect)
             if isSpiritPickable({guid = spirit.guid}) then
                 local color = Global.call("getEmptySeat", {})
                 if color ~= nil then
-                    spirit.call("PickSpirit", {color = color, aspect = aspect})
+                    sourceSpirit.call("PickSpirit", {obj = spirit, color = color, aspect = aspect})
                 else
                     broadcastToAll("Unable to pick "..name..", no seats left", Color.Red)
                 end
@@ -938,7 +940,7 @@ function randomSpirit(player)
         return
     end
     local spirit = getObjectFromGUID(guid)
-    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
+    sourceSpirit.call("PickSpirit", {obj = spirit, color = player.color, aspect = "Random"})
     Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
@@ -1002,7 +1004,7 @@ function getNewSpirit(tags, complexities)
     if count >= 100 then
         return nil
     end
-    local aspect = spirit.call("RandomAspect", {})
+    local aspect = sourceSpirit.call("RandomAspect", {obj = spirit})
     spiritChoices[spirit.getName()] = {guid=spirit.guid, aspect=aspect}
     spiritChoicesLength = spiritChoicesLength + 1
     return spirit, aspect
@@ -1031,7 +1033,7 @@ function pickSpirit(obj, index, color)
     end
     local data = spiritChoices[name]
     if isSpiritPickable({guid = data.guid}) then
-        getObjectFromGUID(data.guid).call("PickSpirit", {color = color, aspect = data.aspect})
+        sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
         obj.clearButtons()
     else
         local tags = getSpiritTags()
@@ -1072,7 +1074,7 @@ function isSpiritPickable(params)
 end
 function addSpirit(params)
     -- Ignore Source Spirit
-    if params.spirit.guid == "SourceSpirit" then return end
+    if params.spirit == sourceSpirit then return end
 
     -- In case of state change, update existing choice with new guid
     for name,_ in pairs(spiritChoices) do

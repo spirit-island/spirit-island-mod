@@ -7,22 +7,6 @@ function onLoad(saved_data)
     sourceSpirit = getObjectFromGUID("SourceSpirit")
     sourceSpirit.call("load", {obj = self, saved_data = saved_data})
 end
-
-function RandomAspect()
-    return sourceSpirit.call("randomAspect", {obj = self})
-end
-function PickSpirit(params)
-    sourceSpirit.call("pickSpirit", {obj = self, color = params.color, aspect = params.aspect})
-end
-function SetupSpirit(_, player_color)
-    sourceSpirit.call("setupSpirit", {obj = self, color = player_color})
-end
-function ToggleProgression()
-    sourceSpirit.call("toggleProgression", {obj = self})
-end
-function ToggleAspect(_, _, alt_click)
-    sourceSpirit.call("toggleAspect", {obj = self, alt_click = alt_click})
-end
 -- Source Spirit start
 function load(params)
     if params.saved_data ~= "" then
@@ -33,7 +17,7 @@ function load(params)
 
     params.obj.createButton({
         click_function = "SetupSpirit",
-        function_owner = params.obj,
+        function_owner = self,
         label          = "Choose Spirit",
         position       = Vector(0.7, -0.1, 0.9),
         rotation       = Vector(0,0,180),
@@ -44,7 +28,7 @@ function load(params)
     })
     params.obj.createButton({
         click_function = "ToggleProgression",
-        function_owner = params.obj,
+        function_owner = self,
         label          = "",
         position       = Vector(-0.7, -0.1, 0.9),
         rotation       = Vector(0,0,180),
@@ -56,7 +40,7 @@ function load(params)
     })
     params.obj.createButton({
         click_function = "ToggleAspect",
-        function_owner = params.obj,
+        function_owner = self,
         label          = "",
         position       = Vector(0.7, -0.2, 0.4),
         rotation       = Vector(0,0,180),
@@ -87,7 +71,7 @@ function load(params)
     end
     Global.call("addSpirit", {spirit=params.obj})
 end
-function randomAspect(params)
+function RandomAspect(params)
     for _,obj in pairs(upCast(params.obj)) do
         if obj.type == "Deck" and obj.getName() == "Aspects" then
             local objs = obj.getObjects()
@@ -100,7 +84,7 @@ function randomAspect(params)
     end
     return nil
 end
-function pickSpirit(params)
+function PickSpirit(params)
     if params.aspect then
         if params.aspect == "Random" then
             params.obj.setVar("useAspect", 1)
@@ -111,28 +95,29 @@ function pickSpirit(params)
             params.obj.setVar("aspect", params.aspect)
         end
     end
-    setupSpirit({obj = params.obj, color = params.color})
+    SetupSpirit(params.obj, params.color)
 end
-function setupSpirit(params)
+
+function SetupSpirit(obj, player_color)
     local xPadding = 1.3
     local xOffset = 1
-    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[params.color])
+    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
     if #PlayerBag.getObjects() ~= 0 then
-        local castObjects = upCast(params.obj)
-        local hpos = Player[params.color].getHandTransform().position
-        params.obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,13.9))
-        params.obj.setRotation(Vector(0,180,0))
-        params.obj.setLock(true)
-        params.obj.clearButtons()
-        local spos = params.obj.getPosition()
-        local snaps = params.obj.getSnapPoints()
+        local castObjects = upCast(obj)
+        local hpos = Player[player_color].getHandTransform().position
+        obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,13.9))
+        obj.setRotation(Vector(0,180,0))
+        obj.setLock(true)
+        obj.clearButtons()
+        local spos = obj.getPosition()
+        local snaps = obj.getSnapPoints()
         local placed = 0
 
         -- Setup Presence
         for i = 1,13 do
             local p = snaps[i]
             if i <= #snaps then
-                PlayerBag.takeObject({position = params.obj.positionToWorld(p.position)})
+                PlayerBag.takeObject({position = obj.positionToWorld(p.position)})
             else
                 PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})
                 placed = placed + 1
@@ -149,14 +134,14 @@ function setupSpirit(params)
         local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
         counter.setLock(true)
 
-        Global.call("removeSpirit", {spirit=params.obj.guid, color=params.color, ready=ready, counter=counter})
+        Global.call("removeSpirit", {spirit=obj.guid, color=player_color, ready=ready, counter=counter})
 
         -- Setup Progression Deck if enabled
-        local useProgression = params.obj.getVar("useProgression")
+        local useProgression = obj.getVar("useProgression")
         if useProgression then
             local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
             local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
-            local progressionDeck = params.obj.getVar("progressionCard").getVar("progressionDeck")
+            local progressionDeck = obj.getVar("progressionCard").getVar("progressionDeck")
             for i,card in pairs(progressionDeck) do
                 if card[2] then
                     majorPowerDeck.takeObject({
@@ -175,37 +160,79 @@ function setupSpirit(params)
         end
 
         -- Setup objects on top of board
-        for _, obj in pairs(castObjects) do
-            obj.setLock(false)
-            if obj.type == "Deck" then
-                if obj.getName() == "Aspects" then
-                    handleAspect(params.obj, obj, params.color)
+        for _, o in pairs(castObjects) do
+            o.setLock(false)
+            if o.type == "Deck" then
+                if o.getName() == "Aspects" then
+                    handleAspect(obj, o, player_color)
                 else
-                    obj.deal(#obj.getObjects(),params.color)
+                    o.deal(#o.getObjects(),player_color)
                 end
-            elseif obj.type == "Card" and obj.getName() == "Progression" then
+            elseif o.type == "Card" and o.getName() == "Progression" then
                 if useProgression then
-                    obj.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
+                    o.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
                 else
-                    obj.destruct()
+                    o.destruct()
                 end
-            elseif Global.getVar("gameStarted") and obj.hasTag("Spirit Setup") then
-                local obj = obj  -- luacheck: ignore 423 (deliberate shadowing)
-                Wait.frames(function () obj.call("doSpiritSetup", {color=params.color}) end, 1)
+            elseif Global.getVar("gameStarted") and o.hasTag("Spirit Setup") then
+                local o = o  -- luacheck: ignore 423 (deliberate shadowing)
+                Wait.frames(function () o.call("doSpiritSetup", {color=player_color}) end, 1)
             else
-                obj.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))
+                o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))
                 placed = placed + 1
             end
         end
 
-        local broadcast = params.obj.getVar("broadcast")
+        local broadcast = obj.getVar("broadcast")
         if broadcast ~= nil then
-            Player[params.color].broadcast(broadcast, Color.SoftBlue)
+            Player[player_color].broadcast(broadcast, Color.SoftBlue)
         end
     else
-        Player[params.color].broadcast("You already picked a spirit", "Red")
+        Player[player_color].broadcast("You already picked a spirit", "Red")
     end
 end
+function ToggleProgression(obj)
+    local useProgression = obj.getVar("useProgression")
+    useProgression = not useProgression
+    obj.setVar("useProgression", useProgression)
+    if useProgression then
+        obj.editButton({
+            index          = 1,
+            label          = "Progression: Yes",
+        })
+    else
+        obj.editButton({
+            index          = 1,
+            label          = "Progression: No",
+        })
+    end
+end
+function ToggleAspect(obj, _, alt_click)
+    local useAspect = obj.getVar("useAspect")
+    if alt_click then
+        useAspect = (useAspect - 1) % 3
+    else
+        useAspect = (useAspect + 1) % 3
+    end
+    obj.setVar("useAspect", useAspect)
+    if useAspect == 0 then
+        obj.editButton({
+            index          = 2,
+            label          = "Aspects: None",
+        })
+    elseif useAspect == 1 then
+        obj.editButton({
+            index          = 2,
+            label          = "Aspects: Random",
+        })
+    else
+        obj.editButton({
+            index          = 2,
+            label          = "Aspects: All",
+        })
+    end
+end
+
 function handleAspect(spirit, deck, color)
     local useAspect = spirit.getVar("useAspect")
     if useAspect == 0 then
@@ -246,49 +273,6 @@ function handleAspect(spirit, deck, color)
         deck.deal(#deck.getObjects(), color)
     end
 end
-
-function toggleProgression(params)
-    local useProgression = params.obj.getVar("useProgression")
-    useProgression = not useProgression
-    params.obj.setVar("useProgression", useProgression)
-    if useProgression then
-        params.obj.editButton({
-            index          = 1,
-            label          = "Progression: Yes",
-        })
-    else
-        params.obj.editButton({
-            index          = 1,
-            label          = "Progression: No",
-        })
-    end
-end
-function toggleAspect(params)
-    local useAspect = params.obj.getVar("useAspect")
-    if params.alt_click then
-        useAspect = (useAspect - 1) % 3
-    else
-        useAspect = (useAspect + 1) % 3
-    end
-    params.obj.setVar("useAspect", useAspect)
-    if useAspect == 0 then
-        params.obj.editButton({
-            index          = 2,
-            label          = "Aspects: None",
-        })
-    elseif useAspect == 1 then
-        params.obj.editButton({
-            index          = 2,
-            label          = "Aspects: Random",
-        })
-    else
-        params.obj.editButton({
-            index          = 2,
-            label          = "Aspects: All",
-        })
-    end
-end
-
 function upCast(obj)
     local hits = Physics.cast({
         origin       = obj.getPosition() + Vector(0,0.1,0),

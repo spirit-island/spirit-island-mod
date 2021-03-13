@@ -44,11 +44,13 @@ playerTables = {
 }
 ------ Saved Config Data
 numPlayers = 1
+boardLayout = "Balanced"
 BnCAdded = false
 JEAdded = false
 fearPool = 0
 generatedFear = 0
 gameStarted = false
+difficulty = 0
 difficultyString = ""
 blightedIslandCard = nil
 blightedIsland = false
@@ -85,8 +87,6 @@ useBlightCard = true
 useBnCEvents = false
 useJEEvents = false
 gamePaused = false
-boardLayout = "Balanced"
-difficulty = 0
 yHeight = 0
 stagesSetup = 0
 boardsSetup = 0

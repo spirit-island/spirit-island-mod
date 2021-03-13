@@ -1,10 +1,6 @@
 -- Spirit Panel for MJ & iakona's Spirit Island Mod --
 useProgression = false
-progressionCard = nil
 useAspect = 2
-aspect = nil
-broadcast = nil
-sourceSpirit = nil
 
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))

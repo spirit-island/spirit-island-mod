@@ -3026,6 +3026,10 @@ end
 spiritsScanned = {}
 function spiritUpdater()
     local sScript = sourceSpirit.getLuaScript()
+    local start, _ = string.find(sScript, "-- Source Spirit start")
+    if start ~= nil then
+        sScript = string.sub(sScript, 1, start - 1)
+    end
     for _,v in pairs(getObjectsWithTag("Spirit")) do
         if not spiritsScanned[v.guid] then
             spiritsScanned[v.guid] = true

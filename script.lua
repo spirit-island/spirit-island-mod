@@ -3229,37 +3229,47 @@ function setupPlayerArea(params)
 
     local energy = 0
 
-    local function elemStrToArr(elemStr)
-        local outArr = {}
-        for i = 1, string.len(elemStr) do
-            table.insert(outArr,(math.floor(string.sub(elemStr, i, i))))
+    local Elements = {}
+    Elements.__index = Elements
+    function Elements:new(init)
+        local outTable = {0,0,0,0,0,0,0,0}
+        setmetatable(outTable, self)
+        outTable:add(init)
+        return outTable
+    end
+    function Elements:add(other)
+        if other == nil then
+            return
+        elseif type(other) == "table" then
+            for j = 1, 8 do
+                self[j] = self[j] + other[j]
+            end
+        elseif type(other) == "string" then
+            for i = 1, string.len(other) do
+                self[i] = self[i] + math.floor(string.sub(other, i, i))
+            end
         end
-        return outArr
+    end
+    function Elements:__tostring()
+        return table.concat(self, "")
     end
 
-    local function elemCombine(inTableOfElemStrCards)
-        local outTable = {0,0,0,0,0,0,0,0}
-        for i = 1, #inTableOfElemStrCards do
-            local elemTable = elemStrToArr(inTableOfElemStrCards[i].getVar("elements"))
-            for j = 1, 8 do
-                outTable[j] = outTable[j] + elemTable[j]
-            end
-            local cost = inTableOfElemStrCards[i].getVar("energy")
-            -- Skip counting locked card's energy (Aid from Lesser Spirits)
-            if not inTableOfElemStrCards[i].getLock() and cost ~= nil then
-                energy = energy + cost
-                if (inTableOfElemStrCards[i].hasTag("Fast") and not inTableOfElemStrCards[i].hasTag("Temporary Slow")) or inTableOfElemStrCards[i].hasTag("Temporary Fast") then
-                    energy = energy - fastDiscount
-                end
-            end
+    local function powerCost(card)
+        local cost = card.getVar("energy")
+        -- Skip counting locked card's energy (Aid from Lesser Spirits)
+        if card.getLock() or cost == nil then
+            return 0
         end
-        return outTable
+        if (card.hasTag("Fast") and not card.hasTag("Temporary Slow")) or card.hasTag("Temporary Fast") then
+            cost = cost - fastDiscount
+        end
+        return cost
     end
 
     local function countItems()
         local zone = params.zone
         local itemsInZone = zone.getObjects()
-        local elemCardTable = {}
+        local elements = Elements:new()
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(itemsInZone) do
@@ -3268,18 +3278,18 @@ function setupPlayerArea(params)
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        table.insert(elemCardTable, entry)
+                        elements:add(entry.getVar("elements"))
+                        energy = energy + powerCost(entry)
                     end
                 end
             elseif entry.type == "Tile" then
                 if entry.getVar("elements") ~= nil then
-                    table.insert(elemCardTable, entry)
+                    elements:add(entry.getVar("elements"))
                 end
             end
         end
-        local combinedElements = elemCombine(elemCardTable)
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
-        for i,v in ipairs(combinedElements) do
+        for i, v in ipairs(elements) do
             params.elementBags[i].editButton({index=0, label=v})
         end
         --Updates the number display

@@ -100,7 +100,6 @@ function load(params)
         end
     end
     Global.call("addSpirit", {spirit=params.obj})
-    return returnData
 end
 function randomAspect(params)
     for _,obj in pairs(upCast(params.obj)) do

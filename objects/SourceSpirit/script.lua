@@ -1,3 +1,8 @@
+--- Code for handling Spirit Panels
+-- The following commented code is the code that appears on each spirit panel.
+-- It calls into the code on this object to implement all of its behaviors.
+
+spiritScript = [[
 -- Spirit Panel for MJ & iakona's Spirit Island Mod --
 useProgression = false
 useAspect = 2
@@ -7,7 +12,8 @@ function onLoad(saved_data)
     sourceSpirit = getObjectFromGUID("SourceSpirit")
     sourceSpirit.call("load", {obj = self, saved_data = saved_data})
 end
--- Source Spirit start
+]]
+
 function load(params)
     if params.saved_data ~= "" then
         local loaded_data = JSON.decode(params.saved_data)

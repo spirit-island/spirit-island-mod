@@ -3024,16 +3024,8 @@ function flipReady(player)
 end
 -----
 spiritsScanned = {}
-function spiritLuaCode()
-    local sScript = sourceSpirit.getLuaScript()
-    local start, _ = string.find(sScript, "-- Source Spirit start")
-    if start ~= nil then
-        sScript = string.sub(sScript, 1, start - 2)
-    end
-    return sScript
-end
 function spiritUpdater()
-    local sScript = spiritLuaCode()
+    local sScript = sourceSpirit.getVar("spiritScript")
     for _,v in pairs(getObjectsWithTag("Spirit")) do
         if not spiritsScanned[v.guid] then
             spiritsScanned[v.guid] = true

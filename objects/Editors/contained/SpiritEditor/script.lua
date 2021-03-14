@@ -1,8 +1,9 @@
-sourceSpiritID = "SourceSpirit"
+local sourceSpirit
 
 local rescan
 
 function onLoad()
+    sourceSpirit = getObjectFromGUID("SourceSpirit")
     self.createButton({
         click_function = "nullFunc",
         label = "Spirit Board\nValidator",
@@ -41,7 +42,7 @@ function clearButtons()
 end
 
 function createButtons(obj)
-    if Global.call("spiritLuaCode") == obj.getLuaScript() then
+    if sourceSpirit.getVar("spiritScript") == obj.getLuaScript() then
         if not obj.hasTag("Spirit") then
             obj.addTag("Spirit")
         end
@@ -73,7 +74,7 @@ end
 
 function makeSpirit(obj)
     obj.addTag("Spirit")
-    obj.setLuaScript(getObjectFromGUID(sourceSpiritID).getLuaScript())
+    obj.setLuaScript(sourceSpirit.getVar("spiritScript"))
     obj.reload()
     rescan = true
     scan()

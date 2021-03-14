@@ -67,7 +67,7 @@ function toggleObjects()
                 guid = bagObject.guid,
                 position = contents[bagObject.guid],
                 rotation = {0,180,0},
-                callback_function = function(obj) obj.setLock(true) objectsMoved = objectsMoved + 1 end,
+                callback_function = function(obj) obj.setLock(true) objectsMoved = objectsMoved + 1 obj.setPosition(contents[bagObject.guid]) end,
             })
             count = count + 1
         end

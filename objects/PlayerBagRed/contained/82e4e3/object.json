@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -45.7758026,
-    "posY": 1.25303853,
-    "posZ": 48.66233,
-    "rotX": 0.0008869169,
+    "posX": 1.3272239,
+    "posY": 1.9711622,
+    "posZ": 53.7520866,
+    "rotX": -1.12434879e-08,
     "rotY": 179.972824,
-    "rotZ": -4.136489e-06,
+    "rotZ": -7.759156e-08,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -39,7 +39,7 @@
     "ColliderURL": "",
     "Convex": true,
     "MaterialIndex": 1,
-    "TypeIndex": 5,
+    "TypeIndex": 0,
     "CastShadows": true
   }
 }

@@ -1,3 +1,21 @@
 {
-  "broadcast": "To not have Time Passes heal Invaders or Dahan you can do one of the following: Lock the Invader/Dahan at the bottom of the stack, place the stack on a token such as presence or energy, or play the pieces inside of a counting bag"
+  "broadcast": "To not have Time Passes heal Invaders or Dahan you can do one of the following: Lock the Invader/Dahan at the bottom of the stack, place the stack on a token such as presence or energy, or play the pieces inside of a counting bag",
+  "trackElements": [
+    {
+      "elements": "00010000",
+      "position": {
+        "x": -0.67,
+        "y": 0,
+        "z": -0.41
+      }
+    },
+    {
+      "elements": "00001000",
+      "position": {
+        "x": -0.21,
+        "y": 0,
+        "z": -0.41
+      }
+    }
+  ]
 }

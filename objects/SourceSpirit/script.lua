@@ -12,6 +12,7 @@ function load(params)
     if params.saved_data ~= "" then
         local loaded_data = JSON.decode(params.saved_data)
         params.obj.setVar("broadcast", loaded_data.broadcast)
+        params.obj.setTable("trackElements", loaded_data.trackElements)
     end
     if Global.getVar("gameStarted") then return end
 

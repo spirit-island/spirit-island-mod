@@ -3241,8 +3241,8 @@ function setupPlayerArea(params)
         if other == nil then
             return
         elseif type(other) == "table" then
-            for j = 1, 8 do
-                self[j] = self[j] + other[j]
+            for i = 1, 8 do
+                self[i] = self[i] + other[i]
             end
         elseif type(other) == "string" then
             for i = 1, string.len(other) do
@@ -3259,8 +3259,7 @@ function setupPlayerArea(params)
         -- Skip counting locked card's energy (Aid from Lesser Spirits)
         if card.getLock() or cost == nil then
             return 0
-        end
-        if (card.hasTag("Fast") and not card.hasTag("Temporary Slow")) or card.hasTag("Temporary Fast") then
+        elseif (card.hasTag("Fast") and not card.hasTag("Temporary Slow")) or card.hasTag("Temporary Fast") then
             cost = cost - fastDiscount
         end
         return cost
@@ -3296,12 +3295,10 @@ function setupPlayerArea(params)
 
     local function countItems()
         local zone = params.zone
-        local itemsInZone = zone.getObjects()
         local elements = Elements:new()
         energy = 0
         --Go through all items found in the zone
-        for _, entry in ipairs(itemsInZone) do
-            --Ignore non-cards
+        for _, entry in ipairs(zone.getObjects()) do
             if entry.hasTag("spirit") then
                 elements:add(calculateTrackElements(entry))
             elseif entry.type == "Card" then
@@ -3318,11 +3315,11 @@ function setupPlayerArea(params)
                 end
             end
         end
+        --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
             params.elementBags[i].editButton({index=0, label=v})
         end
-        --Updates the number display
     end
     countItems()    -- Update counts immediately.
     if not timer then   -- Timer doesn't already exist.

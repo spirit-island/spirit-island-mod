@@ -83,7 +83,6 @@ end
 function upCast(obj,dist,offset,types)
     dist = dist or 1
     offset = offset or 0
-    types = types or {}
     local hits = Physics.cast({
         origin       = obj.getPosition() + Vector(0,offset,0),
         direction    = Vector(0,1,0),
@@ -95,7 +94,7 @@ function upCast(obj,dist,offset,types)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if types ~= {} then
+        if types ~= nil then
             local matchesType = false
             for _,t in pairs(types) do
                 if v.hit_object.type == t then matchesType = true end

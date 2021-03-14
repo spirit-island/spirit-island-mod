@@ -42,7 +42,11 @@ function clearButtons()
 end
 
 function createButtons(obj)
-    if sourceSpirit.getVar("spiritScript") == obj.getLuaScript() then
+    local objScript = obj.getLuaScript()
+    if string.match(objScript, -1, -1) ~= "\n" then
+        objScript = objScript .. "\n"
+    end
+    if sourceSpirit.getVar("spiritScript") == objScript then
         if not obj.hasTag("Spirit") then
             obj.addTag("Spirit")
         end

@@ -3025,14 +3025,18 @@ end
 -----
 spiritsScanned = {}
 function spiritUpdater()
-    local sScript = sourceSpirit.getVar("spiritScript")
-    for _,v in pairs(getObjectsWithTag("Spirit")) do
-        if not spiritsScanned[v.guid] then
-            spiritsScanned[v.guid] = true
-            if v.getLuaScript() ~= sScript then
-                v.setLuaScript(sScript)
-                v = v.reload()
-                broadcastToAll(v.getName().." has been updated to the current version!")
+    local spiritScript = sourceSpirit.getVar("spiritScript")
+    for _, obj in pairs(getObjectsWithTag("Spirit")) do
+        if not spiritsScanned[obj.guid] then
+            spiritsScanned[obj.guid] = true
+            local objScript = obj.getLuaScript()
+            if string.match(objScript, -1, -1) ~= "\n" then
+                objScript = objScript .. "\n"
+            end
+            if objScript ~= spiritScript then
+                obj.setLuaScript(spiritScript)
+                obj = obj.reload()
+                broadcastToAll(obj.getName().." has been updated to the current version!")
             end
         end
     end

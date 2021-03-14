@@ -41,7 +41,7 @@ function clearButtons()
 end
 
 function createButtons(obj)
-    if getObjectFromGUID(sourceSpiritID).getLuaScript() == obj.getLuaScript() then
+    if Global.call("spiritLuaCode") == obj.getLuaScript() then
         if not obj.hasTag("Spirit") then
             obj.addTag("Spirit")
         end

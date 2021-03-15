@@ -27,6 +27,7 @@ function PostSetup()
     scenarioBag.takeObject({guid = "195b49"}).destruct()
     scenarioBag.takeObject({guid = "889880"}).destruct()
     scenarioBag.takeObject({guid = "eb0571"}).destruct()
+    scenarioBag.takeObject({guid = "8d6e45"}).destruct()
     scenarioBag.shuffle()
 
     local numBoards = Global.getVar("numBoards")

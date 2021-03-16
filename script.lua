@@ -44,6 +44,7 @@ playerTables = {
 }
 ------ Saved Config Data
 numPlayers = 1
+numBoards = 1
 boardLayout = "Balanced"
 BnCAdded = false
 JEAdded = false
@@ -82,7 +83,6 @@ showPlayerButtons = true
 showAllMultihandedButtons = false
 
 ------ Unsaved Config Data
-numBoards = 1
 useBlightCard = true
 useBnCEvents = false
 useJEEvents = false
@@ -268,6 +268,7 @@ function onSave()
         boardLayout = boardLayout,
         selectedBoards = selectedBoards,
         numPlayers = numPlayers,
+        numBoards = numBoards,
         blightCards = blightCards,
         fastDiscount = fastDiscount,
         currentPhase = currentPhase,
@@ -448,6 +449,7 @@ function onLoad(saved_data)
         boardLayout = loaded_data.boardLayout
         selectedBoards = loaded_data.selectedBoards
         numPlayers = loaded_data.numPlayers
+        numBoards = loaded_data.numBoards
         blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
         showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
@@ -477,7 +479,6 @@ function onLoad(saved_data)
             if not blightedIsland then
                 Wait.condition(addBlightedIslandButton, function() return not aidBoard.spawning end)
             end
-            numBoards = #selectedBoards
             gamePaused = false
             for _,obj in ipairs(getObjects()) do
                 if isIslandBoard(obj) then

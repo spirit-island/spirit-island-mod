@@ -23,6 +23,7 @@
   "gameStarted": false,
   "generatedFear": 0,
   "JEAdded": false,
+  "numBoards": 1,
   "numPlayers": 1,
   "panelAdversaryVisibility": "Invisible",
   "panelBlightFearVisibility": "Invisible",

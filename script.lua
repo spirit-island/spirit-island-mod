@@ -3174,17 +3174,17 @@ function setupPlayerArea(params)
     for _,bag in pairs(params.elementBags) do
         local position = bag.getPosition()
         if selected then
-            position.y = -0.74
+            position.y = 0.95
         else
-            position.y = -1.4
+            position.y = 0.5
         end
         bag.setPosition(position)
 
         if not initialized and selected then
             bag.createButton({
                 label="?", click_function="nullFunc",
-                position={0,2.04,1.05}, rotation={0,0,0}, height=0, width=0,
-                font_color={1,1,1}, font_size=450
+                position={0,0,1.9}, rotation={0,0,0}, height=0, width=0,
+                font_color={1,1,1}, font_size=800
             })
         elseif initialized and not selected then
             bag.clearButtons()
@@ -3192,9 +3192,9 @@ function setupPlayerArea(params)
     end
     local position = params.anyBag.getPosition()
     if selected then
-        position.y = -0.74
+        position.y = 0.95
     else
-        position.y = -1.4
+        position.y = 0.5
     end
     params.anyBag.setPosition(position)
     position = defendBags[color].getPosition()
@@ -3309,7 +3309,7 @@ function setupPlayerArea(params)
                         energy = energy + powerCost(entry)
                     end
                 end
-            elseif entry.type == "Tile" then
+            elseif entry.type == "Generic" then
                 if entry.getVar("elements") ~= nil then
                     elements:add(entry.getVar("elements"))
                 end

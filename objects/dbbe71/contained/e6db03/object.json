@@ -1,0 +1,49 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -28.8297081,
+    "posY": 1.06004059,
+    "posZ": -15.3348494,
+    "rotX": 359.250946,
+    "rotY": 358.302856,
+    "rotZ": 358.276825,
+    "scaleX": 0.5000005,
+    "scaleY": 0.5000005,
+    "scaleZ": 0.5000005
+  },
+  "Nickname": "Fire Element",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.375464022,
+    "b": 0.0
+  },
+  "Tags": [
+    "Destroy",
+    "Fire"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848022583/E829535EC9D3A4B5E1A962555788738AFDA20FAB/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

@@ -2,16 +2,16 @@ function setupPlayerArea()
     Global.call("setupPlayerArea", {
         obj = self,
         elementBags = {
-            getObjectFromGUID("139905"),
-            getObjectFromGUID("24cdd1"),
-            getObjectFromGUID("96f13b"),
-            getObjectFromGUID("c73b7c"),
-            getObjectFromGUID("fa94d2"),
-            getObjectFromGUID("e3df9c"),
-            getObjectFromGUID("672f18"),
-            getObjectFromGUID("5a5140"),
+            getObjectFromGUID("7066e9"),
+            getObjectFromGUID("ac003d"),
+            getObjectFromGUID("9af62a"),
+            getObjectFromGUID("008200"),
+            getObjectFromGUID("bdbab4"),
+            getObjectFromGUID("e677f5"),
+            getObjectFromGUID("86b1b2"),
+            getObjectFromGUID("c8d6cc"),
         },
-        anyBag = getObjectFromGUID("3642c2"),
+        anyBag = getObjectFromGUID("1ad0e7"),
         zone = getObjectFromGUID("6f2249")
     })
 end

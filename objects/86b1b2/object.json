@@ -1,0 +1,47 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": 47.99,
+    "posY": 0.5,
+    "posZ": -13.6,
+    "rotX": 3.9756934e-16,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 0.7000003,
+    "scaleY": 0.7000003,
+    "scaleZ": 0.7000003
+  },
+  "Nickname": "Plant Element",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0,
+    "g": 0.7215687,
+    "b": 0.222639441
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329688777/F582CFE932536A5EFA3117DDB379F8120B4BE5C2/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 7,
+    "CastShadows": true
+  }
+}

@@ -2280,7 +2280,9 @@ function handlePlayer(color, data)
         elseif string.sub(name, -7) == "Isolate" then
             obj.destruct()
         elseif obj.getName() == "Speed Token" then
-            obj.destruct()
+            -- Move speed token up a bit to trigger collision exit callback
+            obj.setPosition(obj.getPosition() + Vector(0,1,0))
+            Wait.frames(function() obj.destruct() end , 1)
         elseif obj.type == "Card" and not obj.getLock() then
             obj.setPosition(Player[color].getHandTransform(2).position + Vector(10,0,0))
             obj.setRotation(Vector(0, 180, 0))

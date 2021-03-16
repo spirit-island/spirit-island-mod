@@ -1,0 +1,45 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -43.03,
+    "posY": 0.8031326,
+    "posZ": 12.67,
+    "rotX": -1.298665e-07,
+    "rotY": 180.010956,
+    "rotZ": 2.07190354e-08,
+    "scaleX": 0.55000037,
+    "scaleY": 0.55000037,
+    "scaleZ": 0.55000037
+  },
+  "Nickname": "Plant Element",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0,
+    "g": 0.7215687,
+    "b": 0.222639352
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329688777/F582CFE932536A5EFA3117DDB379F8120B4BE5C2/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

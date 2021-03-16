@@ -1,0 +1,45 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -43.03,
+    "posY": 0.8031326,
+    "posZ": 18.67,
+    "rotX": -1.00866274e-07,
+    "rotY": 180.01474,
+    "rotZ": -4.384204e-08,
+    "scaleX": 0.55000037,
+    "scaleY": 0.55000037,
+    "scaleZ": 0.55000037
+  },
+  "Nickname": "Fire Element",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.3754638,
+    "b": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848022583/E829535EC9D3A4B5E1A962555788738AFDA20FAB/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

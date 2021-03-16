@@ -1,0 +1,45 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -43.03,
+    "posY": 0.8031326,
+    "posZ": 15.67,
+    "rotX": 1.77072241e-08,
+    "rotY": 180.010925,
+    "rotZ": 1.74481229e-08,
+    "scaleX": 0.55000037,
+    "scaleY": 0.55000037,
+    "scaleZ": 0.55000037
+  },
+  "Nickname": "Water Element",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.198332787,
+    "g": 0.423720062,
+    "b": 0.839140534
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329702298/A506113CA23809C5D314B2010E9129C7084DE53D/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

@@ -784,14 +784,14 @@ function setReadyUI(yes, no)
 end
 ---- Element Helper Section
 elementGuids = {
-    "f4cff9",
-    "35b023",
-    "15644a",
-    "31f925",
-    "172c1d",
-    "d45af8",
-    "64ff66",
-    "dc135b",
+    "c5cbb7",
+    "cb1318",
+    "76f418",
+    "107788",
+    "f433f0",
+    "c44b9c",
+    "4a1ff8",
+    "6c0a2f",
 }
 
 function placeElementTokens()
@@ -805,12 +805,12 @@ function placeElementTokens()
             click_function="blankFunc",
             function_owner=self,
             label="0",
-            position=Vector(4,0,0),
+            position=Vector(2.75,0,0),
             rotation=Vector(0,0.1,0),
             width=0,
             height=0,
             font_color={1,1,1},
-            font_size=5000,
+            font_size=500,
             scale = Vector(2,2,2),
         })
     end

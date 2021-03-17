@@ -1,17 +1,17 @@
 {
   "Name": "Bag",
   "Transform": {
-    "posX": 9.905174,
-    "posY": 1.78610468,
-    "posZ": 53.890892,
-    "rotX": 1.56758844e-07,
-    "rotY": 0.00193223648,
-    "rotZ": -6.72010628e-07,
+    "posX": 16.8549652,
+    "posY": 1.78610063,
+    "posZ": 53.2360649,
+    "rotX": -4.76997229e-07,
+    "rotY": 0.00905419,
+    "rotZ": 1.07051449e-06,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "Scenario Tokens",
+  "Nickname": "Thieves",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {

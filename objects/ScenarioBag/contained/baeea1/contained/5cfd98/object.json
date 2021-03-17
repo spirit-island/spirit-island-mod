@@ -1,0 +1,55 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -16.1057911,
+    "posY": 2.89580345,
+    "posZ": 20.31894,
+    "rotX": 4.018858e-08,
+    "rotY": 180.0,
+    "rotZ": -7.85343346e-08,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Scenario Marker",
+  "Description": "Markers used by the Scenario Despicable Theft",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749057496681017469/E68A8F6F693C4224261288694AE1ADBEC32119BD/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057548225691963/54CC7BB702BAEEA47FA67D23EF61E4FC12EDF80D/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.875,
+        "g": 0.812880337,
+        "b": 0.7463235
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

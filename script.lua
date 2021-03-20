@@ -2274,7 +2274,7 @@ function handlePlayer(color, data)
         if obj.hasTag("Any") then
             if obj.getStateId() ~= 9 then obj = obj.setState(9) end
             if obj.getLock() == false then obj.destruct() end
-        elseif obj.type == "Tile" and obj.getVar("elements") ~= nil then
+        elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
         elseif string.sub(name, -6) == "Defend" then
             obj.destruct()

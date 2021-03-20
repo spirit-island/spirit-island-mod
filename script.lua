@@ -3925,6 +3925,10 @@ function swapPlayerAreaObjects(a, b)
                 zones[to].createButton(button)
             end
         end
+        if selectedColors[from] then
+            selectedColors[from].defend.setPosition(selectedColors[from].defend.getPosition() + transform)
+            selectedColors[from].isolate.setPosition(selectedColors[from].isolate.getPosition() + transform)
+        end
     end
 end
 
@@ -3962,6 +3966,22 @@ function swapPlayerPresenceColors(fromColor, toColor)
     -- Just bail out fast.
 
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
+    -- Only need to handle case where both colors have spirits here
+    if selectedColors[fromColor] and selectedColors[toColor] then
+        local bag = selectedColors[fromColor].defend
+        local pos = bag.getPosition()
+        selectedColors[fromColor].defend = selectedColors[toColor].defend
+        selectedColors[toColor].defend = bag
+        selectedColors[toColor].defend.setPosition(selectedColors[fromColor].defend.getPosition())
+        selectedColors[fromColor].defend.setPosition(pos)
+
+        bag = selectedColors[fromColor].isolate
+        pos = bag.getPosition()
+        selectedColors[fromColor].isolate = selectedColors[toColor].isolate
+        selectedColors[toColor].isolate = bag
+        selectedColors[toColor].isolate.setPosition(selectedColors[fromColor].isolate.getPosition())
+        selectedColors[fromColor].isolate.setPosition(pos)
+    end
 
     if not fastSwap then
         -- Remove any items still in the bags

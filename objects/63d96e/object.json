@@ -1,0 +1,40 @@
+{
+  "Name": "Bag",
+  "Transform": {
+    "posX": 69.64,
+    "posY": 0.905347466,
+    "posZ": 74.7,
+    "rotX": -0.0044687083,
+    "rotY": 0.00218138658,
+    "rotZ": -4.513663e-05,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Spare Pieces",
+  "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7058823,
+    "g": 0.366520882,
+    "b": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Bag": {
+    "Order": 0
+  }
+}

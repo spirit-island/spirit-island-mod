@@ -276,11 +276,9 @@ end
 function upCast(obj)
     local hits = Physics.cast({
         origin       = obj.getPosition() + Vector(0,0.1,0),
-        direction    = Vector(0,1,0),
         type         = 3,
         size         = obj.getBoundsNormalized().size,
-        orientation  = obj.getRotation(),
-        max_distance = 0,
+        orientation  = Vector(0, 180, 180),
         --debug        = true,
     })
     local hitObjects = {}

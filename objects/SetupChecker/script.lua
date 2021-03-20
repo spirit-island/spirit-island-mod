@@ -889,7 +889,9 @@ function getSpiritTags()
     return tags
 end
 function getSpiritComplexities()
-    local complexities = {}
+    local complexities = {
+        [""] = true,
+    }
     local added = false
     if self.UI.getAttribute("spiritLow", "isOn") == "true" then
         complexities["Low"] = true
@@ -1074,7 +1076,7 @@ function isSpiritPickable(params)
 end
 function addSpirit(params)
     -- Ignore Source Spirit
-    if params.spirit == sourceSpirit then return end
+    if params.spirit.guid == "SourceSpirit" then return end
 
     -- In case of state change, update existing choice with new guid
     for name,_ in pairs(spiritChoices) do

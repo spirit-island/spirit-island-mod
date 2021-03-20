@@ -44,6 +44,7 @@ function createButtons(obj)
     if getObjectFromGUID(sourceSpiritID).getLuaScript() == obj.getLuaScript() then
         if not obj.hasTag("Spirit") then
             obj.addTag("Spirit")
+            obj.reload()
         end
         self.createButton({
             click_function = "nullFunc",

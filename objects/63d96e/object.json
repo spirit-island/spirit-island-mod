@@ -2,14 +2,14 @@
   "Name": "Bag",
   "Transform": {
     "posX": 69.64,
-    "posY": 0.905347466,
+    "posY": 1.06285274,
     "posZ": 74.7,
-    "rotX": -0.0044687083,
-    "rotY": 0.00218138658,
-    "rotZ": -4.513663e-05,
-    "scaleX": 1.0,
-    "scaleY": 1.0,
-    "scaleZ": 1.0
+    "rotX": 2.377929,
+    "rotY": 0.004430224,
+    "rotZ": 357.3999,
+    "scaleX": 0.75,
+    "scaleY": 0.5,
+    "scaleZ": 0.75
   },
   "Nickname": "Spare Pieces",
   "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",

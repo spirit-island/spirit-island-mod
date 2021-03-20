@@ -119,23 +119,6 @@ badlandsBag = "d3f7f8"
 oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
 speedBag = "65fc65"
-defendBags = {
-    Red = "aad2a3",
-    Purple = "f15d5c",
-    Yellow = "772ebb",
-    Blue = "f5652f",
-    Green = "57264f",
-    Orange = "13959c",
-    White = "1716e3",
-}
-isolateBags = {
-    Red = "f73834",
-    Purple = "5e8d9b",
-    Yellow = "fa4196",
-    Blue = "80d97c",
-    Green = "d66cd2",
-    Orange = "0c9976",
-}
 -----
 StandardMapBag = "BalancedMapBag"
 ThematicMapBag = "ThematicMapBag"
@@ -300,7 +283,7 @@ function onSave()
     end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
-        local colorTable = {ready=data.ready.guid, paid=data.paid}
+        local colorTable = {ready=data.ready.guid, defend=data.defend.guid, isolate=data.isolate.guid, paid=data.paid}
         if data.counter ~= nil then
             colorTable.counter = data.counter.guid
         end
@@ -400,12 +383,6 @@ function onLoad(saved_data)
     oneEnergyBag = getObjectFromGUID(oneEnergyBag)
     threeEnergyBag = getObjectFromGUID(threeEnergyBag)
     speedBag = getObjectFromGUID(speedBag)
-    for index, bagGuid in pairs(defendBags) do
-        defendBags[index] = getObjectFromGUID(bagGuid)
-    end
-    for index, bagGuid in pairs(isolateBags) do
-        isolateBags[index] = getObjectFromGUID(bagGuid)
-    end
     -----
     cityHealth = getObjectFromGUID(cityHealth)
     cityDamage = getObjectFromGUID(cityDamage)
@@ -492,7 +469,12 @@ function onLoad(saved_data)
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
     for color,data in pairs(selectedColors) do
-        local colorTable = {ready=getObjectFromGUID(data.ready), paid=data.paid}
+        local colorTable = {
+            ready = getObjectFromGUID(data.ready),
+            defend = getObjectFromGUID(data.defend),
+            isolate = getObjectFromGUID(data.isolate),
+            paid = data.paid,
+        }
         if data.counter ~= nil then
             colorTable.counter = getObjectFromGUID(data.counter)
         end
@@ -2119,7 +2101,13 @@ end
 function removeSpirit(params)
     SetupChecker.call("removeSpirit", params)
     getObjectFromGUID(elementScanZones[params.color]).clearButtons()
-    selectedColors[params.color] = {ready=params.ready, counter=params.counter, paid=false}
+    selectedColors[params.color] = {
+        ready = params.ready,
+        counter = params.counter,
+        defend = params.defend,
+        isolate = params.isolate,
+        paid = false,
+    }
     updatePlayerArea(params.color)
 end
 function getEmptySeat()
@@ -2873,14 +2861,12 @@ function place(objName, placePos, droppingPlayerColor)
             return
         end
     elseif objName == "Defend Token" then
-        if droppingPlayerColor and defendBags[droppingPlayerColor] then
-            temp = defendBags[droppingPlayerColor].takeObject({position = placePos,rotation = Vector(0,180,0)})
-        else
-            temp = defendBags["White"].takeObject({position = placePos,rotation = Vector(0,180,0)})
+        if droppingPlayerColor and selectedColors[droppingPlayerColor] then
+            temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,0)})
         end
     elseif objName == "Isolate Token" then
-        if droppingPlayerColor and isolateBags[droppingPlayerColor] then
-            temp = isolateBags[droppingPlayerColor].takeObject({position = placePos,rotation = Vector(0,180,0)})
+        if droppingPlayerColor and selectedColors[droppingPlayerColor] then
+            temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,0)})
         end
     elseif objName == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -3200,20 +3186,6 @@ function setupPlayerArea(params)
         position.y = 0.5
     end
     params.anyBag.setPosition(position)
-    position = defendBags[color].getPosition()
-    if selected then
-        position.y = 0.95
-    else
-        position.y = 0.5
-    end
-    defendBags[color].setPosition(position)
-    position = isolateBags[color].getPosition()
-    if selected then
-        position.y = 0.95
-    else
-        position.y = 0.5
-    end
-    isolateBags[color].setPosition(position)
 
     if not selected then
         if timer then  -- No spirit, but a running timer.
@@ -3913,8 +3885,6 @@ function swapPlayerAreaColors(a, b)
     end
     positionSwap(playerTables)
     tableSwap(playerBlocks)
-    positionSwap(defendBags)
-    positionSwap(isolateBags)
     tableSwap(elementScanZones)
     updatePlayerArea(a)
     updatePlayerArea(b)
@@ -3985,14 +3955,10 @@ function swapPlayerPresenceColors(fromColor, toColor)
         from = initData(fromColor, 1, toColor),
         to = initData(toColor, 2, fromColor)
     }
-    local specialTokens = {
-        Defend = defendBags,
-        Isolate = isolateBags,
-    }
 
     -- If both bags are full, there's not a lot of work to do.
     -- Unfortunately, we still need to loop through other things because of defend tokens that aren't in bags.
-    local fastSwap = (colors.from.qty == 14 and colors.to.qty == 14)
+    local fastSwap = (colors.from.qty == 16 and colors.to.qty == 16)
     -- Just bail out fast.
 
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
@@ -4019,22 +3985,12 @@ function swapPlayerPresenceColors(fromColor, toColor)
         if name then
             for _,data in pairs(colors) do
                 local suffix = match(name, data.pattern)
-                if suffix then
-                    if specialTokens[suffix] then
-                        local state = obj.getStateId()
-                        local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
-                        local locked = obj.getLock()
-                        destroyObject(obj)
-                        obj = specialTokens[suffix][data.oppositeColor].takeObject(attrs)
-                        obj = obj.setState(state)
-                        obj.setLock(locked)
-                    elseif not fastSwap then
-                        data.tints[suffix] = obj.getColorTint()
-                        if not data.objects[suffix] then
-                            data.objects[suffix] = {obj}
-                        else
-                            table.insert(data.objects[suffix], obj)
-                        end
+                if suffix and not fastSwap then
+                    data.tints[suffix] = obj.getColorTint()
+                    if not data.objects[suffix] then
+                        data.objects[suffix] = {obj}
+                    else
+                        table.insert(data.objects[suffix], obj)
                     end
                 end
             end
@@ -4050,12 +4006,48 @@ function swapPlayerPresenceColors(fromColor, toColor)
     Wait.frames(function()
         for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
             local a, b = unpack(ab)
+            local stop = #b.bagContents-1
+            if stop <= 0 then stop = 1 end
+            for i = #b.bagContents,stop,-1 do  -- Iterate in reverse order.
+                local obj = getObjectFromGUID(b.bagContents[i])
+                local name = obj.getName()
+                if name == "Defend Tokens" then
+                    local pos = selectedColors[b.color].defend.getPosition()
+                    a.bag.putObject(selectedColors[b.color].defend)
+                    obj.setPosition(pos)
+                    obj.setLock(true)
+                    selectedColors[b.color].defend = obj
+                elseif name == "Isolate Tokens" then
+                    local pos = selectedColors[b.color].isolate.getPosition()
+                    a.bag.putObject(selectedColors[b.color].isolate)
+                    obj.setPosition(pos)
+                    obj.setLock(true)
+                    selectedColors[b.color].isolate = obj
+                end
+            end
             for suffix, tint in pairs(a.tints) do
-                local newname = a.color .. "'s " .. suffix
-                for _, obj in ipairs(b.objects[suffix]) do
-                    obj.setColorTint(tint)
-                    obj.setName(newname)
-                    if suffix == "Presence" then
+                if suffix == "Defend" or suffix == "Isolate" then
+                    for _, obj in ipairs(a.objects[suffix]) do
+                        local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
+                        local locked = obj.getLock()
+                        if suffix == "Defend" then
+                            local state = obj.getStateId()
+                            destroyObject(obj)
+                            obj = selectedColors[b.color].defend.takeObject(attrs)
+                            if state ~= 1 then
+                                obj = obj.setState(state)
+                            end
+                        else
+                            destroyObject(obj)
+                            obj = selectedColors[b.color].isolate.takeObject(attrs)
+                        end
+                        obj.setLock(locked)
+                    end
+                else
+                    local newname = a.color .. "'s " .. suffix
+                    for _, obj in ipairs(b.objects[suffix]) do
+                        obj.setColorTint(tint)
+                        obj.setName(newname)
                         local originalState = obj.getStateId()
                         if obj.getStateId() == 1 then
                             obj = obj.setState(2)
@@ -4076,7 +4068,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     end
                 end
             end
-            for i = #b.bagContents,1,-1 do  -- Iterate in reverse order.
+            for i = #b.bagContents - 2,1,-1 do  -- Iterate in reverse order.
                 a.bag.putObject(getObjectFromGUID(b.bagContents[i]))
             end
         end

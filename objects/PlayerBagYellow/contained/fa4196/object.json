@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 33.99,
-    "posY": 0.5,
-    "posZ": -13.6,
-    "rotX": 5.51227544e-08,
-    "rotY": 179.985336,
-    "rotZ": 0.000206460318,
+    "posX": 54.6078568,
+    "posY": 1.9711858,
+    "posZ": -8.904009,
+    "rotX": 0.00443973159,
+    "rotY": 179.975464,
+    "rotZ": -1.95133134e-06,
     "scaleX": 0.7,
     "scaleY": 0.7,
     "scaleZ": 0.7
@@ -15,12 +15,12 @@
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.282349557,
-    "g": 0.7141388,
-    "b": 1.0
+    "r": 1.0,
+    "g": 0.990781367,
+    "b": 0.138078064
   },
   "LayoutGroupSortIndex": 0,
-  "Locked": true,
+  "Locked": false,
   "Grid": false,
   "Snap": false,
   "IgnoreFoW": false,

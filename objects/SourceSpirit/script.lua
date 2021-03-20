@@ -134,7 +134,37 @@ function SetupSpirit(obj, player_color)
         local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
         counter.setLock(true)
 
-        Global.call("removeSpirit", {spirit=obj.guid, color=player_color, ready=ready, counter=counter})
+        -- Setup Element Bags
+        local elements = {}
+        for i = 1,9 do
+            elements[i] = PlayerBag.takeObject({
+                position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 18.81) + Vector(i * 2, 0, 0),
+                rotation = Vector(0, 180, 0),
+            })
+            elements[i].setLock(true)
+        end
+
+        -- Setup Reminder Bags
+        local defend = PlayerBag.takeObject({
+            position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 18.81),
+            rotation = Vector(0, 180, 0),
+        })
+        defend.setLock(true)
+        local isolate = PlayerBag.takeObject({
+            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 18.81),
+            rotation = Vector(0, 180, 0),
+        })
+        isolate.setLock(true)
+
+        Global.call("removeSpirit", {
+            spirit = obj.guid,
+            color = player_color,
+            ready = ready,
+            counter = counter,
+            elements = elements,
+            defend = defend,
+            isolate = isolate
+        })
 
         -- Setup Progression Deck if enabled
         local useProgression = obj.getVar("useProgression")

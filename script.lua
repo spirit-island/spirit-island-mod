@@ -283,7 +283,13 @@ function onSave()
     end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
-        local colorTable = {ready=data.ready.guid, defend=data.defend.guid, isolate=data.isolate.guid, paid=data.paid}
+        local colorTable = {
+            ready = data.ready.guid,
+            elements = convertObjectsToGuids(data.elements),
+            defend = data.defend.guid,
+            isolate = data.isolate.guid,
+            paid = data.paid,
+        }
         if data.counter ~= nil then
             colorTable.counter = data.counter.guid
         end
@@ -471,6 +477,7 @@ function onLoad(saved_data)
     for color,data in pairs(selectedColors) do
         local colorTable = {
             ready = getObjectFromGUID(data.ready),
+            elements = convertGuidsToObjects(data.elements),
             defend = getObjectFromGUID(data.defend),
             isolate = getObjectFromGUID(data.isolate),
             paid = data.paid,
@@ -2104,6 +2111,7 @@ function removeSpirit(params)
     selectedColors[params.color] = {
         ready = params.ready,
         counter = params.counter,
+        elements = params.elements,
         defend = params.defend,
         isolate = params.isolate,
         paid = false,
@@ -3154,38 +3162,19 @@ function setupPlayerArea(params)
             position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
-        -- Other buttons to follow/be fixed later.
-    elseif initialized and not selected then
-        obj.setVar("initialized", false)
-        obj.clearButtons()
-    end
-
-    for _,bag in pairs(params.elementBags) do
-        local position = bag.getPosition()
-        if selected then
-            position.y = 0.95
-        else
-            position.y = 0.5
-        end
-        bag.setPosition(position)
-
-        if not initialized and selected then
+        for i,bag in pairs(selected.elements) do
+            if i == 9 then break end
             bag.createButton({
                 label="?", click_function="nullFunc",
                 position={0,0,1.9}, rotation={0,0,0}, height=0, width=0,
                 font_color={1,1,1}, font_size=800
             })
-        elseif initialized and not selected then
-            bag.clearButtons()
         end
+        -- Other buttons to follow/be fixed later.
+    elseif initialized and not selected then
+        obj.setVar("initialized", false)
+        obj.clearButtons()
     end
-    local position = params.anyBag.getPosition()
-    if selected then
-        position.y = 0.95
-    else
-        position.y = 0.5
-    end
-    params.anyBag.setPosition(position)
 
     if not selected then
         if timer then  -- No spirit, but a running timer.
@@ -3293,14 +3282,15 @@ function setupPlayerArea(params)
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
-            params.elementBags[i].editButton({index=0, label=v})
+            selected.elements[i].editButton({index=0, label=v})
         end
     end
     countItems()    -- Update counts immediately.
-    if not timer then   -- Timer doesn't already exist.
-        timer = Wait.time(countItems, 1, -1)
-        obj.setVar("timer", timer)
+    if timer then
+        Wait.stop(timer)
     end
+    timer = Wait.time(countItems, 1, -1)
+    obj.setVar("timer", timer)
 end
 function payEnergy(target_obj, source_color, alt_click)
     if not gameStarted then
@@ -3928,7 +3918,18 @@ function swapPlayerAreaObjects(a, b)
         if selectedColors[from] then
             selectedColors[from].defend.setPosition(selectedColors[from].defend.getPosition() + transform)
             selectedColors[from].isolate.setPosition(selectedColors[from].isolate.getPosition() + transform)
+            if not selectedColors[to] then
+                for _, bag in pairs(selectedColors[from].elements) do
+                    bag.setPosition(bag.getPosition() + transform)
+                    bag.clearButtons()
+                end
+            end
         end
+    end
+    if selectedColors[a] and selectedColors[b] then
+        local bags = selectedColors[a].elements
+        selectedColors[a].elements = selectedColors[b].elements
+        selectedColors[b].elements = bags
     end
 end
 
@@ -3962,7 +3963,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
 
     -- If both bags are full, there's not a lot of work to do.
     -- Unfortunately, we still need to loop through other things because of defend tokens that aren't in bags.
-    local fastSwap = (colors.from.qty == 16 and colors.to.qty == 16)
+    local fastSwap = (colors.from.qty == 25 and colors.to.qty == 25)
     -- Just bail out fast.
 
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]

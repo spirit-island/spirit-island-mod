@@ -7,17 +7,17 @@
     "rotX": -2.76828e-07,
     "rotY": 180.010818,
     "rotZ": 0.000206144221,
-    "scaleX": 0.55,
-    "scaleY": 0.55,
-    "scaleZ": 0.55
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
   },
   "Nickname": "Isolate Tokens",
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.335311651,
+    "r": 0.335311025,
     "g": 1.0,
-    "b": 0.3018686
+    "b": 0.301867962
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

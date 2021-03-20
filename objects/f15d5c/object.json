@@ -7,16 +7,16 @@
     "rotX": -1.13906005e-07,
     "rotY": 180.010925,
     "rotZ": 0.000206195051,
-    "scaleX": 0.55,
-    "scaleY": 0.55,
-    "scaleZ": 0.55
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
   },
   "Nickname": "Defend Tokens",
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.7698662,
-    "g": 0.405056059,
+    "g": 0.4050554,
     "b": 0.9978706
   },
   "LayoutGroupSortIndex": 0,

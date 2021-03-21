@@ -224,9 +224,9 @@ function flipExploreCard()
     end
 end
 
-scanLoopTable= {
+scanLoopTable = {
     Build2 = {
-        sourceGUID = "e5d18b",
+        sourceGUID = "6bc964",
         origin = Vector(-0.23,0.5,-0.137),
         faceDown = false,
     },
@@ -276,7 +276,7 @@ function advanceInvaderCards()
                             hit.setRotation(Vector(0,90,0))
                             hit.setPositionSmooth(discard)
                         else
-                            source = getObjectFromGUID("e5d18b")
+                            source = getObjectFromGUID(scanLoopTable["Build2"].sourceGUID)
                             local nextO = source.positionToWorld(scanLoopTable["Build2"].origin)
                             hit.setPositionSmooth(Vector(nextO[1],nextO[2]+0.2,hit.getPosition().z))
                         end

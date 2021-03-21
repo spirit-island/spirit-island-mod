@@ -10,7 +10,7 @@ postSetupComplete = false
 hasLossCondition = true
 hasUI = true
 
-highImmigration = "e5d18b"
+highImmigration = "6bc964"
 highImmigrationDiscardPosition = Vector(-46.18, 0.82, -4.18)
 originalDiscardPosition = Vector(-46.21, 1.5, 0.33)
 
@@ -145,7 +145,7 @@ end
 function ReminderSetup(params)
     local reminderTiles = {}
     if params.level >= 1 then
-        reminderTiles.build = "eb5ab2"
+        reminderTiles.build = "15b6a4"
     end
     return reminderTiles
 end

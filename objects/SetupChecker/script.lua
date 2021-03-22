@@ -738,10 +738,12 @@ function showUI()
     end
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "")
     self.UI.setAttribute("panelSpirit", "visibility", "")
+    toggleAdversaryScenarioVisiblity(true)
 end
 function hideUI()
     closeUI()
     self.UI.setAttribute("panelSetupSmall", "visibility", "")
+    toggleAdversaryScenarioVisiblity(false)
 end
 function closeUI()
     self.UI.setAttribute("panelSetup", "visibility", "Invisible")
@@ -750,6 +752,24 @@ function closeUI()
     self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
     self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
+end
+function toggleAdversaryScenarioVisiblity(show)
+    local colors = {}
+    if not show then
+        colors = Player.getColors()
+    end
+    for _,guid in pairs(adversaries) do
+        if guid ~= "" then
+            local obj = getObjectFromGUID(guid)
+            obj.setInvisibleTo(colors)
+        end
+    end
+    for _,guid in pairs(scenarios) do
+        if guid ~= "" then
+            local obj = getObjectFromGUID(guid)
+            obj.setInvisibleTo(colors)
+        end
+    end
 end
 
 function toggleSimpleMode()

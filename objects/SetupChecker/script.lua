@@ -728,30 +728,38 @@ function addJECo()
 end
 
 function showUI()
-    self.UI.setAttribute("panelSetup", "visibility", "")
+    toggleSetupUI(true)
     self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
-    if self.UI.getAttribute("optionalRules", "isOn") == "true" then
-        self.UI.setAttribute("panelOptional", "visibility", "")
-    end
-    if self.UI.getAttribute("exploratory", "isOn") == "true" then
-        self.UI.setAttribute("panelExploratory", "visibility", "")
-    end
-    self.UI.setAttribute("panelAdvesaryScenario", "visibility", "")
-    self.UI.setAttribute("panelSpirit", "visibility", "")
     toggleAdversaryScenarioVisiblity(true)
 end
 function hideUI()
-    closeUI()
+    toggleSetupUI(false)
     self.UI.setAttribute("panelSetupSmall", "visibility", "")
     toggleAdversaryScenarioVisiblity(false)
 end
 function closeUI()
-    self.UI.setAttribute("panelSetup", "visibility", "Invisible")
+    toggleSetupUI(false)
     self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
-    self.UI.setAttribute("panelOptional", "visibility", "Invisible")
-    self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
-    self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
-    self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
+    toggleAdversaryScenarioVisiblity(true)
+end
+function toggleSetupUI(show)
+    local visibility = ""
+    if not show then
+        visibility = "Invisible"
+    end
+    self.UI.setAttribute("panelSetup", "visibility", visibility)
+    if show and self.UI.getAttribute("optionalRules", "isOn") == "true" then
+        self.UI.setAttribute("panelOptional", "visibility", "")
+    else
+        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
+    end
+    if show and self.UI.getAttribute("exploratory", "isOn") == "true" then
+        self.UI.setAttribute("panelExploratory", "visibility", "")
+    else
+        self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
+    end
+    self.UI.setAttribute("panelAdvesaryScenario", "visibility", visibility)
+    self.UI.setAttribute("panelSpirit", "visibility", visibility)
 end
 function toggleAdversaryScenarioVisiblity(show)
     local colors = {}

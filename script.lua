@@ -1742,7 +1742,7 @@ function SetupInvaderDeck()
         -- Set Coastal card aside for now
         local stage2Deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
         stage2Deck.takeObject({
-            guid = "c304c1",
+            guid = "a5afb0",
             position = stage2Deck.getPosition() + Vector(0,1,0),
             rotation = Vector(0,180,0),
             callback_function = function(obj) coastalSetup = true end,
@@ -1793,7 +1793,7 @@ function grabInvaderCards(deckTable)
             })
             table.insert(cardTable, card)
         elseif char == "C" then
-            local card = getObjectFromGUID("c304c1")
+            local card = getObjectFromGUID("a5afb0")
             card.setPositionSmooth(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
             card.setRotationSmooth(Vector(0,180,180))
             cardsLoaded = cardsLoaded + 1

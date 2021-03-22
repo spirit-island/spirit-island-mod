@@ -37,10 +37,10 @@
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
-    42803,
-    42802,
     42800,
-    42801
+    42801,
+    42802,
+    42803
   ],
   "CustomDeck": {
     "428": {

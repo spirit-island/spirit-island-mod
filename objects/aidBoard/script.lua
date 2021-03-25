@@ -849,45 +849,16 @@ function toggleElements()
 end
 
 function scanElements()
-    local elemCardTable = {}
-    for _,guid in pairs(Global.getVar("elementScanZones")) do
-        local zone = getObjectFromGUID(guid)
-        --Go through all items found in the zone
-        for _, entry in ipairs(zone.getObjects()) do
-            --Ignore non-cards
-            if entry.type == "Card" then
-                --Ignore if no elements entry
-                if entry.getVar("elements") ~= nil then
-                    if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        table.insert(elemCardTable, entry)
-                    end
-                end
-            end
+    local elements = {0,0,0,0,0,0,0,0}
+    for _, selected in pairs(Global.getVar("selectedColors")) do
+        for i, _ in ipairs(elements) do
+            elements[i] = elements[i] + selected.elements[i].getButtons()[1].label
         end
     end
-    local combinedElements = elemCombine(elemCardTable)
-    local elementsTable = {"Sun","Moon","Fire","Air","Water","Earth","Plant","Animal"}
-    for i,total in ipairs(combinedElements) do
+    for i, total in ipairs(elements) do
         getObjectFromGUID(elementGuids[i]).editButton({
             index = 0,
-            label = total + #getObjectsWithTag(elementsTable[i]),
+            label = total
         })
     end
-end
-function elemCombine(inTableOfElemStrCards)
-    local outTable = {0,0,0,0,0,0,0,0}
-    for i = 1, #inTableOfElemStrCards do
-        local elemTable = elemStrToArr(inTableOfElemStrCards[i].getVar("elements"))
-        for j = 1, 8 do
-            outTable[j] = outTable[j] + elemTable[j]
-        end
-    end
-    return outTable
-end
-function elemStrToArr(elemStr)
-    local outArr = {}
-    for i = 1, string.len(elemStr) do
-        table.insert(outArr,(string.sub(elemStr, i, i)))
-    end
-    return outArr
 end

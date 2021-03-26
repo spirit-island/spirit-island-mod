@@ -848,13 +848,68 @@ function toggleElements()
     end
 end
 
+local Elements = {}
+Elements.__index = Elements
+function Elements:new(init)
+    local outTable = {0,0,0,0,0,0,0,0}
+    setmetatable(outTable, self)
+    outTable:add(init)
+    return outTable
+end
+function Elements:add(other)
+    if other == nil then
+        return
+    elseif type(other) == "table" then
+        for i = 1, 8 do
+            self[i] = self[i] + other[i]
+        end
+    elseif type(other) == "string" then
+        for i = 1, string.len(other) do
+            self[i] = self[i] + math.floor(string.sub(other, i, i))
+        end
+    end
+end
+function Elements:scale(op)
+    for i = 1, 8 do
+        self[i] = self[i] * op
+    end
+end
+function Elements:__tostring()
+    return table.concat(self, "")
+end
+
+function scanSeaTile()
+    local seaTile = getObjectFromGUID("seaTile")
+        local elements = Elements:new()
+
+    local bounds = seaTile.getBoundsNormalized().size
+    local hits = Physics.cast{
+        origin = seaTile.getPosition(),
+        size = Vector(bounds.x, 10, bounds.z),
+        direction = Vector(0,1,0),
+        max_distance = 0,
+        type = 3, -- box
+        --debug = true,
+    }
+    for _, hit in pairs(hits) do
+        if hit.hit_object.type == "Generic" then
+            if hit.hit_object.getVar("elements") ~= nil then
+                elements:add(hit.hit_object.getVar("elements"))
+            end
+        end
+    end
+    elements:scale(2)
+    return elements
+end
+
 function scanElements()
-    local elements = {0,0,0,0,0,0,0,0}
+    local elements = Elements:new()
     for _, selected in pairs(Global.getVar("selectedColors")) do
         for i, _ in ipairs(elements) do
             elements[i] = elements[i] + selected.elements[i].getButtons()[1].label
         end
     end
+    elements:add(scanSeaTile())
     for i, total in ipairs(elements) do
         getObjectFromGUID(elementGuids[i]).editButton({
             index = 0,

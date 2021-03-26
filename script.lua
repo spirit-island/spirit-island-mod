@@ -123,7 +123,7 @@ speedBag = "65fc65"
 StandardMapBag = "BalancedMapBag"
 ThematicMapBag = "ThematicMapBag"
 MJThematicMapBag = "MJThematicMapBag"
-seaTile = "5f4be2"
+seaTile = "seaTile"
 -----
 cityHealth = "22928c"
 cityDamage = "d8b6c7"
@@ -146,7 +146,7 @@ interactableObjectsToDisableOnLoad = {
     "e267b0","901e41","d3dd7e",  -- tables
     "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
     "ba3767","239d5b","114ff8","782f57","c323b4","f4ab64","6b0f27","bd3f44","82c5e4","837ddf","aee27f", -- borders
-    "5f4be2", -- sea tile
+    "seaTile", -- sea tile
     "235564", -- white box section
     "SetupChecker", "SourceSpirit",
     "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player blocks

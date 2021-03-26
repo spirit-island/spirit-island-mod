@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 19.5115318,
-    "posY": 2.03001523,
-    "posZ": -13.1915035,
-    "rotX": 0.004439504,
-    "rotY": 180.010849,
-    "rotZ": 1.24921326e-06,
+    "posX": 19.5115,
+    "posY": 2.03,
+    "posZ": -13.1915,
+    "rotX": 0.0044,
+    "rotY": 180.0108,
+    "rotZ": 0.0,
     "scaleX": 0.7,
     "scaleY": 0.7,
     "scaleZ": 0.7
@@ -16,8 +16,8 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.1910651,
-    "b": 0.183575183
+    "g": 0.1911,
+    "b": 0.1836
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.1249771,
-    "posY": 2.102358,
-    "posZ": -5.76299667,
-    "rotX": 359.94223,
-    "rotY": 181.093262,
-    "rotZ": 0.08181023,
-    "scaleX": 1.53204679,
+    "posX": -46.125,
+    "posY": 2.1024,
+    "posZ": -5.763,
+    "rotX": 359.9422,
+    "rotY": 181.0933,
+    "rotZ": 0.0818,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Winds of Rust and Atrophy",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

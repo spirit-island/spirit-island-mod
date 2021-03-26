@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 4.77903557,
-    "posY": 0.912893057,
-    "posZ": -35.5399857,
-    "rotX": 0.00281479326,
-    "rotY": 180.004852,
-    "rotZ": 179.991318,
-    "scaleX": 1.3656503,
+    "posX": 4.779,
+    "posY": 0.9129,
+    "posZ": -35.54,
+    "rotX": 0.0028,
+    "rotY": 180.0049,
+    "rotZ": 179.9913,
+    "scaleX": 1.3657,
     "scaleY": 1.0,
-    "scaleZ": 1.3656503
+    "scaleZ": 1.3657
   },
   "Nickname": "Travel",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -0.22283338,
-    "posY": 0.8636051,
-    "posZ": 19.7679615,
-    "rotX": 2.06081055e-10,
+    "posX": -0.2228,
+    "posY": 0.8636,
+    "posZ": 19.768,
+    "rotX": 0.0,
     "rotY": 180.0,
-    "rotZ": -6.46938725e-09,
-    "scaleX": 1.92783785,
+    "rotZ": 0.0,
+    "scaleX": 1.9278,
     "scaleY": 1.0,
-    "scaleZ": 1.92783785
+    "scaleZ": 1.9278
   },
   "Nickname": "Scotland",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.709803939,
-    "g": 0.709803939,
-    "b": 0.709803939
+    "r": 0.7098,
+    "g": 0.7098,
+    "b": 0.7098
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

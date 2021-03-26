@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.6410751,
-    "posY": 2.05749846,
-    "posZ": -6.01188374,
-    "rotX": 359.980377,
-    "rotY": 180.550735,
-    "rotZ": 0.184752464,
-    "scaleX": 1.53204679,
+    "posX": -45.6411,
+    "posY": 2.0575,
+    "posZ": -6.0119,
+    "rotX": 359.9804,
+    "rotY": 180.5507,
+    "rotZ": 0.1848,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Accelerated Rot",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",

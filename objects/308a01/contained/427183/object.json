@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.1292953,
-    "posY": 2.12938,
-    "posZ": -5.77102137,
+    "posX": -46.1293,
+    "posY": 2.1294,
+    "posZ": -5.771,
     "rotX": 359.9438,
-    "rotY": 180.199844,
-    "rotZ": 0.07608602,
-    "scaleX": 1.53204679,
+    "rotY": 180.1998,
+    "rotZ": 0.0761,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Mists of Oblivion",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",

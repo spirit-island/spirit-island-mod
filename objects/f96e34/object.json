@@ -1,23 +1,23 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -48.41912,
-    "posY": 0.884798646,
-    "posZ": 55.58091,
-    "rotX": 7.03965553e-09,
-    "rotY": 180.053329,
+    "posX": -48.4191,
+    "posY": 0.8848,
+    "posZ": 55.5809,
+    "rotX": 0.0,
+    "rotY": 180.0533,
     "rotZ": 180.0,
-    "scaleX": 1.09813488,
+    "scaleX": 1.0981,
     "scaleY": 1.0,
-    "scaleZ": 1.09813488
+    "scaleZ": 1.0981
   },
   "Nickname": "Stage II",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

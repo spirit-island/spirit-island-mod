@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -0.222833574,
-    "posY": 0.8636051,
-    "posZ": 31.775877,
-    "rotX": 3.329585e-09,
-    "rotY": 180.000137,
-    "rotZ": 2.11048157e-09,
-    "scaleX": 1.92783785,
+    "posX": -0.2228,
+    "posY": 0.8636,
+    "posZ": 31.7759,
+    "rotX": 0.0,
+    "rotY": 180.0001,
+    "rotZ": 0.0,
+    "scaleX": 1.9278,
     "scaleY": 1.0,
-    "scaleZ": 1.92783785
+    "scaleZ": 1.9278
   },
   "Nickname": "Habsburg",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.709803939,
-    "g": 0.709803939,
-    "b": 0.709803939
+    "r": 0.7098,
+    "g": 0.7098,
+    "b": 0.7098
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

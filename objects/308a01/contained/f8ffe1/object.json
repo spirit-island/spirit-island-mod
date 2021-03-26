@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.64146,
-    "posY": 2.21905565,
-    "posZ": -5.90354,
-    "rotX": 0.006368906,
-    "rotY": 179.168671,
-    "rotZ": 0.15596281,
-    "scaleX": 1.53204679,
+    "posX": -45.6415,
+    "posY": 2.2191,
+    "posZ": -5.9035,
+    "rotX": 0.0064,
+    "rotY": 179.1687,
+    "rotZ": 0.156,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Talons of Lightning",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

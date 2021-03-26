@@ -2,21 +2,21 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -43.03,
-    "posY": 0.8031326,
+    "posY": 0.8031,
     "posZ": 20.17,
-    "rotX": 9.348755e-08,
+    "rotX": 0.0,
     "rotY": 180.011,
-    "rotZ": -8.40225738e-08,
-    "scaleX": 0.55000037,
-    "scaleY": 0.55000037,
-    "scaleZ": 0.55000037
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
   },
   "Nickname": "Moon Element",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9113246,
-    "g": 0.9053426,
+    "r": 0.9113,
+    "g": 0.9053,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,

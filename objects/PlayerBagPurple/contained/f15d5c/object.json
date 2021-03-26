@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 31.1849651,
-    "posY": 1.97118545,
-    "posZ": -7.09797764,
-    "rotX": 0.00444005,
-    "rotY": 180.010849,
-    "rotZ": 1.58829914e-06,
+    "posX": 31.185,
+    "posY": 1.9712,
+    "posZ": -7.098,
+    "rotX": 0.0044,
+    "rotY": 180.0108,
+    "rotZ": 0.0,
     "scaleX": 0.7,
     "scaleY": 0.7,
     "scaleZ": 0.7
@@ -15,9 +15,9 @@
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.7698662,
-    "g": 0.405055,
-    "b": 0.9978706
+    "r": 0.7699,
+    "g": 0.4051,
+    "b": 0.9979
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

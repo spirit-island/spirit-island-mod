@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -22.10046,
-    "posY": 1.07235646,
-    "posZ": -15.1853981,
+    "posX": -22.1005,
+    "posY": 1.0724,
+    "posZ": -15.1854,
     "rotX": 357.1765,
-    "rotY": 0.0674247,
-    "rotZ": 359.990326,
-    "scaleX": 0.5000005,
-    "scaleY": 0.5000005,
-    "scaleZ": 0.5000005
+    "rotY": 0.0674,
+    "rotZ": 359.9903,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Animal Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8112658,
-    "g": 0.008320709,
+    "r": 0.8113,
+    "g": 0.0083,
     "b": 0.0
   },
   "Tags": [

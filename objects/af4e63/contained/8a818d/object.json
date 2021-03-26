@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -42.56317,
-    "posY": 1.35751331,
-    "posZ": 13.1299057,
-    "rotX": 0.000880015839,
-    "rotY": 0.0289532859,
-    "rotZ": 3.09880052e-05,
-    "scaleX": 0.3651334,
+    "posX": -42.5632,
+    "posY": 1.3575,
+    "posZ": 13.1299,
+    "rotX": 0.0009,
+    "rotY": 0.029,
+    "rotZ": 0.0,
+    "scaleX": 0.3651,
     "scaleY": 1.0,
-    "scaleZ": 0.3651334
+    "scaleZ": 0.3651
   },
   "Nickname": "Strife",
   "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",

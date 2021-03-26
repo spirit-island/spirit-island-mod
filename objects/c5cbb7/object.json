@@ -2,21 +2,21 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -43.03,
-    "posY": 0.8031326,
+    "posY": 0.8031,
     "posZ": 21.67,
-    "rotX": -2.48029242e-08,
-    "rotY": 180.01474,
-    "rotZ": 2.91034628e-08,
-    "scaleX": 0.55000037,
-    "scaleY": 0.55000037,
-    "scaleZ": 0.55000037
+    "rotX": 0.0,
+    "rotY": 180.0147,
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
   },
   "Nickname": "Sun Element",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.851301551,
+    "g": 0.8513,
     "b": 0.0
   },
   "LayoutGroupSortIndex": 0,

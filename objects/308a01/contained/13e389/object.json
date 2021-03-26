@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.181694,
-    "posY": 2.29029584,
-    "posZ": -5.736409,
-    "rotX": 359.961151,
-    "rotY": 181.362045,
-    "rotZ": 0.06909221,
-    "scaleX": 1.53204679,
+    "posX": -46.1817,
+    "posY": 2.2903,
+    "posZ": -5.7364,
+    "rotX": 359.9612,
+    "rotY": 181.362,
+    "rotZ": 0.0691,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Blazing Renewal",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

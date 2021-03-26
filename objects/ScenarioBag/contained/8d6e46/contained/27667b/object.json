@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -47.2508736,
-    "posY": 2.9334116,
-    "posZ": 31.1011829,
-    "rotX": 4.01938725,
-    "rotY": 179.993774,
-    "rotZ": 0.0577765852,
+    "posX": -47.2509,
+    "posY": 2.9334,
+    "posZ": 31.1012,
+    "rotX": 4.0194,
+    "rotY": 179.9938,
+    "rotZ": 0.0578,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -43,8 +43,8 @@
     "CustomShader": {
       "SpecularColor": {
         "r": 0.875,
-        "g": 0.812880337,
-        "b": 0.7463235
+        "g": 0.8129,
+        "b": 0.7463
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 2.0,

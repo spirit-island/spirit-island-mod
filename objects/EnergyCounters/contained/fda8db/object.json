@@ -1,12 +1,12 @@
 {
   "Name": "Counter",
   "Transform": {
-    "posX": -51.21962,
-    "posY": 1.21436334,
-    "posZ": 43.98739,
-    "rotX": 359.876465,
-    "rotY": 0.05662256,
-    "rotZ": 0.163468286,
+    "posX": -51.2196,
+    "posY": 1.2144,
+    "posZ": 43.9874,
+    "rotX": 359.8765,
+    "rotY": 0.0566,
+    "rotZ": 0.1635,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.0823529139,
-    "g": 0.0823529139,
-    "b": 0.0823529139
+    "r": 0.0824,
+    "g": 0.0824,
+    "b": 0.0824
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

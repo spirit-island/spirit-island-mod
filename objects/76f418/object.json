@@ -2,21 +2,21 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -43.03,
-    "posY": 0.8031326,
+    "posY": 0.8031,
     "posZ": 18.67,
-    "rotX": -1.00866274e-07,
-    "rotY": 180.01474,
-    "rotZ": -4.384204e-08,
-    "scaleX": 0.55000037,
-    "scaleY": 0.55000037,
-    "scaleZ": 0.55000037
+    "rotX": 0.0,
+    "rotY": 180.0147,
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
   },
   "Nickname": "Fire Element",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.3754638,
+    "g": 0.3755,
     "b": 0.0
   },
   "LayoutGroupSortIndex": 0,

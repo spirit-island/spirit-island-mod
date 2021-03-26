@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 78.28789,
-    "posY": 1.01951456,
-    "posZ": -13.20566,
-    "rotX": -2.53850828e-07,
-    "rotY": 0.0217737611,
-    "rotZ": -6.99854063e-05,
+    "posX": 78.2879,
+    "posY": 1.0195,
+    "posZ": -13.2057,
+    "rotX": 0.0,
+    "rotY": 0.0218,
+    "rotZ": -0.0001,
     "scaleX": 0.9,
     "scaleY": 0.9,
     "scaleZ": 0.9
@@ -16,8 +16,8 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.5929512,
-    "b": 0.160781831
+    "g": 0.593,
+    "b": 0.1608
   },
   "Tags": [
     "Destroy"
@@ -50,12 +50,12 @@
       "GUID": "4e97f3",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -20.8861485,
-        "posY": 0.0500000231,
-        "posZ": 2.14383578,
-        "rotX": -1.074594e-06,
-        "rotY": 180.017487,
-        "rotZ": 1.86559518e-07,
+        "posX": -20.8861,
+        "posY": 0.05,
+        "posZ": 2.1438,
+        "rotX": 0.0,
+        "rotY": 180.0175,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -65,8 +65,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -102,12 +102,12 @@
       "GUID": "b467a4",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.8261662,
-        "posY": 0.0500000268,
-        "posZ": 2.12862468,
-        "rotX": -1.09223083e-06,
+        "posX": -18.8262,
+        "posY": 0.05,
+        "posZ": 2.1286,
+        "rotX": 0.0,
         "rotY": 180.0153,
-        "rotZ": 1.297564e-07,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -117,8 +117,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -154,12 +154,12 @@
       "GUID": "18016f",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -16.7652988,
-        "posY": 0.0500000045,
-        "posZ": 2.17396235,
-        "rotX": -1.15239982e-06,
-        "rotY": 180.013779,
-        "rotZ": 1.63677385e-07,
+        "posX": -16.7653,
+        "posY": 0.05,
+        "posZ": 2.174,
+        "rotX": 0.0,
+        "rotY": 180.0138,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -169,8 +169,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -206,12 +206,12 @@
       "GUID": "54f701",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -14.6977491,
-        "posY": 0.0500000119,
-        "posZ": 2.17395473,
-        "rotX": -1.13848637e-06,
-        "rotY": 180.015549,
-        "rotZ": 8.365092e-08,
+        "posX": -14.6977,
+        "posY": 0.05,
+        "posZ": 2.174,
+        "rotX": 0.0,
+        "rotY": 180.0155,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -221,8 +221,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -258,12 +258,12 @@
       "GUID": "8e78fc",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -12.63009,
-        "posY": 0.04999999,
-        "posZ": 2.17395473,
-        "rotX": -1.135366e-06,
-        "rotY": 180.015518,
-        "rotZ": 9.163262e-08,
+        "posX": -12.6301,
+        "posY": 0.05,
+        "posZ": 2.174,
+        "rotX": 0.0,
+        "rotY": 180.0155,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -273,8 +273,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -310,12 +310,12 @@
       "GUID": "4f05d8",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -10.5625181,
-        "posY": 0.0500000045,
-        "posZ": 2.17394137,
-        "rotX": -1.04530284e-06,
-        "rotY": 180.008087,
-        "rotZ": 1.97926241e-07,
+        "posX": -10.5625,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0081,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -325,8 +325,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -362,12 +362,12 @@
       "GUID": "ef31f4",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -8.494867,
+        "posX": -8.4949,
         "posY": 0.05,
-        "posZ": 2.17393851,
-        "rotX": -1.18267815e-06,
-        "rotY": 180.007782,
-        "rotZ": 1.06855865e-07,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0078,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -377,8 +377,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -414,12 +414,12 @@
       "GUID": "1a441b",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -6.427256,
-        "posY": 0.04999998,
-        "posZ": 2.17393,
-        "rotX": -1.11950442e-06,
-        "rotY": 180.005157,
-        "rotZ": 1.501171e-07,
+        "posX": -6.4273,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0052,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -429,8 +429,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -466,12 +466,12 @@
       "GUID": "a4b0d5",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -4.359572,
-        "posY": 0.0499999858,
-        "posZ": 2.173928,
-        "rotX": -1.09377959e-06,
-        "rotY": 180.005386,
-        "rotZ": 1.95946768e-07,
+        "posX": -4.3596,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0054,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -481,8 +481,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -518,12 +518,12 @@
       "GUID": "a47db4",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -2.32959628,
-        "posY": 0.04999997,
-        "posZ": 2.172382,
-        "rotX": -1.12561713e-06,
-        "rotY": 180.005371,
-        "rotZ": 1.37698692e-07,
+        "posX": -2.3296,
+        "posY": 0.05,
+        "posZ": 2.1724,
+        "rotX": 0.0,
+        "rotY": 180.0054,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -533,8 +533,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -570,12 +570,12 @@
       "GUID": "cf3b7a",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -0.2241433,
-        "posY": 0.0499999672,
-        "posZ": 2.17395473,
-        "rotX": -1.16167325e-06,
-        "rotY": 180.015335,
-        "rotZ": 7.389767e-08,
+        "posX": -0.2241,
+        "posY": 0.05,
+        "posZ": 2.174,
+        "rotX": 0.0,
+        "rotY": 180.0153,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -585,8 +585,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -622,12 +622,12 @@
       "GUID": "a82b68",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 1.84351075,
-        "posY": 0.0499999635,
-        "posZ": 2.17395377,
-        "rotX": -1.19068113e-06,
-        "rotY": 180.015335,
-        "rotZ": 8.010223e-08,
+        "posX": 1.8435,
+        "posY": 0.05,
+        "posZ": 2.174,
+        "rotX": 0.0,
+        "rotY": 180.0153,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -637,8 +637,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -674,12 +674,12 @@
       "GUID": "a1f925",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 3.91117215,
-        "posY": 0.04999996,
-        "posZ": 2.173947,
-        "rotX": -1.18665832e-06,
-        "rotY": 180.013336,
-        "rotZ": 1.07094088e-07,
+        "posX": 3.9112,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0133,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -689,8 +689,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -726,12 +726,12 @@
       "GUID": "e64d90",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 5.978822,
-        "posY": 0.049999956,
-        "posZ": 2.173948,
-        "rotX": -1.0599457e-06,
-        "rotY": 180.013184,
-        "rotZ": 1.872426e-07,
+        "posX": 5.9788,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0132,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -741,8 +741,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -778,12 +778,12 @@
       "GUID": "b6a5ef",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 8.046468,
-        "posY": 0.0499999337,
-        "posZ": 2.173949,
-        "rotX": -1.01538944e-06,
+        "posX": 8.0465,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
         "rotY": 180.0132,
-        "rotZ": 9.481891e-08,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -793,8 +793,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -830,12 +830,12 @@
       "GUID": "5c092d",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 10.11403,
-        "posY": 0.0499999337,
-        "posZ": 2.173928,
-        "rotX": -1.15549426e-06,
-        "rotY": 180.00528,
-        "rotZ": 1.13949483e-07,
+        "posX": 10.114,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0053,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -845,8 +845,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -882,12 +882,12 @@
       "GUID": "e76e2d",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 12.1817179,
-        "posY": 0.0499999523,
-        "posZ": 2.17392421,
-        "rotX": -1.02492993e-06,
-        "rotY": 180.007538,
-        "rotZ": 1.36107559e-07,
+        "posX": 12.1817,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0075,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -897,8 +897,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -934,12 +934,12 @@
       "GUID": "a745f4",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 14.249341,
-        "posY": 0.04999992,
-        "posZ": 2.17393756,
-        "rotX": -1.097271e-06,
-        "rotY": 180.00824,
-        "rotZ": 1.45194548e-07,
+        "posX": 14.2493,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0082,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -949,8 +949,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -986,12 +986,12 @@
       "GUID": "47c437",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 16.3170986,
-        "posY": 0.0499999262,
-        "posZ": 2.17393756,
-        "rotX": -1.02546937e-06,
-        "rotY": 180.008255,
-        "rotZ": 1.86286655e-07,
+        "posX": 16.3171,
+        "posY": 0.05,
+        "posZ": 2.1739,
+        "rotX": 0.0,
+        "rotY": 180.0083,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -1001,8 +1001,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.16078189
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"
@@ -1038,12 +1038,12 @@
       "GUID": "c052a8",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 18.4230175,
-        "posY": 0.04999992,
-        "posZ": 2.13178515,
-        "rotX": -1.07471431e-06,
-        "rotY": 180.01358,
-        "rotZ": 1.6026047e-07,
+        "posX": 18.423,
+        "posY": 0.05,
+        "posZ": 2.1318,
+        "rotX": 0.0,
+        "rotY": 180.0136,
+        "rotZ": 0.0,
         "scaleX": 0.9,
         "scaleY": 0.9,
         "scaleZ": 0.9
@@ -1053,8 +1053,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.5929512,
-        "b": 0.160783976
+        "g": 0.593,
+        "b": 0.1608
       },
       "Tags": [
         "Destroy"

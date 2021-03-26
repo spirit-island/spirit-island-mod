@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -31.2255363,
-    "posY": 1.19543147,
-    "posZ": 86.21786,
-    "rotX": 0.004446755,
-    "rotY": 180.008759,
-    "rotZ": 9.033573e-06,
-    "scaleX": 0.3651334,
+    "posX": -31.2255,
+    "posY": 1.1954,
+    "posZ": 86.2179,
+    "rotX": 0.0044,
+    "rotY": 180.0088,
+    "rotZ": 0.0,
+    "scaleX": 0.3651,
     "scaleY": 1.0,
-    "scaleZ": 0.3651334
+    "scaleZ": 0.3651
   },
   "Nickname": "Wilds",
   "Description": "[b]Prevents the next Explore[/b] and is then removed",

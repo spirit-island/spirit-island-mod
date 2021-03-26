@@ -1,11 +1,11 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": 30.5700111,
+    "posX": 30.57,
     "posY": 0.8,
-    "posZ": -6.65757561,
+    "posZ": -6.6576,
     "rotX": 0.0,
-    "rotY": -0.00371260056,
+    "rotY": -0.0037,
     "rotZ": 0.0,
     "scaleX": 174.11,
     "scaleY": 0.3,
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.08235244,
-    "g": 0.05882311,
-    "b": 0.0392156877
+    "r": 0.0824,
+    "g": 0.0588,
+    "b": 0.0392
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

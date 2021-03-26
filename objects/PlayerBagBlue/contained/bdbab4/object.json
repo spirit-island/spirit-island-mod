@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 67.1011047,
-    "posY": 1.97122788,
-    "posZ": -22.4073544,
-    "rotX": 0.004440479,
-    "rotY": 179.999985,
-    "rotZ": 5.82517181e-08,
-    "scaleX": 0.7000003,
-    "scaleY": 0.7000003,
-    "scaleZ": 0.7000003
+    "posX": 67.1011,
+    "posY": 1.9712,
+    "posZ": -22.4074,
+    "rotX": 0.0044,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
   },
   "Nickname": "Water Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.198331714,
-    "g": 0.423718929,
-    "b": 0.839140534
+    "r": 0.1983,
+    "g": 0.4237,
+    "b": 0.8391
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

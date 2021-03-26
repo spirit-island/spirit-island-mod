@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -54.0202522,
-    "posY": 1.00101185,
-    "posZ": 54.6199837,
-    "rotX": 359.975342,
-    "rotY": 180.027908,
-    "rotZ": 179.969131,
-    "scaleX": 1.09813488,
+    "posX": -54.0203,
+    "posY": 1.001,
+    "posZ": 54.62,
+    "rotX": 359.9753,
+    "rotY": 180.0279,
+    "rotZ": 179.9691,
+    "scaleX": 1.0981,
     "scaleY": 1.0,
-    "scaleZ": 1.09813488
+    "scaleZ": 1.0981
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Invader Card"

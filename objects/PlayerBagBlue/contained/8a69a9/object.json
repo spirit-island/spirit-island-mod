@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -45.7398872,
-    "posY": 1.40302312,
-    "posZ": 47.1367455,
-    "rotX": -6.655152e-07,
-    "rotY": 179.989563,
-    "rotZ": -1.40620534e-06,
+    "posX": -45.7399,
+    "posY": 1.403,
+    "posZ": 47.1367,
+    "rotX": 0.0,
+    "rotY": 179.9896,
+    "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -16,7 +16,7 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.0,
-    "g": 0.0344827175,
+    "g": 0.0345,
     "b": 1.0
   },
   "Tags": [
@@ -50,12 +50,12 @@
       "GUID": "520d53",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -48.7551956,
+        "posX": -48.7552,
         "posY": 1.06,
-        "posZ": 47.6655731,
-        "rotX": 2.941466e-07,
+        "posZ": 47.6656,
+        "rotX": 0.0,
         "rotY": 179.9896,
-        "rotZ": -1.40974464e-06,
+        "rotZ": 0.0,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -65,7 +65,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.0,
-        "g": 0.0344827175,
+        "g": 0.0345,
         "b": 1.0
       },
       "Tags": [

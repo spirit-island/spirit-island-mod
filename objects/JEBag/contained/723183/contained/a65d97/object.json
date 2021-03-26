@@ -2,11 +2,11 @@
   "Name": "CardCustom",
   "Transform": {
     "posX": -46.18,
-    "posY": 0.9942574,
+    "posY": 0.9943,
     "posZ": 27.18,
-    "rotX": 0.00456062565,
+    "rotX": 0.0046,
     "rotY": 180.0,
-    "rotZ": -0.000243308081,
+    "rotZ": -0.0002,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fear"

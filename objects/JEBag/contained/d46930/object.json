@@ -1,11 +1,11 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -25.4566441,
-    "posY": 2.108286,
-    "posZ": 69.000885,
-    "rotX": -1.62485776e-08,
-    "rotY": 90.00006,
+    "posX": -25.4566,
+    "posY": 2.1083,
+    "posZ": 69.0009,
+    "rotX": 0.0,
+    "rotY": 90.0001,
     "rotZ": 180.0,
     "scaleX": 1.05,
     "scaleY": 1.0,
@@ -15,9 +15,9 @@
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

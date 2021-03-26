@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -32.2040253,
-    "posY": 1.05882645,
-    "posZ": -15.5441771,
-    "rotX": 354.184174,
-    "rotY": 0.08757733,
+    "posX": -32.204,
+    "posY": 1.0588,
+    "posZ": -15.5442,
+    "rotX": 354.1842,
+    "rotY": 0.0876,
     "rotZ": 359.9941,
-    "scaleX": 0.5000005,
-    "scaleY": 0.5000005,
-    "scaleZ": 0.5000005
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Sun Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.851301551,
+    "g": 0.8513,
     "b": 0.0
   },
   "Tags": [

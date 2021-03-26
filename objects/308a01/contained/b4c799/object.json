@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.723526,
-    "posY": 2.19247365,
-    "posZ": -5.981644,
-    "rotX": -0.00200169813,
-    "rotY": 179.838882,
-    "rotZ": 0.161459535,
-    "scaleX": 1.53204679,
+    "posX": -45.7235,
+    "posY": 2.1925,
+    "posZ": -5.9816,
+    "rotX": -0.002,
+    "rotY": 179.8389,
+    "rotZ": 0.1615,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "The Jungle Hungers",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",

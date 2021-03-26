@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.6947823,
-    "posY": 2.24630833,
-    "posZ": -5.96318865,
-    "rotX": 0.00237651868,
-    "rotY": 179.340836,
-    "rotZ": 0.15745315,
-    "scaleX": 1.53204679,
+    "posX": -45.6948,
+    "posY": 2.2463,
+    "posZ": -5.9632,
+    "rotX": 0.0024,
+    "rotY": 179.3408,
+    "rotZ": 0.1575,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Entwined Power",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

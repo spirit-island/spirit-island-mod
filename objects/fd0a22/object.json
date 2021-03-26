@@ -4,20 +4,20 @@
     "posX": -39.51,
     "posY": 1.07,
     "posZ": 59.65,
-    "rotX": -1.71215831e-07,
-    "rotY": 179.965836,
-    "rotZ": -1.3070337e-06,
-    "scaleX": 0.72739017,
-    "scaleY": 0.140219778,
-    "scaleZ": 0.72739017
+    "rotX": 0.0,
+    "rotY": 179.9658,
+    "rotZ": 0.0,
+    "scaleX": 0.7274,
+    "scaleY": 0.1402,
+    "scaleZ": 0.7274
   },
   "Nickname": "Fear Tokens",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.567665,
-    "g": 0.560111,
-    "b": 0.5600328
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,
@@ -59,15 +59,15 @@
       "GUID": "7f4edc",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0165330227,
-        "posY": 0.7076807,
-        "posZ": -0.06747947,
-        "rotX": 5.593669e-07,
-        "rotY": 0.03415995,
-        "rotZ": -2.24715336e-06,
-        "scaleX": 0.44427368,
+        "posX": 0.0165,
+        "posY": 0.7077,
+        "posZ": -0.0675,
+        "rotX": 0.0,
+        "rotY": 0.0342,
+        "rotZ": 0.0,
+        "scaleX": 0.4443,
         "scaleY": 6.25,
-        "scaleZ": 0.44427368
+        "scaleZ": 0.4443
       },
       "Nickname": "Fear",
       "Description": "",

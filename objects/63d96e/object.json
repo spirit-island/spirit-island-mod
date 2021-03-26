@@ -2,10 +2,10 @@
   "Name": "Bag",
   "Transform": {
     "posX": 69.64,
-    "posY": 1.06285274,
+    "posY": 1.0629,
     "posZ": 74.7,
-    "rotX": 2.377929,
-    "rotY": 0.004430224,
+    "rotX": 2.3779,
+    "rotY": 0.0044,
     "rotZ": 357.3999,
     "scaleX": 0.75,
     "scaleY": 0.5,
@@ -15,8 +15,8 @@
   "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.7058823,
-    "g": 0.366520882,
+    "r": 0.7059,
+    "g": 0.3665,
     "b": 0.0
   },
   "LayoutGroupSortIndex": 0,

@@ -2,22 +2,22 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -42.1627,
-    "posY": 3.05362082,
-    "posZ": 33.77286,
-    "rotX": 0.0003586134,
-    "rotY": 269.998718,
-    "rotZ": -2.00087561e-05,
-    "scaleX": 2.42499876,
-    "scaleY": 2.42499876,
-    "scaleZ": 2.42499876
+    "posY": 3.0536,
+    "posZ": 33.7729,
+    "rotX": 0.0004,
+    "rotY": 269.9987,
+    "rotZ": 0.0,
+    "scaleX": 2.425,
+    "scaleY": 2.425,
+    "scaleZ": 2.425
   },
   "Nickname": "Town: 0 Damage",
   "Description": "Buildings have +1  health",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6538587,
-    "g": 0.224694729,
-    "b": 0.224694729
+    "r": 0.6539,
+    "g": 0.2247,
+    "b": 0.2247
   },
   "Tags": [
     "Highlight"
@@ -45,9 +45,9 @@
     "TypeIndex": 1,
     "CustomShader": {
       "SpecularColor": {
-        "r": 0.6746131,
-        "g": 0.0420728065,
-        "b": 0.0420728065
+        "r": 0.6746,
+        "g": 0.0421,
+        "b": 0.0421
       },
       "SpecularIntensity": 0.2,
       "SpecularSharpness": 7.0,
@@ -58,9 +58,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -7.861015e-06,
-        "y": 0.236517608,
-        "z": -6.140141e-05
+        "x": 0.0,
+        "y": 0.2365,
+        "z": -0.0001
       },
       "Tags": []
     }
@@ -70,23 +70,23 @@
       "GUID": "a1d4e8",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -63.87421,
-        "posY": 1.46195662,
-        "posZ": -12.7903814,
-        "rotX": 0.004454879,
-        "rotY": 180.00148,
-        "rotZ": 1.85477234e-07,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -63.8742,
+        "posY": 1.462,
+        "posZ": -12.7904,
+        "rotX": 0.0045,
+        "rotY": 180.0015,
+        "rotZ": 0.0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
       },
       "Nickname": "Town: 1 Damage",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898049,
-        "g": 0.880506933,
-        "b": 0.8526128
+        "r": 0.8898,
+        "g": 0.8805,
+        "b": 0.8526
       },
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -117,9 +117,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.67961787e-08,
-            "y": 0.2365209,
-            "z": -1.7728913e-05
+            "x": 0.0,
+            "y": 0.2365,
+            "z": 0.0
           }
         }
       ]
@@ -128,23 +128,23 @@
       "GUID": "0cd53a",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -62.5325623,
-        "posY": 1.61834109,
-        "posZ": -12.790163,
-        "rotX": 0.00446802331,
-        "rotY": 180.007584,
-        "rotZ": -1.67716985e-06,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -62.5326,
+        "posY": 1.6183,
+        "posZ": -12.7902,
+        "rotX": 0.0045,
+        "rotY": 180.0076,
+        "rotZ": 0.0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
       },
       "Nickname": "Town: 2 Damage",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898049,
-        "g": 0.880506933,
-        "b": 0.8526128
+        "r": 0.8898,
+        "g": 0.8805,
+        "b": 0.8526
       },
       "LayoutGroupSortIndex": 0,
       "Locked": false,
@@ -175,9 +175,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.27269217e-08,
-            "y": 0.210993722,
-            "z": -1.57074774e-05
+            "x": 0.0,
+            "y": 0.211,
+            "z": 0.0
           }
         }
       ]

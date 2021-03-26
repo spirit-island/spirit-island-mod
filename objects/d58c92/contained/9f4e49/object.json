@@ -1,12 +1,12 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -70.61638,
-    "posY": 1.1068089,
-    "posZ": 49.02822,
-    "rotX": 0.00460792845,
-    "rotY": 180.000244,
-    "rotZ": 180.00029,
+    "posX": -70.6164,
+    "posY": 1.1068,
+    "posZ": 49.0282,
+    "rotX": 0.0046,
+    "rotY": 180.0002,
+    "rotZ": 180.0003,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

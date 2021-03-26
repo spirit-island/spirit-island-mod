@@ -1,23 +1,23 @@
 {
   "Name": "BlockRectangle",
   "Transform": {
-    "posX": 30.6197433,
-    "posY": -1.35133493,
-    "posZ": 28.43018,
-    "rotX": -0.00445515662,
+    "posX": 30.6197,
+    "posY": -1.3513,
+    "posZ": 28.4302,
+    "rotX": -0.0045,
     "rotY": 90.0,
-    "rotZ": -1.81447729e-06,
-    "scaleX": 153.546463,
-    "scaleY": 4.278008,
-    "scaleZ": 87.00523
+    "rotZ": 0.0,
+    "scaleX": 153.5465,
+    "scaleY": 4.278,
+    "scaleZ": 87.0052
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.128320515,
-    "g": 0.04662706,
-    "b": 0.0106821815
+    "r": 0.1283,
+    "g": 0.0466,
+    "b": 0.0107
   },
   "LayoutGroupSortIndex": 0,
   "Locked": true,

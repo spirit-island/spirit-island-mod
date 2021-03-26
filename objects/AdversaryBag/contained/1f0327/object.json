@@ -1,12 +1,12 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -27.09665,
-    "posY": 1.02378678,
-    "posZ": 31.047369,
-    "rotX": 0.00444677239,
-    "rotY": 180.015381,
-    "rotZ": 1.207043e-06,
+    "posX": -27.0966,
+    "posY": 1.0238,
+    "posZ": 31.0474,
+    "rotX": 0.0044,
+    "rotY": 180.0154,
+    "rotZ": 0.0,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
@@ -15,9 +15,9 @@
   "Description": "Branch & Claw Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Locked": false,

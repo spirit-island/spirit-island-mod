@@ -2,22 +2,22 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -27.08,
-    "posY": 1.08491039,
+    "posY": 1.0849,
     "posZ": 74.7,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.5000005,
-    "scaleY": 0.5000005,
-    "scaleZ": 0.5000005
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Earth Element Marker",
   "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.42684,
-    "g": 0.369400233,
-    "b": 0.439604342
+    "r": 0.4268,
+    "g": 0.3694,
+    "b": 0.4396
   },
   "Tags": [
     "Destroy"
@@ -50,22 +50,22 @@
       "GUID": "6d12d1",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 7.85267735,
-        "posY": -0.243535727,
-        "posZ": -5.26513529,
-        "rotX": -1.07349274e-06,
-        "rotY": 179.979126,
-        "rotZ": 1.427567e-07,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": 7.8527,
+        "posY": -0.2435,
+        "posZ": -5.2651,
+        "rotX": 0.0,
+        "rotY": 179.9791,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Fire Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.37546432,
+        "g": 0.3755,
         "b": 0.0
       },
       "Tags": [
@@ -102,23 +102,23 @@
       "GUID": "b75ff0",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 7.85267735,
-        "posY": -0.243535727,
-        "posZ": -5.26513529,
-        "rotX": -1.24428448e-06,
-        "rotY": 179.979126,
-        "rotZ": 1.13484937e-07,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": 7.8527,
+        "posY": -0.2435,
+        "posZ": -5.2651,
+        "rotX": 0.0,
+        "rotY": 179.9791,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Air Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.6533677,
-        "g": 0.332876742,
-        "b": 0.9320557
+        "r": 0.6534,
+        "g": 0.3329,
+        "b": 0.9321
       },
       "Tags": [
         "Destroy"
@@ -154,23 +154,23 @@
       "GUID": "eedec0",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 7.85267735,
-        "posY": -0.243535712,
-        "posZ": -5.26513529,
-        "rotX": -1.1340162e-06,
-        "rotY": 179.979126,
-        "rotZ": 1.84873073e-07,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": 7.8527,
+        "posY": -0.2435,
+        "posZ": -5.2651,
+        "rotX": 0.0,
+        "rotY": 179.9791,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Water Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.198333263,
-        "g": 0.423720568,
-        "b": 0.839140534
+        "r": 0.1983,
+        "g": 0.4237,
+        "b": 0.8391
       },
       "Tags": [
         "Destroy"
@@ -206,23 +206,23 @@
       "GUID": "509e65",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 7.85267735,
-        "posY": -0.243535712,
-        "posZ": -5.26513529,
-        "rotX": -1.08420636e-06,
-        "rotY": 179.979126,
-        "rotZ": 1.47504821e-07,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": 7.8527,
+        "posY": -0.2435,
+        "posZ": -5.2651,
+        "rotX": 0.0,
+        "rotY": 179.9791,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Plant Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.0,
-        "g": 0.7215687,
-        "b": 0.222639859
+        "g": 0.7216,
+        "b": 0.2226
       },
       "Tags": [
         "Destroy"
@@ -258,22 +258,22 @@
       "GUID": "6b3d0d",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 7.85267735,
-        "posY": -0.243535727,
-        "posZ": -5.26513529,
-        "rotX": -1.01942453e-06,
-        "rotY": 179.979126,
-        "rotZ": -8.048542e-08,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": 7.8527,
+        "posY": -0.2435,
+        "posZ": -5.2651,
+        "rotX": 0.0,
+        "rotY": 179.9791,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Animal Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8112658,
-        "g": 0.008320709,
+        "r": 0.8113,
+        "g": 0.0083,
         "b": 0.0
       },
       "Tags": [
@@ -310,22 +310,22 @@
       "GUID": "d2dcbb",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 9.66827,
-        "posY": -0.2435358,
-        "posZ": -2.30258656,
-        "rotX": -1.15832984e-06,
-        "rotY": 179.993225,
-        "rotZ": 2.76873465e-07,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": 9.6683,
+        "posY": -0.2435,
+        "posZ": -2.3026,
+        "rotX": 0.0,
+        "rotY": 179.9932,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Sun Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.851301551,
+        "g": 0.8513,
         "b": 0.0
       },
       "Tags": [
@@ -362,22 +362,22 @@
       "GUID": "9e3996",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 9.66827,
-        "posY": -0.2435358,
-        "posZ": -2.30258656,
-        "rotX": -8.087551e-07,
-        "rotY": 179.993225,
-        "rotZ": 2.33253743e-07,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": 9.6683,
+        "posY": -0.2435,
+        "posZ": -2.3026,
+        "rotX": 0.0,
+        "rotY": 179.9932,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Moon Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Nature",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.9113246,
-        "g": 0.9053426,
+        "r": 0.9113,
+        "g": 0.9053,
         "b": 1.0
       },
       "Tags": [
@@ -414,23 +414,23 @@
       "GUID": "d72ece",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -26.2875252,
-        "posY": 1.08491063,
-        "posZ": 71.7442856,
-        "rotX": 0.00445197942,
-        "rotY": 179.993225,
-        "rotZ": 6.42123769e-06,
-        "scaleX": 0.5000005,
-        "scaleY": 0.5000005,
-        "scaleZ": 0.5000005
+        "posX": -26.2875,
+        "posY": 1.0849,
+        "posZ": 71.7443,
+        "rotX": 0.0045,
+        "rotY": 179.9932,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Any Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8252032,
-        "g": 0.6526867,
-        "b": 0.398224741
+        "r": 0.8252,
+        "g": 0.6527,
+        "b": 0.3982
       },
       "Tags": [
         "Destroy"

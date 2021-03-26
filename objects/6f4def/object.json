@@ -2,13 +2,13 @@
   "Name": "HandTrigger",
   "Transform": {
     "posX": -26.7,
-    "posY": 4.10000038,
-    "posZ": -46.3141747,
+    "posY": 4.1,
+    "posZ": -46.3142,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 18.41,
-    "scaleY": 6.483764,
+    "scaleY": 6.4838,
     "scaleZ": 4.7
   },
   "Nickname": "",
@@ -16,8 +16,8 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.856,
-    "g": 0.09999997,
-    "b": 0.09399996,
+    "g": 0.1,
+    "b": 0.094,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,

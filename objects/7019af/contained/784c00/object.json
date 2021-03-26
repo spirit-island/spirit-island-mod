@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -42.5755157,
-    "posY": 1.40751338,
-    "posZ": 16.1614914,
-    "rotX": 0.00088758464,
-    "rotY": 0.02366501,
-    "rotZ": 3.200836e-05,
-    "scaleX": 0.3651334,
+    "posX": -42.5755,
+    "posY": 1.4075,
+    "posZ": 16.1615,
+    "rotX": 0.0009,
+    "rotY": 0.0237,
+    "rotZ": 0.0,
+    "scaleX": 0.3651,
     "scaleY": 1.0,
-    "scaleZ": 0.3651334
+    "scaleZ": 0.3651
   },
   "Nickname": "Disease",
   "Description": "[b]Prevents the next Build[/b] and is then removed",
@@ -41,7 +41,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.200000152,
+      "Thickness": 0.2,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true

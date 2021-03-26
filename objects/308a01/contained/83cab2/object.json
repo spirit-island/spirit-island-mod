@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.5762939,
-    "posY": 2.13823557,
-    "posZ": -5.82025862,
+    "posX": -45.5763,
+    "posY": 2.1382,
+    "posZ": -5.8203,
     "rotX": 359.9895,
-    "rotY": 180.16954,
-    "rotZ": 0.177243963,
-    "scaleX": 1.53204679,
+    "rotY": 180.1695,
+    "rotZ": 0.1772,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Powerstorm",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

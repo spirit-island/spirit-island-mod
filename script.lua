@@ -2180,7 +2180,7 @@ function timePasses()
     end
 end
 function timePassesCo()
-    for _,object in pairs(upCast(seaTile)) do
+    for _,object in pairs(upCast(seaTile, 0.5)) do
         handlePiece(object, 0)
     end
 

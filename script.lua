@@ -1374,15 +1374,15 @@ function SetupScenario()
     if scenarioCard ~= nil then
         local targetScale = 1.71
         local currentScale = scenarioCard.getScale()[1]
-        local scaleMult = (currentScale - targetScale)/20
-        for i = 1, 20 do
+        local scaleMult = (currentScale - targetScale)/10
+        for i = 1, 10 do
             wt(0.02)
             scenarioCard.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
         end
 
         scenarioCard.setLock(true)
-        scenarioCard.setRotationSmooth(Vector(0,180,0))
-        scenarioCard.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)))
+        scenarioCard.setRotationSmooth(Vector(0,180,0), false, true)
+        scenarioCard.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)), false, true)
     end
 
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard == nil or not scenarioCard.isSmoothMoving() end)
@@ -1414,8 +1414,8 @@ function SetupAdversary()
     if adversaryCard ~= nil then
         local targetScale = 1.71
         local currentScale = adversaryCard.getScale()[1]
-        local scaleMult = (currentScale - targetScale)/20
-        for i = 1, 20 do
+        local scaleMult = (currentScale - targetScale)/10
+        for i = 1, 10 do
             wt(0.02)
             adversaryCard.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
             if adversaryCard2 ~= nil then
@@ -1428,12 +1428,12 @@ function SetupAdversary()
     Wait.condition(function()
         if adversaryCard2 ~= nil then
             adversaryCard.setLock(true)
-            adversaryCard.setPositionSmooth(secondAdversaryBoard.positionToWorld(Vector(0,0.21,0)))
+            adversaryCard.setPositionSmooth(secondAdversaryBoard.positionToWorld(Vector(0,0.21,0)), false, true)
             adversaryCard2.setLock(true)
-            adversaryCard2.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)))
+            adversaryCard2.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)), false, true)
         elseif adversaryCard ~= nil then
             adversaryCard.setLock(true)
-            adversaryCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)))
+            adversaryCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)), false, true)
         end
     end, function() return boardSetup end)
 

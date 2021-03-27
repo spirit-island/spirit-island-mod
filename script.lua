@@ -3260,6 +3260,7 @@ function setupPlayerArea(params)
     local function countItems()
         local zone = params.zone
         local elements = Elements:new()
+        local tokens = Elements:new()
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
@@ -3274,11 +3275,14 @@ function setupPlayerArea(params)
                     end
                 end
             elseif entry.type == "Generic" then
-                if entry.getVar("elements") ~= nil then
-                    elements:add(entry.getVar("elements"))
+                local tokenCounts = entry.getVar("elements")
+                if tokenCounts ~= nil then
+                    elements:add(tokenCounts)
+                    tokens:add(tokenCounts)
                 end
             end
         end
+        selected.elementTokens = tokens
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do

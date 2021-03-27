@@ -3166,7 +3166,7 @@ function setupPlayerArea(params)
             if i == 9 then break end
             bag.createButton({
                 label="?", click_function="nullFunc",
-                position={0,0,1.9}, rotation={0,0,0}, height=0, width=0,
+                position={0,0.1,1.9}, rotation={0,0,0}, height=0, width=0,
                 font_color={1,1,1}, font_size=800
             })
         end

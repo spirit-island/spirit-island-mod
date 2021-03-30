@@ -80,7 +80,6 @@ playerBlocks = {
 }
 
 showPlayerButtons = true
-showAllMultihandedButtons = false
 
 ------ Unsaved Config Data
 useBlightCard = true
@@ -265,7 +264,6 @@ function onSave()
         panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
         panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
         showPlayerButtons = showPlayerButtons,
-        showAllMultihandedButtons = showAllMultihandedButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
         elementScanZones = elementScanZones
     }
@@ -435,7 +433,6 @@ function onLoad(saved_data)
         numBoards = loaded_data.numBoards
         blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
-        showAllMultihandedButtons = loaded_data.showAllMultihandedButtons
         fastDiscount = loaded_data.fastDiscount
         currentPhase = loaded_data.currentPhase
 
@@ -3558,7 +3555,7 @@ end
 function updatePlaySpiritButton(color)
     local table = playerTables[color]
     if table == nil then return end
-    if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
+    if Player[color].seated or not selectedColors[color] then
         table.editButton({index=2, label="", height=0, width=0})
     else
         table.editButton({index=2, label="Play Spirit", height=400, width=1500})
@@ -3708,7 +3705,6 @@ function togglePlayerControls(player)
         return
     end
     showPlayerButtons = not showPlayerButtons
-    showAllMultihandedButtons = not showAllMultihandedButtons
     updateSwapButtons()
 end
 

@@ -3556,11 +3556,12 @@ function updateSwapButtons()
     end
 end
 function updatePlaySpiritButton(color)
-    if color == "Grey" then return end
+    local table = playerTables[color]
+    if table == nil then return end
     if Player[color].seated or (not selectedColors[color] and not showAllMultihandedButtons) then
-        playerTables[color].editButton({index=2, label="", height=0, width=0})
+        table.editButton({index=2, label="", height=0, width=0})
     else
-        playerTables[color].editButton({index=2, label="Play Spirit", height=400, width=1500})
+        table.editButton({index=2, label="Play Spirit", height=400, width=1500})
     end
 end
 ---- UI Section

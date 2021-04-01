@@ -2866,12 +2866,16 @@ function place(objName, placePos, droppingPlayerColor)
             return
         end
     elseif objName == "Defend Token" then
-        if droppingPlayerColor and selectedColors[droppingPlayerColor] then
+        if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].defend ~= nil then
             temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,0)})
+        else
+            return
         end
     elseif objName == "Isolate Token" then
-        if droppingPlayerColor and selectedColors[droppingPlayerColor] then
+        if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].isolate ~= nil then
             temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,0)})
+        else
+            return
         end
     elseif objName == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})

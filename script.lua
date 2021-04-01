@@ -829,7 +829,7 @@ function SetupFear()
         table.insert(cardTable, card)
     end
 
-    local card = getObjectFromGUID("4211e9")
+    local card = getObjectFromGUID("f96a71")
     card.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1
@@ -850,7 +850,7 @@ function SetupFear()
         table.insert(cardTable, card)
     end
 
-    card = getObjectFromGUID("2b7d0b")
+    card = getObjectFromGUID("969897")
     card.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1

@@ -608,7 +608,7 @@ function examineCard(fearDeck, dividerPos)
         card = fearDeck
     end
 
-    if card.guid == "2b7d0b" then
+    if card.guid == "969897" then
         if fearDeck.type == "Deck" then
             card = fearDeck.takeObject({
                 position = dividerPos,
@@ -620,7 +620,7 @@ function examineCard(fearDeck, dividerPos)
             emptyDeck = true
         end
         broadcastToAll("Terror Level II Achieved!", {1,0,0})
-    elseif card.guid == "4211e9" then
+    elseif card.guid == "f96a71" then
         if fearDeck.type == "Deck" then
             card = fearDeck.takeObject({
                 position = dividerPos,

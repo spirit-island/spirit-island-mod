@@ -1,24 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -42.26085,
+    "posX": -42.81988,
     "posY": 0.853402853,
-    "posZ": 56.3004341,
-    "rotX": 5.51032331e-09,
+    "posZ": 56.3,
+    "rotX": -2.80296275e-09,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.5,
+    "scaleX": 1.53204679,
     "scaleY": 1.0,
-    "scaleZ": 1.5
+    "scaleZ": 1.53204679
   },
   "Nickname": "Terror II",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.709803939,
-    "g": 0.709803939,
-    "b": 0.709803939,
-    "a": 0.0
+    "r": 0.713235259,
+    "g": 0.713235259,
+    "b": 0.713235259
   },
   "Tags": [
     "Fear"
@@ -31,17 +30,17 @@
   "MeasureMovement": false,
   "DragSelectable": true,
   "Autoraise": true,
-  "Sticky": false,
+  "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 20000,
+  "CardID": 64800,
   "SidewaysCard": false,
   "CustomDeck": {
-    "200": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270603707/D603D964A69108B6ECE11CC0C3E001D293F1AA85/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270603301/BE9E9ADA9A2FF5AFF35ECDBB94EF2FEA83D0F821/",
+    "648": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1718660736964009982/83E366C9AD769E6E17A6CEDC9956B8B645E5871B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1718660736964014717/46594BD698E461DF10BE671C1B8B9298CFBC6544/",
       "NumWidth": 2,
       "NumHeight": 2,
       "BackIsHidden": false,

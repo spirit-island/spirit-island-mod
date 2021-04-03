@@ -20,25 +20,14 @@ end
 
 function scan()
     local objs = upCast(self, 0.4, 0.1, {"Tile"})
-    local spiritBoard
-    for _, hit in pairs(objs) do
-        if hit.getVar("elements") ~= nil or hit.hasTag("Any") then
-            -- pass
-        elseif spiritBoard ~= nil then
-            currentSpirit = nil
-            clearButtons()
-            return
-        else
-            spiritBoard = hit
-        end
-    end
-    currentSpirit = spiritBoard
-    if spiritBoard == nil then
-        currentSpirit = nil
+    if #objs ~= 1 then
         clearButtons()
-    elseif rescan or #self.getButtons() == 1 then
+        return
+    end
+    currentSpirit = objs[1]
+    if rescan or #self.getButtons() == 1 then
         rescan = false
-        createButtons(spiritBoard)
+        createButtons(currentSpirit)
     end
 end
 
@@ -116,7 +105,7 @@ function updateElements(player)
     if currentSpirit == nil then
         return
     end
-    local hits = upCast(currentSpirit, 0.4, 0.1, {"Tile"})
+    local hits = upCast(currentSpirit, 0.4, 0.1, {"Generic"})
     local trackElements = {}
     local function insert(position, elements)
         for _, entry in pairs(trackElements) do

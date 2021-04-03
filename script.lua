@@ -829,11 +829,11 @@ function SetupFear()
         table.insert(cardTable, card)
     end
 
-    local card = getObjectFromGUID("f96a71")
-    card.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
+    local divider = getObjectFromGUID("f96a71")
+    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1
-    table.insert(cardTable, card)
+    table.insert(cardTable, divider)
 
     fearDeck.shuffle()
     for _ = 1, fearCards[2] do
@@ -850,11 +850,11 @@ function SetupFear()
         table.insert(cardTable, card)
     end
 
-    card = getObjectFromGUID("969897")
-    card.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
+    divider = getObjectFromGUID("969897")
+    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1
-    table.insert(cardTable, card)
+    table.insert(cardTable, divider)
 
     fearDeck.shuffle()
     for _ = 1, fearCards[1] do

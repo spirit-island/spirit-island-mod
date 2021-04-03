@@ -1,0 +1,7 @@
+<Panel position="-64 -38 -180" width="140" height="160" rotation="0 0 180" scale="0.15 0.15 0.15">
+    <!--- Use `scale` to shrink large text, so we get crisper text -->
+    <VerticalLayout>
+        <Button color="White" id="UpdateElements" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="updateElements">Update Elements</Button>
+        <Button color="White" id="PopulateElements" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="populateElements">Populate Elements</Button>
+    </VerticalLayout>
+</Panel>

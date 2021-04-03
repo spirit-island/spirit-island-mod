@@ -1,6 +1,7 @@
 empty = false
 contents = {
     ["SpiritEditor"] = {105.22, 0.85, 52.59},
+    ["AnyElements"] = {114.81, -0.74, 54.39},
     ["BlightCardEditor"] = {109.33, 0.86, 42.86},
     ["PowerEditor"] = {98.98, 0.85, 42.86},
 }
@@ -66,7 +67,7 @@ function toggleObjects()
                 guid = bagObject.guid,
                 position = contents[bagObject.guid],
                 rotation = {0,180,0},
-                callback_function = function(obj) obj.setLock(true) objectsMoved = objectsMoved + 1 end,
+                callback_function = function(obj) obj.setLock(true) objectsMoved = objectsMoved + 1 obj.setPosition(contents[bagObject.guid]) end,
             })
             count = count + 1
         end

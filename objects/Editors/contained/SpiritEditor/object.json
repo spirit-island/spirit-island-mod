@@ -1,18 +1,17 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": 105.02,
-    "posY": 0.8524792,
-    "posZ": 54.06,
-    "rotX": -1.88407734e-09,
-    "rotY": 179.9833,
-    "rotZ": -7.245923e-09,
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
     "scaleX": 16.3908234,
     "scaleY": 0.1,
     "scaleZ": 11.2352934
   },
   "Nickname": "Spirit Validator",
-  "Description": "1) Load in a spirit board\n\n2) Make sure the board is growth-side up before continuing.\n\n3) Place snap points where the presence tracks are (skipping the places that start revealed) by locking the board and using the point tool\n\n4) Place it here\n\n5) Press the \"Make Me A Spirit!\" button to validate the spirit (this will cause a \"Choose Spirit\" button to appear on the lore side of the spirit\n\n6) Any object the spirit starts with (cards, spirit tokens etc.) should be placed on top of the board when the \"Choose Spirit\" button is pressed\n",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
@@ -47,5 +46,6 @@
       },
       "Tags": []
     }
-  ]
+  ],
+  "Description": "1) Load in a spirit board\n\n2) Make sure the board is growth-side up before continuing.\n\n3) Place snap points where the presence tracks are (skipping the places that start revealed) by locking the board and using the point tool\n\n4) Place it here\n\n5) Press the \"Make Me A Spirit!\" button to validate the spirit (this will cause a \"Choose Spirit\" button to appear on the lore side of the spirit\n\n6) Place elemnts on the presence track corresponding to the elements gained from removing each presence. (Currently, \"Any\" elements are ignored)\n\n7) Press the \"Update Elements\" button to record the track elements. This will also remove all the presence from the board.\n\n8) Any object the spirit starts with (cards, spirit tokens etc.) should be placed on top of the board when the \"Choose Spirit\" button is pressed\n"
 }

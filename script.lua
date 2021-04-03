@@ -3660,7 +3660,7 @@ function visiTableToString(inTable,delim)
     for _, v in ipairs(inTable) do
         outString = outString..v..delim
     end
-    local outString = string.sub(outString, 1, #outString-1)
+    outString = string.sub(outString, 1, #outString-1)
     if outString == "" then outString = "Invisible" end
     return outString
 end
@@ -3680,7 +3680,7 @@ end
 function toggleInvaderUI(player)
     local colorEnabled = getCurrentState("panelInvader", player.color)
     toggleUI("panelInvader", player.color, colorEnabled)
-    local colorEnabled = getCurrentState("panelBlightFear", player.color)
+    colorEnabled = getCurrentState("panelBlightFear", player.color)
     toggleUI("panelBlightFear", player.color, colorEnabled)
 end
 function toggleAdversaryUI(player)
@@ -3698,9 +3698,9 @@ end
 function toggleButtonUI(player)
     local colorEnabled = getCurrentState("panelPowerDraw", player.color)
     toggleUI("panelPowerDraw", player.color, colorEnabled)
-    local colorEnabled = getCurrentState("panelTimePasses", player.color)
+    colorEnabled = getCurrentState("panelTimePasses", player.color)
     toggleUI("panelTimePasses", player.color, colorEnabled)
-    local colorEnabled = getCurrentState("panelReady", player.color)
+    colorEnabled = getCurrentState("panelReady", player.color)
     toggleUI("panelReady", player.color, colorEnabled)
 end
 function togglePlayerControls(player)

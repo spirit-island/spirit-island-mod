@@ -181,7 +181,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         height         = 400,
         font_size      = 360,
     })
-    local func = function() editEnergy(card,cardEnergy,1,cardElements) end
+    func = function() editEnergy(card,cardEnergy,1,cardElements) end
     self.setVar("button18",func)
 
     self.createButton({
@@ -203,7 +203,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         height         = 400,
         font_size      = 360,
     })
-    local func = function() editTag(card,-1,types) end
+    func = function() editTag(card,-1,types) end
     self.setVar("button19",func)
     self.createButton({
         click_function = "nullFunc",
@@ -224,7 +224,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         height         = 400,
         font_size      = 360,
     })
-    local func = function() editTag(card,1,types) end
+    func = function() editTag(card,1,types) end
     self.setVar("button20",func)
 
     self.createButton({
@@ -246,7 +246,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         height         = 400,
         font_size      = 360,
     })
-    local func = function() editTag(card,-1,speeds) end
+    func = function() editTag(card,-1,speeds) end
     self.setVar("button21",func)
     self.createButton({
         click_function = "nullFunc",
@@ -267,7 +267,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
         height         = 400,
         font_size      = 360,
     })
-    local func = function() editTag(card,1,speeds) end
+    func = function() editTag(card,1,speeds) end
     self.setVar("button22",func)
 end
 

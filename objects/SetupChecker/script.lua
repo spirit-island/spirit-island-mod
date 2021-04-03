@@ -208,7 +208,7 @@ function updateAdversaryList()
         leadName = "Random"
     end
     local supportName = "None"
-    local adversary = Global.getVar("adversaryCard2")
+    adversary = Global.getVar("adversaryCard2")
     if adversary ~= nil then
         supportName = adversary.getName()
     elseif Global.getVar("useSecondAdversary") then

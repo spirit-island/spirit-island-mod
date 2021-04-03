@@ -91,7 +91,7 @@ function createButtons(card,cardBlight,cardImmediate,cardHealthy)
         height         = 400,
         font_size      = 300,
     })
-    local func = function() editBlight(card,cardBlight,1,cardImmediate,cardHealthy) end
+    func = function() editBlight(card,cardBlight,1,cardImmediate,cardHealthy) end
     self.setVar("button2",func)
     self.createButton({
         click_function = "nullFunc",
@@ -112,7 +112,7 @@ function createButtons(card,cardBlight,cardImmediate,cardHealthy)
         height         = 400,
         font_size      = 300,
     })
-    local func = function() editImmediate(card,cardBlight,false,cardHealthy) end
+    func = function() editImmediate(card,cardBlight,false,cardHealthy) end
     self.setVar("button3",func)
     local label = "No"
     if cardImmediate then
@@ -137,7 +137,7 @@ function createButtons(card,cardBlight,cardImmediate,cardHealthy)
         height         = 400,
         font_size      = 300,
     })
-    local func = function() editImmediate(card,cardBlight,true,cardHealthy) end
+    func = function() editImmediate(card,cardBlight,true,cardHealthy) end
     self.setVar("button4",func)
     self.createButton({
         click_function = "nullFunc",
@@ -158,9 +158,9 @@ function createButtons(card,cardBlight,cardImmediate,cardHealthy)
         height         = 400,
         font_size      = 300,
     })
-    local func = function() editHealthy(card,cardBlight,cardImmediate,false) end
+    func = function() editHealthy(card,cardBlight,cardImmediate,false) end
     self.setVar("button5",func)
-    local label = "No"
+    label = "No"
     if cardHealthy then
         label = "Yes"
     end
@@ -183,7 +183,7 @@ function createButtons(card,cardBlight,cardImmediate,cardHealthy)
         height         = 400,
         font_size      = 300,
     })
-    local func = function() editHealthy(card,cardBlight,cardImmediate,true) end
+    func = function() editHealthy(card,cardBlight,cardImmediate,true) end
     self.setVar("button6",func)
 end
 

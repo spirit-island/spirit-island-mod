@@ -3868,16 +3868,16 @@ function swapPlayerAreaColors(a, b)
         oa.setPosition(tb)
         ob.setPosition(ta)
     end
-    local function handSwap(i)
-        local ta = Player[a].getHandTransform(i)
-        local tb = Player[b].getHandTransform(i)
-        Player[a].setHandTransform(tb, i)
-        Player[b].setHandTransform(ta, i)
+    local function handsSwap()
+        for i = 1,3 do
+            local ta = Player[a].getHandTransform(i)
+            local tb = Player[b].getHandTransform(i)
+            Player[a].setHandTransform(tb, i)
+            Player[b].setHandTransform(ta, i)
+        end
     end
 
-    for i = 1,3 do
-        handSwap(i)
-    end
+    handsSwap()
     positionSwap(playerTables)
     tableSwap(playerBlocks)
     tableSwap(elementScanZones)
@@ -3893,9 +3893,11 @@ function swapPlayerAreaObjects(a, b)
     local buttons = {}
     local objects = {}
     for color,playerTable in pairs(tables) do
-        local t = upCast(playerTable, 50)
-        for _,obj in ipairs(Player[color].getHandObjects(2)) do
-            table.insert(t, obj)
+        local t = upCast(playerTable, 2)
+        for i = 1,3 do
+            for _,obj in ipairs(Player[color].getHandObjects(i)) do
+                table.insert(t, obj)
+            end
         end
         objects[color] = t
         local zone = getObjectFromGUID(elementScanZones[color])
@@ -3931,6 +3933,18 @@ function swapPlayerAreaObjects(a, b)
             end
         end
     end
+
+    -- Fix for handling Fractured's 3rd hand with "Sit Here"
+    local offset = Player[b].getHandTransform(1).position - Player[a].getHandTransform(1).position
+    local ta = Player[a].getHandTransform(3)
+    local tb = Player[b].getHandTransform(3)
+    if ta.position.z < -40 or tb.position.z < -40 then
+        ta.position = ta.position + offset
+        tb.position = tb.position - offset
+        Player[a].setHandTransform(tb, 3)
+        Player[b].setHandTransform(ta, 3)
+    end
+
     if selectedColors[a] and selectedColors[b] then
         local bags = selectedColors[a].elements
         selectedColors[a].elements = selectedColors[b].elements

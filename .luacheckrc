@@ -37,6 +37,5 @@ ignore = {
     "542", -- empty if branch  (usually has a comment)
     "212", -- unused argument; name is used as documentation
     -- To be triaged
-    "411",
     "421",
 }

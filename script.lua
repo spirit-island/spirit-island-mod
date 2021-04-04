@@ -2075,18 +2075,24 @@ function StartGame()
     return 1
 end
 function enableUI()
-    local colors = {}
-    for color,_ in pairs(PlayerBags) do
-        if selectedColors[color] or Player[color].seated then
-            table.insert(colors, color)
+    -- Temporary hack to try to fix visibility TTS bug
+    UI.setXmlTable(UI.getXmlTable(), {})
+
+    -- Need to wait for xml table to get updated
+    Wait.frames(function()
+        local colors = {}
+        for color,_ in pairs(PlayerBags) do
+            if selectedColors[color] or Player[color].seated then
+                table.insert(colors, color)
+            end
         end
-    end
-    UI.setAttribute("panelUIToggle","active","true")
-    setVisiTable("panelTimePasses", colors)
-    setVisiTable("panelReady", colors)
-    setVisiTable("panelPowerDraw", colors)
-    setVisiTable("panelUI", colors)
-    setVisiTable("panelUIToggleHide", colors)
+        UI.setAttribute("panelUIToggle","active","true")
+        setVisiTable("panelTimePasses", colors)
+        setVisiTable("panelReady", colors)
+        setVisiTable("panelPowerDraw", colors)
+        setVisiTable("panelUI", colors)
+        setVisiTable("panelUIToggleHide", colors)
+    end, 2)
 end
 function runSpiritSetup()
     for color, _ in pairs(selectedColors) do

@@ -2082,9 +2082,7 @@ function enableUI()
     Wait.frames(function()
         local colors = {}
         for color,_ in pairs(PlayerBags) do
-            if selectedColors[color] or Player[color].seated then
-                table.insert(colors, color)
-            end
+            table.insert(colors, color)
         end
         UI.setAttribute("panelUIToggle","active","true")
         setVisiTable("panelTimePasses", colors)

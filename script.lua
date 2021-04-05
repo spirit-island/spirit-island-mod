@@ -4069,6 +4069,8 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     obj.setPosition(pos)
                     obj.setLock(true)
                     selectedColors[b.color].isolate = obj
+                else
+                    broadcastToAll("Internal Error: Unknown object " .. name .. " in player bag.", Color.Red)
                 end
             end
             for suffix, tint in pairs(a.tints) do
@@ -4089,7 +4091,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         end
                         obj.setLock(locked)
                     end
-                else
+                elseif suffix == "Presence" then
                     local newname = a.color .. "'s " .. suffix
                     for _, obj in ipairs(b.objects[suffix]) do
                         obj.setColorTint(tint)
@@ -4112,6 +4114,8 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         end
                         _ = obj.setState(originalState)
                     end
+                else
+                    broadcastToAll("Internal Error: Unknown object type " .. suffix .. " in player bag.", Color.Red)
                 end
             end
             for i = #b.bagContents - 2,1,-1 do  -- Iterate in reverse order.

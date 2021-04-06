@@ -146,6 +146,9 @@ function populateElements()
         return
     end
     local trackElements = currentSpirit.getVar("trackElements")
+    if trackElements == nil then
+        return
+    end
     local anyBag = getObjectFromGUID("AnyElements")
     for _, trackElement in pairs(trackElements) do
         local elements = Elements:new(trackElement.elements)

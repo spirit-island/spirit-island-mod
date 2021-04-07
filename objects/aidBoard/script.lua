@@ -794,6 +794,31 @@ elementGuids = {
     "6c0a2f",
 }
 
+local Elements = {}
+Elements.__index = Elements
+function Elements:new(init)
+    local outTable = {0,0,0,0,0,0,0,0}
+    setmetatable(outTable, self)
+    outTable:add(init)
+    return outTable
+end
+function Elements:add(other)
+    if other == nil then
+        return
+    elseif type(other) == "table" then
+        for i = 1, 8 do
+            self[i] = self[i] + other[i]
+        end
+    elseif type(other) == "string" then
+        for i = 1, string.len(other) do
+            self[i] = self[i] + math.floor(string.sub(other, i, i))
+        end
+    end
+end
+function Elements:__tostring()
+    return table.concat(self, "")
+end
+
 function placeElementTokens()
     for _, v in pairs (elementGuids) do
         local obj = getObjectFromGUID(v)
@@ -849,13 +874,9 @@ function toggleElements()
 end
 
 function scanElements()
-    local elements = {0, 0, 0, 0, 0, 0, 0, 0}
-    local elementTokens = {0, 0, 0, 0, 0, 0, 0, 0}
+    local elements = Elements:new()
     for _, selected in pairs(Global.getVar("selectedColors")) do
-        for i=1,8 do
-            elements[i] = elements[i] + selected.elements[i].getButtons()[1].label
-            elementTokens[i] = elementTokens[i] + selected.elementTokens[i]
-        end
+        elements:add(selected.nonTokenElements)
     end
 
     local elementsTable = {"Sun","Moon","Fire","Air","Water","Earth","Plant","Animal"}
@@ -863,7 +884,7 @@ function scanElements()
         local elementTokensCount = #getObjectsWithTag(elementsTable[i])
         getObjectFromGUID(elementGuids[i]).editButton({
             index = 0,
-            label = total + (elementTokensCount - elementTokens[i]),
+            label = total + elementTokensCount,
         })
     end
 end

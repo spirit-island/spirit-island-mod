@@ -3267,17 +3267,25 @@ function setupPlayerArea(params)
     local function countItems()
         local zone = params.zone
         local elements = Elements:new()
-        local tokens = Elements:new()
+        -- We track the elements separately, since we count tokens *everywhere*
+        -- for the choice event element helper, and don't want to double count
+        -- the tokens in the scan zones.
+        local nonTokenElements = Elements:new()
+
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
             if entry.hasTag("spirit") then
-                elements:add(calculateTrackElements(entry))
+                local trackElements = calculateTrackElements(entry)
+                elements:add(trackElements)
+                nonTokenElements:add(trackElements)
             elseif entry.type == "Card" then
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        elements:add(entry.getVar("elements"))
+                        local cardElements = entry.getVar("elements")
+                        elements:add(cardElements)
+                        nonTokenElements:add(cardElements)
                         energy = energy + powerCost(entry)
                     end
                 end
@@ -3285,16 +3293,15 @@ function setupPlayerArea(params)
                 local tokenCounts = entry.getVar("elements")
                 if tokenCounts ~= nil then
                     elements:add(tokenCounts)
-                    tokens:add(tokenCounts)
                 end
             end
         end
-        selected.elementTokens = tokens
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
             selected.elements[i].editButton({index=0, label=v})
         end
+        selected.nonTokenElements = nonTokenElements
     end
     countItems()    -- Update counts immediately.
     if timer then

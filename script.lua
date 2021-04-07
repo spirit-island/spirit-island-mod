@@ -179,6 +179,21 @@ function onObjectCollisionEnter(hit_object, collision_info)
         if collision_info.collision_object.type ~= "Card" then
             deleteObject(collision_info.collision_object, false)
         end
+    elseif isIslandBoard(hit_object) then
+        if collision_info.collision_object.type == "Generic" then
+            if collision_info.collision_object.getVar("elements") ~= nil then
+                collision_info.collision_object.addTag("Invocation Element")
+            end
+        end
+    end
+end
+function onObjectCollisionExit(hit_object, collision_info)
+    if isIslandBoard(hit_object) then
+        if collision_info.collision_object.type == "Generic" then
+            if collision_info.collision_object.getVar("elements") ~= nil then
+                collision_info.collision_object.removeTag("Invocation Element")
+            end
+        end
     end
 end
 function onObjectEnterContainer(container, object)
@@ -463,6 +478,7 @@ function onLoad(saved_data)
             for _,obj in ipairs(getObjects()) do
                 if isIslandBoard(obj) then
                     obj.interactable = false -- sets boards to uninteractable after reload
+                    obj.registerCollisions(false) -- used to track Elemental Invocation elements
                 elseif isPowerCard({card=obj}) then
                     applyPowerCardContextMenuItems(obj)
                 end
@@ -2655,6 +2671,10 @@ end
 function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
+    -- registerCollisions doesn't work on the frame an object leaves a bag
+    Wait.frames(function()
+        obj.registerCollisions(false) -- used track Elemental Invocation elements
+    end, 1)
     obj.setRotationSmooth(rot, false, true)
     local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)

@@ -882,9 +882,11 @@ function scanElements()
     local elementsTable = {"Sun","Moon","Fire","Air","Water","Earth","Plant","Animal"}
     for i,total in ipairs(elements) do
         local elementTokensCount = #getObjectsWithTag(elementsTable[i])
+        -- We double count tokens on the Island Board for the Elemental Invocation scenario
+        local invocationElementTokensCount = #getObjectsWithAllTags({elementsTable[i],"Invocation Element"})
         getObjectFromGUID(elementGuids[i]).editButton({
             index = 0,
-            label = total + elementTokensCount,
+            label = total + elementTokensCount + invocationElementTokensCount,
         })
     end
 end

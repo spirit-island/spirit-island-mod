@@ -16,6 +16,8 @@ read_globals = {
     "destroyObject",
     "getObjects",
     "getObjectFromGUID",
+    "getObjectsWithAllTags",
+    "getObjectsWithAnyTags",
     "getObjectsWithTag",
     "group",
     "printToAll",

@@ -226,7 +226,7 @@ function onObjectLeaveContainer(container, object)
             object.setDecals({})
         end
         return
-    elseif container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag then
+    elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard(object) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         return
     end

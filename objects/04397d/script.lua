@@ -8,10 +8,8 @@ function PostSetup(params)
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
     for color,_ in pairs(Global.getVar("selectedColors")) do
-        local card = minorPowerDeck.takeObject({flip = true})
-        card.setPosition(Player[color].getHandTransform(1).position + Vector(10,0,0))
-        card = majorPowerDeck.takeObject({flip = true})
-        card.setPosition(Player[color].getHandTransform(1).position + Vector(10,0,0))
+        minorPowerDeck.deal(1, color)
+        majorPowerDeck.deal(1, color)
     end
 
     postSetupComplete = true

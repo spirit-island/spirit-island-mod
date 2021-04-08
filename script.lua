@@ -349,11 +349,11 @@ function onLoad(saved_data)
     addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
-                moveObjectToHand(obj, droppingPlayerColor, 2)
+                obj.deal(1, droppingPlayerColor, 2)
             end
         end
         if isPowerCard({card=hoveredObject}) then
-            moveObjectToHand(hoveredObject, droppingPlayerColor, 2)
+            hoveredObject.deal(1, droppingPlayerColor, 2)
         end
     end)
 
@@ -2284,8 +2284,7 @@ function handlePlayer(color, data)
             obj.setPosition(obj.getPosition() + Vector(0,1,0))
             Wait.frames(function() obj.destruct() end , 1)
         elseif obj.type == "Card" and not obj.getLock() then
-            obj.setPosition(Player[color].getHandTransform(2).position + Vector(10,0,0))
-            obj.setRotation(Vector(0, 180, 0))
+            obj.deal(1, color, 2)
         end
     end
 
@@ -4355,7 +4354,7 @@ function applyPowerCardContextMenuItems(card)
         function(player_color)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
                 if isPowerCard({card=obj}) then
-                    moveObjectToHand(obj, player_color, 2)
+                    obj.deal(1, player_color, 2)
                 end
             end
         end,
@@ -4372,26 +4371,6 @@ function applyPowerCardContextMenuItems(card)
             end
         end,
         false)
-end
-function moveObjectToHand(card, playerColor, handIndex)
-    if not isObjectInHand(card, playerColor, handIndex) then
-        -- `deal` is buggy and seems to have magic logic associated
-        -- with card visibility.
-        local handTransform = Player[playerColor].getHandTransform(handIndex)
-        local moveTo = handTransform.position
-        if handTransform.right.x == 1 then
-            moveTo.x = moveTo.x + handTransform.scale.x/2
-        elseif handTransform.right.y == 1 then
-            moveTo.y = moveTo.y + handTransform.scale.y/2
-        elseif handTransform.right.z == 1 then
-            moveTo.z = moveTo.z + handTransform.scale.z/2
-        else
-            Player[playerColor]("Couldn't determine left-to-right direction for hand.", Color.Red)
-            return
-        end
-        card.setPosition(moveTo)
-        card.setRotation(Vector(0, 180, 0))
-    end
 end
 
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe

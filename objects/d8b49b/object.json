@@ -15,14 +15,15 @@
   "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.42684,
-    "g": 0.369400233,
-    "b": 0.439604342
+    "r": 0.426839948,
+    "g": 0.369400144,
+    "b": 0.439604282
   },
   "Tags": [
     "Destroy"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
   "Snap": false,
@@ -72,6 +73,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -124,6 +126,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -176,6 +179,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -228,6 +232,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -280,6 +285,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -332,6 +338,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -384,6 +391,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -436,6 +444,7 @@
         "Destroy"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,

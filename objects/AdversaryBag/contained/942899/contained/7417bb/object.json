@@ -23,6 +23,7 @@
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -89,6 +90,7 @@
         "b": 0.8526128
       },
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -147,6 +149,7 @@
         "b": 0.8526128
       },
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,

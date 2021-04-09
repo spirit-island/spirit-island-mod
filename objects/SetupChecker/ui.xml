@@ -205,6 +205,9 @@
             <Row class="toggle">
                 <Cell><Toggle id="war" onValueChanged="toggleWar" tooltip="The Damage dealt is instead half (round&#xA;down) the energy of the Major discarded">War Touches the Island's Shores</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="aid" onValueChanged="toggleAid" tooltip="Spirits either get elements&#xA;or effect each turn">Aid from Lesser Spirits</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

@@ -1,12 +1,12 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -8.194507,
-    "posY": 1.99084079,
-    "posZ": 15.5336075,
-    "rotX": 2.16339515e-08,
+    "posX": 57.40707,
+    "posY": 1.9847399,
+    "posZ": 28.61788,
+    "rotX": 2.43178921e-09,
     "rotY": 180.0,
-    "rotZ": -0.000144296835,
+    "rotZ": 180.0,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
@@ -44,6 +44,61 @@
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0
+    }
+  },
+  "States": {
+    "2": {
+      "GUID": "ad5b9a",
+      "Name": "CardCustom",
+      "Transform": {
+        "posX": 52.94,
+        "posY": 0.8636051,
+        "posZ": 19.9,
+        "rotX": 1.45565338e-08,
+        "rotY": 180.0,
+        "rotZ": -9.768374e-09,
+        "scaleX": 1.53,
+        "scaleY": 1.0,
+        "scaleZ": 1.53
+      },
+      "Nickname": "Aid from Lesser Spirits",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.713235259,
+        "g": 0.713235259,
+        "b": 0.713235259
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": true,
+      "CardID": 64900,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "649": {
+          "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1798600432057027175/204F5367E0E24B38C5FF931568965BE5B35BCDD3/",
+          "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
+          "NumWidth": 1,
+          "NumHeight": 1,
+          "BackIsHidden": true,
+          "UniqueBack": false,
+          "Type": 0
+        }
+      },
+      "LuaScript": "blight=2\nimmediate=true\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
     }
   }
 }

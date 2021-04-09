@@ -49,6 +49,7 @@ optionalScaleBoard = true
 exploratoryVOTD = false
 exploratoryBODAN = false
 exploratoryWar = false
+exploratoryAid = false
 
 updateLayoutsID = 0
 setupStarted = false
@@ -1237,6 +1238,10 @@ end
 function toggleWar()
     exploratoryWar = not exploratoryWar
     self.UI.setAttribute("war", "isOn", exploratoryWar)
+end
+function toggleAid()
+    exploratoryAid = not exploratoryAid
+    self.UI.setAttribute("aid", "isOn", exploratoryAid)
 end
 
 function wt(some)

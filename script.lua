@@ -1172,7 +1172,24 @@ end
 ----- Blight Section
 function SetupBlightCard()
     if useBlightCard then
-        grabBlightCard(true)
+        local cardsSetup = 0
+        if SetupChecker.getVar("exploratoryAid") then
+            local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+            blightDeck.takeObject({
+                guid = "bf66eb",
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        blightDeck.putObject(temp)
+                        blightDeck.shuffle()
+                        cardsSetup = cardsSetup + 1
+                    end, 1)
+                end,
+            })
+        else
+            cardsSetup = cardsSetup + 1
+        end
+        Wait.condition(function() grabBlightCard(true) end, function() return cardsSetup == 1 end)
     else
         blightedIsland = true
     end
@@ -3276,7 +3293,10 @@ function setupPlayerArea(params)
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        elements:add(entry.getVar("elements"))
+                        -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
+                        if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
+                            elements:add(entry.getVar("elements"))
+                        end
                         energy = energy + powerCost(entry)
                     end
                 end

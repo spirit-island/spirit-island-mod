@@ -1828,7 +1828,10 @@ function SetupEventDeck()
             rotation = {0,180,180},
         })
         Wait.condition(function()
-            if SetupChecker.getVar("exploratoryWar") then
+            if SetupChecker.getVar("optionalDigitalEvents") then
+                deck.takeObject({guid = "cfd4d1"}).destruct()
+                deck.takeObject({guid = "6692e8"}).destruct()
+            elseif SetupChecker.getVar("exploratoryWar") then
                 deck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)

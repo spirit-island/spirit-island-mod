@@ -45,6 +45,7 @@ optionalExtraBoard = false
 optionalThematicRedo = false
 optionalBoardPairings = true
 optionalScaleBoard = true
+optionalDigitalEvents = false
 
 exploratoryVOTD = false
 exploratoryBODAN = false
@@ -1225,6 +1226,10 @@ end
 function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
+end
+function toggleDigitalEvents()
+    optionalDigitalEvents = not optionalDigitalEvents
+    self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
 end
 
 function toggleVOTD()

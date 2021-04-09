@@ -150,7 +150,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2000 -3000 14">
+<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2000 -2800 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -186,6 +186,9 @@
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's and Outpaced Event cards">Use Digital B&amp;C Event Deck</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

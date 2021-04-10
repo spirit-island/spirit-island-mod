@@ -16,10 +16,11 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.856,
-    "g": 0.09995767,
-    "b": 0.0939575061
+    "g": 0.09995755,
+    "b": 0.0939574
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
   "Snap": false,

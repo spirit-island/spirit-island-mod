@@ -20,6 +20,7 @@
     "b": 0.5600328
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
   "Snap": false,
@@ -78,6 +79,7 @@
         "b": 0.9912892
       },
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": true,
       "Grid": true,
       "Snap": true,

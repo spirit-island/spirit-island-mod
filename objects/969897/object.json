@@ -4,7 +4,7 @@
     "posX": -42.81988,
     "posY": 0.853402853,
     "posZ": 56.3,
-    "rotX": -2.80296275e-09,
+    "rotX": -7.483395e-09,
     "rotY": 180.0,
     "rotZ": 180.0,
     "scaleX": 1.53204679,
@@ -23,6 +23,7 @@
     "Fear"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,

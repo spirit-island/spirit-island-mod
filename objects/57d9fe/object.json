@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -33,7 +34,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "version 2.0.0-beta.20",
+    "Text": "version 2.0.0-beta.21",
     "colorstate": {
       "r": 0.7334495,
       "g": 0.7334495,

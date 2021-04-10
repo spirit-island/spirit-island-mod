@@ -1,5 +1,6 @@
 bncDone = false
 jeDone = false
+setupStarted = false
 
 adversaries = {
     ["None"] = "",
@@ -45,10 +46,12 @@ optionalExtraBoard = false
 optionalThematicRedo = false
 optionalBoardPairings = true
 optionalScaleBoard = true
+optionalDigitalEvents = false
 
 exploratoryVOTD = false
 exploratoryBODAN = false
 exploratoryWar = false
+exploratoryAid = false
 
 updateLayoutsID = 0
 setupStarted = false
@@ -581,7 +584,14 @@ function difficultyCheck(params)
 end
 
 function startGame()
+    if setupStarted then
+        return
+    end
     loadConfig()
+    if not Global.call("CanSetupGame", {}) then
+        return
+    end
+    setupStarted = true
     if Global.getVar("BnCAdded") then
         startLuaCoroutine(self, "addBnCCo")
     else
@@ -1225,6 +1235,10 @@ function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
 end
+function toggleDigitalEvents()
+    optionalDigitalEvents = not optionalDigitalEvents
+    self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+end
 
 function toggleVOTD()
     exploratoryVOTD = not exploratoryVOTD
@@ -1237,6 +1251,10 @@ end
 function toggleWar()
     exploratoryWar = not exploratoryWar
     self.UI.setAttribute("war", "isOn", exploratoryWar)
+end
+function toggleAid()
+    exploratoryAid = not exploratoryAid
+    self.UI.setAttribute("aid", "isOn", exploratoryAid)
 end
 
 function wt(some)

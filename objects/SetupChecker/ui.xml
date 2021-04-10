@@ -187,10 +187,13 @@
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's, Outpaced, and A Strange&#xA;Madness Among Beasts Event cards">Remove Swingy B&amp;C Events</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3690 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3790 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -204,6 +207,9 @@
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="war" onValueChanged="toggleWar" tooltip="The Damage dealt is instead half (round&#xA;down) the energy of the Major discarded">War Touches the Island's Shores</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="aid" onValueChanged="toggleAid" tooltip="Spirits either get elements&#xA;or effect each turn">Aid from Lesser Spirits</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

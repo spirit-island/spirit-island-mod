@@ -15,14 +15,15 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249978215,
-    "g": 0.249978215,
-    "b": 0.249978215
+    "r": 0.2499781,
+    "g": 0.2499781,
+    "b": 0.2499781
   },
   "Tags": [
     "Spirit Setup"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
   "Snap": true,

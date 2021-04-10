@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 70.55936,
-    "posY": 2.516297,
-    "posZ": 74.34713,
-    "rotX": 0.617653847,
-    "rotY": 180.0037,
-    "rotZ": 180.635529,
-    "scaleX": 1.0,
+    "posX": 69.64,
+    "posY": 1.19563353,
+    "posZ": 74.61,
+    "rotX": 0.00446392735,
+    "rotY": 180.00029,
+    "rotZ": 180.000046,
+    "scaleX": 0.8,
     "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleZ": 0.8
   },
   "Nickname": "Spare Piece",
   "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": false,

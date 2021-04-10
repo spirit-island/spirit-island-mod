@@ -1,5 +1,5 @@
 ---- Versioning
-version = "2.0.0-beta.20"
+version = "2.0.0-beta.21"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -241,7 +241,7 @@ function onObjectLeaveContainer(container, object)
             object.setDecals({})
         end
         return
-    elseif container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag then
+    elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard(object) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         return
     end
@@ -364,11 +364,11 @@ function onLoad(saved_data)
     addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
-                moveObjectToHand(obj, droppingPlayerColor, 2)
+                obj.deal(1, droppingPlayerColor, 2)
             end
         end
         if isPowerCard({card=hoveredObject}) then
-            moveObjectToHand(hoveredObject, droppingPlayerColor, 2)
+            hoveredObject.deal(1, droppingPlayerColor, 2)
         end
     end)
 
@@ -537,23 +537,22 @@ end
 ---- Setup Buttons Section
 function nullFunc()
 end
-function SetupGame()
-    if getMapCount({norm = true, them = true}) == 0 and numPlayers == 0 then
-        broadcastToAll("Select the number of players before starting the game", Color.SoftYellow)
-        return
-    end
+function CanSetupGame()
     if getMapCount({norm = true, them = false}) > 0 and getMapCount({norm = false, them = true}) > 0 then
         broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
-        return
+        return false
     end
     if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
-        return
+        return false
     end
     if adversaryCard ~= nil and adversaryCard == adversaryCard2 then
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
-        return
+        return false
     end
+    return true
+end
+function SetupGame()
     if adversaryCard == nil then
         adversaryLevel = 0
     end
@@ -1188,7 +1187,24 @@ end
 ----- Blight Section
 function SetupBlightCard()
     if useBlightCard then
-        grabBlightCard(true)
+        local cardsSetup = 0
+        if SetupChecker.getVar("exploratoryAid") then
+            local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+            blightDeck.takeObject({
+                guid = "bf66eb",
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        blightDeck.putObject(temp)
+                        blightDeck.shuffle()
+                        cardsSetup = cardsSetup + 1
+                    end, 1)
+                end,
+            })
+        else
+            cardsSetup = cardsSetup + 1
+        end
+        Wait.condition(function() grabBlightCard(true) end, function() return cardsSetup == 1 end)
     else
         blightedIsland = true
     end
@@ -1827,7 +1843,10 @@ function SetupEventDeck()
             rotation = {0,180,180},
         })
         Wait.condition(function()
-            if SetupChecker.getVar("exploratoryWar") then
+            if SetupChecker.getVar("optionalDigitalEvents") then
+                deck.takeObject({guid = "cfd4d1"}).destruct()
+                deck.takeObject({guid = "6692e8"}).destruct()
+            elseif SetupChecker.getVar("exploratoryWar") then
                 deck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)
@@ -1843,7 +1862,7 @@ function SetupEventDeck()
                 decksSetup = decksSetup + 1
             end
         end, function() return not deck.loading_custom end)
-        if SetupChecker.getVar("optionalStrangeMadness") then
+        if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
             local strangeMadness = BnCBag.takeObject({
                 guid = "0edac2",
                 position = getObjectFromGUID(eventDeckZone).getPosition(),
@@ -2300,8 +2319,7 @@ function handlePlayer(color, data)
             obj.setPosition(obj.getPosition() + Vector(0,1,0))
             Wait.frames(function() obj.destruct() end , 1)
         elseif obj.type == "Card" and not obj.getLock() then
-            obj.setPosition(Player[color].getHandTransform(2).position + Vector(10,0,0))
-            obj.setRotation(Vector(0, 180, 0))
+            obj.deal(1, color, 2)
         end
     end
 
@@ -3303,9 +3321,12 @@ function setupPlayerArea(params)
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        local cardElements = entry.getVar("elements")
-                        elements:add(cardElements)
-                        nonTokenElements:add(cardElements)
+                        -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
+                        if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
+                            local cardElements = entry.getVar("elements")
+                            elements:add(cardElements)
+                            nonTokenElements:add(cardElements)
+                        end
                         energy = energy + powerCost(entry)
                     end
                 end
@@ -4382,7 +4403,7 @@ function applyPowerCardContextMenuItems(card)
         function(player_color)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
                 if isPowerCard({card=obj}) then
-                    moveObjectToHand(obj, player_color, 2)
+                    obj.deal(1, player_color, 2)
                 end
             end
         end,
@@ -4399,26 +4420,6 @@ function applyPowerCardContextMenuItems(card)
             end
         end,
         false)
-end
-function moveObjectToHand(card, playerColor, handIndex)
-    if not isObjectInHand(card, playerColor, handIndex) then
-        -- `deal` is buggy and seems to have magic logic associated
-        -- with card visibility.
-        local handTransform = Player[playerColor].getHandTransform(handIndex)
-        local moveTo = handTransform.position
-        if handTransform.right.x == 1 then
-            moveTo.x = moveTo.x + handTransform.scale.x/2
-        elseif handTransform.right.y == 1 then
-            moveTo.y = moveTo.y + handTransform.scale.y/2
-        elseif handTransform.right.z == 1 then
-            moveTo.z = moveTo.z + handTransform.scale.z/2
-        else
-            Player[playerColor]("Couldn't determine left-to-right direction for hand.", Color.Red)
-            return
-        end
-        card.setPosition(moveTo)
-        card.setRotation(Vector(0, 180, 0))
-    end
 end
 
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe

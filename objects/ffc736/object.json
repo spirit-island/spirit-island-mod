@@ -1,18 +1,18 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 69.7541351,
-    "posY": 2.528853,
-    "posZ": 74.64898,
-    "rotX": 0.9956256,
-    "rotY": 180.001755,
-    "rotZ": 180.169083,
-    "scaleX": 1.0,
+    "posX": 36.04,
+    "posY": 1.19561446,
+    "posZ": 74.60983,
+    "rotX": 0.004575951,
+    "rotY": 180.000092,
+    "rotZ": 180.000381,
+    "scaleX": 0.8,
     "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleZ": 0.8
   },
   "Nickname": "Spare Piece",
-  "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",
+  "Description": "Use these to cover up the unavailable growth options from your special rule  \"Growth Begets Growth\"",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": false,

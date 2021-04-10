@@ -55,14 +55,8 @@ function doSpiritSetup(params)
         Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
     end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
-    for _ = 1, count do
-        local card = minorPowerDeck.takeObject({flip = true})
-        card.setPosition(newHandZone.position + Vector(-10,0,0))
-    end
+    minorPowerDeck.deal(count, color, 3)
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
-    for _ = 1, count do
-        local card = majorPowerDeck.takeObject({flip = true})
-        card.setPosition(newHandZone.position + Vector(10,0,0))
-    end
+    majorPowerDeck.deal(count, color, 3)
     self.destruct()
 end

@@ -179,21 +179,16 @@ function onObjectCollisionEnter(hit_object, collision_info)
         if collision_info.collision_object.type ~= "Card" then
             deleteObject(collision_info.collision_object, false)
         end
-    elseif isIslandBoard(hit_object) then
-        if collision_info.collision_object.type == "Generic" then
-            if collision_info.collision_object.getVar("elements") ~= nil then
-                collision_info.collision_object.addTag("Invocation Element")
-            end
-        end
+    end
+    -- Temporary fix until TTS bug resolved
+    if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
+        scenarioCard.call("onObjectCollisionEnter", {hit_object=hit_object, collision_info=collision_info})
     end
 end
 function onObjectCollisionExit(hit_object, collision_info)
-    if isIslandBoard(hit_object) then
-        if collision_info.collision_object.type == "Generic" then
-            if collision_info.collision_object.getVar("elements") ~= nil then
-                collision_info.collision_object.removeTag("Invocation Element")
-            end
-        end
+    -- Temporary fix until TTS bug resolved
+    if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
+        scenarioCard.call("onObjectCollisionExit", {hit_object=hit_object, collision_info=collision_info})
     end
 end
 function onObjectEnterContainer(container, object)
@@ -241,9 +236,8 @@ function onObjectLeaveContainer(container, object)
             object.setDecals({})
         end
         return
-    elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard(object) then
+    elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
-        object.registerCollisions(false) -- used to track Elemental Invocation elements
         return
     end
 end
@@ -477,7 +471,7 @@ function onLoad(saved_data)
             end
             gamePaused = false
             for _,obj in ipairs(getObjects()) do
-                if isIslandBoard(obj) then
+                if isIslandBoard({obj=obj}) then
                     obj.interactable = false -- sets boards to uninteractable after reload
                 elseif isPowerCard({card=obj}) then
                     applyPowerCardContextMenuItems(obj)
@@ -2579,7 +2573,7 @@ end
 function getMapTiles()
     local mapTiles = {}
     for _,obj in pairs(upCast(seaTile)) do
-        if isIslandBoard(obj) then
+        if isIslandBoard({obj=obj}) then
             table.insert(mapTiles,obj)
         end
     end
@@ -2689,10 +2683,6 @@ end
 function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
-    -- registerCollisions doesn't work on the frame an object leaves a bag
-    Wait.frames(function()
-        obj.registerCollisions(false) -- used track Elemental Invocation elements
-    end, 1)
     obj.setRotationSmooth(rot, false, true)
     local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
@@ -3118,7 +3108,7 @@ function upCastRay(obj,dist)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if v.hit_object ~= obj and not isIslandBoard(v.hit_object) then
+        if v.hit_object ~= obj and not isIslandBoard({obj=v.hit_object}) then
             table.insert(hitObjects,v.hit_object)
         end
     end
@@ -4380,11 +4370,11 @@ function onPlayerDisconnect(player)
     updatePlaySpiritButton(player.color)
 end
 
-function isIslandBoard(obj)
-    if obj == nil then
+function isIslandBoard(params)
+    if params.obj == nil then
         return false
     end
-    return obj.hasTag("Balanced") or obj.hasTag("Thematic")
+    return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic")
 end
 function isPowerCard(params)
     if params.card == nil then

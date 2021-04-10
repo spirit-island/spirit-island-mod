@@ -3,7 +3,6 @@ fearCards={1,0,0}
 
 invaderDeckSetup=true
 mapSetup=true
-broadcast="For proper element counting, place 2 element tokens instead of 1 on the corners"
 
 function InvaderDeckSetup(params)
     local found = false

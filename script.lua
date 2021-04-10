@@ -179,6 +179,21 @@ function onObjectCollisionEnter(hit_object, collision_info)
         if collision_info.collision_object.type ~= "Card" then
             deleteObject(collision_info.collision_object, false)
         end
+    elseif isIslandBoard(hit_object) then
+        if collision_info.collision_object.type == "Generic" then
+            if collision_info.collision_object.getVar("elements") ~= nil then
+                collision_info.collision_object.addTag("Invocation Element")
+            end
+        end
+    end
+end
+function onObjectCollisionExit(hit_object, collision_info)
+    if isIslandBoard(hit_object) then
+        if collision_info.collision_object.type == "Generic" then
+            if collision_info.collision_object.getVar("elements") ~= nil then
+                collision_info.collision_object.removeTag("Invocation Element")
+            end
+        end
     end
 end
 function onObjectEnterContainer(container, object)
@@ -463,6 +478,7 @@ function onLoad(saved_data)
             for _,obj in ipairs(getObjects()) do
                 if isIslandBoard(obj) then
                     obj.interactable = false -- sets boards to uninteractable after reload
+                    obj.registerCollisions(false) -- used to track Elemental Invocation elements
                 elseif isPowerCard({card=obj}) then
                     applyPowerCardContextMenuItems(obj)
                 end
@@ -2673,6 +2689,10 @@ end
 function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
+    -- registerCollisions doesn't work on the frame an object leaves a bag
+    Wait.frames(function()
+        obj.registerCollisions(false) -- used track Elemental Invocation elements
+    end, 1)
     obj.setRotationSmooth(rot, false, true)
     local scaleFactor = scaleFactors[SetupChecker.getVar("optionalScaleBoard")]
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
@@ -3285,19 +3305,27 @@ function setupPlayerArea(params)
     local function countItems()
         local zone = params.zone
         local elements = Elements:new()
-        local tokens = Elements:new()
+        -- We track the elements separately, since we count tokens *everywhere*
+        -- for the choice event element helper, and don't want to double count
+        -- the tokens in the scan zones.
+        local nonTokenElements = Elements:new()
+
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
             if entry.hasTag("spirit") then
-                elements:add(calculateTrackElements(entry))
+                local trackElements = calculateTrackElements(entry)
+                elements:add(trackElements)
+                nonTokenElements:add(trackElements)
             elseif entry.type == "Card" then
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
                         -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
                         if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
-                            elements:add(entry.getVar("elements"))
+                            local cardElements = entry.getVar("elements")
+                            elements:add(cardElements)
+                            nonTokenElements:add(cardElements)
                         end
                         energy = energy + powerCost(entry)
                     end
@@ -3306,16 +3334,15 @@ function setupPlayerArea(params)
                 local tokenCounts = entry.getVar("elements")
                 if tokenCounts ~= nil then
                     elements:add(tokenCounts)
-                    tokens:add(tokenCounts)
                 end
             end
         end
-        selected.elementTokens = tokens
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
             selected.elements[i].editButton({index=0, label=v})
         end
+        selected.nonTokenElements = nonTokenElements
     end
     countItems()    -- Update counts immediately.
     if timer then

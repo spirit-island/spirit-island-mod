@@ -150,7 +150,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2000 -2800 14">
+<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2000 -3000 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -193,7 +193,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3690 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3790 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

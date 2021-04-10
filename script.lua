@@ -1846,7 +1846,7 @@ function SetupEventDeck()
                 decksSetup = decksSetup + 1
             end
         end, function() return not deck.loading_custom end)
-        if SetupChecker.getVar("optionalStrangeMadness") then
+        if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
             local strangeMadness = BnCBag.takeObject({
                 guid = "0edac2",
                 position = getObjectFromGUID(eventDeckZone).getPosition(),

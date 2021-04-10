@@ -243,7 +243,7 @@ function onObjectLeaveContainer(container, object)
         return
     elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard(object) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
-        obj.registerCollisions(false) -- used to track Elemental Invocation elements
+        object.registerCollisions(false) -- used to track Elemental Invocation elements
         return
     end
 end
@@ -479,7 +479,6 @@ function onLoad(saved_data)
             for _,obj in ipairs(getObjects()) do
                 if isIslandBoard(obj) then
                     obj.interactable = false -- sets boards to uninteractable after reload
-                    obj.registerCollisions(false) -- used to track Elemental Invocation elements
                 elseif isPowerCard({card=obj}) then
                     applyPowerCardContextMenuItems(obj)
                 end

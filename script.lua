@@ -243,6 +243,7 @@ function onObjectLeaveContainer(container, object)
         return
     elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard(object) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
+        obj.registerCollisions(false) -- used to track Elemental Invocation elements
         return
     end
 end

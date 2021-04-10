@@ -1,5 +1,6 @@
 bncDone = false
 jeDone = false
+setupStarted = false
 
 adversaries = {
     ["None"] = "",
@@ -583,7 +584,14 @@ function difficultyCheck(params)
 end
 
 function startGame()
+    if setupStarted then
+        return
+    end
     loadConfig()
+    if not Global.call("CanSetupGame", {}) then
+        return
+    end
+    setupStarted = true
     if Global.getVar("BnCAdded") then
         startLuaCoroutine(self, "addBnCCo")
     else

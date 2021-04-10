@@ -521,23 +521,22 @@ end
 ---- Setup Buttons Section
 function nullFunc()
 end
-function SetupGame()
-    if getMapCount({norm = true, them = true}) == 0 and numPlayers == 0 then
-        broadcastToAll("Select the number of players before starting the game", Color.SoftYellow)
-        return
-    end
+function CanSetupGame()
     if getMapCount({norm = true, them = false}) > 0 and getMapCount({norm = false, them = true}) > 0 then
         broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
-        return
+        return false
     end
     if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
-        return
+        return false
     end
     if adversaryCard ~= nil and adversaryCard == adversaryCard2 then
         broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
-        return
+        return false
     end
+    return true
+end
+function SetupGame()
     if adversaryCard == nil then
         adversaryLevel = 0
     end

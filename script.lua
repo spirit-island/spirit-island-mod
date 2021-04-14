@@ -913,8 +913,10 @@ function setupFearTokens()
 end
 ----- Minor/Major Power Section
 function SetupPowerDecks()
-    getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
-    getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
+    if not gameStarted then
+        getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
+        getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
+    end
 
     local exploratoryPowersDone = false
     if not gameStarted and SetupChecker.getVar("exploratoryVOTD") then

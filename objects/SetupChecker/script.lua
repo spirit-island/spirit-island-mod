@@ -33,6 +33,16 @@ scenarios = {
 }
 numScenarios = 13
 
+-- This must match the same guids of global's elementScanZones
+playerZones = {
+    ["9fc5a4"] = true,
+    ["654ab2"] = true,
+    ["102771"] = true,
+    ["6f2249"] = true,
+    ["190f05"] = true,
+    ["61ac7c"] = true,
+}
+
 spiritGuids = {}
 spiritTags = {}
 spiritComplexities = {}
@@ -1115,6 +1125,14 @@ end
 function addSpirit(params)
     -- Ignore Source Spirit
     if params.spirit.guid == "SourceSpirit" then return end
+
+    if Global.getVar("gameStarted") then
+        for _, zone in pairs(params.spirit.getZones()) do
+            if playerZones[zone.guid] then
+                return
+            end
+        end
+    end
 
     -- In case of state change, update existing choice with new guid
     for name,_ in pairs(spiritChoices) do

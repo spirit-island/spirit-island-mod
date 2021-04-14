@@ -13,6 +13,7 @@ function load(params)
         params.obj.setVar("broadcast", loaded_data.broadcast)
         params.obj.setTable("trackElements", loaded_data.trackElements)
     end
+    Global.call("addSpirit", {spirit=params.obj})
     if Global.getVar("gameStarted") then return end
 
     params.obj.createButton({
@@ -69,7 +70,6 @@ function load(params)
             })
         end
     end
-    Global.call("addSpirit", {spirit=params.obj})
 end
 function RandomAspect(params)
     for _,obj in pairs(upCast(params.obj)) do

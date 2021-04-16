@@ -2171,38 +2171,6 @@ function getEmptySeat()
     return nil
 end
 ------
-quotes = {
-    {"Time passes, and little by little everything that we have spoken in falsehood becomes true.","Marcel Proust"},
-    {"Time passes so slowly if you are unaware of it and so quickly if you are aware of it.","Marc Bolan"},
-    {"Time goes, you say, Ah no! Alas, Time stays, we go.","Henry Austin Dobson"},
-    {"Time wastes our bodies and our wits, but we waste time, so we are quits.","Anonymous"},
-    {"Time has no divisions to mark its passage, there is never a thunderstorm or blare of trumpets to announce the beginning of a new month or year. Even when a new century begins it is only we mortals who ring bells and fire off pistols.","Thomas Mann"},
-    {"Time. Like a petal in the wind, Flows softly by. As old lives are taken, New ones begin. A continual chain, Which lasts throughout eternity. Every life but a minute in time, But each of equal importance.","Cindy Cheney"},
-    {"The long unmeasured pulse of time moves everything. There is nothing hidden that it cannot bring to light, nothing once known that may not become unknown. Nothing is impossible.","Sophocles"},
-    {"Indifferent to the affairs of men, time runs out, precise, heedless, exact, and immutable in rhythm.","Erwin Sylvanus"},
-    {"Time is a sort of river of passing events, and strong is its current; no sooner is a thing brought to sight than it is swept by and another takes its place, and this too will be swept away.","Marcus Aurelius"},
-    {"Time is a great teacher, but unfortunately it kills all its pupils.","Hector Louis Berlioz"},
-    {"Half our time is spent trying to find something to do with the time we have rushed through life trying to save.","Will Rogers"},
-    {"The bad news is time flies. The good news is you're the pilot.","Michael Althsuler"},
-    {"Time flies never to be recalled.","Virgil"},
-    {"Time flies over us, but leaves its shadow behind.","Nathaniel Hawthorne"},
-    {"Time is the most undefinable yet paradoxical of things; the past is gone, the future is not come, and the present becomes the past even while we attempt to define it, and, like the flash of lightning, at once exists and expires.","Charles Caleb Colton"},
-    {"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma - which is living with the results of other people's thinking.","Steve Jobs"},
-    {"Time and tide wait for no man, but time always stands still for a woman of 30.","Robert Frost"},
-    {"Time, you old gypsy man, will you not stay, put up your caravan just for one day?","Ralph Hodgson"},
-    {"The more sand that has escaped from the hourglass of our life, the clearer we should see through it.","Jean Paul"},
-    {"Don't say you don't have enough time. You have exactly the same number of hours per day that were given to Helen Keller, Pasteur, Michaelangelo, Mother Teresa, Leonardo da Vinci, Thomas Jefferson, and Albert Einstein.","H. Jackson Brown Junior"},
-    {"Time is a brisk wind, for each hour it brings something new... but who can understand and measure its sharp breath, its mystery and its design?","Paracelsus"},
-    {"Time forks perpetually toward innumerable futures.","Jorge Luis Borges"},
-    {"As we speak cruel time is fleeing. Seize the day, believing as little as possible in the morrow.","Horace"},
-    {"Idleness makes hours pass slowly and years swiftly. Activity makes the hours short and the years long.","Cesare Pavese"},
-    {"Time does not pass, it continues.","Marty Rubin"},
-    {"Time is free, but it's priceless. You can't own it, but you can use it. You can't keep it, but you can spend it. Once you've lost it you can never get it back.","Harvey McKay"},
-    {"Time is more valuable than money. You can get more money, but you cannot get more time.","Jim Rohn"},
-    {"Time is like a handful of sand- the tighter you grasp it, the faster it runs through your fingers","Anonymous"},
-    {"Methinks I see the wanton hours flee, And as they pass, turn back and laugh at me.","George Villiers"},
-    {"Better late than never, but never late is better","Anonymous"},
-}
 timePassing = false
 function timePassesUI(player)
     if player.color == "Grey" then return end
@@ -2224,11 +2192,6 @@ function timePassesCo()
     end
 
     broadcastToAll("Time Passes...", Color.SoftBlue)
-    local quote = quotes[math.random(#quotes)]
-    wt(2)
-    broadcastToAll("\"" .. quote[1] .. "\"", {0.9,0.9,0.9})
-    wt(2)
-    broadcastToAll("- " .. quote[2], {0.9,0.9,0.9})
     wt(2)
     enterSpiritPhase(nil)
     timePassing = false

@@ -1,5 +1,5 @@
 ---- Versioning
-version = "2.0.0-beta.24"
+version = "2.0.0-beta.25"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"

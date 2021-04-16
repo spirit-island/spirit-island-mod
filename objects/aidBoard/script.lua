@@ -322,6 +322,10 @@ function aidPanelScanLoop()
             end
             for _,hit in pairs(hitObjects) do
                 if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
+                    if hit.loading_custom then
+                        -- you can't access script for objects not loaded, so wait for next iteration of loop
+                        return
+                    end
                     local iType = hit.getVar("cardInvaderType")
                     local escalate = hit.getVar("cardInvaderStage") == 2 and iType ~= "C"
                     table.insert(stageTable,{type=iType,escalate=escalate})

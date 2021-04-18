@@ -1,0 +1,50 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -32.20402526855469,
+    "posY": 1.0588264465332031,
+    "posZ": -15.544177055358887,
+    "rotX": 354.1841735839844,
+    "rotY": 0.08757732808589935,
+    "rotZ": 359.9941101074219,
+    "scaleX": 0.5000004768371582,
+    "scaleY": 0.5000004768371582,
+    "scaleZ": 0.5000004768371582
+  },
+  "Nickname": "Sun Element",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.8513015508651733,
+    "b": 0.0
+  },
+  "Tags": [
+    "Destroy",
+    "Sun"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

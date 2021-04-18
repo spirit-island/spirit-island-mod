@@ -24,8 +24,9 @@
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -34,17 +35,17 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
+  "HideWhenFaceDown": false,
   "Hands": true,
-  "CardID": 45700,
+  "CardID": 45702,
   "SidewaysCard": false,
   "CustomDeck": {
     "457": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420807057/63B8F336399EF08A43477E2762DA0F6332756B52/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1461933821420902560/0E9D1DE4FC47A94BEAA99CB42FA444587AC613F9/",
-      "NumWidth": 2,
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100683603/2C69CDBBD98D5030EB32167ABC3EF50704ACAE0F/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100684023/BB01096E75B291619F38A01F67C1C81398B081A7/",
+      "NumWidth": 3,
       "NumHeight": 2,
-      "BackIsHidden": true,
+      "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0
     }

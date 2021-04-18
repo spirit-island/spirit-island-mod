@@ -1,0 +1,51 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -43.4211311340332,
+    "posY": 1.6180284023284912,
+    "posZ": 51.154510498046875,
+    "rotX": 356.8360900878906,
+    "rotY": 179.96730041503906,
+    "rotZ": 0.5206937789916992,
+    "scaleX": 6.5,
+    "scaleY": 1.0,
+    "scaleZ": 6.5
+  },
+  "Nickname": "W",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.8156862854957581,
+    "g": 0.8156862854957581,
+    "b": 0.8156862854957581
+  },
+  "Tags": [
+    "Thematic"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248751948979/43993A841C9DDA6119FF2FC44F8A1E297801719A/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.395000159740448,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  }
+}

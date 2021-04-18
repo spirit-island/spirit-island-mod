@@ -1,2 +1,2 @@
-cardInvaderType="C"
+cardInvaderType="J"
 cardInvaderStage=2

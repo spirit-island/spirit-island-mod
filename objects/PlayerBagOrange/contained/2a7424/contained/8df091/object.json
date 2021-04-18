@@ -1,0 +1,50 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -23.66122817993164,
+    "posY": 1.0993168354034424,
+    "posZ": -15.205973625183105,
+    "rotX": 354.8467102050781,
+    "rotY": 359.710205078125,
+    "rotZ": 0.009356072172522545,
+    "scaleX": 0.5000004768371582,
+    "scaleY": 0.5000004768371582,
+    "scaleZ": 0.5000004768371582
+  },
+  "Nickname": "Plant Element",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.0,
+    "g": 0.7215687036514282,
+    "b": 0.2226395606994629
+  },
+  "Tags": [
+    "Destroy",
+    "Plant"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329688777/F582CFE932536A5EFA3117DDB379F8120B4BE5C2/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

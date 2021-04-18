@@ -23,8 +23,9 @@
     "Invader Card"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -33,18 +34,18 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
-  "Hands": true,
-  "CardID": 62800,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 62705,
   "SidewaysCard": false,
   "CustomDeck": {
-    "628": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656645466/32529ABFD7EA3B41E921E22EBB5C2D16B11B3786/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656645067/CBFDE98CB42505298613FBE4E17E4232A22BFA7C/",
-      "NumWidth": 6,
-      "NumHeight": 2,
+    "627": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270425836/1E70B00AD6B8C49301E672767A57126B3C91BDE6/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270426772/7D1A356297110F487F9759829AC15B2D15041422/",
+      "NumWidth": 4,
+      "NumHeight": 4,
       "BackIsHidden": false,
-      "UniqueBack": false,
+      "UniqueBack": true,
       "Type": 0
     }
   }

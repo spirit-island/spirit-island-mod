@@ -15,9 +15,9 @@
     <Text class="slider" alignment="LowerCenter"/>
 </Defaults>
 
-<Panel id="panelSetup" class="leadingAdversary supportingAdversary scenario boardLayout" visibility="" width="1000" height="2800" position="-2200 -1640 12">
-    <VerticalLayout class="leadingAdversary supportingAdversary scenario boardLayout">
-        <TableLayout class="leadingAdversary supportingAdversary scenario boardLayout">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
+    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
+        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
             <Row class="header">
                 <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
@@ -29,9 +29,9 @@
                 <Cell><Text id="leadingText">Leading Adversary</Text></Cell>
                 <Cell><Text id="leadingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
-            <Row class="leadingAdversary">
-                <Cell class="leadingAdversary">
-                    <Dropdown id="leadingAdversary" class="leadingAdversary" onValueChanged="toggleLeadingAdversary">
+            <Row recurse="leadingAdversary">
+                <Cell recurse="leadingAdversary">
+                    <Dropdown id="leadingAdversary" recurse="leadingAdversary" onValueChanged="toggleLeadingAdversary">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
                         <Option>Prussia</Option>
@@ -49,9 +49,9 @@
                 <Cell><Text>Supporting Adversary</Text></Cell>
                 <Cell><Text id="supportingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
-            <Row id="supportingRow" class="supportingAdversary">
-                <Cell class="supportingAdversary">
-                    <Dropdown id="supportingAdversary" class="supportingAdversary" onValueChanged="toggleSupportingAdversary">
+            <Row id="supportingRow" recurse="supportingAdversary">
+                <Cell recurse="supportingAdversary">
+                    <Dropdown id="supportingAdversary" recurse="supportingAdversary" onValueChanged="toggleSupportingAdversary">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
                         <Option>Prussia</Option>
@@ -69,9 +69,9 @@
                 <Cell><Text>Scenario</Text></Cell>
                 <Cell><Text>Board Layout</Text></Cell>
             </Row>
-            <Row class="scenario boardLayout">
-                <Cell class="scenario">
-                    <Dropdown id="scenario" class="scenario" onValueChanged="toggleScenario">
+            <Row recurse="scenario boardLayout">
+                <Cell recurse="scenario">
+                    <Dropdown id="scenario" recurse="scenario" onValueChanged="toggleScenario">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
                         <Option>Blitz</Option>
@@ -89,8 +89,8 @@
                         <Option>A Diversity of Spirits</Option>
                     </Dropdown>
                 </Cell>
-                <Cell class="boardLayout">
-                    <Dropdown id="boardLayout" class="boardLayout" onValueChanged="toggleBoardLayout">
+                <Cell recurse="boardLayout">
+                    <Dropdown id="boardLayout" recurse="boardLayout" onValueChanged="toggleBoardLayout">
                         <Option selected="true">Balanced</Option>
                         <Option>Thematic</Option>
                         <Option>Random</Option>
@@ -100,6 +100,18 @@
             </Row>
             <Row class="header">
                 <Cell columnSpan="2"><Text id="difficulty">Total Difficulty: 0</Text></Cell>
+            </Row>
+            <Row id="minTextRow" class="header" visibility="Invisible">
+                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Random Difficulty: 0</Text></Cell>
+            </Row>
+            <Row id="minRow" visibility="Invisible">
+                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="0" maxValue="28" value="0" onValueChanged="toggleMinDifficulty"/></Cell>
+            </Row>
+            <Row id="maxTextRow" class="header" visibility="Invisible">
+                <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Random Difficulty: 11</Text></Cell>
+            </Row>
+            <Row id="maxRow" visibility="Invisible">
+                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
             <Row class="spacing"/>
             <Row class="header">
@@ -123,13 +135,12 @@
                 <Cell id="optionalCell"><Toggle id="optionalRules" onValueChanged="toggleOptionalRules" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
             </Row>
             <Row id="toggles" class="toggle">
-                <Cell><Toggle id="randomizers" onValueChanged="toggleRandomizers" tooltip="A way to randomise parts of the game, e.g.&#xA;Adversary, Scenario, Board Layout, and Spirit">Show Randomisers</Toggle></Cell>
                 <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelSetupSmall" visibility="Invisible" width="1000" height="2800" position="-2200 -1640 12">
+<Panel id="panelSetupSmall" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 12">
     <VerticalLayout>
         <TableLayout rowBackgroundColor="clear">
             <Row>
@@ -139,7 +150,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2200 -2825 12">
+<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2000 -3000 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -177,40 +188,12 @@
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="scaleBoard" onValueChanged="toggleScale" tooltip="Use slightly larger boards, to give more room for lots of pieces.">Use Large Island Boards</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's, Outpaced, and A Strange&#xA;Madness Among Beasts Event cards">Remove Swingy B&amp;C Events</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelRandom" visibility="Invisible" width="1000" height="2800" position="-2200 -3575 12">
-    <VerticalLayout>
-        <TableLayout>
-            <Row class="header">
-                <Cell columnSpan="2"><Text>Randomisers</Text></Cell>
-            </Row>
-            <Row class="header">
-                <Cell columnSpan="2"><Text id="minDifficulty" class="slider">Min Difficulty: 0</Text></Cell>
-            </Row>
-            <Row>
-                <Cell columnSpan="2"><Slider id="minDifficultySlider" minValue="0" maxValue="28" value="0" onValueChanged="toggleMinDifficulty"/></Cell>
-            </Row>
-            <Row class="header">
-                <Cell columnSpan="2"><Text id="maxDifficulty" class="slider">Max Difficulty: 11</Text></Cell>
-            </Row>
-            <Row>
-                <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
-            </Row>
-            <Row>
-                <Cell><Button onClick="randomSpirit" tooltip="Will randomly give you any spirit">Random Spirit</Button></Cell>
-                <Cell><Button onClick="randomJESpirit" tooltip="Will randomly give you a spirit from Jagged Earth">Random JE Spirit</Button></Cell>
-            </Row>
-            <Row>
-                <Cell columnSpan="2"><Button ignoreLayout="true" width="460" onClick="gainSpirit" tooltip="Will give you an option of 4 spirits to choose from in your play area">"Gain a Spirit"</Button></Cell>
-            </Row>
-        </TableLayout>
-    </VerticalLayout>
-</Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2200 -4175 12">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3790 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -225,16 +208,50 @@
             <Row class="toggle">
                 <Cell><Toggle id="war" onValueChanged="toggleWar" tooltip="The Damage dealt is instead half (round&#xA;down) the energy of the Major discarded">War Touches the Island's Shores</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="aid" onValueChanged="toggleAid" tooltip="Spirits either get elements&#xA;or effect each turn">Aid from Lesser Spirits</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdvesaryScenario" width="1600" height="2800" position="-886 -1640 12">
-    <VerticalLayout width="1600">
+<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1400" height="2600" position="-750 -1400 14">
+    <VerticalLayout width="1150">
         <TableLayout>
             <Row class="header">
                 <Cell columnSpan="2"><Text text="Adversaries &amp; Scenarios"/></Cell>
             </Row>
-            <Row preferredHeight="2510"/>
+            <Row preferredHeight="1750"/>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelSpirit" visibility="Invisible" width="1000" height="2800" position="3225 100 10">
+    <VerticalLayout width="550">
+        <TableLayout rowBackgroundColor="clear">
+            <Row class="header">
+                <Cell columnSpan="2"><Text>Spirit Randomizers</Text></Cell>
+            </Row>
+            <Row>
+                <Cell columnSpan="2"><Button onClick="randomSpirit" tooltip="Will randomly give you any spirit which has one of those tags">Random Spirit</Button></Cell>
+            </Row>
+            <Row>
+                <Cell columnSpan="2"><Button onClick="gainSpirit" tooltip="Will give you an option of 4 spirits with those tags to choose from in your play area">"Gain a Spirit"</Button></Cell>
+            </Row>
+            <Row>
+                <Cell><Toggle id="spiritBase" onValueChanged="toggleSpirit" isOn="true" tooltip="Include base game spirits in randomizer">Base</Toggle></Cell>
+                <Cell><Toggle id="spiritLow" onValueChanged="toggleSpirit" isOn="true">Low</Toggle></Cell>
+            </Row>
+            <Row>
+                <Cell><Toggle id="spiritBnC" onValueChanged="toggleSpirit" isOn="true" tooltip="Include branch and claw and promo pack 1 spirits in randomizer">B&amp;C + P1</Toggle></Cell>
+                <Cell><Toggle id="spiritModerate" onValueChanged="toggleSpirit" isOn="true">Moderate</Toggle></Cell>
+            </Row>
+            <Row>
+                <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth and promo pack 2 spirits in randomizer">JE + P2</Toggle></Cell>
+                <Cell><Toggle id="spiritHigh" onValueChanged="toggleSpirit" isOn="true">High</Toggle></Cell>
+            </Row>
+            <Row>
+                <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
+                <Cell><Toggle id="spiritVeryHigh" onValueChanged="toggleSpirit" isOn="true">Very High</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

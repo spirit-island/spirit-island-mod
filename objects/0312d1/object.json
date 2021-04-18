@@ -1,0 +1,49 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -44.001739501953125,
+    "posY": 1.1699999570846558,
+    "posZ": 59.62628173828125,
+    "rotX": -4.8890731704887e-05,
+    "rotY": 179.97998046875,
+    "rotZ": 3.8150079490151256e-05,
+    "scaleX": 0.699999988079071,
+    "scaleY": 1.0,
+    "scaleZ": 0.699999988079071
+  },
+  "Nickname": "3 Energy",
+  "Description": "Pays for Power Cards. Carries over from turn to turn.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Destroy"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472358853/D72E5ECC21282BD751BEC11B05D39C6656CC0921/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CastShadows": true
+  }
+}

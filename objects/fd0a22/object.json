@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.59609603881836,
-    "posY": 1.0699999332427979,
-    "posZ": 41.911598205566406,
+    "posX": -39.5099983215332,
+    "posY": 1.0700000524520874,
+    "posZ": 59.650001525878906,
     "rotX": -1.7121583084644953e-07,
     "rotY": 179.96583557128906,
     "rotZ": -1.307033699049498e-06,
-    "scaleX": 0.8299999833106995,
-    "scaleY": 0.1599999964237213,
-    "scaleZ": 0.8299999833106995
+    "scaleX": 0.7273901700973511,
+    "scaleY": 0.1402197778224945,
+    "scaleZ": 0.7273901700973511
   },
   "Nickname": "Fear Tokens",
   "Description": "",
@@ -20,9 +20,10 @@
     "b": 0.5600327849388123
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
-  "Grid": true,
-  "Snap": true,
+  "Grid": false,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
@@ -78,6 +79,7 @@
         "b": 1.0
       },
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": true,
       "Grid": false,
       "Snap": false,

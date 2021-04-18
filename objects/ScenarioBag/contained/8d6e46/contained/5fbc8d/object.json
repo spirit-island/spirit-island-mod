@@ -1,0 +1,56 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -43.88436508178711,
+    "posY": 3.5065958499908447,
+    "posZ": 32.36579895019531,
+    "rotX": 359.553466796875,
+    "rotY": 178.800048828125,
+    "rotZ": 0.41286203265190125,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Scenario Marker",
+  "Description": "Markers used by the Scenarios Ward the Shores and Powers Long Forgotten",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1752435057675692177/2E39782B083F00F469A83F58EA653854FED63965/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057548225685312/FDE85A843F42EE360D52227BF01B5EA9DA7A2D0F/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.875,
+        "g": 0.8128803372383118,
+        "b": 0.7463235259056091
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

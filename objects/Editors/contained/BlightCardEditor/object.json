@@ -1,0 +1,52 @@
+{
+  "Name": "BlockSquare",
+  "Transform": {
+    "posX": 0.0,
+    "posY": 0.0,
+    "posZ": 0.0,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 3.449350118637085,
+    "scaleY": 0.1077921912074089,
+    "scaleZ": 4.742856025695801
+  },
+  "Nickname": "Blight Card Editor",
+  "Description": "Place a card here to spawn buttons.\r\n\r\nSet blight to 1+.\r\n\r\nSet immediate to yes if the card only has immediate effects.\r\n\r\nSet healthy to yes if the card is still healthy on blighted side.\r\n\r\nEvery time you press a button, the card is updated.\r\n\r\nWhen finished, remember to save your object/game!",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 0.08235294371843338
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 6.752575700375019e-06,
+        "y": 0.4999995231628418,
+        "z": 1.343545818599523e-06
+      },
+      "Rotation": {
+        "x": -9.237017906116307e-08,
+        "y": 9.902385841850984e-16,
+        "z": -1.228459041158203e-06
+      },
+      "Tags": []
+    }
+  ]
+}

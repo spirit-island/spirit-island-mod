@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.26002883911133,
-    "posY": 1.261771321296692,
-    "posZ": 13.20490837097168,
+    "posX": -37.22222900390625,
+    "posY": 1.2617830038070679,
+    "posZ": 13.153894424438477,
     "rotX": 2.692734035747435e-08,
     "rotY": 179.97900390625,
     "rotZ": -0.00014426784764509648,
@@ -21,6 +21,7 @@
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -82,6 +83,7 @@
         "Highlight"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": true,
       "Grid": false,
       "Snap": true,

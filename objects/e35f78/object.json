@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -53.212310791015625,
-    "posY": 0.9605450630187988,
-    "posZ": 37.61705017089844,
+    "posX": -40.252662658691406,
+    "posY": 0.9605262875556946,
+    "posZ": 47.7038459777832,
     "rotX": 90.0,
     "rotY": 9.432953973487201e-09,
     "rotZ": 0.0,
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,

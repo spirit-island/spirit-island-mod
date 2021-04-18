@@ -14,10 +14,24 @@ function onLoad()
 end
 
 function getPowerCards(_, color)
+    doSpiritSetup{color=color}
+end
+
+function doSpiritSetup(params)
+    local color = params.color
     if not Global.getVar("gameStarted") then
         Player[color].broadcast("Please wait for the game to start before pressing button!", "Red")
         return
     end
+
+    local handZone = Player[color].getHandTransform(2)
+    local newHandZone = {
+        position = handZone.position,
+        rotation = handZone.rotation,
+        scale = handZone.scale,
+    }
+    newHandZone.position.z = newHandZone.position.z - 5.5
+    Player[color].setHandTransform(newHandZone, 3)
 
     local zone = getObjectFromGUID(Global.getVar("elementScanZones")[color])
     local objs = zone.getObjects()
@@ -41,14 +55,8 @@ function getPowerCards(_, color)
         Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
     end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
-    for _ = 1, count do
-        local card = minorPowerDeck.takeObject({flip = true})
-        card.setPosition(Player[color].getHandTransform(2).position + Vector(-10,0,0))
-    end
+    minorPowerDeck.deal(count, color, 3)
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
-    for _ = 1, count do
-        local card = majorPowerDeck.takeObject({flip = true})
-        card.setPosition(Player[color].getHandTransform(2).position + Vector(10,0,0))
-    end
+    majorPowerDeck.deal(count, color, 3)
     self.destruct()
 end

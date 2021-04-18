@@ -1,0 +1,58 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": -45.6201057434082,
+    "posY": 1.3385505676269531,
+    "posZ": 40.058448791503906,
+    "rotX": 0.7363784909248352,
+    "rotY": 269.9086608886719,
+    "rotZ": 359.94586181640625,
+    "scaleX": 0.8500003218650818,
+    "scaleY": 0.8500003218650818,
+    "scaleZ": 0.8500003218650818
+  },
+  "Nickname": "Habsburg + England Towns",
+  "Description": "Habsburg Lv4 + England Lv5",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.9172405004501343,
+    "g": 0.7130041718482971,
+    "b": 0.4309568405151367
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109447/782DF9AA175EB72BAF1F522CBEC50B7E433363C2/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": false,
+    "MaterialIndex": 3,
+    "TypeIndex": 7,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  }
+}

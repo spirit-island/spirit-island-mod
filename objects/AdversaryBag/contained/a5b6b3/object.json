@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -69.33729553222656,
+    "posY": 1.31710684299469,
+    "posZ": 0.9922907948493958,
+    "rotX": -4.0689151603601204e-08,
+    "rotY": 179.99078369140625,
+    "rotZ": -1.1137477713418775e-06,
+    "scaleX": 0.20999999344348907,
+    "scaleY": 1.0,
+    "scaleZ": 0.20000000298023224
+  },
+  "Nickname": "Explore Reminder Tile",
+  "Description": "Custom",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933130017943370/F78FE7747230EC8CC5DFAE3A925C59CE42CD12E6/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  }
+}

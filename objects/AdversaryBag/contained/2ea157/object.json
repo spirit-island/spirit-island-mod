@@ -1,0 +1,59 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": -8.500905990600586,
+    "posY": 2.0288684368133545,
+    "posZ": 61.56777572631836,
+    "rotX": 0.0044464529491961,
+    "rotY": 179.9581756591797,
+    "rotZ": -2.9836166959285038e-06,
+    "scaleX": 0.6749998927116394,
+    "scaleY": 0.6749998927116394,
+    "scaleZ": 0.6749998927116394
+  },
+  "Nickname": "Blight",
+  "Description": "France Lv5",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.21568608283996582,
+    "g": 0.21568608283996582,
+    "b": 0.21568608283996582
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Number": 0,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "Convex": false,
+    "MaterialIndex": 0,
+    "TypeIndex": 6,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "SpecularIntensity": 0.10000000149011612,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

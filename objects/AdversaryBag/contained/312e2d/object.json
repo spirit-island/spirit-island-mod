@@ -1,0 +1,62 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -65.94839477539062,
+    "posY": 1.3146240711212158,
+    "posZ": -0.30086031556129456,
+    "rotX": 359.9800109863281,
+    "rotY": 180.0034637451172,
+    "rotZ": 0.00015291344607248902,
+    "scaleX": 2.6832327842712402,
+    "scaleY": 1.0,
+    "scaleZ": 2.6832327842712402
+  },
+  "Nickname": "Second Adversary Board",
+  "Description": "Custom",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.4132594168186188,
+    "g": 0.4132594168186188,
+    "b": 0.4132594168186188
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1245757231531106518/77039FB53A3990479F77A1CC5335819B317BA401/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 5.683863037120318e-06,
+        "y": 0.19999569654464722,
+        "z": -5.077346486359602e-06
+      },
+      "Rotation": {
+        "x": 2.4098585527099203e-07,
+        "y": 0.060952603816986084,
+        "z": 1.384158476724906e-08
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -22.100460052490234,
+    "posY": 1.0723564624786377,
+    "posZ": -15.18539810180664,
+    "rotX": 357.176513671875,
+    "rotY": 0.0674246996641159,
+    "rotZ": 359.9903259277344,
+    "scaleX": 0.5000004768371582,
+    "scaleY": 0.5000004768371582,
+    "scaleZ": 0.5000004768371582
+  },
+  "Nickname": "Animal Element",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.8112658262252808,
+    "g": 0.008320708759129047,
+    "b": 0.0
+  },
+  "Tags": [
+    "Animal",
+    "Destroy"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329142252/6341A59F51F0A734161493B7F300819FE2BA7979/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -4.739999771118164,
-    "posY": 0.8835022449493408,
-    "posZ": 33.900001525878906,
-    "rotX": 1.3087019468116523e-08,
-    "rotY": 180.0,
-    "rotZ": -0.00014432099123951048,
-    "scaleX": 2.733794927597046,
+    "posX": -0.22283346951007843,
+    "posY": 0.8636050820350647,
+    "posZ": 43.78377914428711,
+    "rotX": 4.9468726892598625e-09,
+    "rotY": 179.99856567382812,
+    "rotZ": -1.2028179563472463e-09,
+    "scaleX": 1.92783784866333,
     "scaleY": 1.0,
-    "scaleZ": 2.733794927597046
+    "scaleZ": 1.92783784866333
   },
   "Nickname": "Sweden",
   "Description": "",
@@ -20,9 +20,10 @@
     "b": 0.7098039388656616
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
-  "Snap": false,
+  "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
@@ -36,11 +37,11 @@
   "SidewaysCard": false,
   "CustomDeck": {
     "634": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1588037098358798662/ECB291381514A11D5EEDEC6DD7AFB783AF55B937/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874658390635/9CEA762D5AC602C5C7A8BF361629E57BB4970C53/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100342241/4BF5B68EB7976EFE607B87EC08093DCBDFCE43C7/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100342545/228003F5EF9715D920A6D0348B10767AAD4D46C7/",
       "NumWidth": 2,
       "NumHeight": 4,
-      "BackIsHidden": true,
+      "BackIsHidden": false,
       "UniqueBack": true,
       "Type": 0
     }

@@ -1,0 +1,238 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -42.181495666503906,
+    "posY": 3.052936315536499,
+    "posZ": 31.019685745239258,
+    "rotX": -7.733848906354979e-05,
+    "rotY": 269.9889831542969,
+    "rotZ": -2.397369644313585e-05,
+    "scaleX": 2.4249987602233887,
+    "scaleY": 2.4249987602233887,
+    "scaleZ": 2.4249987602233887
+  },
+  "Nickname": "Town: 0 Damage",
+  "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.955650269985199,
+    "g": 0.9511289000511169,
+    "b": 0.5329110026359558
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 1,
+    "CastShadows": false
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -1.6796178670119843e-08,
+        "y": 0.2365209013223648,
+        "z": -1.772891300788615e-05
+      },
+      "Tags": []
+    }
+  ],
+  "States": {
+    "2": {
+      "GUID": "588b60",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -48.432777404785156,
+        "posY": 1.6214187145233154,
+        "posZ": 26.856035232543945,
+        "rotX": 0.004445215687155724,
+        "rotY": 179.78807067871094,
+        "rotZ": -1.4614762221754063e-05,
+        "scaleX": 2.4249987602233887,
+        "scaleY": 2.4249987602233887,
+        "scaleZ": 2.4249987602233887
+      },
+      "Nickname": "Town: 1 Damage",
+      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.955650269985199,
+        "g": 0.9511289000511169,
+        "b": 0.5329110026359558
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -1.2726921738703822e-08,
+            "y": 0.2109937220811844,
+            "z": -1.5707477359683253e-05
+          }
+        }
+      ]
+    },
+    "3": {
+      "GUID": "66b7fd",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -48.432777404785156,
+        "posY": 1.4650336503982544,
+        "posZ": 26.856037139892578,
+        "rotX": 0.0044427840039134026,
+        "rotY": 179.78807067871094,
+        "rotZ": -1.6715956007828936e-05,
+        "scaleX": 2.4249987602233887,
+        "scaleY": 2.4249987602233887,
+        "scaleZ": 2.4249987602233887
+      },
+      "Nickname": "Town: 2 Damage",
+      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898048996925354,
+        "g": 0.8805069327354431,
+        "b": 0.8526127934455872
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -1.6796178670119843e-08,
+            "y": 0.2365209013223648,
+            "z": -1.772891300788615e-05
+          }
+        }
+      ]
+    },
+    "4": {
+      "GUID": "a6922a",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -48.43278503417969,
+        "posY": 1.6214181184768677,
+        "posZ": 26.856203079223633,
+        "rotX": 0.004443625919520855,
+        "rotY": 179.79214477539062,
+        "rotZ": -1.605676516192034e-05,
+        "scaleX": 2.4249987602233887,
+        "scaleY": 2.4249987602233887,
+        "scaleZ": 2.4249987602233887
+      },
+      "Nickname": "Town: 3 Damage",
+      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898048996925354,
+        "g": 0.8805069327354431,
+        "b": 0.8526127934455872
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -1.2726921738703822e-08,
+            "y": 0.2109937220811844,
+            "z": -1.5707477359683253e-05
+          }
+        }
+      ]
+    }
+  }
+}

@@ -2,14 +2,14 @@
   "Name": "Custom_Assetbundle",
   "Transform": {
     "posX": -26.700000762939453,
-    "posY": 0.5899999737739563,
-    "posZ": -31.999961853027344,
+    "posY": 0.8101216554641724,
+    "posZ": -29.899999618530273,
     "rotX": 0.004446592181921005,
     "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 2.299999952316284,
-    "scaleY": 1.0,
-    "scaleZ": 1.5956422090530396
+    "scaleY": 0.009999999776482582,
+    "scaleZ": 1.4199999570846558
   },
   "Nickname": "",
   "Description": "",
@@ -20,6 +20,7 @@
     "b": 0.502692461013794
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,

@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": 119.90306854248047,
+    "posY": 1.9712275266647339,
+    "posZ": -23.091175079345703,
+    "rotX": 0.004436812363564968,
+    "rotY": 180.0002899169922,
+    "rotZ": 1.012122652355174e-06,
+    "scaleX": 0.7000002861022949,
+    "scaleY": 0.7000002861022949,
+    "scaleZ": 0.7000002861022949
+  },
+  "Nickname": "Earth Element",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.4268389344215393,
+    "g": 0.36939916014671326,
+    "b": 0.4396032691001892
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847999012/17442B7354C87F0568F1D96C5D1906B39FB7D163/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 7,
+    "CastShadows": true
+  }
+}

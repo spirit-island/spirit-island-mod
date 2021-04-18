@@ -7,37 +7,37 @@ postSetupComplete = false
 
 boardLayouts = {
     { -- 1 Board
-        { pos = Vector(2.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(4.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
     },
     { -- 2 Board
-        { pos = Vector(2.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(20.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(4.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(22.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
     },
     { -- 3 Board
-        { pos = Vector(2.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(20.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(38.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(4.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(22.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(40.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
     },
     { -- 4 Board
-        { pos = Vector(2.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(20.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(38.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(-15.30, 1.08, 10.72), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(4.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(22.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(40.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(-13.30, 1.08, 10.72), rot = Vector(0.00, 240.69, 0.00) },
     },
     { -- 5 Board
-        { pos = Vector(2.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(20.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(38.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(-15.30, 1.08, 10.72), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(56.06, 1.08, 9.20), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(4.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(22.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(40.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(-13.30, 1.08, 10.72), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(58.06, 1.08, 9.20), rot = Vector(0.00, 240.69, 0.00) },
     },
     { -- 6 Board
-        { pos = Vector(2.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(20.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(38.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(-15.30, 1.08, 10.72), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(56.06, 1.08, 9.20), rot = Vector(0.00, 240.69, 0.00) },
-        { pos = Vector(73.90, 1.08, 8.82), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(4.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(22.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(40.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(-13.30, 1.08, 10.72), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(58.06, 1.08, 9.20), rot = Vector(0.00, 240.69, 0.00) },
+        { pos = Vector(75.90, 1.08, 8.82), rot = Vector(0.00, 240.69, 0.00) },
     },
 }
 escaped = 0

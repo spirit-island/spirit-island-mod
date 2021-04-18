@@ -140,7 +140,7 @@ function LimitSetup(params)
             broadcastToAll("As you are playing with multiple adversaries, you will be playing with additional towns for France's Loss Condition - Sprawling Plantations", Color.SoftBlue)
         end
     end
-    local townLimit = townLimit * Global.getVar("numBoards")
+    townLimit = townLimit * Global.getVar("numBoards")
     local townBag = Global.getVar("townBag")
 
     local customO = townBag.getCustomObject()

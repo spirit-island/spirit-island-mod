@@ -1,5 +1,6 @@
 bncDone = false
 jeDone = false
+setupStarted = false
 
 adversaries = {
     ["None"] = "",
@@ -32,8 +33,19 @@ scenarios = {
 }
 numScenarios = 13
 
+-- This must match the same guids of global's elementScanZones
+playerZones = {
+    ["9fc5a4"] = true,
+    ["654ab2"] = true,
+    ["102771"] = true,
+    ["6f2249"] = true,
+    ["190f05"] = true,
+    ["61ac7c"] = true,
+}
+
 spiritGuids = {}
 spiritTags = {}
+spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
@@ -43,16 +55,18 @@ optionalBlightSetup = true
 optionalExtraBoard = false
 optionalThematicRedo = false
 optionalBoardPairings = true
-optionalScaleBoard = false
+optionalScaleBoard = true
+optionalDigitalEvents = false
 
 exploratoryVOTD = false
 exploratoryBODAN = false
 exploratoryWar = false
+exploratoryAid = false
 
 updateLayoutsID = 0
 setupStarted = false
-recentlyNotifiedRandom = false
 exit = false
+sourceSpirit = nil
 
 function onSave()
     local data_table = {}
@@ -76,8 +90,9 @@ end
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
-    if Global.getVar("gameStarted") then
-        self.UI.hide("panelSetup")
+    if not Global.getVar("gameStarted") then
+        showUI()
+    else
         setupStarted = true
     end
     if saved_data ~= "" then
@@ -127,15 +142,16 @@ function onLoad(saved_data)
 
             -- queue up all dropdown changes as once
             Wait.frames(function()
-                local t = self.UI.getXmlTable()
-                t = updateAdversaryList(t)
-                t = updateScenarioList(t)
-                t = updateBoardLayouts(numPlayers, t)
-                self.UI.setXmlTable(t, {})
+                updateXml{
+                    updateAdversaryList(),
+                    updateScenarioList(),
+                    updateBoardLayouts(numPlayers),
+                }
                 Wait.frames(updateDifficulty, 1)
             end, 2)
         end
     end
+    sourceSpirit = getObjectFromGUID("SourceSpirit")
 end
 
 function onObjectSpawn(obj)
@@ -153,7 +169,7 @@ function addAdversary(obj)
         numAdversaries = numAdversaries + 1
     end
     adversaries[obj.getName()] = obj.guid
-    updateAdversaryList()
+    updateXml{updateAdversaryList()}
 end
 function onDestroy()
     exit = true
@@ -186,12 +202,12 @@ function removeAdversary(obj)
                 Global.setVar("adversaryCard2", nil)
                 toggleSupportingLevel(nil, 0)
             end
-            Wait.frames(updateAdversaryList, 1)
+            Wait.frames(function() updateXml{updateAdversaryList()} end, 1)
             break
         end
     end
 end
-function updateAdversaryList(xmlTable)
+function updateAdversaryList()
     local adversaryList = {}
     for name,_ in pairs(adversaries) do
         table.insert(adversaryList, name)
@@ -205,25 +221,18 @@ function updateAdversaryList(xmlTable)
         leadName = "Random"
     end
     local supportName = "None"
-    local adversary = Global.getVar("adversaryCard2")
+    adversary = Global.getVar("adversaryCard2")
     if adversary ~= nil then
         supportName = adversary.getName()
     elseif Global.getVar("useSecondAdversary") then
         supportName = "Random"
     end
 
-    local t = xmlTable
-    if xmlTable == nil then
-        t = self.UI.getXmlTable()
-    end
-    for _,v in pairs(t) do
-        updateDropdownList(v, "leadingAdversary", adversaryList, leadName)
-        updateDropdownList(v, "supportingAdversary", adversaryList, supportName)
-    end
-    if xmlTable == nil then
-        self.UI.setXmlTable(t, {})
-    end
-    return t
+    local updateLeading = updateDropdownList("leadingAdversary", adversaryList, leadName)
+    local updateSupporting = updateDropdownList("supportingAdversary", adversaryList, supportName)
+    -- Note: short-circuiting here is fine, as neither function will return
+    -- true, if the other would have effects on t.
+    return function (t) return updateLeading(t) or updateSupporting(t) end
 end
 function removeScenario(obj)
     for name,guid in pairs(scenarios) do
@@ -234,12 +243,12 @@ function removeScenario(obj)
                 Global.setVar("scenarioCard", nil)
                 updateDifficulty()
             end
-            Wait.frames(updateScenarioList, 1)
+            Wait.frames(function () updateXml{updateScenarioList()} end, 1)
             break
         end
     end
 end
-function updateScenarioList(xmlTable)
+function updateScenarioList()
     local scenarioList = {}
     for name,_ in pairs(scenarios) do
         table.insert(scenarioList, name)
@@ -253,17 +262,7 @@ function updateScenarioList(xmlTable)
         scenarioName = "Random"
     end
 
-    local t = xmlTable
-    if xmlTable == nil then
-        t = self.UI.getXmlTable()
-    end
-    for _,v in pairs(t) do
-        updateDropdownList(v, "scenario", scenarioList, scenarioName)
-    end
-    if xmlTable == nil then
-        self.UI.setXmlTable(t, {})
-    end
-    return t
+    return updateDropdownList("scenario", scenarioList, scenarioName)
 end
 function randomAdversary()
     local value = math.random(1,numAdversaries)
@@ -312,10 +311,10 @@ function updateNumPlayers(value, updateUI)
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml{updateBoardLayouts(numPlayers)} end, 0.5)
     end
 end
-function updateBoardLayouts(numPlayers, xmlTable)
+function updateBoardLayouts(numPlayers)
     local numBoards = numPlayers
     if optionalExtraBoard then
         numBoards = numPlayers + 1
@@ -332,39 +331,7 @@ function updateBoardLayouts(numPlayers, xmlTable)
         Global.setVar("boardLayout", "Balanced")
     end
 
-    local t = xmlTable
-    if xmlTable == nil then
-        t = self.UI.getXmlTable()
-    end
-    for _,v in pairs(t) do
-        updateDropdownList(v, "boardLayout", layoutNames, Global.getVar("boardLayout"))
-    end
-    if xmlTable == nil then
-        self.UI.setXmlTable(t, {})
-    end
-    return t
-end
-function updateDropdownList(t, class, values, selectedValue)
-    if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
-        if t.attributes.id == class then
-            t.children = {}
-            for i,v in pairs(values) do
-                t.children[i] = {
-                    tag="Option",
-                    value=v,
-                    attributes={},
-                    children={},
-                }
-                if v == selectedValue then
-                    t.children[i].attributes.selected = "true"
-                end
-            end
-        else
-            for _, v in pairs(t.children) do
-                updateDropdownList(v, class, values, selectedValue)
-            end
-        end
-    end
+    return updateDropdownList("boardLayout", layoutNames, Global.getVar("boardLayout"))
 end
 
 function toggleScenario(_, value)
@@ -374,9 +341,11 @@ function updateScenario(value, updateUI)
     if value == "Random" then
         Global.setVar("scenarioCard", nil)
         Global.setVar("useRandomScenario", true)
+        enableRandomDifficulty()
     else
         Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
         Global.setVar("useRandomScenario", false)
+        checkRandomDifficulty(false)
     end
     updateDifficulty()
 
@@ -386,11 +355,9 @@ function updateScenario(value, updateUI)
     end
 end
 function updateScenarioSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "scenario", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("scenario", name),
+    }
 end
 
 function toggleLeadingAdversary(_, value)
@@ -400,9 +367,11 @@ function updateLeadingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard", nil)
         Global.setVar("useRandomAdversary", true)
+        enableRandomDifficulty()
     else
         Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
         Global.setVar("useRandomAdversary", false)
+        checkRandomDifficulty(false)
     end
     if value == "None" or value == "Random" then
         updateLeadingLevel(0, updateUI)
@@ -419,11 +388,9 @@ function updateLeadingAdversary(value, updateUI)
     end
 end
 function updateLeadingSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "leadingAdversary", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("leadingAdversary", name),
+    }
 end
 function toggleSupportingAdversary(_, value)
     updateSupportingAdversary(value, true)
@@ -432,9 +399,11 @@ function updateSupportingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard2", nil)
         Global.setVar("useSecondAdversary", true)
+        enableRandomDifficulty()
     else
         Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
         Global.setVar("useSecondAdversary", false)
+        checkRandomDifficulty(false)
     end
     if value == "None" or value == "Random" then
         updateSupportingLevel(0, updateUI)
@@ -451,11 +420,9 @@ function updateSupportingAdversary(value, updateUI)
     end
 end
 function updateSupportingSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "supportingAdversary", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("supportingAdversary", name)
+    }
 end
 function toggleLeadingLevel(_, value)
     updateLeadingLevel(value, true)
@@ -542,23 +509,6 @@ function toggleBlightCard()
     self.UI.setAttribute("blightCard2", "isOn", useBlightCard)
 end
 
-function updateDropdownSelection(t, class, value)
-    if t.attributes.class ~= nil and string.match(t.attributes.class, class) then
-        if t.attributes.id == class then
-            for _,v in pairs(t.children) do
-                if v.value == value then
-                    v.attributes.selected = "true"
-                elseif v.attributes.selected == "true" then
-                    v.attributes.selected = "false"
-                end
-            end
-        else
-            for _, v in pairs(t.children) do
-                updateDropdownSelection(v, class, value)
-            end
-        end
-    end
-end
 function toggleBoardLayout(_, value)
     updateBoardLayout(value, true)
 end
@@ -566,12 +516,15 @@ function updateBoardLayout(value, updateUI)
     if value == "Random" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", false)
+        checkRandomDifficulty(false)
     elseif value == "Random with Thematic" then
         Global.setVar("useRandomBoard", true)
         Global.setVar("includeThematic", true)
+        enableRandomDifficulty()
     else
         Global.setVar("useRandomBoard", false)
         Global.setVar("includeThematic", false)
+        checkRandomDifficulty(false)
     end
     Global.setVar("boardLayout", value)
     updateDifficulty()
@@ -582,11 +535,9 @@ function updateBoardLayout(value, updateUI)
     end
 end
 function updateBoardLayoutSelection(name)
-    local t = self.UI.getXmlTable()
-    for _,v in pairs(t) do
-        updateDropdownSelection(v, "boardLayout", name)
-    end
-    self.UI.setXmlTable(t, {})
+    updateXml{
+        updateDropdownSelection("boardLayout", name),
+    }
 end
 
 function updateDifficulty()
@@ -643,7 +594,14 @@ function difficultyCheck(params)
 end
 
 function startGame()
+    if setupStarted then
+        return
+    end
     loadConfig()
+    if not Global.call("CanSetupGame", {}) then
+        return
+    end
+    setupStarted = true
     if Global.getVar("BnCAdded") then
         startLuaCoroutine(self, "addBnCCo")
     else
@@ -743,13 +701,13 @@ function loadConfig()
 end
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
-        if spirit.getName() == name then
+        if spirit.getName():lower() == name:lower() then
             if isSpiritPickable({guid = spirit.guid}) then
                 local color = Global.call("getEmptySeat", {})
                 if color ~= nil then
-                    spirit.call("PickSpirit", {color = color, aspect = aspect})
+                    sourceSpirit.call("PickSpirit", {obj = spirit, color = color, aspect = aspect})
                 else
-                    broadcastToAll("Unable to pick "..name..", no seats left", "Red")
+                    broadcastToAll("Unable to pick "..name..", no seats left", Color.Red)
                 end
             end
             break
@@ -757,7 +715,7 @@ function PickSpirit(name, aspect)
     end
 end
 function addBnCCo()
-    local BnCBag = getObjectFromGUID("ea7207")
+    local BnCBag = getObjectFromGUID("BnCBag")
 
     local fearDeck = BnCBag.takeObject({guid = "d16f70"})
     getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
@@ -773,7 +731,7 @@ function addBnCCo()
     return 1
 end
 function addJECo()
-    local JEBag = getObjectFromGUID("850ac1")
+    local JEBag = getObjectFromGUID("JEBag")
 
     local fearDeck = JEBag.takeObject({guid = "723183"})
     getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
@@ -790,30 +748,56 @@ function addJECo()
 end
 
 function showUI()
-    self.UI.setAttribute("panelSetup", "visibility", "")
+    toggleSetupUI(true)
     self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
-    if self.UI.getAttribute("optionalRules", "isOn") == "true" then
-        self.UI.setAttribute("panelOptional", "visibility", "")
-    end
-    if self.UI.getAttribute("randomizers", "isOn") == "true" then
-        self.UI.setAttribute("panelRandom", "visibility", "")
-    end
-    if self.UI.getAttribute("exploratory", "isOn") == "true" then
-        self.UI.setAttribute("panelExploratory", "visibility", "")
-    end
-    self.UI.setAttribute("panelAdvesaryScenario", "visibility", "")
+    toggleAdversaryScenarioVisiblity(true)
 end
 function hideUI()
-    closeUI()
+    toggleSetupUI(false)
     self.UI.setAttribute("panelSetupSmall", "visibility", "")
+    toggleAdversaryScenarioVisiblity(false)
 end
 function closeUI()
-    self.UI.setAttribute("panelSetup", "visibility", "Invisible")
+    toggleSetupUI(false)
     self.UI.setAttribute("panelSetupSmall", "visibility", "Invisible")
-    self.UI.setAttribute("panelOptional", "visibility", "Invisible")
-    self.UI.setAttribute("panelRandom", "visibility", "Invisible")
-    self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
-    self.UI.setAttribute("panelAdvesaryScenario", "visibility", "Invisible")
+    toggleAdversaryScenarioVisiblity(true)
+end
+function toggleSetupUI(show)
+    local visibility = ""
+    if not show then
+        visibility = "Invisible"
+    end
+    self.UI.setAttribute("panelSetup", "visibility", visibility)
+    if show and self.UI.getAttribute("optionalRules", "isOn") == "true" then
+        self.UI.setAttribute("panelOptional", "visibility", "")
+    else
+        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
+    end
+    if show and self.UI.getAttribute("exploratory", "isOn") == "true" then
+        self.UI.setAttribute("panelExploratory", "visibility", "")
+    else
+        self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
+    end
+    self.UI.setAttribute("panelAdvesaryScenario", "visibility", visibility)
+    self.UI.setAttribute("panelSpirit", "visibility", visibility)
+end
+function toggleAdversaryScenarioVisiblity(show)
+    local colors = {}
+    if not show then
+        colors = Player.getColors()
+    end
+    for _,guid in pairs(adversaries) do
+        if guid ~= "" then
+            local obj = getObjectFromGUID(guid)
+            obj.setInvisibleTo(colors)
+        end
+    end
+    for _,guid in pairs(scenarios) do
+        if guid ~= "" then
+            local obj = getObjectFromGUID(guid)
+            obj.setInvisibleTo(colors)
+        end
+    end
 end
 
 function toggleSimpleMode()
@@ -823,12 +807,13 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
         self.UI.setAttribute("supportingRow", "visibility", "Invisible")
+        checkRandomDifficulty(false)
         self.UI.setAttribute("blightCardRow", "visibility", "")
         self.UI.setAttribute("optionalCell", "visibility", "Invisible")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
         self.UI.setAttribute("panelOptional", "visibility", "Invisible")
-        self.UI.setAttribute("panelRandom", "visibility", "Invisible")
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
+        self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
 
         Global.setVar("showPlayerButtons", false)
         Global.call("updateAllPlayerAreas", nil)
@@ -837,6 +822,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("leadingText", "text", "Leading Adversary")
         self.UI.setAttribute("supportingHeader", "visibility", "")
         self.UI.setAttribute("supportingRow", "visibility", "")
+        checkRandomDifficulty(true)
         self.UI.setAttribute("blightCardRow", "visibility", "Invisible")
         self.UI.setAttribute("optionalCell", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "")
@@ -856,16 +842,6 @@ function toggleOptionalRules()
         self.UI.setAttribute("panelOptional", "visibility", "")
     end
 end
-function toggleRandomizers()
-    local checked = self.UI.getAttribute("randomizers", "isOn")
-    if checked == "true" then
-        self.UI.setAttribute("randomizers", "isOn", "false")
-        self.UI.setAttribute("panelRandom", "visibility", "Invisible")
-    else
-        self.UI.setAttribute("randomizers", "isOn", "true")
-        self.UI.setAttribute("panelRandom", "visibility", "")
-    end
-end
 function toggleExploratory()
     local checked = self.UI.getAttribute("exploratory", "isOn")
     if checked == "true" then
@@ -878,71 +854,144 @@ function toggleExploratory()
 end
 
 function toggleMinDifficulty(_, value)
-    randomCheck()
     local maxDifficulty = Global.getVar("maxDifficulty")
     local minDifficulty = tonumber(value)
     if minDifficulty > maxDifficulty then
         Global.setVar("minDifficulty", maxDifficulty)
-        self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..maxDifficulty)
+        self.UI.setAttribute("minDifficulty", "text", "Min Random Difficulty: "..maxDifficulty)
         self.UI.setAttribute("minDifficultySlider", "value", maxDifficulty)
         return
     end
 
     Global.setVar("minDifficulty", minDifficulty)
-    self.UI.setAttribute("minDifficulty", "text", "Min Difficulty: "..value)
+    self.UI.setAttribute("minDifficulty", "text", "Min Random Difficulty: "..value)
     self.UI.setAttribute("minDifficultySlider", "value", value)
 end
 function toggleMaxDifficulty(_, value)
-    randomCheck()
     local minDifficulty = Global.getVar("minDifficulty")
     local maxDifficulty = tonumber(value)
     if maxDifficulty < minDifficulty  then
         Global.setVar("maxDifficulty", minDifficulty)
-        self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..minDifficulty)
+        self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..minDifficulty)
         self.UI.setAttribute("maxDifficultySlider", "value", minDifficulty)
         return
     end
 
     Global.setVar("maxDifficulty", maxDifficulty)
-    self.UI.setAttribute("maxDifficulty", "text", "Max Difficulty: "..value)
+    self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..value)
     self.UI.setAttribute("maxDifficultySlider", "value", value)
 end
-function randomCheck()
-    if recentlyNotifiedRandom then
-        return
-    elseif not Global.getVar("useRandomAdversary")
-            and not Global.getVar("useSecondAdversary")
-            and not Global.getVar("useRandomBoard")
-            and not Global.getVar("useRandomScenario") then
-        recentlyNotifiedRandom = true
-        Wait.time(function() recentlyNotifiedRandom = false end, 2)
-        broadcastToAll("No \"Random\" options are currently selected", "Red")
+function enableRandomDifficulty()
+    self.UI.setAttribute("minTextRow", "visibility", "")
+    self.UI.setAttribute("minRow", "visibility", "")
+    self.UI.setAttribute("maxTextRow", "visibility", "")
+    self.UI.setAttribute("maxRow", "visibility", "")
+end
+function checkRandomDifficulty(enable)
+    local visibility = ""
+    if not enable then
+        visibility = "Invisible"
+    end
+    local random = Global.getVar("useRandomAdversary")
+            or Global.getVar("useSecondAdversary")
+            or Global.getVar("includeThematic")
+            or Global.getVar("useRandomScenario")
+    if random == enable then
+        self.UI.setAttribute("minTextRow", "visibility", visibility)
+        self.UI.setAttribute("minRow", "visibility", visibility)
+        self.UI.setAttribute("maxTextRow", "visibility", visibility)
+        self.UI.setAttribute("maxRow", "visibility", visibility)
     end
 end
 
+function toggleSpirit(_,_,id)
+    local checked = self.UI.getAttribute(id, "isOn")
+    if checked == "true" then
+        self.UI.setAttribute(id, "isOn", "false")
+    else
+        self.UI.setAttribute(id, "isOn", "true")
+    end
+end
+function getSpiritTags()
+    local tags = {}
+    local added = false
+    if self.UI.getAttribute("spiritBase", "isOn") == "true" then
+        tags["Base"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritBnC", "isOn") == "true" then
+        tags["BnC"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritJE", "isOn") == "true" then
+        tags["JE"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritCustom", "isOn") == "true" then
+        tags[""] = true
+        added = true
+    end
+    if not added then
+        return nil
+    end
+    return tags
+end
+function getSpiritComplexities()
+    local complexities = {
+        [""] = true,
+    }
+    local added = false
+    if self.UI.getAttribute("spiritLow", "isOn") == "true" then
+        complexities["Low"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritModerate", "isOn") == "true" then
+        complexities["Moderate"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritHigh", "isOn") == "true" then
+        complexities["High"] = true
+        added = true
+    end
+    if self.UI.getAttribute("spiritVeryHigh", "isOn") == "true" then
+        complexities["Very High"] = true
+        added = true
+    end
+    if not added then
+        return nil
+    end
+    return complexities
+end
 function randomSpirit(player)
     if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", "Red")
+        Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
 
-    local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
-    Player[player.color].broadcast("Your randomised spirit is "..spirit.getName(), "Blue")
-end
-function randomJESpirit(player)
-    if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", "Red")
+    local tags = getSpiritTags()
+    if tags == nil then
+        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        return
+    end
+    local complexities = getSpiritComplexities()
+    if complexities == nil then
+        Player[player.color].broadcast("You have no complexities selected", Color.Red)
         return
     end
 
     local guid = spiritGuids[math.random(1,#spiritGuids)]
-    while(spiritTags[guid] ~= "JE") do
+    local count = 0
+    while((not tags[spiritTags[guid]] or not complexities[spiritComplexities[guid]]) and count < 100) do
         guid = spiritGuids[math.random(1,#spiritGuids)]
+        count = count + 1
+    end
+    if count >= 100 then
+        Player[player.color].broadcast("No suitable spirit was found", Color.Red)
+        return
     end
     local spirit = getObjectFromGUID(guid)
-    spirit.call("PickSpirit", {color = player.color, aspect = "Random"})
-    Player[player.color].broadcast("Your randomised Jagged Earth spirit is "..spirit.getName(), "Blue")
+    sourceSpirit.call("PickSpirit", {obj = spirit, color = player.color, aspect = "Random"})
+    Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
@@ -950,14 +999,25 @@ function gainSpirit(player)
         Player[player.color].broadcast("You already have Spirit options", Color.SoftYellow)
         return
     elseif #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", "Red")
+        Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
-    Player[player.color].broadcast("Your 4 randomised spirits to choose from are in your play area", Color.SoftBlue)
+    local tags = getSpiritTags()
+    if tags == nil then
+        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        return
+    end
+    local complexities = getSpiritComplexities()
+    if complexities == nil then
+        Player[player.color].broadcast("You have no complexities selected", Color.Red)
+        return
+    end
 
+    local count = 0
     for i = 1,4 do
-        local spirit, aspect = getNewSpirit()
+        local spirit, aspect = getNewSpirit(tags, complexities)
         if spirit then
+            count = count + 1
             local label = spirit.getName()
             if aspect ~= nil and aspect ~= "" then
                 label = label.."-"..aspect
@@ -975,16 +1035,26 @@ function gainSpirit(player)
             })
         end
     end
+    if count > 0 then
+        Player[player.color].broadcast("Your randomized spirits to choose from are in your play area", Color.SoftBlue)
+    else
+        Player[player.color].broadcast("No suitable spirits were found", Color.Red)
+    end
 end
-function getNewSpirit()
+function getNewSpirit(tags, complexities)
     if spiritChoicesLength >= #spiritGuids then
         return nil
     end
     local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    while (spiritChoices[spirit.getName()]) do
+    local count = 0
+    while((not tags[spiritTags[spirit.guid]] or not complexities[spiritComplexities[spirit.guid]] or spiritChoices[spirit.getName()]) and count < 100) do
         spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
+        count = count + 1
     end
-    local aspect = spirit.call("RandomAspect", {})
+    if count >= 100 then
+        return nil
+    end
+    local aspect = sourceSpirit.call("RandomAspect", {obj = spirit})
     spiritChoices[spirit.getName()] = {guid=spirit.guid, aspect=aspect}
     spiritChoicesLength = spiritChoicesLength + 1
     return spirit, aspect
@@ -1013,17 +1083,28 @@ function pickSpirit(obj, index, color)
     end
     local data = spiritChoices[name]
     if isSpiritPickable({guid = data.guid}) then
-        getObjectFromGUID(data.guid).call("PickSpirit", {color = color, aspect = data.aspect})
+        sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
         obj.clearButtons()
     else
-        Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
-        local spirit = getNewSpirit()
+        local tags = getSpiritTags()
+        if tags == nil then
+            Player[color].broadcast("You have no expansions selected", Color.Red)
+            return
+        end
+        local complexities = getSpiritComplexities()
+        if complexities == nil then
+            Player[color].broadcast("You have no complexities selected", Color.Red)
+            return
+        end
+        local spirit = getNewSpirit(tags, complexities)
         if spirit ~= nil then
+            Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
             obj.editButton({
                 index = index,
                 label = spirit.getName(),
             })
         else
+            Player[color].broadcast("No suitable replacment was found", Color.Red)
             obj.editButton({
                 index = index,
                 label = "",
@@ -1045,6 +1126,14 @@ function addSpirit(params)
     -- Ignore Source Spirit
     if params.spirit.guid == "SourceSpirit" then return end
 
+    if Global.getVar("gameStarted") then
+        for _, zone in pairs(params.spirit.getZones()) do
+            if playerZones[zone.guid] then
+                return
+            end
+        end
+    end
+
     -- In case of state change, update existing choice with new guid
     for name,_ in pairs(spiritChoices) do
         if name == params.spirit.getName() then
@@ -1054,7 +1143,28 @@ function addSpirit(params)
     end
 
     table.insert(spiritGuids, params.spirit.guid)
-    spiritTags[params.spirit.guid] = params.spirit.getDescription()
+
+    local expansion = ""
+    if params.spirit.hasTag("Base") then
+        expansion = "Base"
+    elseif params.spirit.hasTag("BnC") then
+        expansion = "BnC"
+    elseif params.spirit.hasTag("JE") then
+        expansion = "JE"
+    end
+    spiritTags[params.spirit.guid] = expansion
+
+    local complexity = ""
+    if params.spirit.hasTag("Low") then
+        complexity = "Low"
+    elseif params.spirit.hasTag("Moderate") then
+        complexity = "Moderate"
+    elseif params.spirit.hasTag("High") then
+        complexity = "High"
+    elseif params.spirit.hasTag("Very High") then
+        complexity = "Very High"
+    end
+    spiritComplexities[params.spirit.guid] = complexity
 end
 function removeSpirit(params)
     for i,guid in pairs(spiritGuids) do
@@ -1070,6 +1180,7 @@ function removeSpirit(params)
         end
     end
     spiritTags[params.spirit] = nil
+    spiritComplexities[params.spirit] = nil
 end
 
 function toggleSoloBlight()
@@ -1131,7 +1242,7 @@ function toggleExtraBoard()
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateBoardLayouts(numPlayers) end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml{updateBoardLayouts(numPlayers)} end, 0.5)
     end
 end
 function toggleThematicRedo()
@@ -1142,9 +1253,9 @@ function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
 end
-function toggleScale()
-    optionalScaleBoard = not optionalScaleBoard
-    self.UI.setAttribute("scaleBoard", "isOn", optionalScaleBoard)
+function toggleDigitalEvents()
+    optionalDigitalEvents = not optionalDigitalEvents
+    self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
 end
 
 function toggleVOTD()
@@ -1158,6 +1269,10 @@ end
 function toggleWar()
     exploratoryWar = not exploratoryWar
     self.UI.setAttribute("war", "isOn", exploratoryWar)
+end
+function toggleAid()
+    exploratoryAid = not exploratoryAid
+    self.UI.setAttribute("aid", "isOn", exploratoryAid)
 end
 
 function wt(some)
@@ -1174,4 +1289,86 @@ function tFind(table, needle)
         end
     end
     return nil
+end
+---
+
+--- Update the UI XML of the current object.
+-- This takes a list of function to use to update the XML table.
+-- Each function should take a table element, update it with any relevant changes
+-- and return `true` if updateXml should recurse into the children of the element.
+-- Note: The functions should be prepared to be called on child elements, even if
+-- recursion was not requested.
+-- @param updateFunctions The list of functions to use to update the table
+function updateXml(updateFunctions)
+    local function recurse(t)
+        local shouldRecurse = false
+        for _, f in pairs(updateFunctions) do
+            if f(t) then
+                shouldRecurse = true
+            end
+        end
+        if shouldRecurse then
+            for _, v in pairs(t.children) do
+                recurse(v)
+            end
+        end
+    end
+    local t = self.UI.getXmlTable()
+    for _,v in pairs(t) do
+        recurse(v)
+    end
+    self.UI.setXmlTable(t, {})
+end
+--- Apply an XML UI update function on an element with a specific id
+-- This returns a function suitable to pass to `updateXml` that applies the
+-- given function to the element with the given id. All the parent elements of the
+-- desired element must have the id present in the `recurse` attribute for this to
+-- find the element.
+-- @param id The id of the element to update
+-- @param f The function that updates the element
+function matchRecurse(id, f)
+    return function (t)
+        if t.attributes.recurse ~= nil and string.match(t.attributes.recurse, id) then
+            if t.attributes.id == id then
+                f(t)
+            else
+                return true
+            end
+        end
+        return false
+    end
+end
+--- Update a dropdown list to have the given items and selected item
+-- @param id The id of the dropdown to update
+-- @param values The list of values for the dropdown
+-- @param selectedValue The value to mark as selected.
+function updateDropdownList(id, values, selectedValue)
+    return matchRecurse(id, function (t)
+        t.children = {}
+        for i,v in pairs(values) do
+            t.children[i] = {
+                tag="Option",
+                value=v,
+                attributes={},
+                children={},
+            }
+            if v == selectedValue then
+                t.children[i].attributes.selected = "true"
+            end
+        end
+    end)
+end
+--- Update a dropdown list selection
+-- @param id The id of the dropdown to update
+-- @param selectedValue The value to mark as selected.
+function updateDropdownSelection(id, value)
+    return matchRecurse(id, function (t)
+        for _,v in pairs(t.children) do
+            if v.value == value then
+                v.attributes.selected = "true"
+            elseif v.attributes.selected == "true" then
+                v.attributes.selected = "false"
+            end
+        end
+    end)
 end

@@ -1,0 +1,41 @@
+{
+  "Name": "Bag",
+  "Transform": {
+    "posX": 16.854965209960938,
+    "posY": 1.7861006259918213,
+    "posZ": 53.23606491088867,
+    "rotX": -4.76997229270637e-07,
+    "rotY": 0.009054189547896385,
+    "rotZ": 1.0705144859457505e-06,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Thieves",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7058823108673096,
+    "g": 0.36652088165283203,
+    "b": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Bag": {
+    "Order": 0
+  }
+}

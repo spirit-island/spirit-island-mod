@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -69.63497161865234,
+    "posY": 1.314751386642456,
+    "posZ": 0.8416309952735901,
+    "rotX": 0.02417401783168316,
+    "rotY": 179.9998779296875,
+    "rotZ": 6.0658803704427555e-05,
+    "scaleX": 0.20999999344348907,
+    "scaleY": 1.0,
+    "scaleZ": 0.20000000298023224
+  },
+  "Nickname": "Russia Ravage Reminder",
+  "Description": "Jagged Earth Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1465311785683842943/26F37D915A5362360C950B869C4D143BE870BC8C/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  }
+}

@@ -18,10 +18,11 @@ function onObjectEnterContainer(container, enter_object)
 end
 
 function onLoad(saved_data)
+    local count = #self.getObjects()
     self.createButton({
         click_function = "nullFunc",
         function_owner = self,
-        label          = #self.getObjects(),
+        label          = count,
         position       = {2.0,0.1,0},
         rotation       = {180,180,180},
         scale          = {2,2,2},
@@ -30,13 +31,28 @@ function onLoad(saved_data)
         font_size      = 500,
         font_color     = {0,0,0},
     })
-    UI.setAttribute("panelBlightPool", "text", #self.getObjects())
+    UI.setAttribute("panelBlightPool", "text", count)
+    local active
+    if count == 0 and not Global.getVar("blightedIsland") then
+        active = true
+    else
+        active = false
+    end
+    UI.setAttribute("panelBlightButton", "active", active)
 end
 function upd()
+    local count = #self.getObjects()
     self.editButton({
         index = 0,
-        label = #self.getObjects(),
+        label = count,
     })
-    UI.setAttribute("panelBlightPool", "text", #self.getObjects())
+    UI.setAttribute("panelBlightPool", "text", count)
+    local active
+    if count == 0 and not Global.getVar("blightedIsland") then
+        active = true
+    else
+        active = false
+    end
+    UI.setAttribute("panelBlightButton", "active", active)
 end
 function nullFunc() return end

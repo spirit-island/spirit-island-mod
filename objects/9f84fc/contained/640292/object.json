@@ -1,15 +1,15 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": -81.23999786376953,
-    "posY": 0.8899999856948853,
-    "posZ": -19.299999237060547,
+    "posX": 105.0199966430664,
+    "posY": 0.800000011920929,
+    "posZ": 7.019999980926514,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 2.609013080596924,
+    "scaleX": 2.4833858013153076,
     "scaleY": 1.0,
-    "scaleZ": 2.609013080596924
+    "scaleZ": 2.4833858013153076
   },
   "Nickname": "Rulebook",
   "Description": "Jagged Earth Expansion",
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": true,
   "Snap": true,

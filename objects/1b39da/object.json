@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.529999732971191,
-    "posY": 0.883535623550415,
-    "posZ": 51.82060241699219,
-    "rotX": 7.156994996648791e-08,
-    "rotY": 180.02627563476562,
-    "rotZ": 179.99986267089844,
-    "scaleX": 2.7300000190734863,
+    "posX": 8.889444351196289,
+    "posY": 0.8636050820350647,
+    "posZ": 55.6522102355957,
+    "rotX": -3.3311726710394396e-09,
+    "rotY": 180.00022888183594,
+    "rotZ": 180.0,
+    "scaleX": 1.9242607355117798,
     "scaleY": 1.0,
-    "scaleZ": 2.7300000190734863
+    "scaleZ": 1.9242607355117798
   },
   "Nickname": "Blitz",
   "Description": "Spirit Island",
@@ -20,9 +20,10 @@
     "b": 0.7132352590560913
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
-  "Snap": false,
+  "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
@@ -36,11 +37,11 @@
   "SidewaysCard": false,
   "CustomDeck": {
     "175": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412501/089E1D495EA40F5830D432C56EFE77E59DA214F1/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412574/647A10C421528FC37AF06DABD93B00A02CE7E020/",
-      "NumWidth": 10,
-      "NumHeight": 7,
-      "BackIsHidden": true,
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100616543/DB03F936C9FA5C8239B2AA4460EC0318309618A9/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100615835/CB6A6BBE62367332C3D308439C99DEC008630C5A/",
+      "NumWidth": 3,
+      "NumHeight": 5,
+      "BackIsHidden": false,
       "UniqueBack": true,
       "Type": 0
     }

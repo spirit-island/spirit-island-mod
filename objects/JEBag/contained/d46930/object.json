@@ -1,0 +1,49 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -25.45664405822754,
+    "posY": 2.108285903930664,
+    "posZ": 69.00088500976562,
+    "rotX": -1.624857759452425e-08,
+    "rotY": 90.00006103515625,
+    "rotZ": 180.0,
+    "scaleX": 1.0499999523162842,
+    "scaleY": 1.0,
+    "scaleZ": 1.0499999523162842
+  },
+  "Nickname": "Stage II Command",
+  "Description": "Jagged Earth Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 56100,
+  "SidewaysCard": true,
+  "CustomDeck": {
+    "561": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368728616/4376A3B21338EDF7AC7602E4440DE8EA9CF0FD90/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368728105/AE4E09228AB051596D9C5D4C604C65C324CB6CF9/",
+      "NumWidth": 2,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "Name": "BlockSquare",
+  "Transform": {
+    "posX": 30.385530471801758,
+    "posY": 0.8000151515007019,
+    "posZ": -14.114204406738281,
+    "rotX": -0.004439389333128929,
+    "rotY": 359.96954345703125,
+    "rotZ": 2.184755203415989e-06,
+    "scaleX": 139.03370666503906,
+    "scaleY": 0.30000001192092896,
+    "scaleZ": 2.482060432434082
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.08235206454992294,
+    "g": 0.05882277339696884,
+    "b": 0.03921568766236305
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false
+}

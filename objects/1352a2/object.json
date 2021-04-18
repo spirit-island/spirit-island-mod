@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": -31.735595703125,
+    "posY": 1.0852726697921753,
+    "posZ": 76.24853515625,
+    "rotX": 0.0044492087326943874,
+    "rotY": 180.0,
+    "rotZ": 6.027545168763027e-06,
+    "scaleX": 0.7000002861022949,
+    "scaleY": 0.7000002861022949,
+    "scaleZ": 0.7000002861022949
+  },
+  "Nickname": "Element Markers",
+  "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Nature",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.8252031803131104,
+    "g": 0.6526867151260376,
+    "b": 0.3982238471508026
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932661536357729/A989A1335AC48A7515A984870ECBC74E38D381C5/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 7,
+    "CastShadows": true
+  }
+}

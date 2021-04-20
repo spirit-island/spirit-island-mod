@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 40.0399933,
-    "posY": 1.19558823,
-    "posZ": 74.61,
-    "rotX": 0.004575715,
-    "rotY": 179.998352,
-    "rotZ": 180.000381,
+    "posX": 35.6401443,
+    "posY": 1.08513892,
+    "posZ": 75.0855,
+    "rotX": 0.004578359,
+    "rotY": 179.9998,
+    "rotZ": 0.000374526717,
     "scaleX": 0.8,
     "scaleY": 1.0,
     "scaleZ": 0.8
@@ -21,7 +21,7 @@
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": false,
   "Snap": false,
   "IgnoreFoW": false,

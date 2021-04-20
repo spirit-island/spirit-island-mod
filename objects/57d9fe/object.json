@@ -1,11 +1,11 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 105.129486,
-    "posY": 0.9606574,
-    "posZ": -0.24655728,
+    "posX": 105.129555,
+    "posY": 0.960657656,
+    "posZ": -0.246559143,
     "rotX": 89.98022,
-    "rotY": -2.82939787e-08,
+    "rotY": -2.947289e-08,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -34,7 +34,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "version 2.0.0-beta.26",
+    "Text": "version 2.0.1-beta.1",
     "colorstate": {
       "r": 0.7334495,
       "g": 0.7334495,

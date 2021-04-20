@@ -460,6 +460,7 @@ function onLoad(saved_data)
             updateCurrentPhase(false)
             seaTile.registerCollisions(false)
             SetupPowerDecks()
+            addGainPowerCardButtons()
             Wait.condition(function()
                 aidBoard.call("setupGame", {})
                 createDifficultyButton()
@@ -1179,6 +1180,20 @@ function getPowerZoneObjects(handP)
         0,  -- distance
         {"Card","Deck"})
     return hits
+end
+function addGainPowerCardButtons()
+    for color, _ in pairs(selectedColors) do
+        local cardZoneObjects = getPowerZoneObjects(Player[color].getHandTransform().position)
+        for _, obj in ipairs(cardZoneObjects) do
+            if obj.type == "Card" then
+                if obj.hasTag("Major") then
+                    CreatePickPowerButton(obj, "PickPowerMajor")
+                elseif obj.hasTag("Minor") then
+                    CreatePickPowerButton(obj, "PickPowerMinor")
+                end
+            end
+        end
+    end
 end
 ----- Blight Section
 function SetupBlightCard()

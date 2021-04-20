@@ -1031,16 +1031,16 @@ end
 function MinorPower()
     local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
     local MinorPowerDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
-    DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone, "PickPowerMinor")
+    DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone)
     return 1
 end
 function MajorPower()
     local MajorPowerDeckZone = getObjectFromGUID(majorPowerZone)
     local MajorPowerDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
-    DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone, "PickPowerMajor")
+    DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone)
     return 1
 end
-function DealPowerCards(deckZone, discardZone, clickFunctionName)
+function DealPowerCards(deckZone, discardZone)
     -- clear the zone!
     local handPos = powerPlayer.getHandTransform().position
     local discardTable = DiscardPowerCards(handPos)
@@ -1070,7 +1070,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
         deck.setLock(true)
         deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
         deck.setRotationSmooth(Vector(0, 180, 0))
-        CreatePickPowerButton(deck, clickFunctionName)
+        CreatePickPowerButton(deck)
         cardsAdded = cardsAdded + 1
         Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
     elseif deck.type == "Deck" then
@@ -1080,7 +1080,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
                 flip = true,
             })
             tempCard.setLock(true)
-            CreatePickPowerButton(tempCard, clickFunctionName)
+            CreatePickPowerButton(tempCard)
             cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
@@ -1098,17 +1098,17 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
                 flip = true,
             })
             tempCard.setLock(true)
-            CreatePickPowerButton(tempCard, clickFunctionName)
+            CreatePickPowerButton(tempCard)
             cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
-function CreatePickPowerButton(card, clickFunctionName)
+function CreatePickPowerButton(card)
     local scale = flipVector(Vector(card.getScale()))
     card.createButton({
-        click_function = clickFunctionName,
+        click_function = "PickPower",
         function_owner = Global,
         label          = "Pick Power",
         position       = Vector(0,0.3,1.43),
@@ -1119,20 +1119,7 @@ function CreatePickPowerButton(card, clickFunctionName)
         tooltip = "Pick Power Card to your hand"
     })
 end
-function PickPowerMinor(cardo,playero,alt_click)
-    -- Give card to player regardless of whose hand they are in front of
-    cardo.deal(1,playero)
-    cardo.clearButtons()
-
-    Wait.condition(function()
-        cardo.setLock(false)
-        if not alt_click then
-            local handPos = Player[playero].getHandTransform().position
-            DiscardPowerCards(handPos)
-        end
-    end, function() return not cardo.isSmoothMoving() end)
-end
-function PickPowerMajor(cardo,playero,alt_click)
+function PickPower(cardo,playero,alt_click)
     -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
@@ -1186,11 +1173,7 @@ function addGainPowerCardButtons()
         local cardZoneObjects = getPowerZoneObjects(Player[color].getHandTransform().position)
         for _, obj in ipairs(cardZoneObjects) do
             if obj.type == "Card" then
-                if obj.hasTag("Major") then
-                    CreatePickPowerButton(obj, "PickPowerMajor")
-                elseif obj.hasTag("Minor") then
-                    CreatePickPowerButton(obj, "PickPowerMinor")
-                end
+                CreatePickPowerButton(obj, "PickPower")
             end
         end
     end

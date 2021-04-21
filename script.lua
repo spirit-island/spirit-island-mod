@@ -69,7 +69,6 @@ selectedBoards = {}
 blightCards = {}
 fastDiscount = 0
 currentPhase = 1
-
 playerBlocks = {
     Red = "c68e2c",
     Purple = "661aa3",
@@ -78,8 +77,9 @@ playerBlocks = {
     Green = "fac8e4",
     Orange = "6b5b4b",
 }
-
 showPlayerButtons = true
+onlyCleanupTimePasses = false
+objectsToCleanup = {}
 
 ------ Unsaved Config Data
 useBlightCard = true
@@ -177,7 +177,11 @@ end
 function onObjectCollisionEnter(hit_object, collision_info)
     if hit_object == seaTile then
         if collision_info.collision_object.type ~= "Card" then
-            deleteObject(collision_info.collision_object, false)
+            if onlyCleanupTimePasses then
+                objectsToCleanup[collision_info.collision_object.guid] = true
+            else
+                deleteObject(collision_info.collision_object, false)
+            end
         end
     end
     -- Temporary fix until TTS bug resolved
@@ -186,6 +190,13 @@ function onObjectCollisionEnter(hit_object, collision_info)
     end
 end
 function onObjectCollisionExit(hit_object, collision_info)
+    if hit_object == seaTile then
+        if collision_info.collision_object.type ~= "Card" then
+            if onlyCleanupTimePasses then
+                objectsToCleanup[collision_info.collision_object.guid] = nil
+            end
+        end
+    end
     -- Temporary fix until TTS bug resolved
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionExit", {hit_object=hit_object, collision_info=collision_info})
@@ -264,6 +275,8 @@ function onSave()
         blightCards = blightCards,
         fastDiscount = fastDiscount,
         currentPhase = currentPhase,
+        onlyCleanupTimePasses = onlyCleanupTimePasses,
+        objectsToCleanup = objectsToCleanup,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -445,6 +458,8 @@ function onLoad(saved_data)
         showPlayerButtons = loaded_data.showPlayerButtons
         fastDiscount = loaded_data.fastDiscount
         currentPhase = loaded_data.currentPhase
+        onlyCleanupTimePasses = loaded_data.onlyCleanupTimePasses
+        objectsToCleanup = loaded_data.objectsToCleanup
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -2213,10 +2228,16 @@ function timePasses()
     end
 end
 function timePassesCo()
+    for guid,_ in pairs(objectsToCleanup) do
+        local obj = getObjectFromGUID(guid)
+        if obj ~= nil then
+            deleteObject(obj, false)
+        end
+        objectsToCleanup[guid] = nil
+    end
     for _,object in pairs(upCast(seaTile, 0.5)) do
         handlePiece(object, 0)
     end
-
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end

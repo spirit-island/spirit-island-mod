@@ -25,6 +25,8 @@
   "JEAdded": false,
   "numBoards": 1,
   "numPlayers": 1,
+  "objectsToCleanup": [],
+  "onlyCleanupTimePasses": false,
   "panelAdversaryVisibility": "Invisible",
   "panelBlightFearVisibility": "Invisible",
   "panelInvaderVisibility": "Invisible",

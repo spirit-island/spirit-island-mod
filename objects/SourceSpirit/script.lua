@@ -61,7 +61,7 @@ function load(params)
                 width          = 2200,
                 height         = 500,
             })
-        elseif string.find(obj.getName(),"Aspects") then
+        elseif obj.hasTag("Aspect") then
             params.obj.editButton({
                 index          = 2,
                 label          = "Aspects: All",
@@ -73,7 +73,7 @@ function load(params)
 end
 function RandomAspect(params)
     for _,obj in pairs(upCast(params.obj)) do
-        if obj.type == "Deck" and obj.getName() == "Aspects" then
+        if obj.type == "Deck" and obj.hasTag("Aspect") then
             local objs = obj.getObjects()
             local index = math.random(0,#objs)
             if index == 0 then
@@ -193,7 +193,7 @@ function SetupSpirit(obj, player_color)
         for _, o in pairs(castObjects) do
             o.setLock(false)
             if o.type == "Deck" then
-                if o.getName() == "Aspects" then
+                if o.hasTag("Aspect") then
                     handleAspect(obj, o, player_color)
                 else
                     o.deal(#o.getObjects(),player_color)

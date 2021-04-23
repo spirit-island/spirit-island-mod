@@ -1,0 +1,41 @@
+{
+  "Name": "Custom_Board",
+  "Transform": {
+    "posX": 0,
+    "posY": 0,
+    "posZ": 0,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
+    "scaleX": 0.3,
+    "scaleY": 0.3,
+    "scaleZ": 0.3
+  },
+  "Nickname": "Ocean's Hungry Grasp",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7868,
+    "g": 0.7868,
+    "b": 0.7868
+  },
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1649970291104005384/4A71FFBBDC72C294657160BED962CBC5340480F8/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1,
+    "WidthScale": 1
+  }
+}

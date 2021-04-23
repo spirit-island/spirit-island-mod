@@ -106,6 +106,7 @@ aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
 fearDeckSetupZone = "fbbf69"
 sourceSpirit = "SourceSpirit"
+spiritZone = "934ea8"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -250,6 +251,18 @@ function onObjectLeaveContainer(container, object)
     elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         return
+    end
+end
+function onObjectEnterScriptingZone(zone, obj)
+    if zone.guid == spiritZone then
+        if obj.hasTag("Aspect") then
+            for _,object in pairs(upCast(obj, 1, 0, Vector(0, -1, 0))) do
+                if object.hasTag("Spirit") then
+                    sourceSpirit.call("AddAspectButton", {obj = object})
+                    break
+                end
+            end
+        end
     end
 end
 function onSave()
@@ -3103,12 +3116,13 @@ function wt(some)
     end
 end
 --------------------
-function upCast(obj,dist,offset)
+function upCast(obj,dist,offset,dir)
     dist = dist or 1
     offset = offset or 0
+    dir = dir or Vector(0,1,0)
     local hits = Physics.cast({
         origin       = obj.getPosition() + Vector(0,offset,0),
-        direction    = Vector(0,1,0),
+        direction    = dir,
         type         = 3,
         size         = obj.getBoundsNormalized().size,
         orientation  = obj.getRotation(),

@@ -1,11 +1,11 @@
 {
   "Name": "Custom_Assetbundle",
   "Transform": {
-    "posX": 87.7999954,
+    "posX": 87.8,
     "posY": 0.81,
     "posZ": -29.9,
-    "rotX": 0.004446592,
-    "rotY": 179.99968,
+    "rotX": 0.0044,
+    "rotY": 179.9997,
     "rotZ": 0.0,
     "scaleX": 2.3,
     "scaleY": 0.01,
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9985294,
-    "g": 0.7233105,
-    "b": 0.424021751
+    "r": 0.9985,
+    "g": 0.7233,
+    "b": 0.424
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

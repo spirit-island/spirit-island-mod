@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Assetbundle",
   "Transform": {
-    "posX": 87.71785,
+    "posX": 87.7178,
     "posY": 0.8,
-    "posZ": 28.8123474,
+    "posZ": 28.8123,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 5.49631834,
+    "scaleX": 5.4963,
     "scaleY": 0.01,
-    "scaleZ": 7.24803638
+    "scaleZ": 7.248
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8391405,
-    "g": 0.5720058,
-    "b": 0.397136241
+    "r": 0.8391,
+    "g": 0.572,
+    "b": 0.3971
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

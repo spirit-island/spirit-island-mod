@@ -1,12 +1,12 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -45.620388,
-    "posY": 1.27345,
-    "posZ": 40.62017,
-    "rotX": 359.653717,
-    "rotY": 179.999344,
-    "rotZ": 179.52037,
+    "posX": -45.6204,
+    "posY": 1.2734,
+    "posZ": 40.6202,
+    "rotX": 359.6537,
+    "rotY": 179.9993,
+    "rotZ": 179.5204,
     "scaleX": 1.05,
     "scaleY": 1.0,
     "scaleZ": 1.05
@@ -15,9 +15,9 @@
   "Description": "Habsburg Lv 5",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

@@ -1,23 +1,23 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": 30.5927658,
+    "posX": 30.5928,
     "posY": 0.8,
-    "posZ": -46.3770523,
-    "rotX": -0.00444473047,
-    "rotY": -6.39324935e-06,
-    "rotZ": -3.692637e-07,
-    "scaleX": 173.932922,
+    "posZ": -46.3771,
+    "rotX": -0.0044,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 173.9329,
     "scaleY": 0.3,
-    "scaleZ": 3.98071671
+    "scaleZ": 3.9807
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.08235241,
-    "g": 0.05882308,
-    "b": 0.0392156877
+    "r": 0.0824,
+    "g": 0.0588,
+    "b": 0.0392
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

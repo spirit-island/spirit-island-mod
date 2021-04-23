@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 100.611008,
-    "posY": 1.97122777,
-    "posZ": -17.7909546,
-    "rotX": 0.00443733,
-    "rotY": 180.000137,
-    "rotZ": 1.057232e-07,
-    "scaleX": 0.7000003,
-    "scaleY": 0.7000003,
-    "scaleZ": 0.7000003
+    "posX": 100.611,
+    "posY": 1.9712,
+    "posZ": -17.791,
+    "rotX": 0.0044,
+    "rotY": 180.0001,
+    "rotZ": 0.0,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
   },
   "Nickname": "Moon Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9113246,
-    "g": 0.9053426,
+    "r": 0.9113,
+    "g": 0.9053,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,

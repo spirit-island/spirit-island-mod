@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.2492332,
-    "posY": 2.18309879,
-    "posZ": -5.6802206,
-    "rotX": 359.942841,
-    "rotY": 179.97731,
-    "rotZ": 0.05927099,
-    "scaleX": 1.53204679,
+    "posX": -46.2492,
+    "posY": 2.1831,
+    "posZ": -5.6802,
+    "rotX": 359.9428,
+    "rotY": 179.9773,
+    "rotZ": 0.0593,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Terrifying Nightmares",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

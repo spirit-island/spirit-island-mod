@@ -1,11 +1,11 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -22.2954578,
-    "posY": 1.04558635,
-    "posZ": 42.67015,
-    "rotX": 0.0047419793,
-    "rotY": 180.021912,
+    "posX": -22.2955,
+    "posY": 1.0456,
+    "posZ": 42.6702,
+    "rotX": 0.0047,
+    "rotY": 180.0219,
     "rotZ": 179.9992,
     "scaleX": 1.53,
     "scaleY": 1.0,
@@ -15,9 +15,9 @@
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

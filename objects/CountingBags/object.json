@@ -4,20 +4,20 @@
     "posX": -47.01,
     "posY": 1.07,
     "posZ": 61.1,
-    "rotX": -1.99885179e-07,
+    "rotX": 0.0,
     "rotY": 180.0,
-    "rotZ": 1.6578781e-06,
-    "scaleX": 0.72739017,
-    "scaleY": 0.140219778,
-    "scaleZ": 0.72739017
+    "rotZ": 0.0,
+    "scaleX": 0.7274,
+    "scaleY": 0.1402,
+    "scaleZ": 0.7274
   },
   "Nickname": "Counting Bags",
   "Description": "For when there's too many invaders in a land to fit within its borders",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.567665,
-    "g": 0.560111,
-    "b": 0.5600328
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -60,23 +60,23 @@
       "GUID": "67e1bf",
       "Name": "Bag",
       "Transform": {
-        "posX": 0.008162467,
-        "posY": 1.15287,
-        "posZ": 0.840391636,
-        "rotX": 0.000273207581,
-        "rotY": 270.019318,
-        "rotZ": 89.9932251,
-        "scaleX": 0.02761195,
-        "scaleY": 0.5322785,
-        "scaleZ": 0.532278657
+        "posX": 0.0082,
+        "posY": 1.1529,
+        "posZ": 0.8404,
+        "rotX": 0.0003,
+        "rotY": 270.0193,
+        "rotZ": 89.9932,
+        "scaleX": 0.0276,
+        "scaleY": 0.5323,
+        "scaleZ": 0.5323
       },
       "Nickname": "Counting Bag",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.9912892,
-        "g": 0.9912892,
-        "b": 0.9912892
+        "r": 0.9913,
+        "g": 0.9913,
+        "b": 0.9913
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,

@@ -2,22 +2,22 @@
   "Name": "Card",
   "Transform": {
     "posX": -45.62,
-    "posY": 1.20127928,
-    "posZ": -5.859999,
-    "rotX": 0.00355574768,
-    "rotY": 180.000031,
-    "rotZ": 181.292435,
-    "scaleX": 1.53204679,
+    "posY": 1.2013,
+    "posZ": -5.86,
+    "rotX": 0.0036,
+    "rotY": 180.0,
+    "rotZ": 181.2924,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Dissolve the Bonds of Kinship",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",

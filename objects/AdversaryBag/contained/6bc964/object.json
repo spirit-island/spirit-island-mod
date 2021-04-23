@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -27.14737,
-    "posY": 1.97114158,
-    "posZ": 53.0092049,
-    "rotX": -9.880039e-09,
-    "rotY": 180.000183,
-    "rotZ": 5.38825562e-09,
+    "posX": -27.1474,
+    "posY": 1.9711,
+    "posZ": 53.0092,
+    "rotX": 0.0,
+    "rotY": 180.0002,
+    "rotZ": 0.0,
     "scaleX": 2.19,
     "scaleY": 1.0,
     "scaleZ": 2.19

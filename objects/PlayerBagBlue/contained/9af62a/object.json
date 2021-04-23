@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 78.26648,
-    "posY": 1.97122717,
-    "posZ": -19.31798,
-    "rotX": 0.0044378005,
-    "rotY": 180.000137,
-    "rotZ": 4.82107339e-07,
-    "scaleX": 0.7000003,
-    "scaleY": 0.7000003,
-    "scaleZ": 0.7000003
+    "posX": 78.2665,
+    "posY": 1.9712,
+    "posZ": -19.318,
+    "rotX": 0.0044,
+    "rotY": 180.0001,
+    "rotZ": 0.0,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
   },
   "Nickname": "Fire Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.375462681,
+    "g": 0.3755,
     "b": 0.0
   },
   "LayoutGroupSortIndex": 0,

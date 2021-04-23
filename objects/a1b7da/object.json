@@ -4,20 +4,20 @@
     "posX": -44.01,
     "posY": 1.07,
     "posZ": 59.65,
-    "rotX": -2.74146373e-07,
-    "rotY": 180.03418,
-    "rotZ": -1.31972172e-06,
-    "scaleX": 0.72739017,
-    "scaleY": 0.140219778,
-    "scaleZ": 0.72739017
+    "rotX": 0.0,
+    "rotY": 180.0342,
+    "rotZ": 0.0,
+    "scaleX": 0.7274,
+    "scaleY": 0.1402,
+    "scaleZ": 0.7274
   },
   "Nickname": "3 Energy Tokens",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.567665,
-    "g": 0.560111,
-    "b": 0.5600328
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

@@ -2,22 +2,22 @@
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
     "posX": -45.51,
-    "posY": 1.07113516,
+    "posY": 1.0711,
     "posZ": 59.65,
-    "rotX": -7.625586e-08,
+    "rotX": 0.0,
     "rotY": 180.0314,
     "rotZ": 180.0,
-    "scaleX": 0.7273902,
-    "scaleY": 0.1402201,
-    "scaleZ": 0.727391064
+    "scaleX": 0.7274,
+    "scaleY": 0.1402,
+    "scaleZ": 0.7274
   },
   "Nickname": "1 Energy Tokens",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.567665,
-    "g": 0.560111,
-    "b": 0.5600328
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

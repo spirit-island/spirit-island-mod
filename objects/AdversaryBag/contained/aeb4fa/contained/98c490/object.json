@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -44.5807343,
-    "posY": 3.052778,
-    "posZ": 30.3205738,
-    "rotX": -0.0008674473,
-    "rotY": 269.984283,
-    "rotZ": 0.00381323625,
-    "scaleX": 2.42499876,
-    "scaleY": 2.42499876,
-    "scaleZ": 2.42499876
+    "posX": -44.5807,
+    "posY": 3.0528,
+    "posZ": 30.3206,
+    "rotX": -0.0009,
+    "rotY": 269.9843,
+    "rotZ": 0.0038,
+    "scaleX": 2.425,
+    "scaleY": 2.425,
+    "scaleZ": 2.425
   },
   "Nickname": "Town: 0 Damage",
   "Description": "Buildings have +1 health",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6538587,
-    "g": 0.224694729,
-    "b": 0.224694729
+    "r": 0.6539,
+    "g": 0.2247,
+    "b": 0.2247
   },
   "Tags": [
     "Highlight"
@@ -46,9 +46,9 @@
     "TypeIndex": 1,
     "CustomShader": {
       "SpecularColor": {
-        "r": 0.6746131,
-        "g": 0.0420728065,
-        "b": 0.0420728065
+        "r": 0.6746,
+        "g": 0.0421,
+        "b": 0.0421
       },
       "SpecularIntensity": 0.2,
       "SpecularSharpness": 7.0,
@@ -59,9 +59,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -7.861015e-06,
-        "y": 0.236517608,
-        "z": -6.140141e-05
+        "x": 0.0,
+        "y": 0.2365,
+        "z": -0.0001
       },
       "Tags": []
     }
@@ -71,23 +71,23 @@
       "GUID": "d624f1",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -72.02217,
-        "posY": 1.46217418,
-        "posZ": -9.98842049,
-        "rotX": 0.004446009,
-        "rotY": 180.000046,
-        "rotZ": -9.98086e-07,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -72.0222,
+        "posY": 1.4622,
+        "posZ": -9.9884,
+        "rotX": 0.0044,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
       },
       "Nickname": "Town: 1 Damage",
       "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.95565027,
-        "g": 0.9511289,
-        "b": 0.532911
+        "r": 0.9557,
+        "g": 0.9511,
+        "b": 0.5329
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -119,9 +119,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.67961787e-08,
-            "y": 0.2365209,
-            "z": -1.7728913e-05
+            "x": 0.0,
+            "y": 0.2365,
+            "z": 0.0
           }
         }
       ]
@@ -130,23 +130,23 @@
       "GUID": "ab5f10",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -70.68866,
-        "posY": 1.618561,
-        "posZ": -9.957565,
-        "rotX": 0.004446631,
-        "rotY": 180.004776,
-        "rotZ": 3.000588e-06,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -70.6887,
+        "posY": 1.6186,
+        "posZ": -9.9576,
+        "rotX": 0.0044,
+        "rotY": 180.0048,
+        "rotZ": 0.0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
       },
       "Nickname": "Town: 2 Damage",
       "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.95565027,
-        "g": 0.9511289,
-        "b": 0.532911
+        "r": 0.9557,
+        "g": 0.9511,
+        "b": 0.5329
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -178,9 +178,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.27269217e-08,
-            "y": 0.210993722,
-            "z": -1.57074774e-05
+            "x": 0.0,
+            "y": 0.211,
+            "z": 0.0
           }
         }
       ]
@@ -189,23 +189,23 @@
       "GUID": "8d90d9",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -69.38239,
-        "posY": 1.46217358,
-        "posZ": -9.994448,
-        "rotX": 0.004446388,
-        "rotY": 179.999969,
-        "rotZ": -2.22306221e-06,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -69.3824,
+        "posY": 1.4622,
+        "posZ": -9.9944,
+        "rotX": 0.0044,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
       },
       "Nickname": "Town: 3 Damage",
       "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8117647,
-        "g": 0.8117647,
-        "b": 0.8117647
+        "r": 0.8118,
+        "g": 0.8118,
+        "b": 0.8118
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -237,9 +237,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.67961787e-08,
-            "y": 0.2365209,
-            "z": -1.7728913e-05
+            "x": 0.0,
+            "y": 0.2365,
+            "z": 0.0
           }
         }
       ]
@@ -248,23 +248,23 @@
       "GUID": "58ba36",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -67.99064,
-        "posY": 1.61856008,
-        "posZ": -9.968613,
-        "rotX": 0.00444404176,
-        "rotY": 180.013062,
-        "rotZ": 2.16867829e-06,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -67.9906,
+        "posY": 1.6186,
+        "posZ": -9.9686,
+        "rotX": 0.0044,
+        "rotY": 180.0131,
+        "rotZ": 0.0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
       },
       "Nickname": "Town: 4 Damage",
       "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898049,
-        "g": 0.880506933,
-        "b": 0.8526128
+        "r": 0.8898,
+        "g": 0.8805,
+        "b": 0.8526
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -296,9 +296,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.27269217e-08,
-            "y": 0.210993722,
-            "z": -1.57074774e-05
+            "x": 0.0,
+            "y": 0.211,
+            "z": 0.0
           }
         }
       ]

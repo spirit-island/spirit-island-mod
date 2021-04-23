@@ -2,11 +2,11 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": 79.82,
-    "posY": 1.00843024,
-    "posZ": -13.6999979,
-    "rotX": 0.0008921783,
-    "rotY": -0.00264143944,
-    "rotZ": -4.115338e-05,
+    "posY": 1.0084,
+    "posZ": -13.7,
+    "rotX": 0.0009,
+    "rotY": -0.0026,
+    "rotZ": 0.0,
     "scaleX": 0.9,
     "scaleY": 0.9,
     "scaleZ": 0.9
@@ -16,8 +16,8 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.5929512,
-    "b": 0.160783857
+    "g": 0.593,
+    "b": 0.1608
   },
   "Tags": [
     "Destroy"

@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -0.222833514,
-    "posY": 0.8636051,
-    "posZ": 49.78774,
-    "rotX": 1.52753576e-09,
-    "rotY": 179.999527,
-    "rotZ": 5.99520256e-09,
-    "scaleX": 1.92783785,
+    "posX": -0.2228,
+    "posY": 0.8636,
+    "posZ": 49.7877,
+    "rotX": 0.0,
+    "rotY": 179.9995,
+    "rotZ": 0.0,
+    "scaleX": 1.9278,
     "scaleY": 1.0,
-    "scaleZ": 1.92783785
+    "scaleZ": 1.9278
   },
   "Nickname": "England",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.709803939,
-    "g": 0.709803939,
-    "b": 0.709803939
+    "r": 0.7098,
+    "g": 0.7098,
+    "b": 0.7098
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

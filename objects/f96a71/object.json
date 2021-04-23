@@ -2,22 +2,22 @@
   "Name": "Card",
   "Transform": {
     "posX": -38.34,
-    "posY": 0.853403,
+    "posY": 0.8534,
     "posZ": 56.3,
-    "rotX": -6.392899e-09,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.53204679,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Terror III",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fear"

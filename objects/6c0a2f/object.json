@@ -2,21 +2,21 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -43.03,
-    "posY": 0.8031326,
+    "posY": 0.8031,
     "posZ": 11.17,
-    "rotX": -9.26851058e-08,
-    "rotY": 180.010971,
-    "rotZ": 6.61113049e-08,
-    "scaleX": 0.55000037,
-    "scaleY": 0.55000037,
-    "scaleZ": 0.55000037
+    "rotX": 0.0,
+    "rotY": 180.011,
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
   },
   "Nickname": "Animal Element",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8112658,
-    "g": 0.008320709,
+    "r": 0.8113,
+    "g": 0.0083,
     "b": 0.0
   },
   "LayoutGroupSortIndex": 0,

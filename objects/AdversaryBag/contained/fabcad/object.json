@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.6212463,
-    "posY": 1.3394227,
-    "posZ": 40.05833,
-    "rotX": 0.6413242,
+    "posX": -45.6212,
+    "posY": 1.3394,
+    "posZ": 40.0583,
+    "rotX": 0.6413,
     "rotY": 269.8912,
-    "rotZ": 359.936981,
-    "scaleX": 0.8500003,
-    "scaleY": 0.8500003,
-    "scaleZ": 0.8500003
+    "rotZ": 359.937,
+    "scaleX": 0.85,
+    "scaleY": 0.85,
+    "scaleZ": 0.85
   },
   "Nickname": "Habsburg Towns",
   "Description": "Habsburg Lv4",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.95565027,
-    "g": 0.9511289,
-    "b": 0.532911
+    "r": 0.9557,
+    "g": 0.9511,
+    "b": 0.5329
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

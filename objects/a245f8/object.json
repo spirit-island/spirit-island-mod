@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.65096,
-    "posY": 0.97318846,
-    "posZ": 47.3064461,
-    "rotX": 0.00446652947,
-    "rotY": 180.000641,
-    "rotZ": -5.62491141e-06,
-    "scaleX": 0.8750001,
-    "scaleY": 0.8750001,
-    "scaleZ": 0.8750001
+    "posX": -42.651,
+    "posY": 0.9732,
+    "posZ": 47.3064,
+    "rotX": 0.0045,
+    "rotY": 180.0006,
+    "rotZ": 0.0,
+    "scaleX": 0.875,
+    "scaleY": 0.875,
+    "scaleZ": 0.875
   },
   "Nickname": "Cities",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8898049,
-    "g": 0.880506933,
-    "b": 0.8526128
+    "r": 0.8898,
+    "g": 0.8805,
+    "b": 0.8526
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

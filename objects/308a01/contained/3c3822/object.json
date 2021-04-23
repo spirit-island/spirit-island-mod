@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.180027,
-    "posY": 1.07934487,
-    "posZ": 46.2200241,
-    "rotX": -3.81812151e-06,
-    "rotY": 179.968414,
-    "rotZ": 180.000076,
-    "scaleX": 1.53204679,
+    "posX": -46.18,
+    "posY": 1.0793,
+    "posZ": 46.22,
+    "rotX": 0.0,
+    "rotY": 179.9684,
+    "rotZ": 180.0001,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Pillar of Living Flame",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",

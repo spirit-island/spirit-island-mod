@@ -1,12 +1,12 @@
 {
   "Name": "DeckCustom",
   "Transform": {
-    "posX": -30.713604,
-    "posY": 1.07525194,
-    "posZ": 51.1461258,
-    "rotX": 0.268410921,
-    "rotY": 179.984329,
-    "rotZ": 180.000046,
+    "posX": -30.7136,
+    "posY": 1.0753,
+    "posZ": 51.1461,
+    "rotX": 0.2684,
+    "rotY": 179.9843,
+    "rotZ": 180.0,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
@@ -15,9 +15,9 @@
   "Description": "Branch & Claw Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

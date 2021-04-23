@@ -1,12 +1,12 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -9.707116,
-    "posY": 1.99084079,
-    "posZ": 18.4369545,
-    "rotX": -1.232706e-07,
-    "rotY": 180.000046,
-    "rotZ": -0.000144298785,
+    "posX": -9.7071,
+    "posY": 1.9908,
+    "posZ": 18.437,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": -0.0001,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

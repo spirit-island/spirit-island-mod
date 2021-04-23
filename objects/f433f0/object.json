@@ -2,22 +2,22 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -43.03,
-    "posY": 0.8031326,
+    "posY": 0.8031,
     "posZ": 15.67,
-    "rotX": 1.77072312e-08,
-    "rotY": 180.010925,
-    "rotZ": 1.74481229e-08,
-    "scaleX": 0.55000037,
-    "scaleY": 0.55000037,
-    "scaleZ": 0.55000037
+    "rotX": 0.0,
+    "rotY": 180.0109,
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
   },
   "Nickname": "Water Element",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.198332667,
-    "g": 0.423719943,
-    "b": 0.839140534
+    "r": 0.1983,
+    "g": 0.4237,
+    "b": 0.8391
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

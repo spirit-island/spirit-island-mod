@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.1903458,
-    "posY": 2.31735563,
-    "posZ": -5.743747,
+    "posX": -46.1903,
+    "posY": 2.3174,
+    "posZ": -5.7437,
     "rotX": 359.9646,
-    "rotY": 179.569641,
-    "rotZ": 0.0645349249,
-    "scaleX": 1.53204679,
+    "rotY": 179.5696,
+    "rotZ": 0.0645,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Wrap in Wings of Sunlight",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

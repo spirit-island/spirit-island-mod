@@ -1,11 +1,11 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 105.129669,
-    "posY": 0.9603447,
-    "posZ": 1.09166992,
+    "posX": 105.1298,
+    "posY": 0.9603,
+    "posZ": 1.0917,
     "rotX": 90.0,
-    "rotY": 1.41494327e-08,
+    "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,

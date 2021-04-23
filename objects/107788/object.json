@@ -2,22 +2,22 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -43.03,
-    "posY": 0.8031326,
+    "posY": 0.8031,
     "posZ": 17.17,
-    "rotX": 4.006047e-08,
-    "rotY": 180.014557,
-    "rotZ": -5.32931281e-08,
-    "scaleX": 0.55000037,
-    "scaleY": 0.55000037,
-    "scaleZ": 0.55000037
+    "rotX": 0.0,
+    "rotY": 180.0146,
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
   },
   "Nickname": "Air Element",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6533677,
-    "g": 0.332876116,
-    "b": 0.9320557
+    "r": 0.6534,
+    "g": 0.3329,
+    "b": 0.9321
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

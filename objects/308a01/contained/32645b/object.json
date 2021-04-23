@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.2084656,
-    "posY": 2.34442544,
-    "posZ": -5.77526474,
-    "rotX": 359.962646,
-    "rotY": 179.647522,
-    "rotZ": 0.06465733,
-    "scaleX": 1.53204679,
+    "posX": -46.2085,
+    "posY": 2.3444,
+    "posZ": -5.7753,
+    "rotX": 359.9626,
+    "rotY": 179.6475,
+    "rotZ": 0.0647,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Paralyzing Fright",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

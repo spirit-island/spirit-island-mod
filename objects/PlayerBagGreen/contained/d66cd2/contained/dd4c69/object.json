@@ -2,11 +2,11 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": 56.86,
-    "posY": 1.02340245,
-    "posZ": -14.2599611,
-    "rotX": 0.05430268,
+    "posY": 1.0234,
+    "posZ": -14.26,
+    "rotX": 0.0543,
     "rotY": 359.9888,
-    "rotZ": -5.1551393e-05,
+    "rotZ": -0.0001,
     "scaleX": 0.9,
     "scaleY": 0.9,
     "scaleZ": 0.9
@@ -15,9 +15,9 @@
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.335313976,
+    "r": 0.3353,
     "g": 1.0,
-    "b": 0.3018709
+    "b": 0.3019
   },
   "Tags": [
     "Destroy"

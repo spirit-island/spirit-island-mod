@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -0.222833455,
-    "posY": 0.8636051,
-    "posZ": 37.7798233,
-    "rotX": -9.761462e-09,
-    "rotY": 180.000458,
-    "rotZ": 1.22977117e-09,
-    "scaleX": 1.92783785,
+    "posX": -0.2228,
+    "posY": 0.8636,
+    "posZ": 37.7798,
+    "rotX": 0.0,
+    "rotY": 180.0005,
+    "rotZ": 0.0,
+    "scaleX": 1.9278,
     "scaleY": 1.0,
-    "scaleZ": 1.92783785
+    "scaleZ": 1.9278
   },
   "Nickname": "France",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.709803939,
-    "g": 0.709803939,
-    "b": 0.709803939
+    "r": 0.7098,
+    "g": 0.7098,
+    "b": 0.7098
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

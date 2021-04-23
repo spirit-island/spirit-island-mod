@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 52.6759377,
-    "posY": 2.46943355,
-    "posZ": 86.21653,
-    "rotX": 359.412842,
-    "rotY": 89.98122,
-    "rotZ": 359.436523,
-    "scaleX": 0.724999845,
-    "scaleY": 0.724999845,
-    "scaleZ": 0.724999845
+    "posX": 52.6759,
+    "posY": 2.4694,
+    "posZ": 86.2165,
+    "rotX": 359.4128,
+    "rotY": 89.9812,
+    "rotZ": 359.4365,
+    "scaleX": 0.725,
+    "scaleY": 0.725,
+    "scaleZ": 0.725
   },
   "Nickname": "Blight",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.181539357,
-    "g": 0.181539357,
-    "b": 0.186410666
+    "r": 0.1815,
+    "g": 0.1815,
+    "b": 0.1864
   },
   "Tags": [
     "Blight",
@@ -47,9 +47,9 @@
     "TypeIndex": 0,
     "CustomShader": {
       "SpecularColor": {
-        "r": 0.6951219,
-        "g": 0.6951219,
-        "b": 0.6951219
+        "r": 0.6951,
+        "g": 0.6951,
+        "b": 0.6951
       },
       "SpecularIntensity": 0.1,
       "SpecularSharpness": 2.0,
@@ -60,9 +60,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": 7.36519632e-06,
-        "y": 0.5005011,
-        "z": -4.4382512e-05
+        "x": 0.0,
+        "y": 0.5005,
+        "z": 0.0
       }
     }
   ]

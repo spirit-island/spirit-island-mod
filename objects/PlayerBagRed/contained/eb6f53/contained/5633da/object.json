@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -30.6494541,
-    "posY": 1.06235147,
-    "posZ": -15.2011433,
+    "posX": -30.6495,
+    "posY": 1.0624,
+    "posZ": -15.2011,
     "rotX": 357.9991,
-    "rotY": 0.5256887,
-    "rotZ": 0.0170407575,
-    "scaleX": 0.5000005,
-    "scaleY": 0.5000005,
-    "scaleZ": 0.5000005
+    "rotY": 0.5257,
+    "rotZ": 0.017,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Moon Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9113246,
-    "g": 0.9053426,
+    "r": 0.9113,
+    "g": 0.9053,
     "b": 1.0
   },
   "Tags": [

@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.1447678,
-    "posY": 2.1565454,
-    "posZ": -5.827218,
-    "rotX": 359.94397,
-    "rotY": 178.904831,
-    "rotZ": 0.07105182,
-    "scaleX": 1.53204679,
+    "posX": -46.1448,
+    "posY": 2.1565,
+    "posZ": -5.8272,
+    "rotX": 359.944,
+    "rotY": 178.9048,
+    "rotZ": 0.0711,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Cleansing Floods",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",

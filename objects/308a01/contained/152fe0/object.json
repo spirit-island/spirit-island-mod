@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.2621269,
-    "posY": 2.26369,
-    "posZ": -5.7614975,
+    "posX": -46.2621,
+    "posY": 2.2637,
+    "posZ": -5.7615,
     "rotX": 359.9701,
-    "rotY": 177.684464,
-    "rotZ": 0.06948304,
-    "scaleX": 1.53204679,
+    "rotY": 177.6845,
+    "rotZ": 0.0695,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Vengeance of the Dead",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",
@@ -55,12 +55,12 @@
       "GUID": "61da6c",
       "Name": "CardCustom",
       "Transform": {
-        "posX": -25.45811,
-        "posY": 0.9139042,
-        "posZ": -15.3798771,
-        "rotX": 359.832123,
-        "rotY": 180.10463,
-        "rotZ": -0.0003969753,
+        "posX": -25.4581,
+        "posY": 0.9139,
+        "posZ": -15.3799,
+        "rotX": 359.8321,
+        "rotY": 180.1046,
+        "rotZ": -0.0004,
         "scaleX": 1.53,
         "scaleY": 1.0,
         "scaleZ": 1.53
@@ -69,9 +69,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.713235259,
-        "g": 0.713235259,
-        "b": 0.713235259
+        "r": 0.7132,
+        "g": 0.7132,
+        "b": 0.7132
       },
       "Tags": [
         "Fast",

@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -0.22283347,
-    "posY": 0.8636051,
-    "posZ": 43.78378,
-    "rotX": 4.94687269e-09,
-    "rotY": 179.998566,
-    "rotZ": -1.202818e-09,
-    "scaleX": 1.92783785,
+    "posX": -0.2228,
+    "posY": 0.8636,
+    "posZ": 43.7838,
+    "rotX": 0.0,
+    "rotY": 179.9986,
+    "rotZ": 0.0,
+    "scaleX": 1.9278,
     "scaleY": 1.0,
-    "scaleZ": 1.92783785
+    "scaleZ": 1.9278
   },
   "Nickname": "Sweden",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.709803939,
-    "g": 0.709803939,
-    "b": 0.709803939
+    "r": 0.7098,
+    "g": 0.7098,
+    "b": 0.7098
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

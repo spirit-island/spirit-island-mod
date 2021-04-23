@@ -2,22 +2,22 @@
   "Name": "Custom_Model",
   "Transform": {
     "posX": -43.03,
-    "posY": 0.8031326,
+    "posY": 0.8031,
     "posZ": 14.17,
-    "rotX": -3.151643e-08,
-    "rotY": 180.010956,
-    "rotZ": 7.13252959e-08,
-    "scaleX": 0.55000037,
-    "scaleY": 0.55000037,
-    "scaleZ": 0.55000037
+    "rotX": 0.0,
+    "rotY": 180.011,
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
   },
   "Nickname": "Earth Element",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.426839948,
-    "g": 0.369400144,
-    "b": 0.439604282
+    "r": 0.4268,
+    "g": 0.3694,
+    "b": 0.4396
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

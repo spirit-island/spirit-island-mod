@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.62048,
-    "posY": 1.2584002,
-    "posZ": 40.0585175,
+    "posX": -45.6205,
+    "posY": 1.2584,
+    "posZ": 40.0585,
     "rotX": 359.9037,
-    "rotY": 179.838745,
+    "rotY": 179.8387,
     "rotZ": 359.2707,
-    "scaleX": 1.71052563,
-    "scaleY": 1.57894671,
-    "scaleZ": 1.71052563
+    "scaleX": 1.7105,
+    "scaleY": 1.5789,
+    "scaleZ": 1.7105
   },
   "Nickname": "France Explorers",
   "Description": "France Lv6",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.796014,
-    "g": 0.674434543,
-    "b": 0.867856443
+    "r": 0.796,
+    "g": 0.6744,
+    "b": 0.8679
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

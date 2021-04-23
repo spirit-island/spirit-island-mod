@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -44.9750366,
-    "posY": 2.66111,
-    "posZ": 27.635519,
-    "rotX": 7.116758e-06,
-    "rotY": -0.0033928128,
-    "rotZ": 3.61567459e-06,
-    "scaleX": 1.09473681,
-    "scaleY": 1.01052642,
-    "scaleZ": 1.09473681
+    "posX": -44.975,
+    "posY": 2.6611,
+    "posZ": 27.6355,
+    "rotX": 0.0,
+    "rotY": -0.0034,
+    "rotZ": 0.0,
+    "scaleX": 1.0947,
+    "scaleY": 1.0105,
+    "scaleZ": 1.0947
   },
   "Nickname": "Explorer: 0 Damage",
   "Description": "The first time each Action would Destroy Explorer: If possible, 1 of those Explorer is instead Pushed; 1 Fear when you do so.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5187487,
-    "g": 0.552770734,
-    "b": 0.862369359
+    "r": 0.5187,
+    "g": 0.5528,
+    "b": 0.8624
   },
   "Tags": [
     "Highlight"
@@ -59,9 +59,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -1.04420877e-07,
-        "y": 1.14088762,
-        "z": -8.226469e-05
+        "x": 0.0,
+        "y": 1.1409,
+        "z": -0.0001
       },
       "Tags": []
     }

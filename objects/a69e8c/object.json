@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.889441,
-    "posY": 0.8636051,
-    "posZ": 37.6732063,
-    "rotX": 2.04392925e-09,
-    "rotY": 179.999954,
+    "posX": 8.8894,
+    "posY": 0.8636,
+    "posZ": 37.6732,
+    "rotX": 0.0,
+    "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.92426074,
+    "scaleX": 1.9243,
     "scaleY": 1.0,
-    "scaleZ": 1.92426074
+    "scaleZ": 1.9243
   },
   "Nickname": "Rituals of the Destroying Flame",
   "Description": "Branch & Claw Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.62039,
-    "posY": 1.25699711,
-    "posZ": 40.0585175,
-    "rotX": 359.903961,
-    "rotY": 179.839584,
+    "posX": -45.6204,
+    "posY": 1.257,
+    "posZ": 40.0585,
+    "rotX": 359.904,
+    "rotY": 179.8396,
     "rotZ": 359.2655,
-    "scaleX": 1.71052563,
-    "scaleY": 1.57894671,
-    "scaleZ": 1.71052563
+    "scaleX": 1.7105,
+    "scaleY": 1.5789,
+    "scaleZ": 1.7105
   },
   "Nickname": "Russia Explorers",
   "Description": "Russia Lv2+",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5187487,
-    "g": 0.552770734,
-    "b": 0.862369359
+    "r": 0.5187,
+    "g": 0.5528,
+    "b": 0.8624
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

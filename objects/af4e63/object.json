@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -37.22223,
-    "posY": 1.261783,
-    "posZ": 13.1538944,
-    "rotX": 2.692734e-08,
+    "posX": -37.2222,
+    "posY": 1.2618,
+    "posZ": 13.1539,
+    "rotX": 0.0,
     "rotY": 179.979,
-    "rotZ": -0.000144267848,
-    "scaleX": 0.829393744,
+    "rotZ": -0.0001,
+    "scaleX": 0.8294,
     "scaleY": 0.03,
-    "scaleZ": 0.829393744
+    "scaleZ": 0.8294
   },
   "Nickname": "Strife",
   "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5647059,
-    "g": 0.5568628,
-    "b": 0.5568628,
+    "r": 0.5647,
+    "g": 0.5569,
+    "b": 0.5569,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,
@@ -61,15 +61,15 @@
       "GUID": "8a818d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0847603753,
-        "posY": -4.160931,
-        "posZ": -0.0681904256,
-        "rotX": -1.56507067e-05,
-        "rotY": 0.0405576639,
-        "rotZ": 2.20608331e-06,
-        "scaleX": 0.440241516,
-        "scaleY": 33.3333321,
-        "scaleZ": 0.440241516
+        "posX": 0.0848,
+        "posY": -4.1609,
+        "posZ": -0.0682,
+        "rotX": 0.0,
+        "rotY": 0.0406,
+        "rotZ": 0.0,
+        "scaleX": 0.4402,
+        "scaleY": 33.3333,
+        "scaleZ": 0.4402
       },
       "Nickname": "Strife",
       "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",

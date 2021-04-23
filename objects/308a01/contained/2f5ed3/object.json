@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.49046,
-    "posY": 2.08407116,
-    "posZ": -5.882427,
-    "rotX": 359.985046,
-    "rotY": 177.898987,
-    "rotZ": 0.187441111,
-    "scaleX": 1.53204679,
+    "posX": -45.4905,
+    "posY": 2.0841,
+    "posZ": -5.8824,
+    "rotX": 359.985,
+    "rotY": 177.899,
+    "rotZ": 0.1874,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Poisoned Land",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",

@@ -1,23 +1,23 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 18.0017052,
-    "posY": 0.8636051,
-    "posZ": 25.69277,
-    "rotX": -3.81827059e-09,
-    "rotY": 179.999908,
+    "posX": 18.0017,
+    "posY": 0.8636,
+    "posZ": 25.6928,
+    "rotX": 0.0,
+    "rotY": 179.9999,
     "rotZ": 180.0,
-    "scaleX": 1.92426074,
+    "scaleX": 1.9243,
     "scaleY": 1.0,
-    "scaleZ": 1.92426074
+    "scaleZ": 1.9243
   },
   "Nickname": "Varied Terrains",
   "Description": "Promo Pack #2",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -42.0307236,
-    "posY": 1.395096,
-    "posZ": 47.03122,
-    "rotX": -5.439678e-07,
-    "rotY": 179.977539,
-    "rotZ": -1.84696307e-06,
+    "posX": -42.0307,
+    "posY": 1.3951,
+    "posZ": 47.0312,
+    "rotX": 0.0,
+    "rotY": 179.9775,
+    "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,9 +15,9 @@
   "Description": "A piece showing where a spirit lives in a land",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9529411,
-    "g": 0.551746,
-    "b": 0.109803058
+    "r": 0.9529,
+    "g": 0.5517,
+    "b": 0.1098
   },
   "Tags": [
     "Presence"
@@ -51,12 +51,12 @@
       "GUID": "7687b3",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -48.89189,
+        "posX": -48.8919,
         "posY": 1.06,
-        "posZ": 47.5025444,
-        "rotX": -2.118327e-08,
-        "rotY": 179.977371,
-        "rotZ": -1.33972037e-06,
+        "posZ": 47.5025,
+        "rotX": 0.0,
+        "rotY": 179.9774,
+        "rotZ": 0.0,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -65,9 +65,9 @@
       "Description": "A piece showing where a spirit lives in a land",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.9529411,
-        "g": 0.551746,
-        "b": 0.109803118
+        "r": 0.9529,
+        "g": 0.5517,
+        "b": 0.1098
       },
       "Tags": [
         "Presence"

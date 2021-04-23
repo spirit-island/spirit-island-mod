@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -48.94466,
-    "posY": 2.661845,
-    "posZ": 28.2371311,
-    "rotX": 5.604685e-06,
-    "rotY": -0.00176641287,
-    "rotZ": -1.86419638e-05,
-    "scaleX": 1.09473681,
-    "scaleY": 1.01052642,
-    "scaleZ": 1.09473681
+    "posX": -48.9447,
+    "posY": 2.6618,
+    "posZ": 28.2371,
+    "rotX": 0.0,
+    "rotY": -0.0018,
+    "rotZ": 0.0,
+    "scaleX": 1.0947,
+    "scaleY": 1.0105,
+    "scaleZ": 1.0947
   },
   "Nickname": "Explorer: 0 Damage",
   "Description": "They are unable to be removed by fear cards and instead will be pushed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.796014,
-    "g": 0.674434543,
-    "b": 0.867856443
+    "r": 0.796,
+    "g": 0.6744,
+    "b": 0.8679
   },
   "Tags": [
     "Highlight"
@@ -59,9 +59,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -1.04420877e-07,
-        "y": 1.14088762,
-        "z": -8.226469e-05
+        "x": 0.0,
+        "y": 1.1409,
+        "z": -0.0001
       },
       "Tags": []
     }

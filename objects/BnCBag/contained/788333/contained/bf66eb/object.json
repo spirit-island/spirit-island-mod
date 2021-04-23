@@ -1,10 +1,10 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 57.40707,
-    "posY": 1.9847399,
-    "posZ": 28.61788,
-    "rotX": 2.43178921e-09,
+    "posX": 57.4071,
+    "posY": 1.9847,
+    "posZ": 28.6179,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
     "scaleX": 1.53,
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -52,11 +52,11 @@
       "Name": "CardCustom",
       "Transform": {
         "posX": 52.94,
-        "posY": 0.8636051,
+        "posY": 0.8636,
         "posZ": 19.9,
-        "rotX": 1.45565338e-08,
+        "rotX": 0.0,
         "rotY": 180.0,
-        "rotZ": -9.768374e-09,
+        "rotZ": 0.0,
         "scaleX": 1.53,
         "scaleY": 1.0,
         "scaleZ": 1.53
@@ -65,9 +65,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.713235259,
-        "g": 0.713235259,
-        "b": 0.713235259
+        "r": 0.7132,
+        "g": 0.7132,
+        "b": 0.7132
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,

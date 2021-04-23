@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -56.12206,
-    "posY": 2.157765,
-    "posZ": 31.4289761,
-    "rotX": 4.347706e-06,
-    "rotY": 180.005524,
-    "rotZ": -9.767426e-07,
+    "posX": -56.1221,
+    "posY": 2.1578,
+    "posZ": 31.429,
+    "rotX": 0.0,
+    "rotY": 180.0055,
+    "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -50,9 +50,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": 0.0005987996,
-        "y": 0.252586037,
-        "z": 0.00664463546
+        "x": 0.0006,
+        "y": 0.2526,
+        "z": 0.0066
       },
       "Tags": []
     }
@@ -62,15 +62,15 @@
       "GUID": "c0d874",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -47.2790031,
-        "posY": 1.22802985,
-        "posZ": 27.9567146,
-        "rotX": 0.00443227636,
+        "posX": -47.279,
+        "posY": 1.228,
+        "posZ": 27.9567,
+        "rotX": 0.0044,
         "rotY": 180.0051,
-        "rotZ": 2.035853e-06,
-        "scaleX": 1.89999938,
-        "scaleY": 1.89999938,
-        "scaleZ": 1.89999938
+        "rotZ": 0.0,
+        "scaleX": 1.9,
+        "scaleY": 1.9,
+        "scaleZ": 1.9
       },
       "Nickname": "Dahan: 1 Damage",
       "Description": "",
@@ -113,9 +113,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": 0.0318525471,
-            "y": 0.17708002,
-            "z": 0.0204383228
+            "x": 0.0319,
+            "y": 0.1771,
+            "z": 0.0204
           },
           "Tags": []
         }

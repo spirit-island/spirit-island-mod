@@ -2,22 +2,22 @@
   "Name": "BlockSquare",
   "Transform": {
     "posX": -39.04,
-    "posY": 0.801134944,
-    "posZ": -25.7258015,
+    "posY": 0.8011,
+    "posZ": -25.7258,
     "rotX": 0.0,
     "rotY": 90.0,
     "rotZ": 0.0,
-    "scaleX": 38.581707,
+    "scaleX": 38.5817,
     "scaleY": 0.3,
-    "scaleZ": 2.09257531
+    "scaleZ": 2.0926
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.08235233,
-    "g": 0.05882301,
-    "b": 0.0392156877
+    "r": 0.0824,
+    "g": 0.0588,
+    "b": 0.0392
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

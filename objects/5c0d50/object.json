@@ -2,10 +2,10 @@
   "Name": "Deck",
   "Transform": {
     "posX": -46.18,
-    "posY": 0.997335,
-    "posZ": 41.18003,
-    "rotX": -2.98961247e-08,
-    "rotY": 179.98645,
+    "posY": 0.9973,
+    "posZ": 41.18,
+    "rotX": 0.0,
+    "rotY": 179.9864,
     "rotZ": 180.0,
     "scaleX": 1.53,
     "scaleY": 1.0,
@@ -15,9 +15,9 @@
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

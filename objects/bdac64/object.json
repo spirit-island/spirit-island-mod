@@ -2,14 +2,14 @@
   "Name": "Custom_Token",
   "Transform": {
     "posX": 36.04,
-    "posY": 1.19222438,
-    "posZ": 86.19244,
-    "rotX": 0.00445024529,
-    "rotY": 180.010773,
-    "rotZ": 1.43752559e-05,
-    "scaleX": 0.334266663,
+    "posY": 1.1922,
+    "posZ": 86.1924,
+    "rotX": 0.0045,
+    "rotY": 180.0108,
+    "rotZ": 0.0,
+    "scaleX": 0.3343,
     "scaleY": 1.0,
-    "scaleZ": 0.334266663
+    "scaleZ": 0.3343
   },
   "Nickname": "Badlands",
   "Description": "[b] Once per action [/b]\n\nAfter Invaders are damaged, deal 1 Damage to Invaders \n[i] ~and~ [/i]\nAfter Dahan are damaged, deal 1 damage to Dahan",

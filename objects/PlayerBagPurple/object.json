@@ -2,21 +2,21 @@
   "Name": "Custom_Model_Bag",
   "Transform": {
     "posX": -50.01,
-    "posY": 1.07425463,
+    "posY": 1.0743,
     "posZ": 61.1,
-    "rotX": 2.75194481e-07,
-    "rotY": 179.980225,
-    "rotZ": -1.71432271e-06,
-    "scaleX": 0.72703,
-    "scaleY": 0.143982142,
-    "scaleZ": 0.72703
+    "rotX": 0.0,
+    "rotY": 179.9802,
+    "rotZ": 0.0,
+    "scaleX": 0.727,
+    "scaleY": 0.144,
+    "scaleZ": 0.727
   },
   "Nickname": "Purple Pieces",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.627,
-    "g": 0.124955587,
+    "g": 0.125,
     "b": 0.941
   },
   "LayoutGroupSortIndex": 0,

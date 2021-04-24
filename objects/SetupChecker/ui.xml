@@ -197,7 +197,10 @@
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
-                <Cell><Text>Exploratory Testing</Text></Cell>
+                <Cell><Toggle id="exploratoryAll" onValueChanged="toggleExploratoryAll">Exploratory Testing</Toggle></Cell>
+            </Row>
+            <Row class="spacing">
+                <Cell><Text>──────────────────────────────</Text></Cell>
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="votd" onValueChanged="toggleVOTD" tooltip="The Damage dealt after Destruction is instead&#xA;equal to the Health of the Piece Destroyed">Vengeance of the Dead</Toggle></Cell>

@@ -1258,6 +1258,23 @@ function toggleDigitalEvents()
     self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
 end
 
+function toggleExploratoryAll()
+    local checked = self.UI.getAttribute("exploratoryAll", "isOn")
+    if checked == "true" then
+        checked = "false"
+        if exploratoryVOTD then toggleVOTD() end
+        if exploratoryBODAN then toggleBODAN() end
+        if exploratoryWar then toggleWar() end
+        if exploratoryAid then toggleAid() end
+    else
+        checked = "true"
+        if not exploratoryVOTD then toggleVOTD() end
+        if not exploratoryBODAN then toggleBODAN() end
+        if not exploratoryWar then toggleWar() end
+        if not exploratoryAid then toggleAid() end
+    end
+    self.UI.setAttribute("exploratoryAll", "isOn", checked)
+end
 function toggleVOTD()
     exploratoryVOTD = not exploratoryVOTD
     self.UI.setAttribute("votd", "isOn", exploratoryVOTD)

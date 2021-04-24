@@ -71,12 +71,14 @@ function load(params)
     end
 end
 function AddAspectButton(params)
-    params.obj.editButton({
-        index          = 2,
-        label          = "Aspects: All",
-        width          = 2300,
-        height         = 500,
-    })
+    if params.obj.getButtons()[2].width == 0 then
+        params.obj.editButton({
+            index          = 2,
+            label          = "Aspects: All",
+            width          = 2300,
+            height         = 500,
+        })
+    end
 end
 function RandomAspect(params)
     for _,obj in pairs(upCast(params.obj)) do

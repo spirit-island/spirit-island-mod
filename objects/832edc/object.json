@@ -2,10 +2,10 @@
   "Name": "Card",
   "Transform": {
     "posX": 19.5424,
-    "posY": 1.1108,
+    "posY": 1.0167,
     "posZ": 97.32,
-    "rotX": 0.0044,
-    "rotY": 179.8377,
+    "rotX": 0.0,
+    "rotY": 179.8376,
     "rotZ": 180.0,
     "scaleX": 1.53,
     "scaleY": 1.0,

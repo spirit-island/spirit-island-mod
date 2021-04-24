@@ -2,10 +2,10 @@
   "Name": "Custom_Token",
   "Transform": {
     "posX": 36.04,
-    "posY": 1.1922,
+    "posY": 1.1031,
     "posZ": 86.1924,
-    "rotX": 0.0045,
-    "rotY": 180.0108,
+    "rotX": -0.0001,
+    "rotY": 180.0111,
     "rotZ": 0.0,
     "scaleX": 0.3343,
     "scaleY": 1.0,

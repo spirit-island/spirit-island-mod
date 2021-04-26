@@ -584,7 +584,7 @@ function startGame()
     if setupStarted then
         return
     end
-    local config = nil
+    local config
     if weeklyChallenge then
         config = getWeeklyChallengeConfig()
     else
@@ -1486,8 +1486,8 @@ function getWeeklyChallengeConfig()
     -- Copy spiritGuids table so we can remove elements from it
     local spiritGuidsCopy = {table.unpack(spiritGuids)}
     local boards = {A = false, B = false, C = false, D = false, E = false, F = false}
-    local function findBoard(taken)
-        local board = math.random(1, 6 - taken)
+    local function findBoard(gone)
+        local board = math.random(1, 6 - gone)
         local i = 1
         for name,taken in pairs(boards) do
             if taken then
@@ -1511,9 +1511,9 @@ function getWeeklyChallengeConfig()
             -- noop
         elseif aspects.type == "Deck" then
             local cards = aspects.getObjects()
-            local index = math.random(0,#cards)
-            if index ~= 0 then
-                aspect = cards[index].name
+            local aspectIndex = math.random(0,#cards)
+            if aspectIndex ~= 0 then
+                aspect = cards[aspectIndex].name
             end
         elseif aspects.type == "Card" then
             if math.random(0,1) == 1 then

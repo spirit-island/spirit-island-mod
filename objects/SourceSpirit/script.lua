@@ -80,26 +80,33 @@ function AddAspectButton(params)
         })
     end
 end
-function RandomAspect(params)
+function FindAspects(params)
     for _,obj in pairs(upCast(params.obj)) do
         if obj.hasTag("Aspect") then
-            if obj.type == "Deck" then
-                local objs = obj.getObjects()
-                local index = math.random(0,#objs)
-                if index == 0 then
-                    return ""
-                end
-                return objs[index].name
-            elseif obj.type == "Card" then
-                local index = math.random(0,1)
-                if index == 0 then
-                    return ""
-                end
-                return obj.getName()
-            end
+            return obj
         end
     end
     return nil
+end
+function RandomAspect(params)
+    local obj = FindAspects(params)
+    if obj == nil then
+        return ""
+    elseif obj.type == "Deck" then
+        local objs = obj.getObjects()
+        local index = math.random(0,#objs)
+        if index == 0 then
+            return ""
+        end
+        return objs[index].name
+    elseif obj.type == "Card" then
+        local index = math.random(0,1)
+        if index == 0 then
+            return ""
+        end
+        return obj.getName()
+    end
+    return ""
 end
 function PickSpirit(params)
     if params.aspect then

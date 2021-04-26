@@ -135,6 +135,7 @@
                 <Cell id="optionalCell"><Toggle id="optionalRules" onValueChanged="toggleOptionalRules" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
             </Row>
             <Row id="toggles" class="toggle">
+                <Cell><Toggle id="challenge" onValueChanged="toggleChallenge" tooltip="Randomly generated setup for the week,&#xA;this will be consistent for all steam users.&#xA;Make sure to set the number of players first">Weekly Challenge</Toggle></Cell>
                 <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
             </Row>
         </TableLayout>

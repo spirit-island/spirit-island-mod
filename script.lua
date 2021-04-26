@@ -2369,21 +2369,21 @@ scaleFactors = {
 }
 boardLayouts = {
     { -- 1 Board
-        ["Balanced"] = {
-            { pos = Vector(5.96, 1.08, 16.59), rot = Vector(0.00, 180.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(-1.93, 1.08, 20.44), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
         },
+        ["Balanced"] = {
+            { pos = Vector(5.96, 1.08, 16.59), rot = Vector(0.00, 180.00, 0.00) },
+        },
     },
     { -- 2 Board
-        ["Balanced"] = {
-            { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(0.29, 1.08, 10.21), rot = Vector(0.00, 0.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(9.54, 1.08, 18.07), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(-10.34, 1.08, 18.04), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(0.29, 1.08, 10.21), rot = Vector(0.00, 0.00, 0.00) },
         },
         ["Top to Top"] = {
             { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 0.00, 0.00) },
@@ -2407,15 +2407,15 @@ boardLayouts = {
         },
     },
     { -- 3 Board
-        ["Balanced"] = {
-            { pos = Vector(2.33, 1.08, 26.80), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(2.46, 1.08, 11.54), rot = Vector(0.00, 60.00, 0.00) },
-            { pos = Vector(15.70, 1.08, 19.37), rot = Vector(0.00, 300.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(24.91, 1.08, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(5.03, 1.08, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
             { pos = Vector(15.03, 1.08, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(2.33, 1.08, 26.80), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(2.46, 1.08, 11.54), rot = Vector(0.00, 60.00, 0.00) },
+            { pos = Vector(15.70, 1.08, 19.37), rot = Vector(0.00, 300.00, 0.00) },
         },
         ["Coastline"] = {
             { pos = Vector(-2.47, 1.08, 10.29), rot = Vector(0.00, 240.69, 0.00) },
@@ -2429,17 +2429,17 @@ boardLayouts = {
         },
     },
     { -- 4 Board
-        ["Balanced"] = {
-            { pos = Vector(2.36, 1.08, 26.47), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(20.40, 1.08, 26.64), rot = Vector(0.00, 0.00, 0.00) },
-            { pos = Vector(-6.65, 1.08, 11.13), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(11.27, 1.08, 11.33), rot = Vector(0.00, 0.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(29.29, 1.08, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(9.41, 1.08, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
             { pos = Vector(19.41, 1.08, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
             { pos = Vector(-0.62, 1.08, 27.04), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(2.36, 1.08, 26.47), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(20.40, 1.08, 26.64), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(-6.65, 1.08, 11.13), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(11.27, 1.08, 11.33), rot = Vector(0.00, 0.00, 0.00) },
         },
         ["Leaf"] = {
             { pos = Vector(7.05, 1.08, 34.30), rot = Vector(0.00, 300.27, 0.00) },
@@ -2455,19 +2455,19 @@ boardLayouts = {
         },
     },
     { -- 5 Board
-        ["Balanced"] = {
-            { pos = Vector(3.32, 1.08, 32.42), rot = Vector(0.00, 120.00, 0.00) },
-            { pos = Vector(25.46, 1.08, 24.68), rot = Vector(0.00, 240.00, 0.00) },
-            { pos = Vector(38.99, 1.08, 32.44), rot = Vector(0.00, 300.00, 0.00) },
-            { pos = Vector(12.18, 1.08, 16.81), rot = Vector(0.00, 120.02, 0.00) },
-            { pos = Vector(25.62, 1.08, 9.32), rot = Vector(0.00, 359.99, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(30.89, 1.08, 23.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(11.01, 1.08, 23.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
             { pos = Vector(21.01, 1.08, 40.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
             { pos = Vector(0.98, 1.08, 40.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
             { pos = Vector(40.82, 1.08, 6.66), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(3.32, 1.08, 32.42), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(25.46, 1.08, 24.68), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(38.99, 1.08, 32.44), rot = Vector(0.00, 300.00, 0.00) },
+            { pos = Vector(12.18, 1.08, 16.81), rot = Vector(0.00, 120.02, 0.00) },
+            { pos = Vector(25.62, 1.08, 9.32), rot = Vector(0.00, 359.99, 0.00) },
         },
         ["Snail"] = {
             { pos = Vector(26.42, 1.08, 41.16), rot = Vector(0.00, 240.00, 0.00) },
@@ -2492,14 +2492,6 @@ boardLayouts = {
         },
     },
     { -- 6 Board
-        ["Balanced"] = {
-            { pos = Vector(4.31, 1.08, 29.13), rot = Vector(0.00, 150.01, 0.00) },
-            { pos = Vector(19.72, 1.08, 29.32), rot = Vector(0.00, 270.00, 0.00) },
-            { pos = Vector(43.04, 1.08, 33.51), rot = Vector(0.00, 210.00, 0.00) },
-            { pos = Vector(12.25, 1.08, 15.90), rot = Vector(0.00, 30.01, 0.00) },
-            { pos = Vector(35.44, 1.08, 20.02), rot = Vector(0.00, 90.00, 0.00) },
-            { pos = Vector(50.90, 1.08, 20.26), rot = Vector(0.00, 330.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(33.53, 1.08, 23.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(13.65, 1.08, 23.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
@@ -2507,6 +2499,14 @@ boardLayouts = {
             { pos = Vector(3.62, 1.08, 40.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
             { pos = Vector(43.40, 1.08, 6.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
             { pos = Vector(23.59, 1.08, 6.55), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(4.31, 1.08, 29.13), rot = Vector(0.00, 150.01, 0.00) },
+            { pos = Vector(19.72, 1.08, 29.32), rot = Vector(0.00, 270.00, 0.00) },
+            { pos = Vector(43.04, 1.08, 33.51), rot = Vector(0.00, 210.00, 0.00) },
+            { pos = Vector(12.25, 1.08, 15.90), rot = Vector(0.00, 30.01, 0.00) },
+            { pos = Vector(35.44, 1.08, 20.02), rot = Vector(0.00, 90.00, 0.00) },
+            { pos = Vector(50.90, 1.08, 20.26), rot = Vector(0.00, 330.00, 0.00) },
         },
         ["Star"] = {
             { pos = Vector(33.19, 1.08, 40.36), rot = Vector(0.00, 330.00, 0.00) },
@@ -2641,7 +2641,11 @@ function MapPlacen(boards)
     local BETaken = false
     local DFTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
-        rand = math.random(1,#boards)
+        if selectedBoards[#boards] ~= nil then
+            rand = #boards
+        else
+            rand = math.random(1,#boards)
+        end
     end
 
     -- We use the average position of the boards in the island layout

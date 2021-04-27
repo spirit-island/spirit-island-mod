@@ -265,6 +265,9 @@
             <Row id="challengeSpiritRow6" class="header">
                 <Cell><Text id="challengeSpirit6" class="challenge"/></Cell>
             </Row>
+            <Row class="header">
+                <Cell><ToggleGroup onValueChanged="toggleChallengeTier"><HorizontalLayout><Toggle>Standard</Toggle><Toggle>Hard</Toggle></HorizontalLayout></ToggleGroup></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

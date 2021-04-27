@@ -2456,11 +2456,11 @@ boardLayouts = {
     },
     { -- 5 Board
         ["Thematic"] = {
-            { pos = Vector(30.89, 1.08, 23.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(11.01, 1.08, 23.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(21.01, 1.08, 40.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(0.98, 1.08, 40.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(40.82, 1.08, 6.66), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+            { pos = Vector(33.53, 1.08, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(13.65, 1.08, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(23.65, 1.08, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(3.62, 1.08, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            { pos = Vector(43.40, 1.08, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
         },
         ["Balanced"] = {
             { pos = Vector(3.32, 1.08, 32.42), rot = Vector(0.00, 120.00, 0.00) },
@@ -2493,12 +2493,12 @@ boardLayouts = {
     },
     { -- 6 Board
         ["Thematic"] = {
-            { pos = Vector(33.53, 1.08, 23.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(13.65, 1.08, 23.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(23.65, 1.08, 40.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(3.62, 1.08, 40.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(43.40, 1.08, 6.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
-            { pos = Vector(23.59, 1.08, 6.55), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
+            { pos = Vector(33.53, 1.08, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(13.65, 1.08, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(23.65, 1.08, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(3.62, 1.08, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            { pos = Vector(43.40, 1.08, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+            { pos = Vector(23.59, 1.08, 7.55), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
         },
         ["Balanced"] = {
             { pos = Vector(4.31, 1.08, 29.13), rot = Vector(0.00, 150.01, 0.00) },
@@ -2517,12 +2517,12 @@ boardLayouts = {
             { pos = Vector(17.50, 1.08, 40.33), rot = Vector(0.00, 269.99, 0.00) },
         },
         ["Flower"] = {
-            { pos = Vector(22.76, 1.08, 43.03), rot = Vector(0.00, 162.62, 0.00) },
-            { pos = Vector(33.80, 1.08, 22.36), rot = Vector(0.00, 282.64, 0.00) },
-            { pos = Vector(46.88, 1.08, 10.07), rot = Vector(0.00, 282.62, 0.00) },
-            { pos = Vector(18.70, 1.08, 25.55), rot = Vector(0.00, 162.65, 0.00) },
-            { pos = Vector(23.48, 1.08, 10.88), rot = Vector(0.00, 42.62, 0.00) },
-            { pos = Vector(6.30, 1.08, 5.69), rot = Vector(0.00, 42.61, 0.00) },
+            { pos = Vector(22.76, 1.08, 45.03), rot = Vector(0.00, 162.62, 0.00) },
+            { pos = Vector(33.80, 1.08, 24.36), rot = Vector(0.00, 282.64, 0.00) },
+            { pos = Vector(46.88, 1.08, 12.07), rot = Vector(0.00, 282.62, 0.00) },
+            { pos = Vector(18.70, 1.08, 27.55), rot = Vector(0.00, 162.65, 0.00) },
+            { pos = Vector(23.48, 1.08, 12.88), rot = Vector(0.00, 42.62, 0.00) },
+            { pos = Vector(6.30, 1.08, 7.69), rot = Vector(0.00, 42.61, 0.00) },
         },
         ["Caldera"] = {
             { pos = Vector(-0.20, 1.08, 31.44), rot = Vector(0.00, 120.42, 0.00) },

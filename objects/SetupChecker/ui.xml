@@ -219,7 +219,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelChallenge" visibility="Invisible" width="1000" height="2800" position="250 -1500 14">
+<Panel id="panelChallenge" visibility="Invisible" width="1000" height="2800" position="-2000 -2050 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

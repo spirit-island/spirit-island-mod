@@ -68,6 +68,7 @@ setupStarted = false
 exit = false
 sourceSpirit = nil
 weeklyChallenge = false
+challengeConfig = nil
 
 function onSave()
     local data_table = {}
@@ -293,6 +294,7 @@ function updateNumPlayers(value, updateUI)
     if updateUI then
         self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
         self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+        challengeConfig = getWeeklyChallengeConfig()
 
         -- Stop previous timer and start a new one
         if updateLayoutsID ~= 0 then
@@ -534,15 +536,39 @@ function updateDifficulty()
 end
 function difficultyCheck(params)
     local difficulty = 0
-    local leadingAdversary = Global.getVar("adversaryCard")
+
+    local leadingAdversary
+    if params.adversary then
+        leadingAdversary = getObjectFromGUID(adversaries[params.adversary])
+    else
+        leadingAdversary = Global.getVar("adversaryCard")
+    end
     if leadingAdversary ~= nil then
-        difficulty = difficulty + leadingAdversary.getVar("difficulty")[Global.getVar("adversaryLevel")]
+        local leadingLevel
+        if params.adversaryLevel then
+            leadingLevel = params.adversaryLevel
+        else
+            leadingLevel = Global.getVar("adversaryLevel")
+        end
+        difficulty = difficulty + leadingAdversary.getVar("difficulty")[leadingLevel]
     elseif params.lead ~= nil then
         difficulty = difficulty + params.lead
     end
-    local supportingAdversary = Global.getVar("adversaryCard2")
+
+    local supportingAdversary
+    if params.adversary2 then
+        supportingAdversary = getObjectFromGUID(adversaries[params.adversary2])
+    else
+        supportingAdversary = Global.getVar("adversaryCard2")
+    end
     if supportingAdversary ~= nil then
-        local difficulty2 = supportingAdversary.getVar("difficulty")[Global.getVar("adversaryLevel2")]
+        local supportingLevel
+        if params.adversaryLevel2 then
+            supportingLevel = params.adversaryLevel2
+        else
+            supportingLevel = Global.getVar("adversaryLevel2")
+        end
+        local difficulty2 = supportingAdversary.getVar("difficulty")[supportingLevel]
         if difficulty > difficulty2 then
             difficulty = difficulty + (0.5 * difficulty2)
         else
@@ -556,7 +582,25 @@ function difficultyCheck(params)
             difficulty = (0.5 * difficulty) + difficulty2
         end
     end
-    local boardLayout = Global.getVar("boardLayout")
+
+    local scenario
+    if params.scenario then
+        scenario = getObjectFromGUID(scenarios[params.scenario])
+    else
+        scenario = Global.getVar("scenarioCard")
+    end
+    if scenario ~= nil then
+        difficulty = difficulty + scenario.getVar("difficulty")
+    elseif params.scenario ~= nil then
+        difficulty = difficulty + params.scenario
+    end
+
+    local boardLayout
+    if params.boardLayout ~= nil then
+        boardLayout = params.boardLayout
+    else
+        boardLayout = Global.getVar("boardLayout")
+    end
     if boardLayout == "Thematic" or params.thematic then
         if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
             difficulty = difficulty + 1
@@ -564,19 +608,21 @@ function difficultyCheck(params)
             difficulty = difficulty + 3
         end
     end
-    local scenario = Global.getVar("scenarioCard")
-    if scenario ~= nil then
-        difficulty = difficulty + scenario.getVar("difficulty")
-    elseif params.scenario ~= nil then
-        difficulty = difficulty + params.scenario
+
+    local extraBoard
+    if params.extraBoard ~= nil then
+        extraBoard = params.extraBoard
+    else
+        extraBoard = optionalExtraBoard
     end
-    if optionalExtraBoard then
+    if extraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
         if boardLayout == "Thematic" or params.thematic then
             difficulty = difficulty - (intNum / 2)
         end
     end
+
     return difficulty
 end
 
@@ -586,7 +632,7 @@ function startGame()
     end
     local config
     if weeklyChallenge then
-        config = getWeeklyChallengeConfig()
+        config = challengeConfig
     else
         config = getNotebookConfig()
     end
@@ -791,6 +837,11 @@ function toggleSetupUI(show)
     else
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     end
+    if show and weeklyChallenge then
+        self.UI.setAttribute("panelChallenge", "visibility", "")
+    else
+        self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
+    end
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", visibility)
     self.UI.setAttribute("panelSpirit", "visibility", visibility)
 end
@@ -866,6 +917,9 @@ function toggleExploratory()
     end
 end
 function toggleChallenge()
+    if challengeConfig == nil then
+        challengeConfig = getWeeklyChallengeConfig()
+    end
     weeklyChallenge = not weeklyChallenge
     if weeklyChallenge then
         self.UI.setAttribute("leadingHeader", "visibility", "Invisible")
@@ -880,6 +934,7 @@ function toggleChallenge()
         checkRandomDifficulty(false, true)
         self.UI.setAttribute("simpleMode", "visibility", "Invisible")
         self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
+        self.UI.setAttribute("panelChallenge", "visibility", "")
     else
         self.UI.setAttribute("leadingHeader", "visibility", "")
         self.UI.setAttribute("leadingRow", "visibility", "")
@@ -893,6 +948,7 @@ function toggleChallenge()
         checkRandomDifficulty(true)
         self.UI.setAttribute("simpleMode", "visibility", "")
         self.UI.setAttribute("panelSpirit", "visibility", "")
+        self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
     end
     self.UI.setAttribute("challenge", "isOn", weeklyChallenge)
 end
@@ -1464,25 +1520,24 @@ function getWeeklyChallengeConfig()
     local config = {boards = {}, spirits = {}, expansions = {"bnc", "je"}, events = {}, broadcast = ""}
     local numPlayers = Global.getVar("numPlayers")
 
-    -- Requires at least one adversary
+    -- Requires two adversaries
     local leadingAdversary = math.random(1, numAdversaries)
     config.adversary = indexTable(adversaries, leadingAdversary)
     config.adversaryLevel  = math.random(0, 6)
-    local supportingAdversary = math.random(1, numAdversaries)
-    if supportingAdversary == leadingAdversary then
-        config.adversary2 = "None"
-    else
-        config.adversary2 = indexTable(adversaries, supportingAdversary)
-        config.adversaryLevel2  = math.random(0, 6)
+    local supportingAdversary = math.random(1, numAdversaries - 1)
+    if supportingAdversary >= leadingAdversary then
+        supportingAdversary = supportingAdversary + 1
     end
-    local scenario = math.random(0, numScenarios)
-    if scenario == 0 then
+    config.adversary2 = indexTable(adversaries, supportingAdversary)
+    config.adversaryLevel2  = math.random(0, 6)
+    local scenario = math.random(-2, numScenarios)
+    if scenario <= 0 then
         config.scenario = "None"
     else
         config.scenario = indexTable(scenarios, scenario)
     end
 
-    config.extraBoard = math.random(0, 3) == 0
+    config.extraBoard = math.random(-2, 1) == 1
     if numPlayers == 6 then
         -- There's currently only 6 island boards in the game
         config.extraBoard = false
@@ -1492,8 +1547,7 @@ function getWeeklyChallengeConfig()
     if config.extraBoard then
         numBoards = numPlayers + 1
     end
-    local thematic = math.random(0, 3)
-    if thematic == 0 then
+    if math.random(-2, 1) == 1 then
         config.boardLayout = "Thematic"
     else
         local layoutsCount = 0
@@ -1504,10 +1558,10 @@ function getWeeklyChallengeConfig()
         config.boardLayout = indexTable(setups[numBoards], math.random(2, layoutsCount))
     end
 
-    if math.random(0, 2) ~= 0 then
+    if math.random(0, 2) > 0 then
         table.insert(config.events, "bnc")
     end
-    if math.random(0, 2) ~= 0 then
+    if math.random(0, 2) > 0 then
         table.insert(config.events, "je")
     end
 
@@ -1574,6 +1628,35 @@ function getWeeklyChallengeConfig()
     end
 
     -- TODO make sure difficulty is in acceptable range
+    setWeeklyChallengeUI(config)
     math.randomseed(os.time())
     return config
+end
+function setWeeklyChallengeUI(config)
+    self.UI.setAttribute("challengeLeadingAdversary", "text", "Leading Adversary: "..config.adversary.." "..config.adversaryLevel)
+    self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)
+    self.UI.setAttribute("challengeScenario", "text", "Scenario: "..config.scenario)
+    self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
+    if config.extraBoard then
+        self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[#config.boards])
+            self.UI.setAttribute("challengeExtraBoardRow", "visibility", "")
+    else
+        self.UI.setAttribute("challengeExtraBoardRow", "visibility", "Invisible")
+    end
+    self.UI.setAttribute("challengeDifficulty", "text", "Difficulty: "..difficultyCheck(config))
+
+    local i = 1
+    for spirit,aspect in pairs(config.spirits) do
+        local spiritText = spirit
+        if aspect ~= "" then
+            spiritText = spiritText.. " - "..aspect
+        end
+        self.UI.setAttribute("challengeSpirit"..i, "text", config.boards[i]..": "..spiritText)
+        self.UI.setAttribute("challengeSpiritRow"..i, "visibility", "")
+        i = i + 1
+    end
+    while i <= 6 do
+        self.UI.setAttribute("challengeSpiritRow"..i, "visibility", "Invisible")
+        i = i + 1
+    end
 end

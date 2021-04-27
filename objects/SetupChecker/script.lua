@@ -1453,6 +1453,7 @@ function getWeeklyChallengeConfig()
         local dayDiff = 86400
         local hourDiff = 3600
         local time = os.time()
+        time = time + (dayDiff * 3) - (hourDiff * 5)
         time = time - (time % weekDiff)
         time = time - (dayDiff * 3) + (hourDiff * 5)
         math.randomseed(time)

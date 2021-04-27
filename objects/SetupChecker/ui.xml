@@ -25,11 +25,11 @@
                 <Cell columnSpan="2"><Slider id="numPlayersSlider" minValue="1" maxValue="6" value="1" onValueChanged="toggleNumPlayers"/></Cell>
             </Row>
             <Row class="spacing"/>
-            <Row class="header">
+            <Row id="leadingHeader" class="header">
                 <Cell><Text id="leadingText">Leading Adversary</Text></Cell>
                 <Cell><Text id="leadingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
-            <Row recurse="leadingAdversary">
+            <Row id="leadingRow" recurse="leadingAdversary">
                 <Cell recurse="leadingAdversary">
                     <Dropdown id="leadingAdversary" recurse="leadingAdversary" onValueChanged="toggleLeadingAdversary">
                         <Option selected="true">None</Option>
@@ -65,11 +65,11 @@
                 </Cell>
                 <Cell><Slider id="supportingLevelSlider" enabled="false" minValue="0" maxValue="6" value="0" onValueChanged="toggleSupportingLevel"/></Cell>
             </Row>
-            <Row class="header">
+            <Row id="scenarioHeader" class="header">
                 <Cell><Text>Scenario</Text></Cell>
                 <Cell><Text>Board Layout</Text></Cell>
             </Row>
-            <Row recurse="scenario boardLayout">
+            <Row id="scenarioRow" recurse="scenario boardLayout">
                 <Cell recurse="scenario">
                     <Dropdown id="scenario" recurse="scenario" onValueChanged="toggleScenario">
                         <Option selected="true">None</Option>
@@ -98,7 +98,7 @@
                     </Dropdown>
                 </Cell>
             </Row>
-            <Row class="header">
+            <Row id="difficultyHeader" class="header">
                 <Cell columnSpan="2"><Text id="difficulty">Total Difficulty: 0</Text></Cell>
             </Row>
             <Row id="minTextRow" class="header" visibility="Invisible">
@@ -114,10 +114,10 @@
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
             <Row class="spacing"/>
-            <Row class="header">
+            <Row id="expansionsHeader" class="header">
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
             </Row>
-            <Row class="toggle">
+            <Row id="expansionsRow" class="toggle">
                 <Cell><Toggle id="bnc" onValueChanged="toggleBnC">Branch &amp; Claw</Toggle></Cell>
                 <Cell><Toggle id="je" onValueChanged="toggleJE">Jagged Earth</Toggle></Cell>
             </Row>

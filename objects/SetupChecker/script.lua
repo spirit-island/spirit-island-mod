@@ -867,6 +867,33 @@ function toggleExploratory()
 end
 function toggleChallenge()
     weeklyChallenge = not weeklyChallenge
+    if weeklyChallenge then
+        self.UI.setAttribute("leadingHeader", "visibility", "Invisible")
+        self.UI.setAttribute("leadingRow", "visibility", "Invisible")
+        self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
+        self.UI.setAttribute("supportingRow", "visibility", "Invisible")
+        self.UI.setAttribute("scenarioHeader", "visibility", "Invisible")
+        self.UI.setAttribute("scenarioRow", "visibility", "Invisible")
+        self.UI.setAttribute("difficultyHeader", "visibility", "Invisible")
+        self.UI.setAttribute("expansionsHeader", "visibility", "Invisible")
+        self.UI.setAttribute("expansionsRow", "visibility", "Invisible")
+        checkRandomDifficulty(false, true)
+        self.UI.setAttribute("simpleMode", "visibility", "Invisible")
+        self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
+    else
+        self.UI.setAttribute("leadingHeader", "visibility", "")
+        self.UI.setAttribute("leadingRow", "visibility", "")
+        self.UI.setAttribute("supportingHeader", "visibility", "")
+        self.UI.setAttribute("supportingRow", "visibility", "")
+        self.UI.setAttribute("scenarioHeader", "visibility", "")
+        self.UI.setAttribute("scenarioRow", "visibility", "")
+        self.UI.setAttribute("difficultyHeader", "visibility", "")
+        self.UI.setAttribute("expansionsHeader", "visibility", "")
+        self.UI.setAttribute("expansionsRow", "visibility", "")
+        checkRandomDifficulty(true)
+        self.UI.setAttribute("simpleMode", "visibility", "")
+        self.UI.setAttribute("panelSpirit", "visibility", "")
+    end
     self.UI.setAttribute("challenge", "isOn", weeklyChallenge)
 end
 
@@ -904,7 +931,7 @@ function enableRandomDifficulty()
     self.UI.setAttribute("maxTextRow", "visibility", "")
     self.UI.setAttribute("maxRow", "visibility", "")
 end
-function checkRandomDifficulty(enable)
+function checkRandomDifficulty(enable, force)
     local visibility = ""
     if not enable then
         visibility = "Invisible"
@@ -913,7 +940,7 @@ function checkRandomDifficulty(enable)
             or Global.getVar("useSecondAdversary")
             or Global.getVar("includeThematic")
             or Global.getVar("useRandomScenario")
-    if random == enable then
+    if random == enable or force then
         self.UI.setAttribute("minTextRow", "visibility", visibility)
         self.UI.setAttribute("minRow", "visibility", visibility)
         self.UI.setAttribute("maxTextRow", "visibility", visibility)
@@ -1485,9 +1512,20 @@ function getWeeklyChallengeConfig()
 
     -- Copy spiritGuids table so we can remove elements from it
     local spiritGuidsCopy = {table.unpack(spiritGuids)}
-    local boards = {A = false, B = false, C = false, D = false, E = false, F = false}
-    local function findBoard(gone)
-        local board = math.random(1, 6 - gone)
+    local boardsCount
+    local boards
+    if config.boardLayout == "Thematic" then
+        boards = {}
+        for _,board in pairs(setups[numBoards]["Thematic"]) do
+            boards[board.board] = false
+        end
+        boardsCount = numBoards
+    else
+        boards = {A = false, B = false, C = false, D = false, E = false, F = false}
+        boardsCount = 6
+    end
+    local function findBoard(picked)
+        local board = math.random(1, boardsCount - picked)
         local i = 1
         for name,taken in pairs(boards) do
             if taken then
@@ -1535,5 +1573,6 @@ function getWeeklyChallengeConfig()
     end
 
     -- TODO make sure difficulty is in acceptable range
+    math.randomseed(os.time())
     return config
 end

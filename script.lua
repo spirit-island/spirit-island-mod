@@ -185,7 +185,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             end
         end
     end
-    -- Temporary fix until TTS bug resolved
+    -- HACK: Temporary fix until TTS bug resolved
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionEnter", {hit_object=hit_object, collision_info=collision_info})
     end
@@ -198,7 +198,7 @@ function onObjectCollisionExit(hit_object, collision_info)
             end
         end
     end
-    -- Temporary fix until TTS bug resolved
+    -- HACK: Temporary fix until TTS bug resolved
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionExit", {hit_object=hit_object, collision_info=collision_info})
     end
@@ -2134,7 +2134,7 @@ function StartGame()
 end
 function enableUI()
     Wait.frames(function()
-        -- Temporary hack to try to fix visibility TTS bug
+        -- HACK: Temporary hack to try to fix visibility TTS bug
         UI.setXmlTable(UI.getXmlTable(), {})
 
         -- Need to wait for xml table to get updated
@@ -2729,6 +2729,9 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
 end
 setupMapCoObj = nil
 function setupMap(map,extra)
+    -- HACK: trying to fix client desync issue
+    map.setPosition(map.getPosition())
+
     setupMapCoObj = map
     if extra then
         startLuaCoroutine(Global, "setupMapCoExtra")

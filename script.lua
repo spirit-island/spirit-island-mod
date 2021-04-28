@@ -2061,7 +2061,7 @@ function PostSetup()
 end
 function createDifficultyButton()
     local buttonPos = Vector(-0.75,0,-2.75)
-    if getObjectFromGUID("312e2d") == nil or not Vector.equals(getObjectFromGUID("312e2d").getPosition(), aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84))) then
+    if adversaryCard2 == nil then
         -- not double adversaries
         buttonPos = Vector(0,0,-2.75)
     end

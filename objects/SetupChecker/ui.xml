@@ -13,7 +13,7 @@
     <Toggle toggleWidth="40" toggleHeight="40" textColor="#FFFFFF" fontSize="40" verticalOverflow="Overflow" tooltipFontSize="30" tooltipBackgroundColor="#000000" />
     <Slider wholeNumbers="true" tooltipFontSize="30" tooltipBackgroundColor="#000000" tooltipPosition="Below"/>
     <Text class="slider" alignment="LowerCenter"/>
-    <Text class="challenge" alignment="MiddleLeft"/>
+    <Text class="header" alignment="MiddleLeft"/>
 </Defaults>
 
 <Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
@@ -156,7 +156,10 @@
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
-                <Cell columnSpan="2"><Text>Variant Rules</Text></Cell>
+                <Cell columnSpan="2"><Text class="header">Variant Rules</Text></Cell>
+            </Row>
+            <Row class="spacing">
+                <Cell columnSpan="2"><Text>──────────────────────────────</Text></Cell>
             </Row>
             <Row id="events" class="toggle">
                 <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">Use B&amp;C Events</Toggle></Cell>
@@ -223,50 +226,55 @@
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
-                <Cell><Text class="challenge">Weekly Challenge</Text></Cell>
+                <Cell>
+                    <ToggleGroup onValueChanged="toggleChallengeTier">
+                        <HorizontalLayout>
+                            <Text class="header">Weekly Challenge</Text>
+                            <Toggle>Standard</Toggle>
+                            <Toggle>Hard</Toggle>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                </Cell>
             </Row>
             <Row class="spacing">
                 <Cell><Text>──────────────────────────────</Text></Cell>
             </Row>
             <Row class="header">
-                <Cell><Text id="challengeLeadingAdversary" class="challenge"/></Cell>
+                <Cell><Text id="challengeLeadingAdversary" class="header"/></Cell>
             </Row>
             <Row class="header">
-                <Cell><Text id="challengeSupportingAdversary" class="challenge"/></Cell>
+                <Cell><Text id="challengeSupportingAdversary" class="header"/></Cell>
             </Row>
             <Row class="header">
-                <Cell><Text id="challengeScenario" class="challenge"/></Cell>
+                <Cell><Text id="challengeScenario" class="header"/></Cell>
             </Row>
             <Row class="header">
-                <Cell><Text id="challengeLayout" class="challenge"/></Cell>
+                <Cell><Text id="challengeLayout" class="header"/></Cell>
             </Row>
             <Row id="challengeExtraBoardRow" class="header">
-                <Cell><Text id="challengeExtraBoard" class="challenge"/></Cell>
+                <Cell><Text id="challengeExtraBoard" class="header"/></Cell>
             </Row>
             <Row class="header">
-                <Cell><Text id="challengeDifficulty" class="challenge"/></Cell>
+                <Cell><Text id="challengeDifficulty" class="header"/></Cell>
             </Row>
             <Row class="spacing"/>
             <Row id="challengeSpiritRow1" class="header">
-                <Cell><Text id="challengeSpirit1" class="challenge"/></Cell>
+                <Cell><Text id="challengeSpirit1" class="header"/></Cell>
             </Row>
             <Row id="challengeSpiritRow2" class="header">
-                <Cell><Text id="challengeSpirit2" class="challenge"/></Cell>
+                <Cell><Text id="challengeSpirit2" class="header"/></Cell>
             </Row>
             <Row id="challengeSpiritRow3" class="header">
-                <Cell><Text id="challengeSpirit3" class="challenge"/></Cell>
+                <Cell><Text id="challengeSpirit3" class="header"/></Cell>
             </Row>
             <Row id="challengeSpiritRow4" class="header">
-                <Cell><Text id="challengeSpirit4" class="challenge"/></Cell>
+                <Cell><Text id="challengeSpirit4" class="header"/></Cell>
             </Row>
             <Row id="challengeSpiritRow5" class="header">
-                <Cell><Text id="challengeSpirit5" class="challenge"/></Cell>
+                <Cell><Text id="challengeSpirit5" class="header"/></Cell>
             </Row>
             <Row id="challengeSpiritRow6" class="header">
-                <Cell><Text id="challengeSpirit6" class="challenge"/></Cell>
-            </Row>
-            <Row class="header">
-                <Cell><ToggleGroup onValueChanged="toggleChallengeTier"><HorizontalLayout><Toggle>Standard</Toggle><Toggle>Hard</Toggle></HorizontalLayout></ToggleGroup></Cell>
+                <Cell><Text id="challengeSpirit6" class="header"/></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

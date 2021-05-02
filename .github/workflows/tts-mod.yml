@@ -28,3 +28,7 @@ jobs:
                   name: spirit-island-ci
                   path: build/packed-savegame.json
                   if-no-files-found: error
+            - name: Format mod
+              run: |
+                  tts fmt
+                  git diff --exit-code

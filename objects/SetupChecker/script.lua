@@ -1360,6 +1360,14 @@ function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
 end
+function toggleCarpetRedo()
+    local seaTile = Global.getVar("seaTile")
+    if seaTile.getStateId() == 1 then
+        seaTile.setState(2)
+    else
+        seaTile.setState(1)
+    end
+end
 function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)

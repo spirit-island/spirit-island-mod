@@ -174,6 +174,13 @@ function onObjectDrop(player_color, dropped_object)
         end
     end
 end
+function onObjectStateChange(changed_object, old_guid)
+    if seaTile.guid == old_guid then
+        seaTile = changed_object
+        seaTile.registerCollisions(false)
+        return
+    end
+end
 function onObjectCollisionEnter(hit_object, collision_info)
     if hit_object == seaTile then
         if collision_info.collision_object.type ~= "Card" then

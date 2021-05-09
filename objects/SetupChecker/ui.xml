@@ -233,7 +233,7 @@
                     <ToggleGroup onValueChanged="toggleChallengeTier">
                         <HorizontalLayout>
                             <Text class="header">Weekly Challenge</Text>
-                            <Toggle>Standard</Toggle>
+                            <Toggle isOn="true">Standard</Toggle>
                             <Toggle>Hard</Toggle>
                         </HorizontalLayout>
                     </ToggleGroup>

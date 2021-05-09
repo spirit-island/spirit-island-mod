@@ -177,6 +177,7 @@ end
 function onObjectStateChange(changed_object, old_guid)
     if seaTile.guid == old_guid then
         seaTile = changed_object
+        seaTile.interactable = false
         seaTile.registerCollisions(false)
         return
     end

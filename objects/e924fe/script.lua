@@ -239,6 +239,13 @@ function ExportConfig()
     if Global.getVar("JEAdded") then
         table.insert(data.expansions, "je")
     end
+    data.events = {}
+    if Global.getVar("useBnCEvents") then
+        table.insert(data.events, "bnc")
+    end
+    if Global.getVar("useJEEvents") then
+        table.insert(data.events, "je")
+    end
     if powersBag ~= nil then
         local powers = {}
         local inserted = false

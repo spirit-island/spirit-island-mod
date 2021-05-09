@@ -48,6 +48,8 @@ numBoards = 1
 boardLayout = "Balanced"
 BnCAdded = false
 JEAdded = false
+useBnCEvents = false
+useJEEvents = false
 fearPool = 0
 generatedFear = 0
 gameStarted = false
@@ -80,11 +82,8 @@ playerBlocks = {
 showPlayerButtons = true
 onlyCleanupTimePasses = false
 objectsToCleanup = {}
-
 ------ Unsaved Config Data
 useBlightCard = true
-useBnCEvents = false
-useJEEvents = false
 gamePaused = false
 yHeight = 0
 stagesSetup = 0
@@ -268,7 +267,9 @@ end
 function onSave()
     local data_table = {
         BnCAdded = BnCAdded,
-        JEAdded =  JEAdded,
+        JEAdded = JEAdded,
+        useBnCEvents = useBnCEvents,
+        useJEEvents = useJEEvents,
         fearPool = fearPool,
         generatedFear = generatedFear,
         gameStarted = gameStarted,
@@ -448,6 +449,8 @@ function onLoad(saved_data)
         selectedColors = loaded_data.selectedColors
         BnCAdded = loaded_data.BnCAdded
         JEAdded = loaded_data.JEAdded
+        useBnCEvents = loaded_data.useBnCEvents
+        useJEEvents = loaded_data.useJEEvents
         fearPool = loaded_data.fearPool
         generatedFear = loaded_data.generatedFear
         difficulty = loaded_data.difficulty

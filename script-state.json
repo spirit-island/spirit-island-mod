@@ -47,5 +47,7 @@
   "selectedBoards": [],
   "selectedColors": [],
   "showPlayerButtons": true,
-  "townBag": "4d3c15"
+  "townBag": "4d3c15",
+  "useBnCEvents": false,
+  "useJEEvents": false
 }

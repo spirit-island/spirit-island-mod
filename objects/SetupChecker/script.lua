@@ -133,14 +133,16 @@ function onLoad(saved_data)
             self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
             if Global.getVar("BnCAdded") then
-                Global.setVar("useBnCEvents", true)
                 self.UI.setAttribute("bnc", "isOn", "true")
-                self.UI.setAttribute("bncEvents", "isOn", "true")
+                if Global.getVar("useBnCEvents") then
+                    self.UI.setAttribute("bncEvents", "isOn", "true")
+                end
             end
             if Global.getVar("JEAdded") then
-                Global.setVar("useJEEvents", true)
                 self.UI.setAttribute("je", "isOn", "true")
-                self.UI.setAttribute("jeEvents", "isOn", "true")
+                if Global.getVar("useJEEvents") then
+                    self.UI.setAttribute("jeEvents", "isOn", "true")
+                end
             end
 
             -- queue up all dropdown changes as once

@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -18.972789764404297,
-    "posY": 1.0967048406600952,
-    "posZ": 91.44107818603516,
-    "rotX": 0.004446865059435368,
-    "rotY": 179.99993896484375,
-    "rotZ": 5.072755357105052e-06,
+    "posX": -18.97279930114746,
+    "posY": 1.003100037574768,
+    "posZ": 91.44110107421875,
+    "rotX": -0.0,
+    "rotY": 179.99989318847656,
+    "rotZ": 0.0,
     "scaleX": 0.75,
     "scaleY": 0.75,
     "scaleZ": 0.75
@@ -36,7 +36,7 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472357120/FC4801548E77C92B92D3F915DC81CA604DC8176A/",
     "NormalURL": "",
     "ColliderURL": "",

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 122.20521545410156,
-    "posY": 1.971228003501892,
-    "posZ": -22.8941650390625,
-    "rotX": 0.004442728124558926,
-    "rotY": 179.99972534179688,
-    "rotZ": -3.9718287325740675e-07,
-    "scaleX": 0.7000002861022949,
-    "scaleY": 0.7000002861022949,
-    "scaleZ": 0.7000002861022949
+    "posX": 122.2052001953125,
+    "posY": 1.9711999893188477,
+    "posZ": -22.89419937133789,
+    "rotX": 0.004399999976158142,
+    "rotY": 179.99969482421875,
+    "rotZ": 0.0,
+    "scaleX": 0.699999988079071,
+    "scaleY": 0.699999988079071,
+    "scaleZ": 0.699999988079071
   },
   "Nickname": "Plant Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.0,
-    "g": 0.7215687036514282,
-    "b": 0.22263821959495544
+    "g": 0.7215999960899353,
+    "b": 0.22259999811649323
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

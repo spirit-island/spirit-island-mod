@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -37.22222900390625,
-    "posY": 1.2617830038070679,
-    "posZ": 13.153894424438477,
-    "rotX": 2.692734035747435e-08,
+    "posX": -37.222198486328125,
+    "posY": 1.2618000507354736,
+    "posZ": 13.153900146484375,
+    "rotX": -0.0,
     "rotY": 179.97900390625,
-    "rotZ": -0.00014426784764509648,
-    "scaleX": 0.829393744468689,
+    "rotZ": -0.00010000012844102457,
+    "scaleX": 0.8294000029563904,
     "scaleY": 0.029999999329447746,
-    "scaleZ": 0.829393744468689
+    "scaleZ": 0.8294000029563904
   },
   "Nickname": "Strife",
   "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5647059082984924,
-    "g": 0.5568627715110779,
-    "b": 0.5568627715110779,
+    "r": 0.5646998882293701,
+    "g": 0.5568999648094177,
+    "b": 0.5568999648094177,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,
@@ -61,15 +61,15 @@
       "GUID": "8a818d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.08476037532091141,
-        "posY": -4.16093111038208,
-        "posZ": -0.06819042563438416,
-        "rotX": -1.5650706700398587e-05,
-        "rotY": 0.04055766388773918,
-        "rotZ": 2.206083308919915e-06,
-        "scaleX": 0.4402415156364441,
-        "scaleY": 33.33333206176758,
-        "scaleZ": 0.4402415156364441
+        "posX": 0.08479999750852585,
+        "posY": -4.160900115966797,
+        "posZ": -0.0681999996304512,
+        "rotX": 0.0,
+        "rotY": 0.0406000018119812,
+        "rotZ": 0.0,
+        "scaleX": 0.44020000100135803,
+        "scaleY": 33.33330154418945,
+        "scaleZ": 0.44020000100135803
       },
       "Nickname": "Strife",
       "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",

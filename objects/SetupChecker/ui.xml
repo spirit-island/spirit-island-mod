@@ -13,6 +13,7 @@
     <Toggle toggleWidth="40" toggleHeight="40" textColor="#FFFFFF" fontSize="40" verticalOverflow="Overflow" tooltipFontSize="30" tooltipBackgroundColor="#000000" />
     <Slider wholeNumbers="true" tooltipFontSize="30" tooltipBackgroundColor="#000000" tooltipPosition="Below"/>
     <Text class="slider" alignment="LowerCenter"/>
+    <Text class="header" alignment="MiddleLeft"/>
 </Defaults>
 
 <Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
@@ -25,11 +26,11 @@
                 <Cell columnSpan="2"><Slider id="numPlayersSlider" minValue="1" maxValue="6" value="1" onValueChanged="toggleNumPlayers"/></Cell>
             </Row>
             <Row class="spacing"/>
-            <Row class="header">
+            <Row id="leadingHeader" class="header">
                 <Cell><Text id="leadingText">Leading Adversary</Text></Cell>
                 <Cell><Text id="leadingLevel" class="slider">Level: 0</Text></Cell>
             </Row>
-            <Row recurse="leadingAdversary">
+            <Row id="leadingRow" recurse="leadingAdversary">
                 <Cell recurse="leadingAdversary">
                     <Dropdown id="leadingAdversary" recurse="leadingAdversary" onValueChanged="toggleLeadingAdversary">
                         <Option selected="true">None</Option>
@@ -65,11 +66,11 @@
                 </Cell>
                 <Cell><Slider id="supportingLevelSlider" enabled="false" minValue="0" maxValue="6" value="0" onValueChanged="toggleSupportingLevel"/></Cell>
             </Row>
-            <Row class="header">
+            <Row id="scenarioHeader" class="header">
                 <Cell><Text>Scenario</Text></Cell>
                 <Cell><Text>Board Layout</Text></Cell>
             </Row>
-            <Row recurse="scenario boardLayout">
+            <Row id="scenarioRow" recurse="scenario boardLayout">
                 <Cell recurse="scenario">
                     <Dropdown id="scenario" recurse="scenario" onValueChanged="toggleScenario">
                         <Option selected="true">None</Option>
@@ -98,7 +99,7 @@
                     </Dropdown>
                 </Cell>
             </Row>
-            <Row class="header">
+            <Row id="difficultyHeader" class="header">
                 <Cell columnSpan="2"><Text id="difficulty">Total Difficulty: 0</Text></Cell>
             </Row>
             <Row id="minTextRow" class="header" visibility="Invisible">
@@ -114,10 +115,10 @@
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
             <Row class="spacing"/>
-            <Row class="header">
+            <Row id="expansionsHeader" class="header">
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
             </Row>
-            <Row class="toggle">
+            <Row id="expansionsRow" class="toggle">
                 <Cell><Toggle id="bnc" onValueChanged="toggleBnC">Branch &amp; Claw</Toggle></Cell>
                 <Cell><Toggle id="je" onValueChanged="toggleJE">Jagged Earth</Toggle></Cell>
             </Row>
@@ -135,6 +136,7 @@
                 <Cell id="optionalCell"><Toggle id="optionalRules" onValueChanged="toggleOptionalRules" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
             </Row>
             <Row id="toggles" class="toggle">
+                <Cell><Toggle id="challenge" onValueChanged="toggleChallenge" tooltip="Randomly generated setup for the week,&#xA;this will be consistent for all steam users.&#xA;Make sure to set the number of players first">Weekly Challenge</Toggle></Cell>
                 <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
             </Row>
         </TableLayout>
@@ -154,7 +156,10 @@
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
-                <Cell columnSpan="2"><Text>Variant Rules</Text></Cell>
+                <Cell columnSpan="2"><Text class="header">Variant Rules</Text></Cell>
+            </Row>
+            <Row class="spacing">
+                <Cell columnSpan="2"><Text>──────────────────────────────</Text></Cell>
             </Row>
             <Row id="events" class="toggle">
                 <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">Use B&amp;C Events</Toggle></Cell>
@@ -197,7 +202,10 @@
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
-                <Cell><Text>Exploratory Testing</Text></Cell>
+                <Cell><Toggle id="exploratoryAll" onValueChanged="toggleExploratoryAll">Exploratory Testing</Toggle></Cell>
+            </Row>
+            <Row class="spacing">
+                <Cell><Text>──────────────────────────────</Text></Cell>
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="votd" onValueChanged="toggleVOTD" tooltip="The Damage dealt after Destruction is instead&#xA;equal to the Health of the Piece Destroyed">Vengeance of the Dead</Toggle></Cell>
@@ -210,6 +218,63 @@
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="aid" onValueChanged="toggleAid" tooltip="Spirits either get elements&#xA;or effect each turn">Aid from Lesser Spirits</Toggle></Cell>
+            </Row>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelChallenge" visibility="Invisible" width="1000" height="2800" position="-2000 -2050 14">
+    <VerticalLayout>
+        <TableLayout>
+            <Row class="header">
+                <Cell>
+                    <ToggleGroup onValueChanged="toggleChallengeTier">
+                        <HorizontalLayout>
+                            <Text class="header">Weekly Challenge</Text>
+                            <Toggle>Standard</Toggle>
+                            <Toggle>Hard</Toggle>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                </Cell>
+            </Row>
+            <Row class="spacing">
+                <Cell><Text>──────────────────────────────</Text></Cell>
+            </Row>
+            <Row class="header">
+                <Cell><Text id="challengeLeadingAdversary" class="header"/></Cell>
+            </Row>
+            <Row class="header">
+                <Cell><Text id="challengeSupportingAdversary" class="header"/></Cell>
+            </Row>
+            <Row class="header">
+                <Cell><Text id="challengeScenario" class="header"/></Cell>
+            </Row>
+            <Row class="header">
+                <Cell><Text id="challengeLayout" class="header"/></Cell>
+            </Row>
+            <Row id="challengeExtraBoardRow" class="header">
+                <Cell><Text id="challengeExtraBoard" class="header"/></Cell>
+            </Row>
+            <Row class="header">
+                <Cell><Text id="challengeDifficulty" class="header"/></Cell>
+            </Row>
+            <Row class="spacing"/>
+            <Row id="challengeSpiritRow1" class="header">
+                <Cell><Text id="challengeSpirit1" class="header"/></Cell>
+            </Row>
+            <Row id="challengeSpiritRow2" class="header">
+                <Cell><Text id="challengeSpirit2" class="header"/></Cell>
+            </Row>
+            <Row id="challengeSpiritRow3" class="header">
+                <Cell><Text id="challengeSpirit3" class="header"/></Cell>
+            </Row>
+            <Row id="challengeSpiritRow4" class="header">
+                <Cell><Text id="challengeSpirit4" class="header"/></Cell>
+            </Row>
+            <Row id="challengeSpiritRow5" class="header">
+                <Cell><Text id="challengeSpirit5" class="header"/></Cell>
+            </Row>
+            <Row id="challengeSpiritRow6" class="header">
+                <Cell><Text id="challengeSpirit6" class="header"/></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

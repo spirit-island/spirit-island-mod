@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -34.97999572753906,
-    "posY": 1.009563684463501,
-    "posZ": -13.700227737426758,
-    "rotX": 359.9253845214844,
-    "rotY": 0.007299384567886591,
-    "rotZ": 5.1855338824680075e-05,
+    "posX": -34.97999954223633,
+    "posY": 1.009600043296814,
+    "posZ": -13.700200080871582,
+    "rotX": 359.9254150390625,
+    "rotY": 0.007300000172108412,
+    "rotZ": 9.999999747378752e-05,
     "scaleX": 0.8999999761581421,
     "scaleY": 0.8999999761581421,
     "scaleZ": 0.8999999761581421
@@ -16,8 +16,8 @@
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.19106832146644592,
-    "b": 0.18357840180397034
+    "g": 0.19110000133514404,
+    "b": 0.18359999358654022
   },
   "Tags": [
     "Destroy"
@@ -37,7 +37,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
     "NormalURL": "",
     "ColliderURL": "",

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 106.29901885986328,
-    "posY": 1.971227765083313,
-    "posZ": -19.520370483398438,
-    "rotX": 0.004437553696334362,
-    "rotY": 180.00027465820312,
-    "rotZ": 9.561738352203975e-07,
-    "scaleX": 0.7000002861022949,
-    "scaleY": 0.7000002861022949,
-    "scaleZ": 0.7000002861022949
+    "posX": 106.29900360107422,
+    "posY": 1.9711999893188477,
+    "posZ": -19.52039909362793,
+    "rotX": 0.004399999976158142,
+    "rotY": 180.00030517578125,
+    "rotZ": 0.0,
+    "scaleX": 0.699999988079071,
+    "scaleY": 0.699999988079071,
+    "scaleZ": 0.699999988079071
   },
   "Nickname": "Air Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6533676981925964,
-    "g": 0.3328751027584076,
-    "b": 0.9320557117462158
+    "r": 0.6534000039100647,
+    "g": 0.3328999876976013,
+    "b": 0.9320999979972839
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

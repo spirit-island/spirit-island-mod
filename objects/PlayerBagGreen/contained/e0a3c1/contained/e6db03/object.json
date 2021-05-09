@@ -1,22 +1,22 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -28.829708099365234,
-    "posY": 1.0600405931472778,
-    "posZ": -15.33484935760498,
-    "rotX": 359.2509460449219,
-    "rotY": 358.3028564453125,
-    "rotZ": 358.2768249511719,
-    "scaleX": 0.5000004768371582,
-    "scaleY": 0.5000004768371582,
-    "scaleZ": 0.5000004768371582
+    "posX": -28.829700469970703,
+    "posY": 1.059999942779541,
+    "posZ": -15.334799766540527,
+    "rotX": 359.2508850097656,
+    "rotY": 358.3028869628906,
+    "rotZ": 358.27679443359375,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Fire Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.3754640221595764,
+    "g": 0.37549999356269836,
     "b": 0.0
   },
   "Tags": [

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 113.85957336425781,
-    "posY": 1.9712281227111816,
-    "posZ": -27.909393310546875,
-    "rotX": 0.004442349076271057,
-    "rotY": 179.99972534179688,
-    "rotZ": -4.819141850020969e-07,
-    "scaleX": 0.7000002861022949,
-    "scaleY": 0.7000002861022949,
-    "scaleZ": 0.7000002861022949
+    "posX": 113.8595962524414,
+    "posY": 1.9711999893188477,
+    "posZ": -27.909400939941406,
+    "rotX": 0.004399999976158142,
+    "rotY": 179.99969482421875,
+    "rotZ": 0.0,
+    "scaleX": 0.699999988079071,
+    "scaleY": 0.699999988079071,
+    "scaleZ": 0.699999988079071
   },
   "Nickname": "Any Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8252031803131104,
-    "g": 0.6526867151260376,
-    "b": 0.3982234597206116
+    "r": 0.8252000212669373,
+    "g": 0.6527000069618225,
+    "b": 0.39820000529289246
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

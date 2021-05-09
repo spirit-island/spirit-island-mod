@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 92.60687255859375,
-    "posY": 1.9711852073669434,
-    "posZ": -11.22058391571045,
-    "rotX": 0.004439731128513813,
+    "posX": 92.60690307617188,
+    "posY": 1.9711999893188477,
+    "posZ": -11.220600128173828,
+    "rotX": 0.004399999976158142,
     "rotY": 180.01080322265625,
-    "rotZ": 1.1597135198826436e-06,
+    "rotZ": 0.0,
     "scaleX": 0.699999988079071,
     "scaleY": 0.699999988079071,
     "scaleZ": 0.699999988079071
@@ -15,9 +15,9 @@
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.33531057834625244,
+    "r": 0.3352999985218048,
     "g": 1.0,
-    "b": 0.3018675148487091
+    "b": 0.3018999993801117
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,7 +36,7 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
     "NormalURL": "",
     "ColliderURL": "",

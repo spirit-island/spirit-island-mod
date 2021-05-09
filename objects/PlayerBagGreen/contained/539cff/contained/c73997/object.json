@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -27.971372604370117,
-    "posY": 1.0772839784622192,
-    "posZ": -15.434784889221191,
-    "rotX": 353.83782958984375,
-    "rotY": 0.20229458808898926,
-    "rotZ": -0.0018296322086825967,
-    "scaleX": 0.5000004768371582,
-    "scaleY": 0.5000004768371582,
-    "scaleZ": 0.5000004768371582
+    "posX": -27.971399307250977,
+    "posY": 1.077299952507019,
+    "posZ": -15.434800148010254,
+    "rotX": 353.8377990722656,
+    "rotY": 0.20229999721050262,
+    "rotZ": -0.0017999999690800905,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Air Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6533676981925964,
-    "g": 0.33287641406059265,
-    "b": 0.9320557117462158
+    "r": 0.6534000039100647,
+    "g": 0.3328999876976013,
+    "b": 0.9320999979972839
   },
   "Tags": [
     "Air",

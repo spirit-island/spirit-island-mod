@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 33.90000534057617,
-    "posY": 1.0095988512039185,
-    "posZ": -13.700240135192871,
-    "rotX": 359.9229431152344,
-    "rotY": -0.004111065994948149,
-    "rotZ": 2.2066489691496827e-05,
+    "posX": 33.900001525878906,
+    "posY": 1.009600043296814,
+    "posZ": -13.700200080871582,
+    "rotX": 359.92291259765625,
+    "rotY": -0.004100000020116568,
+    "rotZ": 0.0,
     "scaleX": 0.8999999761581421,
     "scaleY": 0.8999999761581421,
     "scaleZ": 0.8999999761581421
@@ -15,8 +15,8 @@
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2823525369167328,
-    "g": 0.7141388058662415,
+    "r": 0.2824000120162964,
+    "g": 0.7141000032424927,
     "b": 1.0
   },
   "Tags": [
@@ -37,7 +37,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
     "NormalURL": "",
     "ColliderURL": "",

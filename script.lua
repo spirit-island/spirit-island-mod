@@ -1,5 +1,5 @@
 ---- Versioning
-version = "2.0.0"
+version = "2.1.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -69,7 +69,6 @@ selectedBoards = {}
 blightCards = {}
 fastDiscount = 0
 currentPhase = 1
-
 playerBlocks = {
     Red = "c68e2c",
     Purple = "661aa3",
@@ -78,8 +77,9 @@ playerBlocks = {
     Green = "fac8e4",
     Orange = "6b5b4b",
 }
-
 showPlayerButtons = true
+onlyCleanupTimePasses = false
+objectsToCleanup = {}
 
 ------ Unsaved Config Data
 useBlightCard = true
@@ -106,6 +106,7 @@ aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
 fearDeckSetupZone = "fbbf69"
 sourceSpirit = "SourceSpirit"
+spiritZone = "934ea8"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -177,16 +178,27 @@ end
 function onObjectCollisionEnter(hit_object, collision_info)
     if hit_object == seaTile then
         if collision_info.collision_object.type ~= "Card" then
-            deleteObject(collision_info.collision_object, false)
+            if onlyCleanupTimePasses then
+                objectsToCleanup[collision_info.collision_object.guid] = true
+            else
+                deleteObject(collision_info.collision_object, false)
+            end
         end
     end
-    -- Temporary fix until TTS bug resolved
+    -- HACK: Temporary fix until TTS bug resolved
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionEnter", {hit_object=hit_object, collision_info=collision_info})
     end
 end
 function onObjectCollisionExit(hit_object, collision_info)
-    -- Temporary fix until TTS bug resolved
+    if hit_object == seaTile then
+        if collision_info.collision_object.type ~= "Card" then
+            if onlyCleanupTimePasses then
+                objectsToCleanup[collision_info.collision_object.guid] = nil
+            end
+        end
+    end
+    -- HACK: Temporary fix until TTS bug resolved
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionExit", {hit_object=hit_object, collision_info=collision_info})
     end
@@ -241,6 +253,18 @@ function onObjectLeaveContainer(container, object)
         return
     end
 end
+function onObjectEnterScriptingZone(zone, obj)
+    if zone.guid == spiritZone then
+        if obj.hasTag("Aspect") then
+            for _,object in pairs(upCast(obj, 1, 0, Vector(0, -1, 0))) do
+                if object.hasTag("Spirit") then
+                    sourceSpirit.call("AddAspectButton", {obj = object})
+                    break
+                end
+            end
+        end
+    end
+end
 function onSave()
     local data_table = {
         BnCAdded = BnCAdded,
@@ -264,6 +288,8 @@ function onSave()
         blightCards = blightCards,
         fastDiscount = fastDiscount,
         currentPhase = currentPhase,
+        onlyCleanupTimePasses = onlyCleanupTimePasses,
+        objectsToCleanup = objectsToCleanup,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -445,6 +471,8 @@ function onLoad(saved_data)
         showPlayerButtons = loaded_data.showPlayerButtons
         fastDiscount = loaded_data.fastDiscount
         currentPhase = loaded_data.currentPhase
+        onlyCleanupTimePasses = loaded_data.onlyCleanupTimePasses
+        objectsToCleanup = loaded_data.objectsToCleanup
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -460,6 +488,7 @@ function onLoad(saved_data)
             updateCurrentPhase(false)
             seaTile.registerCollisions(false)
             SetupPowerDecks()
+            addGainPowerCardButtons()
             Wait.condition(function()
                 aidBoard.call("setupGame", {})
                 createDifficultyButton()
@@ -1030,16 +1059,16 @@ end
 function MinorPower()
     local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
     local MinorPowerDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
-    DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone, "PickPowerMinor")
+    DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone)
     return 1
 end
 function MajorPower()
     local MajorPowerDeckZone = getObjectFromGUID(majorPowerZone)
     local MajorPowerDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
-    DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone, "PickPowerMajor")
+    DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone)
     return 1
 end
-function DealPowerCards(deckZone, discardZone, clickFunctionName)
+function DealPowerCards(deckZone, discardZone)
     -- clear the zone!
     local handPos = powerPlayer.getHandTransform().position
     local discardTable = DiscardPowerCards(handPos)
@@ -1069,7 +1098,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
         deck.setLock(true)
         deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
         deck.setRotationSmooth(Vector(0, 180, 0))
-        CreatePickPowerButton(deck, clickFunctionName)
+        CreatePickPowerButton(deck)
         cardsAdded = cardsAdded + 1
         Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
     elseif deck.type == "Deck" then
@@ -1079,7 +1108,7 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
                 flip = true,
             })
             tempCard.setLock(true)
-            CreatePickPowerButton(tempCard, clickFunctionName)
+            CreatePickPowerButton(tempCard)
             cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
@@ -1097,17 +1126,17 @@ function DealPowerCards(deckZone, discardZone, clickFunctionName)
                 flip = true,
             })
             tempCard.setLock(true)
-            CreatePickPowerButton(tempCard, clickFunctionName)
+            CreatePickPowerButton(tempCard)
             cardsAdded = cardsAdded + 1
             Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
         end
     end
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
-function CreatePickPowerButton(card, clickFunctionName)
+function CreatePickPowerButton(card)
     local scale = flipVector(Vector(card.getScale()))
     card.createButton({
-        click_function = clickFunctionName,
+        click_function = "PickPower",
         function_owner = Global,
         label          = "Pick Power",
         position       = Vector(0,0.3,1.43),
@@ -1118,20 +1147,7 @@ function CreatePickPowerButton(card, clickFunctionName)
         tooltip = "Pick Power Card to your hand"
     })
 end
-function PickPowerMinor(cardo,playero,alt_click)
-    -- Give card to player regardless of whose hand they are in front of
-    cardo.deal(1,playero)
-    cardo.clearButtons()
-
-    Wait.condition(function()
-        cardo.setLock(false)
-        if not alt_click then
-            local handPos = Player[playero].getHandTransform().position
-            DiscardPowerCards(handPos)
-        end
-    end, function() return not cardo.isSmoothMoving() end)
-end
-function PickPowerMajor(cardo,playero,alt_click)
+function PickPower(cardo,playero,alt_click)
     -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
@@ -1179,6 +1195,16 @@ function getPowerZoneObjects(handP)
         0,  -- distance
         {"Card","Deck"})
     return hits
+end
+function addGainPowerCardButtons()
+    for color, _ in pairs(selectedColors) do
+        local cardZoneObjects = getPowerZoneObjects(Player[color].getHandTransform().position)
+        for _, obj in ipairs(cardZoneObjects) do
+            if obj.type == "Card" then
+                CreatePickPowerButton(obj, "PickPower")
+            end
+        end
+    end
 end
 ----- Blight Section
 function SetupBlightCard()
@@ -2035,7 +2061,7 @@ function PostSetup()
 end
 function createDifficultyButton()
     local buttonPos = Vector(-0.75,0,-2.75)
-    if getObjectFromGUID("312e2d") == nil or not Vector.equals(getObjectFromGUID("312e2d").getPosition(), aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84))) then
+    if adversaryCard2 == nil then
         -- not double adversaries
         buttonPos = Vector(0,0,-2.75)
     end
@@ -2108,7 +2134,7 @@ function StartGame()
 end
 function enableUI()
     Wait.frames(function()
-        -- Temporary hack to try to fix visibility TTS bug
+        -- HACK: Temporary hack to try to fix visibility TTS bug
         UI.setXmlTable(UI.getXmlTable(), {})
 
         -- Need to wait for xml table to get updated
@@ -2215,10 +2241,16 @@ function timePasses()
     end
 end
 function timePassesCo()
+    for guid,_ in pairs(objectsToCleanup) do
+        local obj = getObjectFromGUID(guid)
+        if obj ~= nil then
+            deleteObject(obj, false)
+        end
+        objectsToCleanup[guid] = nil
+    end
     for _,object in pairs(upCast(seaTile, 0.5)) do
         handlePiece(object, 0)
     end
-
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end
@@ -2337,21 +2369,21 @@ scaleFactors = {
 }
 boardLayouts = {
     { -- 1 Board
-        ["Balanced"] = {
-            { pos = Vector(5.96, 1.08, 16.59), rot = Vector(0.00, 180.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(-1.93, 1.08, 20.44), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
         },
+        ["Balanced"] = {
+            { pos = Vector(5.96, 1.08, 16.59), rot = Vector(0.00, 180.00, 0.00) },
+        },
     },
     { -- 2 Board
-        ["Balanced"] = {
-            { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(0.29, 1.08, 10.21), rot = Vector(0.00, 0.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(9.54, 1.08, 18.07), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(-10.34, 1.08, 18.04), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(0.29, 1.08, 10.21), rot = Vector(0.00, 0.00, 0.00) },
         },
         ["Top to Top"] = {
             { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 0.00, 0.00) },
@@ -2375,15 +2407,15 @@ boardLayouts = {
         },
     },
     { -- 3 Board
-        ["Balanced"] = {
-            { pos = Vector(2.33, 1.08, 26.80), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(2.46, 1.08, 11.54), rot = Vector(0.00, 60.00, 0.00) },
-            { pos = Vector(15.70, 1.08, 19.37), rot = Vector(0.00, 300.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(24.91, 1.08, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(5.03, 1.08, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
             { pos = Vector(15.03, 1.08, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(2.33, 1.08, 26.80), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(2.46, 1.08, 11.54), rot = Vector(0.00, 60.00, 0.00) },
+            { pos = Vector(15.70, 1.08, 19.37), rot = Vector(0.00, 300.00, 0.00) },
         },
         ["Coastline"] = {
             { pos = Vector(-2.47, 1.08, 10.29), rot = Vector(0.00, 240.69, 0.00) },
@@ -2397,17 +2429,17 @@ boardLayouts = {
         },
     },
     { -- 4 Board
-        ["Balanced"] = {
-            { pos = Vector(2.36, 1.08, 26.47), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(20.40, 1.08, 26.64), rot = Vector(0.00, 0.00, 0.00) },
-            { pos = Vector(-6.65, 1.08, 11.13), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(11.27, 1.08, 11.33), rot = Vector(0.00, 0.00, 0.00) },
-        },
         ["Thematic"] = {
             { pos = Vector(29.29, 1.08, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
             { pos = Vector(9.41, 1.08, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
             { pos = Vector(19.41, 1.08, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
             { pos = Vector(-0.62, 1.08, 27.04), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+        },
+        ["Balanced"] = {
+            { pos = Vector(2.36, 1.08, 26.47), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(20.40, 1.08, 26.64), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(-6.65, 1.08, 11.13), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(11.27, 1.08, 11.33), rot = Vector(0.00, 0.00, 0.00) },
         },
         ["Leaf"] = {
             { pos = Vector(7.05, 1.08, 34.30), rot = Vector(0.00, 300.27, 0.00) },
@@ -2423,19 +2455,19 @@ boardLayouts = {
         },
     },
     { -- 5 Board
+        ["Thematic"] = {
+            { pos = Vector(33.53, 1.08, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(13.65, 1.08, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(23.65, 1.08, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(3.62, 1.08, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            { pos = Vector(43.40, 1.08, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+        },
         ["Balanced"] = {
             { pos = Vector(3.32, 1.08, 32.42), rot = Vector(0.00, 120.00, 0.00) },
             { pos = Vector(25.46, 1.08, 24.68), rot = Vector(0.00, 240.00, 0.00) },
             { pos = Vector(38.99, 1.08, 32.44), rot = Vector(0.00, 300.00, 0.00) },
             { pos = Vector(12.18, 1.08, 16.81), rot = Vector(0.00, 120.02, 0.00) },
             { pos = Vector(25.62, 1.08, 9.32), rot = Vector(0.00, 359.99, 0.00) },
-        },
-        ["Thematic"] = {
-            { pos = Vector(30.89, 1.08, 23.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(11.01, 1.08, 23.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(21.01, 1.08, 40.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(0.98, 1.08, 40.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(40.82, 1.08, 6.66), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
         },
         ["Snail"] = {
             { pos = Vector(26.42, 1.08, 41.16), rot = Vector(0.00, 240.00, 0.00) },
@@ -2460,6 +2492,14 @@ boardLayouts = {
         },
     },
     { -- 6 Board
+        ["Thematic"] = {
+            { pos = Vector(33.53, 1.08, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(13.65, 1.08, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(23.65, 1.08, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(3.62, 1.08, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            { pos = Vector(43.40, 1.08, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+            { pos = Vector(23.59, 1.08, 7.55), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
+        },
         ["Balanced"] = {
             { pos = Vector(4.31, 1.08, 29.13), rot = Vector(0.00, 150.01, 0.00) },
             { pos = Vector(19.72, 1.08, 29.32), rot = Vector(0.00, 270.00, 0.00) },
@@ -2467,14 +2507,6 @@ boardLayouts = {
             { pos = Vector(12.25, 1.08, 15.90), rot = Vector(0.00, 30.01, 0.00) },
             { pos = Vector(35.44, 1.08, 20.02), rot = Vector(0.00, 90.00, 0.00) },
             { pos = Vector(50.90, 1.08, 20.26), rot = Vector(0.00, 330.00, 0.00) },
-        },
-        ["Thematic"] = {
-            { pos = Vector(33.53, 1.08, 23.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(13.65, 1.08, 23.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(23.65, 1.08, 40.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(3.62, 1.08, 40.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(43.40, 1.08, 6.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
-            { pos = Vector(23.59, 1.08, 6.55), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
         },
         ["Star"] = {
             { pos = Vector(33.19, 1.08, 40.36), rot = Vector(0.00, 330.00, 0.00) },
@@ -2485,12 +2517,12 @@ boardLayouts = {
             { pos = Vector(17.50, 1.08, 40.33), rot = Vector(0.00, 269.99, 0.00) },
         },
         ["Flower"] = {
-            { pos = Vector(22.76, 1.08, 43.03), rot = Vector(0.00, 162.62, 0.00) },
-            { pos = Vector(33.80, 1.08, 22.36), rot = Vector(0.00, 282.64, 0.00) },
-            { pos = Vector(46.88, 1.08, 10.07), rot = Vector(0.00, 282.62, 0.00) },
-            { pos = Vector(18.70, 1.08, 25.55), rot = Vector(0.00, 162.65, 0.00) },
-            { pos = Vector(23.48, 1.08, 10.88), rot = Vector(0.00, 42.62, 0.00) },
-            { pos = Vector(6.30, 1.08, 5.69), rot = Vector(0.00, 42.61, 0.00) },
+            { pos = Vector(22.76, 1.08, 45.03), rot = Vector(0.00, 162.62, 0.00) },
+            { pos = Vector(33.80, 1.08, 24.36), rot = Vector(0.00, 282.64, 0.00) },
+            { pos = Vector(46.88, 1.08, 12.07), rot = Vector(0.00, 282.62, 0.00) },
+            { pos = Vector(18.70, 1.08, 27.55), rot = Vector(0.00, 162.65, 0.00) },
+            { pos = Vector(23.48, 1.08, 12.88), rot = Vector(0.00, 42.62, 0.00) },
+            { pos = Vector(6.30, 1.08, 7.69), rot = Vector(0.00, 42.61, 0.00) },
         },
         ["Caldera"] = {
             { pos = Vector(-0.20, 1.08, 31.44), rot = Vector(0.00, 120.42, 0.00) },
@@ -2609,7 +2641,11 @@ function MapPlacen(boards)
     local BETaken = false
     local DFTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
-        rand = math.random(1,#boards)
+        if selectedBoards[#boards] ~= nil then
+            rand = #boards
+        else
+            rand = math.random(1,#boards)
+        end
     end
 
     -- We use the average position of the boards in the island layout
@@ -2693,6 +2729,9 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
 end
 setupMapCoObj = nil
 function setupMap(map,extra)
+    -- HACK: trying to fix client desync issue
+    map.setPosition(map.getPosition())
+
     setupMapCoObj = map
     if extra then
         startLuaCoroutine(Global, "setupMapCoExtra")
@@ -3084,12 +3123,13 @@ function wt(some)
     end
 end
 --------------------
-function upCast(obj,dist,offset)
+function upCast(obj,dist,offset,dir)
     dist = dist or 1
     offset = offset or 0
+    dir = dir or Vector(0,1,0)
     local hits = Physics.cast({
         origin       = obj.getPosition() + Vector(0,offset,0),
-        direction    = Vector(0,1,0),
+        direction    = dir,
         type         = 3,
         size         = obj.getBoundsNormalized().size,
         orientation  = obj.getRotation(),

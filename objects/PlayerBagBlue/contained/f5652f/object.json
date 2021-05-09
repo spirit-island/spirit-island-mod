@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 81.05899047851562,
-    "posY": 1.9711858034133911,
-    "posZ": -5.3796796798706055,
-    "rotX": 0.004439617972820997,
-    "rotY": 179.99818420410156,
-    "rotZ": 1.681002999021075e-07,
+    "posX": 81.05899810791016,
+    "posY": 1.9711999893188477,
+    "posZ": -5.379700183868408,
+    "rotX": 0.004399999976158142,
+    "rotY": 179.99819946289062,
+    "rotZ": 0.0,
     "scaleX": 0.699999988079071,
     "scaleY": 0.699999988079071,
     "scaleZ": 0.699999988079071
@@ -15,8 +15,8 @@
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2823491394519806,
-    "g": 0.7141388058662415,
+    "r": 0.2822999954223633,
+    "g": 0.7141000032424927,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
@@ -36,7 +36,7 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1753560361574810952/DF657A358EAA7A455403A57D900209A70FEB8526/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472353118/3A1F6CF1B4B7E307663687973E8B4B7CB04127BB/",
     "NormalURL": "",
     "ColliderURL": "",

@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -26.444595336914062,
-    "posY": 1.1257147789001465,
-    "posZ": -15.125343322753906,
-    "rotX": 353.3041687011719,
-    "rotY": 0.36376506090164185,
-    "rotZ": -0.0052677481435239315,
-    "scaleX": 0.5000004768371582,
-    "scaleY": 0.5000004768371582,
-    "scaleZ": 0.5000004768371582
+    "posX": -26.444599151611328,
+    "posY": 1.1256999969482422,
+    "posZ": -15.125300407409668,
+    "rotX": 353.30419921875,
+    "rotY": 0.3637999892234802,
+    "rotZ": -0.0052999998442828655,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Water Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.19833296537399292,
-    "g": 0.42372027039527893,
-    "b": 0.8391405344009399
+    "r": 0.19830000400543213,
+    "g": 0.4237000048160553,
+    "b": 0.8391000032424927
   },
   "Tags": [
     "Destroy",

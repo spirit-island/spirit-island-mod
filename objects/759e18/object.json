@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -47.6814079284668,
-    "posY": -0.09967516362667084,
-    "posZ": 56.74885940551758,
-    "rotX": 0.00442883325740695,
+    "posX": -47.681400299072266,
+    "posY": -0.09969999641180038,
+    "posZ": 56.7489013671875,
+    "rotX": 0.004399999976158142,
     "rotY": 0.0,
-    "rotZ": -2.6293271275790175e-06,
-    "scaleX": 0.8119655847549438,
+    "rotZ": 0.0,
+    "scaleX": 0.8119999766349792,
     "scaleY": 1.0,
-    "scaleZ": 0.8119655847549438
+    "scaleZ": 0.8119999766349792
   },
   "Nickname": "NORMAL F",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8156862854957581,
-    "g": 0.8156862854957581,
-    "b": 0.8156862854957581
+    "r": 0.8156999945640564,
+    "g": 0.8156999945640564,
+    "b": 0.8156999945640564
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -39,7 +39,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.395000159740448,
+      "Thickness": 0.39500001072883606,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false

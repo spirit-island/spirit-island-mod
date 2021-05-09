@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -20.436609268188477,
-    "posY": 1.092727780342102,
-    "posZ": -15.262659072875977,
+    "posX": -20.436599731445312,
+    "posY": 1.0927000045776367,
+    "posZ": -15.262700080871582,
     "rotX": 354.6304016113281,
-    "rotY": 0.2163378745317459,
-    "rotZ": 0.018739840015769005,
-    "scaleX": 0.5000004768371582,
-    "scaleY": 0.5000004768371582,
-    "scaleZ": 0.5000004768371582
+    "rotY": 0.21629999577999115,
+    "rotZ": 0.018699999898672104,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Any Element",
   "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8252031803131104,
-    "g": 0.6526867151260376,
-    "b": 0.398224800825119
+    "r": 0.8252000212669373,
+    "g": 0.6527000069618225,
+    "b": 0.39820000529289246
   },
   "Tags": [
     "Any",
@@ -52,22 +52,22 @@
       "GUID": "93b460",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.814210832118988,
-        "posZ": -17.53308868408203,
-        "rotX": 0.004447232000529766,
-        "rotY": 180.0064697265625,
-        "rotZ": 7.182766808000451e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
+        "rotY": 180.00650024414062,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Animal Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8112658262252808,
-        "g": 0.008320708759129047,
+        "r": 0.8112999796867371,
+        "g": 0.008299999870359898,
         "b": 0.0
       },
       "Tags": [
@@ -107,23 +107,23 @@
       "GUID": "20586b",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.814210832118988,
-        "posZ": -17.53308868408203,
-        "rotX": 0.004447238985449076,
-        "rotY": 180.0064239501953,
-        "rotZ": 7.679676059524354e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
+        "rotY": 180.0063934326172,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Plant Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.0,
-        "g": 0.7215687036514282,
-        "b": 0.2226395606994629
+        "g": 0.7215999960899353,
+        "b": 0.22259999811649323
       },
       "Tags": [
         "Any",
@@ -162,23 +162,23 @@
       "GUID": "7c2166",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.814210832118988,
-        "posZ": -17.53308868408203,
-        "rotX": 0.004447228740900755,
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
         "rotY": 180.0063934326172,
-        "rotZ": 8.009685075194284e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Earth Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.42684024572372437,
-        "g": 0.3694004714488983,
-        "b": 0.43960461020469666
+        "r": 0.426800012588501,
+        "g": 0.3693999946117401,
+        "b": 0.43959999084472656
       },
       "Tags": [
         "Any",
@@ -217,23 +217,23 @@
       "GUID": "95b72c",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.814210832118988,
-        "posZ": -17.53308868408203,
-        "rotX": 0.004447257146239281,
-        "rotY": 180.00636291503906,
-        "rotZ": 6.657661515419022e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
+        "rotY": 180.0063934326172,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Water Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.19833296537399292,
-        "g": 0.42372027039527893,
-        "b": 0.8391405344009399
+        "r": 0.19830000400543213,
+        "g": 0.4237000048160553,
+        "b": 0.8391000032424927
       },
       "Tags": [
         "Any",
@@ -272,23 +272,23 @@
       "GUID": "177c94",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.814210832118988,
-        "posZ": -17.53308868408203,
-        "rotX": 0.004447110462933779,
-        "rotY": 180.00631713867188,
-        "rotZ": 8.254950216723955e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
+        "rotY": 180.0063018798828,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Air Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.6533676981925964,
-        "g": 0.33287641406059265,
-        "b": 0.9320557117462158
+        "r": 0.6534000039100647,
+        "g": 0.3328999876976013,
+        "b": 0.9320999979972839
       },
       "Tags": [
         "Air",
@@ -327,22 +327,22 @@
       "GUID": "d7a526",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.8142107725143433,
-        "posZ": -17.53308868408203,
-        "rotX": 0.00444711372256279,
-        "rotY": 180.0062713623047,
-        "rotZ": 7.463582392119861e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
+        "rotY": 180.0063018798828,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Fire Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.3754640221595764,
+        "g": 0.37549999356269836,
         "b": 0.0
       },
       "Tags": [
@@ -382,22 +382,22 @@
       "GUID": "3b1a39",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.8142107725143433,
-        "posZ": -17.53308868408203,
-        "rotX": 0.004447266925126314,
-        "rotY": 180.00624084472656,
-        "rotZ": 7.426633601426147e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
+        "rotY": 180.00619506835938,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Moon Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.9113246202468872,
-        "g": 0.9053425788879395,
+        "r": 0.911300003528595,
+        "g": 0.9053000211715698,
         "b": 1.0
       },
       "Tags": [
@@ -437,22 +437,22 @@
       "GUID": "7d3cb6",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.071123123168945,
-        "posY": 0.814210832118988,
-        "posZ": -17.53308868408203,
-        "rotX": 0.004447185900062323,
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.004399999976158142,
         "rotY": 180.00619506835938,
-        "rotZ": 8.112252771752537e-07,
-        "scaleX": 0.5000004768371582,
-        "scaleY": 0.5000004768371582,
-        "scaleZ": 0.5000004768371582
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
       },
       "Nickname": "Sun Element",
       "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.8513015508651733,
+        "g": 0.8513000011444092,
         "b": 0.0
       },
       "Tags": [

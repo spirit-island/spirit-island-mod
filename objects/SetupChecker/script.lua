@@ -67,6 +67,9 @@ updateLayoutsID = 0
 setupStarted = false
 exit = false
 sourceSpirit = nil
+weeklyChallenge = false
+challengeTier = 1
+challengeConfig = nil
 
 function onSave()
     local data_table = {}
@@ -265,32 +268,18 @@ function updateScenarioList()
     return updateDropdownList("scenario", scenarioList, scenarioName)
 end
 function randomAdversary()
-    local value = math.random(1,numAdversaries)
-    local i = 1
-    for _,guid in pairs(adversaries) do
-        if guid == "" then
-            -- noop
-        elseif i == value then
-            return getObjectFromGUID(guid)
-        else
-            i = i + 1
-        end
+    local adversary = indexTable(adversaries, math.random(1,numAdversaries))
+    if adversary == "" then
+        return nil
     end
-    return nil
+    return getObjectFromGUID(adversaries[adversary])
 end
 function randomScenario()
-    local value = math.random(1,numScenarios)
-    local i = 1
-    for _,guid in pairs(scenarios) do
-        if guid == "" then
-            -- noop
-        elseif i == value then
-            return getObjectFromGUID(guid)
-        else
-            i = i + 1
-        end
+    local scenario = indexTable(scenarios, math.random(1,numScenarios))
+    if scenario == "" then
+        return nil
     end
-    return nil
+    return getObjectFromGUID(scenarios[scenario])
 end
 
 ---- Setup UI Section
@@ -306,6 +295,7 @@ function updateNumPlayers(value, updateUI)
     if updateUI then
         self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
         self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+        challengeConfig = getWeeklyChallengeConfig()
 
         -- Stop previous timer and start a new one
         if updateLayoutsID ~= 0 then
@@ -547,15 +537,39 @@ function updateDifficulty()
 end
 function difficultyCheck(params)
     local difficulty = 0
-    local leadingAdversary = Global.getVar("adversaryCard")
+
+    local leadingAdversary
+    if params.adversary then
+        leadingAdversary = getObjectFromGUID(adversaries[params.adversary])
+    else
+        leadingAdversary = Global.getVar("adversaryCard")
+    end
     if leadingAdversary ~= nil then
-        difficulty = difficulty + leadingAdversary.getVar("difficulty")[Global.getVar("adversaryLevel")]
+        local leadingLevel
+        if params.adversaryLevel then
+            leadingLevel = params.adversaryLevel
+        else
+            leadingLevel = Global.getVar("adversaryLevel")
+        end
+        difficulty = difficulty + leadingAdversary.getVar("difficulty")[leadingLevel]
     elseif params.lead ~= nil then
         difficulty = difficulty + params.lead
     end
-    local supportingAdversary = Global.getVar("adversaryCard2")
+
+    local supportingAdversary
+    if params.adversary2 then
+        supportingAdversary = getObjectFromGUID(adversaries[params.adversary2])
+    else
+        supportingAdversary = Global.getVar("adversaryCard2")
+    end
     if supportingAdversary ~= nil then
-        local difficulty2 = supportingAdversary.getVar("difficulty")[Global.getVar("adversaryLevel2")]
+        local supportingLevel
+        if params.adversaryLevel2 then
+            supportingLevel = params.adversaryLevel2
+        else
+            supportingLevel = Global.getVar("adversaryLevel2")
+        end
+        local difficulty2 = supportingAdversary.getVar("difficulty")[supportingLevel]
         if difficulty > difficulty2 then
             difficulty = difficulty + (0.5 * difficulty2)
         else
@@ -569,7 +583,25 @@ function difficultyCheck(params)
             difficulty = (0.5 * difficulty) + difficulty2
         end
     end
-    local boardLayout = Global.getVar("boardLayout")
+
+    local scenario
+    if params.scenario then
+        scenario = getObjectFromGUID(scenarios[params.scenario])
+    else
+        scenario = Global.getVar("scenarioCard")
+    end
+    if scenario ~= nil then
+        difficulty = difficulty + scenario.getVar("difficulty")
+    elseif params.scenario ~= nil then
+        difficulty = difficulty + params.scenario
+    end
+
+    local boardLayout
+    if params.boardLayout ~= nil then
+        boardLayout = params.boardLayout
+    else
+        boardLayout = Global.getVar("boardLayout")
+    end
     if boardLayout == "Thematic" or params.thematic then
         if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
             difficulty = difficulty + 1
@@ -577,19 +609,21 @@ function difficultyCheck(params)
             difficulty = difficulty + 3
         end
     end
-    local scenario = Global.getVar("scenarioCard")
-    if scenario ~= nil then
-        difficulty = difficulty + scenario.getVar("difficulty")
-    elseif params.scenario ~= nil then
-        difficulty = difficulty + params.scenario
+
+    local extraBoard
+    if params.extraBoard ~= nil then
+        extraBoard = params.extraBoard
+    else
+        extraBoard = optionalExtraBoard
     end
-    if optionalExtraBoard then
+    if extraBoard then
         local intNum = math.floor(difficulty / 3) + 2
         difficulty = difficulty + intNum
         if boardLayout == "Thematic" or params.thematic then
             difficulty = difficulty - (intNum / 2)
         end
     end
+
     return difficulty
 end
 
@@ -597,7 +631,15 @@ function startGame()
     if setupStarted then
         return
     end
-    loadConfig()
+    local config
+    if weeklyChallenge then
+        config = challengeConfig
+    else
+        config = getNotebookConfig()
+    end
+    if config ~= nil then
+        loadConfig(config)
+    end
     if not Global.call("CanSetupGame", {}) then
         return
     end
@@ -614,90 +656,108 @@ function startGame()
     end
     Wait.condition(function() Global.call("SetupGame", {}) end, function() return bncDone and jeDone end)
 end
-function loadConfig()
+function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
         if data.title == "Game Config" then
-            if data.body == "" then return end
+            if data.body == "" then return nil end
             broadcastToAll("Loading config data from notebook", Color.SoftYellow)
-            local saved_data = JSON.decode(data.body)
-            if saved_data.numPlayers then
-                updateNumPlayers(saved_data.numPlayers, false)
-            end
-            if saved_data.boardLayout then
-                -- Convert from reddit community names to ones used by our mod
-                if saved_data.boardLayout == "Standard" then
-                    saved_data.boardLayout = "Balanced"
-                elseif saved_data.boardLayout == "Fragment 2" then
-                    saved_data.boardLayout = "Inverted Fragment"
-                end
-                updateBoardLayout(saved_data.boardLayout, false)
-            end
-            if saved_data.extraBoard ~= nil then
-                if saved_data.extraBoard then
-                    optionalExtraBoard = true
-                else
-                    optionalExtraBoard = false
-                end
-            end
-            if saved_data.boards then
-                Global.setTable("selectedBoards", saved_data.boards)
-            end
-            if saved_data.blightCards then
-                Global.setTable("blightCards", saved_data.blightCards)
-            end
-            if saved_data.adversary then
-                if saved_data.adversary == "Bradenburg-Prussia" then
-                    saved_data.adversary = "Prussia"
-                end
-                updateLeadingAdversary(saved_data.adversary, false)
-            end
-            if saved_data.adversaryLevel then
-                updateLeadingLevel(saved_data.adversaryLevel, false)
-            end
-            if saved_data.adversary2 then
-                if saved_data.adversary2 == "Bradenburg-Prussia" then
-                    saved_data.adversary2 = "Prussia"
-                end
-                updateSupportingAdversary(saved_data.adversary2, false)
-            end
-            if saved_data.adversaryLevel2 then
-                updateSupportingLevel(saved_data.adversaryLevel2, false)
-            end
-            if saved_data.scenario then
-                updateScenario(saved_data.scenario, false)
-            end
-            if saved_data.spirits then
-                for name,aspect in pairs(saved_data.spirits) do
-                    PickSpirit(name, aspect)
-                end
-            end
-            if saved_data.expansions then
-                local expansions = {}
-                for _,expansion in pairs(saved_data.expansions) do
-                    expansions[expansion] = true
-                end
-                if expansions.bnc then
-                    Global.setVar("BnCAdded", true)
-                    Global.setVar("useBnCEvents", true)
-                else
-                    Global.setVar("BnCAdded", false)
-                    Global.setVar("useBnCEvents", false)
-                end
-                if expansions.je then
-                    Global.setVar("JEAdded", true)
-                    Global.setVar("useJEEvents", true)
-                else
-                    Global.setVar("JEAdded", false)
-                    Global.setVar("useJEEvents", false)
-                end
-            end
-            if saved_data.broadcast then
-                broadcastToAll(saved_data.broadcast, Color.SoftYellow)
-            end
-            updateDifficulty()
-            break
+            return JSON.decode(data.body)
         end
     end
+    return nil
+end
+function loadConfig(config)
+    if config.numPlayers then
+        updateNumPlayers(config.numPlayers, false)
+    end
+    if config.boardLayout then
+        -- Convert from reddit community names to ones used by our mod
+        if config.boardLayout == "Standard" then
+            config.boardLayout = "Balanced"
+        elseif config.boardLayout == "Fragment 2" then
+            config.boardLayout = "Inverted Fragment"
+        end
+        updateBoardLayout(config.boardLayout, false)
+    end
+    if config.extraBoard ~= nil then
+        if config.extraBoard then
+            optionalExtraBoard = true
+        else
+            optionalExtraBoard = false
+        end
+    end
+    if config.boards then
+        Global.setTable("selectedBoards", config.boards)
+    end
+    if config.blightCards then
+        Global.setTable("blightCards", config.blightCards)
+    end
+    if config.adversary then
+        if config.adversary == "Bradenburg-Prussia" then
+            config.adversary = "Prussia"
+        end
+        updateLeadingAdversary(config.adversary, false)
+    end
+    if config.adversaryLevel then
+        updateLeadingLevel(config.adversaryLevel, false)
+    end
+    if config.adversary2 then
+        if config.adversary2 == "Bradenburg-Prussia" then
+            config.adversary2 = "Prussia"
+        end
+        updateSupportingAdversary(config.adversary2, false)
+    end
+    if config.adversaryLevel2 then
+        updateSupportingLevel(config.adversaryLevel2, false)
+    end
+    if config.scenario then
+        updateScenario(config.scenario, false)
+    end
+    if config.spirits then
+        for name,aspect in pairs(config.spirits) do
+            PickSpirit(name, aspect)
+        end
+    end
+    if config.expansions then
+        local expansions = {}
+        for _,expansion in pairs(config.expansions) do
+            expansions[expansion] = true
+        end
+        if expansions.bnc then
+            Global.setVar("BnCAdded", true)
+            Global.setVar("useBnCEvents", true)
+        else
+            Global.setVar("BnCAdded", false)
+            Global.setVar("useBnCEvents", false)
+        end
+        if expansions.je then
+            Global.setVar("JEAdded", true)
+            Global.setVar("useJEEvents", true)
+        else
+            Global.setVar("JEAdded", false)
+            Global.setVar("useJEEvents", false)
+        end
+    end
+    if config.events then
+        local expansions = {}
+        for _,expansion in pairs(config.events) do
+            expansions[expansion] = true
+        end
+        if expansions.bnc then
+            Global.setVar("useBnCEvents", true)
+        else
+            Global.setVar("useBnCEvents", false)
+        end
+        if expansions.je then
+            Global.setVar("useJEEvents", true)
+        else
+            Global.setVar("useJEEvents", false)
+        end
+    end
+    if config.broadcast then
+        broadcastToAll(config.broadcast, Color.SoftYellow)
+    end
+    updateDifficulty()
 end
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
@@ -778,6 +838,11 @@ function toggleSetupUI(show)
     else
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     end
+    if show and weeklyChallenge then
+        self.UI.setAttribute("panelChallenge", "visibility", "")
+    else
+        self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
+    end
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", visibility)
     self.UI.setAttribute("panelSpirit", "visibility", visibility)
 end
@@ -852,6 +917,50 @@ function toggleExploratory()
         self.UI.setAttribute("panelExploratory", "visibility", "")
     end
 end
+function toggleChallenge()
+    if challengeConfig == nil then
+        challengeConfig = getWeeklyChallengeConfig()
+    end
+    weeklyChallenge = not weeklyChallenge
+    if weeklyChallenge then
+        self.UI.setAttribute("leadingHeader", "visibility", "Invisible")
+        self.UI.setAttribute("leadingRow", "visibility", "Invisible")
+        self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
+        self.UI.setAttribute("supportingRow", "visibility", "Invisible")
+        self.UI.setAttribute("scenarioHeader", "visibility", "Invisible")
+        self.UI.setAttribute("scenarioRow", "visibility", "Invisible")
+        self.UI.setAttribute("difficultyHeader", "visibility", "Invisible")
+        self.UI.setAttribute("expansionsHeader", "visibility", "Invisible")
+        self.UI.setAttribute("expansionsRow", "visibility", "Invisible")
+        checkRandomDifficulty(false, true)
+        self.UI.setAttribute("simpleMode", "visibility", "Invisible")
+        self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
+        self.UI.setAttribute("panelChallenge", "visibility", "")
+    else
+        self.UI.setAttribute("leadingHeader", "visibility", "")
+        self.UI.setAttribute("leadingRow", "visibility", "")
+        self.UI.setAttribute("supportingHeader", "visibility", "")
+        self.UI.setAttribute("supportingRow", "visibility", "")
+        self.UI.setAttribute("scenarioHeader", "visibility", "")
+        self.UI.setAttribute("scenarioRow", "visibility", "")
+        self.UI.setAttribute("difficultyHeader", "visibility", "")
+        self.UI.setAttribute("expansionsHeader", "visibility", "")
+        self.UI.setAttribute("expansionsRow", "visibility", "")
+        checkRandomDifficulty(true)
+        self.UI.setAttribute("simpleMode", "visibility", "")
+        self.UI.setAttribute("panelSpirit", "visibility", "")
+        self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
+    end
+    self.UI.setAttribute("challenge", "isOn", weeklyChallenge)
+end
+function toggleChallengeTier(_, value)
+    if value == "0" then
+        challengeTier = 1
+    elseif value == "1" then
+        challengeTier = 2
+    end
+    challengeConfig = getWeeklyChallengeConfig()
+end
 
 function toggleMinDifficulty(_, value)
     local maxDifficulty = Global.getVar("maxDifficulty")
@@ -887,7 +996,7 @@ function enableRandomDifficulty()
     self.UI.setAttribute("maxTextRow", "visibility", "")
     self.UI.setAttribute("maxRow", "visibility", "")
 end
-function checkRandomDifficulty(enable)
+function checkRandomDifficulty(enable, force)
     local visibility = ""
     if not enable then
         visibility = "Invisible"
@@ -896,7 +1005,7 @@ function checkRandomDifficulty(enable)
             or Global.getVar("useSecondAdversary")
             or Global.getVar("includeThematic")
             or Global.getVar("useRandomScenario")
-    if random == enable then
+    if random == enable or force then
         self.UI.setAttribute("minTextRow", "visibility", visibility)
         self.UI.setAttribute("minRow", "visibility", visibility)
         self.UI.setAttribute("maxTextRow", "visibility", visibility)
@@ -1258,6 +1367,23 @@ function toggleDigitalEvents()
     self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
 end
 
+function toggleExploratoryAll()
+    local checked = self.UI.getAttribute("exploratoryAll", "isOn")
+    if checked == "true" then
+        checked = "false"
+        if exploratoryVOTD then toggleVOTD() end
+        if exploratoryBODAN then toggleBODAN() end
+        if exploratoryWar then toggleWar() end
+        if exploratoryAid then toggleAid() end
+    else
+        checked = "true"
+        if not exploratoryVOTD then toggleVOTD() end
+        if not exploratoryBODAN then toggleBODAN() end
+        if not exploratoryWar then toggleWar() end
+        if not exploratoryAid then toggleAid() end
+    end
+    self.UI.setAttribute("exploratoryAll", "isOn", checked)
+end
 function toggleVOTD()
     exploratoryVOTD = not exploratoryVOTD
     self.UI.setAttribute("votd", "isOn", exploratoryVOTD)
@@ -1371,4 +1497,215 @@ function updateDropdownSelection(id, value)
             end
         end
     end)
+end
+
+function indexTable(table, index)
+    local i = 1
+    for name,guid in pairs(table) do
+        if guid == "" then
+            -- noop
+        elseif i == index then
+            return name
+        else
+            i = i + 1
+        end
+    end
+    return ""
+end
+function getWeeklyChallengeConfig()
+    local function seedTimestamp()
+        local weekDiff = 604800
+        local dayDiff = 86400
+        local hourDiff = 3600
+        local time = os.time()
+        time = time + (dayDiff * 3) - (hourDiff * 5)
+        time = time - (time % weekDiff)
+        time = time - (dayDiff * 3) + (hourDiff * 5)
+        math.randomseed(time)
+    end
+    seedTimestamp()
+
+    -- Requires both Branch & Claw and Jagged Earth expansions
+    local config = {boards = {}, spirits = {}, expansions = {"bnc", "je"}, events = {}, broadcast = ""}
+    local numPlayers = Global.getVar("numPlayers")
+
+    -- Requires two adversaries
+    local leadingAdversary = math.random(1, numAdversaries)
+    config.adversary = indexTable(adversaries, leadingAdversary)
+    local leadingAdversaryLevel = math.random(0, 419)
+    config.adversaryLevel  = leadingAdversaryLevel % 7
+    local supportingAdversary = math.random(1, numAdversaries - 1)
+    if supportingAdversary >= leadingAdversary then
+        supportingAdversary = supportingAdversary + 1
+    end
+    config.adversary2 = indexTable(adversaries, supportingAdversary)
+    local supportingAdversaryLevel = math.random(0, 419)
+    config.adversaryLevel2  = supportingAdversaryLevel % 7
+    local scenario = math.random(-2, numScenarios)
+    if scenario <= 0 then
+        config.scenario = "None"
+    else
+        config.scenario = indexTable(scenarios, scenario)
+    end
+
+    -- Make extra board more likely on higher tier
+    local extraBoard = math.random(-2, 1)
+    if challengeTier == 1 then
+        config.extraBoard = extraBoard == 1
+    elseif challengeTier == 2 then
+        config.extraBoard = extraBoard >= -1
+    end
+    if numPlayers == 6 then
+        -- There's currently only 6 island boards in the game
+        config.extraBoard = false
+    end
+
+    local setups = Global.getTable("boardLayouts")
+    local numBoards = numPlayers
+    if config.extraBoard then
+        numBoards = numPlayers + 1
+    end
+    if math.random(-2, 1) == 1 then
+        config.boardLayout = "Thematic"
+    else
+        local layoutsCount = 0
+        for _,_ in pairs(setups[numBoards]) do
+            layoutsCount = layoutsCount + 1
+        end
+        -- Thematic layout is always first index, so skip it
+        config.boardLayout = indexTable(setups[numBoards], math.random(2, layoutsCount))
+    end
+
+    if math.random(0, 2) > 0 then
+        table.insert(config.events, "bnc")
+    end
+    if math.random(0, 2) > 0 then
+        table.insert(config.events, "je")
+    end
+
+    -- Copy spiritGuids table so we can remove elements from it
+    local spiritGuidsCopy = {table.unpack(spiritGuids)}
+    local boardsCount
+    local boards
+    if config.boardLayout == "Thematic" then
+        boards = {}
+        for _,board in pairs(setups[numBoards]["Thematic"]) do
+            boards[board.board] = false
+        end
+        boardsCount = numBoards
+    else
+        boards = {A = false, B = false, C = false, D = false, E = false, F = false}
+        boardsCount = 6
+    end
+    local function findBoard(picked)
+        local board = math.random(1, boardsCount - picked)
+        local i = 1
+        for name,taken in pairs(boards) do
+            if taken then
+                -- noop
+            elseif i == board then
+                boards[name] = true
+                return name
+            else
+                i = i + 1
+            end
+        end
+        return ""
+    end
+    for i=1,numPlayers do
+        local index = math.random(1, #spiritGuidsCopy)
+        local spirit = getObjectFromGUID(spiritGuidsCopy[index])
+
+        local aspects = sourceSpirit.call("FindAspects", {obj=spirit})
+        local aspect = ""
+        if aspects == nil then
+            -- noop
+        elseif aspects.type == "Deck" then
+            local cards = aspects.getObjects()
+            local aspectIndex = math.random(0,#cards)
+            if aspectIndex ~= 0 then
+                aspect = cards[aspectIndex].name
+            end
+        elseif aspects.type == "Card" then
+            if math.random(0,1) == 1 then
+                aspect = aspects.getName()
+            end
+        end
+
+        config.spirits[spirit.getName()] = aspect
+        table.remove(spiritGuidsCopy, index)
+        local boardName = findBoard(i - 1)
+        table.insert(config.boards, boardName)
+        if i ~= 1 then
+            config.broadcast = config.broadcast..", "
+        end
+        config.broadcast = config.broadcast..spirit.getName().." on "..boardName
+    end
+    if config.extraBoard then
+        table.insert(config.boards, findBoard(numPlayers))
+    end
+
+    -- Makes sure difficulty is in acceptable range for the tier of challenge
+    local difficulty = difficultyCheck(config)
+    while difficulty > 12 do
+        config.adversaryLevel  = leadingAdversaryLevel % config.adversaryLevel
+        config.adversaryLevel2  = supportingAdversaryLevel % config.adversaryLevel2
+        difficulty = difficultyCheck(config)
+    end
+    if challengeTier == 2 then
+        -- Store tier 1's levels and reset back to initial levels
+        local leadingAdversaryLevelTier1 = config.adversaryLevel
+        local supportingAdversaryLevelTier1 = config.adversaryLevel2
+        config.adversaryLevel = leadingAdversaryLevel % 7
+        config.adversaryLevel2 = supportingAdversaryLevel % 7
+
+        while difficulty <= 12 do
+            local leadingDiff = 6 - config.adversaryLevel
+            config.adversaryLevel  = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
+            local supportingDiff = 6 - config.adversaryLevel2
+            config.adversaryLevel2  = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
+            difficulty = difficultyCheck(config)
+        end
+
+        -- Make sure adversary levels never go down when you increase difficulty
+        if config.adversaryLevel < leadingAdversaryLevelTier1 then
+            config.adversaryLevel = leadingAdversaryLevelTier1
+        end
+        if config.adversaryLevel2 < supportingAdversaryLevelTier1 then
+            config.adversaryLevel2 = supportingAdversaryLevelTier1
+        end
+        difficulty = difficultyCheck(config)
+    end
+
+    setWeeklyChallengeUI(config, difficulty)
+    math.randomseed(os.time())
+    return config
+end
+function setWeeklyChallengeUI(config, difficulty)
+    self.UI.setAttribute("challengeLeadingAdversary", "text", "Leading Adversary: "..config.adversary.." "..config.adversaryLevel)
+    self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)
+    self.UI.setAttribute("challengeScenario", "text", "Scenario: "..config.scenario)
+    self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
+    if config.extraBoard then
+        self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[#config.boards])
+        self.UI.setAttribute("challengeExtraBoardRow", "visibility", "")
+    else
+        self.UI.setAttribute("challengeExtraBoardRow", "visibility", "Invisible")
+    end
+    self.UI.setAttribute("challengeDifficulty", "text", "Difficulty: "..difficulty)
+
+    local i = 1
+    for spirit,aspect in pairs(config.spirits) do
+        local spiritText = spirit
+        if aspect ~= "" then
+            spiritText = spiritText.. " - "..aspect
+        end
+        self.UI.setAttribute("challengeSpirit"..i, "text", config.boards[i]..": "..spiritText)
+        self.UI.setAttribute("challengeSpiritRow"..i, "visibility", "")
+        i = i + 1
+    end
+    while i <= 6 do
+        self.UI.setAttribute("challengeSpiritRow"..i, "visibility", "Invisible")
+        i = i + 1
+    end
 end

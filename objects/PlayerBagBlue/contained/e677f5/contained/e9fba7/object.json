@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -25.104190826416016,
-    "posY": 1.1461284160614014,
-    "posZ": -14.926012992858887,
+    "posX": -25.10420036315918,
+    "posY": 1.1461000442504883,
+    "posZ": -14.925999641418457,
     "rotX": 353.81988525390625,
-    "rotY": 0.08675438910722733,
+    "rotY": 0.0868000015616417,
     "rotZ": 359.9378967285156,
-    "scaleX": 0.5000004768371582,
-    "scaleY": 0.5000004768371582,
-    "scaleZ": 0.5000004768371582
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
   },
   "Nickname": "Earth Element",
   "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.42684024572372437,
-    "g": 0.3694004714488983,
-    "b": 0.43960461020469666
+    "r": 0.426800012588501,
+    "g": 0.3693999946117401,
+    "b": 0.43959999084472656
   },
   "Tags": [
     "Destroy",

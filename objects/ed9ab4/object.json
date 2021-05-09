@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -14.34975814819336,
-    "posY": 1.1912455558776855,
-    "posZ": 74.70220947265625,
-    "rotX": 0.004456578753888607,
-    "rotY": 180.00001525878906,
-    "rotZ": 3.925388682546327e-06,
-    "scaleX": 0.3651334047317505,
+    "posX": -14.349800109863281,
+    "posY": 1.1030999422073364,
+    "posZ": 74.70220184326172,
+    "rotX": -0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 0.3650999963283539,
     "scaleY": 1.0,
-    "scaleZ": 0.3651334047317505
+    "scaleZ": 0.3650999963283539
   },
   "Nickname": "Beasts",
   "Description": "Harms Invaders and generates Fear as specified by Powers and Event Cards",

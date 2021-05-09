@@ -1658,6 +1658,7 @@ function getWeeklyChallengeConfig()
         local supportingAdversaryLevelTier1 = config.adversaryLevel2
         config.adversaryLevel = leadingAdversaryLevel % 7
         config.adversaryLevel2 = supportingAdversaryLevel % 7
+        difficulty = difficultyCheck(config)
 
         while difficulty <= 12 do
             local leadingDiff = 6 - config.adversaryLevel

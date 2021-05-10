@@ -2161,7 +2161,7 @@ function enableUI()
             setVisiTable("panelUI", colors)
             setVisiTable("panelUIToggleHide", colors)
         end, 2)
-    end, 2)
+    end, 3)
 end
 function runSpiritSetup()
     for color, _ in pairs(selectedColors) do

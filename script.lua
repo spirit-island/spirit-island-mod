@@ -2111,8 +2111,11 @@ function StartGame()
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
 
-    broadcastToAll("Game Started!", Table)
+    broadcastToAll("Game Started!", Color.White)
     broadcastToAll("Don't forget to do the initial explore action yourself!", Color.SoftBlue)
+    if SetupChecker.getVar("optionalExtraBoard") and numPlayers == 1 then
+        broadcastToAll("Remember to skip the initial explore on the extra board!", Color.SoftYellow)
+    end
     if adversaryCard2 ~= nil then
         wt(2)
         broadcastToAll("Your stage II escalation is "..adversaryCard.getName()..".\nYour stage III escalation is "..adversaryCard2.getName(), "Blue")

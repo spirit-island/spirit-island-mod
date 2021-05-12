@@ -1,5 +1,5 @@
 ---- Versioning
-version = "2.1.0"
+version = "2.1.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -48,6 +48,8 @@ numBoards = 1
 boardLayout = "Balanced"
 BnCAdded = false
 JEAdded = false
+useBnCEvents = false
+useJEEvents = false
 fearPool = 0
 generatedFear = 0
 gameStarted = false
@@ -80,11 +82,8 @@ playerBlocks = {
 showPlayerButtons = true
 onlyCleanupTimePasses = false
 objectsToCleanup = {}
-
 ------ Unsaved Config Data
 useBlightCard = true
-useBnCEvents = false
-useJEEvents = false
 gamePaused = false
 yHeight = 0
 stagesSetup = 0
@@ -173,6 +172,14 @@ function onObjectDrop(player_color, dropped_object)
             end
             dropped_object.highlightOn(dropColor, 60)
         end
+    end
+end
+function onObjectStateChange(changed_object, old_guid)
+    if seaTile.guid == old_guid then
+        seaTile = changed_object
+        seaTile.interactable = false
+        seaTile.registerCollisions(false)
+        return
     end
 end
 function onObjectCollisionEnter(hit_object, collision_info)
@@ -268,7 +275,9 @@ end
 function onSave()
     local data_table = {
         BnCAdded = BnCAdded,
-        JEAdded =  JEAdded,
+        JEAdded = JEAdded,
+        useBnCEvents = useBnCEvents,
+        useJEEvents = useJEEvents,
         fearPool = fearPool,
         generatedFear = generatedFear,
         gameStarted = gameStarted,
@@ -448,6 +457,8 @@ function onLoad(saved_data)
         selectedColors = loaded_data.selectedColors
         BnCAdded = loaded_data.BnCAdded
         JEAdded = loaded_data.JEAdded
+        useBnCEvents = loaded_data.useBnCEvents
+        useJEEvents = loaded_data.useJEEvents
         fearPool = loaded_data.fearPool
         generatedFear = loaded_data.generatedFear
         difficulty = loaded_data.difficulty
@@ -2100,8 +2111,11 @@ function StartGame()
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
 
-    broadcastToAll("Game Started!", Table)
+    broadcastToAll("Game Started!", Color.White)
     broadcastToAll("Don't forget to do the initial explore action yourself!", Color.SoftBlue)
+    if SetupChecker.getVar("optionalExtraBoard") and numPlayers == 1 then
+        broadcastToAll("Remember to skip the initial explore on the extra board!", Color.SoftYellow)
+    end
     if adversaryCard2 ~= nil then
         wt(2)
         broadcastToAll("Your stage II escalation is "..adversaryCard.getName()..".\nYour stage III escalation is "..adversaryCard2.getName(), "Blue")
@@ -2150,7 +2164,7 @@ function enableUI()
             setVisiTable("panelUI", colors)
             setVisiTable("panelUIToggleHide", colors)
         end, 2)
-    end, 2)
+    end, 3)
 end
 function runSpiritSetup()
     for color, _ in pairs(selectedColors) do

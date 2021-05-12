@@ -133,14 +133,16 @@ function onLoad(saved_data)
             self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
             if Global.getVar("BnCAdded") then
-                Global.setVar("useBnCEvents", true)
                 self.UI.setAttribute("bnc", "isOn", "true")
-                self.UI.setAttribute("bncEvents", "isOn", "true")
+                if Global.getVar("useBnCEvents") then
+                    self.UI.setAttribute("bncEvents", "isOn", "true")
+                end
             end
             if Global.getVar("JEAdded") then
-                Global.setVar("useJEEvents", true)
                 self.UI.setAttribute("je", "isOn", "true")
-                self.UI.setAttribute("jeEvents", "isOn", "true")
+                if Global.getVar("useJEEvents") then
+                    self.UI.setAttribute("jeEvents", "isOn", "true")
+                end
             end
 
             -- queue up all dropdown changes as once
@@ -1358,6 +1360,14 @@ function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
 end
+function toggleCarpetRedo()
+    local seaTile = Global.getVar("seaTile")
+    if seaTile.getStateId() == 1 then
+        seaTile.setState(2)
+    else
+        seaTile.setState(1)
+    end
+end
 function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
@@ -1658,6 +1668,7 @@ function getWeeklyChallengeConfig()
         local supportingAdversaryLevelTier1 = config.adversaryLevel2
         config.adversaryLevel = leadingAdversaryLevel % 7
         config.adversaryLevel2 = supportingAdversaryLevel % 7
+        difficulty = difficultyCheck(config)
 
         while difficulty <= 12 do
             local leadingDiff = 6 - config.adversaryLevel

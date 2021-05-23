@@ -66,6 +66,7 @@ returnBlightBag = nil
 explorerBag = "613ea4"
 townBag = "4d3c15"
 cityBag = "a245f8"
+seaTile = "5f4be2"
 selectedColors = {}
 selectedBoards = {}
 blightCards = {}
@@ -122,7 +123,6 @@ speedBag = "65fc65"
 StandardMapBag = "BalancedMapBag"
 ThematicMapBag = "ThematicMapBag"
 MJThematicMapBag = "MJThematicMapBag"
-seaTile = "5f4be2"
 -----
 cityHealth = "22928c"
 cityDamage = "d8b6c7"
@@ -288,6 +288,7 @@ function onSave()
         explorerBag = explorerBag.guid,
         townBag = townBag.guid,
         cityBag = cityBag.guid,
+        seaTile = seaTile.guid,
         adversaryLevel = adversaryLevel,
         adversaryLevel2 = adversaryLevel2,
         boardLayout = boardLayout,
@@ -446,7 +447,6 @@ function onLoad(saved_data)
     ThematicMapBag = getObjectFromGUID(ThematicMapBag)
     MJThematicMapBag = getObjectFromGUID(MJThematicMapBag)
     seaTile = getObjectFromGUID(seaTile)
-    yHeight = seaTile.getPosition().y + 0.1
 
     -- Loads the tracking for if the game has started yet
     if saved_data ~= "" then
@@ -469,6 +469,7 @@ function onLoad(saved_data)
         explorerBag = getObjectFromGUID(loaded_data.explorerBag)
         townBag = getObjectFromGUID(loaded_data.townBag)
         cityBag = getObjectFromGUID(loaded_data.cityBag)
+        seaTile = getObjectFromGUID(loaded_data.seaTile)
         adversaryCard = getObjectFromGUID(loaded_data.adversaryCardGuid)
         adversaryLevel = loaded_data.adversaryLevel
         adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
@@ -519,6 +520,7 @@ function onLoad(saved_data)
             end
         end
     end
+    yHeight = seaTile.getPosition().y + 0.1
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
     for color,data in pairs(selectedColors) do

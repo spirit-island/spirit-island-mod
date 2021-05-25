@@ -1552,9 +1552,8 @@ function getWeeklyChallengeConfig()
     local supportingAdversaryLevel = math.random(0, 419)
     config.adversaryLevel2  = supportingAdversaryLevel % 7
     local scenario = math.random(-2, numScenarios)
-    if scenario <= 0 then
-        config.scenario = "None"
-    else
+    -- <= 0 means no scenario is selected
+    if scenario > 0 then
         config.scenario = indexTable(scenarios, scenario)
     end
 
@@ -1695,7 +1694,11 @@ end
 function setWeeklyChallengeUI(config, difficulty)
     self.UI.setAttribute("challengeLeadingAdversary", "text", "Leading Adversary: "..config.adversary.." "..config.adversaryLevel)
     self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)
-    self.UI.setAttribute("challengeScenario", "text", "Scenario: "..config.scenario)
+    if config.scenario then
+        self.UI.setAttribute("challengeScenario", "text", "Scenario: "..config.scenario)
+    else
+        self.UI.setAttribute("challengeScenario", "text", "Scenario: None")
+    end
     self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
     if config.extraBoard then
         self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[#config.boards])

@@ -221,7 +221,7 @@ function toggleInvaderUI(england)
         UI.setAttribute("invaderImage", "image", "England Invader Phase Stage")
         UI.setAttribute("invaderLayout", "spacing", -4)
         UI.setAttribute("invaderLayout", "offsetXY", "8 -4")
-        UI.setAttribute("panelBuild2", "active", true)
+        UI.setAttribute("panelBuild2", "active", "true")
     else
         Global.setVar("childHeight", 64)
         Global.setVar("childWidth", 64)
@@ -229,7 +229,7 @@ function toggleInvaderUI(england)
         UI.setAttribute("invaderImage", "image", "Invader Phase Stage")
         UI.setAttribute("invaderLayout", "spacing", 16)
         UI.setAttribute("invaderLayout", "offsetXY", "0 8")
-        UI.setAttribute("panelBuild2", "active", false)
+        UI.setAttribute("panelBuild2", "active", "false")
     end
     Global.setVar("forceInvaderUpdate", true)
 end

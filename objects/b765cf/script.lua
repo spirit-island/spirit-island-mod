@@ -28,17 +28,25 @@ function onLoad(saved_data)
     end
 end
 
-function onObjectPickUp(player_color, picked_up_object)
-    if picked_up_object.guid == highImmigration then
-        toggleInvaderUI(false)
-        local aidBoard = Global.getVar("aidBoard")
-        moveDiscard(aidBoard, picked_up_object)
-        removeEnglandSnap(aidBoard)
+function onObjectDestroy(dying_object)
+    if dying_object.guid == highImmigration then
+        highImmigration3(dying_object)
     end
+end
+function onObjectPickUp(_, picked_up_object)
+    if picked_up_object.guid == highImmigration then
+        highImmigration3(picked_up_object)
+    end
+end
+function highImmigration3(obj)
+    toggleInvaderUI(false)
+    local aidBoard = Global.getVar("aidBoard")
+    moveDiscard(aidBoard, obj)
+    removeEnglandSnap(aidBoard)
 end
 function moveDiscard(aidBoard, immigrationTile)
     local currentDiscard = aidBoard.getTable("discard")
-    local hits = Physics.cast({
+    local discardHits = Physics.cast({
         origin       = currentDiscard,
         direction    = Vector(0,1,0),
         type         = 3,
@@ -47,16 +55,7 @@ function moveDiscard(aidBoard, immigrationTile)
         max_distance = 0,
         --debug        = true,
     })
-    for _,hit in pairs(hits) do
-        if hit.hit_object ~= aidBoard then
-            if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
-                hit.hit_object.setPosition(originalDiscardPosition)
-                hit.hit_object.setRotation(Vector(0,90,0))
-            end
-        end
-    end
-
-    hits = Physics.cast({
+    local immigrationHits = Physics.cast({
         origin       = immigrationTile.getPosition(),
         direction    = Vector(0,1,0),
         type         = 3,
@@ -65,13 +64,20 @@ function moveDiscard(aidBoard, immigrationTile)
         max_distance = 0,
         --debug        = true,
     })
-    for _,hit in pairs(hits) do
+
+    for _,hit in pairs(discardHits) do
+        if hit.hit_object ~= aidBoard then
+            if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
+                hit.hit_object.setPosition(originalDiscardPosition)
+                hit.hit_object.setRotation(Vector(0,90,0))
+            end
+        end
+    end
+    for _,hit in pairs(immigrationHits) do
         if hit.hit_object ~= immigrationTile then
             if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
-                Wait.frames(function()
-                    hit.hit_object.setPosition(originalDiscardPosition + Vector(0,0.5,0))
-                    hit.hit_object.setRotation(Vector(0,90,0))
-                end, 1)
+                hit.hit_object.setPosition(originalDiscardPosition + Vector(0,0.5,0))
+                hit.hit_object.setRotation(Vector(0,90,0))
             end
         end
     end

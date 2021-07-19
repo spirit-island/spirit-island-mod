@@ -1657,8 +1657,12 @@ function getWeeklyChallengeConfig()
     -- Makes sure difficulty is in acceptable range for the tier of challenge
     local difficulty = difficultyCheck(config)
     while difficulty > 12 do
-        config.adversaryLevel  = leadingAdversaryLevel % config.adversaryLevel
-        config.adversaryLevel2  = supportingAdversaryLevel % config.adversaryLevel2
+        if config.adversaryLevel > 0 then
+            config.adversaryLevel = leadingAdversaryLevel % config.adversaryLevel
+        end
+        if config.adversaryLevel2 > 0 then
+            config.adversaryLevel2 = supportingAdversaryLevel % config.adversaryLevel2
+        end
         difficulty = difficultyCheck(config)
     end
     if challengeTier == 2 then
@@ -1670,10 +1674,14 @@ function getWeeklyChallengeConfig()
         difficulty = difficultyCheck(config)
 
         while difficulty <= 12 do
-            local leadingDiff = 6 - config.adversaryLevel
-            config.adversaryLevel  = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
-            local supportingDiff = 6 - config.adversaryLevel2
-            config.adversaryLevel2  = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
+            if config.adversaryLevel < 6 then
+                local leadingDiff = 6 - config.adversaryLevel
+                config.adversaryLevel = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
+            end
+            if config.adversaryLevel < 6 then
+                local supportingDiff = 6 - config.adversaryLevel2
+                config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
+            end
             difficulty = difficultyCheck(config)
         end
 

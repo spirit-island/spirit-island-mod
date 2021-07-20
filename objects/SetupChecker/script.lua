@@ -1543,14 +1543,14 @@ function getWeeklyChallengeConfig()
     local leadingAdversary = math.random(1, numAdversaries)
     config.adversary = indexTable(adversaries, leadingAdversary)
     local leadingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel  = leadingAdversaryLevel % 7
+    config.adversaryLevel = leadingAdversaryLevel % 7
     local supportingAdversary = math.random(1, numAdversaries - 1)
     if supportingAdversary >= leadingAdversary then
         supportingAdversary = supportingAdversary + 1
     end
     config.adversary2 = indexTable(adversaries, supportingAdversary)
     local supportingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel2  = supportingAdversaryLevel % 7
+    config.adversaryLevel2 = supportingAdversaryLevel % 7
     local scenario = math.random(-2, numScenarios)
     -- <= 0 means no scenario is selected
     if scenario > 0 then

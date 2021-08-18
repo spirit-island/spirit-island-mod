@@ -2,6 +2,7 @@
 read_globals = {
     "Color",
     "Global",
+    "Hands",
     "JSON",
     "Notes",
     "Physics",

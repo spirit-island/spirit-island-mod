@@ -3611,6 +3611,29 @@ function refundEnergyTokens(color, cost)
     end
     return true
 end
+function getCurrentEnergy(color)
+    if selectedColors[color].counter ~= nil and selectedColors[color].counter.getLock() then
+        return selectedColors[color].counter.getValue()
+    end
+
+    local energy = 0
+    local zone = getObjectFromGUID(elementScanZones[color])
+    local objects = zone.getObjects()
+    for _, obj in ipairs(objects) do
+        if obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                energy = energy + quantity
+            elseif obj.getName() == "3 Energy" then
+                energy = energy + (3 * quantity)
+            end
+        end
+    end
+    return energy
+end
 
 function setupSwapButtons()
     for color,obj in pairs(playerTables) do
@@ -4509,6 +4532,10 @@ function enterSpiritPhase(player)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
+
+    for color,_ in pairs(selectedColors) do
+        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftYellow)
+    end
 end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end

@@ -1585,10 +1585,11 @@ function getWeeklyChallengeConfig()
         config.boardLayout = indexTable(setups[numBoards], math.random(2, layoutsCount))
     end
 
-    if math.random(0, 2) > 0 then
+    local events = math.random(1, 4)
+    if events == 1 or events >= 3 then
         table.insert(config.events, "bnc")
     end
-    if math.random(0, 2) > 0 then
+    if events == 2 or events >= 3 then
         table.insert(config.events, "je")
     end
 

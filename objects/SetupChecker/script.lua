@@ -1707,6 +1707,21 @@ function setWeeklyChallengeUI(config, difficulty)
     else
         self.UI.setAttribute("challengeScenario", "text", "Scenario: None")
     end
+    if #config.events == 0 then
+        self.UI.setAttribute("challengeEvents", "text", "Events: None")
+    else
+        local events = "Events: "
+        for _,expansion in pairs(config.events) do
+            local expansionString
+            if expansion == "bnc" then
+                expansionString = "B&C"
+            else
+                expansionString = expansion:upper()
+            end
+            events = events..expansionString..", "
+        end
+        self.UI.setAttribute("challengeEvents", "text", events:sub(1,-3))
+    end
     self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
     if config.extraBoard then
         self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[#config.boards])

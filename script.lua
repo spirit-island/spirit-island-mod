@@ -349,37 +349,37 @@ function onLoad(saved_data)
 
     clearHotkeys()
     for _, piece in ipairs(Pieces) do
-        addHotkey("Add " .. piece, function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-            DropPiece(piece, cursorLocation, droppingPlayerColor)
+        addHotkey("Add " .. piece, function (playerColor, hoveredObject, cursorLocation, key_down_up)
+            DropPiece(piece, cursorLocation, playerColor)
         end)
     end
 
-    addHotkey("Remove Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Remove Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
             deleteObject(hoveredObject, false)
         end
     end)
-    addHotkey("Destroy Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Destroy Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
             deleteObject(hoveredObject, true)
         end
     end)
 
-    addHotkey("Add Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Add Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("addFear")
     end)
-    addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Remove Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("removeFear")
     end)
-    addHotkey("Flip Explore Card", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Flip Explore Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("flipExploreCard")
     end)
-    addHotkey("Advance Invader Cards", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Advance Invader Cards", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("advanceInvaderCards")
     end)
 
-    addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
+    addHotkey("Forget Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
                 -- This ugliness is because setPositionSmooth doesn't work from a hand.
                 ensureCardInPlay(obj)
@@ -392,15 +392,22 @@ function onLoad(saved_data)
             discardPowerCardFromPlay(hoveredObject, 1)
         end
     end)
-    addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
+    addHotkey("Discard Power (to 2nd hand)", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
-                obj.deal(1, droppingPlayerColor, 2)
+                obj.deal(1, playerColor, 2)
             end
         end
         if isPowerCard({card=hoveredObject}) then
-            hoveredObject.deal(1, droppingPlayerColor, 2)
+            hoveredObject.deal(1, playerColor, 2)
         end
+    end)
+
+    addHotkey("Gain Major Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        MajorPowerC(_, playerColor, false)
+    end)
+    addHotkey("Gain Minor Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        MinorPowerC(_, playerColor, false)
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do

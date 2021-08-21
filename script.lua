@@ -404,10 +404,10 @@ function onLoad(saved_data)
     end)
 
     addHotkey("Gain Major Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
-        MajorPowerC(_, playerColor, false)
+        MajorPowerC(nil, playerColor, false)
     end)
     addHotkey("Gain Minor Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
-        MinorPowerC(_, playerColor, false)
+        MinorPowerC(nil, playerColor, false)
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do

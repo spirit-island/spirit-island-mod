@@ -25,9 +25,9 @@ read_globals = {
     "setLookingForPlayers",
     "startLuaCoroutine",
 }
--- Additionally `self` is defined for object scripts, and it has mutable fields.
+-- Additionally `self` and `Hands` have mutable fields.
 files["objects/**/*.lua"] = {
-    globals = {"self"},
+    globals = {"self", "Hands"},
 }
 
 -- Don't have a maximum line length.

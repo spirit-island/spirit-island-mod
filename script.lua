@@ -2351,7 +2351,6 @@ end
 function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
     for _, obj in ipairs(zone.getObjects()) do
-        local name = obj.getName()
         if obj.hasTag("Any") then
             if obj.getStateId() ~= 9 then obj = obj.setState(9) end
             if obj.getLock() == false then obj.destruct() end

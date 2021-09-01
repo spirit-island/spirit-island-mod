@@ -2309,12 +2309,7 @@ function handlePiece(object, offset)
         end
     elseif name == "Blight" then
         object = resetPiece(object, Vector(0,180,0), offset)
-    elseif string.sub(name, -6) == "Defend" then
-        if object.getLock() == false then
-            object.destruct()
-            object = nil
-        end
-    elseif string.sub(name, -7) == "Isolate" then
+    elseif object.hasTag("Reminder Token") then
         if object.getLock() == false then
             object.destruct()
             object = nil
@@ -2362,9 +2357,7 @@ function handlePlayer(color, data)
             if obj.getLock() == false then obj.destruct() end
         elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
-        elseif string.sub(name, -6) == "Defend" then
-            obj.destruct()
-        elseif string.sub(name, -7) == "Isolate" then
+        elseif obj.hasTag("Reminder Token") then
             obj.destruct()
         elseif obj.getName() == "Speed Token" then
             -- Move speed token up a bit to trigger collision exit callback
@@ -4094,29 +4087,34 @@ end
 
 function swapPlayerPresenceColors(fromColor, toColor)
     if fromColor == toColor then return end
-    local function initData(color, ix, oppositeColor)
+    local function initData(color, ix)
         local bag = getObjectFromGUID(PlayerBags[color])
+        -- If color has not been selected this will be changed during player bag emptying
+        local colorTint = color
+        if selectedColors[color] then
+            colorTint = selectedColors[color].defend.getColorTint()
+        end
         return {
             color = color,
             ix = ix,
             bag = bag,
             qty = bag.getQuantity(),
-            tints = {},
+            tint = colorTint,
+            presenceTint = bag.getColorTint(),
             objects = {},
             pattern = color .. "'s (.*)",
             bagContents = {},
-            oppositeColor = oppositeColor,
         }
     end
     local colors = {
-        from = initData(fromColor, 1, toColor),
-        to = initData(toColor, 2, fromColor)
+        from = initData(fromColor, 1),
+        to = initData(toColor, 2)
     }
 
     -- If both bags are full, there's not a lot of work to do.
-    -- Unfortunately, we still need to loop through other things because of defend tokens that aren't in bags.
-    local fastSwap = (colors.from.qty == 25 and colors.to.qty == 25)
-    -- Just bail out fast.
+    if colors.from.qty == 25 and colors.to.qty == 25 then
+        return
+    end
 
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
     -- Only need to handle case where both colors have spirits here
@@ -4136,30 +4134,30 @@ function swapPlayerPresenceColors(fromColor, toColor)
         selectedColors[fromColor].isolate.setPosition(pos)
     end
 
-    if not fastSwap then
-        -- Remove any items still in the bags
-        for _, data in pairs(colors) do
-            for i = 1,data.qty do
-                data.bag.takeObject({
-                    sound = false,
-                    position = Vector(data.ix*2, i*2, 200),    -- Chosen to be out-of-the-way and to prevent items from stacking.
-                    smooth = false,
-                    callback_function = function(obj) table.insert(data.bagContents, obj.guid) end,
-                })
+    -- Remove any items still in the bags
+    for _, data in pairs(colors) do
+        for i = 1,data.qty do
+            local obj = data.bag.takeObject({
+                sound = false,
+                position = Vector(data.ix*2, i*2, 200),    -- Chosen to be out-of-the-way and to prevent items from stacking.
+                smooth = false,
+            })
+            table.insert(data.bagContents, obj.guid)
+            if obj.getName() == "Defend Tokens" then
+                data.tint = obj.getColorTint()
             end
         end
     end
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
-    -- Make a note of what we find and what tint it is. Handle Isolate and Defend tokens in this pass.
+    -- Make a note of what we find and what tint it is.
     local match = string.match  -- Performance
     for _,obj in pairs(getObjects()) do
         local name = obj.getName()
         if name then
             for _,data in pairs(colors) do
                 local suffix = match(name, data.pattern)
-                if suffix and not fastSwap then
-                    data.tints[suffix] = obj.getColorTint()
+                if suffix then
                     if not data.objects[suffix] then
                         data.objects[suffix] = {obj}
                     else
@@ -4171,11 +4169,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 
     -- Pass 2: Iterate over found objects and swap color tints and object names.
-    -- After we're done, put objects in their new presence bag, if applicable.
-    if fastSwap then
-        -- All's we did is maybe recolor some isolate and defend tokens, so we can skip the rest of this.
-        return
-    end
+    -- After we're done, put objects in their new player bag, if applicable.
     Wait.frames(function()
         for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
             local a, b = unpack(ab)
@@ -4200,28 +4194,11 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     broadcastToAll("Internal Error: Unknown object " .. name .. " in player bag.", Color.Red)
                 end
             end
-            for suffix, tint in pairs(a.tints) do
-                if suffix == "Defend" or suffix == "Isolate" then
-                    for _, obj in ipairs(a.objects[suffix]) do
-                        local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
-                        local locked = obj.getLock()
-                        if suffix == "Defend" then
-                            local state = obj.getStateId()
-                            destroyObject(obj)
-                            obj = selectedColors[b.color].defend.takeObject(attrs)
-                            if state ~= 1 then
-                                obj = obj.setState(state)
-                            end
-                        else
-                            destroyObject(obj)
-                            obj = selectedColors[b.color].isolate.takeObject(attrs)
-                        end
-                        obj.setLock(locked)
-                    end
-                elseif suffix == "Presence" then
+            for suffix, objs in pairs(b.objects) do
+                if suffix == "Presence" then
                     local newname = a.color .. "'s " .. suffix
-                    for _, obj in ipairs(b.objects[suffix]) do
-                        obj.setColorTint(tint)
+                    for _, obj in ipairs(objs) do
+                        obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         local originalState = obj.getStateId()
                         if obj.getStateId() == 1 then
@@ -4232,7 +4209,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                             end
                             obj = obj.setState(1)
                         end
-                        obj.setColorTint(tint)
+                        obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         if originalState == 1 then
                             if obj.getDecals() then
@@ -4241,8 +4218,29 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         end
                         _ = obj.setState(originalState)
                     end
+                elseif suffix == "Defend" then
+                    -- Easier to grab new defend token than to change the name and color of every state
+                    for _, obj in ipairs(objs) do
+                        local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
+                        local locked = obj.getLock()
+                        local state = obj.getStateId()
+                        destroyObject(obj)
+                        obj = selectedColors[a.color].defend.takeObject(attrs)
+                        if state ~= 1 then
+                            obj = obj.setState(state)
+                        end
+                        obj.setLock(locked)
+                    end
                 else
-                    broadcastToAll("Internal Error: Unknown object type " .. suffix .. " in player bag.", Color.Red)
+                    local newname = a.color .. "'s " .. suffix
+                    for _, obj in ipairs(objs) do
+                        local states = obj.getStates()
+                        if states ~= nil and #states > 1 then
+                            broadcastToAll("Internal Error: Object " .. obj.getName() .. " has multiple states and may not handle color swap properly.", Color.Red)
+                        end
+                        obj.setColorTint(a.tint)
+                        obj.setName(newname)
+                    end
                 end
             end
             for i = #b.bagContents - 2,1,-1 do  -- Iterate in reverse order.

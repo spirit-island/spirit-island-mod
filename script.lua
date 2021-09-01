@@ -2746,7 +2746,7 @@ end
 setupMapCoObj = nil
 function setupMap(map,extra)
     -- HACK: trying to fix client desync issue
-    map.setPosition(map.getPosition())
+    map.setPosition(map.getPosition()+Vector(0,0.01,0))
 
     setupMapCoObj = map
     if extra then

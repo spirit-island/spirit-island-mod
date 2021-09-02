@@ -1168,6 +1168,9 @@ function CreatePickPowerButton(card)
     })
 end
 function PickPower(cardo,playero,alt_click)
+    if cardo.hasTag("Major") then
+        Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
+    end
     -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()

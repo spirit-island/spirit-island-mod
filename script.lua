@@ -333,6 +333,7 @@ function onSave()
             defend = data.defend.guid,
             isolate = data.isolate.guid,
             paid = data.paid,
+            gained = data.gained,
         }
         if data.counter ~= nil then
             colorTable.counter = data.counter.guid
@@ -537,6 +538,7 @@ function onLoad(saved_data)
             defend = getObjectFromGUID(data.defend),
             isolate = getObjectFromGUID(data.isolate),
             paid = data.paid,
+            gained = data.gained,
         }
         if data.counter ~= nil then
             colorTable.counter = getObjectFromGUID(data.counter)
@@ -2202,6 +2204,7 @@ function removeSpirit(params)
         defend = params.defend,
         isolate = params.isolate,
         paid = false,
+        gained = false,
     }
     updatePlayerArea(params.color)
 end
@@ -2373,6 +2376,10 @@ function handlePlayer(color, data)
     if data.paid then
         playerBlocks[color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         data.paid = false
+    end
+    if data.gained then
+        playerBlocks[color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+        data.gained = false
     end
     if data.ready.is_face_down then
         data.ready.flip()
@@ -3221,6 +3228,22 @@ function updateAllPlayerAreas()
     end
 end
 
+function detectPresence(spirit, position)
+    local hits = Physics.cast{
+        origin = spirit.positionToWorld(position), -- pos
+        direction = Vector(0, 1, 0),
+        max_distance = 1,
+        type = 1, --ray
+    }
+    local hasPresence = false
+    for _, hit in pairs(hits) do
+        if hit.hit_object.hasTag("Presence") then
+            hasPresence = true
+            break
+        end
+    end
+    return hasPresence
+end
 function setupPlayerArea(params)
     -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
     local obj = params.obj
@@ -3258,6 +3281,12 @@ function setupPlayerArea(params)
             position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
+        -- Gain Energy (button index 2)
+        obj.createButton({
+            label="", click_function="nullFunc", function_owner=Global,
+            position={-4.8,3.2,-9.8}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
+        })
         for i,bag in pairs(selected.elements) do
             if i == 9 then break end
             bag.createButton({
@@ -3282,9 +3311,14 @@ function setupPlayerArea(params)
     end
 
     if selected.paid then
-        obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200, tooltip="Right click to refund energy for your cards"})
+        obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
     else
-        obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200, tooltip="Left click to pay energy for your cards"})
+        obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
+    end
+    if selected.gained then
+        obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
+    else
+        obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
     end
 
     local energy = 0
@@ -3328,23 +3362,10 @@ function setupPlayerArea(params)
     local function calculateTrackElements(spiritBoard)
         local elements = Elements:new()
         if spiritBoard.script_state ~= "" then
-            local trackElements = spiritBoard.getVar("trackElements")
+            local trackElements = spiritBoard.getTable("trackElements")
             if trackElements ~= nil then
                 for _, trackElem in pairs(trackElements) do
-                    local hits = Physics.cast{
-                        origin = spiritBoard.positionToWorld(trackElem.position), -- pos
-                        direction = Vector(0, 1, 0),
-                        max_distance = 1,
-                        type = 1, --ray
-                    }
-                    local hasPresence = false
-                    for _, hit in pairs(hits) do
-                        if hit.hit_object.hasTag("Presence") then
-                            hasPresence = true
-                            break
-                        end
-                    end
-                    if not hasPresence then
+                    if not detectPresence(spiritBoard, trackElem.position) then
                         elements:add(trackElem.elements)
                     end
                 end
@@ -3402,6 +3423,94 @@ function setupPlayerArea(params)
     timer = Wait.time(countItems, 1, -1)
     obj.setVar("timer", timer)
 end
+function gainEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif alt_click then
+        return
+    end
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    local zone = getObjectFromGUID(elementScanZones[color])
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.hasTag("Spirit") then
+            local trackEnergy = obj.getTable("trackEnergy")
+            if trackEnergy ~= nil then
+                local found = false
+                for _, energy in pairs(trackEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        found = true
+                        local refunded = updateEnergyCounter(color, true, energy.count)
+                        if not refunded then
+                            refunded = refundEnergyTokens(color, energy.count)
+                        end
+                        if refunded then
+                            selectedColors[color].gained = true
+                            target_obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                        else
+                            Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
+                        end
+                        break
+                    end
+                end
+                if not found then
+                    selectedColors[color].gained = true
+                    target_obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                end
+            else
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
+            end
+            break
+        end
+    end
+end
+function returnEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif not alt_click then
+        return
+    end
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    local zone = getObjectFromGUID(elementScanZones[color])
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.hasTag("Spirit") then
+            local trackEnergy = obj.getTable("trackEnergy")
+            if trackEnergy ~= nil then
+                local found = false
+                for _, energy in pairs(trackEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        found = true
+                        local paid = updateEnergyCounter(color, false, energy.count)
+                        if not paid then
+                            paid = payEnergyTokens(color, energy.count)
+                        end
+                        if paid then
+                            selectedColors[color].gained = false
+                            target_obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                        else
+                            Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
+                        end
+                        break
+                    end
+                end
+                if not found then
+                    selectedColors[color].gained = false
+                    target_obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                end
+            else
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
+            end
+            break
+        end
+    end
+end
 function payEnergy(target_obj, source_color, alt_click)
     if not gameStarted then
         return
@@ -3413,7 +3522,7 @@ function payEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local paid = updateEnergyCounter(color, false)
+    local paid = updateEnergyCounter(color, false, getEnergyLabel(color))
     if not paid then
         paid = payEnergyTokens(color, nil)
     end
@@ -3424,11 +3533,10 @@ function payEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
 end
-function updateEnergyCounter(color, refund)
+function updateEnergyCounter(color, refund, cost)
     if selectedColors[color].counter == nil or not selectedColors[color].counter.getLock() then
         return false
     end
-    local cost = getEnergyLabel(color)
     local energy = selectedColors[color].counter.getValue()
     if refund then
         cost = cost * -1
@@ -3569,7 +3677,7 @@ function refundEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local refunded = updateEnergyCounter(color, true)
+    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color))
     if not refunded then
         refunded = refundEnergyTokens(color, nil)
     end

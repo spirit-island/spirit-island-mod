@@ -180,7 +180,7 @@ function updateEnergy(player)
         })
         entry.destroy()
     end
-    table.sort(trackEnergy, function (a, b) return a.position.x < b.position.x or (a.position.x == b.position.x and a.position.z < a.position.z) end)
+    table.sort(trackEnergy, function (a, b) return a.count > b.count or (a.count == b.count and a.position.x < b.position.x) or (a.count == b.count and a.position.x == b.position.x and a.position.z < a.position.z) end)
     local state = {}
     if currentSpirit.script_state ~= "" then
         state = JSON.decode(currentSpirit.script_state)

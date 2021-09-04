@@ -3437,31 +3437,40 @@ function gainEnergy(target_obj, source_color, alt_click)
     local zone = getObjectFromGUID(elementScanZones[color])
     for _, obj in ipairs(zone.getObjects()) do
         if obj.hasTag("Spirit") then
+            local supported = false
+            local energyTotal = 0
             local trackEnergy = obj.getTable("trackEnergy")
             if trackEnergy ~= nil then
-                local found = false
+                supported = true
                 for _, energy in pairs(trackEnergy) do
                     if not detectPresence(obj, energy.position) then
-                        found = true
-                        local refunded = updateEnergyCounter(color, true, energy.count)
-                        if not refunded then
-                            refunded = refundEnergyTokens(color, energy.count)
-                        end
-                        if refunded then
-                            selectedColors[color].gained = true
-                            target_obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
-                        else
-                            Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
-                        end
+                        energyTotal = energyTotal + energy.count
                         break
                     end
                 end
-                if not found then
+            end
+            local bonusEnergy = obj.getTable("bonusEnergy")
+            if bonusEnergy ~= nil then
+                supported = true
+                for _, energy in pairs(bonusEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        energyTotal = energyTotal + energy.count
+                    end
+                end
+            end
+            if not supported then
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
+            else
+                local refunded = updateEnergyCounter(color, true, energyTotal)
+                if not refunded then
+                    refunded = refundEnergyTokens(color, energyTotal)
+                end
+                if refunded then
                     selectedColors[color].gained = true
                     target_obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                else
+                    Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
                 end
-            else
-                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
             end
             break
         end
@@ -3481,31 +3490,40 @@ function returnEnergy(target_obj, source_color, alt_click)
     local zone = getObjectFromGUID(elementScanZones[color])
     for _, obj in ipairs(zone.getObjects()) do
         if obj.hasTag("Spirit") then
+            local supported = false
+            local energyTotal = 0
             local trackEnergy = obj.getTable("trackEnergy")
             if trackEnergy ~= nil then
-                local found = false
+                supported = true
                 for _, energy in pairs(trackEnergy) do
                     if not detectPresence(obj, energy.position) then
-                        found = true
-                        local paid = updateEnergyCounter(color, false, energy.count)
-                        if not paid then
-                            paid = payEnergyTokens(color, energy.count)
-                        end
-                        if paid then
-                            selectedColors[color].gained = false
-                            target_obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
-                        else
-                            Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
-                        end
+                        energyTotal = energyTotal + energy.count
                         break
                     end
                 end
-                if not found then
+            end
+            local bonusEnergy = obj.getTable("bonusEnergy")
+            if bonusEnergy ~= nil then
+                supported = true
+                for _, energy in pairs(bonusEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        energyTotal = energyTotal + energy.count
+                    end
+                end
+            end
+            if not supported then
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
+            else
+                local paid = updateEnergyCounter(color, false, energyTotal)
+                if not paid then
+                    paid = payEnergyTokens(color, energyTotal)
+                end
+                if paid then
                     selectedColors[color].gained = false
                     target_obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                else
+                    Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
                 end
-            else
-                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
             end
             break
         end

@@ -1,3 +1,29 @@
 {
-  "broadcast": "For Boon of Reimagining right click the \"Gain a Minor\" button to see 6 options, then right click the \"Pick Power\" button for your first choice"
+  "broadcast": "For Boon of Reimagining right click the \"Gain a Minor\" button to see 6 options, then right click the \"Pick Power\" button for your first choice",
+  "trackEnergy": [
+    {
+      "count": 4,
+      "position": {
+        "x": -0.46,
+        "y": 0,
+        "z": 0.56
+      }
+    },
+    {
+      "count": 2,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0.55
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": 0.22,
+        "y": 0,
+        "z": 0.55
+      }
+    }
+  ]
 }

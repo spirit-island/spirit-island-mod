@@ -39,11 +39,7 @@ function clearButtons()
 end
 
 function createButtons(obj)
-    if getObjectFromGUID(sourceSpiritID).getLuaScript() == obj.getLuaScript() then
-        if not obj.hasTag("Spirit") then
-            obj.addTag("Spirit")
-            obj.reload()
-        end
+    if obj.hasTag("Spirit") then
         self.createButton({
             click_function = "nullFunc",
             label          = "Spirit Validated",
@@ -140,12 +136,11 @@ function updateElements(player)
     currentSpirit.setTable("trackElements", trackElements)
     player.broadcast("Updated elements for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
 end
-
 function populateElements()
     if currentSpirit == nil then
         return
     end
-    local trackElements = currentSpirit.getVar("trackElements")
+    local trackElements = currentSpirit.getTable("trackElements")
     if trackElements == nil then
         return
     end
@@ -164,9 +159,56 @@ function populateElements()
     end
 end
 
+function updateEnergy(player)
+    if currentSpirit == nil then
+        return
+    end
+    local hits = upCast(currentSpirit, 0.4, 0.1, {"Chip"})
+    local trackEnergy = {}
+    for _, entry in pairs(hits) do
+        local pos = currentSpirit.positionToLocal(entry.getPosition())
+        pos = Vector(round(pos.x,0.01), 0, round(pos.z,0.01))
+
+        local quantity = entry.getQuantity()
+        if quantity == -1 then
+            quantity = 1
+        end
+
+        table.insert(trackEnergy, {
+            position = pos,
+            count = quantity
+        })
+        entry.destroy()
+    end
+    table.sort(trackEnergy, function (a, b) return a.position.x < b.position.x or (a.position.x == b.position.x and a.position.z < a.position.z) end)
+    local state = {}
+    if currentSpirit.script_state ~= "" then
+        state = JSON.decode(currentSpirit.script_state)
+    end
+    state.trackEnergy = trackEnergy
+    currentSpirit.script_state = JSON.encode(state)
+    currentSpirit.setTable("trackEnergy", trackEnergy)
+    player.broadcast("Updated energy for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
+end
+function populateEnergy()
+    if currentSpirit == nil then
+        return
+    end
+    local trackEnergy = currentSpirit.getTable("trackEnergy")
+    if trackEnergy == nil then
+        return
+    end
+    local energyBag = getObjectFromGUID("Energy")
+    for _, energy in pairs(trackEnergy) do
+        local position = currentSpirit.positionToWorld(energy.position)
+        for i = 1, energy.count do
+            energyBag.takeObject({position = position + i * Vector(0, 1, 0)})
+        end
+    end
+end
+
 function makeSpirit(obj)
     obj.addTag("Spirit")
-    obj.setLuaScript(getObjectFromGUID(sourceSpiritID).getLuaScript())
     obj.reload()
     rescan = true
     scan()

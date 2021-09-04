@@ -1,3 +1,29 @@
 {
-  "broadcast": "In order to keep a second Power Card for Days that Never Were, right click the \"Pick Power\" button for the first choice"
+  "broadcast": "In order to keep a second Power Card for Days that Never Were, right click the \"Pick Power\" button for the first choice",
+  "trackEnergy": [
+    {
+      "count": 3,
+      "position": {
+        "x": -0.96,
+        "y": 0,
+        "z": -0.23
+      }
+    },
+    {
+      "count": 2,
+      "position": {
+        "x": -0.28,
+        "y": 0,
+        "z": -0.23
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": 0.18,
+        "y": 0,
+        "z": -0.22
+      }
+    }
+  ]
 }

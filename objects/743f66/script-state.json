@@ -1,4 +1,30 @@
 {
+  "bonusEnergy": [
+    {
+      "count": 1,
+      "position": {
+        "x": -1.34,
+        "y": 0,
+        "z": -0.41
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": -1.12,
+        "y": 0,
+        "z": -0.21
+      }
+    },
+    {
+      "count": 2,
+      "position": {
+        "x": -0.91,
+        "y": 0,
+        "z": -0.42
+      }
+    }
+  ],
   "trackElements": [
     {
       "elements": "00010000",

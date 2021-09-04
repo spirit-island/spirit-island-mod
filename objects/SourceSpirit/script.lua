@@ -13,6 +13,7 @@ function load(params)
         params.obj.setVar("broadcast", loaded_data.broadcast)
         params.obj.setTable("trackElements", loaded_data.trackElements)
         params.obj.setTable("trackEnergy", loaded_data.trackEnergy)
+        params.obj.setTable("bonusEnergy", loaded_data.bonusEnergy)
     end
     Global.call("addSpirit", {spirit=params.obj})
     if Global.getVar("gameStarted") then return end

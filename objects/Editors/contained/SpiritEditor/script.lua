@@ -165,6 +165,7 @@ function updateEnergy(player)
     end
     local hits = upCast(currentSpirit, 0.4, 0.1, {"Chip"})
     local trackEnergy = {}
+    local bonusEnergy = {}
     for _, entry in pairs(hits) do
         local pos = currentSpirit.positionToLocal(entry.getPosition())
         pos = Vector(round(pos.x,0.01), 0, round(pos.z,0.01))
@@ -174,20 +175,30 @@ function updateEnergy(player)
             quantity = 1
         end
 
-        table.insert(trackEnergy, {
-            position = pos,
-            count = quantity
-        })
+        if entry.getName() == "Energy" then
+            table.insert(trackEnergy, {
+                position = pos,
+                count = quantity
+            })
+        elseif entry.getName() == "Bonus Energy" then
+            table.insert(bonusEnergy, {
+                position = pos,
+                count = quantity
+            })
+        end
         entry.destroy()
     end
     table.sort(trackEnergy, function (a, b) return a.count > b.count or (a.count == b.count and a.position.x < b.position.x) or (a.count == b.count and a.position.x == b.position.x and a.position.z < a.position.z) end)
+    table.sort(bonusEnergy, function (a, b) return a.position.x < b.position.x or (a.position.x == b.position.x and a.position.z < a.position.z) end)
     local state = {}
     if currentSpirit.script_state ~= "" then
         state = JSON.decode(currentSpirit.script_state)
     end
     state.trackEnergy = trackEnergy
+    state.bonusEnergy = bonusEnergy
     currentSpirit.script_state = JSON.encode(state)
     currentSpirit.setTable("trackEnergy", trackEnergy)
+    currentSpirit.setTable("bonusEnergy", bonusEnergy)
     player.broadcast("Updated energy for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
 end
 function populateEnergy()

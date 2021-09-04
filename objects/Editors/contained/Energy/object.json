@@ -5,14 +5,14 @@
     "posY": 0.95,
     "posZ": 54.39,
     "rotX": 0.0,
-    "rotY": 180.0009,
+    "rotY": 180.0008,
     "rotZ": 0.0,
     "scaleX": 0.65,
     "scaleY": 0.65,
     "scaleZ": 0.65
   },
   "Nickname": "Energy",
-  "Description": "Place this energy on the spirit in the editor to record how much energy is available from placing presence.",
+  "Description": "Place this energy on the spirit in the editor to record how much energy is available from placing presence. For bonus energy like Finder use state 2.",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,

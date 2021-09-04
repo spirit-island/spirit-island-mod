@@ -757,7 +757,7 @@ function loadConfig(config)
         end
     end
     if config.broadcast then
-        broadcastToAll(config.broadcast, Color.SoftYellow)
+        printToAll(config.broadcast, Color.SoftYellow)
     end
     updateDifficulty()
 end
@@ -1647,7 +1647,7 @@ function getWeeklyChallengeConfig()
         local boardName = findBoard(i - 1)
         table.insert(config.boards, boardName)
         if i ~= 1 then
-            config.broadcast = config.broadcast..", "
+            config.broadcast = config.broadcast.."\n"
         end
         config.broadcast = config.broadcast..spirit.getName().." on "..boardName
     end

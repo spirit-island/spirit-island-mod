@@ -192,7 +192,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             end
         end
     end
-    -- HACK: Temporary fix until TTS bug resolved
+    -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/770
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionEnter", {hit_object=hit_object, collision_info=collision_info})
     end
@@ -205,7 +205,7 @@ function onObjectCollisionExit(hit_object, collision_info)
             end
         end
     end
-    -- HACK: Temporary fix until TTS bug resolved
+    -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/770
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionExit", {hit_object=hit_object, collision_info=collision_info})
     end
@@ -2160,7 +2160,7 @@ function StartGame()
 end
 function enableUI()
     Wait.frames(function()
-        -- HACK: Temporary hack to try to fix visibility TTS bug
+        -- HACK: Temporary hack to try to fix visibility TTS bug https://tabletopsimulator.nolt.io/583
         UI.setXmlTable(UI.getXmlTable(), {})
 
         -- Need to wait for xml table to get updated

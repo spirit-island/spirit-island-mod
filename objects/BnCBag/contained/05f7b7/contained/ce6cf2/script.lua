@@ -18,10 +18,10 @@ function returnCard(card)
     local eventDeck = zone.getObjects()[1]
     if eventDeck ~= nil then
         eventDeck.takeObject({
-            position = eventDeck.getPosition() + Vector(0,2,0)
+            position = eventDeck.getPosition() + Vector(0,1.1,0)
         })
         eventDeck.takeObject({
-            position = eventDeck.getPosition() + Vector(0,2,0)
+            position = eventDeck.getPosition() + Vector(0,1,0)
         })
     end
     card.setRotationSmooth(Vector(0,180,180), false, true)

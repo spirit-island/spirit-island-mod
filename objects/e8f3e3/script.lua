@@ -219,14 +219,14 @@ function setupSlaveRebellion(card)
     if eventDeck ~= nil then
         count = #eventDeck.getObjects()
         eventDeck.takeObject({
-            position = eventDeck.getPosition() + Vector(0,2,0)
+            position = eventDeck.getPosition() + Vector(0,1.2,0)
         })
         eventDeck.takeObject({
-            position = eventDeck.getPosition() + Vector(0,2,0)
+            position = eventDeck.getPosition() + Vector(0,1.1,0)
         })
         if not thematicRebellion or (thematicRebellion and math.random(1,2) == 1) then
             eventDeck.takeObject({
-                position = eventDeck.getPosition() + Vector(0,2,0)
+                position = eventDeck.getPosition() + Vector(0,1,0)
             })
         end
     end

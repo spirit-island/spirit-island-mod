@@ -3344,6 +3344,14 @@ function setupPlayerArea(params)
             end
         end
     end
+    function Elements:threshold(threshold)
+        for i = 1, 8 do
+            if threshold[i] > self[i] then
+                return false
+            end
+        end
+        return true
+    end
     function Elements:__tostring()
         return table.concat(self, "")
     end
@@ -3374,6 +3382,30 @@ function setupPlayerArea(params)
         return elements
     end
 
+    local function checkThresholds(spiritBoard, elements)
+        if spiritBoard.script_state ~= "" then
+            local thresholds = spiritBoard.getTable("thresholds")
+            if thresholds ~= nil then
+                local decals = {}
+                for _, threshold in pairs(thresholds) do
+                    local decal = {
+                        name = "Threshold",
+                        position = Vector(threshold.position) + Vector(0, 0.21, 0),
+                        rotation = {90, 180, 0},
+                        scale    = {0.08, 0.08, 1},
+                    }
+                    if elements:threshold(Elements:new(threshold.elements)) then
+                        decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
+                    else
+                        decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
+                    end
+                    table.insert(decals, decal)
+                end
+                spiritBoard.setDecals(decals)
+            end
+        end
+    end
+
     local function countItems()
         local zone = params.zone
         local elements = Elements:new()
@@ -3382,6 +3414,7 @@ function setupPlayerArea(params)
         -- the tokens in the scan zones.
         local nonTokenElements = Elements:new()
 
+        local spirit = nil
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
@@ -3389,6 +3422,7 @@ function setupPlayerArea(params)
                 local trackElements = calculateTrackElements(entry)
                 elements:add(trackElements)
                 nonTokenElements:add(trackElements)
+                spirit = entry
             elseif entry.type == "Card" then
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
@@ -3408,6 +3442,9 @@ function setupPlayerArea(params)
                     elements:add(tokenCounts)
                 end
             end
+        end
+        if spirit ~= nil then
+            checkThresholds(spirit, elements)
         end
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})

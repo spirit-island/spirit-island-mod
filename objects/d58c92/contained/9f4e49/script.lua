@@ -4,3 +4,4 @@ function onLoad(saved_data)
         self.setTable("thresholds", loaded_data.thresholds)
     end
 end
+-- card loading end

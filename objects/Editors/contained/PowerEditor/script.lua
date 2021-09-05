@@ -298,8 +298,27 @@ end
 local function updateCard(obj, energy, elements)
     obj.setVar("energy", energy)
     obj.setVar("elements", elements)
-    local scriptString = "elements=\"" .. elements .. "\"\nenergy=" .. energy .. "\n"
-    obj.setLuaScript(scriptString)
+    local script = obj.getLuaScript()
+    if script == "" then
+        obj.setLuaScript("elements=\""..elements.."\"\nenergy="..energy.."\n")
+    else
+        local _,finish = script:find("elements=\"")
+        if finish ~= nil then
+            local start,_ = script:find("\"", finish+1)
+            script = script:sub(1, finish)..elements..script:sub(start)
+
+            _,finish = script:find("energy=", finish+1)
+            start,_ = script:find("\n", finish+1)
+            if start == nil then
+                start = script:len()+1
+            end
+            script = script:sub(1, finish)..energy..script:sub(start)
+        else
+            script = "elements=\""..elements.."\"\nenergy="..energy.."\n"..script
+        end
+
+        obj.setLuaScript(script)
+    end
     obj.reload()
     rescan = true
     scan()
@@ -385,6 +404,7 @@ function Elements:__tostring()
     return table.concat(self, "")
 end
 ---
+cardLoadingScript = "function onLoad(saved_data)\n    if saved_data ~= \"\" then\n        local loaded_data = JSON.decode(saved_data)\n        self.setTable(\"thresholds\", loaded_data.thresholds)\n    end\nend\n-- card loading end"
 function updateThreshold(player)
     if currentCard == nil then
         return
@@ -418,6 +438,19 @@ function updateThreshold(player)
     state.thresholds = thresholds
     currentCard.script_state = JSON.encode(state)
     currentCard.setTable("thresholds", thresholds)
+    local script = currentCard.getLuaScript()
+    if script == "" then
+        currentCard.setLuaScript(cardLoadingScript)
+    else
+        local start, _ = script:find("function onLoad%(")
+        if start ~= nil then
+            local _, finish = script:find("-- card loading end", start)
+            script = script:sub(1, start-1)..cardLoadingScript..script:sub(finish+1)
+        else
+            script = script.."\n"..cardLoadingScript
+        end
+        currentCard.setLuaScript(script)
+    end
     player.broadcast("Updated thresholds for " .. currentCard.getName() .. ".", Color.SoftBlue)
 end
 function populateThreshold()

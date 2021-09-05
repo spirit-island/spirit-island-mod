@@ -13,3 +13,11 @@
         <Button color="White" id="PopulateEnergy" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="populateEnergy">Populate Energy</Button>
     </VerticalLayout>
 </Panel>
+
+<Panel position="-64 50 -180" width="140" height="160" rotation="0 0 180" scale="0.15 0.15 0.15">
+    <!--- Use `scale` to shrink large text, so we get crisper text -->
+    <VerticalLayout>
+        <Button color="White" id="UpdateThreshold" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="updateThreshold">Update Threshold</Button>
+        <Button color="White" id="PopulateThreshold" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="populateThreshold">Populate Threshold</Button>
+    </VerticalLayout>
+</Panel>

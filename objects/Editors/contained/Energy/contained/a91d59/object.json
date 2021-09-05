@@ -1,18 +1,18 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 116.8445,
+    "posX": 116.4151,
     "posY": 1.0295,
-    "posZ": 54.6844,
+    "posZ": 54.1882,
     "rotX": 0.0,
-    "rotY": 359.9818,
+    "rotY": 359.982,
     "rotZ": 0.0,
     "scaleX": 0.475,
     "scaleY": 0.475,
     "scaleZ": 0.475
   },
   "Nickname": "Energy",
-  "Description": "Pays for Power Cards. Carries over from turn to turn.",
+  "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,

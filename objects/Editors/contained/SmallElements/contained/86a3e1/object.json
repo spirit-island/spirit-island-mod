@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 114.7245,
+    "posX": 116.5392,
     "posY": 1.0345,
-    "posZ": 54.4228,
+    "posZ": 49.4729,
     "rotX": 0.0,
-    "rotY": -0.001,
+    "rotY": -0.0011,
     "rotZ": 0.0,
-    "scaleX": 0.5,
-    "scaleY": 0.5,
-    "scaleZ": 0.5
+    "scaleX": 0.25,
+    "scaleY": 0.25,
+    "scaleZ": 0.25
   },
   "Nickname": "Any Element",
   "Description": "Change the state to change the element shown",
@@ -58,9 +58,9 @@
         "rotX": 0.0044,
         "rotY": 180.0065,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Animal Element",
       "Description": "Change the state to change the element shown",
@@ -113,9 +113,9 @@
         "rotX": 0.0044,
         "rotY": 180.0064,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Plant Element",
       "Description": "Change the state to change the element shown",
@@ -168,9 +168,9 @@
         "rotX": 0.0044,
         "rotY": 180.0064,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Earth Element",
       "Description": "Change the state to change the element shown",
@@ -223,9 +223,9 @@
         "rotX": 0.0044,
         "rotY": 180.0064,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Water Element",
       "Description": "Change the state to change the element shown",
@@ -278,9 +278,9 @@
         "rotX": 0.0044,
         "rotY": 180.0063,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Air Element",
       "Description": "Change the state to change the element shown",
@@ -333,9 +333,9 @@
         "rotX": 0.0044,
         "rotY": 180.0063,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Fire Element",
       "Description": "Change the state to change the element shown",
@@ -388,9 +388,9 @@
         "rotX": 0.0044,
         "rotY": 180.0062,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Moon Element",
       "Description": "Change the state to change the element shown",
@@ -443,9 +443,9 @@
         "rotX": 0.0044,
         "rotY": 180.0062,
         "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
+        "scaleX": 0.25,
+        "scaleY": 0.25,
+        "scaleZ": 0.25
       },
       "Nickname": "Sun Element",
       "Description": "Change the state to change the element shown",

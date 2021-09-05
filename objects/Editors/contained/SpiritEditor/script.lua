@@ -1,5 +1,3 @@
-sourceSpiritID = "SourceSpirit"
-
 local rescan
 local currentSpirit
 
@@ -206,7 +204,8 @@ function populateEnergy()
         return
     end
     local trackEnergy = currentSpirit.getTable("trackEnergy")
-    if trackEnergy == nil then
+    local bonusEnergy = currentSpirit.getTable("bonusEnergy")
+    if trackEnergy == nil and bonusEnergy == nil then
         return
     end
     local energyBag = getObjectFromGUID("Energy")
@@ -214,6 +213,77 @@ function populateEnergy()
         local position = currentSpirit.positionToWorld(energy.position)
         for i = 1, energy.count do
             energyBag.takeObject({position = position + i * Vector(0, 1, 0)})
+        end
+    end
+    for _, energy in pairs(bonusEnergy) do
+        local position = currentSpirit.positionToWorld(energy.position)
+        for i = 1, energy.count do
+            energyBag.takeObject({
+                position = position + i * Vector(0, 1, 0),
+                callback_function = function(obj) obj.setState(2) end,
+            })
+        end
+    end
+end
+
+function updateThreshold(player)
+    if currentSpirit == nil then
+        return
+    end
+    local hits = upCast(currentSpirit, 0.4, 0.1, {"Generic"}, "Threshold Token")
+    local thresholds = {}
+    for _, entry in pairs(hits) do
+        local pos = currentSpirit.positionToLocal(entry.getPosition())
+        pos = Vector(round(pos.x,0.01), 0, round(pos.z,0.01))
+
+        local elemHits = upCast(entry, 0.4, 0, {"Generic"})
+        local elems = Elements:new()
+        for _, elem in pairs(elemHits) do
+            if elem.getVar("elements") ~= nil then
+                elems:add(elem.getVar("elements"))
+                elem.destroy()
+            end
+        end
+
+        table.insert(thresholds, {
+            position = pos,
+            elements = tostring(elems)
+        })
+        entry.destroy()
+    end
+    table.sort(thresholds, function (a, b) return a.position.z < b.position.z or (a.position.z == b.position.z and a.position.x < a.position.x) end)
+    local state = {}
+    if currentSpirit.script_state ~= "" then
+        state = JSON.decode(currentSpirit.script_state)
+    end
+    state.thresholds = thresholds
+    currentSpirit.script_state = JSON.encode(state)
+    currentSpirit.setTable("thresholds", thresholds)
+    player.broadcast("Updated thresholds for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
+end
+function populateThreshold()
+    if currentSpirit == nil then
+        return
+    end
+    local thresholds = currentSpirit.getTable("thresholds")
+    if thresholds == nil then
+        return
+    end
+    local thresholdBag = getObjectFromGUID("Threshold")
+    local anyBag = getObjectFromGUID("SmallElements")
+    for _, threshold in pairs(thresholds) do
+        local elements = Elements:new(threshold.elements)
+        local position = currentSpirit.positionToWorld(threshold.position)
+        thresholdBag.takeObject{
+            position = position + Vector(0, 1, 0),
+        }
+        for i, count in ipairs(elements) do
+            for j = 1, count do
+                anyBag.takeObject{
+                    position = position + (j + 1) * Vector(0, 1, 0),
+                    callback_function = function(obj) obj.setState(i) end,
+                }
+            end
         end
     end
 end
@@ -225,7 +295,7 @@ function makeSpirit(obj)
     scan()
 end
 
-function upCast(obj,dist,offset,types)
+function upCast(obj,dist,offset,types,name)
     dist = dist or 1
     offset = offset or 0
     local hits = Physics.cast({
@@ -239,15 +309,29 @@ function upCast(obj,dist,offset,types)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
+        log(v)
+        local matchesType = false
         if types ~= nil then
-            local matchesType = false
             for _,t in pairs(types) do
-                if v.hit_object.type == t then matchesType = true end
-            end
-            if matchesType then
-                table.insert(hitObjects,v.hit_object)
+                if v.hit_object.type == t then
+                    matchesType = true
+                    break
+                end
             end
         else
+            matchesType = true
+        end
+
+        local matchesName = false
+        if name ~= nil then
+            if v.hit_object.getName() == name then
+                matchesName = true
+            end
+        else
+            matchesName = true
+        end
+
+        if matchesType and matchesName then
             table.insert(hitObjects,v.hit_object)
         end
     end

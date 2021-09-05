@@ -1,5 +1,47 @@
 {
   "broadcast": "In order to keep a second Power Card for Days that Never Were, right click the \"Pick Power\" button for the first choice",
+  "thresholds": [
+    {
+      "elements": "12020000",
+      "position": {
+        "x": -0.52,
+        "y": 0,
+        "z": 0.53
+      }
+    },
+    {
+      "elements": "03010000",
+      "position": {
+        "x": 0.34,
+        "y": 0,
+        "z": 0.61
+      }
+    },
+    {
+      "elements": "22000000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.75
+      }
+    },
+    {
+      "elements": "23020000",
+      "position": {
+        "x": -0.52,
+        "y": 0,
+        "z": 0.8
+      }
+    },
+    {
+      "elements": "30020000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.92
+      }
+    }
+  ],
   "trackEnergy": [
     {
       "count": 3,

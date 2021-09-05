@@ -3387,18 +3387,27 @@ function setupPlayerArea(params)
             local thresholds = spiritBoard.getTable("thresholds")
             if thresholds ~= nil then
                 local decals = {}
+                local positions = {}
                 for _, threshold in pairs(thresholds) do
-                    local decal = {
-                        name = "Threshold",
-                        position = Vector(threshold.position) + Vector(0, 0.21, 0),
-                        rotation = {90, 180, 0},
-                        scale    = {0.08, 0.08, 1},
-                    }
+                    local decal
+                    local vec = Vector(threshold.position)
+                    local vecString = vec:string()
+                    if positions[vecString] then
+                        decal = positions[vecString]
+                    else
+                        decal = {
+                            name = "Threshold",
+                            position = vec + Vector(0, 0.21, 0),
+                            rotation = {90, 180, 0},
+                            scale    = {0.08, 0.08, 1},
+                        }
+                    end
                     if elements:threshold(Elements:new(threshold.elements)) then
                         decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
-                    else
+                    elseif not positions[vecString] then
                         decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
                     end
+                    positions[vecString] = decal
                     table.insert(decals, decal)
                 end
                 spiritBoard.setDecals(decals)

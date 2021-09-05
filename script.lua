@@ -3409,7 +3409,7 @@ function setupPlayerArea(params)
         end
         obj.setDecals(decals)
     end
-    local function checkThresholds(spiritBoard, aspects, elements)
+    local function checkThresholds(spiritBoard, aspects, thresholdCards, elements)
         if spiritBoard.script_state ~= "" then
             local thresholds = spiritBoard.getTable("thresholds")
             if thresholds ~= nil then
@@ -3421,6 +3421,14 @@ function setupPlayerArea(params)
                 local thresholds = aspect.getTable("thresholds")
                 if thresholds ~= nil then
                     addThresholdDecals(aspect, elements, thresholds, {0.12, 0.24, 1})
+                end
+            end
+        end
+        for _, card in pairs(thresholdCards) do
+            if card.script_state ~= "" then
+                local thresholds = card.getTable("thresholds")
+                if thresholds ~= nil then
+                    addThresholdDecals(card, elements, thresholds, {0.16, 0.16, 1})
                 end
             end
         end
@@ -3436,6 +3444,7 @@ function setupPlayerArea(params)
 
         local spirit = nil
         local aspects = {}
+        local thresholdCards = {}
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
@@ -3459,6 +3468,9 @@ function setupPlayerArea(params)
                         end
                         energy = energy + powerCost(entry)
                     end
+                    if entry.getTable("thresholds") ~= nil then
+                        table.insert(thresholdCards, entry)
+                    end
                 end
             elseif entry.type == "Generic" then
                 local tokenCounts = entry.getVar("elements")
@@ -3468,7 +3480,7 @@ function setupPlayerArea(params)
             end
         end
         if spirit ~= nil then
-            checkThresholds(spirit, aspects, elements)
+            checkThresholds(spirit, aspects, thresholdCards, elements)
         end
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})

@@ -236,7 +236,7 @@ function updateThreshold(player)
         local pos = currentSpirit.positionToLocal(entry.getPosition())
         pos = Vector(round(pos.x,0.01), 0, round(pos.z,0.01))
 
-        local elemHits = upCast(entry, 0.4, 0, {"Generic"})
+        local elemHits = upCast(entry, 0.4, 0.05, {"Generic"})
         local elems = Elements:new()
         for _, elem in pairs(elemHits) do
             if elem.getVar("elements") ~= nil then

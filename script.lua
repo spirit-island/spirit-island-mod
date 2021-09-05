@@ -3382,35 +3382,46 @@ function setupPlayerArea(params)
         return elements
     end
 
-    local function checkThresholds(spiritBoard, elements)
+    local function addThresholdDecals(obj, elements, thresholds, scale)
+        local decals = {}
+        local positions = {}
+        for _, threshold in pairs(thresholds) do
+            local decal
+            local vec = Vector(threshold.position)
+            local vecString = vec:string()
+            if positions[vecString] then
+                decal = positions[vecString]
+            else
+                decal = {
+                    name = "Threshold",
+                    position = vec + Vector(0, 0.21, 0),
+                    rotation = {90, 180, 0},
+                    scale    = scale,
+                }
+            end
+            if elements:threshold(Elements:new(threshold.elements)) then
+                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
+            elseif not positions[vecString] then
+                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
+            end
+            positions[vecString] = decal
+            table.insert(decals, decal)
+        end
+        obj.setDecals(decals)
+    end
+    local function checkThresholds(spiritBoard, aspects, elements)
         if spiritBoard.script_state ~= "" then
             local thresholds = spiritBoard.getTable("thresholds")
             if thresholds ~= nil then
-                local decals = {}
-                local positions = {}
-                for _, threshold in pairs(thresholds) do
-                    local decal
-                    local vec = Vector(threshold.position)
-                    local vecString = vec:string()
-                    if positions[vecString] then
-                        decal = positions[vecString]
-                    else
-                        decal = {
-                            name = "Threshold",
-                            position = vec + Vector(0, 0.21, 0),
-                            rotation = {90, 180, 0},
-                            scale    = {0.08, 0.08, 1},
-                        }
-                    end
-                    if elements:threshold(Elements:new(threshold.elements)) then
-                        decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
-                    elseif not positions[vecString] then
-                        decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
-                    end
-                    positions[vecString] = decal
-                    table.insert(decals, decal)
+                addThresholdDecals(spiritBoard, elements, thresholds, {0.08, 0.08, 1})
+            end
+        end
+        for _, aspect in pairs(aspects) do
+            if aspect.script_state ~= "" then
+                local thresholds = aspect.getTable("thresholds")
+                if thresholds ~= nil then
+                    addThresholdDecals(aspect, elements, thresholds, {0.12, 0.24, 1})
                 end
-                spiritBoard.setDecals(decals)
             end
         end
     end
@@ -3424,6 +3435,7 @@ function setupPlayerArea(params)
         local nonTokenElements = Elements:new()
 
         local spirit = nil
+        local aspects = {}
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
@@ -3433,6 +3445,9 @@ function setupPlayerArea(params)
                 nonTokenElements:add(trackElements)
                 spirit = entry
             elseif entry.type == "Card" then
+                if entry.hasTag("Aspect") and not entry.is_face_down then
+                    table.insert(aspects, entry)
+                end
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
@@ -3453,7 +3468,7 @@ function setupPlayerArea(params)
             end
         end
         if spirit ~= nil then
-            checkThresholds(spirit, elements)
+            checkThresholds(spirit, aspects, elements)
         end
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})

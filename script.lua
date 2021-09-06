@@ -1804,6 +1804,23 @@ function randomTerrain(player)
     end
 end
 ----- Invader Deck Section
+invaderCards = {
+    ["W"] = {["guid"] = "8cf7b8", ["stage"] = 1},
+    ["M"] = {["guid"] = "8346dd", ["stage"] = 1},
+    ["J"] = {["guid"] = "cf9353", ["stage"] = 1},
+    ["S"] = {["guid"] = "e07847", ["stage"] = 1},
+    ["We"] = {["guid"] = "3b538b", ["stage"] = 2},
+    ["Me"] = {["guid"] = "ec8fb2", ["stage"] = 2},
+    ["Je"] = {["guid"] = "c304c1", ["stage"] = 2},
+    ["Se"] = {["guid"] = "b88f34", ["stage"] = 2},
+    ["C"] = {["guid"] = "a5afb0", ["stage"] = 2},
+    ["MW"] = {["guid"] = "6c6131", ["stage"] = 3},
+    ["JW"] = {["guid"] = "3e6af4", ["stage"] = 3},
+    ["SW"] = {["guid"] = "0f66d9", ["stage"] = 3},
+    ["MJ"] = {["guid"] = "0f16b8", ["stage"] = 3},
+    ["SM"] = {["guid"] = "72c176", ["stage"] = 3},
+    ["JS"] = {["guid"] = "89d57f", ["stage"] = 3},
+}
 function SetupInvaderDeck()
     local deckTable = {1,1,1,2,2,2,2,3,3,3,3,3}
     -- supporting adversary setup should happen first
@@ -1817,33 +1834,31 @@ function SetupInvaderDeck()
         deckTable = scenarioCard.call("InvaderDeckSetup",{deck = deckTable})
     end
 
-    local requiresCoastal = false
+    local cardsToSetup = 0
+    local cardsSetup = 0
     for i=1, #deckTable do
-        if deckTable[i] == "C" then
-            if not requiresCoastal then
-                requiresCoastal = true
+        local cardData = invaderCards[deckTable[i]]
+        if cardData then
+            cardsToSetup = cardsToSetup + 1
+            local deck
+            if cardData.stage == 1 then
+                deck = getObjectFromGUID(stage1DeckZone).getObjects()[1]
+            elseif cardData.stage == 2 then
+                deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
             else
-                -- There can only be one Coastal card
-                deckTable[i] = 2
+                -- assumed stage 3
+                deck = getObjectFromGUID(stage3DeckZone).getObjects()[1]
             end
+            deck.takeObject({
+                guid = cardData.guid,
+                position = deck.getPosition() + Vector(0,1,8 + 1 * i),
+                rotation = Vector(0,180,0),
+                callback_function = function(obj) cardsSetup = cardsSetup + 1 end,
+            })
         end
     end
 
-    local coastalSetup = false
-    if requiresCoastal then
-        -- Set Coastal card aside for now
-        local stage2Deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
-        stage2Deck.takeObject({
-            guid = "a5afb0",
-            position = stage2Deck.getPosition() + Vector(0,1,0),
-            rotation = Vector(0,180,0),
-            callback_function = function(obj) coastalSetup = true end,
-        })
-    else
-        coastalSetup = true
-    end
-
-    Wait.condition(function() grabInvaderCards(deckTable) end, function() return coastalSetup end)
+    Wait.condition(function() grabInvaderCards(deckTable) end, function() return cardsToSetup == cardsSetup end)
     return 1
 end
 function grabInvaderCards(deckTable)
@@ -1884,8 +1899,8 @@ function grabInvaderCards(deckTable)
                 end,
             })
             table.insert(cardTable, card)
-        elseif char == "C" then
-            local card = getObjectFromGUID("a5afb0")
+        elseif invaderCards[deckTable[i]] then
+            local card = getObjectFromGUID(invaderCards[deckTable[i]].guid)
             card.setPositionSmooth(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
             card.setRotationSmooth(Vector(0,180,180))
             cardsLoaded = cardsLoaded + 1

@@ -1,0 +1,7 @@
+<Panel position="-520 10 -180" width="140" height="160" rotation="0 0 180" scale="0.5 0.5 0.5">
+    <!--- Use `scale` to shrink large text, so we get crisper text -->
+    <VerticalLayout>
+        <Button color="White" id="UpdateThreshold" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="updateThreshold">Update Threshold</Button>
+        <Button color="White" id="PopulateThreshold" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="populateThreshold">Populate Threshold</Button>
+    </VerticalLayout>
+</Panel>

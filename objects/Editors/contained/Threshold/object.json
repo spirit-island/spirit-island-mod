@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": 114.81,
+    "posY": 0.95,
+    "posZ": 49.44,
+    "rotX": 0.0,
+    "rotY": 179.9734,
+    "rotZ": 0.0,
+    "scaleX": 0.675,
+    "scaleY": 0.675,
+    "scaleZ": 0.675
+  },
+  "Nickname": "Threshold Token",
+  "Description": "Place these tokens on the spirit or power card along with required elements ontop of it in the editor to record which elements are needed for threshold.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472357873/CF2B89112AF7A9242CA8C6D2FEEECC3C6C1BE05C/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 7,
+    "CastShadows": true
+  }
+}

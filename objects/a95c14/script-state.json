@@ -1,5 +1,63 @@
 {
   "broadcast": "To not have Time Passes heal Invaders or Dahan you can do one of the following: Lock the Invader/Dahan at the bottom of the stack, place the stack on a token such as presence or energy, or play the pieces inside of a counting bag",
+  "thresholds": [
+    {
+      "elements": "01021000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.41
+      }
+    },
+    {
+      "elements": "00012000",
+      "position": {
+        "x": -0.57,
+        "y": 0,
+        "z": 0.41
+      }
+    },
+    {
+      "elements": "02032000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.55
+      }
+    },
+    {
+      "elements": "00023000",
+      "position": {
+        "x": -0.57,
+        "y": 0,
+        "z": 0.57
+      }
+    },
+    {
+      "elements": "00034000",
+      "position": {
+        "x": -0.57,
+        "y": 0,
+        "z": 0.66
+      }
+    },
+    {
+      "elements": "04043000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.7
+      }
+    },
+    {
+      "elements": "05064000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.81
+      }
+    }
+  ],
   "trackElements": [
     {
       "elements": "00010000",
@@ -21,6 +79,24 @@
       "elements": "00001000",
       "position": {
         "x": -0.21,
+        "y": 0,
+        "z": -0.41
+      }
+    }
+  ],
+  "trackEnergy": [
+    {
+      "count": 2,
+      "position": {
+        "x": -0.44,
+        "y": 0,
+        "z": -0.41
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": 0.01,
         "y": 0,
         "z": -0.41
       }

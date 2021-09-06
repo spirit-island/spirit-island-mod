@@ -12,6 +12,9 @@ function load(params)
         local loaded_data = JSON.decode(params.saved_data)
         params.obj.setVar("broadcast", loaded_data.broadcast)
         params.obj.setTable("trackElements", loaded_data.trackElements)
+        params.obj.setTable("trackEnergy", loaded_data.trackEnergy)
+        params.obj.setTable("bonusEnergy", loaded_data.bonusEnergy)
+        params.obj.setTable("thresholds", loaded_data.thresholds)
     end
     Global.call("addSpirit", {spirit=params.obj})
     if Global.getVar("gameStarted") then return end

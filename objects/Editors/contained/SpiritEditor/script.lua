@@ -251,7 +251,7 @@ function updateThreshold(player)
         })
         entry.destroy()
     end
-    table.sort(thresholds, function (a, b) return a.position.z < b.position.z or (a.position.z == b.position.z and a.position.x < a.position.x) end)
+    table.sort(thresholds, function (a, b) return a.position.x < b.position.x or (a.position.x == b.position.x and a.position.z < a.position.z) end)
     local state = {}
     if currentSpirit.script_state ~= "" then
         state = JSON.decode(currentSpirit.script_state)

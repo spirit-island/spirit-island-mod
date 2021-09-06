@@ -152,7 +152,7 @@ function onLoad(saved_data)
                 for expansion,_ in pairs(expansions) do
                     -- TODO make this more robust
                     if expansion ~= "Branch & Claw" and expansion ~= "Jagged Earth" then
-                        table.insert(funcList, addToggle("expansionsRow2", expansion))
+                        table.insert(funcList, addExpansionToggle("expansionsRow2", expansion))
                     end
                 end
                 updateXml(funcList)
@@ -166,7 +166,7 @@ function onLoad(saved_data)
                             end
                         end
                     end
-                    
+
                     updateDifficulty()
                 end, 2)
             end, 2)
@@ -190,12 +190,24 @@ function onObjectSpawn(obj)
         end
     end
 end
-function addExpansion(obj)
+function addExpansion(bag)
     self.UI.setAttribute("expansionsRow2", "active", "true")
-    if not expansions[obj.getName()] then
-        updateXml{addToggle("expansionsRow2", obj.getName())}
+    local hasEvents = false
+    for _,obj in pairs(bag.getObjects()) do
+        if obj.name == "Events" then
+            self.UI.setAttribute("events2", "active", "true")
+            hasEvents = true
+            break
+        end
     end
-    expansions[obj.getName()] = obj.guid
+    if not expansions[bag.getName()] then
+        local funcList = {addExpansionToggle("expansionsRow2", bag.getName())}
+        if hasEvents then
+            table.insert(funcList, addEventToggle("events2", bag.getName()))
+        end
+        updateXml(funcList)
+    end
+    expansions[bag.getName()] = bag.guid
 end
 function addAdversary(obj)
     if adversaries[obj.getName()] == nil then
@@ -227,20 +239,29 @@ function onObjectDestroy(obj)
         end
     end
 end
-function removeExpansion(obj)
-    expansions[obj.getName()] = nil
+function removeExpansion(bag)
+    expansions[bag.getName()] = nil
     local found = false
-    for expansion,_ in pairs(expansions) do
+    local eventsFound = false
+    for expansion,guid in pairs(expansions) do
         -- TODO make this more robust
         if expansion ~= "Branch & Claw" and expansion ~= "Jagged Earth" then
             found = true
-            break
+            for _,name in pairs(getObjectFromGUID(guid).getObjects()) do
+                if name == "Events" then
+                    eventsFound = true
+                    break
+                end
+            end
         end
     end
     if not found then
         self.UI.setAttribute("expansionsRow2", "active", "false")
     end
-    updateXml{removeToggle("expansionsRow2", obj.getName())}
+    if not eventsFound then
+        self.UI.setAttribute("events2", "active", "false")
+    end
+    updateXml{removeToggle("expansionsRow2", bag.getName()), removeToggle("events2", bag.getName().." Events")}
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
@@ -818,8 +839,20 @@ function setupExpansion(bag)
         elseif obj.name == "Blight Cards" then
             local blightCards = bag.takeObject({guid = obj.guid})
             getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-        elseif obj.name == "Event" then
-            -- TODO handle events here in the future
+        elseif obj.name == "Events" then
+            if Global.getTable("events")[bag.getName()] then
+                local eventDeckZone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+                if #eventDeckZone.getObjects() > 0 then
+                    local events = bag.takeObject({guid = obj.guid})
+                    eventDeckZone.getObjects()[1].putObject(events)
+                else
+                    bag.takeObject({
+                        guid = obj.guid,
+                        position = eventDeckZone.getPosition(),
+                        rotation = {0,180,180},
+                    })
+                end
+            end
         end
     end
 end
@@ -1526,7 +1559,7 @@ function updateDropdownSelection(id, value)
     end)
 end
 
-function addToggle(id, value)
+function addExpansionToggle(id, value)
     return matchRecurse(id, function (t)
         table.insert(t.children, {
             tag="Cell",
@@ -1534,6 +1567,19 @@ function addToggle(id, value)
                 tag="Toggle",
                 value=value,
                 attributes={id = value, onValueChanged = "toggleExpansion"},
+                children={},
+            },
+        })
+    end)
+end
+function addEventToggle(id, value)
+    return matchRecurse(id, function (t)
+        table.insert(t.children, {
+            tag="Cell",
+            children={
+                tag="Toggle",
+                value="Use "..value.." Events",
+                attributes={id = value.." Events", onValueChanged = "toggleEvents"},
                 children={},
             },
         })

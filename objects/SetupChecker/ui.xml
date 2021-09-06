@@ -153,9 +153,9 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2000 -2990 14">
-    <VerticalLayout>
-        <TableLayout>
+<Panel id="panelOptional" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -2990 14">
+    <VerticalLayout recurse="events2">
+        <TableLayout recurse="events2">
             <Row class="header">
                 <Cell columnSpan="2"><Text class="header">Variant Rules</Text></Cell>
             </Row>
@@ -166,7 +166,7 @@
                 <Cell><Toggle id="Branch &amp; Claw Events" onValueChanged="toggleEvents">Use B&amp;C Events</Toggle></Cell>
                 <Cell><Toggle id="Jagged Earth Events" onValueChanged="toggleEvents">Use JE Events</Toggle></Cell>
             </Row>
-            <Row id="events2" class="toggle" active="false"/>
+            <Row id="events2" class="toggle" active="false" recurse="events2"/>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>

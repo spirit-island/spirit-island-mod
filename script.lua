@@ -1914,64 +1914,47 @@ function grabInvaderCards(deckTable)
 end
 ----- Event Deck Section
 function SetupEventDeck()
-    local decksSetup = 0
+    local cardsSetup = 0
+    local deck = getObjectFromGUID(eventDeckZone).getObjects()[1]
     if events["Branch & Claw"] then
-        local BnCBag = getObjectFromGUID("BnCBag")
-        local deck = BnCBag.takeObject({
-            guid = "05f7b7",
-            position = getObjectFromGUID(eventDeckZone).getPosition(),
-            rotation = {0,180,180},
-        })
-        Wait.condition(function()
-            if SetupChecker.getVar("optionalDigitalEvents") then
-                deck.takeObject({guid = "cfd4d1"}).destruct()
-                deck.takeObject({guid = "6692e8"}).destruct()
-                decksSetup = decksSetup + 1
-            elseif SetupChecker.getVar("exploratoryWar") then
-                deck.takeObject({
-                    guid = "cfd4d1",
-                    callback_function = function(obj)
-                        local temp = obj.setState(2)
-                        Wait.frames(function()
-                            deck.putObject(temp)
-                            deck.shuffle()
-                            decksSetup = decksSetup + 1
-                        end, 1)
-                    end,
-                })
-            else
-                decksSetup = decksSetup + 1
-            end
-        end, function() return not deck.loading_custom end)
+        if SetupChecker.getVar("optionalDigitalEvents") then
+            deck.takeObject({guid = "cfd4d1"}).destruct()
+            deck.takeObject({guid = "6692e8"}).destruct()
+            cardsSetup = cardsSetup + 1
+        elseif SetupChecker.getVar("exploratoryWar") then
+            deck.takeObject({
+                guid = "cfd4d1",
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        deck.putObject(temp)
+                        deck.shuffle()
+                        cardsSetup = cardsSetup + 1
+                    end, 1)
+                end,
+            })
+        else
+            cardsSetup = cardsSetup + 1
+        end
         if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
-            local strangeMadness = BnCBag.takeObject({
+            local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
                 guid = "0edac2",
                 position = getObjectFromGUID(eventDeckZone).getPosition(),
                 rotation = {0,180,180},
+                callback_function = function(obj) deck.putObject(obj) end,
             })
-            Wait.condition(function() decksSetup = decksSetup + 1 end, function() return not strangeMadness.loading_custom end)
+            Wait.condition(function() cardsSetup = cardsSetup + 1 end, function() return not strangeMadness.loading_custom end)
         else
-            decksSetup = decksSetup + 1
+            cardsSetup = cardsSetup + 1
         end
     else
-        decksSetup = decksSetup + 2
-    end
-    if events["Jagged Earth"] then
-        local JEBag = getObjectFromGUID("JEBag")
-        local deck = JEBag.takeObject({
-            guid = "299e38",
-            position = getObjectFromGUID(eventDeckZone).getPosition(),
-            rotation = {0,180,180},
-        })
-        Wait.condition(function() decksSetup = decksSetup + 1 end, function() return not deck.loading_custom end)
-    else
-        decksSetup = decksSetup + 1
+        cardsSetup = cardsSetup + 2
     end
     if usingEvents() then
         Wait.condition(function()
             getObjectFromGUID(eventDeckZone).getObjects()[1].shuffle()
             stagesSetup = stagesSetup + 1
-        end, function() return decksSetup == 3 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
+        end, function() return cardsSetup == 2 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
     else
         stagesSetup = stagesSetup + 1
     end

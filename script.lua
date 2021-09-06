@@ -3288,24 +3288,24 @@ function setupPlayerArea(params)
         -- Energy Cost (button index 0)
         obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
-            position={0.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={1.1,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
         obj.createButton({
             label="", click_function="nullFunc",
-            position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={-4.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Gain Energy (button index 2)
         obj.createButton({
             label="", click_function="nullFunc",
-            position={-4.8,3.2,-9.8}, rotation={0,180,0}, height=0, width=0,
+            position={-4.2,3.2,-12.6}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         obj.createButton({
             label="Reclaim All", click_function="reclaimAll",
-            position={0.7,3.2,-9.8}, rotation={0,180,0}, height=600, width=2600,
+            position={1.6,3.2,-12.6}, rotation={0,180,0}, height=600, width=2600,
             font_size=500,
         })
         for i,bag in pairs(selected.elements) do
@@ -3873,21 +3873,21 @@ function setupSwapButtons()
         -- Sit Here (button index 0)
         obj.createButton({
             label="", click_function="onClickedSitHere", function_owner=Global,
-            position={-3.25,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={-3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
         })
         -- Change Color (button index 1)
         obj.createButton({
             label="", click_function="onClickedChangeColor", function_owner=Global,
-            position={3.25,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
         })
         -- Play Spirit (button index 2)
         obj.createButton({
             label="", click_function="onClickedPlaySpirit", function_owner=Global,
-            position={0,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={0,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
         })

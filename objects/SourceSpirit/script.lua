@@ -132,7 +132,7 @@ function SetupSpirit(obj, player_color)
     if #PlayerBag.getObjects() ~= 0 then
         local castObjects = upCast(obj)
         local hpos = Player[player_color].getHandTransform().position
-        obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,13.9))
+        obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5))
         obj.setRotation(Vector(0,180,0))
         obj.setLock(true)
         obj.clearButtons()
@@ -153,19 +153,19 @@ function SetupSpirit(obj, player_color)
 
         -- Setup Ready Token
         local ready = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(7.5, 1.1, 6.5),
+            position = Vector(spos.x,0,spos.z) + Vector(7.2, 1.1, 7),
             rotation = Vector(0, 180, 0),
         })
 
         -- Setup Energy Counter
-        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
+        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-6.2,1,6.8)})
         counter.setLock(true)
 
         -- Setup Element Bags
         local elements = {}
         for i = 1,9 do
             elements[i] = PlayerBag.takeObject({
-                position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 18.81) + Vector(i * 2, 0, 0),
+                position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21) + Vector(i * 2, 0, 0),
                 rotation = Vector(0, 180, 0),
             })
             elements[i].setLock(true)
@@ -173,12 +173,12 @@ function SetupSpirit(obj, player_color)
 
         -- Setup Reminder Bags
         local defend = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 18.81),
+            position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 20.21),
             rotation = Vector(0, 180, 0),
         })
         defend.setLock(true)
         local isolate = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 18.81),
+            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21),
             rotation = Vector(0, 180, 0),
         })
         isolate.setLock(true)

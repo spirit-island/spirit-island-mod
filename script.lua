@@ -420,6 +420,12 @@ function onLoad(saved_data)
     addHotkey("Gain Minor Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         MinorPowerC(nil, playerColor, false)
     end)
+    addHotkey("Reclaim All", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        local obj = playerBlocks[playerColor]
+        if obj ~= nil then
+            reclaimAll(obj, playerColor, false)
+        end
+    end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
         if getObjectFromGUID(v) ~= nil then

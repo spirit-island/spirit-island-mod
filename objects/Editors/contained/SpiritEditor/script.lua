@@ -309,7 +309,6 @@ function upCast(obj,dist,offset,types,name)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        log(v)
         local matchesType = false
         if types ~= nil then
             for _,t in pairs(types) do

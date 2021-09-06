@@ -3403,7 +3403,7 @@ function setupPlayerArea(params)
         return elements
     end
 
-    local function addThresholdDecals(obj, elements, thresholds, scale)
+    local function addThresholdDecals(object, elements, thresholds, scale)
         local decals = {}
         local positions = {}
         for _, threshold in pairs(thresholds) do
@@ -3428,7 +3428,7 @@ function setupPlayerArea(params)
             positions[vecString] = decal
             table.insert(decals, decal)
         end
-        obj.setDecals(decals)
+        object.setDecals(decals)
     end
     local function checkThresholds(spiritBoard, aspects, thresholdCards, elements)
         if spiritBoard.script_state ~= "" then

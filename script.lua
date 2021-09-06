@@ -3305,7 +3305,7 @@ function setupPlayerArea(params)
         })
         obj.createButton({
             label="Reclaim All", click_function="reclaimAll",
-            position={1.6,3.2,-12.6}, rotation={0,180,0}, height=600, width=2600,
+            position={1.1,3.2,-12.6}, rotation={0,180,0}, height=600, width=2600,
             font_size=500,
         })
         for i,bag in pairs(selected.elements) do

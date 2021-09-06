@@ -252,6 +252,9 @@
                 <Cell><Text id="challengeScenario" class="header"/></Cell>
             </Row>
             <Row class="header">
+                <Cell><Text id="challengeEvents" class="header"/></Cell>
+            </Row>
+            <Row class="header">
                 <Cell><Text id="challengeLayout" class="header"/></Cell>
             </Row>
             <Row id="challengeExtraBoardRow" class="header">

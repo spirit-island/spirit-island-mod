@@ -1,5 +1,5 @@
 ---- Versioning
-version = "2.1.4"
+version = "2.1.5"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -192,7 +192,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             end
         end
     end
-    -- HACK: Temporary fix until TTS bug resolved
+    -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/770
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionEnter", {hit_object=hit_object, collision_info=collision_info})
     end
@@ -205,7 +205,7 @@ function onObjectCollisionExit(hit_object, collision_info)
             end
         end
     end
-    -- HACK: Temporary fix until TTS bug resolved
+    -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/770
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionExit", {hit_object=hit_object, collision_info=collision_info})
     end
@@ -349,37 +349,37 @@ function onLoad(saved_data)
 
     clearHotkeys()
     for _, piece in ipairs(Pieces) do
-        addHotkey("Add " .. piece, function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-            DropPiece(piece, cursorLocation, droppingPlayerColor)
+        addHotkey("Add " .. piece, function (playerColor, hoveredObject, cursorLocation, key_down_up)
+            DropPiece(piece, cursorLocation, playerColor)
         end)
     end
 
-    addHotkey("Remove Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Remove Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
             deleteObject(hoveredObject, false)
         end
     end)
-    addHotkey("Destroy Piece", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Destroy Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
             deleteObject(hoveredObject, true)
         end
     end)
 
-    addHotkey("Add Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Add Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("addFear")
     end)
-    addHotkey("Remove Fear", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Remove Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("removeFear")
     end)
-    addHotkey("Flip Explore Card", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Flip Explore Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("flipExploreCard")
     end)
-    addHotkey("Advance Invader Cards", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
+    addHotkey("Advance Invader Cards", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("advanceInvaderCards")
     end)
 
-    addHotkey("Forget Power", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
+    addHotkey("Forget Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
                 -- This ugliness is because setPositionSmooth doesn't work from a hand.
                 ensureCardInPlay(obj)
@@ -392,15 +392,22 @@ function onLoad(saved_data)
             discardPowerCardFromPlay(hoveredObject, 1)
         end
     end)
-    addHotkey("Discard Power (to 2nd hand)", function (droppingPlayerColor, hoveredObject, cursorLocation, key_down_up)
-        for _,obj in pairs(Player[droppingPlayerColor].getSelectedObjects()) do
+    addHotkey("Discard Power (to 2nd hand)", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
-                obj.deal(1, droppingPlayerColor, 2)
+                obj.deal(1, playerColor, 2)
             end
         end
         if isPowerCard({card=hoveredObject}) then
-            hoveredObject.deal(1, droppingPlayerColor, 2)
+            hoveredObject.deal(1, playerColor, 2)
         end
+    end)
+
+    addHotkey("Gain Major Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        MajorPowerC(nil, playerColor, false)
+    end)
+    addHotkey("Gain Minor Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        MinorPowerC(nil, playerColor, false)
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
@@ -1161,6 +1168,9 @@ function CreatePickPowerButton(card)
     })
 end
 function PickPower(cardo,playero,alt_click)
+    if cardo.hasTag("Major") then
+        Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
+    end
     -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
@@ -2150,7 +2160,7 @@ function StartGame()
 end
 function enableUI()
     Wait.frames(function()
-        -- HACK: Temporary hack to try to fix visibility TTS bug
+        -- HACK: Temporary hack to try to fix visibility TTS bug https://tabletopsimulator.nolt.io/583
         UI.setXmlTable(UI.getXmlTable(), {})
 
         -- Need to wait for xml table to get updated
@@ -2302,12 +2312,7 @@ function handlePiece(object, offset)
         end
     elseif name == "Blight" then
         object = resetPiece(object, Vector(0,180,0), offset)
-    elseif string.sub(name, -6) == "Defend" then
-        if object.getLock() == false then
-            object.destruct()
-            object = nil
-        end
-    elseif string.sub(name, -7) == "Isolate" then
+    elseif object.hasTag("Reminder Token") then
         if object.getLock() == false then
             object.destruct()
             object = nil
@@ -2349,15 +2354,12 @@ end
 function handlePlayer(color, data)
     local zone = getObjectFromGUID(elementScanZones[color])
     for _, obj in ipairs(zone.getObjects()) do
-        local name = obj.getName()
         if obj.hasTag("Any") then
             if obj.getStateId() ~= 9 then obj = obj.setState(9) end
             if obj.getLock() == false then obj.destruct() end
         elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
-        elseif string.sub(name, -6) == "Defend" then
-            obj.destruct()
-        elseif string.sub(name, -7) == "Isolate" then
+        elseif obj.hasTag("Reminder Token") then
             obj.destruct()
         elseif obj.getName() == "Speed Token" then
             -- Move speed token up a bit to trigger collision exit callback
@@ -2746,7 +2748,7 @@ end
 setupMapCoObj = nil
 function setupMap(map,extra)
     -- HACK: trying to fix client desync issue
-    map.setPosition(map.getPosition())
+    map.setPosition(map.getPosition()+Vector(0,0.01,0))
 
     setupMapCoObj = map
     if extra then
@@ -3604,6 +3606,29 @@ function refundEnergyTokens(color, cost)
     end
     return true
 end
+function getCurrentEnergy(color)
+    if selectedColors[color].counter ~= nil and selectedColors[color].counter.getLock() then
+        return selectedColors[color].counter.getValue()
+    end
+
+    local energy = 0
+    local zone = getObjectFromGUID(elementScanZones[color])
+    local objects = zone.getObjects()
+    for _, obj in ipairs(objects) do
+        if obj.type == "Chip" then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                quantity = 1
+            end
+            if obj.getName() == "1 Energy" then
+                energy = energy + quantity
+            elseif obj.getName() == "3 Energy" then
+                energy = energy + (3 * quantity)
+            end
+        end
+    end
+    return energy
+end
 
 function setupSwapButtons()
     for color,obj in pairs(playerTables) do
@@ -4064,29 +4089,34 @@ end
 
 function swapPlayerPresenceColors(fromColor, toColor)
     if fromColor == toColor then return end
-    local function initData(color, ix, oppositeColor)
+    local function initData(color, ix)
         local bag = getObjectFromGUID(PlayerBags[color])
+        -- If color has not been selected this will be changed during player bag emptying
+        local colorTint = color
+        if selectedColors[color] then
+            colorTint = selectedColors[color].defend.getColorTint()
+        end
         return {
             color = color,
             ix = ix,
             bag = bag,
             qty = bag.getQuantity(),
-            tints = {},
+            tint = colorTint,
+            presenceTint = bag.getColorTint(),
             objects = {},
             pattern = color .. "'s (.*)",
             bagContents = {},
-            oppositeColor = oppositeColor,
         }
     end
     local colors = {
-        from = initData(fromColor, 1, toColor),
-        to = initData(toColor, 2, fromColor)
+        from = initData(fromColor, 1),
+        to = initData(toColor, 2)
     }
 
     -- If both bags are full, there's not a lot of work to do.
-    -- Unfortunately, we still need to loop through other things because of defend tokens that aren't in bags.
-    local fastSwap = (colors.from.qty == 25 and colors.to.qty == 25)
-    -- Just bail out fast.
+    if colors.from.qty == 25 and colors.to.qty == 25 then
+        return
+    end
 
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
     -- Only need to handle case where both colors have spirits here
@@ -4106,30 +4136,30 @@ function swapPlayerPresenceColors(fromColor, toColor)
         selectedColors[fromColor].isolate.setPosition(pos)
     end
 
-    if not fastSwap then
-        -- Remove any items still in the bags
-        for _, data in pairs(colors) do
-            for i = 1,data.qty do
-                data.bag.takeObject({
-                    sound = false,
-                    position = Vector(data.ix*2, i*2, 200),    -- Chosen to be out-of-the-way and to prevent items from stacking.
-                    smooth = false,
-                    callback_function = function(obj) table.insert(data.bagContents, obj.guid) end,
-                })
+    -- Remove any items still in the bags
+    for _, data in pairs(colors) do
+        for i = 1,data.qty do
+            local obj = data.bag.takeObject({
+                sound = false,
+                position = Vector(data.ix*2, i*2, 200),    -- Chosen to be out-of-the-way and to prevent items from stacking.
+                smooth = false,
+            })
+            table.insert(data.bagContents, obj.guid)
+            if obj.getName() == "Defend Tokens" then
+                data.tint = obj.getColorTint()
             end
         end
     end
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
-    -- Make a note of what we find and what tint it is. Handle Isolate and Defend tokens in this pass.
+    -- Make a note of what we find and what tint it is.
     local match = string.match  -- Performance
     for _,obj in pairs(getObjects()) do
         local name = obj.getName()
         if name then
             for _,data in pairs(colors) do
                 local suffix = match(name, data.pattern)
-                if suffix and not fastSwap then
-                    data.tints[suffix] = obj.getColorTint()
+                if suffix then
                     if not data.objects[suffix] then
                         data.objects[suffix] = {obj}
                     else
@@ -4141,11 +4171,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
     end
 
     -- Pass 2: Iterate over found objects and swap color tints and object names.
-    -- After we're done, put objects in their new presence bag, if applicable.
-    if fastSwap then
-        -- All's we did is maybe recolor some isolate and defend tokens, so we can skip the rest of this.
-        return
-    end
+    -- After we're done, put objects in their new player bag, if applicable.
     Wait.frames(function()
         for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
             local a, b = unpack(ab)
@@ -4170,28 +4196,11 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     broadcastToAll("Internal Error: Unknown object " .. name .. " in player bag.", Color.Red)
                 end
             end
-            for suffix, tint in pairs(a.tints) do
-                if suffix == "Defend" or suffix == "Isolate" then
-                    for _, obj in ipairs(a.objects[suffix]) do
-                        local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
-                        local locked = obj.getLock()
-                        if suffix == "Defend" then
-                            local state = obj.getStateId()
-                            destroyObject(obj)
-                            obj = selectedColors[b.color].defend.takeObject(attrs)
-                            if state ~= 1 then
-                                obj = obj.setState(state)
-                            end
-                        else
-                            destroyObject(obj)
-                            obj = selectedColors[b.color].isolate.takeObject(attrs)
-                        end
-                        obj.setLock(locked)
-                    end
-                elseif suffix == "Presence" then
+            for suffix, objs in pairs(b.objects) do
+                if suffix == "Presence" then
                     local newname = a.color .. "'s " .. suffix
-                    for _, obj in ipairs(b.objects[suffix]) do
-                        obj.setColorTint(tint)
+                    for _, obj in ipairs(objs) do
+                        obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         local originalState = obj.getStateId()
                         if obj.getStateId() == 1 then
@@ -4202,7 +4211,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                             end
                             obj = obj.setState(1)
                         end
-                        obj.setColorTint(tint)
+                        obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         if originalState == 1 then
                             if obj.getDecals() then
@@ -4211,8 +4220,29 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         end
                         _ = obj.setState(originalState)
                     end
+                elseif suffix == "Defend" then
+                    -- Easier to grab new defend token than to change the name and color of every state
+                    for _, obj in ipairs(objs) do
+                        local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
+                        local locked = obj.getLock()
+                        local state = obj.getStateId()
+                        destroyObject(obj)
+                        obj = selectedColors[a.color].defend.takeObject(attrs)
+                        if state ~= 1 then
+                            obj = obj.setState(state)
+                        end
+                        obj.setLock(locked)
+                    end
                 else
-                    broadcastToAll("Internal Error: Unknown object type " .. suffix .. " in player bag.", Color.Red)
+                    local newname = a.color .. "'s " .. suffix
+                    for _, obj in ipairs(objs) do
+                        local states = obj.getStates()
+                        if states ~= nil and #states > 1 then
+                            broadcastToAll("Internal Error: Object " .. obj.getName() .. " has multiple states and may not handle color swap properly.", Color.Red)
+                        end
+                        obj.setColorTint(a.tint)
+                        obj.setName(newname)
+                    end
                 end
             end
             for i = #b.bagContents - 2,1,-1 do  -- Iterate in reverse order.
@@ -4502,6 +4532,10 @@ function enterSpiritPhase(player)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
+
+    for color,_ in pairs(selectedColors) do
+        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftYellow)
+    end
 end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end

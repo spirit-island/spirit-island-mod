@@ -757,7 +757,7 @@ function loadConfig(config)
         end
     end
     if config.broadcast then
-        broadcastToAll(config.broadcast, Color.SoftYellow)
+        printToAll(config.broadcast, Color.SoftYellow)
     end
     updateDifficulty()
 end
@@ -1543,14 +1543,14 @@ function getWeeklyChallengeConfig()
     local leadingAdversary = math.random(1, numAdversaries)
     config.adversary = indexTable(adversaries, leadingAdversary)
     local leadingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel  = leadingAdversaryLevel % 7
+    config.adversaryLevel = leadingAdversaryLevel % 7
     local supportingAdversary = math.random(1, numAdversaries - 1)
     if supportingAdversary >= leadingAdversary then
         supportingAdversary = supportingAdversary + 1
     end
     config.adversary2 = indexTable(adversaries, supportingAdversary)
     local supportingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel2  = supportingAdversaryLevel % 7
+    config.adversaryLevel2 = supportingAdversaryLevel % 7
     local scenario = math.random(-2, numScenarios)
     -- <= 0 means no scenario is selected
     if scenario > 0 then
@@ -1585,10 +1585,11 @@ function getWeeklyChallengeConfig()
         config.boardLayout = indexTable(setups[numBoards], math.random(2, layoutsCount))
     end
 
-    if math.random(0, 2) > 0 then
+    local events = math.random(1, 4)
+    if events == 1 or events >= 3 then
         table.insert(config.events, "bnc")
     end
-    if math.random(0, 2) > 0 then
+    if events == 2 or events >= 3 then
         table.insert(config.events, "je")
     end
 
@@ -1646,7 +1647,7 @@ function getWeeklyChallengeConfig()
         local boardName = findBoard(i - 1)
         table.insert(config.boards, boardName)
         if i ~= 1 then
-            config.broadcast = config.broadcast..", "
+            config.broadcast = config.broadcast.."\n"
         end
         config.broadcast = config.broadcast..spirit.getName().." on "..boardName
     end
@@ -1706,6 +1707,21 @@ function setWeeklyChallengeUI(config, difficulty)
         self.UI.setAttribute("challengeScenario", "text", "Scenario: "..config.scenario)
     else
         self.UI.setAttribute("challengeScenario", "text", "Scenario: None")
+    end
+    if #config.events == 0 then
+        self.UI.setAttribute("challengeEvents", "text", "Events: None")
+    else
+        local events = "Events: "
+        for _,expansion in pairs(config.events) do
+            local expansionString
+            if expansion == "bnc" then
+                expansionString = "B&C"
+            else
+                expansionString = expansion:upper()
+            end
+            events = events..expansionString..", "
+        end
+        self.UI.setAttribute("challengeEvents", "text", events:sub(1,-3))
     end
     self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
     if config.extraBoard then

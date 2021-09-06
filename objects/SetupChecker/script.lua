@@ -142,16 +142,6 @@ function onLoad(saved_data)
             self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
             self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
-            local events = Global.getTable("events")
-            for expansion, enabled in pairs(Global.getTable("expansions")) do
-                if enabled then
-                    self.UI.setAttribute(expansion, "isOn", "true")
-                    if events[expansion] then
-                        self.UI.setAttribute(expansion.." Events", "isOn", "true")
-                    end
-                end
-            end
-
             -- queue up all dropdown changes as once
             Wait.frames(function()
                 local funcList = {
@@ -166,7 +156,19 @@ function onLoad(saved_data)
                     end
                 end
                 updateXml(funcList)
-                Wait.frames(updateDifficulty, 1)
+                Wait.frames(function()
+                    local events = Global.getTable("events")
+                    for expansion, enabled in pairs(Global.getTable("expansions")) do
+                        if enabled then
+                            self.UI.setAttribute(expansion, "isOn", "true")
+                            if events[expansion] then
+                                self.UI.setAttribute(expansion.." Events", "isOn", "true")
+                            end
+                        end
+                    end
+                    
+                    updateDifficulty()
+                end, 2)
             end, 2)
         end
     end

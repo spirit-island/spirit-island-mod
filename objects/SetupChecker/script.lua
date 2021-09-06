@@ -261,7 +261,7 @@ function removeExpansion(bag)
     if not eventsFound then
         self.UI.setAttribute("events2", "active", "false")
     end
-    updateXml{removeToggle("expansionsRow2", bag.getName()), removeToggle("events2", bag.getName().." Events")}
+    updateXml{removeToggle("expansionsRow2", bag.getName()), removeToggle("events2", "Use "..bag.getName().." Events")}
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do

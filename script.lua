@@ -3287,15 +3287,20 @@ function setupPlayerArea(params)
         })
         -- Pay Energy (button index 1)
         obj.createButton({
-            label="", click_function="nullFunc", function_owner=Global,
+            label="", click_function="nullFunc",
             position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Gain Energy (button index 2)
         obj.createButton({
-            label="", click_function="nullFunc", function_owner=Global,
+            label="", click_function="nullFunc",
             position={-4.8,3.2,-9.8}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
+        })
+        obj.createButton({
+            label="Reclaim All", click_function="reclaimAll",
+            position={0.7,3.2,-9.8}, rotation={0,180,0}, height=600, width=2600,
+            font_size=500,
         })
         for i,bag in pairs(selected.elements) do
             if i == 9 then break end
@@ -3505,6 +3510,21 @@ function setupPlayerArea(params)
     end
     timer = Wait.time(countItems, 1, -1)
     obj.setVar("timer", timer)
+end
+function reclaimAll(target_obj, source_color)
+    if not gameStarted then
+        return
+    end
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    for _,obj in pairs(Player[color].getHandObjects(2)) do
+        if isPowerCard({card=obj}) then
+            obj.deal(1, color, 1)
+        end
+    end
 end
 function gainEnergy(target_obj, source_color, alt_click)
     if not gameStarted then

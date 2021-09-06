@@ -1,7 +1,6 @@
-bncDone = false
-jeDone = false
 setupStarted = false
 
+expansions = {}
 adversaries = {
     ["None"] = "",
     ["Random"] = "",
@@ -125,6 +124,9 @@ function onLoad(saved_data)
         numScenarios = count
 
         if not setupStarted then
+            for _,obj in pairs(getObjectsWithTag("Expansion")) do
+                expansions[obj.getName()] = obj.guid
+            end
             toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
             toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
 
@@ -132,16 +134,13 @@ function onLoad(saved_data)
             self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
             self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
-            if Global.getVar("BnCAdded") then
-                self.UI.setAttribute("bnc", "isOn", "true")
-                if Global.getVar("useBnCEvents") then
-                    self.UI.setAttribute("bncEvents", "isOn", "true")
-                end
-            end
-            if Global.getVar("JEAdded") then
-                self.UI.setAttribute("je", "isOn", "true")
-                if Global.getVar("useJEEvents") then
-                    self.UI.setAttribute("jeEvents", "isOn", "true")
+            local events = Global.getTable("events")
+            for expansion, enabled in pairs(Global.getTable("expansions")) do
+                if enabled then
+                    self.UI.setAttribute(expansion, "isOn", "true")
+                    if events[expansion] then
+                        self.UI.setAttribute(expansion.." Events", "isOn", "true")
+                    end
                 end
             end
 
@@ -160,12 +159,17 @@ function onLoad(saved_data)
 end
 
 function onObjectSpawn(obj)
-    if not setupStarted and obj.type == "Card" then
-        local objType = type(obj.getVar("difficulty"))
-        if objType == "table" then
-            addAdversary(obj)
-        elseif objType == "number" then
-            -- Scenario
+    if not setupStarted then
+        if obj.type == "Card" then
+            local objType = type(obj.getVar("difficulty"))
+            if objType == "table" then
+                addAdversary(obj)
+            elseif objType == "number" then
+                -- Scenario
+            end
+        end
+        if obj.hasTag("Expansion") then
+            expansions[obj.getName()] = obj.guid
         end
     end
 end
@@ -185,12 +189,17 @@ function onObjectDestroy(obj)
     end
     if obj.hasTag("Spirit") then
         removeSpirit({spirit=obj.guid})
-    elseif not setupStarted and obj.type == "Card" then
-        local objType = type(obj.getVar("difficulty"))
-        if objType == "table" then
-            removeAdversary(obj)
-        elseif objType == "number" then
-            removeScenario(obj)
+    elseif not setupStarted then
+        if obj.type == "Card" then
+            local objType = type(obj.getVar("difficulty"))
+            if objType == "table" then
+                removeAdversary(obj)
+            elseif objType == "number" then
+                removeScenario(obj)
+            end
+        end
+        if obj.hasTag("Expansion") then
+            expansions[obj.getName()] = nil
         end
     end
 end
@@ -455,50 +464,27 @@ function updateSupportingLevel(value, updateUI)
     updateDifficulty()
 end
 
-function toggleBnC()
-    local BnCAdded = Global.getVar("BnCAdded")
-    BnCAdded = not BnCAdded
-    Global.setVar("BnCAdded", BnCAdded)
-    self.UI.setAttribute("bnc", "isOn", BnCAdded)
-    Global.setVar("useBnCEvents", BnCAdded)
-    self.UI.setAttribute("bncEvents", "isOn", BnCAdded)
+function toggleExpansion(_, _, id)
+    local exps = Global.getTable("expansions")
+    exps[id] = not exps[id]
+    Global.setTable("expansions", exps)
+    self.UI.setAttribute(id, "isOn", exps[id])
+    local events = Global.getTable("events")
+    events[id] = exps[id]
+    Global.setTable("events", events)
+    self.UI.setAttribute(id.." Events", "isOn", exps[id])
     updateDifficulty()
 end
-function toggleJE()
-    local JEAdded = Global.getVar("JEAdded")
-    JEAdded = not JEAdded
-    Global.setVar("JEAdded", JEAdded)
-    self.UI.setAttribute("je", "isOn", JEAdded)
-    Global.setVar("useJEEvents", JEAdded)
-    self.UI.setAttribute("jeEvents", "isOn", JEAdded)
-    updateDifficulty()
-end
-function toggleBnCEvents()
-    if not Global.getVar("BnCAdded") then
-        self.UI.setAttribute("bncEvents", "isOn", "false")
+function toggleEvents(_, _, id)
+    local exp = id:sub(1, -8)
+    if not Global.getTable("expansions")[exp] then
+        self.UI.setAttribute(id, "isOn", "false")
         return
     end
-    local useBnCEvents = Global.getVar("useBnCEvents")
-    useBnCEvents = not useBnCEvents
-    Global.setVar("useBnCEvents", useBnCEvents)
-    self.UI.setAttribute("bncEvents", "isOn", useBnCEvents)
-end
-function toggleJEEvents()
-    if not Global.getVar("JEAdded") then
-        self.UI.setAttribute("jeEvents", "isOn", "false")
-        return
-    end
-    local useJEEvents = Global.getVar("useJEEvents")
-    useJEEvents = not useJEEvents
-    Global.setVar("useJEEvents", useJEEvents)
-    self.UI.setAttribute("jeEvents", "isOn", useJEEvents)
-end
-function toggleBlightCard()
-    local useBlightCard = Global.getVar("useBlightCard")
-    useBlightCard = not useBlightCard
-    Global.setVar("useBlightCard", useBlightCard)
-    self.UI.setAttribute("blightCard", "isOn", useBlightCard)
-    self.UI.setAttribute("blightCard2", "isOn", useBlightCard)
+    local events = Global.getTable("events")
+    events[exp] = not events[exp]
+    Global.setTable("events", events)
+    self.UI.setAttribute(id, "isOn", events[exp])
 end
 
 function toggleBoardLayout(_, value)
@@ -605,7 +591,8 @@ function difficultyCheck(params)
         boardLayout = Global.getVar("boardLayout")
     end
     if boardLayout == "Thematic" or params.thematic then
-        if Global.getVar("BnCAdded") or Global.getVar("JEAdded") then
+        local exps = Global.getTable("expansions")
+        if exps["Branch & Claw"] or exps["Jagged Earth"] then
             difficulty = difficulty + 1
         else
             difficulty = difficulty + 3
@@ -646,17 +633,13 @@ function startGame()
         return
     end
     setupStarted = true
-    if Global.getVar("BnCAdded") then
-        startLuaCoroutine(self, "addBnCCo")
-    else
-        bncDone = true
+    local exps = Global.getTable("expansions")
+    for expansion,enabled in pairs(Global.getTable("expansions")) do
+        if enabled and expansions[expansion] then
+            setupExpansion(getObjectFromGUID(expansions[expansion]))
+        end
     end
-    if Global.getVar("JEAdded") then
-        startLuaCoroutine(self, "addJECo")
-    else
-        jeDone = true
-    end
-    Wait.condition(function() Global.call("SetupGame", {}) end, function() return bncDone and jeDone end)
+    Wait.time(function() Global.call("SetupGame", {}) end, 1)
 end
 function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -721,40 +704,46 @@ function loadConfig(config)
         end
     end
     if config.expansions then
-        local expansions = {}
+        local exps = {}
         for _,expansion in pairs(config.expansions) do
-            expansions[expansion] = true
+            exps[expansion] = true
         end
-        if expansions.bnc then
-            Global.setVar("BnCAdded", true)
-            Global.setVar("useBnCEvents", true)
+        local expansionsCopy = Global.getTable("expansions")
+        local events = Global.getTable("events")
+        if exps["Branch & Claw"] then
+            expansionsCopy["Branch & Claw"] = true
+            events["Branch & Claw"] = true
         else
-            Global.setVar("BnCAdded", false)
-            Global.setVar("useBnCEvents", false)
+            expansionsCopy["Branch & Claw"] = false
+            events["Branch & Claw"] = false
         end
-        if expansions.je then
-            Global.setVar("JEAdded", true)
-            Global.setVar("useJEEvents", true)
+        if exps["Jagged Earth"] then
+            expansionsCopy["Jagged Earth"] = true
+            events["Jagged Earth"] = true
         else
-            Global.setVar("JEAdded", false)
-            Global.setVar("useJEEvents", false)
+            expansionsCopy["Jagged Earth"] = false
+            events["Jagged Earth"] = false
         end
+        Global.setTable("expansions", expansionsCopy)
+        Global.setTable("events", events)
     end
     if config.events then
-        local expansions = {}
+        local exps = {}
         for _,expansion in pairs(config.events) do
-            expansions[expansion] = true
+            exps[expansion] = true
         end
-        if expansions.bnc then
-            Global.setVar("useBnCEvents", true)
+        local events = Global.getTable("events")
+        if exps["Branch & Claw"] then
+            events["Branch & Claw"] = true
         else
-            Global.setVar("useBnCEvents", false)
+            events["Branch & Claw"] = false
         end
-        if expansions.je then
-            Global.setVar("useJEEvents", true)
+        if exps["Jagged Earth"] then
+            events["Jagged Earth"] = true
         else
-            Global.setVar("useJEEvents", false)
+            events["Jagged Earth"] = false
         end
+        Global.setTable("events", events)
     end
     if config.broadcast then
         printToAll(config.broadcast, Color.SoftYellow)
@@ -776,37 +765,24 @@ function PickSpirit(name, aspect)
         end
     end
 end
-function addBnCCo()
-    local BnCBag = getObjectFromGUID("BnCBag")
-
-    local fearDeck = BnCBag.takeObject({guid = "d16f70"})
-    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
-    local minorPowers = BnCBag.takeObject({guid = "913789"})
-    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
-    local majorPowers = BnCBag.takeObject({guid = "07ac50"})
-    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
-    local blightCards = BnCBag.takeObject({guid = "788333"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-
-    wt(0.5)
-    bncDone = true
-    return 1
-end
-function addJECo()
-    local JEBag = getObjectFromGUID("JEBag")
-
-    local fearDeck = JEBag.takeObject({guid = "723183"})
-    getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
-    local minorPowers = JEBag.takeObject({guid = "80b54a"})
-    getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
-    local majorPowers = JEBag.takeObject({guid = "98a916"})
-    getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
-    local blightCards = JEBag.takeObject({guid = "8120e0"})
-    getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-
-    wt(0.5)
-    jeDone = true
-    return 1
+function setupExpansion(bag)
+    for _,obj in pairs(bag.getObjects()) do
+        if obj.name == "Fear" then
+            local fearDeck = bag.takeObject({guid = obj.guid})
+            getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+        elseif obj.name == "Minor Powers" then
+            local minorPowers = bag.takeObject({guid = obj.guid})
+            getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
+        elseif obj.name == "Major Powers" then
+            local majorPowers = bag.takeObject({guid = obj.guid})
+            getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
+        elseif obj.name == "Blight Cards" then
+            local blightCards = bag.takeObject({guid = obj.guid})
+            getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+        elseif obj.name == "Event" then
+            -- TODO handle events here in the future
+        end
+    end
 end
 
 function showUI()
@@ -1536,7 +1512,7 @@ function getWeeklyChallengeConfig()
     seedTimestamp()
 
     -- Requires both Branch & Claw and Jagged Earth expansions
-    local config = {boards = {}, spirits = {}, expansions = {"bnc", "je"}, events = {}, broadcast = ""}
+    local config = {boards = {}, spirits = {}, expansions = {"Branch & Claw", "Jagged Earth"}, events = {}, broadcast = ""}
     local numPlayers = Global.getVar("numPlayers")
 
     -- Requires two adversaries
@@ -1587,10 +1563,10 @@ function getWeeklyChallengeConfig()
 
     local events = math.random(1, 4)
     if events == 1 or events >= 3 then
-        table.insert(config.events, "bnc")
+        table.insert(config.events, "Branch & Claw")
     end
     if events == 2 or events >= 3 then
-        table.insert(config.events, "je")
+        table.insert(config.events, "Jagged Earth")
     end
 
     -- Copy spiritGuids table so we can remove elements from it
@@ -1713,13 +1689,7 @@ function setWeeklyChallengeUI(config, difficulty)
     else
         local events = "Events: "
         for _,expansion in pairs(config.events) do
-            local expansionString
-            if expansion == "bnc" then
-                expansionString = "B&C"
-            else
-                expansionString = expansion:upper()
-            end
-            events = events..expansionString..", "
+            events = events..expansion..", "
         end
         self.UI.setAttribute("challengeEvents", "text", events:sub(1,-3))
     end

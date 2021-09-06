@@ -3,7 +3,6 @@
   "adversaryLevel2": 0,
   "blightCards": [],
   "blightedIsland": false,
-  "BnCAdded": false,
   "boardLayout": "Balanced",
   "cityBag": "a245f8",
   "currentPhase": 1,
@@ -17,12 +16,13 @@
     "Red": "9fc5a4",
     "Yellow": "102771"
   },
+  "events": [],
+  "expansions": [],
   "explorerBag": "613ea4",
   "fastDiscount": 0,
   "fearPool": 0,
   "gameStarted": false,
   "generatedFear": 0,
-  "JEAdded": false,
   "numBoards": 1,
   "numPlayers": 1,
   "objectsToCleanup": [],
@@ -48,7 +48,5 @@
   "selectedBoards": [],
   "selectedColors": [],
   "showPlayerButtons": true,
-  "townBag": "4d3c15",
-  "useBnCEvents": false,
-  "useJEEvents": false
+  "townBag": "4d3c15"
 }

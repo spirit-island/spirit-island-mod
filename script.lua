@@ -46,10 +46,8 @@ playerTables = {
 numPlayers = 1
 numBoards = 1
 boardLayout = "Balanced"
-BnCAdded = false
-JEAdded = false
-useBnCEvents = false
-useJEEvents = false
+expansions = {}
+events = {}
 fearPool = 0
 generatedFear = 0
 gameStarted = false
@@ -284,10 +282,8 @@ function onObjectLeaveScriptingZone(zone, obj)
 end
 function onSave()
     local data_table = {
-        BnCAdded = BnCAdded,
-        JEAdded = JEAdded,
-        useBnCEvents = useBnCEvents,
-        useJEEvents = useJEEvents,
+        expansions = expansions,
+        events = events,
         fearPool = fearPool,
         generatedFear = generatedFear,
         gameStarted = gameStarted,
@@ -479,10 +475,8 @@ function onLoad(saved_data)
         playerBlocks = loaded_data.playerBlocks
         elementScanZones = loaded_data.elementScanZones
         selectedColors = loaded_data.selectedColors
-        BnCAdded = loaded_data.BnCAdded
-        JEAdded = loaded_data.JEAdded
-        useBnCEvents = loaded_data.useBnCEvents
-        useJEEvents = loaded_data.useJEEvents
+        expansions = loaded_data.expansions
+        events = loaded_data.events
         fearPool = loaded_data.fearPool
         generatedFear = loaded_data.generatedFear
         difficulty = loaded_data.difficulty
@@ -691,6 +685,14 @@ function randomBoard()
     end
     SetupChecker.call("updateDifficulty", {})
 end
+function usingEvents()
+    for _,enabled in pairs(events) do
+        if enabled then
+            return true
+        end
+    end
+    return false
+end
 function randomScenario()
     if difficulty > maxDifficulty then
         return
@@ -709,9 +711,9 @@ function randomScenario()
             scenarioCard = nil
         elseif scenarioCard.getVar("requirements") then
             local allowed = scenarioCard.call("Requirements", {
-                eventDeck = useBnCEvents or useJEEvents,
+                eventDeck = usingEvents(),
                 blightCard = useBlightCard,
-                expansions = {bnc = BnCAdded, je = JEAdded},
+                expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]},
                 thematic = isThematic(),
                 adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or useRandomAdversary or useSecondAdversary,
             })
@@ -745,7 +747,7 @@ function randomAdversary(attempts)
         while adversary == nil do
             adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -755,7 +757,7 @@ function randomAdversary(attempts)
         while adversary2 == nil or adversary2 == adversary do
             adversary2 = SetupChecker.call("randomAdversary",{})
             if adversary2.getVar("requirements") then
-                local allowed = adversary2.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]}, thematic = isThematic()})
                 if not allowed then
                     adversary2 = nil
                 end
@@ -796,7 +798,7 @@ function randomAdversary(attempts)
         while adversary == nil or adversary == selectedAdversary do
             adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]}, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -878,7 +880,7 @@ function SetupFear()
         fearCards[2] = fearCards[2] + extraFearCards[2]
         fearCards[3] = fearCards[3] + extraFearCards[3]
     end
-    if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
+    if not usingEvents() and (expansions["Branch & Claw"] or expansions["Jagged Earth"]) then
         fearCards[2] = fearCards[2] + 1
     end
 
@@ -1285,7 +1287,7 @@ function grabBlightCard(start)
         blightDeck.takeObject({
             position = blightDeck.getPosition() + Vector(3.92, 1, 0),
             callback_function = function(obj)
-                if not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
+                if not usingEvents() and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
                     obj.setRotationSmooth(Vector(0,180,0))
                     grabBlightCard(start)
                 elseif SetupChecker.getVar("optionalSoloBlight") and numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
@@ -1913,7 +1915,7 @@ end
 ----- Event Deck Section
 function SetupEventDeck()
     local decksSetup = 0
-    if useBnCEvents then
+    if events["Branch & Claw"] then
         local BnCBag = getObjectFromGUID("BnCBag")
         local deck = BnCBag.takeObject({
             guid = "05f7b7",
@@ -1954,7 +1956,7 @@ function SetupEventDeck()
     else
         decksSetup = decksSetup + 2
     end
-    if useJEEvents then
+    if events["Jagged Earth"] then
         local JEBag = getObjectFromGUID("JEBag")
         local deck = JEBag.takeObject({
             guid = "299e38",
@@ -1965,7 +1967,7 @@ function SetupEventDeck()
     else
         decksSetup = decksSetup + 1
     end
-    if useBnCEvents or useJEEvents then
+    if usingEvents() then
         Wait.condition(function()
             getObjectFromGUID(eventDeckZone).getObjects()[1].shuffle()
             stagesSetup = stagesSetup + 1
@@ -2067,7 +2069,7 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
-    if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
+    if not usingEvents() and (expansions["Branch & Claw"] or expansions["Jagged Earth"]) then
         -- Setup up command cards last
         Wait.condition(function()
             local invaderDeck = invaderDeckZone.getObjects()[1]
@@ -2808,7 +2810,7 @@ function setupMapCo(extra)
     local originalPieces = map.getTable("pieceMap")
 
     if not map.hasTag("Thematic") then -- if not a thematic board
-        if BnCAdded or JEAdded then -- during Setup put 1 Beast and 1 Disease on each island board
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then -- during Setup put 1 Beast and 1 Disease on each island board
             for i=1,#piecesToPlace do
                 if #piecesToPlace[i] == 0 then
                     table.insert(piecesToPlace[i],"Beasts") -- the Beasts go in the lowest-numbered land with no printed Setup icons
@@ -2908,17 +2910,17 @@ end
 function place(objName, placePos, droppingPlayerColor)
     if objName == "CityS" then
         place("City",placePos,droppingPlayerColor)
-        if BnCAdded or JEAdded then
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     elseif objName == "TownS" then
         place("Town",placePos,droppingPlayerColor)
-        if BnCAdded or JEAdded then
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     elseif objName == "ExplorerS" then
         place("Explorer",placePos,droppingPlayerColor)
-        if BnCAdded or JEAdded then
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     end
@@ -2968,31 +2970,31 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Box Blight" then
         temp = boxBlightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Strife" then
-        if BnCAdded or JEAdded then
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
             temp = strifeBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Beasts" then
-        if BnCAdded or JEAdded then
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
             temp = beastsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Wilds" then
-        if BnCAdded or JEAdded then
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
             temp = wildsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Disease" then
-        if BnCAdded or JEAdded then
+        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
             temp = diseaseBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Badlands" then
-        if JEAdded then
+        if expansions["Jagged Earth"] then
             temp = badlandsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return

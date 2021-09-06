@@ -232,18 +232,16 @@ function ExportConfig()
         data.scenario = ""
     end
     data.expansions = {}
-    if Global.getVar("BnCAdded") then
-        table.insert(data.expansions, "bnc")
-    end
-    if Global.getVar("JEAdded") then
-        table.insert(data.expansions, "je")
+    for expansion,added in pairs(Global.getTable("expansions")) do
+        if added then
+            table.insert(data.expansions, expansion)
+        end
     end
     data.events = {}
-    if Global.getVar("useBnCEvents") then
-        table.insert(data.events, "bnc")
-    end
-    if Global.getVar("useJEEvents") then
-        table.insert(data.events, "je")
+    for expansion,added in pairs(Global.getTable("events")) do
+        if added then
+            table.insert(data.events, expansion)
+        end
     end
     if powersBag ~= nil then
         local powers = {}

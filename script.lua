@@ -272,6 +272,16 @@ function onObjectEnterScriptingZone(zone, obj)
         end
     end
 end
+function onObjectLeaveScriptingZone(zone, obj)
+    for _,guid in pairs(elementScanZones) do
+        if guid == zone.guid then
+            if obj.getTable("thresholds") ~= nil then
+                obj.setDecals({})
+            end
+            break
+        end
+    end
+end
 function onSave()
     local data_table = {
         BnCAdded = BnCAdded,

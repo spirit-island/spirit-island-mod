@@ -16,9 +16,9 @@
     <Text class="header" alignment="MiddleLeft"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
-    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
-        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
+    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
+        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
             <Row class="header">
                 <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
@@ -122,6 +122,7 @@
                 <Cell><Toggle id="Branch &amp; Claw" onValueChanged="toggleExpansion">Branch &amp; Claw</Toggle></Cell>
                 <Cell><Toggle id="Jagged Earth" onValueChanged="toggleExpansion">Jagged Earth</Toggle></Cell>
             </Row>
+            <Row id="expansionsRow2" class="toggle" active="false" recurse="expansionsRow2"/>
             <Row id="blightCardRow" class="toggle" visibility="Invisible">
                 <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>
@@ -165,6 +166,7 @@
                 <Cell><Toggle id="Branch &amp; Claw Events" onValueChanged="toggleEvents">Use B&amp;C Events</Toggle></Cell>
                 <Cell><Toggle id="Jagged Earth Events" onValueChanged="toggleEvents">Use JE Events</Toggle></Cell>
             </Row>
+            <Row id="events2" class="toggle" active="false"/>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>

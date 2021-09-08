@@ -153,6 +153,11 @@ interactableObjectsToDisableOnLoad = {
 }
 
 ---- TTS Events Section
+function onObjectEnterZone(zone, enter_object)
+    if zone.type == "Hand" then
+        deleteObject(enter_object, true)
+    end
+end
 function onScriptingButtonDown(index, playerColor)
     if playerColor == "Grey" then return end
     DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)

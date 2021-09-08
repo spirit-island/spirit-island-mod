@@ -35,7 +35,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
+  "Hands": true,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
     "DiffuseURL": "",
@@ -102,7 +102,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
         "DiffuseURL": "",
@@ -213,7 +213,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
         "DiffuseURL": "",
@@ -272,7 +272,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109391/BA7C201A8206E465B5CDCCA21B95B4CD32ECD482/",
         "DiffuseURL": "",

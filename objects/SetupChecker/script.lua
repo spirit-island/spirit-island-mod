@@ -693,7 +693,6 @@ function startGame()
         return
     end
     setupStarted = true
-    local exps = Global.getTable("expansions")
     for expansion,enabled in pairs(Global.getTable("expansions")) do
         if enabled and expansions[expansion] then
             setupExpansion(getObjectFromGUID(expansions[expansion]))
@@ -765,43 +764,19 @@ function loadConfig(config)
     end
     if config.expansions then
         local exps = {}
+        local events = {}
         for _,expansion in pairs(config.expansions) do
             exps[expansion] = true
+            -- in case config.events isn't provided include events by default
+            events[expansion] = true
         end
-        local expansionsCopy = Global.getTable("expansions")
-        local events = Global.getTable("events")
-        if exps["Branch & Claw"] then
-            expansionsCopy["Branch & Claw"] = true
-            events["Branch & Claw"] = true
-        else
-            expansionsCopy["Branch & Claw"] = false
-            events["Branch & Claw"] = false
-        end
-        if exps["Jagged Earth"] then
-            expansionsCopy["Jagged Earth"] = true
-            events["Jagged Earth"] = true
-        else
-            expansionsCopy["Jagged Earth"] = false
-            events["Jagged Earth"] = false
-        end
-        Global.setTable("expansions", expansionsCopy)
+        Global.setTable("expansions", exps)
         Global.setTable("events", events)
     end
     if config.events then
-        local exps = {}
+        local events = {}
         for _,expansion in pairs(config.events) do
-            exps[expansion] = true
-        end
-        local events = Global.getTable("events")
-        if exps["Branch & Claw"] then
-            events["Branch & Claw"] = true
-        else
-            events["Branch & Claw"] = false
-        end
-        if exps["Jagged Earth"] then
-            events["Jagged Earth"] = true
-        else
-            events["Jagged Earth"] = false
+            events[expansion] = true
         end
         Global.setTable("events", events)
     end
@@ -850,6 +825,7 @@ function setupExpansion(bag)
                         guid = obj.guid,
                         position = eventDeckZone.getPosition(),
                         rotation = {0,180,180},
+                        smooth = false,
                     })
                 end
             end

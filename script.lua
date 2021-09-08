@@ -1926,11 +1926,7 @@ function SetupEventDeck()
             rotation = {0,180,180},
         })
         Wait.condition(function()
-            if SetupChecker.getVar("optionalDigitalEvents") then
-                deck.takeObject({guid = "cfd4d1"}).destruct()
-                deck.takeObject({guid = "6692e8"}).destruct()
-                decksSetup = decksSetup + 1
-            elseif SetupChecker.getVar("exploratoryWar") then
+            if SetupChecker.getVar("exploratoryWar") then
                 deck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)
@@ -1942,6 +1938,15 @@ function SetupEventDeck()
                         end, 1)
                     end,
                 })
+            else
+                decksSetup = decksSetup + 1
+            end
+            if SetupChecker.getVar("optionalDigitalEvents") then
+                if not SetupChecker.getVar("exploratoryWar") then
+                    deck.takeObject({guid = "cfd4d1"}).destruct()
+                end
+                deck.takeObject({guid = "6692e8"}).destruct()
+                decksSetup = decksSetup + 1
             else
                 decksSetup = decksSetup + 1
             end
@@ -1957,7 +1962,7 @@ function SetupEventDeck()
             decksSetup = decksSetup + 1
         end
     else
-        decksSetup = decksSetup + 2
+        decksSetup = decksSetup + 3
     end
     if useJEEvents then
         local JEBag = getObjectFromGUID("JEBag")
@@ -1974,7 +1979,7 @@ function SetupEventDeck()
         Wait.condition(function()
             getObjectFromGUID(eventDeckZone).getObjects()[1].shuffle()
             stagesSetup = stagesSetup + 1
-        end, function() return decksSetup == 3 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
+        end, function() return decksSetup == 4 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
     else
         stagesSetup = stagesSetup + 1
     end

@@ -693,6 +693,9 @@ function usingEvents()
     end
     return false
 end
+function usingSpiritTokens()
+    return expansions["Branch & Claw"] or expansions["Jagged Earth"]
+end
 function randomScenario()
     if difficulty > maxDifficulty then
         return
@@ -713,7 +716,7 @@ function randomScenario()
             local allowed = scenarioCard.call("Requirements", {
                 eventDeck = usingEvents(),
                 blightCard = useBlightCard,
-                expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]},
+                expansions = expansions,
                 thematic = isThematic(),
                 adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or useRandomAdversary or useSecondAdversary,
             })
@@ -747,7 +750,7 @@ function randomAdversary(attempts)
         while adversary == nil do
             adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]}, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = expansions, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -757,7 +760,7 @@ function randomAdversary(attempts)
         while adversary2 == nil or adversary2 == adversary do
             adversary2 = SetupChecker.call("randomAdversary",{})
             if adversary2.getVar("requirements") then
-                local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]}, thematic = isThematic()})
+                local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = expansions, thematic = isThematic()})
                 if not allowed then
                     adversary2 = nil
                 end
@@ -798,7 +801,7 @@ function randomAdversary(attempts)
         while adversary == nil or adversary == selectedAdversary do
             adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = {bnc = not expansions["Branch & Claw"], je = not expansions["Jagged Earth"]}, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = expansions, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -880,7 +883,7 @@ function SetupFear()
         fearCards[2] = fearCards[2] + extraFearCards[2]
         fearCards[3] = fearCards[3] + extraFearCards[3]
     end
-    if not usingEvents() and (expansions["Branch & Claw"] or expansions["Jagged Earth"]) then
+    if not usingEvents() and usingSpiritTokens() then
         fearCards[2] = fearCards[2] + 1
     end
 
@@ -2052,7 +2055,7 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
-    if not usingEvents() and (expansions["Branch & Claw"] or expansions["Jagged Earth"]) then
+    if not usingEvents() and usingSpiritTokens() then
         -- Setup up command cards last
         Wait.condition(function()
             local invaderDeck = invaderDeckZone.getObjects()[1]
@@ -2793,7 +2796,7 @@ function setupMapCo(extra)
     local originalPieces = map.getTable("pieceMap")
 
     if not map.hasTag("Thematic") then -- if not a thematic board
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then -- during Setup put 1 Beast and 1 Disease on each island board
+        if usingSpiritTokens() then -- during Setup put 1 Beast and 1 Disease on each island board
             for i=1,#piecesToPlace do
                 if #piecesToPlace[i] == 0 then
                     table.insert(piecesToPlace[i],"Beasts") -- the Beasts go in the lowest-numbered land with no printed Setup icons
@@ -2893,17 +2896,17 @@ end
 function place(objName, placePos, droppingPlayerColor)
     if objName == "CityS" then
         place("City",placePos,droppingPlayerColor)
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
+        if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     elseif objName == "TownS" then
         place("Town",placePos,droppingPlayerColor)
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
+        if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     elseif objName == "ExplorerS" then
         place("Explorer",placePos,droppingPlayerColor)
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
+        if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     end
@@ -2953,25 +2956,25 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Box Blight" then
         temp = boxBlightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Strife" then
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
+        if usingSpiritTokens() then
             temp = strifeBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Beasts" then
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
+        if usingSpiritTokens() then
             temp = beastsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Wilds" then
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
+        if usingSpiritTokens() then
             temp = wildsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Disease" then
-        if expansions["Branch & Claw"] or expansions["Jagged Earth"] then
+        if usingSpiritTokens() then
             temp = diseaseBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return

@@ -231,5 +231,5 @@ function checkLoss()
 end
 
 function Requirements(params)
-    return params.expansions.bnc or params.expansions.je
+    return params.expansions["Branch & Claw"] or params.expansions["Jagged Earth"]
 end

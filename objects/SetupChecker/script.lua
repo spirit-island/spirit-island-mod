@@ -526,13 +526,20 @@ end
 
 function toggleExpansion(_, _, id)
     local exps = Global.getTable("expansions")
-    exps[id] = not exps[id]
+    local bool
+    if exps[id] then
+        exps[id] = nil
+        bool = false
+    else
+        exps[id] = true
+        bool = true
+    end
     Global.setTable("expansions", exps)
-    self.UI.setAttribute(id, "isOn", exps[id])
+    self.UI.setAttribute(id, "isOn", bool)
     local events = Global.getTable("events")
     events[id] = exps[id]
     Global.setTable("events", events)
-    self.UI.setAttribute(id.." Events", "isOn", exps[id])
+    self.UI.setAttribute(id.." Events", "isOn", bool)
     updateDifficulty()
 end
 function toggleEvents(_, _, id)
@@ -542,9 +549,16 @@ function toggleEvents(_, _, id)
         return
     end
     local events = Global.getTable("events")
-    events[exp] = not events[exp]
+    local bool
+    if events[exp] then
+        events[exp] = nil
+        bool = false
+    else
+        events[exp] = true
+        bool = true
+    end
     Global.setTable("events", events)
-    self.UI.setAttribute(id, "isOn", events[exp])
+    self.UI.setAttribute(id, "isOn", bool)
 end
 
 function toggleBoardLayout(_, value)
@@ -651,8 +665,7 @@ function difficultyCheck(params)
         boardLayout = Global.getVar("boardLayout")
     end
     if boardLayout == "Thematic" or params.thematic then
-        local exps = Global.getTable("expansions")
-        if exps["Branch & Claw"] or exps["Jagged Earth"] then
+        if Global.call("usingSpiritTokens") then
             difficulty = difficulty + 1
         else
             difficulty = difficulty + 3

@@ -702,7 +702,7 @@ function startGame()
     if config ~= nil then
         loadConfig(config)
     end
-    if not Global.call("CanSetupGame", {}) then
+    if not Global.call("CanSetupGame") then
         return
     end
     setupStarted = true
@@ -711,7 +711,7 @@ function startGame()
             setupExpansion(getObjectFromGUID(expansions[expansion]))
         end
     end
-    Wait.time(function() Global.call("SetupGame", {}) end, 1)
+    Wait.time(function() Global.call("SetupGame") end, 1)
 end
 function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -802,7 +802,7 @@ function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
         if spirit.getName():lower() == name:lower() then
             if isSpiritPickable({guid = spirit.guid}) then
-                local color = Global.call("getEmptySeat", {})
+                local color = Global.call("getEmptySeat")
                 if color ~= nil then
                     sourceSpirit.call("PickSpirit", {obj = spirit, color = color, aspect = aspect})
                 else

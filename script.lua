@@ -520,7 +520,7 @@ function onLoad(saved_data)
             SetupPowerDecks()
             addGainPowerCardButtons()
             Wait.condition(function()
-                aidBoard.call("setupGame", {})
+                aidBoard.call("setupGame")
                 createDifficultyButton()
             end, function() return not aidBoard.spawning end)
             Wait.condition(adversaryUISetup, function() return (adversaryCard == nil or not adversaryCard.spawning) and (adversaryCard2 == nil or not adversaryCard2.spawning) end)
@@ -628,7 +628,7 @@ function SetupGame()
             if numPlayers == 6 then
                 -- There are only currently 6 balanced boards
                 SetupChecker.setVar("optionalExtraBoard", false)
-                SetupChecker.call("updateDifficulty", {})
+                SetupChecker.call("updateDifficulty")
                 numBoards = numPlayers
             else
                 numBoards = numPlayers + 1
@@ -647,7 +647,7 @@ function SetupGame()
         randomAdversary(0)
     end
 
-    SetupChecker.call("closeUI", {})
+    SetupChecker.call("closeUI")
     SetupChecker.setVar("setupStarted", true)
     showPlayerButtons = false
     updateSwapButtons()
@@ -683,7 +683,7 @@ function randomBoard()
     else
         boardLayout = alternateBoardLayoutNames[numBoards][value]
     end
-    SetupChecker.call("updateDifficulty", {})
+    SetupChecker.call("updateDifficulty")
 end
 function usingEvents()
     for _,enabled in pairs(events) do
@@ -724,7 +724,7 @@ function randomScenario()
                 scenarioCard = nil
             end
         else
-            SetupChecker.call("updateDifficulty", {})
+            SetupChecker.call("updateDifficulty")
             broadcastToAll("Your randomised scenario is "..scenarioCard.getName(), "Blue")
             break
         end
@@ -787,7 +787,7 @@ function randomAdversary(attempts)
             adversaryLevel = combos[index][1]
             adversaryCard2 = adversary2
             adversaryLevel2 = combos[index][2]
-            SetupChecker.call("updateDifficulty", {})
+            SetupChecker.call("updateDifficulty")
             broadcastToAll("Your randomised adversaries are "..adversaryCard.getName().." and "..adversaryCard2.getName(), "Blue")
         else
             randomAdversary(attempts + 1)
@@ -831,7 +831,7 @@ function randomAdversary(attempts)
                 adversaryCard2 = adversary
                 adversaryLevel2 = combos[index]
             end
-            SetupChecker.call("updateDifficulty", {})
+            SetupChecker.call("updateDifficulty")
             broadcastToAll("Your randomised adversary is "..adversary.getName(), "Blue")
         else
             randomAdversary(attempts + 1)
@@ -2001,7 +2001,7 @@ function BoardSetup()
 end
 ----- Post Setup Section
 function PostSetup()
-    aidBoard.call("setupGame", {})
+    aidBoard.call("setupGame")
 
     local postSetupSteps = 0
     local firstAdversarySetup = false
@@ -2667,7 +2667,7 @@ function MapPlaceCustom()
     else
         boardLayout = "Thematic"
     end
-    SetupChecker.call("updateDifficulty", {})
+    SetupChecker.call("updateDifficulty")
 
     local rand = 0
     if SetupChecker.getVar("optionalExtraBoard") then
@@ -3129,7 +3129,7 @@ function refreshScore()
         end
     end
     local win = math.floor(5 * difficulty) + 10 + 2 * deckCount + dahan - blight
-    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard", {}) + dahan - blight
+    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard") + dahan - blight
 
     UI.setAttribute("scoreWin", "text", win)
     UI.setAttribute("scoreLose", "text", lose)

@@ -1,11 +1,11 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -48.5232544,
-    "posY": 0.960699558,
-    "posZ": 33.6139832,
+    "posX": -36.65884,
+    "posY": 0.9607002,
+    "posZ": 43.9128342,
     "rotX": 90.0,
-    "rotY": 4.697905e-06,
+    "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -36,8 +37,8 @@
     "Text": "1",
     "colorstate": {
       "r": 1.0,
-      "g": 0.7137255,
-      "b": 0.137254909
+      "g": 0.7137,
+      "b": 0.1373
     },
     "fontSize": 64
   }

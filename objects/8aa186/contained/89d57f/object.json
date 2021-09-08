@@ -1,30 +1,31 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -51.779995,
-    "posY": 0.99889797,
+    "posX": -51.78,
+    "posY": 0.9989,
     "posZ": 54.06,
-    "rotX": 0.00324629038,
-    "rotY": 180.015213,
-    "rotZ": 180.003067,
-    "scaleX": 1.09813488,
+    "rotX": 0.0032,
+    "rotY": 180.0152,
+    "rotZ": 180.0031,
+    "scaleX": 1.0981,
     "scaleY": 1.0,
-    "scaleZ": 1.09813488
+    "scaleZ": 1.0981
   },
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Invader Card"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -33,18 +34,18 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
-  "Hands": true,
-  "CardID": 63002,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 62711,
   "SidewaysCard": false,
   "CustomDeck": {
-    "630": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656646861/F4CC3A1ABB199D6FEFB0EFDC2B7DE4CB2F2320C6/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656648152/125CE8F4093A442460B95D3079045BB9CA92FD53/",
-      "NumWidth": 6,
-      "NumHeight": 2,
+    "627": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270425836/1E70B00AD6B8C49301E672767A57126B3C91BDE6/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270426772/7D1A356297110F487F9759829AC15B2D15041422/",
+      "NumWidth": 4,
+      "NumHeight": 4,
       "BackIsHidden": false,
-      "UniqueBack": false,
+      "UniqueBack": true,
       "Type": 0
     }
   }

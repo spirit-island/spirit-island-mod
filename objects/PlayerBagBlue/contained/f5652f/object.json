@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": 81.059,
+    "posY": 1.9712,
+    "posZ": -5.3797,
+    "rotX": 0.0044,
+    "rotY": 179.9982,
+    "rotZ": 0.0,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
+  },
+  "Nickname": "Defend Tokens",
+  "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2823,
+    "g": 0.7141,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472353118/3A1F6CF1B4B7E307663687973E8B4B7CB04127BB/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 7,
+    "CastShadows": true
+  }
+}

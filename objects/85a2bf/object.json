@@ -2,14 +2,14 @@
   "Name": "HandTrigger",
   "Transform": {
     "posX": 64.9,
-    "posY": 4.10000038,
-    "posZ": -44.16999,
+    "posY": 4.1,
+    "posZ": -46.3142,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 18.41,
-    "scaleY": 6.483764,
-    "scaleZ": 6.517999
+    "scaleY": 6.4838,
+    "scaleZ": 4.7
   },
   "Nickname": "",
   "Description": "",
@@ -21,6 +21,7 @@
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
   "Snap": true,

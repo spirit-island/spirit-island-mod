@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -104.070839,
-    "posY": 1.24006832,
-    "posZ": -5.835368,
-    "rotX": 2.82979386e-07,
-    "rotY": 0.000143209356,
-    "rotZ": -0.0009891284,
+    "posX": 51.6726,
+    "posY": 1.1531,
+    "posZ": 70.9529,
+    "rotX": 0.0,
+    "rotY": 0.0001,
+    "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -15,11 +15,15 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.249979526,
-    "g": 0.249979526,
-    "b": 0.249979526
+    "r": 0.249999434,
+    "g": 0.249999434,
+    "b": 0.249999434
   },
+  "Tags": [
+    "Spirit Setup"
+  ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
   "Snap": true,

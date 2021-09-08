@@ -1,11 +1,11 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -48.93991,
-    "posY": 0.961466968,
-    "posZ": -41.2290764,
+    "posX": 105.0008,
+    "posY": 0.961500049,
+    "posZ": -2.17060256,
     "rotX": 90.0,
-    "rotY": 3.35164884e-07,
+    "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -33,7 +34,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "Discord Link:\n https://discord.gg/KB86F7B",
+    "Text": "Discord Link:\ndiscord.gg/kvqrKuqZYc",
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

@@ -11,11 +11,18 @@ function onLoad()
             font_size = 300,
         })
     end
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
 end
 
 function setupDeepSlumber(_, color)
+    doSpiritSetup{color=color}
+end
+
+function doSpiritSetup(params)
+    local color = params.color
     if not Global.getVar("gameStarted") then
-        Player[color].broadcast("Please wait for the game to start before pressing button!", "Red")
+        Player[color].broadcast("Please wait for the game to start before pressing button!", Color.SoftYellow)
         return
     end
 
@@ -31,7 +38,7 @@ function setupDeepSlumber(_, color)
        end
     end
     if not found then
-        Player[color].broadcast("You have not picked Serpent Slumbering Beneath the Island!", "Red")
+        Player[color].broadcast("You have not picked Serpent Slumbering Beneath the Island!", Color.SoftYellow)
         return
     end
 

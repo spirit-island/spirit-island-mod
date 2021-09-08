@@ -1,0 +1,51 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -45.2351,
+    "posY": 1.665,
+    "posZ": 50.2439,
+    "rotX": 356.6208,
+    "rotY": 180.0064,
+    "rotZ": 0.4914,
+    "scaleX": 6.5,
+    "scaleY": 1.0,
+    "scaleZ": 6.5
+  },
+  "Nickname": "NE",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.8157,
+    "g": 0.8157,
+    "b": 0.8157
+  },
+  "Tags": [
+    "Thematic"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248751944356/231B959FF1D7AB85611A7EE9A43440A742EE3C97/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.395,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  }
+}

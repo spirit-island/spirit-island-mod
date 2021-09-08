@@ -10,9 +10,9 @@ postSetupComplete = false
 hasLossCondition = true
 hasUI = true
 
-highImmigration = "e5d18b"
-highImmigrationDiscardPosition = Vector(-52.90, 1.3, -5.30)
-originalDiscardPosition = Vector(-51.25, 1.5, 0.38)
+highImmigration = "6bc964"
+highImmigrationDiscardPosition = Vector(-46.18, 0.82, -4.18)
+originalDiscardPosition = Vector(-46.21, 1.5, 0.33)
 
 function onSave()
     local data_table = {
@@ -24,23 +24,29 @@ end
 function onLoad(saved_data)
     local loaded_data = JSON.decode(saved_data)
     if loaded_data.build2 == "true" then
-        UI.setAttribute("panelBuild2","active",true)
-        UI.setAttribute("panelInvader","width","470")
+        toggleInvaderUI(true)
     end
 end
 
-function onObjectPickUp(player_color, picked_up_object)
-    if picked_up_object.guid == highImmigration then
-        UI.setAttribute("panelBuild2","active",false)
-        UI.setAttribute("panelInvader","width","380")
-        local aidBoard = Global.getVar("aidBoard")
-        moveDiscard(aidBoard)
-        removeEnglandSnap(aidBoard)
+function onObjectDestroy(dying_object)
+    if dying_object.guid == highImmigration then
+        highImmigration3(dying_object)
     end
 end
-function moveDiscard(aidBoard)
+function onObjectPickUp(_, picked_up_object)
+    if picked_up_object.guid == highImmigration then
+        highImmigration3(picked_up_object)
+    end
+end
+function highImmigration3(obj)
+    toggleInvaderUI(false)
+    local aidBoard = Global.getVar("aidBoard")
+    moveDiscard(aidBoard, obj)
+    removeEnglandSnap(aidBoard)
+end
+function moveDiscard(aidBoard, immigrationTile)
     local currentDiscard = aidBoard.getTable("discard")
-    local hits = Physics.cast({
+    local discardHits = Physics.cast({
         origin       = currentDiscard,
         direction    = Vector(0,1,0),
         type         = 3,
@@ -49,10 +55,28 @@ function moveDiscard(aidBoard)
         max_distance = 0,
         --debug        = true,
     })
-    for _,hit in pairs(hits) do
+    local immigrationHits = Physics.cast({
+        origin       = immigrationTile.getPosition(),
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = Vector(1,0.9,1.5),
+        orientation  = Vector(0,90,0),
+        max_distance = 0,
+        --debug        = true,
+    })
+
+    for _,hit in pairs(discardHits) do
         if hit.hit_object ~= aidBoard then
             if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
                 hit.hit_object.setPosition(originalDiscardPosition)
+                hit.hit_object.setRotation(Vector(0,90,0))
+            end
+        end
+    end
+    for _,hit in pairs(immigrationHits) do
+        if hit.hit_object ~= immigrationTile then
+            if hit.hit_object.type == "Card" or hit.hit_object.type == "Deck" then
+                hit.hit_object.setPosition(originalDiscardPosition + Vector(0,0.5,0))
                 hit.hit_object.setRotation(Vector(0,90,0))
             end
         end
@@ -127,7 +151,7 @@ end
 function ReminderSetup(params)
     local reminderTiles = {}
     if params.level >= 1 then
-        reminderTiles.build = "eb5ab2"
+        reminderTiles.build = "15b6a4"
     end
     return reminderTiles
 end
@@ -187,13 +211,33 @@ function PostSetup(params)
             callback_function = function(obj) obj.setLock(true) end,
         })
 
-        UI.setAttribute("panelBuild2","active",true)
-        UI.setAttribute("panelInvader","width","470")
+        toggleInvaderUI(true)
         englandSnap(aidBoard)
         Wait.condition(function() postSetupComplete = true end, function() return not aidBoard.isSmoothMoving() end)
     else
         postSetupComplete = true
     end
+end
+
+function toggleInvaderUI(england)
+    if england then
+        Global.setVar("childHeight", 48)
+        Global.setVar("childWidth", 48)
+        Global.setVar("childFontSize", 24)
+        UI.setAttribute("invaderImage", "image", "England Invader Phase Stage")
+        UI.setAttribute("invaderLayout", "spacing", -4)
+        UI.setAttribute("invaderLayout", "offsetXY", "8 -4")
+        UI.setAttribute("panelBuild2", "active", "true")
+    else
+        Global.setVar("childHeight", 64)
+        Global.setVar("childWidth", 64)
+        Global.setVar("childFontSize", 30)
+        UI.setAttribute("invaderImage", "image", "Invader Phase Stage")
+        UI.setAttribute("invaderLayout", "spacing", 16)
+        UI.setAttribute("invaderLayout", "offsetXY", "0 8")
+        UI.setAttribute("panelBuild2", "active", "false")
+    end
+    Global.setVar("forceInvaderUpdate", true)
 end
 
 function englandSnap(aidBoard)
@@ -210,7 +254,7 @@ function englandSnap(aidBoard)
     snapPoints = Global.getSnapPoints()
     table.insert(snapPoints, {
         position = highImmigrationDiscardPosition,
-        rotation = Vector(0, 180, 0),
+        rotation = Vector(0, 90, 0),
         rotation_snap = true,
         tags = {"Invader Card"},
     })

@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -6.7996,
+    "posY": 1.9908,
+    "posZ": 12.913,
+    "rotX": 0.0,
+    "rotY": 180.0001,
+    "rotZ": -0.0001,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Tipping Point",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 58204,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "582": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100540057/DB8DCCA9FFEC91FB9088092F54B5DC8011FE267F/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

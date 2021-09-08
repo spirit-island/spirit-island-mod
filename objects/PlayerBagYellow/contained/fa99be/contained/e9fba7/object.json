@@ -1,0 +1,50 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -25.1042,
+    "posY": 1.1461,
+    "posZ": -14.926,
+    "rotX": 353.8199,
+    "rotY": 0.0868,
+    "rotZ": 359.9379,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
+  },
+  "Nickname": "Earth Element",
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.4268,
+    "g": 0.3694,
+    "b": 0.4396
+  },
+  "Tags": [
+    "Destroy",
+    "Earth"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847999012/17442B7354C87F0568F1D96C5D1906B39FB7D163/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

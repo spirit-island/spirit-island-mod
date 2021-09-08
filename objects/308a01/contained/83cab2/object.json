@@ -1,31 +1,32 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.5762939,
-    "posY": 2.13823557,
-    "posZ": -5.82025862,
+    "posX": -45.5763,
+    "posY": 2.1382,
+    "posZ": -5.8203,
     "rotX": 359.9895,
-    "rotY": 180.16954,
-    "rotZ": 0.177243963,
-    "scaleX": 1.53204679,
+    "rotY": 180.1695,
+    "rotZ": 0.1772,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Powerstorm",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -34,13 +35,13 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
+  "HideWhenFaceDown": false,
   "Hands": true,
   "CardID": 59008,
   "SidewaysCard": false,
   "CustomDeck": {
     "590": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1647714120277703148/3D8CD72DAC454F7BEECDA5348C68AAF35ADD68EB/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
       "NumWidth": 8,
       "NumHeight": 3,

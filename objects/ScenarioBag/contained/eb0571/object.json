@@ -1,0 +1,107 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": -38.6075,
+    "posY": 0.9711,
+    "posZ": 45.1727,
+    "rotX": 0.0,
+    "rotY": 180.0069,
+    "rotZ": 0.0,
+    "scaleX": 0.675,
+    "scaleY": 0.675,
+    "scaleZ": 0.675
+  },
+  "Nickname": "Escaped Towns",
+  "Description": "The Great River",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.061,
+    "g": 0.061,
+    "b": 0.061,
+    "a": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Number": 0,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": false,
+    "MaterialIndex": 0,
+    "TypeIndex": 6,
+    "CastShadows": true
+  },
+  "Bag": {
+    "Order": 0
+  },
+  "ChildObjects": [
+    {
+      "GUID": "5932c7",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -0.0027,
+        "posY": 0.1615,
+        "posZ": -0.0006,
+        "rotX": 359.7781,
+        "rotY": 359.9777,
+        "rotZ": 0.9883,
+        "scaleX": 0.516,
+        "scaleY": 1.4815,
+        "scaleZ": 0.516
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1750180754123193086/857A74863E76605EEB451FF187334EC814C32C15/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
+}

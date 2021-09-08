@@ -1,31 +1,32 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -45.613308,
-    "posY": 2.27621078,
-    "posZ": -5.915419,
-    "rotX": 0.0115587777,
-    "rotY": 181.824631,
-    "rotZ": 0.134760723,
-    "scaleX": 1.53204679,
+    "posX": -45.6133,
+    "posY": 2.2762,
+    "posZ": -5.9154,
+    "rotX": 0.0116,
+    "rotY": 181.8246,
+    "rotZ": 0.1348,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "The Land Thrashes in Furious Pain",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Major",
     "Slow"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -34,13 +35,13 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
+  "HideWhenFaceDown": false,
   "Hands": true,
   "CardID": 59011,
   "SidewaysCard": false,
   "CustomDeck": {
     "590": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1647714120277703148/3D8CD72DAC454F7BEECDA5348C68AAF35ADD68EB/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
       "NumWidth": 8,
       "NumHeight": 3,

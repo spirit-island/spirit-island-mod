@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -27.0966,
+    "posY": 1.0238,
+    "posZ": 31.0474,
+    "rotX": 0.0044,
+    "rotY": 180.0154,
+    "rotZ": 0.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Slave Rebellion",
+  "Description": "Branch & Claw Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 65225,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "652": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100546995/46241B179EEFA72EDBCAC6EE111F19ECC6D04F73/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756101604/79D0940A7EB765C9CE852482DFFE0E397E11FFC1/",
+      "NumWidth": 9,
+      "NumHeight": 3,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -195,8 +195,7 @@ function ExportConfig()
     if blightedIsland then
         -- Only store the blight count if the island is blighted
         local obj = Global.getVar("blightBag")
-        local multiplier = data.secondWave.wave
-        data.secondWave.blight = #obj.getObjects() - (multiplier * Global.getVar("numBoards"))
+        data.secondWave.blight = #obj.getObjects() - (2 * Global.getVar("numBoards"))
         if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
             data.secondWave.blight = data.secondWave.blight - 1
         end
@@ -238,6 +237,13 @@ function ExportConfig()
     end
     if Global.getVar("JEAdded") then
         table.insert(data.expansions, "je")
+    end
+    data.events = {}
+    if Global.getVar("useBnCEvents") then
+        table.insert(data.events, "bnc")
+    end
+    if Global.getVar("useJEEvents") then
+        table.insert(data.events, "je")
     end
     if powersBag ~= nil then
         local powers = {}

@@ -1,27 +1,28 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -51.79373,
-    "posY": 0.9598148,
-    "posZ": 54.06763,
-    "rotX": 3.29419336e-08,
-    "rotY": 180.239883,
+    "posX": -46.1787,
+    "posY": 0.8896149,
+    "posZ": 55.5808,
+    "rotX": 3.864403e-08,
+    "rotY": 180.0117,
     "rotZ": 180.0,
-    "scaleX": 1.09813488,
+    "scaleX": 1.0981,
     "scaleY": 1.0,
-    "scaleZ": 1.09813488
+    "scaleZ": 1.0981
   },
   "Nickname": "Stage III",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -30,25 +31,25 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
+  "HideWhenFaceDown": false,
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
-    63000,
-    63001,
-    63002,
-    63003,
-    63004,
-    63005
+    62709,
+    62710,
+    62711,
+    62712,
+    62713,
+    62714
   ],
   "CustomDeck": {
-    "630": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656646861/F4CC3A1ABB199D6FEFB0EFDC2B7DE4CB2F2320C6/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1588036874656648152/125CE8F4093A442460B95D3079045BB9CA92FD53/",
-      "NumWidth": 6,
-      "NumHeight": 2,
+    "627": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270425836/1E70B00AD6B8C49301E672767A57126B3C91BDE6/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270426772/7D1A356297110F487F9759829AC15B2D15041422/",
+      "NumWidth": 4,
+      "NumHeight": 4,
       "BackIsHidden": false,
-      "UniqueBack": false,
+      "UniqueBack": true,
       "Type": 0
     }
   }

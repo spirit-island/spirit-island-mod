@@ -1,31 +1,32 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.2621269,
-    "posY": 2.26369,
-    "posZ": -5.7614975,
+    "posX": -46.2621,
+    "posY": 2.2637,
+    "posZ": -5.7615,
     "rotX": 359.9701,
-    "rotY": 177.684464,
-    "rotZ": 0.06948304,
-    "scaleX": 1.53204679,
+    "rotY": 177.6845,
+    "rotZ": 0.0695,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Vengeance of the Dead",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",
     "Major"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -34,13 +35,13 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
+  "HideWhenFaceDown": false,
   "Hands": true,
   "CardID": 59014,
   "SidewaysCard": false,
   "CustomDeck": {
     "590": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1647714120277703148/3D8CD72DAC454F7BEECDA5348C68AAF35ADD68EB/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
       "NumWidth": 8,
       "NumHeight": 3,
@@ -54,12 +55,12 @@
       "GUID": "61da6c",
       "Name": "CardCustom",
       "Transform": {
-        "posX": -25.45811,
-        "posY": 0.9139042,
-        "posZ": -15.3798771,
-        "rotX": 359.832123,
-        "rotY": 180.10463,
-        "rotZ": -0.0003969753,
+        "posX": -25.4581,
+        "posY": 0.9139,
+        "posZ": -15.3799,
+        "rotX": 359.8321,
+        "rotY": 180.1046,
+        "rotZ": -0.0004,
         "scaleX": 1.53,
         "scaleY": 1.0,
         "scaleZ": 1.53
@@ -68,17 +69,18 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.713235259,
-        "g": 0.713235259,
-        "b": 0.713235259
+        "r": 0.7132,
+        "g": 0.7132,
+        "b": 0.7132
       },
       "Tags": [
         "Fast",
         "Major"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
-      "Grid": true,
+      "Grid": false,
       "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
@@ -87,7 +89,7 @@
       "Sticky": true,
       "Tooltip": true,
       "GridProjection": false,
-      "HideWhenFaceDown": true,
+      "HideWhenFaceDown": false,
       "Hands": true,
       "CardID": 65000,
       "SidewaysCard": false,

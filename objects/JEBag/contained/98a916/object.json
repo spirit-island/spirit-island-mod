@@ -1,0 +1,73 @@
+{
+  "Name": "Deck",
+  "Transform": {
+    "posX": -25.0942,
+    "posY": 1.1801,
+    "posZ": 38.1913,
+    "rotX": 1.8939,
+    "rotY": 179.9799,
+    "rotZ": 179.9998,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Major Powers",
+  "Description": "Jagged Earth Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    60600,
+    60601,
+    60602,
+    60603,
+    60604,
+    60605,
+    60606,
+    60607,
+    60608,
+    60609,
+    60610,
+    60611,
+    60612,
+    60613,
+    60614,
+    60615,
+    60616,
+    60617,
+    60618,
+    60619,
+    60620,
+    60621,
+    60622
+  ],
+  "CustomDeck": {
+    "606": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100597475/C66C54780818D9337796AD21C157555CE235CAC6/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "NumWidth": 8,
+      "NumHeight": 3,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "Name": "Bag",
+  "Transform": {
+    "posX": -47.9198,
+    "posY": 1.0767,
+    "posZ": 40.7903,
+    "rotX": 0.0,
+    "rotY": 0.0003,
+    "rotZ": 0.0001,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Stage III Powers Bag",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7059,
+    "g": 0.3665,
+    "b": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Number": 0,
+  "Bag": {
+    "Order": 0
+  }
+}

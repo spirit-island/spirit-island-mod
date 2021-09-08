@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -83.33635,
-    "posY": 1.14485836,
-    "posZ": 40.4570236,
-    "rotX": 0.004471935,
-    "rotY": 179.999954,
-    "rotZ": 180.365631,
+    "posX": 72.2043,
+    "posY": 1.0031,
+    "posZ": 95.19,
+    "rotX": 0.0,
+    "rotY": 179.9999,
+    "rotZ": 180.0,
     "scaleX": 5.46,
     "scaleY": 1.0,
     "scaleZ": 5.46
@@ -15,14 +15,17 @@
   "Description": "Base",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.200270742,
-    "g": 0.16031602,
-    "b": 0.15175429
+    "r": 0.20029971,
+    "g": 0.160299718,
+    "b": 0.151799738
   },
   "Tags": [
+    "Base",
+    "High",
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -50,91 +53,80 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -0.0458035022,
-        "y": 0.200001329,
-        "z": -0.396365434
-      },
-      "Tags": []
+        "x": -0.0458,
+        "y": 0.2,
+        "z": -0.3964
+      }
     },
     {
       "Position": {
-        "x": -0.0493572578,
-        "y": 0.200001389,
-        "z": -0.08053478
-      },
-      "Tags": []
+        "x": -0.0494,
+        "y": 0.2,
+        "z": -0.0805
+      }
     },
     {
       "Position": {
-        "x": -0.272481054,
-        "y": 0.200000823,
-        "z": -0.395271033
-      },
-      "Tags": []
+        "x": -0.2725,
+        "y": 0.2,
+        "z": -0.3953
+      }
     },
     {
       "Position": {
-        "x": -0.2727038,
-        "y": 0.200000465,
-        "z": -0.08249423
-      },
-      "Tags": []
+        "x": -0.2727,
+        "y": 0.2,
+        "z": -0.0825
+      }
     },
     {
       "Position": {
-        "x": -0.487300038,
-        "y": 0.2000005,
-        "z": -0.39730522
-      },
-      "Tags": []
+        "x": -0.4873,
+        "y": 0.2,
+        "z": -0.3973
+      }
     },
     {
       "Position": {
-        "x": -0.490261018,
-        "y": 0.200000569,
-        "z": -0.08148223
-      },
-      "Tags": []
+        "x": -0.4903,
+        "y": 0.2,
+        "z": -0.0815
+      }
     },
     {
       "Position": {
-        "x": -0.7080333,
-        "y": 0.200000554,
-        "z": -0.396452755
-      },
-      "Tags": []
+        "x": -0.708,
+        "y": 0.2,
+        "z": -0.3965
+      }
     },
     {
       "Position": {
-        "x": -0.7112561,
-        "y": 0.20000039,
-        "z": -0.0804196149
-      },
-      "Tags": []
+        "x": -0.7113,
+        "y": 0.2,
+        "z": -0.0804
+      }
     },
     {
       "Position": {
-        "x": -0.931533456,
-        "y": 0.200000823,
-        "z": -0.3984108
-      },
-      "Tags": []
+        "x": -0.9315,
+        "y": 0.2,
+        "z": -0.3984
+      }
     },
     {
       "Position": {
-        "x": -0.931684256,
-        "y": 0.200000927,
-        "z": -0.079748325
-      },
-      "Tags": []
+        "x": -0.9317,
+        "y": 0.2,
+        "z": -0.0797
+      }
     },
     {
       "Position": {
-        "x": -1.15194058,
-        "y": 0.200001359,
-        "z": -0.397012055
-      },
-      "Tags": []
+        "x": -1.1519,
+        "y": 0.2,
+        "z": -0.397
+      }
     }
   ],
   "States": {
@@ -142,12 +134,12 @@
       "GUID": "b28d1d",
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -83.33635,
-        "posY": 1.14485836,
-        "posZ": 40.4570236,
-        "rotX": 0.004471935,
-        "rotY": 179.999954,
-        "rotZ": 180.365631,
+        "posX": 72.2057,
+        "posY": 1.1449,
+        "posZ": 95.1486,
+        "rotX": 0.0045,
+        "rotY": 180.0,
+        "rotZ": 180.3656,
         "scaleX": 5.46,
         "scaleY": 1.0,
         "scaleZ": 5.46
@@ -156,14 +148,17 @@
       "Description": "Base",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.200279266,
-        "g": 0.160324544,
-        "b": 0.151762813
+        "r": 0.2003,
+        "g": 0.1603,
+        "b": 0.1518
       },
       "Tags": [
+        "Base",
+        "High",
         "Spirit"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": true,
       "Grid": true,
       "Snap": true,
@@ -177,7 +172,7 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1646591588074910187/0D5A8665D80CF107344E7EF3C1BB2D7E33D37133/",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680614961/7F089E63A8759A8A410BB99A8012A135FC40E683/",
         "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026133/2EDFBC06C5FE9B196487F457A4A068964359284E/",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
@@ -188,95 +183,95 @@
           "Stretch": true
         }
       },
-      "LuaScript": "-- Spirit Tile for Bone White's Spirit Island Mod v2 --\nuseProgression = false\nprogressionCard = nil\nuseAspect = 2\naspect = nil\n\nfunction onLoad()\n    Color.Add(\"SoftBlue\", Color.new(0.45,0.6,0.7))\n    if Global.getVar(\"gameStarted\") then return end\n    self.createButton({\n        click_function = \"SetupSpirit\",\n        function_owner = self,\n        label          = \"Choose Spirit\",\n        position       = Vector(0.7, -0.1, 0.9),\n        rotation       = Vector(0,0,180),\n        scale = Vector(0.2,0.2,0.2),\n        width          = 1800,\n        height         = 500,\n        font_size      = 300,\n    })\n    self.createButton({\n        click_function = \"ToggleProgression\",\n        function_owner = self,\n        label          = \"\",\n        position       = Vector(-0.7, -0.1, 0.9),\n        rotation       = Vector(0,0,180),\n        scale = Vector(0.2,0.2,0.2),\n        width          = 0,\n        height         = 0,\n        font_size      = 300,\n        tooltip        = \"Enable/Disable Progression Deck\",\n    })\n    self.createButton({\n        click_function = \"ToggleAspect\",\n        function_owner = self,\n        label          = \"\",\n        position       = Vector(0.7, -0.2, 0.4),\n        rotation       = Vector(0,0,180),\n        scale = Vector(0.2,0.2,0.2),\n        width          = 0,\n        height         = 0,\n        font_size      = 300,\n        tooltip        = \"Enable/Disable Aspect Deck\",\n    })\n    local castObjects = upCast(self)\n    for _,obj in pairs (castObjects) do\n        if string.find(obj.getName(),\"Progression\") then\n            progressionCard = obj\n            self.editButton({\n                index          = 1,\n                label          = \"Progression: No\",\n                width          = 2200,\n                height         = 500,\n            })\n        elseif string.find(obj.getName(),\"Aspects\") then\n            self.editButton({\n                index          = 2,\n                label          = \"Aspects: All\",\n                width          = 2300,\n                height         = 500,\n            })\n        end\n    end\n    Global.call(\"addSpirit\", {spirit=self})\nend\n\nfunction RandomAspect()\n    for _,obj in pairs(upCast(self)) do\n        if obj.type == \"Deck\" and obj.getName() == \"Aspects\" then\n            local objs = obj.getObjects()\n            local index = math.random(0,#objs)\n            if index == 0 then\n                return \"\"\n            end\n            return objs[index].name\n        end\n    end\n    return nil\nend\nfunction PickSpirit(params)\n    if params.aspect then\n        if params.aspect == \"Random\" then\n            useAspect = 1\n        elseif params.aspect == \"\" then\n            useAspect = 0\n        else\n            useAspect = 3\n            aspect = params.aspect\n        end\n    end\n    SetupSpirit(nil, params.color)\nend\nfunction SetupSpirit(object_pick,player_color)\n    local xPadding = 1.3\n    local xOffset = 1\n    local PlayerBag = getObjectFromGUID(Global.getTable(\"PlayerBags\")[player_color])\n    if #PlayerBag.getObjects() ~= 0 then\n        local castObjects = upCast(self)\n        local hpos = Player[player_color].getHandTransform().position\n        self.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,11.8))\n        self.setRotation(Vector(0,180,0))\n        self.setLock(true)\n        self.clearButtons()\n        local spos = self.getPosition()\n        local snaps = self.getSnapPoints()\n        local placed = 0\n\n        -- Setup Presence\n        for i = 1,13 do\n            local p = snaps[i]\n            if i <= #snaps then\n                PlayerBag.takeObject({position = self.positionToWorld(p.position)})\n            else\n                PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})\n                placed = placed + 1\n            end\n        end\n\n        -- Setup Ready Token\n        local ready = PlayerBag.takeObject({\n            position = Vector(spos.x,0,spos.z) + Vector(7, 1.1, 7),\n            rotation = Vector(0, 180, 180),\n        })\n\n        -- Setup Energy Counter\n        local counter = getObjectFromGUID(Global.getVar(\"counterBag\")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})\n        counter.setLock(true)\n\n        Global.call(\"removeSpirit\", {spirit=self.guid, color=player_color, ready=ready, counter=counter})\n\n        -- Setup Progression Deck if enabled\n        if useProgression then\n            local minorPowerDeck = getObjectFromGUID(Global.getVar(\"minorPowerZone\")).getObjects()[1]\n            local majorPowerDeck = getObjectFromGUID(Global.getVar(\"majorPowerZone\")).getObjects()[1]\n            local progressionDeck = progressionCard.getVar(\"progressionDeck\")\n            for i,card in pairs(progressionDeck) do\n                if card[2] then\n                    majorPowerDeck.takeObject({\n                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),\n                        rotation = Vector(0,180,180),\n                        guid = card[1],\n                    })\n                else\n                    minorPowerDeck.takeObject({\n                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),\n                        rotation = Vector(0,180,180),\n                        guid = card[1],\n                    })\n                end\n            end\n        end\n\n        -- Setup objects on top of board\n        for _, obj in pairs(castObjects) do\n            obj.setLock(false)\n            if obj.type == \"Deck\" then\n                if obj.getName() == \"Aspects\" then\n                    HandleAspect(obj, player_color)\n                else\n                    obj.deal(#obj.getObjects(),player_color)\n                end\n            elseif obj.type == \"Card\" and obj.getName() == \"Progression\" then\n                if useProgression then\n                    obj.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))\n                else\n                    obj.destruct()\n                end\n            else\n                obj.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))\n                placed = placed + 1\n            end\n        end\n    else\n        Player[player_color].broadcast(\"You already picked a spirit\", \"Red\")\n    end\nend\nfunction HandleAspect(deck, player_color)\n    if useAspect == 0 then\n        deck.destruct()\n    elseif useAspect == 1 then\n        local index = math.random(0,#deck.getObjects())\n        if index == 0 then\n            Player[player_color].broadcast(\"Your random Aspect is no Aspect\", Color.SoftBlue)\n            deck.destruct()\n        else\n            deck.takeObject({\n                index = index - 1,\n                position = deck.getPosition() + Vector(0,2,0),\n                callback_function = function(obj) obj.deal(1, player_color) deck.destruct() Player[player_color].broadcast(\"Your random Aspect is \"..obj.getName(), Color.SoftBlue) end,\n            })\n            if deck.remainder then deck = deck.remainder end\n        end\n    elseif useAspect == 3 then\n        local found = false\n        for _, data in pairs(deck.getObjects()) do\n            if data.name == aspect then\n                found = true\n                deck.takeObject({\n                    index = data.index,\n                    position = deck.getPosition() + Vector(0,2,0),\n                    callback_function = function(obj) obj.deal(1, player_color) deck.destruct() end,\n                })\n                if deck.remainder then deck = deck.remainder end\n                break\n            end\n        end\n        if not found then\n            deck.destruct()\n            Player[player_color].broadcast(\"Unable to find aspect \"..aspect, \"Red\")\n        end\n    else\n        deck.deal(#deck.getObjects(), player_color)\n    end\nend\n\nfunction ToggleProgression()\n    useProgression = not useProgression\n    if useProgression then\n        self.editButton({\n            index          = 1,\n            label          = \"Progression: Yes\",\n        })\n    else\n        self.editButton({\n            index          = 1,\n            label          = \"Progression: No\",\n        })\n    end\nend\nfunction ToggleAspect(_, _, alt_click)\n    if alt_click then\n        useAspect = (useAspect - 1) % 3\n    else\n        useAspect = (useAspect + 1) % 3\n    end\n    if useAspect == 0 then\n        self.editButton({\n            index          = 2,\n            label          = \"Aspects: None\",\n        })\n    elseif useAspect == 1 then\n        self.editButton({\n            index          = 2,\n            label          = \"Aspects: Random\",\n        })\n    else\n        self.editButton({\n            index          = 2,\n            label          = \"Aspects: All\",\n        })\n    end\nend\n-----\nfunction upCast(obj)\n    local hits = Physics.cast({\n        origin       = obj.getPosition() + Vector(0,0.1,0),\n        direction    = Vector(0,1,0),\n        type         = 3,\n        size         = obj.getBoundsNormalized().size,\n        orientation  = obj.getRotation(),\n        max_distance = 0,\n        --debug        = true,\n    })\n    local hitObjects = {}\n    for _, v in pairs(hits) do\n        if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end\n    end\n    return hitObjects\nend",
-      "LuaScriptState": "",
+      "LuaScript": "-- Spirit Panel for MJ & iakona's Spirit Island Mod --\nuseProgression = false\nuseAspect = 2\n\nfunction onLoad(saved_data)\n    Color.Add(\"SoftBlue\", Color.new(0.45,0.6,0.7))\n    getObjectFromGUID(\"SourceSpirit\").call(\"load\", {obj = self, saved_data = saved_data})\nend",
+      "LuaScriptState": "{\"trackElements\":[{\"elements\":\"01000000\",\"position\":{\"x\":-0.49,\"y\":0,\"z\":-0.4}},{\"elements\":\"00010000\",\"position\":{\"x\":-0.05,\"y\":0,\"z\":-0.4}}]}",
       "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -0.0458035022,
-            "y": 0.200001329,
-            "z": -0.396365434
+            "x": -0.0458,
+            "y": 0.2,
+            "z": -0.3964
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.0493572578,
-            "y": 0.200001389,
-            "z": -0.08053478
+            "x": -0.0494,
+            "y": 0.2,
+            "z": -0.0805
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.272481054,
-            "y": 0.200000823,
-            "z": -0.395271033
+            "x": -0.2725,
+            "y": 0.2,
+            "z": -0.3953
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.2727038,
-            "y": 0.200000465,
-            "z": -0.08249423
+            "x": -0.2727,
+            "y": 0.2,
+            "z": -0.0825
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.487300038,
-            "y": 0.2000005,
-            "z": -0.39730522
+            "x": -0.4873,
+            "y": 0.2,
+            "z": -0.3973
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.490261018,
-            "y": 0.200000569,
-            "z": -0.08148223
+            "x": -0.4903,
+            "y": 0.2,
+            "z": -0.0815
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.7080333,
-            "y": 0.200000554,
-            "z": -0.396452755
+            "x": -0.708,
+            "y": 0.2,
+            "z": -0.3965
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.7112561,
-            "y": 0.20000039,
-            "z": -0.0804196149
+            "x": -0.7113,
+            "y": 0.2,
+            "z": -0.0804
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.931533456,
-            "y": 0.200000823,
-            "z": -0.3984108
+            "x": -0.9315,
+            "y": 0.2,
+            "z": -0.3984
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -0.931684256,
-            "y": 0.200000927,
-            "z": -0.079748325
+            "x": -0.9317,
+            "y": 0.2,
+            "z": -0.0797
           },
           "Tags": []
         },
         {
           "Position": {
-            "x": -1.15194058,
-            "y": 0.200001359,
-            "z": -0.397012055
+            "x": -1.1519,
+            "y": 0.2,
+            "z": -0.397
           },
           "Tags": []
         }

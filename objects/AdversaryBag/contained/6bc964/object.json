@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -27.1474,
+    "posY": 1.9711,
+    "posZ": 53.0092,
+    "rotX": 0.0,
+    "rotY": 180.0002,
+    "rotZ": 0.0,
+    "scaleX": 2.19,
+    "scaleY": 1.0,
+    "scaleZ": 2.19
+  },
+  "Nickname": "England Build Overlay",
+  "Description": "England Lv3",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1738925945686738815/3C979E58960AA57E15229D3A07A8D30C6D7B2D85/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.1,
+      "Stackable": false,
+      "Stretch": true
+    }
+  }
+}

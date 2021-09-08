@@ -1,0 +1,50 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 10.94,
+    "posY": 1.0096,
+    "posZ": -13.7002,
+    "rotX": 359.9238,
+    "rotY": -0.0044,
+    "rotZ": 0.0,
+    "scaleX": 0.9,
+    "scaleY": 0.9,
+    "scaleZ": 0.9
+  },
+  "Nickname": "Yellow's Isolate",
+  "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.9908,
+    "b": 0.1381
+  },
+  "Tags": [
+    "Destroy",
+    "Reminder Token"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

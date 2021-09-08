@@ -1,0 +1,618 @@
+{
+  "SaveName": "SI 2.2.0-MJBroadcastBeta.1",
+  "EpochTime": 1631073458,
+  "Date": "9/8/2021 4:57:38 AM",
+  "VersionNumber": "v13.1.1",
+  "GameMode": "Spirit Island [By MJ & iakona]",
+  "GameType": "Game",
+  "GameComplexity": "Medium Complexity",
+  "PlayingTime": [
+    30,
+    180
+  ],
+  "PlayerCounts": [
+    1,
+    6
+  ],
+  "Tags": [
+    "Cooperative Games",
+    "Thematic Games",
+    "Board Games",
+    "Strategy Games",
+    "Scripting"
+  ],
+  "Gravity": 0.5,
+  "PlayArea": 1.0,
+  "Table": "Table_None",
+  "Sky": "Sky_Forest",
+  "TabStates": {
+    "0": {
+      "title": "Rules",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 0
+    },
+    "1": {
+      "title": "Game Config",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 1
+    },
+    "2": {
+      "title": "Sample of Custom Adversary Scripting",
+      "body": "difficulty={[0]=0,0,0,0,0,0,0}\r\nfearCards={[0]={0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}}\r\nfearTokens={[0]=0,0,0,0,0,0,0}\r\nbroadcast={\r\n    [0] = nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n}\r\npreSetup = true\r\npreSetupComplete = false\r\nreminderSetup = true\r\ninvaderDeckSetup = true\r\nlimitSetup = true\r\nlimitSetupComplete = false\r\nmapSetup = true\r\npostSetup = true\r\npostSetupComplete = false\r\nhasLossCondition = true\r\nhasUI = true\r\nrequirements = true\n\r\n-- This function is used for things that need to be done before other setup steps, i.e. swapping out component bags\r\nfunction PreSetup(params)\r\n    preSetupComplete = true\r\nend\r\n\r\n-- This function is only needed if you have custom reminder tiles\r\nfunction ReminderSetup(params)\r\n    return {}\r\nend\r\n\r\n-- This function allows you to change the invader deck\r\nfunction InvaderDeckSetup(params)\r\n    return params.deck\r\nend\r\n\r\n-- This function is used to have adversary abilities show up in UI\r\nfunction AdversaryUI(params)\r\nend\r\n\r\n-- This function is called before MapSetup which allows you to set component limits, i.e. France towns\r\nfunction LimitSetup(params)\r\n    limitSetupComplete = true\r\nend\r\n\r\n-- This function is used to add extra pieces on each island board\r\nfunction MapSetup(params)\r\n    return params.pieces\r\nend\r\n\r\n-- This function is used for setup that needs to happen afterwards, i.e. France Slave Rebellion\r\nfunction PostSetup(params)\r\n    postSetupComplete = true\r\nend\r\n\n-- This function is used for random adversary to see if any requirements like event deck or tokens are needed\nfunction Requirements(params)\n    return true\nend\n",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 2
+    }
+  },
+  "MusicPlayer": {
+    "RepeatSong": true,
+    "PlaylistEntry": 0,
+    "CurrentAudioTitle": "Zen",
+    "CurrentAudioURL": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
+    "AudioLibrary": [
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
+        "Item2": "Zen"
+      }
+    ]
+  },
+  "Grid": {
+    "Type": 0,
+    "Lines": false,
+    "Color": {
+      "r": 0.0353,
+      "g": 0.1897,
+      "b": 0.1969
+    },
+    "Opacity": 0.75,
+    "ThickLines": true,
+    "Snapping": true,
+    "Offset": false,
+    "BothSnapping": false,
+    "xSize": 0.56,
+    "ySize": 0.56,
+    "PosOffset": {
+      "x": 0.3,
+      "y": 1.0,
+      "z": 0.3
+    }
+  },
+  "Lighting": {
+    "LightIntensity": 0.54,
+    "LightColor": {
+      "r": 1.0,
+      "g": 0.9804,
+      "b": 0.8902
+    },
+    "AmbientIntensity": 1.3,
+    "AmbientType": 0,
+    "AmbientSkyColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientEquatorColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientGroundColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "ReflectionIntensity": 1.0,
+    "LutIndex": 0,
+    "LutContribution": 1.0,
+    "LutURL": ""
+  },
+  "Hands": {
+    "Enable": true,
+    "DisableUnused": false,
+    "Hiding": 2
+  },
+  "ComponentTags": {
+    "labels": [
+      {
+        "displayed": "Blight",
+        "normalized": "blight"
+      },
+      {
+        "displayed": "Dahan",
+        "normalized": "dahan"
+      },
+      {
+        "displayed": "Major",
+        "normalized": "major"
+      },
+      {
+        "displayed": "Minor",
+        "normalized": "minor"
+      },
+      {
+        "displayed": "Unique",
+        "normalized": "unique"
+      },
+      {
+        "displayed": "Spirit",
+        "normalized": "spirit"
+      },
+      {
+        "displayed": "Highlight",
+        "normalized": "highlight"
+      },
+      {
+        "displayed": "Destroy",
+        "normalized": "destroy"
+      },
+      {
+        "displayed": "Balanced",
+        "normalized": "balanced"
+      },
+      {
+        "displayed": "Thematic",
+        "normalized": "thematic"
+      },
+      {
+        "displayed": "Invader Card",
+        "normalized": "invader_card"
+      },
+      {
+        "displayed": "Sun",
+        "normalized": "sun"
+      },
+      {
+        "displayed": "Moon",
+        "normalized": "moon"
+      },
+      {
+        "displayed": "Fire",
+        "normalized": "fire"
+      },
+      {
+        "displayed": "Air",
+        "normalized": "air"
+      },
+      {
+        "displayed": "Water",
+        "normalized": "water"
+      },
+      {
+        "displayed": "Earth",
+        "normalized": "earth"
+      },
+      {
+        "displayed": "Plant",
+        "normalized": "plant"
+      },
+      {
+        "displayed": "Animal",
+        "normalized": "animal"
+      },
+      {
+        "displayed": "Beasts",
+        "normalized": "beasts"
+      },
+      {
+        "displayed": "Fear",
+        "normalized": "fear"
+      },
+      {
+        "displayed": "Fast",
+        "normalized": "fast"
+      },
+      {
+        "displayed": "Slow",
+        "normalized": "slow"
+      },
+      {
+        "displayed": "Presence",
+        "normalized": "presence"
+      },
+      {
+        "displayed": "Base",
+        "normalized": "base"
+      },
+      {
+        "displayed": "Low",
+        "normalized": "low"
+      },
+      {
+        "displayed": "Moderate",
+        "normalized": "moderate"
+      },
+      {
+        "displayed": "High",
+        "normalized": "high"
+      },
+      {
+        "displayed": "BnC",
+        "normalized": "bnc"
+      },
+      {
+        "displayed": "JE",
+        "normalized": "je"
+      },
+      {
+        "displayed": "Very High",
+        "normalized": "very_high"
+      },
+      {
+        "displayed": "Any",
+        "normalized": "any"
+      },
+      {
+        "displayed": "Element Marker",
+        "normalized": "element_marker"
+      },
+      {
+        "displayed": "Spirit Setup",
+        "normalized": "spirit_setup"
+      },
+      {
+        "displayed": "Aspect",
+        "normalized": "aspect"
+      },
+      {
+        "displayed": "Reminder Token",
+        "normalized": "reminder_token"
+      }
+    ]
+  },
+  "Turns": {
+    "Enable": false,
+    "Type": 0,
+    "TurnOrder": [],
+    "Reverse": false,
+    "SkipEmpty": false,
+    "DisableInteractions": false,
+    "PassTurns": true,
+    "TurnColor": ""
+  },
+  "CameraStates": [
+    null,
+    {
+      "Position": {
+        "x": -26.9417,
+        "y": -2.5,
+        "z": -28.4099
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 36.9263,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": -26.9417,
+        "y": 34.2025,
+        "z": -32.4694
+      }
+    },
+    {
+      "Position": {
+        "x": -4.7167,
+        "y": -2.5,
+        "z": -28.4099
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 36.9263,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": -4.7167,
+        "y": 34.2025,
+        "z": -32.4694
+      }
+    },
+    {
+      "Position": {
+        "x": 18.0908,
+        "y": -2.5,
+        "z": -28.4099
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 36.9263,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 18.0908,
+        "y": 34.2025,
+        "z": -32.4694
+      }
+    },
+    {
+      "Position": {
+        "x": 41.2101,
+        "y": -2.5,
+        "z": -28.4099
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 36.9263,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 41.2101,
+        "y": 34.2025,
+        "z": -32.4694
+      }
+    },
+    {
+      "Position": {
+        "x": 63.8771,
+        "y": -2.5,
+        "z": -28.4099
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 36.9263,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 63.8771,
+        "y": 34.2025,
+        "z": -32.4694
+      }
+    },
+    {
+      "Position": {
+        "x": 87.3366,
+        "y": -2.5,
+        "z": -28.4099
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 36.9263,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 87.3366,
+        "y": 34.2025,
+        "z": -32.4694
+      }
+    },
+    {
+      "Position": {
+        "x": 29.1437,
+        "y": -2.5,
+        "z": 27.9072
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 73.0506,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 29.1437,
+        "y": 70.1079,
+        "z": 19.8765
+      }
+    },
+    {
+      "Position": {
+        "x": -42.0723,
+        "y": -2.5,
+        "z": 19.0957
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 65.7953,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": -42.0723,
+        "y": 62.8965,
+        "z": 11.8626
+      }
+    },
+    {
+      "Position": {
+        "x": 101.6487,
+        "y": -2.5,
+        "z": 19.0957
+      },
+      "Rotation": {
+        "x": 83.6885,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 65.7953,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 101.6487,
+        "y": 62.8965,
+        "z": 11.8626
+      }
+    }
+  ],
+  "DecalPallet": [],
+  "CustomUIAssets": [
+    {
+      "Name": "Minor Power Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238465994/54DB140D0CA8DB242C18451FB8ADEDFC9A0F52E9/"
+    },
+    {
+      "Name": "Major Power Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238465273/236533C933B35F03B3B22DD138184E57479D5C12/"
+    },
+    {
+      "Name": "Time Passes Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238467685/126385ECD895CF83094C3FF48F6DF76A6E562151/"
+    },
+    {
+      "Name": "Score Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238467021/9C006B350D9140B48777EEE2B20D13C93C32A747/"
+    },
+    {
+      "Name": "Invader Phase",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239106638/CD27277D950CAA810286918B7A4C76CD525A67B0/"
+    },
+    {
+      "Name": "England Invader Phase",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238900672/AC51C1FD6F62E69654B8843DC554B948150E874E/"
+    },
+    {
+      "Name": "Fear and Blight",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239254619/3C45FD6E548CF654BA79CF0822E08AEE6CE5E80F/"
+    },
+    {
+      "Name": "Ready",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
+    },
+    {
+      "Name": "Not Ready",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
+    },
+    {
+      "Name": "Invader Phase Stage",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239107401/7F05D052B123145085C2E6FBBBB63760212C078B/"
+    },
+    {
+      "Name": "England Invader Phase Stage",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238899967/B8A467C06F6B2DB519B368C6CF74217273C3D1B3/"
+    },
+    {
+      "Name": "Down Arrow",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219943368/8277DA4C674207C55915F1876E8D30777BE2DAC4/"
+    },
+    {
+      "Name": "Up Arrow",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219944339/EB4D863CFEC287CCCC3EFEB950949B22BDBE5258/"
+    },
+    {
+      "Name": "Dropdown Core Buttons",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219904645/3F8E3D33F8C4169C84C4D7657F3148FE4E1D7D14/"
+    },
+    {
+      "Name": "Dropdown Invader Board",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219905379/4CBE4398D6A1E936FBE1753CF639ECBEC630257E/"
+    },
+    {
+      "Name": "Dropdown Adversary",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219902527/E939E56C9B302B9E2A9DB2567573354371A12E18/"
+    },
+    {
+      "Name": "Dropdown Turn Order",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219915181/B2051EB6A00C5FE4823408737B0DBAD4993462AC/"
+    },
+    {
+      "Name": "Dropdown Scoring",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219906839/F2837D447A09B7718F35C669D13197C82E3741A6/"
+    },
+    {
+      "Name": "Dropdown Seat Controls",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219907769/D82CD49A9281ADD08A1A9F09908260359FFF1DD6/"
+    }
+  ],
+  "SnapPoints": [
+    {
+      "Position": {
+        "x": -50.1,
+        "y": 0.9611,
+        "z": 36.14
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 180.0,
+        "z": -0.0045
+      },
+      "Tags": [
+        "Unique"
+      ]
+    },
+    {
+      "Position": {
+        "x": -50.1,
+        "y": 0.9611,
+        "z": 41.18
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 180.0,
+        "z": -0.0045
+      },
+      "Tags": [
+        "Minor"
+      ]
+    },
+    {
+      "Position": {
+        "x": -50.1,
+        "y": 0.9611,
+        "z": 46.22
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 179.9998,
+        "z": -0.0045
+      },
+      "Tags": [
+        "Major"
+      ]
+    },
+    {
+      "Position": {
+        "x": -46.18,
+        "y": 0.9611,
+        "z": 46.22
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 180.0016,
+        "z": 179.9956
+      },
+      "Tags": [
+        "Major"
+      ]
+    },
+    {
+      "Position": {
+        "x": -46.1801,
+        "y": 0.9611,
+        "z": 41.18
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 180.0049,
+        "z": 179.9956
+      },
+      "Tags": [
+        "Minor"
+      ]
+    }
+  ]
+}

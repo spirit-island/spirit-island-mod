@@ -1,0 +1,173 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -43.9592,
+    "posY": 0.9977,
+    "posZ": 9.949,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": -0.0001,
+    "scaleX": 5.4517,
+    "scaleY": 1.0,
+    "scaleZ": 5.4517
+  },
+  "Nickname": "Invader Board",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": true,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1673611100765922197/7CE8B972D6CA59702EC37D82EEB870A21516A55C/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.195,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 1.1522,
+        "y": 0.05,
+        "z": 0.0971
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 359.973877,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 1.1521,
+        "y": 0.05,
+        "z": 0.9759
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 359.973877,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 1.1483,
+        "y": 0.05,
+        "z": 1.8603
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 359.973877,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 0.4128,
+        "y": 0.05,
+        "z": 1.7653
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 269.9943,
+        "z": 180.0
+      },
+      "Tags": [
+        "Invader Card"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.7495,
+        "y": 0.05,
+        "z": -1.8098
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0011,
+        "z": 0.0
+      }
+    },
+    {
+      "Position": {
+        "x": -1.0995,
+        "y": 0.05,
+        "z": 0.0792
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0006,
+        "z": 0.0
+      }
+    },
+    {
+      "Position": {
+        "x": 0.7345,
+        "y": 0.05,
+        "z": -1.8031
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0005,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": -0.3211,
+        "y": 0.05,
+        "z": -0.8747
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 359.9716,
+        "z": 180.0
+      }
+    },
+    {
+      "Position": {
+        "x": 0.3367,
+        "y": 0.05,
+        "z": -0.8636
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0005,
+        "z": 0.0
+      }
+    },
+    {
+      "Position": {
+        "x": -1.148,
+        "y": 0.05,
+        "z": 0.99
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 359.9608,
+        "z": 180.0
+      }
+    }
+  ]
+}

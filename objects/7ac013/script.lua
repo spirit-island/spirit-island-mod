@@ -5,14 +5,14 @@ fearSetupComplete=false
 
 function FearSetup(params)
     params.deck.takeObject({
-        guid = "2b7d0b",
-        position = {-46.21, 0.92, 54.04},
-        rotation = {0,180,0},
+        guid = "969897",
+        position = {-46.18, 0.82, 35.58},
+        rotation = {0,180,180},
     })
     params.deck.takeObject({
-        guid = "4211e9",
-        position = {-42.26, 0.92, 54.06},
-        rotation = {0,180,0},
+        guid = "f96a71",
+        position = {-41.70, 0.82, 35.58},
+        rotation = {0,180,180},
     })
     local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
     params.deck.putObject(fearDeck)

@@ -1,0 +1,61 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": -50.01,
+    "posY": 1.0743,
+    "posZ": 59.65,
+    "rotX": 0.0,
+    "rotY": 180.0311,
+    "rotZ": 0.0,
+    "scaleX": 0.727,
+    "scaleY": 0.144,
+    "scaleZ": 0.727
+  },
+  "Nickname": "Green Pieces",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.191999465,
+    "g": 0.701,
+    "b": 0.167999446
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1465311980392984528/73227B5349E276006AB38E1027F18255A26EF555/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 6,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  },
+  "Bag": {
+    "Order": 0
+  }
+}

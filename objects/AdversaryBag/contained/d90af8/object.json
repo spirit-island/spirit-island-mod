@@ -1,0 +1,49 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -45.6204,
+    "posY": 1.2734,
+    "posZ": 40.6202,
+    "rotX": 359.6537,
+    "rotY": 179.9993,
+    "rotZ": 179.5204,
+    "scaleX": 1.05,
+    "scaleY": 1.0,
+    "scaleZ": 1.05
+  },
+  "Nickname": "Invader Reminder Card",
+  "Description": "Habsburg Lv 5",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 200,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368463552/3E76DC1C8E31B9E8C1E69852274EFB2AC799F253/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368463552/3E76DC1C8E31B9E8C1E69852274EFB2AC799F253/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

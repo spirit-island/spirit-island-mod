@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -42.34247,
-    "posY": 1.40751565,
-    "posZ": 14.9331779,
-    "rotX": 0.0008928404,
-    "rotY": 0.0226763431,
-    "rotZ": 2.91233828e-05,
-    "scaleX": 0.334266663,
+    "posX": -42.3425,
+    "posY": 1.4075,
+    "posZ": 14.9332,
+    "rotX": 0.0009,
+    "rotY": 0.0227,
+    "rotZ": 0.0,
+    "scaleX": 0.3343,
     "scaleY": 1.0,
-    "scaleZ": 0.334266663
+    "scaleZ": 0.3343
   },
   "Nickname": "Badlands",
   "Description": "The first time each Action Damages Invaders in a land, increase that Damage by 1 per Badlands. (Restrictions still apply)\n\nThe first time each Action Damages Dahan in a land, increase that Damage by 1 per Badlands.",
@@ -23,6 +23,7 @@
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": false,

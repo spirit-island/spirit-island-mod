@@ -1,25 +1,26 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -43.36675,
-    "posY": 1.14999986,
-    "posZ": 3.75,
-    "rotX": -2.88715637e-06,
+    "posX": -38.329,
+    "posY": 1.15,
+    "posZ": 3.699,
+    "rotX": 0.0,
     "rotY": 180.0,
-    "rotZ": -0.000144464677,
-    "scaleX": 0.6749999,
-    "scaleY": 0.6749999,
-    "scaleZ": 0.6749999
+    "rotZ": -0.0001,
+    "scaleX": 0.675,
+    "scaleY": 0.675,
+    "scaleZ": 0.675
   },
   "Nickname": "Blight",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.180364281,
-    "g": 0.180364281,
-    "b": 0.180364281
+    "r": 0.180399448,
+    "g": 0.180399448,
+    "b": 0.180399448
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": false,
   "Snap": false,

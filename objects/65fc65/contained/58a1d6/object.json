@@ -1,0 +1,49 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -107.1158,
+    "posY": 1.1862,
+    "posZ": 47.9192,
+    "rotX": 0.0,
+    "rotY": 359.9799,
+    "rotZ": 0.0,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
+  },
+  "Nickname": "Speed Token",
+  "Description": "Place this on a Power to show you have changed its speed. This only has a functional difference when playing with the Blitz Scenario.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Destroy"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472357120/FC4801548E77C92B92D3F915DC81CA604DC8176A/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

@@ -1,0 +1,352 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -45.1301,
+    "posY": 3.3242,
+    "posZ": 33.3517,
+    "rotX": 0.0,
+    "rotY": 359.9907,
+    "rotZ": 0.0,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
+  },
+  "Nickname": "City: 0 Damage",
+  "Description": "Buildings have +1 health",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.6539,
+    "g": 0.2247,
+    "b": 0.2247
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 1,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.6746,
+        "g": 0.0421,
+        "b": 0.0421
+      },
+      "SpecularIntensity": 0.2,
+      "SpecularSharpness": 7.0,
+      "FresnelStrength": 0.4
+    },
+    "CastShadows": true
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.0051,
+        "y": 2.6592,
+        "z": 0.0001
+      },
+      "Tags": []
+    }
+  ],
+  "States": {
+    "2": {
+      "GUID": "ec4309",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -72.1487,
+        "posY": 0.9532,
+        "posZ": -12.5194,
+        "rotX": 0.0045,
+        "rotY": 179.9869,
+        "rotZ": 0.0,
+        "scaleX": 0.7,
+        "scaleY": 0.7,
+        "scaleZ": 0.7
+      },
+      "Nickname": "City: 1 Damage",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898,
+        "g": 0.8805,
+        "b": 0.8526
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0004,
+            "y": 2.59,
+            "z": -0.0001
+          }
+        }
+      ],
+      "ChildObjects": [
+        {
+          "GUID": "e34218",
+          "Name": "BlockSquare",
+          "Transform": {
+            "posX": 0.0004,
+            "posY": 2.5685,
+            "posZ": -0.0002,
+            "rotX": 0.0035,
+            "rotY": 180.0007,
+            "rotZ": 0.0092,
+            "scaleX": 0.7143,
+            "scaleY": 0.0429,
+            "scaleZ": 0.7143
+          },
+          "Nickname": "",
+          "Description": "",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.7882,
+            "g": 0.6588,
+            "b": 0.4863,
+            "a": 0.0
+          },
+          "LayoutGroupSortIndex": 0,
+          "Value": 0,
+          "Locked": true,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+                "x": 0.0012,
+                "y": 0.5072,
+                "z": 0.0013
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "GUID": "f3e8a8",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -70.6487,
+        "posY": 0.8542,
+        "posZ": -12.5194,
+        "rotX": 0.0045,
+        "rotY": 179.9716,
+        "rotZ": 0.0,
+        "scaleX": 0.7,
+        "scaleY": 0.7,
+        "scaleZ": 0.7
+      },
+      "Nickname": "City: 2 Damage",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898,
+        "g": 0.8805,
+        "b": 0.8526
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 2.0545,
+            "z": -0.0001
+          }
+        }
+      ]
+    },
+    "4": {
+      "GUID": "26142e",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -69.1487,
+        "posY": 0.6338,
+        "posZ": -12.5194,
+        "rotX": 0.0044,
+        "rotY": 180.0144,
+        "rotZ": 0.0,
+        "scaleX": 0.7,
+        "scaleY": 0.7,
+        "scaleZ": 0.7
+      },
+      "Nickname": "City: 3 Damage",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8898,
+        "g": 0.8805,
+        "b": 0.8526
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109391/BA7C201A8206E465B5CDCCA21B95B4CD32ECD482/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0055,
+            "y": 2.3695,
+            "z": -0.0001
+          }
+        }
+      ]
+    }
+  },
+  "ChildObjects": [
+    {
+      "GUID": "89975d",
+      "Name": "BlockSquare",
+      "Transform": {
+        "posX": -0.0001,
+        "posY": 2.6378,
+        "posZ": -0.0007,
+        "rotX": 0.0097,
+        "rotY": 180.0002,
+        "rotZ": 0.0033,
+        "scaleX": 0.7143,
+        "scaleY": 0.0429,
+        "scaleZ": 0.7143
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.5725,
+        "g": 0.0471,
+        "b": 0.0471,
+        "a": 0.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0012,
+            "y": 0.5072,
+            "z": 0.0013
+          }
+        }
+      ]
+    }
+  ]
+}

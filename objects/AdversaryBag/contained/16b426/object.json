@@ -1,0 +1,48 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -69.14,
+    "posY": 1.3235,
+    "posZ": 0.8599,
+    "rotX": 0.0043,
+    "rotY": 179.9999,
+    "rotZ": 0.0,
+    "scaleX": 0.21,
+    "scaleY": 1.0,
+    "scaleZ": 0.2
+  },
+  "Nickname": "Scotland Explore Reminder",
+  "Description": "Jagged Earth Expansion",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1465311785683028836/8EA6D12283BF78F44E137C3876A9DB35E873C549/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  }
+}

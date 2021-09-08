@@ -13,6 +13,8 @@ hasUI = true
 supporting = false
 requirements = true
 thematicRebellion = false
+combineRequirement = false
+combineBroadcast = "Combining the French Plantation Colony - France's Additional Loss Condition has a greater Town limit"
 
 slaveRebellion = "1f0327"
 
@@ -23,7 +25,8 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+  Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+  Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         thematicRebellion = loaded_data.thematicRebellion
@@ -136,11 +139,8 @@ function LimitSetup(params)
     local townLimit = 7
     if params.level >= 2 then
         townLimit = townLimit + params.other.level
-        if Global.getVar("adversaryCard") ~= nil and Global.getVar("adversaryCard2") ~= nil then
-            broadcastToAll("As you are playing with multiple adversaries, you will be playing with additional towns for France's Loss Condition - Sprawling Plantations", Color.SoftBlue)
-        end
     end
-    local townLimit = townLimit * Global.getVar("numBoards")
+    townLimit = townLimit * Global.getVar("numBoards")
     local townBag = Global.getVar("townBag")
 
     local customO = townBag.getCustomObject()
@@ -191,6 +191,10 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
+    if Global.getVar("adversaryCard") ~= nil and Global.getVar("adversaryCard2") ~= nil then
+      combineRequirement = true
+      log("checked France Requirment")
+    end
     local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 5 then
         local returnBlightBag = adversaryBag.takeObject({
@@ -219,14 +223,14 @@ function setupSlaveRebellion(card)
     if eventDeck ~= nil then
         count = #eventDeck.getObjects()
         eventDeck.takeObject({
-            position = eventDeck.getPosition() + Vector(0,2,0)
+            position = eventDeck.getPosition() + Vector(0,1.2,0)
         })
         eventDeck.takeObject({
-            position = eventDeck.getPosition() + Vector(0,2,0)
+            position = eventDeck.getPosition() + Vector(0,1.1,0)
         })
         if not thematicRebellion or (thematicRebellion and math.random(1,2) == 1) then
             eventDeck.takeObject({
-                position = eventDeck.getPosition() + Vector(0,2,0)
+                position = eventDeck.getPosition() + Vector(0,1,0)
             })
         end
     end

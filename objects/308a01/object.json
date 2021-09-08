@@ -1,27 +1,28 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -45.62,
-    "posY": 1.01579344,
-    "posZ": -5.86000061,
-    "rotX": 0.00444678264,
-    "rotY": 180.003464,
+    "posX": -46.18,
+    "posY": 0.929938555,
+    "posZ": 46.22,
+    "rotX": 1.64308034e-08,
+    "rotY": 179.9684,
     "rotZ": 180.0,
-    "scaleX": 1.53204679,
+    "scaleX": 1.532,
     "scaleY": 1.0,
-    "scaleZ": 1.53204679
+    "scaleZ": 1.532
   },
   "Nickname": "Major Powers",
   "Description": "Spirit Island",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -30,7 +31,7 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
+  "HideWhenFaceDown": false,
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
@@ -59,7 +60,7 @@
   ],
   "CustomDeck": {
     "590": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1647714120277703148/3D8CD72DAC454F7BEECDA5348C68AAF35ADD68EB/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
       "NumWidth": 8,
       "NumHeight": 3,

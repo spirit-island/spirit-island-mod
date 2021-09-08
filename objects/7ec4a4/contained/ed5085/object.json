@@ -1,11 +1,11 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -88.3693161,
-    "posY": 1.17505848,
-    "posZ": 53.8296356,
-    "rotX": 0.00446135271,
-    "rotY": 179.999969,
+    "posX": -88.3693,
+    "posY": 1.1751,
+    "posZ": 53.8296,
+    "rotX": 0.0045,
+    "rotY": 180.0,
     "rotZ": 359.9941,
     "scaleX": 1.53,
     "scaleY": 1.0,
@@ -15,17 +15,18 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.713235259,
-    "g": 0.713235259,
-    "b": 0.713235259
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Slow",
     "Unique"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -34,14 +35,14 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": true,
+  "HideWhenFaceDown": false,
   "Hands": true,
   "CardID": 63801,
   "SidewaysCard": false,
   "CustomDeck": {
     "638": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1647714120278015048/4952B607D329C295B42BDD599F5B88195A106415/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756135860/D0DD4E29001EFD0016FB5C16560EA739A1CAE876/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100678609/06357C8D15400339D62C897177A2E40C91030D3A/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100678943/D0DD4E29001EFD0016FB5C16560EA739A1CAE876/",
       "NumWidth": 3,
       "NumHeight": 2,
       "BackIsHidden": false,

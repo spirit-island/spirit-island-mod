@@ -1,0 +1,46 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -43.03,
+    "posY": 0.8031,
+    "posZ": 21.67,
+    "rotX": 0.0,
+    "rotY": 180.0147,
+    "rotZ": 0.0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
+  },
+  "Nickname": "Sun Element",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.8513,
+    "b": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

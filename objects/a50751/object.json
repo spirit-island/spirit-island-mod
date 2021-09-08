@@ -1,11 +1,11 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -53.212307,
-    "posY": 0.9607222,
-    "posZ": 33.7641258,
+    "posX": -40.2526474,
+    "posY": 0.9607002,
+    "posZ": 43.8509445,
     "rotX": 90.0,
-    "rotY": 9.432954e-09,
+    "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -36,8 +37,8 @@
     "Text": "Explorers",
     "colorstate": {
       "r": 1.0,
-      "g": 0.7137255,
-      "b": 0.137254909
+      "g": 0.7137,
+      "b": 0.1373
     },
     "fontSize": 44
   }

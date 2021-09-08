@@ -1,28 +1,29 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -55.7756958,
-    "posY": 3.04133725,
-    "posZ": 34.7370529,
-    "rotX": 359.82132,
+    "posX": -55.7757,
+    "posY": 3.0413,
+    "posZ": 34.7371,
+    "rotX": 359.8213,
     "rotY": 270.0003,
-    "rotZ": 0.04302653,
-    "scaleX": 2.42499876,
-    "scaleY": 2.42499876,
-    "scaleZ": 2.42499876
+    "rotZ": 0.043,
+    "scaleX": 2.425,
+    "scaleY": 2.425,
+    "scaleZ": 2.425
   },
   "Nickname": "Town: 0 Damage",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8898049,
-    "g": 0.880506933,
-    "b": 0.8526128
+    "r": 0.8898,
+    "g": 0.8805,
+    "b": 0.8526
   },
   "Tags": [
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -48,9 +49,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -1.67961787e-08,
-        "y": 0.2365209,
-        "z": -1.7728913e-05
+        "x": 0.0,
+        "y": 0.2365,
+        "z": 0.0
       },
       "Tags": []
     }
@@ -60,25 +61,26 @@
       "GUID": "58ba36",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -52.4343262,
-        "posY": 1.62153864,
-        "posZ": 28.41678,
-        "rotX": 0.00446970854,
-        "rotY": 179.999252,
-        "rotZ": -2.718779e-06,
-        "scaleX": 2.42499876,
-        "scaleY": 2.42499876,
-        "scaleZ": 2.42499876
+        "posX": -52.4343,
+        "posY": 1.6215,
+        "posZ": 28.4168,
+        "rotX": 0.0045,
+        "rotY": 179.9993,
+        "rotZ": 0.0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
       },
       "Nickname": "Town: 1 Damage",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898049,
-        "g": 0.880506933,
-        "b": 0.8526128
+        "r": 0.8898,
+        "g": 0.8805,
+        "b": 0.8526
       },
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": true,
@@ -107,9 +109,9 @@
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": -1.27269217e-08,
-            "y": 0.210993722,
-            "z": -1.57074774e-05
+            "x": 0.0,
+            "y": 0.211,
+            "z": 0.0
           },
           "Tags": []
         }

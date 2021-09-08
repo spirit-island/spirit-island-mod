@@ -1,0 +1,56 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 69.1555,
+    "posY": 0.9978,
+    "posZ": 76.4601,
+    "rotX": 0.0,
+    "rotY": 179.9999,
+    "rotZ": 0.0,
+    "scaleX": 0.8,
+    "scaleY": 1.0,
+    "scaleZ": 0.8
+  },
+  "Nickname": "Spare Piece",
+  "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1752435057675692177/2E39782B083F00F469A83F58EA653854FED63965/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057548225682553/941F6C09F17F1F8B7CF614D91190479AD9819B10/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.875,
+        "g": 0.8129,
+        "b": 0.7463
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

@@ -1,11 +1,11 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -53.21231,
-    "posY": 0.960545063,
-    "posZ": 37.61705,
+    "posX": -40.25274,
+    "posY": 0.960500062,
+    "posZ": 47.7039375,
     "rotX": 90.0,
-    "rotY": 9.432954e-09,
+    "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -20,6 +20,7 @@
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": true,
   "Grid": true,
   "Snap": true,
@@ -36,8 +37,8 @@
     "Text": "Cities",
     "colorstate": {
       "r": 1.0,
-      "g": 0.7137255,
-      "b": 0.137254909
+      "g": 0.7137,
+      "b": 0.1373
     },
     "fontSize": 56
   }

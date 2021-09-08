@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -55.84067,
-    "posY": 1.240126,
-    "posZ": 14.6004972,
-    "rotX": 5.076554,
+    "posX": -55.8407,
+    "posY": 1.2401,
+    "posZ": 14.6005,
+    "rotX": 5.0766,
     "rotY": 340.0303,
-    "rotZ": 180.008484,
-    "scaleX": 0.825000167,
-    "scaleY": 0.825000167,
-    "scaleZ": 0.825000167
+    "rotZ": 180.0085,
+    "scaleX": 0.825,
+    "scaleY": 0.825,
+    "scaleZ": 0.825
   },
   "Nickname": "Defend",
   "Description": "",
@@ -20,9 +20,11 @@
     "b": 1.0
   },
   "Tags": [
-    "Destroy"
+    "Destroy",
+    "Reminder Token"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": false,
@@ -60,15 +62,15 @@
       "GUID": "bc5c70",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.0044470625,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9984,
-        "rotZ": 3.63462021e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -79,9 +81,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -122,15 +126,15 @@
       "GUID": "3b90b8",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446963,
-        "rotY": 179.998383,
-        "rotZ": 7.0427e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
+        "rotY": 179.9984,
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -141,9 +145,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -184,15 +190,15 @@
       "GUID": "559cc6",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.8917215,
-        "posZ": 29.8018856,
-        "rotX": 0.004446454,
-        "rotY": 179.998367,
-        "rotZ": -1.57240514e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
+        "rotY": 179.9984,
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -203,9 +209,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -246,15 +254,15 @@
       "GUID": "51b34d",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.00444667926,
-        "rotY": 179.998352,
-        "rotZ": 2.45280148e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
+        "rotY": 179.9984,
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -265,9 +273,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -308,15 +318,15 @@
       "GUID": "3471c4",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004447181,
-        "rotY": 179.998337,
-        "rotZ": 4.683284e-09,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
+        "rotY": 179.9983,
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -327,9 +337,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -370,15 +382,15 @@
       "GUID": "4254a5",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.00444673141,
-        "rotY": 179.998322,
-        "rotZ": -5.32059e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
+        "rotY": 179.9983,
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -389,9 +401,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -432,15 +446,15 @@
       "GUID": "a4b8d3",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.00444701128,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 7.177024e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -451,9 +465,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -494,15 +510,15 @@
       "GUID": "2e115a",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446791,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": -5.519574e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -513,9 +529,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -556,15 +574,15 @@
       "GUID": "e83273",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446774,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": -1.19482337e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -575,9 +593,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -618,15 +638,15 @@
       "GUID": "58b4ac",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.00444619544,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 2.29268959e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -637,9 +657,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -680,15 +702,15 @@
       "GUID": "b05ca0",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446986,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 2.4909275e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -699,9 +721,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -742,15 +766,15 @@
       "GUID": "662e78",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446778,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": -1.941543e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -761,9 +785,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -804,15 +830,15 @@
       "GUID": "9890e5",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.00444700336,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": -4.859649e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -823,9 +849,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -866,15 +894,15 @@
       "GUID": "a3bffb",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004447395,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 2.18863825e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -885,9 +913,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -928,15 +958,15 @@
       "GUID": "a44ff7",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446845,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 1.92485139e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -947,9 +977,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -990,15 +1022,15 @@
       "GUID": "33f920",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004447425,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 4.22488675e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -1009,9 +1041,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -1052,15 +1086,15 @@
       "GUID": "6264b0",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.00444714725,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 3.67805143e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -1071,9 +1105,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -1114,15 +1150,15 @@
       "GUID": "bc09d0",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446856,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 1.1189848e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -1133,9 +1169,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -1176,15 +1214,15 @@
       "GUID": "49fb36",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.00444612373,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 1.75981487e-08,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -1195,9 +1233,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,
@@ -1238,15 +1278,15 @@
       "GUID": "cd370a",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -56.27134,
-        "posY": 0.891721547,
-        "posZ": 29.8018856,
-        "rotX": 0.004446914,
+        "posX": -56.2713,
+        "posY": 0.8917,
+        "posZ": 29.8019,
+        "rotX": 0.0044,
         "rotY": 179.9983,
-        "rotZ": 4.67728825e-07,
-        "scaleX": 0.825000167,
-        "scaleY": 0.825000167,
-        "scaleZ": 0.825000167
+        "rotZ": 0.0,
+        "scaleX": 0.825,
+        "scaleY": 0.825,
+        "scaleZ": 0.825
       },
       "Nickname": "Defend",
       "Description": "",
@@ -1257,9 +1297,11 @@
         "b": 1.0
       },
       "Tags": [
-        "Destroy"
+        "Destroy",
+        "Reminder Token"
       ],
       "LayoutGroupSortIndex": 0,
+      "Value": 0,
       "Locked": false,
       "Grid": false,
       "Snap": false,

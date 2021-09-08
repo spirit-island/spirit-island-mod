@@ -1,0 +1,69 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -47.0072,
+    "posY": 2.66,
+    "posZ": 28.1911,
+    "rotX": 0.0008,
+    "rotY": 0.0035,
+    "rotZ": -0.0008,
+    "scaleX": 1.0947,
+    "scaleY": 1.0105,
+    "scaleZ": 1.0947
+  },
+  "Nickname": "Explorer: 0 Damage",
+  "Description": "The first time each Action would Destroy Explorer: If possible, 1 of those Explorer is instead Pushed; 1 Fear when you do so.\n\nThey are unable to be removed by fear cards and instead will be pushed",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.638,
+    "g": 0.5369,
+    "b": 0.9008
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187357178/0668709935277DAF1A003F8B2CB2C09E67828297/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 1,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.2,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.4
+    },
+    "CastShadows": false
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 1.1409,
+        "z": -0.0001
+      },
+      "Tags": []
+    }
+  ]
+}

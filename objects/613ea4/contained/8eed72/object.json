@@ -1,28 +1,29 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -56.0533142,
-    "posY": 2.66223168,
-    "posZ": 32.9193764,
-    "rotX": -2.453753e-06,
-    "rotY": -0.0005047508,
-    "rotZ": 7.44383158e-07,
-    "scaleX": 1.09473681,
-    "scaleY": 1.01052642,
-    "scaleZ": 1.09473681
+    "posX": -56.0533,
+    "posY": 2.6622,
+    "posZ": 32.9194,
+    "rotX": 0.0,
+    "rotY": -0.0005,
+    "rotZ": 0.0,
+    "scaleX": 1.0947,
+    "scaleY": 1.0105,
+    "scaleZ": 1.0947
   },
   "Nickname": "Explorer: 0 Damage",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8898049,
-    "g": 0.880506933,
-    "b": 0.8526128
+    "r": 0.8898,
+    "g": 0.8805,
+    "b": 0.8526
   },
   "Tags": [
     "Highlight"
   ],
   "LayoutGroupSortIndex": 0,
+  "Value": 0,
   "Locked": false,
   "Grid": false,
   "Snap": true,
@@ -58,9 +59,9 @@
   "AttachedSnapPoints": [
     {
       "Position": {
-        "x": -1.04420877e-07,
-        "y": 1.14088762,
-        "z": -8.226469e-05
+        "x": 0.0,
+        "y": 1.1409,
+        "z": -0.0001
       },
       "Tags": []
     }

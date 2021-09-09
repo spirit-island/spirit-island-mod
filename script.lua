@@ -155,7 +155,7 @@ interactableObjectsToDisableOnLoad = {
 ---- TTS Events Section
 function onObjectEnterZone(zone, enter_object)
     if zone.type == "Hand" then
-        deleteObject(enter_object, true)
+        cleanupObject({obj = enter_object, fear = true})
     end
 end
 function onScriptingButtonDown(index, playerColor)
@@ -193,7 +193,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             if onlyCleanupTimePasses then
                 objectsToCleanup[collision_info.collision_object.guid] = true
             else
-                deleteObject(collision_info.collision_object, false)
+                cleanupObject({obj = collision_info.collision_object, fear = false})
             end
         end
     end
@@ -372,12 +372,12 @@ function onLoad(saved_data)
 
     addHotkey("Remove Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            deleteObject(hoveredObject, false)
+            cleanupObject({obj = hoveredObject, fear = false})
         end
     end)
     addHotkey("Destroy Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            deleteObject(hoveredObject, true)
+            cleanupObject({obj = hoveredObject, fear = true})
         end
     end)
 
@@ -2314,7 +2314,7 @@ function timePassesCo()
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
-            deleteObject(obj, false)
+            cleanupObject({obj = obj, fear = false})
         end
         objectsToCleanup[guid] = nil
     end
@@ -3068,60 +3068,60 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
     place(piece, cursorLocation + Vector(0,2,0), droppingPlayerColor)
 end
 
-function deleteObject(obj, fear)
+function cleanupObject(params)
     local bag = nil
     local removeObject = true
-    if string.sub(obj.getName(),1,5) == "Dahan" then
-        obj.setRotation(Vector(0,0,0))
+    if string.sub(params.obj.getName(),1,5) == "Dahan" then
+        params.obj.setRotation(Vector(0,0,0))
         bag = dahanBag
-    elseif string.sub(obj.getName(),1,8) == "Explorer" then
-        obj.setRotation(Vector(0,180,0))
+    elseif string.sub(params.obj.getName(),1,8) == "Explorer" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = explorerBag
-    elseif string.sub(obj.getName(),1,4) == "Town" then
-        obj.setRotation(Vector(0,180,0))
+    elseif string.sub(params.obj.getName(),1,4) == "Town" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = townBag
-        if fear then
+        if params.fear then
             aidBoard.call("addFear")
         end
-    elseif string.sub(obj.getName(),1,4) == "City" then
-        obj.setRotation(Vector(0,180,0))
+    elseif string.sub(params.obj.getName(),1,4) == "City" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
-        if fear then
+        if params.fear then
             aidBoard.call("addFear")
             aidBoard.call("addFear")
         end
-    elseif obj.getName() == "Blight" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Blight" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = returnBlightBag
-    elseif obj.getName() == "Strife" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Strife" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = strifeBag
-    elseif obj.getName() == "Beasts" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Beasts" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = beastsBag
-    elseif obj.getName() == "Wilds" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Wilds" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = wildsBag
-    elseif obj.getName() == "Disease" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Disease" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = diseaseBag
-    elseif obj.getName() == "Badlands" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Badlands" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
     else
-        if not obj.hasTag("Destroy") then
+        if not params.obj.hasTag("Destroy") then
             removeObject = false
         end
     end
 
     if removeObject and (bag == nil or bag.type == "Infinite") then
-        obj.destruct()
+        params.obj.destruct()
     elseif removeObject then
-        obj.highlightOff()
-        if obj.getStateId() ~= -1 and obj.getStateId() ~= 1 then
-            obj = obj.setState(1)
+        params.obj.highlightOff()
+        if params.obj.getStateId() ~= -1 and params.obj.getStateId() ~= 1 then
+            params.obj = params.obj.setState(1)
         end
-        bag.putObject(obj)
+        bag.putObject(params.obj)
     end
 end
 ----
@@ -3556,6 +3556,13 @@ function reclaimAll(target_obj, source_color)
             obj.deal(1, color, 1)
         end
     end
+end
+function giveEnergy(params)
+    local success = updateEnergyCounter(params.color, true, params.energy)
+    if not success then
+        success = refundEnergyTokens(params.color, params.energy)
+    end
+    return success
 end
 function gainEnergy(target_obj, source_color, alt_click)
     if not gameStarted then

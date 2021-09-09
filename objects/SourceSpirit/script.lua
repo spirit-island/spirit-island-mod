@@ -229,12 +229,14 @@ function SetupSpirit(obj, player_color)
                 else
                     o.destruct()
                 end
-            elseif Global.getVar("gameStarted") and o.hasTag("Spirit Setup") then
+            else
+                o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
+                placed = placed + 1
+            end
+
+            if Global.getVar("gameStarted") and o.hasTag("Spirit Setup") then
                 local o = o  -- luacheck: ignore 423 (deliberate shadowing)
                 Wait.frames(function () o.call("doSpiritSetup", {color=player_color}) end, 1)
-            else
-                o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))
-                placed = placed + 1
             end
         end
 

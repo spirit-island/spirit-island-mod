@@ -70,6 +70,8 @@ selectedBoards = {}
 blightCards = {}
 fastDiscount = 0
 currentPhase = 1
+playtestMinorPowers = 0
+playtestMajorPowers = 0
 playerBlocks = {
     Red = "c68e2c",
     Purple = "661aa3",
@@ -99,6 +101,11 @@ useRandomScenario = false
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
 fearCards = {3,3,3}
+------
+playtestMinorPowerZone = "15922f"
+playtestMinorPowerDiscardZone = "03b826"
+playtestMajorPowerZone = "bb37a9"
+playtestMajorPowerDiscardZone = "0a7dcb"
 ------
 aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
@@ -311,6 +318,8 @@ function onSave()
         blightCards = blightCards,
         fastDiscount = fastDiscount,
         currentPhase = currentPhase,
+        playtestMinorPowers = playtestMinorPowers,
+        playtestMajorPowers = playtestMajorPowers,
         onlyCleanupTimePasses = onlyCleanupTimePasses,
         objectsToCleanup = objectsToCleanup,
 
@@ -508,6 +517,8 @@ function onLoad(saved_data)
         showPlayerButtons = loaded_data.showPlayerButtons
         fastDiscount = loaded_data.fastDiscount
         currentPhase = loaded_data.currentPhase
+        playtestMinorPowers = loaded_data.playtestMinorPowers
+        playtestMajorPowers = loaded_data.playtestMajorPowers
         onlyCleanupTimePasses = loaded_data.onlyCleanupTimePasses
         objectsToCleanup = loaded_data.objectsToCleanup
 
@@ -847,9 +858,9 @@ function randomAdversary(attempts)
 end
 function SetupPlaytestDeck(zone, name, option, callback)
     local stagingArea = {
-        ["Fear"] = Vector(-49.78, 2, 97.32),
-        ["Blight Cards"] = Vector(-45.51, 2, 97.32),
-        ["Events"] = Vector(-41.23, 2, 97.32),
+        ["Fear"] = Vector(-50.70, 2, 97.32),
+        ["Blight Cards"] = Vector(-46.70, 2, 97.32),
+        ["Events"] = Vector(-42.70, 2, 97.32),
     }
     local function PlaytestAll(bag, guid, deck)
         local cards = bag.takeObject({
@@ -1104,10 +1115,76 @@ function setupFearTokens()
     aidBoard.call("updateFearUI")
 end
 ----- Minor/Major Power Section
+function SetupPlaytestPowerDeck(deck, name, option, callback)
+    local stagingArea = {
+        ["Minor Powers"] = Vector(-46.70, 2, 92.32),
+        ["Major Powers"] = Vector(-38.70, 2, 92.32),
+    }
+    local function PlaytestFull(bag, guid)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        deck.putObject(cards)
+        if callback ~= nil then
+            callback(deck, function() deck.shuffle() end)
+        else
+            deck.shuffle()
+        end
+    end
+    local function PlaytestMix(bag, guid)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        if callback ~= nil then
+            callback(cards, function() cards.shuffle() end)
+        else
+            cards.shuffle()
+        end
+    end
+
+    local playtestExpansion = SetupChecker.getVar("playtestExpansion")
+    if playtestExpansion ~= nil then
+        local bagGuid = SetupChecker.getTable("expansions")[playtestExpansion]
+        if bagGuid ~= nil then
+            local bag = getObjectFromGUID(bagGuid)
+            for _,obj in pairs(bag.getObjects()) do
+                if obj.name == name then
+                    if option == "0" then
+                        PlaytestFull(bag, obj.guid)
+                    elseif option == "1" then
+                        if name == "Minor Powers" then
+                            playtestMinorPowers = 1
+                        elseif name == "Major Powers" then
+                            playtestMajorPowers = 1
+                        end
+                        PlaytestMix(bag, obj.guid)
+                    elseif option == "2" then
+                        if name == "Minor Powers" then
+                            playtestMinorPowers = 2
+                        elseif name == "Major Powers" then
+                            playtestMajorPowers = 2
+                        end
+                        PlaytestMix(bag, obj.guid)
+                    end
+                    return
+                end
+            end
+        end
+    end
+end
 function SetupPowerDecks()
     if not gameStarted then
-        getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
-        getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
+        local minorPowers = getObjectFromGUID(minorPowerZone).getObjects()[1]
+        minorPowers.shuffle()
+        SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
+
+        local majorPowers = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        majorPowers.shuffle()
+        SetupPlaytestPowerDeck(majorPowers, "Major Powers", SetupChecker.getVar("playtestMajorPower"), nil)
     end
 
     local exploratoryPowersDone = false
@@ -1220,18 +1297,26 @@ function startDealPowerCards(coro_name, player, cardCount)
     startLuaCoroutine(Global, coro_name)
 end
 function MinorPower()
-    local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
-    local MinorPowerDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
-    DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone)
+    DealPowerCards(
+        getObjectFromGUID(minorPowerZone),
+        getObjectFromGUID(minorPowerDiscardZone),
+        getObjectFromGUID(playtestMinorPowerZone),
+        getObjectFromGUID(playtestMinorPowerDiscardZone),
+        playtestMinorPowers
+    )
     return 1
 end
 function MajorPower()
-    local MajorPowerDeckZone = getObjectFromGUID(majorPowerZone)
-    local MajorPowerDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
-    DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone)
+    DealPowerCards(
+        getObjectFromGUID(majorPowerZone),
+        getObjectFromGUID(majorPowerDiscardZone),
+        getObjectFromGUID(playtestMajorPowerZone),
+        getObjectFromGUID(playtestMajorPowerDiscardZone),
+        playtestMajorPowers
+    )
     return 1
 end
-function DealPowerCards(deckZone, discardZone)
+function DealPowerCards(deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
     -- clear the zone!
     local handPos = powerPlayer.getHandTransform().position
     local discardTable = DiscardPowerCards(handPos)
@@ -1255,45 +1340,71 @@ function DealPowerCards(deckZone, discardZone)
     local cardsResting = 0
     local powerDealCentre = handOffset + Vector(handPos.x,yHeight,handPos.z)
 
-    local deck = deckZone.getObjects()[1]
-    if deck == nil then
-    elseif deck.type == "Card" then
-        deck.setLock(true)
-        deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
-        deck.setRotationSmooth(Vector(0, 180, 0))
-        CreatePickPowerButton(deck)
-        cardsAdded = cardsAdded + 1
-        Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
-    elseif deck.type == "Deck" then
-        for i=1, math.min(deck.getQuantity(), powerCards) do
-            local tempCard = deck.takeObject({
-                position = powerDealCentre + cardPlaceOffset[i],
-                flip = true,
-            })
-            tempCard.setLock(true)
-            CreatePickPowerButton(tempCard)
+    local function dealPowerCards(powersZone, powersDiscardZone, count, offset, isPlaytest)
+        local deck = powersZone.getObjects()[1]
+        if deck == nil then
+        elseif deck.type == "Card" then
+            deck.setLock(true)
+            deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
+            deck.setRotationSmooth(Vector(0, 180, 0))
+            if isPlaytest then
+                deck.addTag("Playtest")
+            end
+            CreatePickPowerButton(deck)
             cardsAdded = cardsAdded + 1
-            Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+            Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
+        elseif deck.type == "Deck" then
+            for i=1, math.min(deck.getQuantity(), count) do
+                local tempCard = deck.takeObject({
+                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    flip = true,
+                })
+                tempCard.setLock(true)
+                if isPlaytest then
+                    tempCard.addTag("Playtest")
+                end
+                CreatePickPowerButton(tempCard)
+                cardsAdded = cardsAdded + 1
+                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+            end
         end
-    end
-    if cardsAdded < powerCards then
-        deck = discardZone.getObjects()[1]
-        deck.setPositionSmooth(deckZone.getPosition(), false, true)
-        deck.setRotationSmooth(Vector(0, 180, 180), false, true)
-        deck.shuffle()
-        wt(0.5)
+        if cardsAdded < count then
+            deck = powersDiscardZone.getObjects()[1]
+            deck.setPositionSmooth(powersZone.getPosition(), false, true)
+            deck.setRotationSmooth(Vector(0, 180, 180), false, true)
+            deck.shuffle()
+            wt(0.5)
 
-        for i=cardsAdded+1, math.min(deck.getQuantity(), powerCards) do
-            local tempCard = deck.takeObject({
-                position = powerDealCentre + cardPlaceOffset[i],
-                flip = true,
-            })
-            tempCard.setLock(true)
-            CreatePickPowerButton(tempCard)
-            cardsAdded = cardsAdded + 1
-            Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+            for i=cardsAdded+1, math.min(deck.getQuantity(), count) do
+                local tempCard = deck.takeObject({
+                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    flip = true,
+                })
+                tempCard.setLock(true)
+                if isPlaytest then
+                    tempCard.addTag("Playtest")
+                end
+                CreatePickPowerButton(tempCard)
+                cardsAdded = cardsAdded + 1
+                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+            end
         end
     end
+    local playtestCount = playtestPowers
+    if powerCards == 2 then
+        if playtestPowers > 0 then
+            playtestCount = 1
+        end
+    elseif powerCards == 6 then
+        if playtestPowers == 1 then
+            playtestCount = 2
+        elseif playtestPowers == 2 then
+            playtestCount = 3
+        end
+    end
+    dealPowerCards(deckZone, discardZone, powerCards - playtestCount, 0, false)
+    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, powerCards - playtestCount, true)
+
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
 function CreatePickPowerButton(card)
@@ -1339,10 +1450,14 @@ function DiscardPowerCards(handPos)
 end
 function discardPowerCardFromPlay(card, discardHeight)
     local discardZone
-    if card.hasTag("Major") then
+    if card.hasTag("Major") and not card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(majorPowerDiscardZone)
-    elseif card.hasTag("Minor") then
+    elseif card.hasTag("Major") and card.hasTag("Playtest") then
+        discardZone = getObjectFromGUID(playtestMajorPowerDiscardZone)
+    elseif card.hasTag("Minor") and not card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(minorPowerDiscardZone)
+    elseif card.hasTag("Minor") and card.hasTag("Playtest") then
+        discardZone = getObjectFromGUID(playtestMinorPowerDiscardZone)
     elseif card.hasTag("Unique") then
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     else

@@ -20,8 +20,11 @@
     <Text class="value" minWidth="170"/>
     <Toggle class="value" minWidth="170"/>
     <Toggle class="full" tooltip="Add new cards in like usual"/>
-    <Toggle class="half" tooltip="Add new cards in top part of deck"/>
+    <Toggle class="mix" tooltip="Add new cards in top part of deck"/>
     <Toggle class="new" tooltip="Add new cards on top of deck"/>
+    <Toggle class="4" tooltip="Add new cards in like usual"/>
+    <Toggle class="3-1" tooltip="Keep new cards separate are draw 1 each time"/>
+    <Toggle class="2-2" tooltip="Keep new cards separate are draw 2 each time"/>
 </Defaults>
 
 <Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
@@ -253,7 +256,7 @@
                         <Option id="playtestExpansion0" selected="true">None</Option>
                     </Dropdown>
                     <Text class="value">Full</Text>
-                    <Text class="value">Half</Text>
+                    <Text class="value">Mix</Text>
                     <Text class="value">New</Text>
                 </Cell>
             </Row>
@@ -262,9 +265,9 @@
                     <Text class="header key">Fear Deck</Text>
                     <ToggleGroup id="playtestFear" onValueChanged="togglePlaytestFear">
                         <HorizontalLayout>
-                            <Toggle id="playtestFear0" class="value full"></Toggle>
-                            <Toggle id="playtestFear1" class="value half"></Toggle>
-                            <Toggle id="playtestFear2" class="value new"></Toggle>
+                            <Toggle id="playtestFear0" class="value full"/>
+                            <Toggle id="playtestFear1" class="value mix"/>
+                            <Toggle id="playtestFear2" class="value new"/>
                         </HorizontalLayout>
                     </ToggleGroup>
                 </Cell>
@@ -274,9 +277,9 @@
                     <Text class="header key" >Event Deck</Text>
                     <ToggleGroup id="playtestEvent" onValueChanged="togglePlaytestEvent">
                         <HorizontalLayout>
-                            <Toggle id="playtestEvent0" class="value full"></Toggle>
-                            <Toggle id="playtestEvent1" class="value half"></Toggle>
-                            <Toggle id="playtestEvent2" class="value new"></Toggle>
+                            <Toggle id="playtestEvent0" class="value full"/>
+                            <Toggle id="playtestEvent1" class="value mix"/>
+                            <Toggle id="playtestEvent2" class="value new"/>
                         </HorizontalLayout>
                     </ToggleGroup>
                 </Cell>
@@ -286,9 +289,42 @@
                     <Text class="header key">Blight Cards</Text>
                     <ToggleGroup id="playtestBlight" onValueChanged="togglePlaytestBlight">
                         <HorizontalLayout>
-                            <Toggle id="playtestBlight0" class="value full"></Toggle>
-                            <Toggle id="playtestBlight1" class="value half"></Toggle>
-                            <Toggle id="playtestBlight2" class="value new"></Toggle>
+                            <Toggle id="playtestBlight0" class="value full"/>
+                            <Toggle id="playtestBlight1" class="value mix"/>
+                            <Toggle id="playtestBlight2" class="value new"/>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                </Cell>
+            </Row>
+            <Row class="spacing"/>
+            <Row class="header">
+                <Cell>
+                    <Text class="key"/>
+                    <Text class="value">4</Text>
+                    <Text class="value">3-1</Text>
+                    <Text class="value">2-2</Text>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Minor Power Cards</Text>
+                    <ToggleGroup id="playtestMinorPower" onValueChanged="togglePlaytestMinorPower">
+                        <HorizontalLayout>
+                            <Toggle id="playtestMinorPower0" class="value 4"/>
+                            <Toggle id="playtestMinorPower1" class="value 3-1"/>
+                            <Toggle id="playtestMinorPower2" class="value 2-2"/>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Major Power Cards</Text>
+                    <ToggleGroup id="playtestMajorPower" onValueChanged="togglePlaytestMajorPower">
+                        <HorizontalLayout>
+                            <Toggle id="playtestMajorPower0" class="value 4"/>
+                            <Toggle id="playtestMajorPower1" class="value 3-1"/>
+                            <Toggle id="playtestMajorPower2" class="value 2-2"/>
                         </HorizontalLayout>
                     </ToggleGroup>
                 </Cell>

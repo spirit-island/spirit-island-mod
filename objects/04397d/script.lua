@@ -5,8 +5,17 @@ postSetup = true
 postSetupComplete = false
 
 function PostSetup(params)
-    local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
-    local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
+    local minorPowerDeck, majorPowerDeck
+    if Global.getVar("playtestMinorPowers") > 0 then
+        minorPowerDeck = getObjectFromGUID(Global.getVar("playtestMinorPowerZone")).getObjects()[1]
+    else
+        minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
+    end
+    if Global.getVar("playtestMajorPowers") > 0 then
+        majorPowerDeck = getObjectFromGUID(Global.getVar("playtestMajorPowerZone")).getObjects()[1]
+    else
+        majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
+    end
     for color,_ in pairs(Global.getVar("selectedColors")) do
         minorPowerDeck.deal(1, color)
         majorPowerDeck.deal(1, color)

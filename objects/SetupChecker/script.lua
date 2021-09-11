@@ -66,6 +66,8 @@ playtestExpansion = "None"
 playtestFear = "0"
 playtestEvent = "0"
 playtestBlight = "0"
+playtestMinorPower = "0"
+playtestMajorPower = "0"
 
 updateLayoutsID = 0
 setupStarted = false
@@ -1881,5 +1883,13 @@ function togglePlaytestEvent(_, selected, id)
 end
 function togglePlaytestBlight(_, selected, id)
     playtestBlight = selected
+    self.UI.setAttribute(id..selected, "isOn", "true")
+end
+function togglePlaytestMinorPower(_, selected, id)
+    playtestMinorPower = selected
+    self.UI.setAttribute(id..selected, "isOn", "true")
+end
+function togglePlaytestMajorPower(_, selected, id)
+    playtestMajorPower = selected
     self.UI.setAttribute(id..selected, "isOn", "true")
 end

@@ -1,7 +1,7 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 86.438,
+    "posX": 86.44,
     "posY": 1.1031,
     "posZ": 86.1924,
     "rotX": 0.0002,
@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
+  "Hands": true,
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110812/04019E4C271180904A4648C87F9BFA23364FB9F6/",
     "ImageSecondaryURL": "",

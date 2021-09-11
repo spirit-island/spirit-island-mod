@@ -1,22 +1,3 @@
-function onLoad()
-    if not Global.getVar("gameStarted") then
-        self.createButton({
-            click_function = "setupDeepSlumber",
-            function_owner = self,
-            label = "Add Deep Slumber Snap Points",
-            position = {0,0.2,0},
-            rotation = {0,180,0},
-            width = 4000,
-            height = 500,
-            font_size = 300,
-        })
-    end
-end
-
-function setupDeepSlumber(_, color)
-    doSpiritSetup{color=color}
-end
-
 function doSpiritSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then

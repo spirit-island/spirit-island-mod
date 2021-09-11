@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
+  "Hands": true,
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110812/04019E4C271180904A4648C87F9BFA23364FB9F6/",
     "ImageSecondaryURL": "",

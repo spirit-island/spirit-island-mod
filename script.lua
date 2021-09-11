@@ -838,6 +838,119 @@ function randomAdversary(attempts)
         end
     end
 end
+function SetupPlaytestDeck(zone, name, option, callback)
+    local stagingArea = {
+        ["Fear"] = Vector(-49.78, 2, 97.32),
+        ["Blight Cards"] = Vector(-45.51, 2, 97.32),
+        ["Events"] = Vector(-41.23, 2, 97.32),
+    }
+    local function PlaytestAll(bag, guid, deck)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        if deck == nil then
+            cards.setPosition(zone.getPosition())
+            deck = cards
+        else
+            deck.putObject(cards)
+        end
+        if callback ~= nil then
+            callback(deck, function() deck.shuffle() end)
+        else
+            deck.shuffle()
+        end
+    end
+    local function PlaytestHalf(bag, guid, deck)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        local cardsCount = #cards.getObjects()
+        local deckCount = 0
+        if deck ~= nil then
+            deckCount = #deck.getObjects()
+        end
+        if deckCount <= cardsCount then
+            if deck == nil then
+                cards.setPosition(zone.getPosition())
+                deck = cards
+            else
+                deck.putObject(cards)
+            end
+            if callback ~= nil then
+                callback(deck, function() deck.shuffle() end)
+            else
+                deck.shuffle()
+            end
+        else
+            -- deck is never nil here
+            for i = 1,cardsCount do
+                cards.putObject(deck.takeObject({
+                    rotation = {0, 180, 180},
+                    smooth = false,
+                }))
+            end
+            cards.shuffle()
+            if callback ~= nil then
+                callback(cards, function()
+                    cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                    deck.putObject(cards)
+                end)
+            else
+                cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                deck.putObject(cards)
+            end
+        end
+    end
+    local function PlaytestNew(bag, guid, deck)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        cards.shuffle()
+        if callback ~= nil then
+            callback(cards, function()
+                if deck == nil then
+                    cards.setPosition(zone.getPosition())
+                else
+                    cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                    deck.putObject(cards)
+                end
+            end)
+        else
+            if deck == nil then
+                cards.setPosition(zone.getPosition())
+            else
+                cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                deck.putObject(cards)
+            end
+        end
+    end
+
+    local playtestExpansion = SetupChecker.getVar("playtestExpansion")
+    if playtestExpansion ~= nil then
+        local bagGuid = SetupChecker.getTable("expansions")[playtestExpansion]
+        if bagGuid ~= nil then
+            local bag = getObjectFromGUID(bagGuid)
+            for _,obj in pairs(bag.getObjects()) do
+                if obj.name == name then
+                    if option == "0" then
+                        PlaytestAll(bag, obj.guid, zone.getObjects()[1])
+                    elseif option == "1" then
+                        PlaytestHalf(bag, obj.guid, zone.getObjects()[1])
+                    elseif option == "2" then
+                        PlaytestNew(bag, obj.guid, zone.getObjects()[1])
+                    end
+                    return
+                end
+            end
+        end
+    end
+end
 ----- Pre Setup Section
 function PreSetup()
     local adversariesSetup = 0
@@ -896,6 +1009,8 @@ function SetupFear()
     local cardsLoaded = 0
 
     fearDeck.shuffle()
+    SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil)
+
     for _ = 1, fearCards[3] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", "Red")
@@ -916,7 +1031,6 @@ function SetupFear()
     cardsLoaded = cardsLoaded + 1
     table.insert(cardTable, divider)
 
-    fearDeck.shuffle()
     for _ = 1, fearCards[2] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", "Red")
@@ -937,7 +1051,6 @@ function SetupFear()
     cardsLoaded = cardsLoaded + 1
     table.insert(cardTable, divider)
 
-    fearDeck.shuffle()
     for _ = 1, fearCards[1] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", "Red")
@@ -1264,7 +1377,6 @@ function SetupBlightCard()
                     local temp = obj.setState(2)
                     Wait.frames(function()
                         blightDeck.putObject(temp)
-                        blightDeck.shuffle()
                         cardsSetup = cardsSetup + 1
                     end, 1)
                 end,
@@ -1272,7 +1384,12 @@ function SetupBlightCard()
         else
             cardsSetup = cardsSetup + 1
         end
-        Wait.condition(function() grabBlightCard(true) end, function() return cardsSetup == 1 end)
+        Wait.condition(function()
+            local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+            blightDeck.shuffle()
+            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+            grabBlightCard(true)
+        end, function() return cardsSetup == 1 end)
     else
         blightedIsland = true
     end
@@ -1286,7 +1403,6 @@ function grabBlightCard(start)
     if findNextBlightCard(start, blightDeck) then
         return
     elseif blightDeck.type == "Deck" then
-        blightDeck.shuffle()
         blightDeck.takeObject({
             position = blightDeck.getPosition() + Vector(3.92, 1, 0),
             callback_function = function(obj)
@@ -1919,45 +2035,69 @@ end
 function SetupEventDeck()
     local cardsSetup = 0
     local deck = getObjectFromGUID(eventDeckZone).getObjects()[1]
+    if deck ~= nil then
+        deck.shuffle()
+    end
+
+    local function bncEventOptions(bncDeck, callback)
+        Wait.condition(function()
+            local bncEventSetup = 0
+            if SetupChecker.getVar("optionalDigitalEvents") then
+                bncDeck.takeObject({guid = "cfd4d1"}).destruct()
+                bncDeck.takeObject({guid = "6692e8"}).destruct()
+                cardsSetup = cardsSetup + 1
+                bncEventSetup = bncEventSetup + 1
+            elseif SetupChecker.getVar("exploratoryWar") then
+                bncDeck.takeObject({
+                    guid = "cfd4d1",
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            bncDeck.putObject(temp)
+                            bncDeck.shuffle()
+                            cardsSetup = cardsSetup + 1
+                            bncEventSetup = bncEventSetup + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsSetup = cardsSetup + 1
+                bncEventSetup = bncEventSetup + 1
+            end
+            if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
+                local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
+                    guid = "0edac2",
+                    position = getObjectFromGUID(eventDeckZone).getPosition(),
+                    rotation = {0,180,180},
+                    smooth = false,
+                })
+                bncDeck.putObject(strangeMadness)
+                bncDeck.shuffle()
+            end
+            if callback ~= nil then
+                Wait.condition(function() callback() end, function() return bncEventSetup == 1 end)
+            end
+        end, function() return bncDeck.loading_custom end)
+    end
+
+    local grabbedDeck = false
     if events["Branch & Claw"] then
-        if SetupChecker.getVar("optionalDigitalEvents") then
-            deck.takeObject({guid = "cfd4d1"}).destruct()
-            deck.takeObject({guid = "6692e8"}).destruct()
-            cardsSetup = cardsSetup + 1
-        elseif SetupChecker.getVar("exploratoryWar") then
-            deck.takeObject({
-                guid = "cfd4d1",
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        deck.putObject(temp)
-                        deck.shuffle()
-                        cardsSetup = cardsSetup + 1
-                    end, 1)
-                end,
-            })
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+            SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
         else
-            cardsSetup = cardsSetup + 1
-        end
-        if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
-            local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
-                guid = "0edac2",
-                position = getObjectFromGUID(eventDeckZone).getPosition(),
-                rotation = {0,180,180},
-                callback_function = function(obj) deck.putObject(obj) end,
-            })
-            Wait.condition(function() cardsSetup = cardsSetup + 1 end, function() return not strangeMadness.loading_custom end)
-        else
-            cardsSetup = cardsSetup + 1
+            bncEventOptions(deck)
         end
     else
-        cardsSetup = cardsSetup + 2
+        cardsSetup = cardsSetup + 1
+    end
+    if not grabbedDeck then
+        SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), nil)
     end
     if usingEvents() then
         Wait.condition(function()
-            getObjectFromGUID(eventDeckZone).getObjects()[1].shuffle()
             stagesSetup = stagesSetup + 1
-        end, function() return cardsSetup == 2 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
+        end, function() return cardsSetup == 1 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
     else
         stagesSetup = stagesSetup + 1
     end

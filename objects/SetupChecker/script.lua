@@ -62,6 +62,11 @@ exploratoryBODAN = false
 exploratoryWar = false
 exploratoryAid = false
 
+playtestExpansion = "None"
+playtestFear = "0"
+playtestEvent = "0"
+playtestBlight = "0"
+
 updateLayoutsID = 0
 setupStarted = false
 exit = false
@@ -541,6 +546,7 @@ function toggleExpansion(_, _, id)
     Global.setTable("events", events)
     self.UI.setAttribute(id.." Events", "isOn", bool)
     updateDifficulty()
+    Wait.frames(function () updateXml{updatePlaytestExpansionList(exps)} end, 1)
 end
 function toggleEvents(_, _, id)
     local exp = id:sub(1, -8)
@@ -559,6 +565,25 @@ function toggleEvents(_, _, id)
     end
     Global.setTable("events", events)
     self.UI.setAttribute(id, "isOn", bool)
+end
+
+function updatePlaytestExpansionList(exps)
+    local playtestExpansions = {"None"}
+    local found = false
+    for name,enabled in pairs(exps) do
+        if enabled then
+            table.insert(playtestExpansions, name)
+            if playtestExpansion == name then
+                found = true
+            end
+        end
+    end
+
+    if not found then
+        playtestExpansion = "None"
+    end
+
+    return updateDropdownList("playtestExpansion", playtestExpansions, playtestExpansion)
 end
 
 function toggleBoardLayout(_, value)
@@ -707,7 +732,8 @@ function startGame()
     end
     setupStarted = true
     for expansion,enabled in pairs(Global.getTable("expansions")) do
-        if enabled and expansions[expansion] then
+        -- Playtest expansion setup is handled in Global script
+        if enabled and expansions[expansion] and expansion ~= playtestExpansion then
             setupExpansion(getObjectFromGUID(expansions[expansion]))
         end
     end
@@ -877,6 +903,11 @@ function toggleSetupUI(show)
     else
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
     end
+    if show and self.UI.getAttribute("playtesting", "isOn") == "true" then
+        self.UI.setAttribute("panelPlaytesting", "visibility", "")
+    else
+        self.UI.setAttribute("panelPlaytesting", "visibility", "Invisible")
+    end
     if show and weeklyChallenge then
         self.UI.setAttribute("panelChallenge", "visibility", "")
     else
@@ -915,8 +946,10 @@ function toggleSimpleMode()
         self.UI.setAttribute("blightCardRow", "visibility", "")
         self.UI.setAttribute("optionalCell", "visibility", "Invisible")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
+        self.UI.setAttribute("toggles2", "visibility", "Invisible")
         self.UI.setAttribute("panelOptional", "visibility", "Invisible")
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
+        self.UI.setAttribute("panelPlaytesting", "visibility", "Invisible")
         self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
 
         Global.setVar("showPlayerButtons", false)
@@ -930,6 +963,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("blightCardRow", "visibility", "Invisible")
         self.UI.setAttribute("optionalCell", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "")
+        self.UI.setAttribute("toggles2", "visibility", "")
         showUI()
 
         Global.setVar("showPlayerButtons", true)
@@ -954,6 +988,16 @@ function toggleExploratory()
     else
         self.UI.setAttribute("exploratory", "isOn", "true")
         self.UI.setAttribute("panelExploratory", "visibility", "")
+    end
+end
+function togglePlaytesting()
+    local checked = self.UI.getAttribute("playtesting", "isOn")
+    if checked == "true" then
+        self.UI.setAttribute("playtesting", "isOn", "false")
+        self.UI.setAttribute("panelPlaytesting", "visibility", "Invisible")
+    else
+        self.UI.setAttribute("playtesting", "isOn", "true")
+        self.UI.setAttribute("panelPlaytesting", "visibility", "")
     end
 end
 function toggleChallenge()
@@ -1494,6 +1538,25 @@ function updateXml(updateFunctions)
     end
     self.UI.setXmlTable(t, {})
 end
+function getXml(updateFunctions)
+    local function recurse(t)
+        local shouldRecurse = false
+        for _, f in pairs(updateFunctions) do
+            if f(t) then
+                shouldRecurse = true
+            end
+        end
+        if shouldRecurse then
+            for _, v in pairs(t.children) do
+                recurse(v)
+            end
+        end
+    end
+    local t = self.UI.getXmlTable()
+    for _,v in pairs(t) do
+        recurse(v)
+    end
+end
 --- Apply an XML UI update function on an element with a specific id
 -- This returns a function suitable to pass to `updateXml` that applies the
 -- given function to the element with the given id. All the parent elements of the
@@ -1543,6 +1606,16 @@ function updateDropdownSelection(id, value)
                 v.attributes.selected = "true"
             elseif v.attributes.selected == "true" then
                 v.attributes.selected = "false"
+            end
+        end
+    end)
+end
+function updateDropdownSelection2(id, value)
+    return matchRecurse(id, function (t)
+        for index,v in pairs(t.children) do
+            if v.value == value then
+                self.UI.setAttribute(id, "value", index-1)
+                break
             end
         end
     end)
@@ -1816,4 +1889,21 @@ function setWeeklyChallengeUI(config, difficulty)
         self.UI.setAttribute("challengeSpiritRow"..i, "visibility", "Invisible")
         i = i + 1
     end
+end
+
+function togglePlaytestExpansion(_, selected, id)
+    playtestExpansion = selected
+    getXml{updateDropdownSelection2(id, selected)}
+end
+function togglePlaytestFear(_, selected, id)
+    playtestFear = selected
+    self.UI.setAttribute(id..selected, "isOn", "true")
+end
+function togglePlaytestEvent(_, selected, id)
+    playtestEvent = selected
+    self.UI.setAttribute(id..selected, "isOn", "true")
+end
+function togglePlaytestBlight(_, selected, id)
+    playtestBlight = selected
+    self.UI.setAttribute(id..selected, "isOn", "true")
 end

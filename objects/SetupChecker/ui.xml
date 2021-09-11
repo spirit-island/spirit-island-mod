@@ -14,9 +14,14 @@
     <Slider wholeNumbers="true" tooltipFontSize="30" tooltipBackgroundColor="#000000" tooltipPosition="Below"/>
     <Text class="slider" alignment="LowerCenter"/>
     <Text class="header" alignment="MiddleLeft"/>
+
+    <Text class="key" minWidth="450"/>
+    <Dropdown class="key" minWidth="450"/>
+    <Text class="value" minWidth="170"/>
+    <Toggle class="value" minWidth="170"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
     <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
         <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
             <Row class="header">
@@ -140,6 +145,9 @@
                 <Cell><Toggle id="challenge" onValueChanged="toggleChallenge" tooltip="Randomly generated setup for the week,&#xA;this will be consistent for all steam users.&#xA;Make sure to set the number of players first">Weekly Challenge</Toggle></Cell>
                 <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
             </Row>
+            <Row id="toggles2" class="toggle">
+                <Cell><Toggle id="playtesting" onValueChanged="togglePlaytesting" tooltip="Common methods of playtesting,&#xA;to help assure new content is&#xA;seen on more frequent basis.">Playtesting Options</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
@@ -153,7 +161,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -2990 14">
+<Panel id="panelOptional" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -3015 14">
     <VerticalLayout recurse="events2">
         <TableLayout recurse="events2">
             <Row class="header">
@@ -203,7 +211,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3820 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3835 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -223,6 +231,64 @@
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="aid" onValueChanged="toggleAid" tooltip="Spirits either get elements&#xA;or effect each turn">Aid from Lesser Spirits</Toggle></Cell>
+            </Row>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="600" height="2800" position="50 -1460 14">
+    <VerticalLayout recurse="playtestExpansion">
+        <TableLayout recurse="playtestExpansion">
+            <Row class="header">
+                <Cell><Text class="header">Playtesting Options</Text></Cell>
+            </Row>
+            <Row class="spacing">
+                <Cell><Text>──────────────────────────────</Text></Cell>
+            </Row>
+            <Row class="header" recurse="playtestExpansion">
+                <Cell recurse="playtestExpansion">
+                    <Dropdown id="playtestExpansion" class="key" recurse="playtestExpansion" onValueChanged="togglePlaytestExpansion">
+                        <Option id="playtestExpansion0" selected="true">None</Option>
+                    </Dropdown>
+                    <Text class="value">All</Text>
+                    <Text class="value">Half</Text>
+                    <Text class="value">New</Text>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Fear Deck</Text>
+                    <ToggleGroup id="playtestFear" onValueChanged="togglePlaytestFear">
+                        <HorizontalLayout>
+                            <Toggle id="playtestFear0" class="value"></Toggle>
+                            <Toggle id="playtestFear1" class="value"></Toggle>
+                            <Toggle id="playtestFear2" class="value"></Toggle>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key" >Event Deck</Text>
+                    <ToggleGroup id="playtestEvent" onValueChanged="togglePlaytestEvent">
+                        <HorizontalLayout>
+                            <Toggle id="playtestEvent0" class="value"></Toggle>
+                            <Toggle id="playtestEvent1" class="value"></Toggle>
+                            <Toggle id="playtestEvent2" class="value"></Toggle>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Blight Cards</Text>
+                    <ToggleGroup id="playtestBlight" onValueChanged="togglePlaytestBlight">
+                        <HorizontalLayout>
+                            <Toggle id="playtestBlight0" class="value"></Toggle>
+                            <Toggle id="playtestBlight1" class="value"></Toggle>
+                            <Toggle id="playtestBlight2" class="value"></Toggle>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                </Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
@@ -287,13 +353,13 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1400" height="2600" position="-750 -1400 14">
+<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1400" height="2800" position="-750 -1460 14">
     <VerticalLayout width="1150">
         <TableLayout>
             <Row class="header">
                 <Cell columnSpan="2"><Text text="Adversaries &amp; Scenarios"/></Cell>
             </Row>
-            <Row preferredHeight="1750"/>
+            <Row preferredHeight="1730"/>
         </TableLayout>
     </VerticalLayout>
 </Panel>

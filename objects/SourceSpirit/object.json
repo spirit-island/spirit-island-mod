@@ -4,8 +4,8 @@
     "posX": 1.98,
     "posY": -1.72,
     "posZ": 61.45,
-    "rotX": 0.0368,
-    "rotY": 0.0165,
+    "rotX": 0.03680003,
+    "rotY": 0.0164999738,
     "rotZ": 180.0162,
     "scaleX": 0.011,
     "scaleY": 1.0,
@@ -15,9 +15,9 @@
   "Description": "Spirit Island - Spirit",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2003,
-    "g": 0.1603,
-    "b": 0.1518
+    "r": 0.20029971,
+    "g": 0.160299718,
+    "b": 0.151799738
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

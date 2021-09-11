@@ -3,7 +3,8 @@ useProgression = false
 useAspect = 2
 
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+      Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+      Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     getObjectFromGUID("SourceSpirit").call("load", {obj = self, saved_data = saved_data})
 end
 -- Source Spirit start
@@ -132,7 +133,7 @@ function SetupSpirit(obj, player_color)
     if #PlayerBag.getObjects() ~= 0 then
         local castObjects = upCast(obj)
         local hpos = Player[player_color].getHandTransform().position
-        obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5))
+        obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,13.9))
         obj.setRotation(Vector(0,180,0))
         obj.setLock(true)
         obj.clearButtons()
@@ -153,19 +154,19 @@ function SetupSpirit(obj, player_color)
 
         -- Setup Ready Token
         local ready = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(7.2, 1.1, 7),
+            position = Vector(spos.x,0,spos.z) + Vector(7.5, 1.1, 6.5),
             rotation = Vector(0, 180, 0),
         })
 
         -- Setup Energy Counter
-        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-6.2,1,6.8)})
+        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5,1,5)})
         counter.setLock(true)
 
         -- Setup Element Bags
         local elements = {}
         for i = 1,9 do
             elements[i] = PlayerBag.takeObject({
-                position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21) + Vector(i * 2, 0, 0),
+                position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 18.81) + Vector(i * 2, 0, 0),
                 rotation = Vector(0, 180, 0),
             })
             elements[i].setLock(true)
@@ -173,12 +174,12 @@ function SetupSpirit(obj, player_color)
 
         -- Setup Reminder Bags
         local defend = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 20.21),
+            position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 18.81),
             rotation = Vector(0, 180, 0),
         })
         defend.setLock(true)
         local isolate = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21),
+            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 18.81),
             rotation = Vector(0, 180, 0),
         })
         isolate.setLock(true)
@@ -229,23 +230,23 @@ function SetupSpirit(obj, player_color)
                 else
                     o.destruct()
                 end
-            else
-                o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
-                placed = placed + 1
-            end
-
-            if Global.getVar("gameStarted") and o.hasTag("Spirit Setup") then
+            elseif Global.getVar("gameStarted") and o.hasTag("Spirit Setup") then
                 local o = o  -- luacheck: ignore 423 (deliberate shadowing)
                 Wait.frames(function () o.call("doSpiritSetup", {color=player_color}) end, 1)
+            else
+                o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10))
+                placed = placed + 1
             end
         end
 
         local broadcast = obj.getVar("broadcast")
         if broadcast ~= nil then
+            spiritName =
+            Player[player_color].broadcast("Spirit - "..obj.getName(), Color.White)
             Player[player_color].broadcast(broadcast, Color.SoftBlue)
         end
     else
-        Player[player_color].broadcast("You already picked a spirit", "Red")
+        Player[player_color].broadcast("You already picked a spirit", Color.SoftYellow)
     end
 end
 function ToggleProgression(obj)
@@ -352,7 +353,7 @@ function handleAspect(spirit, deck, color)
             end
         end
         if not found then
-            Player[color].broadcast("Unable to find aspect "..aspect, "Red")
+            Player[color].broadcast("Unable to find aspect "..aspect, Color.SoftYellow)
         end
     end
 end

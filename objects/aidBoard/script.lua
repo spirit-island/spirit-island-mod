@@ -9,7 +9,8 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         discard = Vector(loaded_data.discard)

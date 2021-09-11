@@ -35,7 +35,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
     "DiffuseURL": "",
@@ -102,7 +102,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": true,
+      "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
         "DiffuseURL": "",
@@ -123,6 +123,58 @@
             "y": 2.59,
             "z": -0.0001
           }
+        }
+      ],
+      "ChildObjects": [
+        {
+          "GUID": "e34218",
+          "Name": "BlockSquare",
+          "Transform": {
+            "posX": 0.0004,
+            "posY": 2.5685,
+            "posZ": -0.0002,
+            "rotX": 0.0035,
+            "rotY": 180.0007,
+            "rotZ": 0.0092,
+            "scaleX": 0.7143,
+            "scaleY": 0.0429,
+            "scaleZ": 0.7143
+          },
+          "Nickname": "",
+          "Description": "",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.7882,
+            "g": 0.6588,
+            "b": 0.4863,
+            "a": 0.0
+          },
+          "LayoutGroupSortIndex": 0,
+          "Value": 0,
+          "Locked": true,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+                "x": 0.0012,
+                "y": 0.5072,
+                "z": 0.0013
+              }
+            }
+          ]
         }
       ]
     },
@@ -161,7 +213,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": true,
+      "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
         "DiffuseURL": "",
@@ -220,7 +272,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": true,
+      "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109391/BA7C201A8206E465B5CDCCA21B95B4CD32ECD482/",
         "DiffuseURL": "",
@@ -244,5 +296,57 @@
         }
       ]
     }
-  }
+  },
+  "ChildObjects": [
+    {
+      "GUID": "89975d",
+      "Name": "BlockSquare",
+      "Transform": {
+        "posX": -0.0001,
+        "posY": 2.6378,
+        "posZ": -0.0007,
+        "rotX": 0.0097,
+        "rotY": 180.0002,
+        "rotZ": 0.0033,
+        "scaleX": 0.7143,
+        "scaleY": 0.0429,
+        "scaleZ": 0.7143
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.5725,
+        "g": 0.0471,
+        "b": 0.0471,
+        "a": 0.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0012,
+            "y": 0.5072,
+            "z": 0.0013
+          }
+        }
+      ]
+    }
+  ]
 }

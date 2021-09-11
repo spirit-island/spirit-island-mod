@@ -1,55 +1,4 @@
 {
-  "broadcast": "Drag invaders into drowned bag to automatically generate fear and for easy energy exchange",
-  "thresholds": [
-    {
-      "elements": "01012000",
-      "position": {
-        "x": 0.34,
-        "y": 0,
-        "z": 0.63
-      }
-    },
-    {
-      "elements": "02013000",
-      "position": {
-        "x": 0.34,
-        "y": 0,
-        "z": 0.75
-      }
-    },
-    {
-      "elements": "03024000",
-      "position": {
-        "x": 0.34,
-        "y": 0,
-        "z": 0.88
-      }
-    },
-    {
-      "elements": "00002100",
-      "position": {
-        "x": -0.56,
-        "y": 0,
-        "z": 0.63
-      }
-    },
-    {
-      "elements": "00003200",
-      "position": {
-        "x": -0.56,
-        "y": 0,
-        "z": 0.75
-      }
-    },
-    {
-      "elements": "00004300",
-      "position": {
-        "x": -0.56,
-        "y": 0,
-        "z": 0.88
-      }
-    }
-  ],
   "trackElements": [
     {
       "elements": "00001000",
@@ -79,24 +28,6 @@
       "elements": "01000000",
       "position": {
         "x": -0.04,
-        "y": 0,
-        "z": -0.14
-      }
-    }
-  ],
-  "trackEnergy": [
-    {
-      "count": 2,
-      "position": {
-        "x": -1.14,
-        "y": 0,
-        "z": -0.14
-      }
-    },
-    {
-      "count": 1,
-      "position": {
-        "x": -0.48,
         "y": 0,
         "z": -0.14
       }

@@ -3,13 +3,13 @@
   "Transform": {
     "posX": -26.7,
     "posY": 1.5,
-    "posZ": -28.0,
+    "posZ": -27.0,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 22.0,
     "scaleY": 2.0,
-    "scaleZ": 23.0
+    "scaleZ": 21.0
   },
   "Nickname": "",
   "Description": "",
@@ -18,7 +18,7 @@
     "r": 1.0,
     "g": 1.0,
     "b": 1.0,
-    "a": 0.5098
+    "a": 0.509803951
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

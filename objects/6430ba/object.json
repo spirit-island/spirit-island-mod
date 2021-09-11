@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.1815,
-    "g": 0.1815,
-    "b": 0.1864
+    "r": 0.181499451,
+    "g": 0.181499451,
+    "b": 0.18639946
   },
   "Tags": [
     "Blight",
@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
     "DiffuseURL": "",

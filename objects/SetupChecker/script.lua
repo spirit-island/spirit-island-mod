@@ -421,9 +421,7 @@ function updateScenario(value, updateUI)
     end
 end
 function updateScenarioSelection(name)
-    updateXml{
-        updateDropdownSelection("scenario", name),
-    }
+    getXml{updateDropdownSelection("scenario", name)}
 end
 
 function toggleLeadingAdversary(_, value)
@@ -454,9 +452,7 @@ function updateLeadingAdversary(value, updateUI)
     end
 end
 function updateLeadingSelection(name)
-    updateXml{
-        updateDropdownSelection("leadingAdversary", name),
-    }
+    getXml{updateDropdownSelection("leadingAdversary", name)}
 end
 function toggleSupportingAdversary(_, value)
     updateSupportingAdversary(value, true)
@@ -486,9 +482,7 @@ function updateSupportingAdversary(value, updateUI)
     end
 end
 function updateSupportingSelection(name)
-    updateXml{
-        updateDropdownSelection("supportingAdversary", name)
-    }
+    getXml{updateDropdownSelection("supportingAdversary", name)}
 end
 function toggleLeadingLevel(_, value)
     updateLeadingLevel(value, true)
@@ -612,9 +606,7 @@ function updateBoardLayout(value, updateUI)
     end
 end
 function updateBoardLayoutSelection(name)
-    updateXml{
-        updateDropdownSelection("boardLayout", name),
-    }
+    getXml{updateDropdownSelection("boardLayout", name)}
 end
 
 function updateDifficulty()
@@ -1596,21 +1588,7 @@ function updateDropdownList(id, values, selectedValue)
         end
     end)
 end
---- Update a dropdown list selection
--- @param id The id of the dropdown to update
--- @param selectedValue The value to mark as selected.
 function updateDropdownSelection(id, value)
-    return matchRecurse(id, function (t)
-        for _,v in pairs(t.children) do
-            if v.value == value then
-                v.attributes.selected = "true"
-            elseif v.attributes.selected == "true" then
-                v.attributes.selected = "false"
-            end
-        end
-    end)
-end
-function updateDropdownSelection2(id, value)
     return matchRecurse(id, function (t)
         for index,v in pairs(t.children) do
             if v.value == value then
@@ -1893,7 +1871,7 @@ end
 
 function togglePlaytestExpansion(_, selected, id)
     playtestExpansion = selected
-    getXml{updateDropdownSelection2(id, selected)}
+    getXml{updateDropdownSelection(id, selected)}
 end
 function togglePlaytestFear(_, selected, id)
     playtestFear = selected

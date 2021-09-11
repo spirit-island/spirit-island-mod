@@ -2049,27 +2049,27 @@ function SetupEventDeck()
     local function bncEventOptions(bncDeck, callback)
         Wait.condition(function()
             local bncEventSetup = 0
-	    if SetupChecker.getVar("exploratoryWar") then
-	         bncDeck.takeObject({
-                      guid = "cfd4d1",
-                      callback_function = function(obj)
-                          local temp = obj.setState(2)
-                          Wait.frames(function()
-                              bncDeck.putObject(temp)
-                              bncDeck.shuffle()
-                              cardsSetup = cardsSetup + 1
-                              bncEventSetup = bncEventSetup + 1
-                          end, 1)
-                      end,
-                  })
-	    else
-	        cardsSetup = cardsSetup + 1
-		bncEventSetup = bncEventSetup + 1
-	    end
+            if SetupChecker.getVar("exploratoryWar") then
+                bncDeck.takeObject({
+                    guid = "cfd4d1",
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            bncDeck.putObject(temp)
+                            bncDeck.shuffle()
+                            cardsSetup = cardsSetup + 1
+                            bncEventSetup = bncEventSetup + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsSetup = cardsSetup + 1
+                bncEventSetup = bncEventSetup + 1
+            end
             if SetupChecker.getVar("optionalDigitalEvents") then
-		if not SetupChecker.getVar("exploratoryWar") then
+                if not SetupChecker.getVar("exploratoryWar") then
                     bncDeck.takeObject({guid = "cfd4d1"}).destruct()
-	        end
+                end
                 bncDeck.takeObject({guid = "6692e8"}).destruct()
             end
             if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then

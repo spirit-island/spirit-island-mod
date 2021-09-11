@@ -2089,6 +2089,9 @@ function SetupEventDeck()
             bncEventOptions(deck)
         end
     else
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+        end
         cardsSetup = cardsSetup + 1
     end
     if not grabbedDeck then

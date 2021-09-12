@@ -225,7 +225,7 @@ function checkLoss()
         beasts = beasts - 1
     end
     if destroyed > beasts then
-        broadcastToAll("Russia wins via Additional Loss Condition!", "Red")
+        broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
     end
 end

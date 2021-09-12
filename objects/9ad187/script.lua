@@ -1,7 +1,7 @@
 function doSpiritSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then
-        Player[color].broadcast("Please wait for the game to start before pressing button!", "Red")
+        Player[color].broadcast("Please wait for the game to start before pressing this button!", Color.Red)
         return
     end
 
@@ -17,7 +17,7 @@ function doSpiritSetup(params)
        end
     end
     if not found then
-        Player[color].broadcast("You have not picked Serpent Slumbering Beneath the Island!", "Red")
+        Player[color].broadcast("You have not picked Serpent Slumbering Beneath the Island!", Color.Red)
         return
     end
 

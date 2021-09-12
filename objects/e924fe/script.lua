@@ -7,6 +7,7 @@ postSetupComplete = false
 blightCount = nil
 
 function onLoad()
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     if Global.getVar("gameStarted") then
         self.createButton({
             click_function = "ExportConfig",
@@ -109,7 +110,7 @@ function PostSetup(params)
             blightCount = config.secondWave.blight
         end
         if config.secondWave.wave then
-            broadcastToAll("Adversary Blight should have come from the card not the box, so you might need to manually fix this", "Red")
+            broadcastToAll("Adversary Blight should have come from the card not the box, so you might need to manually fix this", Color.Red)
         end
         if config.secondWave.powers then
             local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
@@ -169,7 +170,7 @@ function ExportConfig()
     if powersBag ~= nil then
         bagPowers = powersBag.getObjects()
         if #bagPowers == 0 then
-            broadcastToAll("Powers Bag is currently empty, did you forget to add the power cards for next game in there?", "Red")
+            broadcastToAll("Powers Bag is currently empty, did you forget to add the power cards for next game in there?", Color.SoftYellow)
             return
         end
     end
@@ -278,7 +279,7 @@ function updateNotebook(json)
                 index = data.index,
                 body = json,
             })
-            broadcastToAll("Notebook Tab \"Game Config\" has been updated", "White")
+            broadcastToAll("Notebook Tab \"Game Config\" has been updated", Color.White)
             break
         end
     end

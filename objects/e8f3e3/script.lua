@@ -13,6 +13,8 @@ hasUI = true
 supporting = false
 requirements = true
 thematicRebellion = false
+combineRequirement = false
+combineBroadcast = "Combining the French Plantation Colony - France's Additional Loss Condition has a greater Town limit"
 
 slaveRebellion = "1f0327"
 
@@ -136,9 +138,6 @@ function LimitSetup(params)
     local townLimit = 7
     if params.level >= 2 then
         townLimit = townLimit + params.other.level
-        if Global.getVar("adversaryCard") ~= nil and Global.getVar("adversaryCard2") ~= nil then
-            broadcastToAll("As you are playing with multiple adversaries, you will be playing with additional towns for France's Loss Condition - Sprawling Plantations", Color.SoftBlue)
-        end
     end
     townLimit = townLimit * Global.getVar("numBoards")
     local townBag = Global.getVar("townBag")
@@ -191,6 +190,9 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
+    if params.level >= 2 and params.other.level > 0 then
+        combineRequirement = true
+    end
     local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 5 then
         local returnBlightBag = adversaryBag.takeObject({

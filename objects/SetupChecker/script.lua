@@ -97,8 +97,8 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     if not Global.getVar("gameStarted") then
         showUI()
     else
@@ -1188,7 +1188,7 @@ end
 function gainSpirit(player)
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
     if obj.getButtons() ~= nil and #obj.getButtons() ~= 0 then
-        Player[player.color].broadcast("You already have Spirit options", Color.SoftYellow)
+        Player[player.color].broadcast("You already have Spirit options", Color.Red)
         return
     elseif #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
         Player[player.color].broadcast("You already picked a spirit", Color.Red)
@@ -1290,7 +1290,7 @@ function pickSpirit(obj, index, color)
         end
         local spirit = getNewSpirit(tags, complexities)
         if spirit ~= nil then
-            Player[color].broadcast("Spirit unavailable getting new one", Color.SoftYellow)
+            Player[color].broadcast("Spirit unavailable getting new one", Color.Red)
             obj.editButton({
                 index = index,
                 label = spirit.getName(),
@@ -1784,7 +1784,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         if i ~= 1 then
             config.broadcast = config.broadcast.."\n"
         end
-        config.broadcast = config.broadcast..spirit.getName().." on "..boardName
+        config.broadcast = config.broadcast..boardName.." - "..spirit.getName()
     end
     if config.extraBoard then
         -- make sure the extra board added is always the same one the next player would use

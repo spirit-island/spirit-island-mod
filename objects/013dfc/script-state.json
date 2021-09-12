@@ -1,5 +1,5 @@
 {
-  "broadcast": "In order to keep a second Power Card for Days that Never Were, right click the \"Pick Power\" button for the first choice",
+  "broadcast": "When Gaining a Power Card, to keep an extra Power Card for your Days That Never Were, right click the \"Pick Power\" button.",
   "thresholds": [
     {
       "elements": "03010000",

@@ -129,11 +129,14 @@
             <Row id="expansionsHeader" class="header">
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
             </Row>
-            <Row id="expansionsRow" class="toggle">
-                <Cell><Toggle id="Branch &amp; Claw" onValueChanged="toggleExpansion">Branch &amp; Claw</Toggle></Cell>
-                <Cell><Toggle id="Jagged Earth" onValueChanged="toggleExpansion">Jagged Earth</Toggle></Cell>
+            <Row id="expansionsRow" recurse="expansionsRow" preferredHeight="60">
+                <Cell columnSpan="2">
+                    <GridLayout constraint="FixedColumnCount" constraintCount="2" cellSize="500 60">
+                        <Toggle id="Branch &amp; Claw" onValueChanged="toggleExpansion">Branch &amp; Claw</Toggle>
+                        <Toggle id="Jagged Earth" onValueChanged="toggleExpansion">Jagged Earth</Toggle>
+                    </GridLayout>
+                </Cell>
             </Row>
-            <Row id="expansionsRow2" class="toggle" active="false" recurse="expansionsRow2"/>
             <Row id="blightCardRow" class="toggle" visibility="Invisible">
                 <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>
@@ -176,11 +179,14 @@
             <Row class="spacing">
                 <Cell columnSpan="2"><Text>──────────────────────────────</Text></Cell>
             </Row>
-            <Row id="events" class="toggle">
-                <Cell><Toggle id="Branch &amp; Claw Events" onValueChanged="toggleEvents">Use B&amp;C Events</Toggle></Cell>
-                <Cell><Toggle id="Jagged Earth Events" onValueChanged="toggleEvents">Use JE Events</Toggle></Cell>
+            <Row id="events" recurse="events" preferredHeight="60">
+                <Cell columnSpan="2">
+                    <GridLayout constraint="FixedColumnCount" constraintCount="2" cellSize="500 60">
+                        <Toggle id="Branch &amp; Claw Events" onValueChanged="toggleEvents">Use B&amp;C Events</Toggle>
+                        <Toggle id="Jagged Earth Events" onValueChanged="toggleEvents">Use JE Events</Toggle>
+                    </GridLayout>
+                </Cell>
             </Row>
-            <Row id="events2" class="toggle" active="false" recurse="events2"/>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>

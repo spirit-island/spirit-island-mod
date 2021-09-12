@@ -134,13 +134,6 @@ function onLoad(saved_data)
             for _,obj in pairs(getObjectsWithTag("Expansion")) do
                 expansions[obj.getName()] = obj.guid
             end
-            for expansion,_ in pairs(expansions) do
-                -- TODO make this more robust
-                if expansion ~= "Branch & Claw" and expansion ~= "Jagged Earth" then
-                    self.UI.setAttribute("expansionsRow2", "active", "true")
-                    break
-                end
-            end
 
             toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
             toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
@@ -159,7 +152,7 @@ function onLoad(saved_data)
                 for expansion,_ in pairs(expansions) do
                     -- TODO make this more robust
                     if expansion ~= "Branch & Claw" and expansion ~= "Jagged Earth" then
-                        table.insert(funcList, addExpansionToggle("expansionsRow2", expansion))
+                        table.insert(funcList, addExpansionToggle(expansion))
                     end
                 end
                 updateXml(funcList)
@@ -198,19 +191,17 @@ function onObjectSpawn(obj)
     end
 end
 function addExpansion(bag)
-    self.UI.setAttribute("expansionsRow2", "active", "true")
     local hasEvents = false
     for _,obj in pairs(bag.getObjects()) do
         if obj.name == "Events" then
-            self.UI.setAttribute("events2", "active", "true")
             hasEvents = true
             break
         end
     end
     if not expansions[bag.getName()] then
-        local funcList = {addExpansionToggle("expansionsRow2", bag.getName())}
+        local funcList = {addExpansionToggle(bag.getName())}
         if hasEvents then
-            table.insert(funcList, addEventToggle("events2", bag.getName()))
+            table.insert(funcList, addEventToggle(bag.getName()))
         end
         updateXml(funcList)
     end
@@ -248,27 +239,7 @@ function onObjectDestroy(obj)
 end
 function removeExpansion(bag)
     expansions[bag.getName()] = nil
-    local found = false
-    local eventsFound = false
-    for expansion,guid in pairs(expansions) do
-        -- TODO make this more robust
-        if expansion ~= "Branch & Claw" and expansion ~= "Jagged Earth" then
-            found = true
-            for _,name in pairs(getObjectFromGUID(guid).getObjects()) do
-                if name == "Events" then
-                    eventsFound = true
-                    break
-                end
-            end
-        end
-    end
-    if not found then
-        self.UI.setAttribute("expansionsRow2", "active", "false")
-    end
-    if not eventsFound then
-        self.UI.setAttribute("events2", "active", "false")
-    end
-    updateXml{removeToggle("expansionsRow2", bag.getName()), removeToggle("events2", "Use "..bag.getName().." Events")}
+    updateXml{removeToggle("expansionsRow", bag.getName()), removeToggle("events", "Use "..bag.getName().." Events")}
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
@@ -1007,7 +978,6 @@ function toggleChallenge()
         self.UI.setAttribute("difficultyHeader", "visibility", "Invisible")
         self.UI.setAttribute("expansionsHeader", "visibility", "Invisible")
         self.UI.setAttribute("expansionsRow", "visibility", "Invisible")
-        self.UI.setAttribute("expansionsRow2", "visibility", "Invisible")
         checkRandomDifficulty(false, true)
         self.UI.setAttribute("toggles3", "visibility", "Invisible")
         self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
@@ -1022,7 +992,6 @@ function toggleChallenge()
         self.UI.setAttribute("difficultyHeader", "visibility", "")
         self.UI.setAttribute("expansionsHeader", "visibility", "")
         self.UI.setAttribute("expansionsRow", "visibility", "")
-        self.UI.setAttribute("expansionsRow2", "visibility", "")
         checkRandomDifficulty(true)
         self.UI.setAttribute("toggles3", "visibility", "")
         self.UI.setAttribute("panelSpirit", "visibility", "")
@@ -1599,30 +1568,28 @@ function updateDropdownSelection(id, value)
     end)
 end
 
-function addExpansionToggle(id, value)
-    return matchRecurse(id, function (t)
-        table.insert(t.children, {
-            tag="Cell",
-            children={
-                tag="Toggle",
-                value=value,
-                attributes={id = value, onValueChanged = "toggleExpansion"},
-                children={},
-            },
+function addExpansionToggle(value)
+    return matchRecurse("expansionsRow", function (t)
+        table.insert(t.children[1].children[1].children, {
+            tag="Toggle",
+            value=value,
+            attributes={id = value, onValueChanged = "toggleExpansion"},
+            children={},
         })
+        local count = #t.children[1].children[1].children
+        t.attributes["preferredHeight"] = (count + 1) / 2 * 60
     end)
 end
-function addEventToggle(id, value)
-    return matchRecurse(id, function (t)
-        table.insert(t.children, {
-            tag="Cell",
-            children={
-                tag="Toggle",
-                value="Use "..value.." Events",
-                attributes={id = value.." Events", onValueChanged = "toggleEvents"},
-                children={},
-            },
+function addEventToggle(value)
+    return matchRecurse("events", function (t)
+        table.insert(t.children[1].children[1].children, {
+            tag="Toggle",
+            value="Use "..value.." Events",
+            attributes={id = value.." Events", onValueChanged = "toggleEvents"},
+            children={},
         })
+        local count = #t.children[1].children[1].children
+        t.attributes["preferredHeight"] = (count + 1) / 2 * 60
     end)
 end
 function removeToggle(id, value)

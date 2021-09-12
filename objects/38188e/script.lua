@@ -72,7 +72,7 @@ function exchange(player, _, _)
             Player[player.color].broadcast("Unable to find Ocean player to give exchanged energy to", Color.Red)
         end
     else
-        Player[player.color].broadcast("Not enough health worth of invaders currently to exchange into energy", Color.Red)
+        Player[player.color].broadcast("Not enough Health worth of Invaders currently to exchange into Energy", Color.Red)
     end
 end
 
@@ -96,6 +96,6 @@ function exchangeAuto()
     if success then
         healthCount = healthCount % numPlayers
     else
-        broadcastToAll("Unable to find Ocean player to give exchanged energy to", Color.Red)
+        broadcastToAll("Unable to find Ocean player to give exchanged Energy to", Color.Red)
     end
 end

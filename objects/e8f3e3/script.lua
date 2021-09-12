@@ -13,8 +13,7 @@ hasUI = true
 supporting = false
 requirements = true
 thematicRebellion = false
-combineRequirement = false
-combineBroadcast = "Combining the French Plantation Colony - France's Additional Loss Condition has a greater Town limit"
+hasBroadcast = true
 
 slaveRebellion = "1f0327"
 
@@ -190,9 +189,6 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
-    if params.level >= 2 and params.other.level > 0 then
-        combineRequirement = true
-    end
     local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 5 then
         local returnBlightBag = adversaryBag.takeObject({
@@ -236,6 +232,13 @@ function setupSlaveRebellion(card)
     card.setRotationSmooth(Vector(0,180,180), false, true)
     card.setPositionSmooth(zone.getPosition() + Vector(0,0.1,0), false, true)
     return count
+end
+
+function Broadcast(params)
+    if params.level >= 2 and params.other.level > 0 then
+        return "Combining the French Plantation Colony - France's Additional Loss Condition has a greater Town limit"
+    end
+    return nil
 end
 
 function Requirements(params)

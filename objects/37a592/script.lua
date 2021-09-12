@@ -7,8 +7,7 @@ postSetup = true
 postSetupComplete = false
 hasLossCondition = true
 hasUI = true
-combineRequirement = false
-combineBroadcast = "Combining the Kingdom of Scotland - Push Coastal Cities inland if they are Added to lands other than land #2"
+hasBroadcast = true
 
 function ReminderSetup(params)
     local reminderTiles = {}
@@ -100,9 +99,6 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
-    if params.other.level > 0 then
-        combineRequirement = true
-    end
     if params.level >= 6 then
         local aidBoard = Global.getVar("aidBoard")
         local adversaryBag = Global.getVar("adversaryBag")
@@ -114,4 +110,11 @@ function PostSetup(params)
         })
     end
     postSetupComplete = true
+end
+
+function Broadcast(params)
+    if params.other.level > 0 then
+        return "Combining the Kingdom of Scotland - Push Coastal Cities inland if they are Added to lands other than land #2"
+    end
+    return nil
 end

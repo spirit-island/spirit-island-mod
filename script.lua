@@ -2417,32 +2417,21 @@ function StartGame()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
-    local function handleAdversaryBroadcast(card, level)
-        local broadcastTbl = card.getVar("broadcast")
-        local broadcast = nil
-        if broadcastTbl ~= nil then
-            broadcast = broadcastTbl[level]
-        end
-        local combineBroadcast = nil
-        if card.getVar("combineRequirement") then
-            combineBroadcast = card.getVar("combineBroadcast")
-        end
-        if broadcast ~= nil or combineBroadcast ~= nil then
+    if adversaryCard ~= nil and adversaryCard.getVar("hasBroadcast") then
+        local broadcast = adversaryCard.call("Broadcast", {level = adversaryLevel, other={level = adversaryLevel2}})
+        if broadcast ~= nil then
             wt(2)
             printToAll("Adversary:", Color.White)
-        end
-        if broadcast ~= nil then
             printToAll(broadcast, Color.SoftBlue)
         end
-        if combineBroadcast ~= nil then
-            printToAll(combineBroadcast, Color.SoftBlue)
+    end
+    if adversaryCard2 ~= nil and adversaryCard2.getVar("hasBroadcast") then
+        local broadcast = adversaryCard2.call("Broadcast", {level = adversaryLevel2, other={level = adversaryLevel}})
+        if broadcast ~= nil then
+            wt(2)
+            printToAll("Adversary:", Color.White)
+            printToAll(broadcast, Color.SoftBlue)
         end
-    end
-    if adversaryCard ~= nil then
-        handleAdversaryBroadcast(adversaryCard, adversaryLevel)
-    end
-    if adversaryCard2 ~= nil then
-        handleAdversaryBroadcast(adversaryCard2, adversaryLevel2)
     end
     if scenarioCard ~= nil then
         local broadcast = scenarioCard.getVar("broadcast")

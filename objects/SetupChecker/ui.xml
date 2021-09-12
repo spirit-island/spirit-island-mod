@@ -132,8 +132,6 @@
             <Row id="expansionsRow" recurse="expansionsRow" preferredHeight="60">
                 <Cell columnSpan="2">
                     <GridLayout constraint="FixedColumnCount" constraintCount="2" cellSize="500 60">
-                        <Toggle id="Branch &amp; Claw" onValueChanged="toggleExpansion">Branch &amp; Claw</Toggle>
-                        <Toggle id="Jagged Earth" onValueChanged="toggleExpansion">Jagged Earth</Toggle>
                     </GridLayout>
                 </Cell>
             </Row>
@@ -182,8 +180,6 @@
             <Row id="events" recurse="events" preferredHeight="60">
                 <Cell columnSpan="2">
                     <GridLayout constraint="FixedColumnCount" constraintCount="2" cellSize="500 60">
-                        <Toggle id="Branch &amp; Claw Events" onValueChanged="toggleEvents">Use B&amp;C Events</Toggle>
-                        <Toggle id="Jagged Earth Events" onValueChanged="toggleEvents">Use JE Events</Toggle>
                     </GridLayout>
                 </Cell>
             </Row>

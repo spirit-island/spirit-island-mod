@@ -149,10 +149,17 @@ function onLoad(saved_data)
                     updateScenarioList(),
                     updateBoardLayouts(numPlayers),
                 }
-                for expansion,_ in pairs(expansions) do
-                    -- TODO make this more robust
-                    if expansion ~= "Branch & Claw" and expansion ~= "Jagged Earth" then
-                        table.insert(funcList, addExpansionToggle(expansion))
+                for expansion,guid in pairs(expansions) do
+                    local hasEvents = false
+                    for _,obj in pairs(getObjectFromGUID(guid).getObjects()) do
+                        if obj.name == "Events" then
+                            hasEvents = true
+                            break
+                        end
+                    end
+                    table.insert(funcList, addExpansionToggle(expansion))
+                    if hasEvents then
+                        table.insert(funcList, addEventToggle(expansion))
                     end
                 end
                 updateXml(funcList)
@@ -1588,19 +1595,19 @@ function addExpansionToggle(value)
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = (count + 1) / 2 * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
     end)
 end
 function addEventToggle(value)
     return matchRecurse("events", function (t)
         table.insert(t.children[1].children[1].children, {
             tag="Toggle",
-            value="Use "..value.." Events",
+            value=value.." Events",
             attributes={id = value.." Events", onValueChanged = "toggleEvents"},
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = (count + 1) / 2 * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
     end)
 end
 function removeToggle(id, value)
@@ -1612,7 +1619,7 @@ function removeToggle(id, value)
             end
         end
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = (count + 1) / 2 * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
     end)
 end
 

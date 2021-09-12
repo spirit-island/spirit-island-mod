@@ -1856,6 +1856,10 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
                 config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
             end
             difficulty = difficultyCheck(config)
+            if config.adversaryLevel == 6 and config.adversaryLevel2 == 6 then
+                -- can't go any higher than so we just have to take it
+                break
+            end
         end
         -- Tier 2 could have raised adversary levels from starting point,
         -- so we should make sure that Tier 3 doesn't lower adversary levels

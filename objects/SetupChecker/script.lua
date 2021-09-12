@@ -1684,10 +1684,14 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     config.adversary2 = indexTable(adversaries, supportingAdversary)
     local supportingAdversaryLevel = math.random(0, 419)
     config.adversaryLevel2 = supportingAdversaryLevel % 7
-    local scenario = math.random(-2, numScenarios)
-    -- <= 0 means no scenario is selected
-    if scenario > 0 then
+
+    -- 2/3 chance to get scenario
+    local useScenario = math.random(1, 3)
+    if useScenario == 1 then
+        local scenario = math.random(1, numScenarios)
         config.scenario = indexTable(scenarios, scenario)
+    else
+        math.random(0,0)
     end
 
     -- Make extra board more likely on higher tier

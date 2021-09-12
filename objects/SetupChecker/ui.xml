@@ -21,11 +21,11 @@
     <Text class="value" minWidth="170"/>
     <Toggle class="value" minWidth="170"/>
     <Toggle class="full" tooltip="Add new cards in like usual"/>
-    <Toggle class="mix" tooltip="Add new cards in top part of deck"/>
-    <Toggle class="new" tooltip="Add new cards on top of deck"/>
+    <Toggle class="mix" tooltip="Mix new cards into top of their deck,&#xA;so they come up half the time"/>
+    <Toggle class="new" tooltip="Add new cards on top of their deck"/>
     <Toggle class="4" tooltip="Add new cards in like usual"/>
-    <Toggle class="3-1" tooltip="Keep new cards separate and draw 1 each time"/>
-    <Toggle class="2-2" tooltip="Keep new cards separate and draw 2 each time"/>
+    <Toggle class="3-1" tooltip="Keep new cards in separate&#xA;deck and draw 1 each time"/>
+    <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>
 
 <Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">

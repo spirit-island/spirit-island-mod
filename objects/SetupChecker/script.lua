@@ -1017,12 +1017,13 @@ function toggleChallenge()
     end
     self.UI.setAttribute("challenge", "isOn", weeklyChallenge)
 end
-function toggleChallengeTier(_, value)
-    if value == "0" then
+function toggleChallengeTier(_, selected, id)
+    if selected == "0" then
         challengeTier = 1
-    elseif value == "1" then
+    elseif selected == "1" then
         challengeTier = 2
     end
+    self.UI.setAttribute(id..selected, "isOn", "true")
     challengeConfig = getWeeklyChallengeConfig()
 end
 

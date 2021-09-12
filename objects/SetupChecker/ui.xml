@@ -339,11 +339,11 @@
         <TableLayout>
             <Row class="header">
                 <Cell>
-                    <ToggleGroup onValueChanged="toggleChallengeTier">
+                    <ToggleGroup id="challengeTier" onValueChanged="toggleChallengeTier">
                         <HorizontalLayout>
                             <Text class="header">Weekly Challenge</Text>
-                            <Toggle isOn="true">Standard</Toggle>
-                            <Toggle>Hard</Toggle>
+                            <Toggle id="challengeTier0" isOn="true">Moderate</Toggle>
+                            <Toggle id="challengeTier1">Hard</Toggle>
                         </HorizontalLayout>
                     </ToggleGroup>
                 </Cell>

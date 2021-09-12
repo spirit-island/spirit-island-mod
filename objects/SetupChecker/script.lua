@@ -238,8 +238,19 @@ function onObjectDestroy(obj)
     end
 end
 function removeExpansion(bag)
+    local exps = Global.getTable("expansions")
+    exps[bag.getName()] = nil
+    Global.setTable("expansions", exps)
     expansions[bag.getName()] = nil
-    updateXml{removeToggle("expansionsRow", bag.getName()), removeToggle("events", "Use "..bag.getName().." Events")}
+
+    local funcList = {
+        removeToggle("expansionsRow", bag.getName()),
+        removeToggle("events", "Use "..bag.getName().." Events"),
+    }
+    if playtestExpansion == bag.getName() then
+        table.insert(funcList, updatePlaytestExpansionList(exps))
+    end
+    updateXml(funcList)
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
@@ -1552,7 +1563,7 @@ function updateDropdownList(id, values, selectedValue)
                 children={},
             }
             if v == selectedValue then
-                t.children[i].attributes.selected = "true"
+                t.attributes["value"] = i - 1
             end
         end
     end)
@@ -1594,12 +1605,14 @@ function addEventToggle(value)
 end
 function removeToggle(id, value)
     return matchRecurse(id, function (t)
-        for i,child in pairs(t.children) do
-            if child.children[1].value == value then
-                table.remove(t.children, i)
+        for i,child in pairs(t.children[1].children[1].children) do
+            if child.value == value then
+                table.remove(t.children[1].children[1].children, i)
                 break
             end
         end
+        local count = #t.children[1].children[1].children
+        t.attributes["preferredHeight"] = (count + 1) / 2 * 60
     end)
 end
 

@@ -1,5 +1,5 @@
 {
-  "broadcast": "To visually represent Sacred Sites from River's Domain change the state for that presence to 2",
+  "broadcast": "To show your Presence in Wetlands are Sacred Sites (due to River's Domain) change that Presence to its second state.",
   "thresholds": [
     {
       "elements": "10002000",

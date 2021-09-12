@@ -5,9 +5,9 @@ broadcast={
     nil,
     nil,
     nil,
-    "Remember, you need to do Royal Backing after the initial explore - Sweden Level 4",
-    "Remember, you need to do Royal Backing after the initial explore - Sweden Level 4",
-    "Remember, you need to do Royal Backing after the initial explore - Sweden Level 4",
+    "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board",
+    "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board",
+    "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board",
 }
 preSetup = true
 preSetupComplete = false

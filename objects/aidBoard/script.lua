@@ -9,7 +9,8 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         discard = Vector(loaded_data.discard)
@@ -478,7 +479,7 @@ function removeFear()
     if generatedFear == 0 then
         Global.setVar("fearPool", 1)
         Global.setVar("generatedFear", fearPool - 1)
-        broadcastToAll("Fear Card Taken Back! (This is currently not scripted)", {1,0,0})
+        broadcastToAll("Fear Card Taken Back! (This is currently not scripted)", Color.Red)
     else
         Global.setVar("fearPool", fearPool + 1)
         Global.setVar("generatedFear", generatedFear - 1)
@@ -490,7 +491,7 @@ function modifyFearPool(obj, color, alt_click)
     local generatedFear = Global.getVar("generatedFear")
     if alt_click then
         if fearPool == 1 and generatedFear == 0 then
-            broadcastToAll("Fear Pool cannot go to zero", {1,0,0})
+            broadcastToAll("Fear Pool cannot go to zero", Color.Red)
             return
         elseif fearPool == 1 then
             Global.setVar("fearPool", generatedFear)
@@ -517,7 +518,7 @@ function fearCardEarned()
 
     Wait.condition(function()
         if #fearDeckZone.getObjects() == 0 then
-            broadcastToAll("Fear Victory Achieved!!!", {1,0,0})
+            broadcastToAll("Fear Victory Achieved!", Color.SoftYellow)
         end
     end, function() return completedTable[2] end)
     return 1
@@ -542,7 +543,7 @@ function getFearDeck(fearDeckZone)
         elseif obj.type == "Card" and obj.hasTag("Fear") then
             fearDeck = obj
         else
-            broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", {1,0,0})
+            broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", Color.Red)
             return nil
         end
     end
@@ -623,7 +624,7 @@ function examineCard(fearDeck, dividerPos)
             card.setRotationSmooth(Vector(0, 180, 180))
             emptyDeck = true
         end
-        broadcastToAll("Terror Level II Achieved!", {1,0,0})
+        broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
     elseif card.guid == "f96a71" then
         if fearDeck.type == "Deck" then
             card = fearDeck.takeObject({
@@ -635,7 +636,7 @@ function examineCard(fearDeck, dividerPos)
             card.setRotationSmooth(Vector(0, 180, 180))
             emptyDeck = true
         end
-        broadcastToAll("Terror Level III Achieved!", {1,0,0})
+        broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
     else
         local invaderCard = false
         if fearDeck.type == "Deck" then
@@ -683,15 +684,15 @@ function invaderCardBroadcast(card)
     local stage = card.getVar("cardInvaderStage")
     if stage == 2 then
         if card.getVar("cardInvaderType") == "C" then
-            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck", {1,0,0})
+            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck", Color.SoftYellow)
         else
-            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
+            broadcastToAll("Stage II Invader Card was revealed from the Fear Deck\n(You perform the Escalation when you Resolve the card, not now)", Color.SoftYellow)
         end
     elseif stage == 3 then
         if Global.getVar("adversaryCard2") == nil then
-            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck", {1,0,0})
+            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck", Color.SoftYellow)
         else
-            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck\n(You perform the escalation when you resolve the card, not now)", {1,0,0})
+            broadcastToAll("Stage III Invader Card was revealed from the Fear Deck\n(You perform the Escalation when you Resolve the card, not now)", Color.SoftYellow)
         end
     end
 end

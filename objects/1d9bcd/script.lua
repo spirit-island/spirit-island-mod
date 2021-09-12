@@ -26,6 +26,7 @@ function onSave()
 end
 
 function onLoad(saved_data)
+    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
     local loaded_data = JSON.decode(saved_data)
     count = loaded_data.count
 end
@@ -125,7 +126,7 @@ function AdversaryUI(params)
 end
 function updateCount(params)
     if params.count > Global.getVar("numBoards") then
-        broadcastToAll("Habsburg wins via Additional Loss Condition!", "Red")
+        broadcastToAll("Habsburg wins via Additional Loss Condition!", Color.SoftYellow)
     end
 end
 

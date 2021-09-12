@@ -20,10 +20,10 @@
     <Text class="keyspacer" minWidth="100"/>
     <Text class="value" minWidth="170"/>
     <Toggle class="value" minWidth="170"/>
-    <Toggle class="full" tooltip="Add new cards in like usual"/>
+    <Toggle class="full" tooltip="Setup new cards like normal"/>
     <Toggle class="mix" tooltip="Mix new cards into top of their deck,&#xA;so they come up half the time"/>
     <Toggle class="new" tooltip="Add new cards on top of their deck"/>
-    <Toggle class="4" tooltip="Add new cards in like usual"/>
+    <Toggle class="4" tooltip="Setup new cards like normal"/>
     <Toggle class="3-1" tooltip="Keep new cards in separate&#xA;deck and draw 1 each time"/>
     <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>

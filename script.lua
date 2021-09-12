@@ -180,7 +180,7 @@ function onObjectDrop(player_color, dropped_object)
             elseif player_color == "Purple" then
                 dropColor = {0.627, 0.125, 0.941}
             end
-            dropped_object.highlightOn(dropColor, 60)
+            dropped_object.highlightOn(dropColor, 20)
         end
     end
 end

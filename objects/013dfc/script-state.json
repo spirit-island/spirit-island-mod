@@ -1,6 +1,14 @@
 {
-  "broadcast": "In order to keep a second Power Card for Days that Never Were, right click the \"Pick Power\" button for the first choice",
+  "broadcast": "When Gaining a Power Card, to keep an extra Power Card for your Days That Never Were, right click the \"Pick Power\" button.",
   "thresholds": [
+    {
+      "elements": "12020000",
+      "position": {
+        "x": -0.52,
+        "y": 0,
+        "z": 0.53
+      }
+    },
     {
       "elements": "03010000",
       "position": {
@@ -12,25 +20,9 @@
     {
       "elements": "22000000",
       "position": {
-        "x": 0.34,
+        "x": 0.35,
         "y": 0,
         "z": 0.75
-      }
-    },
-    {
-      "elements": "30020000",
-      "position": {
-        "x": 0.34,
-        "y": 0,
-        "z": 0.92
-      }
-    },
-    {
-      "elements": "12020000",
-      "position": {
-        "x": -0.52,
-        "y": 0,
-        "z": 0.53
       }
     },
     {
@@ -39,6 +31,14 @@
         "x": -0.52,
         "y": 0,
         "z": 0.8
+      }
+    },
+    {
+      "elements": "30020000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.92
       }
     }
   ],

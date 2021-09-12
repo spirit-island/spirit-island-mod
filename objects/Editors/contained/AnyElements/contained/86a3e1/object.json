@@ -1,18 +1,18 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 114.7245,
-    "posY": 1.0345,
-    "posZ": 54.4228,
-    "rotX": 0.0,
-    "rotY": -0.001,
-    "rotZ": 0.0,
+    "posX": -20.4366,
+    "posY": 1.0927,
+    "posZ": -15.2627,
+    "rotX": 354.6304,
+    "rotY": 0.2163,
+    "rotZ": 0.0187,
     "scaleX": 0.5,
     "scaleY": 0.5,
     "scaleZ": 0.5
   },
   "Nickname": "Any Element",
-  "Description": "Change the state to change the element shown",
+  "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.8252,
@@ -63,7 +63,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Animal Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.8113,
@@ -118,7 +118,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Plant Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.0,
@@ -173,7 +173,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Earth Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.4268,
@@ -228,7 +228,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Water Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.1983,
@@ -283,7 +283,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Air Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.6534,
@@ -338,7 +338,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Fire Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
@@ -393,7 +393,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Moon Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9113,
@@ -448,7 +448,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Sun Element",
-      "Description": "Change the state to change the element shown",
+      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,

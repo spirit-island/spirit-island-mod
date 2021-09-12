@@ -360,8 +360,9 @@ function onSave()
 end
 function onLoad(saved_data)
     getObjectFromGUID(versionGuid).setValue("version " .. version)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
+    Color.Add("SoftGreen", Color.new(0.75,1,0.67))
 
     clearHotkeys()
     for _, piece in ipairs(Pieces) do
@@ -587,7 +588,7 @@ function readyCheck()
         return
     end
 
-    broadcastToAll("All Players are ready!")
+    broadcastToAll("All Players are ready!", Color.SoftGreen)
     for _,data in pairs(selectedColors) do
         data.ready.flip()
     end
@@ -609,7 +610,7 @@ function CanSetupGame()
         return false
     end
     if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
-        broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
+        broadcastToAll("A Leading Adversary is required to use a Supporting Adversary", Color.SoftYellow)
         return false
     end
     if adversaryCard ~= nil and adversaryCard == adversaryCard2 then
@@ -647,6 +648,9 @@ function SetupGame()
         else
             numBoards = numPlayers
         end
+    end
+    if useRandomBoard or useRandomScenario or useRandomAdversary or useSecondAdversary then
+      printToAll("Randomiser:", Color.White)
     end
     if useRandomBoard then
         randomBoard()
@@ -694,6 +698,7 @@ function randomBoard()
     else
         boardLayout = alternateBoardLayoutNames[numBoards][value]
     end
+    printToAll("Board Layout - "..boardLayout, Color.SoftBlue)
     SetupChecker.call("updateDifficulty", {})
 end
 function randomScenario()
@@ -704,7 +709,7 @@ function randomScenario()
     while scenarioCard == nil do
         if attempts > 1000 then
             -- TODO find a more elegant solution for detecting bad difficulty ranges
-            broadcastToAll("Was not able to find random scenario to satisfy min/max difficulty specifications", "Red")
+            broadcastToAll("Was not able to find random scenario to satisfy min/max difficulty specifications", Color.SoftYellow)
             return
         end
         attempts = attempts + 1
@@ -725,7 +730,7 @@ function randomScenario()
             end
         else
             SetupChecker.call("updateDifficulty", {})
-            broadcastToAll("Your randomised scenario is "..scenarioCard.getName(), "Blue")
+            printToAll("Scenario - "..scenarioCard.getName(), Color.SoftBlue)
             break
         end
     end
@@ -742,7 +747,7 @@ function randomAdversary(attempts)
     end
     if attempts > 1000 then
         -- TODO find a more elegant solution for detecting bad difficulty ranges
-        broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", "Red")
+        broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", Color.SoftYellow)
         return
     end
     if useRandomAdversary and useSecondAdversary then
@@ -788,7 +793,7 @@ function randomAdversary(attempts)
             adversaryCard2 = adversary2
             adversaryLevel2 = combos[index][2]
             SetupChecker.call("updateDifficulty", {})
-            broadcastToAll("Your randomised adversaries are "..adversaryCard.getName().." and "..adversaryCard2.getName(), "Blue")
+            printToAll("Adversaries - "..adversaryCard.getName().." and "..adversaryCard2.getName(), Color.SoftBlue)
         else
             randomAdversary(attempts + 1)
         end
@@ -832,7 +837,7 @@ function randomAdversary(attempts)
                 adversaryLevel2 = combos[index]
             end
             SetupChecker.call("updateDifficulty", {})
-            broadcastToAll("Your randomised adversary is "..adversary.getName(), "Blue")
+            printToAll("Adversary - "..adversary.getName(), Color.SoftBlue)
         else
             randomAdversary(attempts + 1)
         end
@@ -898,7 +903,7 @@ function SetupFear()
     fearDeck.shuffle()
     for _ = 1, fearCards[3] do
         if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", "Red")
+            broadcastToAll("Not enough Fear Cards", Color.SoftYellow)
             break
         end
         local card = fearDeck.takeObject({
@@ -919,7 +924,7 @@ function SetupFear()
     fearDeck.shuffle()
     for _ = 1, fearCards[2] do
         if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", "Red")
+            broadcastToAll("Not enough Fear Cards", Color.SoftYellow)
             break
         end
         local card = fearDeck.takeObject({
@@ -940,7 +945,7 @@ function SetupFear()
     fearDeck.shuffle()
     for _ = 1, fearCards[1] do
         if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", "Red")
+            broadcastToAll("Not enough Fear Cards", Color.SoftYellow)
             break
         end
         local card = fearDeck.takeObject({
@@ -1423,9 +1428,10 @@ function BlightedIslandFlipPart2()
     end
     wt(1)
     gamePaused = false -- to re-enable scripting buttons and object cleanup
-    broadcastToAll(blightedIslandCard.getName()..": "..numBlight.." Blight Tokens Added", Color.SoftBlue)
+    broadcastToAll(blightedIslandCard.getName()..":", Color.White)
+    printToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
-    broadcastToAll("Remember to check the blight card effect", Color.SoftBlue)
+    broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
     return 1
 end
 function hideBlightButton()
@@ -1803,9 +1809,9 @@ function randomTerrain(player)
     if player.color == "Grey" then return end
     local random = math.random(1,2)
     if random == 1 then
-        broadcastToAll("Your random stage 3 escalation is \"top terrain\" for the current Adversary Action", Color.SoftBlue)
+        broadcastToAll("Your random Stage III Escalation is \"top terrain\" for the current Adversary Action", Color.SoftYellow)
     else
-        broadcastToAll("Your random stage 3 escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftBlue)
+        broadcastToAll("Your random Sstage III Escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftYellow)
     end
 end
 ----- Invader Deck Section
@@ -2165,39 +2171,77 @@ function StartGame()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
-
-    broadcastToAll("Game Started!", Color.White)
-    broadcastToAll("Don't forget to do the initial explore action yourself!", Color.SoftBlue)
-    if SetupChecker.getVar("optionalExtraBoard") and numPlayers == 1 then
-        broadcastToAll("Remember to skip the initial explore on the extra board!", Color.SoftYellow)
+    local adversarySent = false
+    if adversaryCard ~= nil then
+        local broadcastTbl = adversaryCard.getVar("broadcast")
+        local broadcast = nil
+        if broadcastTbl ~= nil then
+          broadcast = broadcastTbl[adversaryLevel]
+        end
+        local combineRequirement = adversaryCard.getVar("combineRequirement")
+        local combineBroadcast = nil
+        if combineRequirement then
+          combineBroadcast = adversaryCard.getVar("combineBroadcast")
+        end
+        if broadcast ~= nil or combineBroadcast ~= nil then
+            wt(2)
+            printToAll("Adversary:", Color.White)
+            adversarySent = true
+        end
+        if broadcast ~= nil then
+            printToAll(broadcast, Color.SoftBlue)
+        end
+        if combineBroadcast ~= nil then
+            printToAll(combineBroadcast, Color.SoftBlue)
+        end
     end
-    if adversaryCard2 ~= nil then
-        wt(2)
-        broadcastToAll("Your stage II escalation is "..adversaryCard.getName()..".\nYour stage III escalation is "..adversaryCard2.getName(), "Blue")
-    elseif adversaryCard ~= nil then
-        wt(2)
-        broadcastToAll("Your Stage II escalation is "..adversaryCard.getName(), "Blue")
+      if adversaryCard2 ~= nil then
+        local broadcastTbl = adversaryCard2.getVar("broadcast")
+        local broadcast = nil
+        if broadcastTbl ~= nil then
+          broadcast = broadcastTbl[adversaryLevel2]
+        end
+        local combineRequirement = adversaryCard2.getVar("combineRequirement")
+        local combineBroadcast = nil
+        if combineRequirement then
+          combineBroadcast = adversaryCard2.getVar("combineBroadcast")
+        end
+        if adversarySent == false then
+          if broadcast ~= nil or combineBroadcast ~= nil then
+            wt(2)
+            printToAll("Adversary:", Color.White)
+            adversarySent = true
+          end
+        end
+        if broadcast ~= nil then
+            wt(2)
+            printToAll(broadcast, Color.SoftBlue)
+        end
+        if combineBroadcast ~= nil then
+            printToAll(combineBroadcast, Color.SoftBlue)
+        end
     end
     if scenarioCard ~= nil then
         local broadcast = scenarioCard.getVar("broadcast")
         if broadcast ~= nil then
             wt(2)
-            broadcastToAll(broadcast, "Blue")
-        end
-    end
-    if adversaryCard ~= nil then
-        local broadcast = adversaryCard.getVar("broadcast")
-        if broadcast ~= nil and broadcast[adversaryLevel] ~= nil then
-            wt(2)
-            broadcastToAll(broadcast[adversaryLevel], "Blue")
+            printToAll("Scenario:", Color.White)
+            printToAll(broadcast, Color.SoftBlue)
         end
     end
     if adversaryCard2 ~= nil then
-        local broadcast = adversaryCard2.getVar("broadcast")
-        if broadcast ~= nil and broadcast[adversaryLevel2] ~= nil then
-            wt(2)
-            broadcastToAll(broadcast[adversaryLevel2], "Blue")
-        end
+        wt(2)
+        printToAll("Escalation:", Color.White)
+        printToAll("The stage II escalation is "..adversaryCard.getName().."\nThe stage III escalation is "..adversaryCard2.getName(), Color.SoftBlue)
+    elseif adversaryCard ~= nil then
+        wt(2)
+        printToAll("Escalation:", Color.White)
+        printToAll("Your Stage II escalation is "..adversaryCard.getName(), Color.SoftBlue)
+    end
+    printToAll("Game Started!", Color.White)
+    printToAll("Don't forget to perform the initial Explore Step!", Color.SoftYellow)
+    if SetupChecker.getVar("optionalExtraBoard") and numPlayers == 1 then
+        printToAll("But not on the extra board!", Color.SoftYellow)
     end
     return 1
 end
@@ -2325,12 +2369,12 @@ function timePassesCo()
         handlePlayer(color, data)
     end
 
-    broadcastToAll("Time Passes...", Color.SoftBlue)
+    broadcastToAll("Time Passes...", Color.White)
     local quote = quotes[math.random(#quotes)]
     wt(2)
-    broadcastToAll("\"" .. quote[1] .. "\"", {0.9,0.9,0.9})
+    printToAll("\"" .. quote[1] .. "\"", Color.SoftBlue)
     wt(2)
-    broadcastToAll("- " .. quote[2], {0.9,0.9,0.9})
+    printToAll("- " .. quote[2], Color.SoftBlue)
     wt(2)
     enterSpiritPhase(nil)
     timePassing = false
@@ -2936,7 +2980,7 @@ function place(objName, placePos, droppingPlayerColor)
     if objName == "Explorer" then
         if explorerBag.getCustomObject().type ~= 7 then
             if #explorerBag.getObjects() == 0 then
-                broadcastToAll("There are no Explorers left to place", "Red")
+                broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
                 return
             end
         end
@@ -2944,10 +2988,10 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Town" then
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
-                broadcastToAll("There are no Towns left to place", "Red")
+                broadcastToAll("There are no Towns left to place", Color.SoftYellow)
                 -- TODO extract this logic into adversary
                 if (adversaryCard ~= nil and adversaryCard.getName() == "France") or (adversaryCard2 ~= nil and adversaryCard2.getName() == "France") then
-                    broadcastToAll("France wins via Additional Loss Condition!", "Red")
+                    broadcastToAll("France wins via their Additional Loss Condition!", Color.SoftYellow)
                 end
                 return
             end
@@ -2956,7 +3000,7 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "City" then
         if cityBag.getCustomObject().type ~= 7 then
             if #cityBag.getObjects() == 0 then
-                broadcastToAll("There are no Cities left to place", "Red")
+                broadcastToAll("There are no Cities left to place", Color.SoftYellow)
                 return
             end
         end
@@ -2964,14 +3008,14 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Dahan" then
         if dahanBag.getCustomObject().type ~= 7 then
             if #dahanBag.getObjects() == 0 then
-                broadcastToAll("There are no Dahan left to place", "Red")
+                broadcastToAll("There are no Dahan left to place", Color.SoftYellow)
                 return
             end
         end
         temp = dahanBag.takeObject({position=placePos,rotation=Vector(0,0,0)})
     elseif objName == "Blight" then
         if #blightBag.getObjects() == 0 then
-            broadcastToAll("There is no Blight left to place", "Red")
+            broadcastToAll("There is no Blight left to place", Color.SoftYellow)
             return
         end
         temp = blightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -3600,7 +3644,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                 end
             end
             if not supported then
-                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
             else
                 local refunded = updateEnergyCounter(color, true, energyTotal)
                 if not refunded then
@@ -3653,7 +3697,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                 end
             end
             if not supported then
-                Player[color].broadcast("Spirit does not support automatic energy gain", Color.Red)
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
             else
                 local paid = updateEnergyCounter(color, false, energyTotal)
                 if not paid then
@@ -4100,7 +4144,7 @@ function toggleButtonUI(player)
 end
 function togglePlayerControls(player)
     if not player.admin then
-        player.broadcast("Only promoted players can toggle seat controls.")
+        player.broadcast("Only promoted players can toggle seat controls!", Color.SoftYellow)
         return
     end
     showPlayerButtons = not showPlayerButtons
@@ -4460,7 +4504,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     obj.setLock(true)
                     selectedColors[b.color].isolate = obj
                 else
-                    broadcastToAll("Internal Error: Unknown object " .. name .. " in player bag.", Color.Red)
+                    broadcastToAll("Internal Error: Unknown object " .. name .. " in player bag.", Color.SoftYellow)
                 end
             end
             for suffix, objs in pairs(b.objects) do
@@ -4505,7 +4549,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     for _, obj in ipairs(objs) do
                         local states = obj.getStates()
                         if states ~= nil and #states > 1 then
-                            broadcastToAll("Internal Error: Object " .. obj.getName() .. " has multiple states and may not handle color swap properly.", Color.Red)
+                            broadcastToAll("Internal Error: Object " .. obj.getName() .. " has multiple states and may not handle color swap properly.", Color.SoftYellow)
                         end
                         obj.setColorTint(a.tint)
                         obj.setName(newname)
@@ -4529,7 +4573,7 @@ function swapPlayerColors(a, b)
     if not playerBlocks[a] then
         -- This should only trigger if the player clicking is a non-standard color.
         if pb.seated then
-            pa.broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
+            pa.broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.SoftYellow)
             return false
         end
     end
@@ -4563,7 +4607,7 @@ function swapPlayerColors(a, b)
                 end
             end
             -- If we reach here, we failed to change colors. Shouldn't happen. Just in case it does.
-            pa.broadcast("Unable to swap colors with " .. b .. ". (All player colors are in use?)", Color.Red)
+            pa.broadcast("Unable to swap colors with " .. b .. ". (All player colors are in use?)", Color.SoftYellow)
         else
             if pa.changeColor(b) then
                 Wait.frames(function()
@@ -4795,19 +4839,19 @@ end
 function enterSpiritPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 1 then return end
-    broadcastToAll("Entering Spirit Phase", Color.SoftBlue)
+    broadcastToAll("Entering Spirit Phase...", Color.White)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
 
     for color,_ in pairs(selectedColors) do
-        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftYellow)
+        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftBlue)
     end
 end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 2 then return end
-    broadcastToAll("Entering Fast Power Phase", Color.SoftBlue)
+    broadcastToAll("Entering Fast Power Phase...", Color.White)
     updateCurrentPhase(true)
     currentPhase = 2
     updateCurrentPhase(false)
@@ -4815,7 +4859,7 @@ end
 function enterInvaderPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 3 then return end
-    broadcastToAll("Entering Invader Phase", Color.SoftBlue)
+    broadcastToAll("Entering Invader Phase...", Color.White)
     updateCurrentPhase(true)
     currentPhase = 3
     updateCurrentPhase(false)
@@ -4823,7 +4867,7 @@ end
 function enterSlowPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 4 then return end
-    broadcastToAll("Entering Slow Power Phase", Color.SoftBlue)
+    broadcastToAll("Entering Slow Power Phase...", Color.White)
     updateCurrentPhase(true)
     currentPhase = 4
     updateCurrentPhase(false)

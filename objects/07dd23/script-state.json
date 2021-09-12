@@ -1,28 +1,12 @@
 {
-  "broadcast": "Drag invaders into drowned bag to automatically generate fear and for easy energy exchange",
-  "thresholds": [
+ "broadcast": "To convert Drowned Invaders into Energy (and Generate Fear automatically) drag them onto your Ocean's Hungry Grasp marker", 
+ "thresholds": [
     {
       "elements": "01012000",
       "position": {
-        "x": 0.34,
+        "x": 0.33,
         "y": 0,
         "z": 0.63
-      }
-    },
-    {
-      "elements": "02013000",
-      "position": {
-        "x": 0.34,
-        "y": 0,
-        "z": 0.75
-      }
-    },
-    {
-      "elements": "03024000",
-      "position": {
-        "x": 0.34,
-        "y": 0,
-        "z": 0.88
       }
     },
     {
@@ -34,11 +18,27 @@
       }
     },
     {
+      "elements": "02013000",
+      "position": {
+        "x": 0.33,
+        "y": 0,
+        "z": 0.75
+      }
+    },
+    {
       "elements": "00003200",
       "position": {
         "x": -0.56,
         "y": 0,
         "z": 0.75
+      }
+    },
+    {
+      "elements": "03024000",
+      "position": {
+        "x": 0.33,
+        "y": 0,
+        "z": 0.88
       }
     },
     {
@@ -79,24 +79,6 @@
       "elements": "01000000",
       "position": {
         "x": -0.04,
-        "y": 0,
-        "z": -0.14
-      }
-    }
-  ],
-  "trackEnergy": [
-    {
-      "count": 2,
-      "position": {
-        "x": -1.14,
-        "y": 0,
-        "z": -0.14
-      }
-    },
-    {
-      "count": 1,
-      "position": {
-        "x": -0.48,
         "y": 0,
         "z": -0.14
       }

@@ -912,6 +912,7 @@ function SetupFear()
         local card = fearDeck.takeObject({
             position = zone.getPosition() + Vector(count,0,0),
             rotation = Vector(0, 180, 180),
+            smooth = false,
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -919,7 +920,7 @@ function SetupFear()
     end
 
     local divider = getObjectFromGUID("f96a71")
-    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
+    divider.setPosition(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1
     table.insert(cardTable, divider)
@@ -933,6 +934,7 @@ function SetupFear()
         local card = fearDeck.takeObject({
             position = zone.getPosition() + Vector(count,0,0),
             rotation = Vector(0, 180, 180),
+            smooth = false,
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -940,7 +942,7 @@ function SetupFear()
     end
 
     divider = getObjectFromGUID("969897")
-    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
+    divider.setPosition(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1
     table.insert(cardTable, divider)
@@ -954,6 +956,7 @@ function SetupFear()
         local card = fearDeck.takeObject({
             position = zone.getPosition() + Vector(count,0,0),
             rotation = Vector(0, 180, 180),
+            smooth = false,
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -1891,18 +1894,21 @@ function grabInvaderCards(deckTable)
         if char == 1 then
             local card = stage1Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 2 then
             local card = stage2Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 3 or char == "3*" then
             local card = stage3Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj)
                     cardsLoaded = cardsLoaded + 1
                     if char == "3*" then
@@ -1915,7 +1921,7 @@ function grabInvaderCards(deckTable)
             table.insert(cardTable, card)
         elseif invaderCards[deckTable[i]] then
             local card = getObjectFromGUID(invaderCards[deckTable[i]].guid)
-            card.setPositionSmooth(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
+            card.setPosition(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
             card.setRotationSmooth(Vector(0,180,180))
             cardsLoaded = cardsLoaded + 1
             table.insert(cardTable, card)

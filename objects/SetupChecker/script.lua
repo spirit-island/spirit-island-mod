@@ -91,8 +91,8 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
+      Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+      Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     if not Global.getVar("gameStarted") then
         showUI()
     else
@@ -757,7 +757,8 @@ function loadConfig(config)
         end
     end
     if config.broadcast then
-        printToAll(config.broadcast, Color.SoftYellow)
+        printToAll("Weekly Challenge - Spirit Setup", Color.White)
+        printToAll(config.broadcast, Color.SoftBlue)
     end
     updateDifficulty()
 end
@@ -1649,7 +1650,7 @@ function getWeeklyChallengeConfig()
         if i ~= 1 then
             config.broadcast = config.broadcast.."\n"
         end
-        config.broadcast = config.broadcast..spirit.getName().." on "..boardName
+        config.broadcast = config.broadcast..boardName.." - "..spirit.getName()
     end
     if config.extraBoard then
         table.insert(config.boards, findBoard(numPlayers))

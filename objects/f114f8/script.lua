@@ -5,15 +5,20 @@ broadcast={
     nil,
     nil,
     nil,
-    "Remember, you need to do Royal Backing after the initial explore - Sweden Level 4",
-    "Remember, you need to do Royal Backing after the initial explore - Sweden Level 4",
-    "Remember, you need to do Royal Backing after the initial explore - Sweden Level 4",
+    "The Kingdom of Sweden Level 4 - Accelerate the Invader Deck and Add 1 Town on each Board",
+    "The Kingdom of Sweden Level 4 - Accelerate the Invader Deck and Add 1 Town on each Board",
+    "The Kingdom of Sweden Level 4 - Accelerate the Invader Deck and Add 1 Town on each Board",
 }
 preSetup = true
 preSetupComplete = false
 reminderSetup = true
 mapSetup = true
 hasUI = true
+
+function onLoad(saved_data)
+  Color.Add("SoftBlue", Color.new(0.1,0.85,1.00))
+  Color.Add("SoftYellow", Color.new(1,0.80,0.50))
+end
 
 function PreSetup(params)
     if params.level >= 3 then

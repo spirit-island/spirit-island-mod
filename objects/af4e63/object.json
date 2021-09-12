@@ -6,7 +6,7 @@
     "posZ": 13.1539,
     "rotX": 0.0,
     "rotY": 179.979,
-    "rotZ": -0.0001,
+    "rotZ": -0.000100000128,
     "scaleX": 0.8294,
     "scaleY": 0.03,
     "scaleZ": 0.8294
@@ -15,9 +15,9 @@
   "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5647,
-    "g": 0.5569,
-    "b": 0.5569,
+    "r": 0.5646999,
+    "g": 0.556899965,
+    "b": 0.556899965,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,

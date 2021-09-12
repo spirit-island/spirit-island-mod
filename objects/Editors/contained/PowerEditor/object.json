@@ -1,9 +1,9 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": 98.98,
-    "posY": 0.85,
-    "posZ": 42.86,
+    "posX": 0.0,
+    "posY": 0.0,
+    "posZ": 0.0,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -45,7 +45,8 @@
         "x": 0.0,
         "y": 0.0,
         "z": 0.0
-      }
+      },
+      "Tags": []
     }
   ]
 }

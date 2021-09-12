@@ -7,6 +7,8 @@ local callbackObj, callbackFunc
 
 function onLoad(saved_data)
     upd()
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
 end
 function onObjectEnterContainer(container, enter_object)
     if container == self then upd() end
@@ -29,7 +31,7 @@ function upd()
         font_size      = size,
         font_color     = color,
     })
-    if #self.getObjects() == 0 and Global.getVar("gameStarted") then broadcastToAll("Town Bag is now empty", {1,0.4,0}) end
+    if #self.getObjects() == 0 and Global.getVar("gameStarted") then broadcastToAll("Town Bag is now empty", Color.SoftYellow) end
     if callbackObj ~= nil and callbackFunc ~= nil then
         callbackObj.call(callbackFunc, {count=#self.getObjects()})
     end

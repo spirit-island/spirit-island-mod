@@ -3,7 +3,8 @@ useProgression = false
 useAspect = 2
 
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+      Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+      Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     getObjectFromGUID("SourceSpirit").call("load", {obj = self, saved_data = saved_data})
 end
 -- Source Spirit start
@@ -240,10 +241,12 @@ function SetupSpirit(obj, player_color)
 
         local broadcast = obj.getVar("broadcast")
         if broadcast ~= nil then
+            spiritName =
+            Player[player_color].broadcast("Spirit - "..obj.getName(), Color.White)
             Player[player_color].broadcast(broadcast, Color.SoftBlue)
         end
     else
-        Player[player_color].broadcast("You already picked a spirit", "Red")
+        Player[player_color].broadcast("You already picked a spirit", Color.SoftYellow)
     end
 end
 function ToggleProgression(obj)
@@ -350,7 +353,7 @@ function handleAspect(spirit, deck, color)
             end
         end
         if not found then
-            Player[color].broadcast("Unable to find aspect "..aspect, "Red")
+            Player[color].broadcast("Unable to find aspect "..aspect, Color.SoftYellow)
         end
     end
 end

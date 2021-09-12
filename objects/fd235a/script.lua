@@ -11,6 +11,8 @@ function onLoad()
             font_size = 300,
         })
     end
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
 end
 
 function getPowerCards(_, color)
@@ -20,7 +22,7 @@ end
 function doSpiritSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then
-        Player[color].broadcast("Please wait for the game to start before pressing button!", "Red")
+        Player[color].broadcast("Please wait for the game to start before pressing button!", Color.SoftYellow)
         return
     end
 
@@ -43,7 +45,7 @@ function doSpiritSetup(params)
        end
     end
     if not found then
-        Player[color].broadcast("You have not picked Fractured Days Split the Sky!", "Red")
+        Player[color].broadcast("You have not picked Fractured Days Split the Sky!", Color.SoftYellow)
         return
     end
 
@@ -52,7 +54,8 @@ function doSpiritSetup(params)
         count = 6
     end
     if Global.call("getMapCount", {norm = true, them = true}) == 1 then
-        Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
+        Player[color].broadcast("Spirit - Fractured Days Split the Sky:", Color.White)
+        Player[color].broadcast("Don't forget to gain 1 Time", Color.SoftBlue)
     end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
     minorPowerDeck.deal(count, color, 3)

@@ -104,8 +104,8 @@ fearCards = {3,3,3}
 ------
 playtestMinorPowerZone = "15922f"
 playtestMinorPowerDiscardZone = "03b826"
-playtestMajorPowerZone = "bb37a9"
-playtestMajorPowerDiscardZone = "0a7dcb"
+playtestMajorPowerZone = "0a7dcb"
+playtestMajorPowerDiscardZone = "bb37a9"
 ------
 aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
@@ -1117,8 +1117,8 @@ end
 ----- Minor/Major Power Section
 function SetupPlaytestPowerDeck(deck, name, option, callback)
     local stagingArea = {
-        ["Minor Powers"] = Vector(-46.70, 2, 92.32),
-        ["Major Powers"] = Vector(-38.70, 2, 92.32),
+        ["Minor Powers"] = getObjectFromGUID(playtestMinorPowerZone).getPosition(),
+        ["Major Powers"] = getObjectFromGUID(playtestMajorPowerZone).getPosition(),
     }
     local function PlaytestFull(bag, guid)
         local cards = bag.takeObject({
@@ -1521,12 +1521,13 @@ function SetupBlightCard()
 end
 function grabBlightCard(start)
     local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+    local blightDiscard = getObjectFromGUID("b18505").getPosition()
 
     if findNextBlightCard(start, blightDeck) then
         return
     elseif blightDeck.type == "Deck" then
         blightDeck.takeObject({
-            position = blightDeck.getPosition() + Vector(3.92, 1, 0),
+            position = blightDiscard,
             callback_function = function(obj)
                 if not usingEvents() and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
                     obj.setRotationSmooth(Vector(0,180,0))
@@ -2094,7 +2095,7 @@ function SetupInvaderDeck()
             end
             deck.takeObject({
                 guid = cardData.guid,
-                position = deck.getPosition() + Vector(0,1,8 + 1 * i),
+                position = deck.getPosition() + Vector(-6,1,14 + i),
                 rotation = Vector(0,180,0),
                 callback_function = function(obj) cardsSetup = cardsSetup + 1 end,
             })

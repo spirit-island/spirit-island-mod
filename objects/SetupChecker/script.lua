@@ -362,7 +362,13 @@ function updateNumPlayers(value, updateUI)
     if updateUI then
         self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
         self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
-        challengeConfig = getWeeklyChallengeConfig()
+        if self.UI.getAttribute("challenge", "isOn") == "True" then
+            challengeConfig = nil
+            for i=1,challengeTier do
+                challengeConfig = getWeeklyChallengeConfig(i, challengeConfig)
+            end
+            setWeeklyChallengeUI(challengeConfig)
+        end
 
         -- Stop previous timer and start a new one
         if updateLayoutsID ~= 0 then
@@ -983,7 +989,10 @@ function togglePlaytesting()
 end
 function toggleChallenge()
     if challengeConfig == nil then
-        challengeConfig = getWeeklyChallengeConfig()
+        for i=1,challengeTier do
+            challengeConfig = getWeeklyChallengeConfig(i, challengeConfig)
+        end
+        setWeeklyChallengeUI(challengeConfig)
     end
     weeklyChallenge = not weeklyChallenge
     if weeklyChallenge then
@@ -1022,9 +1031,18 @@ function toggleChallengeTier(_, selected, id)
         challengeTier = 1
     elseif selected == "1" then
         challengeTier = 2
+    elseif selected == "2" then
+        challengeTier = 3
+    end
+    for i=0,2 do
+        self.UI.setAttribute(id..i, "isOn", "false")
     end
     self.UI.setAttribute(id..selected, "isOn", "true")
-    challengeConfig = getWeeklyChallengeConfig()
+    challengeConfig = nil
+    for i=1,challengeTier do
+        challengeConfig = getWeeklyChallengeConfig(i, challengeConfig)
+    end
+    setWeeklyChallengeUI(challengeConfig)
 end
 
 function toggleMinDifficulty(_, value)
@@ -1637,7 +1655,7 @@ function indexTable(table, index)
     end
     return ""
 end
-function getWeeklyChallengeConfig()
+function getWeeklyChallengeConfig(tier, prevTierConfig)
     local function seedTimestamp()
         local weekDiff = 604800
         local dayDiff = 86400
@@ -1674,9 +1692,11 @@ function getWeeklyChallengeConfig()
 
     -- Make extra board more likely on higher tier
     local extraBoard = math.random(-2, 1)
-    if challengeTier == 1 then
+    if tier == 1 then
+        config.extraBoard = false
+    elseif tier == 2 then
         config.extraBoard = extraBoard == 1
-    elseif challengeTier == 2 then
+    elseif tier == 3 then
         config.extraBoard = extraBoard >= -1
     end
     if numPlayers == 6 then
@@ -1744,7 +1764,7 @@ function getWeeklyChallengeConfig()
         local aspects = sourceSpirit.call("FindAspects", {obj=spirit})
         local aspect = ""
         if aspects == nil then
-            -- noop
+            math.random(0,0)
         elseif aspects.type == "Deck" then
             local cards = aspects.getObjects()
             local aspectIndex = math.random(0,#cards)
@@ -1767,55 +1787,91 @@ function getWeeklyChallengeConfig()
         config.broadcast = config.broadcast..spirit.getName().." on "..boardName
     end
     if config.extraBoard then
+        -- make sure the extra board added is always the same one the next player would use
+        math.random(0,0)
+        math.random(0,0)
         table.insert(config.boards, findBoard(numPlayers))
     end
 
     -- Makes sure difficulty is in acceptable range for the tier of challenge
     local difficulty = difficultyCheck(config)
-    while difficulty > 12 do
-        if config.adversaryLevel > 0 then
-            config.adversaryLevel = leadingAdversaryLevel % config.adversaryLevel
+    if tier == 1 then
+        while difficulty > 8 do
+            if config.adversaryLevel > 0 then
+                config.adversaryLevel = leadingAdversaryLevel % config.adversaryLevel
+            end
+            if config.adversaryLevel2 > 0 then
+                config.adversaryLevel2 = supportingAdversaryLevel % config.adversaryLevel2
+            end
+            difficulty = difficultyCheck(config)
         end
-        if config.adversaryLevel2 > 0 then
-            config.adversaryLevel2 = supportingAdversaryLevel % config.adversaryLevel2
+    elseif tier == 2 then
+        local adversaryLevelMax = 6
+        local adversaryLevelMin = prevTierConfig.adversaryLevel
+        local adversaryLevel2Max = 6
+        local adversaryLevel2Min = prevTierConfig.adversaryLevel2
+        while difficulty <= 8 or difficulty > 16 do
+            if difficulty <= 8 then
+                if config.adversaryLevel > adversaryLevelMin then
+                    adversaryLevelMin = config.adversaryLevel
+                end
+                if config.adversaryLevel2 > adversaryLevel2Min then
+                    adversaryLevel2Min = config.adversaryLevel2
+                end
+                if config.adversaryLevel < adversaryLevelMax then
+                    local leadingDiff = adversaryLevelMax - config.adversaryLevel
+                    config.adversaryLevel = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
+                end
+                if config.adversaryLevel2 < adversaryLevel2Max then
+                    local supportingDiff = adversaryLevel2Max - config.adversaryLevel2
+                    config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
+                end
+            else
+                -- difficulty > 16
+                if config.adversaryLevel < adversaryLevelMax then
+                    adversaryLevelMax = config.adversaryLevel
+                end
+                if config.adversaryLevel2 < adversaryLevel2Max then
+                    adversaryLevel2Max = config.adversaryLevel2
+                end
+                if config.adversaryLevel > adversaryLevelMin then
+                    local leadingDiff = config.adversaryLevel - adversaryLevelMin
+                    config.adversaryLevel = leadingAdversaryLevel % leadingDiff + adversaryLevelMin
+                end
+                if config.adversaryLevel2 > adversaryLevel2Min then
+                    local leadingDiff = config.adversaryLevel2 - adversaryLevel2Min
+                    config.adversaryLevel2 = supportingAdversaryLevel % leadingDiff + adversaryLevel2Min
+                end
+            end
+            difficulty = difficultyCheck(config)
         end
-        difficulty = difficultyCheck(config)
-    end
-    if challengeTier == 2 then
-        -- Store tier 1's levels and reset back to initial levels
-        local leadingAdversaryLevelTier1 = config.adversaryLevel
-        local supportingAdversaryLevelTier1 = config.adversaryLevel2
-        config.adversaryLevel = leadingAdversaryLevel % 7
-        config.adversaryLevel2 = supportingAdversaryLevel % 7
-        difficulty = difficultyCheck(config)
-
-        while difficulty <= 12 do
+    elseif tier == 3 then
+        while difficulty <= 16 do
             if config.adversaryLevel < 6 then
                 local leadingDiff = 6 - config.adversaryLevel
                 config.adversaryLevel = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
             end
-            if config.adversaryLevel < 6 then
+            if config.adversaryLevel2 < 6 then
                 local supportingDiff = 6 - config.adversaryLevel2
                 config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
             end
             difficulty = difficultyCheck(config)
         end
-
-        -- Make sure adversary levels never go down when you increase difficulty
-        if config.adversaryLevel < leadingAdversaryLevelTier1 then
-            config.adversaryLevel = leadingAdversaryLevelTier1
+        -- Tier 2 could have raised adversary levels from starting point,
+        -- so we should make sure that Tier 3 doesn't lower adversary levels
+        if config.adversaryLevel < prevTierConfig.adversaryLevel then
+            config.adversaryLevel = prevTierConfig.adversaryLevel
         end
-        if config.adversaryLevel2 < supportingAdversaryLevelTier1 then
-            config.adversaryLevel2 = supportingAdversaryLevelTier1
+        if config.adversaryLevel2 < prevTierConfig.adversaryLevel2 then
+            config.adversaryLevel2 = prevTierConfig.adversaryLevel2
         end
-        difficulty = difficultyCheck(config)
     end
 
-    setWeeklyChallengeUI(config, difficulty)
     math.randomseed(os.time())
     return config
 end
-function setWeeklyChallengeUI(config, difficulty)
+function setWeeklyChallengeUI(config)
+    difficulty = difficultyCheck(config)
     self.UI.setAttribute("challengeLeadingAdversary", "text", "Leading Adversary: "..config.adversary.." "..config.adversaryLevel)
     self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)
     if config.scenario then
@@ -1863,21 +1919,36 @@ function togglePlaytestExpansion(_, selected, id)
 end
 function togglePlaytestFear(_, selected, id)
     playtestFear = selected
+    for i=0,2 do
+        self.UI.setAttribute(id..i, "isOn", "false")
+    end
     self.UI.setAttribute(id..selected, "isOn", "true")
 end
 function togglePlaytestEvent(_, selected, id)
     playtestEvent = selected
+    for i=0,2 do
+        self.UI.setAttribute(id..i, "isOn", "false")
+    end
     self.UI.setAttribute(id..selected, "isOn", "true")
 end
 function togglePlaytestBlight(_, selected, id)
     playtestBlight = selected
+    for i=0,2 do
+        self.UI.setAttribute(id..i, "isOn", "false")
+    end
     self.UI.setAttribute(id..selected, "isOn", "true")
 end
 function togglePlaytestMinorPower(_, selected, id)
     playtestMinorPower = selected
+    for i=0,2 do
+        self.UI.setAttribute(id..i, "isOn", "false")
+    end
     self.UI.setAttribute(id..selected, "isOn", "true")
 end
 function togglePlaytestMajorPower(_, selected, id)
     playtestMajorPower = selected
+    for i=0,2 do
+        self.UI.setAttribute(id..i, "isOn", "false")
+    end
     self.UI.setAttribute(id..selected, "isOn", "true")
 end

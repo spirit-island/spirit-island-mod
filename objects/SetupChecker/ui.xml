@@ -342,8 +342,9 @@
                     <ToggleGroup id="challengeTier" onValueChanged="toggleChallengeTier">
                         <HorizontalLayout>
                             <Text class="header">Weekly Challenge</Text>
-                            <Toggle id="challengeTier0" isOn="true">Moderate</Toggle>
+                            <Toggle id="challengeTier0">Moderate</Toggle>
                             <Toggle id="challengeTier1">Hard</Toggle>
+                            <Toggle id="challengeTier2">Very Hard</Toggle>
                         </HorizontalLayout>
                     </ToggleGroup>
                 </Cell>

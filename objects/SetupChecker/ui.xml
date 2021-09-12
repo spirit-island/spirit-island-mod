@@ -20,10 +20,9 @@
     <Text class="keyspacer" minWidth="100"/>
     <Text class="value" minWidth="170"/>
     <Toggle class="value" minWidth="170"/>
-    <Toggle class="full" tooltip="Setup new cards like normal"/>
+    <Toggle class="normal" tooltip="Setup new cards like normal"/>
     <Toggle class="mix" tooltip="Mix new cards into top of their deck,&#xA;so they come up half the time"/>
     <Toggle class="new" tooltip="Add new cards on top of their deck"/>
-    <Toggle class="4" tooltip="Setup new cards like normal"/>
     <Toggle class="3-1" tooltip="Keep new cards in separate&#xA;deck and draw 1 each time"/>
     <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>
@@ -259,7 +258,7 @@
                         <Option id="playtestExpansion0" selected="true">None</Option>
                     </Dropdown>
                     <Text class="keyspacer"/>
-                    <Text class="value">Full</Text>
+                    <Text class="value">Normal</Text>
                     <Text class="value">Mix</Text>
                     <Text class="value">New</Text>
                     <Text class="keyspacer"/>
@@ -271,7 +270,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestFear" onValueChanged="togglePlaytestFear">
                         <HorizontalLayout>
-                            <Toggle id="playtestFear0" class="value full"/>
+                            <Toggle id="playtestFear0" class="value normal"/>
                             <Toggle id="playtestFear1" class="value mix"/>
                             <Toggle id="playtestFear2" class="value new"/>
                         </HorizontalLayout>
@@ -285,7 +284,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestEvent" onValueChanged="togglePlaytestEvent">
                         <HorizontalLayout>
-                            <Toggle id="playtestEvent0" class="value full"/>
+                            <Toggle id="playtestEvent0" class="value normal"/>
                             <Toggle id="playtestEvent1" class="value mix"/>
                             <Toggle id="playtestEvent2" class="value new"/>
                         </HorizontalLayout>
@@ -299,7 +298,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestBlight" onValueChanged="togglePlaytestBlight">
                         <HorizontalLayout>
-                            <Toggle id="playtestBlight0" class="value full"/>
+                            <Toggle id="playtestBlight0" class="value normal"/>
                             <Toggle id="playtestBlight1" class="value mix"/>
                             <Toggle id="playtestBlight2" class="value new"/>
                         </HorizontalLayout>
@@ -312,7 +311,7 @@
                 <Cell>
                     <Text class="key"/>
                     <Text class="keyspacer"/>
-                    <Text class="value">4</Text>
+                    <Text class="value">Normal</Text>
                     <Text class="value">3-1</Text>
                     <Text class="value">2-2</Text>
                     <Text class="keyspacer"/>
@@ -324,7 +323,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestMinorPower" onValueChanged="togglePlaytestMinorPower">
                         <HorizontalLayout>
-                            <Toggle id="playtestMinorPower0" class="value 4"/>
+                            <Toggle id="playtestMinorPower0" class="value normal"/>
                             <Toggle id="playtestMinorPower1" class="value 3-1"/>
                             <Toggle id="playtestMinorPower2" class="value 2-2"/>
                         </HorizontalLayout>
@@ -338,7 +337,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestMajorPower" onValueChanged="togglePlaytestMajorPower">
                         <HorizontalLayout>
-                            <Toggle id="playtestMajorPower0" class="value 4"/>
+                            <Toggle id="playtestMajorPower0" class="value normal"/>
                             <Toggle id="playtestMajorPower1" class="value 3-1"/>
                             <Toggle id="playtestMajorPower2" class="value 2-2"/>
                         </HorizontalLayout>

@@ -757,7 +757,6 @@ function loadConfig(config)
         end
     end
     if config.broadcast then
-        printToAll("Weekly Challenge - Spirit Setup:", Color.White)
         printToAll(config.broadcast, Color.SoftYellow)
     end
     updateDifficulty()

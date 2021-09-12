@@ -2201,7 +2201,7 @@ function SetupEventDeck()
             if callback ~= nil then
                 Wait.condition(function() callback() end, function() return bncEventSetup == 1 end)
             end
-        end, function() return bncDeck.loading_custom end)
+        end, function() return not bncDeck.loading_custom end)
     end
 
     local grabbedDeck = false

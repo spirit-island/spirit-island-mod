@@ -101,6 +101,7 @@ useRandomScenario = false
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
 fearCards = {3,3,3}
+randomBoard = nil
 ------
 playtestMinorPowerZone = "15922f"
 playtestMinorPowerDiscardZone = "03b826"
@@ -2991,8 +2992,8 @@ function MapPlacen(boards)
     local BETaken = false
     local DFTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
-        if selectedBoards[#boards] ~= nil then
-            rand = #boards
+        if randomBoard ~= nil then
+            rand = randomBoard
         else
             rand = math.random(1,#boards)
         end
@@ -3030,11 +3031,20 @@ function MapPlacen(boards)
                 -- This should only be true with 6 player extra board
                 bag = ExtraMapBag
             end
+            local selectedBoardName = nil
+            if selectedBoards[count] ~= nil then
+                if selectedBoards[count]:sub(-1) == "2" then
+                    selectedBoardName = selectedBoards[count]:sub(1, -2)
+                    bag = ExtraMapBag
+                else
+                    selectedBoardName = selectedBoards[count]
+                end
+            end
             local list = bag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if selectedBoards[count] ~= nil then
-                    if value.name == selectedBoards[count] then
+                if selectedBoardName ~= nil then
+                    if value.name == selectedBoardName then
                         index = value.index
                         break
                     end
@@ -3061,14 +3071,19 @@ function MapPlacen(boards)
                 end
             end
 
+            -- TODO apply decal if board is from extras bag
             local boardObject= bag.takeObject({
                 index = index,
                 position = bag.getPosition() + Vector(0,-5,0),
                 smooth = false,
                 callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
             })
-            if selectedBoards[count] == nil then
-                table.insert(selectedBoards, boardObject.getName())
+            if selectedBoardName == nil then
+                if bag == ExtraMapBag then
+                    table.insert(selectedBoards, boardObject.getName().."2")
+                else
+                    table.insert(selectedBoards, boardObject.getName())
+                end
             end
             count = count + 1
         end

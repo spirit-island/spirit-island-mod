@@ -759,6 +759,9 @@ function loadConfig(config)
     if config.extraBoard ~= nil then
         if config.extraBoard then
             optionalExtraBoard = true
+            if config.extraRandomBoard ~= nil then
+                Global.setVar("randomBoard", config.extraRandomBoard)
+            end
         else
             optionalExtraBoard = false
         end
@@ -1722,7 +1725,10 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
             layoutsCount = layoutsCount + 1
         end
         -- Thematic layout is always first index, so skip it
-        config.boardLayout = indexTable(setups[numBoards], math.random(2, layoutsCount))
+        local layoutRng = math.random(2, layoutsCount)
+        -- Vary the layouts up a bit to not be uniform across all player counts
+        layoutRng = (layoutRng - 2 + math.random(1, numBoards)) % (layoutsCount - 1) + 2
+        config.boardLayout = indexTable(setups[numBoards], layoutRng)
     end
 
     local events = math.random(1, 4)
@@ -1791,15 +1797,35 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         end
         config.broadcast = config.broadcast..boardName.." - "..spirit.getName()
     end
+    local extraRandomBoard = nil
     if config.extraBoard then
         -- make sure the extra board added is always the same one the next player would use
         math.random(0,0)
         math.random(0,0)
         if numPlayers > 5 then
-            boards = {A = false, B = false, C = false, D = false, E = false, F = false}
+            boards = {A2 = false, B2 = false, C2 = false, D2 = false, E2 = false, F2 = false}
             table.insert(config.boards, findBoard(0))
         else
             table.insert(config.boards, findBoard(numPlayers))
+        end
+        extraRandomBoard = config.boards[numBoards]
+    end
+
+    -- DO NOT put any more math.random calls below this block of code
+    -- Change up the order of boards so the extra board isn't always last
+    local function shuffle(tbl)
+        for i = #tbl, 2, -1 do
+            local j = math.random(i)
+            tbl[i], tbl[j] = tbl[j], tbl[i]
+        end
+    end
+    shuffle(config.boards)
+    if config.extraBoard then
+        for i, board in pairs(config.boards) do
+            if board == extraRandomBoard then
+                config.extraRandomBoard = i
+                break
+            end
         end
     end
 
@@ -1904,7 +1930,7 @@ function setWeeklyChallengeUI(config)
     end
     self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
     if config.extraBoard then
-        self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[#config.boards])
+        self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[config.extraRandomBoard])
         self.UI.setAttribute("challengeExtraBoardRow", "visibility", "")
     else
         self.UI.setAttribute("challengeExtraBoardRow", "visibility", "Invisible")
@@ -1912,12 +1938,13 @@ function setWeeklyChallengeUI(config)
     self.UI.setAttribute("challengeDifficulty", "text", "Difficulty: "..difficulty)
 
     local i = 1
-    for spirit,aspect in pairs(config.spirits) do
-        local spiritText = spirit
-        if aspect ~= "" then
-            spiritText = spiritText.. " - "..aspect
+    for str in config.broadcast:gmatch("([^\n]+)") do
+        local start, finish = str:find(" %- ")
+        local spiritText = str:sub(finish+1)
+        if config.spirits[spiritText] ~= "" then
+            spiritText = spiritText.. " - "..config.spirits[spiritText]
         end
-        self.UI.setAttribute("challengeSpirit"..i, "text", config.boards[i]..": "..spiritText)
+        self.UI.setAttribute("challengeSpirit"..i, "text", str:sub(1, start-1)..": "..spiritText)
         self.UI.setAttribute("challengeSpiritRow"..i, "visibility", "")
         i = i + 1
     end

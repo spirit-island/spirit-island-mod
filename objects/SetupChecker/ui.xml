@@ -270,7 +270,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestFear" onValueChanged="togglePlaytestFear">
                         <HorizontalLayout>
-                            <Toggle id="playtestFear0" class="value normal"/>
+                            <Toggle id="playtestFear0" class="value normal" isOn="true"/>
                             <Toggle id="playtestFear1" class="value mix"/>
                             <Toggle id="playtestFear2" class="value new"/>
                         </HorizontalLayout>
@@ -284,7 +284,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestEvent" onValueChanged="togglePlaytestEvent">
                         <HorizontalLayout>
-                            <Toggle id="playtestEvent0" class="value normal"/>
+                            <Toggle id="playtestEvent0" class="value normal" isOn="true"/>
                             <Toggle id="playtestEvent1" class="value mix"/>
                             <Toggle id="playtestEvent2" class="value new"/>
                         </HorizontalLayout>
@@ -298,7 +298,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestBlight" onValueChanged="togglePlaytestBlight">
                         <HorizontalLayout>
-                            <Toggle id="playtestBlight0" class="value normal"/>
+                            <Toggle id="playtestBlight0" class="value normal" isOn="true"/>
                             <Toggle id="playtestBlight1" class="value mix"/>
                             <Toggle id="playtestBlight2" class="value new"/>
                         </HorizontalLayout>
@@ -323,7 +323,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestMinorPower" onValueChanged="togglePlaytestMinorPower">
                         <HorizontalLayout>
-                            <Toggle id="playtestMinorPower0" class="value normal"/>
+                            <Toggle id="playtestMinorPower0" class="value normal" isOn="true"/>
                             <Toggle id="playtestMinorPower1" class="value 3-1"/>
                             <Toggle id="playtestMinorPower2" class="value 2-2"/>
                         </HorizontalLayout>
@@ -337,7 +337,7 @@
                     <Text class="keyspacer"/>
                     <ToggleGroup id="playtestMajorPower" onValueChanged="togglePlaytestMajorPower">
                         <HorizontalLayout>
-                            <Toggle id="playtestMajorPower0" class="value normal"/>
+                            <Toggle id="playtestMajorPower0" class="value normal" isOn="true"/>
                             <Toggle id="playtestMajorPower1" class="value 3-1"/>
                             <Toggle id="playtestMajorPower2" class="value 2-2"/>
                         </HorizontalLayout>
@@ -356,7 +356,7 @@
                     <ToggleGroup id="challengeTier" onValueChanged="toggleChallengeTier">
                         <HorizontalLayout>
                             <Text class="header">Weekly Challenge</Text>
-                            <Toggle id="challengeTier0">Moderate</Toggle>
+                            <Toggle id="challengeTier0" isOn="true">Moderate</Toggle>
                             <Toggle id="challengeTier1">Hard</Toggle>
                             <Toggle id="challengeTier2">Very Hard</Toggle>
                         </HorizontalLayout>

@@ -355,7 +355,7 @@ function toggleNumPlayers(_, value)
 end
 function updateNumPlayers(value, updateUI)
     local numPlayers = tonumber(value)
-    if numPlayers > 5 and optionalExtraBoard then
+    if numPlayers > 5 and optionalExtraBoard and Global.getVar("boardLayout") == "Thematic" then
         numPlayers = 5
     end
     Global.setVar("numPlayers", numPlayers)
@@ -389,6 +389,11 @@ function updateBoardLayouts(numPlayers)
         "Random with Thematic",
         table.unpack(Global.getVar("alternateBoardLayoutNames")[numBoards])
     }
+    if numPlayers > 5 and optionalExtraBoard then
+        -- Remove layouts that reference thematic since that isn't supported currently
+        table.remove(layoutNames, 4)
+        table.remove(layoutNames, 2)
+    end
 
     if not tFind(layoutNames, Global.getVar("boardLayout")) then
         Global.setVar("boardLayout", "Balanced")
@@ -1427,7 +1432,7 @@ function toggleExtraBoard()
     updateDifficulty()
 
     local numPlayers = Global.getVar("numPlayers")
-    if optionalExtraBoard and numPlayers > 5 then
+    if optionalExtraBoard and numPlayers > 5 and Global.getVar("boardLayout") == "Thematic" then
         toggleNumPlayers(nil, 5)
     else
         -- Stop previous timer and start a new one
@@ -1703,10 +1708,6 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     elseif tier == 3 then
         config.extraBoard = extraBoard >= -1
     end
-    if numPlayers == 6 then
-        -- There's currently only 6 island boards in the game
-        config.extraBoard = false
-    end
 
     local setups = Global.getTable("boardLayouts")
     local numBoards = numPlayers
@@ -1794,7 +1795,12 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         -- make sure the extra board added is always the same one the next player would use
         math.random(0,0)
         math.random(0,0)
-        table.insert(config.boards, findBoard(numPlayers))
+        if numPlayers > 5 then
+            boards = {A = false, B = false, C = false, D = false, E = false, F = false}
+            table.insert(config.boards, findBoard(0))
+        else
+            table.insert(config.boards, findBoard(numPlayers))
+        end
     end
 
     -- Makes sure difficulty is in acceptable range for the tier of challenge

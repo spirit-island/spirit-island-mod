@@ -126,6 +126,7 @@ threeEnergyBag = "a1b7da"
 speedBag = "65fc65"
 -----
 StandardMapBag = "BalancedMapBag"
+ExtraMapBag = "1f095d"
 ThematicMapBag = "ThematicMapBag"
 MJThematicMapBag = "MJThematicMapBag"
 -----
@@ -145,6 +146,7 @@ alternateBoardLayoutNames = {
     {"Leaf","Snake"},
     {"Snail","Peninsula","V"},
     {"Star","Flower","Caldera"},
+    {"Pi"},
 }
 interactableObjectsToDisableOnLoad = {
     "e267b0","901e41","d3dd7e",  -- tables
@@ -267,7 +269,7 @@ function onObjectLeaveContainer(container, object)
             object.setDecals({})
         end
         return
-    elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard({obj=object}) then
+    elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         return
     end
@@ -481,6 +483,7 @@ function onLoad(saved_data)
     dahanDamage = getObjectFromGUID(dahanDamage)
     -----
     StandardMapBag = getObjectFromGUID(StandardMapBag)
+    ExtraMapBag = getObjectFromGUID(ExtraMapBag)
     ThematicMapBag = getObjectFromGUID(ThematicMapBag)
     MJThematicMapBag = getObjectFromGUID(MJThematicMapBag)
     seaTile = getObjectFromGUID(seaTile)
@@ -644,10 +647,10 @@ function SetupGame()
         end
     else
         if SetupChecker.getVar("optionalExtraBoard") then
-            if numPlayers == 6 then
-                -- There are only currently 6 balanced boards
+            if numPlayers == 6 and boardLayout == "Thematic" then
+                -- Thematic doesn't support extra board
                 SetupChecker.setVar("optionalExtraBoard", false)
-                SetupChecker.call("updateDifficulty")
+                SetupChecker.call("updateDifficulty", {})
                 numBoards = numPlayers
             else
                 numBoards = numPlayers + 1
@@ -691,6 +694,9 @@ end
 function randomBoard()
     if SetupChecker.call("difficultyCheck", {thematic = true}) > maxDifficulty then
         -- The difficulty can't be increased anymore so don't use thematic
+        includeThematic = false
+    elseif numPlayers == 6 and numBoards > 6 then
+        -- Thematic at 6 players doesn't current support extra board
         includeThematic = false
     end
     local min = 0
@@ -2262,6 +2268,7 @@ function BoardSetup()
             MapPlacen(boardLayouts[numBoards][boardLayout])
         else
             StandardMapBag.shuffle()
+            ExtraMapBag.shuffle()
             if scenarioCard ~= nil and scenarioCard.getVar("boardSetup") then
                 MapPlacen(scenarioCard.call("BoardSetup", { boards = numBoards }))
             else
@@ -2855,6 +2862,27 @@ boardLayouts = {
             { pos = Vector(21.95, 1.08, 8.04), rot = Vector(0.00, 0.42, 0.00) },
         },
     },
+    { -- 7 Board
+        ["Thematic"] = {},
+        ["Balanced"] = {
+            { pos = Vector(-2.92, 1.08, 26.63), rot = Vector(0.00, 140.00, 0.00) },
+            { pos = Vector(12.33, 1.08, 29.40), rot = Vector(0.00, 260.00, 0.00) },
+            { pos = Vector(7.18, 1.08, 14.98), rot = Vector(0.00, 20.00, 0.00) },
+            { pos = Vector(29.16, 1.08, 23.23), rot = Vector(0.00, 260.00, 0.00) },
+            { pos = Vector(46.29, 1.08, 16.93), rot = Vector(0.00, 80.00, 0.00) },
+            { pos = Vector(51.43, 1.08, 31.42), rot = Vector(0.00, 200.00, 0.00) },
+            { pos = Vector(61.44, 1.08, 19.74), rot = Vector(0.00, 320.00, 0.00) },
+        },
+        ["Pi"] = {
+            { pos = Vector(5.50, 1.06, 8.62), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(14.48, 1.07, 24.01), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(14.36, 1.09, 39.34), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(32.18, 1.05, 39.30), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(50.00, 1.05, 39.22), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(50.02, 1.05, 23.67), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(41.01, 1.05, 8.27), rot = Vector(0.00, 180.00, 0.00) },
+        },
+    },
 }
 themGuids = {
     ["NW"] = "e0c325",
@@ -2997,7 +3025,12 @@ function MapPlacen(boards)
                 })
             end
         else
-            local list = StandardMapBag.getObjects()
+            local bag = StandardMapBag
+            if #bag.getObjects() == 0 then
+                -- This should only be true with 6 player extra board
+                bag = ExtraMapBag
+            end
+            local list = bag.getObjects()
             local index = 1
             for _,value in pairs(list) do
                 if selectedBoards[count] ~= nil then
@@ -3028,9 +3061,9 @@ function MapPlacen(boards)
                 end
             end
 
-            local boardObject= StandardMapBag.takeObject({
+            local boardObject= bag.takeObject({
                 index = index,
-                position = StandardMapBag.getPosition() + Vector(0,-5,0),
+                position = bag.getPosition() + Vector(0,-5,0),
                 smooth = false,
                 callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
             })

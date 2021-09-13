@@ -39,6 +39,15 @@ boardLayouts = {
         { pos = Vector(58.06, 1.08, 9.20), rot = Vector(0.00, 240.69, 0.00) },
         { pos = Vector(75.90, 1.08, 8.82), rot = Vector(0.00, 240.69, 0.00) },
     },
+    { -- 7 Board
+        { pos = Vector(-17.15, 1.08, 4.30), rot = Vector(0.00, 33.00, 0.00) },
+        { pos = Vector(-1.23, 1.08, 12.43), rot = Vector(0.00, 33.00, 0.00) },
+        { pos = Vector(14.73, 1.08, 20.53), rot = Vector(0.00, 33.00, 0.00) },
+        { pos = Vector(30.63, 1.08, 28.68), rot = Vector(0.00, 33.00, 0.00) },
+        { pos = Vector(46.57, 1.08, 36.83), rot = Vector(0.00, 33.00, 0.00) },
+        { pos = Vector(62.49, 1.08, 44.88), rot = Vector(0.00, 33.00, 0.00) },
+        { pos = Vector(78.49, 1.08, 53.05), rot = Vector(0.00, 33.00, 0.00) },
+    },
 }
 escaped = 0
 checkLossID = 0
@@ -59,6 +68,10 @@ function Requirements(params)
     return not params.thematic
 end
 function BoardSetup(params)
+    if params.boards == 7 then
+        -- use smaller sized boards for 7 board setup
+        getObjectFromGUID("SetupChecker").setVar("optionalScaleBoard", false)
+    end
     return boardLayouts[params.boards]
 end
 function PostSetup()

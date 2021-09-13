@@ -80,5 +80,5 @@ function Broadcast(params)
     if params.level >= 4 then
         return "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board"
     end
-    return ""
+    return nil
 end

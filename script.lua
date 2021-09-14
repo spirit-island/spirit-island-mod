@@ -128,7 +128,6 @@ speedBag = "65fc65"
 StandardMapBag = "BalancedMapBag"
 ExtraMapBag = "1f095d"
 ThematicMapBag = "ThematicMapBag"
-MJThematicMapBag = "MJThematicMapBag"
 -----
 cityHealth = "22928c"
 cityDamage = "d8b6c7"
@@ -290,7 +289,7 @@ function onObjectLeaveContainer(container, object)
             object.setDecals({})
         end
         return
-    elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard({obj=object}) then
+    elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         return
     end
@@ -506,7 +505,6 @@ function onLoad(saved_data)
     StandardMapBag = getObjectFromGUID(StandardMapBag)
     ExtraMapBag = getObjectFromGUID(ExtraMapBag)
     ThematicMapBag = getObjectFromGUID(ThematicMapBag)
-    MJThematicMapBag = getObjectFromGUID(MJThematicMapBag)
     seaTile = getObjectFromGUID(seaTile)
 
     -- Loads the tracking for if the game has started yet
@@ -2905,14 +2903,6 @@ themGuids = {
     ["SW"] = "0f2e60",
     ["SE"] = "505d5d",
 }
-themRedoGuids = {
-    ["NW"] = "a0e5c0",
-    ["NE"] = "14a35f",
-    ["W"] = "bdaa82",
-    ["E"] = "f14363",
-    ["SW"] = "ffa7e6",
-    ["SE"] = "214c72",
-}
 ----
 function GenerateMapData()
     local boards = getMapTiles()
@@ -3022,21 +3012,17 @@ function MapPlacen(boards)
     local count = 1
     for i, board in pairs(boards) do
         if isThematic() then
-            if SetupChecker.getVar("optionalThematicRedo") then
-                MJThematicMapBag.takeObject({
-                    position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
-                    guid = themRedoGuids[board.board],
-                    smooth = false,
-                    callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
-                })
-            else
-                ThematicMapBag.takeObject({
-                    position = ThematicMapBag.getPosition() + Vector(0,-5,0),
-                    guid = themGuids[board.board],
-                    smooth = false,
-                    callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
-                })
-            end
+            ThematicMapBag.takeObject({
+                position = ThematicMapBag.getPosition() + Vector(0,-5,0),
+                guid = themGuids[board.board],
+                smooth = false,
+                callback_function = function(obj)
+                    if SetupChecker.getVar("optionalThematicRedo") then
+                        obj = obj.setState(2)
+                    end
+                    BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)
+                end,
+            })
         else
             local bag = StandardMapBag
             if #bag.getObjects() == 0 then

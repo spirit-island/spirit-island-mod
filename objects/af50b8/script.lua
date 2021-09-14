@@ -4,10 +4,10 @@ function onObjectLeaveContainer(container, leave_object)
         if leave_object.getName() == "Blight" then
             if #self.getObjects() == 0 then
                 if Global.getVar("blightedIsland") then
-                    broadcastToAll("Blight Container is now empty", "Red")
-                    broadcastToAll("Invaders win via Blight Loss Condition!", "Red")
+                    broadcastToAll("Blight Container is now empty", Color.SoftYellow)
+                    broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
                 else
-                    broadcastToAll("Blight Container is now empty", {1,0.4,0})
+                    broadcastToAll("Blight Container is now empty", Color.SoftYellow)
                 end
             end
         end
@@ -18,6 +18,8 @@ function onObjectEnterContainer(container, enter_object)
 end
 
 function onLoad(saved_data)
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     local count = #self.getObjects()
     self.createButton({
         click_function = "nullFunc",

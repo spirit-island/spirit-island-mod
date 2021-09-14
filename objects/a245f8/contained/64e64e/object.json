@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -55.85639953613281,
-    "posY": 3.324399948120117,
-    "posZ": 36.56850051879883,
-    "rotX": -0.00019999999494757503,
-    "rotY": 0.03739999979734421,
-    "rotZ": -0.00019999999494757503,
+    "posX": -42.47169876098633,
+    "posY": 3.323199987411499,
+    "posZ": 47.136600494384766,
+    "rotX": -0.0008999999845400453,
+    "rotY": 0.03750000149011612,
+    "rotZ": 0.0,
     "scaleX": 0.699999988079071,
     "scaleY": 0.699999988079071,
     "scaleZ": 0.699999988079071
@@ -35,7 +35,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
+  "Hands": true,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
     "DiffuseURL": "",
@@ -52,70 +52,10 @@
         "x": 0.00039999998989515007,
         "y": 2.5899999141693115,
         "z": -9.999999747378752e-05
-      },
-      "Tags": []
+      }
     }
   ],
   "States": {
-    "3": {
-      "GUID": "f014a3",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -49.56999969482422,
-        "posY": 0.6376000046730042,
-        "posZ": 37.19729995727539,
-        "rotX": 0.004399999976158142,
-        "rotY": 180.00169372558594,
-        "rotZ": 0.0,
-        "scaleX": 0.699999988079071,
-        "scaleY": 0.699999988079071,
-        "scaleZ": 0.699999988079071
-      },
-      "Nickname": "City: 2 Damage",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.8898000121116638,
-        "g": 0.8805000185966492,
-        "b": 0.8525999784469604
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109391/BA7C201A8206E465B5CDCCA21B95B4CD32ECD482/",
-        "DiffuseURL": "",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 0,
-        "TypeIndex": 1,
-        "CastShadows": true
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "AttachedSnapPoints": [
-        {
-          "Position": {
-            "x": 0.005499999970197678,
-            "y": 2.369499921798706,
-            "z": -9.999999747378752e-05
-          }
-        }
-      ]
-    },
     "2": {
       "GUID": "e3c01d",
       "Name": "Custom_Model",
@@ -151,7 +91,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
         "DiffuseURL": "",
@@ -175,36 +115,33 @@
           "Tags": []
         }
       ]
-    }
-  },
-  "ChildObjects": [
-    {
-      "GUID": "e34218",
-      "Name": "BlockSquare",
+    },
+    "3": {
+      "GUID": "f014a3",
+      "Name": "Custom_Model",
       "Transform": {
-        "posX": 0.00039999998989515007,
-        "posY": 2.56850004196167,
-        "posZ": -0.00019999999494757503,
-        "rotX": 0.0035000001080334187,
-        "rotY": 180.00070190429688,
-        "rotZ": 0.009200000204145908,
-        "scaleX": 0.7142999768257141,
-        "scaleY": 0.042899999767541885,
-        "scaleZ": 0.7142999768257141
+        "posX": -49.56999969482422,
+        "posY": 0.6376000046730042,
+        "posZ": 37.19729995727539,
+        "rotX": 0.004399999976158142,
+        "rotY": 180.00169372558594,
+        "rotZ": 0.0,
+        "scaleX": 0.699999988079071,
+        "scaleY": 0.699999988079071,
+        "scaleZ": 0.699999988079071
       },
-      "Nickname": "",
+      "Nickname": "City: 2 Damage",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.7882000207901001,
-        "g": 0.6588000059127808,
-        "b": 0.486299991607666,
-        "a": 0.0
+        "r": 0.8898000121116638,
+        "g": 0.8805000185966492,
+        "b": 0.8525999784469604
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
-      "Locked": true,
-      "Grid": true,
+      "Locked": false,
+      "Grid": false,
       "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
@@ -214,19 +151,29 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": false,
+      "Hands": true,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109391/BA7C201A8206E465B5CDCCA21B95B4CD32ECD482/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
-            "x": 0.0012000000569969416,
-            "y": 0.5072000026702881,
-            "z": 0.0013000000035390258
+            "x": 0.005499999970197678,
+            "y": 2.369499921798706,
+            "z": -9.999999747378752e-05
           }
         }
       ]
     }
-  ]
+  }
 }

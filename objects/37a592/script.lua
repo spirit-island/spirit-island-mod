@@ -7,6 +7,8 @@ postSetup = true
 postSetupComplete = false
 hasLossCondition = true
 hasUI = true
+combineRequirement = false
+combineBroadcast = "Combining the Kingdom of Scotland - Push Coastal Cities inland if they are Added to lands other than land #2"
 
 function ReminderSetup(params)
     local reminderTiles = {}
@@ -99,7 +101,7 @@ end
 
 function PostSetup(params)
     if params.other.level > 0 then
-        broadcastToAll("Push all Adversary Coastal Cities not in land #2 to an adjacent Inland land", "Blue")
+        combineRequirement = true
     end
     if params.level >= 6 then
         local aidBoard = Global.getVar("aidBoard")

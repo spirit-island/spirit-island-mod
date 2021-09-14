@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.4267996847629547,
-    "g": 0.36939969658851624,
-    "b": 0.4395996630191803
+    "r": 0.42679983377456665,
+    "g": 0.3693998157978058,
+    "b": 0.43959978222846985
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -32,7 +32,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
+  "Hands": true,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847999012/17442B7354C87F0568F1D96C5D1906B39FB7D163/",

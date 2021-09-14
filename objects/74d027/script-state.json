@@ -1,3 +1,103 @@
 {
-  "broadcast": "For Boon of Reimagining right click the \"Gain a Minor\" button to see 6 options, then right click the \"Pick Power\" button for your first choice"
+  "broadcast": "For Boon of Reimagining right click the \"Gain a Minor\" button to choose from 6 Minor Power Card, and right click the \"Pick Power\" button for your first choice",
+  "thresholds": [
+    {
+      "elements": "00030000",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": -0.67
+      }
+    },
+    {
+      "elements": "00000300",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": -0.57
+      }
+    },
+    {
+      "elements": "00300000",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": -0.31
+      }
+    },
+    {
+      "elements": "00003000",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": -0.2
+      }
+    },
+    {
+      "elements": "00000030",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.07
+      }
+    },
+    {
+      "elements": "00000003",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.17
+      }
+    },
+    {
+      "elements": "02000000",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.44
+      }
+    },
+    {
+      "elements": "03000000",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.55
+      }
+    },
+    {
+      "elements": "40000000",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.86
+      }
+    }
+  ],
+  "trackEnergy": [
+    {
+      "count": 4,
+      "position": {
+        "x": -0.46,
+        "y": 0,
+        "z": 0.56
+      }
+    },
+    {
+      "count": 2,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0.55
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": 0.22,
+        "y": 0,
+        "z": 0.55
+      }
+    }
+  ]
 }

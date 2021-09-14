@@ -1,5 +1,5 @@
 ---- Versioning
-version = "2.1.5"
+version = "2.2.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -145,7 +145,7 @@ interactableObjectsToDisableOnLoad = {
     "e267b0","901e41","d3dd7e",  -- tables
     "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
     "ba3767","239d5b","114ff8","782f57","c323b4","f4ab64","6b0f27","bd3f44","82c5e4","837ddf","aee27f", -- borders
-    "5f4be2", -- sea tile
+    "5f4be2", "e84330", -- sea tile
     "235564", -- white box section
     "SetupChecker", "SourceSpirit",
     "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player blocks
@@ -153,6 +153,11 @@ interactableObjectsToDisableOnLoad = {
 }
 
 ---- TTS Events Section
+function onObjectEnterZone(zone, enter_object)
+    if zone.type == "Hand" then
+        cleanupObject({obj = enter_object, fear = true})
+    end
+end
 function onScriptingButtonDown(index, playerColor)
     if playerColor == "Grey" then return end
     DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)
@@ -178,7 +183,9 @@ function onObjectStateChange(changed_object, old_guid)
     if seaTile.guid == old_guid then
         seaTile = changed_object
         seaTile.interactable = false
-        seaTile.registerCollisions(false)
+        if gameStarted then
+            seaTile.registerCollisions(false)
+        end
         return
     end
 end
@@ -188,7 +195,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             if onlyCleanupTimePasses then
                 objectsToCleanup[collision_info.collision_object.guid] = true
             else
-                deleteObject(collision_info.collision_object, false)
+                cleanupObject({obj = collision_info.collision_object, fear = false})
             end
         end
     end
@@ -272,6 +279,16 @@ function onObjectEnterScriptingZone(zone, obj)
         end
     end
 end
+function onObjectLeaveScriptingZone(zone, obj)
+    for _,guid in pairs(elementScanZones) do
+        if guid == zone.guid then
+            if obj.getTable("thresholds") ~= nil then
+                obj.setDecals({})
+            end
+            break
+        end
+    end
+end
 function onSave()
     local data_table = {
         BnCAdded = BnCAdded,
@@ -333,6 +350,7 @@ function onSave()
             defend = data.defend.guid,
             isolate = data.isolate.guid,
             paid = data.paid,
+            gained = data.gained,
         }
         if data.counter ~= nil then
             colorTable.counter = data.counter.guid
@@ -344,8 +362,9 @@ function onSave()
 end
 function onLoad(saved_data)
     getObjectFromGUID(versionGuid).setValue("version " .. version)
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftYellow", Color.new(1,0.8,0.5))
+    Color.Add("SoftGreen", Color.new(0.75,1,0.67))
 
     clearHotkeys()
     for _, piece in ipairs(Pieces) do
@@ -356,12 +375,12 @@ function onLoad(saved_data)
 
     addHotkey("Remove Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            deleteObject(hoveredObject, false)
+            cleanupObject({obj = hoveredObject, fear = false})
         end
     end)
     addHotkey("Destroy Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            deleteObject(hoveredObject, true)
+            cleanupObject({obj = hoveredObject, fear = true})
         end
     end)
 
@@ -408,6 +427,12 @@ function onLoad(saved_data)
     end)
     addHotkey("Gain Minor Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         MinorPowerC(nil, playerColor, false)
+    end)
+    addHotkey("Reclaim All", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        local obj = playerBlocks[playerColor]
+        if obj ~= nil then
+            reclaimAll(obj, playerColor, false)
+        end
     end)
 
     for _,v in ipairs(interactableObjectsToDisableOnLoad) do
@@ -537,6 +562,7 @@ function onLoad(saved_data)
             defend = getObjectFromGUID(data.defend),
             isolate = getObjectFromGUID(data.isolate),
             paid = data.paid,
+            gained = data.gained,
         }
         if data.counter ~= nil then
             colorTable.counter = getObjectFromGUID(data.counter)
@@ -564,7 +590,7 @@ function readyCheck()
         return
     end
 
-    broadcastToAll("All Players are ready!")
+    broadcastToAll("All Players are ready!", Color.SoftGreen)
     for _,data in pairs(selectedColors) do
         data.ready.flip()
     end
@@ -582,15 +608,15 @@ function nullFunc()
 end
 function CanSetupGame()
     if getMapCount({norm = true, them = false}) > 0 and getMapCount({norm = false, them = true}) > 0 then
-        broadcastToAll("You can only have one type of board at once", Color.SoftYellow)
+        broadcastToAll("You can only have one type of board at once", Color.Red)
         return false
     end
     if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
-        broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.SoftYellow)
+        broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.Red)
         return false
     end
     if adversaryCard ~= nil and adversaryCard == adversaryCard2 then
-        broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.SoftYellow)
+        broadcastToAll("The Leading and Supporting Adversary cannot be the same", Color.Red)
         return false
     end
     return true
@@ -624,6 +650,9 @@ function SetupGame()
         else
             numBoards = numPlayers
         end
+    end
+    if useRandomBoard or useRandomScenario or useRandomAdversary or useSecondAdversary then
+        printToAll("Randomiser:", Color.White)
     end
     if useRandomBoard then
         randomBoard()
@@ -671,6 +700,7 @@ function randomBoard()
     else
         boardLayout = alternateBoardLayoutNames[numBoards][value]
     end
+    printToAll("Board Layout - "..boardLayout, Color.SoftBlue)
     SetupChecker.call("updateDifficulty", {})
 end
 function randomScenario()
@@ -681,7 +711,7 @@ function randomScenario()
     while scenarioCard == nil do
         if attempts > 1000 then
             -- TODO find a more elegant solution for detecting bad difficulty ranges
-            broadcastToAll("Was not able to find random scenario to satisfy min/max difficulty specifications", "Red")
+            broadcastToAll("Was not able to find random scenario to satisfy min/max difficulty specifications", Color.SoftYellow)
             return
         end
         attempts = attempts + 1
@@ -702,7 +732,7 @@ function randomScenario()
             end
         else
             SetupChecker.call("updateDifficulty", {})
-            broadcastToAll("Your randomised scenario is "..scenarioCard.getName(), "Blue")
+            printToAll("Scenario - "..scenarioCard.getName(), Color.SoftBlue)
             break
         end
     end
@@ -719,7 +749,7 @@ function randomAdversary(attempts)
     end
     if attempts > 1000 then
         -- TODO find a more elegant solution for detecting bad difficulty ranges
-        broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", "Red")
+        broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", Color.SoftYellow)
         return
     end
     if useRandomAdversary and useSecondAdversary then
@@ -765,7 +795,7 @@ function randomAdversary(attempts)
             adversaryCard2 = adversary2
             adversaryLevel2 = combos[index][2]
             SetupChecker.call("updateDifficulty", {})
-            broadcastToAll("Your randomised adversaries are "..adversaryCard.getName().." and "..adversaryCard2.getName(), "Blue")
+            printToAll("Adversaries - "..adversaryCard.getName().." "..adversaryLevel.." and "..adversaryCard2.getName().." "..adversaryLevel2, Color.SoftBlue)
         else
             randomAdversary(attempts + 1)
         end
@@ -804,12 +834,13 @@ function randomAdversary(attempts)
             if adversaryCard == nil then
                 adversaryCard = adversary
                 adversaryLevel = combos[index]
+                printToAll("Adversary - "..adversary.getName().." "..adversaryLevel, Color.SoftBlue)
             else
                 adversaryCard2 = adversary
                 adversaryLevel2 = combos[index]
+                printToAll("Adversary - "..adversary.getName().." "..adversaryLevel2, Color.SoftBlue)
             end
             SetupChecker.call("updateDifficulty", {})
-            broadcastToAll("Your randomised adversary is "..adversary.getName(), "Blue")
         else
             randomAdversary(attempts + 1)
         end
@@ -875,12 +906,13 @@ function SetupFear()
     fearDeck.shuffle()
     for _ = 1, fearCards[3] do
         if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", "Red")
+            broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
         local card = fearDeck.takeObject({
             position = zone.getPosition() + Vector(count,0,0),
             rotation = Vector(0, 180, 180),
+            smooth = false,
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -888,7 +920,7 @@ function SetupFear()
     end
 
     local divider = getObjectFromGUID("f96a71")
-    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
+    divider.setPosition(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1
     table.insert(cardTable, divider)
@@ -896,12 +928,13 @@ function SetupFear()
     fearDeck.shuffle()
     for _ = 1, fearCards[2] do
         if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", "Red")
+            broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
         local card = fearDeck.takeObject({
             position = zone.getPosition() + Vector(count,0,0),
             rotation = Vector(0, 180, 180),
+            smooth = false,
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -909,7 +942,7 @@ function SetupFear()
     end
 
     divider = getObjectFromGUID("969897")
-    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
+    divider.setPosition(zone.getPosition() + Vector(count,0,0))
     count = count + 1
     cardsLoaded = cardsLoaded + 1
     table.insert(cardTable, divider)
@@ -917,12 +950,13 @@ function SetupFear()
     fearDeck.shuffle()
     for _ = 1, fearCards[1] do
         if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", "Red")
+            broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
         local card = fearDeck.takeObject({
             position = zone.getPosition() + Vector(count,0,0),
             rotation = Vector(0, 180, 180),
+            smooth = false,
             callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
@@ -1400,9 +1434,10 @@ function BlightedIslandFlipPart2()
     end
     wt(1)
     gamePaused = false -- to re-enable scripting buttons and object cleanup
-    broadcastToAll(blightedIslandCard.getName()..": "..numBlight.." Blight Tokens Added", Color.SoftBlue)
+    broadcastToAll(blightedIslandCard.getName()..":", Color.White)
+    printToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
-    broadcastToAll("Remember to check the blight card effect", Color.SoftBlue)
+    broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
     return 1
 end
 function hideBlightButton()
@@ -1780,12 +1815,29 @@ function randomTerrain(player)
     if player.color == "Grey" then return end
     local random = math.random(1,2)
     if random == 1 then
-        broadcastToAll("Your random stage 3 escalation is \"top terrain\" for the current Adversary Action", Color.SoftBlue)
+        broadcastToAll("Your random Stage III Escalation is \"top terrain\" for the current Adversary Action", Color.SoftYellow)
     else
-        broadcastToAll("Your random stage 3 escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftBlue)
+        broadcastToAll("Your random Sstage III Escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftYellow)
     end
 end
 ----- Invader Deck Section
+invaderCards = {
+    ["W"] = {["guid"] = "8cf7b8", ["stage"] = 1},
+    ["M"] = {["guid"] = "8346dd", ["stage"] = 1},
+    ["J"] = {["guid"] = "cf9353", ["stage"] = 1},
+    ["S"] = {["guid"] = "e07847", ["stage"] = 1},
+    ["We"] = {["guid"] = "3b538b", ["stage"] = 2},
+    ["Me"] = {["guid"] = "ec8fb2", ["stage"] = 2},
+    ["Je"] = {["guid"] = "c304c1", ["stage"] = 2},
+    ["Se"] = {["guid"] = "b88f34", ["stage"] = 2},
+    ["C"] = {["guid"] = "a5afb0", ["stage"] = 2},
+    ["MW"] = {["guid"] = "6c6131", ["stage"] = 3},
+    ["JW"] = {["guid"] = "3e6af4", ["stage"] = 3},
+    ["SW"] = {["guid"] = "0f66d9", ["stage"] = 3},
+    ["MJ"] = {["guid"] = "0f16b8", ["stage"] = 3},
+    ["SM"] = {["guid"] = "72c176", ["stage"] = 3},
+    ["JS"] = {["guid"] = "89d57f", ["stage"] = 3},
+}
 function SetupInvaderDeck()
     local deckTable = {1,1,1,2,2,2,2,3,3,3,3,3}
     -- supporting adversary setup should happen first
@@ -1799,33 +1851,31 @@ function SetupInvaderDeck()
         deckTable = scenarioCard.call("InvaderDeckSetup",{deck = deckTable})
     end
 
-    local requiresCoastal = false
+    local cardsToSetup = 0
+    local cardsSetup = 0
     for i=1, #deckTable do
-        if deckTable[i] == "C" then
-            if not requiresCoastal then
-                requiresCoastal = true
+        local cardData = invaderCards[deckTable[i]]
+        if cardData then
+            cardsToSetup = cardsToSetup + 1
+            local deck
+            if cardData.stage == 1 then
+                deck = getObjectFromGUID(stage1DeckZone).getObjects()[1]
+            elseif cardData.stage == 2 then
+                deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
             else
-                -- There can only be one Coastal card
-                deckTable[i] = 2
+                -- assumed stage 3
+                deck = getObjectFromGUID(stage3DeckZone).getObjects()[1]
             end
+            deck.takeObject({
+                guid = cardData.guid,
+                position = deck.getPosition() + Vector(0,1,8 + 1 * i),
+                rotation = Vector(0,180,0),
+                callback_function = function(obj) cardsSetup = cardsSetup + 1 end,
+            })
         end
     end
 
-    local coastalSetup = false
-    if requiresCoastal then
-        -- Set Coastal card aside for now
-        local stage2Deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
-        stage2Deck.takeObject({
-            guid = "a5afb0",
-            position = stage2Deck.getPosition() + Vector(0,1,0),
-            rotation = Vector(0,180,0),
-            callback_function = function(obj) coastalSetup = true end,
-        })
-    else
-        coastalSetup = true
-    end
-
-    Wait.condition(function() grabInvaderCards(deckTable) end, function() return coastalSetup end)
+    Wait.condition(function() grabInvaderCards(deckTable) end, function() return cardsToSetup == cardsSetup end)
     return 1
 end
 function grabInvaderCards(deckTable)
@@ -1844,18 +1894,21 @@ function grabInvaderCards(deckTable)
         if char == 1 then
             local card = stage1Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 2 then
             local card = stage2Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 3 or char == "3*" then
             local card = stage3Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj)
                     cardsLoaded = cardsLoaded + 1
                     if char == "3*" then
@@ -1866,9 +1919,9 @@ function grabInvaderCards(deckTable)
                 end,
             })
             table.insert(cardTable, card)
-        elseif char == "C" then
-            local card = getObjectFromGUID("a5afb0")
-            card.setPositionSmooth(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
+        elseif invaderCards[deckTable[i]] then
+            local card = getObjectFromGUID(invaderCards[deckTable[i]].guid)
+            card.setPosition(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
             card.setRotationSmooth(Vector(0,180,180))
             cardsLoaded = cardsLoaded + 1
             table.insert(cardTable, card)
@@ -1888,11 +1941,7 @@ function SetupEventDeck()
             rotation = {0,180,180},
         })
         Wait.condition(function()
-            if SetupChecker.getVar("optionalDigitalEvents") then
-                deck.takeObject({guid = "cfd4d1"}).destruct()
-                deck.takeObject({guid = "6692e8"}).destruct()
-                decksSetup = decksSetup + 1
-            elseif SetupChecker.getVar("exploratoryWar") then
+            if SetupChecker.getVar("exploratoryWar") then
                 deck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)
@@ -1904,6 +1953,15 @@ function SetupEventDeck()
                         end, 1)
                     end,
                 })
+            else
+                decksSetup = decksSetup + 1
+            end
+            if SetupChecker.getVar("optionalDigitalEvents") then
+                if not SetupChecker.getVar("exploratoryWar") then
+                    deck.takeObject({guid = "cfd4d1"}).destruct()
+                end
+                deck.takeObject({guid = "6692e8"}).destruct()
+                decksSetup = decksSetup + 1
             else
                 decksSetup = decksSetup + 1
             end
@@ -1919,7 +1977,7 @@ function SetupEventDeck()
             decksSetup = decksSetup + 1
         end
     else
-        decksSetup = decksSetup + 2
+        decksSetup = decksSetup + 3
     end
     if useJEEvents then
         local JEBag = getObjectFromGUID("JEBag")
@@ -1936,7 +1994,7 @@ function SetupEventDeck()
         Wait.condition(function()
             getObjectFromGUID(eventDeckZone).getObjects()[1].shuffle()
             stagesSetup = stagesSetup + 1
-        end, function() return decksSetup == 3 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
+        end, function() return decksSetup == 4 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
     else
         stagesSetup = stagesSetup + 1
     end
@@ -2122,39 +2180,54 @@ function StartGame()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
-
-    broadcastToAll("Game Started!", Color.White)
-    broadcastToAll("Don't forget to do the initial explore action yourself!", Color.SoftBlue)
-    if SetupChecker.getVar("optionalExtraBoard") and numPlayers == 1 then
-        broadcastToAll("Remember to skip the initial explore on the extra board!", Color.SoftYellow)
+    local function handleAdversaryBroadcast(card, level)
+        local broadcastTbl = card.getVar("broadcast")
+        local broadcast = nil
+        if broadcastTbl ~= nil then
+            broadcast = broadcastTbl[level]
+        end
+        local combineBroadcast = nil
+        if card.getVar("combineRequirement") then
+            combineBroadcast = card.getVar("combineBroadcast")
+        end
+        if broadcast ~= nil or combineBroadcast ~= nil then
+            wt(2)
+            printToAll("Adversary:", Color.White)
+        end
+        if broadcast ~= nil then
+            printToAll(broadcast, Color.SoftBlue)
+        end
+        if combineBroadcast ~= nil then
+            printToAll(combineBroadcast, Color.SoftBlue)
+        end
+    end
+    if adversaryCard ~= nil then
+        handleAdversaryBroadcast(adversaryCard, adversaryLevel)
     end
     if adversaryCard2 ~= nil then
-        wt(2)
-        broadcastToAll("Your stage II escalation is "..adversaryCard.getName()..".\nYour stage III escalation is "..adversaryCard2.getName(), "Blue")
-    elseif adversaryCard ~= nil then
-        wt(2)
-        broadcastToAll("Your Stage II escalation is "..adversaryCard.getName(), "Blue")
+        handleAdversaryBroadcast(adversaryCard2, adversaryLevel2)
     end
     if scenarioCard ~= nil then
         local broadcast = scenarioCard.getVar("broadcast")
         if broadcast ~= nil then
             wt(2)
-            broadcastToAll(broadcast, "Blue")
-        end
-    end
-    if adversaryCard ~= nil then
-        local broadcast = adversaryCard.getVar("broadcast")
-        if broadcast ~= nil and broadcast[adversaryLevel] ~= nil then
-            wt(2)
-            broadcastToAll(broadcast[adversaryLevel], "Blue")
+            printToAll("Scenario:", Color.White)
+            printToAll(broadcast, Color.SoftBlue)
         end
     end
     if adversaryCard2 ~= nil then
-        local broadcast = adversaryCard2.getVar("broadcast")
-        if broadcast ~= nil and broadcast[adversaryLevel2] ~= nil then
-            wt(2)
-            broadcastToAll(broadcast[adversaryLevel2], "Blue")
-        end
+        wt(2)
+        printToAll("Escalation:", Color.White)
+        printToAll("The stage II escalation is "..adversaryCard.getName().."\nThe stage III escalation is "..adversaryCard2.getName(), Color.SoftBlue)
+    elseif adversaryCard ~= nil then
+        wt(2)
+        printToAll("Escalation:", Color.White)
+        printToAll("Your Stage II escalation is "..adversaryCard.getName(), Color.SoftBlue)
+    end
+    printToAll("Game Started!", Color.White)
+    printToAll("Don't forget to perform the initial Explore Step!", Color.SoftYellow)
+    if SetupChecker.getVar("optionalExtraBoard") and numPlayers == 1 then
+        printToAll("But not on the extra board!", Color.SoftYellow)
     end
     return 1
 end
@@ -2202,6 +2275,7 @@ function removeSpirit(params)
         defend = params.defend,
         isolate = params.isolate,
         paid = false,
+        gained = false,
     }
     updatePlayerArea(params.color)
 end
@@ -2270,7 +2344,7 @@ function timePassesCo()
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
-            deleteObject(obj, false)
+            cleanupObject({obj = obj, fear = false})
         end
         objectsToCleanup[guid] = nil
     end
@@ -2281,12 +2355,12 @@ function timePassesCo()
         handlePlayer(color, data)
     end
 
-    broadcastToAll("Time Passes...", Color.SoftBlue)
+    broadcastToAll("Time Passes...", Color.White)
     local quote = quotes[math.random(#quotes)]
     wt(2)
-    broadcastToAll("\"" .. quote[1] .. "\"", {0.9,0.9,0.9})
+    printToAll("\"" .. quote[1] .. "\"", Color.SoftBlue)
     wt(2)
-    broadcastToAll("- " .. quote[2], {0.9,0.9,0.9})
+    printToAll("- " .. quote[2], Color.SoftBlue)
     wt(2)
     enterSpiritPhase(nil)
     timePassing = false
@@ -2373,6 +2447,10 @@ function handlePlayer(color, data)
     if data.paid then
         playerBlocks[color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         data.paid = false
+    end
+    if data.gained then
+        playerBlocks[color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+        data.gained = false
     end
     if data.ready.is_face_down then
         data.ready.flip()
@@ -2888,7 +2966,7 @@ function place(objName, placePos, droppingPlayerColor)
     if objName == "Explorer" then
         if explorerBag.getCustomObject().type ~= 7 then
             if #explorerBag.getObjects() == 0 then
-                broadcastToAll("There are no Explorers left to place", "Red")
+                broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
                 return
             end
         end
@@ -2896,10 +2974,10 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Town" then
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
-                broadcastToAll("There are no Towns left to place", "Red")
+                broadcastToAll("There are no Towns left to place", Color.SoftYellow)
                 -- TODO extract this logic into adversary
                 if (adversaryCard ~= nil and adversaryCard.getName() == "France") or (adversaryCard2 ~= nil and adversaryCard2.getName() == "France") then
-                    broadcastToAll("France wins via Additional Loss Condition!", "Red")
+                    broadcastToAll("France wins via their Additional Loss Condition!", Color.SoftYellow)
                 end
                 return
             end
@@ -2908,7 +2986,7 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "City" then
         if cityBag.getCustomObject().type ~= 7 then
             if #cityBag.getObjects() == 0 then
-                broadcastToAll("There are no Cities left to place", "Red")
+                broadcastToAll("There are no Cities left to place", Color.SoftYellow)
                 return
             end
         end
@@ -2916,14 +2994,14 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Dahan" then
         if dahanBag.getCustomObject().type ~= 7 then
             if #dahanBag.getObjects() == 0 then
-                broadcastToAll("There are no Dahan left to place", "Red")
+                broadcastToAll("There are no Dahan left to place", Color.SoftYellow)
                 return
             end
         end
         temp = dahanBag.takeObject({position=placePos,rotation=Vector(0,0,0)})
     elseif objName == "Blight" then
         if #blightBag.getObjects() == 0 then
-            broadcastToAll("There is no Blight left to place", "Red")
+            broadcastToAll("There is no Blight left to place", Color.SoftYellow)
             return
         end
         temp = blightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -3020,60 +3098,60 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
     place(piece, cursorLocation + Vector(0,2,0), droppingPlayerColor)
 end
 
-function deleteObject(obj, fear)
+function cleanupObject(params)
     local bag = nil
     local removeObject = true
-    if string.sub(obj.getName(),1,5) == "Dahan" then
-        obj.setRotation(Vector(0,0,0))
+    if string.sub(params.obj.getName(),1,5) == "Dahan" then
+        params.obj.setRotation(Vector(0,0,0))
         bag = dahanBag
-    elseif string.sub(obj.getName(),1,8) == "Explorer" then
-        obj.setRotation(Vector(0,180,0))
+    elseif string.sub(params.obj.getName(),1,8) == "Explorer" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = explorerBag
-    elseif string.sub(obj.getName(),1,4) == "Town" then
-        obj.setRotation(Vector(0,180,0))
+    elseif string.sub(params.obj.getName(),1,4) == "Town" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = townBag
-        if fear then
+        if params.fear then
             aidBoard.call("addFear")
         end
-    elseif string.sub(obj.getName(),1,4) == "City" then
-        obj.setRotation(Vector(0,180,0))
+    elseif string.sub(params.obj.getName(),1,4) == "City" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
-        if fear then
+        if params.fear then
             aidBoard.call("addFear")
             aidBoard.call("addFear")
         end
-    elseif obj.getName() == "Blight" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Blight" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = returnBlightBag
-    elseif obj.getName() == "Strife" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Strife" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = strifeBag
-    elseif obj.getName() == "Beasts" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Beasts" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = beastsBag
-    elseif obj.getName() == "Wilds" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Wilds" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = wildsBag
-    elseif obj.getName() == "Disease" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Disease" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = diseaseBag
-    elseif obj.getName() == "Badlands" then
-        obj.setRotation(Vector(0,180,0))
+    elseif params.obj.getName() == "Badlands" then
+        params.obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
     else
-        if not obj.hasTag("Destroy") then
+        if not params.obj.hasTag("Destroy") then
             removeObject = false
         end
     end
 
     if removeObject and (bag == nil or bag.type == "Infinite") then
-        obj.destruct()
+        params.obj.destruct()
     elseif removeObject then
-        obj.highlightOff()
-        if obj.getStateId() ~= -1 and obj.getStateId() ~= 1 then
-            obj = obj.setState(1)
+        params.obj.highlightOff()
+        if params.obj.getStateId() ~= -1 and params.obj.getStateId() ~= 1 then
+            params.obj = params.obj.setState(1)
         end
-        bag.putObject(obj)
+        bag.putObject(params.obj)
     end
 end
 ----
@@ -3221,6 +3299,22 @@ function updateAllPlayerAreas()
     end
 end
 
+function detectPresence(spirit, position)
+    local hits = Physics.cast{
+        origin = spirit.positionToWorld(position), -- pos
+        direction = Vector(0, 1, 0),
+        max_distance = 1,
+        type = 1, --ray
+    }
+    local hasPresence = false
+    for _, hit in pairs(hits) do
+        if hit.hit_object.hasTag("Presence") then
+            hasPresence = true
+            break
+        end
+    end
+    return hasPresence
+end
 function setupPlayerArea(params)
     -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
     local obj = params.obj
@@ -3249,14 +3343,25 @@ function setupPlayerArea(params)
         -- Energy Cost (button index 0)
         obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
-            position={0.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            position={1.1,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
         obj.createButton({
-            label="", click_function="nullFunc", function_owner=Global,
-            position={-4.8,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            label="", click_function="nullFunc",
+            position={-4.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
+        })
+        -- Gain Energy (button index 2)
+        obj.createButton({
+            label="", click_function="nullFunc",
+            position={-4.2,3.2,-12.6}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
+        })
+        obj.createButton({
+            label="Reclaim All", click_function="reclaimAll",
+            position={1.1,3.2,-12.6}, rotation={0,180,0}, height=600, width=2600,
+            font_size=500,
         })
         for i,bag in pairs(selected.elements) do
             if i == 9 then break end
@@ -3282,9 +3387,14 @@ function setupPlayerArea(params)
     end
 
     if selected.paid then
-        obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1200, tooltip="Right click to refund energy for your cards"})
+        obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
     else
-        obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1200, tooltip="Left click to pay energy for your cards"})
+        obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
+    end
+    if selected.gained then
+        obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
+    else
+        obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
     end
 
     local energy = 0
@@ -3310,6 +3420,14 @@ function setupPlayerArea(params)
             end
         end
     end
+    function Elements:threshold(threshold)
+        for i = 1, 8 do
+            if threshold[i] > self[i] then
+                return false
+            end
+        end
+        return true
+    end
     function Elements:__tostring()
         return table.concat(self, "")
     end
@@ -3328,29 +3446,68 @@ function setupPlayerArea(params)
     local function calculateTrackElements(spiritBoard)
         local elements = Elements:new()
         if spiritBoard.script_state ~= "" then
-            local trackElements = spiritBoard.getVar("trackElements")
+            local trackElements = spiritBoard.getTable("trackElements")
             if trackElements ~= nil then
                 for _, trackElem in pairs(trackElements) do
-                    local hits = Physics.cast{
-                        origin = spiritBoard.positionToWorld(trackElem.position), -- pos
-                        direction = Vector(0, 1, 0),
-                        max_distance = 1,
-                        type = 1, --ray
-                    }
-                    local hasPresence = false
-                    for _, hit in pairs(hits) do
-                        if hit.hit_object.hasTag("Presence") then
-                            hasPresence = true
-                            break
-                        end
-                    end
-                    if not hasPresence then
+                    if not detectPresence(spiritBoard, trackElem.position) then
                         elements:add(trackElem.elements)
                     end
                 end
             end
         end
         return elements
+    end
+
+    local function addThresholdDecals(object, elements, thresholds, scale)
+        local decals = {}
+        local positions = {}
+        for _, threshold in pairs(thresholds) do
+            local decal
+            local vec = Vector(threshold.position)
+            local vecString = vec:string()
+            if positions[vecString] then
+                decal = positions[vecString]
+            else
+                decal = {
+                    name = "Threshold",
+                    position = vec + Vector(0, 0.21, 0),
+                    rotation = {90, 180, 0},
+                    scale    = scale,
+                }
+            end
+            if elements:threshold(Elements:new(threshold.elements)) then
+                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
+            elseif not positions[vecString] then
+                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
+            end
+            positions[vecString] = decal
+            table.insert(decals, decal)
+        end
+        object.setDecals(decals)
+    end
+    local function checkThresholds(spiritBoard, aspects, thresholdCards, elements)
+        if spiritBoard.script_state ~= "" then
+            local thresholds = spiritBoard.getTable("thresholds")
+            if thresholds ~= nil then
+                addThresholdDecals(spiritBoard, elements, thresholds, {0.08, 0.08, 1})
+            end
+        end
+        for _, aspect in pairs(aspects) do
+            if aspect.script_state ~= "" then
+                local thresholds = aspect.getTable("thresholds")
+                if thresholds ~= nil then
+                    addThresholdDecals(aspect, elements, thresholds, {0.12, 0.24, 1})
+                end
+            end
+        end
+        for _, card in pairs(thresholdCards) do
+            if card.script_state ~= "" then
+                local thresholds = card.getTable("thresholds")
+                if thresholds ~= nil then
+                    addThresholdDecals(card, elements, thresholds, {0.16, 0.16, 1})
+                end
+            end
+        end
     end
 
     local function countItems()
@@ -3361,6 +3518,9 @@ function setupPlayerArea(params)
         -- the tokens in the scan zones.
         local nonTokenElements = Elements:new()
 
+        local spirit = nil
+        local aspects = {}
+        local thresholdCards = {}
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
@@ -3368,7 +3528,11 @@ function setupPlayerArea(params)
                 local trackElements = calculateTrackElements(entry)
                 elements:add(trackElements)
                 nonTokenElements:add(trackElements)
+                spirit = entry
             elseif entry.type == "Card" then
+                if entry.hasTag("Aspect") and not entry.is_face_down then
+                    table.insert(aspects, entry)
+                end
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
                     if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
@@ -3380,6 +3544,9 @@ function setupPlayerArea(params)
                         end
                         energy = energy + powerCost(entry)
                     end
+                    if entry.getTable("thresholds") ~= nil then
+                        table.insert(thresholdCards, entry)
+                    end
                 end
             elseif entry.type == "Generic" then
                 local tokenCounts = entry.getVar("elements")
@@ -3387,6 +3554,9 @@ function setupPlayerArea(params)
                     elements:add(tokenCounts)
                 end
             end
+        end
+        if spirit ~= nil then
+            checkThresholds(spirit, aspects, thresholdCards, elements)
         end
         --Updates the number display
         params.obj.editButton({index=0, label="Energy Cost: "..energy})
@@ -3402,6 +3572,134 @@ function setupPlayerArea(params)
     timer = Wait.time(countItems, 1, -1)
     obj.setVar("timer", timer)
 end
+function reclaimAll(target_obj, source_color)
+    if not gameStarted then
+        return
+    end
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    for _,obj in pairs(Player[color].getHandObjects(2)) do
+        if isPowerCard({card=obj}) then
+            obj.deal(1, color, 1)
+        end
+    end
+end
+function giveEnergy(params)
+    local success = updateEnergyCounter(params.color, true, params.energy)
+    if not success then
+        success = refundEnergyTokens(params.color, params.energy)
+    end
+    return success
+end
+function gainEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif alt_click then
+        return
+    end
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    local zone = getObjectFromGUID(elementScanZones[color])
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.hasTag("Spirit") then
+            local supported = false
+            local energyTotal = 0
+            local trackEnergy = obj.getTable("trackEnergy")
+            if trackEnergy ~= nil then
+                supported = true
+                for _, energy in pairs(trackEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        energyTotal = energyTotal + energy.count
+                        break
+                    end
+                end
+            end
+            local bonusEnergy = obj.getTable("bonusEnergy")
+            if bonusEnergy ~= nil then
+                supported = true
+                for _, energy in pairs(bonusEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        energyTotal = energyTotal + energy.count
+                    end
+                end
+            end
+            if not supported then
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
+            else
+                local refunded = updateEnergyCounter(color, true, energyTotal)
+                if not refunded then
+                    refunded = refundEnergyTokens(color, energyTotal)
+                end
+                if refunded then
+                    selectedColors[color].gained = true
+                    target_obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                else
+                    Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
+                end
+            end
+            break
+        end
+    end
+end
+function returnEnergy(target_obj, source_color, alt_click)
+    if not gameStarted then
+        return
+    elseif not alt_click then
+        return
+    end
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    local zone = getObjectFromGUID(elementScanZones[color])
+    for _, obj in ipairs(zone.getObjects()) do
+        if obj.hasTag("Spirit") then
+            local supported = false
+            local energyTotal = 0
+            local trackEnergy = obj.getTable("trackEnergy")
+            if trackEnergy ~= nil then
+                supported = true
+                for _, energy in pairs(trackEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        energyTotal = energyTotal + energy.count
+                        break
+                    end
+                end
+            end
+            local bonusEnergy = obj.getTable("bonusEnergy")
+            if bonusEnergy ~= nil then
+                supported = true
+                for _, energy in pairs(bonusEnergy) do
+                    if not detectPresence(obj, energy.position) then
+                        energyTotal = energyTotal + energy.count
+                    end
+                end
+            end
+            if not supported then
+                Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
+            else
+                local paid = updateEnergyCounter(color, false, energyTotal)
+                if not paid then
+                    paid = payEnergyTokens(color, energyTotal)
+                end
+                if paid then
+                    selectedColors[color].gained = false
+                    target_obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                else
+                    Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
+                end
+            end
+            break
+        end
+    end
+end
 function payEnergy(target_obj, source_color, alt_click)
     if not gameStarted then
         return
@@ -3413,7 +3711,7 @@ function payEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local paid = updateEnergyCounter(color, false)
+    local paid = updateEnergyCounter(color, false, getEnergyLabel(color))
     if not paid then
         paid = payEnergyTokens(color, nil)
     end
@@ -3424,11 +3722,10 @@ function payEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
 end
-function updateEnergyCounter(color, refund)
+function updateEnergyCounter(color, refund, cost)
     if selectedColors[color].counter == nil or not selectedColors[color].counter.getLock() then
         return false
     end
-    local cost = getEnergyLabel(color)
     local energy = selectedColors[color].counter.getValue()
     if refund then
         cost = cost * -1
@@ -3569,7 +3866,7 @@ function refundEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local refunded = updateEnergyCounter(color, true)
+    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color))
     if not refunded then
         refunded = refundEnergyTokens(color, nil)
     end
@@ -3638,21 +3935,21 @@ function setupSwapButtons()
         -- Sit Here (button index 0)
         obj.createButton({
             label="", click_function="onClickedSitHere", function_owner=Global,
-            position={-3.25,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={-3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
         })
         -- Change Color (button index 1)
         obj.createButton({
             label="", click_function="onClickedChangeColor", function_owner=Global,
-            position={3.25,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
         })
         -- Play Spirit (button index 2)
         obj.createButton({
             label="", click_function="onClickedPlaySpirit", function_owner=Global,
-            position={0,0.4,6.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
+            position={0,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
             font_color={0,0,0}, font_size=250,
             tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
         })
@@ -4268,7 +4565,7 @@ function swapPlayerColors(a, b)
     end
 
     if colorLock then
-        pa.broadcast("There's already a color swap in progress, please wait and try again", Color.SoftYellow)
+        pa.broadcast("There's already a color swap in progress, please wait and try again", Color.Red)
         return
     end
     colorLock = true
@@ -4277,7 +4574,7 @@ function swapPlayerColors(a, b)
         if pb.seated then
             if pa.steam_id == pb.steam_id then  -- Hotseat game
                 -- Hotseat games may lose track of the player when their color changes for strange reasons -- mainly because they're prompted to reenter their name again.
-                broadcastToAll("Note: Color swapping may be unstable in hotseat games.", Color.SoftYellow)
+                broadcastToAll("Color swapping may be unstable in hotseat games.", Color.Red)
             end
             -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
             -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
@@ -4528,7 +4825,7 @@ end
 function enterSpiritPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 1 then return end
-    broadcastToAll("Entering Spirit Phase", Color.SoftBlue)
+    broadcastToAll("Entering Spirit Phase", Color.White)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
@@ -4540,7 +4837,7 @@ end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 2 then return end
-    broadcastToAll("Entering Fast Power Phase", Color.SoftBlue)
+    broadcastToAll("Entering Fast Power Phase", Color.White)
     updateCurrentPhase(true)
     currentPhase = 2
     updateCurrentPhase(false)
@@ -4548,7 +4845,7 @@ end
 function enterInvaderPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 3 then return end
-    broadcastToAll("Entering Invader Phase", Color.SoftBlue)
+    broadcastToAll("Entering Invader Phase", Color.White)
     updateCurrentPhase(true)
     currentPhase = 3
     updateCurrentPhase(false)
@@ -4556,7 +4853,7 @@ end
 function enterSlowPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 4 then return end
-    broadcastToAll("Entering Slow Power Phase", Color.SoftBlue)
+    broadcastToAll("Entering Slow Power Phase", Color.White)
     updateCurrentPhase(true)
     currentPhase = 4
     updateCurrentPhase(false)

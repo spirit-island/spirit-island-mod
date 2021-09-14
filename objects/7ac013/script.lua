@@ -15,6 +15,10 @@ function FearSetup(params)
         rotation = {0,180,180},
     })
     local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
-    params.deck.putObject(fearDeck)
-    Wait.condition(function() fearSetupComplete = true end, function() return fearDeck == nil end)
+    if fearDeck ~= nil then
+        params.deck.putObject(fearDeck)
+        Wait.condition(function() fearSetupComplete = true end, function() return fearDeck == nil end)
+    else
+        fearSetupComplete = true
+    end
 end

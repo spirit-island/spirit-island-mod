@@ -1947,7 +1947,7 @@ function setWeeklyChallengeUI(config)
     end
     self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
     if config.variant.extraBoard then
-        self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[config.extraRandomBoard])
+        self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[config.variant.extraBoardRandom])
         self.UI.setAttribute("challengeExtraBoardRow", "visibility", "")
     else
         self.UI.setAttribute("challengeExtraBoardRow", "visibility", "Invisible")

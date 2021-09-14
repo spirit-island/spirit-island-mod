@@ -1721,9 +1721,9 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     if tier == 1 then
         config.extraBoard = false
     elseif tier == 2 then
-        config.extraBoard = extraBoard == 1
+        config.extraBoard = extraBoard >= 0
     elseif tier == 3 then
-        config.extraBoard = extraBoard >= -1
+        config.extraBoard = true
     end
 
     local setups = Global.getTable("boardLayouts")

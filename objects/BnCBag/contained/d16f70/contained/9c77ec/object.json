@@ -35,7 +35,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": true,
-  "Hands": false,
+  "Hands": true,
   "CardID": 57813,
   "SidewaysCard": false,
   "CustomDeck": {

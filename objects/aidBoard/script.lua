@@ -507,178 +507,44 @@ function modifyFearPool(obj, color, alt_click)
 end
 
 function fearCardEarned()
-    local fearDeckZone = getObjectFromGUID("bd8761")
+    local fearDeck = Player["White"].getHandObjects(1)
+    local handTransform = Player["White"].getHandTransform(2)
+    local earnedPos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
     local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
-    local earnedPos = self.positionToWorld(Vector(1.15,1,0.98))
-    local completedTable = { false, false }
-    local fearDeck = getFearDeck(fearDeckZone)
 
-    earnFearCard(completedTable, fearDeck, earnedPos, dividerPos)
-    Wait.condition(function() earnTerrorLevel(completedTable, fearDeck, earnedPos, dividerPos) end, function() return completedTable[1] end)
-
-    Wait.condition(function()
-        if #fearDeckZone.getObjects() == 0 then
-            broadcastToAll("Fear Victory Achieved!", Color.SoftYellow)
-        end
-    end, function() return completedTable[2] end)
-    return 1
-end
-function getFearDeck(fearDeckZone)
-    local fearDeck = nil
-    for _,obj in pairs(fearDeckZone.getObjects()) do
-        if obj.type == "Deck" then
-            local found = false
-            for _,o in pairs(obj.getObjects()) do
-                for _,tag in pairs(o.tags) do
-                    if tag == "Fear" then
-                        fearDeck = obj
-                        found = true
-                        break
-                    end
-                end
-                if found then
-                    break
-                end
-            end
-        elseif obj.type == "Card" and obj.hasTag("Fear") then
-            fearDeck = obj
-        else
-            broadcastToAll("Unable to automate Fear Card Earning, extra card/deck detected!", Color.Red)
-            return nil
-        end
-    end
-    return fearDeck
-end
-function earnFearCard(completedTable, fearDeck, earnedPos, dividerPos)
-    -- Handle case where Terror Board is on top of deck
-    if fearDeck ~= nil then
-        local cardEarned = false
-        local emptyDeck = false
-        local cardsMoved = 0
-        local movesCompleted = 0
-        while (not cardEarned and not emptyDeck) do
-            local card = nil
-            card, cardEarned, emptyDeck = examineCard(fearDeck, dividerPos)
-            if cardEarned then
-                if fearDeck.type == "Deck" then
-                    card = fearDeck.takeObject({
-                        position = earnedPos,
-                        rotation = Vector(0, 180, 180),
-                    })
-                else
-                    card.setPositionSmooth(earnedPos)
-                    card.setRotationSmooth(Vector(0, 180, 180))
-                    emptyDeck = true
-                end
-                broadcastToAll("Fear Card Earned!", Color.SoftBlue)
-            end
-            cardsMoved = cardsMoved + 1
-            Wait.condition(function() movesCompleted = movesCompleted + 1 end, function() return card == nil or not card.isSmoothMoving() end)
-        end
-        Wait.condition(function() completedTable[1] = true end, function() return movesCompleted == cardsMoved end)
-    else
-        completedTable[1] = true
-    end
-end
-function earnTerrorLevel(completedTable, fearDeck, earnedPos, dividerPos)
-    -- Handle case where Terror Board is uncovered
-    if fearDeck ~= nil then
-        local topCardIsFear = false
-        local emptyDeck = false
-        local cardsMoved = 0
-        local movesCompleted = 0
-        while (not topCardIsFear and not emptyDeck) do
-            local card = nil
-            card, topCardIsFear, emptyDeck = examineCard(fearDeck, dividerPos)
-
-            cardsMoved = cardsMoved + 1
-            Wait.condition(function() movesCompleted = movesCompleted + 1 end, function() return card == nil or not card.isSmoothMoving() end)
-        end
-        Wait.condition(function() completedTable[2] = true end, function() return movesCompleted == cardsMoved end)
-    else
-        completedTable[2] = true
-    end
-end
-function examineCard(fearDeck, dividerPos)
-    local card
-    local emptyDeck = false
-    if fearDeck.type == "Deck" then
-        if fearDeck.remainder then
-            fearDeck = fearDeck.remainder
-            card = fearDeck
-        else
-            card = fearDeck.getObjects()[1]
-        end
-    else
-        card = fearDeck
-    end
-
-    if card.guid == "969897" then
-        if fearDeck.type == "Deck" then
-            card = fearDeck.takeObject({
-                position = dividerPos,
-                rotation = Vector(0, 180, 180),
-            })
-        else
-            card.setPositionSmooth(dividerPos)
+    local foundFearCount = 0
+    for i=#fearDeck,1,-1 do
+        local card = fearDeck[i]
+        if card.guid == "969897" then
+            card.setPosition(dividerPos)
             card.setRotationSmooth(Vector(0, 180, 180))
-            emptyDeck = true
-        end
-        broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
-    elseif card.guid == "f96a71" then
-        if fearDeck.type == "Deck" then
-            card = fearDeck.takeObject({
-                position = dividerPos,
-                rotation = Vector(0, 180, 180),
-            })
-        else
-            card.setPositionSmooth(dividerPos)
+            broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
+        elseif card.guid == "f96a71" then
+            card.setPosition(dividerPos)
             card.setRotationSmooth(Vector(0, 180, 180))
-            emptyDeck = true
-        end
-        broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
-    else
-        local invaderCard = false
-        if fearDeck.type == "Deck" then
-            for _,tag in pairs(card.tags) do
-                if tag == "Invader Card" then
-                    invaderCard = true
-                    break
-                end
-            end
-        else
-            invaderCard = card.hasTag("Invader Card")
-        end
-
-        if invaderCard then
+            broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
+        elseif card.hasTag("Invader Card") then
             local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,-1)
-            if fearDeck.type == "Deck" then
-                card = fearDeck.takeObject({
-                    position = pos,
-                    rotation = Vector(0,180,0),
-                    -- Russia puts invader cards in this deck at a scale factor of 1.37
-                    callback_function = function(obj) obj.scale(1/1.37) invaderCardBroadcast(obj) end,
-                })
-            else
-                -- Russia puts invader cards in this deck at a scale factor of 1.37
-                card.scale(1/1.37)
-                card.setPositionSmooth(pos)
-                card.setRotationSmooth(Vector(0,180,0))
-                invaderCardBroadcast(card)
-            end
+            -- Russia puts invader cards in this deck at a scale factor of 1.37
+            card.scale(1/1.37)
+            card.setPosition(pos)
+            card.setRotationSmooth(Vector(0,180,0))
+            invaderCardBroadcast(card)
         else
-            if fearDeck.type == "Deck" then
-                return nil, true, emptyDeck
-            else
-                return card, true, emptyDeck
+            -- assumed fear card
+            foundFearCount = foundFearCount + 1
+            if foundFearCount == 2 then
+                break
             end
+            card.setPosition(earnedPos)
+            broadcastToAll("Fear Card Earned!", Color.SoftBlue)
         end
     end
-    if fearDeck.type == "Deck" then
-        return nil, false, emptyDeck
-    else
-        return card, false, emptyDeck
+    if foundFearCount ~= 2 then
+        broadcastToAll("Fear Victory Achieved!", Color.SoftYellow)
     end
+
+    return 1
 end
 function invaderCardBroadcast(card)
     local stage = card.getVar("cardInvaderStage")

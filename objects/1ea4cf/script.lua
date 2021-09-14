@@ -163,51 +163,47 @@ function PostSetup(params)
 
     if params.level >= 5 then
         -- Setup extra invader cards
-        local fearDeckZone = getObjectFromGUID(Global.getVar("fearDeckZone"))
-        local count = #fearDeckZone.getObjects()[1].getObjects()
-        local fearCards = Global.getVar("fearCards")
-        setupInvaderCard(fearDeckZone, fearCards, 7, Global.getVar("stage3DeckZone"))
-        Wait.condition(function()
-            setupInvaderCard(fearDeckZone, fearCards, 3, Global.getVar("stage2DeckZone"))
-            Wait.condition(function() postSetupComplete = true end, function()
-                local objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 2
-            end)
-        end, function()
-            local objs = fearDeckZone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count + 1
+        local fearDeck = Player["White"].getHandObjects(1)
+        local count = #fearDeck
+
+        setupInvaderCard(fearDeck, 7, Global.getVar("stage3DeckZone"))
+        setupInvaderCard(fearDeck, 3, Global.getVar("stage2DeckZone"))
+        Wait.condition(function() postSetupComplete = true end, function()
+            return #Player["White"].getHandObjects(1) == count + 2
         end)
     else
         postSetupComplete = true
     end
 end
-function setupInvaderCard(fearDeckZone, fearCards, depth, zoneGuid)
-    local count = depth
-    if fearCards[1] < depth then
-        count = count + 1
-        if fearCards[1] + 1 + fearCards[2] < depth then
+function setupInvaderCard(fearDeck, depth, zoneGuid)
+    local count = 0
+    for i=#fearDeck,1,-1 do
+        local card = fearDeck[i]
+        if card.guid ~= "969897" and card.guid ~= "f96a71" then
+            -- not a terror divider
             count = count + 1
+            if count == depth then
+                local pos = card.getPosition() + Vector(-0.1, 0, 0)
+                local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
+                if obj ~= nil then
+                    if obj.type == "Deck" then
+                        obj.takeObject({
+                            position = pos,
+                            smooth = false,
+                            callback_function = function(card)
+                                card.scale(1.37)
+                            end,
+                        })
+                    elseif obj.type == "Card" then
+                        obj.scale(1.37)
+                        obj.setPosition(pos)
+                    end
+                end
+                return
+            end
         end
     end
-    local fearDeck = fearDeckZone.getObjects()[1]
-    for i=1,count do
-        fearDeck.takeObject({
-            position = fearDeck.getPosition() + Vector(0,2+(count-i)*0.5,0)
-        })
-    end
-    local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
-    if obj ~= nil then
-        if obj.type == "Deck" then
-            obj.takeObject({
-                position = obj.getPosition() + Vector(0,1,0),
-                callback_function = function(card)
-                    card.scale(1.37)
-                    card.setPosition(fearDeck.getPosition() + Vector(0,0.1,0))
-                end,
-            })
-        elseif obj.type == "Card" then
-            obj.scale(1.37)
-            obj.setPosition(fearDeck.getPosition() + Vector(0,0.1,0))
-        end
-    end
+
 end
 function checkLoss()
     local beasts = #getObjectsWithTag("Beasts")

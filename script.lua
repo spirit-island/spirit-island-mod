@@ -19,7 +19,6 @@ PlayerBags = {
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"
 invaderDeckZone = "dd0921"
-fearDeckZone = "bd8761"
 stage1DeckZone = "cf2635"
 stage2DeckZone = "7f21be"
 stage3DeckZone = "2a9f36"
@@ -162,8 +161,29 @@ interactableObjectsToDisableOnLoad = {
 
 ---- TTS Events Section
 function onObjectEnterZone(zone, enter_object)
-    if zone.type == "Hand" then
+    if zone.guid == "2d3124" or zone.guid == "ac8366" then
+        local handIndex = 1
+        if zone.guid == "ac8366" then
+            handIndex = 2
+        end
+        local handZone = Player["White"].getHandTransform(handIndex)
+        handZone.scale.x = handZone.scale.x + 0.75
+        handZone.position.x = handZone.position.x - 0.375
+        Player["White"].setHandTransform(handZone, handIndex)
+    elseif zone.type == "Hand" then
         cleanupObject({obj = enter_object, fear = true})
+    end
+end
+function onObjectLeaveZone(zone, leave_object)
+    if zone.guid == "2d3124" or zone.guid == "ac8366" then
+        local handIndex = 1
+        if zone.guid == "ac8366" then
+            handIndex = 2
+        end
+        local handZone = Player["White"].getHandTransform(handIndex)
+        handZone.scale.x = handZone.scale.x - 0.75
+        handZone.position.x = handZone.position.x + 0.375
+        Player["White"].setHandTransform(handZone, handIndex)
     end
 end
 function onScriptingButtonDown(index, playerColor)
@@ -1031,13 +1051,10 @@ function SetupFear()
         fearCards[2] = fearCards[2] + 1
     end
 
-    local zone = getObjectFromGUID(fearDeckZone)
+    local handZone = Player["White"].getHandTransform(1)
     local fearDeck = getObjectFromGUID(fearDeckSetupZone).getObjects()[1]
-    -- include the two terror dividers
-    local maxCards = #fearDeck.getObjects() + 2
+    local maxCards = #fearDeck.getObjects()
     local count = 0
-    local cardTable = {}
-    local cardsLoaded = 0
 
     fearDeck.shuffle()
     SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil)
@@ -1048,63 +1065,58 @@ function SetupFear()
             break
         end
         local card = fearDeck.takeObject({
-            position = zone.getPosition() + Vector(count,0,0),
+            position = handZone.position,
             rotation = Vector(0, 180, 180),
-            callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
+            smooth = false,
         })
         count = count + 1
-        table.insert(cardTable, card)
     end
-
-    local divider = getObjectFromGUID("f96a71")
-    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
-    count = count + 1
-    cardsLoaded = cardsLoaded + 1
-    table.insert(cardTable, divider)
-
     for _ = 1, fearCards[2] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
         local card = fearDeck.takeObject({
-            position = zone.getPosition() + Vector(count,0,0),
+            position = handZone.position,
             rotation = Vector(0, 180, 180),
-            callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
+            smooth = false,
         })
         count = count + 1
-        table.insert(cardTable, card)
     end
-
-    divider = getObjectFromGUID("969897")
-    divider.setPositionSmooth(zone.getPosition() + Vector(count,0,0))
-    count = count + 1
-    cardsLoaded = cardsLoaded + 1
-    table.insert(cardTable, divider)
-
     for _ = 1, fearCards[1] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
         local card = fearDeck.takeObject({
-            position = zone.getPosition() + Vector(count,0,0),
+            position = handZone.position,
             rotation = Vector(0, 180, 180),
-            callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
+            smooth = false,
         })
         count = count + 1
-        table.insert(cardTable, card)
     end
 
-    Wait.condition(function() group(cardTable) end, function() return cardsLoaded == count end)
-    Wait.condition(function()
-        if scenarioCard ~= nil and scenarioCard.getVar("fearSetup") then
-            scenarioCard.call("FearSetup", { deck = zone.getObjects()[1] })
-            Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard.getVar("fearSetupComplete") end)
-        else
-            stagesSetup = stagesSetup + 1
-        end
-    end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count end)
+    Wait.frames(function()
+        local fearDeck = Player["White"].getHandObjects(1)
+
+        local divider = getObjectFromGUID("f96a71")
+        divider.setPosition(fearDeck[fearCards[3]].getPosition() + Vector(0.1, 0, 0))
+        count = count + 1
+
+        divider = getObjectFromGUID("969897")
+        divider.setPosition(fearDeck[fearCards[3] + fearCards[2]].getPosition() + Vector(0.1, 0, 0))
+        count = count + 1
+
+        Wait.condition(function()
+            if scenarioCard ~= nil and scenarioCard.getVar("fearSetup") then
+                scenarioCard.call("FearSetup", { deck = Player["White"].getHandObjects(1) })
+                Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard.getVar("fearSetupComplete") end)
+            else
+                stagesSetup = stagesSetup + 1
+            end
+        end, function() return #Player["White"].getHandObjects(1) == count end)
+    end, 10)
+
     return 1
 end
 function setupFearTokens()

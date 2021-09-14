@@ -1441,6 +1441,12 @@ function toggleEngland6()
     end
     self.UI.setAttribute("england6", "isOn", checked)
 end
+function toggleBlightCard()
+    local useBlightCard = Global.getVar("useBlightCard")
+    useBlightCard = not useBlightCard
+    Global.setVar("useBlightCard", useBlightCard)
+    self.UI.setAttribute("blightCard", "isOn", useBlightCard)
+end
 function toggleBlightSetup()
     optionalBlightSetup = not optionalBlightSetup
     self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)

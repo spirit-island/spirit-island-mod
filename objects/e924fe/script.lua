@@ -211,7 +211,12 @@ function ExportConfig()
 
     data.numPlayers = Global.getVar("numPlayers")
     data.boardLayout = Global.getVar("boardLayout")
-    data.extraBoard = (Global.getVar("numBoards") - data.numPlayers) == 1
+    data.variant = {}
+    data.variant.extraBoard = (Global.getVar("numBoards") - data.numPlayers) == 1
+    local extraBoardRandom = Global.getVar("randomBoard")
+    if extraBoardRandom ~= nil then
+        data.variant.extraBoardRandom = extraBoardRandom
+    end
     local selectedBoards = Global.getTable("selectedBoards")
     if selectedBoards and #selectedBoards > 0 then
         data.boards = selectedBoards

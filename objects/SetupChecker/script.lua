@@ -692,8 +692,8 @@ function difficultyCheck(params)
     end
 
     local extraBoard
-    if params.extraBoard ~= nil then
-        extraBoard = params.extraBoard
+    if params.variant ~= nil and params.variant.extraBoard ~= nil then
+        extraBoard = params.variant.extraBoard
     else
         extraBoard = optionalExtraBoard
     end
@@ -770,14 +770,16 @@ function loadConfig(config)
         end
         updateBoardLayout(config.boardLayout, false)
     end
-    if config.extraBoard ~= nil then
-        if config.extraBoard then
-            optionalExtraBoard = true
-            if config.extraRandomBoard ~= nil then
-                Global.setVar("randomBoard", config.extraRandomBoard)
+    if config.variant ~= nil then
+        if config.variant.extraBoard ~= nil then
+            if config.variant.extraBoard then
+                optionalExtraBoard = true
+                if config.variant.extraBoardRandom ~= nil then
+                    Global.setVar("randomBoard", config.variant.extraBoardRandom)
+                end
+            else
+                optionalExtraBoard = false
             end
-        else
-            optionalExtraBoard = false
         end
     end
     if config.boards then
@@ -1717,18 +1719,19 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     end
 
     -- Make extra board more likely on higher tier
+    config.variant = {}
     local extraBoard = math.random(-2, 1)
     if tier == 1 then
-        config.extraBoard = false
+        config.variant.extraBoard = false
     elseif tier == 2 then
-        config.extraBoard = extraBoard >= 0
+        config.variant.extraBoard = extraBoard >= 0
     elseif tier == 3 then
-        config.extraBoard = true
+        config.variant.extraBoard = true
     end
 
     local setups = Global.getTable("boardLayouts")
     local numBoards = numPlayers
-    if config.extraBoard then
+    if config.variant.extraBoard then
         numBoards = numPlayers + 1
     end
     if math.random(-2, 1) == 1 then
@@ -1811,8 +1814,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         end
         config.broadcast = config.broadcast..boardName.." - "..spirit.getName()
     end
-    local extraRandomBoard = nil
-    if config.extraBoard then
+    local extraBoardRandom = nil
+    if config.variant.extraBoard then
         -- make sure the extra board added is always the same one the next player would use
         math.random(0,0)
         math.random(0,0)
@@ -1822,7 +1825,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         else
             table.insert(config.boards, findBoard(numPlayers))
         end
-        extraRandomBoard = config.boards[numBoards]
+        extraBoardRandom = config.boards[numBoards]
     end
 
     -- DO NOT put any more math.random calls below this block of code
@@ -1834,10 +1837,10 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         end
     end
     shuffle(config.boards)
-    if config.extraBoard then
+    if config.variant.extraBoard then
         for i, board in pairs(config.boards) do
-            if board == extraRandomBoard then
-                config.extraRandomBoard = i
+            if board == extraBoardRandom then
+                config.variant.extraBoardRandom = i
                 break
             end
         end
@@ -1943,7 +1946,7 @@ function setWeeklyChallengeUI(config)
         self.UI.setAttribute("challengeEvents", "text", events:sub(1,-3))
     end
     self.UI.setAttribute("challengeLayout", "text", "Layout: "..config.boardLayout)
-    if config.extraBoard then
+    if config.variant.extraBoard then
         self.UI.setAttribute("challengeExtraBoard", "text", "Extra Board: "..config.boards[config.extraRandomBoard])
         self.UI.setAttribute("challengeExtraBoardRow", "visibility", "")
     else

@@ -725,12 +725,26 @@ function startGame()
         return
     end
     setupStarted = true
-    for expansion,enabled in pairs(Global.getTable("expansions")) do
+
+    local exps = Global.getTable("expansions")
+    for expansion,enabled in pairs(exps) do
         -- Playtest expansion setup is handled in Global script
         if enabled and expansions[expansion] and expansion ~= playtestExpansion then
             setupExpansion(getObjectFromGUID(expansions[expansion]))
+        elseif expansion ~= playtestExpansion then
+            -- expansion is disabled or doesn't exist in mod
+            exps[expansion] = nil
         end
     end
+    local events = Global.getTable("events")
+    for expansion,enabled in pairs(events) do
+        if not enabled or not exps[expansion] or not expansions[expansion] then
+            events[expansion] = nil
+        end
+    end
+    Global.setTable("expansions", exps)
+    Global.setTable("events", events)
+
     Wait.time(function() Global.call("SetupGame") end, 1)
 end
 function getNotebookConfig()

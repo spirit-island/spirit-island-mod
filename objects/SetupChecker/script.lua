@@ -1446,6 +1446,7 @@ function toggleBlightCard()
     useBlightCard = not useBlightCard
     Global.setVar("useBlightCard", useBlightCard)
     self.UI.setAttribute("blightCard", "isOn", useBlightCard)
+    self.UI.setAttribute("blightCard2", "isOn", useBlightCard)
 end
 function toggleBlightSetup()
     optionalBlightSetup = not optionalBlightSetup

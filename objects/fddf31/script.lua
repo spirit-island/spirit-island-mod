@@ -64,7 +64,7 @@ function doSpiritSetup(params)
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
     majorPowerDeck.deal(count - playtestCount, color, 3)
     if playtestCount > 0 then
-        local majorPowerDeck = getObjectFromGUID(Global.getVar("playtestMajorPowerZone")).getObjects()[1]
+        majorPowerDeck = getObjectFromGUID(Global.getVar("playtestMajorPowerZone")).getObjects()[1]
         majorPowerDeck.deal(playtestCount, color, 3)
     end
 

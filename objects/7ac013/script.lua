@@ -24,8 +24,8 @@ function FearSetup(params)
     local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
     if fearDeck ~= nil then
         if fearDeck.type == "Deck" then
-            for i=1,#fearDeck.getObjects() do
-                local card = fearDeck.takeObject({
+            for _=1,#fearDeck.getObjects() do
+                fearDeck.takeObject({
                     position = handZone.position + Vector(-5, 0, 0),
                     smooth = false,
                 })

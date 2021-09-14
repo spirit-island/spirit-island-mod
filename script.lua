@@ -938,7 +938,7 @@ function SetupPlaytestDeck(zone, name, option, callback)
             end
         else
             -- deck is never nil here
-            for i = 1,cardsCount do
+            for _ = 1,cardsCount do
                 cards.putObject(deck.takeObject({
                     rotation = {0, 180, 180},
                     smooth = false,
@@ -1064,7 +1064,7 @@ function SetupFear()
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
-        local card = fearDeck.takeObject({
+        fearDeck.takeObject({
             position = handZone.position,
             rotation = Vector(0, 180, 180),
             smooth = false,
@@ -1076,7 +1076,7 @@ function SetupFear()
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
-        local card = fearDeck.takeObject({
+        fearDeck.takeObject({
             position = handZone.position,
             rotation = Vector(0, 180, 180),
             smooth = false,
@@ -1088,7 +1088,7 @@ function SetupFear()
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
-        local card = fearDeck.takeObject({
+        fearDeck.takeObject({
             position = handZone.position,
             rotation = Vector(0, 180, 180),
             smooth = false,
@@ -1097,7 +1097,7 @@ function SetupFear()
     end
 
     Wait.frames(function()
-        local fearDeck = Player["White"].getHandObjects(1)
+        fearDeck = Player["White"].getHandObjects(1)
 
         local divider = getObjectFromGUID("f96a71")
         divider.setPosition(fearDeck[fearCards[3]].getPosition() + Vector(0.1, 0, 0))

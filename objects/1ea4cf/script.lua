@@ -190,8 +190,8 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
                         obj.takeObject({
                             position = pos,
                             smooth = false,
-                            callback_function = function(card)
-                                card.scale(1.37)
+                            callback_function = function(o)
+                                o.scale(1.37)
                             end,
                         })
                     elseif obj.type == "Card" then

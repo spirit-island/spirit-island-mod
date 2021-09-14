@@ -211,7 +211,11 @@ end
 ---- Invader Card Section
 function flipExploreCard()
     local objs = Global.getVar("invaderDeckZone").getObjects()
-    if #objs ~= 1 then
+    if #objs == 0 then
+        broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
+        broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
+        return
+    elseif #objs > 1 then
         -- already have a faceup card
         return
     end
@@ -221,7 +225,9 @@ function flipExploreCard()
             flip = true,
         })
     elseif objs[1].type == "Card" then
-        objs[1].flip()
+        if objs[1].is_face_down then
+            objs[1].flip()
+        end
     end
 end
 

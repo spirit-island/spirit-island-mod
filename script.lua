@@ -2438,35 +2438,35 @@ function StartGame()
     if adversaryCard ~= nil and adversaryCard.getVar("hasBroadcast") then
         local broadcast = adversaryCard.call("Broadcast", {level = adversaryLevel, other={level = adversaryLevel2}})
         if broadcast ~= nil then
-            wt(2)
             printToAll("Adversary:", Color.White)
             printToAll(broadcast, Color.SoftBlue)
+            wt(2)
         end
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("hasBroadcast") then
         local broadcast = adversaryCard2.call("Broadcast", {level = adversaryLevel2, other={level = adversaryLevel}})
         if broadcast ~= nil then
-            wt(2)
             printToAll("Adversary:", Color.White)
             printToAll(broadcast, Color.SoftBlue)
+            wt(2)
         end
     end
     if scenarioCard ~= nil then
         local broadcast = scenarioCard.getVar("broadcast")
         if broadcast ~= nil then
-            wt(2)
             printToAll("Scenario:", Color.White)
             printToAll(broadcast, Color.SoftBlue)
+            wt(2)
         end
     end
     if adversaryCard2 ~= nil then
-        wt(2)
         printToAll("Escalation:", Color.White)
         printToAll("The stage II escalation is "..adversaryCard.getName().."\nThe stage III escalation is "..adversaryCard2.getName(), Color.SoftBlue)
-    elseif adversaryCard ~= nil then
         wt(2)
+    elseif adversaryCard ~= nil then
         printToAll("Escalation:", Color.White)
         printToAll("Your Stage II escalation is "..adversaryCard.getName(), Color.SoftBlue)
+        wt(2)
     end
     printToAll("Game Started!", Color.White)
     printToAll("Don't forget to perform the initial Explore Step!", Color.SoftYellow)

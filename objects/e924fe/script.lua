@@ -116,18 +116,31 @@ function PostSetup(params)
             local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
             local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
             for guid,tag in pairs(config.secondWave.powers) do
+                local found = false
                 if tag == "Minor" then
-                    local card = minorPowerDeck.takeObject({
-                        guid = guid,
-                        smooth = false,
-                    })
-                    powersBag.putObject(card)
+                    for _,data in pairs(minorPowerDeck.getObjects()) do
+                        if data.guid == guid then
+                            local card = minorPowerDeck.takeObject({
+                                guid = guid,
+                                smooth = false,
+                            })
+                            powersBag.putObject(card)
+                            found = true
+                            break
+                        end
+                    end
                 elseif tag == "Major" then
-                    local card = majorPowerDeck.takeObject({
-                        guid = guid,
-                        smooth = false,
-                    })
-                    powersBag.putObject(card)
+                    for _,data in pairs(majorPowerDeck.getObjects()) do
+                        if data.guid == guid then
+                            local card = majorPowerDeck.takeObject({
+                                guid = guid,
+                                smooth = false,
+                            })
+                            powersBag.putObject(card)
+                            found = true
+                            break
+                        end
+                    end
                 elseif tag == "Unique" then
                     local objs = getObjectsWithTag("Unique")
                     for _,obj in pairs(objs) do
@@ -139,14 +152,24 @@ function PostSetup(params)
                                         smooth = false,
                                     })
                                     powersBag.putObject(card)
+                                    found = true
+                                    break
                                 end
                             end
                         elseif obj.type == "Card" then
                             if obj.guid == guid then
                                 powersBag.putObject(obj)
+                                found = true
                             end
                         end
+                        if found then
+                            break
+                        end
                     end
+                end
+
+                if not found then
+                    broadcastToAll("Unable to find "..tag.." Power Card with guid "..guid, Color.Red)
                 end
             end
         end

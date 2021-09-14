@@ -1,5 +1,5 @@
 ---- Versioning
-version = "2.2.0-beta.3"
+version = "2.2.0-beta.4"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -2145,18 +2145,21 @@ function grabInvaderCards(deckTable)
         if char == 1 then
             local card = stage1Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 2 then
             local card = stage2Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
             })
             table.insert(cardTable, card)
         elseif char == 3 or char == "3*" then
             local card = stage3Deck.takeObject({
                 position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                smooth = false,
                 callback_function = function(obj)
                     cardsLoaded = cardsLoaded + 1
                     if char == "3*" then
@@ -2169,7 +2172,7 @@ function grabInvaderCards(deckTable)
             table.insert(cardTable, card)
         elseif invaderCards[deckTable[i]] then
             local card = getObjectFromGUID(invaderCards[deckTable[i]].guid)
-            card.setPositionSmooth(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
+            card.setPosition(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
             card.setRotationSmooth(Vector(0,180,180))
             cardsLoaded = cardsLoaded + 1
             table.insert(cardTable, card)

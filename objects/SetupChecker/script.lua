@@ -972,6 +972,29 @@ function loadConfig(config)
             playtestMajorPower = config.playtest.majorPower
         end
     end
+    if config.random then
+        if config.random.min then
+            randomMin = config.random.min
+        end
+        if config.random.max then
+            randomMax = config.random.max
+        end
+        if config.random.adversary then
+            randomAdversary = config.random.adversary
+        end
+        if config.random.adversary2 then
+            randomAdversary2 = config.random.adversary2
+        end
+        if config.random.scenario then
+            randomScenario = config.random.scenario
+        end
+        if config.random.board then
+            randomBoard = config.random.board
+        end
+        if config.random.thematic then
+            randomBoardThematic = config.random.thematic
+        end
+    end
     if config.boards then
         Global.setTable("selectedBoards", config.boards)
     end

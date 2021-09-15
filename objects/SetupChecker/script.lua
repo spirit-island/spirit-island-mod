@@ -48,6 +48,14 @@ spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
+randomMin = 0
+randomMax = 11
+randomAdversary = false
+randomAdversary2 = false
+randomScenario = false
+randomBoard = false
+randomBoardThematic = false
+
 optionalStrangeMadness = false
 optionalDigitalEvents = false
 optionalBlightCard = true
@@ -109,6 +117,15 @@ function onSave()
     data_table.playtest.minorPower = playtestMinorPower
     data_table.playtest.majorPower = playtestMajorPower
 
+    data_table.random = {}
+    data_table.random.min = randomMin
+    data_table.random.max = randomMax
+    data_table.random.adversary = randomAdversary
+    data_table.random.adversary2 = randomAdversary2
+    data_table.random.scenario = randomScenario
+    data_table.random.board = randomBoard
+    data_table.random.thematic = randomBoardThematic
+
     local adversaryList = {}
     for name,guid in pairs(adversaries) do
         table.insert(adversaryList, {name=name, guid=guid})
@@ -156,6 +173,14 @@ function onLoad(saved_data)
         playtestBlight = loaded_data.playtest.blight
         playtestMinorPower = loaded_data.playtest.minorPower
         playtestMajorPower = loaded_data.playtest.majorPower
+
+        randomMin = loaded_data.random.min
+        randomMax = loaded_data.random.max
+        randomAdversary = loaded_data.random.adversary
+        randomAdversary2 = loaded_data.random.adversary2
+        randomScenario = loaded_data.random.scenario
+        randomBoard = loaded_data.random.board
+        randomBoardThematic = loaded_data.random.thematic
 
         adversaries = {}
         local count = 0
@@ -213,6 +238,12 @@ function onLoad(saved_data)
             togglePlaytestBlight(nil, playtestBlight, "playtestBlight")
             togglePlaytestMinorPower(nil, playtestMinorPower, "playtestMinorPower")
             togglePlaytestMajorPower(nil, playtestMajorPower, "playtestMajorPower")
+
+            toggleMinDifficulty(nil, randomMin)
+            toggleMaxDifficulty(nil, randomMax)
+            if randomAdversary or randomAdversary2 or randomScenario then
+                enableRandomDifficulty()
+            end
 
             for _,obj in pairs(getObjectsWithTag("Expansion")) do
                 expansions[obj.getName()] = obj.guid
@@ -379,14 +410,14 @@ function updateAdversaryList()
     local adversary = Global.getVar("adversaryCard")
     if adversary ~= nil then
         leadName = adversary.getName()
-    elseif Global.getVar("useRandomAdversary") then
+    elseif randomAdversary then
         leadName = "Random"
     end
     local supportName = "None"
     adversary = Global.getVar("adversaryCard2")
     if adversary ~= nil then
         supportName = adversary.getName()
-    elseif Global.getVar("useSecondAdversary") then
+    elseif randomAdversary2 then
         supportName = "Random"
     end
 
@@ -420,20 +451,20 @@ function updateScenarioList()
     local scenario = Global.getVar("scenarioCard")
     if scenario ~= nil then
         scenarioName = scenario.getName()
-    elseif Global.getVar("useRandomScenario") then
+    elseif randomScenario then
         scenarioName = "Random"
     end
 
     return updateDropdownList("scenario", scenarioList, scenarioName)
 end
-function randomAdversary()
+function RandomAdversary()
     local adversary = indexTable(adversaries, math.random(1,numAdversaries))
     if adversary == "" then
         return nil
     end
     return getObjectFromGUID(adversaries[adversary])
 end
-function randomScenario()
+function RandomScenario()
     local scenario = indexTable(scenarios, math.random(1,numScenarios))
     if scenario == "" then
         return nil
@@ -500,11 +531,11 @@ end
 function updateScenario(value, updateUI)
     if value == "Random" then
         Global.setVar("scenarioCard", nil)
-        Global.setVar("useRandomScenario", true)
+        randomScenario = true
         enableRandomDifficulty()
     else
         Global.setVar("scenarioCard", getObjectFromGUID(scenarios[value]))
-        Global.setVar("useRandomScenario", false)
+        randomScenario = false
         checkRandomDifficulty(false)
     end
     updateDifficulty()
@@ -524,11 +555,11 @@ end
 function updateLeadingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard", nil)
-        Global.setVar("useRandomAdversary", true)
+        randomAdversary = true
         enableRandomDifficulty()
     else
         Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
-        Global.setVar("useRandomAdversary", false)
+        randomAdversary = false
         checkRandomDifficulty(false)
     end
     if value == "None" or value == "Random" then
@@ -554,11 +585,11 @@ end
 function updateSupportingAdversary(value, updateUI)
     if value == "Random" then
         Global.setVar("adversaryCard2", nil)
-        Global.setVar("useSecondAdversary", true)
+        randomAdversary2 = true
         enableRandomDifficulty()
     else
         Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
-        Global.setVar("useSecondAdversary", false)
+        randomAdversary2 = false
         checkRandomDifficulty(false)
     end
     if value == "None" or value == "Random" then
@@ -679,16 +710,16 @@ function toggleBoardLayout(_, value)
 end
 function updateBoardLayout(value, updateUI)
     if value == "Random" then
-        Global.setVar("useRandomBoard", true)
-        Global.setVar("includeThematic", false)
+        randomBoard = true
+        randomBoardThematic = false
         checkRandomDifficulty(false)
     elseif value == "Random with Thematic" then
-        Global.setVar("useRandomBoard", true)
-        Global.setVar("includeThematic", true)
+        randomBoard = true
+        randomBoardThematic = true
         enableRandomDifficulty()
     else
-        Global.setVar("useRandomBoard", false)
-        Global.setVar("includeThematic", false)
+        randomBoard = false
+        randomBoardThematic = false
         checkRandomDifficulty(false)
     end
     Global.setVar("boardLayout", value)
@@ -1229,32 +1260,26 @@ function toggleChallengeTier(_, selected, id)
 end
 
 function toggleMinDifficulty(_, value)
-    local maxDifficulty = Global.getVar("maxDifficulty")
-    local minDifficulty = tonumber(value)
-    if minDifficulty > maxDifficulty then
-        Global.setVar("minDifficulty", maxDifficulty)
-        self.UI.setAttribute("minDifficulty", "text", "Min Random Difficulty: "..maxDifficulty)
-        self.UI.setAttribute("minDifficultySlider", "value", maxDifficulty)
-        return
+    local min = tonumber(value)
+    if min > randomMax then
+        randomMin = randomMax
+    else
+        randomMin = min
     end
 
-    Global.setVar("minDifficulty", minDifficulty)
-    self.UI.setAttribute("minDifficulty", "text", "Min Random Difficulty: "..value)
-    self.UI.setAttribute("minDifficultySlider", "value", value)
+    self.UI.setAttribute("minDifficulty", "text", "Min Random Difficulty: "..randomMin)
+    self.UI.setAttribute("minDifficultySlider", "value", randomMin)
 end
 function toggleMaxDifficulty(_, value)
-    local minDifficulty = Global.getVar("minDifficulty")
-    local maxDifficulty = tonumber(value)
-    if maxDifficulty < minDifficulty  then
-        Global.setVar("maxDifficulty", minDifficulty)
-        self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..minDifficulty)
-        self.UI.setAttribute("maxDifficultySlider", "value", minDifficulty)
-        return
+    local max = tonumber(value)
+    if max < randomMin  then
+        randomMax = randomMin
+    else
+        randomMax = max
     end
 
-    Global.setVar("maxDifficulty", maxDifficulty)
-    self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..value)
-    self.UI.setAttribute("maxDifficultySlider", "value", value)
+    self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..randomMax)
+    self.UI.setAttribute("maxDifficultySlider", "value", randomMax)
 end
 function enableRandomDifficulty()
     self.UI.setAttribute("minTextRow", "visibility", "")
@@ -1267,10 +1292,7 @@ function checkRandomDifficulty(enable, force)
     if not enable then
         visibility = "Invisible"
     end
-    local random = Global.getVar("useRandomAdversary")
-            or Global.getVar("useSecondAdversary")
-            or Global.getVar("includeThematic")
-            or Global.getVar("useRandomScenario")
+    local random = randomAdversary or randomAdversary2 or randomBoardThematic or randomScenario
     if random == enable or force then
         self.UI.setAttribute("minTextRow", "visibility", visibility)
         self.UI.setAttribute("minRow", "visibility", visibility)

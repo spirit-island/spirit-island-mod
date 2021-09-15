@@ -90,13 +90,6 @@ stagesSetup = 0
 boardsSetup = 0
 showAdvancedSettings = true
 showRandomizers = false
-minDifficulty = 0
-maxDifficulty = 11
-useRandomAdversary = false
-useSecondAdversary = false
-includeThematic = false
-useRandomBoard = false
-useRandomScenario = false
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
 fearCards = {3,3,3}
@@ -639,7 +632,7 @@ function CanSetupGame()
         broadcastToAll("You can only have one type of board at once", Color.Red)
         return false
     end
-    if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
+    if adversaryCard == nil and not SetupChecker.getVar("randomAdversary") and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.Red)
         return false
     end
@@ -679,16 +672,16 @@ function SetupGame()
             numBoards = numPlayers
         end
     end
-    if useRandomBoard or useRandomScenario or useRandomAdversary or useSecondAdversary then
+    if SetupChecker.getVar("randomBoard") or SetupChecker.getVar("randomScenario") or SetupChecker.getVar("randomAdversary") or SetupChecker.getVar("randomAdversary2") then
         printToAll("Randomiser:", Color.White)
     end
-    if useRandomBoard then
+    if SetupChecker.getVar("randomBoard") then
         randomBoard()
     end
-    if useRandomScenario then
+    if SetupChecker.getVar("randomScenario") then
         randomScenario()
     end
-    if useRandomAdversary or useSecondAdversary then
+    if SetupChecker.getVar("randomAdversary") or SetupChecker.getVar("randomAdversary2") then
         randomAdversary(0)
     end
 
@@ -712,15 +705,15 @@ function SetupGame()
     Wait.condition(function() startLuaCoroutine(Global, "StartGame") end, function() return stagesSetup == 10 end)
 end
 function randomBoard()
-    if SetupChecker.call("difficultyCheck", {thematic = true}) > maxDifficulty then
+    if SetupChecker.call("difficultyCheck", {thematic = true}) > SetupChecker.getVar("randomMax") then
         -- The difficulty can't be increased anymore so don't use thematic
-        includeThematic = false
+        SetupChecker.setVar("randomBoardThematic", false)
     elseif numPlayers == 6 and numBoards > 6 then
         -- Thematic at 6 players doesn't current support extra board
-        includeThematic = false
+        SetupChecker.setVar("randomBoardThematic", false)
     end
     local min = 0
-    if includeThematic then
+    if SetupChecker.getVar("randomBoardThematic") then
         min = -1
     end
     local value = math.random(min,#alternateBoardLayoutNames[numBoards])
@@ -746,9 +739,13 @@ function usingSpiritTokens()
     return expansions["Branch & Claw"] or expansions["Jagged Earth"]
 end
 function randomScenario()
-    if difficulty > maxDifficulty then
+    if difficulty > SetupChecker.getVar("randomMax") then
         return
     end
+    local randomMin = SetupChecker.getVar("randomMin")
+    local randomMax = SetupChecker.getVar("randomMax")
+    local randomAdversary = SetupChecker.getVar("randomAdversary")
+    local randomAdversary2 = SetupChecker.getVar("randomAdversary2")
     local attempts = 0
     while scenarioCard == nil do
         if attempts > 1000 then
@@ -757,9 +754,9 @@ function randomScenario()
             return
         end
         attempts = attempts + 1
-        scenarioCard = SetupChecker.call("randomScenario",{})
+        scenarioCard = SetupChecker.call("RandomScenario")
         local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
-        if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then
+        if tempDifficulty > randomMax or (tempDifficulty < randomMin and not randomAdversary and not randomAdversary2) then
             scenarioCard = nil
         elseif scenarioCard.getVar("requirements") then
             local allowed = scenarioCard.call("Requirements", {
@@ -767,7 +764,7 @@ function randomScenario()
                 blightCard = SetupChecker.getVar("optionalBlightCard"),
                 expansions = expansions,
                 thematic = isThematic(),
-                adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or useRandomAdversary or useSecondAdversary,
+                adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or randomAdversary or randomAdversary2,
             })
             if not allowed then
                 scenarioCard = nil
@@ -780,7 +777,7 @@ function randomScenario()
     end
 end
 function randomAdversary(attempts)
-    if difficulty >= maxDifficulty then
+    if difficulty >= SetupChecker.getVar("randomMax") then
         if adversaryCard == nil and adversaryCard2 ~= nil then
             adversaryCard = adversaryCard2
             adversaryLevel = adversaryLevel2
@@ -794,10 +791,10 @@ function randomAdversary(attempts)
         broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", Color.SoftYellow)
         return
     end
-    if useRandomAdversary and useSecondAdversary then
+    if SetupChecker.getVar("randomAdversary") and SetupChecker.getVar("randomAdversary2") then
         local adversary = nil
         while adversary == nil do
-            adversary = SetupChecker.call("randomAdversary",{})
+            adversary = SetupChecker.call("RandomAdversary")
             if adversary.getVar("requirements") then
                 local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
                 if not allowed then
@@ -807,7 +804,7 @@ function randomAdversary(attempts)
         end
         local adversary2 = nil
         while adversary2 == nil or adversary2 == adversary do
-            adversary2 = SetupChecker.call("randomAdversary",{})
+            adversary2 = SetupChecker.call("RandomAdversary")
             if adversary2.getVar("requirements") then
                 local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
                 if not allowed then
@@ -817,15 +814,17 @@ function randomAdversary(attempts)
         end
         local difficulty = adversary.getVar("difficulty")
         local difficulty2 = adversary2.getVar("difficulty")
+        local randomMin = SetupChecker.getVar("randomMin")
+        local randomMax = SetupChecker.getVar("randomMax")
         local combos = {}
         for i,v in pairs(difficulty) do
             local params = {lead = v}
             for j,w in pairs(difficulty2) do
                 params.support = w
                 local newDiff = SetupChecker.call("difficultyCheck", params)
-                if newDiff >= minDifficulty and newDiff <= maxDifficulty then
+                if newDiff >= randomMin and newDiff <= randomMax then
                     table.insert(combos, {i,j})
-                elseif newDiff > maxDifficulty then
+                elseif newDiff > randomMax then
                     break
                 end
             end
@@ -848,7 +847,7 @@ function randomAdversary(attempts)
         end
         local adversary = nil
         while adversary == nil or adversary == selectedAdversary do
-            adversary = SetupChecker.call("randomAdversary",{})
+            adversary = SetupChecker.call("RandomAdversary")
             if adversary.getVar("requirements") then
                 local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
                 if not allowed then
@@ -856,6 +855,8 @@ function randomAdversary(attempts)
                 end
             end
         end
+        local randomMin = SetupChecker.getVar("randomMin")
+        local randomMax = SetupChecker.getVar("randomMax")
         local combos = {}
         for i,v in pairs(adversary.getVar("difficulty")) do
             local params = {}
@@ -865,9 +866,9 @@ function randomAdversary(attempts)
                 params.support = v
             end
             local newDiff = SetupChecker.call("difficultyCheck", params)
-            if newDiff >= minDifficulty and newDiff <= maxDifficulty then
+            if newDiff >= randomMin and newDiff <= randomMax then
                 table.insert(combos, i)
-            elseif newDiff > maxDifficulty then
+            elseif newDiff > randomMax then
                 break
             end
         end

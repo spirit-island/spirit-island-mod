@@ -122,6 +122,13 @@
       "name": "A Diversity of Spirits"
     }
   ],
+  "toggle": {
+    "advanced": true,
+    "challenge": false,
+    "exploratory": false,
+    "playtest": false,
+    "variant": false
+  },
   "variant": {
     "blightCard": true,
     "blightSetup": true,

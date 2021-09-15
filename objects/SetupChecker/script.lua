@@ -48,6 +48,8 @@ spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
+weeklyChallenge = false
+
 randomMin = 0
 randomMax = 11
 randomAdversary = false
@@ -84,12 +86,18 @@ updateLayoutsID = 0
 setupStarted = false
 exit = false
 sourceSpirit = nil
-weeklyChallenge = false
 challengeTier = 1
 challengeConfig = nil
 
 function onSave()
     local data_table = {}
+
+    data_table.toggle = {}
+    data_table.toggle.variant = self.UI.getAttribute("variant", "isOn") == "true"
+    data_table.toggle.exploratory = self.UI.getAttribute("exploratory", "isOn") == "true"
+    data_table.toggle.playtest = self.UI.getAttribute("playtesting", "isOn") == "true"
+    data_table.toggle.challenge = weeklyChallenge
+    data_table.toggle.advanced = self.UI.getAttribute("simpleMode", "isOn") == "true"
 
     data_table.variant = {}
     data_table.variant.strangeMadness = optionalStrangeMadness
@@ -151,6 +159,9 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
 
+        -- This will get flipped by toggleChallenge()
+        weeklyChallenge = not loaded_data.toggle.challenge
+
         optionalStrangeMadness = loaded_data.variant.strangeMadness
         optionalDigitalEvents = loaded_data.variant.digitalEvents
         optionalBlightCard = loaded_data.variant.blightCard
@@ -203,6 +214,13 @@ function onLoad(saved_data)
         numScenarios = count
 
         if not setupStarted then
+            self.UI.setAttribute("variant", "isOn", tostring(loaded_data.toggle.variant))
+            self.UI.setAttribute("exploratory", "isOn", tostring(loaded_data.toggle.exploratory))
+            self.UI.setAttribute("playtesting", "isOn", tostring(loaded_data.toggle.playtest))
+            self.UI.setAttribute("challenge", "isOn", tostring(loaded_data.toggle.challenge))
+            -- set this to opposite boolean so that toggleSimpleMode() will handle all the UI panels easily
+            self.UI.setAttribute("simpleMode", "isOn", tostring(not loaded_data.toggle.advanced))
+
             self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
             self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
             self.UI.setAttribute("blightCard", "isOn", optionalBlightCard)
@@ -287,6 +305,8 @@ function onLoad(saved_data)
                 end
                 updateXml(funcList)
                 Wait.frames(function()
+                    toggleSimpleMode()
+                    toggleChallenge()
                     local events = Global.getTable("events")
                     for expansion, enabled in pairs(Global.getTable("expansions")) do
                         if enabled then
@@ -485,7 +505,7 @@ function updateNumPlayers(value, updateUI)
     if updateUI then
         self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
         self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
-        if self.UI.getAttribute("challenge", "isOn") == "True" then
+        if self.UI.getAttribute("challenge", "isOn") == "true" then
             challengeConfig = nil
             for i=1,challengeTier do
                 challengeConfig = getWeeklyChallengeConfig(i, challengeConfig)
@@ -1119,10 +1139,10 @@ function toggleSetupUI(show)
         visibility = "Invisible"
     end
     self.UI.setAttribute("panelSetup", "visibility", visibility)
-    if show and self.UI.getAttribute("optionalRules", "isOn") == "true" then
-        self.UI.setAttribute("panelOptional", "visibility", "")
+    if show and self.UI.getAttribute("variant", "isOn") == "true" then
+        self.UI.setAttribute("panelVariant", "visibility", "")
     else
-        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
+        self.UI.setAttribute("panelVariant", "visibility", "Invisible")
     end
     if show and self.UI.getAttribute("exploratory", "isOn") == "true" then
         self.UI.setAttribute("panelExploratory", "visibility", "")
@@ -1172,7 +1192,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("blightCardRow", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
         self.UI.setAttribute("toggles2", "visibility", "Invisible")
-        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
+        self.UI.setAttribute("panelVariant", "visibility", "Invisible")
         self.UI.setAttribute("panelExploratory", "visibility", "Invisible")
         self.UI.setAttribute("panelPlaytesting", "visibility", "Invisible")
         self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
@@ -1194,14 +1214,14 @@ function toggleSimpleMode()
         Global.call("updateAllPlayerAreas", nil)
     end
 end
-function toggleOptionalRules()
-    local checked = self.UI.getAttribute("optionalRules", "isOn")
+function toggleVariant()
+    local checked = self.UI.getAttribute("variant", "isOn")
     if checked == "true" then
-        self.UI.setAttribute("optionalRules", "isOn", "false")
-        self.UI.setAttribute("panelOptional", "visibility", "Invisible")
+        self.UI.setAttribute("variant", "isOn", "false")
+        self.UI.setAttribute("panelVariant", "visibility", "Invisible")
     else
-        self.UI.setAttribute("optionalRules", "isOn", "true")
-        self.UI.setAttribute("panelOptional", "visibility", "")
+        self.UI.setAttribute("variant", "isOn", "true")
+        self.UI.setAttribute("panelVariant", "visibility", "")
     end
 end
 function toggleExploratory()

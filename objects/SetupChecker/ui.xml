@@ -145,12 +145,12 @@
             </Row>
             <Row class="spacing"/>
             <Row id="toggles" class="toggle">
-            <Cell><Toggle id="optionalRules" onValueChanged="toggleOptionalRules" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
-                <Cell><Toggle id="challenge" onValueChanged="toggleChallenge" tooltip="Randomly generated setup for the week,&#xA;this will be consistent for all steam users.&#xA;Make sure to set the number of players first">Weekly Challenge</Toggle></Cell>
+                <Cell><Toggle id="variant" isOn="false" onValueChanged="toggleVariant" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
+                <Cell><Toggle id="challenge" isOn="false" onValueChanged="toggleChallenge" tooltip="Randomly generated setup for the week,&#xA;this will be consistent for all steam users.&#xA;Make sure to set the number of players first">Weekly Challenge</Toggle></Cell>
             </Row>
             <Row id="toggles2" class="toggle">
-                <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
-            <Cell><Toggle id="playtesting" onValueChanged="togglePlaytesting" tooltip="Common methods of playtesting,&#xA;to help assure new content is&#xA;seen on more frequent basis.">Playtesting Options</Toggle></Cell>
+                <Cell><Toggle id="exploratory" isOn="false" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
+                <Cell><Toggle id="playtesting" isOn="false" onValueChanged="togglePlaytesting" tooltip="Common methods of playtesting,&#xA;to help assure new content is&#xA;seen on more frequent basis.">Playtesting Options</Toggle></Cell>
             </Row>
             <Row id="toggles3" class="toggle">
                 <Cell><Toggle id="simpleMode" isOn="true" onValueChanged="toggleSimpleMode">Advanced Settings</Toggle></Cell>
@@ -168,7 +168,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -3015 14">
+<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -3015 14">
     <VerticalLayout recurse="events2">
         <TableLayout recurse="events2">
             <Row class="header">

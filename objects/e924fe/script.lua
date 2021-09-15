@@ -211,12 +211,39 @@ function ExportConfig()
 
     data.numPlayers = Global.getVar("numPlayers")
     data.boardLayout = Global.getVar("boardLayout")
+
+    local SetupChecker = Global.getVar("SetupChecker")
     data.variant = {}
-    data.variant.extraBoard = (Global.getVar("numBoards") - data.numPlayers) == 1
+    data.variant.strangeMadness = SetupChecker.getVar("optionalStrangeMadness")
+    data.variant.digitalEvents = SetupChecker.getVar("optionalDigitalEvents")
+    data.variant.blightCard = SetupChecker.getVar("optionalBlightCard")
+    data.variant.soloBlight = SetupChecker.getVar("optionalSoloBlight")
+    data.variant.blightSetup = SetupChecker.getVar("optionalBlightSetup")
+    data.variant.extraBoard = SetupChecker.getVar("optionalExtraBoard")
     local extraBoardRandom = Global.getVar("randomBoard")
     if extraBoardRandom ~= nil then
         data.variant.extraBoardRandom = extraBoardRandom
     end
+    data.variant.boardPairings = SetupChecker.getVar("optionalBoardPairings")
+    data.variant.thematicRebellion = SetupChecker.getVar("optionalThematicRebellion")
+    data.variant.england6 = SetupChecker.getVar("optionalEngland6")
+    data.variant.thematicRedo = SetupChecker.getVar("optionalThematicRedo")
+    data.variant.carpetRedo = Global.getVar("seaTile").getStateId() == 1
+
+    data.exploratory = {}
+    data.exploratory.votd = SetupChecker.getVar("exploratoryVOTD")
+    data.exploratory.bodan = SetupChecker.getVar("exploratoryBODAN")
+    data.exploratory.war = SetupChecker.getVar("exploratoryWar")
+    data.exploratory.aid = SetupChecker.getVar("exploratoryAid")
+
+    data.playtest = {}
+    data.playtest.expansion = SetupChecker.getVar("playtestExpansion")
+    data.playtest.fear = SetupChecker.getVar("playtestFear")
+    data.playtest.event = SetupChecker.getVar("playtestEvent")
+    data.playtest.blight = SetupChecker.getVar("playtestBlight")
+    data.playtest.minorPower = SetupChecker.getVar("playtestMinorPower")
+    data.playtest.majorPower = SetupChecker.getVar("playtestMajorPower")
+
     local selectedBoards = Global.getTable("selectedBoards")
     if selectedBoards and #selectedBoards > 0 then
         data.boards = selectedBoards

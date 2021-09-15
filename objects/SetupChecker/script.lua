@@ -862,16 +862,83 @@ function loadConfig(config)
         end
         updateBoardLayout(config.boardLayout, false)
     end
-    if config.variant ~= nil then
+    if config.variant then
+        if config.variant.strangeMadness ~= nil then
+            optionalStrangeMadness = config.variant.strangeMadness
+        end
+        if config.variant.digitalEvents ~= nil then
+            optionalDigitalEvents = config.variant.digitalEvents
+        end
+        if config.variant.blightCard ~= nil then
+            optionalBlightCard = config.variant.blightCard
+        end
+        if config.variant.soloBlight ~= nil then
+            optionalSoloBlight = config.variant.soloBlight
+        end
+        if config.variant.blightSetup ~= nil then
+            optionalBlightSetup = config.variant.blightSetup
+        end
         if config.variant.extraBoard ~= nil then
-            if config.variant.extraBoard then
-                optionalExtraBoard = true
+            optionalExtraBoard = config.variant.extraBoard
+            if optionalExtraBoard then
                 if config.variant.extraBoardRandom ~= nil then
                     Global.setVar("randomBoard", config.variant.extraBoardRandom)
                 end
-            else
-                optionalExtraBoard = false
             end
+        end
+        if config.variant.boardPairings ~= nil then
+            optionalBoardPairings = config.variant.boardPairings
+        end
+        if config.variant.thematicRebellion ~= nil then
+            optionalThematicRebellion = config.variant.thematicRebellion
+        end
+        if config.variant.england6 ~= nil then
+            optionalEngland6 = config.variant.england6
+        end
+        if config.variant.thematicRedo ~= nil then
+            optionalThematicRedo = config.variant.thematicRedo
+        end
+        if config.variant.carpetRedo ~= nil then
+            local seaTile = Global.getVar("seaTile")
+            if config.variant.carpetRedo then
+                seaTile.setState(1)
+            else
+                seaTile.setState(2)
+            end
+        end
+    end
+    if config.exploratory then
+        if config.exploratory.votd ~= nil then
+            exploratoryVOTD = config.exploratory.votd
+        end
+        if config.exploratory.bodan ~= nil then
+            exploratoryBODAN = config.exploratory.bodan
+        end
+        if config.exploratory.war ~= nil then
+            exploratoryWar = config.exploratory.war
+        end
+        if config.exploratory.aid ~= nil then
+            exploratoryAid = config.exploratory.aid
+        end
+    end
+    if config.playtest then
+        if config.playtest.expansion ~= nil then
+            playtestExpansion = config.playtest.expansion
+        end
+        if config.playtest.fear ~= nil then
+            playtestFear = config.playtest.fear
+        end
+        if config.playtest.event ~= nil then
+            playtestEvent = config.playtest.event
+        end
+        if config.playtest.blight ~= nil then
+            playtestBlight = config.playtest.blight
+        end
+        if config.playtest.minorPower ~= nil then
+            playtestMinorPower = config.playtest.minorPower
+        end
+        if config.playtest.majorPower ~= nil then
+            playtestMajorPower = config.playtest.majorPower
         end
     end
     if config.boards then

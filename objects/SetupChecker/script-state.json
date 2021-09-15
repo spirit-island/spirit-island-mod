@@ -37,7 +37,29 @@
       "name": "Scotland"
     }
   ],
-  "optionalBlightSetup": true,
+  "exploratory": {
+    "aid": false,
+    "bodan": false,
+    "votd": false,
+    "war": false
+  },
+  "optional": {
+    "blightSetup": true,
+    "boardPairings": true,
+    "digitalEvents": false,
+    "extraBoard": false,
+    "soloBlight": true,
+    "strangeMadness": false,
+    "thematicRedo": false
+  },
+  "playtest": {
+    "blight": "0",
+    "event": "0",
+    "expansion": "None",
+    "fear": "0",
+    "majorPower": "0",
+    "minorPower": "0"
+  },
   "scenarioList": [
     {
       "guid": "",

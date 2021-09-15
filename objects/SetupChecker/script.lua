@@ -48,14 +48,17 @@ spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
-optionalSoloBlight = true
-optionalStrangeMadness = false
-optionalBlightSetup = true
+optionalBlightCard = true
 optionalExtraBoard = false
-optionalThematicRedo = false
+optionalStrangeMadness = false
 optionalBoardPairings = true
-optionalScaleBoard = true
+optionalSoloBlight = true
+optionalBlightSetup = true
+optionalThematicRedo = false
 optionalDigitalEvents = false
+optionalThematicRebellion = false
+optionalEngland6 = true
+optionalScaleBoard = true -- not currently hooked up into UI
 
 exploratoryVOTD = false
 exploratoryBODAN = false
@@ -80,7 +83,31 @@ challengeConfig = nil
 function onSave()
     local data_table = {}
 
-    data_table.optionalBlightSetup = optionalBlightSetup
+    data_table.optional = {}
+    data_table.optional.blightCard = optionalBlightCard
+    data_table.optional.extraBoard = optionalExtraBoard
+    data_table.optional.strangeMadness = optionalStrangeMadness
+    data_table.optional.boardPairings = optionalBoardPairings
+    data_table.optional.soloBlight = optionalSoloBlight
+    data_table.optional.blightSetup = optionalBlightSetup
+    data_table.optional.thematicRedo = optionalThematicRedo
+    data_table.optional.digitalEvents = optionalDigitalEvents
+    data_table.optional.thematicRebellion = optionalThematicRebellion
+    data_table.optional.england6 = optionalEngland6
+
+    data_table.exploratory = {}
+    data_table.exploratory.votd = exploratoryVOTD
+    data_table.exploratory.bodan = exploratoryBODAN
+    data_table.exploratory.war = exploratoryWar
+    data_table.exploratory.aid = exploratoryAid
+
+    data_table.playtest = {}
+    data_table.playtest.expansion = playtestExpansion
+    data_table.playtest.fear = playtestFear
+    data_table.playtest.event = playtestEvent
+    data_table.playtest.blight = playtestBlight
+    data_table.playtest.minorPower = playtestMinorPower
+    data_table.playtest.majorPower = playtestMajorPower
 
     local adversaryList = {}
     for name,guid in pairs(adversaries) do
@@ -107,8 +134,28 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
 
-        optionalBlightSetup = loaded_data.optionalBlightSetup
-        self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
+        optionalBlightCard = loaded_data.optional.blightCard
+        optionalExtraBoard = loaded_data.optional.extraBoard
+        optionalStrangeMadness = loaded_data.optional.strangeMadness
+        optionalBoardPairings = loaded_data.optional.boardPairings
+        optionalSoloBlight = loaded_data.optional.soloBlight
+        optionalBlightSetup = loaded_data.optional.blightSetup
+        optionalThematicRedo = loaded_data.optional.thematicRedo
+        optionalDigitalEvents = loaded_data.optional.digitalEvents
+        optionalThematicRebellion = loaded_data.optional.thematicRebellion
+        optionalEngland6 = loaded_data.optional.england6
+
+        exploratoryVOTD = loaded_data.exploratory.votd
+        exploratoryBODAN = loaded_data.exploratory.bodan
+        exploratoryWar = loaded_data.exploratory.war
+        exploratoryAid = loaded_data.exploratory.aid
+
+        playtestExpansion = loaded_data.playtest.expansion
+        playtestFear = loaded_data.playtest.fear
+        playtestEvent = loaded_data.playtest.event
+        playtestBlight = loaded_data.playtest.blight
+        playtestMinorPower = loaded_data.playtest.minorPower
+        playtestMajorPower = loaded_data.playtest.majorPower
 
         adversaries = {}
         local count = 0
@@ -131,6 +178,42 @@ function onLoad(saved_data)
         numScenarios = count
 
         if not setupStarted then
+            self.UI.setAttribute("blightCard", "isOn", optionalBlightCard)
+            self.UI.setAttribute("blightCard2", "isOn", optionalBlightCard)
+            self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
+            self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
+            self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
+            self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
+            self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
+            self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
+            self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
+            self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+            local adversary = getObjectFromGUID(adversaries.France)
+            if adversary ~= nil then
+                adversary.setVar("thematicRebellion", optionalThematicRebellion)
+            end
+            self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
+            adversary = getObjectFromGUID(adversaries.England)
+            if adversary ~= nil then
+                if optionalEngland6 then
+                    adversary.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
+                else
+                    adversary.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
+                end
+            end
+            self.UI.setAttribute("england6", "isOn", optionalEngland6)
+
+            self.UI.setAttribute("votd", "isOn", exploratoryVOTD)
+            self.UI.setAttribute("bodan", "isOn", exploratoryBODAN)
+            self.UI.setAttribute("war", "isOn", exploratoryWar)
+            self.UI.setAttribute("aid", "isOn", exploratoryAid)
+
+            togglePlaytestFear(nil, playtestFear, "playtestFear")
+            togglePlaytestEvent(nil, playtestEvent, "playtestEvent")
+            togglePlaytestBlight(nil, playtestBlight, "playtestBlight")
+            togglePlaytestMinorPower(nil, playtestMinorPower, "playtestMinorPower")
+            togglePlaytestMajorPower(nil, playtestMajorPower, "playtestMajorPower")
+
             for _,obj in pairs(getObjectsWithTag("Expansion")) do
                 expansions[obj.getName()] = obj.guid
             end
@@ -142,12 +225,13 @@ function onLoad(saved_data)
             self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
             self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
-            -- queue up all dropdown changes as once
+            -- queue up all dropdown changes at once
             Wait.frames(function()
                 local funcList = {
                     updateAdversaryList(),
                     updateScenarioList(),
                     updateBoardLayouts(numPlayers),
+                    updatePlaytestExpansionList(expansions),
                 }
                 for expansion,guid in pairs(expansions) do
                     local hasEvents = false
@@ -1408,45 +1492,30 @@ function toggleStrangeMadness()
     self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
 end
 function toggleSlaveRebellion()
-    local checked = self.UI.getAttribute("slaveRebellion", "isOn")
+    optionalThematicRebellion = not optionalThematicRebellion
     local obj = getObjectFromGUID(adversaries.France)
-    if checked == "true" then
-        checked = "false"
-        if obj ~= nil then
-            obj.setVar("thematicRebellion", false)
-        end
-    else
-        checked = "true"
-        if obj ~= nil then
-            obj.setVar("thematicRebellion", true)
-        end
+    if obj ~= nil then
+        obj.setVar("thematicRebellion", optionalThematicRebellion)
     end
-    self.UI.setAttribute("slaveRebellion", "isOn", checked)
+    self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
 end
 function toggleEngland6()
-    local checked = self.UI.getAttribute("england6", "isOn")
+    optionalEngland6 = not optionalEngland6
     local obj = getObjectFromGUID(adversaries.England)
-    if checked == "true" then
-        checked = "false"
-        if obj ~= nil then
-            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
-            updateDifficulty()
-        end
-    else
-        checked = "true"
-        if obj ~= nil then
+    if obj ~= nil then
+        if optionalEngland6 then
             obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
-            updateDifficulty()
+        else
+            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
         end
+        updateDifficulty()
     end
-    self.UI.setAttribute("england6", "isOn", checked)
+    self.UI.setAttribute("england6", "isOn", optionalEngland6)
 end
 function toggleBlightCard()
-    local useBlightCard = Global.getVar("useBlightCard")
-    useBlightCard = not useBlightCard
-    Global.setVar("useBlightCard", useBlightCard)
-    self.UI.setAttribute("blightCard", "isOn", useBlightCard)
-    self.UI.setAttribute("blightCard2", "isOn", useBlightCard)
+    optionalBlightCard = not optionalBlightCard
+    self.UI.setAttribute("blightCard", "isOn", optionalBlightCard)
+    self.UI.setAttribute("blightCard2", "isOn", optionalBlightCard)
 end
 function toggleBlightSetup()
     optionalBlightSetup = not optionalBlightSetup

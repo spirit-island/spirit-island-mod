@@ -84,7 +84,6 @@ onlyCleanupTimePasses = false
 objectsToCleanup = {}
 randomBoard = nil
 ------ Unsaved Config Data
-useBlightCard = true
 gamePaused = false
 yHeight = 0
 stagesSetup = 0
@@ -765,7 +764,7 @@ function randomScenario()
         elseif scenarioCard.getVar("requirements") then
             local allowed = scenarioCard.call("Requirements", {
                 eventDeck = usingEvents(),
-                blightCard = useBlightCard,
+                blightCard = SetupChecker.getVar("optionalBlightCard"),
                 expansions = expansions,
                 thematic = isThematic(),
                 adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or useRandomAdversary or useSecondAdversary,
@@ -800,7 +799,7 @@ function randomAdversary(attempts)
         while adversary == nil do
             adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = expansions, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -810,7 +809,7 @@ function randomAdversary(attempts)
         while adversary2 == nil or adversary2 == adversary do
             adversary2 = SetupChecker.call("randomAdversary",{})
             if adversary2.getVar("requirements") then
-                local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = expansions, thematic = isThematic()})
+                local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
                 if not allowed then
                     adversary2 = nil
                 end
@@ -851,7 +850,7 @@ function randomAdversary(attempts)
         while adversary == nil or adversary == selectedAdversary do
             adversary = SetupChecker.call("randomAdversary",{})
             if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = useBlightCard, expansions = expansions, thematic = isThematic()})
+                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
                 if not allowed then
                     adversary = nil
                 end
@@ -1514,7 +1513,7 @@ function addGainPowerCardButtons()
 end
 ----- Blight Section
 function SetupBlightCard()
-    if useBlightCard then
+    if SetupChecker.getVar("optionalBlightCard") then
         local cardsSetup = 0
         if SetupChecker.getVar("exploratoryAid") then
             local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
@@ -1705,7 +1704,7 @@ end
 function setupBlightTokens()
     blightBag.reset()
     local numBlight = 2 * numBoards
-    if not useBlightCard then
+    if not SetupChecker.getVar("optionalBlightCard") then
         numBlight = 5 * numBoards
     end
     if SetupChecker.getVar("optionalBlightSetup") then

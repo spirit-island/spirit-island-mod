@@ -83,17 +83,17 @@ challengeConfig = nil
 function onSave()
     local data_table = {}
 
-    data_table.optional = {}
-    data_table.optional.strangeMadness = optionalStrangeMadness
-    data_table.optional.digitalEvents = optionalDigitalEvents
-    data_table.optional.blightCard = optionalBlightCard
-    data_table.optional.soloBlight = optionalSoloBlight
-    data_table.optional.blightSetup = optionalBlightSetup
-    data_table.optional.extraBoard = optionalExtraBoard
-    data_table.optional.boardPairings = optionalBoardPairings
-    data_table.optional.thematicRebellion = optionalThematicRebellion
-    data_table.optional.england6 = optionalEngland6
-    data_table.optional.thematicRedo = optionalThematicRedo
+    data_table.variant = {}
+    data_table.variant.strangeMadness = optionalStrangeMadness
+    data_table.variant.digitalEvents = optionalDigitalEvents
+    data_table.variant.blightCard = optionalBlightCard
+    data_table.variant.soloBlight = optionalSoloBlight
+    data_table.variant.blightSetup = optionalBlightSetup
+    data_table.variant.extraBoard = optionalExtraBoard
+    data_table.variant.boardPairings = optionalBoardPairings
+    data_table.variant.thematicRebellion = optionalThematicRebellion
+    data_table.variant.england6 = optionalEngland6
+    data_table.variant.thematicRedo = optionalThematicRedo
 
     data_table.exploratory = {}
     data_table.exploratory.votd = exploratoryVOTD
@@ -134,16 +134,16 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
 
-        optionalStrangeMadness = loaded_data.optional.strangeMadness
-        optionalDigitalEvents = loaded_data.optional.digitalEvents
-        optionalBlightCard = loaded_data.optional.blightCard
-        optionalSoloBlight = loaded_data.optional.soloBlight
-        optionalBlightSetup = loaded_data.optional.blightSetup
-        optionalExtraBoard = loaded_data.optional.extraBoard
-        optionalBoardPairings = loaded_data.optional.boardPairings
-        optionalThematicRebellion = loaded_data.optional.thematicRebellion
-        optionalEngland6 = loaded_data.optional.england6
-        optionalThematicRedo = loaded_data.optional.thematicRedo
+        optionalStrangeMadness = loaded_data.variant.strangeMadness
+        optionalDigitalEvents = loaded_data.variant.digitalEvents
+        optionalBlightCard = loaded_data.variant.blightCard
+        optionalSoloBlight = loaded_data.variant.soloBlight
+        optionalBlightSetup = loaded_data.variant.blightSetup
+        optionalExtraBoard = loaded_data.variant.extraBoard
+        optionalBoardPairings = loaded_data.variant.boardPairings
+        optionalThematicRebellion = loaded_data.variant.thematicRebellion
+        optionalEngland6 = loaded_data.variant.england6
+        optionalThematicRedo = loaded_data.variant.thematicRedo
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan

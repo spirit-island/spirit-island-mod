@@ -47,9 +47,11 @@
     "blightSetup": true,
     "boardPairings": true,
     "digitalEvents": false,
+    "england6": true,
     "extraBoard": false,
     "soloBlight": true,
     "strangeMadness": false,
+    "thematicRebellion": false,
     "thematicRedo": false
   },
   "playtest": {

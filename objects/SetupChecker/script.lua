@@ -220,6 +220,14 @@ function onLoad(saved_data)
 
             toggleLeadingLevel(nil, Global.getVar("adversaryLevel"))
             toggleSupportingLevel(nil, Global.getVar("adversaryLevel2"))
+            local adversaryName = Global.getVar("adversaryCard")
+            if adversaryName ~= "None" and adversaryName ~= "Random" then
+                self.UI.setAttribute("leadingLevelSlider", "enabled", "true")
+            end
+            adversaryName = Global.getVar("adversaryCard2")
+            if adversaryName ~= "None" and adversaryName ~= "Random" then
+                self.UI.setAttribute("supportingLevelSlider", "enabled", "true")
+            end
 
             local numPlayers = Global.getVar("numPlayers")
             self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)

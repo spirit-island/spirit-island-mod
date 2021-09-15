@@ -1513,16 +1513,16 @@ function addGainPowerCardButtons()
 end
 ----- Blight Section
 function SetupBlightCard()
-    if SetupChecker.getVar("optionalBlightCard") then
-        local cardsSetup = 0
+    local cardsSetup = 0
+    local function bncBlightCardOptions(deck, callback)
         if SetupChecker.getVar("exploratoryAid") then
-            local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
-            blightDeck.takeObject({
+            deck.takeObject({
                 guid = "bf66eb",
                 callback_function = function(obj)
                     local temp = obj.setState(2)
                     Wait.frames(function()
-                        blightDeck.putObject(temp)
+                        deck.putObject(temp)
+                        deck.shuffle()
                         cardsSetup = cardsSetup + 1
                     end, 1)
                 end,
@@ -1530,12 +1530,27 @@ function SetupBlightCard()
         else
             cardsSetup = cardsSetup + 1
         end
-        Wait.condition(function()
-            local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
-            blightDeck.shuffle()
+        if callback ~= nil then
+            Wait.condition(function() callback() end, function() return cardsSetup == 1 end)
+        end
+    end
+    if SetupChecker.getVar("optionalBlightCard") then
+        local grabbedDeck = false
+        local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+        blightDeck.shuffle()
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
+        else
+            bncBlightCardOptions(blightDeck)
+        end
+        if not grabbedDeck then
             SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+        end
+
+        Wait.condition(function()
             grabBlightCard(true)
-        end, function() return cardsSetup == 1 end)
+        end, function() return cardsSetup == 1 and #getObjectFromGUID("b38ea8").getObjects() == 1 end)
     else
         blightedIsland = true
     end

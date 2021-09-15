@@ -184,37 +184,37 @@
                 </Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="extraBoard" onValueChanged="toggleExtraBoard" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="strangeMadness" onValueChanged="toggleStrangeMadness" tooltip="An Event that was removed for being too swingy, you&#xA;should not add this with Russia or Many Minds in play">Add "A Strange Madness Among Beasts" Event</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's, Outpaced, and A Strange&#xA;Madness Among Beasts Event cards">Remove Swingy B&amp;C Events</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="soloBlight" isOn="true" onValueChanged="toggleSoloBlight" tooltip="Blight Cards which only have 2 Blight per Player&#xA;when flipped are not recommended in Solo games">Remove 2 Blight per player cards (Solo)</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat is as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="extraBoard" onValueChanged="toggleExtraBoard" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat is as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="carpetRedo" isOn="true" onValueChanged="toggleCarpetRedo" tooltip="An alternate appeareance for the ocean tile">Use Thematic Ocean Playmat</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's, Outpaced, and A Strange&#xA;Madness Among Beasts Event cards">Remove Swingy B&amp;C Events</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

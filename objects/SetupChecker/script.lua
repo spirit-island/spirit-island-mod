@@ -48,16 +48,16 @@ spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
 
-optionalBlightCard = true
-optionalExtraBoard = false
 optionalStrangeMadness = false
-optionalBoardPairings = true
+optionalDigitalEvents = false
+optionalBlightCard = true
 optionalSoloBlight = true
 optionalBlightSetup = true
-optionalThematicRedo = false
-optionalDigitalEvents = false
+optionalExtraBoard = false
+optionalBoardPairings = true
 optionalThematicRebellion = false
 optionalEngland6 = true
+optionalThematicRedo = false
 optionalScaleBoard = true -- not currently hooked up into UI
 
 exploratoryVOTD = false
@@ -84,16 +84,16 @@ function onSave()
     local data_table = {}
 
     data_table.optional = {}
-    data_table.optional.blightCard = optionalBlightCard
-    data_table.optional.extraBoard = optionalExtraBoard
     data_table.optional.strangeMadness = optionalStrangeMadness
-    data_table.optional.boardPairings = optionalBoardPairings
+    data_table.optional.digitalEvents = optionalDigitalEvents
+    data_table.optional.blightCard = optionalBlightCard
     data_table.optional.soloBlight = optionalSoloBlight
     data_table.optional.blightSetup = optionalBlightSetup
-    data_table.optional.thematicRedo = optionalThematicRedo
-    data_table.optional.digitalEvents = optionalDigitalEvents
+    data_table.optional.extraBoard = optionalExtraBoard
+    data_table.optional.boardPairings = optionalBoardPairings
     data_table.optional.thematicRebellion = optionalThematicRebellion
     data_table.optional.england6 = optionalEngland6
+    data_table.optional.thematicRedo = optionalThematicRedo
 
     data_table.exploratory = {}
     data_table.exploratory.votd = exploratoryVOTD
@@ -134,16 +134,16 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
 
-        optionalBlightCard = loaded_data.optional.blightCard
-        optionalExtraBoard = loaded_data.optional.extraBoard
         optionalStrangeMadness = loaded_data.optional.strangeMadness
-        optionalBoardPairings = loaded_data.optional.boardPairings
+        optionalDigitalEvents = loaded_data.optional.digitalEvents
+        optionalBlightCard = loaded_data.optional.blightCard
         optionalSoloBlight = loaded_data.optional.soloBlight
         optionalBlightSetup = loaded_data.optional.blightSetup
-        optionalThematicRedo = loaded_data.optional.thematicRedo
-        optionalDigitalEvents = loaded_data.optional.digitalEvents
+        optionalExtraBoard = loaded_data.optional.extraBoard
+        optionalBoardPairings = loaded_data.optional.boardPairings
         optionalThematicRebellion = loaded_data.optional.thematicRebellion
         optionalEngland6 = loaded_data.optional.england6
+        optionalThematicRedo = loaded_data.optional.thematicRedo
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan
@@ -178,16 +178,14 @@ function onLoad(saved_data)
         numScenarios = count
 
         if not setupStarted then
+            self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
+            self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
             self.UI.setAttribute("blightCard", "isOn", optionalBlightCard)
             self.UI.setAttribute("blightCard2", "isOn", optionalBlightCard)
             self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
-            self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
             self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
             self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
-            self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
-            self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
-            self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
             local adversary = getObjectFromGUID(adversaries.France)
             if adversary ~= nil then
                 adversary.setVar("thematicRebellion", optionalThematicRebellion)
@@ -202,6 +200,8 @@ function onLoad(saved_data)
                 end
             end
             self.UI.setAttribute("england6", "isOn", optionalEngland6)
+            self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
+            self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
 
             self.UI.setAttribute("votd", "isOn", exploratoryVOTD)
             self.UI.setAttribute("bodan", "isOn", exploratoryBODAN)

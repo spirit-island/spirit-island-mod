@@ -2412,6 +2412,13 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
+    -- HACK: trying to fix client desync issue
+    for _,obj in ipairs(getObjects()) do
+        if isIslandBoard({obj=obj}) then
+            obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
+        end
+    end
+
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 5 end)
     return 1
 end
@@ -3116,9 +3123,6 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
 end
 setupMapCoObj = nil
 function setupMap(map,extra)
-    -- HACK: trying to fix client desync issue
-    map.setPosition(map.getPosition()+Vector(0,0.01,0))
-
     setupMapCoObj = map
     if extra then
         startLuaCoroutine(Global, "setupMapCoExtra")

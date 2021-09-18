@@ -1118,7 +1118,7 @@ function setupExpansion(bag)
                             rotation = {0,180,180},
                             smooth = false,
                         })
-                        Wait.condition(function() eventsDone = true end, function() return not events.loading_custom end)
+                        Wait.condition(function() eventsDone = true end, function() return not events.loading_custom and #eventDeckZone.getObjects() == 1 end)
                     end
                 end
             end

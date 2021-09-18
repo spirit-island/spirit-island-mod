@@ -520,12 +520,20 @@ function fearCardEarned()
     for i=#fearDeck,1,-1 do
         local card = fearDeck[i]
         if card.guid == "969897" then
-            card.setPosition(dividerPos)
-            card.setRotationSmooth(Vector(0, 180, 180))
+            -- HACK work around issue where setPosition sometimes doesn't move object
+            card.deal(1, "White")
+            Wait.condition(function()
+                card.setPosition(dividerPos)
+                card.setRotation(Vector(0, 180, 0))
+            end, function() return not card.isSmoothMoving() end)
             broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
         elseif card.guid == "f96a71" then
-            card.setPosition(dividerPos)
-            card.setRotationSmooth(Vector(0, 180, 180))
+            -- HACK work around issue where setPosition sometimes doesn't move object
+            card.deal(1, "White")
+            Wait.condition(function()
+                card.setPosition(dividerPos)
+                card.setRotation(Vector(0, 180, 0))
+            end, function() return not card.isSmoothMoving() end)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
         elseif card.hasTag("Invader Card") then
             local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,-1)

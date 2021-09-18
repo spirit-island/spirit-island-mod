@@ -2203,37 +2203,47 @@ function togglePlaytestExpansion(_, selected, id)
     getXml{updateDropdownSelection(id, selected)}
 end
 function togglePlaytestFear(_, selected, id)
-    playtestFear = selected
+    if playtestExpansion ~= "None" then
+        playtestFear = selected
+    end
     for i=0,2 do
         self.UI.setAttribute(id..i, "isOn", "false")
     end
-    self.UI.setAttribute(id..selected, "isOn", "true")
+    self.UI.setAttribute(id..playtestFear, "isOn", "true")
 end
 function togglePlaytestEvent(_, selected, id)
-    playtestEvent = selected
+    if playtestExpansion ~= "None" then
+        playtestEvent = selected
+    end
     for i=0,2 do
         self.UI.setAttribute(id..i, "isOn", "false")
     end
-    self.UI.setAttribute(id..selected, "isOn", "true")
+    self.UI.setAttribute(id..playtestEvent, "isOn", "true")
 end
 function togglePlaytestBlight(_, selected, id)
-    playtestBlight = selected
+    if playtestExpansion ~= "None" then
+        playtestBlight = selected
+    end
     for i=0,2 do
         self.UI.setAttribute(id..i, "isOn", "false")
     end
-    self.UI.setAttribute(id..selected, "isOn", "true")
+    self.UI.setAttribute(id..playtestBlight, "isOn", "true")
 end
 function togglePlaytestMinorPower(_, selected, id)
-    playtestMinorPower = selected
+    if playtestExpansion ~= "None" then
+        playtestMinorPower = selected
+    end
     for i=0,2 do
         self.UI.setAttribute(id..i, "isOn", "false")
     end
-    self.UI.setAttribute(id..selected, "isOn", "true")
+    self.UI.setAttribute(id..playtestMinorPower, "isOn", "true")
 end
 function togglePlaytestMajorPower(_, selected, id)
-    playtestMajorPower = selected
+    if playtestExpansion ~= "None" then
+        playtestMajorPower = selected
+    end
     for i=0,2 do
         self.UI.setAttribute(id..i, "isOn", "false")
     end
-    self.UI.setAttribute(id..selected, "isOn", "true")
+    self.UI.setAttribute(id..playtestMajorPower, "isOn", "true")
 end

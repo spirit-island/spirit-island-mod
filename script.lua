@@ -1278,14 +1278,12 @@ function SetupPowerDecks()
 end
 handOffset = Vector(0,0,36)
 scriptWorkingCardC = false
-powerPlayer = nil
-powerCards = 4
 function MajorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 2
     end
-    startDealPowerCards("MajorPower", Player[player_color], cards)
+    startDealPowerCards(false, Player[player_color], cards)
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -1294,14 +1292,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards("MajorPower", player, cards)
+    startDealPowerCards(false, player, cards)
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards("MinorPower", Player[player_color], cards)
+    startDealPowerCards(true, Player[player_color], cards)
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -1310,47 +1308,53 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards("MinorPower", player, cards)
+    startDealPowerCards(true, player, cards)
 end
-function startDealPowerCards(coro_name, player, cardCount)
+function startDealPowerCards(minor, player, cardCount)
     -- protection from double clicking
     if scriptWorkingCardC then return end
-
     scriptWorkingCardC = true
-    powerPlayer = player
-    powerCards = cardCount
-    startLuaCoroutine(Global, coro_name)
+
+    if minor then
+        _G["startDealPowerCardsCo"] = function()
+            DealPowerCards(
+                player,
+                cardCount,
+                getObjectFromGUID(minorPowerZone),
+                getObjectFromGUID(minorPowerDiscardZone),
+                getObjectFromGUID(playtestMinorPowerZone),
+                getObjectFromGUID(playtestMinorPowerDiscardZone),
+                playtestMinorPowers
+            )
+            return 1
+        end
+    else
+        _G["startDealPowerCardsCo"] = function()
+            DealPowerCards(
+                player,
+                cardCount,
+                getObjectFromGUID(majorPowerZone),
+                getObjectFromGUID(majorPowerDiscardZone),
+                getObjectFromGUID(playtestMajorPowerZone),
+                getObjectFromGUID(playtestMajorPowerDiscardZone),
+                playtestMajorPowers
+            )
+            return 1
+        end
+    end
+
+    startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
-function MinorPower()
-    DealPowerCards(
-        getObjectFromGUID(minorPowerZone),
-        getObjectFromGUID(minorPowerDiscardZone),
-        getObjectFromGUID(playtestMinorPowerZone),
-        getObjectFromGUID(playtestMinorPowerDiscardZone),
-        playtestMinorPowers
-    )
-    return 1
-end
-function MajorPower()
-    DealPowerCards(
-        getObjectFromGUID(majorPowerZone),
-        getObjectFromGUID(majorPowerDiscardZone),
-        getObjectFromGUID(playtestMajorPowerZone),
-        getObjectFromGUID(playtestMajorPowerDiscardZone),
-        playtestMajorPowers
-    )
-    return 1
-end
-function DealPowerCards(deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
+function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
     -- clear the zone!
-    local handPos = powerPlayer.getHandTransform().position
+    local handPos = player.getHandTransform().position
     local discardTable = DiscardPowerCards(handPos)
     if #discardTable > 0 then
         wt(0.1)
     end
 
     local xPadding = 4.4
-    if powerCards > 4 then
+    if cardCount > 4 then
         xPadding = 3.6
     end
     local cardPlaceOffset = {
@@ -1416,19 +1420,19 @@ function DealPowerCards(deckZone, discardZone, playtestDeckZone, playtestDiscard
         end
     end
     local playtestCount = playtestPowers
-    if powerCards == 2 then
+    if cardCount == 2 then
         if playtestPowers > 0 then
             playtestCount = 1
         end
-    elseif powerCards == 6 then
+    elseif cardCount == 6 then
         if playtestPowers == 1 then
             playtestCount = 2
         elseif playtestPowers == 2 then
             playtestCount = 3
         end
     end
-    dealPowerCards(deckZone, discardZone, powerCards - playtestCount, 0, false)
-    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, powerCards - playtestCount, true)
+    dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
+    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, cardCount - playtestCount, true)
 
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
@@ -3113,7 +3117,7 @@ function MapPlacen(boards)
         end
     end
 end
-function BoardCallback(obj,pos,rot,extra, scaleOrigin)
+function BoardCallback(obj, pos, rot, extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
     obj.setRotationSmooth(rot, false, true)
@@ -3121,78 +3125,50 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
-setupMapCoObj = nil
-function setupMap(map,extra)
-    setupMapCoObj = map
-    if extra then
-        startLuaCoroutine(Global, "setupMapCoExtra")
-    else
-        startLuaCoroutine(Global, "setupMapCoNoExtra")
-    end
-end
-function setupMapCoNoExtra()
-    return setupMapCo(false)
-end
-function setupMapCoExtra()
-    return setupMapCo(true)
-end
-function setupMapCo(extra)
-    local map = setupMapCoObj
-    local piecesToPlace = map.getTable("pieceMap")
-    local posToPlace = map.getTable("posMap")
-    local originalPieces = map.getTable("pieceMap")
+function setupMap(map, extra)
+    _G["setupMapCo"] = function()
+        local piecesToPlace = map.getTable("pieceMap")
+        local posToPlace = map.getTable("posMap")
+        local originalPieces = map.getTable("pieceMap")
 
-    if not map.hasTag("Thematic") then -- if not a thematic board
-        if usingSpiritTokens() then -- during Setup put 1 Beast and 1 Disease on each island board
-            for i=1,#piecesToPlace do
-                if #piecesToPlace[i] == 0 then
-                    table.insert(piecesToPlace[i],"Beasts") -- the Beasts go in the lowest-numbered land with no printed Setup icons
-                    break
-                end
-            end
-            table.insert(piecesToPlace[2],"Disease") -- the Disease goes in land #2 (with the City)
-        end
-    end
-
-    if extra and numPlayers < 5 then
-        local townFound = false
-        local cityFound = false
-        for i=1,#piecesToPlace do
-            for j=#piecesToPlace[i],1,-1 do
-                if string.sub(piecesToPlace[i][j],1,8) == "Explorer" then
-                    table.remove(piecesToPlace[i],j)
-                elseif string.sub(piecesToPlace[i][j],1,4) == "Town" then
-                    if numPlayers == 4 and not townFound then
-                        townFound = true
-                    else
-                        table.remove(piecesToPlace[i],j)
-                    end
-                elseif string.sub(piecesToPlace[i][j],1,4) == "City" then
-                    if numPlayers == 3 and not cityFound and i < 4 then
-                        cityFound = true
-                    else
-                        table.remove(piecesToPlace[i],j)
-                    end
-                end
-            end
-        end
-        if not townFound and numPlayers == 4 then
-            for i=1,3 do
-                for j,v in pairs (originalPieces[i]) do
-                    if string.sub(v,1,4) == "City" then
-                        table.insert(piecesToPlace[i],j, v)
-                        townFound = true
+        if not map.hasTag("Thematic") then -- if not a thematic board
+            if usingSpiritTokens() then -- during Setup put 1 Beast and 1 Disease on each island board
+                for i=1,#piecesToPlace do
+                    if #piecesToPlace[i] == 0 then
+                        table.insert(piecesToPlace[i],"Beasts") -- the Beasts go in the lowest-numbered land with no printed Setup icons
                         break
                     end
                 end
-                if townFound then
-                    break
+                table.insert(piecesToPlace[2],"Disease") -- the Disease goes in land #2 (with the City)
+            end
+        end
+
+        if extra and numPlayers < 5 then
+            local townFound = false
+            local cityFound = false
+            for i=1,#piecesToPlace do
+                for j=#piecesToPlace[i],1,-1 do
+                    if string.sub(piecesToPlace[i][j],1,8) == "Explorer" then
+                        table.remove(piecesToPlace[i],j)
+                    elseif string.sub(piecesToPlace[i][j],1,4) == "Town" then
+                        if numPlayers == 4 and not townFound then
+                            townFound = true
+                        else
+                            table.remove(piecesToPlace[i],j)
+                        end
+                    elseif string.sub(piecesToPlace[i][j],1,4) == "City" then
+                        if numPlayers == 3 and not cityFound and i < 4 then
+                            cityFound = true
+                        else
+                            table.remove(piecesToPlace[i],j)
+                        end
+                    end
                 end
             end
-            if not townFound then
+            if not townFound and numPlayers == 4 then
                 for i=1,3 do
                     for j,v in pairs (originalPieces[i]) do
-                        if string.sub(v,1,4) == "Town" then
+                        if string.sub(v,1,4) == "City" then
                             table.insert(piecesToPlace[i],j, v)
                             townFound = true
                             break
@@ -3202,42 +3178,57 @@ function setupMapCo(extra)
                         break
                     end
                 end
-            end
-        elseif not cityFound and numPlayers == 3 then
-            for i=1,3 do
-                for j,v in pairs (originalPieces[i]) do
-                    if string.sub(v,1,4) == "Town" then
-                        table.insert(piecesToPlace[i],j, v)
-                        cityFound = true
+                if not townFound then
+                    for i=1,3 do
+                        for j,v in pairs (originalPieces[i]) do
+                            if string.sub(v,1,4) == "Town" then
+                                table.insert(piecesToPlace[i],j, v)
+                                townFound = true
+                                break
+                            end
+                        end
+                        if townFound then
+                            break
+                        end
+                    end
+                end
+            elseif not cityFound and numPlayers == 3 then
+                for i=1,3 do
+                    for j,v in pairs (originalPieces[i]) do
+                        if string.sub(v,1,4) == "Town" then
+                            table.insert(piecesToPlace[i],j, v)
+                            cityFound = true
+                            break
+                        end
+                    end
+                    if cityFound then
                         break
                     end
                 end
-                if cityFound then
-                    break
-                end
             end
         end
-    end
 
-    if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
-        piecesToPlace = scenarioCard.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
-    end
-    -- supporting adversary setup should happen before primary
-    if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
-        piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
-    end
-    if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
-        piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
-    end
-
-    for l,landTable in ipairs (piecesToPlace) do
-        for i,pieceName in ipairs (landTable) do
-            place(pieceName,map.positionToWorld(posToPlace[l][i]))
-            coroutine.yield(0)
+        if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
+            piecesToPlace = scenarioCard.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
         end
+        -- supporting adversary setup should happen before primary
+        if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
+            piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
+        end
+        if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
+            piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
+        end
+
+        for l,landTable in ipairs (piecesToPlace) do
+            for i,pieceName in ipairs (landTable) do
+                place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                coroutine.yield(0)
+            end
+        end
+        boardsSetup = boardsSetup + 1
+        return 1
     end
-    boardsSetup = boardsSetup + 1
-    return 1
+    startLuaCoroutine(Global, "setupMapCo")
 end
 
 function place(objName, placePos, droppingPlayerColor)

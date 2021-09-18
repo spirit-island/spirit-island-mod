@@ -1,5 +1,3 @@
-setupStarted = false
-
 expansions = {}
 adversaries = {
     ["None"] = "",
@@ -88,6 +86,8 @@ exit = false
 sourceSpirit = nil
 challengeTier = 1
 challengeConfig = nil
+expansionsAdded = 0
+expansionsSetup = 0
 
 function onSave()
     local data_table = {}
@@ -888,7 +888,7 @@ function startGame()
     Global.setTable("expansions", exps)
     Global.setTable("events", events)
 
-    Wait.time(function() Global.call("SetupGame") end, 1)
+    Wait.condition(function() Global.call("SetupGame") end, function() return expansionsAdded == expansionsSetup end)
 end
 function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -1086,36 +1086,47 @@ function PickSpirit(name, aspect)
     end
 end
 function setupExpansion(bag)
-    for _,obj in pairs(bag.getObjects()) do
-        if obj.name == "Fear" then
-            local fearDeck = bag.takeObject({guid = obj.guid})
-            getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
-        elseif obj.name == "Minor Powers" then
-            local minorPowers = bag.takeObject({guid = obj.guid})
-            getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
-        elseif obj.name == "Major Powers" then
-            local majorPowers = bag.takeObject({guid = obj.guid})
-            getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
-        elseif obj.name == "Blight Cards" then
-            local blightCards = bag.takeObject({guid = obj.guid})
-            getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
-        elseif obj.name == "Events" then
-            if Global.getTable("events")[bag.getName()] then
-                local eventDeckZone = getObjectFromGUID(Global.getVar("eventDeckZone"))
-                if #eventDeckZone.getObjects() > 0 then
-                    local events = bag.takeObject({guid = obj.guid})
-                    eventDeckZone.getObjects()[1].putObject(events)
-                else
-                    bag.takeObject({
-                        guid = obj.guid,
-                        position = eventDeckZone.getPosition(),
-                        rotation = {0,180,180},
-                        smooth = false,
-                    })
+    expansionsAdded = expansionsAdded + 1
+    _G["setupExpansionCo"] = function()
+        local eventsStarted = false
+        local eventsDone = false
+        for _,obj in pairs(bag.getObjects()) do
+            if obj.name == "Fear" then
+                local fearDeck = bag.takeObject({guid = obj.guid})
+                getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+            elseif obj.name == "Minor Powers" then
+                local minorPowers = bag.takeObject({guid = obj.guid})
+                getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
+            elseif obj.name == "Major Powers" then
+                local majorPowers = bag.takeObject({guid = obj.guid})
+                getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
+            elseif obj.name == "Blight Cards" then
+                local blightCards = bag.takeObject({guid = obj.guid})
+                getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+            elseif obj.name == "Events" then
+                eventsStarted = true
+                if Global.getTable("events")[bag.getName()] then
+                    local eventDeckZone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+                    if #eventDeckZone.getObjects() > 0 then
+                        local events = bag.takeObject({guid = obj.guid})
+                        eventDeckZone.getObjects()[1].putObject(events)
+                        eventsDone = true
+                    else
+                        local events = bag.takeObject({
+                            guid = obj.guid,
+                            position = eventDeckZone.getPosition(),
+                            rotation = {0,180,180},
+                            smooth = false,
+                        })
+                        Wait.condition(function() eventsDone = true end, function() return not events.loading_custom end)
+                    end
                 end
             end
         end
+        Wait.condition(function() expansionsSetup = expansionsSetup + 1 end, function() return eventsStarted == eventsDone end)
+        return 1
     end
+    startLuaCoroutine(self, "setupExpansionCo")
 end
 
 function showUI()

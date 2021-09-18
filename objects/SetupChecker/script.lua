@@ -1292,7 +1292,7 @@ function toggleChallenge()
         self.UI.setAttribute("panelSpirit", "visibility", "")
         self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
     end
-    self.UI.setAttribute("challenge", "isOn", weeklyChallenge)
+    self.UI.setAttribute("challenge", "isOn", tostring(weeklyChallenge))
 end
 function toggleChallengeTier(_, selected, id)
     if selected == "0" then

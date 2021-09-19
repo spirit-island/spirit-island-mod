@@ -4,10 +4,7 @@ versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
 minorPowerZone = "cb16ab"
-minorPowerDiscardZone = "55b275"
 majorPowerZone = "089896"
-majorPowerDiscardZone = "eaf864"
-uniquePowerDiscardZone = "uniquePowerDiscard"
 PlayerBags = {
     ["Red"] = "PlayerBagRed",
     ["Purple"] = "PlayerBagPurple",
@@ -88,12 +85,12 @@ gamePaused = false
 yHeight = 0
 stagesSetup = 0
 boardsSetup = 0
-showAdvancedSettings = true
-showRandomizers = false
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
-fearCards = {3,3,3}
 ------
+minorPowerDiscardZone = "55b275"
+majorPowerDiscardZone = "eaf864"
+uniquePowerDiscardZone = "uniquePowerDiscard"
 playtestMinorPowerZone = "15922f"
 playtestMinorPowerDiscardZone = "03b826"
 playtestMajorPowerZone = "0a7dcb"
@@ -283,6 +280,22 @@ function onObjectLeaveContainer(container, object)
         return
     elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
+        if container == ExtraMapBag then
+            local decal = {
+                name = "Threshold",
+                rotation = {90, 180, 0},
+                scale    = {0.24, 0.24, 1},
+                url      = "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
+            }
+            if object.getName() == "A" or object.getName() == "C" then
+                decal.position = {1.48, 0.2, -0.1}
+            elseif object.getName() == "B" or object.getName() == "D" then
+                decal.position = {1.48, 0.2, -0.05}
+            elseif object.getName() == "E" or object.getName() == "F" then
+                decal.position = {1.58, 0.2, 0.05}
+            end
+            object.setDecals({decal})
+        end
         return
     end
 end
@@ -1027,6 +1040,7 @@ end
 function SetupFear()
     setupFearTokens()
 
+    local fearCards = {3,3,3}
     if scenarioCard ~= nil then
         local extraFearCards = scenarioCard.getVar("fearCards")
         if extraFearCards ~= nil then

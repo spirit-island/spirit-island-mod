@@ -9,6 +9,7 @@ postSetup = true
 postSetupComplete = false
 hasLossCondition = true
 hasUI = true
+hasBroadcast = true
 supporting = false
 count = 0
 
@@ -189,4 +190,11 @@ function PostSetup(params)
     else
         postSetupComplete = true
     end
+end
+
+function Broadcast(params)
+    if params.level >= 1 and Global.getVar("numBoards") > 6 then
+        return "Habsburg Level 1 - Resolve Island Boards in the order: A, A2, B, B2..."
+    end
+    return nil
 end

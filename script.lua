@@ -4511,8 +4511,10 @@ function toggleInvaderPhaseImage(explore)
     local start, _ = string.find(current,"Stage")
     if start == nil and not explore then
         UI.setAttribute("invaderImage", "image", current.." Stage")
+        UI.setAttribute("exploreAdvance", "onClick", "aidBoard/flipExploreCard")
     elseif start ~= nil and explore then
         UI.setAttribute("invaderImage", "image", string.sub(current, 1, start - 2))
+        UI.setAttribute("exploreAdvance", "onClick", "aidBoard/advanceInvaderCards")
     end
 end
 function dark(a)

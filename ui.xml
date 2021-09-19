@@ -102,6 +102,7 @@
             </VerticalLayout>
         </Panel>
     </HorizontalLayout>
+    <Button id="exploreAdvance" width="84" height="24" rectAlignment="LowerRight" onClick="aidBoard/flipExploreCard" colors="clear|clear|clear|clear" />
 </Panel>
 <Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 305">
     <VerticalLayout>

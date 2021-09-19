@@ -220,7 +220,7 @@ function ExportConfig()
     data.variant.soloBlight = SetupChecker.getVar("optionalSoloBlight")
     data.variant.blightSetup = SetupChecker.getVar("optionalBlightSetup")
     data.variant.extraBoard = SetupChecker.getVar("optionalExtraBoard")
-    local extraBoardRandom = Global.getVar("randomBoard")
+    local extraBoardRandom = Global.getVar("extraRandomBoard")
     if extraBoardRandom ~= nil then
         data.variant.extraBoardRandom = extraBoardRandom
     end

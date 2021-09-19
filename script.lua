@@ -82,7 +82,7 @@ playerBlocks = {
 showPlayerButtons = true
 onlyCleanupTimePasses = false
 objectsToCleanup = {}
-randomBoard = nil
+extraRandomBoard = nil
 ------ Unsaved Config Data
 gamePaused = false
 yHeight = 0
@@ -336,7 +336,7 @@ function onSave()
         playtestMajorPowers = playtestMajorPowers,
         onlyCleanupTimePasses = onlyCleanupTimePasses,
         objectsToCleanup = objectsToCleanup,
-        randomBoard = randomBoard,
+        extraRandomBoard = extraRandomBoard,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -537,7 +537,7 @@ function onLoad(saved_data)
         playtestMajorPowers = loaded_data.playtestMajorPowers
         onlyCleanupTimePasses = loaded_data.onlyCleanupTimePasses
         objectsToCleanup = loaded_data.objectsToCleanup
-        randomBoard = loaded_data.randomBoard
+        extraRandomBoard = loaded_data.extraRandomBoard
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -3025,10 +3025,10 @@ function MapPlacen(boards)
     local BETaken = false
     local DFTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
-        if randomBoard == nil then
-            randomBoard = math.random(1,#boards)
+        if extraRandomBoard == nil then
+            extraRandomBoard = math.random(1,#boards)
         end
-        rand = randomBoard
+        rand = extraRandomBoard
     end
 
     -- We use the average position of the boards in the island layout

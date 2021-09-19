@@ -933,7 +933,7 @@ function loadConfig(config)
             optionalExtraBoard = config.variant.extraBoard
             if optionalExtraBoard then
                 if config.variant.extraBoardRandom ~= nil then
-                    Global.setVar("randomBoard", config.variant.extraBoardRandom)
+                    Global.setVar("extraRandomBoard", config.variant.extraBoardRandom)
                 end
             end
         end

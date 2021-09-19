@@ -2723,7 +2723,7 @@ function handlePlayer(color, data)
         elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
         elseif obj.hasTag("Reminder Token") then
-            obj.destruct()
+            if obj.getLock() == false then obj.destruct() end
         elseif obj.getName() == "Speed Token" then
             -- Move speed token up a bit to trigger collision exit callback
             obj.setPosition(obj.getPosition() + Vector(0,1,0))

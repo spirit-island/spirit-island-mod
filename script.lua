@@ -5148,6 +5148,10 @@ function enterInvaderPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 3 then return end
     broadcastToAll("Entering Invader Phase", Color.White)
+    if blightedIslandCard and not blightedIslandCard.is_face_down and blightedIslandCard.getDescription() ~= "" then
+        printToAll(blightedIslandCard.getName()..": ", Color.White)
+        printToAll(blightedIslandCard.getDescription(), Color.SoftBlue)
+    end
     updateCurrentPhase(true)
     currentPhase = 3
     updateCurrentPhase(false)

@@ -1104,8 +1104,8 @@ function setupExpansion(bag)
                 local blightCards = bag.takeObject({guid = obj.guid})
                 getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
             elseif obj.name == "Events" then
-                eventsStarted = true
                 if Global.getTable("events")[bag.getName()] then
+                    eventsStarted = true
                     local eventDeckZone = getObjectFromGUID(Global.getVar("eventDeckZone"))
                     if #eventDeckZone.getObjects() > 0 then
                         local events = bag.takeObject({guid = obj.guid})

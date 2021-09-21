@@ -243,19 +243,19 @@ end
 scanLoopTable = {
     Build2 = {
         sourceGUID = "6bc964",
-        origin = Vector(-0.23,0.5,-0.137),
+        origin = Vector(-0.23,0.1,0.42),
         faceDown = false,
     },
     Ravage = {
-        origin = Vector(-0.203,0.5,1.872),
+        origin = Vector(-0.203,0.09,2.1),
         faceDown = false,
     },
     Build = {
-        origin = Vector(-0.715,0.5,1.874),
+        origin = Vector(-0.715,0.09,2.1),
         faceDown = false,
     },
     Explore = {
-        origin = Vector(-1.23,0.5,1.874),
+        origin = Vector(-1.23,0.09,2.1),
         faceDown = false,
     },
 }
@@ -271,10 +271,8 @@ function advanceInvaderCards()
             local hits = Physics.cast({
                 origin       = source.positionToWorld(v.origin),
                 direction    = Vector(0,1,0),
-                type         = 3,
-                size         = Vector(1,0.9,1.5),
-                orientation  = source.getRotation(),
-                max_distance = 0,
+                type         = 1,
+                max_distance = 0.3,
                 --debug        = true,
             })
             local hitObjects = {}
@@ -326,10 +324,8 @@ function aidPanelScanLoop()
             local hits = Physics.cast({
                 origin       = source.positionToWorld(v.origin),
                 direction    = Vector(0,1,0),
-                type         = 3,
-                size         = Vector(1,0.9,1.5),
-                orientation  = source.getRotation(),
-                max_distance = 0,
+                type         = 1,
+                max_distance = 0.3,
                 --debug        = true,
             })
             local hitObjects = {}
@@ -356,10 +352,8 @@ function aidPanelScanLoop()
     local hits = Physics.cast({
         origin       = self.positionToWorld(scanLoopTable["Explore"].origin),
         direction    = Vector(0,1,0),
-        type         = 3,
-        size         = Vector(1,0.9,1.5),
-        orientation  = self.getRotation(),
-        max_distance = 0,
+        type         = 1,
+        max_distance = 0.3,
         --debug        = true,
     })
     local hitObjects = {}
@@ -383,10 +377,8 @@ function countDiscard()
     local hits = Physics.cast({
         origin       = discard,
         direction    = Vector(0,1,0),
-        type         = 3,
-        size         = Vector(1,0.9,1.5),
-        orientation  = Vector(0,90,0),
-        max_distance = 0,
+        type         = 1,
+        max_distance = 0.3,
         --debug        = true,
     })
     for _,hit in pairs(hits) do

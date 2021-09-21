@@ -210,6 +210,15 @@ end
 
 ---- Invader Card Section
 function flipExploreCard()
+    local function removeSpecial(card)
+        local script = card.getLuaScript()
+        local start, finish = string.find(script,"special=true\n")
+        if start ~= nil then
+            card.setLuaScript(script:sub(1, start-1)..script:sub(finish+1, -1))
+            card.setVar("special", nil)
+        end
+    end
+
     local objs = Global.getVar("invaderDeckZone").getObjects()
     if #objs == 0 then
         broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
@@ -223,9 +232,11 @@ function flipExploreCard()
         objs[1].takeObject({
             position = objs[1].getPosition() + Vector(0,.5,0),
             flip = true,
+            callback_function = removeSpecial,
         })
     elseif objs[1].type == "Card" then
         objs[1].flip()
+        removeSpecial(objs[1])
     end
 end
 

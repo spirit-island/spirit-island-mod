@@ -123,7 +123,7 @@ function AdversaryUI(params)
     if params.level >= 6 then
         ui.six = {}
         ui.six.name = "Persistent Explorers"
-        ui.six.tooltip = "After the normal Explore Phase, on each board\nadd 1 Explorer to a land without any. Fear\nCard effects never remove Explorer. If one\nwould, you may instead Push that Explorer."
+        ui.six.tooltip = "After resolving an Explore Card, on each board\nadd 1 Explorer to a land without any. Fear\nCard effects never remove Explorer. If one\nwould, you may instead Push that Explorer."
     end
     return ui
 end

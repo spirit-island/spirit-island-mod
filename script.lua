@@ -1387,15 +1387,17 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         local deck = powersZone.getObjects()[1]
         if deck == nil then
         elseif deck.type == "Card" then
-            deck.setLock(true)
-            deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
-            deck.setRotationSmooth(Vector(0, 180, 0))
-            if isPlaytest then
-                deck.addTag("Playtest")
+            if cardsAdded < count then
+                deck.setLock(true)
+                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
+                deck.setRotationSmooth(Vector(0, 180, 0))
+                if isPlaytest then
+                    deck.addTag("Playtest")
+                end
+                CreatePickPowerButton(deck)
+                cardsAdded = cardsAdded + 1
+                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
             end
-            CreatePickPowerButton(deck)
-            cardsAdded = cardsAdded + 1
-            Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
         elseif deck.type == "Deck" then
             for i=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
@@ -1507,7 +1509,7 @@ function discardPowerCardFromPlay(card, discardHeight)
         -- Discard unknown cards to the unique power discard
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     end
-    card.setPositionSmooth(discardZone.getPosition() + Vector(0,discardHeight,0), false, true)
+    card.setPosition(discardZone.getPosition() + Vector(0,discardHeight,0), false, true)
     card.setRotation(Vector(0, 180, 0))
 end
 

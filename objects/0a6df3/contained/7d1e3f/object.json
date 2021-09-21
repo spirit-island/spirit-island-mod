@@ -4,12 +4,12 @@
     "posX": 4.779,
     "posY": 0.9129,
     "posZ": -35.54,
-    "rotX": 0.0028,
-    "rotY": 180.0049,
-    "rotZ": 179.9913,
-    "scaleX": 1.3657,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.0,
     "scaleY": 1.0,
-    "scaleZ": 1.3657
+    "scaleZ": 1.0
   },
   "Nickname": "Travel",
   "Description": "",

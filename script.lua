@@ -300,13 +300,21 @@ function onObjectLeaveContainer(container, object)
     end
 end
 function onObjectEnterScriptingZone(zone, obj)
-    if zone.guid == spiritZone then
-        if obj.hasTag("Aspect") then
+    if obj.hasTag("Aspect") then
+        if zone.guid == spiritZone then
             for _,object in pairs(upCast(obj, 1, 0, Vector(0, -1, 0))) do
                 if object.hasTag("Spirit") then
                     sourceSpirit.call("AddAspectButton", {obj = object})
                     break
                 end
+            end
+        end
+        for color,guid in pairs(elementScanZones) do
+            if guid == zone.guid then
+                if gameStarted and obj.hasTag("Setup") then
+                    obj.call("doSetup", {color=color})
+                end
+                break
             end
         end
     end
@@ -435,13 +443,13 @@ function onLoad(saved_data)
             if isPowerCard({card=obj}) then
                 -- This ugliness is because setPositionSmooth doesn't work from a hand.
                 ensureCardInPlay(obj)
-                discardPowerCardFromPlay(obj, 1)
+                discardPowerCardFromPlay({card = obj, discardHeight = 1})
             end
         end
         if isPowerCard({card=hoveredObject}) then
             -- This ugliness is because setPositionSmooth doesn't work from a hand.
             ensureCardInPlay(hoveredObject)
-            discardPowerCardFromPlay(hoveredObject, 1)
+            discardPowerCardFromPlay({card = hoveredObject, discardHeight = 1})
         end
     end)
     addHotkey("Discard Power (to 2nd hand)", function (playerColor, hoveredObject, cursorLocation, key_down_up)
@@ -1486,31 +1494,31 @@ function DiscardPowerCards(handPos)
     local discardTable = {}
     local cardZoneObjects = getPowerZoneObjects(handPos)
     for i, obj in ipairs(cardZoneObjects) do
-        discardPowerCardFromPlay(obj, i)
+        discardPowerCardFromPlay({card = obj, discardHeight = i})
         obj.clearButtons()
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
         discardTable[i] = obj
     end
     return discardTable
 end
-function discardPowerCardFromPlay(card, discardHeight)
+function discardPowerCardFromPlay(params)
     local discardZone
-    if card.hasTag("Major") and not card.hasTag("Playtest") then
+    if params.card.hasTag("Major") and not params.card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(majorPowerDiscardZone)
-    elseif card.hasTag("Major") and card.hasTag("Playtest") then
+    elseif params.card.hasTag("Major") and params.card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(playtestMajorPowerDiscardZone)
-    elseif card.hasTag("Minor") and not card.hasTag("Playtest") then
+    elseif params.card.hasTag("Minor") and not params.card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(minorPowerDiscardZone)
-    elseif card.hasTag("Minor") and card.hasTag("Playtest") then
+    elseif params.card.hasTag("Minor") and params.card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(playtestMinorPowerDiscardZone)
-    elseif card.hasTag("Unique") then
+    elseif params.card.hasTag("Unique") then
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     else
         -- Discard unknown cards to the unique power discard
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     end
-    card.setPosition(discardZone.getPosition() + Vector(0,discardHeight,0), false, true)
-    card.setRotation(Vector(0, 180, 0))
+    params.card.setPosition(discardZone.getPosition() + Vector(0,params.discardHeight,0), false, true)
+    params.card.setRotation(Vector(0, 180, 0))
 end
 
 function getPowerZoneObjects(handP)
@@ -2546,8 +2554,8 @@ function runSpiritSetup()
     for color, _ in pairs(selectedColors) do
         local zone = getObjectFromGUID(elementScanZones[color])
         for _, obj in ipairs(zone.getObjects()) do
-            if obj.hasTag("Spirit Setup") then
-                obj.call("doSpiritSetup", {color=color})
+            if obj.hasTag("Setup") then
+                obj.call("doSetup", {color=color})
             end
         end
     end
@@ -5095,7 +5103,7 @@ function applyPowerCardContextMenuItems(card)
                 if isPowerCard({card=obj}) then
                     -- This ugliness is because setPositionSmooth doesn't work from a hand.
                     ensureCardInPlay(obj)
-                    discardPowerCardFromPlay(obj, 1)
+                    discardPowerCardFromPlay({card = obj, discardHeight = 1})
                 end
             end
         end,

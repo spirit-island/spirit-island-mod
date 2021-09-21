@@ -43,7 +43,7 @@ function tryObjectEnter(enter_object)
     return false
 end
 
-function doSpiritSetup(params)
+function doSetup(params)
     if not Global.getVar("gameStarted") then
         return
     end

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 5.3397,
-    "posY": 1.0013,
-    "posZ": -36.0999,
-    "rotX": 0.0151,
-    "rotY": 180.0077,
-    "rotZ": 178.9601,
-    "scaleX": 1.3657,
+    "posX": 7.9413,
+    "posY": 1.9847,
+    "posZ": 104.4195,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.0,
     "scaleY": 1.0,
-    "scaleZ": 1.3657
+    "scaleZ": 1.0
   },
   "Nickname": "Sunshine",
   "Description": "",
@@ -20,7 +20,8 @@
     "b": 0.7132
   },
   "Tags": [
-    "Aspect"
+    "Aspect",
+    "Setup"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,

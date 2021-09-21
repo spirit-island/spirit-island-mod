@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -46.1801,
-    "posY": 1.2141,
-    "posZ": 41.18,
-    "rotX": 0.0001,
-    "rotY": 179.9864,
+    "posX": 5.875,
+    "posY": 2.0267,
+    "posZ": 89.2176,
+    "rotX": 0.0,
+    "rotY": 180.0035,
     "rotZ": 180.0,
-    "scaleX": 1.53,
+    "scaleX": 1.0,
     "scaleY": 1.0,
-    "scaleZ": 1.53
+    "scaleZ": 1.0
   },
   "Nickname": "Gift of Constancy",
   "Description": "",
@@ -27,7 +27,7 @@
   "Value": 0,
   "Locked": false,
   "Grid": false,
-  "Snap": true,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,

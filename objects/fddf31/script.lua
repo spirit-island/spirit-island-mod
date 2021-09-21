@@ -1,4 +1,4 @@
-function doSpiritSetup(params)
+function doSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then
         Player[color].broadcast("Please wait for the game to start before pressing button!", Color.Red)

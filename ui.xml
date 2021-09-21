@@ -32,6 +32,14 @@
                             <Text id="panelBuild222text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelBuild231">
+                            <Text id="panelBuild231text" fontStyle="Bold" />
+                        </Panel>
+                        <Panel id="panelBuild232">
+                            <Text id="panelBuild232text" fontStyle="Bold" />
+                        </Panel>
+                    </VerticalLayout>
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
@@ -52,6 +60,14 @@
                         </Panel>
                         <Panel id="panelRavage22">
                             <Text id="panelRavage22text" fontStyle="Bold" />
+                        </Panel>
+                    </VerticalLayout>
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelRavage31">
+                            <Text id="panelRavage31text" fontStyle="Bold" />
+                        </Panel>
+                        <Panel id="panelRavage32">
+                            <Text id="panelRavage32text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>
@@ -76,6 +92,14 @@
                             <Text id="panelBuild22text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelBuild31">
+                            <Text id="panelBuild31text" fontStyle="Bold" />
+                        </Panel>
+                        <Panel id="panelBuild32">
+                            <Text id="panelBuild32text" fontStyle="Bold" />
+                        </Panel>
+                    </VerticalLayout>
                 </HorizontalLayout>
             </VerticalLayout>
         </Panel>
@@ -96,6 +120,14 @@
                         </Panel>
                         <Panel id="panelExplore22">
                             <Text id="panelExplore22text" fontStyle="Bold" />
+                        </Panel>
+                    </VerticalLayout>
+                    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
+                        <Panel id="panelExplore31">
+                            <Text id="panelExplore31text" fontStyle="Bold" />
+                        </Panel>
+                        <Panel id="panelExplore32">
+                            <Text id="panelExplore32text" fontStyle="Bold" />
                         </Panel>
                     </VerticalLayout>
                 </HorizontalLayout>

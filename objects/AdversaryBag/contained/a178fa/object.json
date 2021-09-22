@@ -4,9 +4,9 @@
     "posX": -70.26,
     "posY": 1.3187,
     "posZ": 0.86,
-    "rotX": -0.001,
-    "rotY": 180.006,
-    "rotZ": 0.0002,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
     "scaleX": 0.21,
     "scaleY": 1.0,
     "scaleZ": 0.2

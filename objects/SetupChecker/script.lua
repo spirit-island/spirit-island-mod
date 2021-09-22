@@ -1526,6 +1526,34 @@ function pickSpirit4(obj, color)
     if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
     pickSpirit(obj, 3, color)
 end
+function replaceSpirit(obj, index, color)
+    local tags = getSpiritTags()
+    if tags == nil then
+        Player[color].broadcast("You have no expansions selected", Color.Red)
+        return
+    end
+    local complexities = getSpiritComplexities()
+    if complexities == nil then
+        Player[color].broadcast("You have no complexities selected", Color.Red)
+        return
+    end
+    local spirit = getNewSpirit(tags, complexities)
+    if spirit ~= nil then
+        Player[color].broadcast("Spirit unavailable getting new one", Color.Red)
+        obj.editButton({
+            index = index,
+            label = spirit.getName(),
+        })
+    else
+        Player[color].broadcast("No suitable replacment was found", Color.Red)
+        obj.editButton({
+            index = index,
+            label = "",
+            width = 0,
+            height = 0,
+        })
+    end
+end
 function pickSpirit(obj, index, color)
     local name = obj.getButtons()[index+1].label
     local start,_ = string.find(name, "-")
@@ -1537,32 +1565,7 @@ function pickSpirit(obj, index, color)
         sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
         obj.clearButtons()
     else
-        local tags = getSpiritTags()
-        if tags == nil then
-            Player[color].broadcast("You have no expansions selected", Color.Red)
-            return
-        end
-        local complexities = getSpiritComplexities()
-        if complexities == nil then
-            Player[color].broadcast("You have no complexities selected", Color.Red)
-            return
-        end
-        local spirit = getNewSpirit(tags, complexities)
-        if spirit ~= nil then
-            Player[color].broadcast("Spirit unavailable getting new one", Color.Red)
-            obj.editButton({
-                index = index,
-                label = spirit.getName(),
-            })
-        else
-            Player[color].broadcast("No suitable replacment was found", Color.Red)
-            obj.editButton({
-                index = index,
-                label = "",
-                width = 0,
-                height = 0,
-            })
-        end
+        replaceSpirit(obj, index, color)
     end
 end
 function isSpiritPickable(params)
@@ -1624,14 +1627,37 @@ function removeSpirit(params)
             break
         end
     end
-    for _, data in pairs(spiritChoices) do
+    spiritTags[params.spirit] = nil
+    spiritComplexities[params.spirit] = nil
+    for name, data in pairs(spiritChoices) do
         if data.guid == params.spirit then
             spiritChoicesLength = spiritChoicesLength - 1
+
+            local found = false
+            for color,guid in pairs(Global.getVar("elementScanZones")) do
+                local zone = getObjectFromGUID(guid)
+                local buttons = zone.getButtons()
+                if buttons ~= nil then
+                    for index,button in pairs(buttons) do
+                        local label = button.label
+                        local start,_ = string.find(label, "-")
+                        if start ~= nil then
+                            label = string.sub(label, 1, start-1)
+                        end
+                        if name == label then
+                            replaceSpirit(zone, index-1, color)
+                            found = true
+                            break
+                        end
+                    end
+                    if found then
+                        break
+                    end
+                end
+            end
             break
         end
     end
-    spiritTags[params.spirit] = nil
-    spiritComplexities[params.spirit] = nil
 end
 
 function toggleSoloBlight()

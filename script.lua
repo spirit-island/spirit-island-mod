@@ -136,16 +136,6 @@ alternateBoardLayoutNames = {
     {"Star","Flower","Caldera"},
     {"Pi"},
 }
-interactableObjectsToDisableOnLoad = {
-    "e267b0","901e41","d3dd7e",  -- tables
-    "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
-    "ba3767","239d5b","114ff8","782f57","c323b4","f4ab64","6b0f27","bd3f44","82c5e4","837ddf","aee27f", -- borders
-    "5f4be2", "e84330", -- sea tile
-    "235564", -- white box section
-    "SetupChecker", "SourceSpirit",
-    "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player blocks
-    "19d429", -- big block
-}
 
 ---- TTS Events Section
 function onObjectEnterZone(zone, enter_object)
@@ -476,11 +466,9 @@ function onLoad(saved_data)
         end
     end)
 
-    for _,v in ipairs(interactableObjectsToDisableOnLoad) do
-        if getObjectFromGUID(v) ~= nil then
-            getObjectFromGUID(v).setLock(true)
-            getObjectFromGUID(v).interactable = false
-        end
+    for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
+        obj.setLock(true)
+        obj.interactable = false
     end
 
     ------
@@ -1809,8 +1797,9 @@ function SetupAdversary()
             guid = "312e2d",
             position = aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84)),
             rotation = {0,180,0},
-            callback_function = function(obj) obj.setLock(true) end,
         })
+        secondAdversaryBoard.setLock(true)
+        secondAdversaryBoard.interactable = false
         Wait.condition(function() boardSetup = true end, function() return not secondAdversaryBoard.isSmoothMoving() end)
     else
         boardSetup = true
@@ -1870,6 +1859,7 @@ function reminderSetup()
             rotation = {0,180,0},
         })
         obj.setLock(true)
+        obj.interactable = false
         ravagePos.z = ravagePos.z + 0.07
     end
     if reminder2.ravage and reminder2.ravage ~= reminder.ravage then
@@ -1879,6 +1869,7 @@ function reminderSetup()
             rotation = {0,180,0},
         })
         obj.setLock(true)
+        obj.interactable = false
     end
 
     local buildPos = Vector(-0.72,-0.09,2.24)
@@ -1889,6 +1880,7 @@ function reminderSetup()
             rotation = {0,180,0},
         })
         obj.setLock(true)
+        obj.interactable = false
         buildPos.z = buildPos.z + 0.07
     end
     if reminder2.build and reminder2.build ~= reminder.build then
@@ -1898,6 +1890,7 @@ function reminderSetup()
             rotation = {0,180,0},
         })
         obj.setLock(true)
+        obj.interactable = false
     end
 
     local explorePos = Vector(-1.24,-0.09,2.24)
@@ -1908,6 +1901,7 @@ function reminderSetup()
             rotation = {0,180,0},
         })
         obj.setLock(true)
+        obj.interactable = false
         explorePos.z = explorePos.z + 0.07
     end
     if reminder2.explore and reminder2.explore ~= reminder.explore then
@@ -1917,6 +1911,7 @@ function reminderSetup()
             rotation = {0,180,0},
         })
         obj.setLock(true)
+        obj.interactable = false
     end
 end
 function adversaryUISetup()

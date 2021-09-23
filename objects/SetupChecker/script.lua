@@ -2114,6 +2114,10 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
                 config.adversaryLevel2 = supportingAdversaryLevel % config.adversaryLevel2
             end
             difficulty = difficultyCheck(config)
+            if config.adversaryLevel == 0 and config.adversaryLevel2 == 0 then
+                -- can't go any lower so we just have to take it
+                break
+            end
         end
     elseif tier == 2 then
         local adversaryLevelMax = 6
@@ -2167,7 +2171,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
             end
             difficulty = difficultyCheck(config)
             if config.adversaryLevel == 6 and config.adversaryLevel2 == 6 then
-                -- can't go any higher than so we just have to take it
+                -- can't go any higher so we just have to take it
                 break
             end
         end

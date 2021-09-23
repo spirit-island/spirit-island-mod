@@ -1989,6 +1989,10 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     end
     if math.random(-2, 1) == 1 then
         config.boardLayout = "Thematic"
+        if numBoards > 6 then
+            config.variant.extraBoard = false
+            numBoards = 6
+        end
     else
         local layoutsCount = 0
         for _,_ in pairs(setups[numBoards]) do

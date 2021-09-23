@@ -1,10 +1,10 @@
 difficulty=1
-broadcast="Remember, place 4 Scenario Markers on each board in lands without Dahan - Powers Long Forgotten"
 
-postSetup=true
-postSetupComplete=false
+preSetup=true
+preSetupComplete=false
+mapSetup=true
 
-function PostSetup()
+function PreSetup()
     local scenarioBag = Global.getVar("scenarioBag")
     local bag = scenarioBag.takeObject({
         guid = "8d6e46",
@@ -27,5 +27,26 @@ function removeTokens(obj)
         obj.takeObject({index = 0}).destruct()
     end
     obj.shuffle()
-    postSetupComplete = true
+    preSetupComplete = true
+end
+
+function MapSetup(params)
+    if not Global.call("isThematic") then
+        for i=1,#params.pieces do
+            local landHasDahan = false
+            for _,v in pairs (params.pieces[i]) do
+                if string.sub(v,1,5) == "Dahan" then
+                    landHasDahan = true
+                    break
+                end
+            end
+            if not landHasDahan then
+                table.insert(params.pieces[i],"Scenario Token")
+            end
+        end
+    else
+        -- some thematic boards have more than 4 valid lands
+        broadcast="Remember, place 4 Scenario Markers on each board in lands without Dahan - Powers Long Forgotten"
+    end
+    return params.pieces
 end

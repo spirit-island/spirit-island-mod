@@ -1013,23 +1013,29 @@ function SetupPlaytestDeck(zone, name, option, callback)
 end
 ----- Pre Setup Section
 function PreSetup()
-    local adversariesSetup = 0
+    local preSetupSteps = 0
     if adversaryCard ~= nil and adversaryCard.getVar("preSetup") then
         adversaryCard.call("PreSetup",{level = adversaryLevel})
-        Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard.getVar("preSetupComplete") end)
+        Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard.getVar("preSetupComplete") end)
     else
-        adversariesSetup = adversariesSetup + 1
+        preSetupSteps = preSetupSteps + 1
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("preSetup") then
         -- Wait for first adversary to finish
         Wait.condition(function()
             adversaryCard2.call("PreSetup",{level = adversaryLevel2})
-            Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard2.getVar("preSetupComplete") end)
-        end, function() return adversariesSetup == 1 end)
+            Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard2.getVar("preSetupComplete") end)
+        end, function() return preSetupSteps == 1 end)
     else
-        adversariesSetup = adversariesSetup + 1
+        preSetupSteps = preSetupSteps + 1
     end
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return adversariesSetup == 2 end)
+    if scenarioCard ~= nil and scenarioCard.getVar("preSetup") then
+        scenarioCard.call("PreSetup")
+        Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return scenarioCard.getVar("preSetupComplete") end)
+    else
+        preSetupSteps = preSetupSteps + 1
+    end
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return preSetupSteps == 3 end)
     return 1
 end
 ----- Fear Section
@@ -3360,6 +3366,11 @@ function place(objName, placePos, droppingPlayerColor)
         temp = threeEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Speed Token" then
         temp = speedBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+    elseif objName == "Scenario Token" then
+        local bag = getObjectFromGUID("8d6e46")
+        if bag ~= nil then
+            bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+        end
     end
     if droppingPlayerColor then
         local dropColor = droppingPlayerColor

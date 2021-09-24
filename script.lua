@@ -2507,8 +2507,8 @@ function StartGame()
             wt(2)
         end
     end
-    if scenarioCard ~= nil then
-        local broadcast = scenarioCard.getVar("broadcast")
+    if scenarioCard ~= nil and scenarioCard.getVar("hasBroadcast") then
+        local broadcast = scenarioCard.call("Broadcast")
         if broadcast ~= nil then
             printToAll("Scenario:", Color.White)
             printToAll(broadcast, Color.SoftBlue)

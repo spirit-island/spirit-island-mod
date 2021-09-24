@@ -1,10 +1,12 @@
 difficulty=0
-broadcast=nil
 
 requirements = true
 mapSetup = true
 postSetup = true
 postSetupComplete = false
+hasBroadcast = true
+
+broadcast = nil
 blightCount = nil
 
 function onLoad()
@@ -187,6 +189,10 @@ function readConfig()
         end
     end
     return nil
+end
+
+function Broadcast(params)
+    return broadcast
 end
 
 function ExportConfig()

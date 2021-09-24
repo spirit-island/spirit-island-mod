@@ -3,6 +3,9 @@ difficulty=1
 preSetup=true
 preSetupComplete=false
 mapSetup=true
+hasBroadcast = true
+
+broadcast = nil
 
 function PreSetup()
     local scenarioBag = Global.getVar("scenarioBag")
@@ -46,7 +49,11 @@ function MapSetup(params)
         end
     else
         -- some thematic boards have more than 4 valid lands
-        broadcast="Remember, place 4 Scenario Markers on each board in lands without Dahan - Powers Long Forgotten"
+        broadcast = "Remember, place 4 Scenario Markers on each board in lands without Dahan - Powers Long Forgotten"
     end
     return params.pieces
+end
+
+function Broadcast(params)
+    return broadcast
 end

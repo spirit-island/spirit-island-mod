@@ -113,7 +113,7 @@ function PostSetup(params)
             blightCount = config.secondWave.blight
         end
         if config.secondWave.wave then
-            broadcast = "Starting Wave "..config.secondWave.wave.." - Second Wave"
+            broadcast = "Second Wave - Starting Wave "..config.secondWave.wave
             broadcastToAll("Adversary Blight should have come from the card not the box, so you might need to manually fix this", Color.Red)
         end
         if config.secondWave.powers then

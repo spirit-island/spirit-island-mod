@@ -12,5 +12,5 @@ function PostSetup()
 end
 
 function Broadcast(params)
-    return "Remember, Invaders get an additional set of Actions at the end of Setup - Blitz"
+    return "Blitz - Remember, Invaders get an additional set of Actions at the end of Setup"
 end

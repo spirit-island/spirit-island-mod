@@ -49,11 +49,15 @@ function MapSetup(params)
         end
     else
         -- some thematic boards have more than 4 valid lands
-        broadcast = "Remember, place 4 Scenario Markers on each board in lands without Dahan - Powers Long Forgotten"
+        broadcast = "\nRemember, place 4 Scenario Markers on each board in lands without Dahan"
     end
     return params.pieces
 end
 
 function Broadcast(params)
-    return broadcast
+    local text = "Powers Long Forgotten - Add 2 to your score for each unused source of power"
+    if broadcast then
+        text = text..broadcast
+    end
+    return text
 end

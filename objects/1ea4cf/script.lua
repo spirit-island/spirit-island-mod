@@ -179,7 +179,7 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
     local count = 0
     for i=#fearDeck,1,-1 do
         local card = fearDeck[i]
-        if card.guid ~= "969897" and card.guid ~= "f96a71" then
+        if card.getName() ~= "Terror II" and card.getName() ~= "Terror III" then
             -- not a terror divider
             count = count + 1
             if count == depth then

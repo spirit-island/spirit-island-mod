@@ -6,13 +6,13 @@ fearSetupComplete=false
 function FearSetup(params)
     local dividersSetup = 0
     for _, obj in pairs(params.deck) do
-        if obj.guid == "969897" then
+        if obj.getName() == "Terror II" then
             obj.setPosition(Vector(-46.18, 0.82, 35.58))
-            obj.setRotation(Vector(0, 180, 180))
+            obj.setRotation(Vector(0, 180, 0))
             dividersSetup = dividersSetup + 1
-        elseif obj.guid == "f96a71" then
+        elseif obj.getName() == "Terror III" then
             obj.setPosition(Vector(-41.70, 0.82, 35.58))
-            obj.setRotation(Vector(0, 180, 180))
+            obj.setRotation(Vector(0, 180, 0))
             dividersSetup = dividersSetup + 1
         end
         if dividersSetup == 2 then

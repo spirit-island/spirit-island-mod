@@ -175,8 +175,11 @@ function onLoad(saved_data)
         optionalEngland6 = loaded_data.variant.england6
         optionalThematicRedo = loaded_data.variant.thematicRedo
         -- This will get flipped by toggleLegacyKeybindings()
-        optionalLegacyKeybindings = not loaded_data.variant.legacyKeybindings
-        toggleLegacyKeybindings()
+        optionalLegacyKeybindings = loaded_data.variant.legacyKeybindings
+        if optionalLegacyKeybindings then
+            optionalLegacyKeybindings = not optionalLegacyKeybindings
+            toggleLegacyKeybindings()
+        end
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan

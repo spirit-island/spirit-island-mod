@@ -66,6 +66,7 @@ optionalBoardPairings = true
 optionalThematicRebellion = false
 optionalEngland6 = true
 optionalThematicRedo = false
+optionalLegacyKeybindings = false
 optionalScaleBoard = true -- not currently hooked up into UI
 
 exploratoryVOTD = false
@@ -110,6 +111,7 @@ function onSave()
     data_table.variant.thematicRebellion = optionalThematicRebellion
     data_table.variant.england6 = optionalEngland6
     data_table.variant.thematicRedo = optionalThematicRedo
+    data_table.variant.legacyKeybindings = optionalLegacyKeybindings
 
     data_table.exploratory = {}
     data_table.exploratory.votd = exploratoryVOTD
@@ -172,6 +174,9 @@ function onLoad(saved_data)
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
         optionalEngland6 = loaded_data.variant.england6
         optionalThematicRedo = loaded_data.variant.thematicRedo
+        -- This will get flipped by toggleLegacyKeybindings()
+        optionalLegacyKeybindings = not loaded_data.variant.legacyKeybindings
+        toggleLegacyKeybindings()
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan
@@ -957,6 +962,9 @@ function loadConfig(config)
                 seaTile.setState(2)
             end
         end
+        if config.variant.legacyKeybindings ~= nil then
+            optionalLegacyKeybindings = config.variant.legacyKeybindings
+        end
     end
     if config.exploratory then
         if config.exploratory.votd ~= nil then
@@ -1660,34 +1668,13 @@ function removeSpirit(params)
     end
 end
 
-function toggleSoloBlight()
-    optionalSoloBlight = not optionalSoloBlight
-    self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
-end
 function toggleStrangeMadness()
     optionalStrangeMadness = not optionalStrangeMadness
     self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
 end
-function toggleSlaveRebellion()
-    optionalThematicRebellion = not optionalThematicRebellion
-    local obj = getObjectFromGUID(adversaries.France)
-    if obj ~= nil then
-        obj.setVar("thematicRebellion", optionalThematicRebellion)
-    end
-    self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
-end
-function toggleEngland6()
-    optionalEngland6 = not optionalEngland6
-    local obj = getObjectFromGUID(adversaries.England)
-    if obj ~= nil then
-        if optionalEngland6 then
-            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
-        else
-            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
-        end
-        updateDifficulty()
-    end
-    self.UI.setAttribute("england6", "isOn", optionalEngland6)
+function toggleSoloBlight()
+    optionalSoloBlight = not optionalSoloBlight
+    self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
 end
 function toggleBlightCard()
     optionalBlightCard = not optionalBlightCard
@@ -1714,6 +1701,35 @@ function toggleExtraBoard()
         updateLayoutsID = Wait.time(function() updateXml{updateBoardLayouts(numPlayers)} end, 0.5)
     end
 end
+function toggleBoardPairings()
+    optionalBoardPairings = not optionalBoardPairings
+    self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
+end
+function toggleDigitalEvents()
+    optionalDigitalEvents = not optionalDigitalEvents
+    self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+end
+function toggleSlaveRebellion()
+    optionalThematicRebellion = not optionalThematicRebellion
+    local obj = getObjectFromGUID(adversaries.France)
+    if obj ~= nil then
+        obj.setVar("thematicRebellion", optionalThematicRebellion)
+    end
+    self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
+end
+function toggleEngland6()
+    optionalEngland6 = not optionalEngland6
+    local obj = getObjectFromGUID(adversaries.England)
+    if obj ~= nil then
+        if optionalEngland6 then
+            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
+        else
+            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
+        end
+        updateDifficulty()
+    end
+    self.UI.setAttribute("england6", "isOn", optionalEngland6)
+end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
@@ -1726,13 +1742,32 @@ function toggleCarpetRedo()
         seaTile.setState(1)
     end
 end
-function toggleBoardPairings()
-    optionalBoardPairings = not optionalBoardPairings
-    self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
-end
-function toggleDigitalEvents()
-    optionalDigitalEvents = not optionalDigitalEvents
-    self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+function toggleLegacyKeybindings()
+    optionalLegacyKeybindings = not optionalLegacyKeybindings
+    local pieces = Global.getTable("Pieces")
+    if optionalLegacyKeybindings then
+        local piece = pieces[6]
+        pieces[6] = pieces[7]
+        pieces[7] = pieces[8]
+        pieces[8] = pieces[9]
+        pieces[9] = piece
+    else
+        local piece = pieces[9]
+        pieces[9] = pieces[8]
+        pieces[8] = pieces[7]
+        pieces[7] = pieces[6]
+        pieces[6] = piece
+    end
+
+    local notes = "\n\n\n\n\n\n\n\n\n\n\nSpawn Objects:"
+    for i=1,9 do
+        notes = notes.."\nNum "..i.." - "..pieces[i]
+    end
+    notes = notes.."\nNum 0 - "..pieces[10].."\n\nFor more keybindings:\nOptions -> Game Keys"
+    Notes.setNotes(notes)
+
+    Global.setTable("Pieces", pieces)
+    self.UI.setAttribute("legacyKeybindings", "isOn", optionalLegacyKeybindings)
 end
 
 function toggleExploratoryAll()

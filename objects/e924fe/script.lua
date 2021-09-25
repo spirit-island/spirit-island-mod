@@ -235,6 +235,7 @@ function ExportConfig()
     data.variant.england6 = SetupChecker.getVar("optionalEngland6")
     data.variant.thematicRedo = SetupChecker.getVar("optionalThematicRedo")
     data.variant.carpetRedo = Global.getVar("seaTile").getStateId() == 1
+    data.variant.legacyKeybindings = SetupChecker.getVar("optionalLegacyKeybindings")
 
     data.exploratory = {}
     data.exploratory.votd = SetupChecker.getVar("exploratoryVOTD")

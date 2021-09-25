@@ -15,10 +15,10 @@ Num 2 - Town
 Num 3 - City
 Num 4 - Blight
 Num 5 - Badlands
-Num 6 - Strife
-Num 7 - Beasts
-Num 8 - Wilds
-Num 9 - Disease
+Num 6 - Beasts
+Num 7 - Wilds
+Num 8 - Disease
+Num 9 - Strife
 Num 0 - Dahan
 
 For more keybindings:

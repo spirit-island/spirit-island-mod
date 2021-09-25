@@ -168,7 +168,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -3015 14">
+<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -2950 14">
     <VerticalLayout recurse="events2">
         <TableLayout recurse="events2">
             <Row class="header">
@@ -215,6 +215,9 @@
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="carpetRedo" isOn="true" onValueChanged="toggleCarpetRedo" tooltip="An alternate appeareance for the ocean tile">Use Thematic Ocean Playmat</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="legacyKeybindings" onValueChanged="toggleLegacyKeybindings" tooltip="Original keybindings used from BoneWhite's mod">Use Legacy Keybindings</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

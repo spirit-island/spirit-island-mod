@@ -835,10 +835,25 @@ function difficultyCheck(params)
         boardLayout = Global.getVar("boardLayout")
     end
     if boardLayout == "Thematic" or params.thematic then
-        if Global.call("usingSpiritTokens") then
-            difficulty = difficulty + 1
+        if params.expansions then
+            local found = false
+            for _, expansion in pairs(params.expansions) do
+                if expansion == "Branch & Claw" or expansion == "Jagged Earth" then
+                    found = true
+                    break
+                end
+            end
+            if found then
+                difficulty = difficulty + 1
+            else
+                difficulty = difficulty + 3
+            end
         else
-            difficulty = difficulty + 3
+            if Global.call("usingSpiritTokens") then
+                difficulty = difficulty + 1
+            else
+                difficulty = difficulty + 3
+            end
         end
     end
 

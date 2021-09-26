@@ -1573,8 +1573,8 @@ function pickSpirit(obj, index, color)
     end
     local data = spiritChoices[name]
     if isSpiritPickable({guid = data.guid}) then
-        sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
         obj.clearButtons()
+        sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
     else
         replaceSpirit(obj, index, color)
     end

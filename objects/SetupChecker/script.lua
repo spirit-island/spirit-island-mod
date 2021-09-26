@@ -2094,7 +2094,12 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         boardsCount = 6
     end
     local function findBoard(picked)
-        local board = math.random(1, boardsCount - picked)
+        local board
+        if config.boardLayout == "Thematic" then
+            board = math.random(1, 1)
+        else
+            board = math.random(1, boardsCount - picked)
+        end
         local i = 1
         for name,taken in pairs(boards) do
             if taken then

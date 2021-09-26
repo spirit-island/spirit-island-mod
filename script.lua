@@ -2368,9 +2368,14 @@ function PostSetup()
     createDifficultyButton()
 
     if SetupChecker.getVar("exploratoryBODAN") then
-        local spirit = getObjectFromGUID("606f23").setState(2)
-        if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
-            Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+        local spirit = getObjectFromGUID("606f23")
+        if spirit ~= nil then
+            spirit.setState(2)
+            if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
+                Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+            else
+                postSetupSteps = postSetupSteps + 1
+            end
         else
             postSetupSteps = postSetupSteps + 1
         end

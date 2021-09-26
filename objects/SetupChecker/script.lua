@@ -1425,7 +1425,10 @@ function getSpiritComplexities()
     return complexities
 end
 function randomSpirit(player)
-    if #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
+    local bagGuid = Global.getVar("PlayerBags")[player.color]
+    if bagGuid == nil then
+        return
+    elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
         Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
@@ -1456,11 +1459,15 @@ function randomSpirit(player)
     Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
+    local bagGuid = Global.getVar("PlayerBags")[player.color]
+    if bagGuid == nil then
+        return
+    end
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
     if obj.getButtons() ~= nil and #obj.getButtons() ~= 0 then
         Player[player.color].broadcast("You already have Spirit options", Color.Red)
         return
-    elseif #getObjectFromGUID(Global.getVar("PlayerBags")[player.color]).getObjects() == 0 then
+    elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
         Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end

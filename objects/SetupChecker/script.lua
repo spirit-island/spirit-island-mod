@@ -86,7 +86,7 @@ setupStarted = false
 exit = false
 sourceSpirit = nil
 challengeTier = 1
-challengeConfig = nil
+challengeConfig = {}
 expansionsAdded = 0
 expansionsSetup = 0
 
@@ -514,11 +514,11 @@ function updateNumPlayers(value, updateUI)
         self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
         self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
         if self.UI.getAttribute("challenge", "isOn") == "true" then
-            challengeConfig = nil
+            challengeConfig = {}
             for i=1,challengeTier do
-                challengeConfig = getWeeklyChallengeConfig(i, challengeConfig)
+                challengeConfig[i] = getWeeklyChallengeConfig(i, challengeConfig[i-1])
             end
-            setWeeklyChallengeUI(challengeConfig)
+            setWeeklyChallengeUI(challengeConfig[challengeTier])
         end
 
         -- Stop previous timer and start a new one
@@ -880,7 +880,7 @@ function startGame()
     end
     local config
     if weeklyChallenge then
-        config = challengeConfig
+        config = challengeConfig[challengeTier]
     else
         config = getNotebookConfig()
     end
@@ -1282,14 +1282,17 @@ function togglePlaytesting()
     end
 end
 function toggleChallenge()
-    if challengeConfig == nil then
-        for i=1,challengeTier do
-            challengeConfig = getWeeklyChallengeConfig(i, challengeConfig)
-        end
-        setWeeklyChallengeUI(challengeConfig)
-    end
     weeklyChallenge = not weeklyChallenge
     if weeklyChallenge then
+        if challengeConfig[challengeTier] == nil then
+            for i=1,challengeTier do
+                if challengeConfig[i] == nil then
+                    challengeConfig[i] = getWeeklyChallengeConfig(i, challengeConfig[i-1])
+                end
+            end
+        end
+        setWeeklyChallengeUI(challengeConfig[challengeTier])
+
         self.UI.setAttribute("leadingHeader", "visibility", "Invisible")
         self.UI.setAttribute("leadingRow", "visibility", "Invisible")
         self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
@@ -1332,11 +1335,14 @@ function toggleChallengeTier(_, selected, id)
         self.UI.setAttribute(id..i, "isOn", "false")
     end
     self.UI.setAttribute(id..selected, "isOn", "true")
-    challengeConfig = nil
-    for i=1,challengeTier do
-        challengeConfig = getWeeklyChallengeConfig(i, challengeConfig)
+    if challengeConfig[challengeTier] == nil then
+        for i=1,challengeTier do
+            if challengeConfig[i] == nil then
+                challengeConfig[i] = getWeeklyChallengeConfig(i, challengeConfig[i-1])
+            end
+        end
     end
-    setWeeklyChallengeUI(challengeConfig)
+    setWeeklyChallengeUI(challengeConfig[challengeTier])
 end
 
 function toggleMinDifficulty(_, value)

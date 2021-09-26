@@ -1363,7 +1363,12 @@ function startDealPowerCards(minor, player, cardCount)
 end
 function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
     -- clear the zone!
-    local handPos = player.getHandTransform().position
+    local hand = player.getHandTransform()
+    if hand == nil then
+        scriptWorkingCardC = false
+        return
+    end
+    local handPos = hand.position
     local discardTable = DiscardPowerCards(handPos)
     if #discardTable > 0 then
         wt(0.1)

@@ -3382,6 +3382,10 @@ function place(objName, placePos, droppingPlayerColor)
             bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
         end
     end
+    if temp.use_hands then
+        temp.use_hands = false
+        Wait.condition(function() temp.use_hands = true end, function() return not temp.isSmoothMoving() end)
+    end
     if droppingPlayerColor then
         local dropColor = droppingPlayerColor
         if dropColor == "Blue" then

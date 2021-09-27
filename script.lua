@@ -801,26 +801,25 @@ function randomAdversary(attempts)
         return
     end
     if SetupChecker.getVar("randomAdversary") and SetupChecker.getVar("randomAdversary2") then
-        local adversary = nil
-        while adversary == nil do
-            adversary = SetupChecker.call("RandomAdversary")
-            if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
-                if not allowed then
-                    adversary = nil
-                end
+        local adversary = SetupChecker.call("RandomAdversary")
+        if adversary.getVar("requirements") then
+            local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
+            if not allowed then
+                adversary = nil
             end
         end
-        local adversary2 = nil
-        while adversary2 == nil or adversary2 == adversary do
-            adversary2 = SetupChecker.call("RandomAdversary")
-            if adversary2.getVar("requirements") then
-                local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
-                if not allowed then
-                    adversary2 = nil
-                end
+        local adversary2 = SetupChecker.call("RandomAdversary")
+        if adversary2.getVar("requirements") then
+            local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
+            if not allowed then
+                adversary2 = nil
             end
         end
+        if adversary == nil or adversary2 == nil or adversary == adversary2 then
+            randomAdversary(attempts + 1)
+            return
+        end
+
         local difficulty = adversary.getVar("difficulty")
         local difficulty2 = adversary2.getVar("difficulty")
         local randomMin = SetupChecker.getVar("randomMin")
@@ -854,16 +853,18 @@ function randomAdversary(attempts)
         if selectedAdversary == nil then
             selectedAdversary = adversaryCard2
         end
-        local adversary = nil
-        while adversary == nil or adversary == selectedAdversary do
-            adversary = SetupChecker.call("RandomAdversary")
-            if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
-                if not allowed then
-                    adversary = nil
-                end
+        local adversary = SetupChecker.call("RandomAdversary")
+        if adversary.getVar("requirements") then
+            local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
+            if not allowed then
+                adversary = nil
             end
         end
+        if adversary == nil or adversary == selectedAdversary then
+            randomAdversary(attempts + 1)
+            return
+        end
+
         local randomMin = SetupChecker.getVar("randomMin")
         local randomMax = SetupChecker.getVar("randomMax")
         local combos = {}

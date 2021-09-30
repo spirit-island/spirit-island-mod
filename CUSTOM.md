@@ -19,6 +19,7 @@ Custom Spirits:
   - Set the state to match the element
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the top one)
+  - Note for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 
 Custom Power Cards:
 - Set card onto power card editor
@@ -31,6 +32,7 @@ Custom Power Cards:
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the bottom one)
   - Note that the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
+  - Note for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 
 Custom Aspects:
 - Add "Aspect" tag

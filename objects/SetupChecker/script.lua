@@ -334,7 +334,9 @@ function onLoad(saved_data)
 end
 
 function onObjectSpawn(obj)
-    if not setupStarted then
+    if obj.hasTag("Spirit") then
+        addSpirit({spirit=obj})
+    elseif not setupStarted then
         if obj.type == "Card" then
             local objType = type(obj.getVar("difficulty"))
             if objType == "table" then
@@ -1635,7 +1637,16 @@ function addSpirit(params)
         end
     end
 
-    table.insert(spiritGuids, params.spirit.guid)
+    local found = false
+    for _,guid in pairs(spiritGuids) do
+        if guid == params.spirit.guid then
+            found = true
+            break
+        end
+    end
+    if not found then
+        table.insert(spiritGuids, params.spirit.guid)
+    end
 
     local expansion = ""
     if params.spirit.hasTag("Base") then

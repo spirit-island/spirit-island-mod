@@ -92,7 +92,7 @@ Adversary & Scenario:
         - other: table - contains data about other adversary
           - exist: boolean - whether there is a second adversary
           - level: number - other adversary level
-    - return string of what players should be told, nil otherwise
+    - return string - what players should be told, nil otherwise
 - Callbacks:
   - requirements - determine whether random adversary/scenario should be used with current setup
     - requirements: boolean - set to true if you have Requirements function
@@ -103,7 +103,7 @@ Adversary & Scenario:
         - expansions: table - expansions included in setup, keys are the name of them
         - thematic: boolean - whether thematic island setup is enabled
         - adversary: boolean - whether an adversary is being used (only exists for Scenario call)
-      - return boolean whether this adversary/scenario should be used
+      - return boolean - whether this adversary/scenario should be used
   - preSetup - called before all other setup steps have started
     - preSetup: boolean - set to true if you have PreSetup function
     - preSetupComplete: boolean - set to true at end PreSetup function
@@ -122,6 +122,7 @@ Adversary & Scenario:
           - values of We, Me, Je, Se, C indicate specific stage II cards
           - values of MW, JW, SW, MJ, SM, JS indicate specific stage III cards
           - values of <anything above>* will have UI treat card as one stage lower (i.e. Prussia 2)
+        - return table - updated table for invader deck setup
   - mapSetup - allows you to modify the pieces on a board
     - mapSetup: boolean - set to true if you have MapSetup function
     - mapSetupComplete: boolean - set to true at end MapSetup function
@@ -131,6 +132,7 @@ Adversary & Scenario:
         - pieces: 2D table - contain keys for each land number, and each land table has values for piece name
         - guid: string - guid of the board being setup (only exists for Adversary call)
         - extra: boolean - whether the current board is the extra board from setup variant
+      - return table - updated table for pieces setup
   - postSetup - called after all other setup steps have completed
     - postSetup: boolean - set to true if you have PostSetup function
     - postSetupComplete: boolean - set to true at end PostSetup function
@@ -207,15 +209,10 @@ Adversary & Scenario:
   - setupBlightTokens: number - modifies amount of starting blight per player
   - blightTokens: number - modifies amount of flipped card blight per player
   - blightCount: number - overrides total amount of blight when island is no longer healthy
-  - fearSetup
-    - fearSetup: boolean - set to true if you have FearSetup function
-    - fearSetupComplete: boolean - set to true at end FearSetup function
-    - FearSetup(params)
-      - params: table - contains data about game setup
-        - deck: table - fear cards contained in deck for the game
   - boardSetup - allows you to override the current board layout (i.e. Great River)
     - boardSetup: boolean - set to true if you have BoardSetup function
     - boardSetupComplete: boolean - set to true at end BoardSetup function
     - BoardSetup(params)
       - params: table - contains data about game setup
         - boards: number - number of boards to be setup
+      - return table - new board layout

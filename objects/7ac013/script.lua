@@ -1,11 +1,12 @@
 difficulty=3
 
-fearSetup=true
-fearSetupComplete=false
+postSetup=true
+postSetupComplete=false
 
-function FearSetup(params)
+function PostSetup()
+    local deck = Player["White"].getHandObjects(1)
     local dividersSetup = 0
-    for _, obj in pairs(params.deck) do
+    for _, obj in pairs(deck) do
         if obj.getName() == "Terror II" then
             obj.setPosition(Vector(-46.18, 0.82, 35.58))
             obj.setRotation(Vector(0, 180, 0))
@@ -30,12 +31,12 @@ function FearSetup(params)
                     smooth = false,
                 })
             end
-            Wait.condition(function() fearSetupComplete = true end, function() return fearDeck == nil end)
+            Wait.condition(function() postSetupComplete = true end, function() return fearDeck == nil end)
         elseif fearDeck.type == "Card" then
             fearDeck.setPosition(handZone.position + Vector(-5, 0, 0))
-            fearSetupComplete = true
+            postSetupComplete = true
         end
     else
-        fearSetupComplete = true
+        postSetupComplete = true
     end
 end

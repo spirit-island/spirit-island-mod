@@ -2,8 +2,9 @@ difficulty=2
 
 postSetup=true
 postSetupComplete=false
-fearSetup=true
-fearSetupComplete=false
+
+tokensSetup = false
+fearSetup = false
 
 function PostSetup()
     local scenarioBag = Global.getVar("scenarioBag")
@@ -15,6 +16,27 @@ function PostSetup()
         callback_function = removeTokens,
     })
     bag.setLock(true)
+
+    local handZone = Player["White"].getHandTransform(1)
+    local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
+    if fearDeck ~= nil then
+        if fearDeck.type == "Deck" then
+            for _=1,#fearDeck.getObjects() do
+                fearDeck.takeObject({
+                    position = handZone.position + Vector(-5, 0, 0),
+                    smooth = false,
+                })
+            end
+            Wait.condition(function() fearSetup = true end, function() return fearDeck == nil end)
+        elseif fearDeck.type == "Card" then
+            fearDeck.setPosition(handZone.position + Vector(-5, 0, 0))
+            fearSetup = true
+        end
+    else
+        fearSetup = true
+    end
+
+    Wait.condition(function() postSetupComplete = true end, function() return tokensSetup and fearSetup end)
 end
 function removeTokens(obj)
     -- Remove 8 numbered tokens
@@ -25,11 +47,5 @@ function removeTokens(obj)
     for _ = 1, diff do
         obj.takeObject({}).destruct()
     end
-    postSetupComplete = true
-end
-
-function FearSetup(params)
-    local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
-    params.deck.putObject(fearDeck)
-    Wait.condition(function() fearSetupComplete = true end, function() return fearDeck == nil end)
+    tokensSetup = true
 end

@@ -1125,12 +1125,7 @@ function SetupFear()
         count = count + 1
 
         Wait.condition(function()
-            if scenarioCard ~= nil and scenarioCard.getVar("fearSetup") then
-                scenarioCard.call("FearSetup", { deck = Player["White"].getHandObjects(1) })
-                Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard.getVar("fearSetupComplete") end)
-            else
-                stagesSetup = stagesSetup + 1
-            end
+            stagesSetup = stagesSetup + 1
         end, function() return #Player["White"].getHandObjects(1) == count end)
     end, 10)
 

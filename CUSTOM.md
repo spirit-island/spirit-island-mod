@@ -110,6 +110,9 @@ Adversary & Scenario:
     - PreSetup(params)
       - params: table - contains data about game setup (only exists for Adversary call)
         - level: number - level of current adversary
+    - Custom pieces
+      - if you have a new bag with custom pieces like invaders, dahan, etc you should add the hookup in here
+      - simply remove the current bag, place the new bag in current position, and then update global variable for the bag
   - invaderDeckSetup - allows you to modify invader deck
     - invaderDeckSetup: boolean - set to true if you have InvaderDeckSetup function
     - invaderDeckSetupComplete: boolean - set to true at end InvaderDeckSetup function

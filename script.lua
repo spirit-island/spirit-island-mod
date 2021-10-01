@@ -2308,13 +2308,13 @@ end
 function SetupMap()
     local adversariesSetup = 0
     if adversaryCard ~= nil and adversaryCard.getVar("limitSetup") then
-        adversaryCard.call("LimitSetup",{level = adversaryLevel, other = {level = adversaryLevel2}})
+        adversaryCard.call("LimitSetup",{level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
         Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard.getVar("limitSetupComplete") end)
     else
         adversariesSetup = adversariesSetup + 1
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("limitSetup") then
-        adversaryCard2.call("LimitSetup",{level = adversaryLevel2, other = {level = adversaryLevel}})
+        adversaryCard2.call("LimitSetup",{level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
         Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard2.getVar("limitSetupComplete") end)
     else
         adversariesSetup = adversariesSetup + 1
@@ -2380,7 +2380,7 @@ function PostSetup()
     end
 
     if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
-        adversaryCard.call("PostSetup",{level = adversaryLevel, other={level=adversaryLevel2}})
+        adversaryCard.call("PostSetup",{level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
         Wait.condition(function() postSetupSteps = postSetupSteps + 1 firstAdversarySetup = true end, function() return adversaryCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
@@ -2389,7 +2389,7 @@ function PostSetup()
     if adversaryCard2 ~= nil and adversaryCard2.getVar("postSetup") then
         -- Wait for first adversary to finish
         Wait.condition(function()
-            adversaryCard2.call("PostSetup",{level = adversaryLevel2, other={level=adversaryLevel}})
+            adversaryCard2.call("PostSetup",{level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
             Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return adversaryCard2.getVar("postSetupComplete") end)
         end, function() return firstAdversarySetup end)
     else
@@ -2498,7 +2498,7 @@ function StartGame()
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
     if adversaryCard ~= nil and adversaryCard.getVar("hasBroadcast") then
-        local broadcast = adversaryCard.call("Broadcast", {level = adversaryLevel, other={level = adversaryLevel2}})
+        local broadcast = adversaryCard.call("Broadcast", {level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
         if broadcast ~= nil then
             printToAll("Adversary:", Color.White)
             printToAll(broadcast, Color.SoftBlue)
@@ -2506,7 +2506,7 @@ function StartGame()
         end
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("hasBroadcast") then
-        local broadcast = adversaryCard2.call("Broadcast", {level = adversaryLevel2, other={level = adversaryLevel}})
+        local broadcast = adversaryCard2.call("Broadcast", {level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
         if broadcast ~= nil then
             printToAll("Adversary:", Color.White)
             printToAll(broadcast, Color.SoftBlue)

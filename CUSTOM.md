@@ -73,7 +73,7 @@ Expansions:
 
 Adversary & Scenario:
 - Set name of object to that of adversary/scenario
-- collision
+- collision workaround
   - workaround for TTS bug https://tabletopsimulator.nolt.io/770
   - onObjectCollision: boolean - set to true if you have custom object collision code
   - onObjectCollisionEnter(params)
@@ -93,7 +93,7 @@ Adversary & Scenario:
           - exist: boolean - whether there is a second adversary
           - level: number - other adversary level
     - return string - what players should be told, nil otherwise
-- Callbacks:
+- Setup Callbacks:
   - requirements - determine whether random adversary/scenario should be used with current setup
     - requirements: boolean - set to true if you have Requirements function
     - Requirements(params)

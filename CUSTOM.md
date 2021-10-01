@@ -1,7 +1,11 @@
-Custom Spirits:
+Spirits:
 - Place object onto spirit editor, this will add the "Spirit" tag as well as basic scripting
 - Set name of spirit for the object
-- Add tag to object for spirit's complexity
+- Add tag to object for spirit's complexity, one of the follow:
+  - "Low"
+  - "Moderate"
+  - "High"
+  - "Very High"
 - Add snap points to presence track
 - Presence track elements:
   - For non any elements that appear on presence tracks grab object from the element bag (one next to energy bag)
@@ -20,8 +24,14 @@ Custom Spirits:
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the top one)
   - Note for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+- Extra setup:
+  - Create object and place on top of spirit panel
+  - Tag object with "Setup"
+  - doSetup(params)
+    - params: table - contains data about player
+      - color: string - is the color of the player who picked the spirit
 
-Custom Power Cards:
+Power Cards:
 - Set card onto power card editor
 - Change values that appear to match card
 - Set name of object to that of power card
@@ -34,21 +44,22 @@ Custom Power Cards:
   - Note that the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
   - Note for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 
-Custom Aspects:
+Aspects:
 - Add "Aspect" tag
+- Set name of object to that of aspect
 - Thresholds:
   - Place on power card editor
   - Follow power card threshold instructions
 - Add "Aspect" tag to deck of aspects as well if you have one of those
 
-Custom Blight Cards:
+Blight Cards:
 - Set card onto blight card editor
 - Change values that appear to match card
 - Set name of object to that of blight card
 - If blight card has recurring start of invader effect set object's description to that
 - You'll also want to make sure that Hide Face Down toggle is set for the card
 
-Custom Expansions:
+Expansions:
 - Create a bag
 - Name the bag the name of the expansion
 - Add the tag "Expansion" to the bag
@@ -60,8 +71,151 @@ Custom Expansions:
   - "Major Powers"
 - Note using single cards in place of a deck may cause setup issues
 
-Custom Adversary:
--TODO
-
-Custom Scenario:
--TODO
+Adversary & Scenario:
+- Set name of object to that of adversary/scenario
+- collision
+  - workaround for TTS bug https://tabletopsimulator.nolt.io/770
+  - onObjectCollision: boolean - set to true if you have custom object collision code
+  - onObjectCollisionEnter(params)
+    - params: table - contains parameters for callback
+      - hit_object: object - object registered to receive collision events
+      - collision_info: table - table containing data about collision
+  - onObjectCollisionExit(params)
+    - params: table - contains parameters for callback
+      - hit_object: object - object registered to receive collision events
+      - collision_info: table - table containing data about collision
+- broadcast
+  - hasBroadcast: boolean - set to true if you have a Broadcast function
+  - Broadcast(params)
+      - params: table - contains data about adversaries (only exists for Adversary call)
+        - level: number - level of current adversary
+        - other: table - contains data about other adversary
+          - exist: boolean - whether there is a second adversary
+          - level: number - other adversary level
+    - return string of what players should be told, nil otherwise
+- Callbacks:
+  - requirements - determine whether random adversary/scenario should be used with current setup
+    - requirements: boolean - set to true if you have Requirements function
+    - Requirements(params)
+      - params: table - contains data about game setup
+        - eventDeck: boolean - whether event deck is being used
+        - blightCard: boolean - whether blight card is being used
+        - expansions: table - expansions included in setup, keys are the name of them
+        - thematic: boolean - whether thematic island setup is enabled
+        - adversary: boolean - whether an adversary is being used (only exists for Scenario call)
+      - return boolean whether this adversary/scenario should be used
+  - preSetup - called before all other setup steps have started
+    - preSetup: boolean - set to true if you have PreSetup function
+    - preSetupComplete: boolean - set to true at end PreSetup function
+    - PreSetup(params)
+      - params: table - contains data about game setup (only exists for Adversary call)
+        - level: number - level of current adversary
+  - invaderDeckSetup - allows you to modify invader deck
+    - invaderDeckSetup: boolean - set to true if you have InvaderDeckSetup function
+    - invaderDeckSetupComplete: boolean - set to true at end InvaderDeckSetup function
+    - InvaderDeckSetup(params)
+      - params: table - contains data about game setup
+        - level: number - level of current adversary (only exists for Adversary call)
+        - deck: table - table containing current setup for invader deck
+          - values of 1, 2, 3 indicate random card of that stage
+          - values of W, M, J, S indicate specific stage I cards
+          - values of We, Me, Je, Se, C indicate specific stage II cards
+          - values of MW, JW, SW, MJ, SM, JS indicate specific stage III cards
+          - values of <anything above>* will have UI treat card as one stage lower (i.e. Prussia 2)
+  - mapSetup - allows you to modify the pieces on a board
+    - mapSetup: boolean - set to true if you have MapSetup function
+    - mapSetupComplete: boolean - set to true at end MapSetup function
+    - MapSetup(params)
+      - params: table - contains data about game setup
+        - level: number - level of current adversary (only exists for Adversary call)
+        - pieces: 2D table - contain keys for each land number, and each land table has values for piece name
+        - guid: string - guid of the board being setup (only exists for Adversary call)
+        - extra: boolean - whether the current board is the extra board from setup variant
+  - postSetup - called after all other setup steps have completed
+    - postSetup: boolean - set to true if you have PostSetup function
+    - postSetupComplete: boolean - set to true at end PostSetup function
+    - PostSetup(params)
+      - params: table - contains data about game setup (only exists for Adversary call)
+        - level: number - level of current adversary
+        - other: table - contains data about other adversary
+          - exist: boolean - whether there is a second adversary
+          - level: number - other adversary level
+- Adversary Specific:
+  - difficulty: table - contain keys 0->6 representing the difficulty modifier for each adversary level
+  - fearCards: 2D table - contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
+  - reminderSetup
+    - reminderSetup: boolean - set to true if you have ReminderSetup function
+    - ReminderSetup(params)
+      - params: table - contains data about game setup
+        - level: number - level of current adversary
+      - return table - note the guids return must be in adversary bag
+        - ravage: string - guid of ravage reminder, use "135124" for generic one
+        - build: string - guid of build reminder, use "a178fa" for generic one
+        - explore: string - guid of explore reminder, use "a5b6b3" for generic one
+  - adversaryUI
+    - hasUI: boolean - set to true if you have AdversaryUI function
+    - AdversaryUI(params)
+      - params: table - contains data about game setup
+        - level: number - level of current adversary
+        - supporting: boolean - whether this is supporting adversary or not
+      - return table - note setup adversary effects can be excluded from UI
+        - loss
+          - tooltip: string - text of adversary loss condition, use \\n to add line breaks
+          - counter
+            - text: string - text that should appear before counter
+            - buttons: boolean - whether buttons should appear for counter, i.e. Habsburg
+            - callback: function - name of callback to occur after loss counter buttons are pressed (only called when buttons is true)
+        - escalation
+          - tooltip: string - text of adversary escalation, use \\n to add line breaks
+          - random: boolean - whether random terrain button needs to appear for adversary (only exists for secondary adversary)
+        - one
+          - name: string - name of adversary effect
+          - tooltip: string - text of adversary effect, use \\n to add line breaks
+        - two
+          - name: string - name of adversary effect
+          - tooltip: string - text of adversary effect, use \\n to add line breaks
+        - three
+          - name: string - name of adversary effect
+          - tooltip: string - text of adversary effect, use \\n to add line breaks
+        - four
+          - name: string - name of adversary effect
+          - tooltip: string - text of adversary effect, use \\n to add line breaks
+        - five
+          - name: string - name of adversary effect
+          - tooltip: string - text of adversary effect, use \\n to add line breaks
+        - six
+          - name: string - name of adversary effect
+          - tooltip: string - text of adversary effect, use \\n to add line breaks
+      - <loss callback>(params)
+        - params: table - contains data about update
+          - count: number - new count for loss counter
+      - UpdateAdversaryLossCounter(params) - when adversary doesn't use buttons you can call this function to update text, i.e. Russia
+        - params: table - contains data about update
+          - support: boolean - whether this is supporting adversary or not
+          - count: number - new count for loss counter
+  - limitSetup - called before board setup starts in case any pieces need to be limited, i.e. France
+    - limitSetup: boolean - set to true if you have LimitSetup function
+    - LimitSetup(params)
+      - params: table - contains data about game setup
+        - level: number - level of current adversary
+        - other: table - contains data about other adversary
+          - exist: boolean - whether there is a second adversary
+          - level: number - other adversary level
+- Scenario Specific:
+  - difficulty: number - difficulty modifier for scenario
+  - fearCards: table - contains keys 1->3 representing the change of fear cards in each part of the deck
+  - setupBlightTokens: number - modifies amount of starting blight per player
+  - blightTokens: number - modifies amount of flipped card blight per player
+  - blightCount: number - overrides total amount of blight when island is no longer healthy
+  - fearSetup
+    - fearSetup: boolean - set to true if you have FearSetup function
+    - fearSetupComplete: boolean - set to true at end FearSetup function
+    - FearSetup(params)
+      - params: table - contains data about game setup
+        - deck: table - fear cards contained in deck for the game
+  - boardSetup - allows you to override the current board layout (i.e. Great River)
+    - boardSetup: boolean - set to true if you have BoardSetup function
+    - boardSetupComplete: boolean - set to true at end BoardSetup function
+    - BoardSetup(params)
+      - params: table - contains data about game setup
+        - boards: number - number of boards to be setup

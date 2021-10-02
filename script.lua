@@ -3379,17 +3379,17 @@ function setupMap(map, extra)
         end
 
         if secondWave ~= nil and secondWave.getVar("mapSetup") then
-            piecesToPlace = secondWave.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
+            piecesToPlace = secondWave.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
         end
         if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
-            piecesToPlace = scenarioCard.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
+            piecesToPlace = scenarioCard.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
         end
         -- supporting adversary setup should happen before primary
         if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
-            piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
+            piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
         end
         if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
-            piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
+            piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
         end
 
         for l,landTable in ipairs(piecesToPlace) do

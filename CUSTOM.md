@@ -155,10 +155,11 @@ Adversary & Scenario:
         - level: number - level of current adversary
       - return table
         - ravage: object - ravage reminder object, use "Generic" if you don't have a custom one
-        - afterRavage: object - after ravage reminder object
+        - afterRavage: object - after ravage reminder object, use "Generic" if you don't have a custom one
         - build: object - build reminder object, use "Generic" if you don't have a custom one
-        - afterBuild: object - after build reminder object
+        - afterBuild: object - after build reminder object, use "Generic" if you don't have a custom one
         - explore: object - explore reminder object, use "Generic" if you don't have a custom one
+        - afterExplore: object - after explore reminder object, use "Generic" if you don't have a custom one
   - adversaryUI
     - hasUI: boolean - set to true if you have AdversaryUI function
     - AdversaryUI(params)

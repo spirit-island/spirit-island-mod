@@ -3385,7 +3385,9 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Scenario Token" then
         local bag = getObjectFromGUID("8d6e46")
         if bag ~= nil then
-            bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+            temp = bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+        else
+            return
         end
     end
     if temp.use_hands then

@@ -79,7 +79,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -99,6 +99,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"00000001\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
@@ -134,7 +143,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -154,6 +163,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"00000010\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
@@ -189,7 +207,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -209,6 +227,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"00000100\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
@@ -244,7 +271,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -264,6 +291,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"00001000\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
@@ -299,7 +335,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -319,6 +355,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"00010000\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
@@ -354,7 +399,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -374,6 +419,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"00100000\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
@@ -409,7 +463,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -429,6 +483,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"01000000\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
@@ -464,7 +527,7 @@
       "Value": 0,
       "Locked": false,
       "Grid": false,
-      "Snap": false,
+      "Snap": true,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -484,6 +547,15 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        }
+      ],
       "LuaScript": "elements=\"10000000\"\n",
       "LuaScriptState": "",
       "XmlUI": ""

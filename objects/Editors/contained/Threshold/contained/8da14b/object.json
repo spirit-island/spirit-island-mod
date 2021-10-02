@@ -42,5 +42,14 @@
     "MaterialIndex": 1,
     "TypeIndex": 0,
     "CastShadows": true
-  }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    }
+  ]
 }

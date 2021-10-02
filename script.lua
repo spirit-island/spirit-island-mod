@@ -56,6 +56,7 @@ adversaryLevel = 0
 adversaryCard2 = nil
 adversaryLevel2 = 0
 scenarioCard = nil
+secondWave = nil
 returnBlightBag = nil
 explorerBag = "613ea4"
 townBag = "4d3c15"
@@ -373,6 +374,9 @@ function onSave()
     if scenarioCard ~= nil then
         data_table.scenarioCard = scenarioCard.guid
     end
+    if secondWave ~= nil then
+        data_table.secondWave = secondWave.guid
+    end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
         local colorTable = {
@@ -534,6 +538,7 @@ function onLoad(saved_data)
         adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
         adversaryLevel2 = loaded_data.adversaryLevel2
         scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
+        secondWave = getObjectFromGUID(loaded_data.secondWave)
         boardLayout = loaded_data.boardLayout
         selectedBoards = loaded_data.selectedBoards
         numPlayers = loaded_data.numPlayers
@@ -1014,6 +1019,7 @@ function SetupPlaytestDeck(zone, name, option, callback)
 end
 ----- Pre Setup Section
 function PreSetup()
+    setupBlightTokens()
     local preSetupSteps = 0
     if adversaryCard ~= nil and adversaryCard.getVar("preSetup") then
         adversaryCard.call("PreSetup",{level = adversaryLevel})
@@ -1038,6 +1044,28 @@ function PreSetup()
     end
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return preSetupSteps == 3 end)
     return 1
+end
+function setupBlightTokens()
+    blightBag.reset()
+    local numBlight = 2 * numBoards
+    if not SetupChecker.getVar("optionalBlightCard") then
+        numBlight = 5 * numBoards
+    end
+    if SetupChecker.getVar("optionalBlightSetup") then
+        numBlight = numBlight + 1
+    end
+    if scenarioCard ~= nil then
+        local blightTokens = scenarioCard.getVar("setupBlightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + (blightTokens * numBoards)
+        end
+    end
+    for _ = 1, numBlight do
+        blightBag.putObject(boxBlightBag.takeObject({
+            position = blightBag.getPosition() + Vector(0,1,0),
+            smooth = false,
+        }))
+    end
 end
 ----- Fear Section
 function SetupFear()
@@ -1578,7 +1606,6 @@ function SetupBlightCard()
     else
         blightedIsland = true
     end
-    setupBlightTokens()
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return blightedIsland or (blightedIslandCard ~= nil and not blightedIslandCard.isSmoothMoving()) end)
     return 1
 end
@@ -1720,6 +1747,12 @@ function BlightedIslandFlipPart2()
             numBlight = blightTokens
         end
     end
+    if not blightedIslandCard.getVar("healthy") and secondWave ~= nil then
+        local blightTokens = secondWave.getVar("blightCount")
+        if blightTokens ~= nil then
+            numBlight = blightTokens
+        end
+    end
     for _ = 1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({position = blightBag.getPosition() + Vector(0,1,0)}))
     end
@@ -1739,28 +1772,6 @@ function hideBlightButton()
         height = 0,
     })
     blightedIsland = true
-end
-function setupBlightTokens()
-    blightBag.reset()
-    local numBlight = 2 * numBoards
-    if not SetupChecker.getVar("optionalBlightCard") then
-        numBlight = 5 * numBoards
-    end
-    if SetupChecker.getVar("optionalBlightSetup") then
-        numBlight = numBlight + 1
-    end
-    if scenarioCard ~= nil then
-        local blightTokens = scenarioCard.getVar("setupBlightTokens")
-        if blightTokens ~= nil then
-            numBlight = numBlight + (blightTokens * numBoards)
-        end
-    end
-    for _ = 1, numBlight do
-        blightBag.putObject(boxBlightBag.takeObject({
-            position = blightBag.getPosition() + Vector(0,1,0),
-            smooth = false,
-        }))
-    end
 end
 ----- Scenario section
 function SetupScenario()
@@ -1784,8 +1795,22 @@ function SetupScenario()
         scenarioCard.setRotationSmooth(Vector(0,180,0), false, true)
         scenarioCard.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)), false, true)
     end
+    if secondWave ~= nil then
+        local targetScale = 1.71
+        local currentScale = secondWave.getScale()[1]
+        local scaleMult = (currentScale - targetScale)/10
+        for i = 1, 10 do
+            wt(0.02)
+            secondWave.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
+        end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard == nil or not scenarioCard.isSmoothMoving() end)
+        secondWave.setLock(true)
+        secondWave.setRotationSmooth(Vector(0,180,0), false, true)
+        -- TODO support having both scenario and second wave
+        secondWave.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)), false, true)
+    end
+
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return (scenarioCard == nil or not scenarioCard.isSmoothMoving()) and (secondWave == nil or not secondWave.isSmoothMoving()) end)
     return 1
 end
 ----- Adversary Section
@@ -2448,6 +2473,12 @@ function PostSetup()
     else
         postSetupSteps = postSetupSteps + 1
     end
+    if secondWave ~= nil and secondWave.getVar("mapSetup") then
+        secondWave.call("PostSetup",{})
+        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
 
     if not usingEvents() and usingSpiritTokens() then
         -- Setup up command cards last
@@ -2489,7 +2520,7 @@ function PostSetup()
                 local objs = invaderDeckZone.getObjects()
                 return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function() return postSetupSteps == 4 end)
+        end, function() return postSetupSteps == 5 end)
     else
         postSetupSteps = postSetupSteps + 1
     end
@@ -2501,7 +2532,7 @@ function PostSetup()
         end
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 5 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 6 end)
     return 1
 end
 function createDifficultyButton()
@@ -2562,6 +2593,14 @@ function StartGame()
     end
     if scenarioCard ~= nil and scenarioCard.getVar("hasBroadcast") then
         local broadcast = scenarioCard.call("Broadcast")
+        if broadcast ~= nil then
+            printToAll("Scenario:", Color.White)
+            printToAll(broadcast, Color.SoftBlue)
+            wt(2)
+        end
+    end
+    if secondWave ~= nil and secondWave.getVar("hasBroadcast") then
+        local broadcast = secondWave.call("Broadcast")
         if broadcast ~= nil then
             printToAll("Scenario:", Color.White)
             printToAll(broadcast, Color.SoftBlue)
@@ -3286,6 +3325,9 @@ function setupMap(map, extra)
             end
         end
 
+        if secondWave ~= nil and secondWave.getVar("mapSetup") then
+            piecesToPlace = secondWave.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
+        end
         if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
             piecesToPlace = scenarioCard.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
         end
@@ -3297,8 +3339,11 @@ function setupMap(map, extra)
             piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
         end
 
-        for l,landTable in ipairs (piecesToPlace) do
-            for i,pieceName in ipairs (landTable) do
+        for l,landTable in ipairs(piecesToPlace) do
+            for i,pieceName in ipairs(landTable) do
+                if secondWave and pieceName == "Box Blight" then
+                    pieceName = "Blight"
+                end
                 place(pieceName,map.positionToWorld(posToPlace[l][i]))
                 coroutine.yield(0)
             end

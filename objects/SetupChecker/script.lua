@@ -81,7 +81,6 @@ playtestMinorPower = "0"
 playtestMajorPower = "0"
 
 updateLayoutsID = 0
-configLoaded = false
 setupStarted = false
 exit = false
 sourceSpirit = nil
@@ -895,36 +894,32 @@ function startGame()
     end
     if config ~= nil then
         loadConfig(config)
-    else
-        configLoaded = true
     end
-    Wait.condition(function()
-        if not Global.call("CanSetupGame") then
-            return
-        end
-        setupStarted = true
+    if not Global.call("CanSetupGame") then
+        return
+    end
+    setupStarted = true
 
-        local exps = Global.getTable("expansions")
-        for expansion,enabled in pairs(exps) do
-            -- Playtest expansion setup is handled in Global script
-            if enabled and expansions[expansion] and expansion ~= playtestExpansion then
-                setupExpansion(getObjectFromGUID(expansions[expansion]))
-            elseif expansion ~= playtestExpansion then
-                -- expansion is disabled or doesn't exist in mod
-                exps[expansion] = nil
-            end
+    local exps = Global.getTable("expansions")
+    for expansion,enabled in pairs(exps) do
+        -- Playtest expansion setup is handled in Global script
+        if enabled and expansions[expansion] and expansion ~= playtestExpansion then
+            setupExpansion(getObjectFromGUID(expansions[expansion]))
+        elseif expansion ~= playtestExpansion then
+            -- expansion is disabled or doesn't exist in mod
+            exps[expansion] = nil
         end
-        local events = Global.getTable("events")
-        for expansion,enabled in pairs(events) do
-            if not enabled or not exps[expansion] or not expansions[expansion] then
-                events[expansion] = nil
-            end
+    end
+    local events = Global.getTable("events")
+    for expansion,enabled in pairs(events) do
+        if not enabled or not exps[expansion] or not expansions[expansion] then
+            events[expansion] = nil
         end
-        Global.setTable("expansions", exps)
-        Global.setTable("events", events)
+    end
+    Global.setTable("expansions", exps)
+    Global.setTable("events", events)
 
-        Wait.condition(function() Global.call("SetupGame") end, function() return expansionsAdded == expansionsSetup end)
-    end, function() return configLoaded end)
+    Wait.condition(function() Global.call("SetupGame") end, function() return expansionsAdded == expansionsSetup end)
 end
 function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -1085,22 +1080,16 @@ function loadConfig(config)
     if config.scenario then
         updateScenario(config.scenario, false)
     end
-    -- Currently can't have second wave with other scenarios so override that value
-    local secondWaveLoaded = false
     if config.secondWave then
-        local cachedNumScenarios = numScenarios
         local scenarioBag = Global.getVar("scenarioBag")
         local secondWave = scenarioBag.takeObject({
             guid = "e924fe",
             position = scenarioBag.getPosition() + Vector(0, 0, 5),
             rotation = Vector(0, 180, 180),
         })
-        Wait.condition(function()
-            updateScenario(secondWave.getName(), false)
-            secondWaveLoaded = true
-        end, function() return numScenarios == cachedNumScenarios + 1 end)
-    else
-        secondWaveLoaded = true
+        if config.secondWave.wave and config.secondWave.wave > 1 then
+            Global.setVar("secondWave", secondWave)
+        end
     end
     if config.spirits then
         for name,aspect in pairs(config.spirits) do
@@ -1129,7 +1118,6 @@ function loadConfig(config)
         printToAll(config.broadcast, Color.SoftYellow)
     end
     updateDifficulty()
-    Wait.condition(function() configLoaded = true end, function() return secondWaveLoaded end)
 end
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do

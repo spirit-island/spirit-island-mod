@@ -1,6 +1,3 @@
-difficulty=0
-
-requirements = true
 mapSetup = true
 postSetup = true
 postSetupComplete = false
@@ -26,9 +23,6 @@ function onLoad()
     end
 end
 
-function Requirements(params)
-    return params.adversary
-end
 function MapSetup(params)
     local config = readConfig()
     if not config or not config.secondWave or not config.secondWave.wave then
@@ -114,7 +108,6 @@ function PostSetup(params)
         end
         if config.secondWave.wave then
             broadcast = "Second Wave - Starting Wave "..config.secondWave.wave
-            broadcastToAll("Adversary Blight should have come from the card not the box, so you might need to manually fix this", Color.Red)
         end
         if config.secondWave.powers then
             local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]

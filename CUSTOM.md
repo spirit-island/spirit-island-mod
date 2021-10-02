@@ -151,6 +151,7 @@
   - Note: notebook contains sample starter code for adversary
   - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
   - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
+  - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level
   - reminderSetup
     - `reminderSetup`: **boolean** - set to true if you have `ReminderSetup` function
     - `ReminderSetup(params)`

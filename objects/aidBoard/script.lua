@@ -139,6 +139,18 @@ function onLoad(saved_data)
         font_size      = 300,
         tooltip        = "Flip over the top Invader Card"
     })
+    self.createButton({
+        click_function = "secondWave",
+        function_owner = self,
+        label          = "",
+        position       = Vector(-0.72,0.1,-1.85),
+        rotation       = Vector(0,0,0),
+        width          = 0,
+        height         = 0,
+        scale          = Vector(0.2,0.2,0.2),
+        font_size      = 300,
+        tooltip        = "Enable Second Wave for next game"
+    })
     placeReadyTokens()
     placeElementTokens()
     updateFearUI()
@@ -175,6 +187,14 @@ function setupGame()
         width = 1500,
         height = 500,
     })
+    if Global.getVar("scenarioCard") == nil then
+        self.editButton({
+            index = 11,
+            label = "Second Wave?",
+            width = 1800,
+            height = 500,
+        })
+    end
     Wait.time(aidPanelScanLoop,1,-1)
     Wait.time(scanReady,1,-1)
 
@@ -208,6 +228,22 @@ function wt(some)
     end
 end
 
+function secondWave()
+    self.editButton({
+        index = 11,
+        label = "",
+        width = 0,
+        height = 0,
+    })
+    local secondWave = Global.getVar("scenarioBag").takeObject({
+        guid = "e924fe",
+        position = self.positionToWorld(Vector(0.75,0.11,-1.81)),
+        rotation = Vector(0, 180, 0),
+        callback_function = function(obj) obj.call("PostSetup", {}) end,
+    })
+    secondWave.setScale(Vector(1.71, 1, 1.71))
+    secondWave.setLock(true)
+end
 ---- Invader Card Section
 function flipExploreCard()
     local function removeSpecial(card)

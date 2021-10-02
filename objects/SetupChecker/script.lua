@@ -21,14 +21,13 @@ scenarios = {
     ["Ward the Shores"] = "bd528e",
     ["Powers Long Forgotten"] = "ca88f0",
     ["Rituals of the Destroying Flame"] = "a69e8c",
-    ["Second Wave"] = "e924fe",
     ["The Great River"] = "5a95bc",
     ["Elemental Invocation"] = "b8b521",
     ["Despicable Theft"] = "ec49d4",
     ["Varied Terrains"] = "64caee",
     ["A Diversity of Spirits"] = "3d1ba3",
 }
-numScenarios = 13
+numScenarios = 12
 
 -- This must match the same guids of global's elementScanZones
 playerZones = {
@@ -82,6 +81,7 @@ playtestMinorPower = "0"
 playtestMajorPower = "0"
 
 updateLayoutsID = 0
+configLoaded = false
 setupStarted = false
 exit = false
 sourceSpirit = nil
@@ -342,7 +342,7 @@ function onObjectSpawn(obj)
             if objType == "table" then
                 addAdversary(obj)
             elseif objType == "number" then
-                -- Scenario
+                addScenario(obj)
             end
         end
         if obj.hasTag("Expansion") then
@@ -373,6 +373,13 @@ function addAdversary(obj)
     end
     adversaries[obj.getName()] = obj.guid
     updateXml{updateAdversaryList()}
+end
+function addScenario(obj)
+    if scenarios[obj.getName()] == nil then
+        numScenarios = numScenarios + 1
+    end
+    scenarios[obj.getName()] = obj.guid
+    updateXml{updateScenarioList()}
 end
 function onDestroy()
     exit = true
@@ -888,32 +895,36 @@ function startGame()
     end
     if config ~= nil then
         loadConfig(config)
+    else
+        configLoaded = true
     end
-    if not Global.call("CanSetupGame") then
-        return
-    end
-    setupStarted = true
-
-    local exps = Global.getTable("expansions")
-    for expansion,enabled in pairs(exps) do
-        -- Playtest expansion setup is handled in Global script
-        if enabled and expansions[expansion] and expansion ~= playtestExpansion then
-            setupExpansion(getObjectFromGUID(expansions[expansion]))
-        elseif expansion ~= playtestExpansion then
-            -- expansion is disabled or doesn't exist in mod
-            exps[expansion] = nil
+    Wait.condition(function()
+        if not Global.call("CanSetupGame") then
+            return
         end
-    end
-    local events = Global.getTable("events")
-    for expansion,enabled in pairs(events) do
-        if not enabled or not exps[expansion] or not expansions[expansion] then
-            events[expansion] = nil
-        end
-    end
-    Global.setTable("expansions", exps)
-    Global.setTable("events", events)
+        setupStarted = true
 
-    Wait.condition(function() Global.call("SetupGame") end, function() return expansionsAdded == expansionsSetup end)
+        local exps = Global.getTable("expansions")
+        for expansion,enabled in pairs(exps) do
+            -- Playtest expansion setup is handled in Global script
+            if enabled and expansions[expansion] and expansion ~= playtestExpansion then
+                setupExpansion(getObjectFromGUID(expansions[expansion]))
+            elseif expansion ~= playtestExpansion then
+                -- expansion is disabled or doesn't exist in mod
+                exps[expansion] = nil
+            end
+        end
+        local events = Global.getTable("events")
+        for expansion,enabled in pairs(events) do
+            if not enabled or not exps[expansion] or not expansions[expansion] then
+                events[expansion] = nil
+            end
+        end
+        Global.setTable("expansions", exps)
+        Global.setTable("events", events)
+
+        Wait.condition(function() Global.call("SetupGame") end, function() return expansionsAdded == expansionsSetup end)
+    end, function() return configLoaded end)
 end
 function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -977,9 +988,13 @@ function loadConfig(config)
         if config.variant.carpetRedo ~= nil then
             local seaTile = Global.getVar("seaTile")
             if config.variant.carpetRedo then
-                seaTile.setState(1)
+                if seaTile.getStateId() ~= 1 then
+                    seaTile.setState(1)
+                end
             else
-                seaTile.setState(2)
+                if seaTile.getStateId() ~= 2 then
+                    seaTile.setState(2)
+                end
             end
         end
         if config.variant.legacyKeybindings ~= nil then
@@ -1070,6 +1085,23 @@ function loadConfig(config)
     if config.scenario then
         updateScenario(config.scenario, false)
     end
+    -- Currently can't have second wave with other scenarios so override that value
+    local secondWaveLoaded = false
+    if config.secondWave then
+        local cachedNumScenarios = numScenarios
+        local scenarioBag = Global.getVar("scenarioBag")
+        local secondWave = scenarioBag.takeObject({
+            guid = "e924fe",
+            position = scenarioBag.getPosition() + Vector(0, 0, 5),
+            rotation = Vector(0, 180, 180),
+        })
+        Wait.condition(function()
+            updateScenario(secondWave.getName(), false)
+            secondWaveLoaded = true
+        end, function() return numScenarios == cachedNumScenarios + 1 end)
+    else
+        secondWaveLoaded = true
+    end
     if config.spirits then
         for name,aspect in pairs(config.spirits) do
             PickSpirit(name, aspect)
@@ -1097,6 +1129,7 @@ function loadConfig(config)
         printToAll(config.broadcast, Color.SoftYellow)
     end
     updateDifficulty()
+    Wait.condition(function() configLoaded = true end, function() return secondWaveLoaded end)
 end
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do

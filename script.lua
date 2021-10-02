@@ -2046,7 +2046,7 @@ function adversaryUISetup()
     local lineCount = 0
     if adversaryCard and adversaryCard.getVar("hasUI") then
         local ui = adversaryCard.call("AdversaryUI", {level = adversaryLevel, supporting = false})
-        UI.setAttribute("panelAdversaryName","text",adversaryCard.getName().." Effects")
+        UI.setAttribute("panelAdversaryName","text",adversaryCard.getName().." Level "..adversaryLevel)
         lineCount = lineCount + 1
         if ui.loss then
             UI.setAttribute("panelAdversaryLossText","tooltip",ui.loss.tooltip)
@@ -2120,7 +2120,7 @@ function adversaryUISetup()
         lineCount = lineCount + 1
         UI.setAttribute("panelAdversary2Helper","active","true")
         local ui = adversaryCard2.call("AdversaryUI", {level = adversaryLevel2, supporting = true})
-        UI.setAttribute("panelAdversary2Name","text",adversaryCard2.getName().." Effects")
+        UI.setAttribute("panelAdversary2Name","text",adversaryCard2.getName().." Level "..adversaryLevel2)
         lineCount = lineCount + 1
         if ui.loss then
             UI.setAttribute("panelAdversary2LossText","tooltip",ui.loss.tooltip)

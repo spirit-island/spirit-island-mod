@@ -10,7 +10,7 @@ function PostSetup()
     local scenarioBag = Global.getVar("scenarioBag")
     local bag = scenarioBag.takeObject({
         guid = "8d6e46",
-        position = {-45.24, 0.84, 36.64},
+        position = {-42.14, 0.71, 35.97},
         rotation = {0,180,0},
         smooth = false,
         callback_function = removeTokens,

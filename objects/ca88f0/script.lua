@@ -11,7 +11,7 @@ function PreSetup()
     local scenarioBag = Global.getVar("scenarioBag")
     local bag = scenarioBag.takeObject({
         guid = "8d6e46",
-        position = {-44.08, 0.71, 34.11},
+        position = {-42.14, 0.71, 35.97},
         rotation = {0,0,0},
         smooth = false,
         callback_function = removeTokens,

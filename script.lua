@@ -1860,65 +1860,75 @@ function reminderSetup()
 
     local ravagePos = Vector(-0.2,-0.09,2.24)
     if reminder.ravage then
-        local obj = adversaryBag.takeObject({
-            guid = reminder.ravage,
-            position = aidBoard.positionToWorld(ravagePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
-        obj.interactable = false
+        reminder.ravage.setPosition(aidBoard.positionToWorld(ravagePos))
+        reminder.ravage.setRotation(Vector(0, 180, 0))
+        reminder.ravage.setLock(true)
+        reminder.ravage.interactable = false
         ravagePos.z = ravagePos.z + 0.07
     end
     if reminder2.ravage and reminder2.ravage ~= reminder.ravage then
-        local obj = adversaryBag.takeObject({
-            guid = reminder2.ravage,
-            position = aidBoard.positionToWorld(ravagePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
-        obj.interactable = false
+        reminder2.ravage.setPosition(aidBoard.positionToWorld(ravagePos))
+        reminder2.ravage.setRotation(Vector(0, 180, 0))
+        reminder2.ravage.setLock(true)
+        reminder2.ravage.interactable = false
+    end
+
+    local afterRavagePos = Vector(-0.47,-0.09,1.9)
+    if reminder.afterRavage then
+        reminder.afterRavage.setPosition(aidBoard.positionToWorld(afterRavagePos))
+        reminder.afterRavage.setRotation(Vector(0, 90, 0))
+        reminder.afterRavage.setLock(true)
+        reminder.afterRavage.interactable = false
+    end
+    if reminder2.afterRavage then
+        reminder2.afterRavage.setPosition(aidBoard.positionToWorld(afterRavagePos))
+        reminder2.afterRavage.setRotation(Vector(0, 90, 0))
+        reminder2.afterRavage.setLock(true)
+        reminder2.afterRavage.interactable = false
     end
 
     local buildPos = Vector(-0.72,-0.09,2.24)
     if reminder.build then
-        local obj = adversaryBag.takeObject({
-            guid = reminder.build,
-            position = aidBoard.positionToWorld(buildPos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
-        obj.interactable = false
+        reminder.build.setPosition(aidBoard.positionToWorld(buildPos))
+        reminder.build.setRotation(Vector(0, 180, 0))
+        reminder.build.setLock(true)
+        reminder.build.interactable = false
         buildPos.z = buildPos.z + 0.07
     end
     if reminder2.build and reminder2.build ~= reminder.build then
-        local obj = adversaryBag.takeObject({
-            guid = reminder2.build,
-            position = aidBoard.positionToWorld(buildPos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
-        obj.interactable = false
+        reminder2.build.setPosition(aidBoard.positionToWorld(buildPos))
+        reminder2.build.setRotation(Vector(0, 180, 0))
+        reminder2.build.setLock(true)
+        reminder2.build.interactable = false
+    end
+
+    local afterBuildPos = Vector(-0.98,-0.09,1.9)
+    if reminder.afterBuild then
+        reminder.afterBuild.setPosition(aidBoard.positionToWorld(afterBuildPos))
+        reminder.afterBuild.setRotation(Vector(0, 90, 0))
+        reminder.afterBuild.setLock(true)
+        reminder.afterBuild.interactable = false
+    end
+    if reminder2.afterBuild then
+        reminder2.afterBuild.setPosition(aidBoard.positionToWorld(afterBuildPos))
+        reminder2.afterBuild.setRotation(Vector(0, 90, 0))
+        reminder2.afterBuild.setLock(true)
+        reminder2.afterBuild.interactable = false
     end
 
     local explorePos = Vector(-1.24,-0.09,2.24)
     if reminder.explore then
-        local obj = adversaryBag.takeObject({
-            guid = reminder.explore,
-            position = aidBoard.positionToWorld(explorePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
-        obj.interactable = false
+        reminder.explore.setPosition(aidBoard.positionToWorld(explorePos))
+        reminder.explore.setRotation(Vector(0, 180, 0))
+        reminder.explore.setLock(true)
+        reminder.explore.interactable = false
         explorePos.z = explorePos.z + 0.07
     end
     if reminder2.explore and reminder2.explore ~= reminder.explore then
-        local obj = adversaryBag.takeObject({
-            guid = reminder2.explore,
-            position = aidBoard.positionToWorld(explorePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
-        obj.interactable = false
+        reminder2.explore.setPosition(aidBoard.positionToWorld(explorePos))
+        reminder2.explore.setRotation(Vector(0, 180, 0))
+        reminder2.explore.setLock(true)
+        reminder2.explore.interactable = false
     end
 end
 function adversaryUISetup()

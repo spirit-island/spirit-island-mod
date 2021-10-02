@@ -3,22 +3,24 @@ fearCards={[0] = {0,0,0}, {0,1,0}, {1,1,0}, {1,2,1}, {2,2,1}, {2,3,1}, {3,3,1}}
 reminderSetup = true
 invaderDeckSetup = true
 mapSetup = true
-postSetup = true
-postSetupComplete = false
 hasLossCondition = true
 hasUI = true
 hasBroadcast = true
 
 function ReminderSetup(params)
     local reminderTiles = {}
+    local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 1 then
-        reminderTiles.explore = "16b426"
+        reminderTiles.explore = adversaryBag.takeObject({guid="16b426"})
     end
     if params.level >= 3 then
-        reminderTiles.build = "76ab12"
+        reminderTiles.build = adversaryBag.takeObject({guid="76ab12"})
     end
     if params.level >= 5 then
-        reminderTiles.ravage = "9f5e3b"
+        reminderTiles.ravage = adversaryBag.takeObject({guid="9f5e3b"})
+    end
+    if params.level >= 6 then
+        reminderTiles.afterRavage = adversaryBag.takeObject({guid="aa65cf"})
     end
     return reminderTiles
 end
@@ -96,20 +98,6 @@ function MapSetup(params)
         table.insert(params.pieces[2],"City")
     end
     return params.pieces
-end
-
-function PostSetup(params)
-    if params.level >= 6 then
-        local aidBoard = Global.getVar("aidBoard")
-        local adversaryBag = Global.getVar("adversaryBag")
-        adversaryBag.takeObject({
-            guid = "aa65cf",
-            position = aidBoard.positionToWorld(Vector(-0.47,-0.09,1.9)),
-            rotation = {0,90,0},
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-    end
-    postSetupComplete = true
 end
 
 function Broadcast(params)

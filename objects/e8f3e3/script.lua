@@ -73,11 +73,12 @@ end
 
 function ReminderSetup(params)
     local reminderTiles = {}
+    local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 1 then
-        reminderTiles.explore = "f4a568"
+        reminderTiles.explore = adversaryBag.takeObject({guid="f4a568"})
     end
     if params.level >= 2 then
-        reminderTiles.build = "be2c91"
+        reminderTiles.build = adversaryBag.takeObject({guid="be2c91"})
     end
     return reminderTiles
 end

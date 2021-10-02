@@ -51,8 +51,12 @@ end
 
 function ReminderSetup(params)
     local reminderTiles = {}
+    local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 1 then
-        reminderTiles.ravage = "c077b7"
+        reminderTiles.ravage = adversaryBag.takeObject({guid="c077b7"})
+    end
+    if params.level >= 6 then
+        reminderTiles.afterRavage = adversaryBag.takeObject({guid="b9fca6"})
     end
     return reminderTiles
 end
@@ -150,16 +154,6 @@ function PostSetup(params)
             updateCount({count=#obj.getObjects()})
         end,
     })
-
-    if params.level >= 6 then
-        local aidBoard = Global.getVar("aidBoard")
-        adversaryBag.takeObject({
-            guid = "b9fca6",
-            position = aidBoard.positionToWorld(Vector(-0.47,-0.09,1.9)),
-            rotation = {0,90,0},
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-    end
 
     if params.level >= 5 then
         -- Setup extra invader cards

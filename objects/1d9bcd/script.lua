@@ -63,11 +63,15 @@ end
 
 function ReminderSetup(params)
     local reminderTiles = {}
+    local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 1 then
-        reminderTiles.build = "05e46d"
+        reminderTiles.afterBuild = adversaryBag.takeObject({guid="0cea08"})
+    end
+    if params.level >= 2 then
+        reminderTiles.build = adversaryBag.takeObject({guid="05e46d"})
     end
     if params.level >= 6 then
-        reminderTiles.ravage = "3876aa"
+        reminderTiles.ravage = adversaryBag.takeObject({guid="3876aa"})
     end
     return reminderTiles
 end
@@ -145,16 +149,6 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
-    local adversaryBag = Global.getVar("adversaryBag")
-    if params.level >= 1 then
-        local aidBoard = Global.getVar("aidBoard")
-        adversaryBag.takeObject({
-            guid = "0cea08",
-            position = aidBoard.positionToWorld(Vector(-0.98,-0.09,1.9)),
-            rotation = {0,90,0},
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-    end
     if params.level >= 5 then
         local zone = Global.getVar("invaderDeckZone")
         local invaderDeck = zone.getObjects()[1]
@@ -175,6 +169,7 @@ function PostSetup(params)
             invaderDeck.takeObject({
                 position = invaderDeck.getPosition() + Vector(0,2,0)
             })
+            local adversaryBag = Global.getVar("adversaryBag")
             adversaryBag.takeObject({
                 guid = "d90af8",
                 position = invaderDeck.getPosition() + Vector(0,0.1,0),

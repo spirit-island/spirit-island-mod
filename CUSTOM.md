@@ -1,12 +1,12 @@
 ### Spirits
 - Place object onto spirit editor, this will add the "Spirit" tag as well as basic scripting
-- Set name of spirit for the object
-- Add tag to object for spirit's complexity, one of the follow:
+- Set name of object to that of spirit
+- Add tag to object for spirit's complexity, one of the following:
   - "Low"
   - "Moderate"
   - "High"
   - "Very High"
-- Add snap points to presence track
+- Add snap points to presence track(s) where presence should be setup
 - Presence track elements:
   - For non any elements that appear on presence tracks grab object from the element bag (one next to energy bag)
   - Set the state to match the element
@@ -14,16 +14,17 @@
   - Once all elements are set press the "Update Elements" button
 - Presence track energy:
   - For each time that energy gain increases grab energy tokens from bag and stack them onto spot
-  - You don't need to put them on every spot, only when income changes. Also don't forget about starting spot if it's not zero
   - Energy tokens have a 2nd state to be used for bonus energy, i.e. Finder
   - Once all energy is set press the "Update Energy" button
+  - Note: You don't need to put them on every spot, only when income changes
+  - Note: Don't forget about starting spot if it's not zero
 - Innate thresholds:
   - Grab a threshold token (X) and place it onto object where you want the threshold decal to appear
   - Then grab elements from the element bag right next to threshold
   - Set the state to match the element
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the top one)
-  - Note for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+  - Note: for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 - Extra setup:
   - Create object and place on top of spirit panel
   - Tag object with "Setup"
@@ -32,7 +33,7 @@
       - `color`: **string** - is the color of the player who picked the spirit
 
 ### Power Cards
-- Set card onto power card editor
+- Move card onto power card editor
 - Change values that appear to match card
 - Set name of object to that of power card
 - Thresholds:
@@ -41,35 +42,35 @@
   - Set the state to match the element
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the bottom one)
-  - Note that the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
-  - Note for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+  - Note: the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
+  - Note: for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 
 ### Aspects
 - Add "Aspect" tag
 - Set name of object to that of aspect
 - Thresholds:
-  - Place on power card editor
+  - Move card onto power card editor
   - Follow power card threshold instructions
 - Add "Aspect" tag to deck of aspects as well if you have one of those
 
 ### Blight Cards
-- Set card onto blight card editor
+- Move card onto blight card editor
 - Change values that appear to match card
 - Set name of object to that of blight card
-- If blight card has recurring start of invader effect set object's description to that
-- You'll also want to make sure that Hide Face Down toggle is set for the card
+- Set description to recurring start of invader effect (if any)
+- Enable Hide Face Down toggle for the card
 
 ### Expansions
 - Create a bag
-- Name the bag the name of the expansion
-- Add the tag "Expansion" to the bag
+- Set name of object to expansion
+- Add "Expansion" tag
 - Decks of cards need to be named one of the following:
   - "Fear"
   - "Events"
   - "Blight Cards"
   - "Minor Powers"
   - "Major Powers"
-- Note using single cards in place of a deck may cause setup issues
+- Note: using single cards in place of a deck may cause setup issues
 
 ### Adversary & Scenario
 - Set name of object to that of adversary/scenario
@@ -120,11 +121,11 @@
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary (only exists for Adversary call)
         - `deck`: **table** - table containing current setup for invader deck
-          - values of 1, 2, 3 indicate random card of that stage
-          - values of W, M, J, S indicate specific stage I cards
-          - values of We, Me, Je, Se, C indicate specific stage II cards
-          - values of MW, JW, SW, MJ, SM, JS indicate specific stage III cards
-          - values of <anything above>** will have UI treat card as one stage lower (i.e. Prussia 2)
+          - 1, 2, 3: indicates random card of that stage
+          - W, M, J, S: indicates specific stage I card
+          - We, Me, Je, Se, C: indicates specific stage II card
+          - MW, JW, SW, MJ, SM, JS: indicates specific stage III card
+          - [anything above]*: will have UI treat card as one stage lower (i.e. Prussia 2)
         - return **table** - updated table for invader deck setup
   - mapSetup - allows you to modify the pieces on a board
     - `mapSetup`: **boolean** - set to true if you have MapSetup function
@@ -133,7 +134,7 @@
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary (only exists for Adversary call)
         - `pieces`: **table** - 2D, contain keys for each land number, and each land table has values for piece name
-        - `guid`: **string** - guid of the board being setup (only exists for Adversary call)
+        - `name`: **string** - name of the board being setup (only exists for Adversary call)
         - `extra`: **boolean** - whether the current board is the extra board from setup variant
       - return **table** - updated table for pieces setup
   - postSetup - called after all other setup steps have completed
@@ -194,7 +195,7 @@
         - `six`
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
-      - `<loss callback>(params)`
+      - `[loss callback function](params)`
         - `params`: **table** - contains data about update
           - `count`: **number** - new count for loss counter
       - `UpdateAdversaryLossCounter(params)` - when adversary doesn't use buttons you can call this function to update text, i.e. Russia

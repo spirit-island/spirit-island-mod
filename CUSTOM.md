@@ -86,7 +86,7 @@
       - `hit_object`: **object** - object registered to receive collision events
       - `collision_info`: **table** - table containing data about collision
 - broadcast
-  - `hasBroadcast`: **boolean** - set to true if you have a Broadcast function
+  - `hasBroadcast`: **boolean** - set to true if you have a `Broadcast` function
   - `Broadcast(params)`
       - `params`: **table** - contains data about adversaries (only exists for Adversary call)
         - `level`: **number** - level of current adversary
@@ -96,7 +96,7 @@
     - return **string** - what players should be told, nil otherwise
 - Setup Callbacks:
   - requirements - determine whether random adversary/scenario should be used with current setup
-    - `requirements`: boolean - set to true if you have Requirements function
+    - `requirements`: boolean - set to true if you have `Requirements` function
     - `Requirements(params)`
       - `params`: **table** - contains data about game setup
         - `eventDeck`: **boolean** - whether event deck is being used
@@ -106,8 +106,8 @@
         - `adversary`: **boolean** - whether an adversary is being used (only exists for Scenario call)
       - return **boolean** - whether this adversary/scenario should be used
   - preSetup - called before all other setup steps have started
-    - `preSetup`: **boolean** - set to true if you have PreSetup function
-    - `preSetupComplete`: **boolean** - set to true at end PreSetup function
+    - `preSetup`: **boolean** - set to true if you have `PreSetup` function
+    - `preSetupComplete`: **boolean** - set to true at end `PreSetup` function
     - `PreSetup(params)`
       - `params`: **table** - contains data about game setup (only exists for Adversary call)
         - `level`: **number** - level of current adversary
@@ -115,8 +115,8 @@
       - if you have a new bag with custom pieces like invaders, dahan, etc you should add the hookup in here
       - simply remove the current bag, place the new bag in current position, and then update global variable for the bag
   - invaderDeckSetup - allows you to modify invader deck
-    - `invaderDeckSetup`: **boolean** - set to true if you have InvaderDeckSetup function
-    - `invaderDeckSetupComplete`: **boolean** - set to true at end InvaderDeckSetup function
+    - `invaderDeckSetup`: **boolean** - set to true if you have `InvaderDeckSetup` function
+    - `invaderDeckSetupComplete`: **boolean** - set to true at end `InvaderDeckSetup` function
     - `InvaderDeckSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary (only exists for Adversary call)
@@ -128,8 +128,8 @@
           - [anything above]*: will have UI treat card as one stage lower (i.e. Prussia 2)
         - return **table** - updated table for invader deck setup
   - mapSetup - allows you to modify the pieces on a board
-    - `mapSetup`: **boolean** - set to true if you have MapSetup function
-    - `mapSetupComplete`: **boolean** - set to true at end MapSetup function
+    - `mapSetup`: **boolean** - set to true if you have `MapSetup` function
+    - `mapSetupComplete`: **boolean** - set to true at end `MapSetup` function
     - `MapSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary (only exists for Adversary call)
@@ -139,8 +139,8 @@
         - `extra`: **boolean** - whether the current board is the extra board from setup variant
       - return **table** - updated table for pieces setup
   - postSetup - called after all other setup steps have completed
-    - `postSetup`: **boolean** - set to true if you have PostSetup function
-    - `postSetupComplete`: **boolean** - set to true at end PostSetup function
+    - `postSetup`: **boolean** - set to true if you have `PostSetup` function
+    - `postSetupComplete`: **boolean** - set to true at end `PostSetup` function
     - `PostSetup(params)`
       - `params`: **table** - contains data about game setup (only exists for Adversary call)
         - `level`: **number** - level of current adversary
@@ -151,7 +151,7 @@
   - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
   - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
   - reminderSetup
-    - `reminderSetup`: **boolean** - set to true if you have ReminderSetup function
+    - `reminderSetup`: **boolean** - set to true if you have `ReminderSetup` function
     - `ReminderSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary
@@ -163,7 +163,7 @@
         - `explore`: **object** - explore reminder object, use "Generic" if you don't have a custom one
         - `afterExplore`: **object** - after explore reminder object, use "Generic" if you don't have a custom one
   - adversaryUI
-    - `hasUI`: **boolean** - set to true if you have AdversaryUI function
+    - `hasUI`: **boolean** - set to true if you have `AdversaryUI` function
     - `AdversaryUI(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary
@@ -204,7 +204,7 @@
           - `support`: **boolean** - whether this is supporting adversary or not
           - `count`: **number** - new count for loss counter
   - limitSetup - called before board setup starts in case any pieces need to be limited (i.e. France)
-    - `limitSetup`: **boolean** - set to true if you have LimitSetup function
+    - `limitSetup`: **boolean** - set to true if you have `LimitSetup` function
     - `LimitSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary
@@ -218,8 +218,8 @@
   - `blightTokens`: **number** - modifies amount of flipped card blight per player
   - `blightCount`: **number** - overrides total amount of blight when island is no longer healthy
   - boardSetup - allows you to override the current board layout (i.e. Great River)
-    - `boardSetup`: **boolean** - set to true if you have BoardSetup function
-    - `boardSetupComplete`: **boolean** - set to true at end BoardSetup function
+    - `boardSetup`: **boolean** - set to true if you have `BoardSetup` function
+    - `boardSetupComplete`: **boolean** - set to true at end `BoardSetup` function
     - `BoardSetup(params)`
       - `params`: **table** - contains data about game setup
         - `boards`: **number** - number of boards to be setup

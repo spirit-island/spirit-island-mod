@@ -99,6 +99,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"00000001\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -107,10 +110,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"00000001\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     },
     "7": {
       "GUID": "20586b",
@@ -163,6 +163,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"00000010\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -171,10 +174,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"00000010\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     },
     "6": {
       "GUID": "7c2166",
@@ -227,6 +227,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"00000100\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -235,10 +238,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"00000100\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     },
     "5": {
       "GUID": "95b72c",
@@ -291,6 +291,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"00001000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -299,10 +302,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"00001000\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     },
     "4": {
       "GUID": "177c94",
@@ -355,6 +355,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"00010000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -363,10 +366,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"00010000\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     },
     "3": {
       "GUID": "d7a526",
@@ -419,6 +419,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"00100000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -427,10 +430,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"00100000\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     },
     "2": {
       "GUID": "3b1a39",
@@ -483,6 +483,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"01000000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -491,10 +494,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"01000000\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     },
     "1": {
       "GUID": "7d3cb6",
@@ -547,6 +547,9 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
+      "LuaScript": "elements=\"10000000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": "",
       "AttachedSnapPoints": [
         {
           "Position": {
@@ -555,10 +558,7 @@
             "z": 0.0
           }
         }
-      ],
-      "LuaScript": "elements=\"10000000\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      ]
     }
   }
 }

@@ -1117,11 +1117,11 @@ function SetupFear()
         fearDeck = Player["White"].getHandObjects(1)
 
         local divider = getObjectFromGUID("f96a71")
-        divider.setPosition(fearDeck[#fearDeck-fearCards[1]-fearCards[2]].getPosition() + Vector(0.1, 0, 0))
+        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]-fearCards[2]+1)].getPosition() - Vector(0.2, 0, 0))
         count = count + 1
 
         divider = getObjectFromGUID("969897")
-        divider.setPosition(fearDeck[#fearDeck-fearCards[1]].getPosition() + Vector(0.1, 0, 0))
+        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]+1)].getPosition() - Vector(0.2, 0, 0))
         count = count + 1
 
         Wait.condition(function()

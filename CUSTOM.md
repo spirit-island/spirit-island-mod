@@ -154,11 +154,11 @@ Adversary & Scenario:
       - params: table - contains data about game setup
         - level: number - level of current adversary
       - return table
-        - ravage: object - ravage reminder object, use Global.getVar("adversaryBag").takeObject({guid="135124"}) for generic one
+        - ravage: object - ravage reminder object, use "Generic" if you don't have a custom one
         - afterRavage: object - after ravage reminder object
-        - build: object - build reminder object, use Global.getVar("adversaryBag").takeObject({guid="a178fa"}) for generic one
+        - build: object - build reminder object, use "Generic" if you don't have a custom one
         - afterBuild: object - after build reminder object
-        - explore: object - explore reminder object, use Global.getVar("adversaryBag").takeObject({guid="a5b6b3"}) for generic one
+        - explore: object - explore reminder object, use "Generic" if you don't have a custom one
   - adversaryUI
     - hasUI: boolean - set to true if you have AdversaryUI function
     - AdversaryUI(params)

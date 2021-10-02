@@ -1860,6 +1860,9 @@ function reminderSetup()
 
     local ravagePos = Vector(-0.2,-0.09,2.24)
     if reminder.ravage then
+        if reminder.ravage == "Generic" then
+            reminder.ravage = adversaryBag.takeObject({guid="135124"})
+        end
         reminder.ravage.setPosition(aidBoard.positionToWorld(ravagePos))
         reminder.ravage.setRotation(Vector(0, 180, 0))
         reminder.ravage.setLock(true)
@@ -1867,6 +1870,14 @@ function reminderSetup()
         ravagePos.z = ravagePos.z + 0.07
     end
     if reminder2.ravage and reminder2.ravage ~= reminder.ravage then
+        if reminder2.ravage == "Generic" then
+            local obj = getObjectFromGUID("135124")
+            if obj then
+                reminder2.ravage = obj.clone()
+            else
+                reminder2.ravage = adversaryBag.takeObject({guid="135124"})
+            end
+        end
         reminder2.ravage.setPosition(aidBoard.positionToWorld(ravagePos))
         reminder2.ravage.setRotation(Vector(0, 180, 0))
         reminder2.ravage.setLock(true)
@@ -1891,6 +1902,9 @@ function reminderSetup()
 
     local buildPos = Vector(-0.72,-0.09,2.24)
     if reminder.build then
+        if reminder.build == "Generic" then
+            reminder.build = adversaryBag.takeObject({guid="a178fa"})
+        end
         reminder.build.setPosition(aidBoard.positionToWorld(buildPos))
         reminder.build.setRotation(Vector(0, 180, 0))
         reminder.build.setLock(true)
@@ -1898,6 +1912,14 @@ function reminderSetup()
         buildPos.z = buildPos.z + 0.07
     end
     if reminder2.build and reminder2.build ~= reminder.build then
+        if reminder2.build == "Generic" then
+            local obj = getObjectFromGUID("a178fa")
+            if obj then
+                reminder2.build = obj.clone()
+            else
+                reminder2.build = adversaryBag.takeObject({guid="a178fa"})
+            end
+        end
         reminder2.build.setPosition(aidBoard.positionToWorld(buildPos))
         reminder2.build.setRotation(Vector(0, 180, 0))
         reminder2.build.setLock(true)
@@ -1922,6 +1944,9 @@ function reminderSetup()
 
     local explorePos = Vector(-1.24,-0.09,2.24)
     if reminder.explore then
+        if reminder.explore == "Generic" then
+            reminder.explore = adversaryBag.takeObject({guid="a5b6b3"})
+        end
         reminder.explore.setPosition(aidBoard.positionToWorld(explorePos))
         reminder.explore.setRotation(Vector(0, 180, 0))
         reminder.explore.setLock(true)
@@ -1929,6 +1954,14 @@ function reminderSetup()
         explorePos.z = explorePos.z + 0.07
     end
     if reminder2.explore and reminder2.explore ~= reminder.explore then
+        if reminder2.explore == "Generic" then
+            local obj = getObjectFromGUID("a5b6b3")
+            if obj then
+                reminder2.explore = obj.clone()
+            else
+                reminder2.explore = adversaryBag.takeObject({guid="a5b6b3"})
+            end
+        end
         reminder2.explore.setPosition(aidBoard.positionToWorld(explorePos))
         reminder2.explore.setRotation(Vector(0, 180, 0))
         reminder2.explore.setLock(true)

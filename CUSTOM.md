@@ -85,15 +85,6 @@
     - `params`: **table** - contains parameters for callback
       - `hit_object`: **object** - object registered to receive collision events
       - `collision_info`: **table** - table containing data about collision
-- broadcast
-  - `hasBroadcast`: **boolean** - set to true if you have a `Broadcast` function
-  - `Broadcast(params)`
-      - `params`: **table** - contains data about adversaries (only exists for Adversary call)
-        - `level`: **number** - level of current adversary
-        - `other`: **table** - contains data about other adversary
-          - `exist`: **boolean** - whether there is a second adversary
-          - `level`: **number** - other adversary level
-    - return **string** - what players should be told, nil otherwise
 - Setup Callbacks:
   - requirements - determine whether random adversary/scenario should be used with current setup
     - `requirements`: boolean - set to true if you have `Requirements` function
@@ -147,7 +138,17 @@
         - `other`: **table** - contains data about other adversary
           - `exist`: **boolean** - whether there is a second adversary
           - `level`: **number** - other adversary level
+    - broadcast
+      - `hasBroadcast`: **boolean** - set to true if you have a `Broadcast` function
+      - `Broadcast(params)`
+          - `params`: **table** - contains data about adversaries (only exists for Adversary call)
+            - `level`: **number** - level of current adversary
+            - `other`: **table** - contains data about other adversary
+              - `exist`: **boolean** - whether there is a second adversary
+              - `level`: **number** - other adversary level
+        - return **string** - what players should be told, nil otherwise
 - Adversary Specific:
+  - Note: notebook contains sample starter code for adversary
   - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
   - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
   - reminderSetup
@@ -205,6 +206,7 @@
           - `count`: **number** - new count for loss counter
   - limitSetup - called before board setup starts in case any pieces need to be limited (i.e. France)
     - `limitSetup`: **boolean** - set to true if you have `LimitSetup` function
+    - `limitSetupComplete`: **boolean** - set to true at end `LimitSetup` function
     - `LimitSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary

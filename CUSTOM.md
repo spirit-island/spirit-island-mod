@@ -133,8 +133,9 @@
     - `MapSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary (only exists for Adversary call)
+        - `name`: **string** - name of the board being setup
         - `pieces`: **table** - 2D, contain keys for each land number, and each land table has values for piece name
-        - `name`: **string** - name of the board being setup (only exists for Adversary call)
+        - `original`: **table** - same format as pieces, but is the setup symbols printed on the island board
         - `extra`: **boolean** - whether the current board is the extra board from setup variant
       - return **table** - updated table for pieces setup
   - postSetup - called after all other setup steps have completed

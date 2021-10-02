@@ -14,7 +14,7 @@
   - Once all elements are set press the "Update Elements" button
 - Presence track energy:
   - For each time that energy gain increases grab energy tokens from bag and stack them onto spot
-  - Energy tokens have a 2nd state to be used for bonus energy, i.e. Finder
+  - Energy tokens have a 2nd state to be used for bonus energy (i.e. Finder)
   - Once all energy is set press the "Update Energy" button
   - Note: You don't need to put them on every spot, only when income changes
   - Note: Don't forget about starting spot if it's not zero
@@ -24,7 +24,7 @@
   - Set the state to match the element
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the top one)
-  - Note: for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+  - Note: for thresholds with OR (i.e. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 - Extra setup:
   - Create object and place on top of spirit panel
   - Tag object with "Setup"
@@ -43,7 +43,7 @@
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the bottom one)
   - Note: the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
-  - Note: for thresholds with OR, i.e. Trickster, you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+  - Note: for thresholds with OR (i.e. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 
 ### Aspects
 - Add "Aspect" tag
@@ -173,7 +173,7 @@
           - `tooltip`: **string** - text of adversary loss condition, use \\n to add line breaks
           - `counter`
             - `text`: **string** - text that should appear before counter
-            - `buttons`: **boolean** - whether buttons should appear for counter, i.e. Habsburg
+            - `buttons`: **boolean** - whether buttons should appear for counter (i.e. Habsburg)
             - `callback`: **function** - name of callback to occur after loss counter buttons are pressed (only called when buttons is true)
         - `escalation`
           - `tooltip`: **string** - text of adversary escalation, use \\n to add line breaks
@@ -199,11 +199,11 @@
       - `[loss callback function](params)`
         - `params`: **table** - contains data about update
           - `count`: **number** - new count for loss counter
-      - `UpdateAdversaryLossCounter(params)` - when adversary doesn't use buttons you can call this function to update text, i.e. Russia
+      - `UpdateAdversaryLossCounter(params)` - when adversary doesn't use buttons you can call this function to update text (i.e. Russia)
         - `params`: **table** - contains data about update
           - `support`: **boolean** - whether this is supporting adversary or not
           - `count`: **number** - new count for loss counter
-  - limitSetup - called before board setup starts in case any pieces need to be limited, i.e. France
+  - limitSetup - called before board setup starts in case any pieces need to be limited (i.e. France)
     - `limitSetup`: **boolean** - set to true if you have LimitSetup function
     - `LimitSetup(params)`
       - `params`: **table** - contains data about game setup

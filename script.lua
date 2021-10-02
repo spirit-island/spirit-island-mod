@@ -1911,6 +1911,9 @@ function reminderSetup()
 
     local afterRavagePos = Vector(-0.47,-0.09,1.9)
     if reminder.afterRavage then
+        if reminder.afterRavage == "Generic" then
+            reminder.afterRavage = adversaryBag.takeObject({guid="027ef0"})
+        end
         reminder.afterRavage.setPosition(aidBoard.positionToWorld(afterRavagePos))
         reminder.afterRavage.setRotation(Vector(0, 90, 0))
         reminder.afterRavage.setLock(true)
@@ -1919,6 +1922,14 @@ function reminderSetup()
         afterRavagePos.z = afterRavagePos.z + 0.11
     end
     if reminder2.afterRavage then
+        if reminder2.afterRavage == "Generic" then
+            local obj = getObjectFromGUID("027ef0")
+            if obj then
+                reminder2.afterRavage = obj.clone()
+            else
+                reminder2.afterRavage = adversaryBag.takeObject({guid="027ef0"})
+            end
+        end
         reminder2.afterRavage.setPosition(aidBoard.positionToWorld(afterRavagePos))
         reminder2.afterRavage.setRotation(Vector(0, 90, 0))
         reminder2.afterRavage.setLock(true)
@@ -1953,6 +1964,9 @@ function reminderSetup()
 
     local afterBuildPos = Vector(-0.98,-0.09,1.9)
     if reminder.afterBuild then
+        if reminder.afterBuild == "Generic" then
+            reminder.afterBuild = adversaryBag.takeObject({guid="2ab0ad"})
+        end
         reminder.afterBuild.setPosition(aidBoard.positionToWorld(afterBuildPos))
         reminder.afterBuild.setRotation(Vector(0, 90, 0))
         reminder.afterBuild.setLock(true)
@@ -1961,6 +1975,14 @@ function reminderSetup()
         afterBuildPos.z = afterBuildPos.z + 0.11
     end
     if reminder2.afterBuild then
+        if reminder2.afterBuild == "Generic" then
+            local obj = getObjectFromGUID("2ab0ad")
+            if obj then
+                reminder2.afterBuild = obj.clone()
+            else
+                reminder2.afterBuild = adversaryBag.takeObject({guid="2ab0ad"})
+            end
+        end
         reminder2.afterBuild.setPosition(aidBoard.positionToWorld(afterBuildPos))
         reminder2.afterBuild.setRotation(Vector(0, 90, 0))
         reminder2.afterBuild.setLock(true)
@@ -1991,6 +2013,33 @@ function reminderSetup()
         reminder2.explore.setRotation(Vector(0, 180, 0))
         reminder2.explore.setLock(true)
         reminder2.explore.interactable = false
+    end
+
+    local afterExplorePos = Vector(-1.49,-0.09,1.9)
+    if reminder.afterExplore then
+        if reminder.afterExplore == "Generic" then
+            reminder.afterExplore = adversaryBag.takeObject({guid="47288b"})
+        end
+        reminder.afterExplore.setPosition(aidBoard.positionToWorld(afterExplorePos))
+        reminder.afterExplore.setRotation(Vector(0, 90, 0))
+        reminder.afterExplore.setLock(true)
+        reminder.afterExplore.interactable = false
+        afterExplorePos.y = afterExplorePos.y - 0.01
+        afterExplorePos.z = afterExplorePos.z + 0.11
+    end
+    if reminder2.afterExplore then
+        if reminder2.afterExplore == "Generic" then
+            local obj = getObjectFromGUID("47288b")
+            if obj then
+                reminder2.afterExplore = obj.clone()
+            else
+                reminder2.afterExplore = adversaryBag.takeObject({guid="47288b"})
+            end
+        end
+        reminder2.afterExplore.setPosition(aidBoard.positionToWorld(afterExplorePos))
+        reminder2.afterExplore.setRotation(Vector(0, 90, 0))
+        reminder2.afterExplore.setLock(true)
+        reminder2.afterExplore.interactable = false
     end
 end
 function adversaryUISetup()

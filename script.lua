@@ -1879,6 +1879,8 @@ function reminderSetup()
         reminder.afterRavage.setRotation(Vector(0, 90, 0))
         reminder.afterRavage.setLock(true)
         reminder.afterRavage.interactable = false
+        afterRavagePos.y = afterRavagePos.y - 0.01
+        afterRavagePos.z = afterRavagePos.z + 0.11
     end
     if reminder2.afterRavage then
         reminder2.afterRavage.setPosition(aidBoard.positionToWorld(afterRavagePos))
@@ -1908,6 +1910,8 @@ function reminderSetup()
         reminder.afterBuild.setRotation(Vector(0, 90, 0))
         reminder.afterBuild.setLock(true)
         reminder.afterBuild.interactable = false
+        afterBuildPos.y = afterBuildPos.y - 0.01
+        afterBuildPos.z = afterBuildPos.z + 0.11
     end
     if reminder2.afterBuild then
         reminder2.afterBuild.setPosition(aidBoard.positionToWorld(afterBuildPos))

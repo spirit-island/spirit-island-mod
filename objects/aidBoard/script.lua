@@ -187,8 +187,13 @@ function setupGame()
         width = 1500,
         height = 500,
     })
-    -- TODO support having both scenario and second wave
-    if Global.getVar("scenarioCard") == nil and Global.getVar("secondWave") == nil then
+    if Global.getVar("secondWave") == nil then
+        if Global.getVar("scenarioCard") ~= nil then
+            self.editButton({
+                index = 11,
+                position = Vector(-0.72,0.1,-2.85),
+            })
+        end
         self.editButton({
             index = 11,
             label = "Second Wave?",

@@ -88,6 +88,7 @@ stagesSetup = 0
 boardsSetup = 0
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
+wave = 1
 ------
 minorPowerDiscardZone = "55b275"
 majorPowerDiscardZone = "eaf864"
@@ -1782,6 +1783,7 @@ function SetupScenario()
         end
     end
 
+    local pos = Vector(0.75, 0.11, -1.81)
     if scenarioCard ~= nil then
         local targetScale = 1.71
         local currentScale = scenarioCard.getScale()[1]
@@ -1793,7 +1795,8 @@ function SetupScenario()
 
         scenarioCard.setLock(true)
         scenarioCard.setRotationSmooth(Vector(0,180,0), false, true)
-        scenarioCard.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)), false, true)
+        scenarioCard.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
+        pos = pos + Vector(0, 0, -1.03)
     end
     if secondWave ~= nil then
         local targetScale = 1.71
@@ -1806,8 +1809,7 @@ function SetupScenario()
 
         secondWave.setLock(true)
         secondWave.setRotationSmooth(Vector(0,180,0), false, true)
-        -- TODO support having both scenario and second wave
-        secondWave.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)), false, true)
+        secondWave.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
     end
 
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return (scenarioCard == nil or not scenarioCard.isSmoothMoving()) and (secondWave == nil or not secondWave.isSmoothMoving()) end)
@@ -2469,6 +2471,9 @@ function PostSetup()
     local postSetupSteps = 0
     local firstAdversarySetup = false
 
+    if secondWave ~= nil then
+        difficultyString = difficultyString.."Wave "..wave.."\n"
+    end
     if adversaryCard == nil then
         difficultyString = difficultyString.."No Adversary\n"
     elseif adversaryCard2 == nil then
@@ -2585,10 +2590,10 @@ function PostSetup()
     return 1
 end
 function createDifficultyButton()
-    local buttonPos = Vector(-0.75,0,-2.75)
+    local buttonPos = Vector(0.75,0,-3.8)
     if adversaryCard2 == nil then
         -- not double adversaries
-        buttonPos = Vector(0,0,-2.75)
+        buttonPos = Vector(0.75,0,-2.8)
     end
     aidBoard.createButton({
         click_function = "nullFunc",
@@ -3265,7 +3270,6 @@ function MapPlacen(boards)
                 end
             end
 
-            -- TODO apply decal if board is from extras bag
             local boardObject= bag.takeObject({
                 index = index,
                 position = bag.getPosition() + Vector(0,-5,0),

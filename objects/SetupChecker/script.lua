@@ -1089,6 +1089,7 @@ function loadConfig(config)
         })
         if config.secondWave.wave and config.secondWave.wave > 1 then
             Global.setVar("secondWave", secondWave)
+            Global.setVar("wave", config.secondWave.wave)
         end
     end
     if config.spirits then

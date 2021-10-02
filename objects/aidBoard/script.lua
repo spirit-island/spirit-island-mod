@@ -191,7 +191,7 @@ function setupGame()
         self.editButton({
             index = 11,
             label = "Second Wave?",
-            width = 1800,
+            width = 1900,
             height = 500,
         })
     end

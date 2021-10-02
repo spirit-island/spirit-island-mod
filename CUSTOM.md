@@ -107,7 +107,6 @@
       - simply remove the current bag, place the new bag in current position, and then update global variable for the bag
   - invaderDeckSetup - allows you to modify invader deck
     - `invaderDeckSetup`: **boolean** - set to true if you have `InvaderDeckSetup` function
-    - `invaderDeckSetupComplete`: **boolean** - set to true at end `InvaderDeckSetup` function
     - `InvaderDeckSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary (only exists for Adversary call)
@@ -120,7 +119,6 @@
         - return **table** - updated table for invader deck setup
   - mapSetup - allows you to modify the pieces on a board
     - `mapSetup`: **boolean** - set to true if you have `MapSetup` function
-    - `mapSetupComplete`: **boolean** - set to true at end `MapSetup` function
     - `MapSetup(params)`
       - `params`: **table** - contains data about game setup
         - `level`: **number** - level of current adversary (only exists for Adversary call)
@@ -222,7 +220,6 @@
   - `blightCount`: **number** - overrides total amount of blight when island is no longer healthy
   - boardSetup - allows you to override the current board layout (i.e. Great River)
     - `boardSetup`: **boolean** - set to true if you have `BoardSetup` function
-    - `boardSetupComplete`: **boolean** - set to true at end `BoardSetup` function
     - `BoardSetup(params)`
       - `params`: **table** - contains data about game setup
         - `boards`: **number** - number of boards to be setup

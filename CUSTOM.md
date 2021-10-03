@@ -124,7 +124,7 @@
         - `level`: **number** - level of current adversary (only exists for Adversary call)
         - `name`: **string** - name of the board being setup
         - `pieces`: **table** - 2D, contain keys for each land number, and each land table has values for piece name
-        - `original`: **table** - same format as pieces, but is the setup symbols printed on the island board
+        - `original`: **table** - same format as pieces, but is the setup symbols printed on the island board (i.e. Habsburg 2)
         - `extra`: **boolean** - whether the current board is the extra board from setup variant
       - return **table** - updated table for pieces setup
   - postSetup - called after all other setup steps have completed
@@ -136,20 +136,20 @@
         - `other`: **table** - contains data about other adversary
           - `exist`: **boolean** - whether there is a second adversary
           - `level`: **number** - other adversary level
-    - broadcast
-      - `hasBroadcast`: **boolean** - set to true if you have a `Broadcast` function
-      - `Broadcast(params)`
-          - `params`: **table** - contains data about adversaries (only exists for Adversary call)
-            - `level`: **number** - level of current adversary
-            - `other`: **table** - contains data about other adversary
-              - `exist`: **boolean** - whether there is a second adversary
-              - `level`: **number** - other adversary level
-        - return **string** - what players should be told, nil otherwise
+  - broadcast
+    - `hasBroadcast`: **boolean** - set to true if you have a `Broadcast` function
+    - `Broadcast(params)`
+      - `params`: **table** - contains data about adversaries (only exists for Adversary call)
+        - `level`: **number** - level of current adversary
+        - `other`: **table** - contains data about other adversary
+          - `exist`: **boolean** - whether there is a second adversary
+          - `level`: **number** - other adversary level
+      - return **string** - what players should be told, nil otherwise
 - Adversary Specific:
-  - Note: notebook contains sample starter code for adversary
+  - Note: notebook contains sample code for adversary
   - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
   - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
-  - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level
+  - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level (i.e. England 6)
   - reminderSetup
     - `reminderSetup`: **boolean** - set to true if you have `ReminderSetup` function
     - `ReminderSetup(params)`
@@ -177,7 +177,7 @@
             - `callback`: **function** - name of callback to occur after loss counter buttons are pressed (only called when buttons is true)
         - `escalation`
           - `tooltip`: **string** - text of adversary escalation, use \\n to add line breaks
-          - `random`: **boolean** - whether random terrain button needs to appear for adversary (only exists for secondary adversary)
+          - `random`: **boolean** - whether random terrain button needs to appear for adversary (only exists for secondary adversary) (i.e. Sweden)
         - `one`
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
@@ -215,9 +215,9 @@
 - Scenario Specific:
   - `difficulty`: **number** - difficulty modifier for scenario
   - `fearCards`: **table** - contains keys 1->3 representing the change of fear cards in each part of the deck
-  - `setupBlightTokens`: **number** - modifies amount of starting blight per player
-  - `blightTokens`: **number** - modifies amount of flipped card blight per player
-  - `blightCount`: **number** - overrides total amount of blight when island is no longer healthy
+  - `setupBlightTokens`: **number** - modifies amount of starting blight per player (i.e. Blitz)
+  - `blightTokens`: **number** - modifies amount of flipped card blight per player (i.e. Blitz)
+  - `blightCount`: **number** - overrides total amount of blight when island is no longer healthy (i.e. Second Wave)
   - boardSetup - allows you to override the current board layout (i.e. Great River)
     - `boardSetup`: **boolean** - set to true if you have `BoardSetup` function
     - `BoardSetup(params)`

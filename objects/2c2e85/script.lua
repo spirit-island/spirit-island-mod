@@ -87,7 +87,7 @@ function drawOneMinor(target_obj, source_color)
     elseif minorPowerDeck.type == "Deck" then
         gainedCardGUID = minorPowerDeck.getObjects()[1].guid
     end
-    
+
     Wait.condition(
         function() minorPowerDeck.deal(1, color, 1) end,
         function() return not minorPowerDeck.isSmoothMoving() end)

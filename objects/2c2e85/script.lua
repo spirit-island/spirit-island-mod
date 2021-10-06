@@ -88,7 +88,7 @@ function drawOneMinor(target_obj, source_color)
     if isPlaytest then
         Wait.condition(
             function() getObjectFromGUID(gainedCardGUID).addTag("Playtest") end,
-            function() return getObjectFromGUID(gainedCardGUID) != nil end,
+            function() return getObjectFromGUID(gainedCardGUID) ~= nil end,
             2.0)  -- Give up after 2s if the expected card isn't gained for
                   -- whatever reason.
     end

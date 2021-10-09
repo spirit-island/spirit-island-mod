@@ -1099,19 +1099,19 @@ function SetupFear()
 
     local handZone = Player["White"].getHandTransform(1)
     local fearDeck = getObjectFromGUID(fearDeckSetupZone).getObjects()[1]
-    local maxCards = #fearDeck.getObjects()
     local count = 0
 
     fearDeck.shuffle()
     SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil)
+    local maxCards = #fearDeck.getObjects()
 
-    for _ = 1, fearCards[3] do
+    for _ = 1, fearCards[1] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
         fearDeck.takeObject({
-            position = handZone.position,
+            position = handZone.position - Vector(count/2, 0, 0),
             rotation = Vector(0, 180, 180),
             smooth = false,
         })
@@ -1123,19 +1123,19 @@ function SetupFear()
             break
         end
         fearDeck.takeObject({
-            position = handZone.position,
+            position = handZone.position - Vector(count/2, 0, 0),
             rotation = Vector(0, 180, 180),
             smooth = false,
         })
         count = count + 1
     end
-    for _ = 1, fearCards[1] do
+    for _ = 1, fearCards[3] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
         fearDeck.takeObject({
-            position = handZone.position,
+            position = handZone.position - Vector(count/2, 0, 0),
             rotation = Vector(0, 180, 180),
             smooth = false,
         })

@@ -1756,7 +1756,7 @@ function BlightedIslandFlipPart2()
 
     blightedIslandCard.setRotationSmooth(Vector(0,180,0))
     local numBlight = blightedIslandCard.getVar("blight") * numBoards
-    if not blightedIslandCard.getVar("healthy") and secondWave ~= nil then
+    if secondWave ~= nil then
         local blightCount = secondWave.getVar("blightCount")
         if blightCount ~= nil and blightCount[index+1] ~= nil then
             numBlight = blightCount[index+1]

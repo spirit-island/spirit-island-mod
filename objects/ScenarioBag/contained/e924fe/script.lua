@@ -258,32 +258,41 @@ function ExportConfig()
         data.boards = selectedBoards
     end
     data.blightCards = Global.getTable("blightCards")
-    local blightIndex = Global.call("getBlightCardIndex")
 
     data.secondWave.blight = {}
     local blight = #Global.getVar("blightBag").getObjects()
 
+    local numBoards = Global.getVar("numBoards")
+    local startingBlight = 2 * numBoards
+    if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
+        startingBlight = startingBlight + 1
+    end
+
+    local blightIndex = Global.call("getBlightCardIndex")
+    if blightIndex ~= -1 then
+        local blightCard = Global.getVar("blightedIslandCard")
+        if blightCard ~= nil and blightCard.is_face_down then
+            blightIndex = -1
+        end
+    end
+
     if blightIndex == -1 then
         table.insert(data.secondWave.blight, blight)
         blight = 0
+        blightIndex = 0
     else
-        local setupBlight = 2 * Global.getVar("numBoards")
-        if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
-            setupBlight = setupBlight + 1
-        end
-        setupBlight = math.min(setupBlight, blight)
+        local setupBlight = math.min(startingBlight, blight)
         table.insert(data.secondWave.blight, setupBlight)
         blight = blight - setupBlight
     end
     for i=1,blightIndex do
-        if i == blightIndex then
-            table.insert(data.secondWave.blight, blight)
-            blight = 0
-        else
-            local setupBlight = 2 * Global.getVar("numBoards")
-            setupBlight = math.min(setupBlight, blight)
+        if i ~= blightIndex then
+            local setupBlight = math.min(2 * numBoards, blight)
             table.insert(data.secondWave.blight, setupBlight)
             blight = blight - setupBlight
+        else
+            table.insert(data.secondWave.blight, blight)
+            blight = 0
         end
     end
     for i=blightIndex+1,#data.blightCards do
@@ -291,6 +300,39 @@ function ExportConfig()
             table.insert(data.secondWave.blight, config.secondWave.blight[i+1])
         else
             table.insert(data.secondWave.blight, 0)
+        end
+    end
+    for i=1,#data.secondWave.blight do
+        if i == 1 then
+            -- initial
+            if data.secondWave.blight[i] < startingBlight then
+                local diff = startingBlight - data.secondWave.blight[i]
+                for j=#data.secondWave.blight,i+1,-1 do
+                    local add = math.min(data.secondWave.blight[j], diff)
+                    data.secondWave.blight[i] = data.secondWave.blight[i] + add
+                    data.secondWave.blight[j] = data.secondWave.blight[j] - add
+                    diff = diff - add
+
+                    if diff == 0 then
+                        break
+                    end
+                end
+            end
+        elseif i ~= #data.secondWave.blight then
+            -- still-healthy
+            if data.secondWave.blight[i] < 2 * numBoards then
+                local diff = startingBlight - data.secondWave.blight[i]
+                for j=#data.secondWave.blight,i+1,-1 do
+                    local add = math.min(data.secondWave.blight[j], diff)
+                    data.secondWave.blight[i] = data.secondWave.blight[i] + add
+                    data.secondWave.blight[j] = data.secondWave.blight[j] - add
+                    diff = diff - add
+
+                    if diff == 0 then
+                        break
+                    end
+                end
+            end
         end
     end
 

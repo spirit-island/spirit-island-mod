@@ -6,7 +6,6 @@ postSetupComplete = false
 hasBroadcast = true
 
 broadcast = nil
-setupBlightCount = nil
 blightCount = nil
 
 function onLoad()
@@ -30,13 +29,7 @@ function PreSetup()
     local config = readConfig()
     if config and config.secondWave then
         if config.secondWave.blight then
-            setupBlightCount = 2 * Global.getVar("numBoards")
-            if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
-                setupBlightCount = setupBlightCount + 1
-            end
-            setupBlightCount = math.min(setupBlightCount, config.secondWave.blight)
-
-            blightCount = config.secondWave.blight - setupBlightCount
+            blightCount = config.secondWave.blight
         end
     end
     preSetupComplete = true
@@ -265,12 +258,42 @@ function ExportConfig()
         data.boards = selectedBoards
     end
     data.blightCards = Global.getTable("blightCards")
-    local blightedIsland = Global.getVar("blightedIsland")
-    if blightedIsland then
-        -- Only store the blight count if the island is blighted
-        local obj = Global.getVar("blightBag")
-        data.secondWave.blight = #obj.getObjects()
+    local blightIndex = Global.call("getBlightCardIndex")
+
+    data.secondWave.blight = {}
+    local blight = #Global.getVar("blightBag").getObjects()
+
+    if blightIndex == -1 then
+        table.insert(data.secondWave.blight, blight)
+        blight = 0
+    else
+        local setupBlight = 2 * Global.getVar("numBoards")
+        if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
+            setupBlight = setupBlight + 1
+        end
+        setupBlight = math.min(setupBlight, blight)
+        table.insert(data.secondWave.blight, setupBlight)
+        blight = blight - setupBlight
     end
+    for i=1,blightIndex do
+        if i == blightIndex then
+            table.insert(data.secondWave.blight, blight)
+            blight = 0
+        else
+            local setupBlight = 2 * Global.getVar("numBoards")
+            setupBlight = math.min(setupBlight, blight)
+            table.insert(data.secondWave.blight, setupBlight)
+            blight = blight - setupBlight
+        end
+    end
+    for i=blightIndex+1,#data.blightCards do
+        if config.secondWave.blight then
+            table.insert(data.secondWave.blight, config.secondWave.blight[i+1])
+        else
+            table.insert(data.secondWave.blight, 0)
+        end
+    end
+
     local obj = Global.getVar("adversaryCard")
     if obj ~= nil then
         data.adversary = obj.getName()

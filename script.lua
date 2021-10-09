@@ -1065,10 +1065,12 @@ function setupBlightTokens()
     end
     local max = math.huge
     if secondWave ~= nil then
-        local blightCount = secondWave.getVar("setupBlightCount")
+        local blightCount = secondWave.getVar("blightCount")
         if blightCount ~= nil then
-            numBlight = blightCount
-            max = secondWave.getVar("blightCount")
+            numBlight = blightCount[1]
+            if blightCount[2] ~= nil then
+                max = blightCount[2]
+            end
         end
     end
     if scenarioCard ~= nil then
@@ -1756,8 +1758,8 @@ function BlightedIslandFlipPart2()
     local numBlight = blightedIslandCard.getVar("blight") * numBoards
     if not blightedIslandCard.getVar("healthy") and secondWave ~= nil then
         local blightCount = secondWave.getVar("blightCount")
-        if blightCount ~= nil then
-            numBlight = blightCount
+        if blightCount ~= nil and blightCount[index+1] ~= nil then
+            numBlight = blightCount[index+1]
         end
     end
     if not blightedIslandCard.getVar("healthy") and scenarioCard ~= nil then

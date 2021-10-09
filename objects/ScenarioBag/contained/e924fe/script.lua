@@ -1,9 +1,12 @@
+preSetup = true
+preSetupComplete = false
 mapSetup = true
 postSetup = true
 postSetupComplete = false
 hasBroadcast = true
 
 broadcast = nil
+setupBlightCount = nil
 blightCount = nil
 
 function onLoad()
@@ -21,6 +24,22 @@ function onLoad()
             font_size      = 300,
         })
     end
+end
+
+function PreSetup()
+    local config = readConfig()
+    if config and config.secondWave then
+        if config.secondWave.blight then
+            setupBlightCount = 2 * Global.getVar("numBoards")
+            if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
+                setupBlightCount = setupBlightCount + 1
+            end
+            setupBlightCount = math.min(setupBlightCount, config.secondWave.blight)
+
+            blightCount = config.secondWave.blight - setupBlightCount
+        end
+    end
+    preSetupComplete = true
 end
 
 function MapSetup(params)
@@ -80,7 +99,7 @@ function MapSetup(params)
     end
     return params.pieces
 end
-function PostSetup(params)
+function PostSetup()
     self.createButton({
         click_function = "ExportConfig",
         function_owner = self,
@@ -103,9 +122,6 @@ function PostSetup(params)
 
     local config = readConfig()
     if config and config.secondWave then
-        if config.secondWave.blight then
-            blightCount = config.secondWave.blight
-        end
         if config.secondWave.wave then
             broadcast = "Second Wave - Starting Wave "..config.secondWave.wave
         end
@@ -253,11 +269,7 @@ function ExportConfig()
     if blightedIsland then
         -- Only store the blight count if the island is blighted
         local obj = Global.getVar("blightBag")
-        data.secondWave.blight = #obj.getObjects() - (2 * Global.getVar("numBoards"))
-        if Global.getVar("SetupChecker").getVar("optionalBlightSetup") then
-            data.secondWave.blight = data.secondWave.blight - 1
-        end
-        data.secondWave.blight = math.max(data.secondWave.blight, 0)
+        data.secondWave.blight = #obj.getObjects()
     end
     local obj = Global.getVar("adversaryCard")
     if obj ~= nil then

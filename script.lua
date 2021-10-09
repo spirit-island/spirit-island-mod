@@ -678,7 +678,7 @@ function SetupGame()
             if numPlayers == 6 and boardLayout == "Thematic" then
                 -- Thematic doesn't support extra board
                 SetupChecker.setVar("optionalExtraBoard", false)
-                SetupChecker.call("updateDifficulty", {})
+                SetupChecker.call("updateDifficulty")
                 numBoards = numPlayers
             else
                 numBoards = numPlayers + 1
@@ -1020,7 +1020,6 @@ function SetupPlaytestDeck(zone, name, option, callback)
 end
 ----- Pre Setup Section
 function PreSetup()
-    setupBlightTokens()
     local preSetupSteps = 0
     if adversaryCard ~= nil and adversaryCard.getVar("preSetup") then
         adversaryCard.call("PreSetup",{level = adversaryLevel})
@@ -1043,7 +1042,16 @@ function PreSetup()
     else
         preSetupSteps = preSetupSteps + 1
     end
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return preSetupSteps == 3 end)
+    if secondWave ~= nil and secondWave.getVar("preSetup") then
+        secondWave.call("PreSetup")
+        Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return secondWave.getVar("preSetupComplete") end)
+    else
+        preSetupSteps = preSetupSteps + 1
+    end
+    Wait.condition(function()
+        setupBlightTokens()
+        stagesSetup = stagesSetup + 1
+    end, function() return preSetupSteps == 4 end)
     return 1
 end
 function setupBlightTokens()
@@ -1055,10 +1063,18 @@ function setupBlightTokens()
     if SetupChecker.getVar("optionalBlightSetup") then
         numBlight = numBlight + 1
     end
+    local max = math.huge
+    if secondWave ~= nil then
+        local blightCount = secondWave.getVar("setupBlightCount")
+        if blightCount ~= nil then
+            numBlight = blightCount
+            max = secondWave.getVar("blightCount")
+        end
+    end
     if scenarioCard ~= nil then
         local blightTokens = scenarioCard.getVar("setupBlightTokens")
         if blightTokens ~= nil then
-            numBlight = numBlight + (blightTokens * numBoards)
+            numBlight = numBlight + math.min(blightTokens * numBoards, max)
         end
     end
     for _ = 1, numBlight do
@@ -1738,22 +1754,19 @@ function BlightedIslandFlipPart2()
 
     blightedIslandCard.setRotationSmooth(Vector(0,180,0))
     local numBlight = blightedIslandCard.getVar("blight") * numBoards
+    if not blightedIslandCard.getVar("healthy") and secondWave ~= nil then
+        local blightCount = secondWave.getVar("blightCount")
+        if blightCount ~= nil then
+            numBlight = blightCount
+        end
+    end
     if not blightedIslandCard.getVar("healthy") and scenarioCard ~= nil then
         local blightTokens = scenarioCard.getVar("blightTokens")
         if blightTokens ~= nil then
             numBlight = numBlight + (blightTokens * numBoards)
         end
-        blightTokens = scenarioCard.getVar("blightCount")
-        if blightTokens ~= nil then
-            numBlight = blightTokens
-        end
     end
-    if not blightedIslandCard.getVar("healthy") and secondWave ~= nil then
-        local blightTokens = secondWave.getVar("blightCount")
-        if blightTokens ~= nil then
-            numBlight = blightTokens
-        end
-    end
+    numBlight = math.max(numBlight, 0)
     for _ = 1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({position = blightBag.getPosition() + Vector(0,1,0)}))
     end
@@ -1762,7 +1775,11 @@ function BlightedIslandFlipPart2()
     broadcastToAll(blightedIslandCard.getName()..":", Color.White)
     printToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
-    broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
+    if numBlight == 0 and blightedIsland then
+        broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
+    else
+        broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
+    end
     return 1
 end
 function hideBlightButton()
@@ -2522,13 +2539,13 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
     if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        scenarioCard.call("PostSetup",{})
+        scenarioCard.call("PostSetup")
         Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
     end
     if secondWave ~= nil and secondWave.getVar("mapSetup") then
-        secondWave.call("PostSetup",{})
+        secondWave.call("PostSetup")
         Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1

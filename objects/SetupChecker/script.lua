@@ -937,7 +937,7 @@ function getNotebookConfig()
     return nil
 end
 function loadConfig(config)
-    secondWaveLoaded = false
+    local secondWaveLoaded = false
 
     if config.numPlayers then
         updateNumPlayers(config.numPlayers, false)

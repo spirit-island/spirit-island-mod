@@ -7,6 +7,7 @@ hasBroadcast = true
 
 broadcast = nil
 blightCount = nil
+blightedIsland = false
 
 function onLoad()
     Color.Add("SoftYellow", Color.new(1,0.8,0.5))
@@ -31,6 +32,7 @@ function PreSetup()
         if config.secondWave.blight then
             blightCount = config.secondWave.blight
         end
+        blightedIsland = config.blightedIsland
     end
     preSetupComplete = true
 end
@@ -334,6 +336,10 @@ function ExportConfig()
                 end
             end
         end
+    end
+    data.secondWave.blightedIsland = Global.getVar("blightedIsland")
+    if config and config.secondWave then
+        data.secondWave.blightedIsland = data.secondWave.blightedIsland or config.secondWave.blightedIsland
     end
 
     local obj = Global.getVar("adversaryCard")

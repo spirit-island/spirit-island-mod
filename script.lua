@@ -1068,8 +1068,8 @@ function setupBlightTokens()
         local blightCount = secondWave.getVar("blightCount")
         if blightCount ~= nil then
             numBlight = blightCount[1]
-            if blightCount[2] ~= nil then
-                max = blightCount[2]
+            if #blightCount > 1 and secondWave.getVar("blightedIsland") then
+                max = blightCount[#blightCount]
             end
         end
     end

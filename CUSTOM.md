@@ -8,13 +8,13 @@
   - "Very High"
 - Add snap points to presence track(s) where presence should be setup
 - Presence track elements:
-  - For non any elements that appear on presence tracks grab object from the element bag (one next to energy bag)
+  - For fixed elements that appear on presence tracks grab object from the element bag (one next to energy bag)
   - Set the state to match the element
   - If multiple elements appear on same spot simply stack elements on top of each other
   - Once all elements are set press the "Update Elements" button
 - Presence track energy:
   - For each time that energy gain increases grab energy tokens from bag and stack them onto spot
-  - Energy tokens have a 2nd state to be used for bonus energy (i.e. Finder)
+  - Energy tokens have a 2nd state to be used for bonus energy (e.g. Finder)
   - Once all energy is set press the "Update Energy" button
   - Note: You don't need to put them on every spot, only when income changes
   - Note: Don't forget about starting spot if it's not zero
@@ -24,7 +24,7 @@
   - Set the state to match the element
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the top one)
-  - Note: for thresholds with OR (i.e. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+  - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 - Extra setup:
   - Create object and place on top of spirit panel
   - Tag object with "Setup"
@@ -43,7 +43,7 @@
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the bottom one)
   - Note: the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
-  - Note: for thresholds with OR (i.e. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+  - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 
 ### Aspects
 - Add "Aspect" tag
@@ -115,7 +115,7 @@
           - W, M, J, S: indicates specific stage I card
           - We, Me, Je, Se, C: indicates specific stage II card
           - MW, JW, SW, MJ, SM, JS: indicates specific stage III card
-          - [anything above]*: will have UI treat card as one stage lower (i.e. Prussia 2)
+          - [anything above]*: will have UI treat card as one stage lower (e.g. Prussia 2)
         - return **table** - updated table for invader deck setup
   - mapSetup - allows you to modify the pieces on a board
     - `mapSetup`: **boolean** - set to true if you have `MapSetup` function
@@ -124,7 +124,7 @@
         - `level`: **number** - level of current adversary (only exists for Adversary call)
         - `name`: **string** - name of the board being setup
         - `pieces`: **table** - 2D, contain keys for each land number, and each land table has values for piece name
-        - `original`: **table** - same format as pieces, but is the setup symbols printed on the island board (i.e. Habsburg 2)
+        - `original`: **table** - same format as pieces, but is the setup symbols printed on the island board (e.g. Habsburg 2)
         - `extra`: **boolean** - whether the current board is the extra board from setup variant
       - return **table** - updated table for pieces setup
   - postSetup - called after all other setup steps have completed
@@ -149,7 +149,7 @@
   - Note: notebook contains sample code for adversary
   - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
   - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
-  - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level (i.e. England 6)
+  - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level (e.g. England 6)
   - reminderSetup
     - `reminderSetup`: **boolean** - set to true if you have `ReminderSetup` function
     - `ReminderSetup(params)`
@@ -173,11 +173,11 @@
           - `tooltip`: **string** - text of adversary loss condition, use \\n to add line breaks
           - `counter`
             - `text`: **string** - text that should appear before counter
-            - `buttons`: **boolean** - whether buttons should appear for counter (i.e. Habsburg)
+            - `buttons`: **boolean** - whether buttons should appear for counter (e.g. Habsburg)
             - `callback`: **function** - name of callback to occur after loss counter buttons are pressed (only called when buttons is true)
         - `escalation`
           - `tooltip`: **string** - text of adversary escalation, use \\n to add line breaks
-          - `random`: **boolean** - whether random terrain button needs to appear for adversary (only exists for secondary adversary) (i.e. Sweden)
+          - `random`: **boolean** - whether random terrain button needs to appear for adversary (only exists for secondary adversary) (e.g. Sweden)
         - `one`
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
@@ -199,11 +199,11 @@
       - `[loss callback function](params)`
         - `params`: **table** - contains data about update
           - `count`: **number** - new count for loss counter
-      - `UpdateAdversaryLossCounter(params)` - when adversary doesn't use buttons you can call this function to update text (i.e. Russia)
+      - `UpdateAdversaryLossCounter(params)` - when adversary doesn't use buttons you can call this function to update text (e.g. Russia)
         - `params`: **table** - contains data about update
           - `support`: **boolean** - whether this is supporting adversary or not
           - `count`: **number** - new count for loss counter
-  - limitSetup - called before board setup starts in case any pieces need to be limited (i.e. France)
+  - limitSetup - called before board setup starts in case any pieces need to be limited (e.g. France)
     - `limitSetup`: **boolean** - set to true if you have `LimitSetup` function
     - `limitSetupComplete`: **boolean** - set to true at end `LimitSetup` function
     - `LimitSetup(params)`
@@ -215,10 +215,9 @@
 - Scenario Specific:
   - `difficulty`: **number** - difficulty modifier for scenario
   - `fearCards`: **table** - contains keys 1->3 representing the change of fear cards in each part of the deck
-  - `setupBlightTokens`: **number** - modifies amount of starting blight per player (i.e. Blitz)
-  - `blightTokens`: **number** - modifies amount of flipped card blight per player (i.e. Blitz)
-  - `blightCount`: **number** - overrides total amount of blight when island is no longer healthy (i.e. Second Wave)
-  - boardSetup - allows you to override the current board layout (i.e. Great River)
+  - `setupBlightTokens`: **number** - modifies amount of starting blight per player (e.g. Blitz)
+  - `blightTokens`: **number** - modifies amount of flipped card blight per player (e.g. Blitz)
+  - boardSetup - allows you to override the current board layout (e.g. Great River)
     - `boardSetup`: **boolean** - set to true if you have `BoardSetup` function
     - `BoardSetup(params)`
       - `params`: **table** - contains data about game setup

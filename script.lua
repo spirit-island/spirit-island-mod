@@ -2257,7 +2257,7 @@ function randomTerrain(player)
     if random == 1 then
         broadcastToAll("Your random Stage III Escalation is \"top terrain\" for the current Adversary Action", Color.SoftYellow)
     else
-        broadcastToAll("Your random Sstage III Escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftYellow)
+        broadcastToAll("Your random Stage III Escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftYellow)
     end
 end
 ----- Invader Deck Section

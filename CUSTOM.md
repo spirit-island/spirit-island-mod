@@ -25,12 +25,6 @@
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the top one)
   - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
-- Extra setup:
-  - Create object and place on top of spirit panel
-  - Tag object with "Setup"
-  - `doSetup(params)`
-    - `params`: **table** - contains data about player
-      - `color`: **string** - is the color of the player who picked the spirit
 
 ### Power Cards
 - Move card onto power card editor
@@ -74,6 +68,27 @@
 
 ### Adversary & Scenario
 - Set name of object to that of adversary/scenario
+- Basic scripting:
+  - Adversary Specific:
+    - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
+    - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
+  - Scenario Specific:
+    - `difficulty`: **number** - difficulty modifier for scenario
+
+## Advanced
+This section is meant for users who are familiar with both the tts mod and programming. It may be helpful to look at an adversary or scenario that already does something to similar to get a feel for how to code the feature you're looking for.
+
+### Spirit
+- `broadcast`: **string** - text to display when selecting spirit
+  - Note: this needs to be set manually in json under **LuaScriptState** for spirit, anything set in **LuaScript** will be lost to spirit updater operation
+- Extra setup to run when game starts:
+  - Create object and place on top of spirit panel
+  - Tag object with "Setup"
+  - `doSetup(params)`
+    - `params`: **table** - contains data about player
+      - `color`: **string** - is the color of the player who picked the spirit
+
+### Adversary & Scenario
 - collision workaround
   - workaround for TTS bug https://tabletopsimulator.nolt.io/770
   - `onObjectCollision`: **boolean** - set to true if you have custom object collision code
@@ -147,8 +162,6 @@
       - return **string** - what players should be told, nil otherwise
 - Adversary Specific:
   - Note: notebook contains sample code for adversary
-  - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
-  - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck
   - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level (e.g. England 6)
   - reminderSetup
     - `reminderSetup`: **boolean** - set to true if you have `ReminderSetup` function
@@ -213,7 +226,6 @@
           - `exist`: **boolean** - whether there is a second adversary
           - `level`: **number** - other adversary level
 - Scenario Specific:
-  - `difficulty`: **number** - difficulty modifier for scenario
   - `fearCards`: **table** - contains keys 1->3 representing the change of fear cards in each part of the deck
   - `setupBlightTokens`: **number** - modifies amount of starting blight per player (e.g. Blitz)
   - `blightTokens`: **number** - modifies amount of flipped card blight per player (e.g. Blitz)

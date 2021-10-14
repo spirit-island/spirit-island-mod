@@ -4736,6 +4736,8 @@ function hideAll(a)
     UI.setAttribute("panel"..a..12, "active", false)
     UI.setAttribute("panel"..a..21, "active", false)
     UI.setAttribute("panel"..a..22, "active", false)
+    UI.setAttribute("panel"..a..31, "active", false)
+    UI.setAttribute("panel"..a..32, "active", false)
 end
 function hide(a,b,c)
     UI.setAttribute("panel"..a..b..c, "active", false)

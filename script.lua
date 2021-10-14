@@ -150,8 +150,6 @@ function onObjectEnterZone(zone, enter_object)
         handZone.scale.x = handZone.scale.x + 0.75
         handZone.position.x = handZone.position.x - 0.375
         Player["White"].setHandTransform(handZone, handIndex)
-    elseif zone.type == "Hand" then
-        cleanupObject({obj = enter_object, fear = true})
     end
 end
 function onObjectLeaveZone(zone, leave_object)
@@ -3543,10 +3541,6 @@ function place(objName, placePos, droppingPlayerColor)
         else
             return
         end
-    end
-    if temp.use_hands then
-        temp.use_hands = false
-        Wait.condition(function() temp.use_hands = true end, function() return not temp.isSmoothMoving() end)
     end
     if droppingPlayerColor then
         local dropColor = droppingPlayerColor

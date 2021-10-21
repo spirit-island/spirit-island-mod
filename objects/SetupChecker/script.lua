@@ -1821,17 +1821,17 @@ function toggleLegacyKeybindings()
     optionalLegacyKeybindings = not optionalLegacyKeybindings
     local pieces = Global.getTable("Pieces")
     if optionalLegacyKeybindings then
-        local piece = pieces[6]
-        pieces[6] = pieces[7]
-        pieces[7] = pieces[8]
-        pieces[8] = pieces[9]
-        pieces[9] = piece
-    else
         local piece = pieces[9]
         pieces[9] = pieces[8]
         pieces[8] = pieces[7]
         pieces[7] = pieces[6]
         pieces[6] = piece
+    else
+        local piece = pieces[6]
+        pieces[6] = pieces[7]
+        pieces[7] = pieces[8]
+        pieces[8] = pieces[9]
+        pieces[9] = piece
     end
 
     local notes = "\n\n\n\n\n\n\n\n\n\n\nSpawn Objects:"

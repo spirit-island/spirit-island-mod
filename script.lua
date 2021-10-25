@@ -1557,7 +1557,7 @@ function discardPowerCardFromPlay(params)
         -- Discard unknown cards to the unique power discard
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     end
-    params.card.setPosition(discardZone.getPosition() + Vector(0,params.discardHeight,0), false, true)
+    params.card.setPositionSmooth(discardZone.getPosition() + Vector(0,params.discardHeight,0), false, true)
     params.card.setRotation(Vector(0, 180, 0))
 end
 

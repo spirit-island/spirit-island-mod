@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.6204,
-    "posY": 1.257,
-    "posZ": 40.0585,
-    "rotX": 0.0,
+    "posX": -23.5012779,
+    "posY": 0.971134961,
+    "posZ": 45.5659943,
+    "rotX": -1.368239e-08,
     "rotY": 180.0,
-    "rotZ": 0.0,
-    "scaleX": 1.7105,
-    "scaleY": 1.5789,
-    "scaleZ": 1.7105
+    "rotZ": -4.975161e-09,
+    "scaleX": 1.5,
+    "scaleY": 1.5,
+    "scaleZ": 1.5
   },
   "Nickname": "Russia Explorers",
-  "Description": "Russia Lv2+",
+  "Description": "The first time each Action would Destroy Explorers: If possible, 1 of those Explorers is instead Pushed; 1 Fear when you do so.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5187,
-    "g": 0.5528,
-    "b": 0.8624
+    "r": 0.2623599,
+    "g": 0.318938583,
+    "b": 0.785714269
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,10 +36,10 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187357178/0668709935277DAF1A003F8B2CB2C09E67828297/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139109578/FB43F07CE55A3A8C7989919E4349908F2AC4A09B/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139110179/03DDC2DE2A51836864443099346CD8D2B693377E/",
     "Convex": true,
     "MaterialIndex": 3,
     "TypeIndex": 7,

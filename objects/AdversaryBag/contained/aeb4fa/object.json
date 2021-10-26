@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.6201,
-    "posY": 1.3386,
-    "posZ": 40.0584,
-    "rotX": 0.0,
-    "rotY": 270.0,
-    "rotZ": 0.0,
-    "scaleX": 0.85,
-    "scaleY": 0.85,
-    "scaleZ": 0.85
+    "posX": -24.6212769,
+    "posY": 0.971134961,
+    "posZ": 50.6059952,
+    "rotX": -1.18137267e-09,
+    "rotY": 180.0,
+    "rotZ": 1.21399379e-09,
+    "scaleX": 1.5,
+    "scaleY": 1.5,
+    "scaleZ": 1.5
   },
   "Nickname": "Habsburg + England Towns",
-  "Description": "Habsburg Lv4 + England Lv5",
+  "Description": "Towns have +1 Health\n\nTown in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to those Towns only) per Town they could Destroy. \"Destroy all Town\" works normally.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9172,
-    "g": 0.713,
-    "b": 0.431
+    "r": 0.7810685,
+    "g": 0.543697834,
+    "b": 0.2644372
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,10 +36,10 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109447/782DF9AA175EB72BAF1F522CBEC50B7E433363C2/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112068/2E30F67AF191586627EA5A5649C1CE3767F85214/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112486/C29755056AA42F0EAC328E66424516371C32673C/",
     "Convex": false,
     "MaterialIndex": 3,
     "TypeIndex": 7,

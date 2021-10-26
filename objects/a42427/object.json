@@ -15,9 +15,9 @@
   "Description": "Harms Invaders and generates Fear as specified by Powers and Event Cards",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5647,
-    "g": 0.5569,
-    "b": 0.5569,
+    "r": 0.5646999,
+    "g": 0.556899965,
+    "b": 0.556899965,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,

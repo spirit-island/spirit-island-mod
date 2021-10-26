@@ -1,0 +1,68 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -38.0981445,
+    "posY": 2.56123972,
+    "posZ": 35.09112,
+    "rotX": 359.7579,
+    "rotY": 0.03929273,
+    "rotZ": 0.389989048,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Explorer: 0 Damage",
+  "Description": "The first time each Action would Destroy Explorers: If possible, 1 of those Explorers is instead Pushed; 1 Fear when you do so.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.262360156,
+    "g": 0.318938851,
+    "b": 0.785714269
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139109578/FB43F07CE55A3A8C7989919E4349908F2AC4A09B/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139110179/03DDC2DE2A51836864443099346CD8D2B693377E/",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 1,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.2,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.4
+    },
+    "CastShadows": false
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 1.13810493e-05,
+        "y": 1.22357345,
+        "z": -6.4171054e-06
+      }
+    }
+  ]
+}

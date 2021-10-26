@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.6218,
-    "posY": 1.3379,
-    "posZ": 40.6182,
-    "rotX": 0.0,
-    "rotY": 270.0,
-    "rotZ": 0.0,
-    "scaleX": 0.85,
-    "scaleY": 0.85,
-    "scaleZ": 0.85
+    "posX": -5.96232843,
+    "posY": 0.971134841,
+    "posZ": 44.65817,
+    "rotX": -5.812872e-08,
+    "rotY": 180.0,
+    "rotZ": -5.28183257e-08,
+    "scaleX": 1.5,
+    "scaleY": 1.5,
+    "scaleZ": 1.5
   },
   "Nickname": "England Towns",
-  "Description": "England Lv5",
+  "Description": "Towns have +1 Health",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6539,
-    "g": 0.2247,
-    "b": 0.2247
+    "r": 0.771777034,
+    "g": 0.264876842,
+    "b": 0.264876842
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,10 +36,10 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109447/782DF9AA175EB72BAF1F522CBEC50B7E433363C2/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112068/2E30F67AF191586627EA5A5649C1CE3767F85214/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112486/C29755056AA42F0EAC328E66424516371C32673C/",
     "Convex": false,
     "MaterialIndex": 3,
     "TypeIndex": 7,

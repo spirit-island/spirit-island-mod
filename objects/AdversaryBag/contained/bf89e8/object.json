@@ -1,23 +1,23 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.6205,
-    "posY": 1.2584,
-    "posZ": 40.0585,
-    "rotX": 0.0,
-    "rotY": 180.0,
-    "rotZ": 0.0,
-    "scaleX": 1.7105,
-    "scaleY": 1.5789,
-    "scaleZ": 1.7105
+    "posX": 30.6847076,
+    "posY": 0.9711349,
+    "posZ": 30.4313889,
+    "rotX": 1.09423382e-07,
+    "rotY": 179.999954,
+    "rotZ": 5.1054094e-06,
+    "scaleX": 1.5,
+    "scaleY": 1.5,
+    "scaleZ": 1.5
   },
   "Nickname": "France Explorers",
-  "Description": "France Lv6",
+  "Description": "When Fear Card would Remove an Explorer, instead Push them",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.796,
-    "g": 0.6744,
-    "b": 0.8679
+    "r": 0.596761763,
+    "g": 0.268565,
+    "b": 0.804297268
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,10 +36,10 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187357178/0668709935277DAF1A003F8B2CB2C09E67828297/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139109578/FB43F07CE55A3A8C7989919E4349908F2AC4A09B/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139110179/03DDC2DE2A51836864443099346CD8D2B693377E/",
     "Convex": true,
     "MaterialIndex": 3,
     "TypeIndex": 7,

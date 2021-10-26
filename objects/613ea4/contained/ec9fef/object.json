@@ -1,28 +1,31 @@
 {
-  "Name": "Custom_Model_Infinite_Bag",
+  "Name": "Custom_Model",
   "Transform": {
-    "posX": 15.1844721,
-    "posY": 0.971134841,
-    "posZ": 31.51679,
-    "rotX": -1.32491508e-07,
-    "rotY": 179.999954,
-    "rotZ": -1.82226142e-06,
-    "scaleX": 1.5,
-    "scaleY": 1.5,
-    "scaleZ": 1.5
+    "posX": -42.7050323,
+    "posY": 2.64845514,
+    "posZ": 43.92039,
+    "rotX": 6.357526e-05,
+    "rotY": 0.0184143279,
+    "rotZ": 0.000334270066,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
   },
-  "Nickname": "Russia Explorers",
-  "Description": "The first time each Action would Destroy Explorers: If possible, 1 of those Explorers is instead Pushed; 1 Fear when you do so.",
+  "Nickname": "Explorer: 0 Damage",
+  "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.262359828,
-    "g": 0.318938524,
-    "b": 0.785714269
+    "r": 0.872058749,
+    "g": 0.872058749,
+    "b": 0.872058749
   },
+  "Tags": [
+    "Highlight"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -33,26 +36,33 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "MaterialIndex": -1,
-  "MeshIndex": -1,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139109578/FB43F07CE55A3A8C7989919E4349908F2AC4A09B/",
     "DiffuseURL": "",
     "NormalURL": "",
     "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139110179/03DDC2DE2A51836864443099346CD8D2B693377E/",
     "Convex": true,
-    "MaterialIndex": 3,
-    "TypeIndex": 7,
+    "MaterialIndex": 0,
+    "TypeIndex": 1,
     "CustomShader": {
       "SpecularColor": {
         "r": 1.0,
         "g": 1.0,
         "b": 1.0
       },
-      "SpecularIntensity": 0.0,
+      "SpecularIntensity": 0.2,
       "SpecularSharpness": 2.0,
-      "FresnelStrength": 0.0
+      "FresnelStrength": 0.4
     },
     "CastShadows": false
-  }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 1.13810493e-05,
+        "y": 1.22357345,
+        "z": -6.4171054e-06
+      }
+    }
+  ]
 }

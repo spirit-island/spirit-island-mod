@@ -241,9 +241,13 @@ function secondWave()
         width = 0,
         height = 0,
     })
+    local pos = Vector(0.75, 0.11, -1.81)
+    if Global.getVar("scenarioCard") ~= nil then
+        pos = pos + Vector(0, 0, -1.03)
+    end
     local secondWave = Global.getVar("scenarioBag").takeObject({
         guid = "e924fe",
-        position = self.positionToWorld(Vector(0.75,0.11,-1.81)),
+        position = self.positionToWorld(pos),
         rotation = Vector(0, 180, 0),
         callback_function = function(obj) obj.call("PostSetup", {}) end,
     })

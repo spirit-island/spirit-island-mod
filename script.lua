@@ -1584,7 +1584,7 @@ end
 function SetupBlightCard()
     local cardsSetup = 0
     local function bncBlightCardOptions(deck, callback)
-        if SetupChecker.getVar("exploratoryAid") then
+        if SetupChecker.getVar("exploratoryAid") and expansions["Branch & Claw"] then
             deck.takeObject({
                 guid = "bf66eb",
                 callback_function = function(obj)

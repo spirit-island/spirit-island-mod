@@ -1340,6 +1340,7 @@ function toggleChallenge()
         checkRandomDifficulty(false, true)
         self.UI.setAttribute("toggles3", "visibility", "Invisible")
         self.UI.setAttribute("panelSpirit", "visibility", "Invisible")
+        self.UI.setAttribute("panelPlaytesting", "visibility", "Invisible")
         self.UI.setAttribute("panelChallenge", "visibility", "")
     else
         self.UI.setAttribute("leadingHeader", "visibility", "")
@@ -1354,6 +1355,9 @@ function toggleChallenge()
         checkRandomDifficulty(true)
         self.UI.setAttribute("toggles3", "visibility", "")
         self.UI.setAttribute("panelSpirit", "visibility", "")
+        if self.UI.getAttribute("playtesting", "isOn") == "true" then
+            self.UI.setAttribute("panelPlaytesting", "visibility", "")
+        end
         self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
     end
     self.UI.setAttribute("challenge", "isOn", tostring(weeklyChallenge))
@@ -2301,6 +2305,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
             config.adversaryLevel2 = prevTierConfig.adversaryLevel2
         end
     end
+
+    config.playtest = {expansion=""}
 
     math.randomseed(os.time())
     return config

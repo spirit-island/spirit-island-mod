@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.0.0-beta.20"
+version = "3.0.0-beta.21"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -1584,7 +1584,7 @@ end
 function SetupBlightCard()
     local cardsSetup = 0
     local function bncBlightCardOptions(deck, callback)
-        if SetupChecker.getVar("exploratoryAid") then
+        if SetupChecker.getVar("exploratoryAid") and expansions["Branch & Claw"] then
             deck.takeObject({
                 guid = "bf66eb",
                 callback_function = function(obj)
@@ -2509,7 +2509,7 @@ function PostSetup()
     if SetupChecker.getVar("exploratoryBODAN") then
         local spirit = getObjectFromGUID("606f23")
         if spirit ~= nil then
-            spirit.setState(2)
+            spirit = spirit.setState(2)
             if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
                 Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
             else

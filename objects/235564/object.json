@@ -20,6 +20,9 @@
     "b": 0.4666999578475952,
     "a": 0.3260999917984009
   },
+  "Tags": [
+    "Uninteractable"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,

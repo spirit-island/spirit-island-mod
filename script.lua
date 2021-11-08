@@ -1,13 +1,10 @@
 ---- Versioning
-version = "2.2.0"
+version = "3.0.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
 minorPowerZone = "cb16ab"
-minorPowerDiscardZone = "55b275"
 majorPowerZone = "089896"
-majorPowerDiscardZone = "eaf864"
-uniquePowerDiscardZone = "uniquePowerDiscard"
 PlayerBags = {
     ["Red"] = "PlayerBagRed",
     ["Purple"] = "PlayerBagPurple",
@@ -19,7 +16,6 @@ PlayerBags = {
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"
 invaderDeckZone = "dd0921"
-fearDeckZone = "bd8761"
 stage1DeckZone = "cf2635"
 stage2DeckZone = "7f21be"
 stage3DeckZone = "2a9f36"
@@ -46,10 +42,8 @@ playerTables = {
 numPlayers = 1
 numBoards = 1
 boardLayout = "Balanced"
-BnCAdded = false
-JEAdded = false
-useBnCEvents = false
-useJEEvents = false
+expansions = {}
+events = {}
 fearPool = 0
 generatedFear = 0
 gameStarted = false
@@ -62,6 +56,7 @@ adversaryLevel = 0
 adversaryCard2 = nil
 adversaryLevel2 = 0
 scenarioCard = nil
+secondWave = nil
 returnBlightBag = nil
 explorerBag = "613ea4"
 townBag = "4d3c15"
@@ -72,6 +67,8 @@ selectedBoards = {}
 blightCards = {}
 fastDiscount = 0
 currentPhase = 1
+playtestMinorPowers = 0
+playtestMajorPowers = 0
 playerBlocks = {
     Red = "c68e2c",
     Purple = "661aa3",
@@ -83,24 +80,23 @@ playerBlocks = {
 showPlayerButtons = true
 onlyCleanupTimePasses = false
 objectsToCleanup = {}
+extraRandomBoard = nil
 ------ Unsaved Config Data
-useBlightCard = true
 gamePaused = false
 yHeight = 0
 stagesSetup = 0
 boardsSetup = 0
-showAdvancedSettings = true
-showRandomizers = false
-minDifficulty = 0
-maxDifficulty = 11
-useRandomAdversary = false
-useSecondAdversary = false
-includeThematic = false
-useRandomBoard = false
-useRandomScenario = false
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
-fearCards = {3,3,3}
+wave = 1
+------
+minorPowerDiscardZone = "55b275"
+majorPowerDiscardZone = "eaf864"
+uniquePowerDiscardZone = "uniquePowerDiscard"
+playtestMinorPowerZone = "15922f"
+playtestMinorPowerDiscardZone = "03b826"
+playtestMajorPowerZone = "0a7dcb"
+playtestMajorPowerDiscardZone = "bb37a9"
 ------
 aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
@@ -121,8 +117,8 @@ threeEnergyBag = "a1b7da"
 speedBag = "65fc65"
 -----
 StandardMapBag = "BalancedMapBag"
+ExtraMapBag = "1f095d"
 ThematicMapBag = "ThematicMapBag"
-MJThematicMapBag = "MJThematicMapBag"
 -----
 cityHealth = "22928c"
 cityDamage = "d8b6c7"
@@ -140,22 +136,32 @@ alternateBoardLayoutNames = {
     {"Leaf","Snake"},
     {"Snail","Peninsula","V"},
     {"Star","Flower","Caldera"},
-}
-interactableObjectsToDisableOnLoad = {
-    "e267b0","901e41","d3dd7e",  -- tables
-    "dce473","c99d4d","794c81","125e82","d7d593","33c4af", -- player tables
-    "ba3767","239d5b","114ff8","782f57","c323b4","f4ab64","6b0f27","bd3f44","82c5e4","837ddf","aee27f", -- borders
-    "5f4be2", "e84330", -- sea tile
-    "235564", -- white box section
-    "SetupChecker", "SourceSpirit",
-    "6b5b4b","fac8e4","36bbcc","c3c59b","661aa3","c68e2c", -- player blocks
-    "19d429", -- big block
+    {"Pi"},
 }
 
 ---- TTS Events Section
 function onObjectEnterZone(zone, enter_object)
-    if zone.type == "Hand" then
-        cleanupObject({obj = enter_object, fear = true})
+    if zone.guid == "2d3124" or zone.guid == "ac8366" then
+        local handIndex = 1
+        if zone.guid == "ac8366" then
+            handIndex = 2
+        end
+        local handZone = Player["White"].getHandTransform(handIndex)
+        handZone.scale.x = handZone.scale.x + 0.75
+        handZone.position.x = handZone.position.x - 0.375
+        Player["White"].setHandTransform(handZone, handIndex)
+    end
+end
+function onObjectLeaveZone(zone, leave_object)
+    if zone.guid == "2d3124" or zone.guid == "ac8366" then
+        local handIndex = 1
+        if zone.guid == "ac8366" then
+            handIndex = 2
+        end
+        local handZone = Player["White"].getHandTransform(handIndex)
+        handZone.scale.x = handZone.scale.x - 0.75
+        handZone.position.x = handZone.position.x + 0.375
+        Player["White"].setHandTransform(handZone, handIndex)
     end
 end
 function onScriptingButtonDown(index, playerColor)
@@ -175,7 +181,7 @@ function onObjectDrop(player_color, dropped_object)
             elseif player_color == "Purple" then
                 dropColor = {0.627, 0.125, 0.941}
             end
-            dropped_object.highlightOn(dropColor, 60)
+            dropped_object.highlightOn(dropColor, 20)
         end
     end
 end
@@ -262,19 +268,43 @@ function onObjectLeaveContainer(container, object)
             object.setDecals({})
         end
         return
-    elseif (container == StandardMapBag or container == ThematicMapBag or container == MJThematicMapBag) and isIslandBoard({obj=object}) then
+    elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
+        if container == ExtraMapBag then
+            local decal = {
+                name = "Threshold",
+                rotation = {90, 180, 0},
+                scale    = {0.24, 0.24, 1},
+                url      = "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
+            }
+            if object.getName() == "A" or object.getName() == "C" then
+                decal.position = {1.48, 0.2, -0.1}
+            elseif object.getName() == "B" or object.getName() == "D" then
+                decal.position = {1.48, 0.2, -0.05}
+            elseif object.getName() == "E" or object.getName() == "F" then
+                decal.position = {1.58, 0.2, 0.05}
+            end
+            object.setDecals({decal})
+        end
         return
     end
 end
 function onObjectEnterScriptingZone(zone, obj)
-    if zone.guid == spiritZone then
-        if obj.hasTag("Aspect") then
+    if obj.hasTag("Aspect") then
+        if zone.guid == spiritZone then
             for _,object in pairs(upCast(obj, 1, 0, Vector(0, -1, 0))) do
                 if object.hasTag("Spirit") then
                     sourceSpirit.call("AddAspectButton", {obj = object})
                     break
                 end
+            end
+        end
+        for color,guid in pairs(elementScanZones) do
+            if guid == zone.guid then
+                if gameStarted and obj.hasTag("Setup") then
+                    obj.call("doSetup", {color=color})
+                end
+                break
             end
         end
     end
@@ -291,10 +321,8 @@ function onObjectLeaveScriptingZone(zone, obj)
 end
 function onSave()
     local data_table = {
-        BnCAdded = BnCAdded,
-        JEAdded = JEAdded,
-        useBnCEvents = useBnCEvents,
-        useJEEvents = useJEEvents,
+        expansions = expansions,
+        events = events,
         fearPool = fearPool,
         generatedFear = generatedFear,
         gameStarted = gameStarted,
@@ -315,8 +343,11 @@ function onSave()
         blightCards = blightCards,
         fastDiscount = fastDiscount,
         currentPhase = currentPhase,
+        playtestMinorPowers = playtestMinorPowers,
+        playtestMajorPowers = playtestMajorPowers,
         onlyCleanupTimePasses = onlyCleanupTimePasses,
         objectsToCleanup = objectsToCleanup,
+        extraRandomBoard = extraRandomBoard,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -341,6 +372,9 @@ function onSave()
     end
     if scenarioCard ~= nil then
         data_table.scenarioCard = scenarioCard.guid
+    end
+    if secondWave ~= nil then
+        data_table.secondWave = secondWave.guid
     end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
@@ -402,13 +436,13 @@ function onLoad(saved_data)
             if isPowerCard({card=obj}) then
                 -- This ugliness is because setPositionSmooth doesn't work from a hand.
                 ensureCardInPlay(obj)
-                discardPowerCardFromPlay(obj, 1)
+                discardPowerCardFromPlay({card = obj, discardHeight = 1})
             end
         end
         if isPowerCard({card=hoveredObject}) then
             -- This ugliness is because setPositionSmooth doesn't work from a hand.
             ensureCardInPlay(hoveredObject)
-            discardPowerCardFromPlay(hoveredObject, 1)
+            discardPowerCardFromPlay({card = hoveredObject, discardHeight = 1})
         end
     end)
     addHotkey("Discard Power (to 2nd hand)", function (playerColor, hoveredObject, cursorLocation, key_down_up)
@@ -435,11 +469,9 @@ function onLoad(saved_data)
         end
     end)
 
-    for _,v in ipairs(interactableObjectsToDisableOnLoad) do
-        if getObjectFromGUID(v) ~= nil then
-            getObjectFromGUID(v).setLock(true)
-            getObjectFromGUID(v).interactable = false
-        end
+    for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
+        obj.setLock(true)
+        obj.interactable = false
     end
 
     ------
@@ -476,8 +508,8 @@ function onLoad(saved_data)
     dahanDamage = getObjectFromGUID(dahanDamage)
     -----
     StandardMapBag = getObjectFromGUID(StandardMapBag)
+    ExtraMapBag = getObjectFromGUID(ExtraMapBag)
     ThematicMapBag = getObjectFromGUID(ThematicMapBag)
-    MJThematicMapBag = getObjectFromGUID(MJThematicMapBag)
     seaTile = getObjectFromGUID(seaTile)
 
     -- Loads the tracking for if the game has started yet
@@ -487,10 +519,8 @@ function onLoad(saved_data)
         playerBlocks = loaded_data.playerBlocks
         elementScanZones = loaded_data.elementScanZones
         selectedColors = loaded_data.selectedColors
-        BnCAdded = loaded_data.BnCAdded
-        JEAdded = loaded_data.JEAdded
-        useBnCEvents = loaded_data.useBnCEvents
-        useJEEvents = loaded_data.useJEEvents
+        expansions = loaded_data.expansions
+        events = loaded_data.events
         fearPool = loaded_data.fearPool
         generatedFear = loaded_data.generatedFear
         difficulty = loaded_data.difficulty
@@ -507,6 +537,7 @@ function onLoad(saved_data)
         adversaryCard2 = getObjectFromGUID(loaded_data.adversaryCard2Guid)
         adversaryLevel2 = loaded_data.adversaryLevel2
         scenarioCard = getObjectFromGUID(loaded_data.scenarioCard)
+        secondWave = getObjectFromGUID(loaded_data.secondWave)
         boardLayout = loaded_data.boardLayout
         selectedBoards = loaded_data.selectedBoards
         numPlayers = loaded_data.numPlayers
@@ -515,8 +546,11 @@ function onLoad(saved_data)
         showPlayerButtons = loaded_data.showPlayerButtons
         fastDiscount = loaded_data.fastDiscount
         currentPhase = loaded_data.currentPhase
+        playtestMinorPowers = loaded_data.playtestMinorPowers
+        playtestMajorPowers = loaded_data.playtestMajorPowers
         onlyCleanupTimePasses = loaded_data.onlyCleanupTimePasses
         objectsToCleanup = loaded_data.objectsToCleanup
+        extraRandomBoard = loaded_data.extraRandomBoard
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -534,7 +568,7 @@ function onLoad(saved_data)
             SetupPowerDecks()
             addGainPowerCardButtons()
             Wait.condition(function()
-                aidBoard.call("setupGame", {})
+                aidBoard.call("setupGame")
                 createDifficultyButton()
             end, function() return not aidBoard.spawning end)
             Wait.condition(adversaryUISetup, function() return (adversaryCard == nil or not adversaryCard.spawning) and (adversaryCard2 == nil or not adversaryCard2.spawning) end)
@@ -611,7 +645,7 @@ function CanSetupGame()
         broadcastToAll("You can only have one type of board at once", Color.Red)
         return false
     end
-    if adversaryCard == nil and not useRandomAdversary and adversaryCard2 ~= nil then
+    if adversaryCard == nil and not SetupChecker.getVar("randomAdversary") and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.Red)
         return false
     end
@@ -639,10 +673,10 @@ function SetupGame()
         end
     else
         if SetupChecker.getVar("optionalExtraBoard") then
-            if numPlayers == 6 then
-                -- There are only currently 6 balanced boards
+            if numPlayers == 6 and boardLayout == "Thematic" then
+                -- Thematic doesn't support extra board
                 SetupChecker.setVar("optionalExtraBoard", false)
-                SetupChecker.call("updateDifficulty", {})
+                SetupChecker.call("updateDifficulty")
                 numBoards = numPlayers
             else
                 numBoards = numPlayers + 1
@@ -651,20 +685,20 @@ function SetupGame()
             numBoards = numPlayers
         end
     end
-    if useRandomBoard or useRandomScenario or useRandomAdversary or useSecondAdversary then
+    if SetupChecker.getVar("randomBoard") or SetupChecker.getVar("randomScenario") or SetupChecker.getVar("randomAdversary") or SetupChecker.getVar("randomAdversary2") then
         printToAll("Randomiser:", Color.White)
     end
-    if useRandomBoard then
+    if SetupChecker.getVar("randomBoard") then
         randomBoard()
     end
-    if useRandomScenario then
+    if SetupChecker.getVar("randomScenario") then
         randomScenario()
     end
-    if useRandomAdversary or useSecondAdversary then
+    if SetupChecker.getVar("randomAdversary") or SetupChecker.getVar("randomAdversary2") then
         randomAdversary(0)
     end
 
-    SetupChecker.call("closeUI", {})
+    SetupChecker.call("closeUI")
     SetupChecker.setVar("setupStarted", true)
     showPlayerButtons = false
     updateSwapButtons()
@@ -684,12 +718,15 @@ function SetupGame()
     Wait.condition(function() startLuaCoroutine(Global, "StartGame") end, function() return stagesSetup == 10 end)
 end
 function randomBoard()
-    if SetupChecker.call("difficultyCheck", {thematic = true}) > maxDifficulty then
+    if SetupChecker.call("difficultyCheck", {thematic = true}) > SetupChecker.getVar("randomMax") then
         -- The difficulty can't be increased anymore so don't use thematic
-        includeThematic = false
+        SetupChecker.setVar("randomBoardThematic", false)
+    elseif numPlayers == 6 and numBoards > 6 then
+        -- Thematic at 6 players doesn't current support extra board
+        SetupChecker.setVar("randomBoardThematic", false)
     end
     local min = 0
-    if includeThematic then
+    if SetupChecker.getVar("randomBoardThematic") then
         min = -1
     end
     local value = math.random(min,#alternateBoardLayoutNames[numBoards])
@@ -701,12 +738,27 @@ function randomBoard()
         boardLayout = alternateBoardLayoutNames[numBoards][value]
     end
     printToAll("Board Layout - "..boardLayout, Color.SoftBlue)
-    SetupChecker.call("updateDifficulty", {})
+    SetupChecker.call("updateDifficulty")
+end
+function usingEvents()
+    for _,enabled in pairs(events) do
+        if enabled then
+            return true
+        end
+    end
+    return false
+end
+function usingSpiritTokens()
+    return expansions["Branch & Claw"] or expansions["Jagged Earth"]
 end
 function randomScenario()
-    if difficulty > maxDifficulty then
+    if difficulty > SetupChecker.getVar("randomMax") then
         return
     end
+    local randomMin = SetupChecker.getVar("randomMin")
+    local randomMax = SetupChecker.getVar("randomMax")
+    local randomAdversary = SetupChecker.getVar("randomAdversary")
+    local randomAdversary2 = SetupChecker.getVar("randomAdversary2")
     local attempts = 0
     while scenarioCard == nil do
         if attempts > 1000 then
@@ -715,30 +767,30 @@ function randomScenario()
             return
         end
         attempts = attempts + 1
-        scenarioCard = SetupChecker.call("randomScenario",{})
+        scenarioCard = SetupChecker.call("RandomScenario")
         local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
-        if tempDifficulty > maxDifficulty or (tempDifficulty < minDifficulty and not useRandomAdversary and not useSecondAdversary) then
+        if tempDifficulty > randomMax or (tempDifficulty < randomMin and not randomAdversary and not randomAdversary2) then
             scenarioCard = nil
         elseif scenarioCard.getVar("requirements") then
             local allowed = scenarioCard.call("Requirements", {
-                eventDeck = useBnCEvents or useJEEvents,
-                blightCard = useBlightCard,
-                expansions = {bnc = BnCAdded, je = JEAdded},
+                eventDeck = usingEvents(),
+                blightCard = SetupChecker.getVar("optionalBlightCard"),
+                expansions = expansions,
                 thematic = isThematic(),
-                adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or useRandomAdversary or useSecondAdversary,
+                adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or randomAdversary or randomAdversary2,
             })
             if not allowed then
                 scenarioCard = nil
             end
         else
-            SetupChecker.call("updateDifficulty", {})
+            SetupChecker.call("updateDifficulty")
             printToAll("Scenario - "..scenarioCard.getName(), Color.SoftBlue)
             break
         end
     end
 end
 function randomAdversary(attempts)
-    if difficulty >= maxDifficulty then
+    if difficulty >= SetupChecker.getVar("randomMax") then
         if adversaryCard == nil and adversaryCard2 ~= nil then
             adversaryCard = adversaryCard2
             adversaryLevel = adversaryLevel2
@@ -752,38 +804,39 @@ function randomAdversary(attempts)
         broadcastToAll("Was not able to find random adversary to satisfy min/max difficulty specifications", Color.SoftYellow)
         return
     end
-    if useRandomAdversary and useSecondAdversary then
-        local adversary = nil
-        while adversary == nil do
-            adversary = SetupChecker.call("randomAdversary",{})
-            if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
-                if not allowed then
-                    adversary = nil
-                end
+    if SetupChecker.getVar("randomAdversary") and SetupChecker.getVar("randomAdversary2") then
+        local adversary = SetupChecker.call("RandomAdversary")
+        if adversary.getVar("requirements") then
+            local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
+            if not allowed then
+                adversary = nil
             end
         end
-        local adversary2 = nil
-        while adversary2 == nil or adversary2 == adversary do
-            adversary2 = SetupChecker.call("randomAdversary",{})
-            if adversary2.getVar("requirements") then
-                local allowed = adversary2.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
-                if not allowed then
-                    adversary2 = nil
-                end
+        local adversary2 = SetupChecker.call("RandomAdversary")
+        if adversary2.getVar("requirements") then
+            local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
+            if not allowed then
+                adversary2 = nil
             end
         end
+        if adversary == nil or adversary2 == nil or adversary == adversary2 then
+            randomAdversary(attempts + 1)
+            return
+        end
+
         local difficulty = adversary.getVar("difficulty")
         local difficulty2 = adversary2.getVar("difficulty")
+        local randomMin = SetupChecker.getVar("randomMin")
+        local randomMax = SetupChecker.getVar("randomMax")
         local combos = {}
         for i,v in pairs(difficulty) do
             local params = {lead = v}
             for j,w in pairs(difficulty2) do
                 params.support = w
                 local newDiff = SetupChecker.call("difficultyCheck", params)
-                if newDiff >= minDifficulty and newDiff <= maxDifficulty then
+                if newDiff >= randomMin and newDiff <= randomMax then
                     table.insert(combos, {i,j})
-                elseif newDiff > maxDifficulty then
+                elseif newDiff > randomMax then
                     break
                 end
             end
@@ -794,7 +847,7 @@ function randomAdversary(attempts)
             adversaryLevel = combos[index][1]
             adversaryCard2 = adversary2
             adversaryLevel2 = combos[index][2]
-            SetupChecker.call("updateDifficulty", {})
+            SetupChecker.call("updateDifficulty")
             printToAll("Adversaries - "..adversaryCard.getName().." "..adversaryLevel.." and "..adversaryCard2.getName().." "..adversaryLevel2, Color.SoftBlue)
         else
             randomAdversary(attempts + 1)
@@ -804,16 +857,20 @@ function randomAdversary(attempts)
         if selectedAdversary == nil then
             selectedAdversary = adversaryCard2
         end
-        local adversary = nil
-        while adversary == nil or adversary == selectedAdversary do
-            adversary = SetupChecker.call("randomAdversary",{})
-            if adversary.getVar("requirements") then
-                local allowed = adversary.call("Requirements", {eventDeck = useBnCEvents or useJEEvents, blightCard = useBlightCard, expansions = {bnc = BnCAdded, je = JEAdded}, thematic = isThematic()})
-                if not allowed then
-                    adversary = nil
-                end
+        local adversary = SetupChecker.call("RandomAdversary")
+        if adversary.getVar("requirements") then
+            local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
+            if not allowed then
+                adversary = nil
             end
         end
+        if adversary == nil or adversary == selectedAdversary then
+            randomAdversary(attempts + 1)
+            return
+        end
+
+        local randomMin = SetupChecker.getVar("randomMin")
+        local randomMax = SetupChecker.getVar("randomMax")
         local combos = {}
         for i,v in pairs(adversary.getVar("difficulty")) do
             local params = {}
@@ -823,9 +880,9 @@ function randomAdversary(attempts)
                 params.support = v
             end
             local newDiff = SetupChecker.call("difficultyCheck", params)
-            if newDiff >= minDifficulty and newDiff <= maxDifficulty then
+            if newDiff >= randomMin and newDiff <= randomMax then
                 table.insert(combos, i)
-            elseif newDiff > maxDifficulty then
+            elseif newDiff > randomMax then
                 break
             end
         end
@@ -840,37 +897,198 @@ function randomAdversary(attempts)
                 adversaryLevel2 = combos[index]
                 printToAll("Adversary - "..adversary.getName().." "..adversaryLevel2, Color.SoftBlue)
             end
-            SetupChecker.call("updateDifficulty", {})
+            SetupChecker.call("updateDifficulty")
         else
             randomAdversary(attempts + 1)
         end
     end
 end
+function SetupPlaytestDeck(zone, name, option, callback)
+    local stagingArea = {
+        ["Fear"] = Vector(-50.70, 2, 97.32),
+        ["Blight Cards"] = Vector(-46.70, 2, 97.32),
+        ["Events"] = Vector(-42.70, 2, 97.32),
+    }
+    local function PlaytestAll(bag, guid, deck)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        if deck == nil then
+            cards.setPosition(zone.getPosition())
+            deck = cards
+        else
+            deck.putObject(cards)
+        end
+        if callback ~= nil then
+            callback(deck, function() deck.shuffle() end)
+        else
+            deck.shuffle()
+        end
+    end
+    local function PlaytestHalf(bag, guid, deck)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        local cardsCount = #cards.getObjects()
+        local deckCount = 0
+        if deck ~= nil then
+            deckCount = #deck.getObjects()
+        end
+        if deckCount <= cardsCount then
+            if deck == nil then
+                cards.setPosition(zone.getPosition())
+                deck = cards
+            else
+                deck.putObject(cards)
+            end
+            if callback ~= nil then
+                callback(deck, function() deck.shuffle() end)
+            else
+                deck.shuffle()
+            end
+        else
+            -- deck is never nil here
+            for _ = 1,cardsCount do
+                cards.putObject(deck.takeObject({
+                    rotation = {0, 180, 180},
+                    smooth = false,
+                }))
+            end
+            cards.shuffle()
+            if callback ~= nil then
+                callback(cards, function()
+                    cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                    deck.putObject(cards)
+                end)
+            else
+                cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                deck.putObject(cards)
+            end
+        end
+    end
+    local function PlaytestNew(bag, guid, deck)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        cards.shuffle()
+        if callback ~= nil then
+            callback(cards, function()
+                if deck == nil then
+                    cards.setPosition(zone.getPosition())
+                else
+                    cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                    deck.putObject(cards)
+                end
+            end)
+        else
+            if deck == nil then
+                cards.setPosition(zone.getPosition())
+            else
+                cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
+                deck.putObject(cards)
+            end
+        end
+    end
+
+    local playtestExpansion = SetupChecker.getVar("playtestExpansion")
+    if playtestExpansion ~= nil then
+        local bagGuid = SetupChecker.getTable("expansions")[playtestExpansion]
+        if bagGuid ~= nil then
+            local bag = getObjectFromGUID(bagGuid)
+            for _,obj in pairs(bag.getObjects()) do
+                if obj.name == name then
+                    if option == "0" then
+                        PlaytestAll(bag, obj.guid, zone.getObjects()[1])
+                    elseif option == "1" then
+                        PlaytestHalf(bag, obj.guid, zone.getObjects()[1])
+                    elseif option == "2" then
+                        PlaytestNew(bag, obj.guid, zone.getObjects()[1])
+                    end
+                    return
+                end
+            end
+        end
+    end
+end
 ----- Pre Setup Section
 function PreSetup()
-    local adversariesSetup = 0
+    local preSetupSteps = 0
     if adversaryCard ~= nil and adversaryCard.getVar("preSetup") then
         adversaryCard.call("PreSetup",{level = adversaryLevel})
-        Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard.getVar("preSetupComplete") end)
+        Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard.getVar("preSetupComplete") end)
     else
-        adversariesSetup = adversariesSetup + 1
+        preSetupSteps = preSetupSteps + 1
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("preSetup") then
         -- Wait for first adversary to finish
         Wait.condition(function()
             adversaryCard2.call("PreSetup",{level = adversaryLevel2})
-            Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard2.getVar("preSetupComplete") end)
-        end, function() return adversariesSetup == 1 end)
+            Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard2.getVar("preSetupComplete") end)
+        end, function() return preSetupSteps >= 1 end)
     else
-        adversariesSetup = adversariesSetup + 1
+        preSetupSteps = preSetupSteps + 1
     end
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return adversariesSetup == 2 end)
+    if scenarioCard ~= nil and scenarioCard.getVar("preSetup") then
+        scenarioCard.call("PreSetup")
+        Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return scenarioCard.getVar("preSetupComplete") end)
+    else
+        preSetupSteps = preSetupSteps + 1
+    end
+    if secondWave ~= nil and secondWave.getVar("preSetup") then
+        secondWave.call("PreSetup")
+        Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return secondWave.getVar("preSetupComplete") end)
+    else
+        preSetupSteps = preSetupSteps + 1
+    end
+    Wait.condition(function()
+        setupBlightTokens()
+        stagesSetup = stagesSetup + 1
+    end, function() return preSetupSteps == 4 end)
     return 1
+end
+function setupBlightTokens()
+    blightBag.reset()
+    local numBlight = 2 * numBoards
+    if not SetupChecker.getVar("optionalBlightCard") then
+        numBlight = 5 * numBoards
+    end
+    if SetupChecker.getVar("optionalBlightSetup") then
+        numBlight = numBlight + 1
+    end
+    local max = math.huge
+    if secondWave ~= nil then
+        local blightCount = secondWave.getVar("blightCount")
+        if blightCount ~= nil then
+            numBlight = blightCount[1]
+            if #blightCount > 1 and secondWave.getVar("blightedIsland") then
+                max = blightCount[#blightCount]
+            end
+        end
+    end
+    if scenarioCard ~= nil then
+        local blightTokens = scenarioCard.getVar("setupBlightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + math.min(blightTokens * numBoards, max)
+        end
+    end
+    for _ = 1, numBlight do
+        blightBag.putObject(boxBlightBag.takeObject({
+            position = blightBag.getPosition() + Vector(0,1,0),
+            smooth = false,
+        }))
+    end
 end
 ----- Fear Section
 function SetupFear()
     setupFearTokens()
 
+    local fearCards = {3,3,3}
     if scenarioCard ~= nil then
         local extraFearCards = scenarioCard.getVar("fearCards")
         if extraFearCards ~= nil then
@@ -891,87 +1109,71 @@ function SetupFear()
         fearCards[2] = fearCards[2] + extraFearCards[2]
         fearCards[3] = fearCards[3] + extraFearCards[3]
     end
-    if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
+    if not usingEvents() and usingSpiritTokens() then
         fearCards[2] = fearCards[2] + 1
     end
 
-    local zone = getObjectFromGUID(fearDeckZone)
+    local handZone = Player["White"].getHandTransform(1)
     local fearDeck = getObjectFromGUID(fearDeckSetupZone).getObjects()[1]
-    -- include the two terror dividers
-    local maxCards = #fearDeck.getObjects() + 2
     local count = 0
-    local cardTable = {}
-    local cardsLoaded = 0
 
     fearDeck.shuffle()
-    for _ = 1, fearCards[3] do
-        if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", Color.Red)
-            break
-        end
-        local card = fearDeck.takeObject({
-            position = zone.getPosition() + Vector(count,0,0),
-            rotation = Vector(0, 180, 180),
-            smooth = false,
-            callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
-        })
-        count = count + 1
-        table.insert(cardTable, card)
-    end
+    SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil)
+    local maxCards = #fearDeck.getObjects()
 
-    local divider = getObjectFromGUID("f96a71")
-    divider.setPosition(zone.getPosition() + Vector(count,0,0))
-    count = count + 1
-    cardsLoaded = cardsLoaded + 1
-    table.insert(cardTable, divider)
-
-    fearDeck.shuffle()
-    for _ = 1, fearCards[2] do
-        if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", Color.Red)
-            break
-        end
-        local card = fearDeck.takeObject({
-            position = zone.getPosition() + Vector(count,0,0),
-            rotation = Vector(0, 180, 180),
-            smooth = false,
-            callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
-        })
-        count = count + 1
-        table.insert(cardTable, card)
-    end
-
-    divider = getObjectFromGUID("969897")
-    divider.setPosition(zone.getPosition() + Vector(count,0,0))
-    count = count + 1
-    cardsLoaded = cardsLoaded + 1
-    table.insert(cardTable, divider)
-
-    fearDeck.shuffle()
     for _ = 1, fearCards[1] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
-        local card = fearDeck.takeObject({
-            position = zone.getPosition() + Vector(count,0,0),
+        fearDeck.takeObject({
+            position = handZone.position - Vector(count/2, 0, 0),
             rotation = Vector(0, 180, 180),
             smooth = false,
-            callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
         })
         count = count + 1
-        table.insert(cardTable, card)
+    end
+    for _ = 1, fearCards[2] do
+        if count >= maxCards then
+            broadcastToAll("Not enough Fear Cards", Color.Red)
+            break
+        end
+        fearDeck.takeObject({
+            position = handZone.position - Vector(count/2, 0, 0),
+            rotation = Vector(0, 180, 180),
+            smooth = false,
+        })
+        count = count + 1
+    end
+    for _ = 1, fearCards[3] do
+        if count >= maxCards then
+            broadcastToAll("Not enough Fear Cards", Color.Red)
+            break
+        end
+        fearDeck.takeObject({
+            position = handZone.position - Vector(count/2, 0, 0),
+            rotation = Vector(0, 180, 180),
+            smooth = false,
+        })
+        count = count + 1
     end
 
-    Wait.condition(function() group(cardTable) end, function() return cardsLoaded == count end)
-    Wait.condition(function()
-        if scenarioCard ~= nil and scenarioCard.getVar("fearSetup") then
-            scenarioCard.call("FearSetup", { deck = zone.getObjects()[1] })
-            Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard.getVar("fearSetupComplete") end)
-        else
+    Wait.frames(function()
+        fearDeck = Player["White"].getHandObjects(1)
+
+        local divider = getObjectFromGUID("f96a71")
+        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]-fearCards[2]+1)].getPosition() - Vector(0.2, 0, 0))
+        count = count + 1
+
+        divider = getObjectFromGUID("969897")
+        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]+1)].getPosition() - Vector(0.2, 0, 0))
+        count = count + 1
+
+        Wait.condition(function()
             stagesSetup = stagesSetup + 1
-        end
-    end, function() local objs = zone.getObjects() return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == count end)
+        end, function() return #Player["White"].getHandObjects(1) == count end)
+    end, 10)
+
     return 1
 end
 function setupFearTokens()
@@ -995,10 +1197,76 @@ function setupFearTokens()
     aidBoard.call("updateFearUI")
 end
 ----- Minor/Major Power Section
+function SetupPlaytestPowerDeck(deck, name, option, callback)
+    local stagingArea = {
+        ["Minor Powers"] = getObjectFromGUID(playtestMinorPowerZone).getPosition(),
+        ["Major Powers"] = getObjectFromGUID(playtestMajorPowerZone).getPosition(),
+    }
+    local function PlaytestFull(bag, guid)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        deck.putObject(cards)
+        if callback ~= nil then
+            callback(deck, function() deck.shuffle() end)
+        else
+            deck.shuffle()
+        end
+    end
+    local function PlaytestMix(bag, guid)
+        local cards = bag.takeObject({
+            guid = guid,
+            position = stagingArea[name],
+            rotation = {0, 180, 180},
+        })
+        if callback ~= nil then
+            callback(cards, function() cards.shuffle() end)
+        else
+            cards.shuffle()
+        end
+    end
+
+    local playtestExpansion = SetupChecker.getVar("playtestExpansion")
+    if playtestExpansion ~= nil then
+        local bagGuid = SetupChecker.getTable("expansions")[playtestExpansion]
+        if bagGuid ~= nil then
+            local bag = getObjectFromGUID(bagGuid)
+            for _,obj in pairs(bag.getObjects()) do
+                if obj.name == name then
+                    if option == "0" then
+                        PlaytestFull(bag, obj.guid)
+                    elseif option == "1" then
+                        if name == "Minor Powers" then
+                            playtestMinorPowers = 1
+                        elseif name == "Major Powers" then
+                            playtestMajorPowers = 1
+                        end
+                        PlaytestMix(bag, obj.guid)
+                    elseif option == "2" then
+                        if name == "Minor Powers" then
+                            playtestMinorPowers = 2
+                        elseif name == "Major Powers" then
+                            playtestMajorPowers = 2
+                        end
+                        PlaytestMix(bag, obj.guid)
+                    end
+                    return
+                end
+            end
+        end
+    end
+end
 function SetupPowerDecks()
     if not gameStarted then
-        getObjectFromGUID(minorPowerZone).getObjects()[1].shuffle()
-        getObjectFromGUID(majorPowerZone).getObjects()[1].shuffle()
+        local minorPowers = getObjectFromGUID(minorPowerZone).getObjects()[1]
+        minorPowers.shuffle()
+        SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
+
+        local majorPowers = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        majorPowers.shuffle()
+        SetupPlaytestPowerDeck(majorPowers, "Major Powers", SetupChecker.getVar("playtestMajorPower"), nil)
     end
 
     local exploratoryPowersDone = false
@@ -1067,14 +1335,12 @@ function SetupPowerDecks()
 end
 handOffset = Vector(0,0,36)
 scriptWorkingCardC = false
-powerPlayer = nil
-powerCards = 4
 function MajorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 2
     end
-    startDealPowerCards("MajorPower", Player[player_color], cards)
+    startDealPowerCards(false, Player[player_color], cards)
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -1083,14 +1349,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards("MajorPower", player, cards)
+    startDealPowerCards(false, player, cards)
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards("MinorPower", Player[player_color], cards)
+    startDealPowerCards(true, Player[player_color], cards)
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -1099,39 +1365,58 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards("MinorPower", player, cards)
+    startDealPowerCards(true, player, cards)
 end
-function startDealPowerCards(coro_name, player, cardCount)
+function startDealPowerCards(minor, player, cardCount)
     -- protection from double clicking
     if scriptWorkingCardC then return end
-
     scriptWorkingCardC = true
-    powerPlayer = player
-    powerCards = cardCount
-    startLuaCoroutine(Global, coro_name)
+
+    if minor then
+        _G["startDealPowerCardsCo"] = function()
+            DealPowerCards(
+                player,
+                cardCount,
+                getObjectFromGUID(minorPowerZone),
+                getObjectFromGUID(minorPowerDiscardZone),
+                getObjectFromGUID(playtestMinorPowerZone),
+                getObjectFromGUID(playtestMinorPowerDiscardZone),
+                playtestMinorPowers
+            )
+            return 1
+        end
+    else
+        _G["startDealPowerCardsCo"] = function()
+            DealPowerCards(
+                player,
+                cardCount,
+                getObjectFromGUID(majorPowerZone),
+                getObjectFromGUID(majorPowerDiscardZone),
+                getObjectFromGUID(playtestMajorPowerZone),
+                getObjectFromGUID(playtestMajorPowerDiscardZone),
+                playtestMajorPowers
+            )
+            return 1
+        end
+    end
+
+    startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
-function MinorPower()
-    local MinorPowerDeckZone = getObjectFromGUID(minorPowerZone)
-    local MinorPowerDiscardZone = getObjectFromGUID(minorPowerDiscardZone)
-    DealPowerCards(MinorPowerDeckZone, MinorPowerDiscardZone)
-    return 1
-end
-function MajorPower()
-    local MajorPowerDeckZone = getObjectFromGUID(majorPowerZone)
-    local MajorPowerDiscardZone = getObjectFromGUID(majorPowerDiscardZone)
-    DealPowerCards(MajorPowerDeckZone, MajorPowerDiscardZone)
-    return 1
-end
-function DealPowerCards(deckZone, discardZone)
+function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
     -- clear the zone!
-    local handPos = powerPlayer.getHandTransform().position
+    local hand = player.getHandTransform()
+    if hand == nil then
+        scriptWorkingCardC = false
+        return
+    end
+    local handPos = hand.position
     local discardTable = DiscardPowerCards(handPos)
     if #discardTable > 0 then
         wt(0.1)
     end
 
     local xPadding = 4.4
-    if powerCards > 4 then
+    if cardCount > 4 then
         xPadding = 3.6
     end
     local cardPlaceOffset = {
@@ -1146,45 +1431,73 @@ function DealPowerCards(deckZone, discardZone)
     local cardsResting = 0
     local powerDealCentre = handOffset + Vector(handPos.x,yHeight,handPos.z)
 
-    local deck = deckZone.getObjects()[1]
-    if deck == nil then
-    elseif deck.type == "Card" then
-        deck.setLock(true)
-        deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[1])
-        deck.setRotationSmooth(Vector(0, 180, 0))
-        CreatePickPowerButton(deck)
-        cardsAdded = cardsAdded + 1
-        Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
-    elseif deck.type == "Deck" then
-        for i=1, math.min(deck.getQuantity(), powerCards) do
-            local tempCard = deck.takeObject({
-                position = powerDealCentre + cardPlaceOffset[i],
-                flip = true,
-            })
-            tempCard.setLock(true)
-            CreatePickPowerButton(tempCard)
-            cardsAdded = cardsAdded + 1
-            Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+    local function dealPowerCards(powersZone, powersDiscardZone, count, offset, isPlaytest)
+        local deck = powersZone.getObjects()[1]
+        if deck == nil then
+        elseif deck.type == "Card" then
+            if cardsAdded < count then
+                deck.setLock(true)
+                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
+                deck.setRotationSmooth(Vector(0, 180, 0))
+                if isPlaytest then
+                    deck.addTag("Playtest")
+                end
+                CreatePickPowerButton(deck)
+                cardsAdded = cardsAdded + 1
+                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
+            end
+        elseif deck.type == "Deck" then
+            for i=1, math.min(deck.getQuantity(), count) do
+                local tempCard = deck.takeObject({
+                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    flip = true,
+                })
+                tempCard.setLock(true)
+                if isPlaytest then
+                    tempCard.addTag("Playtest")
+                end
+                CreatePickPowerButton(tempCard)
+                cardsAdded = cardsAdded + 1
+                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+            end
         end
-    end
-    if cardsAdded < powerCards then
-        deck = discardZone.getObjects()[1]
-        deck.setPositionSmooth(deckZone.getPosition(), false, true)
-        deck.setRotationSmooth(Vector(0, 180, 180), false, true)
-        deck.shuffle()
-        wt(0.5)
+        if cardsAdded < count then
+            deck = powersDiscardZone.getObjects()[1]
+            deck.setPositionSmooth(powersZone.getPosition(), false, true)
+            deck.setRotationSmooth(Vector(0, 180, 180), false, true)
+            deck.shuffle()
+            wt(0.5)
 
-        for i=cardsAdded+1, math.min(deck.getQuantity(), powerCards) do
-            local tempCard = deck.takeObject({
-                position = powerDealCentre + cardPlaceOffset[i],
-                flip = true,
-            })
-            tempCard.setLock(true)
-            CreatePickPowerButton(tempCard)
-            cardsAdded = cardsAdded + 1
-            Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+            for i=cardsAdded+1, math.min(deck.getQuantity(), count) do
+                local tempCard = deck.takeObject({
+                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    flip = true,
+                })
+                tempCard.setLock(true)
+                if isPlaytest then
+                    tempCard.addTag("Playtest")
+                end
+                CreatePickPowerButton(tempCard)
+                cardsAdded = cardsAdded + 1
+                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
+            end
         end
     end
+    local playtestCount = playtestPowers
+    if cardCount == 2 then
+        if playtestPowers > 0 then
+            playtestCount = 1
+        end
+    elseif cardCount == 6 then
+        if playtestPowers == 1 then
+            playtestCount = 2
+        elseif playtestPowers == 2 then
+            playtestCount = 3
+        end
+    end
+    dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
+    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, cardCount - playtestCount, true)
+
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
 function CreatePickPowerButton(card)
@@ -1221,27 +1534,31 @@ function DiscardPowerCards(handPos)
     local discardTable = {}
     local cardZoneObjects = getPowerZoneObjects(handPos)
     for i, obj in ipairs(cardZoneObjects) do
-        discardPowerCardFromPlay(obj, i)
+        discardPowerCardFromPlay({card = obj, discardHeight = i})
         obj.clearButtons()
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
         discardTable[i] = obj
     end
     return discardTable
 end
-function discardPowerCardFromPlay(card, discardHeight)
+function discardPowerCardFromPlay(params)
     local discardZone
-    if card.hasTag("Major") then
+    if params.card.hasTag("Major") and not params.card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(majorPowerDiscardZone)
-    elseif card.hasTag("Minor") then
+    elseif params.card.hasTag("Major") and params.card.hasTag("Playtest") then
+        discardZone = getObjectFromGUID(playtestMajorPowerDiscardZone)
+    elseif params.card.hasTag("Minor") and not params.card.hasTag("Playtest") then
         discardZone = getObjectFromGUID(minorPowerDiscardZone)
-    elseif card.hasTag("Unique") then
+    elseif params.card.hasTag("Minor") and params.card.hasTag("Playtest") then
+        discardZone = getObjectFromGUID(playtestMinorPowerDiscardZone)
+    elseif params.card.hasTag("Unique") then
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     else
         -- Discard unknown cards to the unique power discard
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     end
-    card.setPositionSmooth(discardZone.getPosition() + Vector(0,discardHeight,0), false, true)
-    card.setRotation(Vector(0, 180, 0))
+    params.card.setPositionSmooth(discardZone.getPosition() + Vector(0,params.discardHeight,0), false, true)
+    params.card.setRotation(Vector(0, 180, 0))
 end
 
 function getPowerZoneObjects(handP)
@@ -1265,17 +1582,16 @@ function addGainPowerCardButtons()
 end
 ----- Blight Section
 function SetupBlightCard()
-    if useBlightCard then
-        local cardsSetup = 0
-        if SetupChecker.getVar("exploratoryAid") then
-            local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
-            blightDeck.takeObject({
+    local cardsSetup = 0
+    local function bncBlightCardOptions(deck, callback)
+        if SetupChecker.getVar("exploratoryAid") and expansions["Branch & Claw"] then
+            deck.takeObject({
                 guid = "bf66eb",
                 callback_function = function(obj)
                     local temp = obj.setState(2)
                     Wait.frames(function()
-                        blightDeck.putObject(temp)
-                        blightDeck.shuffle()
+                        deck.putObject(temp)
+                        deck.shuffle()
                         cardsSetup = cardsSetup + 1
                     end, 1)
                 end,
@@ -1283,25 +1599,44 @@ function SetupBlightCard()
         else
             cardsSetup = cardsSetup + 1
         end
-        Wait.condition(function() grabBlightCard(true) end, function() return cardsSetup == 1 end)
+        if callback ~= nil then
+            Wait.condition(function() callback() end, function() return cardsSetup == 1 end)
+        end
+    end
+    if SetupChecker.getVar("optionalBlightCard") then
+        local grabbedDeck = false
+        local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+        blightDeck.shuffle()
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
+        else
+            bncBlightCardOptions(blightDeck)
+        end
+        if not grabbedDeck then
+            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+        end
+
+        Wait.condition(function()
+            grabBlightCard(true)
+        end, function() return cardsSetup == 1 and #getObjectFromGUID("b38ea8").getObjects() == 1 end)
     else
         blightedIsland = true
     end
-    setupBlightTokens()
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return blightedIsland or (blightedIslandCard ~= nil and not blightedIslandCard.isSmoothMoving()) end)
     return 1
 end
 function grabBlightCard(start)
     local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+    local blightDiscard = getObjectFromGUID("b18505").getPosition()
 
     if findNextBlightCard(start, blightDeck) then
         return
     elseif blightDeck.type == "Deck" then
-        blightDeck.shuffle()
         blightDeck.takeObject({
-            position = blightDeck.getPosition() + Vector(3.92, 1, 0),
+            position = blightDiscard,
             callback_function = function(obj)
-                if not useBnCEvents and not useJEEvents and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
+                if not usingEvents() and (not obj.getVar("healthy") and (obj.getVar("immediate") or obj.getVar("blight") == 2)) then
                     obj.setRotationSmooth(Vector(0,180,0))
                     grabBlightCard(start)
                 elseif SetupChecker.getVar("optionalSoloBlight") and numPlayers == 1 and not obj.getVar("healthy") and obj.getVar("blight") == 2 then
@@ -1419,16 +1754,19 @@ function BlightedIslandFlipPart2()
 
     blightedIslandCard.setRotationSmooth(Vector(0,180,0))
     local numBlight = blightedIslandCard.getVar("blight") * numBoards
+    if secondWave ~= nil then
+        local blightCount = secondWave.getVar("blightCount")
+        if blightCount ~= nil and blightCount[index+1] ~= nil then
+            numBlight = blightCount[index+1]
+        end
+    end
     if not blightedIslandCard.getVar("healthy") and scenarioCard ~= nil then
         local blightTokens = scenarioCard.getVar("blightTokens")
         if blightTokens ~= nil then
             numBlight = numBlight + (blightTokens * numBoards)
         end
-        blightTokens = scenarioCard.getVar("blightCount")
-        if blightTokens ~= nil then
-            numBlight = blightTokens
-        end
     end
+    numBlight = math.max(numBlight, 0)
     for _ = 1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({position = blightBag.getPosition() + Vector(0,1,0)}))
     end
@@ -1437,7 +1775,11 @@ function BlightedIslandFlipPart2()
     broadcastToAll(blightedIslandCard.getName()..":", Color.White)
     printToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
-    broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
+    if numBlight == 0 and blightedIsland then
+        broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
+    else
+        broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
+    end
     return 1
 end
 function hideBlightButton()
@@ -1449,28 +1791,6 @@ function hideBlightButton()
     })
     blightedIsland = true
 end
-function setupBlightTokens()
-    blightBag.reset()
-    local numBlight = 2 * numBoards
-    if not useBlightCard then
-        numBlight = 5 * numBoards
-    end
-    if SetupChecker.getVar("optionalBlightSetup") then
-        numBlight = numBlight + 1
-    end
-    if scenarioCard ~= nil then
-        local blightTokens = scenarioCard.getVar("setupBlightTokens")
-        if blightTokens ~= nil then
-            numBlight = numBlight + (blightTokens * numBoards)
-        end
-    end
-    for _ = 1, numBlight do
-        blightBag.putObject(boxBlightBag.takeObject({
-            position = blightBag.getPosition() + Vector(0,1,0),
-            smooth = false,
-        }))
-    end
-end
 ----- Scenario section
 function SetupScenario()
     for _,guid in pairs(SetupChecker.getVar("scenarios")) do
@@ -1480,6 +1800,7 @@ function SetupScenario()
         end
     end
 
+    local pos = Vector(0.75, 0.11, -1.81)
     if scenarioCard ~= nil then
         local targetScale = 1.71
         local currentScale = scenarioCard.getScale()[1]
@@ -1491,10 +1812,24 @@ function SetupScenario()
 
         scenarioCard.setLock(true)
         scenarioCard.setRotationSmooth(Vector(0,180,0), false, true)
-        scenarioCard.setPositionSmooth(aidBoard.positionToWorld(Vector(0.75,0.11,-1.81)), false, true)
+        scenarioCard.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
+        pos = pos + Vector(0, 0, -1.03)
+    end
+    if secondWave ~= nil then
+        local targetScale = 1.71
+        local currentScale = secondWave.getScale()[1]
+        local scaleMult = (currentScale - targetScale)/10
+        for i = 1, 10 do
+            wt(0.02)
+            secondWave.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
+        end
+
+        secondWave.setLock(true)
+        secondWave.setRotationSmooth(Vector(0,180,0), false, true)
+        secondWave.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return scenarioCard == nil or not scenarioCard.isSmoothMoving() end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return (scenarioCard == nil or not scenarioCard.isSmoothMoving()) and (secondWave == nil or not secondWave.isSmoothMoving()) end)
     return 1
 end
 ----- Adversary Section
@@ -1513,8 +1848,9 @@ function SetupAdversary()
             guid = "312e2d",
             position = aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84)),
             rotation = {0,180,0},
-            callback_function = function(obj) obj.setLock(true) end,
         })
+        secondAdversaryBoard.setLock(true)
+        secondAdversaryBoard.interactable = false
         Wait.condition(function() boardSetup = true end, function() return not secondAdversaryBoard.isSmoothMoving() end)
     else
         boardSetup = true
@@ -1568,66 +1904,168 @@ function reminderSetup()
 
     local ravagePos = Vector(-0.2,-0.09,2.24)
     if reminder.ravage then
-        local obj = adversaryBag.takeObject({
-            guid = reminder.ravage,
-            position = aidBoard.positionToWorld(ravagePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
+        if reminder.ravage == "Generic" then
+            reminder.ravage = adversaryBag.takeObject({guid="135124"})
+        end
+        reminder.ravage.setPosition(aidBoard.positionToWorld(ravagePos))
+        reminder.ravage.setRotation(Vector(0, 180, 0))
+        reminder.ravage.setLock(true)
+        reminder.ravage.interactable = false
         ravagePos.z = ravagePos.z + 0.07
     end
     if reminder2.ravage and reminder2.ravage ~= reminder.ravage then
-        local obj = adversaryBag.takeObject({
-            guid = reminder2.ravage,
-            position = aidBoard.positionToWorld(ravagePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
+        if reminder2.ravage == "Generic" then
+            local obj = getObjectFromGUID("135124")
+            if obj then
+                reminder2.ravage = obj.clone()
+            else
+                reminder2.ravage = adversaryBag.takeObject({guid="135124"})
+            end
+        end
+        reminder2.ravage.setPosition(aidBoard.positionToWorld(ravagePos))
+        reminder2.ravage.setRotation(Vector(0, 180, 0))
+        reminder2.ravage.setLock(true)
+        reminder2.ravage.interactable = false
+    end
+
+    local afterRavagePos = Vector(-0.47,-0.09,1.9)
+    if reminder.afterRavage then
+        if reminder.afterRavage == "Generic" then
+            reminder.afterRavage = adversaryBag.takeObject({guid="027ef0"})
+        end
+        reminder.afterRavage.setPosition(aidBoard.positionToWorld(afterRavagePos))
+        reminder.afterRavage.setRotation(Vector(0, 90, 0))
+        reminder.afterRavage.setLock(true)
+        reminder.afterRavage.interactable = false
+        afterRavagePos.y = afterRavagePos.y - 0.01
+        afterRavagePos.z = afterRavagePos.z + 0.11
+    end
+    if reminder2.afterRavage then
+        if reminder2.afterRavage == "Generic" then
+            local obj = getObjectFromGUID("027ef0")
+            if obj then
+                reminder2.afterRavage = obj.clone()
+            else
+                reminder2.afterRavage = adversaryBag.takeObject({guid="027ef0"})
+            end
+        end
+        reminder2.afterRavage.setPosition(aidBoard.positionToWorld(afterRavagePos))
+        reminder2.afterRavage.setRotation(Vector(0, 90, 0))
+        reminder2.afterRavage.setLock(true)
+        reminder2.afterRavage.interactable = false
     end
 
     local buildPos = Vector(-0.72,-0.09,2.24)
     if reminder.build then
-        local obj = adversaryBag.takeObject({
-            guid = reminder.build,
-            position = aidBoard.positionToWorld(buildPos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
+        if reminder.build == "Generic" then
+            reminder.build = adversaryBag.takeObject({guid="a178fa"})
+        end
+        reminder.build.setPosition(aidBoard.positionToWorld(buildPos))
+        reminder.build.setRotation(Vector(0, 180, 0))
+        reminder.build.setLock(true)
+        reminder.build.interactable = false
         buildPos.z = buildPos.z + 0.07
     end
     if reminder2.build and reminder2.build ~= reminder.build then
-        local obj = adversaryBag.takeObject({
-            guid = reminder2.build,
-            position = aidBoard.positionToWorld(buildPos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
+        if reminder2.build == "Generic" then
+            local obj = getObjectFromGUID("a178fa")
+            if obj then
+                reminder2.build = obj.clone()
+            else
+                reminder2.build = adversaryBag.takeObject({guid="a178fa"})
+            end
+        end
+        reminder2.build.setPosition(aidBoard.positionToWorld(buildPos))
+        reminder2.build.setRotation(Vector(0, 180, 0))
+        reminder2.build.setLock(true)
+        reminder2.build.interactable = false
+    end
+
+    local afterBuildPos = Vector(-0.98,-0.09,1.9)
+    if reminder.afterBuild then
+        if reminder.afterBuild == "Generic" then
+            reminder.afterBuild = adversaryBag.takeObject({guid="2ab0ad"})
+        end
+        reminder.afterBuild.setPosition(aidBoard.positionToWorld(afterBuildPos))
+        reminder.afterBuild.setRotation(Vector(0, 90, 0))
+        reminder.afterBuild.setLock(true)
+        reminder.afterBuild.interactable = false
+        afterBuildPos.y = afterBuildPos.y - 0.01
+        afterBuildPos.z = afterBuildPos.z + 0.11
+    end
+    if reminder2.afterBuild then
+        if reminder2.afterBuild == "Generic" then
+            local obj = getObjectFromGUID("2ab0ad")
+            if obj then
+                reminder2.afterBuild = obj.clone()
+            else
+                reminder2.afterBuild = adversaryBag.takeObject({guid="2ab0ad"})
+            end
+        end
+        reminder2.afterBuild.setPosition(aidBoard.positionToWorld(afterBuildPos))
+        reminder2.afterBuild.setRotation(Vector(0, 90, 0))
+        reminder2.afterBuild.setLock(true)
+        reminder2.afterBuild.interactable = false
     end
 
     local explorePos = Vector(-1.24,-0.09,2.24)
     if reminder.explore then
-        local obj = adversaryBag.takeObject({
-            guid = reminder.explore,
-            position = aidBoard.positionToWorld(explorePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
+        if reminder.explore == "Generic" then
+            reminder.explore = adversaryBag.takeObject({guid="a5b6b3"})
+        end
+        reminder.explore.setPosition(aidBoard.positionToWorld(explorePos))
+        reminder.explore.setRotation(Vector(0, 180, 0))
+        reminder.explore.setLock(true)
+        reminder.explore.interactable = false
         explorePos.z = explorePos.z + 0.07
     end
     if reminder2.explore and reminder2.explore ~= reminder.explore then
-        local obj = adversaryBag.takeObject({
-            guid = reminder2.explore,
-            position = aidBoard.positionToWorld(explorePos),
-            rotation = {0,180,0},
-        })
-        obj.setLock(true)
+        if reminder2.explore == "Generic" then
+            local obj = getObjectFromGUID("a5b6b3")
+            if obj then
+                reminder2.explore = obj.clone()
+            else
+                reminder2.explore = adversaryBag.takeObject({guid="a5b6b3"})
+            end
+        end
+        reminder2.explore.setPosition(aidBoard.positionToWorld(explorePos))
+        reminder2.explore.setRotation(Vector(0, 180, 0))
+        reminder2.explore.setLock(true)
+        reminder2.explore.interactable = false
+    end
+
+    local afterExplorePos = Vector(-1.49,-0.09,1.9)
+    if reminder.afterExplore then
+        if reminder.afterExplore == "Generic" then
+            reminder.afterExplore = adversaryBag.takeObject({guid="47288b"})
+        end
+        reminder.afterExplore.setPosition(aidBoard.positionToWorld(afterExplorePos))
+        reminder.afterExplore.setRotation(Vector(0, 90, 0))
+        reminder.afterExplore.setLock(true)
+        reminder.afterExplore.interactable = false
+        afterExplorePos.y = afterExplorePos.y - 0.01
+        afterExplorePos.z = afterExplorePos.z + 0.11
+    end
+    if reminder2.afterExplore then
+        if reminder2.afterExplore == "Generic" then
+            local obj = getObjectFromGUID("47288b")
+            if obj then
+                reminder2.afterExplore = obj.clone()
+            else
+                reminder2.afterExplore = adversaryBag.takeObject({guid="47288b"})
+            end
+        end
+        reminder2.afterExplore.setPosition(aidBoard.positionToWorld(afterExplorePos))
+        reminder2.afterExplore.setRotation(Vector(0, 90, 0))
+        reminder2.afterExplore.setLock(true)
+        reminder2.afterExplore.interactable = false
     end
 end
 function adversaryUISetup()
     local lineCount = 0
     if adversaryCard and adversaryCard.getVar("hasUI") then
         local ui = adversaryCard.call("AdversaryUI", {level = adversaryLevel, supporting = false})
-        UI.setAttribute("panelAdversaryName","text",adversaryCard.getName().." Effects")
+        UI.setAttribute("panelAdversaryName","text",adversaryCard.getName().." Level "..adversaryLevel)
         lineCount = lineCount + 1
         if ui.loss then
             UI.setAttribute("panelAdversaryLossText","tooltip",ui.loss.tooltip)
@@ -1701,7 +2139,7 @@ function adversaryUISetup()
         lineCount = lineCount + 1
         UI.setAttribute("panelAdversary2Helper","active","true")
         local ui = adversaryCard2.call("AdversaryUI", {level = adversaryLevel2, supporting = true})
-        UI.setAttribute("panelAdversary2Name","text",adversaryCard2.getName().." Effects")
+        UI.setAttribute("panelAdversary2Name","text",adversaryCard2.getName().." Level "..adversaryLevel2)
         lineCount = lineCount + 1
         if ui.loss then
             UI.setAttribute("panelAdversary2LossText","tooltip",ui.loss.tooltip)
@@ -1817,7 +2255,7 @@ function randomTerrain(player)
     if random == 1 then
         broadcastToAll("Your random Stage III Escalation is \"top terrain\" for the current Adversary Action", Color.SoftYellow)
     else
-        broadcastToAll("Your random Sstage III Escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftYellow)
+        broadcastToAll("Your random Stage III Escalation is \"bottom terrain\" for the current Adversary Action", Color.SoftYellow)
     end
 end
 ----- Invader Deck Section
@@ -1868,7 +2306,7 @@ function SetupInvaderDeck()
             end
             deck.takeObject({
                 guid = cardData.guid,
-                position = deck.getPosition() + Vector(0,1,8 + 1 * i),
+                position = deck.getPosition() + Vector(-6,1,14 + i),
                 rotation = Vector(0,180,0),
                 callback_function = function(obj) cardsSetup = cardsSetup + 1 end,
             })
@@ -1932,69 +2370,75 @@ function grabInvaderCards(deckTable)
 end
 ----- Event Deck Section
 function SetupEventDeck()
-    local decksSetup = 0
-    if useBnCEvents then
-        local BnCBag = getObjectFromGUID("BnCBag")
-        local deck = BnCBag.takeObject({
-            guid = "05f7b7",
-            position = getObjectFromGUID(eventDeckZone).getPosition(),
-            rotation = {0,180,180},
-        })
+    local cardsSetup = 0
+    local deck = getObjectFromGUID(eventDeckZone).getObjects()[1]
+    if deck ~= nil then
+        deck.shuffle()
+    end
+
+    local function bncEventOptions(bncDeck, callback)
         Wait.condition(function()
+            local bncEventSetup = 0
             if SetupChecker.getVar("exploratoryWar") then
-                deck.takeObject({
+                bncDeck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)
                         local temp = obj.setState(2)
                         Wait.frames(function()
-                            deck.putObject(temp)
-                            deck.shuffle()
-                            decksSetup = decksSetup + 1
+                            bncDeck.putObject(temp)
+                            bncDeck.shuffle()
+                            cardsSetup = cardsSetup + 1
+                            bncEventSetup = bncEventSetup + 1
                         end, 1)
                     end,
                 })
             else
-                decksSetup = decksSetup + 1
+                cardsSetup = cardsSetup + 1
+                bncEventSetup = bncEventSetup + 1
             end
             if SetupChecker.getVar("optionalDigitalEvents") then
                 if not SetupChecker.getVar("exploratoryWar") then
-                    deck.takeObject({guid = "cfd4d1"}).destruct()
+                    bncDeck.takeObject({guid = "cfd4d1"}).destruct()
                 end
-                deck.takeObject({guid = "6692e8"}).destruct()
-                decksSetup = decksSetup + 1
-            else
-                decksSetup = decksSetup + 1
+                bncDeck.takeObject({guid = "6692e8"}).destruct()
             end
-        end, function() return not deck.loading_custom end)
-        if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
-            local strangeMadness = BnCBag.takeObject({
-                guid = "0edac2",
-                position = getObjectFromGUID(eventDeckZone).getPosition(),
-                rotation = {0,180,180},
-            })
-            Wait.condition(function() decksSetup = decksSetup + 1 end, function() return not strangeMadness.loading_custom end)
+            if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
+                local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
+                    guid = "0edac2",
+                    position = getObjectFromGUID(eventDeckZone).getPosition(),
+                    rotation = {0,180,180},
+                    smooth = false,
+                })
+                bncDeck.putObject(strangeMadness)
+                bncDeck.shuffle()
+            end
+            if callback ~= nil then
+                Wait.condition(function() callback() end, function() return bncEventSetup == 1 end)
+            end
+        end, function() return not bncDeck.loading_custom end)
+    end
+
+    local grabbedDeck = false
+    if events["Branch & Claw"] then
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+            SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
         else
-            decksSetup = decksSetup + 1
+            bncEventOptions(deck)
         end
     else
-        decksSetup = decksSetup + 3
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+        end
+        cardsSetup = cardsSetup + 1
     end
-    if useJEEvents then
-        local JEBag = getObjectFromGUID("JEBag")
-        local deck = JEBag.takeObject({
-            guid = "299e38",
-            position = getObjectFromGUID(eventDeckZone).getPosition(),
-            rotation = {0,180,180},
-        })
-        Wait.condition(function() decksSetup = decksSetup + 1 end, function() return not deck.loading_custom end)
-    else
-        decksSetup = decksSetup + 1
+    if not grabbedDeck then
+        SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), nil)
     end
-    if useBnCEvents or useJEEvents then
+    if usingEvents() then
         Wait.condition(function()
-            getObjectFromGUID(eventDeckZone).getObjects()[1].shuffle()
             stagesSetup = stagesSetup + 1
-        end, function() return decksSetup == 4 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
+        end, function() return cardsSetup == 1 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
     else
         stagesSetup = stagesSetup + 1
     end
@@ -2004,13 +2448,13 @@ end
 function SetupMap()
     local adversariesSetup = 0
     if adversaryCard ~= nil and adversaryCard.getVar("limitSetup") then
-        adversaryCard.call("LimitSetup",{level = adversaryLevel, other = {level = adversaryLevel2}})
+        adversaryCard.call("LimitSetup",{level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
         Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard.getVar("limitSetupComplete") end)
     else
         adversariesSetup = adversariesSetup + 1
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("limitSetup") then
-        adversaryCard2.call("LimitSetup",{level = adversaryLevel2, other = {level = adversaryLevel}})
+        adversaryCard2.call("LimitSetup",{level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
         Wait.condition(function() adversariesSetup = adversariesSetup + 1 end, function() return adversaryCard2.getVar("limitSetupComplete") end)
     else
         adversariesSetup = adversariesSetup + 1
@@ -2025,6 +2469,7 @@ function BoardSetup()
             MapPlacen(boardLayouts[numBoards][boardLayout])
         else
             StandardMapBag.shuffle()
+            ExtraMapBag.shuffle()
             if scenarioCard ~= nil and scenarioCard.getVar("boardSetup") then
                 MapPlacen(scenarioCard.call("BoardSetup", { boards = numBoards }))
             else
@@ -2038,11 +2483,14 @@ function BoardSetup()
 end
 ----- Post Setup Section
 function PostSetup()
-    aidBoard.call("setupGame", {})
+    aidBoard.call("setupGame")
 
     local postSetupSteps = 0
     local firstAdversarySetup = false
 
+    if secondWave ~= nil then
+        difficultyString = difficultyString.."Wave "..wave.."\n"
+    end
     if adversaryCard == nil then
         difficultyString = difficultyString.."No Adversary\n"
     elseif adversaryCard2 == nil then
@@ -2059,9 +2507,14 @@ function PostSetup()
     createDifficultyButton()
 
     if SetupChecker.getVar("exploratoryBODAN") then
-        local spirit = getObjectFromGUID("606f23").setState(2)
-        if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
-            Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+        local spirit = getObjectFromGUID("606f23")
+        if spirit ~= nil then
+            spirit = spirit.setState(2)
+            if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
+                Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+            else
+                postSetupSteps = postSetupSteps + 1
+            end
         else
             postSetupSteps = postSetupSteps + 1
         end
@@ -2070,7 +2523,7 @@ function PostSetup()
     end
 
     if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
-        adversaryCard.call("PostSetup",{level = adversaryLevel, other={level=adversaryLevel2}})
+        adversaryCard.call("PostSetup",{level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
         Wait.condition(function() postSetupSteps = postSetupSteps + 1 firstAdversarySetup = true end, function() return adversaryCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
@@ -2079,20 +2532,26 @@ function PostSetup()
     if adversaryCard2 ~= nil and adversaryCard2.getVar("postSetup") then
         -- Wait for first adversary to finish
         Wait.condition(function()
-            adversaryCard2.call("PostSetup",{level = adversaryLevel2, other={level=adversaryLevel}})
+            adversaryCard2.call("PostSetup",{level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
             Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return adversaryCard2.getVar("postSetupComplete") end)
         end, function() return firstAdversarySetup end)
     else
         postSetupSteps = postSetupSteps + 1
     end
     if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        scenarioCard.call("PostSetup",{})
+        scenarioCard.call("PostSetup")
         Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
     end
+    if secondWave ~= nil and secondWave.getVar("mapSetup") then
+        secondWave.call("PostSetup")
+        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
 
-    if not useBnCEvents and not useJEEvents and (BnCAdded or JEAdded) then
+    if not usingEvents() and usingSpiritTokens() then
         -- Setup up command cards last
         Wait.condition(function()
             local invaderDeck = invaderDeckZone.getObjects()[1]
@@ -2132,19 +2591,26 @@ function PostSetup()
                 local objs = invaderDeckZone.getObjects()
                 return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function() return postSetupSteps == 4 end)
+        end, function() return postSetupSteps == 5 end)
     else
         postSetupSteps = postSetupSteps + 1
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 5 end)
+    -- HACK: trying to fix client desync issue
+    for _,obj in ipairs(getObjects()) do
+        if isIslandBoard({obj=obj}) then
+            obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
+        end
+    end
+
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 6 end)
     return 1
 end
 function createDifficultyButton()
-    local buttonPos = Vector(-0.75,0,-2.75)
+    local buttonPos = Vector(0.75,0,-3.8)
     if adversaryCard2 == nil then
         -- not double adversaries
-        buttonPos = Vector(0,0,-2.75)
+        buttonPos = Vector(0.75,0,-2.8)
     end
     aidBoard.createButton({
         click_function = "nullFunc",
@@ -2180,49 +2646,46 @@ function StartGame()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
     setLookingForPlayers(false)
-    local function handleAdversaryBroadcast(card, level)
-        local broadcastTbl = card.getVar("broadcast")
-        local broadcast = nil
-        if broadcastTbl ~= nil then
-            broadcast = broadcastTbl[level]
-        end
-        local combineBroadcast = nil
-        if card.getVar("combineRequirement") then
-            combineBroadcast = card.getVar("combineBroadcast")
-        end
-        if broadcast ~= nil or combineBroadcast ~= nil then
-            wt(2)
+    if adversaryCard ~= nil and adversaryCard.getVar("hasBroadcast") then
+        local broadcast = adversaryCard.call("Broadcast", {level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
+        if broadcast ~= nil then
             printToAll("Adversary:", Color.White)
-        end
-        if broadcast ~= nil then
             printToAll(broadcast, Color.SoftBlue)
-        end
-        if combineBroadcast ~= nil then
-            printToAll(combineBroadcast, Color.SoftBlue)
-        end
-    end
-    if adversaryCard ~= nil then
-        handleAdversaryBroadcast(adversaryCard, adversaryLevel)
-    end
-    if adversaryCard2 ~= nil then
-        handleAdversaryBroadcast(adversaryCard2, adversaryLevel2)
-    end
-    if scenarioCard ~= nil then
-        local broadcast = scenarioCard.getVar("broadcast")
-        if broadcast ~= nil then
             wt(2)
+        end
+    end
+    if adversaryCard2 ~= nil and adversaryCard2.getVar("hasBroadcast") then
+        local broadcast = adversaryCard2.call("Broadcast", {level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
+        if broadcast ~= nil then
+            printToAll("Adversary:", Color.White)
+            printToAll(broadcast, Color.SoftBlue)
+            wt(2)
+        end
+    end
+    if scenarioCard ~= nil and scenarioCard.getVar("hasBroadcast") then
+        local broadcast = scenarioCard.call("Broadcast")
+        if broadcast ~= nil then
             printToAll("Scenario:", Color.White)
             printToAll(broadcast, Color.SoftBlue)
+            wt(2)
+        end
+    end
+    if secondWave ~= nil and secondWave.getVar("hasBroadcast") then
+        local broadcast = secondWave.call("Broadcast")
+        if broadcast ~= nil then
+            printToAll("Scenario:", Color.White)
+            printToAll(broadcast, Color.SoftBlue)
+            wt(2)
         end
     end
     if adversaryCard2 ~= nil then
-        wt(2)
         printToAll("Escalation:", Color.White)
         printToAll("The stage II escalation is "..adversaryCard.getName().."\nThe stage III escalation is "..adversaryCard2.getName(), Color.SoftBlue)
-    elseif adversaryCard ~= nil then
         wt(2)
+    elseif adversaryCard ~= nil then
         printToAll("Escalation:", Color.White)
         printToAll("Your Stage II escalation is "..adversaryCard.getName(), Color.SoftBlue)
+        wt(2)
     end
     printToAll("Game Started!", Color.White)
     printToAll("Don't forget to perform the initial Explore Step!", Color.SoftYellow)
@@ -2255,8 +2718,8 @@ function runSpiritSetup()
     for color, _ in pairs(selectedColors) do
         local zone = getObjectFromGUID(elementScanZones[color])
         for _, obj in ipairs(zone.getObjects()) do
-            if obj.hasTag("Spirit Setup") then
-                obj.call("doSpiritSetup", {color=color})
+            if obj.hasTag("Setup") then
+                obj.call("doSetup", {color=color})
             end
         end
     end
@@ -2434,7 +2897,7 @@ function handlePlayer(color, data)
         elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
             if obj.getLock() == false then obj.destruct() end
         elseif obj.hasTag("Reminder Token") then
-            obj.destruct()
+            if obj.getLock() == false then obj.destruct() end
         elseif obj.getName() == "Speed Token" then
             -- Move speed token up a bit to trigger collision exit callback
             obj.setPosition(obj.getPosition() + Vector(0,1,0))
@@ -2629,6 +3092,27 @@ boardLayouts = {
             { pos = Vector(21.95, 1.08, 8.04), rot = Vector(0.00, 0.42, 0.00) },
         },
     },
+    { -- 7 Board
+        ["Thematic"] = {},
+        ["Balanced"] = {
+            { pos = Vector(-2.92, 1.08, 26.63), rot = Vector(0.00, 140.00, 0.00) },
+            { pos = Vector(12.33, 1.08, 29.40), rot = Vector(0.00, 260.00, 0.00) },
+            { pos = Vector(7.18, 1.08, 14.98), rot = Vector(0.00, 20.00, 0.00) },
+            { pos = Vector(29.16, 1.08, 23.23), rot = Vector(0.00, 260.00, 0.00) },
+            { pos = Vector(46.29, 1.08, 16.93), rot = Vector(0.00, 80.00, 0.00) },
+            { pos = Vector(51.43, 1.08, 31.42), rot = Vector(0.00, 200.00, 0.00) },
+            { pos = Vector(61.44, 1.08, 19.74), rot = Vector(0.00, 320.00, 0.00) },
+        },
+        ["Pi"] = {
+            { pos = Vector(5.50, 1.06, 8.62), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(14.48, 1.07, 24.01), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(14.36, 1.09, 39.34), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(32.18, 1.05, 39.30), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(50.00, 1.05, 39.22), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(50.02, 1.05, 23.67), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(41.01, 1.05, 8.27), rot = Vector(0.00, 180.00, 0.00) },
+        },
+    },
 }
 themGuids = {
     ["NW"] = "e0c325",
@@ -2637,14 +3121,6 @@ themGuids = {
     ["E"] = "051c66",
     ["SW"] = "0f2e60",
     ["SE"] = "505d5d",
-}
-themRedoGuids = {
-    ["NW"] = "a0e5c0",
-    ["NE"] = "14a35f",
-    ["W"] = "bdaa82",
-    ["E"] = "f14363",
-    ["SW"] = "ffa7e6",
-    ["SE"] = "214c72",
 }
 ----
 function GenerateMapData()
@@ -2719,7 +3195,7 @@ function MapPlaceCustom()
     else
         boardLayout = "Thematic"
     end
-    SetupChecker.call("updateDifficulty", {})
+    SetupChecker.call("updateDifficulty")
 
     local rand = 0
     if SetupChecker.getVar("optionalExtraBoard") then
@@ -2737,11 +3213,10 @@ function MapPlacen(boards)
     local BETaken = false
     local DFTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
-        if selectedBoards[#boards] ~= nil then
-            rand = #boards
-        else
-            rand = math.random(1,#boards)
+        if extraRandomBoard == nil then
+            extraRandomBoard = math.random(1,#boards)
         end
+        rand = extraRandomBoard
     end
 
     -- We use the average position of the boards in the island layout
@@ -2755,27 +3230,37 @@ function MapPlacen(boards)
     local count = 1
     for i, board in pairs(boards) do
         if isThematic() then
-            if SetupChecker.getVar("optionalThematicRedo") then
-                MJThematicMapBag.takeObject({
-                    position = MJThematicMapBag.getPosition() + Vector(0,-5,0),
-                    guid = themRedoGuids[board.board],
-                    smooth = false,
-                    callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
-                })
-            else
-                ThematicMapBag.takeObject({
-                    position = ThematicMapBag.getPosition() + Vector(0,-5,0),
-                    guid = themGuids[board.board],
-                    smooth = false,
-                    callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
-                })
-            end
+            ThematicMapBag.takeObject({
+                position = ThematicMapBag.getPosition() + Vector(0,-5,0),
+                guid = themGuids[board.board],
+                smooth = false,
+                callback_function = function(obj)
+                    if SetupChecker.getVar("optionalThematicRedo") then
+                        obj = obj.setState(2)
+                    end
+                    BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)
+                end,
+            })
         else
-            local list = StandardMapBag.getObjects()
+            local bag = StandardMapBag
+            if #bag.getObjects() == 0 then
+                -- This should only be true with 6 player extra board
+                bag = ExtraMapBag
+            end
+            local selectedBoardName = nil
+            if selectedBoards[count] ~= nil then
+                if selectedBoards[count]:sub(-1) == "2" then
+                    selectedBoardName = selectedBoards[count]:sub(1, -2)
+                    bag = ExtraMapBag
+                else
+                    selectedBoardName = selectedBoards[count]
+                end
+            end
+            local list = bag.getObjects()
             local index = 1
             for _,value in pairs(list) do
-                if selectedBoards[count] ~= nil then
-                    if value.name == selectedBoards[count] then
+                if selectedBoardName ~= nil then
+                    if value.name == selectedBoardName then
                         index = value.index
                         break
                     end
@@ -2802,20 +3287,24 @@ function MapPlacen(boards)
                 end
             end
 
-            local boardObject= StandardMapBag.takeObject({
+            local boardObject= bag.takeObject({
                 index = index,
-                position = StandardMapBag.getPosition() + Vector(0,-5,0),
+                position = bag.getPosition() + Vector(0,-5,0),
                 smooth = false,
                 callback_function = function(obj) BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin) end,
             })
-            if selectedBoards[count] == nil then
-                table.insert(selectedBoards, boardObject.getName())
+            if selectedBoardName == nil then
+                if bag == ExtraMapBag then
+                    table.insert(selectedBoards, boardObject.getName().."2")
+                else
+                    table.insert(selectedBoards, boardObject.getName())
+                end
             end
             count = count + 1
         end
     end
 end
-function BoardCallback(obj,pos,rot,extra, scaleOrigin)
+function BoardCallback(obj, pos, rot, extra, scaleOrigin)
     obj.interactable = false
     obj.setLock(true)
     obj.setRotationSmooth(rot, false, true)
@@ -2823,81 +3312,50 @@ function BoardCallback(obj,pos,rot,extra, scaleOrigin)
     obj.setPositionSmooth(scaleFactor.position*pos + (1-scaleFactor.position)*scaleOrigin, false, true)
     Wait.condition(function() setupMap(obj,extra) end, function() return obj.resting and not obj.loading_custom end)
 end
-setupMapCoObj = nil
-function setupMap(map,extra)
-    -- HACK: trying to fix client desync issue
-    map.setPosition(map.getPosition()+Vector(0,0.01,0))
+function setupMap(map, extra)
+    _G["setupMapCo"] = function()
+        local piecesToPlace = map.getTable("pieceMap")
+        local posToPlace = map.getTable("posMap")
+        local originalPieces = map.getTable("pieceMap")
 
-    setupMapCoObj = map
-    if extra then
-        startLuaCoroutine(Global, "setupMapCoExtra")
-    else
-        startLuaCoroutine(Global, "setupMapCoNoExtra")
-    end
-end
-function setupMapCoNoExtra()
-    return setupMapCo(false)
-end
-function setupMapCoExtra()
-    return setupMapCo(true)
-end
-function setupMapCo(extra)
-    local map = setupMapCoObj
-    local piecesToPlace = map.getTable("pieceMap")
-    local posToPlace = map.getTable("posMap")
-    local originalPieces = map.getTable("pieceMap")
-
-    if not map.hasTag("Thematic") then -- if not a thematic board
-        if BnCAdded or JEAdded then -- during Setup put 1 Beast and 1 Disease on each island board
-            for i=1,#piecesToPlace do
-                if #piecesToPlace[i] == 0 then
-                    table.insert(piecesToPlace[i],"Beasts") -- the Beasts go in the lowest-numbered land with no printed Setup icons
-                    break
-                end
-            end
-            table.insert(piecesToPlace[2],"Disease") -- the Disease goes in land #2 (with the City)
-        end
-    end
-
-    if extra and numPlayers < 5 then
-        local townFound = false
-        local cityFound = false
-        for i=1,#piecesToPlace do
-            for j=#piecesToPlace[i],1,-1 do
-                if string.sub(piecesToPlace[i][j],1,8) == "Explorer" then
-                    table.remove(piecesToPlace[i],j)
-                elseif string.sub(piecesToPlace[i][j],1,4) == "Town" then
-                    if numPlayers == 4 and not townFound then
-                        townFound = true
-                    else
-                        table.remove(piecesToPlace[i],j)
-                    end
-                elseif string.sub(piecesToPlace[i][j],1,4) == "City" then
-                    if numPlayers == 3 and not cityFound and i < 4 then
-                        cityFound = true
-                    else
-                        table.remove(piecesToPlace[i],j)
-                    end
-                end
-            end
-        end
-        if not townFound and numPlayers == 4 then
-            for i=1,3 do
-                for j,v in pairs (originalPieces[i]) do
-                    if string.sub(v,1,4) == "City" then
-                        table.insert(piecesToPlace[i],j, v)
-                        townFound = true
+        if not map.hasTag("Thematic") then -- if not a thematic board
+            if usingSpiritTokens() then -- during Setup put 1 Beast and 1 Disease on each island board
+                for i=1,#piecesToPlace do
+                    if #piecesToPlace[i] == 0 then
+                        table.insert(piecesToPlace[i],"Beasts") -- the Beasts go in the lowest-numbered land with no printed Setup icons
                         break
                     end
                 end
-                if townFound then
-                    break
+                table.insert(piecesToPlace[2],"Disease") -- the Disease goes in land #2 (with the City)
+            end
+        end
+
+        if extra and numPlayers < 5 then
+            local townFound = false
+            local cityFound = false
+            for i=1,#piecesToPlace do
+                for j=#piecesToPlace[i],1,-1 do
+                    if string.sub(piecesToPlace[i][j],1,8) == "Explorer" then
+                        table.remove(piecesToPlace[i],j)
+                    elseif string.sub(piecesToPlace[i][j],1,4) == "Town" then
+                        if numPlayers == 4 and not townFound then
+                            townFound = true
+                        else
+                            table.remove(piecesToPlace[i],j)
+                        end
+                    elseif string.sub(piecesToPlace[i][j],1,4) == "City" then
+                        if numPlayers == 3 and not cityFound and i < 4 then
+                            cityFound = true
+                        else
+                            table.remove(piecesToPlace[i],j)
+                        end
+                    end
                 end
             end
-            if not townFound then
+            if not townFound and numPlayers == 4 then
                 for i=1,3 do
                     for j,v in pairs (originalPieces[i]) do
-                        if string.sub(v,1,4) == "Town" then
+                        if string.sub(v,1,4) == "City" then
                             table.insert(piecesToPlace[i],j, v)
                             townFound = true
                             break
@@ -2907,58 +3365,79 @@ function setupMapCo(extra)
                         break
                     end
                 end
-            end
-        elseif not cityFound and numPlayers == 3 then
-            for i=1,3 do
-                for j,v in pairs (originalPieces[i]) do
-                    if string.sub(v,1,4) == "Town" then
-                        table.insert(piecesToPlace[i],j, v)
-                        cityFound = true
+                if not townFound then
+                    for i=1,3 do
+                        for j,v in pairs (originalPieces[i]) do
+                            if string.sub(v,1,4) == "Town" then
+                                table.insert(piecesToPlace[i],j, v)
+                                townFound = true
+                                break
+                            end
+                        end
+                        if townFound then
+                            break
+                        end
+                    end
+                end
+            elseif not cityFound and numPlayers == 3 then
+                for i=1,3 do
+                    for j,v in pairs (originalPieces[i]) do
+                        if string.sub(v,1,4) == "Town" then
+                            table.insert(piecesToPlace[i],j, v)
+                            cityFound = true
+                            break
+                        end
+                    end
+                    if cityFound then
                         break
                     end
                 end
-                if cityFound then
-                    break
-                end
             end
         end
-    end
 
-    if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
-        piecesToPlace = scenarioCard.call("MapSetup", {pieces = piecesToPlace, original = originalPieces, extra = extra})
-    end
-    -- supporting adversary setup should happen before primary
-    if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
-        piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
-    end
-    if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
-        piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, pieces = piecesToPlace, guid = map.guid, original = originalPieces, extra = extra})
-    end
-
-    for l,landTable in ipairs (piecesToPlace) do
-        for i,pieceName in ipairs (landTable) do
-            place(pieceName,map.positionToWorld(posToPlace[l][i]))
-            coroutine.yield(0)
+        if secondWave ~= nil and secondWave.getVar("mapSetup") then
+            piecesToPlace = secondWave.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
         end
+        if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
+            piecesToPlace = scenarioCard.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
+        end
+        -- supporting adversary setup should happen before primary
+        if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
+            piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
+        end
+        if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
+            piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
+        end
+
+        for l,landTable in ipairs(piecesToPlace) do
+            for i,pieceName in ipairs(landTable) do
+                if secondWave and pieceName == "Box Blight" then
+                    pieceName = "Blight"
+                end
+                place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                coroutine.yield(0)
+            end
+        end
+        boardsSetup = boardsSetup + 1
+        return 1
     end
-    boardsSetup = boardsSetup + 1
-    return 1
+    startLuaCoroutine(Global, "setupMapCo")
 end
 
 function place(objName, placePos, droppingPlayerColor)
     if objName == "CityS" then
         place("City",placePos,droppingPlayerColor)
-        if BnCAdded or JEAdded then
+        if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     elseif objName == "TownS" then
         place("Town",placePos,droppingPlayerColor)
-        if BnCAdded or JEAdded then
+        if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     elseif objName == "ExplorerS" then
         place("Explorer",placePos,droppingPlayerColor)
-        if BnCAdded or JEAdded then
+        if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
     end
@@ -3008,31 +3487,31 @@ function place(objName, placePos, droppingPlayerColor)
     elseif objName == "Box Blight" then
         temp = boxBlightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Strife" then
-        if BnCAdded or JEAdded then
+        if usingSpiritTokens() then
             temp = strifeBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Beasts" then
-        if BnCAdded or JEAdded then
+        if usingSpiritTokens() then
             temp = beastsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Wilds" then
-        if BnCAdded or JEAdded then
+        if usingSpiritTokens() then
             temp = wildsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Disease" then
-        if BnCAdded or JEAdded then
+        if usingSpiritTokens() then
             temp = diseaseBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
     elseif objName == "Badlands" then
-        if JEAdded then
+        if expansions["Jagged Earth"] then
             temp = badlandsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
@@ -3055,6 +3534,13 @@ function place(objName, placePos, droppingPlayerColor)
         temp = threeEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Speed Token" then
         temp = speedBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+    elseif objName == "Scenario Token" then
+        local bag = getObjectFromGUID("8d6e46")
+        if bag ~= nil then
+            temp = bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+        else
+            return
+        end
     end
     if droppingPlayerColor then
         local dropColor = droppingPlayerColor
@@ -3078,10 +3564,10 @@ Pieces = {
     "City",
     "Blight",
     "Badlands",
-    "Strife",
     "Beasts",
     "Wilds",
     "Disease",
+    "Strife",
     "Dahan",
     "Defend Token",
     "Isolate Token",
@@ -3181,7 +3667,7 @@ function refreshScore()
         end
     end
     local win = math.floor(5 * difficulty) + 10 + 2 * deckCount + dahan - blight
-    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard", {}) + dahan - blight
+    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard") + dahan - blight
 
     UI.setAttribute("scoreWin", "text", win)
     UI.setAttribute("scoreLose", "text", lose)
@@ -4211,8 +4697,10 @@ function toggleInvaderPhaseImage(explore)
     local start, _ = string.find(current,"Stage")
     if start == nil and not explore then
         UI.setAttribute("invaderImage", "image", current.." Stage")
+        UI.setAttribute("exploreAdvance", "onClick", "aidBoard/flipExploreCard")
     elseif start ~= nil and explore then
         UI.setAttribute("invaderImage", "image", string.sub(current, 1, start - 2))
+        UI.setAttribute("exploreAdvance", "onClick", "aidBoard/advanceInvaderCards")
     end
 end
 function dark(a)
@@ -4242,6 +4730,8 @@ function hideAll(a)
     UI.setAttribute("panel"..a..12, "active", false)
     UI.setAttribute("panel"..a..21, "active", false)
     UI.setAttribute("panel"..a..22, "active", false)
+    UI.setAttribute("panel"..a..31, "active", false)
+    UI.setAttribute("panel"..a..32, "active", false)
 end
 function hide(a,b,c)
     UI.setAttribute("panel"..a..b..c, "active", false)
@@ -4791,7 +5281,7 @@ function applyPowerCardContextMenuItems(card)
                 if isPowerCard({card=obj}) then
                     -- This ugliness is because setPositionSmooth doesn't work from a hand.
                     ensureCardInPlay(obj)
-                    discardPowerCardFromPlay(obj, 1)
+                    discardPowerCardFromPlay({card = obj, discardHeight = 1})
                 end
             end
         end,
@@ -4846,6 +5336,10 @@ function enterInvaderPhase(player)
     if player and player.color == "Grey" then return end
     if currentPhase == 3 then return end
     broadcastToAll("Entering Invader Phase", Color.White)
+    if blightedIslandCard and not blightedIslandCard.is_face_down and blightedIslandCard.getDescription() ~= "" then
+        printToAll(blightedIslandCard.getName()..": ", Color.White)
+        printToAll(blightedIslandCard.getDescription(), Color.SoftBlue)
+    end
     updateCurrentPhase(true)
     currentPhase = 3
     updateCurrentPhase(false)

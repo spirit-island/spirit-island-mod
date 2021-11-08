@@ -4,15 +4,15 @@
     "posX": -46.18000030517578,
     "posY": 0.8873000144958496,
     "posZ": 51.2599983215332,
-    "rotX": 0.00019999999494757503,
+    "rotX": 0.0,
     "rotY": 180.0,
-    "rotZ": 179.99330139160156,
+    "rotZ": 180.0,
     "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
     "scaleZ": 1.5299999713897705
   },
   "Nickname": "Downward Spiral",
-  "Description": "",
+  "Description": "Each Spirit Destroys 1 of their Presence",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.7131999731063843,

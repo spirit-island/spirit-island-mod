@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1631647898,
-  "Date": "9/14/2021 8:31:38 PM",
+  "EpochTime": 1636308827,
+  "Date": "11/7/2021 6:13:47 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -27,7 +27,7 @@
   "Sky": "Sky_Forest",
   "TabStates": {
     "0": {
-      "title": "Rules",
+      "title": "Game Config",
       "body": "",
       "color": "Grey",
       "visibleColor": {
@@ -38,8 +38,8 @@
       "id": 0
     },
     "1": {
-      "title": "Game Config",
-      "body": "",
+      "title": "Sample of Custom Adversary Scripting",
+      "body": "difficulty={[0]=0,0,0,0,0,0,0}\r\nfearCards={[0]={0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}}\r\nfearTokens={[0]=0,0,0,0,0,0}\n\npreSetup = true\r\npreSetupComplete = false\r\nreminderSetup = true\r\ninvaderDeckSetup = true\r\nlimitSetup = true\r\nlimitSetupComplete = false\r\nmapSetup = true\r\npostSetup = true\r\npostSetupComplete = false\r\nhasUI = true\r\nhasBroadcast = true\nrequirements = true\n\r\n-- This function is used for things that need to be done before other setup steps, i.e. swapping out component bags\r\nfunction PreSetup(params)\r\n    preSetupComplete = true\r\nend\r\n\r\n-- This function is used for reminder tiles\r, use \"Generic\" if you don't have your own\nfunction ReminderSetup(params)\r\n    return {}\r\nend\r\n\r\n-- This function allows you to change the invader deck\r\nfunction InvaderDeckSetup(params)\r\n    return params.deck\r\nend\r\n\r\n-- This function is used to have adversary abilities show up in UI\r\nfunction AdversaryUI(params)\r\n    return {}\nend\r\n\r\n-- This function is called before MapSetup which allows you to set component limits, i.e. France towns\r\nfunction LimitSetup(params)\r\n    limitSetupComplete = true\r\nend\r\n\r\n-- This function is used to add, remove, or move pieces on each island board\r\nfunction MapSetup(params)\r\n    return params.pieces\r\nend\r\n\r\n-- This function is used for setup that needs to happen afterwards, i.e. France Slave Rebellion\r\nfunction PostSetup(params)\r\n    postSetupComplete = true\r\nend\r\n\n-- This function returns any text that should be broadcast upon game start\nfunction Broadcast(params)\n    return nil\nend\n\n-- This function is used for random adversary to see if any requirements like event deck or tokens are needed\nfunction Requirements(params)\n    return true\nend\n",
       "color": "Grey",
       "visibleColor": {
         "r": 0.5,
@@ -47,17 +47,6 @@
         "b": 0.5
       },
       "id": 1
-    },
-    "2": {
-      "title": "Sample of Custom Adversary Scripting",
-      "body": "difficulty={[0]=0,0,0,0,0,0,0}\r\nfearCards={[0]={0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}}\r\nfearTokens={[0]=0,0,0,0,0,0,0}\r\nbroadcast={\r\n    [0] = nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n    nil,\r\n}\r\npreSetup = true\r\npreSetupComplete = false\r\nreminderSetup = true\r\ninvaderDeckSetup = true\r\nlimitSetup = true\r\nlimitSetupComplete = false\r\nmapSetup = true\r\npostSetup = true\r\npostSetupComplete = false\r\nhasLossCondition = true\r\nhasUI = true\r\nrequirements = true\n\r\n-- This function is used for things that need to be done before other setup steps, i.e. swapping out component bags\r\nfunction PreSetup(params)\r\n    preSetupComplete = true\r\nend\r\n\r\n-- This function is only needed if you have custom reminder tiles\r\nfunction ReminderSetup(params)\r\n    return {}\r\nend\r\n\r\n-- This function allows you to change the invader deck\r\nfunction InvaderDeckSetup(params)\r\n    return params.deck\r\nend\r\n\r\n-- This function is used to have adversary abilities show up in UI\r\nfunction AdversaryUI(params)\r\nend\r\n\r\n-- This function is called before MapSetup which allows you to set component limits, i.e. France towns\r\nfunction LimitSetup(params)\r\n    limitSetupComplete = true\r\nend\r\n\r\n-- This function is used to add extra pieces on each island board\r\nfunction MapSetup(params)\r\n    return params.pieces\r\nend\r\n\r\n-- This function is used for setup that needs to happen afterwards, i.e. France Slave Rebellion\r\nfunction PostSetup(params)\r\n    postSetupComplete = true\r\nend\r\n\n-- This function is used for random adversary to see if any requirements like event deck or tokens are needed\nfunction Requirements(params)\n    return true\nend\n",
-      "color": "Grey",
-      "visibleColor": {
-        "r": 0.5,
-        "g": 0.5,
-        "b": 0.5
-      },
-      "id": 2
     }
   },
   "MusicPlayer": {
@@ -262,8 +251,8 @@
         "normalized": "element_marker"
       },
       {
-        "displayed": "Spirit Setup",
-        "normalized": "spirit_setup"
+        "displayed": "Setup",
+        "normalized": "setup"
       },
       {
         "displayed": "Aspect",
@@ -272,6 +261,14 @@
       {
         "displayed": "Reminder Token",
         "normalized": "reminder_token"
+      },
+      {
+        "displayed": "Expansion",
+        "normalized": "expansion"
+      },
+      {
+        "displayed": "Uninteractable",
+        "normalized": "uninteractable"
       }
     ]
   },
@@ -543,21 +540,6 @@
       "Position": {
         "x": -50.099998474121094,
         "y": 0.9610999822616577,
-        "z": 36.13999938964844
-      },
-      "Rotation": {
-        "x": -0.0,
-        "y": 180.0,
-        "z": -0.0044999998062849045
-      },
-      "Tags": [
-        "Unique"
-      ]
-    },
-    {
-      "Position": {
-        "x": -50.099998474121094,
-        "y": 0.9610999822616577,
         "z": 41.18000030517578
       },
       "Rotation": {
@@ -566,7 +548,7 @@
         "z": -0.0044999998062849045
       },
       "Tags": [
-        "Minor"
+        "Major"
       ]
     },
     {
@@ -596,7 +578,7 @@
         "z": 179.99560546875
       },
       "Tags": [
-        "Major"
+        "Minor"
       ]
     },
     {
@@ -612,6 +594,21 @@
       },
       "Tags": [
         "Minor"
+      ]
+    },
+    {
+      "Position": {
+        "x": -50.099998474121094,
+        "y": 0.9610999822616577,
+        "z": 51.2599983215332
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 179.9801025390625,
+        "z": 180.0
+      },
+      "Tags": [
+        "Unique"
       ]
     }
   ]

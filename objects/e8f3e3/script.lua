@@ -13,8 +13,7 @@ hasUI = true
 supporting = false
 requirements = true
 thematicRebellion = false
-combineRequirement = false
-combineBroadcast = "Combining the French Plantation Colony - France's Additional Loss Condition has a greater Town limit"
+hasBroadcast = true
 
 slaveRebellion = "1f0327"
 
@@ -74,11 +73,12 @@ end
 
 function ReminderSetup(params)
     local reminderTiles = {}
+    local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 1 then
-        reminderTiles.explore = "f4a568"
+        reminderTiles.explore = adversaryBag.takeObject({guid="f4a568"})
     end
     if params.level >= 2 then
-        reminderTiles.build = "be2c91"
+        reminderTiles.build = adversaryBag.takeObject({guid="be2c91"})
     end
     return reminderTiles
 end
@@ -124,7 +124,7 @@ function AdversaryUI(params)
     if params.level >= 6 then
         ui.six = {}
         ui.six.name = "Persistent Explorers"
-        ui.six.tooltip = "After the normal Explore Phase, on each board\nadd 1 Explorer to a land without any. Fear\nCard effects never remove Explorer. If one\nwould, you may instead Push that Explorer."
+        ui.six.tooltip = "After resolving an Explore Card, on each board\nadd 1 Explorer to a land without any. Fear\nCard effects never remove Explorer. If one\nwould, you may instead Push that Explorer."
     end
     return ui
 end
@@ -190,9 +190,6 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
-    if params.level >= 2 and params.other.level > 0 then
-        combineRequirement = true
-    end
     local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 5 then
         local returnBlightBag = adversaryBag.takeObject({
@@ -236,6 +233,13 @@ function setupSlaveRebellion(card)
     card.setRotationSmooth(Vector(0,180,180), false, true)
     card.setPositionSmooth(zone.getPosition() + Vector(0,0.1,0), false, true)
     return count
+end
+
+function Broadcast(params)
+    if params.level >= 2 and params.other.level > 0 then
+        return "Combining the French Plantation Colony - France's Additional Loss Condition has a greater Town limit"
+    end
+    return nil
 end
 
 function Requirements(params)

@@ -5,7 +5,7 @@
     "posY": 1.058500051498413,
     "posZ": 86.89179992675781,
     "rotX": -0.0,
-    "rotY": 180.02020263671875,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 0.7250000238418579,
     "scaleY": 0.7250000238418579,
@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.18149980902671814,
-    "g": 0.18149980902671814,
-    "b": 0.18639981746673584
+    "r": 0.1814996898174286,
+    "g": 0.1814996898174286,
+    "b": 0.1863996982574463
   },
   "Tags": [
     "Blight",
@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
     "DiffuseURL": "",

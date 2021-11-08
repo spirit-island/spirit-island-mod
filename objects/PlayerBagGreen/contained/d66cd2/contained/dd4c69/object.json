@@ -4,9 +4,9 @@
     "posX": 56.86000061035156,
     "posY": 1.0233999490737915,
     "posZ": -14.260000228881836,
-    "rotX": 0.05429999902844429,
-    "rotY": 359.9888000488281,
-    "rotZ": -9.999999747378752e-05,
+    "rotX": 0.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
     "scaleX": 0.8999999761581421,
     "scaleY": 0.8999999761581421,
     "scaleZ": 0.8999999761581421
@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",

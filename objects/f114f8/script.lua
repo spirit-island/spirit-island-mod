@@ -1,19 +1,11 @@
 difficulty={[0] = 1, 2, 3, 5, 6, 7, 8}
 fearCards={[0] = {0,0,0}, {0,0,0}, {0,1,0}, {0,1,0}, {0,1,1}, {1,1,1}, {1,1,2}}
-broadcast={
-    [0] = nil,
-    nil,
-    nil,
-    nil,
-    "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board",
-    "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board",
-    "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board",
-}
 preSetup = true
 preSetupComplete = false
 reminderSetup = true
 mapSetup = true
 hasUI = true
+hasBroadcast = true
 
 function PreSetup(params)
     if params.level >= 3 then
@@ -31,8 +23,9 @@ end
 
 function ReminderSetup(params)
     local reminderTiles = {}
+    local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 1 then
-        reminderTiles.ravage = "16ab25"
+        reminderTiles.ravage = adversaryBag.takeObject({guid="16ab25"})
     end
     return reminderTiles
 end
@@ -82,4 +75,11 @@ function MapSetup(params)
         table.insert(params.pieces[8],"Box Blight")
     end
     return params.pieces
+end
+
+function Broadcast(params)
+    if params.level >= 4 then
+        return "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board"
+    end
+    return nil
 end

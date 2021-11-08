@@ -4,8 +4,8 @@
     "posX": -42.47639846801758,
     "posY": 2.1565001010894775,
     "posZ": 41.44020080566406,
-    "rotX": -0.0008999999845400453,
-    "rotY": 180.00540161132812,
+    "rotX": 0.0,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
@@ -53,7 +53,8 @@
         "x": 0.0006000000284984708,
         "y": 0.2526000142097473,
         "z": 0.006599999964237213
-      }
+      },
+      "Tags": []
     }
   ],
   "States": {
@@ -64,8 +65,8 @@
         "posX": -47.27899932861328,
         "posY": 1.2280000448226929,
         "posZ": 27.95669937133789,
-        "rotX": 0.004399999976158142,
-        "rotY": 180.00509643554688,
+        "rotX": 0.0,
+        "rotY": 180.0,
         "rotZ": 0.0,
         "scaleX": 1.899999976158142,
         "scaleY": 1.899999976158142,
@@ -95,7 +96,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": true,
+      "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189694576224611/98DAA0C081A86976E4BF7A3A735B65FFE7D3DB17/",
         "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",

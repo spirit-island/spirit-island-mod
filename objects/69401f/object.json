@@ -4,7 +4,7 @@
     "posX": -43.038700103759766,
     "posY": 0.8199999928474426,
     "posZ": 5.164400100708008,
-    "rotX": 0.004399999976158142,
+    "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 0.5,
@@ -15,10 +15,13 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.11799982935190201,
+    "r": 0.11799969524145126,
     "g": 0.5299999713897705,
     "b": 1.0
   },
+  "Tags": [
+    "Uninteractable"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,

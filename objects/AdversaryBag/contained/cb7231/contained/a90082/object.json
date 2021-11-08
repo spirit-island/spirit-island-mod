@@ -5,7 +5,7 @@
     "posY": 3.324199914932251,
     "posZ": 33.35169982910156,
     "rotX": 0.0,
-    "rotY": 359.9906921386719,
+    "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 0.699999988079071,
     "scaleY": 0.699999988079071,
@@ -35,7 +35,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
     "DiffuseURL": "",
@@ -74,8 +74,8 @@
         "posX": -72.14869689941406,
         "posY": 0.9531999826431274,
         "posZ": -12.519399642944336,
-        "rotX": 0.0044999998062849045,
-        "rotY": 179.9868927001953,
+        "rotX": 0.0,
+        "rotY": 180.0,
         "rotZ": 0.0,
         "scaleX": 0.699999988079071,
         "scaleY": 0.699999988079071,
@@ -102,7 +102,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": true,
+      "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
         "DiffuseURL": "",
@@ -124,6 +124,58 @@
             "z": -9.999999747378752e-05
           }
         }
+      ],
+      "ChildObjects": [
+        {
+          "GUID": "e34218",
+          "Name": "BlockSquare",
+          "Transform": {
+            "posX": 0.00039999998989515007,
+            "posY": 2.56850004196167,
+            "posZ": -0.00019999999494757503,
+            "rotX": 0.0,
+            "rotY": 180.0,
+            "rotZ": 0.0,
+            "scaleX": 0.7142999768257141,
+            "scaleY": 0.042899999767541885,
+            "scaleZ": 0.7142999768257141
+          },
+          "Nickname": "",
+          "Description": "",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.7882000207901001,
+            "g": 0.6588000059127808,
+            "b": 0.486299991607666,
+            "a": 0.0
+          },
+          "LayoutGroupSortIndex": 0,
+          "Value": 0,
+          "Locked": true,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+                "x": 0.0012000000569969416,
+                "y": 0.5072000026702881,
+                "z": 0.0013000000035390258
+              }
+            }
+          ]
+        }
       ]
     },
     "3": {
@@ -133,8 +185,8 @@
         "posX": -70.64869689941406,
         "posY": 0.854200005531311,
         "posZ": -12.519399642944336,
-        "rotX": 0.0044999998062849045,
-        "rotY": 179.9716033935547,
+        "rotX": 0.0,
+        "rotY": 180.0,
         "rotZ": 0.0,
         "scaleX": 0.699999988079071,
         "scaleY": 0.699999988079071,
@@ -161,7 +213,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": true,
+      "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
         "DiffuseURL": "",
@@ -192,8 +244,8 @@
         "posX": -69.14869689941406,
         "posY": 0.6338000297546387,
         "posZ": -12.519399642944336,
-        "rotX": 0.004399999976158142,
-        "rotY": 180.014404296875,
+        "rotX": 0.0,
+        "rotY": 180.0,
         "rotZ": 0.0,
         "scaleX": 0.699999988079071,
         "scaleY": 0.699999988079071,
@@ -220,7 +272,7 @@
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
-      "Hands": true,
+      "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109391/BA7C201A8206E465B5CDCCA21B95B4CD32ECD482/",
         "DiffuseURL": "",
@@ -244,5 +296,57 @@
         }
       ]
     }
-  }
+  },
+  "ChildObjects": [
+    {
+      "GUID": "89975d",
+      "Name": "BlockSquare",
+      "Transform": {
+        "posX": -9.999999747378752e-05,
+        "posY": 2.6377999782562256,
+        "posZ": -0.000699999975040555,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.7142999768257141,
+        "scaleY": 0.042899999767541885,
+        "scaleZ": 0.7142999768257141
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.5724999904632568,
+        "g": 0.0471000000834465,
+        "b": 0.0471000000834465,
+        "a": 0.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0012000000569969416,
+            "y": 0.5072000026702881,
+            "z": 0.0013000000035390258
+          }
+        }
+      ]
+    }
+  ]
 }

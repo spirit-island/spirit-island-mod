@@ -1,4 +1,4 @@
-function doSpiritSetup(params)
+function doSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then
         Player[color].broadcast("Please wait for the game to start before pressing button!", Color.Red)
@@ -35,9 +35,38 @@ function doSpiritSetup(params)
     if Global.call("getMapCount", {norm = true, them = true}) == 1 then
         Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
     end
+
+    local playtestPowers = Global.getVar("playtestMinorPowers")
+    local playtestCount = playtestPowers
+    if count == 6 then
+        if playtestPowers == 1 then
+            playtestCount = 2
+        elseif playtestPowers == 2 then
+            playtestCount = 3
+        end
+    end
     local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
-    minorPowerDeck.deal(count, color, 3)
+    minorPowerDeck.deal(count - playtestCount, color, 3)
+    if playtestCount > 0 then
+        minorPowerDeck = getObjectFromGUID(Global.getVar("playtestMinorPowerZone")).getObjects()[1]
+        minorPowerDeck.deal(playtestCount, color, 3)
+    end
+
+    playtestPowers = Global.getVar("playtestMajorPowers")
+    playtestCount = playtestPowers
+    if count == 6 then
+        if playtestPowers == 1 then
+            playtestCount = 2
+        elseif playtestPowers == 2 then
+            playtestCount = 3
+        end
+    end
     local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
-    majorPowerDeck.deal(count, color, 3)
+    majorPowerDeck.deal(count - playtestCount, color, 3)
+    if playtestCount > 0 then
+        majorPowerDeck = getObjectFromGUID(Global.getVar("playtestMajorPowerZone")).getObjects()[1]
+        majorPowerDeck.deal(playtestCount, color, 3)
+    end
+
     self.destruct()
 end

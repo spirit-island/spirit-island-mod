@@ -5,7 +5,7 @@
     "posY": 1.003100037574768,
     "posZ": 95.19000244140625,
     "rotX": -0.0,
-    "rotY": 179.99969482421875,
+    "rotY": 180.0,
     "rotZ": 180.0,
     "scaleX": 5.460000038146973,
     "scaleY": 1.0,
@@ -15,9 +15,9 @@
   "Description": "Base",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.20029988884925842,
-    "g": 0.1602998971939087,
-    "b": 0.15179991722106934
+    "r": 0.20029982924461365,
+    "g": 0.16029983758926392,
+    "b": 0.15179985761642456
   },
   "Tags": [
     "Base",
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026612/7D49A46284F88ED0488056863CA611F31A4305C7/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1618472198117609378/F9AC000BD450E9951A097DA40AB5179A0DD96BEF/",
     "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026882/55FF0151193B157FF85F9FC2D773662DC8D8FCA0/",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

@@ -5,13 +5,13 @@
     "posY": 1.013100028038025,
     "posZ": 88.48280334472656,
     "rotX": -0.0,
-    "rotY": 270.0006103515625,
+    "rotY": 270.0,
     "rotZ": 0.0,
     "scaleX": 10.0,
     "scaleY": 10.0,
     "scaleZ": 10.0
   },
-  "Nickname": "",
+  "Nickname": "Deep Slumber",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -20,7 +20,8 @@
     "b": 1.0
   },
   "Tags": [
-    "Spirit Setup"
+    "Setup",
+    "Uninteractable"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,

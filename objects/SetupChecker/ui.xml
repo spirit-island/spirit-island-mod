@@ -14,11 +14,22 @@
     <Slider wholeNumbers="true" tooltipFontSize="30" tooltipBackgroundColor="#000000" tooltipPosition="Below"/>
     <Text class="slider" alignment="LowerCenter"/>
     <Text class="header" alignment="MiddleLeft"/>
+
+    <Text class="key" minWidth="450"/>
+    <Dropdown class="key" minWidth="450"/>
+    <Text class="keyspacer" minWidth="100"/>
+    <Text class="value" minWidth="170"/>
+    <Toggle class="value" minWidth="170"/>
+    <Toggle class="normal" tooltip="Setup new cards like normal"/>
+    <Toggle class="mix" tooltip="Mix new cards into top of their deck,&#xA;so they come up half the time"/>
+    <Toggle class="new" tooltip="Add new cards on top of their deck"/>
+    <Toggle class="3-1" tooltip="Keep new cards in separate&#xA;deck and draw 1 each time"/>
+    <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 14">
-    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
-        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
+    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
+        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
             <Row class="header">
                 <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
@@ -118,9 +129,11 @@
             <Row id="expansionsHeader" class="header">
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
             </Row>
-            <Row id="expansionsRow" class="toggle">
-                <Cell><Toggle id="bnc" onValueChanged="toggleBnC">Branch &amp; Claw</Toggle></Cell>
-                <Cell><Toggle id="je" onValueChanged="toggleJE">Jagged Earth</Toggle></Cell>
+            <Row id="expansionsRow" recurse="expansionsRow" preferredHeight="60">
+                <Cell columnSpan="2">
+                    <GridLayout constraint="FixedColumnCount" constraintCount="2" cellSize="500 60">
+                    </GridLayout>
+                </Cell>
             </Row>
             <Row id="blightCardRow" class="toggle" visibility="Invisible">
                 <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
@@ -131,13 +144,16 @@
                 <Cell><Button onClick="hideUI">Hide UI</Button></Cell>
             </Row>
             <Row class="spacing"/>
-            <Row class="toggle">
-                <Cell><Toggle id="simpleMode" isOn="true" onValueChanged="toggleSimpleMode">Advanced Settings</Toggle></Cell>
-                <Cell id="optionalCell"><Toggle id="optionalRules" onValueChanged="toggleOptionalRules" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
-            </Row>
             <Row id="toggles" class="toggle">
-                <Cell><Toggle id="challenge" onValueChanged="toggleChallenge" tooltip="Randomly generated setup for the week,&#xA;this will be consistent for all steam users.&#xA;Make sure to set the number of players first">Weekly Challenge</Toggle></Cell>
-                <Cell><Toggle id="exploratory" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
+                <Cell><Toggle id="variant" isOn="false" onValueChanged="toggleVariant" tooltip="Errata'd or otherwise optional ways to play">Show Variant Rules</Toggle></Cell>
+                <Cell><Toggle id="challenge" isOn="false" onValueChanged="toggleChallenge" tooltip="Randomly generated setup for the week,&#xA;this will be consistent for all steam users.&#xA;Make sure to set the number of players first">Weekly Challenge</Toggle></Cell>
+            </Row>
+            <Row id="toggles2" class="toggle">
+                <Cell><Toggle id="exploratory" isOn="false" onValueChanged="toggleExploratory" tooltip="Altered versions of parts of the game&#xA;that R. Eric Reuss would like feedback&#xA;on, but aren't worth official playtesting">Show Exploratory</Toggle></Cell>
+                <Cell><Toggle id="playtesting" isOn="false" onValueChanged="togglePlaytesting" tooltip="Common methods of playtesting,&#xA;to help assure new content is&#xA;seen on more frequent basis.">Playtesting Options</Toggle></Cell>
+            </Row>
+            <Row id="toggles3" class="toggle">
+                <Cell><Toggle id="simpleMode" isOn="true" onValueChanged="toggleSimpleMode">Advanced Settings</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
@@ -152,42 +168,47 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelOptional" visibility="Invisible" width="1000" height="2800" position="-2000 -2990 14">
-    <VerticalLayout>
-        <TableLayout>
+<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -2950 14">
+    <VerticalLayout recurse="events2">
+        <TableLayout recurse="events2">
             <Row class="header">
                 <Cell columnSpan="2"><Text class="header">Variant Rules</Text></Cell>
             </Row>
             <Row class="spacing">
                 <Cell columnSpan="2"><Text>──────────────────────────────</Text></Cell>
             </Row>
-            <Row id="events" class="toggle">
-                <Cell><Toggle id="bncEvents" onValueChanged="toggleBnCEvents">Use B&amp;C Events</Toggle></Cell>
-                <Cell><Toggle id="jeEvents" onValueChanged="toggleJEEvents">Use JE Events</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="extraBoard" onValueChanged="toggleExtraBoard" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Toggle></Cell>
+            <Row id="events" recurse="events" preferredHeight="60">
+                <Cell columnSpan="2">
+                    <GridLayout constraint="FixedColumnCount" constraintCount="2" cellSize="500 60">
+                    </GridLayout>
+                </Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="strangeMadness" onValueChanged="toggleStrangeMadness" tooltip="An Event that was removed for being too swingy, you&#xA;should not add this with Russia or Many Minds in play">Add "A Strange Madness Among Beasts" Event</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's, Outpaced, and A Strange&#xA;Madness Among Beasts Event cards">Remove Swingy B&amp;C Events</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="soloBlight" isOn="true" onValueChanged="toggleSoloBlight" tooltip="Blight Cards which only have 2 Blight per Player&#xA;when flipped are not recommended in Solo games">Remove 2 Blight per player cards (Solo)</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat is as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="blightSetup" isOn="true" onValueChanged="toggleBlightSetup" tooltip="An errata adding 1 more Blight during&#xA;setup, this mainly affects Solo games">Add +1 Blight during Setup</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="extraBoard" onValueChanged="toggleExtraBoard" tooltip="Playing with 1 more Island Board than Players, in&#xA;lower player counts, it will start with less Invaders">Add an extra Island Board</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="boardPairings" isOn="true" onValueChanged="toggleBoardPairings" tooltip="Don't pair boards E and B&#xA;together as well as F and D">Use recommended Island Board pairings (1-4)</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat it as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
@@ -196,12 +217,12 @@
                 <Cell columnSpan="2"><Toggle id="carpetRedo" isOn="true" onValueChanged="toggleCarpetRedo" tooltip="An alternate appeareance for the ocean tile">Use Thematic Ocean Playmat</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's, Outpaced, and A Strange&#xA;Madness Among Beasts Event cards">Remove Swingy B&amp;C Events</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="legacyKeybindings" onValueChanged="toggleLegacyKeybindings" tooltip="Original keybindings used from BoneWhite's mod">Use Legacy Keybindings</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3820 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3835 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -225,16 +246,122 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
+<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1400" height="2800" position="-750 -3300 14">
+    <VerticalLayout recurse="playtestExpansion" width="1150">
+        <TableLayout recurse="playtestExpansion">
+            <Row class="header">
+                <Cell><Text class="header">Playtesting Options</Text></Cell>
+            </Row>
+            <Row class="spacing">
+                <Cell><Text>───────────────────────────────────</Text></Cell>
+            </Row>
+            <Row class="header" recurse="playtestExpansion">
+                <Cell recurse="playtestExpansion">
+                    <Dropdown id="playtestExpansion" class="key" recurse="playtestExpansion" onValueChanged="togglePlaytestExpansion">
+                        <Option id="playtestExpansion0" selected="true">None</Option>
+                    </Dropdown>
+                    <Text class="keyspacer"/>
+                    <Text class="value">Normal</Text>
+                    <Text class="value">Mix</Text>
+                    <Text class="value">New</Text>
+                    <Text class="keyspacer"/>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Fear Deck</Text>
+                    <Text class="keyspacer"/>
+                    <ToggleGroup id="playtestFear" onValueChanged="togglePlaytestFear">
+                        <HorizontalLayout>
+                            <Toggle id="playtestFear0" class="value normal" isOn="true"/>
+                            <Toggle id="playtestFear1" class="value mix"/>
+                            <Toggle id="playtestFear2" class="value new"/>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                    <Text class="keyspacer"/>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key" >Event Deck</Text>
+                    <Text class="keyspacer"/>
+                    <ToggleGroup id="playtestEvent" onValueChanged="togglePlaytestEvent">
+                        <HorizontalLayout>
+                            <Toggle id="playtestEvent0" class="value normal" isOn="true"/>
+                            <Toggle id="playtestEvent1" class="value mix"/>
+                            <Toggle id="playtestEvent2" class="value new"/>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                    <Text class="keyspacer"/>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Blight Cards</Text>
+                    <Text class="keyspacer"/>
+                    <ToggleGroup id="playtestBlight" onValueChanged="togglePlaytestBlight">
+                        <HorizontalLayout>
+                            <Toggle id="playtestBlight0" class="value normal" isOn="true"/>
+                            <Toggle id="playtestBlight1" class="value mix"/>
+                            <Toggle id="playtestBlight2" class="value new"/>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                    <Text class="keyspacer"/>
+                </Cell>
+            </Row>
+            <Row class="spacing"/>
+            <Row class="header">
+                <Cell>
+                    <Text class="key"/>
+                    <Text class="keyspacer"/>
+                    <Text class="value">Normal</Text>
+                    <Text class="value">3-1</Text>
+                    <Text class="value">2-2</Text>
+                    <Text class="keyspacer"/>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Minor Power Cards</Text>
+                    <Text class="keyspacer"/>
+                    <ToggleGroup id="playtestMinorPower" onValueChanged="togglePlaytestMinorPower">
+                        <HorizontalLayout>
+                            <Toggle id="playtestMinorPower0" class="value normal" isOn="true"/>
+                            <Toggle id="playtestMinorPower1" class="value 3-1"/>
+                            <Toggle id="playtestMinorPower2" class="value 2-2"/>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                    <Text class="keyspacer"/>
+                </Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell childForceExpandWidth="false">
+                    <Text class="header key">Major Power Cards</Text>
+                    <Text class="keyspacer"/>
+                    <ToggleGroup id="playtestMajorPower" onValueChanged="togglePlaytestMajorPower">
+                        <HorizontalLayout>
+                            <Toggle id="playtestMajorPower0" class="value normal" isOn="true"/>
+                            <Toggle id="playtestMajorPower1" class="value 3-1"/>
+                            <Toggle id="playtestMajorPower2" class="value 2-2"/>
+                        </HorizontalLayout>
+                    </ToggleGroup>
+                    <Text class="keyspacer"/>
+                </Cell>
+            </Row>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
 <Panel id="panelChallenge" visibility="Invisible" width="1000" height="2800" position="-2000 -2050 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
                 <Cell>
-                    <ToggleGroup onValueChanged="toggleChallengeTier">
+                    <ToggleGroup id="challengeTier" onValueChanged="toggleChallengeTier">
                         <HorizontalLayout>
                             <Text class="header">Weekly Challenge</Text>
-                            <Toggle isOn="true">Standard</Toggle>
-                            <Toggle>Hard</Toggle>
+                            <Toggle id="challengeTier0" isOn="true">Moderate</Toggle>
+                            <Toggle id="challengeTier1">Hard</Toggle>
+                            <Toggle id="challengeTier2">Very Hard</Toggle>
                         </HorizontalLayout>
                     </ToggleGroup>
                 </Cell>
@@ -285,13 +412,13 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1400" height="2600" position="-750 -1400 14">
+<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1400" height="2800" position="-750 -1460 14">
     <VerticalLayout width="1150">
         <TableLayout>
             <Row class="header">
                 <Cell columnSpan="2"><Text text="Adversaries &amp; Scenarios"/></Cell>
             </Row>
-            <Row preferredHeight="1750"/>
+            <Row preferredHeight="1730"/>
         </TableLayout>
     </VerticalLayout>
 </Panel>

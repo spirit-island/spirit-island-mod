@@ -235,9 +235,9 @@ function SetupSpirit(obj, player_color)
                 placed = placed + 1
             end
 
-            if Global.getVar("gameStarted") and o.hasTag("Spirit Setup") then
+            if Global.getVar("gameStarted") and o.hasTag("Setup") then
                 local o = o  -- luacheck: ignore 423 (deliberate shadowing)
-                Wait.frames(function () o.call("doSpiritSetup", {color=player_color}) end, 1)
+                Wait.frames(function () o.call("doSetup", {color=player_color}) end, 1)
             end
         end
 

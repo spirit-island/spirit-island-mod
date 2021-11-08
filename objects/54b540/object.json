@@ -4,9 +4,9 @@
     "posX": 86.44000244140625,
     "posY": 1.1030999422073364,
     "posZ": 86.19239807128906,
-    "rotX": 0.00019999999494757503,
-    "rotY": 180.00079345703125,
-    "rotZ": -0.0003000000142492354,
+    "rotX": -0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
     "scaleX": 0.3650999963283539,
     "scaleY": 1.0,
     "scaleZ": 0.3650999963283539
@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110812/04019E4C271180904A4648C87F9BFA23364FB9F6/",
     "ImageSecondaryURL": "",

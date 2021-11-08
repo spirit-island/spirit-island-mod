@@ -4,9 +4,9 @@
     "posX": -54.020301818847656,
     "posY": 1.0088000297546387,
     "posZ": 54.059898376464844,
-    "rotX": 359.9739074707031,
-    "rotY": 180.0325927734375,
-    "rotZ": 179.96119689941406,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
     "scaleX": 1.098099946975708,
     "scaleY": 1.0,
     "scaleZ": 1.098099946975708
@@ -35,7 +35,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": false,
+  "Hands": true,
   "CardID": 62708,
   "SidewaysCard": false,
   "CustomDeck": {

@@ -5,7 +5,7 @@
     "posY": 0.8030999898910522,
     "posZ": 15.670000076293945,
     "rotX": -0.0,
-    "rotY": 180.01089477539062,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 0.550000011920929,
     "scaleY": 0.550000011920929,
@@ -15,10 +15,13 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.1982998251914978,
-    "g": 0.42369982600212097,
+    "r": 0.19829970598220825,
+    "g": 0.4236997067928314,
     "b": 0.8391000032424927
   },
+  "Tags": [
+    "Uninteractable"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
@@ -32,7 +35,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
     "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329702298/A506113CA23809C5D314B2010E9129C7084DE53D/",

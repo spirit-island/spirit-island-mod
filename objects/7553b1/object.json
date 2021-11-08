@@ -5,7 +5,7 @@
     "posY": 1.1030999422073364,
     "posZ": 86.11239624023438,
     "rotX": -0.0,
-    "rotY": 179.99609375,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 0.3650999963283539,
     "scaleY": 1.0,
@@ -36,7 +36,7 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
-  "Hands": true,
+  "Hands": false,
   "CustomImage": {
     "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110812/04019E4C271180904A4648C87F9BFA23364FB9F6/",
     "ImageSecondaryURL": "",

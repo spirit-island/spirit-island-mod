@@ -37,7 +37,29 @@
       "name": "Scotland"
     }
   ],
-  "optionalBlightSetup": true,
+  "exploratory": {
+    "aid": false,
+    "bodan": false,
+    "votd": false,
+    "war": false
+  },
+  "playtest": {
+    "blight": "0",
+    "event": "0",
+    "expansion": "None",
+    "fear": "0",
+    "majorPower": "0",
+    "minorPower": "0"
+  },
+  "random": {
+    "adversary": false,
+    "adversary2": false,
+    "board": false,
+    "max": 11,
+    "min": 0,
+    "scenario": false,
+    "thematic": false
+  },
   "scenarioList": [
     {
       "guid": "",
@@ -76,10 +98,6 @@
       "name": "Rituals of the Destroying Flame"
     },
     {
-      "guid": "e924fe",
-      "name": "Second Wave"
-    },
-    {
       "guid": "5a95bc",
       "name": "The Great River"
     },
@@ -99,5 +117,25 @@
       "guid": "3d1ba3",
       "name": "A Diversity of Spirits"
     }
-  ]
+  ],
+  "toggle": {
+    "advanced": true,
+    "challenge": false,
+    "exploratory": false,
+    "playtest": false,
+    "variant": false
+  },
+  "variant": {
+    "blightCard": true,
+    "blightSetup": true,
+    "boardPairings": true,
+    "digitalEvents": false,
+    "england6": true,
+    "extraBoard": false,
+    "legacyKeybindings": false,
+    "soloBlight": true,
+    "strangeMadness": false,
+    "thematicRebellion": false,
+    "thematicRedo": false
+  }
 }

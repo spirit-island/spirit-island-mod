@@ -150,8 +150,9 @@ end
 
 function ReminderSetup(params)
     local reminderTiles = {}
+    local adversaryBag = Global.getVar("adversaryBag")
     if params.level >= 1 then
-        reminderTiles.build = "15b6a4"
+        reminderTiles.build = adversaryBag.takeObject({guid="15b6a4"})
     end
     return reminderTiles
 end
@@ -228,6 +229,7 @@ function toggleInvaderUI(england)
         UI.setAttribute("invaderLayout", "spacing", -4)
         UI.setAttribute("invaderLayout", "offsetXY", "8 -4")
         UI.setAttribute("panelBuild2", "active", "true")
+        UI.setAttributes("exploreAdvance", {width = "66", height = "30"})
     else
         Global.setVar("childHeight", 64)
         Global.setVar("childWidth", 64)
@@ -236,6 +238,7 @@ function toggleInvaderUI(england)
         UI.setAttribute("invaderLayout", "spacing", 16)
         UI.setAttribute("invaderLayout", "offsetXY", "0 8")
         UI.setAttribute("panelBuild2", "active", "false")
+        UI.setAttributes("exploreAdvance", {width = "84", height = "24"})
     end
     Global.setVar("forceInvaderUpdate", true)
 end

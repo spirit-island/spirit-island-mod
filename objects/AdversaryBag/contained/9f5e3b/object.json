@@ -5,7 +5,7 @@
     "posY": 1.3243000507354736,
     "posZ": 0.8680999875068665,
     "rotX": 0.0,
-    "rotY": 180.00929260253906,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 0.20999999344348907,
     "scaleY": 1.0,
@@ -19,6 +19,9 @@
     "g": 1.0,
     "b": 1.0
   },
+  "Tags": [
+    "Uninteractable"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,

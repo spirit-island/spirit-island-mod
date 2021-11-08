@@ -1,9 +1,9 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.889399528503418,
+    "posX": 18.0,
     "posY": 0.8636000156402588,
-    "posZ": 19.69420051574707,
+    "posZ": 27.0,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
@@ -11,7 +11,7 @@
     "scaleY": 1.0,
     "scaleZ": 1.924299955368042
   },
-  "Nickname": "A Diversity of Spirts",
+  "Nickname": "A Diversity of Spirits",
   "Description": "Promo Pack #2",
   "GMNotes": "",
   "ColorDiffuse": {

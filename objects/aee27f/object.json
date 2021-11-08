@@ -15,10 +15,13 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.0823998972773552,
-    "g": 0.05879993736743927,
+    "r": 0.08239985257387161,
+    "g": 0.05879988521337509,
     "b": 0.03920000046491623
   },
+  "Tags": [
+    "Uninteractable"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,

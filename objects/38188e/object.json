@@ -5,7 +5,7 @@
     "posY": 1.0,
     "posZ": 97.37999725341797,
     "rotX": -0.0,
-    "rotY": 180.0030975341797,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 1.5,
     "scaleY": 1.5,
@@ -20,7 +20,7 @@
     "b": 1.0
   },
   "Tags": [
-    "Spirit Setup"
+    "Setup"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,

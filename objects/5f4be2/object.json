@@ -5,7 +5,7 @@
     "posY": 0.75,
     "posZ": 28.43779945373535,
     "rotX": -0.0,
-    "rotY": 179.99989318847656,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 36.700599670410156,
     "scaleY": 1.0,
@@ -19,6 +19,9 @@
     "g": 0.7397000193595886,
     "b": 1.0
   },
+  "Tags": [
+    "Uninteractable"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
@@ -54,7 +57,7 @@
         "posY": 0.75,
         "posZ": 28.43779945373535,
         "rotX": 0.0,
-        "rotY": 179.99989318847656,
+        "rotY": 180.0,
         "rotZ": 0.0,
         "scaleX": 38.0,
         "scaleY": 1.0,
@@ -68,6 +71,9 @@
         "g": 0.7397000193595886,
         "b": 1.0
       },
+      "Tags": [
+        "Uninteractable"
+      ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,

@@ -5,19 +5,19 @@
     "posY": 3.055,
     "posZ": 44.8076,
     "rotX": 0.0,
-    "rotY": 270.0,
+    "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 2.425,
-    "scaleY": 2.425,
-    "scaleZ": 2.425
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
   },
   "Nickname": "Town: 0 Damage",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.8898,
-    "g": 0.8805,
-    "b": 0.8526
+    "r": 0.8721,
+    "g": 0.8721,
+    "b": 0.8721
   },
   "Tags": [
     "Highlight"
@@ -37,10 +37,10 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112068/2E30F67AF191586627EA5A5649C1CE3767F85214/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112486/C29755056AA42F0EAC328E66424516371C32673C/",
     "Convex": true,
     "MaterialIndex": 0,
     "TypeIndex": 1,
@@ -66,17 +66,17 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 2.425,
-        "scaleY": 2.425,
-        "scaleZ": 2.425
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "Town: 1 Damage",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898,
-        "g": 0.8805,
-        "b": 0.8526
+        "r": 0.8721,
+        "g": 0.8721,
+        "b": 0.8721
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -93,10 +93,10 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139114275/837D56118FFE6D950202B8236CD1FA3E242FE7A4/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139114661/B72135957BD27A29403B401A09C4FCFA97086249/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,

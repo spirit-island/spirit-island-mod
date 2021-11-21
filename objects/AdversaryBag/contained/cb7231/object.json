@@ -7,17 +7,17 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.875,
-    "scaleY": 0.875,
-    "scaleZ": 0.875
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "England Cities",
   "Description": "England Lv5",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6539,
-    "g": 0.2247,
-    "b": 0.2247
+    "r": 0.7718,
+    "g": 0.2649,
+    "b": 0.2649
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,10 +36,10 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139116026/6C80E8EBD28F1C7E8E816024BD7512FFDF676E13/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139116434/BFAEA9AEDDAC0E38705382D2C13082491BA75582/",
     "Convex": false,
     "MaterialIndex": 3,
     "TypeIndex": 7,

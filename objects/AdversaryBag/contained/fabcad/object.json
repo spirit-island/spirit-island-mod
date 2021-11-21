@@ -5,19 +5,19 @@
     "posY": 1.3394,
     "posZ": 40.0583,
     "rotX": 0.0,
-    "rotY": 270.0,
+    "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.85,
-    "scaleY": 0.85,
-    "scaleZ": 0.85
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Habsburg Towns",
   "Description": "Habsburg Lv4",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.9557,
-    "g": 0.9511,
-    "b": 0.5329
+    "r": 0.7764,
+    "g": 0.7209,
+    "b": 0.2629
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,10 +36,10 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109447/782DF9AA175EB72BAF1F522CBEC50B7E433363C2/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112068/2E30F67AF191586627EA5A5649C1CE3767F85214/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112486/C29755056AA42F0EAC328E66424516371C32673C/",
     "Convex": false,
     "MaterialIndex": 3,
     "TypeIndex": 7,

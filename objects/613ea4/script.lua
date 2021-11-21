@@ -1,6 +1,6 @@
 size = 335
-offset = {0,1,-0.4}
-rotation = {220,180,180}
+offset = {0,1,0}
+rotation = {-40,0,0}
 color = {0.95,0.95,0.95}
 
 local callbackObj, callbackFunc

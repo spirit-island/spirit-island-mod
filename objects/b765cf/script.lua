@@ -125,7 +125,7 @@ function PreSetup(params)
         townBag = adversaryBag.takeObject({
             guid = newGuid,
             position = townBagPosition,
-            rotation = {0,270,0},
+            rotation = {0,180,0},
             smooth = false,
             callback_function = function(obj) obj.setLock(true) end,
         })

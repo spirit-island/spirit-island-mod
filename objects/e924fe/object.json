@@ -1,9 +1,9 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 83.2145,
-    "posY": 2.0267,
-    "posZ": 68.7686,
+    "posX": 8.89,
+    "posY": 0.8636,
+    "posZ": 21.0,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
@@ -21,7 +21,7 @@
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,

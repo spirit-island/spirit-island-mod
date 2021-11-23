@@ -1,9 +1,9 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -62.69,
-    "posY": 0.9872,
-    "posZ": -20.18,
+    "posX": 145.7066,
+    "posY": 1.9847,
+    "posZ": 42.1108,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -33,7 +33,7 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 55703,
+  "CardID": 55701,
   "SidewaysCard": false,
   "CustomDeck": {
     "557": {

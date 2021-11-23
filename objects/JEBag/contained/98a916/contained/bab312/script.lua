@@ -25,7 +25,7 @@ function PickPower()
     })
 end
 function grabReminder(card)
-    getObjectFromGUID("029995").takeObject({
+    getObjectFromGUID("JEBag").takeObject({
         guid = "932d66",
         position = card.getPosition() + Vector(0, 1, 0),
         rotation = Vector(0, 180, 0)

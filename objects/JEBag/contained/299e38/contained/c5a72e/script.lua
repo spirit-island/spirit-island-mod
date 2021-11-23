@@ -13,7 +13,7 @@ function onObjectSpawn(obj)
     end
 end
 function grabReminder(card)
-    getObjectFromGUID("029995").takeObject({
+    getObjectFromGUID("JEBag").takeObject({
         guid = "d986c8",
         position = card.getPosition() + Vector(0, 1, 0),
         rotation = Vector(0, 180, 0)

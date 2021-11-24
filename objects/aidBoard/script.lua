@@ -421,7 +421,7 @@ end
 function countDiscard()
     local count = 0
     local hits = Physics.cast({
-        origin       = discard,
+        origin       = discard-Vector(0,0.5,0),
         direction    = Vector(0,1,0),
         type         = 1,
         max_distance = 0.3,

@@ -7,17 +7,17 @@
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 0.699999988079071,
-    "scaleY": 0.699999988079071,
-    "scaleZ": 0.699999988079071
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
   },
   "Nickname": "City: 0 Damage",
-  "Description": "Buildings have +1 health",
+  "Description": "Cities have +1 Health",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6539000272750854,
-    "g": 0.22470000386238098,
-    "b": 0.22470000386238098
+    "r": 0.7717999815940857,
+    "g": 0.26489999890327454,
+    "b": 0.26489999890327454
   },
   "Tags": [
     "Highlight"
@@ -37,20 +37,20 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139116026/6C80E8EBD28F1C7E8E816024BD7512FFDF676E13/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139116434/BFAEA9AEDDAC0E38705382D2C13082491BA75582/",
     "Convex": true,
     "MaterialIndex": 0,
     "TypeIndex": 1,
     "CustomShader": {
       "SpecularColor": {
-        "r": 0.6746000051498413,
-        "g": 0.042100001126527786,
-        "b": 0.042100001126527786
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
-      "SpecularIntensity": 0.20000000298023224,
+      "SpecularIntensity": 0.0,
       "SpecularSharpness": 7.0,
       "FresnelStrength": 0.4000000059604645
     },
@@ -62,8 +62,7 @@
         "x": 0.005100000184029341,
         "y": 2.6591999530792236,
         "z": 9.999999747378752e-05
-      },
-      "Tags": []
+      }
     }
   ],
   "States": {
@@ -77,17 +76,17 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.699999988079071,
-        "scaleY": 0.699999988079071,
-        "scaleZ": 0.699999988079071
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "City: 1 Damage",
-      "Description": "",
+      "Description": "Cities have +1 Health",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898000121116638,
-        "g": 0.8805000185966492,
-        "b": 0.8525999784469604
+        "r": 0.8720999956130981,
+        "g": 0.8720999956130981,
+        "b": 0.8720999956130981
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -104,13 +103,23 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139116026/6C80E8EBD28F1C7E8E816024BD7512FFDF676E13/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139116434/BFAEA9AEDDAC0E38705382D2C13082491BA75582/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4000000059604645
+        },
         "CastShadows": true
       },
       "LuaScript": "",
@@ -124,58 +133,6 @@
             "z": -9.999999747378752e-05
           }
         }
-      ],
-      "ChildObjects": [
-        {
-          "GUID": "e34218",
-          "Name": "BlockSquare",
-          "Transform": {
-            "posX": 0.00039999998989515007,
-            "posY": 2.56850004196167,
-            "posZ": -0.00019999999494757503,
-            "rotX": 0.0,
-            "rotY": 180.0,
-            "rotZ": 0.0,
-            "scaleX": 0.7142999768257141,
-            "scaleY": 0.042899999767541885,
-            "scaleZ": 0.7142999768257141
-          },
-          "Nickname": "",
-          "Description": "",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 0.7882000207901001,
-            "g": 0.6588000059127808,
-            "b": 0.486299991607666,
-            "a": 0.0
-          },
-          "LayoutGroupSortIndex": 0,
-          "Value": 0,
-          "Locked": true,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "MeasureMovement": false,
-          "DragSelectable": true,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "HideWhenFaceDown": false,
-          "Hands": false,
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "XmlUI": "",
-          "AttachedSnapPoints": [
-            {
-              "Position": {
-                "x": 0.0012000000569969416,
-                "y": 0.5072000026702881,
-                "z": 0.0013000000035390258
-              }
-            }
-          ]
-        }
       ]
     },
     "3": {
@@ -188,17 +145,17 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.699999988079071,
-        "scaleY": 0.699999988079071,
-        "scaleZ": 0.699999988079071
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "City: 2 Damage",
-      "Description": "",
+      "Description": "Cities have +1 Health",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898000121116638,
-        "g": 0.8805000185966492,
-        "b": 0.8525999784469604
+        "r": 0.8720999956130981,
+        "g": 0.8720999956130981,
+        "b": 0.8720999956130981
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -215,13 +172,23 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109332/A2379E53403C87087F0C8BC1F14E71C4172A11BF/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139119305/CD41F5DB8FC8C584B640505DA5A1D84311BEE66F/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139119670/E7E3F56B0A37C144BEF443572E2706E0B4173E02/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4000000059604645
+        },
         "CastShadows": true
       },
       "LuaScript": "",
@@ -247,17 +214,17 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.699999988079071,
-        "scaleY": 0.699999988079071,
-        "scaleZ": 0.699999988079071
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "City: 3 Damage",
-      "Description": "",
+      "Description": "Cities have +1 Health",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898000121116638,
-        "g": 0.8805000185966492,
-        "b": 0.8525999784469604
+        "r": 0.8720999956130981,
+        "g": 0.8720999956130981,
+        "b": 0.8720999956130981
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -274,13 +241,23 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109391/BA7C201A8206E465B5CDCCA21B95B4CD32ECD482/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139120977/41E035C6052621D64684AA70D090EDACD147D557/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139119670/E7E3F56B0A37C144BEF443572E2706E0B4173E02/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4000000059604645
+        },
         "CastShadows": true
       },
       "LuaScript": "",
@@ -296,57 +273,5 @@
         }
       ]
     }
-  },
-  "ChildObjects": [
-    {
-      "GUID": "89975d",
-      "Name": "BlockSquare",
-      "Transform": {
-        "posX": -9.999999747378752e-05,
-        "posY": 2.6377999782562256,
-        "posZ": -0.000699999975040555,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.7142999768257141,
-        "scaleY": 0.042899999767541885,
-        "scaleZ": 0.7142999768257141
-      },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.5724999904632568,
-        "g": 0.0471000000834465,
-        "b": 0.0471000000834465,
-        "a": 0.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "AttachedSnapPoints": [
-        {
-          "Position": {
-            "x": 0.0012000000569969416,
-            "y": 0.5072000026702881,
-            "z": 0.0013000000035390258
-          }
-        }
-      ]
-    }
-  ]
+  }
 }

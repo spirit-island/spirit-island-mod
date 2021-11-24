@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.0.0"
+version = "3.0.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -1451,12 +1451,12 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 local tempCard = deck.takeObject({
                     position = powerDealCentre + cardPlaceOffset[offset + i],
                     flip = true,
+                    callback_function = CreatePickPowerButton,
                 })
                 tempCard.setLock(true)
                 if isPlaytest then
                     tempCard.addTag("Playtest")
                 end
-                CreatePickPowerButton(tempCard)
                 cardsAdded = cardsAdded + 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
@@ -1472,12 +1472,12 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 local tempCard = deck.takeObject({
                     position = powerDealCentre + cardPlaceOffset[offset + i],
                     flip = true,
+                    callback_function = CreatePickPowerButton,
                 })
                 tempCard.setLock(true)
                 if isPlaytest then
                     tempCard.addTag("Playtest")
                 end
-                CreatePickPowerButton(tempCard)
                 cardsAdded = cardsAdded + 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
@@ -1502,6 +1502,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
 end
 function CreatePickPowerButton(card)
     local scale = flipVector(Vector(card.getScale()))
+    card.clearButtons()
     card.createButton({
         click_function = "PickPower",
         function_owner = Global,
@@ -1521,6 +1522,7 @@ function PickPower(cardo,playero,alt_click)
     -- Give card to player regardless of whose hand they are in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
+    cardo.call("PickPower", {})
 
     Wait.condition(function()
         cardo.setLock(false)

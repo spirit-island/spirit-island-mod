@@ -7,17 +7,17 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.7105000019073486,
-    "scaleY": 1.5788999795913696,
-    "scaleZ": 1.7105000019073486
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
   },
   "Nickname": "Russia + France Explorers",
   "Description": "Russia Lv2+ + France Lv6",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6380000114440918,
-    "g": 0.536899983882904,
-    "b": 0.9007999897003174
+    "r": 0.42489999532699585,
+    "g": 0.2655999958515167,
+    "b": 0.8181999921798706
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -36,10 +36,10 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187357178/0668709935277DAF1A003F8B2CB2C09E67828297/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139109578/FB43F07CE55A3A8C7989919E4349908F2AC4A09B/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139110179/03DDC2DE2A51836864443099346CD8D2B693377E/",
     "Convex": true,
     "MaterialIndex": 3,
     "TypeIndex": 7,

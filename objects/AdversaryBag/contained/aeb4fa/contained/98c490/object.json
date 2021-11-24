@@ -5,19 +5,19 @@
     "posY": 3.052799940109253,
     "posZ": 30.320600509643555,
     "rotX": 0.0,
-    "rotY": 270.0,
+    "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 2.424999952316284,
-    "scaleY": 2.424999952316284,
-    "scaleZ": 2.424999952316284
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
   },
   "Nickname": "Town: 0 Damage",
-  "Description": "Buildings have +1 health",
+  "Description": "Towns have +1 Health\n\nTown in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to those Towns only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.6539000272750854,
-    "g": 0.22470000386238098,
-    "b": 0.22470000386238098
+    "r": 0.7717999815940857,
+    "g": 0.26489999890327454,
+    "b": 0.26489999890327454
   },
   "Tags": [
     "Highlight"
@@ -37,20 +37,20 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112068/2E30F67AF191586627EA5A5649C1CE3767F85214/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112486/C29755056AA42F0EAC328E66424516371C32673C/",
     "Convex": true,
     "MaterialIndex": 0,
     "TypeIndex": 1,
     "CustomShader": {
       "SpecularColor": {
-        "r": 0.6746000051498413,
-        "g": 0.042100001126527786,
-        "b": 0.042100001126527786
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
-      "SpecularIntensity": 0.20000000298023224,
+      "SpecularIntensity": 0.0,
       "SpecularSharpness": 7.0,
       "FresnelStrength": 0.4000000059604645
     },
@@ -62,8 +62,7 @@
         "x": 0.0,
         "y": 0.23649999499320984,
         "z": -9.999999747378752e-05
-      },
-      "Tags": []
+      }
     }
   ],
   "States": {
@@ -75,19 +74,19 @@
         "posY": 1.4622000455856323,
         "posZ": -9.98840045928955,
         "rotX": 0.0,
-        "rotY": 180.0,
+        "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 2.424999952316284,
-        "scaleY": 2.424999952316284,
-        "scaleZ": 2.424999952316284
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "Town: 1 Damage",
-      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "Description": "Towns have +1 Health\n\nTown in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to those Towns only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.9556999802589417,
-        "g": 0.9510999917984009,
-        "b": 0.5328999757766724
+        "r": 0.7764000296592712,
+        "g": 0.7208999991416931,
+        "b": 0.2628999948501587
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -104,13 +103,23 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112068/2E30F67AF191586627EA5A5649C1CE3767F85214/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112486/C29755056AA42F0EAC328E66424516371C32673C/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4000000059604645
+        },
         "CastShadows": true
       },
       "LuaScript": "",
@@ -136,17 +145,17 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 2.424999952316284,
-        "scaleY": 2.424999952316284,
-        "scaleZ": 2.424999952316284
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "Town: 2 Damage",
-      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "Description": "Towns have +1 Health\n\nTown in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to those Towns only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.9556999802589417,
-        "g": 0.9510999917984009,
-        "b": 0.5328999757766724
+        "r": 0.7764000296592712,
+        "g": 0.7208999991416931,
+        "b": 0.2628999948501587
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -163,13 +172,23 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139114275/837D56118FFE6D950202B8236CD1FA3E242FE7A4/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139114661/B72135957BD27A29403B401A09C4FCFA97086249/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4000000059604645
+        },
         "CastShadows": true
       },
       "LuaScript": "",
@@ -193,19 +212,19 @@
         "posY": 1.4622000455856323,
         "posZ": -9.994400024414062,
         "rotX": 0.0,
-        "rotY": 180.0,
+        "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 2.424999952316284,
-        "scaleY": 2.424999952316284,
-        "scaleZ": 2.424999952316284
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "Town: 3 Damage",
-      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "Description": "Towns have +1 Health\n\nTown in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to those Towns only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8118000030517578,
-        "g": 0.8118000030517578,
-        "b": 0.8118000030517578
+        "r": 0.8720999956130981,
+        "g": 0.8720999956130981,
+        "b": 0.8720999956130981
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -222,13 +241,23 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112068/2E30F67AF191586627EA5A5649C1CE3767F85214/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139112486/C29755056AA42F0EAC328E66424516371C32673C/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4000000059604645
+        },
         "CastShadows": true
       },
       "LuaScript": "",
@@ -254,17 +283,17 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 2.424999952316284,
-        "scaleY": 2.424999952316284,
-        "scaleZ": 2.424999952316284
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "Town: 4 Damage",
-      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "Description": "Towns have +1 Health\n\nTown in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to those Towns only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.8898000121116638,
-        "g": 0.8805000185966492,
-        "b": 0.8525999784469604
+        "r": 0.8720999956130981,
+        "g": 0.8720999956130981,
+        "b": 0.8720999956130981
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -281,13 +310,23 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139114275/837D56118FFE6D950202B8236CD1FA3E242FE7A4/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1761463413139114661/B72135957BD27A29403B401A09C4FCFA97086249/",
         "Convex": true,
         "MaterialIndex": 0,
         "TypeIndex": 1,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4000000059604645
+        },
         "CastShadows": true
       },
       "LuaScript": "",

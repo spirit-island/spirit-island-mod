@@ -12,7 +12,7 @@
     "scaleZ": 0.5
   },
   "Nickname": "Any Element",
-  "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.8252000212669373,
@@ -48,8 +48,8 @@
     "CastShadows": true
   },
   "States": {
-    "8": {
-      "GUID": "93b460",
+    "1": {
+      "GUID": "7d3cb6",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -18.07110023498535,
@@ -62,293 +62,18 @@
         "scaleY": 0.5,
         "scaleZ": 0.5
       },
-      "Nickname": "Animal Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.8112999796867371,
-        "g": 0.008299999870359898,
-        "b": 0.0
-      },
-      "Tags": [
-        "Animal",
-        "Any",
-        "Destroy"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329142252/6341A59F51F0A734161493B7F300819FE2BA7979/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 0,
-        "CastShadows": true
-      },
-      "LuaScript": "elements=\"00000001\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "7": {
-      "GUID": "20586b",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -18.07110023498535,
-        "posY": 0.8141999840736389,
-        "posZ": -17.533100128173828,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
-      },
-      "Nickname": "Plant Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.0,
-        "g": 0.7215999960899353,
-        "b": 0.22259999811649323
-      },
-      "Tags": [
-        "Any",
-        "Destroy",
-        "Plant"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329688777/F582CFE932536A5EFA3117DDB379F8120B4BE5C2/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 0,
-        "CastShadows": true
-      },
-      "LuaScript": "elements=\"00000010\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "6": {
-      "GUID": "7c2166",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -18.07110023498535,
-        "posY": 0.8141999840736389,
-        "posZ": -17.533100128173828,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
-      },
-      "Nickname": "Earth Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.426800012588501,
-        "g": 0.3693999946117401,
-        "b": 0.43959999084472656
-      },
-      "Tags": [
-        "Any",
-        "Destroy",
-        "Earth"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847999012/17442B7354C87F0568F1D96C5D1906B39FB7D163/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 0,
-        "CastShadows": true
-      },
-      "LuaScript": "elements=\"00000100\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "5": {
-      "GUID": "95b72c",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -18.07110023498535,
-        "posY": 0.8141999840736389,
-        "posZ": -17.533100128173828,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
-      },
-      "Nickname": "Water Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.19830000400543213,
-        "g": 0.4237000048160553,
-        "b": 0.8391000032424927
-      },
-      "Tags": [
-        "Any",
-        "Destroy",
-        "Water"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329702298/A506113CA23809C5D314B2010E9129C7084DE53D/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 0,
-        "CastShadows": true
-      },
-      "LuaScript": "elements=\"00001000\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "4": {
-      "GUID": "177c94",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -18.07110023498535,
-        "posY": 0.8141999840736389,
-        "posZ": -17.533100128173828,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
-      },
-      "Nickname": "Air Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.6534000039100647,
-        "g": 0.3328999876976013,
-        "b": 0.9320999979972839
-      },
-      "Tags": [
-        "Air",
-        "Any",
-        "Destroy"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847996722/ED7C910E05283842C749159B9EA5B948A6EE4E82/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 0,
-        "CastShadows": true
-      },
-      "LuaScript": "elements=\"00010000\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "3": {
-      "GUID": "d7a526",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -18.07110023498535,
-        "posY": 0.8141999840736389,
-        "posZ": -17.533100128173828,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
-      },
-      "Nickname": "Fire Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "Nickname": "Sun Element",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.37549999356269836,
+        "g": 0.8513000011444092,
         "b": 0.0
       },
       "Tags": [
         "Any",
         "Destroy",
-        "Fire"
+        "Sun"
       ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -366,7 +91,7 @@
       "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848022583/E829535EC9D3A4B5E1A962555788738AFDA20FAB/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -374,7 +99,7 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
-      "LuaScript": "elements=\"00100000\"\n",
+      "LuaScript": "elements=\"10000000\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
     },
@@ -393,7 +118,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Moon Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.911300003528595,
@@ -433,8 +158,8 @@
       "LuaScriptState": "",
       "XmlUI": ""
     },
-    "1": {
-      "GUID": "7d3cb6",
+    "3": {
+      "GUID": "d7a526",
       "Name": "Custom_Model",
       "Transform": {
         "posX": -18.07110023498535,
@@ -447,18 +172,18 @@
         "scaleY": 0.5,
         "scaleZ": 0.5
       },
-      "Nickname": "Sun Element",
-      "Description": "Change the state to change the element shown\n\nUse these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "Nickname": "Fire Element",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
-        "g": 0.8513000011444092,
+        "g": 0.37549999356269836,
         "b": 0.0
       },
       "Tags": [
         "Any",
         "Destroy",
-        "Sun"
+        "Fire"
       ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -476,7 +201,7 @@
       "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848022583/E829535EC9D3A4B5E1A962555788738AFDA20FAB/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,
@@ -484,7 +209,282 @@
         "TypeIndex": 0,
         "CastShadows": true
       },
-      "LuaScript": "elements=\"10000000\"\n",
+      "LuaScript": "elements=\"00100000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "177c94",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
+      },
+      "Nickname": "Air Element",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.6534000039100647,
+        "g": 0.3328999876976013,
+        "b": 0.9320999979972839
+      },
+      "Tags": [
+        "Air",
+        "Any",
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847996722/ED7C910E05283842C749159B9EA5B948A6EE4E82/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "elements=\"00010000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "95b72c",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
+      },
+      "Nickname": "Water Element",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.19830000400543213,
+        "g": 0.4237000048160553,
+        "b": 0.8391000032424927
+      },
+      "Tags": [
+        "Any",
+        "Destroy",
+        "Water"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329702298/A506113CA23809C5D314B2010E9129C7084DE53D/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "elements=\"00001000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "7c2166",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
+      },
+      "Nickname": "Earth Element",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.426800012588501,
+        "g": 0.3693999946117401,
+        "b": 0.43959999084472656
+      },
+      "Tags": [
+        "Any",
+        "Destroy",
+        "Earth"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847999012/17442B7354C87F0568F1D96C5D1906B39FB7D163/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "elements=\"00000100\"\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "20586b",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
+      },
+      "Nickname": "Plant Element",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.0,
+        "g": 0.7215999960899353,
+        "b": 0.22259999811649323
+      },
+      "Tags": [
+        "Any",
+        "Destroy",
+        "Plant"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329688777/F582CFE932536A5EFA3117DDB379F8120B4BE5C2/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "elements=\"00000010\"\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "93b460",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.07110023498535,
+        "posY": 0.8141999840736389,
+        "posZ": -17.533100128173828,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
+      },
+      "Nickname": "Animal Element",
+      "Description": "Change the state to change the element shown\n\nUse these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.8112999796867371,
+        "g": 0.008299999870359898,
+        "b": 0.0
+      },
+      "Tags": [
+        "Animal",
+        "Any",
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329142252/6341A59F51F0A734161493B7F300819FE2BA7979/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "elements=\"00000001\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
     }

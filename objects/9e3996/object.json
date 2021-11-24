@@ -47,6 +47,59 @@
     "CastShadows": true
   },
   "States": {
+    "1": {
+      "GUID": "d2dcbb",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 9.668299674987793,
+        "posY": -0.2434999942779541,
+        "posZ": -2.3025999069213867,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
+      },
+      "Nickname": "Sun Element Marker",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.8513000011444092,
+        "b": 0.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
     "3": {
       "GUID": "6d12d1",
       "Name": "Custom_Model",
@@ -354,59 +407,6 @@
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
         "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329142252/6341A59F51F0A734161493B7F300819FE2BA7979/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 0,
-        "CastShadows": true
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "1": {
-      "GUID": "d2dcbb",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": 9.668299674987793,
-        "posY": -0.2434999942779541,
-        "posZ": -2.3025999069213867,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
-      },
-      "Nickname": "Sun Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.8513000011444092,
-        "b": 0.0
-      },
-      "Tags": [
-        "Destroy"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
         "NormalURL": "",
         "ColliderURL": "",
         "Convex": true,

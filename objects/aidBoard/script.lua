@@ -289,7 +289,7 @@ end
 scanLoopTable = {
     Build2 = {
         sourceGUID = "6bc964",
-        origin = Vector(-0.23,0.1,0.42),
+        origin = Vector(-0.23,0.09,0.42),
         faceDown = false,
     },
     Ravage = {

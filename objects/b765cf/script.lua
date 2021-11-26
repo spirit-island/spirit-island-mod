@@ -252,7 +252,7 @@ function englandSnap(aidBoard)
         end
     end
     aidBoard.setSnapPoints(newSnapPoints)
-    aidBoard.setTable("discard", highImmigrationDiscardPosition)
+    aidBoard.setTable("discard", highImmigrationDiscardPosition+Vector(0, 0.5, 0))
 
     snapPoints = Global.getSnapPoints()
     table.insert(snapPoints, {

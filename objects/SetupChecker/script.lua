@@ -2214,7 +2214,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     end
 
     -- Makes sure difficulty is in acceptable range for the tier of challenge
-    tiers = { {7, 10}, {10, 13}, {13, 16} }
+    local tiers = { {7, 10}, {10, 13}, {13, 16} }
     local difficulty = difficultyCheck(config)
 
     local adversaryLevelMax = 6

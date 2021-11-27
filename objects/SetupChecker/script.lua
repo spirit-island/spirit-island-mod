@@ -1238,6 +1238,10 @@ function toggleAdversaryScenarioVisiblity(show)
             obj.setInvisibleTo(colors)
         end
     end
+    local secondWave = getObjectFromGUID("e924fe")
+    if secondWave ~= nil then
+        secondWave.setInvisibleTo(colors)
+    end
 end
 
 function toggleSimpleMode()

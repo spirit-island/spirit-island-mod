@@ -24,6 +24,7 @@ read_globals = {
     "printToAll",
     "setLookingForPlayers",
     "startLuaCoroutine",
+    "spawnObjectData",
 }
 -- Additionally `self` and `Hands` have mutable fields.
 files["objects/**/*.lua"] = {

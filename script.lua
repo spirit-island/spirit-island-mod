@@ -1172,7 +1172,7 @@ function PreSetup()
                         end
                     end
                     local originalStates = nextState - 1
-                    for i=1,#invader.states do
+                    for _=1,#invader.states do
                         if nextState == 2 then
                             data.States = {[2] = deepcopy(data)}
                         else

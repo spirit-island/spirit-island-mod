@@ -111,15 +111,6 @@ This section is meant for users who are familiar with both the tts mod and progr
         - `thematic`: **boolean** - whether thematic island setup is enabled
         - `adversary`: **boolean** - whether an adversary is being used (only exists for Scenario call)
       - return **boolean** - whether this adversary/scenario should be used
-  - preSetup - called before all other setup steps have started
-    - `preSetup`: **boolean** - set to true if you have `PreSetup` function
-    - `preSetupComplete`: **boolean** - set to true at end `PreSetup` function
-    - `PreSetup(params)`
-      - `params`: **table** - contains data about game setup (only exists for Adversary call)
-        - `level`: **number** - level of current adversary
-    - Custom pieces
-      - if you have a new bag with custom pieces like invaders, dahan, etc you should add the hookup in here
-      - simply remove the current bag, place the new bag in current position, and then update global variable for the bag
   - invaderDeckSetup - allows you to modify invader deck
     - `invaderDeckSetup`: **boolean** - set to true if you have `InvaderDeckSetup` function
     - `InvaderDeckSetup(params)`
@@ -216,6 +207,33 @@ This section is meant for users who are familiar with both the tts mod and progr
         - `params`: **table** - contains data about update
           - `support`: **boolean** - whether this is supporting adversary or not
           - `count`: **number** - new count for loss counter
+  - invaderSetup - called before all other setup steps have started
+    - `invaderSetup`: **boolean** - set to true if you have `InvaderSetup` function
+    - `InvaderSetup(params)`
+      - `params`: **table** - contains data about game setup
+        - `level`: **number** - level of current adversary
+      - return **table** - modifications to be made to invader pieces
+        - `explorer`
+          - `tooltip`: **string** - text to appear when hovering over invader piece
+          - `color`: **string** - RRGGBB hex code for the color that appears on every state
+          - `states`: **table** - contains data about new states for piece
+            - `[index]`: **table** - contains data for specific new state
+              - `color`: **string** - RRGGBB hex code for the color that appears on this state
+              - `copy`: **integer** - state id for which to copy the transform data from
+        - `town`
+          - `tooltip`: **string** - text to appear when hovering over invader piece
+          - `color`: **string** - RRGGBB hex code for the color that appears on every state
+          - `states`: **table** - contains data about new states for piece
+            - `[index]`: **table** - contains data for specific new state
+              - `color`: **string** - RRGGBB hex code for the color that appears on this state
+              - `copy`: **integer** - state id for which to copy the transform data from
+        - `city`
+          - `tooltip`: **string** - text to appear when hovering over invader piece
+          - `color`: **string** - RRGGBB hex code for the color that appears on every state
+          - `states`: **table** - contains data about new states for piece
+            - `[index]`: **table** - contains data for specific new state
+              - `color`: **string** - RRGGBB hex code for the color that appears on this state
+              - `copy`: **integer** - state id for which to copy the transform data from
   - limitSetup - called before board setup starts in case any pieces need to be limited (e.g. France)
     - `limitSetup`: **boolean** - set to true if you have `LimitSetup` function
     - `limitSetupComplete`: **boolean** - set to true at end `LimitSetup` function
@@ -225,10 +243,21 @@ This section is meant for users who are familiar with both the tts mod and progr
         - `other`: **table** - contains data about other adversary
           - `exist`: **boolean** - whether there is a second adversary
           - `level`: **number** - other adversary level
+  - preSetup - called before all other setup steps have started DEPRECATED
+    - `preSetup`: **boolean** - set to true if you have `PreSetup` function
+    - `preSetupComplete`: **boolean** - set to true at end `PreSetup` function
+    - `PreSetup(params)`
+      - `params`: **table** - contains data about game setup
+        - `level`: **number** - level of current adversary
 - Scenario Specific:
   - `fearCards`: **table** - contains keys 1->3 representing the change of fear cards in each part of the deck
   - `setupBlightTokens`: **number** - modifies amount of starting blight per player (e.g. Blitz)
   - `blightTokens`: **number** - modifies amount of flipped card blight per player (e.g. Blitz)
+  - preSetup - called before all other setup steps have started
+    - `preSetup`: **boolean** - set to true if you have `PreSetup` function
+    - `preSetupComplete`: **boolean** - set to true at end `PreSetup` function
+    - `PreSetup(params)`
+      - `params`: **table** - currently nil
   - boardSetup - allows you to override the current board layout (e.g. Great River)
     - `boardSetup`: **boolean** - set to true if you have `BoardSetup` function
     - `BoardSetup(params)`

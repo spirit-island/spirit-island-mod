@@ -3609,8 +3609,12 @@ function setupMap(map, extra)
                 if secondWave and pieceName == "Box Blight" then
                     pieceName = "Blight"
                 end
-                place(pieceName,map.positionToWorld(posToPlace[l][i]))
-                coroutine.yield(0)
+                if posToPlace[l][i] == nil then
+                    broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
+                else
+                    place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                    coroutine.yield(0)
+                end
             end
         end
         boardsSetup = boardsSetup + 1

@@ -1020,12 +1020,14 @@ end
 function PreSetup()
     local preSetupSteps = 0
     if adversaryCard ~= nil and adversaryCard.getVar("preSetup") then
+        print("PreSetup for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
         adversaryCard.call("PreSetup",{level = adversaryLevel})
         Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard.getVar("preSetupComplete") end)
     else
         preSetupSteps = preSetupSteps + 1
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("preSetup") then
+        print("PreSetup for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
         -- Wait for first adversary to finish
         Wait.condition(function()
             adversaryCard2.call("PreSetup",{level = adversaryLevel2})
@@ -1047,8 +1049,199 @@ function PreSetup()
         preSetupSteps = preSetupSteps + 1
     end
     Wait.condition(function()
+        local function setupInvaderPieces()
+            local invaders = { explorer = nil, town = nil, city = nil }
+            if adversaryCard ~= nil and adversaryCard.getVar("invaderSetup") then
+                local results = adversaryCard.call("InvaderSetup",{level = adversaryLevel})
+                if results then
+                    if results.explorer then
+                        invaders.explorer = results.explorer
+                    end
+                    if results.town then
+                        invaders.town = results.town
+                    end
+                    if results.city then
+                        invaders.city = results.city
+                    end
+                end
+            end
+            if adversaryCard2 ~= nil and adversaryCard2.getVar("invaderSetup") then
+                local function mergeInvaderData(invader, result)
+                    if result == nil then
+                        return invader
+                    elseif invader == nil then
+                        return result
+                    end
+
+                    if result.tooltip then
+                        if invader.tooltip then
+                            invader.tooltip = invader.tooltip.."\n\n"..result.tooltip
+                        else
+                            invader.tooltip = result.tooltip
+                        end
+                    end
+
+                    if result.color then
+                        if invader.color then
+                            invader.color = Color.fromHex(invader.color.."FF"):lerp(Color.fromHex(result.color.."FF"), 0.5):toHex(false)
+                        else
+                            invader.color = result.color
+                        end
+                    end
+
+                    if result.states then
+                        if invader.states then
+                            for _,stateData in pairs(result.states) do
+                                table.insert(invader.states, stateData)
+                            end
+                        else
+                            invader.states = result.states
+                        end
+                    end
+
+                    return invader
+                end
+
+                local results = adversaryCard2.call("InvaderSetup",{level = adversaryLevel2})
+                if results then
+                    mergeInvaderData(invaders.explorer, results.explorer)
+                    mergeInvaderData(invaders.town, results.town)
+                    mergeInvaderData(invaders.city, results.city)
+                end
+            end
+
+            local count = 0
+            local function updateInvaderData(bag, invader)
+                if invader == nil then
+                    count = count + 1
+                    return
+                end
+
+                local function deepcopy(orig)
+                    local orig_type = type(orig)
+                    local copy
+                    if orig_type == 'table' then
+                        copy = {}
+                        for orig_key, orig_value in next, orig, nil do
+                            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+                        end
+                        setmetatable(copy, deepcopy(getmetatable(orig)))
+                    else -- number, string, boolean, etc
+                        copy = orig
+                    end
+                    return copy
+                end
+
+                local tempObject = bag.takeObject({})
+                local data = tempObject.getData()
+                tempObject.destruct()
+                local bagColor = nil
+
+                if invader.tooltip then
+                    data.Description = invader.tooltip
+
+                    if data.States then
+                        for _,state in pairs(data.States) do
+                            state.Description = invader.tooltip
+                        end
+                    end
+                end
+
+                if invader.color then
+                    local color = Color.fromHex(invader.color.."FF")
+                    data.ColorDiffuse.r = color.r
+                    data.ColorDiffuse.g = color.g
+                    data.ColorDiffuse.b = color.b
+
+                    if data.States then
+                        for _,state in pairs(data.States) do
+                            state.ColorDiffuse.r = color.r
+                            state.ColorDiffuse.g = color.g
+                            state.ColorDiffuse.b = color.b
+                        end
+                    end
+
+                    bagColor = color
+                end
+
+                if invader.states then
+                    local nextState = 2
+                    if data.States then
+                        for _,_ in pairs(data.States) do
+                            nextState = nextState + 1
+                        end
+                    end
+                    local originalStates = nextState - 1
+                    for i=1,#invader.states do
+                        if nextState == 2 then
+                            data.States = {[2] = deepcopy(data)}
+                        else
+                            data.States[nextState] = deepcopy(data.States[nextState - 1])
+                            local _,finish = data.Nickname:find(":")
+                            data.States[nextState].Nickname = data.Nickname:sub(1, finish+1)..(nextState - 1).." Damage"
+                        end
+                        nextState = nextState + 1
+                    end
+                    for i=1,originalStates do
+                        local state
+                        if i == originalStates then
+                            state = data
+                        else
+                            state = data.States[originalStates-i+1]
+                        end
+
+                        data.States[nextState-i].Transform = state.Transform
+                        data.States[nextState-i].CustomMesh = state.CustomMesh
+                    end
+                    for i,stateData in pairs(invader.states) do
+                        local state
+                        if i == 1 then
+                            state = data
+                        else
+                            state = data.States[i]
+                        end
+
+                        if stateData.color then
+                            local color = Color.fromHex(stateData.color.."FF")
+                            if bagColor then
+                                bagColor = bagColor:lerp(color, 0.5)
+                            else
+                                bagColor = color
+                            end
+                            if invader.color then
+                                color = color:lerp(Color.fromHex(invader.color.."FF"), 0.5)
+                            end
+                            state.ColorDiffuse.r = color.r
+                            state.ColorDiffuse.g = color.g
+                            state.ColorDiffuse.b = color.b
+
+                        end
+
+                        if stateData.copy then
+                            state.Transform = data.States[nextState-(originalStates-stateData.copy)-1].Transform
+                            state.CustomMesh = data.States[nextState-(originalStates-stateData.copy)-1].CustomMesh
+                        end
+                    end
+                end
+
+                local obj = spawnObjectData({
+                    data = data,
+                    position = bag.getPosition() + Vector(0,2,0),
+                })
+                bag.reset()
+                bag.setColorTint(bagColor)
+                Wait.condition(function() count = count + 1 end, function() return obj.isDestroyed() end)
+            end
+
+            updateInvaderData(explorerBag, invaders.explorer)
+            updateInvaderData(townBag, invaders.town)
+            updateInvaderData(cityBag, invaders.city)
+
+            Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return count == 3 end)
+        end
+
         setupBlightTokens()
-        stagesSetup = stagesSetup + 1
+        setupInvaderPieces()
     end, function() return preSetupSteps == 4 end)
     return 1
 end

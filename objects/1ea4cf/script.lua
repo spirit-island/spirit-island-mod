@@ -1,7 +1,6 @@
 difficulty={[0] = 1, 3, 4, 6, 7, 9, 11}
 fearCards={[0] = {0,0,0}, {0,0,1}, {1,0,1}, {1,1,0}, {1,1,1}, {1,2,1}, {2,2,1}}
-preSetup = true
-preSetupComplete = false
+invaderSetup = true
 reminderSetup = true
 invaderDeckSetup = true
 mapSetup = true
@@ -19,34 +18,12 @@ function onLoad(saved_data)
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
 end
 
-function PreSetup(params)
-    if params.level >= 1 then
-        local explorerDamage = Global.getVar("explorerDamage")
-        local current = tonumber(explorerDamage.TextTool.getValue())
-        explorerDamage.TextTool.setValue(tostring(current + 1))
-        explorerDamage.TextTool.setFontColor({1,0.2,0.2})
-    end
+function InvaderSetup(params)
+    local invaders = nil
     if params.level >= 2 then
-        local adversaryBag = Global.getVar("adversaryBag")
-        local explorerBag = Global.getVar("explorerBag")
-        local explorerBagPosition = explorerBag.getPosition()
-        local newGuid = "3b674d"
-        if explorerBag.guid == "bf89e8" then
-            newGuid = "24908a"
-        end
-        explorerBag.destruct()
-        explorerBag = adversaryBag.takeObject({
-            guid = newGuid,
-            position = explorerBagPosition,
-            rotation = {0,180,0},
-            smooth = false,
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-        Global.setVar("explorerBag", explorerBag)
-        Wait.condition(function() preSetupComplete = true end, function() return not explorerBag.isSmoothMoving() end)
-    else
-        preSetupComplete = true
+        invaders = { explorer = { tooltip = "The first time each Action would Destroy Explorer: If possible, 1 of those Explorer is instead Pushed; 1 Fear when you do so.", color = "4351C8" } }
     end
+    return invaders
 end
 
 function ReminderSetup(params)
@@ -154,6 +131,13 @@ function PostSetup(params)
             updateCount({count=#obj.getObjects()})
         end,
     })
+
+    if params.level >= 1 then
+        local explorerDamage = Global.getVar("explorerDamage")
+        local current = tonumber(explorerDamage.TextTool.getValue())
+        explorerDamage.TextTool.setValue(tostring(current + 1))
+        explorerDamage.TextTool.setFontColor({1,0.2,0.2})
+    end
 
     if params.level >= 5 then
         -- Setup extra invader cards

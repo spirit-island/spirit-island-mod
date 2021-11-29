@@ -1,7 +1,6 @@
 difficulty={[0] = 2, 3, 5, 6, 8, 9, 10}
 fearCards={[0] = {0,0,0}, {0,1,0}, {1,2,-1}, {1,2,0}, {1,2,0}, {1,3,0}, {2,3,0}}
-preSetup = true
-preSetupComplete = false
+invaderSetup = true
 reminderSetup = true
 invaderDeckSetup = true
 mapSetup = true
@@ -32,33 +31,12 @@ function onLoad(saved_data)
     count = loaded_data.count
 end
 
-function PreSetup(params)
+function InvaderSetup(params)
+    local invaders = nil
     if params.level >= 4 then
-        local townHealth = Global.getVar("townHealth")
-        local current = tonumber(townHealth.TextTool.getValue())
-        townHealth.TextTool.setValue(tostring(current + 2))
-        townHealth.TextTool.setFontColor({1,0.2,0.2})
-
-        local adversaryBag = Global.getVar("adversaryBag")
-        local townBag = Global.getVar("townBag")
-        local townBagPosition = townBag.getPosition()
-        local newGuid = "fabcad"
-        if townBag.guid == "942899" then
-            newGuid = "aeb4fa"
-        end
-        townBag.destruct()
-        townBag = adversaryBag.takeObject({
-            guid = newGuid,
-            position = townBagPosition,
-            rotation = {0,180,0},
-            smooth = false,
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-        Global.setVar("townBag", townBag)
-        Wait.condition(function() preSetupComplete = true end, function() return not townBag.isSmoothMoving() end)
-    else
-        preSetupComplete = true
+        invaders = { town = { tooltip = "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)", states = { { color = "C6B843", copy = 1 }, { color = "C6B843", copy = 2 } } } }
     end
+    return invaders
 end
 
 function ReminderSetup(params)
@@ -149,6 +127,13 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
+    if params.level >= 4 then
+        local townHealth = Global.getVar("townHealth")
+        local current = tonumber(townHealth.TextTool.getValue())
+        townHealth.TextTool.setValue(tostring(current + 2))
+        townHealth.TextTool.setFontColor({1,0.2,0.2})
+    end
+
     if params.level >= 5 then
         local zone = Global.getVar("invaderDeckZone")
         local invaderDeck = zone.getObjects()[1]

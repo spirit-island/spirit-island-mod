@@ -1,25 +1,11 @@
 difficulty={[0] = 1, 2, 3, 5, 6, 7, 8}
 fearCards={[0] = {0,0,0}, {0,0,0}, {0,1,0}, {0,1,0}, {0,1,1}, {1,1,1}, {1,1,2}}
-preSetup = true
-preSetupComplete = false
+postSetup = true
+postSetupComplete = false
 reminderSetup = true
 mapSetup = true
 hasUI = true
 hasBroadcast = true
-
-function PreSetup(params)
-    if params.level >= 3 then
-        local townDamage = Global.getVar("townDamage")
-        local current = tonumber(townDamage.TextTool.getValue())
-        townDamage.TextTool.setValue(tostring(current+1))
-        townDamage.TextTool.setFontColor({1,0.2,0.2})
-        local cityDamage = Global.getVar("cityDamage")
-        current = tonumber(cityDamage.TextTool.getValue())
-        cityDamage.TextTool.setValue(tostring(current+2))
-        cityDamage.TextTool.setFontColor({1,0.2,0.2})
-    end
-    preSetupComplete = true
-end
 
 function ReminderSetup(params)
     local reminderTiles = {}
@@ -75,6 +61,20 @@ function MapSetup(params)
         table.insert(params.pieces[8],"Box Blight")
     end
     return params.pieces
+end
+
+function PostSetup(params)
+    if params.level >= 3 then
+        local townDamage = Global.getVar("townDamage")
+        local current = tonumber(townDamage.TextTool.getValue())
+        townDamage.TextTool.setValue(tostring(current+1))
+        townDamage.TextTool.setFontColor({1,0.2,0.2})
+        local cityDamage = Global.getVar("cityDamage")
+        current = tonumber(cityDamage.TextTool.getValue())
+        cityDamage.TextTool.setValue(tostring(current+2))
+        cityDamage.TextTool.setFontColor({1,0.2,0.2})
+    end
+    postSetupComplete = true
 end
 
 function Broadcast(params)

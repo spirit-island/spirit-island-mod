@@ -1,7 +1,6 @@
 difficulty={[0] = 2, 3, 5, 7, 8, 9, 10}
 fearCards={[0] = {0,0,0}, {0,0,0}, {0,1,0}, {1,1,0}, {1,1,1}, {1,2,1}, {1,2,2}}
-preSetup = true
-preSetupComplete = false
+invaderSetup = true
 reminderSetup = true
 limitSetup = true
 limitSetupComplete = false
@@ -47,28 +46,12 @@ function onObjectSpawn(obj)
     end
 end
 
-function PreSetup(params)
+function InvaderSetup(params)
+    local invaders = nil
     if params.level >= 6 then
-        local adversaryBag = Global.getVar("adversaryBag")
-        local explorerBag = Global.getVar("explorerBag")
-        local explorerBagPosition = explorerBag.getPosition()
-        local newGuid = "bf89e8"
-        if explorerBag.guid == "3b674d" then
-            newGuid = "24908a"
-        end
-        explorerBag.destruct()
-        explorerBag = adversaryBag.takeObject({
-            guid = newGuid,
-            position = explorerBagPosition,
-            rotation = {0,180,0},
-            smooth = false,
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-        Global.setVar("explorerBag", explorerBag)
-        Wait.condition(function() preSetupComplete = true end, function() return not explorerBag.isSmoothMoving() end)
-    else
-        preSetupComplete = true
+        invaders = { explorer = { tooltip = "They are unable to be removed by fear cards and instead will be pushed", color = "9844CD" } }
     end
+    return invaders
 end
 
 function ReminderSetup(params)

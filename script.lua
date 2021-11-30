@@ -165,6 +165,7 @@ function onObjectLeaveZone(zone, leave_object)
     end
 end
 function onScriptingButtonDown(index, playerColor)
+    if not SetupChecker.getVar("optionalLegacyKeybindings") then return end
     if playerColor == "Grey" then return end
     DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)
 end
@@ -401,8 +402,9 @@ function onLoad(saved_data)
     Color.Add("SoftGreen", Color.new(0.75,1,0.67))
 
     clearHotkeys()
-    for _, piece in ipairs(Pieces) do
+    for index, piece in ipairs(Pieces) do
         addHotkey("Add " .. piece, function (playerColor, hoveredObject, cursorLocation, key_down_up)
+            if index <= 10 and SetupChecker.getVar("optionalLegacyKeybindings") then return end
             DropPiece(piece, cursorLocation, playerColor)
         end)
     end

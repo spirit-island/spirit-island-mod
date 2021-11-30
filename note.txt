@@ -9,17 +9,17 @@
 
 
 
-Spawn Objects:
-Num 1 - Explorer
-Num 2 - Town
-Num 3 - City
-Num 4 - Blight
-Num 5 - Badlands
-Num 6 - Beasts
-Num 7 - Wilds
-Num 8 - Disease
-Num 9 - Strife
-Num 0 - Dahan
 
-For more keybindings:
+
+
+
+
+
+
+
+
+
+
+
+For keybindings:
 Options -> Game Keys

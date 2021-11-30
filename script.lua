@@ -1850,6 +1850,7 @@ function grabBlightCard(start)
     end
 end
 function findNextBlightCard(start, blightDeck)
+    local blightDiscard = getObjectFromGUID("b18505").getPosition()
     local index = getBlightCardIndex()
     if index < 0 then
         index = 1
@@ -1862,7 +1863,7 @@ function findNextBlightCard(start, blightDeck)
                 if data.name == blightCards[i] then
                     blightDeck.takeObject({
                         index = data.index,
-                        position = blightDeck.getPosition() + Vector(3.92, 1, 0),
+                        position = blightDiscard,
                         callback_function = function(obj) setupBlightCard(start, obj) end,
                     })
                     return true
@@ -1893,6 +1894,7 @@ function getBlightCardIndex()
 end
 function setupBlightCard(start, card)
     blightedIslandCard = card
+    blightedIslandCard.setRotationSmooth(Vector(0,180,180))
     blightedIslandCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-1.15,0.11,0.99)))
     blightedIslandCard.setLock(true)
     if start then
@@ -1926,7 +1928,8 @@ function BlightedIslandFlip()
     if not blightedIslandCard.is_face_down then
         -- still healthy card
         local blightDeckZone = getObjectFromGUID("b38ea8")
-        blightedIslandCard.setPositionSmooth(blightDeckZone.getPosition() + Vector(3.92, 1, 0))
+        local blightDiscard = getObjectFromGUID("b18505").getPosition()
+        blightedIslandCard.setPositionSmooth(blightDiscard)
         blightedIslandCard.setLock(false)
         local blightDeck = blightDeckZone.getObjects()[1]
         if blightDeck == nil then

@@ -675,7 +675,7 @@ function SetupGame()
         end
     else
         if SetupChecker.getVar("optionalExtraBoard") then
-            if numPlayers == 6 and boardLayout == "Thematic" then
+            if numPlayers == 6 and isThematic() then
                 -- Thematic doesn't support extra board
                 SetupChecker.setVar("optionalExtraBoard", false)
                 SetupChecker.call("updateDifficulty")

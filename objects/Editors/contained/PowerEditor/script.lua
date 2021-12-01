@@ -430,7 +430,7 @@ function updateThreshold(player)
         })
         entry.destroy()
     end
-    table.sort(thresholds, function (a, b) return a.position.z < b.position.z or (a.position.z == b.position.z and a.position.x < a.position.x) end)
+    table.sort(thresholds, function (a, b) return a.position.z < b.position.z or (a.position.z == b.position.z and a.position.x > b.position.x) end)
     local state = {}
     if currentCard.script_state ~= "" then
         state = JSON.decode(currentCard.script_state)
@@ -451,7 +451,14 @@ function updateThreshold(player)
         end
         currentCard.setLuaScript(script)
     end
-    player.broadcast("Updated thresholds for " .. currentCard.getName() .. ".", Color.SoftBlue)
+    local thresholdString = ""
+    for _,threshold in pairs(thresholds) do
+        if thresholdString ~= "" then
+            thresholdString = thresholdString.." "
+        end
+        thresholdString = thresholdString..threshold.elements
+    end
+    player.broadcast("Updated thresholds for " .. currentCard.getName() .. " with "..thresholdString..".", Color.SoftBlue)
 end
 function populateThreshold()
     if currentCard == nil then

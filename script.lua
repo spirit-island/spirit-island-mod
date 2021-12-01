@@ -2041,21 +2041,6 @@ function SetupAdversary()
         end
     end
 
-    local boardSetup = false
-    local secondAdversaryBoard = nil
-    if adversaryCard2 ~= nil then
-        secondAdversaryBoard = adversaryBag.takeObject({
-            guid = "312e2d",
-            position = aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84)),
-            rotation = {0,180,0},
-        })
-        secondAdversaryBoard.setLock(true)
-        secondAdversaryBoard.interactable = false
-        Wait.condition(function() boardSetup = true end, function() return not secondAdversaryBoard.isSmoothMoving() end)
-    else
-        boardSetup = true
-    end
-
     if adversaryCard ~= nil then
         local targetScale = 1.71
         local currentScale = adversaryCard.getScale()[1]
@@ -2069,18 +2054,16 @@ function SetupAdversary()
         end
     end
 
-    -- Wait until Second Adversary board is in position before moving cards
-    Wait.condition(function()
-        if adversaryCard2 ~= nil then
-            adversaryCard.setLock(true)
-            adversaryCard.setPositionSmooth(secondAdversaryBoard.positionToWorld(Vector(0,0.21,0)), false, true)
-            adversaryCard2.setLock(true)
-            adversaryCard2.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)), false, true)
-        elseif adversaryCard ~= nil then
-            adversaryCard.setLock(true)
-            adversaryCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)), false, true)
-        end
-    end, function() return boardSetup end)
+    local pos = Vector(-0.75, 0.11, -1.81)
+    if adversaryCard2 ~= nil then
+        adversaryCard.setLock(true)
+        adversaryCard.setPositionSmooth(aidBoard.positionToWorld(pos + Vector(0, 0, -1.03)), false, true)
+        adversaryCard2.setLock(true)
+        adversaryCard2.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
+    elseif adversaryCard ~= nil then
+        adversaryCard.setLock(true)
+        adversaryCard.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
+    end
 
     reminderSetup()
     adversaryUISetup()

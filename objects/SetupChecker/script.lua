@@ -1814,7 +1814,7 @@ end
 function toggleLegacyKeybindings()
     optionalLegacyKeybindings = not optionalLegacyKeybindings
     local pieces = Global.getTable("Pieces")
-    local notes = ""
+    local notes
     if optionalLegacyKeybindings then
         local piece = pieces[9]
         pieces[9] = pieces[8]

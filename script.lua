@@ -81,6 +81,7 @@ showPlayerButtons = true
 onlyCleanupTimePasses = false
 objectsToCleanup = {}
 extraRandomBoard = nil
+gamekeys = {}
 ------ Unsaved Config Data
 gamePaused = false
 yHeight = 0
@@ -165,6 +166,7 @@ function onObjectLeaveZone(zone, leave_object)
     end
 end
 function onScriptingButtonDown(index, playerColor)
+    if gamekeys[playerColor] then return end
     if playerColor == "Grey" then return end
     DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)
 end
@@ -359,7 +361,8 @@ function onSave()
         panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
         showPlayerButtons = showPlayerButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
-        elementScanZones = elementScanZones
+        elementScanZones = elementScanZones,
+        gamekeys = gamekeys
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -401,8 +404,11 @@ function onLoad(saved_data)
     Color.Add("SoftGreen", Color.new(0.75,1,0.67))
 
     clearHotkeys()
-    for _, piece in ipairs(Pieces) do
+    for index, piece in ipairs(Pieces) do
         addHotkey("Add " .. piece, function (playerColor, hoveredObject, cursorLocation, key_down_up)
+            if index <= 10 and not gamekeys[playerColor] then
+                gamekeys[playerColor] = true
+            end
             DropPiece(piece, cursorLocation, playerColor)
         end)
     end
@@ -551,6 +557,7 @@ function onLoad(saved_data)
         onlyCleanupTimePasses = loaded_data.onlyCleanupTimePasses
         objectsToCleanup = loaded_data.objectsToCleanup
         extraRandomBoard = loaded_data.extraRandomBoard
+        gamekeys = loaded_data.gamekeys
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -5351,6 +5358,10 @@ function swapPlayerUIs(a, b)
         setVisiTable("panelTimePasses",newVisiTable)
         setVisiTable("panelReady",newVisiTable)
     end
+
+    local enabled = gamekeys[a]
+    gamekeys[a] = gamekeys[b]
+    gamekeys[b] = enabled
 end
 
 function swapSeatColors(a, b)

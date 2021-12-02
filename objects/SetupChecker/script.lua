@@ -1814,26 +1814,18 @@ end
 function toggleLegacyKeybindings()
     optionalLegacyKeybindings = not optionalLegacyKeybindings
     local pieces = Global.getTable("Pieces")
-    local notes
     if optionalLegacyKeybindings then
         local piece = pieces[9]
         pieces[9] = pieces[8]
         pieces[8] = pieces[7]
         pieces[7] = pieces[6]
         pieces[6] = piece
-
-        notes = "\n\n\n\n\n\n\n\n\n\n\nSpawn Objects:"
-        for i=1,9 do
-            notes = notes.."\nNum "..i.." - "..pieces[i]
-        end
-        notes = notes.."\nNum 0 - "..pieces[10].."\n\nFor more keybindings:\nOptions -> Game Keys"
     else
         local piece = pieces[6]
         pieces[6] = pieces[7]
         pieces[7] = pieces[8]
         pieces[8] = pieces[9]
         pieces[9] = piece
-        notes = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFor keybindings:\nOptions -> Game Keys"
     end
 
     Notes.setNotes(notes)

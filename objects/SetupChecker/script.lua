@@ -1828,7 +1828,13 @@ function toggleLegacyKeybindings()
         pieces[9] = piece
     end
 
+    local notes = "\n\n\n\n\n\n\n\n\n\n\nSpawn Objects:"
+    for i=1,9 do
+        notes = notes.."\nNum "..i.." - "..pieces[i]
+    end
+    notes = notes.."\nNum 0 - "..pieces[10].."\n\nFor more keybindings:\nOptions -> Game Keys"
     Notes.setNotes(notes)
+
     Global.setTable("Pieces", pieces)
     self.UI.setAttribute("legacyKeybindings", "isOn", optionalLegacyKeybindings)
 end

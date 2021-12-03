@@ -36,18 +36,27 @@ function InvaderDeckSetup(params)
     end
 
     if params.level >= 2 then
+        local stageI = nil
         local stageII = nil
         local stageIII = nil
         for j=1,#params.deck do
-            if stageII == nil and (params.deck[j] == 2 or params.deck[j] == "C") then
+            if params.deck[j] == 1 then
+                stageI = j
+            elseif stageII == nil and (params.deck[j] == 2 or params.deck[j] == "C") then
                 stageII = j
             elseif params.deck[j] == 3 then
                 stageIII = j
             end
         end
-        -- assumes a deck will always have stage 2 and 3 cards
+        -- assumes a deck will always have stage 3 cards
         table.remove(params.deck, stageIII)
-        table.insert(params.deck, stageII, "3*")
+        if stageII ~= nil then
+            table.insert(params.deck, stageII, "3*")
+        elseif stageI ~= nil then
+            table.insert(params.deck, stageI+1, "3*")
+        else
+            table.insert(params.deck, 1, "3*")
+        end
     end
     return params.deck
 end

@@ -474,6 +474,10 @@ function onLoad(saved_data)
             reclaimAll(obj, playerColor, false)
         end
     end)
+    addContextMenuItem("Grab Spirit Markers", grabSpiritMarkers, false)
+    addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        grabSpiritMarkers()
+    end)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
@@ -5506,6 +5510,27 @@ function isObjectInHand(obj, color, handIndex)
         end
     end
     return false
+end
+
+function grabSpiritMarkers()
+    local bag = getObjectFromGUID("011f19")
+    for color, _ in pairs(selectedColors) do
+        local zone = getObjectFromGUID(elementScanZones[color])
+        for _, obj in ipairs(zone.getObjects()) do
+            if obj.hasTag("Spirit") then
+                for _,marker in pairs(bag.getObjects()) do
+                    if marker.name == obj.getName() then
+                        bag.takeObject({
+                            guid = marker.guid,
+                            position = obj.getPosition() + Vector(0, 2, 14.5)
+                        })
+                        break
+                    end
+                end
+                break
+            end
+        end
+    end
 end
 
 function enterSpiritPhase(player)

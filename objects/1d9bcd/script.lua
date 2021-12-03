@@ -138,22 +138,29 @@ function PostSetup(params)
         local zone = Global.getVar("invaderDeckZone")
         local invaderDeck = zone.getObjects()[1]
         if invaderDeck ~= nil then
-            local count = #invaderDeck.getObjects()
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,4,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,3.5,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,3,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,2.5,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,2,0)
-            })
+            local cards = invaderDeck.getObjects()
+            local depth = nil
+            local count = 0
+            for _,card in pairs(cards) do
+                local start,finish = string.find(card.lua_script,"cardInvaderStage=")
+                if start ~= nil then
+                    count = count + 1
+                    if count == 5 then
+                        depth = card.index + 1
+                        break
+                    end
+                end
+            end
+            if depth == nil then
+                depth = #cards
+            end
+
+            count = #cards
+            for i=1,depth do
+                invaderDeck.takeObject({
+                    position = invaderDeck.getPosition() + Vector(0,2+(depth-i)*0.5,0)
+                })
+            end
             local adversaryBag = Global.getVar("adversaryBag")
             adversaryBag.takeObject({
                 guid = "d90af8",

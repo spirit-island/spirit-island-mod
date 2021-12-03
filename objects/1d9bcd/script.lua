@@ -142,7 +142,7 @@ function PostSetup(params)
             local depth = nil
             local count = 0
             for _,card in pairs(cards) do
-                local start,finish = string.find(card.lua_script,"cardInvaderStage=")
+                local start,_ = string.find(card.lua_script,"cardInvaderStage=")
                 if start ~= nil then
                     count = count + 1
                     if count == 5 then

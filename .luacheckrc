@@ -25,6 +25,7 @@ read_globals = {
     "setLookingForPlayers",
     "startLuaCoroutine",
     "spawnObjectData",
+    "addContextMenuItem",
 }
 -- Additionally `self` and `Hands` have mutable fields.
 files["objects/**/*.lua"] = {

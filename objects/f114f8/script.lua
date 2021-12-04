@@ -26,7 +26,7 @@ function AdversaryUI(params)
     if params.level >= 1 then
         ui.one = {}
         ui.one.name = "Heavy Mining"
-        ui.one.tooltip = "If the Invaders do at least 6 Damage to the land\nduring Ravage, add an extra Blight. The additional\nBlight does not destroy Presence or cause cascades."
+        ui.one.tooltip = "If the Invaders do at least 6 Damage to the land\nduring Ravage, add an extra Blight. (The additional\nBlight does not destroy Presence or cause cascades.)"
     end
     if params.level >= 3 then
         ui.three = {}
@@ -79,7 +79,7 @@ end
 
 function Broadcast(params)
     if params.level >= 4 then
-        return "Sweden Level 4 - After the Initial Explore, Accelerate the Invader Deck and Add 1 Town on each board"
+        return "Sweden Level 4 - At the end of Setup (after the Explore Card), Accelerate the Invader Deck and on each board, add 1 Town to the land with the fewest invaders that matches the discarded card"
     end
     return nil
 end

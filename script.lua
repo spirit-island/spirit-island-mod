@@ -441,13 +441,13 @@ function onLoad(saved_data)
         for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
                 -- This ugliness is because setPositionSmooth doesn't work from a hand.
-                ensureCardInPlay(obj)
+                ensureCardInPlay({card = obj})
                 discardPowerCardFromPlay({card = obj, discardHeight = 1})
             end
         end
         if isPowerCard({card=hoveredObject}) then
             -- This ugliness is because setPositionSmooth doesn't work from a hand.
-            ensureCardInPlay(hoveredObject)
+            ensureCardInPlay({card = hoveredObject})
             discardPowerCardFromPlay({card = hoveredObject, discardHeight = 1})
         end
     end)
@@ -5480,7 +5480,7 @@ function applyPowerCardContextMenuItems(card)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
                 if isPowerCard({card=obj}) then
                     -- This ugliness is because setPositionSmooth doesn't work from a hand.
-                    ensureCardInPlay(obj)
+                    ensureCardInPlay({card = obj})
                     discardPowerCardFromPlay({card = obj, discardHeight = 1})
                 end
             end
@@ -5490,12 +5490,12 @@ end
 
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe
 -- location, if it's in a hand.
-function ensureCardInPlay(card)
+function ensureCardInPlay(params)
     for _, color in pairs(Player.getAvailableColors()) do
         for handIndex=1,Player[color].getHandCount() do
-            if isObjectInHand(card, color, handIndex) then
-                local cpos = card.getPosition()
-                card.setPosition(Vector(cpos.x, 0, cpos.z))
+            if isObjectInHand(params.card, color, handIndex) then
+                local cpos = params.card.getPosition()
+                params.card.setPosition(Vector(cpos.x, 0, cpos.z))
                 return
             end
         end

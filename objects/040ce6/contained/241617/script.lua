@@ -9,7 +9,6 @@ function doSetup(params)
         return
     end
 
-    -- TODO prevent doubling
     local lightning = getObjectFromGUID(lightningGuid)
     local json = JSON.decode(lightning.script_state)
     if not json.immense then

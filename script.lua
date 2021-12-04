@@ -1077,47 +1077,47 @@ function PreSetup()
                 end
             end
             if adversaryCard2 ~= nil and adversaryCard2.getVar("invaderSetup") then
-                local function mergeInvaderData(invader, result)
-                    if result == nil then
-                        return invader
-                    elseif invader == nil then
-                        return result
-                    end
-
-                    if result.tooltip then
-                        if invader.tooltip then
-                            invader.tooltip = invader.tooltip.."\n\n"..result.tooltip
-                        else
-                            invader.tooltip = result.tooltip
+                local function mergeInvaderData(invaders, results)
+                    for _,key in pairs({"explorer", "town", "city"}) do
+                        if results[key] == nil then
+                            goto continue
+                        elseif invaders[key] == nil then
+                            invaders[key] = results[key]
+                            goto continue
                         end
-                    end
 
-                    if result.color then
-                        if invader.color then
-                            invader.color = Color.fromHex(invader.color.."FF"):lerp(Color.fromHex(result.color.."FF"), 0.5):toHex(false)
-                        else
-                            invader.color = result.color
-                        end
-                    end
-
-                    if result.states then
-                        if invader.states then
-                            for _,stateData in pairs(result.states) do
-                                table.insert(invader.states, stateData)
+                        if results[key].tooltip then
+                            if invaders[key].tooltip then
+                                invaders[key].tooltip = invaders[key].tooltip.."\n\n"..results[key].tooltip
+                            else
+                                invaders[key].tooltip = results[key].tooltip
                             end
-                        else
-                            invader.states = result.states
                         end
-                    end
 
-                    return invader
+                        if results[key].color then
+                            if invaders[key].color then
+                                invaders[key].color = Color.fromHex(invaders[key].color.."FF"):lerp(Color.fromHex(results[key].color.."FF"), 0.5):toHex(false)
+                            else
+                                invaders[key].color = results[key].color
+                            end
+                        end
+
+                        if results[key].states then
+                            if invaders[key].states then
+                                for _,stateData in pairs(results[key].states) do
+                                    table.insert(invaders[key].states, stateData)
+                                end
+                            else
+                                invaders[key].states = results[key].states
+                            end
+                        end
+                        ::continue::
+                    end
                 end
 
                 local results = adversaryCard2.call("InvaderSetup",{level = adversaryLevel2})
                 if results then
-                    mergeInvaderData(invaders.explorer, results.explorer)
-                    mergeInvaderData(invaders.town, results.town)
-                    mergeInvaderData(invaders.city, results.city)
+                    mergeInvaderData(invaders, results)
                 end
             end
 

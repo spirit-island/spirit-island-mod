@@ -200,6 +200,10 @@ This section is meant for users who are familiar with both the tts mod and progr
         - `six`
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
+        - `invader`
+          - `ravage`: **boolean** - reminder that adversary has effect that triggers during this invader step
+          - `build`: **boolean** - reminder that adversary has effect that triggers during this invader step
+          - `explore`: **boolean** - reminder that adversary has effect that triggers during this invader step
       - `[loss callback function](params)`
         - `params`: **table** - contains data about update
           - `count`: **number** - new count for loss counter

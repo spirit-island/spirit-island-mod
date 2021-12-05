@@ -2424,7 +2424,7 @@ function adversaryUISetup()
             end
         end
     end
-    local height = lineCount*18
+    local height = lineCount*20
     UI.setAttribute("panelAdversary","height",height)
     UI.setAttribute("panelInvader","offsetXY","0 "..305+5+height)
     UI.setAttribute("panelBlightFear","offsetXY","0 "..305+5+104+height)

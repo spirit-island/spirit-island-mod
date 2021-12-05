@@ -4869,24 +4869,29 @@ function updateAidPanel(tabIn)
                     size(tType,1,1,1,1)
                     show(tType,1,1)
                 else
-                    alert(tType)
-                    size(tType,1,1,"E")
                     set(tType,1,1,"E",false)
+                    size(tType,1,1,"E")
                     show(tType,1,1)
                 end
             else
-                dark(tType)
-                size(tType,1,1,"n")
                 set(tType,1,1,"n",false)
+                size(tType,1,1,"n")
                 show(tType,1,1)
             end
         else
             if tType == "Explore" then
                 toggleInvaderPhaseImage(true)
             end
-            light(tType)
         end
     end
+end
+function hideAll(a)
+    UI.setAttribute("panel"..a..11, "active", false)
+    UI.setAttribute("panel"..a..12, "active", false)
+    UI.setAttribute("panel"..a..21, "active", false)
+    UI.setAttribute("panel"..a..22, "active", false)
+    UI.setAttribute("panel"..a..31, "active", false)
+    UI.setAttribute("panel"..a..32, "active", false)
 end
 function toggleInvaderPhaseImage(explore)
     local current = UI.getAttribute("invaderImage", "image")
@@ -4899,18 +4904,6 @@ function toggleInvaderPhaseImage(explore)
         UI.setAttribute("exploreAdvance", "onClick", "aidBoard/advanceInvaderCards")
     end
 end
-function dark(a)
-    UI.setAttribute("panel"..a.."0", "color", titleBGColorNA)
-    UI.setAttribute("panel"..a.."0".."text", "color", titleColorNA)
-end
-function light(a)
-    UI.setAttribute("panel"..a.."0", "color", titleBGColor)
-    UI.setAttribute("panel"..a.."0".."text", "color", titleColor)
-end
-function alert(a)
-    UI.setAttribute("panel"..a.."0", "color", invaderColors["E"])
-    UI.setAttribute("panel"..a.."0".."text", "color", invaderFontColors["E"])
-end
 function set(a,b,c,d, escalate)
     local tooltip = tooltips[d]
     local text = textOut[d]
@@ -4920,20 +4913,6 @@ function set(a,b,c,d, escalate)
     end
     UI.setAttributes("panel"..a..b..c, {color = invaderColors[d], tooltip = tooltip, tooltipPosition="Above"})
     UI.setAttributes("panel"..a..b..c.."text", {color = invaderFontColors[d], text = text})
-end
-function hideAll(a)
-    UI.setAttribute("panel"..a..11, "active", false)
-    UI.setAttribute("panel"..a..12, "active", false)
-    UI.setAttribute("panel"..a..21, "active", false)
-    UI.setAttribute("panel"..a..22, "active", false)
-    UI.setAttribute("panel"..a..31, "active", false)
-    UI.setAttribute("panel"..a..32, "active", false)
-end
-function hide(a,b,c)
-    UI.setAttribute("panel"..a..b..c, "active", false)
-end
-function show(a,b,c)
-    UI.setAttribute("panel"..a..b..c, "active", true)
 end
 function size(a,b,c,d,e)
     if d == "n" or d == "E" then
@@ -4945,6 +4924,9 @@ function size(a,b,c,d,e)
         UI.setAttribute("panel"..a..b..c, "preferredWidth", childWidth/d)
         UI.setAttribute("panel"..a..b..c.."text", "fontSize", childFontSize/math.max(d,e))
     end
+end
+function show(a,b,c)
+    UI.setAttribute("panel"..a..b..c, "active", true)
 end
 
 function invaderCompare(t1,t2)

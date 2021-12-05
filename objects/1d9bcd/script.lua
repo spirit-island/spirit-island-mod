@@ -70,6 +70,8 @@ function AdversaryUI(params)
     supporting = params.supporting
     local ui = {}
 
+    ui.invader = {}
+
     ui.loss = {}
     ui.loss.tooltip = "Track how many Blight came off the\nBlight Card during Ravages that do 8+\nDamage to the land. If that number\never exceeds players, the Invaders win."
     ui.loss.counter = {}
@@ -84,6 +86,7 @@ function AdversaryUI(params)
         ui.one = {}
         ui.one.name = "Migratory Herders"
         ui.one.tooltip = "After the normal Build Step: In each\nland matching a Build card, Gather\n1 Town from a land not matching\na Build Card. (In board/land order.)"
+        ui.invader.build = true
     end
     if params.level >= 2 then
         ui.two = {}
@@ -104,6 +107,7 @@ function AdversaryUI(params)
         ui.six = {}
         ui.six.name = "Far-Flung Herds"
         ui.six.tooltip = "Ravages do +2 Damage (total) if any\nadjacent lands have Town. (This does not\ncause lands without Invaders to Ravage.)"
+        ui.invader.ravage = true
     end
     return ui
 end

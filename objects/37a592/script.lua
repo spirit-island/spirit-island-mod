@@ -65,6 +65,8 @@ end
 function AdversaryUI(params)
     local ui = {}
 
+    ui.invader = {}
+
     ui.loss = {}
     ui.loss.tooltip = "If the number of Coastal lands\nwith City is ever greater than\n(2 x # boards), the Invaders win."
 
@@ -74,16 +76,19 @@ function AdversaryUI(params)
         ui.one = {}
         ui.one.name = "Trading Port"
         ui.one.tooltip = "After Setup, in Coastal lands, Explore\nCards add 1 Town instead of 1 Explorer.\n\"Coastal Lands\" Invader Cards do this\nfor maximum 2 lands per board."
+        ui.invader.explore = true
     end
     if params.level >= 3 then
         ui.three = {}
         ui.three.name = "Chart the Coastline"
         ui.three.tooltip = "In Coastal lands, Build Cards\naffect lands without Invaders, so\nlong as there is an adjacent City."
+        ui.invader.build = true
     end
     if params.level >= 5 then
         ui.five = {}
         ui.five.name = "Runoff and Bilgewater"
         ui.five.tooltip = "After a Ravage Action adds Blight to a\nCoastal land, add 1 Blight to that board's\nOcean (without cascading). Treat the\nOcean as a Coastal Wetland for this rule\nand for Blight removal/movement."
+        ui.invader.ravage = true
     end
     if params.level >= 6 then
         ui.six = {}

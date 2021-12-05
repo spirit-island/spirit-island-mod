@@ -18,6 +18,9 @@ end
 
 function AdversaryUI(params)
     local ui = {}
+
+    ui.invader = {}
+
     ui.escalation = {}
     ui.escalation.tooltip = "After Invaders Explore into each land this Phase,\nif that land has at least as many Invaders as\nDahan, replace 1 Dahan with 1 Town."
     if params.supporting then
@@ -27,6 +30,7 @@ function AdversaryUI(params)
         ui.one = {}
         ui.one.name = "Heavy Mining"
         ui.one.tooltip = "If the Invaders do at least 6 Damage to the land\nduring Ravage, add an extra Blight. (The additional\nBlight does not destroy Presence or cause cascades.)"
+        ui.invader.ravage = true
     end
     if params.level >= 3 then
         ui.three = {}

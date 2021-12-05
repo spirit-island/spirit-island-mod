@@ -122,6 +122,8 @@ end
 function AdversaryUI(params)
     local ui = {}
 
+    ui.invader = {}
+
     ui.loss = {}
     ui.loss.tooltip = "If 7 or more Towns and/or Cities are\never in a single land, the Invaders win"
 
@@ -131,6 +133,7 @@ function AdversaryUI(params)
         ui.one = {}
         ui.one.name = "Indentured Servants Earn Land"
         ui.one.tooltip = "Invader Build actions affect lands without\nInvaders, if they are adjacent to at least\n2 Town/City before the Build Action."
+        ui.invader.build = true
     end
     if params.level == 3 then
         ui.three = {}

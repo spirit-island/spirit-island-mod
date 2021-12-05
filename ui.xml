@@ -14,6 +14,7 @@
     <Image id="invaderImage" image="Invader Phase Stage" preserveAspect="true" />
     <HorizontalLayout id="invaderLayout" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="16" offsetXY="0 8">
         <Panel id="panelBuild2" active="false" preferredWidth="64" preferredHeight="64">
+            <Image id="panelBuild2Outline" active="false" rectAlignment="UpperLeft" outline="#000000" outlineSize="5 5" />
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
@@ -44,6 +45,7 @@
             </VerticalLayout>
         </Panel>
         <Panel id="panelRavage" preferredWidth="64" preferredHeight="64">
+            <Image id="panelRavageOutline" active="false" rectAlignment="UpperLeft" outline="#000000" outlineSize="5 5" />
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
@@ -74,6 +76,7 @@
             </VerticalLayout>
         </Panel>
         <Panel id="panelBuild" preferredWidth="64" preferredHeight="64">
+            <Image id="panelBuildOutline" active="false" rectAlignment="UpperLeft" outline="#000000" outlineSize="5 5" />
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">
@@ -104,6 +107,7 @@
             </VerticalLayout>
         </Panel>
         <Panel id="panelExplore" preferredWidth="64" preferredHeight="64">
+            <Image id="panelExploreOutline" active="false" rectAlignment="UpperLeft" outline="#000000" outlineSize="5 5" />
             <VerticalLayout childForceExpandWidth="true" childForceExpandHeight="true">
                 <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false">
                     <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false">

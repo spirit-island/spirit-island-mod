@@ -55,6 +55,8 @@ function AdversaryUI(params)
     supporting = params.supporting
     local ui = {}
 
+    ui.invader = {}
+
     ui.loss = {}
     ui.loss.tooltip = "Put Beasts Destroyed by Adversary\nrules on this panel. If there are\never more Beasts on this panel than\non the island, the Invaders win."
     ui.loss.counter = {}
@@ -73,6 +75,7 @@ function AdversaryUI(params)
         ui.one = {}
         ui.one.name = "Hunters Seek Shell and Hide"
         ui.one.tooltip = "During Play, Explorer do\n+1 Damage. When Ravage\nadds Blight to a land\n(including cascades),\nDestroy 1 Beasts in that land."
+        ui.invader.ravage = true
     end
     if params.level >= 2 then
         ui.two = {}

@@ -2326,6 +2326,18 @@ function adversaryUISetup()
             UI.setAttribute("panelAdversaryLevel6","active","true")
             lineCount = lineCount + 1
         end
+        if ui.invader then
+            if ui.invader.ravage then
+                UI.setAttribute("panelRavageOutline", "active", "true")
+            end
+            if ui.invader.build then
+                UI.setAttribute("panelBuildOutline", "active", "true")
+                UI.setAttribute("panelBuild2Outline", "active", "true")
+            end
+            if ui.invader.explore then
+                UI.setAttribute("panelExploreOutline", "active", "true")
+            end
+        end
     end
     if adversaryCard2 and adversaryCard2.getVar("hasUI") then
         lineCount = lineCount + 1
@@ -2402,6 +2414,18 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversary2Level6","active","true")
             lineCount = lineCount + 1
+        end
+        if ui.invader then
+            if ui.invader.ravage then
+                UI.setAttribute("panelRavageOutline", "active", "true")
+            end
+            if ui.invader.build then
+                UI.setAttribute("panelBuildOutline", "active", "true")
+                UI.setAttribute("panelBuild2Outline", "active", "true")
+            end
+            if ui.invader.explore then
+                UI.setAttribute("panelExploreOutline", "active", "true")
+            end
         end
     end
     local height = lineCount*18
@@ -4852,6 +4876,8 @@ function updateAidPanel(tabIn)
     currentTable = tabIn
     for i,tType in pairs({"Build2","Ravage","Build","Explore"}) do
         hideAll(tType)
+        UI.setAttribute("panel"..tType.."Outline", "height", childHeight)
+        UI.setAttribute("panel"..tType.."Outline", "width", childWidth)
         local cards = tabIn[i]
         for j,card in pairs(cards) do
             for k = 1,string.len(card.type) do

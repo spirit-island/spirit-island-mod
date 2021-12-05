@@ -70,6 +70,8 @@ function AdversaryUI(params)
     supporting = params.supporting
     local ui = {}
 
+    ui.invader = {}
+
     ui.loss = {}
     ui.loss.tooltip = "Invaders win if you ever cannot place a Town."
     ui.loss.counter = {}
@@ -88,11 +90,13 @@ function AdversaryUI(params)
         ui.one = {}
         ui.one.name = "Frontier Explorers"
         ui.one.tooltip = "Except during Setup: After Invaders\nsuccessfully Explore into a land which\nhad no Town/City, add 1 Explorer there."
+        ui.invader.explore = true
     end
     if params.level >= 2 then
         ui.two = {}
         ui.two.name = "Slave Labor"
         ui.two.tooltip = "After Invaders Build in a land with 2+\nExplorers replace all but 1 Explorer\nthere with an equal number of Town."
+        ui.invader.build = true
     end
     if params.level >= 4 then
         ui.four = {}

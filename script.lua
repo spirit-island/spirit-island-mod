@@ -1077,7 +1077,8 @@ function PreSetup()
                 end
             end
             if adversaryCard2 ~= nil and adversaryCard2.getVar("invaderSetup") then
-                local function mergeInvaderData(invaders, results)
+                local results = adversaryCard2.call("InvaderSetup",{level = adversaryLevel2})
+                if results then
                     for _,key in pairs({"explorer", "town", "city"}) do
                         if results[key] == nil then
                             goto continue
@@ -1113,11 +1114,6 @@ function PreSetup()
                         end
                         ::continue::
                     end
-                end
-
-                local results = adversaryCard2.call("InvaderSetup",{level = adversaryLevel2})
-                if results then
-                    mergeInvaderData(invaders, results)
                 end
             end
 

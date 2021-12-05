@@ -35,21 +35,21 @@
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
-    62709,
-    62710,
-    62711,
-    62712,
-    62713,
-    62714
+    63000,
+    63001,
+    63002,
+    63003,
+    63004,
+    63005
   ],
   "CustomDeck": {
-    "627": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270425836/1E70B00AD6B8C49301E672767A57126B3C91BDE6/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270426772/7D1A356297110F487F9759829AC15B2D15041422/",
+    "630": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1847035847583369207/8856D2D359497E5FBA6B592321FEFA9198891A1E/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1847035847583414961/7EF5B2500391D62AEDCD4D08855B53DB23EC6576/",
       "NumWidth": 4,
-      "NumHeight": 4,
+      "NumHeight": 2,
       "BackIsHidden": false,
-      "UniqueBack": true,
+      "UniqueBack": false,
       "Type": 0
     }
   }

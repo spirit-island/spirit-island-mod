@@ -609,7 +609,14 @@ function fearCardEarned()
             end, function() return not card.isSmoothMoving() end)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
         elseif card.hasTag("Invader Card") then
-            local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,-1)
+            local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
+            if Global.UI.getAttribute("panelBuild21", "active") == "True" then
+                -- already have 2 build cards
+                pos = pos + Vector(0,0,-2)
+            elseif Global.UI.getAttribute("panelBuild11text", "text") ~= "NO ACTION" then
+                -- already have 1 build card
+                pos = pos + Vector(0,0,-1)
+            end
             -- Russia puts invader cards in this deck at a scale factor of 1.37
             card.scale(1/1.37)
             card.setPosition(pos)

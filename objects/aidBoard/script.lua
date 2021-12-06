@@ -270,19 +270,37 @@ function flipExploreCard()
         broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
         broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
         return
-    elseif #objs > 1 or not objs[1].is_face_down then
-        -- already have a faceup card
-        return
     end
-    if objs[1].type == "Deck" then
-        objs[1].takeObject({
-            position = objs[1].getPosition() + Vector(0,.5,0),
+
+    local deck = nil
+    local offset = Vector(0, .5, 0)
+    for _,obj in pairs(objs) do
+        if obj.type == "Deck" then
+            deck = obj
+        elseif obj.type == "Card" and obj.is_face_down then
+            if deck == nil then
+                deck = obj
+            end
+        elseif obj.type == "Card" then
+            if obj.getLock() then
+                obj.setLock(false)
+                offset = offset + Vector(0, 0, -1)
+            else
+                return
+            end
+        end
+    end
+
+    if deck.type == "Deck" then
+        deck.takeObject({
+            position = deck.getPosition() + offset,
             flip = true,
             callback_function = removeSpecial,
         })
-    elseif objs[1].type == "Card" then
-        objs[1].flip()
-        removeSpecial(objs[1])
+    elseif deck.type == "Card" then
+        deck.setRotationSmooth(Vector(0, 180, 0))
+        deck.setPosition(deck.getPosition() + offset)
+        removeSpecial(deck)
     end
 end
 
@@ -290,23 +308,21 @@ scanLoopTable = {
     Build2 = {
         sourceGUID = "6bc964",
         origin = Vector(-0.23,0.09,0.42),
-        faceDown = false,
     },
     Ravage = {
         origin = Vector(-0.203,0.09,2.1),
-        faceDown = false,
     },
     Build = {
         origin = Vector(-0.715,0.09,2.1),
-        faceDown = false,
     },
     Explore = {
         origin = Vector(-1.23,0.09,2.1),
-        faceDown = false,
     },
 }
 
 function advanceInvaderCards()
+    local prevOffset = Vector(0, 0, 0)
+    local currentOffset = Vector(0, 0, 0)
     for i,v in pairs(scanLoopTable) do
         local source = self
         if v.sourceGUID ~= nil then
@@ -325,30 +341,38 @@ function advanceInvaderCards()
             for _,hit in pairs(hits) do
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
-            for _,hit in pairs(hitObjects) do
-                if hit.type == "Card" and hit.is_face_down == v.faceDown then
-                    if i == "Build2" then
-                        hit.setRotation(Vector(0,90,0))
-                        hit.setPositionSmooth(discard)
-                    elseif i == "Ravage" then
-                        local build2 = UI.getAttribute("panelBuild2","active")
-                        if not build2 or build2 == "false" or build2 == "False" then
+            for depth,hit in pairs(hitObjects) do
+                if hit.type == "Card" and not hit.is_face_down then
+                    if hit.getLock() then
+                        hit.setLock(false)
+                        hit.setPositionSmooth(hit.getPosition() + Vector(0, 0, 1) * (depth - 1))
+                        currentOffset = currentOffset + Vector(0, 0, 1)
+                    else
+                        if i == "Build2" then
                             hit.setRotation(Vector(0,90,0))
                             hit.setPositionSmooth(discard)
-                        else
-                            source = getObjectFromGUID(scanLoopTable["Build2"].sourceGUID)
-                            local nextO = source.positionToWorld(scanLoopTable["Build2"].origin)
-                            hit.setPositionSmooth(Vector(nextO[1],nextO[2]+0.2,hit.getPosition().z))
+                        elseif i == "Ravage" then
+                            local build2 = UI.getAttribute("panelBuild2","active")
+                            if not build2 or build2 == "false" or build2 == "False" then
+                                hit.setRotation(Vector(0,90,0))
+                                hit.setPositionSmooth(discard)
+                            else
+                                source = getObjectFromGUID(scanLoopTable["Build2"].sourceGUID)
+                                local nextO = source.positionToWorld(scanLoopTable["Build2"].origin)
+                                hit.setPositionSmooth(Vector(nextO[1],nextO[2]+0.3,hit.getPosition().z)+currentOffset+prevOffset)
+                            end
+                        elseif i == "Build" then
+                            local nextO = source.positionToWorld(scanLoopTable["Ravage"].origin)
+                            hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y+0.1,hit.getPosition().z)+currentOffset+prevOffset)
+                        elseif i == "Explore" then
+                            local nextO = source.positionToWorld(scanLoopTable["Build"].origin)
+                            hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y+0.1,hit.getPosition().z)+currentOffset+prevOffset)
                         end
-                    elseif i == "Build" then
-                        local nextO = source.positionToWorld(scanLoopTable["Ravage"].origin)
-                        hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y,hit.getPosition().z))
-                    elseif i == "Explore" then
-                        local nextO = source.positionToWorld(scanLoopTable["Build"].origin)
-                        hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y,hit.getPosition().z))
                     end
                 end
             end
+            prevOffset = currentOffset * -1
+            currentOffset = Vector(0, 0, 0)
         end
         ::continueAdvance::
     end
@@ -379,7 +403,7 @@ function aidPanelScanLoop()
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
             for _,hit in pairs(hitObjects) do
-                if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
+                if hit.type == "Card" and not hit.is_face_down and hit.hasTag("Invader Card") then
                     if hit.loading_custom then
                         -- you can't access script for objects not loaded, so wait for next iteration of loop
                         return

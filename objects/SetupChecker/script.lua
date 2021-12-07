@@ -1539,7 +1539,7 @@ function gainSpirit(player)
             count = count + 1
             local label = spirit.getName()
             if aspect ~= nil and aspect ~= "" then
-                label = label.."-"..aspect
+                label = label.." - "..aspect
             end
             obj.createButton({
                 click_function = "pickSpirit" .. i,
@@ -1550,7 +1550,7 @@ function gainSpirit(player)
                 scale = Vector(0.1,0.1,0.1),
                 width = 4850,
                 height = 600,
-                font_size = 290,
+                font_size = 275,
             })
         end
     end
@@ -1624,7 +1624,7 @@ function replaceSpirit(obj, index, color)
 end
 function pickSpirit(obj, index, color)
     local name = obj.getButtons()[index+1].label
-    local start,_ = string.find(name, "-")
+    local start,_ = string.find(name, " %- ")
     if start ~= nil then
         name = string.sub(name, 1, start-1)
     end
@@ -1717,7 +1717,7 @@ function removeSpirit(params)
                 if buttons ~= nil then
                     for index,button in pairs(buttons) do
                         local label = button.label
-                        local start,_ = string.find(label, "-")
+                        local start,_ = string.find(label, " %- ")
                         if start ~= nil then
                             label = string.sub(label, 1, start-1)
                         end

@@ -5189,21 +5189,19 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     for _, obj in ipairs(objs) do
                         obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
+                        if obj.getDecals() then
+                            makeSacredSite(obj)
+                        end
                         local originalState = obj.getStateId()
-                        if obj.getStateId() == 1 then
+                        if originalState == 1 then
                             obj = obj.setState(2)
                         else
-                            if obj.getDecals() then
-                                makeSacredSite(obj)
-                            end
                             obj = obj.setState(1)
                         end
                         obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
-                        if originalState == 1 then
-                            if obj.getDecals() then
-                                makeSacredSite(obj)
-                            end
+                        if obj.getDecals() then
+                            makeSacredSite(obj)
                         end
                         _ = obj.setState(originalState)
                     end

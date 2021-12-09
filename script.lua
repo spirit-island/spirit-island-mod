@@ -250,6 +250,8 @@ function makeSacredSite(obj)
         url = "http://cloud-3.steamusercontent.com/ugc/1752434562676883074/3419998A3044C614DBAEDC710658F3A4CB7D8CF3/"
     elseif color == "Orange" then
         url = "http://cloud-3.steamusercontent.com/ugc/1752434562676884361/85EE264FD32632A9DD3828EA9538FDBC4F2FBC22/"
+    else
+        return
     end
     obj.setDecals({
         {

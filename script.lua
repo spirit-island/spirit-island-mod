@@ -1788,7 +1788,7 @@ end
 function SetupBlightCard()
     local cardsSetup = 0
     local function bncBlightCardOptions(deck, callback)
-        if SetupChecker.getVar("exploratoryAid") and expansions["Branch & Claw"] then
+        if SetupChecker.getVar("exploratoryAid") then
             deck.takeObject({
                 guid = "bf66eb",
                 callback_function = function(obj)
@@ -1808,22 +1808,26 @@ function SetupBlightCard()
         end
     end
     if SetupChecker.getVar("optionalBlightCard") then
-        local grabbedDeck = false
         local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
         blightDeck.shuffle()
-        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
-            grabbedDeck = true
-            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
-        else
+
+        if expansions["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
             bncBlightCardOptions(blightDeck)
-        end
-        if not grabbedDeck then
-            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+        else
+            cardsSetup = cardsSetup + 1
         end
 
         Wait.condition(function()
-            grabBlightCard(true)
-        end, function() return cardsSetup == 1 and #getObjectFromGUID("b38ea8").getObjects() == 1 end)
+            local grabbedDeck = false
+            if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+                grabbedDeck = true
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
+            end
+            if not grabbedDeck then
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+            end
+            Wait.condition(function() grabBlightCard(true) end, function() return #getObjectFromGUID("b38ea8").getObjects() == 1 end)
+        end, function() return cardsSetup == 1 end)
     else
         blightedIsland = true
     end
@@ -2632,30 +2636,31 @@ function SetupEventDeck()
         end, function() return not bncDeck.loading_custom end)
     end
 
-    local grabbedDeck = false
-    if events["Branch & Claw"] then
-        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
-            grabbedDeck = true
-            SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
-        else
-            bncEventOptions(deck)
-        end
+    if events["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
+        bncEventOptions(deck)
     else
-        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
-            grabbedDeck = true
-        end
         cardsSetup = cardsSetup + 1
     end
-    if not grabbedDeck then
-        SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), nil)
-    end
-    if usingEvents() then
-        Wait.condition(function()
+
+    Wait.condition(function()
+        local grabbedDeck = false
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+            if events["Branch & Claw"] then
+                SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
+            end
+        end
+        if not grabbedDeck then
+            SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), nil)
+        end
+        if usingEvents() then
+            Wait.condition(function()
+                stagesSetup = stagesSetup + 1
+            end, function() return #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
+        else
             stagesSetup = stagesSetup + 1
-        end, function() return cardsSetup == 1 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
-    else
-        stagesSetup = stagesSetup + 1
-    end
+        end
+    end, function() return cardsSetup == 1 end)
     return 1
 end
 ----- Map Section

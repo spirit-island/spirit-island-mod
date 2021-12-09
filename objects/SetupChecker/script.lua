@@ -65,7 +65,6 @@ optionalBoardPairings = true
 optionalThematicRebellion = false
 optionalEngland6 = true
 optionalThematicRedo = false
-optionalLegacyKeybindings = false
 optionalScaleBoard = true -- not currently hooked up into UI
 
 exploratoryVOTD = false
@@ -110,7 +109,6 @@ function onSave()
     data_table.variant.thematicRebellion = optionalThematicRebellion
     data_table.variant.england6 = optionalEngland6
     data_table.variant.thematicRedo = optionalThematicRedo
-    data_table.variant.legacyKeybindings = optionalLegacyKeybindings
 
     data_table.exploratory = {}
     data_table.exploratory.votd = exploratoryVOTD
@@ -173,12 +171,6 @@ function onLoad(saved_data)
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
         optionalEngland6 = loaded_data.variant.england6
         optionalThematicRedo = loaded_data.variant.thematicRedo
-        -- This will get flipped by toggleLegacyKeybindings()
-        optionalLegacyKeybindings = loaded_data.variant.legacyKeybindings
-        if optionalLegacyKeybindings then
-            optionalLegacyKeybindings = not optionalLegacyKeybindings
-            toggleLegacyKeybindings()
-        end
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan
@@ -994,9 +986,6 @@ function loadConfig(config)
                 end
             end
         end
-        if config.variant.legacyKeybindings ~= nil then
-            optionalLegacyKeybindings = config.variant.legacyKeybindings
-        end
     end
     if config.exploratory then
         if config.exploratory.votd ~= nil then
@@ -1810,33 +1799,6 @@ function toggleCarpetRedo()
     else
         seaTile.setState(1)
     end
-end
-function toggleLegacyKeybindings()
-    optionalLegacyKeybindings = not optionalLegacyKeybindings
-    local pieces = Global.getTable("Pieces")
-    if optionalLegacyKeybindings then
-        local piece = pieces[9]
-        pieces[9] = pieces[8]
-        pieces[8] = pieces[7]
-        pieces[7] = pieces[6]
-        pieces[6] = piece
-    else
-        local piece = pieces[6]
-        pieces[6] = pieces[7]
-        pieces[7] = pieces[8]
-        pieces[8] = pieces[9]
-        pieces[9] = piece
-    end
-
-    local notes = "\n\n\n\n\n\n\n\n\n\n\nSpawn Objects:"
-    for i=1,9 do
-        notes = notes.."\nNum "..i.." - "..pieces[i]
-    end
-    notes = notes.."\nNum 0 - "..pieces[10].."\n\nFor more keybindings:\nOptions -> Game Keys"
-    Notes.setNotes(notes)
-
-    Global.setTable("Pieces", pieces)
-    self.UI.setAttribute("legacyKeybindings", "isOn", optionalLegacyKeybindings)
 end
 
 function toggleExploratoryAll()

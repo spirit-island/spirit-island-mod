@@ -216,9 +216,6 @@
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="carpetRedo" isOn="true" onValueChanged="toggleCarpetRedo" tooltip="An alternate appeareance for the ocean tile">Use Thematic Ocean Playmat</Toggle></Cell>
             </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="legacyKeybindings" onValueChanged="toggleLegacyKeybindings" tooltip="Original keybindings used from BoneWhite's mod">Use Legacy Keybindings</Toggle></Cell>
-            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

@@ -237,7 +237,7 @@ function onObjectEnterContainer(container, object)
 end
 function makeSacredSite(obj)
     local color = string.sub(obj.getName(),1,-12)
-    local url = ""
+    local url
     if color == "Red" then
         url = "http://cloud-3.steamusercontent.com/ugc/1752434562676874388/C51FB839BC19E2E94CE837708F00B462DAC1C89D/"
     elseif color == "Purple" then

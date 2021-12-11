@@ -6,6 +6,7 @@ reminderSetup = true
 mapSetup = true
 hasUI = true
 hasBroadcast = true
+exploratory = false
 
 function ReminderSetup(params)
     local reminderTiles = {}
@@ -42,6 +43,11 @@ function AdversaryUI(params)
         ui.effects[5] = {}
         ui.effects[5].name = "Mining Rush"
         ui.effects[5].tooltip = "When Ravaging adds at least 1 Blight to a land,\nadd 1 Town to an adjacent land without Town/City.\nCascading Blight does not cause this effect."
+    end
+    if exploratory and params.level >= 7 then
+        ui.effects[7] = {}
+        ui.effects[7].name = "Royal Focus"
+        ui.effects[7].tooltip = "When an Invader Card is discarded\nduring Advance Invader Cards, On\nEach Board: add 1 Town to the\nmatching land with the fewest Invaders."
     end
     return ui
 end

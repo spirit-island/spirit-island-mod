@@ -71,6 +71,7 @@ exploratoryVOTD = false
 exploratoryBODAN = false
 exploratoryWar = false
 exploratoryAid = false
+exploratorySweden = false
 
 playtestExpansion = "None"
 playtestFear = "0"
@@ -115,6 +116,7 @@ function onSave()
     data_table.exploratory.bodan = exploratoryBODAN
     data_table.exploratory.war = exploratoryWar
     data_table.exploratory.aid = exploratoryAid
+    data_table.exploratory.sweden = exploratorySweden
 
     data_table.playtest = {}
     data_table.playtest.expansion = playtestExpansion
@@ -176,6 +178,7 @@ function onLoad(saved_data)
         exploratoryBODAN = loaded_data.exploratory.bodan
         exploratoryWar = loaded_data.exploratory.war
         exploratoryAid = loaded_data.exploratory.aid
+        exploratorySweden = loaded_data.exploratory.sweden
 
         playtestExpansion = loaded_data.playtest.expansion
         playtestFear = loaded_data.playtest.fear
@@ -212,6 +215,9 @@ function onLoad(saved_data)
         end
         numScenarios = count
 
+        setSlaveRebellion(optionalThematicRebellion, not setupStarted)
+        setEngland6(optionalEngland6, not setupStarted, true)
+        setSweden(exploratorySweden, not setupStarted, true)
         if not setupStarted then
             self.UI.setAttribute("variant", "isOn", tostring(loaded_data.toggle.variant))
             self.UI.setAttribute("exploratory", "isOn", tostring(loaded_data.toggle.exploratory))
@@ -228,20 +234,6 @@ function onLoad(saved_data)
             self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
             self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
-            local adversary = getObjectFromGUID(adversaries.France)
-            if adversary ~= nil then
-                adversary.setVar("thematicRebellion", optionalThematicRebellion)
-            end
-            self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
-            adversary = getObjectFromGUID(adversaries.England)
-            if adversary ~= nil then
-                if optionalEngland6 then
-                    adversary.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
-                else
-                    adversary.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
-                end
-            end
-            self.UI.setAttribute("england6", "isOn", optionalEngland6)
             self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
             self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
 
@@ -591,11 +583,7 @@ function updateLeadingAdversary(value, updateUI)
         randomAdversary = false
         checkRandomDifficulty(false)
         if updateUI and card ~= nil then
-            local max = #card.getTable("difficulty")
-            self.UI.setAttribute("leadingLevelSlider", "maxValue", max)
-            if max < Global.getVar("adversaryLevel") then
-                updateLeadingLevel(max, updateUI)
-            end
+            updateLeadingAdversarySliderMax(card, updateUI)
         end
     end
     if value == "None" or value == "Random" then
@@ -610,6 +598,13 @@ function updateLeadingAdversary(value, updateUI)
     if updateUI then
         -- Wait for difficulty to update
         Wait.frames(function() updateLeadingSelection(value) end, 1)
+    end
+end
+function updateLeadingAdversarySliderMax(card, updateUI)
+    local max = #card.getTable("difficulty")
+    self.UI.setAttribute("leadingLevelSlider", "maxValue", max)
+    if max < Global.getVar("adversaryLevel") then
+        updateLeadingLevel(max, updateUI)
     end
 end
 function updateLeadingSelection(name)
@@ -629,11 +624,7 @@ function updateSupportingAdversary(value, updateUI)
         randomAdversary2 = false
         checkRandomDifficulty(false)
         if updateUI and card ~= nil then
-            local max = #card.getTable("difficulty")
-            self.UI.setAttribute("supportingLevelSlider", "maxValue", max)
-            if max < Global.getVar("adversaryLevel2") then
-                updateSupportingLevel(max, updateUI)
-            end
+            updateSupportingAdversarySliderMax(card, updateUI)
         end
     end
     if value == "None" or value == "Random" then
@@ -648,6 +639,13 @@ function updateSupportingAdversary(value, updateUI)
     if updateUI then
         -- Wait for difficulty to update
         Wait.frames(function() updateSupportingSelection(value) end, 1)
+    end
+end
+function updateSupportingAdversarySliderMax(card, updateUI)
+    local max = #card.getTable("difficulty")
+    self.UI.setAttribute("supportingLevelSlider", "maxValue", max)
+    if max < Global.getVar("adversaryLevel2") then
+        updateSupportingLevel(max, updateUI)
     end
 end
 function updateSupportingSelection(name)
@@ -1016,6 +1014,9 @@ function loadConfig(config)
         end
         if config.exploratory.aid ~= nil then
             exploratoryAid = config.exploratory.aid
+        end
+        if config.exploratory.sweden ~= nil then
+            exploratorySweden = config.exploratory.sweden
         end
     end
     if config.playtest then
@@ -1785,15 +1786,23 @@ function toggleDigitalEvents()
     self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
 end
 function toggleSlaveRebellion()
-    optionalThematicRebellion = not optionalThematicRebellion
+    setSlaveRebellion(not optionalThematicRebellion, true)
+end
+function setSlaveRebellion(bool, updateUI)
+    optionalThematicRebellion = bool
     local obj = getObjectFromGUID(adversaries.France)
     if obj ~= nil then
         obj.setVar("thematicRebellion", optionalThematicRebellion)
     end
-    self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
+    if updateUI then
+        self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
+    end
 end
 function toggleEngland6()
-    optionalEngland6 = not optionalEngland6
+    setEngland6(not optionalEngland6, true, false)
+end
+function setEngland6(bool, updateUI, loading)
+    optionalEngland6 = bool
     local obj = getObjectFromGUID(adversaries.England)
     if obj ~= nil then
         if optionalEngland6 then
@@ -1801,9 +1810,13 @@ function toggleEngland6()
         else
             obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
         end
-        updateDifficulty()
+        if updateUI and not loading then
+            updateDifficulty()
+        end
     end
-    self.UI.setAttribute("england6", "isOn", optionalEngland6)
+    if updateUI then
+        self.UI.setAttribute("england6", "isOn", optionalEngland6)
+    end
 end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
@@ -1826,12 +1839,14 @@ function toggleExploratoryAll()
         if exploratoryBODAN then toggleBODAN() end
         if exploratoryWar then toggleWar() end
         if exploratoryAid then toggleAid() end
+        if exploratorySweden then toggleSweden() end
     else
         checked = "true"
         if not exploratoryVOTD then toggleVOTD() end
         if not exploratoryBODAN then toggleBODAN() end
         if not exploratoryWar then toggleWar() end
         if not exploratoryAid then toggleAid() end
+        if not exploratorySweden then toggleSweden() end
     end
     self.UI.setAttribute("exploratoryAll", "isOn", checked)
 end
@@ -1850,6 +1865,41 @@ end
 function toggleAid()
     exploratoryAid = not exploratoryAid
     self.UI.setAttribute("aid", "isOn", exploratoryAid)
+end
+function toggleSweden()
+    setSweden(not exploratorySweden, true, false)
+end
+function setSweden(bool, updateUI, loading)
+    exploratorySweden = bool
+    local obj = getObjectFromGUID(adversaries.Sweden)
+    if obj ~= nil then
+        if exploratorySweden then
+            obj.setTable("difficulty", {[0] = 1, 2, 3, 5, 6, 7, 8, 10})
+            obj.setTable("fearCards", {[0] = {0,0,0}, {0,0,0}, {0,1,0}, {0,1,0}, {0,1,1}, {1,1,1}, {1,1,2}, {1,2,2}})
+            if Global.getVar("adversaryCard") == obj then
+                updateLeadingAdversarySliderMax(obj, updateUI)
+            end
+            if Global.getVar("adversaryCard2") == obj then
+                updateSupportingAdversarySliderMax(obj, updateUI)
+            end
+        else
+            obj.setTable("difficulty", {[0] = 1, 2, 3, 5, 6, 7, 8})
+            obj.setTable("fearCards", {[0] = {0,0,0}, {0,0,0}, {0,1,0}, {0,1,0}, {0,1,1}, {1,1,1}, {1,1,2}})
+            if Global.getVar("adversaryCard") == obj then
+                updateLeadingAdversarySliderMax(obj, updateUI)
+            end
+            if Global.getVar("adversaryCard2") == obj then
+                updateSupportingAdversarySliderMax(obj, updateUI)
+            end
+        end
+        obj.setVar("exploratory", exploratorySweden)
+        if updateUI and not loading then
+            updateDifficulty()
+        end
+    end
+    if updateUI then
+        self.UI.setAttribute("sweden", "isOn", exploratorySweden)
+    end
 end
 
 function wt(some)

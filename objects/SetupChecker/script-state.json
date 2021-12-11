@@ -40,6 +40,7 @@
   "exploratory": {
     "aid": false,
     "bodan": false,
+    "sweden": false,
     "votd": false,
     "war": false
   },

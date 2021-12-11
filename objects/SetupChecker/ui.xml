@@ -219,7 +219,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3835 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3770 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -239,6 +239,9 @@
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="aid" onValueChanged="toggleAid" tooltip="Spirits either get elements&#xA;or effect each turn">Aid from Lesser Spirits</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="sweden" onValueChanged="toggleSweden" tooltip="Sweden now has an additional level">Sweden 7</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

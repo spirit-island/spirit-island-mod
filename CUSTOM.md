@@ -182,24 +182,28 @@ This section is meant for users who are familiar with both the tts mod and progr
         - `escalation`
           - `tooltip`: **string** - text of adversary escalation, use \\n to add line breaks
           - `random`: **boolean** - whether random terrain button needs to appear for adversary (only exists for secondary adversary) (e.g. Sweden)
-        - `one`
+        - `one` DEPRECATED
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
-        - `two`
+        - `two` DEPRECATED
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
-        - `three`
+        - `three` DEPRECATED
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
-        - `four`
+        - `four` DEPRECATED
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
-        - `five`
+        - `five` DEPRECATED
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
-        - `six`
+        - `six` DEPRECATED
           - `name`: **string** - name of adversary effect
           - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
+        - `effects` **table** - contains data for all adversary effects
+          - `[level]` **table** - level of adversary effect
+            - `name`: **string** - name of adversary effect
+            - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
         - `invader`
           - `ravage`: **boolean** - reminder that adversary has effect that triggers during this invader step
           - `build`: **boolean** - reminder that adversary has effect that triggers during this invader step

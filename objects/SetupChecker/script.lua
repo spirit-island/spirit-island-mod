@@ -886,11 +886,12 @@ function startGame()
     end
     if config ~= nil then
         loadConfig(config)
-    else
-        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
     end
     if not Global.call("CanSetupGame") then
         return
+    end
+    if config == nil then
+        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
     end
     setupStarted = true
 

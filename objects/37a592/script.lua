@@ -65,35 +65,36 @@ end
 function AdversaryUI(params)
     local ui = {}
 
-    ui.invader = {}
-
     ui.loss = {}
     ui.loss.tooltip = "If the number of Coastal lands\nwith City is ever greater than\n(2 x # boards), the Invaders win."
 
     ui.escalation = {}
     ui.escalation.tooltip = "On the single board with the most Coastal\nTown/City, add 1 Town to the N lands\nwith the fewest Town (N = # players)."
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Trading Port"
-        ui.one.tooltip = "After Setup, in Coastal lands, Explore\nCards add 1 Town instead of 1 Explorer.\n\"Coastal Lands\" Invader Cards do this\nfor maximum 2 lands per board."
+        ui.effects[1] = {}
+        ui.effects[1].name = "Trading Port"
+        ui.effects[1].tooltip = "After Setup, in Coastal lands, Explore\nCards add 1 Town instead of 1 Explorer.\n\"Coastal Lands\" Invader Cards do this\nfor maximum 2 lands per board."
         ui.invader.explore = true
     end
     if params.level >= 3 then
-        ui.three = {}
-        ui.three.name = "Chart the Coastline"
-        ui.three.tooltip = "In Coastal lands, Build Cards\naffect lands without Invaders, so\nlong as there is an adjacent City."
+        ui.effects[3] = {}
+        ui.effects[3].name = "Chart the Coastline"
+        ui.effects[3].tooltip = "In Coastal lands, Build Cards\naffect lands without Invaders, so\nlong as there is an adjacent City."
         ui.invader.build = true
     end
     if params.level >= 5 then
-        ui.five = {}
-        ui.five.name = "Runoff and Bilgewater"
-        ui.five.tooltip = "After a Ravage Action adds Blight to a\nCoastal land, add 1 Blight to that board's\nOcean (without cascading). Treat the\nOcean as a Coastal Wetland for this rule\nand for Blight removal/movement."
+        ui.effects[5] = {}
+        ui.effects[5].name = "Runoff and Bilgewater"
+        ui.effects[5].tooltip = "After a Ravage Action adds Blight to a\nCoastal land, add 1 Blight to that board's\nOcean (without cascading). Treat the\nOcean as a Coastal Wetland for this rule\nand for Blight removal/movement."
         ui.invader.ravage = true
     end
     if params.level >= 6 then
-        ui.six = {}
-        ui.six.name = "Exports Fuel Inward Growth"
-        ui.six.tooltip = "After the Ravage step, add 1 Town to\neach Inland land that matches a Ravage\ncard and is within 1 range of Town/City."
+        ui.effects[6] = {}
+        ui.effects[6].name = "Exports Fuel Inward Growth"
+        ui.effects[6].tooltip = "After the Ravage step, add 1 Town to\neach Inland land that matches a Ravage\ncard and is within 1 range of Town/City."
     end
     return ui
 end

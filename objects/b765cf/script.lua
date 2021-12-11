@@ -122,38 +122,39 @@ end
 function AdversaryUI(params)
     local ui = {}
 
-    ui.invader = {}
-
     ui.loss = {}
     ui.loss.tooltip = "If 7 or more Towns and/or Cities are\never in a single land, the Invaders win"
 
     ui.escalation = {}
     ui.escalation.tooltip = "On each board with a Town/City, Build\nin the land with the most Towns/Cities."
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Indentured Servants Earn Land"
-        ui.one.tooltip = "Invader Build actions affect lands without\nInvaders, if they are adjacent to at least\n2 Town/City before the Build Action."
+        ui.effects[1] = {}
+        ui.effects[1].name = "Indentured Servants Earn Land"
+        ui.effects[1].tooltip = "Invader Build actions affect lands without\nInvaders, if they are adjacent to at least\n2 Town/City before the Build Action."
         ui.invader.build = true
     end
     if params.level == 3 then
-        ui.three = {}
-        ui.three.name = "High Immigration (I)"
-        ui.three.tooltip = "Invaders take a Build action each Invader phase\nbefore Ravaging. Remove the tile when a Stage II\ncard slides onto it, putting that card in the discard."
+        ui.effects[3] = {}
+        ui.effects[3].name = "High Immigration (I)"
+        ui.effects[3].tooltip = "Invaders take a Build action each Invader phase\nbefore Ravaging. Remove the tile when a Stage II\ncard slides onto it, putting that card in the discard."
     end
     if params.level >= 4 then
-        ui.four = {}
-        ui.four.name = "High Immigration (full)"
-        ui.four.tooltip = "Invaders take a Build action each\nInvader phase before Ravaging."
+        ui.effects[4] = {}
+        ui.effects[4].name = "High Immigration (full)"
+        ui.effects[4].tooltip = "Invaders take a Build action each\nInvader phase before Ravaging."
     end
     if params.level >= 5 then
-        ui.five = {}
-        ui.five.name = "Local Autonomy"
-        ui.five.tooltip = "Town/City have +1 Health."
+        ui.effects[5] = {}
+        ui.effects[5].name = "Local Autonomy"
+        ui.effects[5].tooltip = "Town/City have +1 Health."
     end
     if params.level >= 6 then
-        ui.six = {}
-        ui.six.name = "Independent Resolve"
-        ui.six.tooltip = "During any Invader Phase where you\nresolve no Fear Cards, perform the\nBuild from High Immigration twice."
+        ui.effects[6] = {}
+        ui.effects[6].name = "Independent Resolve"
+        ui.effects[6].tooltip = "During any Invader Phase where you\nresolve no Fear Cards, perform the\nBuild from High Immigration twice."
     end
     return ui
 end

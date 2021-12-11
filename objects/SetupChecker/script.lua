@@ -586,9 +586,17 @@ function updateLeadingAdversary(value, updateUI)
         randomAdversary = true
         enableRandomDifficulty()
     else
-        Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
+        local card = getObjectFromGUID(adversaries[value])
+        Global.setVar("adversaryCard", card)
         randomAdversary = false
         checkRandomDifficulty(false)
+        if updateUI and card ~= nil then
+            local max = #card.getTable("difficulty")
+            self.UI.setAttribute("leadingLevelSlider", "maxValue", max)
+            if max < Global.getVar("adversaryLevel") then
+                updateLeadingLevel(max, updateUI)
+            end
+        end
     end
     if value == "None" or value == "Random" then
         updateLeadingLevel(0, updateUI)
@@ -616,9 +624,17 @@ function updateSupportingAdversary(value, updateUI)
         randomAdversary2 = true
         enableRandomDifficulty()
     else
-        Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
+        local card = getObjectFromGUID(adversaries[value])
+        Global.setVar("adversaryCard2", card)
         randomAdversary2 = false
         checkRandomDifficulty(false)
+        if updateUI and card ~= nil then
+            local max = #card.getTable("difficulty")
+            self.UI.setAttribute("supportingLevelSlider", "maxValue", max)
+            if max < Global.getVar("adversaryLevel2") then
+                updateSupportingLevel(max, updateUI)
+            end
+        end
     end
     if value == "None" or value == "Random" then
         updateSupportingLevel(0, updateUI)
@@ -1880,6 +1896,27 @@ function updateXml(updateFunctions)
     end
     self.UI.setXmlTable(t, {})
 end
+-- TODO: refactor to share code with updateXml above
+function updateGlobalXml(updateFunctions)
+    local function recurse(t)
+        local shouldRecurse = false
+        for _, f in pairs(updateFunctions) do
+            if f(t) then
+                shouldRecurse = true
+            end
+        end
+        if shouldRecurse then
+            for _, v in pairs(t.children) do
+                recurse(v)
+            end
+        end
+    end
+    local t = Global.UI.getXmlTable()
+    for _,v in pairs(t) do
+        recurse(v)
+    end
+    Global.UI.setXmlTable(t, {})
+end
 function getXml(updateFunctions)
     local function recurse(t)
         local shouldRecurse = false
@@ -1986,6 +2023,36 @@ function removeToggle(id, value)
     end)
 end
 
+function updateAdversaryUI(params)
+    local adversaryCard = Global.getVar("adversaryCard")
+    local adversaryCard2 = Global.getVar("adversaryCard2")
+    local funcList = {}
+    if adversaryCard ~= nil then
+        table.insert(funcList, addAdversaryRows("panelAdversaryHelper", #adversaryCard.getTable("difficulty")))
+    end
+    if adversaryCard2 ~= nil then
+        table.insert(funcList, addAdversaryRows("panelAdversary2Helper", #adversaryCard2.getTable("difficulty")))
+    end
+    if #funcList > 0 then
+        updateGlobalXml(funcList)
+    end
+    if params.callback ~= nil then
+        Wait.frames(function() Global.call(params.callback) end, 2)
+    end
+end
+function addAdversaryRows(id, levels)
+    return matchRecurse(id, function (t)
+        for i=1,levels do
+            table.insert(t.children, {
+                tag="Text",
+                value="",
+                attributes={id = "panelAdversaryLevel"..i, active="false", fontsize="16", alignment="UpperLeft", tooltipPosition="Left"},
+                children={},
+            })
+        end
+    end)
+end
+
 function indexTable(table, index)
     local i = 1
     for name,guid in pairs(table) do
@@ -2019,15 +2086,26 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     -- Requires two adversaries
     local leadingAdversary = math.random(1, numAdversaries)
     config.adversary = indexTable(adversaries, leadingAdversary)
-    local leadingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel = leadingAdversaryLevel % 7
+    local adversaryLevelMax = #getObjectFromGUID(adversaries[config.adversary]).getTable("difficulty")
+    local fact = 1
+    for i=2,adversaryLevelMax+1 do
+        fact = fact * i
+    end
+    local leadingAdversaryLevel = math.random(0, fact)
+    config.adversaryLevel = leadingAdversaryLevel % (adversaryLevelMax + 1)
+
     local supportingAdversary = math.random(1, numAdversaries - 1)
     if supportingAdversary >= leadingAdversary then
         supportingAdversary = supportingAdversary + 1
     end
     config.adversary2 = indexTable(adversaries, supportingAdversary)
-    local supportingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel2 = supportingAdversaryLevel % 7
+    local adversaryLevel2Max = #getObjectFromGUID(adversaries[config.adversary2]).getTable("difficulty")
+    fact = 1
+    for i=2,adversaryLevel2Max+1 do
+        fact = fact * i
+    end
+    local supportingAdversaryLevel = math.random(0, fact)
+    config.adversaryLevel2 = supportingAdversaryLevel % (adversaryLevel2Max + 1)
 
     -- 2/3 chance to get scenario
     local useScenario = math.random(1, 3)
@@ -2183,9 +2261,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     local tiers = { {7, 10}, {10, 13}, {13, 16} }
     local difficulty = difficultyCheck(config)
 
-    local adversaryLevelMax = 6
     local adversaryLevelMin = 0
-    local adversaryLevel2Max = 6
     local adversaryLevel2Min = 0
     if prevTierConfig ~= nil then
         adversaryLevelMin = prevTierConfig.adversaryLevel

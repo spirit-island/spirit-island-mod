@@ -70,8 +70,6 @@ function AdversaryUI(params)
     supporting = params.supporting
     local ui = {}
 
-    ui.invader = {}
-
     ui.loss = {}
     ui.loss.tooltip = "Track how many Blight came off the\nBlight Card during Ravages that do 8+\nDamage to the land. If that number\never exceeds players, the Invaders win."
     ui.loss.counter = {}
@@ -82,31 +80,34 @@ function AdversaryUI(params)
 
     ui.escalation = {}
     ui.escalation.tooltip = "After Exploring: On each board with\n4 or fewer Blight, add 1 Town to a\nland without Town/Blight. On each board\nwith 2 or fewer Blight, do so again."
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Migratory Herders"
-        ui.one.tooltip = "After the normal Build Step: In each\nland matching a Build card, Gather\n1 Town from a land not matching\na Build Card. (In board/land order.)"
+        ui.effects[1] = {}
+        ui.effects[1].name = "Migratory Herders"
+        ui.effects[1].tooltip = "After the normal Build Step: In each\nland matching a Build card, Gather\n1 Town from a land not matching\na Build Card. (In board/land order.)"
         ui.invader.build = true
     end
     if params.level >= 2 then
-        ui.two = {}
-        ui.two.name = "More Rural Than Urban"
-        ui.two.tooltip = "During Play, when Invaders\nwould Build 1 City in an Inland\nland, they instead Build 2 Town."
+        ui.effects[2] = {}
+        ui.effects[2].name = "More Rural Than Urban"
+        ui.effects[2].tooltip = "During Play, when Invaders\nwould Build 1 City in an Inland\nland, they instead Build 2 Town."
     end
     if params.level >= 4 then
-        ui.four = {}
-        ui.four.name = "Herds Thrive in Verdant Lands"
-        ui.four.tooltip = "Town in lands without Blight are Durable:\nthey have +2 Health, and \"Destroy Town\"\neffects instead deal 2 Damage (to Town\nonly) per Town they could Destroy.\n(\"Destroy all Town\" works normally.)"
+        ui.effects[4] = {}
+        ui.effects[4].name = "Herds Thrive in Verdant Lands"
+        ui.effects[4].tooltip = "Town in lands without Blight are Durable:\nthey have +2 Health, and \"Destroy Town\"\neffects instead deal 2 Damage (to Town\nonly) per Town they could Destroy.\n(\"Destroy all Town\" works normally.)"
     end
     if params.level >= 5 then
-        ui.five = {}
-        ui.five.name = "Wave of Immigration"
-        ui.five.tooltip = "When the Habsburg Reminder Card is\nrevealed, on each board, add 1 City to a\nCoastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
+        ui.effects[5] = {}
+        ui.effects[5].name = "Wave of Immigration"
+        ui.effects[5].tooltip = "When the Habsburg Reminder Card is\nrevealed, on each board, add 1 City to a\nCoastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
     end
     if params.level >= 6 then
-        ui.six = {}
-        ui.six.name = "Far-Flung Herds"
-        ui.six.tooltip = "Ravages do +2 Damage (total) if any\nadjacent lands have Town. (This does not\ncause lands without Invaders to Ravage.)"
+        ui.effects[6] = {}
+        ui.effects[6].name = "Far-Flung Herds"
+        ui.effects[6].tooltip = "Ravages do +2 Damage (total) if any\nadjacent lands have Town. (This does not\ncause lands without Invaders to Ravage.)"
         ui.invader.ravage = true
     end
     return ui

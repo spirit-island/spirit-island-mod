@@ -19,28 +19,29 @@ end
 function AdversaryUI(params)
     local ui = {}
 
-    ui.invader = {}
-
     ui.escalation = {}
     ui.escalation.tooltip = "After Invaders Explore into each land this Phase,\nif that land has at least as many Invaders as\nDahan, replace 1 Dahan with 1 Town."
     if params.supporting then
         ui.escalation.random = true
     end
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Heavy Mining"
-        ui.one.tooltip = "If the Invaders do at least 6 Damage to the land\nduring Ravage, add an extra Blight. (The additional\nBlight does not destroy Presence or cause cascades.)"
+        ui.effects[1] = {}
+        ui.effects[1].name = "Heavy Mining"
+        ui.effects[1].tooltip = "If the Invaders do at least 6 Damage to the land\nduring Ravage, add an extra Blight. (The additional\nBlight does not destroy Presence or cause cascades.)"
         ui.invader.ravage = true
     end
     if params.level >= 3 then
-        ui.three = {}
-        ui.three.name = "Fine Steel for Tools and Guns"
-        ui.three.tooltip = "Town deal 3 Damage. City deal 5 Damage."
+        ui.effects[3] = {}
+        ui.effects[3].name = "Fine Steel for Tools and Guns"
+        ui.effects[3].tooltip = "Town deal 3 Damage. City deal 5 Damage."
     end
     if params.level >= 5 then
-        ui.five = {}
-        ui.five.name = "Mining Rush"
-        ui.five.tooltip = "When Ravaging adds at least 1 Blight to a land,\nadd 1 Town to an adjacent land without Town/City.\nCascading Blight does not cause this effect."
+        ui.effects[5] = {}
+        ui.effects[5].name = "Mining Rush"
+        ui.effects[5].tooltip = "When Ravaging adds at least 1 Blight to a land,\nadd 1 Town to an adjacent land without Town/City.\nCascading Blight does not cause this effect."
     end
     return ui
 end

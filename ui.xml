@@ -140,9 +140,9 @@
     </HorizontalLayout>
     <Button id="exploreAdvance" width="84" height="24" rectAlignment="LowerRight" onClick="aidBoard/flipExploreCard" colors="clear|clear|clear|clear" />
 </Panel>
-<Panel id="panelAdversary" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 305">
-    <VerticalLayout>
-        <VerticalLayout id="panelAdversaryHelper">
+<Panel id="panelAdversary" recurse="panelAdversaryHelper panelAdversary2Helper" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 305">
+    <VerticalLayout recurse="panelAdversaryHelper panelAdversary2Helper">
+        <VerticalLayout id="panelAdversaryHelper" recurse="panelAdversaryHelper">
             <Text id="panelAdversaryName" fontsize="16" alignment="UpperLeft" fontStyle="Bold"></Text>
             <VerticalLayout id="panelAdversaryLoss" active="false">
                 <Text id="panelAdversaryLossText" fontsize="16" alignment="UpperLeft" tooltipPosition="Left">Additional Loss Condition</Text>
@@ -154,14 +154,8 @@
                 </HorizontalLayout>
             </VerticalLayout>
             <Text id="panelAdversaryEscalation" fontsize="16" alignment="UpperLeft" tooltipPosition="Left">Stage II Escalation</Text>
-            <Text id="panelAdversaryLevel1" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversaryLevel2" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversaryLevel3" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversaryLevel4" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversaryLevel5" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversaryLevel6" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
         </VerticalLayout>
-        <VerticalLayout id="panelAdversary2Helper" active="false">
+        <VerticalLayout id="panelAdversary2Helper" recurse="panelAdversary2Helper" active="false">
             <Text fontSize="4"></Text>
             <Text id="panelAdversary2Name" fontsize="16" alignment="UpperLeft" fontStyle="Bold"></Text>
             <VerticalLayout id="panelAdversary2Loss" active="false">
@@ -177,12 +171,6 @@
                 <Text id="panelAdversary2Escalation" fontsize="16" alignment="UpperLeft" tooltipPosition="Left">Stage III Escalation</Text>
                 <Button id="panelAdversary2EscalationRandom" onClick="randomTerrain" active="false" fontSize="12" textAlignment="MiddleCenter" minWidth="60">Random</Button>
             </HorizontalLayout>
-            <Text id="panelAdversary2Level1" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversary2Level2" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversary2Level3" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversary2Level4" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversary2Level5" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
-            <Text id="panelAdversary2Level6" active="false" fontsize="16" alignment="UpperLeft" tooltipPosition="Left"></Text>
         </VerticalLayout>
     </VerticalLayout>
 </Panel>

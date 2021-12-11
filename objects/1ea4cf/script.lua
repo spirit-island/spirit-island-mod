@@ -55,8 +55,6 @@ function AdversaryUI(params)
     supporting = params.supporting
     local ui = {}
 
-    ui.invader = {}
-
     ui.loss = {}
     ui.loss.tooltip = "Put Beasts Destroyed by Adversary\nrules on this panel. If there are\never more Beasts on this panel than\non the island, the Invaders win."
     ui.loss.counter = {}
@@ -71,26 +69,29 @@ function AdversaryUI(params)
 
     ui.escalation = {}
     ui.escalation.tooltip = "On each board: Add 2 Explorer (total)\namong land with Beasts. If you can't\ninstead add 2 Explorer among lands\nwith Beasts on a different board."
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Hunters Seek Shell and Hide"
-        ui.one.tooltip = "During Play, Explorer do\n+1 Damage. When Ravage\nadds Blight to a land\n(including cascades),\nDestroy 1 Beasts in that land."
+        ui.effects[1] = {}
+        ui.effects[1].name = "Hunters Seek Shell and Hide"
+        ui.effects[1].tooltip = "During Play, Explorer do\n+1 Damage. When Ravage\nadds Blight to a land\n(including cascades),\nDestroy 1 Beasts in that land."
         ui.invader.ravage = true
     end
     if params.level >= 2 then
-        ui.two = {}
-        ui.two.name = "A Sense for Impending Disaster"
-        ui.two.tooltip = "The first time each Action would\nDestroy Explorer: If possible,\n1 of those Explorer is instead\nPushed; 1 Fear when you do so."
+        ui.effects[2] = {}
+        ui.effects[2].name = "A Sense for Impending Disaster"
+        ui.effects[2].tooltip = "The first time each Action would\nDestroy Explorer: If possible,\n1 of those Explorer is instead\nPushed; 1 Fear when you do so."
     end
     if params.level >= 3 then
-        ui.three = {}
-        ui.three.name = "Competition Among Hunters"
-        ui.three.tooltip = "Ravage Cards also match lands\nwith 3 or more Explorer. (If the\nland already matched the Ravage\nCard, it still Ravages just once.)"
+        ui.effects[3] = {}
+        ui.effects[3].name = "Competition Among Hunters"
+        ui.effects[3].tooltip = "Ravage Cards also match lands\nwith 3 or more Explorer. (If the\nland already matched the Ravage\nCard, it still Ravages just once.)"
     end
     if params.level >= 6 then
-        ui.six = {}
-        ui.six.name = "Pressure for Fast Profit"
-        ui.six.tooltip = "After the Ravage Step of turn\n2+, on each board where it\nadded no Blight: In the land\nwith the most Explorer (min.\n1), add 1 Explorer and 1 Town."
+        ui.effects[6] = {}
+        ui.effects[6].name = "Pressure for Fast Profit"
+        ui.effects[6].tooltip = "After the Ravage Step of turn\n2+, on each board where it\nadded no Blight: In the land\nwith the most Explorer (min.\n1), add 1 Explorer and 1 Town."
     end
     return ui
 end

@@ -346,7 +346,7 @@ function ExportConfig()
         data.adversary = obj.getName()
         data.adversaryLevel = Global.getVar("adversaryLevel")
         -- If the island is not blighted increase adversary level by 1
-        if not blightedIsland and data.adversaryLevel < 6 then
+        if not blightedIsland and data.adversaryLevel < #obj.getTable("difficulty") then
             data.adversaryLevel = data.adversaryLevel + 1
         end
     else
@@ -358,7 +358,7 @@ function ExportConfig()
         data.adversary2 = obj.getName()
         data.adversaryLevel2 = Global.getVar("adversaryLevel2")
         -- If the island is not blighted increase adversary level by 1
-        if not blightedIsland and data.adversaryLevel2 < 6 then
+        if not blightedIsland and data.adversaryLevel2 < #obj.getTable("difficulty") then
             data.adversaryLevel2 = data.adversaryLevel2 + 1
         end
     else

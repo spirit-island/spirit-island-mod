@@ -207,6 +207,8 @@ function onObjectCollisionEnter(hit_object, collision_info)
                 cleanupObject({obj = collision_info.collision_object, fear = false})
             end
         end
+    elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
+        cleanupObject({obj = collision_info.collision_object, fear = true})
     end
     -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/770
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then

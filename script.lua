@@ -91,6 +91,7 @@ boardsSetup = 0
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
 wave = 1
+castDown = nil
 ------
 minorPowerDiscardZone = "55b275"
 majorPowerDiscardZone = "eaf864"

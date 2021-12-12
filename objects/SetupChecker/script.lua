@@ -981,10 +981,10 @@ function loadConfig(config)
             optionalBoardPairings = config.variant.boardPairings
         end
         if config.variant.thematicRebellion ~= nil then
-            optionalThematicRebellion = config.variant.thematicRebellion
+            setSlaveRebellion(config.variant.thematicRebellion, false)
         end
         if config.variant.england6 ~= nil then
-            optionalEngland6 = config.variant.england6
+            setEngland6(config.exploratory.england6, false, false)
         end
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
@@ -1016,7 +1016,7 @@ function loadConfig(config)
             exploratoryAid = config.exploratory.aid
         end
         if config.exploratory.sweden ~= nil then
-            exploratorySweden = config.exploratory.sweden
+            setSweden(config.exploratory.sweden, false, false)
         end
     end
     if config.playtest then

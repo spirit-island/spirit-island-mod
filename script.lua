@@ -82,6 +82,7 @@ onlyCleanupTimePasses = false
 objectsToCleanup = {}
 extraRandomBoard = nil
 gamekeys = {}
+noFear = false
 ------ Unsaved Config Data
 gamePaused = false
 yHeight = 0
@@ -352,6 +353,7 @@ function onSave()
         onlyCleanupTimePasses = onlyCleanupTimePasses,
         objectsToCleanup = objectsToCleanup,
         extraRandomBoard = extraRandomBoard,
+        noFear = noFear,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -564,6 +566,7 @@ function onLoad(saved_data)
         objectsToCleanup = loaded_data.objectsToCleanup
         extraRandomBoard = loaded_data.extraRandomBoard
         gamekeys = loaded_data.gamekeys
+        noFear = loaded_data.noFear
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -3066,6 +3069,7 @@ function timePasses()
     end
 end
 function timePassesCo()
+    noFear = false
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
@@ -3862,13 +3866,13 @@ function cleanupObject(params)
     elseif string.sub(params.obj.getName(),1,4) == "Town" then
         params.obj.setRotation(Vector(0,180,0))
         bag = townBag
-        if params.fear then
+        if params.fear and not noFear then
             aidBoard.call("addFear")
         end
     elseif string.sub(params.obj.getName(),1,4) == "City" then
         params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
-        if params.fear then
+        if params.fear and not noFear then
             aidBoard.call("addFear")
             aidBoard.call("addFear")
         end

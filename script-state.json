@@ -24,6 +24,7 @@
   "gamekeys": [],
   "gameStarted": false,
   "generatedFear": 0,
+  "noFear": false,
   "numBoards": 1,
   "numPlayers": 1,
   "objectsToCleanup": [],

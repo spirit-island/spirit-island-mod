@@ -3878,7 +3878,11 @@ function cleanupObject(params)
         end
     elseif params.obj.getName() == "Blight" then
         params.obj.setRotation(Vector(0,180,0))
-        bag = returnBlightBag
+        if params.fear then
+            bag = boxBlightBag
+        else
+            bag = returnBlightBag
+        end
     elseif params.obj.getName() == "Strife" then
         params.obj.setRotation(Vector(0,180,0))
         bag = strifeBag

@@ -32,7 +32,7 @@ function doSetup(params)
     if Global.getVar("numPlayers") <= 2 then
         count = 6
     end
-    if Global.call("getMapCount", {norm = true, them = true}) == 1 then
+    if Global.getVar("numBoards") == 1 then
         Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
     end
 

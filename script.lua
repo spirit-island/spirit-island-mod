@@ -3435,12 +3435,11 @@ end
 ----
 function getMapCount(params)
     local count = 0
-    for _,obj in pairs(upCast(seaTile)) do
-        if params.norm and obj.hasTag("Balanced") then
-            count = count + 1
-        elseif params.them and obj.hasTag("Thematic") then
-            count = count + 1
-        end
+    if params.norm then
+        count = count + #getObjectsWithTag("Balanced")
+    end
+    if params.them then
+        count = count + #getObjectsWithTag("Thematic")
     end
     return count
 end

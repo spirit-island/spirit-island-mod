@@ -94,7 +94,7 @@ function updateCount(params)
 end
 
 function checkLoss()
-    if escaped > 3 * Global.getVar("numBoards") then
+    if escaped > 3 * Global.call("getMapCount", {norm = true, them = true}) then
         broadcastToAll("Invaders wins via Scenario Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
     end

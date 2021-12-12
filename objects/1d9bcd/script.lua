@@ -12,6 +12,8 @@ hasBroadcast = true
 supporting = false
 count = 0
 
+checkLossID = 0
+
 function onSave()
     if supporting then
         count = Global.UI.getAttribute("panelAdversary2LossCounterCount","text")
@@ -75,8 +77,8 @@ function AdversaryUI(params)
     ui.loss.counter = {}
     ui.loss.counter.text = "Blight Count: "
     ui.loss.counter.buttons = true
-    ui.loss.counter.callback = "updateCount"
     Global.call("UpdateAdversaryLossCounter",{count=count,supporting=supporting})
+    checkLossID = Wait.time(checkLoss, 5, -1)
 
     ui.escalation = {}
     ui.escalation.tooltip = "After Exploring: On each board with\n4 or fewer Blight, add 1 Town to a\nland without Town/Blight. On each board\nwith 2 or fewer Blight, do so again."
@@ -112,9 +114,16 @@ function AdversaryUI(params)
     end
     return ui
 end
-function updateCount(params)
-    if params.count > Global.getVar("numBoards") then
+function checkLoss()
+    local count
+    if supporting then
+        count = tonumber(Global.UI.getAttribute("panelAdversary2LossCounterCount","text"))
+    else
+        count = tonumber(Global.UI.getAttribute("panelAdversaryLossCounterCount","text"))
+    end
+    if count > Global.call("getMapCount", {norm = true, them = true}) then
         broadcastToAll("Habsburg wins via Additional Loss Condition!", Color.SoftYellow)
+        Wait.stop(checkLossID)
     end
 end
 

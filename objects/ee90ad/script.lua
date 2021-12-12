@@ -18,7 +18,7 @@ end
 
 function checkLoss()
     local dahan = #getObjectsWithTag("Dahan")
-    if dahan < 2 * Global.getVar("numBoards") then
+    if dahan < 2 * Global.call("getMapCount", {norm = true, them = true}) then
         broadcastToAll("Invaders wins via Scenario Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
     end

@@ -151,6 +151,18 @@ function onLoad(saved_data)
         font_size      = 300,
         tooltip        = "Enable Second Wave for next game"
     })
+    self.createButton({
+        click_function = "flipEventCard",
+        function_owner = self,
+        label          = "",
+        position       = Vector(0.7,0.1,-0.85),
+        rotation       = Vector(0,270,0),
+        width          = 0,
+        height         = 0,
+        scale          = Vector(0.2,0.2,0.2),
+        font_size      = 300,
+        tooltip        = "Flip over the top Event Card"
+    })
     placeReadyTokens()
     placeElementTokens()
     updateFearUI()
@@ -204,12 +216,18 @@ function setupGame()
     Wait.time(aidPanelScanLoop,1,-1)
     Wait.time(scanReady,1,-1)
 
-    if Global.getVar("useEventDeck") or #getObjectFromGUID("a16796").getObjects() > 0 then
+    if Global.getVar("useEventDeck") or #Global.getVar("eventDeckZone").getObjects() > 0 then
         UI.setAttribute("panelTurnOrderEvent","active","true")
         self.editButton({
             index = 9,
             label = "Element Helper",
             width = 2100,
+            height = 500,
+        })
+        self.editButton({
+            index = 12,
+            label = "Event",
+            width = 1500,
             height = 500,
         })
         Wait.time(scanElements,2,-1)
@@ -254,8 +272,60 @@ function secondWave()
     secondWave.setScale(Vector(1.71, 1, 1.71))
     secondWave.setLock(true)
 end
+function flipEventCard()
+    if not Global.getVar("gameStarted") then
+        return
+    end
+    if not Global.call("usingEvents") then
+        -- events disabled
+        return
+    end
+
+    local objs = Global.getVar("eventDeckZone").getObjects()
+    if #objs == 0 then
+        broadcastToAll("Unable to resolve Event Card, Event Deck empty", Color.SoftYellow)
+        return
+    elseif #objs > 1 or not objs[1].is_face_down then
+        -- already have a faceup card
+        return
+    end
+
+    if objs[1].type == "Deck" then
+        objs[1].takeObject({
+            position = objs[1].getPosition() + Vector(0,.5,0),
+            flip = true,
+        })
+    elseif objs[1].type == "Card" then
+        objs[1].flip()
+    end
+end
+function discardEvent()
+    if not Global.getVar("gameStarted") then
+        return
+    end
+    if not Global.call("usingEvents") then
+        -- events disabled
+        return
+    end
+
+    local objs = Global.getVar("eventDeckZone").getObjects()
+    if #objs == 0 or (#objs == 1 and objs[1].is_face_down) then
+        -- no faceup card
+        return
+    end
+
+    for _,obj in pairs(objs) do
+        if obj.type == "Card" then
+            obj.setPositionSmooth(obj.getPosition()+Vector(-3.58,0.5,0))
+            break
+        end
+    end
+end
 ---- Invader Card Section
 function flipExploreCard()
+    if not Global.getVar("gameStarted") then
+        return
+    end
     local function removeSpecial(card)
         local script = card.getLuaScript()
         local start, finish = string.find(script,"special=true\n")
@@ -321,6 +391,9 @@ scanLoopTable = {
 }
 
 function advanceInvaderCards()
+    if not Global.getVar("gameStarted") then
+        return
+    end
     local prevOffset = Vector(0, 0, 0)
     local currentOffset = Vector(0, 0, 0)
     for i,v in pairs(scanLoopTable) do

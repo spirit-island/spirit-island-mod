@@ -437,6 +437,9 @@ function onLoad(saved_data)
     addHotkey("Remove Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("removeFear")
     end)
+    addHotkey("Flip Event Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        aidBoard.call("flipEventCard")
+    end)
     addHotkey("Flip Explore Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("flipExploreCard")
     end)
@@ -496,6 +499,7 @@ function onLoad(saved_data)
     SetupChecker = getObjectFromGUID(SetupChecker)
     adversaryBag = getObjectFromGUID(adversaryBag)
     scenarioBag = getObjectFromGUID(scenarioBag)
+    eventDeckZone = getObjectFromGUID(eventDeckZone)
     invaderDeckZone = getObjectFromGUID(invaderDeckZone)
     sourceSpirit = getObjectFromGUID(sourceSpirit)
     ------
@@ -2638,7 +2642,7 @@ end
 ----- Event Deck Section
 function SetupEventDeck()
     local cardsSetup = 0
-    local deck = getObjectFromGUID(eventDeckZone).getObjects()[1]
+    local deck = eventDeckZone.getObjects()[1]
     if deck ~= nil then
         deck.shuffle()
     end
@@ -2672,7 +2676,7 @@ function SetupEventDeck()
             if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
                 local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
                     guid = "0edac2",
-                    position = getObjectFromGUID(eventDeckZone).getPosition(),
+                    position = eventDeckZone.getPosition(),
                     rotation = {0,180,180},
                     smooth = false,
                 })
@@ -2696,16 +2700,16 @@ function SetupEventDeck()
         if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
             grabbedDeck = true
             if events["Branch & Claw"] then
-                SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
+                SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
             end
         end
         if not grabbedDeck then
-            SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), nil)
+            SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), nil)
         end
         if usingEvents() then
             Wait.condition(function()
                 stagesSetup = stagesSetup + 1
-            end, function() return #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
+            end, function() return #eventDeckZone.getObjects() == 1 and not eventDeckZone.getObjects()[1].isSmoothMoving() end)
         else
             stagesSetup = stagesSetup + 1
         end
@@ -3073,6 +3077,7 @@ function timePasses()
 end
 function timePassesCo()
     noFear = false
+    aidBoard.call("discardEvent")
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then

@@ -1161,7 +1161,7 @@ function setupExpansion(bag)
             elseif obj.name == "Events" then
                 if Global.getTable("events")[bag.getName()] then
                     eventsStarted = true
-                    local eventDeckZone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+                    local eventDeckZone = Global.getVar("eventDeckZone")
                     if #eventDeckZone.getObjects() > 0 then
                         local events = bag.takeObject({guid = obj.guid})
                         eventDeckZone.getObjects()[1].putObject(events)

@@ -181,7 +181,7 @@ function PostSetup(params)
     if params.level >= 2 then
         local card = adversaryBag.takeObject({guid = slaveRebellion})
         local count = setupSlaveRebellion(card)
-        local zone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+        local zone = Global.getVar("eventDeckZone")
         Wait.condition(function() postSetupComplete = true end, function()
             local objs = zone.getObjects() return #objs == 1 and ((objs[1].type == "Deck" and #objs[1].getObjects() == count) or objs[1].type == "Card")
         end)
@@ -190,7 +190,7 @@ function PostSetup(params)
     end
 end
 function setupSlaveRebellion(card)
-    local zone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+    local zone = Global.getVar("eventDeckZone")
     local eventDeck = zone.getObjects()[1]
     local count = 0
     if eventDeck ~= nil then

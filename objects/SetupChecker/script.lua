@@ -2359,13 +2359,12 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
                 config.adversaryLevel2 = supportingAdversaryLevel % leadingDiff + adversaryLevel2Min
             end
         end
-        difficulty = difficultyCheck(config)
         if adversaryLevelMin >= adversaryLevelMax and adversaryLevel2Min >= adversaryLevel2Max then
             config.adversaryLevel = adversaryLevelMin
             config.adversaryLevel2 = adversaryLevel2Min
-            difficulty = difficultyCheck(config)
             break
         end
+        difficulty = difficultyCheck(config)
     end
 
     config.playtest = {expansion=""}

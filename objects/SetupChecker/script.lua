@@ -2316,6 +2316,15 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     if prevTierConfig ~= nil then
         adversaryLevelMin = prevTierConfig.adversaryLevel
         adversaryLevel2Min = prevTierConfig.adversaryLevel2
+        -- make sure adversary level is always increasing
+        if prevTierConfig.variant.extraBoard then
+            if adversaryLevelMin < adversaryLevelMax then
+                adversaryLevelMin = adversaryLevelMin + 1
+            end
+            if adversaryLevel2Min < adversaryLevel2Max then
+                adversaryLevel2Min = adversaryLevel2Min + 1
+            end
+        end
     end
     while difficulty < tiers[tier][1] or difficulty >= tiers[tier][2] do
         if difficulty < tiers[tier][1] then
@@ -2351,6 +2360,12 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
             end
         end
         difficulty = difficultyCheck(config)
+        if adversaryLevelMin >= adversaryLevelMax and adversaryLevel2Min >= adversaryLevel2Max then
+            config.adversaryLevel = adversaryLevelMin
+            config.adversaryLevel2 = adversaryLevel2Min
+            difficulty = difficultyCheck(config)
+            break
+        end
     end
 
     config.playtest = {expansion=""}

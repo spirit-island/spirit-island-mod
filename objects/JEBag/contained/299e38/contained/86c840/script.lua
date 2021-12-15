@@ -13,7 +13,7 @@ function onObjectSpawn(obj)
         })
     end
 end
-function removeCards()
+function removeCards(card)
     local zone = Global.getVar("invaderDeckZone")
     local obj = zone.getObjects()[1]
     if obj.is_face_down then
@@ -50,4 +50,5 @@ function removeCards()
             end
         end
     end
+    card.clearButtons()
 end

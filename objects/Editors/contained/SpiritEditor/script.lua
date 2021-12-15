@@ -251,7 +251,7 @@ function updateThreshold(player)
         })
         entry.destroy()
     end
-    table.sort(thresholds, function (a, b) return a.position.x < b.position.x or (a.position.x == b.position.x and a.position.z < a.position.z) end)
+    table.sort(thresholds, function (a, b) return a.position.x > b.position.x or (a.position.x == b.position.x and a.position.z < b.position.z) end)
     local state = {}
     if currentSpirit.script_state ~= "" then
         state = JSON.decode(currentSpirit.script_state)
@@ -259,7 +259,15 @@ function updateThreshold(player)
     state.thresholds = thresholds
     currentSpirit.script_state = JSON.encode(state)
     currentSpirit.setTable("thresholds", thresholds)
-    player.broadcast("Updated thresholds for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
+
+    local thresholdString = ""
+    for _,threshold in pairs(thresholds) do
+        if thresholdString ~= "" then
+            thresholdString = thresholdString.." "
+        end
+        thresholdString = thresholdString..threshold.elements
+    end
+    player.broadcast("Updated thresholds for " .. currentSpirit.getName() .. " with "..thresholdString..".", Color.SoftBlue)
 end
 function populateThreshold()
     if currentSpirit == nil then

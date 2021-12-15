@@ -27,9 +27,9 @@
     <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
-    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
-        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow2">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
+    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
+        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
             <Row class="header">
                 <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
@@ -216,13 +216,10 @@
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="carpetRedo" isOn="true" onValueChanged="toggleCarpetRedo" tooltip="An alternate appeareance for the ocean tile">Use Thematic Ocean Playmat</Toggle></Cell>
             </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="legacyKeybindings" onValueChanged="toggleLegacyKeybindings" tooltip="Original keybindings used from BoneWhite's mod">Use Legacy Keybindings</Toggle></Cell>
-            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3835 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3770 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -242,6 +239,9 @@
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="aid" onValueChanged="toggleAid" tooltip="Spirits either get elements&#xA;or effect each turn">Aid from Lesser Spirits</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="sweden" onValueChanged="toggleSweden" tooltip="Sweden now has an additional level">Sweden 7</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

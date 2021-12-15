@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.0.1"
+version = "3.1.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -81,6 +81,8 @@ showPlayerButtons = true
 onlyCleanupTimePasses = false
 objectsToCleanup = {}
 extraRandomBoard = nil
+gamekeys = {}
+noFear = false
 ------ Unsaved Config Data
 gamePaused = false
 yHeight = 0
@@ -89,6 +91,7 @@ boardsSetup = 0
 adversaryLossCallback = nil
 adversaryLossCallback2 = nil
 wave = 1
+castDown = nil
 ------
 minorPowerDiscardZone = "55b275"
 majorPowerDiscardZone = "eaf864"
@@ -165,6 +168,7 @@ function onObjectLeaveZone(zone, leave_object)
     end
 end
 function onScriptingButtonDown(index, playerColor)
+    if gamekeys[playerColor] then return end
     if playerColor == "Grey" then return end
     DropPiece(Pieces[index], Player[playerColor].getPointerPosition(), playerColor)
 end
@@ -204,6 +208,8 @@ function onObjectCollisionEnter(hit_object, collision_info)
                 cleanupObject({obj = collision_info.collision_object, fear = false})
             end
         end
+    elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
+        cleanupObject({obj = collision_info.collision_object, fear = true})
     end
     -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/770
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
@@ -235,7 +241,7 @@ function onObjectEnterContainer(container, object)
 end
 function makeSacredSite(obj)
     local color = string.sub(obj.getName(),1,-12)
-    local url = ""
+    local url
     if color == "Red" then
         url = "http://cloud-3.steamusercontent.com/ugc/1752434562676874388/C51FB839BC19E2E94CE837708F00B462DAC1C89D/"
     elseif color == "Purple" then
@@ -248,6 +254,8 @@ function makeSacredSite(obj)
         url = "http://cloud-3.steamusercontent.com/ugc/1752434562676883074/3419998A3044C614DBAEDC710658F3A4CB7D8CF3/"
     elseif color == "Orange" then
         url = "http://cloud-3.steamusercontent.com/ugc/1752434562676884361/85EE264FD32632A9DD3828EA9538FDBC4F2FBC22/"
+    else
+        return
     end
     obj.setDecals({
         {
@@ -348,6 +356,7 @@ function onSave()
         onlyCleanupTimePasses = onlyCleanupTimePasses,
         objectsToCleanup = objectsToCleanup,
         extraRandomBoard = extraRandomBoard,
+        noFear = noFear,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -359,7 +368,8 @@ function onSave()
         panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
         showPlayerButtons = showPlayerButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
-        elementScanZones = elementScanZones
+        elementScanZones = elementScanZones,
+        gamekeys = gamekeys
     }
     if blightedIslandCard ~= nil then
         data_table.blightedIslandGuid = blightedIslandCard.guid
@@ -401,8 +411,11 @@ function onLoad(saved_data)
     Color.Add("SoftGreen", Color.new(0.75,1,0.67))
 
     clearHotkeys()
-    for _, piece in ipairs(Pieces) do
+    for index, piece in ipairs(Pieces) do
         addHotkey("Add " .. piece, function (playerColor, hoveredObject, cursorLocation, key_down_up)
+            if index <= 10 and not gamekeys[playerColor] then
+                gamekeys[playerColor] = true
+            end
             DropPiece(piece, cursorLocation, playerColor)
         end)
     end
@@ -424,6 +437,9 @@ function onLoad(saved_data)
     addHotkey("Remove Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("removeFear")
     end)
+    addHotkey("Flip Event Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        aidBoard.call("flipEventCard")
+    end)
     addHotkey("Flip Explore Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("flipExploreCard")
     end)
@@ -435,13 +451,13 @@ function onLoad(saved_data)
         for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
                 -- This ugliness is because setPositionSmooth doesn't work from a hand.
-                ensureCardInPlay(obj)
+                ensureCardInPlay({card = obj})
                 discardPowerCardFromPlay({card = obj, discardHeight = 1})
             end
         end
         if isPowerCard({card=hoveredObject}) then
             -- This ugliness is because setPositionSmooth doesn't work from a hand.
-            ensureCardInPlay(hoveredObject)
+            ensureCardInPlay({card = hoveredObject})
             discardPowerCardFromPlay({card = hoveredObject, discardHeight = 1})
         end
     end)
@@ -468,6 +484,10 @@ function onLoad(saved_data)
             reclaimAll(obj, playerColor, false)
         end
     end)
+    addContextMenuItem("Grab Spirit Markers", grabSpiritMarkers, false)
+    addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        grabSpiritMarkers()
+    end)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
@@ -479,6 +499,7 @@ function onLoad(saved_data)
     SetupChecker = getObjectFromGUID(SetupChecker)
     adversaryBag = getObjectFromGUID(adversaryBag)
     scenarioBag = getObjectFromGUID(scenarioBag)
+    eventDeckZone = getObjectFromGUID(eventDeckZone)
     invaderDeckZone = getObjectFromGUID(invaderDeckZone)
     sourceSpirit = getObjectFromGUID(sourceSpirit)
     ------
@@ -551,6 +572,8 @@ function onLoad(saved_data)
         onlyCleanupTimePasses = loaded_data.onlyCleanupTimePasses
         objectsToCleanup = loaded_data.objectsToCleanup
         extraRandomBoard = loaded_data.extraRandomBoard
+        gamekeys = loaded_data.gamekeys
+        noFear = loaded_data.noFear
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -673,7 +696,7 @@ function SetupGame()
         end
     else
         if SetupChecker.getVar("optionalExtraBoard") then
-            if numPlayers == 6 and boardLayout == "Thematic" then
+            if numPlayers == 6 and isThematic() then
                 -- Thematic doesn't support extra board
                 SetupChecker.setVar("optionalExtraBoard", false)
                 SetupChecker.call("updateDifficulty")
@@ -1020,12 +1043,14 @@ end
 function PreSetup()
     local preSetupSteps = 0
     if adversaryCard ~= nil and adversaryCard.getVar("preSetup") then
+        print("PreSetup for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
         adversaryCard.call("PreSetup",{level = adversaryLevel})
         Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard.getVar("preSetupComplete") end)
     else
         preSetupSteps = preSetupSteps + 1
     end
     if adversaryCard2 ~= nil and adversaryCard2.getVar("preSetup") then
+        print("PreSetup for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
         -- Wait for first adversary to finish
         Wait.condition(function()
             adversaryCard2.call("PreSetup",{level = adversaryLevel2})
@@ -1047,8 +1072,195 @@ function PreSetup()
         preSetupSteps = preSetupSteps + 1
     end
     Wait.condition(function()
+        local function setupInvaderPieces()
+            local invaders = { explorer = nil, town = nil, city = nil }
+            if adversaryCard ~= nil and adversaryCard.getVar("invaderSetup") then
+                local results = adversaryCard.call("InvaderSetup",{level = adversaryLevel})
+                if results then
+                    if results.explorer then
+                        invaders.explorer = results.explorer
+                    end
+                    if results.town then
+                        invaders.town = results.town
+                    end
+                    if results.city then
+                        invaders.city = results.city
+                    end
+                end
+            end
+            if adversaryCard2 ~= nil and adversaryCard2.getVar("invaderSetup") then
+                local results = adversaryCard2.call("InvaderSetup",{level = adversaryLevel2})
+                if results then
+                    for _,key in pairs({"explorer", "town", "city"}) do
+                        if results[key] == nil then
+                            goto continue
+                        elseif invaders[key] == nil then
+                            invaders[key] = results[key]
+                            goto continue
+                        end
+
+                        if results[key].tooltip then
+                            if invaders[key].tooltip then
+                                invaders[key].tooltip = invaders[key].tooltip.."\n\n"..results[key].tooltip
+                            else
+                                invaders[key].tooltip = results[key].tooltip
+                            end
+                        end
+
+                        if results[key].color then
+                            if invaders[key].color then
+                                invaders[key].color = Color.fromHex(invaders[key].color.."FF"):lerp(Color.fromHex(results[key].color.."FF"), 0.5):toHex(false)
+                            else
+                                invaders[key].color = results[key].color
+                            end
+                        end
+
+                        if results[key].states then
+                            if invaders[key].states then
+                                for _,stateData in pairs(results[key].states) do
+                                    table.insert(invaders[key].states, stateData)
+                                end
+                            else
+                                invaders[key].states = results[key].states
+                            end
+                        end
+                        ::continue::
+                    end
+                end
+            end
+
+            local count = 0
+            local function updateInvaderData(bag, invader)
+                if invader == nil then
+                    count = count + 1
+                    return
+                end
+
+                local function deepcopy(orig)
+                    local orig_type = type(orig)
+                    local copy
+                    if orig_type == 'table' then
+                        copy = {}
+                        for orig_key, orig_value in next, orig, nil do
+                            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+                        end
+                        setmetatable(copy, deepcopy(getmetatable(orig)))
+                    else -- number, string, boolean, etc
+                        copy = orig
+                    end
+                    return copy
+                end
+
+                local tempObject = bag.takeObject({})
+                local data = tempObject.getData()
+                tempObject.destruct()
+                local bagColor = nil
+
+                if invader.tooltip then
+                    data.Description = invader.tooltip
+
+                    if data.States then
+                        for _,state in pairs(data.States) do
+                            state.Description = invader.tooltip
+                        end
+                    end
+                end
+
+                if invader.color then
+                    local color = Color.fromHex(invader.color.."FF")
+                    data.ColorDiffuse.r = color.r
+                    data.ColorDiffuse.g = color.g
+                    data.ColorDiffuse.b = color.b
+
+                    if data.States then
+                        for _,state in pairs(data.States) do
+                            state.ColorDiffuse.r = color.r
+                            state.ColorDiffuse.g = color.g
+                            state.ColorDiffuse.b = color.b
+                        end
+                    end
+
+                    bagColor = color
+                end
+
+                if invader.states then
+                    local nextState = 2
+                    if data.States then
+                        for _,_ in pairs(data.States) do
+                            nextState = nextState + 1
+                        end
+                    end
+                    local originalStates = nextState - 1
+                    for _=1,#invader.states do
+                        if nextState == 2 then
+                            data.States = {[2] = deepcopy(data)}
+                        else
+                            data.States[nextState] = deepcopy(data.States[nextState - 1])
+                            local _,finish = data.Nickname:find(":")
+                            data.States[nextState].Nickname = data.Nickname:sub(1, finish+1)..(nextState - 1).." Damage"
+                        end
+                        nextState = nextState + 1
+                    end
+                    for i=1,originalStates do
+                        local state
+                        if i == originalStates then
+                            state = data
+                        else
+                            state = data.States[originalStates-i+1]
+                        end
+
+                        data.States[nextState-i].Transform = state.Transform
+                        data.States[nextState-i].CustomMesh = state.CustomMesh
+                    end
+                    for i,stateData in pairs(invader.states) do
+                        local state
+                        if i == 1 then
+                            state = data
+                        else
+                            state = data.States[i]
+                        end
+
+                        if stateData.color then
+                            local color = Color.fromHex(stateData.color.."FF")
+                            if bagColor then
+                                bagColor = bagColor:lerp(color, 0.5)
+                            else
+                                bagColor = color
+                            end
+                            if invader.color then
+                                color = color:lerp(Color.fromHex(invader.color.."FF"), 0.5)
+                            end
+                            state.ColorDiffuse.r = color.r
+                            state.ColorDiffuse.g = color.g
+                            state.ColorDiffuse.b = color.b
+
+                        end
+
+                        if stateData.copy then
+                            state.Transform = data.States[nextState-(originalStates-stateData.copy)-1].Transform
+                            state.CustomMesh = data.States[nextState-(originalStates-stateData.copy)-1].CustomMesh
+                        end
+                    end
+                end
+
+                local obj = spawnObjectData({
+                    data = data,
+                    position = bag.getPosition() + Vector(0,2,0),
+                })
+                bag.reset()
+                bag.setColorTint(bagColor)
+                Wait.condition(function() count = count + 1 end, function() return obj.isDestroyed() end)
+            end
+
+            updateInvaderData(explorerBag, invaders.explorer)
+            updateInvaderData(townBag, invaders.town)
+            updateInvaderData(cityBag, invaders.city)
+
+            Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return count == 3 end)
+        end
+
         setupBlightTokens()
-        stagesSetup = stagesSetup + 1
+        setupInvaderPieces()
     end, function() return preSetupSteps == 4 end)
     return 1
 end
@@ -1586,7 +1798,7 @@ end
 function SetupBlightCard()
     local cardsSetup = 0
     local function bncBlightCardOptions(deck, callback)
-        if SetupChecker.getVar("exploratoryAid") and expansions["Branch & Claw"] then
+        if SetupChecker.getVar("exploratoryAid") then
             deck.takeObject({
                 guid = "bf66eb",
                 callback_function = function(obj)
@@ -1606,22 +1818,26 @@ function SetupBlightCard()
         end
     end
     if SetupChecker.getVar("optionalBlightCard") then
-        local grabbedDeck = false
         local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
         blightDeck.shuffle()
-        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
-            grabbedDeck = true
-            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
-        else
+
+        if expansions["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
             bncBlightCardOptions(blightDeck)
-        end
-        if not grabbedDeck then
-            SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+        else
+            cardsSetup = cardsSetup + 1
         end
 
         Wait.condition(function()
-            grabBlightCard(true)
-        end, function() return cardsSetup == 1 and #getObjectFromGUID("b38ea8").getObjects() == 1 end)
+            local grabbedDeck = false
+            if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+                grabbedDeck = true
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
+            end
+            if not grabbedDeck then
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+            end
+            Wait.condition(function() grabBlightCard(true) end, function() return #getObjectFromGUID("b38ea8").getObjects() == 1 end)
+        end, function() return cardsSetup == 1 end)
     else
         blightedIsland = true
     end
@@ -1655,6 +1871,7 @@ function grabBlightCard(start)
     end
 end
 function findNextBlightCard(start, blightDeck)
+    local blightDiscard = getObjectFromGUID("b18505").getPosition()
     local index = getBlightCardIndex()
     if index < 0 then
         index = 1
@@ -1667,7 +1884,7 @@ function findNextBlightCard(start, blightDeck)
                 if data.name == blightCards[i] then
                     blightDeck.takeObject({
                         index = data.index,
-                        position = blightDeck.getPosition() + Vector(3.92, 1, 0),
+                        position = blightDiscard,
                         callback_function = function(obj) setupBlightCard(start, obj) end,
                     })
                     return true
@@ -1698,6 +1915,7 @@ function getBlightCardIndex()
 end
 function setupBlightCard(start, card)
     blightedIslandCard = card
+    blightedIslandCard.setRotationSmooth(Vector(0,180,180))
     blightedIslandCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-1.15,0.11,0.99)))
     blightedIslandCard.setLock(true)
     if start then
@@ -1731,7 +1949,8 @@ function BlightedIslandFlip()
     if not blightedIslandCard.is_face_down then
         -- still healthy card
         local blightDeckZone = getObjectFromGUID("b38ea8")
-        blightedIslandCard.setPositionSmooth(blightDeckZone.getPosition() + Vector(3.92, 1, 0))
+        local blightDiscard = getObjectFromGUID("b18505").getPosition()
+        blightedIslandCard.setPositionSmooth(blightDiscard)
         blightedIslandCard.setLock(false)
         local blightDeck = blightDeckZone.getObjects()[1]
         if blightDeck == nil then
@@ -1843,21 +2062,6 @@ function SetupAdversary()
         end
     end
 
-    local boardSetup = false
-    local secondAdversaryBoard = nil
-    if adversaryCard2 ~= nil then
-        secondAdversaryBoard = adversaryBag.takeObject({
-            guid = "312e2d",
-            position = aidBoard.positionToWorld(Vector(-0.75,-0.11,-2.84)),
-            rotation = {0,180,0},
-        })
-        secondAdversaryBoard.setLock(true)
-        secondAdversaryBoard.interactable = false
-        Wait.condition(function() boardSetup = true end, function() return not secondAdversaryBoard.isSmoothMoving() end)
-    else
-        boardSetup = true
-    end
-
     if adversaryCard ~= nil then
         local targetScale = 1.71
         local currentScale = adversaryCard.getScale()[1]
@@ -1871,18 +2075,16 @@ function SetupAdversary()
         end
     end
 
-    -- Wait until Second Adversary board is in position before moving cards
-    Wait.condition(function()
-        if adversaryCard2 ~= nil then
-            adversaryCard.setLock(true)
-            adversaryCard.setPositionSmooth(secondAdversaryBoard.positionToWorld(Vector(0,0.21,0)), false, true)
-            adversaryCard2.setLock(true)
-            adversaryCard2.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)), false, true)
-        elseif adversaryCard ~= nil then
-            adversaryCard.setLock(true)
-            adversaryCard.setPositionSmooth(aidBoard.positionToWorld(Vector(-0.75,0.11,-1.81)), false, true)
-        end
-    end, function() return boardSetup end)
+    local pos = Vector(-0.75, 0.11, -1.81)
+    if adversaryCard2 ~= nil then
+        adversaryCard.setLock(true)
+        adversaryCard.setPositionSmooth(aidBoard.positionToWorld(pos + Vector(0, 0, -1.03)), false, true)
+        adversaryCard2.setLock(true)
+        adversaryCard2.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
+    elseif adversaryCard ~= nil then
+        adversaryCard.setLock(true)
+        adversaryCard.setPositionSmooth(aidBoard.positionToWorld(pos), false, true)
+    end
 
     reminderSetup()
     adversaryUISetup()
@@ -2063,7 +2265,7 @@ function reminderSetup()
         reminder2.afterExplore.interactable = false
     end
 end
-function adversaryUISetup()
+function adversaryUI()
     local lineCount = 0
     if adversaryCard and adversaryCard.getVar("hasUI") then
         local ui = adversaryCard.call("AdversaryUI", {level = adversaryLevel, supporting = false})
@@ -2088,6 +2290,7 @@ function adversaryUISetup()
         end
         UI.setAttribute("panelAdversaryEscalation","tooltip",ui.escalation.tooltip)
         lineCount = lineCount + 1
+        local deprecated = false
         if ui.one then
             UI.setAttribute("panelAdversaryLevel1","text","1) "..ui.one.name)
             if ui.one.tooltip then
@@ -2095,6 +2298,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversaryLevel1","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.two then
             UI.setAttribute("panelAdversaryLevel2","text","2) "..ui.two.name)
@@ -2103,6 +2307,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversaryLevel2","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.three then
             UI.setAttribute("panelAdversaryLevel3","text","3) "..ui.three.name)
@@ -2111,6 +2316,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversaryLevel3","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.four then
             UI.setAttribute("panelAdversaryLevel4","text","4) "..ui.four.name)
@@ -2119,6 +2325,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversaryLevel4","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.five then
             UI.setAttribute("panelAdversaryLevel5","text","5) "..ui.five.name)
@@ -2127,6 +2334,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversaryLevel5","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.six then
             UI.setAttribute("panelAdversaryLevel6","text","6) "..ui.six.name)
@@ -2135,6 +2343,32 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversaryLevel6","active","true")
             lineCount = lineCount + 1
+            deprecated = true
+        end
+        if deprecated then
+            print("AdversaryUI without effects table for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
+        end
+        if ui.effects then
+            for level,data in pairs(ui.effects) do
+                UI.setAttribute("panelAdversaryLevel"..level,"text",level..") "..data.name)
+                if data.tooltip then
+                    UI.setAttribute("panelAdversaryLevel"..level,"tooltip",data.tooltip)
+                end
+                UI.setAttribute("panelAdversaryLevel"..level,"active","true")
+                lineCount = lineCount + 1
+            end
+        end
+        if ui.invader then
+            if ui.invader.ravage then
+                UI.setAttribute("panelRavageOutline", "active", "true")
+            end
+            if ui.invader.build then
+                UI.setAttribute("panelBuildOutline", "active", "true")
+                UI.setAttribute("panelBuild2Outline", "active", "true")
+            end
+            if ui.invader.explore then
+                UI.setAttribute("panelExploreOutline", "active", "true")
+            end
         end
     end
     if adversaryCard2 and adversaryCard2.getVar("hasUI") then
@@ -2165,6 +2399,7 @@ function adversaryUISetup()
         if ui.escalation.random then
             UI.setAttribute("panelAdversary2EscalationRandom","active","true")
         end
+        local deprecated = false
         if ui.one then
             UI.setAttribute("panelAdversary2Level1","text","1) "..ui.one.name)
             if ui.one.tooltip then
@@ -2172,6 +2407,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversary2Level1","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.two then
             UI.setAttribute("panelAdversary2Level2","text","2) "..ui.two.name)
@@ -2180,6 +2416,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversary2Level2","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.three then
             UI.setAttribute("panelAdversary2Level3","text","3) "..ui.three.name)
@@ -2188,6 +2425,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversary2Level3","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.four then
             UI.setAttribute("panelAdversary2Level4","text","4) "..ui.four.name)
@@ -2196,6 +2434,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversary2Level4","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.five then
             UI.setAttribute("panelAdversary2Level5","text","5) "..ui.five.name)
@@ -2204,6 +2443,7 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversary2Level5","active","true")
             lineCount = lineCount + 1
+            deprecated = true
         end
         if ui.six then
             UI.setAttribute("panelAdversary2Level6","text","6) "..ui.six.name)
@@ -2212,12 +2452,41 @@ function adversaryUISetup()
             end
             UI.setAttribute("panelAdversary2Level6","active","true")
             lineCount = lineCount + 1
+            deprecated = true
+        end
+        if deprecated then
+            print("AdversaryUI without effects table for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
+        end
+        if ui.effects then
+            for level,data in pairs(ui.effects) do
+                UI.setAttribute("panelAdversary2Level"..level,"text",level..") "..data.name)
+                if data.tooltip then
+                    UI.setAttribute("panelAdversary2Level"..level,"tooltip",data.tooltip)
+                end
+                UI.setAttribute("panelAdversary2Level"..level,"active","true")
+                lineCount = lineCount + 1
+            end
+        end
+        if ui.invader then
+            if ui.invader.ravage then
+                UI.setAttribute("panelRavageOutline", "active", "true")
+            end
+            if ui.invader.build then
+                UI.setAttribute("panelBuildOutline", "active", "true")
+                UI.setAttribute("panelBuild2Outline", "active", "true")
+            end
+            if ui.invader.explore then
+                UI.setAttribute("panelExploreOutline", "active", "true")
+            end
         end
     end
-    local height = lineCount*18
+    local height = lineCount*20
     UI.setAttribute("panelAdversary","height",height)
     UI.setAttribute("panelInvader","offsetXY","0 "..305+5+height)
     UI.setAttribute("panelBlightFear","offsetXY","0 "..305+5+104+height)
+end
+function adversaryUISetup()
+    SetupChecker.call("updateAdversaryUI", {callback = "adversaryUI"})
 end
 function decrementLossCounter(player, countID)
     if player.color == "Grey" then return end
@@ -2373,7 +2642,7 @@ end
 ----- Event Deck Section
 function SetupEventDeck()
     local cardsSetup = 0
-    local deck = getObjectFromGUID(eventDeckZone).getObjects()[1]
+    local deck = eventDeckZone.getObjects()[1]
     if deck ~= nil then
         deck.shuffle()
     end
@@ -2407,7 +2676,7 @@ function SetupEventDeck()
             if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
                 local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
                     guid = "0edac2",
-                    position = getObjectFromGUID(eventDeckZone).getPosition(),
+                    position = eventDeckZone.getPosition(),
                     rotation = {0,180,180},
                     smooth = false,
                 })
@@ -2420,30 +2689,31 @@ function SetupEventDeck()
         end, function() return not bncDeck.loading_custom end)
     end
 
-    local grabbedDeck = false
-    if events["Branch & Claw"] then
-        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
-            grabbedDeck = true
-            SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
-        else
-            bncEventOptions(deck)
-        end
+    if events["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
+        bncEventOptions(deck)
     else
-        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
-            grabbedDeck = true
-        end
         cardsSetup = cardsSetup + 1
     end
-    if not grabbedDeck then
-        SetupPlaytestDeck(getObjectFromGUID(eventDeckZone), "Events", SetupChecker.getVar("playtestEvent"), nil)
-    end
-    if usingEvents() then
-        Wait.condition(function()
+
+    Wait.condition(function()
+        local grabbedDeck = false
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            grabbedDeck = true
+            if events["Branch & Claw"] then
+                SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
+            end
+        end
+        if not grabbedDeck then
+            SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), nil)
+        end
+        if usingEvents() then
+            Wait.condition(function()
+                stagesSetup = stagesSetup + 1
+            end, function() return #eventDeckZone.getObjects() == 1 and not eventDeckZone.getObjects()[1].isSmoothMoving() end)
+        else
             stagesSetup = stagesSetup + 1
-        end, function() return cardsSetup == 1 and #getObjectFromGUID(eventDeckZone).getObjects() == 1 and not getObjectFromGUID(eventDeckZone).getObjects()[1].isSmoothMoving() end)
-    else
-        stagesSetup = stagesSetup + 1
-    end
+        end
+    end, function() return cardsSetup == 1 end)
     return 1
 end
 ----- Map Section
@@ -2806,6 +3076,8 @@ function timePasses()
     end
 end
 function timePassesCo()
+    noFear = false
+    aidBoard.call("discardEvent")
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
@@ -3169,12 +3441,11 @@ end
 ----
 function getMapCount(params)
     local count = 0
-    for _,obj in pairs(upCast(seaTile)) do
-        if params.norm and obj.hasTag("Balanced") then
-            count = count + 1
-        elseif params.them and obj.hasTag("Thematic") then
-            count = count + 1
-        end
+    if params.norm then
+        count = count + #getObjectsWithTag("Balanced")
+    end
+    if params.them then
+        count = count + #getObjectsWithTag("Thematic")
     end
     return count
 end
@@ -3416,8 +3687,12 @@ function setupMap(map, extra)
                 if secondWave and pieceName == "Box Blight" then
                     pieceName = "Blight"
                 end
-                place(pieceName,map.positionToWorld(posToPlace[l][i]))
-                coroutine.yield(0)
+                if posToPlace[l][i] == nil then
+                    broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
+                else
+                    place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                    coroutine.yield(0)
+                end
             end
         end
         boardsSetup = boardsSetup + 1
@@ -3598,19 +3873,23 @@ function cleanupObject(params)
     elseif string.sub(params.obj.getName(),1,4) == "Town" then
         params.obj.setRotation(Vector(0,180,0))
         bag = townBag
-        if params.fear then
+        if params.fear and not noFear then
             aidBoard.call("addFear")
         end
     elseif string.sub(params.obj.getName(),1,4) == "City" then
         params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
-        if params.fear then
+        if params.fear and not noFear then
             aidBoard.call("addFear")
             aidBoard.call("addFear")
         end
     elseif params.obj.getName() == "Blight" then
         params.obj.setRotation(Vector(0,180,0))
-        bag = returnBlightBag
+        if params.fear then
+            bag = boxBlightBag
+        else
+            bag = returnBlightBag
+        end
     elseif params.obj.getName() == "Strife" then
         params.obj.setRotation(Vector(0,180,0))
         bag = strifeBag
@@ -4658,6 +4937,8 @@ function updateAidPanel(tabIn)
     currentTable = tabIn
     for i,tType in pairs({"Build2","Ravage","Build","Explore"}) do
         hideAll(tType)
+        UI.setAttribute("panel"..tType.."Outline", "height", childHeight)
+        UI.setAttribute("panel"..tType.."Outline", "width", childWidth)
         local cards = tabIn[i]
         for j,card in pairs(cards) do
             for k = 1,string.len(card.type) do
@@ -4675,24 +4956,29 @@ function updateAidPanel(tabIn)
                     size(tType,1,1,1,1)
                     show(tType,1,1)
                 else
-                    alert(tType)
-                    size(tType,1,1,"E")
                     set(tType,1,1,"E",false)
+                    size(tType,1,1,"E")
                     show(tType,1,1)
                 end
             else
-                dark(tType)
-                size(tType,1,1,"n")
                 set(tType,1,1,"n",false)
+                size(tType,1,1,"n")
                 show(tType,1,1)
             end
         else
             if tType == "Explore" then
                 toggleInvaderPhaseImage(true)
             end
-            light(tType)
         end
     end
+end
+function hideAll(a)
+    UI.setAttribute("panel"..a..11, "active", false)
+    UI.setAttribute("panel"..a..12, "active", false)
+    UI.setAttribute("panel"..a..21, "active", false)
+    UI.setAttribute("panel"..a..22, "active", false)
+    UI.setAttribute("panel"..a..31, "active", false)
+    UI.setAttribute("panel"..a..32, "active", false)
 end
 function toggleInvaderPhaseImage(explore)
     local current = UI.getAttribute("invaderImage", "image")
@@ -4705,18 +4991,6 @@ function toggleInvaderPhaseImage(explore)
         UI.setAttribute("exploreAdvance", "onClick", "aidBoard/advanceInvaderCards")
     end
 end
-function dark(a)
-    UI.setAttribute("panel"..a.."0", "color", titleBGColorNA)
-    UI.setAttribute("panel"..a.."0".."text", "color", titleColorNA)
-end
-function light(a)
-    UI.setAttribute("panel"..a.."0", "color", titleBGColor)
-    UI.setAttribute("panel"..a.."0".."text", "color", titleColor)
-end
-function alert(a)
-    UI.setAttribute("panel"..a.."0", "color", invaderColors["E"])
-    UI.setAttribute("panel"..a.."0".."text", "color", invaderFontColors["E"])
-end
 function set(a,b,c,d, escalate)
     local tooltip = tooltips[d]
     local text = textOut[d]
@@ -4726,20 +5000,6 @@ function set(a,b,c,d, escalate)
     end
     UI.setAttributes("panel"..a..b..c, {color = invaderColors[d], tooltip = tooltip, tooltipPosition="Above"})
     UI.setAttributes("panel"..a..b..c.."text", {color = invaderFontColors[d], text = text})
-end
-function hideAll(a)
-    UI.setAttribute("panel"..a..11, "active", false)
-    UI.setAttribute("panel"..a..12, "active", false)
-    UI.setAttribute("panel"..a..21, "active", false)
-    UI.setAttribute("panel"..a..22, "active", false)
-    UI.setAttribute("panel"..a..31, "active", false)
-    UI.setAttribute("panel"..a..32, "active", false)
-end
-function hide(a,b,c)
-    UI.setAttribute("panel"..a..b..c, "active", false)
-end
-function show(a,b,c)
-    UI.setAttribute("panel"..a..b..c, "active", true)
 end
 function size(a,b,c,d,e)
     if d == "n" or d == "E" then
@@ -4751,6 +5011,9 @@ function size(a,b,c,d,e)
         UI.setAttribute("panel"..a..b..c, "preferredWidth", childWidth/d)
         UI.setAttribute("panel"..a..b..c.."text", "fontSize", childFontSize/math.max(d,e))
     end
+end
+function show(a,b,c)
+    UI.setAttribute("panel"..a..b..c, "active", true)
 end
 
 function invaderCompare(t1,t2)
@@ -4991,21 +5254,19 @@ function swapPlayerPresenceColors(fromColor, toColor)
                     for _, obj in ipairs(objs) do
                         obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
+                        if obj.getDecals() then
+                            makeSacredSite(obj)
+                        end
                         local originalState = obj.getStateId()
-                        if obj.getStateId() == 1 then
+                        if originalState == 1 then
                             obj = obj.setState(2)
                         else
-                            if obj.getDecals() then
-                                makeSacredSite(obj)
-                            end
                             obj = obj.setState(1)
                         end
                         obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
-                        if originalState == 1 then
-                            if obj.getDecals() then
-                                makeSacredSite(obj)
-                            end
+                        if obj.getDecals() then
+                            makeSacredSite(obj)
                         end
                         _ = obj.setState(originalState)
                     end
@@ -5168,6 +5429,10 @@ function swapPlayerUIs(a, b)
         setVisiTable("panelTimePasses",newVisiTable)
         setVisiTable("panelReady",newVisiTable)
     end
+
+    local enabled = gamekeys[a]
+    gamekeys[a] = gamekeys[b]
+    gamekeys[b] = enabled
 end
 
 function swapSeatColors(a, b)
@@ -5282,7 +5547,7 @@ function applyPowerCardContextMenuItems(card)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
                 if isPowerCard({card=obj}) then
                     -- This ugliness is because setPositionSmooth doesn't work from a hand.
-                    ensureCardInPlay(obj)
+                    ensureCardInPlay({card = obj})
                     discardPowerCardFromPlay({card = obj, discardHeight = 1})
                 end
             end
@@ -5292,12 +5557,12 @@ end
 
 -- ensureCardInPlay moves the supplied card from a player's hand to a safe
 -- location, if it's in a hand.
-function ensureCardInPlay(card)
+function ensureCardInPlay(params)
     for _, color in pairs(Player.getAvailableColors()) do
         for handIndex=1,Player[color].getHandCount() do
-            if isObjectInHand(card, color, handIndex) then
-                local cpos = card.getPosition()
-                card.setPosition(Vector(cpos.x, 0, cpos.z))
+            if isObjectInHand(params.card, color, handIndex) then
+                local cpos = params.card.getPosition()
+                params.card.setPosition(Vector(cpos.x, 0, cpos.z))
                 return
             end
         end
@@ -5312,6 +5577,27 @@ function isObjectInHand(obj, color, handIndex)
         end
     end
     return false
+end
+
+function grabSpiritMarkers()
+    local bag = getObjectFromGUID("011f19")
+    for color, _ in pairs(selectedColors) do
+        local zone = getObjectFromGUID(elementScanZones[color])
+        for _, obj in ipairs(zone.getObjects()) do
+            if obj.hasTag("Spirit") then
+                for _,marker in pairs(bag.getObjects()) do
+                    if marker.name == obj.getName() then
+                        bag.takeObject({
+                            guid = marker.guid,
+                            position = obj.getPosition() + Vector(0, 2, 14.5)
+                        })
+                        break
+                    end
+                end
+                break
+            end
+        end
+    end
 end
 
 function enterSpiritPhase(player)

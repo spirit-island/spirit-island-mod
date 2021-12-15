@@ -7,3 +7,58 @@ function onLoad(saved_data)
     end
 end
 -- card loading end
+function onObjectSpawn(obj)
+    if obj == self then
+        PickPower()
+    end
+end
+function PickPower()
+    self.createButton({
+        click_function = "destroyBoard",
+        function_owner = self,
+        label          = "Destroy Board",
+        position       = Vector(0,0.3,1.43),
+        width          = 1100,
+        scale          = Vector(0.65,1,0.65),
+        height         = 160,
+        font_size      = 150
+    })
+end
+function destroyBoard(card)
+    local hits = Physics.cast({
+        origin = card.getPosition(),
+        direction = Vector(0,-1,0),
+        max_distance = 5,
+        --debug = true,
+    })
+    local board = nil
+    for _,v in pairs(hits) do
+        if v.hit_object ~= card and Global.call("isIslandBoard", {obj=v.hit_object}) then
+            board = v.hit_object
+            break
+        end
+    end
+    if board == nil then
+        broadcastToAll("Unable to detect island board, make sure Cast Down into the Briny Deep is on top of an island board.", Color.Red)
+        return
+    end
+
+    Global.setVar("castDown", board.getName())
+    board.setPosition(board.getPosition() + Vector(0, -0.03, 0))
+
+    Wait.frames(function()
+        Global.setVar("castDown", nil)
+        local bag
+        if board.hasTag("Balanced") then
+            if board.getDecals() == nil then
+                bag = Global.getVar("StandardMapBag")
+            else
+                bag = Global.getVar("ExtraMapBag")
+            end
+        else
+            bag = Global.getVar("ThematicMapBag")
+        end
+        bag.putObject(board)
+        bag.shuffle()
+    end, 3)
+end

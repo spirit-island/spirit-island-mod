@@ -65,13 +65,13 @@ optionalBoardPairings = true
 optionalThematicRebellion = false
 optionalEngland6 = true
 optionalThematicRedo = false
-optionalLegacyKeybindings = false
 optionalScaleBoard = true -- not currently hooked up into UI
 
 exploratoryVOTD = false
 exploratoryBODAN = false
 exploratoryWar = false
 exploratoryAid = false
+exploratorySweden = false
 
 playtestExpansion = "None"
 playtestFear = "0"
@@ -110,13 +110,13 @@ function onSave()
     data_table.variant.thematicRebellion = optionalThematicRebellion
     data_table.variant.england6 = optionalEngland6
     data_table.variant.thematicRedo = optionalThematicRedo
-    data_table.variant.legacyKeybindings = optionalLegacyKeybindings
 
     data_table.exploratory = {}
     data_table.exploratory.votd = exploratoryVOTD
     data_table.exploratory.bodan = exploratoryBODAN
     data_table.exploratory.war = exploratoryWar
     data_table.exploratory.aid = exploratoryAid
+    data_table.exploratory.sweden = exploratorySweden
 
     data_table.playtest = {}
     data_table.playtest.expansion = playtestExpansion
@@ -173,17 +173,12 @@ function onLoad(saved_data)
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
         optionalEngland6 = loaded_data.variant.england6
         optionalThematicRedo = loaded_data.variant.thematicRedo
-        -- This will get flipped by toggleLegacyKeybindings()
-        optionalLegacyKeybindings = loaded_data.variant.legacyKeybindings
-        if optionalLegacyKeybindings then
-            optionalLegacyKeybindings = not optionalLegacyKeybindings
-            toggleLegacyKeybindings()
-        end
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan
         exploratoryWar = loaded_data.exploratory.war
         exploratoryAid = loaded_data.exploratory.aid
+        exploratorySweden = loaded_data.exploratory.sweden
 
         playtestExpansion = loaded_data.playtest.expansion
         playtestFear = loaded_data.playtest.fear
@@ -220,6 +215,9 @@ function onLoad(saved_data)
         end
         numScenarios = count
 
+        setSlaveRebellion(optionalThematicRebellion, not setupStarted)
+        setEngland6(optionalEngland6, not setupStarted, true)
+        setSweden(exploratorySweden, not setupStarted, true)
         if not setupStarted then
             self.UI.setAttribute("variant", "isOn", tostring(loaded_data.toggle.variant))
             self.UI.setAttribute("exploratory", "isOn", tostring(loaded_data.toggle.exploratory))
@@ -236,20 +234,6 @@ function onLoad(saved_data)
             self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
             self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
-            local adversary = getObjectFromGUID(adversaries.France)
-            if adversary ~= nil then
-                adversary.setVar("thematicRebellion", optionalThematicRebellion)
-            end
-            self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
-            adversary = getObjectFromGUID(adversaries.England)
-            if adversary ~= nil then
-                if optionalEngland6 then
-                    adversary.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
-                else
-                    adversary.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
-                end
-            end
-            self.UI.setAttribute("england6", "isOn", optionalEngland6)
             self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
             self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
 
@@ -594,9 +578,13 @@ function updateLeadingAdversary(value, updateUI)
         randomAdversary = true
         enableRandomDifficulty()
     else
-        Global.setVar("adversaryCard", getObjectFromGUID(adversaries[value]))
+        local card = getObjectFromGUID(adversaries[value])
+        Global.setVar("adversaryCard", card)
         randomAdversary = false
         checkRandomDifficulty(false)
+        if updateUI and card ~= nil then
+            updateLeadingAdversarySliderMax(card, updateUI)
+        end
     end
     if value == "None" or value == "Random" then
         updateLeadingLevel(0, updateUI)
@@ -612,6 +600,13 @@ function updateLeadingAdversary(value, updateUI)
         Wait.frames(function() updateLeadingSelection(value) end, 1)
     end
 end
+function updateLeadingAdversarySliderMax(card, updateUI)
+    local max = #card.getTable("difficulty")
+    self.UI.setAttribute("leadingLevelSlider", "maxValue", max)
+    if max < Global.getVar("adversaryLevel") then
+        updateLeadingLevel(max, updateUI)
+    end
+end
 function updateLeadingSelection(name)
     getXml{updateDropdownSelection("leadingAdversary", name)}
 end
@@ -624,9 +619,13 @@ function updateSupportingAdversary(value, updateUI)
         randomAdversary2 = true
         enableRandomDifficulty()
     else
-        Global.setVar("adversaryCard2", getObjectFromGUID(adversaries[value]))
+        local card = getObjectFromGUID(adversaries[value])
+        Global.setVar("adversaryCard2", card)
         randomAdversary2 = false
         checkRandomDifficulty(false)
+        if updateUI and card ~= nil then
+            updateSupportingAdversarySliderMax(card, updateUI)
+        end
     end
     if value == "None" or value == "Random" then
         updateSupportingLevel(0, updateUI)
@@ -640,6 +639,13 @@ function updateSupportingAdversary(value, updateUI)
     if updateUI then
         -- Wait for difficulty to update
         Wait.frames(function() updateSupportingSelection(value) end, 1)
+    end
+end
+function updateSupportingAdversarySliderMax(card, updateUI)
+    local max = #card.getTable("difficulty")
+    self.UI.setAttribute("supportingLevelSlider", "maxValue", max)
+    if max < Global.getVar("adversaryLevel2") then
+        updateSupportingLevel(max, updateUI)
     end
 end
 function updateSupportingSelection(name)
@@ -894,11 +900,12 @@ function startGame()
     end
     if config ~= nil then
         loadConfig(config)
-    else
-        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
     end
     if not Global.call("CanSetupGame") then
         return
+    end
+    if config == nil then
+        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
     end
     setupStarted = true
 
@@ -974,10 +981,10 @@ function loadConfig(config)
             optionalBoardPairings = config.variant.boardPairings
         end
         if config.variant.thematicRebellion ~= nil then
-            optionalThematicRebellion = config.variant.thematicRebellion
+            setSlaveRebellion(config.variant.thematicRebellion, false)
         end
         if config.variant.england6 ~= nil then
-            optionalEngland6 = config.variant.england6
+            setEngland6(config.exploratory.england6, false, false)
         end
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
@@ -994,9 +1001,6 @@ function loadConfig(config)
                 end
             end
         end
-        if config.variant.legacyKeybindings ~= nil then
-            optionalLegacyKeybindings = config.variant.legacyKeybindings
-        end
     end
     if config.exploratory then
         if config.exploratory.votd ~= nil then
@@ -1010,6 +1014,9 @@ function loadConfig(config)
         end
         if config.exploratory.aid ~= nil then
             exploratoryAid = config.exploratory.aid
+        end
+        if config.exploratory.sweden ~= nil then
+            setSweden(config.exploratory.sweden, false, false)
         end
     end
     if config.playtest then
@@ -1154,7 +1161,7 @@ function setupExpansion(bag)
             elseif obj.name == "Events" then
                 if Global.getTable("events")[bag.getName()] then
                     eventsStarted = true
-                    local eventDeckZone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+                    local eventDeckZone = Global.getVar("eventDeckZone")
                     if #eventDeckZone.getObjects() > 0 then
                         local events = bag.takeObject({guid = obj.guid})
                         eventDeckZone.getObjects()[1].putObject(events)
@@ -1219,7 +1226,6 @@ function toggleSetupUI(show)
         self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
     end
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", visibility)
-    self.UI.setAttribute("panelSpirit", "visibility", visibility)
 end
 function toggleAdversaryScenarioVisiblity(show)
     local colors = {}
@@ -1237,6 +1243,10 @@ function toggleAdversaryScenarioVisiblity(show)
             local obj = getObjectFromGUID(guid)
             obj.setInvisibleTo(colors)
         end
+    end
+    local secondWave = getObjectFromGUID("e924fe")
+    if secondWave ~= nil then
+        secondWave.setInvisibleTo(colors)
     end
 end
 
@@ -1536,7 +1546,7 @@ function gainSpirit(player)
             count = count + 1
             local label = spirit.getName()
             if aspect ~= nil and aspect ~= "" then
-                label = label.."-"..aspect
+                label = label.." - "..aspect
             end
             obj.createButton({
                 click_function = "pickSpirit" .. i,
@@ -1547,7 +1557,7 @@ function gainSpirit(player)
                 scale = Vector(0.1,0.1,0.1),
                 width = 4850,
                 height = 600,
-                font_size = 290,
+                font_size = 275,
             })
         end
     end
@@ -1621,7 +1631,7 @@ function replaceSpirit(obj, index, color)
 end
 function pickSpirit(obj, index, color)
     local name = obj.getButtons()[index+1].label
-    local start,_ = string.find(name, "-")
+    local start,_ = string.find(name, " %- ")
     if start ~= nil then
         name = string.sub(name, 1, start-1)
     end
@@ -1714,7 +1724,7 @@ function removeSpirit(params)
                 if buttons ~= nil then
                     for index,button in pairs(buttons) do
                         local label = button.label
-                        local start,_ = string.find(label, "-")
+                        local start,_ = string.find(label, " %- ")
                         if start ~= nil then
                             label = string.sub(label, 1, start-1)
                         end
@@ -1776,15 +1786,23 @@ function toggleDigitalEvents()
     self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
 end
 function toggleSlaveRebellion()
-    optionalThematicRebellion = not optionalThematicRebellion
+    setSlaveRebellion(not optionalThematicRebellion, true)
+end
+function setSlaveRebellion(bool, updateUI)
+    optionalThematicRebellion = bool
     local obj = getObjectFromGUID(adversaries.France)
     if obj ~= nil then
         obj.setVar("thematicRebellion", optionalThematicRebellion)
     end
-    self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
+    if updateUI then
+        self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
+    end
 end
 function toggleEngland6()
-    optionalEngland6 = not optionalEngland6
+    setEngland6(not optionalEngland6, true, false)
+end
+function setEngland6(bool, updateUI, loading)
+    optionalEngland6 = bool
     local obj = getObjectFromGUID(adversaries.England)
     if obj ~= nil then
         if optionalEngland6 then
@@ -1792,9 +1810,13 @@ function toggleEngland6()
         else
             obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
         end
-        updateDifficulty()
+        if updateUI and not loading then
+            updateDifficulty()
+        end
     end
-    self.UI.setAttribute("england6", "isOn", optionalEngland6)
+    if updateUI then
+        self.UI.setAttribute("england6", "isOn", optionalEngland6)
+    end
 end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
@@ -1808,33 +1830,6 @@ function toggleCarpetRedo()
         seaTile.setState(1)
     end
 end
-function toggleLegacyKeybindings()
-    optionalLegacyKeybindings = not optionalLegacyKeybindings
-    local pieces = Global.getTable("Pieces")
-    if optionalLegacyKeybindings then
-        local piece = pieces[9]
-        pieces[9] = pieces[8]
-        pieces[8] = pieces[7]
-        pieces[7] = pieces[6]
-        pieces[6] = piece
-    else
-        local piece = pieces[6]
-        pieces[6] = pieces[7]
-        pieces[7] = pieces[8]
-        pieces[8] = pieces[9]
-        pieces[9] = piece
-    end
-
-    local notes = "\n\n\n\n\n\n\n\n\n\n\nSpawn Objects:"
-    for i=1,9 do
-        notes = notes.."\nNum "..i.." - "..pieces[i]
-    end
-    notes = notes.."\nNum 0 - "..pieces[10].."\n\nFor more keybindings:\nOptions -> Game Keys"
-    Notes.setNotes(notes)
-
-    Global.setTable("Pieces", pieces)
-    self.UI.setAttribute("legacyKeybindings", "isOn", optionalLegacyKeybindings)
-end
 
 function toggleExploratoryAll()
     local checked = self.UI.getAttribute("exploratoryAll", "isOn")
@@ -1844,12 +1839,14 @@ function toggleExploratoryAll()
         if exploratoryBODAN then toggleBODAN() end
         if exploratoryWar then toggleWar() end
         if exploratoryAid then toggleAid() end
+        if exploratorySweden then toggleSweden() end
     else
         checked = "true"
         if not exploratoryVOTD then toggleVOTD() end
         if not exploratoryBODAN then toggleBODAN() end
         if not exploratoryWar then toggleWar() end
         if not exploratoryAid then toggleAid() end
+        if not exploratorySweden then toggleSweden() end
     end
     self.UI.setAttribute("exploratoryAll", "isOn", checked)
 end
@@ -1868,6 +1865,41 @@ end
 function toggleAid()
     exploratoryAid = not exploratoryAid
     self.UI.setAttribute("aid", "isOn", exploratoryAid)
+end
+function toggleSweden()
+    setSweden(not exploratorySweden, true, false)
+end
+function setSweden(bool, updateUI, loading)
+    exploratorySweden = bool
+    local obj = getObjectFromGUID(adversaries.Sweden)
+    if obj ~= nil then
+        if exploratorySweden then
+            obj.setTable("difficulty", {[0] = 1, 2, 3, 5, 6, 7, 8, 10})
+            obj.setTable("fearCards", {[0] = {0,0,0}, {0,0,0}, {0,1,0}, {0,1,0}, {0,1,1}, {1,1,1}, {1,1,2}, {1,2,2}})
+            if Global.getVar("adversaryCard") == obj then
+                updateLeadingAdversarySliderMax(obj, updateUI)
+            end
+            if Global.getVar("adversaryCard2") == obj then
+                updateSupportingAdversarySliderMax(obj, updateUI)
+            end
+        else
+            obj.setTable("difficulty", {[0] = 1, 2, 3, 5, 6, 7, 8})
+            obj.setTable("fearCards", {[0] = {0,0,0}, {0,0,0}, {0,1,0}, {0,1,0}, {0,1,1}, {1,1,1}, {1,1,2}})
+            if Global.getVar("adversaryCard") == obj then
+                updateLeadingAdversarySliderMax(obj, updateUI)
+            end
+            if Global.getVar("adversaryCard2") == obj then
+                updateSupportingAdversarySliderMax(obj, updateUI)
+            end
+        end
+        obj.setVar("exploratory", exploratorySweden)
+        if updateUI and not loading then
+            updateDifficulty()
+        end
+    end
+    if updateUI then
+        self.UI.setAttribute("sweden", "isOn", exploratorySweden)
+    end
 end
 
 function wt(some)
@@ -1913,6 +1945,27 @@ function updateXml(updateFunctions)
         recurse(v)
     end
     self.UI.setXmlTable(t, {})
+end
+-- TODO: refactor to share code with updateXml above
+function updateGlobalXml(updateFunctions)
+    local function recurse(t)
+        local shouldRecurse = false
+        for _, f in pairs(updateFunctions) do
+            if f(t) then
+                shouldRecurse = true
+            end
+        end
+        if shouldRecurse then
+            for _, v in pairs(t.children) do
+                recurse(v)
+            end
+        end
+    end
+    local t = Global.UI.getXmlTable()
+    for _,v in pairs(t) do
+        recurse(v)
+    end
+    Global.UI.setXmlTable(t, {})
 end
 function getXml(updateFunctions)
     local function recurse(t)
@@ -2020,6 +2073,36 @@ function removeToggle(id, value)
     end)
 end
 
+function updateAdversaryUI(params)
+    local adversaryCard = Global.getVar("adversaryCard")
+    local adversaryCard2 = Global.getVar("adversaryCard2")
+    local funcList = {}
+    if adversaryCard ~= nil then
+        table.insert(funcList, addAdversaryRows("panelAdversaryHelper", #adversaryCard.getTable("difficulty")))
+    end
+    if adversaryCard2 ~= nil then
+        table.insert(funcList, addAdversaryRows("panelAdversary2Helper", #adversaryCard2.getTable("difficulty")))
+    end
+    if #funcList > 0 then
+        updateGlobalXml(funcList)
+    end
+    if params.callback ~= nil then
+        Wait.frames(function() Global.call(params.callback) end, 2)
+    end
+end
+function addAdversaryRows(id, levels)
+    return matchRecurse(id, function (t)
+        for i=1,levels do
+            table.insert(t.children, {
+                tag="Text",
+                value="",
+                attributes={id = "panelAdversaryLevel"..i, active="false", fontsize="16", alignment="UpperLeft", tooltipPosition="Left"},
+                children={},
+            })
+        end
+    end)
+end
+
 function indexTable(table, index)
     local i = 1
     for name,guid in pairs(table) do
@@ -2053,15 +2136,26 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     -- Requires two adversaries
     local leadingAdversary = math.random(1, numAdversaries)
     config.adversary = indexTable(adversaries, leadingAdversary)
-    local leadingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel = leadingAdversaryLevel % 7
+    local adversaryLevelMax = #getObjectFromGUID(adversaries[config.adversary]).getTable("difficulty")
+    local fact = 1
+    for i=2,adversaryLevelMax+1 do
+        fact = fact * i
+    end
+    local leadingAdversaryLevel = math.random(0, fact)
+    config.adversaryLevel = leadingAdversaryLevel % (adversaryLevelMax + 1)
+
     local supportingAdversary = math.random(1, numAdversaries - 1)
     if supportingAdversary >= leadingAdversary then
         supportingAdversary = supportingAdversary + 1
     end
     config.adversary2 = indexTable(adversaries, supportingAdversary)
-    local supportingAdversaryLevel = math.random(0, 419)
-    config.adversaryLevel2 = supportingAdversaryLevel % 7
+    local adversaryLevel2Max = #getObjectFromGUID(adversaries[config.adversary2]).getTable("difficulty")
+    fact = 1
+    for i=2,adversaryLevel2Max+1 do
+        fact = fact * i
+    end
+    local supportingAdversaryLevel = math.random(0, fact)
+    config.adversaryLevel2 = supportingAdversaryLevel % (adversaryLevel2Max + 1)
 
     -- 2/3 chance to get scenario
     local useScenario = math.random(1, 3)
@@ -2114,8 +2208,6 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         table.insert(config.events, "Jagged Earth")
     end
 
-    -- Copy spiritGuids table so we can remove elements from it
-    local spiritGuidsCopy = {table.unpack(spiritGuids)}
     local boardsCount
     local boards
     if config.boardLayout == "Thematic" then
@@ -2148,6 +2240,9 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         end
         return ""
     end
+
+    -- Copy spiritGuids table so we can remove elements from it
+    local spiritGuidsCopy = {table.unpack(spiritGuids)}
     for i=1,numPlayers do
         local index = math.random(1, #spiritGuidsCopy)
         local spirit = getObjectFromGUID(spiritGuidsCopy[index])
@@ -2177,6 +2272,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         end
         config.broadcast = config.broadcast..boardName.." - "..spirit.getName()
     end
+
     local extraBoardRandom = nil
     if config.variant.extraBoard then
         -- make sure the extra board added is always the same one the next player would use
@@ -2212,85 +2308,63 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     end
 
     -- Makes sure difficulty is in acceptable range for the tier of challenge
+    local tiers = { {7, 10}, {10, 13}, {13, 16} }
     local difficulty = difficultyCheck(config)
-    if tier == 1 then
-        while difficulty > 8 do
-            if config.adversaryLevel > 0 then
-                config.adversaryLevel = leadingAdversaryLevel % config.adversaryLevel
+
+    local adversaryLevelMin = 0
+    local adversaryLevel2Min = 0
+    if prevTierConfig ~= nil then
+        adversaryLevelMin = prevTierConfig.adversaryLevel
+        adversaryLevel2Min = prevTierConfig.adversaryLevel2
+        -- make sure adversary level is always increasing
+        if prevTierConfig.variant.extraBoard then
+            if adversaryLevelMin < adversaryLevelMax then
+                adversaryLevelMin = adversaryLevelMin + 1
             end
-            if config.adversaryLevel2 > 0 then
-                config.adversaryLevel2 = supportingAdversaryLevel % config.adversaryLevel2
-            end
-            difficulty = difficultyCheck(config)
-            if config.adversaryLevel == 0 and config.adversaryLevel2 == 0 then
-                -- can't go any lower so we just have to take it
-                break
+            if adversaryLevel2Min < adversaryLevel2Max then
+                adversaryLevel2Min = adversaryLevel2Min + 1
             end
         end
-    elseif tier == 2 then
-        local adversaryLevelMax = 6
-        local adversaryLevelMin = prevTierConfig.adversaryLevel
-        local adversaryLevel2Max = 6
-        local adversaryLevel2Min = prevTierConfig.adversaryLevel2
-        while difficulty <= 8 or difficulty > 16 do
-            if difficulty <= 8 then
-                if config.adversaryLevel > adversaryLevelMin then
-                    adversaryLevelMin = config.adversaryLevel
-                end
-                if config.adversaryLevel2 > adversaryLevel2Min then
-                    adversaryLevel2Min = config.adversaryLevel2
-                end
-                if config.adversaryLevel < adversaryLevelMax then
-                    local leadingDiff = adversaryLevelMax - config.adversaryLevel
-                    config.adversaryLevel = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
-                end
-                if config.adversaryLevel2 < adversaryLevel2Max then
-                    local supportingDiff = adversaryLevel2Max - config.adversaryLevel2
-                    config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
-                end
-            else
-                -- difficulty > 16
-                if config.adversaryLevel < adversaryLevelMax then
-                    adversaryLevelMax = config.adversaryLevel
-                end
-                if config.adversaryLevel2 < adversaryLevel2Max then
-                    adversaryLevel2Max = config.adversaryLevel2
-                end
-                if config.adversaryLevel > adversaryLevelMin then
-                    local leadingDiff = config.adversaryLevel - adversaryLevelMin
-                    config.adversaryLevel = leadingAdversaryLevel % leadingDiff + adversaryLevelMin
-                end
-                if config.adversaryLevel2 > adversaryLevel2Min then
-                    local leadingDiff = config.adversaryLevel2 - adversaryLevel2Min
-                    config.adversaryLevel2 = supportingAdversaryLevel % leadingDiff + adversaryLevel2Min
-                end
+    end
+    while difficulty < tiers[tier][1] or difficulty >= tiers[tier][2] do
+        if difficulty < tiers[tier][1] then
+            if config.adversaryLevel > adversaryLevelMin then
+                adversaryLevelMin = config.adversaryLevel
             end
-            difficulty = difficultyCheck(config)
-        end
-    elseif tier == 3 then
-        while difficulty <= 16 do
-            if config.adversaryLevel < 6 then
-                local leadingDiff = 6 - config.adversaryLevel
+            if config.adversaryLevel2 > adversaryLevel2Min then
+                adversaryLevel2Min = config.adversaryLevel2
+            end
+            if config.adversaryLevel < adversaryLevelMax then
+                local leadingDiff = adversaryLevelMax - config.adversaryLevel
                 config.adversaryLevel = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
             end
-            if config.adversaryLevel2 < 6 then
-                local supportingDiff = 6 - config.adversaryLevel2
+            if config.adversaryLevel2 < adversaryLevel2Max then
+                local supportingDiff = adversaryLevel2Max - config.adversaryLevel2
                 config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
             end
-            difficulty = difficultyCheck(config)
-            if config.adversaryLevel == 6 and config.adversaryLevel2 == 6 then
-                -- can't go any higher so we just have to take it
-                break
+        else
+            -- difficulty >= tiers[tier][2]
+            if config.adversaryLevel < adversaryLevelMax then
+                adversaryLevelMax = config.adversaryLevel
+            end
+            if config.adversaryLevel2 < adversaryLevel2Max then
+                adversaryLevel2Max = config.adversaryLevel2
+            end
+            if config.adversaryLevel > adversaryLevelMin then
+                local leadingDiff = config.adversaryLevel - adversaryLevelMin
+                config.adversaryLevel = leadingAdversaryLevel % leadingDiff + adversaryLevelMin
+            end
+            if config.adversaryLevel2 > adversaryLevel2Min then
+                local leadingDiff = config.adversaryLevel2 - adversaryLevel2Min
+                config.adversaryLevel2 = supportingAdversaryLevel % leadingDiff + adversaryLevel2Min
             end
         end
-        -- Tier 2 could have raised adversary levels from starting point,
-        -- so we should make sure that Tier 3 doesn't lower adversary levels
-        if config.adversaryLevel < prevTierConfig.adversaryLevel then
-            config.adversaryLevel = prevTierConfig.adversaryLevel
+        if adversaryLevelMin >= adversaryLevelMax and adversaryLevel2Min >= adversaryLevel2Max then
+            config.adversaryLevel = adversaryLevelMin
+            config.adversaryLevel2 = adversaryLevel2Min
+            break
         end
-        if config.adversaryLevel2 < prevTierConfig.adversaryLevel2 then
-            config.adversaryLevel2 = prevTierConfig.adversaryLevel2
-        end
+        difficulty = difficultyCheck(config)
     end
 
     config.playtest = {expansion=""}

@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 63.694801330566406,
+    "posX": 62.68259811401367,
     "posY": 1.013100028038025,
-    "posZ": 77.1438980102539,
+    "posZ": 77.44779968261719,
     "rotX": -0.0,
     "rotY": 270.0,
     "rotZ": 0.0,
@@ -20,8 +20,7 @@
     "b": 1.0
   },
   "Tags": [
-    "Setup",
-    "Uninteractable"
+    "Setup"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,

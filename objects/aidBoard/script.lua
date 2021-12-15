@@ -151,6 +151,18 @@ function onLoad(saved_data)
         font_size      = 300,
         tooltip        = "Enable Second Wave for next game"
     })
+    self.createButton({
+        click_function = "flipEventCard",
+        function_owner = self,
+        label          = "",
+        position       = Vector(0.7,0.1,-0.85),
+        rotation       = Vector(0,270,0),
+        width          = 0,
+        height         = 0,
+        scale          = Vector(0.2,0.2,0.2),
+        font_size      = 300,
+        tooltip        = "Flip over the top Event Card"
+    })
     placeReadyTokens()
     placeElementTokens()
     updateFearUI()
@@ -204,12 +216,18 @@ function setupGame()
     Wait.time(aidPanelScanLoop,1,-1)
     Wait.time(scanReady,1,-1)
 
-    if Global.getVar("useEventDeck") or #getObjectFromGUID("a16796").getObjects() > 0 then
+    if Global.getVar("useEventDeck") or #Global.getVar("eventDeckZone").getObjects() > 0 then
         UI.setAttribute("panelTurnOrderEvent","active","true")
         self.editButton({
             index = 9,
             label = "Element Helper",
             width = 2100,
+            height = 500,
+        })
+        self.editButton({
+            index = 12,
+            label = "Event",
+            width = 1500,
             height = 500,
         })
         Wait.time(scanElements,2,-1)
@@ -254,8 +272,60 @@ function secondWave()
     secondWave.setScale(Vector(1.71, 1, 1.71))
     secondWave.setLock(true)
 end
+function flipEventCard()
+    if not Global.getVar("gameStarted") then
+        return
+    end
+    if not Global.call("usingEvents") then
+        -- events disabled
+        return
+    end
+
+    local objs = Global.getVar("eventDeckZone").getObjects()
+    if #objs == 0 then
+        broadcastToAll("Unable to resolve Event Card, Event Deck empty", Color.SoftYellow)
+        return
+    elseif #objs > 1 or not objs[1].is_face_down then
+        -- already have a faceup card
+        return
+    end
+
+    if objs[1].type == "Deck" then
+        objs[1].takeObject({
+            position = objs[1].getPosition() + Vector(0,.5,0),
+            flip = true,
+        })
+    elseif objs[1].type == "Card" then
+        objs[1].flip()
+    end
+end
+function discardEvent()
+    if not Global.getVar("gameStarted") then
+        return
+    end
+    if not Global.call("usingEvents") then
+        -- events disabled
+        return
+    end
+
+    local objs = Global.getVar("eventDeckZone").getObjects()
+    if #objs == 0 or (#objs == 1 and objs[1].is_face_down) then
+        -- no faceup card
+        return
+    end
+
+    for _,obj in pairs(objs) do
+        if obj.type == "Card" then
+            obj.setPositionSmooth(obj.getPosition()+Vector(-3.58,0.5,0))
+            break
+        end
+    end
+end
 ---- Invader Card Section
 function flipExploreCard()
+    if not Global.getVar("gameStarted") then
+        return
+    end
     local function removeSpecial(card)
         local script = card.getLuaScript()
         local start, finish = string.find(script,"special=true\n")
@@ -270,43 +340,62 @@ function flipExploreCard()
         broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
         broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
         return
-    elseif #objs > 1 or not objs[1].is_face_down then
-        -- already have a faceup card
-        return
     end
-    if objs[1].type == "Deck" then
-        objs[1].takeObject({
-            position = objs[1].getPosition() + Vector(0,.5,0),
+
+    local deck = nil
+    local offset = Vector(0, .5, 0)
+    for _,obj in pairs(objs) do
+        if obj.type == "Deck" then
+            deck = obj
+        elseif obj.type == "Card" and obj.is_face_down then
+            if deck == nil then
+                deck = obj
+            end
+        elseif obj.type == "Card" then
+            if obj.getLock() then
+                obj.setLock(false)
+                offset = offset + Vector(0, 0, -1)
+            else
+                return
+            end
+        end
+    end
+
+    if deck.type == "Deck" then
+        deck.takeObject({
+            position = deck.getPosition() + offset,
             flip = true,
             callback_function = removeSpecial,
         })
-    elseif objs[1].type == "Card" then
-        objs[1].flip()
-        removeSpecial(objs[1])
+    elseif deck.type == "Card" then
+        deck.setRotationSmooth(Vector(0, 180, 0))
+        deck.setPosition(deck.getPosition() + offset)
+        removeSpecial(deck)
     end
 end
 
 scanLoopTable = {
     Build2 = {
         sourceGUID = "6bc964",
-        origin = Vector(-0.23,0.1,0.42),
-        faceDown = false,
+        origin = Vector(-0.23,0.09,0.42),
     },
     Ravage = {
         origin = Vector(-0.203,0.09,2.1),
-        faceDown = false,
     },
     Build = {
         origin = Vector(-0.715,0.09,2.1),
-        faceDown = false,
     },
     Explore = {
         origin = Vector(-1.23,0.09,2.1),
-        faceDown = false,
     },
 }
 
 function advanceInvaderCards()
+    if not Global.getVar("gameStarted") then
+        return
+    end
+    local prevOffset = Vector(0, 0, 0)
+    local currentOffset = Vector(0, 0, 0)
     for i,v in pairs(scanLoopTable) do
         local source = self
         if v.sourceGUID ~= nil then
@@ -325,30 +414,38 @@ function advanceInvaderCards()
             for _,hit in pairs(hits) do
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
-            for _,hit in pairs(hitObjects) do
-                if hit.type == "Card" and hit.is_face_down == v.faceDown then
-                    if i == "Build2" then
-                        hit.setRotation(Vector(0,90,0))
-                        hit.setPositionSmooth(discard)
-                    elseif i == "Ravage" then
-                        local build2 = UI.getAttribute("panelBuild2","active")
-                        if not build2 or build2 == "false" or build2 == "False" then
+            for depth,hit in pairs(hitObjects) do
+                if hit.type == "Card" and not hit.is_face_down then
+                    if hit.getLock() then
+                        hit.setLock(false)
+                        hit.setPositionSmooth(hit.getPosition() + Vector(0, 0, 1) * (depth - 1))
+                        currentOffset = currentOffset + Vector(0, 0, 1)
+                    else
+                        if i == "Build2" then
                             hit.setRotation(Vector(0,90,0))
                             hit.setPositionSmooth(discard)
-                        else
-                            source = getObjectFromGUID(scanLoopTable["Build2"].sourceGUID)
-                            local nextO = source.positionToWorld(scanLoopTable["Build2"].origin)
-                            hit.setPositionSmooth(Vector(nextO[1],nextO[2]+0.2,hit.getPosition().z))
+                        elseif i == "Ravage" then
+                            local build2 = UI.getAttribute("panelBuild2","active")
+                            if not build2 or build2 == "false" or build2 == "False" then
+                                hit.setRotation(Vector(0,90,0))
+                                hit.setPositionSmooth(discard)
+                            else
+                                source = getObjectFromGUID(scanLoopTable["Build2"].sourceGUID)
+                                local nextO = source.positionToWorld(scanLoopTable["Build2"].origin)
+                                hit.setPositionSmooth(Vector(nextO[1],nextO[2]+0.3,hit.getPosition().z)+currentOffset+prevOffset)
+                            end
+                        elseif i == "Build" then
+                            local nextO = source.positionToWorld(scanLoopTable["Ravage"].origin)
+                            hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y+0.1,hit.getPosition().z)+currentOffset+prevOffset)
+                        elseif i == "Explore" then
+                            local nextO = source.positionToWorld(scanLoopTable["Build"].origin)
+                            hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y+0.1,hit.getPosition().z)+currentOffset+prevOffset)
                         end
-                    elseif i == "Build" then
-                        local nextO = source.positionToWorld(scanLoopTable["Ravage"].origin)
-                        hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y,hit.getPosition().z))
-                    elseif i == "Explore" then
-                        local nextO = source.positionToWorld(scanLoopTable["Build"].origin)
-                        hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y,hit.getPosition().z))
                     end
                 end
             end
+            prevOffset = currentOffset * -1
+            currentOffset = Vector(0, 0, 0)
         end
         ::continueAdvance::
     end
@@ -379,7 +476,7 @@ function aidPanelScanLoop()
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
             for _,hit in pairs(hitObjects) do
-                if hit.type == "Card" and hit.is_face_down == v.faceDown and hit.hasTag("Invader Card") then
+                if hit.type == "Card" and not hit.is_face_down and hit.hasTag("Invader Card") then
                     if hit.loading_custom then
                         -- you can't access script for objects not loaded, so wait for next iteration of loop
                         return
@@ -585,7 +682,14 @@ function fearCardEarned()
             end, function() return not card.isSmoothMoving() end)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
         elseif card.hasTag("Invader Card") then
-            local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,-1)
+            local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
+            if Global.UI.getAttribute("panelBuild21", "active") == "True" then
+                -- already have 2 build cards
+                pos = pos + Vector(0,0,-2)
+            elseif Global.UI.getAttribute("panelBuild11text", "text") ~= "NO ACTION" then
+                -- already have 1 build card
+                pos = pos + Vector(0,0,-1)
+            end
             -- Russia puts invader cards in this deck at a scale factor of 1.37
             card.scale(1/1.37)
             card.setPosition(pos)

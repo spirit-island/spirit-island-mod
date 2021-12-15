@@ -1,7 +1,6 @@
 difficulty={[0] = 2, 3, 5, 7, 8, 9, 10}
 fearCards={[0] = {0,0,0}, {0,0,0}, {0,1,0}, {1,1,0}, {1,1,1}, {1,2,1}, {1,2,2}}
-preSetup = true
-preSetupComplete = false
+invaderSetup = true
 reminderSetup = true
 limitSetup = true
 limitSetupComplete = false
@@ -17,18 +16,8 @@ hasBroadcast = true
 
 slaveRebellion = "1f0327"
 
-function onSave()
-    local data_table = {
-        thematicRebellion = thematicRebellion
-    }
-    return JSON.encode(data_table)
-end
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
-    if saved_data ~= "" then
-        local loaded_data = JSON.decode(saved_data)
-        thematicRebellion = loaded_data.thematicRebellion
-    end
 end
 
 function onObjectSpawn(obj)
@@ -47,28 +36,12 @@ function onObjectSpawn(obj)
     end
 end
 
-function PreSetup(params)
+function InvaderSetup(params)
+    local invaders = nil
     if params.level >= 6 then
-        local adversaryBag = Global.getVar("adversaryBag")
-        local explorerBag = Global.getVar("explorerBag")
-        local explorerBagPosition = explorerBag.getPosition()
-        local newGuid = "bf89e8"
-        if explorerBag.guid == "3b674d" then
-            newGuid = "24908a"
-        end
-        explorerBag.destruct()
-        explorerBag = adversaryBag.takeObject({
-            guid = newGuid,
-            position = explorerBagPosition,
-            rotation = {0,180,0},
-            smooth = false,
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-        Global.setVar("explorerBag", explorerBag)
-        Wait.condition(function() preSetupComplete = true end, function() return not explorerBag.isSmoothMoving() end)
-    else
-        preSetupComplete = true
+        invaders = { explorer = { tooltip = "They are unable to be removed by fear cards and instead will be pushed", color = "9844CD" } }
     end
+    return invaders
 end
 
 function ReminderSetup(params)
@@ -101,30 +74,35 @@ function AdversaryUI(params)
     if params.supporting then
         ui.escalation.random = true
     end
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Frontier Explorers"
-        ui.one.tooltip = "Except during Setup: After Invaders\nsuccessfully Explore into a land which\nhad no Town/City, add 1 Explorer there."
+        ui.effects[1] = {}
+        ui.effects[1].name = "Frontier Explorers"
+        ui.effects[1].tooltip = "Except during Setup: After Invaders\nsuccessfully Explore into a land which\nhad no Town/City, add 1 Explorer there."
+        ui.invader.explore = true
     end
     if params.level >= 2 then
-        ui.two = {}
-        ui.two.name = "Slave Labor"
-        ui.two.tooltip = "After Invaders Build in a land with 2+\nExplorers replace all but 1 Explorer\nthere with an equal number of Town."
+        ui.effects[2] = {}
+        ui.effects[2].name = "Slave Labor"
+        ui.effects[2].tooltip = "After Invaders Build in a land with 2+\nExplorers replace all but 1 Explorer\nthere with an equal number of Town."
+        ui.invader.build = true
     end
     if params.level >= 4 then
-        ui.four = {}
-        ui.four.name = "Triangle Trade"
-        ui.four.tooltip = "Whenever Invaders Build a Coastal\nCity, add 1 Town to the adjacent\nland with the fewest Town."
+        ui.effects[4] = {}
+        ui.effects[4].name = "Triangle Trade"
+        ui.effects[4].tooltip = "Whenever Invaders Build a Coastal\nCity, add 1 Town to the adjacent\nland with the fewest Town."
     end
     if params.level >= 5 then
-        ui.five = {}
-        ui.five.name = "Slow-healing Ecosystem"
-        ui.five.tooltip = "When you remove Blight from the board,\nput it here instead of onto the Blight Card.\nAs soon as you have 3 Blight per player\nhere, move it all back to the Blight Card."
+        ui.effects[5] = {}
+        ui.effects[5].name = "Slow-healing Ecosystem"
+        ui.effects[5].tooltip = "When you remove Blight from the board,\nput it here instead of onto the Blight Card.\nAs soon as you have 3 Blight per player\nhere, move it all back to the Blight Card."
     end
     if params.level >= 6 then
-        ui.six = {}
-        ui.six.name = "Persistent Explorers"
-        ui.six.tooltip = "After resolving an Explore Card, on each board\nadd 1 Explorer to a land without any. Fear\nCard effects never remove Explorer. If one\nwould, you may instead Push that Explorer."
+        ui.effects[6] = {}
+        ui.effects[6].name = "Persistent Explorers"
+        ui.effects[6].tooltip = "After resolving an Explore Card, on each board\nadd 1 Explorer to a land without any. Fear\nCard effects never remove Explorer. If one\nwould, you may instead Push that Explorer."
     end
     return ui
 end
@@ -203,7 +181,7 @@ function PostSetup(params)
     if params.level >= 2 then
         local card = adversaryBag.takeObject({guid = slaveRebellion})
         local count = setupSlaveRebellion(card)
-        local zone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+        local zone = Global.getVar("eventDeckZone")
         Wait.condition(function() postSetupComplete = true end, function()
             local objs = zone.getObjects() return #objs == 1 and ((objs[1].type == "Deck" and #objs[1].getObjects() == count) or objs[1].type == "Card")
         end)
@@ -212,7 +190,7 @@ function PostSetup(params)
     end
 end
 function setupSlaveRebellion(card)
-    local zone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+    local zone = Global.getVar("eventDeckZone")
     local eventDeck = zone.getObjects()[1]
     local count = 0
     if eventDeck ~= nil then

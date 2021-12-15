@@ -1,0 +1,56 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 115.1259994506836,
+    "posY": 2.5866000652313232,
+    "posZ": 18.414199829101562,
+    "rotX": 0.0,
+    "rotY": 179.99429321289062,
+    "rotZ": 180.0,
+    "scaleX": 3.3499999046325684,
+    "scaleY": 3.3499999046325684,
+    "scaleZ": 3.3499999046325684
+  },
+  "Nickname": "Sharp Fangs Behind the Leaves",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1847035612136766367/146B1DEF154F9BF51748AE93935DD7310D19046F/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.875,
+        "g": 0.8129000067710876,
+        "b": 0.7462999820709229
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 4.0,
+      "FresnelStrength": 0.1071000024676323
+    },
+    "CastShadows": true
+  }
+}

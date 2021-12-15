@@ -18,7 +18,7 @@ function doSetup(params)
 
     for _, card in pairs(Player[color].getHandObjects(1)) do
         if card.guid == "22b2f3" then
-            -- HACK: Wait 1 frame to get around bug when calling setPosition for object in a hand
+            Global.call("ensureCardInPlay", {card=card})
             Wait.frames(function() Global.call("discardPowerCardFromPlay", {card = card, discardHeight = 1}) end, 1)
             Global.call("giveEnergy", {color=getPlayerColor(), energy=1})
             break

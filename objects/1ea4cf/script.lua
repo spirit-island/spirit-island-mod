@@ -1,7 +1,6 @@
 difficulty={[0] = 1, 3, 4, 6, 7, 9, 11}
 fearCards={[0] = {0,0,0}, {0,0,1}, {1,0,1}, {1,1,0}, {1,1,1}, {1,2,1}, {2,2,1}}
-preSetup = true
-preSetupComplete = false
+invaderSetup = true
 reminderSetup = true
 invaderDeckSetup = true
 mapSetup = true
@@ -19,34 +18,12 @@ function onLoad(saved_data)
     Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
 end
 
-function PreSetup(params)
-    if params.level >= 1 then
-        local explorerDamage = Global.getVar("explorerDamage")
-        local current = tonumber(explorerDamage.TextTool.getValue())
-        explorerDamage.TextTool.setValue(tostring(current + 1))
-        explorerDamage.TextTool.setFontColor({1,0.2,0.2})
-    end
+function InvaderSetup(params)
+    local invaders = nil
     if params.level >= 2 then
-        local adversaryBag = Global.getVar("adversaryBag")
-        local explorerBag = Global.getVar("explorerBag")
-        local explorerBagPosition = explorerBag.getPosition()
-        local newGuid = "3b674d"
-        if explorerBag.guid == "bf89e8" then
-            newGuid = "24908a"
-        end
-        explorerBag.destruct()
-        explorerBag = adversaryBag.takeObject({
-            guid = newGuid,
-            position = explorerBagPosition,
-            rotation = {0,180,0},
-            smooth = false,
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-        Global.setVar("explorerBag", explorerBag)
-        Wait.condition(function() preSetupComplete = true end, function() return not explorerBag.isSmoothMoving() end)
-    else
-        preSetupComplete = true
+        invaders = { explorer = { tooltip = "The first time each Action would Destroy Explorer: If possible, 1 of those Explorer is instead Pushed; 1 Fear when you do so.", color = "4351C8" } }
     end
+    return invaders
 end
 
 function ReminderSetup(params)
@@ -92,25 +69,29 @@ function AdversaryUI(params)
 
     ui.escalation = {}
     ui.escalation.tooltip = "On each board: Add 2 Explorer (total)\namong land with Beasts. If you can't\ninstead add 2 Explorer among lands\nwith Beasts on a different board."
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Hunters Seek Shell and Hide"
-        ui.one.tooltip = "During Play, Explorer do\n+1 Damage. When Ravage\nadds Blight to a land\n(including cascades),\nDestroy 1 Beasts in that land."
+        ui.effects[1] = {}
+        ui.effects[1].name = "Hunters Seek Shell and Hide"
+        ui.effects[1].tooltip = "During Play, Explorer do\n+1 Damage. When Ravage\nadds Blight to a land\n(including cascades),\nDestroy 1 Beasts in that land."
+        ui.invader.ravage = true
     end
     if params.level >= 2 then
-        ui.two = {}
-        ui.two.name = "A Sense for Impending Disaster"
-        ui.two.tooltip = "The first time each Action would\nDestroy Explorer: If possible,\n1 of those Explorer is instead\nPushed; 1 Fear when you do so."
+        ui.effects[2] = {}
+        ui.effects[2].name = "A Sense for Impending Disaster"
+        ui.effects[2].tooltip = "The first time each Action would\nDestroy Explorer: If possible,\n1 of those Explorer is instead\nPushed; 1 Fear when you do so."
     end
     if params.level >= 3 then
-        ui.three = {}
-        ui.three.name = "Competition Among Hunters"
-        ui.three.tooltip = "Ravage Cards also match lands\nwith 3 or more Explorer. (If the\nland already matched the Ravage\nCard, it still Ravages just once.)"
+        ui.effects[3] = {}
+        ui.effects[3].name = "Competition Among Hunters"
+        ui.effects[3].tooltip = "Ravage Cards also match lands\nwith 3 or more Explorer. (If the\nland already matched the Ravage\nCard, it still Ravages just once.)"
     end
     if params.level >= 6 then
-        ui.six = {}
-        ui.six.name = "Pressure for Fast Profit"
-        ui.six.tooltip = "After the Ravage Step of turn\n2+, on each board where it\nadded no Blight: In the land\nwith the most Explorer (min.\n1), add 1 Explorer and 1 Town."
+        ui.effects[6] = {}
+        ui.effects[6].name = "Pressure for Fast Profit"
+        ui.effects[6].tooltip = "After the Ravage Step of turn\n2+, on each board where it\nadded no Blight: In the land\nwith the most Explorer (min.\n1), add 1 Explorer and 1 Town."
     end
     return ui
 end
@@ -154,6 +135,13 @@ function PostSetup(params)
             updateCount({count=#obj.getObjects()})
         end,
     })
+
+    if params.level >= 1 then
+        local explorerDamage = Global.getVar("explorerDamage")
+        local current = tonumber(explorerDamage.TextTool.getValue())
+        explorerDamage.TextTool.setValue(tostring(current + 1))
+        explorerDamage.TextTool.setFontColor({1,0.2,0.2})
+    end
 
     if params.level >= 5 then
         -- Setup extra invader cards

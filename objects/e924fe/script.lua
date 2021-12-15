@@ -239,13 +239,13 @@ function ExportConfig()
     data.variant.england6 = SetupChecker.getVar("optionalEngland6")
     data.variant.thematicRedo = SetupChecker.getVar("optionalThematicRedo")
     data.variant.carpetRedo = Global.getVar("seaTile").getStateId() == 1
-    data.variant.legacyKeybindings = SetupChecker.getVar("optionalLegacyKeybindings")
 
     data.exploratory = {}
     data.exploratory.votd = SetupChecker.getVar("exploratoryVOTD")
     data.exploratory.bodan = SetupChecker.getVar("exploratoryBODAN")
     data.exploratory.war = SetupChecker.getVar("exploratoryWar")
     data.exploratory.aid = SetupChecker.getVar("exploratoryAid")
+    data.exploratory.sweden = SetupChecker.getVar("exploratorySweden")
 
     data.playtest = {}
     data.playtest.expansion = SetupChecker.getVar("playtestExpansion")
@@ -347,7 +347,7 @@ function ExportConfig()
         data.adversary = obj.getName()
         data.adversaryLevel = Global.getVar("adversaryLevel")
         -- If the island is not blighted increase adversary level by 1
-        if not blightedIsland and data.adversaryLevel < 6 then
+        if not blightedIsland and data.adversaryLevel < #obj.getTable("difficulty") then
             data.adversaryLevel = data.adversaryLevel + 1
         end
     else
@@ -359,7 +359,7 @@ function ExportConfig()
         data.adversary2 = obj.getName()
         data.adversaryLevel2 = Global.getVar("adversaryLevel2")
         -- If the island is not blighted increase adversary level by 1
-        if not blightedIsland and data.adversaryLevel2 < 6 then
+        if not blightedIsland and data.adversaryLevel2 < #obj.getTable("difficulty") then
             data.adversaryLevel2 = data.adversaryLevel2 + 1
         end
     else

@@ -1,7 +1,6 @@
 difficulty={[0] = 2, 3, 5, 6, 8, 9, 10}
 fearCards={[0] = {0,0,0}, {0,1,0}, {1,2,-1}, {1,2,0}, {1,2,0}, {1,3,0}, {2,3,0}}
-preSetup = true
-preSetupComplete = false
+invaderSetup = true
 reminderSetup = true
 invaderDeckSetup = true
 mapSetup = true
@@ -12,6 +11,8 @@ hasUI = true
 hasBroadcast = true
 supporting = false
 count = 0
+
+checkLossID = 0
 
 function onSave()
     if supporting then
@@ -32,33 +33,12 @@ function onLoad(saved_data)
     count = loaded_data.count
 end
 
-function PreSetup(params)
+function InvaderSetup(params)
+    local invaders = nil
     if params.level >= 4 then
-        local townHealth = Global.getVar("townHealth")
-        local current = tonumber(townHealth.TextTool.getValue())
-        townHealth.TextTool.setValue(tostring(current + 2))
-        townHealth.TextTool.setFontColor({1,0.2,0.2})
-
-        local adversaryBag = Global.getVar("adversaryBag")
-        local townBag = Global.getVar("townBag")
-        local townBagPosition = townBag.getPosition()
-        local newGuid = "fabcad"
-        if townBag.guid == "942899" then
-            newGuid = "aeb4fa"
-        end
-        townBag.destruct()
-        townBag = adversaryBag.takeObject({
-            guid = newGuid,
-            position = townBagPosition,
-            rotation = {0,180,0},
-            smooth = false,
-            callback_function = function(obj) obj.setLock(true) end,
-        })
-        Global.setVar("townBag", townBag)
-        Wait.condition(function() preSetupComplete = true end, function() return not townBag.isSmoothMoving() end)
-    else
-        preSetupComplete = true
+        invaders = { town = { tooltip = "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)", states = { { color = "C6B843", copy = 1 }, { color = "C6B843", copy = 2 } } } }
     end
+    return invaders
 end
 
 function ReminderSetup(params)
@@ -97,41 +77,53 @@ function AdversaryUI(params)
     ui.loss.counter = {}
     ui.loss.counter.text = "Blight Count: "
     ui.loss.counter.buttons = true
-    ui.loss.counter.callback = "updateCount"
     Global.call("UpdateAdversaryLossCounter",{count=count,supporting=supporting})
+    checkLossID = Wait.time(checkLoss, 5, -1)
 
     ui.escalation = {}
     ui.escalation.tooltip = "After Exploring: On each board with\n4 or fewer Blight, add 1 Town to a\nland without Town/Blight. On each board\nwith 2 or fewer Blight, do so again."
+
+    ui.effects = {}
+    ui.invader = {}
     if params.level >= 1 then
-        ui.one = {}
-        ui.one.name = "Migratory Herders"
-        ui.one.tooltip = "After the normal Build Step: In each\nland matching a Build card, Gather\n1 Town from a land not matching\na Build Card. (In board/land order.)"
+        ui.effects[1] = {}
+        ui.effects[1].name = "Migratory Herders"
+        ui.effects[1].tooltip = "After the normal Build Step: In each\nland matching a Build card, Gather\n1 Town from a land not matching\na Build Card. (In board/land order.)"
+        ui.invader.build = true
     end
     if params.level >= 2 then
-        ui.two = {}
-        ui.two.name = "More Rural Than Urban"
-        ui.two.tooltip = "During Play, when Invaders\nwould Build 1 City in an Inland\nland, they instead Build 2 Town."
+        ui.effects[2] = {}
+        ui.effects[2].name = "More Rural Than Urban"
+        ui.effects[2].tooltip = "During Play, when Invaders\nwould Build 1 City in an Inland\nland, they instead Build 2 Town."
     end
     if params.level >= 4 then
-        ui.four = {}
-        ui.four.name = "Herds Thrive in Verdant Lands"
-        ui.four.tooltip = "Town in lands without Blight are Durable:\nthey have +2 Health, and \"Destroy Town\"\neffects instead deal 2 Damage (to Town\nonly) per Town they could Destroy.\n(\"Destroy all Town\" works normally.)"
+        ui.effects[4] = {}
+        ui.effects[4].name = "Herds Thrive in Verdant Lands"
+        ui.effects[4].tooltip = "Town in lands without Blight are Durable:\nthey have +2 Health, and \"Destroy Town\"\neffects instead deal 2 Damage (to Town\nonly) per Town they could Destroy.\n(\"Destroy all Town\" works normally.)"
     end
     if params.level >= 5 then
-        ui.five = {}
-        ui.five.name = "Wave of Immigration"
-        ui.five.tooltip = "When the Habsburg Reminder Card is\nrevealed, on each board, add 1 City to a\nCoastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
+        ui.effects[5] = {}
+        ui.effects[5].name = "Wave of Immigration"
+        ui.effects[5].tooltip = "When the Habsburg Reminder Card is\nrevealed, on each board, add 1 City to a\nCoastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
     end
     if params.level >= 6 then
-        ui.six = {}
-        ui.six.name = "Far-Flung Herds"
-        ui.six.tooltip = "Ravages do +2 Damage (total) if any\nadjacent lands have Town. (This does not\ncause lands without Invaders to Ravage.)"
+        ui.effects[6] = {}
+        ui.effects[6].name = "Far-Flung Herds"
+        ui.effects[6].tooltip = "Ravages do +2 Damage (total) if any\nadjacent lands have Town. (This does not\ncause lands without Invaders to Ravage.)"
+        ui.invader.ravage = true
     end
     return ui
 end
-function updateCount(params)
-    if params.count > Global.getVar("numBoards") then
+function checkLoss()
+    local count
+    if supporting then
+        count = tonumber(Global.UI.getAttribute("panelAdversary2LossCounterCount","text"))
+    else
+        count = tonumber(Global.UI.getAttribute("panelAdversaryLossCounterCount","text"))
+    end
+    if count > Global.call("getMapCount", {norm = true, them = true}) then
         broadcastToAll("Habsburg wins via Additional Loss Condition!", Color.SoftYellow)
+        Wait.stop(checkLossID)
     end
 end
 
@@ -149,26 +141,40 @@ function MapSetup(params)
 end
 
 function PostSetup(params)
+    if params.level >= 4 then
+        local townHealth = Global.getVar("townHealth")
+        local current = tonumber(townHealth.TextTool.getValue())
+        townHealth.TextTool.setValue(tostring(current + 2))
+        townHealth.TextTool.setFontColor({1,0.2,0.2})
+    end
+
     if params.level >= 5 then
         local zone = Global.getVar("invaderDeckZone")
         local invaderDeck = zone.getObjects()[1]
         if invaderDeck ~= nil then
-            local count = #invaderDeck.getObjects()
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,4,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,3.5,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,3,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,2.5,0)
-            })
-            invaderDeck.takeObject({
-                position = invaderDeck.getPosition() + Vector(0,2,0)
-            })
+            local cards = invaderDeck.getObjects()
+            local depth = nil
+            local count = 0
+            for _,card in pairs(cards) do
+                local start,_ = string.find(card.lua_script,"cardInvaderStage=")
+                if start ~= nil then
+                    count = count + 1
+                    if count == 5 then
+                        depth = card.index + 1
+                        break
+                    end
+                end
+            end
+            if depth == nil then
+                depth = #cards
+            end
+
+            count = #cards
+            for i=1,depth do
+                invaderDeck.takeObject({
+                    position = invaderDeck.getPosition() + Vector(0,2+(depth-i)*0.5,0)
+                })
+            end
             local adversaryBag = Global.getVar("adversaryBag")
             adversaryBag.takeObject({
                 guid = "d90af8",

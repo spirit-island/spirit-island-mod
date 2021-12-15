@@ -92,6 +92,7 @@ adversaryLossCallback = nil
 adversaryLossCallback2 = nil
 wave = 1
 castDown = nil
+castDownTimer = nil
 ------
 minorPowerDiscardZone = "55b275"
 majorPowerDiscardZone = "eaf864"
@@ -208,13 +209,33 @@ function onObjectCollisionEnter(hit_object, collision_info)
                 cleanupObject({obj = collision_info.collision_object, fear = false})
             end
         end
+    -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
     elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
         cleanupObject({obj = collision_info.collision_object, fear = true})
+        if castDownTimer ~= nil then
+            Wait.stop(castDownTimer)
+        end
+        castDownTimer = Wait.time(function() castDownCallback(hit_object) end, 0.5)
     end
     -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/770
     if scenarioCard ~= nil and scenarioCard.getVar("onObjectCollision") then
         scenarioCard.call("onObjectCollisionEnter", {hit_object=hit_object, collision_info=collision_info})
     end
+end
+function castDownCallback(board)
+    castDown = nil
+    local bag
+    if board.hasTag("Balanced") then
+        if board.getDecals() == nil then
+            bag = StandardMapBag
+        else
+            bag = ExtraMapBag
+        end
+    else
+        bag = ThematicMapBag
+    end
+    bag.putObject(board)
+    bag.shuffle()
 end
 function onObjectCollisionExit(hit_object, collision_info)
     if hit_object == seaTile then

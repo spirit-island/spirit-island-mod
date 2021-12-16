@@ -234,6 +234,7 @@ function castDownCallback(board)
     else
         bag = ThematicMapBag
     end
+    board.setLock(false)
     bag.putObject(board)
     bag.shuffle()
 end

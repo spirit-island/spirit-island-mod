@@ -442,6 +442,24 @@ function advanceInvaderCards()
                             hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y+0.1,hit.getPosition().z)+currentOffset+prevOffset)
                         end
                     end
+                elseif i == "Explore" then
+                    if hit.type == "Deck" then
+                        local objs = hit.getObjects()
+                        local invaderCard = false
+                        for _,tag in pairs(objs[1].tags) do
+                            if tag == "Invader Card" then
+                                invaderCard = true
+                                break
+                            end
+                        end
+                        if not invaderCard then
+                            broadcastToAll(objs[1].name.." was revealed from Invader Deck", Color.SoftYellow)
+                        end
+                    elseif hit.type == "Card" then
+                        if not hit.hasTag("Invader Card") then
+                            broadcastToAll(hit.getName().." was revealed from Invader Deck", Color.SoftYellow)
+                        end
+                    end
                 end
             end
             prevOffset = currentOffset * -1

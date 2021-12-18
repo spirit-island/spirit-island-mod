@@ -35,7 +35,7 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": false,
+  "HideWhenFaceDown": true,
   "Hands": true,
   "CardID": 59016,
   "SidewaysCard": false,

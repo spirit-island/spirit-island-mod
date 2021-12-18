@@ -44,21 +44,5 @@ function destroyBoard(card)
     end
 
     Global.setVar("castDown", board.getName())
-    board.setPosition(board.getPosition() + Vector(0, -0.03, 0))
-
-    Wait.frames(function()
-        Global.setVar("castDown", nil)
-        local bag
-        if board.hasTag("Balanced") then
-            if board.getDecals() == nil then
-                bag = Global.getVar("StandardMapBag")
-            else
-                bag = Global.getVar("ExtraMapBag")
-            end
-        else
-            bag = Global.getVar("ThematicMapBag")
-        end
-        bag.putObject(board)
-        bag.shuffle()
-    end, 3)
+    board.setPosition(board.getPosition() + Vector(0, -0.05, 0))
 end

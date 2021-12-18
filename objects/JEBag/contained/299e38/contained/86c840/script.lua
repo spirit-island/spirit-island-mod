@@ -13,41 +13,40 @@ function onObjectSpawn(obj)
         })
     end
 end
-function removeCards()
+function removeCards(card)
     local zone = Global.getVar("invaderDeckZone")
-    local obj = zone.getObjects()[1]
-    if obj.is_face_down then
-        if obj.type == "Deck" then
+    local deck = zone.getObjects()[1]
+    if deck.is_face_down then
+        if deck.type == "Deck" then
             local stage2Guid = nil
             local stage3Guid = nil
-            for _,card in pairs(obj.getObjects()) do
-                local _, finish = string.find(card.lua_script,"cardInvaderStage=")
-                local stage = string.sub(card.lua_script,finish+1)
+            for _,obj in pairs(deck.getObjects()) do
+                local _, finish = string.find(obj.lua_script,"cardInvaderStage=")
+                local stage = string.sub(obj.lua_script,finish+1)
                 if stage == "2" then
-                    stage2Guid = card.guid
+                    stage2Guid = obj.guid
                 elseif stage == "3" then
-                    stage3Guid = card.guid
+                    stage3Guid = obj.guid
                 end
             end
             if stage2Guid ~= nil then
-                local card = obj.takeObject({guid=stage2Guid})
-                card.setPosition(getObjectFromGUID(Global.getVar("stage2DeckZone")).getPosition())
+                deck.takeObject({guid=stage2Guid}).setPosition(getObjectFromGUID(Global.getVar("stage2DeckZone")).getPosition())
             end
             if stage3Guid ~= nil then
-                if obj.remainder then
-                    obj.remainder.setPosition(getObjectFromGUID(Global.getVar("stage3DeckZone")).getPosition())
+                if deck.remainder then
+                    deck.remainder.setPosition(getObjectFromGUID(Global.getVar("stage3DeckZone")).getPosition())
                 else
-                    local card = obj.takeObject({guid=stage3Guid})
-                    card.setPosition(getObjectFromGUID(Global.getVar("stage3DeckZone")).getPosition())
+                    deck.takeObject({guid=stage3Guid}).setPosition(getObjectFromGUID(Global.getVar("stage3DeckZone")).getPosition())
                 end
             end
-        elseif obj.type == "Card" then
-            local stage = obj.getVar("cardInvaderStage")
+        elseif deck.type == "Card" then
+            local stage = deck.getVar("cardInvaderStage")
             if stage == 2 then
-                obj.setPosition(getObjectFromGUID(Global.getVar("stage2DeckZone")).getPosition())
+                deck.setPosition(getObjectFromGUID(Global.getVar("stage2DeckZone")).getPosition())
             elseif stage == 3 then
-                obj.setPosition(getObjectFromGUID(Global.getVar("stage3DeckZone")).getPosition())
+                deck.setPosition(getObjectFromGUID(Global.getVar("stage3DeckZone")).getPosition())
             end
         end
     end
+    card.clearButtons()
 end

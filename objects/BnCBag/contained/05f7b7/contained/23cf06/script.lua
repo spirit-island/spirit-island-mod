@@ -14,7 +14,7 @@ function onObjectSpawn(obj)
     end
 end
 function returnCard(card)
-    local zone = getObjectFromGUID(Global.getVar("eventDeckZone"))
+    local zone = Global.getVar("eventDeckZone")
     local eventDeck = zone.getObjects()[1]
     if eventDeck ~= nil then
         eventDeck.takeObject({

@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.1.1-beta.3"
+version = "3.1.2-beta.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -3099,7 +3099,6 @@ function timePasses()
 end
 function timePassesCo()
     noFear = false
-    aidBoard.call("discardEvent")
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then

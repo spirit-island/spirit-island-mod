@@ -2078,10 +2078,10 @@ function updateAdversaryUI(params)
     local adversaryCard2 = Global.getVar("adversaryCard2")
     local funcList = {}
     if adversaryCard ~= nil then
-        table.insert(funcList, addAdversaryRows("panelAdversaryHelper", #adversaryCard.getTable("difficulty")))
+        table.insert(funcList, addAdversaryRows(false, #adversaryCard.getTable("difficulty")))
     end
     if adversaryCard2 ~= nil then
-        table.insert(funcList, addAdversaryRows("panelAdversary2Helper", #adversaryCard2.getTable("difficulty")))
+        table.insert(funcList, addAdversaryRows(true, #adversaryCard2.getTable("difficulty")))
     end
     if #funcList > 0 then
         updateGlobalXml(funcList)
@@ -2090,13 +2090,18 @@ function updateAdversaryUI(params)
         Wait.frames(function() Global.call(params.callback) end, 2)
     end
 end
-function addAdversaryRows(id, levels)
+function addAdversaryRows(supporting, levels)
+    local prefix = "panelAdversary"
+    if supporting then
+        prefix = prefix.."2"
+    end
+    local id = prefix.."Helper"
     return matchRecurse(id, function (t)
         for i=1,levels do
             table.insert(t.children, {
                 tag="Text",
                 value="",
-                attributes={id = "panelAdversaryLevel"..i, active="false", fontsize="16", alignment="UpperLeft", tooltipPosition="Left"},
+                attributes={id = prefix.."Level"..i, active="false", fontsize="16", alignment="UpperLeft", tooltipPosition="Left"},
                 children={},
             })
         end

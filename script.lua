@@ -3106,7 +3106,7 @@ function timePassesCo()
         end
         objectsToCleanup[guid] = nil
     end
-    for _,object in pairs(upCast(seaTile, 0.5)) do
+    for _,object in pairs(upCast(seaTile, 0, 0.47)) do
         handlePiece(object, 0)
     end
     for color,data in pairs(selectedColors) do
@@ -3473,7 +3473,7 @@ end
 
 function getMapTiles()
     local mapTiles = {}
-    for _,obj in pairs(upCast(seaTile)) do
+    for _,obj in pairs(upCast(seaTile, 0, 0.1)) do
         if isIslandBoard({obj=obj}) then
             table.insert(mapTiles,obj)
         end

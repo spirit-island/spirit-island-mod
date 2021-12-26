@@ -6,7 +6,24 @@ color = {0.95,0.95,0.95}
 local callbackObj, callbackFunc
 local noneCallbackBroadcast
 
+function onSave()
+    local data_table = {
+        callbackFunc = callbackFunc,
+        noneCallbackBroadcast = noneCallbackBroadcast,
+    }
+    if callbackObj ~= nil then
+        data_table.callbackObj = callbackObj.guid
+    end
+    return JSON.encode(data_table)
+end
 function onLoad(saved_data)
+    local loaded_data = JSON.decode(saved_data)
+    if loaded_data ~= nil then
+        callbackObj = getObjectFromGUID(loaded_data.callbackObj)
+        callbackFunc = loaded_data.callbackFunc
+        noneCallbackBroadcast = loaded_data.noneCallbackBroadcast
+    end
+
     Color.Add("SoftBlue", Color.new(0.53,0.92,1))
     Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     upd()
@@ -41,8 +58,6 @@ end
 function setCallback(params)
     callbackObj = params.obj
     callbackFunc = params.func
-end
-function setNoneBroadcast(params)
     noneCallbackBroadcast = params.broadcast
 end
 

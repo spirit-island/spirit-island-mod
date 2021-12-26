@@ -4,6 +4,7 @@ rotation = {-40,0,0}
 color = {0.95,0.95,0.95}
 
 local callbackObj, callbackFunc
+local noneCallbackBroadcast
 
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.53,0.92,1))
@@ -40,4 +41,13 @@ end
 function setCallback(params)
     callbackObj = params.obj
     callbackFunc = params.func
+end
+function setNoneBroadcast(params)
+    noneCallbackBroadcast = params.broadcast
+end
+
+function none()
+    if noneCallbackBroadcast ~= nil then
+        broadcastToAll(noneCallbackBroadcast, Color.SoftYellow)
+    end
 end

@@ -3769,6 +3769,7 @@ function place(objName, placePos, droppingPlayerColor)
         if explorerBag.getCustomObject().type ~= 7 then
             if #explorerBag.getObjects() == 0 then
                 broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
+                explorerBag.call("none")
                 return
             end
         end
@@ -3777,10 +3778,7 @@ function place(objName, placePos, droppingPlayerColor)
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
                 broadcastToAll("There are no Towns left to place", Color.SoftYellow)
-                -- TODO extract this logic into adversary
-                if (adversaryCard ~= nil and adversaryCard.getName() == "France") or (adversaryCard2 ~= nil and adversaryCard2.getName() == "France") then
-                    broadcastToAll("France wins via their Additional Loss Condition!", Color.SoftYellow)
-                end
+                townBag.call("none")
                 return
             end
         end
@@ -3789,6 +3787,7 @@ function place(objName, placePos, droppingPlayerColor)
         if cityBag.getCustomObject().type ~= 7 then
             if #cityBag.getObjects() == 0 then
                 broadcastToAll("There are no Cities left to place", Color.SoftYellow)
+                cityBag.call("none")
                 return
             end
         end

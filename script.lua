@@ -2931,6 +2931,31 @@ function setupCommandCard(invaderDeck, depth, guid)
         smooth = false,
     })
 end
+function MapSetPosition()
+    for _,obj in pairs(getMapTiles()) do
+        obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
+    end
+end
+function MapSetPositionSmooth()
+    for _,obj in pairs(getMapTiles()) do
+        obj.setPositionSmooth(obj.getPosition()-Vector(0,0.01,0), false)
+    end
+end
+function MapSetRotation()
+    for _,obj in pairs(getMapTiles()) do
+        obj.setRotation(obj.getRotation()-Vector(0,0.01,0))
+    end
+end
+function MapSetRotationSmooth()
+    for _,obj in pairs(getMapTiles()) do
+        obj.setRotationSmooth(obj.getRotation()-Vector(0,0.01,0), false)
+    end
+end
+function MapSetScale()
+    for _,obj in pairs(getMapTiles()) do
+        obj.setScale(obj.getScale()-Vector(0.01,0,0))
+    end
+end
 ----- Start Game Section
 function StartGame()
     gamePaused = false

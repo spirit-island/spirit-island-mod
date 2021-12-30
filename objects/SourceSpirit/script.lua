@@ -365,11 +365,13 @@ function SetupSpirit(obj, player_color)
             end
         end
 
-        local broadcast = spirit.getVar("broadcast")
-        if broadcast ~= nil then
-            Player[player_color].broadcast("Spirit - "..spirit.getName(), Color.White)
-            Player[player_color].broadcast(broadcast, Color.SoftBlue)
-        end
+        Wait.condition(function()
+            local broadcast = spirit.getVar("broadcast")
+            if broadcast ~= nil then
+                Player[player_color].broadcast("Spirit - "..spirit.getName(), Color.White)
+                Player[player_color].broadcast(broadcast, Color.SoftBlue)
+            end
+        end, function() return not spirit.loading_custom end)
 
         Wait.frames(function()
             Global.call("removeSpirit", {

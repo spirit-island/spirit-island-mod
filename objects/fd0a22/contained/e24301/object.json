@@ -1,0 +1,62 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": -39.5787,
+    "posY": 1.1639,
+    "posZ": 58.9395,
+    "rotX": 0.2305,
+    "rotY": 0.0197,
+    "rotZ": 0.7452,
+    "scaleX": 1.5,
+    "scaleY": 1.5,
+    "scaleZ": 1.5
+  },
+  "Nickname": "Destroy",
+  "Description": "Invaders placed on this will be Destroyed (with the Fear automatically Generated).",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Number": 0,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 6,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  },
+  "Bag": {
+    "Order": 0
+  }
+}

@@ -210,7 +210,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
     elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
-        cleanupObject({obj = collision_info.collision_object, fear = true})
+        cleanupObject({obj = collision_info.collision_object, fear = true, remove = true})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)
         end
@@ -3915,7 +3915,6 @@ end
 
 function cleanupObject(params)
     local bag = nil
-    local removeObject = true
     if string.sub(params.obj.getName(),1,5) == "Dahan" then
         params.obj.setRotation(Vector(0,0,0))
         bag = dahanBag
@@ -3937,7 +3936,7 @@ function cleanupObject(params)
         end
     elseif params.obj.getName() == "Blight" then
         params.obj.setRotation(Vector(0,180,0))
-        if params.fear then
+        if params.remove then
             bag = boxBlightBag
         else
             bag = returnBlightBag
@@ -3959,13 +3958,13 @@ function cleanupObject(params)
         bag = badlandsBag
     else
         if not params.obj.hasTag("Destroy") then
-            removeObject = false
+            return
         end
     end
 
-    if removeObject and (bag == nil or bag.type == "Infinite") then
+    if bag == nil or bag.type == "Infinite" then
         params.obj.destruct()
-    elseif removeObject then
+    else
         params.obj.highlightOff()
         if params.obj.getStateId() ~= -1 and params.obj.getStateId() ~= 1 then
             params.obj = params.obj.setState(1)

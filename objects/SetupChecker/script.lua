@@ -294,7 +294,7 @@ function onLoad(saved_data)
                         table.insert(funcList, addEventToggle(expansion))
                     end
                 end
-                updateXml(funcList)
+                updateXml(self, funcList)
                 Wait.frames(function()
                     toggleSimpleMode()
                     toggleChallenge()
@@ -346,7 +346,7 @@ function addExpansion(bag)
         if hasEvents then
             table.insert(funcList, addEventToggle(bag.getName()))
         end
-        updateXml(funcList)
+        updateXml(self, funcList)
     end
     expansions[bag.getName()] = bag.guid
 end
@@ -355,14 +355,14 @@ function addAdversary(obj)
         numAdversaries = numAdversaries + 1
     end
     adversaries[obj.getName()] = obj.guid
-    updateXml{updateAdversaryList()}
+    updateXml(self, {updateAdversaryList()})
 end
 function addScenario(obj)
     if scenarios[obj.getName()] == nil then
         numScenarios = numScenarios + 1
     end
     scenarios[obj.getName()] = obj.guid
-    updateXml{updateScenarioList()}
+    updateXml(self, {updateScenarioList()})
 end
 function onDestroy()
     exit = true
@@ -400,7 +400,7 @@ function removeExpansion(bag)
     if playtestExpansion == bag.getName() then
         table.insert(funcList, updatePlaytestExpansionList(exps))
     end
-    updateXml(funcList)
+    updateXml(self, funcList)
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
@@ -415,7 +415,7 @@ function removeAdversary(obj)
                 Global.setVar("adversaryCard2", nil)
                 toggleSupportingLevel(nil, 0)
             end
-            Wait.frames(function() updateXml{updateAdversaryList()} end, 1)
+            Wait.frames(function() updateXml(self, {updateAdversaryList()}) end, 1)
             break
         end
     end
@@ -456,7 +456,7 @@ function removeScenario(obj)
                 Global.setVar("scenarioCard", nil)
                 updateDifficulty()
             end
-            Wait.frames(function () updateXml{updateScenarioList()} end, 1)
+            Wait.frames(function () updateXml(self, {updateScenarioList()}) end, 1)
             break
         end
     end
@@ -517,7 +517,7 @@ function updateNumPlayers(value, updateUI)
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml{updateBoardLayouts(numPlayers)} end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts(numPlayers)}) end, 0.5)
     end
 end
 function updateBoardLayouts(numPlayers)
@@ -707,7 +707,7 @@ function toggleExpansion(_, _, id)
     Global.setTable("events", events)
     self.UI.setAttribute(id.." Events", "isOn", bool)
     updateDifficulty()
-    Wait.frames(function () updateXml{updatePlaytestExpansionList(exps)} end, 1)
+    Wait.frames(function () updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
 end
 function toggleEvents(_, _, id)
     local exp = id:sub(1, -8)
@@ -1774,7 +1774,7 @@ function toggleExtraBoard()
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml{updateBoardLayouts(numPlayers)} end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts(numPlayers)}) end, 0.5)
     end
 end
 function toggleBoardPairings()
@@ -1919,14 +1919,15 @@ function tFind(table, needle)
 end
 ---
 
---- Update the UI XML of the current object.
+--- Update the UI XML of an object.
 -- This takes a list of function to use to update the XML table.
 -- Each function should take a table element, update it with any relevant changes
 -- and return `true` if updateXml should recurse into the children of the element.
 -- Note: The functions should be prepared to be called on child elements, even if
 -- recursion was not requested.
+-- @param obj The object to update the UI XML for
 -- @param updateFunctions The list of functions to use to update the table
-function updateXml(updateFunctions)
+function updateXml(obj, updateFunctions)
     local function recurse(t)
         local shouldRecurse = false
         for _, f in pairs(updateFunctions) do
@@ -1940,32 +1941,11 @@ function updateXml(updateFunctions)
             end
         end
     end
-    local t = self.UI.getXmlTable()
+    local t = obj.UI.getXmlTable()
     for _,v in pairs(t) do
         recurse(v)
     end
-    self.UI.setXmlTable(t, {})
-end
--- TODO: refactor to share code with updateXml above
-function updateGlobalXml(updateFunctions)
-    local function recurse(t)
-        local shouldRecurse = false
-        for _, f in pairs(updateFunctions) do
-            if f(t) then
-                shouldRecurse = true
-            end
-        end
-        if shouldRecurse then
-            for _, v in pairs(t.children) do
-                recurse(v)
-            end
-        end
-    end
-    local t = Global.UI.getXmlTable()
-    for _,v in pairs(t) do
-        recurse(v)
-    end
-    Global.UI.setXmlTable(t, {})
+    obj.UI.setXmlTable(t, {})
 end
 function getXml(updateFunctions)
     local function recurse(t)
@@ -2078,25 +2058,30 @@ function updateAdversaryUI(params)
     local adversaryCard2 = Global.getVar("adversaryCard2")
     local funcList = {}
     if adversaryCard ~= nil then
-        table.insert(funcList, addAdversaryRows("panelAdversaryHelper", #adversaryCard.getTable("difficulty")))
+        table.insert(funcList, addAdversaryRows(false, #adversaryCard.getTable("difficulty")))
     end
     if adversaryCard2 ~= nil then
-        table.insert(funcList, addAdversaryRows("panelAdversary2Helper", #adversaryCard2.getTable("difficulty")))
+        table.insert(funcList, addAdversaryRows(true, #adversaryCard2.getTable("difficulty")))
     end
     if #funcList > 0 then
-        updateGlobalXml(funcList)
+        updateXml(Global, funcList)
     end
     if params.callback ~= nil then
         Wait.frames(function() Global.call(params.callback) end, 2)
     end
 end
-function addAdversaryRows(id, levels)
+function addAdversaryRows(supporting, levels)
+    local prefix = "panelAdversary"
+    if supporting then
+        prefix = prefix.."2"
+    end
+    local id = prefix.."Helper"
     return matchRecurse(id, function (t)
         for i=1,levels do
             table.insert(t.children, {
                 tag="Text",
                 value="",
-                attributes={id = "panelAdversaryLevel"..i, active="false", fontsize="16", alignment="UpperLeft", tooltipPosition="Left"},
+                attributes={id = prefix.."Level"..i, active="false", fontsize="16", alignment="UpperLeft", tooltipPosition="Left"},
                 children={},
             })
         end

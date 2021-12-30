@@ -467,6 +467,7 @@ function advanceInvaderCards()
         end
         ::continueAdvance::
     end
+    discardEvent()
     if Global.getVar("currentPhase") == 3 then
         Global.call("enterSlowPhase", nil)
     end

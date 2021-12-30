@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.1.1"
+version = "3.1.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -2931,6 +2931,36 @@ function setupCommandCard(invaderDeck, depth, guid)
         smooth = false,
     })
 end
+function MapSetPosition(offset)
+    offset = offset or 0.01
+    for _,obj in pairs(getMapTiles()) do
+        obj.setPosition(obj.getPosition()-Vector(0,offset,0))
+    end
+end
+function MapSetPositionSmooth(offset)
+    offset = offset or 0.01
+    for _,obj in pairs(getMapTiles()) do
+        obj.setPositionSmooth(obj.getPosition()-Vector(0,offset,0), false)
+    end
+end
+function MapSetRotation(offset)
+    offset = offset or 0.01
+    for _,obj in pairs(getMapTiles()) do
+        obj.setRotation(obj.getRotation()-Vector(0,offset,0))
+    end
+end
+function MapSetRotationSmooth(offset)
+    offset = offset or 0.01
+    for _,obj in pairs(getMapTiles()) do
+        obj.setRotationSmooth(obj.getRotation()-Vector(0,offset,0), false)
+    end
+end
+function MapSetScale(offset)
+    offset = offset or 0.01
+    for _,obj in pairs(getMapTiles()) do
+        obj.setScale(obj.getScale()-Vector(offset,0,0))
+    end
+end
 ----- Start Game Section
 function StartGame()
     gamePaused = false
@@ -3099,7 +3129,6 @@ function timePasses()
 end
 function timePassesCo()
     noFear = false
-    aidBoard.call("discardEvent")
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
@@ -3107,7 +3136,7 @@ function timePassesCo()
         end
         objectsToCleanup[guid] = nil
     end
-    for _,object in pairs(upCast(seaTile, 0.5)) do
+    for _,object in pairs(upCast(seaTile, 0, 0.47)) do
         handlePiece(object, 0)
     end
     for color,data in pairs(selectedColors) do
@@ -3474,7 +3503,7 @@ end
 
 function getMapTiles()
     local mapTiles = {}
-    for _,obj in pairs(upCast(seaTile)) do
+    for _,obj in pairs(upCast(seaTile, 0, 0.1)) do
         if isIslandBoard({obj=obj}) then
             table.insert(mapTiles,obj)
         end
@@ -3745,6 +3774,7 @@ function place(objName, placePos, droppingPlayerColor)
         if explorerBag.getCustomObject().type ~= 7 then
             if #explorerBag.getObjects() == 0 then
                 broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
+                explorerBag.call("none")
                 return
             end
         end
@@ -3753,10 +3783,7 @@ function place(objName, placePos, droppingPlayerColor)
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
                 broadcastToAll("There are no Towns left to place", Color.SoftYellow)
-                -- TODO extract this logic into adversary
-                if (adversaryCard ~= nil and adversaryCard.getName() == "France") or (adversaryCard2 ~= nil and adversaryCard2.getName() == "France") then
-                    broadcastToAll("France wins via their Additional Loss Condition!", Color.SoftYellow)
-                end
+                townBag.call("none")
                 return
             end
         end
@@ -3765,6 +3792,7 @@ function place(objName, placePos, droppingPlayerColor)
         if cityBag.getCustomObject().type ~= 7 then
             if #cityBag.getObjects() == 0 then
                 broadcastToAll("There are no Cities left to place", Color.SoftYellow)
+                cityBag.call("none")
                 return
             end
         end

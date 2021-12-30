@@ -54,6 +54,9 @@
 - Set description to recurring start of invader effect (if any)
 - Enable Hide Face Down toggle for the card
 
+### Fear Cards
+- Add "Fear" tag
+
 ### Expansions
 - Create a bag
 - Set name of object to expansion

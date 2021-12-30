@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1640900467,
-  "Date": "12/30/2021 3:41:07 PM",
+  "EpochTime": 1640907698,
+  "Date": "12/30/2021 5:41:38 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -201,6 +201,10 @@
       {
         "displayed": "Uninteractable",
         "normalized": "uninteractable"
+      },
+      {
+        "displayed": "Invader Card",
+        "normalized": "invader_card"
       }
     ]
   },

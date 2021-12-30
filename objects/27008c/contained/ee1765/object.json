@@ -1,0 +1,38 @@
+{
+  "Name": "Infinite_Bag",
+  "Transform": {
+    "posX": 82.6672,
+    "posY": 2.3881,
+    "posZ": 90.6342,
+    "rotX": 0.0,
+    "rotY": 90.0,
+    "rotZ": 0.0,
+    "scaleX": 0.75,
+    "scaleY": 0.5,
+    "scaleZ": 0.75
+  },
+  "Nickname": "Blight",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.3059,
+    "g": 0.3726,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1
+}

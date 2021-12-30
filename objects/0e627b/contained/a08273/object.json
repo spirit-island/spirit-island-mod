@@ -1,0 +1,53 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 113.3554,
+    "posY": 2.2043,
+    "posZ": 84.8673,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Pour Time Sideways",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 45902,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "459": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100643997/CC37C6AC224F519A6E0D0602BE244D26BC4628A1/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100644870/8FE2DB6430E78E137945C0B4DA57F5D4019225D9/",
+      "NumWidth": 3,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

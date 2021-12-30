@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 55.8824,
+    "posY": 2.3908,
+    "posZ": 120.4614,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Vital Strength of the Earth",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "Base",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752022479/7B26FE0F62F07912F69F306C5ED4092803AD7731/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752022681/6E20C30007CBEFF5175FE01B8C83CAA903B845DA/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0374,
+        "y": 0.2,
+        "z": -0.3933
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0419,
+        "y": 0.2,
+        "z": -0.0813
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2602,
+        "y": 0.2,
+        "z": -0.3982
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2565,
+        "y": 0.2,
+        "z": -0.0807
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4789,
+        "y": 0.2,
+        "z": -0.3972
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4832,
+        "y": 0.2,
+        "z": -0.0792
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6998,
+        "y": 0.2,
+        "z": -0.3993
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7068,
+        "y": 0.2,
+        "z": -0.078
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9234,
+        "y": 0.2,
+        "z": -0.398
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9228,
+        "y": 0.2,
+        "z": -0.0761
+      }
+    }
+  ]
+}

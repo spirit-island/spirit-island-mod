@@ -1,0 +1,139 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 38.7883,
+    "posY": 2.3914,
+    "posZ": 111.9986,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Keeper of the Forbidden Wilds",
+  "Description": "B&C",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "BnC",
+    "Moderate",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752027500/5E9E1291123F3B39068F380B26497A3755D5E904/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752027912/F69CAAF86A20FDBD3B685B3AFE552A023070F283/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0295,
+        "y": 0.2,
+        "z": -0.0834
+      }
+    },
+    {
+      "Position": {
+        "x": -0.029,
+        "y": 0.2,
+        "z": -0.4022
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2496,
+        "y": 0.2,
+        "z": -0.4012
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2468,
+        "y": 0.2,
+        "z": -0.0854
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4674,
+        "y": 0.2,
+        "z": -0.0813
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4705,
+        "y": 0.2,
+        "z": -0.4032
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6913,
+        "y": 0.2,
+        "z": -0.4023
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6853,
+        "y": 0.2,
+        "z": -0.0833
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9067,
+        "y": 0.2,
+        "z": -0.0827
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9118,
+        "y": 0.2,
+        "z": -0.4013
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1321,
+        "y": 0.2,
+        "z": -0.4029
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3511,
+        "y": 0.2,
+        "z": -0.4042
+      }
+    }
+  ]
+}

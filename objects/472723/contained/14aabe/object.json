@@ -1,0 +1,132 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 108.5751,
+    "posY": 2.3993,
+    "posZ": 88.8954,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Grinning Trickster Stirs Up Trouble",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753212889/818F2D7BB09AA1D3D675B34F794E8BB407D49442/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753216326/9AD263506D001B58A8190A1FE71DD28519722068/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.7331,
+        "y": 0.2,
+        "z": -0.4328
+      }
+    },
+    {
+      "Position": {
+        "x": -0.501,
+        "y": 0.2,
+        "z": -0.4345
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7329,
+        "y": 0.2,
+        "z": -0.1504
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5057,
+        "y": 0.2,
+        "z": -0.153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2755,
+        "y": 0.2,
+        "z": -0.1519
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0485,
+        "y": 0.2,
+        "z": -0.4319
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9589,
+        "y": 0.2,
+        "z": -0.4313
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2719,
+        "y": 0.2,
+        "z": -0.4344
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1886,
+        "y": 0.2,
+        "z": -0.1568
+      }
+    },
+    {
+      "Position": {
+        "x": -0.961,
+        "y": 0.2,
+        "z": -0.1551
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0465,
+        "y": 0.2,
+        "z": -0.1568
+      }
+    }
+  ]
+}

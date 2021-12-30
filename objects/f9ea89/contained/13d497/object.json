@@ -1,0 +1,53 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -4.8009,
+    "posY": 2.2043,
+    "posZ": 106.8572,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Flash Floods",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 63600,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "636": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676673/B4442E39EC48CC0379A726E0036A54B29E4B6523/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676939/BDBAB20C0A1B993E9EEA4BC1845019A34F9DAD9E/",
+      "NumWidth": 3,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

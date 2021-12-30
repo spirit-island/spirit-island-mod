@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1633218994,
-  "Date": "10/2/2021 6:56:34 PM",
+  "EpochTime": 1640900467,
+  "Date": "12/30/2021 3:41:07 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -119,14 +119,6 @@
   "ComponentTags": {
     "labels": [
       {
-        "displayed": "Blight",
-        "normalized": "blight"
-      },
-      {
-        "displayed": "Dahan",
-        "normalized": "dahan"
-      },
-      {
         "displayed": "Major",
         "normalized": "major"
       },
@@ -159,46 +151,6 @@
         "normalized": "thematic"
       },
       {
-        "displayed": "Invader Card",
-        "normalized": "invader_card"
-      },
-      {
-        "displayed": "Sun",
-        "normalized": "sun"
-      },
-      {
-        "displayed": "Moon",
-        "normalized": "moon"
-      },
-      {
-        "displayed": "Fire",
-        "normalized": "fire"
-      },
-      {
-        "displayed": "Air",
-        "normalized": "air"
-      },
-      {
-        "displayed": "Water",
-        "normalized": "water"
-      },
-      {
-        "displayed": "Earth",
-        "normalized": "earth"
-      },
-      {
-        "displayed": "Plant",
-        "normalized": "plant"
-      },
-      {
-        "displayed": "Animal",
-        "normalized": "animal"
-      },
-      {
-        "displayed": "Beasts",
-        "normalized": "beasts"
-      },
-      {
         "displayed": "Fear",
         "normalized": "fear"
       },
@@ -209,10 +161,6 @@
       {
         "displayed": "Slow",
         "normalized": "slow"
-      },
-      {
-        "displayed": "Presence",
-        "normalized": "presence"
       },
       {
         "displayed": "Base",
@@ -241,14 +189,6 @@
       {
         "displayed": "Very High",
         "normalized": "very_high"
-      },
-      {
-        "displayed": "Any",
-        "normalized": "any"
-      },
-      {
-        "displayed": "Element Marker",
-        "normalized": "element_marker"
       },
       {
         "displayed": "Setup",

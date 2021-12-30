@@ -1,0 +1,69 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 37.0535,
+    "posY": 2.288,
+    "posZ": 92.1349,
+    "rotX": 0.0,
+    "rotY": 180.0001,
+    "rotZ": 0.0,
+    "scaleX": 0.725,
+    "scaleY": 0.725,
+    "scaleZ": 0.725
+  },
+  "Nickname": "Blight",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.1815,
+    "g": 0.1815,
+    "b": 0.1864
+  },
+  "Tags": [
+    "Blight",
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.6951,
+        "g": 0.6951,
+        "b": 0.6951
+      },
+      "SpecularIntensity": 0.1,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.5005,
+        "z": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 116.7291,
+    "posY": 2.3907,
+    "posZ": 98.5146,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Many Minds Move as One",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752078417/5F8321ACDAAE8AD965C5E0283AAB4E27361CA926/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752078714/CC66FC66714AEB58C9FF7A5C930406D80AEA8A53/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -1.1853,
+        "y": 0.2,
+        "z": -0.0844
+      }
+    },
+    {
+      "Position": {
+        "x": -0.961,
+        "y": 0.2,
+        "z": -0.0778
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7233,
+        "y": 0.2,
+        "z": -0.0829
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4998,
+        "y": 0.2,
+        "z": -0.0812
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2828,
+        "y": 0.2,
+        "z": -0.0846
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0485,
+        "y": 0.2,
+        "z": -0.0831
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0462,
+        "y": 0.2,
+        "z": -0.4118
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2702,
+        "y": 0.2,
+        "z": -0.4097
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4989,
+        "y": 0.2,
+        "z": -0.4097
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7229,
+        "y": 0.2,
+        "z": -0.4082
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9549,
+        "y": 0.2,
+        "z": -0.4111
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1818,
+        "y": 0.2,
+        "z": -0.4086
+      }
+    }
+  ]
+}

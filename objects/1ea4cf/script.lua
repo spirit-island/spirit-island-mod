@@ -188,21 +188,7 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
 
 end
 function checkLoss()
-    local beasts = #getObjectsWithTag("Beasts")
-    local SetupChecker = Global.getVar("SetupChecker")
-    if SetupChecker.call("isSpiritPickable", {guid="f7422a"}) then
-        -- TODO figure out a more elegant solution here
-        beasts = beasts - 1
-    end
-    if SetupChecker.call("isSpiritPickable", {guid="a576cc"}) then
-        -- TODO figure out a more elegant solution here
-        beasts = beasts - 1
-    end
-    if SetupChecker.call("isSpiritPickable", {guid="b35fd5"}) then
-        -- TODO figure out a more elegant solution here
-        beasts = beasts - 1
-    end
-    if destroyed > beasts then
+    if destroyed > #getObjectsWithTag("Beasts") then
         broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
     end

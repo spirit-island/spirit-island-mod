@@ -150,7 +150,27 @@ function PostSetup()
                         end
                     end
                 elseif tag == "Unique" then
-                    local objs = getObjectsWithTag("Unique")
+                    local objs = getObjectsWithTag("Spirit")
+                    for _,obj in pairs(objs) do
+                        if obj.type == "Bag" then
+                            for _,data in pairs(obj.getObjects()) do
+                                if data.guid == guid then
+                                    local card = obj.takeObject({
+                                        guid = guid,
+                                        smooth = false,
+                                    })
+                                    powersBag.putObject(card)
+                                    found = true
+                                    break
+                                end
+                            end
+                        end
+                        if found then
+                            break
+                        end
+                    end
+
+                    objs = getObjectsWithTag("Unique")
                     for _,obj in pairs(objs) do
                         if obj.type == "Deck" then
                             for _,data in pairs(obj.getObjects()) do

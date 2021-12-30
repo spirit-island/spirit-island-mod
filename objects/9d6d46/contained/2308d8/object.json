@@ -1,0 +1,53 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 37.1855,
+    "posY": 2.4463,
+    "posZ": 84.2633,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Gift of the Untamed Wild",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 45501,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "455": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100667329/5CF8247A54B58FC83B0F27BC3DC518F4669B7ABB/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100666529/02E3C3299F7ED5897C7A8128ADDFC1BBE106BDEC/",
+      "NumWidth": 3,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -106,7 +106,6 @@ aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
 fearDeckSetupZone = "fbbf69"
 sourceSpirit = "SourceSpirit"
-spiritZone = "934ea8"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -259,6 +258,8 @@ function onObjectEnterContainer(container, object)
             makeSacredSite(container)
         end
         return
+    elseif container.hasTag("Spirit") and object.hasTag("Aspect") then
+        sourceSpirit.call("AddAspectButton", {obj = container})
     end
 end
 function makeSacredSite(obj)
@@ -321,14 +322,6 @@ function onObjectLeaveContainer(container, object)
 end
 function onObjectEnterScriptingZone(zone, obj)
     if obj.hasTag("Aspect") then
-        if zone.guid == spiritZone then
-            for _,object in pairs(upCast(obj, 1, 0, Vector(0, -1, 0))) do
-                if object.hasTag("Spirit") then
-                    sourceSpirit.call("AddAspectButton", {obj = object})
-                    break
-                end
-            end
-        end
         for color,guid in pairs(elementScanZones) do
             if guid == zone.guid then
                 if gameStarted and obj.hasTag("Setup") then
@@ -2801,16 +2794,25 @@ function PostSetup()
     createDifficultyButton()
 
     if SetupChecker.getVar("exploratoryBODAN") then
-        local spirit = getObjectFromGUID("606f23")
+        -- TODO change bag image to exploratory (eventually)
+        local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
-            spirit = spirit.setState(2)
-            if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
-                Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+            local obj = spirit.takeObject({guid = "606f23"})
+            obj = obj.setState(2)
+            spirit.putObject(obj)
+            postSetupSteps = postSetupSteps + 1
+        else
+            spirit = getObjectFromGUID("606f23")
+            if spirit ~= nil then
+                spirit = spirit.setState(2)
+                if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
+                    Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+                else
+                    postSetupSteps = postSetupSteps + 1
+                end
             else
                 postSetupSteps = postSetupSteps + 1
             end
-        else
-            postSetupSteps = postSetupSteps + 1
         end
     else
         postSetupSteps = postSetupSteps + 1
@@ -3974,12 +3976,7 @@ end
 ----
 function refreshScore()
     local dahan = math.floor(#getObjectsWithTag("Dahan") / numBoards)
-    local blight = #getObjectsWithTag("Blight")
-    if SetupChecker.call("isSpiritPickable", {guid="4c061f"}) then
-        -- TODO figure out a more elegant solution here
-        blight = blight - 2
-    end
-    blight = math.floor(blight / numBoards)
+    local blight = math.floor(#getObjectsWithTag("Blight") / numBoards)
 
     local invaderDeck = invaderDeckZone.getObjects()[1]
     local deckCount = 0
@@ -4341,7 +4338,7 @@ function setupPlayerArea(params)
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
-            if entry.hasTag("spirit") then
+            if entry.hasTag("Spirit") then
                 local trackElements = calculateTrackElements(entry)
                 elements:add(trackElements)
                 nonTokenElements:add(trackElements)

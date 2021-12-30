@@ -1,0 +1,49 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 56.4761,
+    "posY": 2.2043,
+    "posZ": 107.5764,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Progression",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 59303,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "593": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1738926067615541619/7FC2DE1D675D045D258D758DAD3EEB54DAD3FE2E/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1738926067615542032/0C9C1CD32F8540AAAB9578B2140B0CD3FBBDB4FB/",
+      "NumWidth": 3,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}

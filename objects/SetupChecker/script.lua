@@ -2236,6 +2236,11 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         local aspect = ""
         if aspects == nil then
             math.random(0,0)
+        elseif type(aspects) == "table" then
+            local aspectIndex = math.random(0,#aspects)
+            if aspectIndex ~= 0 then
+                aspect = aspects[aspectIndex]
+            end
         elseif aspects.type == "Deck" then
             local cards = aspects.getObjects()
             local aspectIndex = math.random(0,#cards)

@@ -1,0 +1,53 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 103.3921,
+    "posY": 2.2043,
+    "posZ": 99.6173,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Unexpected Tigers",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 45201,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "452": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100693480/46E9A3CD2F52DFAF5DD3D651C76963B529EDF805/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100693806/E974A28E89F8392F0532A50FD377A8ADEC64A29B/",
+      "NumWidth": 3,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 74.4052,
+    "posY": 2.5174,
+    "posZ": 101.9722,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Heart of the Wildfire",
+  "Description": "B&C",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "BnC",
+    "High",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029467/B0F666B34B1168C995BEA7A4E95705790654E9F0/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029775/422F03AB75EA8F0805D10A5CF362C1218FBCDDA4/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0338,
+        "y": 0.2,
+        "z": -0.3849
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0343,
+        "y": 0.2,
+        "z": -0.0661
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2544,
+        "y": 0.2,
+        "z": -0.3839
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2516,
+        "y": 0.2,
+        "z": -0.0681
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4753,
+        "y": 0.2,
+        "z": -0.3858
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4782,
+        "y": 0.2,
+        "z": -0.067
+      }
+    },
+    {
+      "Position": {
+        "x": -0.696,
+        "y": 0.2,
+        "z": -0.385
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6993,
+        "y": 0.2,
+        "z": -0.072
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9166,
+        "y": 0.2,
+        "z": -0.3839
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9207,
+        "y": 0.2,
+        "z": -0.0713
+      }
+    }
+  ]
+}

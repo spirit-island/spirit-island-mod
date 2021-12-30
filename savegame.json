@@ -143,14 +143,6 @@
         "normalized": "destroy"
       },
       {
-        "displayed": "Balanced",
-        "normalized": "balanced"
-      },
-      {
-        "displayed": "Thematic",
-        "normalized": "thematic"
-      },
-      {
         "displayed": "Fear",
         "normalized": "fear"
       },

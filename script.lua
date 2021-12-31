@@ -4279,7 +4279,7 @@ function setupPlayerArea(params)
             else
                 decal = {
                     name = "Threshold",
-                    position = vec + Vector(0, 0.21, 0),
+                    position = vec + Vector(0, 0.22, 0),
                     rotation = {90, 180, 0},
                     scale    = scale,
                 }

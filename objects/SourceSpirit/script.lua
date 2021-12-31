@@ -81,17 +81,17 @@ function load(params)
         tooltip        = "Enable/Disable Aspect Deck",
     })
 
-    local progression = false
-    local aspect = false
+    local hasProgression = false
+    local hasAspect = false
     if params.obj.type == "Bag" then
         for _,obj in pairs(params.obj.getObjects()) do
             if obj.name == "Progression" then
                 params.obj.setVar("progressionCard", obj.lua_script)
-                progression = true
+                hasProgression = true
             else
                 for _,tag in pairs(obj.tags) do
                     if tag == "Aspect" then
-                        aspect = true
+                        hasAspect = true
                         break
                     end
                 end
@@ -101,13 +101,13 @@ function load(params)
         for _,obj in pairs(upCast(params.obj)) do
             if obj.getName() == "Progression" then
                 params.obj.setVar("progressionCard", obj)
-                progression = true
+                hasProgression = true
             elseif obj.hasTag("Aspect") then
-                aspect = true
+                hasAspect = true
             end
         end
     end
-    if progression then
+    if hasProgression then
         params.obj.editButton({
             index          = 1,
             label          = "Progression: No",
@@ -115,7 +115,7 @@ function load(params)
             height         = 500,
         })
     end
-    if aspect then
+    if hasAspect then
         params.obj.editButton({
             index          = 2,
             label          = "Aspects: All",
@@ -336,7 +336,6 @@ function SetupSpirit(obj, player_color)
                 end
 
                 if Global.getVar("gameStarted") and ob.hasTag("Setup") and not ob.hasTag("Aspect") then
-                    local ob = ob  -- luacheck: ignore 423 (deliberate shadowing)
                     Wait.frames(function () ob.call("doSetup", {color=player_color}) end, 1)
                 end
             end

@@ -83,6 +83,7 @@ objectsToCleanup = {}
 extraRandomBoard = nil
 gamekeys = {}
 noFear = false
+noHeal = false
 ------ Unsaved Config Data
 gamePaused = false
 yHeight = 0
@@ -372,6 +373,7 @@ function onSave()
         objectsToCleanup = objectsToCleanup,
         extraRandomBoard = extraRandomBoard,
         noFear = noFear,
+        noHeal = noHeal,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -589,6 +591,7 @@ function onLoad(saved_data)
         extraRandomBoard = loaded_data.extraRandomBoard
         gamekeys = loaded_data.gamekeys
         noFear = loaded_data.noFear
+        noHeal = loaded_data.noHeal
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -3134,9 +3137,12 @@ function timePassesCo()
         end
         objectsToCleanup[guid] = nil
     end
-    for _,object in pairs(upCast(seaTile, 0, 0.47)) do
-        handlePiece(object, 0)
+    if not noHeal then
+        for _,object in pairs(upCast(seaTile, 0, 0.47)) do
+            handlePiece(object, 0)
+        end
     end
+    noHeal = false
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end

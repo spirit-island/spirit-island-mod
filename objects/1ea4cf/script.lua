@@ -185,9 +185,12 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
             end
         end
     end
-
 end
 function checkLoss()
+    if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then
+        -- TODO automate Many Minds presence counting for beasts on island
+        Wait.stop(checkLossID)
+    end
     if destroyed > #getObjectsWithTag("Beasts") then
         broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)

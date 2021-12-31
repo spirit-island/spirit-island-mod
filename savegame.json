@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1640907698,
-  "Date": "12/30/2021 5:41:38 PM",
+  "EpochTime": 1640926630,
+  "Date": "12/30/2021 10:57:10 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -119,18 +119,6 @@
   "ComponentTags": {
     "labels": [
       {
-        "displayed": "Major",
-        "normalized": "major"
-      },
-      {
-        "displayed": "Minor",
-        "normalized": "minor"
-      },
-      {
-        "displayed": "Unique",
-        "normalized": "unique"
-      },
-      {
         "displayed": "Spirit",
         "normalized": "spirit"
       },
@@ -147,18 +135,6 @@
         "normalized": "fear"
       },
       {
-        "displayed": "Fast",
-        "normalized": "fast"
-      },
-      {
-        "displayed": "Slow",
-        "normalized": "slow"
-      },
-      {
-        "displayed": "Base",
-        "normalized": "base"
-      },
-      {
         "displayed": "Low",
         "normalized": "low"
       },
@@ -171,16 +147,20 @@
         "normalized": "high"
       },
       {
+        "displayed": "Very High",
+        "normalized": "very_high"
+      },
+      {
+        "displayed": "Base",
+        "normalized": "base"
+      },
+      {
         "displayed": "BnC",
         "normalized": "bnc"
       },
       {
         "displayed": "JE",
         "normalized": "je"
-      },
-      {
-        "displayed": "Very High",
-        "normalized": "very_high"
       },
       {
         "displayed": "Setup",
@@ -205,6 +185,18 @@
       {
         "displayed": "Invader Card",
         "normalized": "invader_card"
+      },
+      {
+        "displayed": "Major",
+        "normalized": "major"
+      },
+      {
+        "displayed": "Minor",
+        "normalized": "minor"
+      },
+      {
+        "displayed": "Unique",
+        "normalized": "unique"
       }
     ]
   },

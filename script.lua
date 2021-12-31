@@ -3137,10 +3137,8 @@ function timePassesCo()
         end
         objectsToCleanup[guid] = nil
     end
-    if not noHeal then
-        for _,object in pairs(upCast(seaTile, 0, 0.47)) do
-            handlePiece(object, 0)
-        end
+    for _,object in pairs(upCast(seaTile, 0, 0.47)) do
+        handlePiece(object, 0)
     end
     noHeal = false
     for color,data in pairs(selectedColors) do
@@ -3162,22 +3160,22 @@ function handlePiece(object, offset)
     local name = object.getName()
     if string.sub(name, 1, 4) == "City" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset)
+            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
     elseif string.sub(name, 1, 4) == "Town" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset)
+            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
     elseif string.sub(name, 1, 8) == "Explorer" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset)
+            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
     elseif string.sub(name, 1, 5) == "Dahan" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,0,0), offset)
+            object = resetPiece(object, Vector(0,0,0), offset, false)
         end
     elseif name == "Blight" then
-        object = resetPiece(object, Vector(0,180,0), offset)
+        object = resetPiece(object, Vector(0,180,0), offset, false)
     elseif object.hasTag("Reminder Token") then
         if object.getLock() == false then
             object.destruct()
@@ -3186,9 +3184,9 @@ function handlePiece(object, offset)
     end
     return object
 end
-function resetPiece(object, rotation, offset)
+function resetPiece(object, rotation, offset, skip)
     local objOffset = 0
-    if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+    if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         objOffset = 1
     elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
         objOffset = 1
@@ -3207,7 +3205,7 @@ function resetPiece(object, rotation, offset)
         end
         loopOffset = loopOffset + 0.1
     end
-    if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+    if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         object.setRotationSmooth(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
         object = object.setState(1)

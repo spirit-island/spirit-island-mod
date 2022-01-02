@@ -2892,10 +2892,8 @@ function PostSetup()
     end
 
     -- HACK: trying to fix client desync issue
-    for _,obj in ipairs(getObjects()) do
-        if isIslandBoard({obj=obj}) then
-            obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
-        end
+    for _,obj in pairs(getMapTiles()) do
+        obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
     end
 
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 6 end)
@@ -3021,7 +3019,7 @@ function StartGame()
 end
 function enableUI()
     Wait.frames(function()
-        -- HACK: Temporary hack to try to fix visibility TTS bug https://tabletopsimulator.nolt.io/583
+        -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/583
         UI.setXmlTable(UI.getXmlTable(), {})
 
         -- Need to wait for xml table to get updated

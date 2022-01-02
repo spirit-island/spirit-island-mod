@@ -3527,10 +3527,18 @@ function MapPlaceCustom()
     if SetupChecker.getVar("optionalExtraBoard") then
         rand = math.random(1,numBoards)
     end
+    local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i,map in pairs(maps) do
+        if map.hasTag("Thematic") then
+            if optionalThematicRedo and map.getStateId() == 1 then
+                map = map.setState(2)
+            elseif not optionalThematicRedo and map.getStateId() == 2 then
+                map = map.setState(1)
+            end
+        end
         map.setLock(true)
         map.interactable = false
-        setupMap(map,i==rand)
+        Wait.condition(function() setupMap(map,i==rand) end, function() return not map.loading_custom end)
     end
 end
 
@@ -3554,6 +3562,7 @@ function MapPlacen(boards)
     scaleOrigin = scaleOrigin * (1./#boards)
 
     local count = 1
+    local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i, board in pairs(boards) do
         if isThematic() then
             ThematicMapBag.takeObject({
@@ -3561,7 +3570,7 @@ function MapPlacen(boards)
                 guid = themGuids[board.board],
                 smooth = false,
                 callback_function = function(obj)
-                    if SetupChecker.getVar("optionalThematicRedo") then
+                    if optionalThematicRedo then
                         obj = obj.setState(2)
                     end
                     BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)

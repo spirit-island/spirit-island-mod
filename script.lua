@@ -422,7 +422,10 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    getObjectFromGUID(versionGuid).setValue("version " .. version)
+    local versionObj = getObjectFromGUID(versionGuid)
+    if versionObj ~= nil then
+        versionObj.setValue("version " .. version)
+    end
     Color.Add("SoftBlue", Color.new(0.53,0.92,1))
     Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     Color.Add("SoftGreen", Color.new(0.75,1,0.67))

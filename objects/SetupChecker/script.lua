@@ -72,6 +72,7 @@ exploratoryBODAN = false
 exploratoryWar = false
 exploratoryAid = false
 exploratorySweden = false
+exploratoryTrickster = false
 
 playtestExpansion = "None"
 playtestFear = "0"
@@ -117,6 +118,7 @@ function onSave()
     data_table.exploratory.war = exploratoryWar
     data_table.exploratory.aid = exploratoryAid
     data_table.exploratory.sweden = exploratorySweden
+    data_table.exploratory.trickster = exploratoryTrickster
 
     data_table.playtest = {}
     data_table.playtest.expansion = playtestExpansion
@@ -179,6 +181,7 @@ function onLoad(saved_data)
         exploratoryWar = loaded_data.exploratory.war
         exploratoryAid = loaded_data.exploratory.aid
         exploratorySweden = loaded_data.exploratory.sweden
+        exploratoryTrickster = loaded_data.exploratory.trickster
 
         playtestExpansion = loaded_data.playtest.expansion
         playtestFear = loaded_data.playtest.fear
@@ -241,6 +244,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("bodan", "isOn", exploratoryBODAN)
             self.UI.setAttribute("war", "isOn", exploratoryWar)
             self.UI.setAttribute("aid", "isOn", exploratoryAid)
+            self.UI.setAttribute("trickster", "isOn", exploratoryTrickster)
 
             togglePlaytestFear(nil, playtestFear, "playtestFear")
             togglePlaytestEvent(nil, playtestEvent, "playtestEvent")
@@ -1017,6 +1021,9 @@ function loadConfig(config)
         end
         if config.exploratory.sweden ~= nil then
             setSweden(config.exploratory.sweden, false, false)
+        end
+        if config.exploratory.trickster ~= nil then
+            exploratoryTrickster = config.exploratory.trickster
         end
     end
     if config.playtest then
@@ -1840,6 +1847,7 @@ function toggleExploratoryAll()
         if exploratoryWar then toggleWar() end
         if exploratoryAid then toggleAid() end
         if exploratorySweden then toggleSweden() end
+        if exploratoryTrickster then toggleTrickster() end
     else
         checked = "true"
         if not exploratoryVOTD then toggleVOTD() end
@@ -1847,6 +1855,7 @@ function toggleExploratoryAll()
         if not exploratoryWar then toggleWar() end
         if not exploratoryAid then toggleAid() end
         if not exploratorySweden then toggleSweden() end
+        if not exploratoryTrickster then toggleTrickster() end
     end
     self.UI.setAttribute("exploratoryAll", "isOn", checked)
 end
@@ -1900,6 +1909,10 @@ function setSweden(bool, updateUI, loading)
     if updateUI then
         self.UI.setAttribute("sweden", "isOn", exploratorySweden)
     end
+end
+function toggleTrickster()
+    exploratoryTrickster = not exploratoryTrickster
+    self.UI.setAttribute("trickster", "isOn", exploratoryTrickster)
 end
 
 function wt(some)

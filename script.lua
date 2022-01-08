@@ -2820,6 +2820,44 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
+    if SetupChecker.getVar("exploratoryTrickster") then
+        local spirit = getObjectFromGUID("472723")
+        if spirit ~= nil then
+            local cardsDone = 0
+            spirit.takeObject({
+                guid = "8152de",
+                position = spirit.getPosition() + Vector(-2, 1, 0),
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        spirit.putObject(temp)
+                        cardsDone = cardsDone + 1
+                    end, 1)
+                end,
+            })
+            spirit.takeObject({
+                guid = "78d741",
+                position = spirit.getPosition() + Vector(2, 1, 0),
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        spirit.putObject(temp)
+                        cardsDone = cardsDone + 1
+                    end, 1)
+                end,
+            })
+            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return cardsDone == 2 end)
+        else
+            local card = getObjectFromGUID("8152de")
+            card.setState(2)
+            card = getObjectFromGUID("78d741")
+            card.setState(2)
+            postSetupSteps = postSetupSteps + 1
+        end
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
+
     if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
         adversaryCard.call("PostSetup",{level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
         Wait.condition(function() postSetupSteps = postSetupSteps + 1 firstAdversarySetup = true end, function() return adversaryCard.getVar("postSetupComplete") end)
@@ -2889,7 +2927,7 @@ function PostSetup()
                 local objs = invaderDeckZone.getObjects()
                 return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function() return postSetupSteps == 5 end)
+        end, function() return postSetupSteps == 6 end)
     else
         postSetupSteps = postSetupSteps + 1
     end
@@ -2899,7 +2937,7 @@ function PostSetup()
         obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 6 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 7 end)
     return 1
 end
 function createDifficultyButton()

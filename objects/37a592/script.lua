@@ -6,6 +6,7 @@ mapSetup = true
 hasLossCondition = true
 hasUI = true
 hasBroadcast = true
+customLoss = true
 
 function ReminderSetup(params)
     local reminderTiles = {}

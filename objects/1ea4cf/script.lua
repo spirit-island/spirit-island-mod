@@ -14,10 +14,6 @@ requirements = true
 destroyed = 0
 checkLossID = 0
 
-function onLoad(saved_data)
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
-end
-
 function InvaderSetup(params)
     local invaders = nil
     if params.level >= 2 then
@@ -189,6 +185,17 @@ function checkLoss()
     if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then
         -- TODO automate Many Minds presence counting for beasts on island
         Wait.stop(checkLossID)
+        self.createButton({
+            click_function = "adversaryDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(-0.6, 1, -1.3),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
     end
     local count = 0
     local beasts = getObjectsWithTag("Beasts")
@@ -201,8 +208,8 @@ function checkLoss()
         end
     end
     if destroyed > count then
-        broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
+        Global.call("Defeat", {adversary = self.getName()})
     end
 end
 

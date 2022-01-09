@@ -140,7 +140,7 @@ function LimitSetup(params)
             }))
         end
         townBag.putObject(tempObject)
-        townBag.call("setCallback", {obj=self,func="updateCount",broadcast="France wins via their Additional Loss Condition!"})
+        townBag.call("setCallback", {obj=self,func="updateCount",loss={adversary=self.getName()}})
         Wait.condition(function() limitSetupComplete = true end, function() return #townBag.getObjects() == townLimit end)
     end, function() return getObjectFromGUID(id).type == "Bag" end)
 end

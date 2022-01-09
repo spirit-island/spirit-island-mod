@@ -1,8 +1,8 @@
 difficulty=0
-
 postSetup = true
 postSetupComplete = false
 hasBroadcast = true
+customLoss = true
 
 function PostSetup(params)
     local minorPowerDeck, majorPowerDeck

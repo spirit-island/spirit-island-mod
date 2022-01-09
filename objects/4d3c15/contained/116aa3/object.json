@@ -20,7 +20,8 @@
     "b": 0.8721
   },
   "Tags": [
-    "Highlight"
+    "Highlight",
+    "Town"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -88,6 +89,9 @@
         "g": 0.8721,
         "b": 0.8721
       },
+      "Tags": [
+        "Town"
+      ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": false,

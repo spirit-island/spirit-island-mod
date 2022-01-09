@@ -8,6 +8,7 @@ postSetup = true
 postSetupComplete = false
 hasLossCondition = true
 hasUI = true
+customLoss = true
 
 highImmigration = "6bc964"
 highImmigrationDiscardPosition = Vector(-46.18, 0.8, -4.18)

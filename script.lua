@@ -84,6 +84,8 @@ extraRandomBoard = nil
 gamekeys = {}
 noFear = false
 noHeal = false
+terrorLevel = 1
+recorder = nil
 ------ Unsaved Config Data
 gamePaused = false
 yHeight = 0
@@ -94,6 +96,7 @@ adversaryLossCallback2 = nil
 wave = 1
 castDown = nil
 castDownTimer = nil
+victoryTimer = nil
 ------
 minorPowerDiscardZone = "55b275"
 majorPowerDiscardZone = "eaf864"
@@ -322,7 +325,17 @@ function onObjectLeaveContainer(container, object)
     end
 end
 function onObjectEnterScriptingZone(zone, obj)
-    if obj.hasTag("Aspect") then
+    if zone.guid == "341005" then
+        if obj.guid == "969897" then
+            terrorLevel = 2
+            broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
+            checkVictory()
+        elseif obj.guid == "f96a71" then
+            terrorLevel = 3
+            broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
+            checkVictory()
+        end
+    elseif obj.hasTag("Aspect") then
         for color,guid in pairs(elementScanZones) do
             if guid == zone.guid then
                 if gameStarted and obj.hasTag("Setup") then
@@ -334,12 +347,20 @@ function onObjectEnterScriptingZone(zone, obj)
     end
 end
 function onObjectLeaveScriptingZone(zone, obj)
-    for _,guid in pairs(elementScanZones) do
-        if guid == zone.guid then
-            if obj.getTable("thresholds") ~= nil then
-                obj.setDecals({})
+    if zone.guid == "341005" then
+        if obj.guid == "969897" then
+            terrorLevel = 1
+        elseif obj.guid == "f96a71" then
+            terrorLevel = 2
+        end
+    else
+        for _,guid in pairs(elementScanZones) do
+            if guid == zone.guid then
+                if obj.getTable("thresholds") ~= nil then
+                    obj.setDecals({})
+                end
+                break
             end
-            break
         end
     end
 end
@@ -374,6 +395,7 @@ function onSave()
         extraRandomBoard = extraRandomBoard,
         noFear = noFear,
         noHeal = noHeal,
+        terrorLevel = terrorLevel,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -402,6 +424,9 @@ function onSave()
     end
     if secondWave ~= nil then
         data_table.secondWave = secondWave.guid
+    end
+    if recorder ~= nil then
+        data_table.recorder = recorder.guid
     end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
@@ -595,6 +620,8 @@ function onLoad(saved_data)
         gamekeys = loaded_data.gamekeys
         noFear = loaded_data.noFear
         noHeal = loaded_data.noHeal
+        terrorLevel = loaded_data.terrorLevel
+        recorder = getObjectFromGUID(loaded_data.recorder)
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -617,6 +644,8 @@ function onLoad(saved_data)
             end, function() return not aidBoard.spawning end)
             Wait.condition(adversaryUISetup, function() return (adversaryCard == nil or not adversaryCard.spawning) and (adversaryCard2 == nil or not adversaryCard2.spawning) end)
             Wait.time(readyCheck,1,-1)
+            enableVictoryDefeat()
+
             if not blightedIsland then
                 Wait.condition(addBlightedIslandButton, function() return not aidBoard.spawning end)
             end
@@ -2018,7 +2047,7 @@ function BlightedIslandFlipPart2()
     printToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
     if numBlight == 0 and blightedIsland then
-        broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
+        Defeat({blight = true})
     else
         broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
     end
@@ -3011,6 +3040,8 @@ function StartGame()
     enableUI()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
+    enableVictoryDefeat()
+
     setLookingForPlayers(false)
     if adversaryCard ~= nil and adversaryCard.getVar("hasBroadcast") then
         local broadcast = adversaryCard.call("Broadcast", {level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
@@ -3059,6 +3090,62 @@ function StartGame()
         printToAll("But not on the extra board!", Color.SoftYellow)
     end
     return 1
+end
+function enableVictoryDefeat()
+    if scenarioCard == nil or not scenarioCard.getVar("customVictory") then
+        victoryTimer = Wait.time(checkVictory, 5, -1)
+    else
+        scenarioCard.createButton({
+            click_function = "Victory",
+            function_owner = Global,
+            label          = "Victory Achieved",
+            position       = Vector(0.6, 1, -1.1),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2200,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+    if scenarioCard ~= nil and scenarioCard.getVar("customLoss") then
+        scenarioCard.createButton({
+            click_function = "scenarioDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(0.6, 1, -1.1),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+    if adversaryCard ~= nil and adversaryCard.getVar("customLoss") then
+        adversaryCard.createButton({
+            click_function = "adversaryDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(-0.6, 1, -1.3),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+    if adversaryCard2 ~= nil and adversaryCard2.getVar("customLoss") then
+        adversaryCard2.createButton({
+            click_function = "adversaryDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(-0.6, 1, -1.3),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
 end
 function enableUI()
     Wait.frames(function()
@@ -4023,31 +4110,158 @@ function cleanupObject(params)
     end
 end
 ----
-function refreshScore()
-    local dahan = math.floor(#getObjectsWithTag("Dahan") / numBoards)
-    local blight = math.floor(#getObjectsWithTag("Blight") / numBoards)
-
-    local invaderDeck = invaderDeckZone.getObjects()[1]
-    local deckCount = 0
-    if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
-        if invaderDeck.type == "Deck" then
-            for _,obj in pairs(invaderDeck.getObjects()) do
-                for _,tag in pairs(obj.tags) do
-                    if tag == "Invader Card" then
-                        deckCount = deckCount + 1
-                        break
-                    end
-                end
+function scenarioDefeat(scenario)
+    scenario.clearButtons()
+    Defeat({scenario = scenario.getName()})
+end
+function adversaryDefeat(adversary)
+    adversary.clearButtons()
+    Defeat({adversary = adversary.getName()})
+end
+function Defeat(params)
+    if params.adversary then
+        broadcastToAll(params.adversary.." wins via Additional Loss Condition!", Color.SoftYellow)
+    elseif params.scenario then
+        broadcastToAll("Invaders win via "..params.scenario.." Additional Loss Condition!", Color.SoftYellow)
+    elseif params.blight then
+        broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
+    elseif params.invader then
+        broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
+    else
+        broadcastToAll("Invaders win via Unknown Loss Condition!", Color.SoftYellow)
+    end
+    showGameOver(params)
+end
+function checkVictory()
+    if #getObjectsWithTag("City") == 0 then
+        if terrorLevel == 3 then
+            Victory()
+        elseif #getObjectsWithTag("Town") == 0 then
+            if terrorLevel == 2 then
+                Victory()
+            elseif #getObjectsWithTag("Explorer") == 0 then
+                Victory()
             end
-        elseif invaderDeck.type == "Card" and invaderDeck.hasTag("Invader Card") then
-            deckCount = 1
         end
     end
-    local win = math.floor(5 * difficulty) + 10 + 2 * deckCount + dahan - blight
-    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard") + dahan - blight
+end
+function Victory()
+    if victoryTimer ~= nil then
+        Wait.stop(victoryTimer)
+        victoryTimer = nil
+    end
+    if terrorLevel == 4 then
+        broadcastToAll("Fear Victory Achieved!", Color.SoftYellow)
+    elseif terrorLevel == 3 then
+        broadcastToAll("Terror Level III Victory Achieved!", Color.SoftYellow)
+    elseif terrorLevel == 2 then
+        broadcastToAll("Terror Level II Victory Achieved!", Color.SoftYellow)
+    else
+        broadcastToAll("Terror Level I Victory Achieved!", Color.SoftYellow)
+    end
+    showGameOver(nil)
+end
+function showGameOver(loss)
+    local headerText
+    if loss then
+        headerText = "Defeat - "
+        if loss.adversary then
+            headerText = headerText..loss.adversary.." Loss Condition"
+        elseif loss.scenario then
+            headerText = headerText..loss.scenario.." Loss Condition"
+        elseif loss.blight then
+            headerText = headerText.."Blight Loss Condition"
+        elseif loss.invader then
+            headerText = headerText.."Invader Deck Loss Condition"
+        else
+            headerText = headerText.."Unknown Loss Condition"
+        end
+    else
+        headerText = "Victory - "
+        if terrorLevel == 4 then
+            headerText = headerText.."Fear"
+        elseif terrorLevel == 3 then
+            headerText = headerText.."Terror Level III"
+        elseif terrorLevel == 2 then
+            headerText = headerText.."Terror Level II"
+        else
+            headerText = headerText.."Terror Level I"
+        end
+    end
+    UI.setAttribute("panelGameOverHeader", "text", headerText)
+    if adversaryCard ~= nil then
+        UI.setAttribute("panelGameOverLeading", "text", adversaryCard.getName().." "..adversaryLevel)
+    else
+        UI.setAttribute("panelGameOverLeadingHeader", "text", "")
+    end
+    if adversaryCard2 ~= nil then
+        UI.setAttribute("panelGameOverSupporting", "text", adversaryCard2.getName().." "..adversaryLevel2)
+    else
+        UI.setAttribute("panelGameOverSupportingHeader", "text", "")
+    end
+    if scenarioCard ~= nil then
+        UI.setAttribute("panelGameOverScenario", "text", scenarioCard.getName())
+    end
+    if secondWave ~= nil then
+        UI.setAttribute("panelGameOverSecondWave", "text", "Wave "..wave)
+    end
 
-    UI.setAttribute("scoreWin", "text", win)
-    UI.setAttribute("scoreLose", "text", lose)
+    local dahan = #getObjectsWithTag("Dahan")
+    local blight = #getObjectsWithTag("Blight")
+    local deck = aidBoard.call("countDeck")
+    local cards = aidBoard.getVar("numCards")
+    local discard = aidBoard.call("countDiscard")
+
+    UI.setAttribute("panelGameOverDifficulty", "text", "Difficulty: "..difficulty)
+    UI.setAttribute("panelGameOverExplorer", "text", #getObjectsWithTag("Explorer"))
+    UI.setAttribute("panelGameOverTown", "text", #getObjectsWithTag("Town"))
+    UI.setAttribute("panelGameOverCity", "text", #getObjectsWithTag("City"))
+    UI.setAttribute("panelGameOverBlight", "text", blight)
+    UI.setAttribute("panelGameOverDahan", "text", dahan)
+
+    UI.setAttribute("panelGameOverDeck", "text", deck)
+    UI.setAttribute("panelGameOverFaceup", "text", cards)
+    UI.setAttribute("panelGameOverDiscard", "text", discard)
+
+    local score = getScore(dahan, blight, deck, cards, discard)
+    local scoreText = "Score: "
+    if loss then
+        scoreText = scoreText..score[2]
+    else
+        scoreText = scoreText..score[1]
+    end
+    UI.setAttribute("panelGameOverScore", "text", scoreText)
+
+    if recorder ~= nil then
+        UI.setAttribute("panelGameOverRecord", "active", "true")
+    end
+
+    local colors = {}
+    for color,_ in pairs(PlayerBags) do
+        table.insert(colors, color)
+    end
+    setVisiTable("panelGameOver", colors)
+end
+function hideGameOver(player)
+    toggleUI("panelGameOver", player.color, true)
+end
+function RecordGame()
+    recorder.call("Record")
+end
+
+function refreshScore()
+    local score = getScore(#getObjectsWithTag("Dahan"), #getObjectsWithTag("Blight"), aidBoard.getVar("countDeck"), aidBoard.getVar("numCards"), aidBoard.call("countDiscard"))
+
+    UI.setAttribute("scoreWin", "text", score[1])
+    UI.setAttribute("scoreLose", "text", score[2])
+end
+function getScore(dahan, blight, deck, cards, discard)
+    dahan = math.floor(dahan / numBoards)
+    blight = math.floor(blight / numBoards)
+
+    local win = math.floor(5 * difficulty) + 10 + 2 * deck + dahan - blight
+    local lose = math.floor(2 * difficulty) + cards + discard + dahan - blight
+    return {win, lose}
 end
 function flipReady(player)
     if player.color == "Grey" then return end

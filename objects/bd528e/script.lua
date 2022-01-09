@@ -1,7 +1,7 @@
 difficulty=2
-
 postSetup=true
 postSetupComplete=false
+customVictory = true
 
 tokensSetup = false
 fearSetup = false

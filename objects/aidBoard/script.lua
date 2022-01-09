@@ -338,7 +338,7 @@ function flipExploreCard()
     local objs = Global.getVar("invaderDeckZone").getObjects()
     if #objs == 0 then
         broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
-        broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
+        Global.call("Defeat", {invader = true})
         return
     end
 
@@ -534,6 +534,25 @@ function aidPanelScanLoop()
     numCards = count
     Global.call("updateAidPanel", outTable)
 end
+function countDeck()
+    local invaderDeck = Global.getVar("invaderDeckZone").getObjects()[1]
+    local count = 0
+    if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
+        if invaderDeck.type == "Deck" then
+            for _,obj in pairs(invaderDeck.getObjects()) do
+                for _,tag in pairs(obj.tags) do
+                    if tag == "Invader Card" then
+                        count = count + 1
+                        break
+                    end
+                end
+            end
+        elseif invaderDeck.type == "Card" and invaderDeck.hasTag("Invader Card") then
+            count = 1
+        end
+    end
+    return count
+end
 function countDiscard()
     local count = 0
     local hits = Physics.cast({
@@ -691,7 +710,6 @@ function fearCardEarned()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))
             end, function() return not card.isSmoothMoving() end)
-            broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
         elseif card.getName() == "Terror III" then
             -- HACK work around issue where setPosition sometimes doesn't move object
             card.deal(1, "White")
@@ -699,7 +717,6 @@ function fearCardEarned()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))
             end, function() return not card.isSmoothMoving() end)
-            broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
         elseif card.hasTag("Invader Card") then
             local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
             if Global.UI.getAttribute("panelBuild21", "active") == "True" then
@@ -725,7 +742,8 @@ function fearCardEarned()
         end
     end
     if foundFearCount ~= 2 then
-        broadcastToAll("Fear Victory Achieved!", Color.SoftYellow)
+        Global.setVar("terrorLevel", 4)
+        Global.call("Victory")
     end
 
     return 1

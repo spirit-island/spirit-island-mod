@@ -103,6 +103,7 @@ This section is meant for users who are familiar with both the tts mod and progr
     - `params`: **table** - contains parameters for callback
       - `hit_object`: **object** - object registered to receive collision events
       - `collision_info`: **table** - table containing data about collision
+- `customLoss`: **boolean** - set to true if adversary/scenario has non scriptable loss condition
 - Setup Callbacks:
   - requirements - determine whether random adversary/scenario should be used with current setup
     - `requirements`: boolean - set to true if you have `Requirements` function
@@ -264,6 +265,7 @@ This section is meant for users who are familiar with both the tts mod and progr
   - `fearCards`: **table** - contains keys 1->3 representing the change of fear cards in each part of the deck
   - `setupBlightTokens`: **number** - modifies amount of starting blight per player (e.g. Blitz)
   - `blightTokens`: **number** - modifies amount of flipped card blight per player (e.g. Blitz)
+  - `customVictory`: **boolean** - set to true if scenario has non scriptable victory condition
   - preSetup - called before all other setup steps have started
     - `preSetup`: **boolean** - set to true if you have `PreSetup` function
     - `preSetupComplete`: **boolean** - set to true at end `PreSetup` function

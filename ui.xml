@@ -324,8 +324,11 @@
             </Cell>
         </Row>
         <Row>
-            <Cell columnSpan="2">
-                <Text id="panelGameOverScore" class="gameOver"/>
+            <Cell>
+                <Text class="gameOver" alignment="MiddleRight">Score:</Text>
+            </Cell>
+            <Cell>
+                <Text id="panelGameOverScore" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell columnSpan="2">
                 <Button id="panelGameOverRecord" active="false" onClick="RecordGame" fontSize="44">Record Game</Button>

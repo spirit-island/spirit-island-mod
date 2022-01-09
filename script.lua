@@ -97,6 +97,7 @@ wave = 1
 castDown = nil
 castDownTimer = nil
 victoryTimer = nil
+loss = nil
 ------
 minorPowerDiscardZone = "55b275"
 majorPowerDiscardZone = "eaf864"
@@ -226,6 +227,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
     end
 end
 function castDownCallback(board)
+    local mapCount = getMapCount({norm = true, them = true})
     castDown = nil
     local bag
     if board.hasTag("Balanced") then
@@ -240,6 +242,11 @@ function castDownCallback(board)
     board.setLock(false)
     bag.putObject(board)
     bag.shuffle()
+
+    -- because of some caching or delay, the map tile will still count even after it's put away
+    if mapCount == 1 then
+        Defeat({})
+    end
 end
 function onObjectCollisionExit(hit_object, collision_info)
     if hit_object == seaTile then
@@ -3147,6 +3154,22 @@ function enableVictoryDefeat()
         })
     end
 end
+function enablePresenceLoss(params)
+    -- TODO: automate detection of this loss condition
+    if params.spirit then
+        params.spirit.createButton({
+            click_function = "presenceDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(-1.6, 0, 0.6),
+            rotation       = Vector(0,270,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+end
 function enableUI()
     Wait.frames(function()
         -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/583
@@ -4118,8 +4141,21 @@ function adversaryDefeat(adversary)
     adversary.clearButtons()
     Defeat({adversary = adversary.getName()})
 end
+function presenceDefeat(spirit)
+    spirit.clearButtons()
+    Defeat({presence = spirit.getName()})
+end
 function Defeat(params)
-    if params.adversary then
+    if checkVictory(true) then
+        if victoryTimer ~= nil then
+            Wait.stop(victoryTimer)
+            victoryTimer = nil
+        end
+        params.sacrifice = true
+    end
+    if params.sacrifice then
+        broadcastToAll("Sacrifice Victory!", Color.SoftYellow)
+    elseif params.adversary then
         broadcastToAll(params.adversary.." wins via Additional Loss Condition!", Color.SoftYellow)
     elseif params.scenario then
         broadcastToAll("Invaders win via "..params.scenario.." Additional Loss Condition!", Color.SoftYellow)
@@ -4127,23 +4163,31 @@ function Defeat(params)
         broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
     elseif params.invader then
         broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
+    elseif params.presence then
+        broadcastToAll("Invaders win via the Destroyed Presence Loss Condition!", Color.SoftYellow)
     else
         broadcastToAll("Invaders win via Unknown Loss Condition!", Color.SoftYellow)
     end
-    showGameOver(params)
+    loss = params
+    showGameOver()
 end
-function checkVictory()
+function checkVictory(returnOnly)
+    local victory = false
     if #getObjectsWithTag("City") == 0 then
         if terrorLevel == 3 then
-            Victory()
+            victory = true
         elseif #getObjectsWithTag("Town") == 0 then
             if terrorLevel == 2 then
-                Victory()
+                victory = true
             elseif #getObjectsWithTag("Explorer") == 0 then
-                Victory()
+                victory = true
             end
         end
     end
+    if victory and not returnOnly then
+        Victory()
+    end
+    return victory
 end
 function Victory()
     if victoryTimer ~= nil then
@@ -4159,13 +4203,15 @@ function Victory()
     else
         broadcastToAll("Terror Level I Victory Achieved!", Color.SoftYellow)
     end
-    showGameOver(nil)
+    showGameOver()
 end
-function showGameOver(loss)
+function showGameOver()
     local headerText
     if loss then
         headerText = "Defeat - "
-        if loss.adversary then
+        if loss.sacrifice then
+            headerText = "Sacrifice Victory"
+        elseif loss.adversary then
             headerText = headerText..loss.adversary.." Loss Condition"
         elseif loss.scenario then
             headerText = headerText..loss.scenario.." Loss Condition"
@@ -4173,6 +4219,8 @@ function showGameOver(loss)
             headerText = headerText.."Blight Loss Condition"
         elseif loss.invader then
             headerText = headerText.."Invader Deck Loss Condition"
+        elseif loss.presence then
+            headerText = headerText.."Destroyed Presence Loss Condition"
         else
             headerText = headerText.."Unknown Loss Condition"
         end
@@ -4189,6 +4237,8 @@ function showGameOver(loss)
         end
     end
     UI.setAttribute("panelGameOverHeader", "text", headerText)
+    -- TODO: detect turn number
+
     if adversaryCard ~= nil then
         UI.setAttribute("panelGameOverLeading", "text", adversaryCard.getName().." "..adversaryLevel)
     else
@@ -4224,11 +4274,15 @@ function showGameOver(loss)
     UI.setAttribute("panelGameOverDiscard", "text", discard)
 
     local score = getScore(dahan, blight, deck, cards, discard)
-    local scoreText = "Score: "
+    local scoreText
     if loss then
-        scoreText = scoreText..score[2]
+        if loss.sacrifice then
+            scoreText = score[1] - 10
+        else
+            scoreText = score[2]
+        end
     else
-        scoreText = scoreText..score[1]
+        scoreText = score[1]
     end
     UI.setAttribute("panelGameOverScore", "text", scoreText)
 
@@ -4246,7 +4300,8 @@ function hideGameOver(player)
     toggleUI("panelGameOver", player.color, true)
 end
 function RecordGame()
-    recorder.call("Record")
+    recorder.call("Record", {loss = loss})
+    UI.setAttribute("panelGameOverRecord", "active", "false")
 end
 
 function refreshScore()

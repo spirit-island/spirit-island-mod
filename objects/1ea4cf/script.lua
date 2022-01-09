@@ -161,8 +161,7 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
     local count = 0
     for i=#fearDeck,1,-1 do
         local card = fearDeck[i]
-        if card.getName() ~= "Terror II" and card.getName() ~= "Terror III" then
-            -- not a terror divider
+        if card.hasTag("Fear") then
             count = count + 1
             if count == depth then
                 local pos = card.getPosition() + Vector(-0.1, 0, 0)

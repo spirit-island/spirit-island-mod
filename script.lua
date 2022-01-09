@@ -2881,8 +2881,10 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
     if secondWave ~= nil and secondWave.getVar("mapSetup") then
-        secondWave.call("PostSetup")
-        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
+        Wait.condition(function()
+            secondWave.call("PostSetup")
+            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
+        end, function() return postSetupSteps == 5 end)
     else
         postSetupSteps = postSetupSteps + 1
     end

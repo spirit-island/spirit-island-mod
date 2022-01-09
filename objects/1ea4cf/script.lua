@@ -191,7 +191,17 @@ function checkLoss()
         -- TODO automate Many Minds presence counting for beasts on island
         Wait.stop(checkLossID)
     end
-    if destroyed > #getObjectsWithTag("Beasts") then
+    local count = 0
+    local beasts = getObjectsWithTag("Beasts")
+    for _,obj in pairs(beasts) do
+        local quantity = obj.getQuantity()
+        if quantity == -1 then
+            count = count + 1
+        else
+            count = count + quantity
+        end
+    end
+    if destroyed > count then
         broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
     end

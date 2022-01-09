@@ -2918,9 +2918,9 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
 
-    if not usingEvents() and usingSpiritTokens() then
+    Wait.condition(function()
+        if not usingEvents() and usingSpiritTokens() then
         -- Setup up command cards last
-        Wait.condition(function()
             local invaderDeck = invaderDeckZone.getObjects()[1]
             local cards = invaderDeck.getObjects()
             local stageII = nil
@@ -2958,10 +2958,10 @@ function PostSetup()
                 local objs = invaderDeckZone.getObjects()
                 return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function() return postSetupSteps == 6 end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
+        else
+            postSetupSteps = postSetupSteps + 1
+        end
+    end, function() return postSetupSteps == 6 end)
 
     -- HACK: trying to fix client desync issue
     for _,obj in pairs(getMapTiles()) do

@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1640926630,
-  "Date": "12/30/2021 10:57:10 PM",
+  "EpochTime": 1641766179,
+  "Date": "1/9/2022 4:09:39 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -461,6 +461,26 @@
     {
       "Name": "Dropdown Seat Controls",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219907769/D82CD49A9281ADD08A1A9F09908260359FFF1DD6/"
+    },
+    {
+      "Name": "Explorer",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501251463/228497228D0E43E273A4CD28221CFD6F9BA94F26/"
+    },
+    {
+      "Name": "Town",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501242475/E562FF5A9444BE59547D0DCB11C65646A594610F/"
+    },
+    {
+      "Name": "City",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501220359/9B624AF9C4597EC998829C9C82C33201316FAEDC/"
+    },
+    {
+      "Name": "Dahan",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501232182/5CA88E4199CD8CB309401BF9EE29AF112FF8229D/"
+    },
+    {
+      "Name": "Blight",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501217036/1714CE4E6A9DF75AA2BC5957847185A11F6DEA7A/"
     }
   ],
   "SnapPoints": [

@@ -1,6 +1,6 @@
 <Defaults>
     <Text tooltipBackgroundColor="black" />
-    <TableLayout autoCalculateHeight="true" cellPadding="20 20 0 0" cellBackgroundColor="clear"/>
+    <TableLayout autoCalculateHeight="true" cellPadding="20 20 5 5" cellBackgroundColor="clear"/>
     <Row preferredHeight="80"/>
     <Text class="gameOver" fontSize="40"/>
 </Defaults>
@@ -269,7 +269,7 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Explorers:</Text>
+                <Image image="Explorer" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverExplorer" class="gameOver" alignment="MiddleLeft"/>
@@ -283,7 +283,7 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Towns:</Text>
+                <Image image="Town" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverTown" class="gameOver" alignment="MiddleLeft"/>
@@ -297,7 +297,7 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Cities:</Text>
+                <Image image="City" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverCity" class="gameOver" alignment="MiddleLeft"/>
@@ -311,13 +311,13 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Blight:</Text>
+                <Image image="Blight" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverBlight" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Dahan:</Text>
+                <Image image="Dahan" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverDahan" class="gameOver" alignment="MiddleLeft"/>

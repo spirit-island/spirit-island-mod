@@ -241,10 +241,10 @@
             </Cell>
         </Row>
         <Row>
-            <Cell>
+            <Cell id="panelGameOverLeadingHeaderCell">
                 <Text id="panelGameOverLeadingHeader" class="gameOver" alignment="MiddleRight">Leading:</Text>
             </Cell>
-            <Cell>
+            <Cell id="panelGameOverLeadingCell">
                 <Text id="panelGameOverLeading" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell columnSpan="2">
@@ -263,58 +263,67 @@
             </Cell>
         </Row>
         <Row>
-            <Cell columnSpan="4">
-                <Text id="panelGameOverDifficulty" class="gameOver"/>
+            <Cell>
+                <Text class="gameOver" alignment="MiddleRight">Difficulty:</Text>
             </Cell>
-        </Row>
-        <Row>
+            <Cell>
+                <Text id="panelGameOverDifficulty" class="gameOver" alignment="MiddleLeft"/>
+            </Cell>
             <Cell>
                 <Image image="Explorer" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverExplorer" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
-            <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Invader Deck:</Text>
-            </Cell>
-            <Cell>
-                <Text id="panelGameOverDeck" class="gameOver" alignment="MiddleLeft"/>
-            </Cell>
         </Row>
         <Row>
+            <Cell>
+                <Text class="gameOver" alignment="MiddleRight">Turn:</Text>
+            </Cell>
+            <Cell>
+                <Text id="panelGameOverTurn" class="gameOver" alignment="MiddleLeft"/>
+            </Cell>
             <Cell>
                 <Image image="Town" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverTown" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
-            <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Face-Up:</Text>
-            </Cell>
-            <Cell>
-                <Text id="panelGameOverFaceup" class="gameOver" alignment="MiddleLeft"/>
-            </Cell>
         </Row>
         <Row>
+            <Cell>
+                <Text class="gameOver" alignment="MiddleRight">Invader Deck:</Text>
+            </Cell>
+            <Cell>
+                <Text id="panelGameOverDeck" class="gameOver" alignment="MiddleLeft"/>
+            </Cell>
             <Cell>
                 <Image image="City" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverCity" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
-            <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Discard:</Text>
-            </Cell>
-            <Cell>
-                <Text id="panelGameOverDiscard" class="gameOver" alignment="MiddleLeft"/>
-            </Cell>
         </Row>
         <Row>
+            <Cell>
+                <Text class="gameOver" alignment="MiddleRight">Face-Up:</Text>
+            </Cell>
+            <Cell>
+                <Text id="panelGameOverFaceup" class="gameOver" alignment="MiddleLeft"/>
+            </Cell>
             <Cell>
                 <Image image="Blight" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
                 <Text id="panelGameOverBlight" class="gameOver" alignment="MiddleLeft"/>
+            </Cell>
+        </Row>
+        <Row>
+            <Cell>
+                <Text class="gameOver" alignment="MiddleRight">Discard:</Text>
+            </Cell>
+            <Cell>
+                <Text id="panelGameOverDiscard" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell>
                 <Image image="Dahan" preserveAspect="true" rectAlignment="MiddleRight"/>

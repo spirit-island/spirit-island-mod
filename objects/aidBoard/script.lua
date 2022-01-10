@@ -742,9 +742,11 @@ function fearCardEarned()
         end
     end
     if foundFearCount ~= 2 then
-        -- TODO: handle dahan insurrection
-        Global.setVar("terrorLevel", 4)
-        Global.call("Victory")
+        local scenarioCard = Global.getVar("scenarioCard")
+        if scenarioCard ~= nil and not scenarioCard.getVar("customVictory") then
+            Global.setVar("terrorLevel", 4)
+            Global.call("Victory")
+        end
     end
 
     return 1

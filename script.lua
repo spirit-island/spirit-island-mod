@@ -84,6 +84,7 @@ extraRandomBoard = nil
 gamekeys = {}
 noFear = false
 noHeal = false
+turn = 1
 terrorLevel = 1
 recorder = nil
 ------ Unsaved Config Data
@@ -402,6 +403,7 @@ function onSave()
         extraRandomBoard = extraRandomBoard,
         noFear = noFear,
         noHeal = noHeal,
+        turn = turn,
         terrorLevel = terrorLevel,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
@@ -627,6 +629,7 @@ function onLoad(saved_data)
         gamekeys = loaded_data.gamekeys
         noFear = loaded_data.noFear
         noHeal = loaded_data.noHeal
+        turn = loaded_data.turn
         terrorLevel = loaded_data.terrorLevel
         recorder = getObjectFromGUID(loaded_data.recorder)
 
@@ -3280,6 +3283,7 @@ function timePasses()
     end
 end
 function timePassesCo()
+    turn = turn + 1
     noFear = false
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
@@ -4237,12 +4241,13 @@ function showGameOver()
         end
     end
     UI.setAttribute("panelGameOverHeader", "text", headerText)
-    -- TODO: detect turn number
 
     if adversaryCard ~= nil then
         UI.setAttribute("panelGameOverLeading", "text", adversaryCard.getName().." "..adversaryLevel)
     else
-        UI.setAttribute("panelGameOverLeadingHeader", "text", "")
+        UI.setAttributes("panelGameOverLeading", {text = "No Adversary", alignment = "MiddleCenter"})
+        UI.setAttribute("panelGameOverLeadingHeaderCell", "active", "false")
+        UI.setAttribute("panelGameOverLeadingCell", "columnSpan", "2")
     end
     if adversaryCard2 ~= nil then
         UI.setAttribute("panelGameOverSupporting", "text", adversaryCard2.getName().." "..adversaryLevel2)
@@ -4251,6 +4256,8 @@ function showGameOver()
     end
     if scenarioCard ~= nil then
         UI.setAttribute("panelGameOverScenario", "text", scenarioCard.getName())
+    else
+        UI.setAttribute("panelGameOverScenario", "text", "No Scenario")
     end
     if secondWave ~= nil then
         UI.setAttribute("panelGameOverSecondWave", "text", "Wave "..wave)
@@ -4262,16 +4269,17 @@ function showGameOver()
     local cards = aidBoard.getVar("numCards")
     local discard = aidBoard.call("countDiscard")
 
-    UI.setAttribute("panelGameOverDifficulty", "text", "Difficulty: "..difficulty)
+    UI.setAttribute("panelGameOverDifficulty", "text", difficulty)
+    UI.setAttribute("panelGameOverTurn", "text", turn)
+    UI.setAttribute("panelGameOverDeck", "text", deck)
+    UI.setAttribute("panelGameOverFaceup", "text", cards)
+    UI.setAttribute("panelGameOverDiscard", "text", discard)
+
     UI.setAttribute("panelGameOverExplorer", "text", #getObjectsWithTag("Explorer"))
     UI.setAttribute("panelGameOverTown", "text", #getObjectsWithTag("Town"))
     UI.setAttribute("panelGameOverCity", "text", #getObjectsWithTag("City"))
     UI.setAttribute("panelGameOverBlight", "text", blight)
     UI.setAttribute("panelGameOverDahan", "text", dahan)
-
-    UI.setAttribute("panelGameOverDeck", "text", deck)
-    UI.setAttribute("panelGameOverFaceup", "text", cards)
-    UI.setAttribute("panelGameOverDiscard", "text", discard)
 
     local score = getScore(dahan, blight, deck, cards, discard)
     local scoreText
@@ -4305,7 +4313,9 @@ function RecordGame()
 end
 
 function refreshScore()
-    local score = getScore(#getObjectsWithTag("Dahan"), #getObjectsWithTag("Blight"), aidBoard.getVar("countDeck"), aidBoard.getVar("numCards"), aidBoard.call("countDiscard"))
+    local dahan = #getObjectsWithTag("Dahan")
+    local blight = #getObjectsWithTag("Blight")
+    local score = getScore(dahan, blight, aidBoard.getVar("countDeck"), aidBoard.getVar("numCards"), aidBoard.call("countDiscard"))
 
     UI.setAttribute("scoreWin", "text", score[1])
     UI.setAttribute("scoreLose", "text", score[2])
@@ -4667,15 +4677,13 @@ function setupPlayerArea(params)
                 end
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
-                    if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
-                        if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
-                            local cardElements = entry.getVar("elements")
-                            elements:add(cardElements)
-                            nonTokenElements:add(cardElements)
-                        end
-                        energy = energy + powerCost(entry)
+                    -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
+                    if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
+                        local cardElements = entry.getVar("elements")
+                        elements:add(cardElements)
+                        nonTokenElements:add(cardElements)
                     end
+                    energy = energy + powerCost(entry)
                     if entry.getTable("thresholds") ~= nil then
                         table.insert(thresholdCards, entry)
                     end

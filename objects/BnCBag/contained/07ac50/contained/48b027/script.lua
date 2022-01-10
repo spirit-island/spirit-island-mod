@@ -24,7 +24,7 @@ function PickPower()
         font_size      = 150
     })
 end
-function destroyBoard(card)
+function destroyBoard(card, color)
     local hits = Physics.cast({
         origin = card.getPosition(),
         direction = Vector(0,-1,0),
@@ -41,6 +41,13 @@ function destroyBoard(card)
     if board == nil then
         broadcastToAll("Unable to detect island board, make sure Cast Down into the Briny Deep is on top of an island board.", Color.Red)
         return
+    end
+
+    -- Return cast down to player's play area
+    for c,guid in pairs(Global.getTable("elementScanZones")) do
+        if c == color then
+            self.setPosition(getObjectFromGUID(guid).getPosition() + Vector(-5, 1, -4))
+        end
     end
 
     Global.setVar("castDown", board.getName())

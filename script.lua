@@ -3170,6 +3170,7 @@ function enablePresenceLoss(params)
             width          = 2000,
             height         = 500,
             font_size      = 300,
+            tooltip        = "Spirit has no Presence left on the island",
         })
     end
 end

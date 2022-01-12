@@ -160,7 +160,7 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
         if card.hasTag("Fear") then
             count = count + 1
             if count == depth then
-                local pos = card.getPosition() + Vector(-0.1, 0, 0)
+                local pos = card.getPosition() + Vector(-0.5, 0, 0)
                 local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
                 if obj ~= nil then
                     if obj.type == "Deck" then

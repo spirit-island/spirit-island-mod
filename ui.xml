@@ -230,10 +230,12 @@
         <Button onClick="toggleTurnOrderUI" image="Dropdown Turn Order" preserveAspect="true" />
         <Button onClick="toggleScoreUI" image="Dropdown Scoring" preserveAspect="true" />
         <Button onClick="togglePlayerControls" image="Dropdown Seat Controls" preserveAspect="true" />
+        <Button id="panelUIGameOver" active="false" onClick="toggleGameOver" image="Dropdown Seat Controls" preserveAspect="true" />
     </VerticalLayout>
 </Panel>
 <Panel id="panelGameOver" visibility="Invisible" width="1280" height="720" rectAlignment="MiddleCenter" color="#C6DA8B">
     <Button fontSize="40" rectAlignment="UpperRight" width="64" height="64" onClick="hideGameOver">X</Button>
+    <Button fontSize="40" rectAlignment="UpperLeft" width="200" height="64" onClick="sacrificeGameOver">Sacrifice?</Button>
     <TableLayout>
         <Row>
             <Cell columnSpan="4">

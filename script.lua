@@ -4177,6 +4177,9 @@ function Defeat(params)
     showGameOver()
 end
 function checkVictory(returnOnly)
+    if scenarioCard ~= nil and scenarioCard.getVar("customVictory") then
+        return false
+    end
     local victory = false
     if #getObjectsWithTag("City") == 0 then
         if terrorLevel == 3 then
@@ -4211,6 +4214,18 @@ function Victory()
     showGameOver()
 end
 function showGameOver()
+    UI.setAttribute("panelUIGameOver","active","true")
+    UI.setAttribute("panelUI","height", UI.getAttribute("panelUI", "height") + 30)
+
+    refreshGameOver()
+
+    local colors = {}
+    for color,_ in pairs(PlayerBags) do
+        table.insert(colors, color)
+    end
+    setVisiTable("panelGameOver", colors)
+end
+function refreshGameOver()
     local headerText
     if loss then
         headerText = "Defeat - "
@@ -4298,15 +4313,24 @@ function showGameOver()
     if recorder ~= nil then
         UI.setAttribute("panelGameOverRecord", "active", "true")
     end
-
-    local colors = {}
-    for color,_ in pairs(PlayerBags) do
-        table.insert(colors, color)
+end
+function sacrificeGameOver()
+    if loss then
+        loss.sacrifice = true
+    else
+        loss = {sacrifice = true}
     end
-    setVisiTable("panelGameOver", colors)
+    refreshGameOver()
 end
 function hideGameOver(player)
     toggleUI("panelGameOver", player.color, true)
+end
+function toggleGameOver(player)
+    local colorEnabled = getCurrentState("panelGameOver", player.color)
+    toggleUI("panelGameOver", player.color, colorEnabled)
+    if not colorEnabled then
+        refreshGameOver()
+    end
 end
 function RecordGame()
     recorder.call("Record", {loss = loss})

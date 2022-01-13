@@ -52,6 +52,7 @@
   "seaTile": "5f4be2",
   "selectedBoards": [],
   "selectedColors": [],
+  "setupCompleted": false,
   "showPlayerButtons": true,
   "terrorLevel": 1,
   "townBag": "4d3c15",

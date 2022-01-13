@@ -46,6 +46,7 @@ expansions = {}
 events = {}
 fearPool = 0
 generatedFear = 0
+setupCompleted = false
 gameStarted = false
 difficulty = 0
 difficultyString = ""
@@ -97,6 +98,7 @@ adversaryLossCallback2 = nil
 wave = 1
 castDown = nil
 castDownTimer = nil
+presenceTimer = nil
 victoryTimer = nil
 loss = nil
 ------
@@ -378,6 +380,7 @@ function onSave()
         events = events,
         fearPool = fearPool,
         generatedFear = generatedFear,
+        setupCompleted = setupCompleted,
         gameStarted = gameStarted,
         difficulty = difficulty,
         difficultyString = difficultyString,
@@ -590,6 +593,7 @@ function onLoad(saved_data)
     -- Loads the tracking for if the game has started yet
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
+        setupCompleted = loaded_data.setupCompleted
         gameStarted = loaded_data.gameStarted
         playerBlocks = loaded_data.playerBlocks
         elementScanZones = loaded_data.elementScanZones
@@ -3102,6 +3106,7 @@ function StartGame()
     return 1
 end
 function enableVictoryDefeat()
+    presenceTimer = Wait.time(checkPresenceLoss, 5, -1)
     if scenarioCard == nil or not scenarioCard.getVar("customVictory") then
         victoryTimer = Wait.time(checkVictory, 5, -1)
     else
@@ -3154,23 +3159,6 @@ function enableVictoryDefeat()
             width          = 2000,
             height         = 500,
             font_size      = 300,
-        })
-    end
-end
-function enablePresenceLoss(params)
-    -- TODO: automate detection of this loss condition
-    if params.spirit then
-        params.spirit.createButton({
-            click_function = "presenceDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(-1.6, 0, 0.6),
-            rotation       = Vector(0,270,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-            tooltip        = "Spirit has no Presence left on the island",
         })
     end
 end
@@ -4138,6 +4126,60 @@ function cleanupObject(params)
     end
 end
 ----
+function checkPresenceLoss()
+    -- Wait until after initial advance invader cards since presence should be on island by then
+    if not setupCompleted then
+        return
+    end
+
+    local colors = {}
+    for color,_ in pairs(selectedColors) do
+        colors[color] = false
+    end
+
+    for _,obj in pairs(getObjectsWithTag("Presence")) do
+        -- Presence is not in player area
+        if #obj.getZones() == 0 then
+            local color = string.sub(obj.getName(),1,-12)
+            -- Color does not already has presence on island
+            if not colors[color] then
+                local bounds = obj.getBoundsNormalized()
+                local hits = Physics.cast({
+                    origin = bounds.center + bounds.offset,
+                    direction = Vector(0,-1,0),
+                    max_distance = 6,
+                    --debug = true,
+                })
+                for _,v in pairs(hits) do
+                    if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
+                        colors[color] = true
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    local loss = false
+    for color,onIsland in pairs(colors) do
+        if not onIsland then
+            for _, obj in ipairs(getObjectFromGUID(elementScanZones[color]).getObjects()) do
+                if obj.hasTag("Spirit") then
+                    if presenceTimer ~= nil then
+                        Wait.stop(presenceTimer)
+                        presenceTimer = nil
+                    end
+                    Defeat({presence = obj.getName()})
+                    loss = true
+                    break
+                end
+            end
+            if loss then
+                break
+            end
+        end
+    end
+end
 function scenarioDefeat(scenario)
     scenario.clearButtons()
     Defeat({scenario = scenario.getName()})
@@ -4145,10 +4187,6 @@ end
 function adversaryDefeat(adversary)
     adversary.clearButtons()
     Defeat({adversary = adversary.getName()})
-end
-function presenceDefeat(spirit)
-    spirit.clearButtons()
-    Defeat({presence = spirit.getName()})
 end
 function Defeat(params)
     if checkVictory(true) then

@@ -27,7 +27,6 @@ function load(params)
         end
         for _,zone in pairs(params.obj.getZones()) do
             if zoneGuids[zone.guid] then
-                Global.call("enablePresenceLoss", {spirit=spirit})
                 return
             end
         end
@@ -204,7 +203,6 @@ function SetupSpirit(obj, player_color)
         local castObjects = nil
         local hpos = Player[player_color].getHandTransform().position
         local spirit
-        local cleared = false
         if obj.type == "Bag" then
             for _,o in pairs(obj.getObjects()) do
                 for _,tag in pairs(o.tags) do
@@ -219,13 +217,12 @@ function SetupSpirit(obj, player_color)
                     end
                 end
             end
-            Wait.condition(function() cleared = true spirit.clearButtons() end, function() return not spirit.loading_custom end)
+            Wait.condition(function() spirit.clearButtons() end, function() return not spirit.loading_custom end)
         else
             castObjects = upCast(obj)
             obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5))
             obj.setRotation(Vector(0,180,0))
             spirit = obj
-            cleared = true
         end
         obj.clearButtons()
         spirit.setLock(true)
@@ -367,8 +364,6 @@ function SetupSpirit(obj, player_color)
                 end
             end
         end
-
-        Wait.condition(function() Global.call("enablePresenceLoss", {spirit=spirit}) end, function() return cleared end)
 
         Wait.condition(function()
             local broadcast = spirit.getVar("broadcast")

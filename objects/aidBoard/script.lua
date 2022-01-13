@@ -394,6 +394,9 @@ function advanceInvaderCards()
     if not Global.getVar("gameStarted") then
         return
     end
+    -- The last setup of setup generally is performing explore and then advancing invader cards
+    Global.setVar("setupCompleted", true)
+
     local prevOffset = Vector(0, 0, 0)
     local currentOffset = Vector(0, 0, 0)
     for i,v in pairs(scanLoopTable) do

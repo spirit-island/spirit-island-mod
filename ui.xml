@@ -230,7 +230,7 @@
         <Button onClick="toggleTurnOrderUI" image="Dropdown Turn Order" preserveAspect="true" />
         <Button onClick="toggleScoreUI" image="Dropdown Scoring" preserveAspect="true" />
         <Button onClick="togglePlayerControls" image="Dropdown Seat Controls" preserveAspect="true" />
-        <Button id="panelUIGameOver" active="false" onClick="toggleGameOver" image="Dropdown Seat Controls" preserveAspect="true" />
+        <Button id="panelUIGameOver" active="false" onClick="toggleGameOver" image="Dropdown Game Results" preserveAspect="true" />
     </VerticalLayout>
 </Panel>
 <Panel id="panelGameOver" visibility="Invisible" width="1280" height="720" rectAlignment="MiddleCenter" color="#C6DA8B">

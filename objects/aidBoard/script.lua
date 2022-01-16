@@ -747,7 +747,7 @@ function fearCard(params)
     end
     if foundFearCount ~= 2 then
         local scenarioCard = Global.getVar("scenarioCard")
-        if scenarioCard ~= nil and not scenarioCard.getVar("customVictory") then
+        if scenarioCard == nil or not scenarioCard.getVar("customVictory") then
             Global.setVar("terrorLevel", 4)
             Global.call("Victory")
         end

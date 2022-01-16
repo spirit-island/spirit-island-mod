@@ -245,12 +245,6 @@ end
 
 function blankFunc()
 end
-function wt(some)
-    local Time = os.clock() + some
-    while os.clock() < Time do
-        coroutine.yield(0)
-    end
-end
 
 function secondWave()
     self.editButton({
@@ -654,7 +648,7 @@ function addFear()
     if fearPool == 1 then
         Global.setVar("fearPool", generatedFear + 1)
         Global.setVar("generatedFear", 0)
-        startLuaCoroutine(self, "fearCardEarned")
+        fearCard({earned = true})
     else
         Global.setVar("fearPool", fearPool - 1)
         Global.setVar("generatedFear", generatedFear + 1)
@@ -687,7 +681,7 @@ function modifyFearPool(obj, color, alt_click)
         elseif fearPool == 1 then
             Global.setVar("fearPool", generatedFear)
             Global.setVar("generatedFear", 0)
-            startLuaCoroutine(self, "fearCardEarned")
+            fearCard({earned = true})
         else
             Global.setVar("fearPool", fearPool-1)
         end
@@ -697,11 +691,16 @@ function modifyFearPool(obj, color, alt_click)
     updateFearUI()
 end
 
-function fearCardEarned()
+function fearCard(params)
     local fearDeck = Player["White"].getHandObjects(1)
     local handTransform = Player["White"].getHandTransform(2)
-    local earnedPos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
     local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
+    local pos
+    if params.earned then
+        pos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
+    else
+        pos = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getPosition()
+    end
 
     local foundFearCount = 0
     for i=#fearDeck,1,-1 do
@@ -740,8 +739,10 @@ function fearCardEarned()
             if foundFearCount == 2 then
                 break
             end
-            card.setPosition(earnedPos)
-            broadcastToAll("Fear Card Earned!", Color.SoftBlue)
+            card.setPosition(pos)
+            if params.earned then
+                broadcastToAll("Fear Card Earned!", Color.SoftBlue)
+            end
         end
     end
     if foundFearCount ~= 2 then

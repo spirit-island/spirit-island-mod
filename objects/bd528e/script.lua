@@ -23,7 +23,7 @@ function PostSetup()
         if fearDeck.type == "Deck" then
             for i=1,#fearDeck.getObjects() do
                 fearDeck.takeObject({
-                    position = handZone.position + Vector(-5 - (0.6 * i), 0, 0),
+                    position = handZone.position + Vector(-5 - (0.75 * i), 0, 0),
                     smooth = false,
                 })
             end

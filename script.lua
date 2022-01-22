@@ -2800,7 +2800,8 @@ function SetupMap()
     return 1
 end
 function BoardSetup()
-    if getMapCount({norm = true, them = true}) == 0 then
+    local maps = getMapTiles()
+    if #maps == 0 then
         if isThematic() then
             MapPlacen(boardLayouts[numBoards][boardLayout])
         else
@@ -2813,7 +2814,7 @@ function BoardSetup()
             end
         end
     else
-        MapPlaceCustom()
+        MapPlaceCustom(maps)
     end
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numBoards end)
 end
@@ -3657,8 +3658,7 @@ function getMapTiles()
     return mapTiles
 end
 
-function MapPlaceCustom()
-    local maps = getMapTiles()
+function MapPlaceCustom(maps)
     -- board type is guaranteed to either be thematic or normal, and there has to be at least one map tile in the table
     if maps[1].hasTag("Balanced") then
         boardLayout = "Custom"

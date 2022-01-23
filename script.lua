@@ -415,7 +415,6 @@ function onSave()
         panelTimePassesVisibility = UI.getAttribute("panelTimePasses","visibility"),
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
         panelBlightFearVisibility = UI.getAttribute("panelBlightFear", "visibility"),
-        panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
         panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
         showPlayerButtons = showPlayerButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
@@ -644,7 +643,6 @@ function onLoad(saved_data)
             UI.setAttribute("panelTimePasses","visibility",loaded_data.panelTimePassesVisibility)
             UI.setAttribute("panelReady","visibility",loaded_data.panelReadyVisibility)
             UI.setAttribute("panelBlightFear","visibility",loaded_data.panelBlightFearVisibility)
-            UI.setAttribute("panelScore","visibility",loaded_data.panelScoreVisibility)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
@@ -4374,15 +4372,6 @@ function RecordGame()
     recorder.call("Record", {loss = loss})
     UI.setAttribute("panelGameOverRecord", "active", "false")
 end
-
-function refreshScore()
-    local dahan = #getObjectsWithTag("Dahan")
-    local blight = #getObjectsWithTag("Blight")
-    local score = getScore(dahan, blight, aidBoard.getVar("countDeck"), aidBoard.getVar("numCards"), aidBoard.call("countDiscard"))
-
-    UI.setAttribute("scoreWin", "text", score[1])
-    UI.setAttribute("scoreLose", "text", score[2])
-end
 function getScore(dahan, blight, deck, cards, discard)
     dahan = math.floor(dahan / numBoards)
     blight = math.floor(blight / numBoards)
@@ -5319,10 +5308,6 @@ function toggleTurnOrderUI(player)
     local colorEnabled = getCurrentState("panelTurnOrder", player.color)
     toggleUI("panelTurnOrder", player.color, colorEnabled)
 end
-function toggleScoreUI(player)
-    local colorEnabled = getCurrentState("panelScore", player.color)
-    toggleUI("panelScore", player.color, colorEnabled)
-end
 function toggleButtonUI(player)
     local colorEnabled = getCurrentState("panelPowerDraw", player.color)
     toggleUI("panelPowerDraw", player.color, colorEnabled)
@@ -5854,16 +5839,16 @@ function swapPlayerUIs(a, b)
         setVisiTable("panelTurnOrder",newVisiTable)
     end
 
-    newVisiTable = swapPlayerUI(a, b, "panelScore")
-    if newVisiTable ~= nil then
-        setVisiTable("panelScore",newVisiTable)
-    end
-
     newVisiTable = swapPlayerUI(a, b, "panelPowerDraw")
     if newVisiTable ~= nil then
         setVisiTable("panelPowerDraw",newVisiTable)
         setVisiTable("panelTimePasses",newVisiTable)
         setVisiTable("panelReady",newVisiTable)
+    end
+
+    newVisiTable = swapPlayerUI(a, b, "panelGameOver")
+    if newVisiTable ~= nil then
+        setVisiTable("panelGameOver",newVisiTable)
     end
 
     local enabled = gamekeys[a]

@@ -12,7 +12,7 @@
     "scaleZ": 0.9
   },
   "Nickname": "Purple's Isolate",
-  "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
+  "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using adjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.7699,

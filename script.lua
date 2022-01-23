@@ -3998,13 +3998,13 @@ function place(objName, placePos, droppingPlayerColor)
         else
             return
         end
-    elseif objName == "Defend Token" then
+    elseif objName == "Defend Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].defend ~= nil then
             temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
-    elseif objName == "Isolate Token" then
+    elseif objName == "Isolate Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].isolate ~= nil then
             temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
@@ -4051,8 +4051,8 @@ Pieces = {
     "Disease",
     "Strife",
     "Dahan",
-    "Defend Token",
-    "Isolate Token",
+    "Defend Marker",
+    "Isolate Marker",
     "1 Energy",
     "3 Energy",
     "Box Blight",
@@ -5633,7 +5633,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                 smooth = false,
             })
             table.insert(data.bagContents, obj.guid)
-            if obj.getName() == "Defend Tokens" then
+            if obj.getName() == "Defend Markers" then
                 data.tint = obj.getColorTint()
             end
         end
@@ -5668,13 +5668,13 @@ function swapPlayerPresenceColors(fromColor, toColor)
             for i = #b.bagContents,stop,-1 do  -- Iterate in reverse order.
                 local obj = getObjectFromGUID(b.bagContents[i])
                 local name = obj.getName()
-                if name == "Defend Tokens" then
+                if name == "Defend Markers" then
                     local pos = selectedColors[b.color].defend.getPosition()
                     a.bag.putObject(selectedColors[b.color].defend)
                     obj.setPosition(pos)
                     obj.setLock(true)
                     selectedColors[b.color].defend = obj
-                elseif name == "Isolate Tokens" then
+                elseif name == "Isolate Markers" then
                     local pos = selectedColors[b.color].isolate.getPosition()
                     a.bag.putObject(selectedColors[b.color].isolate)
                     obj.setPosition(pos)
@@ -5707,7 +5707,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         _ = obj.setState(originalState)
                     end
                 elseif suffix == "Defend" then
-                    -- Easier to grab new defend token than to change the name and color of every state
+                    -- Easier to grab new defend marker than to change the name and color of every state
                     for _, obj in ipairs(objs) do
                         local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
                         local locked = obj.getLock()

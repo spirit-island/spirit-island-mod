@@ -11,7 +11,7 @@
     "scaleY": 0.7,
     "scaleZ": 0.7
   },
-  "Nickname": "Defend Tokens",
+  "Nickname": "Defend Markers",
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount",
   "GMNotes": "",
   "ColorDiffuse": {

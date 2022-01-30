@@ -988,7 +988,7 @@ function randomAdversary(attempts)
         end
     end
 end
-function SetupPlaytestDeck(zone, name, option, callback)
+function SetupPlaytestDeck(zone, name, option, callback, done)
     local stagingArea = {
         ["Fear"] = Vector(-50.70, 2, 97.32),
         ["Blight Cards"] = Vector(-46.70, 2, 97.32),
@@ -1006,10 +1006,17 @@ function SetupPlaytestDeck(zone, name, option, callback)
         else
             deck.putObject(cards)
         end
+        deck.shuffle()
         if callback ~= nil then
-            callback(deck, function() deck.shuffle() end)
+            callback(deck, function()
+                if done ~= nil then
+                    done()
+                end
+            end)
         else
-            deck.shuffle()
+            if done ~= nil then
+                done()
+            end
         end
     end
     local function PlaytestHalf(bag, guid, deck)
@@ -1030,28 +1037,43 @@ function SetupPlaytestDeck(zone, name, option, callback)
             else
                 deck.putObject(cards)
             end
+            deck.shuffle()
             if callback ~= nil then
-                callback(deck, function() deck.shuffle() end)
+                callback(deck, function()
+                    if done ~= nil then
+                        done()
+                    end
+                end)
             else
-                deck.shuffle()
+                if done ~= nil then
+                    done()
+                end
             end
         else
+            local objs = {cards}
             -- deck is never nil here
             for _ = 1,cardsCount do
-                cards.putObject(deck.takeObject({
+                table.insert(objs, deck.takeObject({
                     rotation = {0, 180, 180},
                     smooth = false,
                 }))
             end
+            cards = group(objs)[1]
             cards.shuffle()
             if callback ~= nil then
                 callback(cards, function()
                     cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                     deck.putObject(cards)
+                    if done ~= nil then
+                        done()
+                    end
                 end)
             else
                 cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                 deck.putObject(cards)
+                if done ~= nil then
+                    done()
+                end
             end
         end
     end
@@ -1070,6 +1092,9 @@ function SetupPlaytestDeck(zone, name, option, callback)
                     cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                     deck.putObject(cards)
                 end
+                if done ~= nil then
+                    done()
+                end
             end)
         else
             if deck == nil then
@@ -1077,6 +1102,9 @@ function SetupPlaytestDeck(zone, name, option, callback)
             else
                 cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                 deck.putObject(cards)
+            end
+            if done ~= nil then
+                done()
             end
         end
     end
@@ -1099,6 +1127,9 @@ function SetupPlaytestDeck(zone, name, option, callback)
                 end
             end
         end
+    end
+    if done ~= nil then
+        done()
     end
 end
 ----- Pre Setup Section
@@ -1404,7 +1435,7 @@ function SetupFear()
     local count = 0
 
     fearDeck.shuffle()
-    SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil)
+    SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
     local maxCards = #fearDeck.getObjects()
 
     for _ = 1, fearCards[1] do
@@ -1871,25 +1902,30 @@ end
 ----- Blight Section
 function SetupBlightCard()
     local cardsSetup = 0
-    local function bncBlightCardOptions(deck, callback)
-        if SetupChecker.getVar("exploratoryAid") then
-            deck.takeObject({
-                guid = "bf66eb",
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        deck.putObject(temp)
-                        deck.shuffle()
-                        cardsSetup = cardsSetup + 1
-                    end, 1)
-                end,
-            })
-        else
-            cardsSetup = cardsSetup + 1
-        end
-        if callback ~= nil then
-            Wait.condition(function() callback() end, function() return cardsSetup == 1 end)
-        end
+    local function bncBlightCardOptions(bncDeck, callback)
+        Wait.condition(function()
+            local bncBlightSetup = 0
+            if SetupChecker.getVar("exploratoryAid") then
+                bncDeck.takeObject({
+                    guid = "bf66eb",
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            bncDeck.putObject(temp)
+                            bncDeck.shuffle()
+                            cardsSetup = cardsSetup + 1
+                            bncBlightSetup = bncBlightSetup + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsSetup = cardsSetup + 1
+                bncBlightSetup = bncBlightSetup + 1
+            end
+            if callback ~= nil then
+                Wait.condition(function() callback() end, function() return bncBlightSetup == 1 end)
+            end
+        end, function() return not bncDeck.loading_custom end)
     end
     if SetupChecker.getVar("optionalBlightCard") then
         local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
@@ -1905,12 +1941,11 @@ function SetupBlightCard()
             local grabbedDeck = false
             if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
                 grabbedDeck = true
-                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions, function() grabBlightCard(true) end)
             end
             if not grabbedDeck then
-                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil, function() grabBlightCard(true) end)
             end
-            Wait.condition(function() grabBlightCard(true) end, function() return #getObjectFromGUID("b38ea8").getObjects() == 1 end)
         end, function() return cardsSetup == 1 end)
     else
         blightedIsland = true
@@ -2774,18 +2809,13 @@ function SetupEventDeck()
         if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
             grabbedDeck = true
             if events["Branch & Claw"] then
-                SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
+                SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions, function() stagesSetup = stagesSetup + 1 end)
+            else
+                stagesSetup = stagesSetup + 1
             end
         end
         if not grabbedDeck then
-            SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), nil)
-        end
-        if usingEvents() then
-            Wait.condition(function()
-                stagesSetup = stagesSetup + 1
-            end, function() return #eventDeckZone.getObjects() == 1 and not eventDeckZone.getObjects()[1].isSmoothMoving() end)
-        else
-            stagesSetup = stagesSetup + 1
+            SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), nil, function() stagesSetup = stagesSetup + 1 end)
         end
     end, function() return cardsSetup == 1 end)
     return 1

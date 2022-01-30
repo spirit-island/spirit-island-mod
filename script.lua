@@ -1351,6 +1351,18 @@ function setupBlightTokens()
             numBlight = numBlight + math.min(blightTokens * numBoards, max)
         end
     end
+    if adversaryCard ~= nil then
+        local blightTokens = adversaryCard.get("setupBlightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + math.min(blightTokens[adversaryLevel] * numBoards, max)
+        end
+    end
+    if adversaryCard2 ~= nil then
+        local blightTokens = adversaryCard2.get("setupBlightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + math.min(blightTokens[adversaryLevel2] * numBoards, max)
+        end
+    end
     for _ = 1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({
             position = blightBag.getPosition() + Vector(0,1,0),

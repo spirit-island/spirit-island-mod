@@ -158,6 +158,7 @@ This section is meant for users who are familiar with both the tts mod and progr
 - Adversary Specific:
   - Note: notebook contains sample code for adversary
   - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level (e.g. England 6)
+  - `setupBlightTokens`: **table** - contain keys 0->6 representing the starting blight token per board modifier for each adversary level
   - reminderSetup
     - `reminderSetup`: **boolean** - set to true if you have `ReminderSetup` function
     - `ReminderSetup(params)`
@@ -263,8 +264,8 @@ This section is meant for users who are familiar with both the tts mod and progr
         - `level`: **number** - level of current adversary
 - Scenario Specific:
   - `fearCards`: **table** - contains keys 1->3 representing the change of fear cards in each part of the deck
-  - `setupBlightTokens`: **number** - modifies amount of starting blight per player (e.g. Blitz)
-  - `blightTokens`: **number** - modifies amount of flipped card blight per player (e.g. Blitz)
+  - `setupBlightTokens`: **number** - modifies amount of starting blight per board (e.g. Blitz)
+  - `blightTokens`: **number** - modifies amount of flipped card blight per board (e.g. Blitz)
   - `customVictory`: **boolean** - set to true if scenario has non scriptable victory condition
   - preSetup - called before all other setup steps have started
     - `preSetup`: **boolean** - set to true if you have `PreSetup` function

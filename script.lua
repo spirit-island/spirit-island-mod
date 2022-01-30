@@ -4124,6 +4124,16 @@ function cleanupObject(params)
     end
 end
 ----
+function getSpiritColor(name)
+    for color,guid in pairs(elementScanZones) do
+        for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
+            if object.hasTag("Spirit") and object.getName() == name then
+                return color
+            end
+        end
+    end
+    return nil
+end
 function checkPresenceLoss()
     -- Wait until after initial advance invader cards since presence should be on island by then
     if not setupCompleted then
@@ -4139,8 +4149,11 @@ function checkPresenceLoss()
         -- Presence is not in player area
         if #obj.getZones() == 0 then
             local color = string.sub(obj.getName(),1,-12)
-            -- Color does not already has presence on island
-            if not colors[color] then
+            if colors[color] == nil then
+                color = getSpiritColor(obj.getDescription())
+            end
+            -- Color does not already have presence on island
+            if color ~= nil and not colors[color] then
                 local bounds = obj.getBoundsNormalized()
                 local hits = Physics.cast({
                     origin = bounds.center + bounds.offset,

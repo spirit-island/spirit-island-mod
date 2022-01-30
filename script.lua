@@ -4749,9 +4749,9 @@ function setupPlayerArea(params)
                         nonTokenElements:add(cardElements)
                     end
                     energy = energy + powerCost(entry)
-                    if entry.getTable("thresholds") ~= nil then
-                        table.insert(thresholdCards, entry)
-                    end
+                end
+                if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
+                    table.insert(thresholdCards, entry)
                 end
             elseif entry.type == "Generic" then
                 local tokenCounts = entry.getVar("elements")

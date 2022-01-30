@@ -182,21 +182,6 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
     end
 end
 function checkLoss()
-    if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then
-        -- TODO automate Many Minds presence counting for beasts on island
-        Wait.stop(checkLossID)
-        self.createButton({
-            click_function = "adversaryDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(-0.6, 1, -1.3),
-            rotation       = Vector(0,0,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-        })
-    end
     local count = 0
     local beasts = getObjectsWithTag("Beasts")
     for _,obj in pairs(beasts) do
@@ -207,10 +192,47 @@ function checkLoss()
             count = count + quantity
         end
     end
+    if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then
+        local color = getPlayerColor()
+        for _,obj in pairs(getObjectsWithTag("Presence")) do
+            -- Presence is not in player area
+            if #obj.getZones() == 0 then
+                if color == string.sub(obj.getName(),1,-12) then
+                    if obj.getQuantity() >= 2 then
+                        local bounds = obj.getBoundsNormalized()
+                        local hits = Physics.cast({
+                            origin = bounds.center + bounds.offset,
+                            direction = Vector(0,-1,0),
+                            max_distance = 6,
+                            --debug = true,
+                        })
+                        for _,v in pairs(hits) do
+                            if v.hit_object ~= obj and Global.call("isIslandBoard", {obj=v.hit_object}) then
+                                count = count + 1
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
     if destroyed > count then
         Wait.stop(checkLossID)
         Global.call("Defeat", {adversary = self.getName()})
     end
+end
+function getPlayerColor()
+    local zoneGuids = {}
+    for color,guid in pairs(Global.getTable("elementScanZones")) do
+        zoneGuids[guid] = color
+    end
+    for _,zone in pairs(getObjectFromGUID("a576cc").getZones()) do
+        if zoneGuids[zone.guid] then
+            return zoneGuids[zone.guid]
+        end
+    end
+    return ""
 end
 
 function Requirements(params)

@@ -4305,8 +4305,10 @@ function Victory()
     showGameOver()
 end
 function showGameOver()
-    UI.setAttribute("panelUIGameOver","active","true")
-    UI.setAttribute("panelUI","height", UI.getAttribute("panelUI", "height") + 30)
+    if UI.getAttribute("panelUIGameOver", "active") == "false" then
+        UI.setAttribute("panelUIGameOver","active","true")
+        UI.setAttribute("panelUI","height", UI.getAttribute("panelUI", "height") + 30)
+    end
 
     refreshGameOver()
 

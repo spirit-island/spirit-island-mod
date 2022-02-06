@@ -31,7 +31,7 @@
   "Sticky": false,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": false,
+  "HideWhenFaceDown": true,
   "Hands": false,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749057496681017469/E68A8F6F693C4224261288694AE1ADBEC32119BD/",

@@ -1,0 +1,53 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 21.414499282836914,
+    "posY": 2.307300090789795,
+    "posZ": 92.1404037475586,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Study the Invaders' Fears",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 45401,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "454": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100680840/DF01DCC52AC95A5245BDCC16EF07B0B8F5A80293/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100681295/0B7D49D46BFE7E2DF8445C01423CD0E77F2190A8/",
+      "NumWidth": 3,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

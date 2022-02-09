@@ -1,5 +1,5 @@
 {
-  "Name": "Custom_Tile",
+  "Name": "Custom_Model",
   "Transform": {
     "posX": 1.9800000190734863,
     "posY": -1.7200000286102295,
@@ -12,12 +12,12 @@
     "scaleZ": 0.009999999776482582
   },
   "Nickname": "Source Spirit",
-  "Description": "Spirit Island - Spirit",
+  "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.2002999186515808,
-    "g": 0.16029992699623108,
-    "b": 0.15179994702339172
+    "r": 0.20029932260513306,
+    "g": 0.16029933094978333,
+    "b": 0.15179935097694397
   },
   "Tags": [
     "Uninteractable"
@@ -25,27 +25,25 @@
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
-  "Grid": true,
-  "Snap": true,
+  "Grid": false,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
-  "DragSelectable": true,
-  "Autoraise": true,
-  "Sticky": true,
-  "Tooltip": true,
+  "DragSelectable": false,
+  "Autoraise": false,
+  "Sticky": false,
+  "Tooltip": false,
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CustomImage": {
-    "ImageURL": "https://i.imgur.com/RHNnFsC.jpg",
-    "ImageSecondaryURL": "https://i.imgur.com/ktVG7oY.jpg",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
-    "CustomTile": {
-      "Type": 0,
-      "Thickness": 0.20000000298023224,
-      "Stackable": false,
-      "Stretch": true
-    }
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1754683441115249154/B284A821AE46B04E3399AE51B6B94ED0BEFC5F92/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 0,
+    "CastShadows": true
   }
 }

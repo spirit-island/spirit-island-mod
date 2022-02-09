@@ -8,9 +8,10 @@ postSetup = true
 postSetupComplete = false
 hasLossCondition = true
 hasUI = true
+customLoss = true
 
 highImmigration = "6bc964"
-highImmigrationDiscardPosition = Vector(-46.18, 0.82, -4.18)
+highImmigrationDiscardPosition = Vector(-46.18, 0.8, -4.18)
 originalDiscardPosition = Vector(-46.21, 1.5, 0.33)
 
 function onSave()

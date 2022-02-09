@@ -1,0 +1,53 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 31.49839973449707,
+    "posY": 2.204200029373169,
+    "posZ": 107.21839904785156,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Too Near the Jungle",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 64503,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "645": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100635176/E9E749ADAD8A6D30DFBF6824850558B13983FBDE/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100634322/0C1A79B1F2CFA7AA1ACCAE79155950A18939E619/",
+      "NumWidth": 3,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

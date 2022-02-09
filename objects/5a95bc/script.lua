@@ -53,7 +53,6 @@ escaped = 0
 checkLossID = 0
 
 function onLoad()
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
     if Global.getVar("gameStarted") then
         local lossBag = getObjectFromGUID("eb0571")
         if lossBag ~= nil then
@@ -95,7 +94,7 @@ end
 
 function checkLoss()
     if escaped > 3 * Global.call("getMapCount", {norm = true, them = true}) then
-        broadcastToAll("Invaders wins via Scenario Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
+        Global.call("Defeat", {scenario = self.getName()})
     end
 end

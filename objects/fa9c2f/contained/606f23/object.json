@@ -1,0 +1,270 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 103.81379699707031,
+    "posY": 2.392899990081787,
+    "posZ": 107.96700286865234,
+    "rotX": 9.999999747378752e-05,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Bringer of Dreams and Nightmares",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Base",
+    "High",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752025790/459C3BAA8C6830F1320C53805BDEFD37B2DB94EA/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026133/2EDFBC06C5FE9B196487F457A4A068964359284E/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.04580000042915344,
+        "y": 0.20000000298023224,
+        "z": -0.39640000462532043
+      }
+    },
+    {
+      "Position": {
+        "x": -0.049400001764297485,
+        "y": 0.20000000298023224,
+        "z": -0.08049999922513962
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27250000834465027,
+        "y": 0.20000000298023224,
+        "z": -0.3953000009059906
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2727000117301941,
+        "y": 0.20000000298023224,
+        "z": -0.08250000327825546
+      }
+    },
+    {
+      "Position": {
+        "x": -0.48730000853538513,
+        "y": 0.20000000298023224,
+        "z": -0.39730000495910645
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4902999997138977,
+        "y": 0.20000000298023224,
+        "z": -0.08150000125169754
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7080000042915344,
+        "y": 0.20000000298023224,
+        "z": -0.39649999141693115
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7113000154495239,
+        "y": 0.20000000298023224,
+        "z": -0.0803999975323677
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9315000176429749,
+        "y": 0.20000000298023224,
+        "z": -0.3984000086784363
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9316999912261963,
+        "y": 0.20000000298023224,
+        "z": -0.07970000058412552
+      }
+    },
+    {
+      "Position": {
+        "x": -1.151900053024292,
+        "y": 0.20000000298023224,
+        "z": -0.3970000147819519
+      }
+    }
+  ],
+  "States": {
+    "2": {
+      "GUID": "b28d1d",
+      "Name": "Custom_Tile",
+      "Transform": {
+        "posX": 72.20429992675781,
+        "posY": 1.003100037574768,
+        "posZ": 95.19000244140625,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 180.0,
+        "scaleX": 5.460000038146973,
+        "scaleY": 1.0,
+        "scaleZ": 5.460000038146973
+      },
+      "Nickname": "Bringer of Dreams and Nightmares",
+      "Description": "Base",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.20029999315738678,
+        "g": 0.16030000150203705,
+        "b": 0.1518000066280365
+      },
+      "Tags": [
+        "Base",
+        "High",
+        "Spirit"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680614961/7F089E63A8759A8A410BB99A8012A135FC40E683/",
+        "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026133/2EDFBC06C5FE9B196487F457A4A068964359284E/",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomTile": {
+          "Type": 0,
+          "Thickness": 0.20000000298023224,
+          "Stackable": false,
+          "Stretch": true
+        }
+      },
+      "LuaScript": "-- Spirit Panel for MJ & iakona's Spirit Island Mod --\nuseProgression = false\nuseAspect = 2\n\nfunction onLoad(saved_data)\n    Color.Add(\"SoftBlue\", Color.new(0.53,0.92,1))\n    Color.Add(\"SoftYellow\", Color.new(1,0.8,0.5))\n    getObjectFromGUID(\"SourceSpirit\").call(\"load\", {obj = self, saved_data = saved_data})\nend",
+      "LuaScriptState": "{\"thresholds\": [{\"elements\": \"02020000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.46}}, {\"elements\": \"03000000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.74}}, {\"elements\": \"01010000\", \"position\": {\"x\": -0.56, \"y\": 0, \"z\": 0.46}}, {\"elements\": \"02010001\", \"position\": {\"x\": -0.56, \"y\": 0, \"z\": 0.58}}, {\"elements\": \"03020001\", \"position\": {\"x\": -0.56, \"y\": 0, \"z\": 0.7}}], \"trackElements\":[{\"elements\":\"01000000\",\"position\":{\"x\":-0.49,\"y\":0,\"z\":-0.4}},{\"elements\":\"00010000\",\"position\":{\"x\":-0.05,\"y\":0,\"z\":-0.4}}],\"trackEnergy\":[{\"count\":5,\"position\":{\"x\":-1.15,\"y\":0,\"z\":-0.4}},{\"count\":4,\"position\":{\"x\":-0.71,\"y\":0,\"z\":-0.4}},{\"count\":3,\"position\":{\"x\":-0.27,\"y\":0,\"z\":-0.4}},{\"count\":2,\"position\":{\"x\":0.18,\"y\":0,\"z\":-0.39}}]}",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -0.04580000042915344,
+            "y": 0.20000000298023224,
+            "z": -0.39640000462532043
+          }
+        },
+        {
+          "Position": {
+            "x": -0.049400001764297485,
+            "y": 0.20000000298023224,
+            "z": -0.08049999922513962
+          }
+        },
+        {
+          "Position": {
+            "x": -0.27250000834465027,
+            "y": 0.20000000298023224,
+            "z": -0.3953000009059906
+          }
+        },
+        {
+          "Position": {
+            "x": -0.2727000117301941,
+            "y": 0.20000000298023224,
+            "z": -0.08250000327825546
+          }
+        },
+        {
+          "Position": {
+            "x": -0.48730000853538513,
+            "y": 0.20000000298023224,
+            "z": -0.39730000495910645
+          }
+        },
+        {
+          "Position": {
+            "x": -0.4902999997138977,
+            "y": 0.20000000298023224,
+            "z": -0.08150000125169754
+          }
+        },
+        {
+          "Position": {
+            "x": -0.7080000042915344,
+            "y": 0.20000000298023224,
+            "z": -0.39649999141693115
+          }
+        },
+        {
+          "Position": {
+            "x": -0.7113000154495239,
+            "y": 0.20000000298023224,
+            "z": -0.0803999975323677
+          }
+        },
+        {
+          "Position": {
+            "x": -0.9315000176429749,
+            "y": 0.20000000298023224,
+            "z": -0.3984000086784363
+          }
+        },
+        {
+          "Position": {
+            "x": -0.9316999912261963,
+            "y": 0.20000000298023224,
+            "z": -0.07970000058412552
+          }
+        },
+        {
+          "Position": {
+            "x": -1.151900053024292,
+            "y": 0.20000000298023224,
+            "z": -0.3970000147819519
+          }
+        }
+      ]
+    }
+  }
+}

@@ -11,8 +11,8 @@
     "scaleY": 0.699999988079071,
     "scaleZ": 0.699999988079071
   },
-  "Nickname": "Isolate Tokens",
-  "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using\r\nadjacencies unless you let them.",
+  "Nickname": "Isolate Markers",
+  "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using adjacencies unless you let them.",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 1.0,

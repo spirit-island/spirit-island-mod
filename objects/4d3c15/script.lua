@@ -4,12 +4,12 @@ rotation = {-40,0,0}
 color = {0.95,0.95,0.95}
 
 local callbackObj, callbackFunc
-local noneCallbackBroadcast
+local loss
 
 function onSave()
     local data_table = {
         callbackFunc = callbackFunc,
-        noneCallbackBroadcast = noneCallbackBroadcast,
+        loss = loss,
     }
     if callbackObj ~= nil then
         data_table.callbackObj = callbackObj.guid
@@ -21,10 +21,9 @@ function onLoad(saved_data)
     if loaded_data ~= nil then
         callbackObj = getObjectFromGUID(loaded_data.callbackObj)
         callbackFunc = loaded_data.callbackFunc
-        noneCallbackBroadcast = loaded_data.noneCallbackBroadcast
+        loss = loaded_data.loss
     end
 
-    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
     Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     upd()
 end
@@ -58,11 +57,11 @@ end
 function setCallback(params)
     callbackObj = params.obj
     callbackFunc = params.func
-    noneCallbackBroadcast = params.broadcast
+    loss = params.loss
 end
 
 function none()
-    if noneCallbackBroadcast ~= nil then
-        broadcastToAll(noneCallbackBroadcast, Color.SoftYellow)
+    if loss ~= nil then
+        Global.call("Defeat", loss)
     end
 end

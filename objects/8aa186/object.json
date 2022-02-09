@@ -4,7 +4,7 @@
     "posX": -37.66999816894531,
     "posY": 0.8896148800849915,
     "posZ": 51.27000045776367,
-    "rotX": 3.2497432300715445e-08,
+    "rotX": -6.237677752096715e-08,
     "rotY": 180.0,
     "rotZ": 180.0,
     "scaleX": 1.098099946975708,
@@ -31,7 +31,7 @@
   "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
-  "HideWhenFaceDown": false,
+  "HideWhenFaceDown": true,
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [

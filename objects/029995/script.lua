@@ -28,14 +28,14 @@ function onLoad()
 end
 
 function updateButton()
-    local label = "Show\nReminders"
+    local label = "Show\nPlayer Aids"
     if empty then
-        label = "Hide\nReminders"
+        label = "Hide\nPlayer Aids"
     end
     self.editButton({
         index = 0,
         label = label,
-        width = 1400,
+        width = 1500,
         height = 750,
     })
 end

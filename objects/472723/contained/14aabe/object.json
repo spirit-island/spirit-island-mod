@@ -1,0 +1,132 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 108.57510375976562,
+    "posY": 2.3993000984191895,
+    "posZ": 88.89540100097656,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Grinning Trickster Stirs Up Trouble",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753212889/818F2D7BB09AA1D3D675B34F794E8BB407D49442/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753216326/9AD263506D001B58A8190A1FE71DD28519722068/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.7330999970436096,
+        "y": 0.20000000298023224,
+        "z": -0.4327999949455261
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5009999871253967,
+        "y": 0.20000000298023224,
+        "z": -0.4345000088214874
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7329000234603882,
+        "y": 0.20000000298023224,
+        "z": -0.15039999783039093
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5056999921798706,
+        "y": 0.20000000298023224,
+        "z": -0.15299999713897705
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27549999952316284,
+        "y": 0.20000000298023224,
+        "z": -0.15189999341964722
+      }
+    },
+    {
+      "Position": {
+        "x": -0.048500001430511475,
+        "y": 0.20000000298023224,
+        "z": -0.4318999946117401
+      }
+    },
+    {
+      "Position": {
+        "x": -0.958899974822998,
+        "y": 0.20000000298023224,
+        "z": -0.43130001425743103
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2718999981880188,
+        "y": 0.20000000298023224,
+        "z": -0.4343999922275543
+      }
+    },
+    {
+      "Position": {
+        "x": -1.188599944114685,
+        "y": 0.20000000298023224,
+        "z": -0.15680000185966492
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9610000252723694,
+        "y": 0.20000000298023224,
+        "z": -0.1551000028848648
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04650000110268593,
+        "y": 0.20000000298023224,
+        "z": -0.15680000185966492
+      }
+    }
+  ]
+}

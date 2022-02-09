@@ -1,7 +1,7 @@
 difficulty=2
-
 postSetup=true
 postSetupComplete=false
+customVictory = true
 
 tokensSetup = false
 fearSetup = false
@@ -17,13 +17,13 @@ function PostSetup()
     })
     bag.setLock(true)
 
-    local handZone = Player["White"].getHandTransform(1)
     local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
     if fearDeck ~= nil then
+        local handZone = Player["White"].getHandTransform(1)
         if fearDeck.type == "Deck" then
             for i=1,#fearDeck.getObjects() do
                 fearDeck.takeObject({
-                    position = handZone.position + Vector(-5 - (0.6 * i), 0, 0),
+                    position = handZone.position + Vector(-5 - (0.75 * i), 0, 0),
                     smooth = false,
                 })
             end

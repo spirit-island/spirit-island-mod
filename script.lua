@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.1.2"
+version = "3.2.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -46,6 +46,7 @@ expansions = {}
 events = {}
 fearPool = 0
 generatedFear = 0
+setupCompleted = false
 gameStarted = false
 difficulty = 0
 difficultyString = ""
@@ -83,6 +84,10 @@ objectsToCleanup = {}
 extraRandomBoard = nil
 gamekeys = {}
 noFear = false
+noHeal = false
+turn = 1
+terrorLevel = 1
+recorder = nil
 ------ Unsaved Config Data
 gamePaused = false
 yHeight = 0
@@ -93,6 +98,9 @@ adversaryLossCallback2 = nil
 wave = 1
 castDown = nil
 castDownTimer = nil
+presenceTimer = nil
+victoryTimer = nil
+loss = nil
 ------
 minorPowerDiscardZone = "55b275"
 majorPowerDiscardZone = "eaf864"
@@ -106,7 +114,6 @@ aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
 fearDeckSetupZone = "fbbf69"
 sourceSpirit = "SourceSpirit"
-spiritZone = "934ea8"
 ------
 dahanBag = "f4c173"
 blightBag = "af50b8"
@@ -211,7 +218,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
     elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
-        cleanupObject({obj = collision_info.collision_object, fear = true})
+        cleanupObject({obj = collision_info.collision_object, fear = true, remove = true})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)
         end
@@ -223,6 +230,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
     end
 end
 function castDownCallback(board)
+    local mapCount = getMapCount({norm = true, them = true})
     castDown = nil
     local bag
     if board.hasTag("Balanced") then
@@ -237,6 +245,11 @@ function castDownCallback(board)
     board.setLock(false)
     bag.putObject(board)
     bag.shuffle()
+
+    -- because of some caching or delay, the map tile will still count even after it's put away
+    if mapCount == 1 then
+        Defeat({})
+    end
 end
 function onObjectCollisionExit(hit_object, collision_info)
     if hit_object == seaTile then
@@ -259,6 +272,8 @@ function onObjectEnterContainer(container, object)
             makeSacredSite(container)
         end
         return
+    elseif container.hasTag("Spirit") and object.hasTag("Aspect") then
+        sourceSpirit.call("AddAspectButton", {obj = container})
     end
 end
 function makeSacredSite(obj)
@@ -320,15 +335,17 @@ function onObjectLeaveContainer(container, object)
     end
 end
 function onObjectEnterScriptingZone(zone, obj)
-    if obj.hasTag("Aspect") then
-        if zone.guid == spiritZone then
-            for _,object in pairs(upCast(obj, 1, 0, Vector(0, -1, 0))) do
-                if object.hasTag("Spirit") then
-                    sourceSpirit.call("AddAspectButton", {obj = object})
-                    break
-                end
-            end
+    if zone.guid == "341005" then
+        if obj.guid == "969897" then
+            terrorLevel = 2
+            broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
+            checkVictory()
+        elseif obj.guid == "f96a71" then
+            terrorLevel = 3
+            broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
+            checkVictory()
         end
+    elseif obj.hasTag("Aspect") then
         for color,guid in pairs(elementScanZones) do
             if guid == zone.guid then
                 if gameStarted and obj.hasTag("Setup") then
@@ -340,12 +357,20 @@ function onObjectEnterScriptingZone(zone, obj)
     end
 end
 function onObjectLeaveScriptingZone(zone, obj)
-    for _,guid in pairs(elementScanZones) do
-        if guid == zone.guid then
-            if obj.getTable("thresholds") ~= nil then
-                obj.setDecals({})
+    if zone.guid == "341005" then
+        if obj.guid == "969897" then
+            terrorLevel = 1
+        elseif obj.guid == "f96a71" then
+            terrorLevel = 2
+        end
+    else
+        for _,guid in pairs(elementScanZones) do
+            if guid == zone.guid then
+                if obj.getTable("thresholds") ~= nil then
+                    obj.setDecals({})
+                end
+                break
             end
-            break
         end
     end
 end
@@ -355,6 +380,7 @@ function onSave()
         events = events,
         fearPool = fearPool,
         generatedFear = generatedFear,
+        setupCompleted = setupCompleted,
         gameStarted = gameStarted,
         difficulty = difficulty,
         difficultyString = difficultyString,
@@ -379,6 +405,9 @@ function onSave()
         objectsToCleanup = objectsToCleanup,
         extraRandomBoard = extraRandomBoard,
         noFear = noFear,
+        noHeal = noHeal,
+        turn = turn,
+        terrorLevel = terrorLevel,
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
         panelAdversaryVisibility = UI.getAttribute("panelAdversary","visibility"),
@@ -386,7 +415,6 @@ function onSave()
         panelTimePassesVisibility = UI.getAttribute("panelTimePasses","visibility"),
         panelReadyVisibility = UI.getAttribute("panelReady","visibility"),
         panelBlightFearVisibility = UI.getAttribute("panelBlightFear", "visibility"),
-        panelScoreVisibility = UI.getAttribute("panelScore", "visibility"),
         panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
         showPlayerButtons = showPlayerButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
@@ -408,6 +436,9 @@ function onSave()
     if secondWave ~= nil then
         data_table.secondWave = secondWave.guid
     end
+    if recorder ~= nil then
+        data_table.recorder = recorder.guid
+    end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
         local colorTable = {
@@ -427,7 +458,10 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    getObjectFromGUID(versionGuid).setValue("version " .. version)
+    local versionObj = getObjectFromGUID(versionGuid)
+    if versionObj ~= nil then
+        versionObj.setValue("version " .. version)
+    end
     Color.Add("SoftBlue", Color.new(0.53,0.92,1))
     Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     Color.Add("SoftGreen", Color.new(0.75,1,0.67))
@@ -558,6 +592,7 @@ function onLoad(saved_data)
     -- Loads the tracking for if the game has started yet
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
+        setupCompleted = loaded_data.setupCompleted
         gameStarted = loaded_data.gameStarted
         playerBlocks = loaded_data.playerBlocks
         elementScanZones = loaded_data.elementScanZones
@@ -596,6 +631,10 @@ function onLoad(saved_data)
         extraRandomBoard = loaded_data.extraRandomBoard
         gamekeys = loaded_data.gamekeys
         noFear = loaded_data.noFear
+        noHeal = loaded_data.noHeal
+        turn = loaded_data.turn
+        terrorLevel = loaded_data.terrorLevel
+        recorder = getObjectFromGUID(loaded_data.recorder)
 
         if gameStarted then
             UI.setAttribute("panelInvader","visibility",loaded_data.panelInvaderVisibility)
@@ -604,7 +643,6 @@ function onLoad(saved_data)
             UI.setAttribute("panelTimePasses","visibility",loaded_data.panelTimePassesVisibility)
             UI.setAttribute("panelReady","visibility",loaded_data.panelReadyVisibility)
             UI.setAttribute("panelBlightFear","visibility",loaded_data.panelBlightFearVisibility)
-            UI.setAttribute("panelScore","visibility",loaded_data.panelScoreVisibility)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
 
@@ -618,6 +656,8 @@ function onLoad(saved_data)
             end, function() return not aidBoard.spawning end)
             Wait.condition(adversaryUISetup, function() return (adversaryCard == nil or not adversaryCard.spawning) and (adversaryCard2 == nil or not adversaryCard2.spawning) end)
             Wait.time(readyCheck,1,-1)
+            enableVictoryDefeat()
+
             if not blightedIsland then
                 Wait.condition(addBlightedIslandButton, function() return not aidBoard.spawning end)
             end
@@ -948,7 +988,7 @@ function randomAdversary(attempts)
         end
     end
 end
-function SetupPlaytestDeck(zone, name, option, callback)
+function SetupPlaytestDeck(zone, name, option, callback, done)
     local stagingArea = {
         ["Fear"] = Vector(-50.70, 2, 97.32),
         ["Blight Cards"] = Vector(-46.70, 2, 97.32),
@@ -966,10 +1006,17 @@ function SetupPlaytestDeck(zone, name, option, callback)
         else
             deck.putObject(cards)
         end
+        deck.shuffle()
         if callback ~= nil then
-            callback(deck, function() deck.shuffle() end)
+            callback(deck, function()
+                if done ~= nil then
+                    done()
+                end
+            end)
         else
-            deck.shuffle()
+            if done ~= nil then
+                done()
+            end
         end
     end
     local function PlaytestHalf(bag, guid, deck)
@@ -990,28 +1037,43 @@ function SetupPlaytestDeck(zone, name, option, callback)
             else
                 deck.putObject(cards)
             end
+            deck.shuffle()
             if callback ~= nil then
-                callback(deck, function() deck.shuffle() end)
+                callback(deck, function()
+                    if done ~= nil then
+                        done()
+                    end
+                end)
             else
-                deck.shuffle()
+                if done ~= nil then
+                    done()
+                end
             end
         else
+            local objs = {cards}
             -- deck is never nil here
             for _ = 1,cardsCount do
-                cards.putObject(deck.takeObject({
+                table.insert(objs, deck.takeObject({
                     rotation = {0, 180, 180},
                     smooth = false,
                 }))
             end
+            cards = group(objs)[1]
             cards.shuffle()
             if callback ~= nil then
                 callback(cards, function()
                     cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                     deck.putObject(cards)
+                    if done ~= nil then
+                        done()
+                    end
                 end)
             else
                 cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                 deck.putObject(cards)
+                if done ~= nil then
+                    done()
+                end
             end
         end
     end
@@ -1030,6 +1092,9 @@ function SetupPlaytestDeck(zone, name, option, callback)
                     cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                     deck.putObject(cards)
                 end
+                if done ~= nil then
+                    done()
+                end
             end)
         else
             if deck == nil then
@@ -1037,6 +1102,9 @@ function SetupPlaytestDeck(zone, name, option, callback)
             else
                 cards.setPosition(deck.getPosition() + Vector(0, 10, 0))
                 deck.putObject(cards)
+            end
+            if done ~= nil then
+                done()
             end
         end
     end
@@ -1059,6 +1127,9 @@ function SetupPlaytestDeck(zone, name, option, callback)
                 end
             end
         end
+    end
+    if done ~= nil then
+        done()
     end
 end
 ----- Pre Setup Section
@@ -1311,6 +1382,18 @@ function setupBlightTokens()
             numBlight = numBlight + math.min(blightTokens * numBoards, max)
         end
     end
+    if adversaryCard ~= nil then
+        local blightTokens = adversaryCard.get("setupBlightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + math.min(blightTokens[adversaryLevel] * numBoards, max)
+        end
+    end
+    if adversaryCard2 ~= nil then
+        local blightTokens = adversaryCard2.get("setupBlightTokens")
+        if blightTokens ~= nil then
+            numBlight = numBlight + math.min(blightTokens[adversaryLevel2] * numBoards, max)
+        end
+    end
     for _ = 1, numBlight do
         blightBag.putObject(boxBlightBag.takeObject({
             position = blightBag.getPosition() + Vector(0,1,0),
@@ -1352,7 +1435,7 @@ function SetupFear()
     local count = 0
 
     fearDeck.shuffle()
-    SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil)
+    SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
     local maxCards = #fearDeck.getObjects()
 
     for _ = 1, fearCards[1] do
@@ -1819,25 +1902,30 @@ end
 ----- Blight Section
 function SetupBlightCard()
     local cardsSetup = 0
-    local function bncBlightCardOptions(deck, callback)
-        if SetupChecker.getVar("exploratoryAid") then
-            deck.takeObject({
-                guid = "bf66eb",
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        deck.putObject(temp)
-                        deck.shuffle()
-                        cardsSetup = cardsSetup + 1
-                    end, 1)
-                end,
-            })
-        else
-            cardsSetup = cardsSetup + 1
-        end
-        if callback ~= nil then
-            Wait.condition(function() callback() end, function() return cardsSetup == 1 end)
-        end
+    local function bncBlightCardOptions(bncDeck, callback)
+        Wait.condition(function()
+            local bncBlightSetup = 0
+            if SetupChecker.getVar("exploratoryAid") then
+                bncDeck.takeObject({
+                    guid = "bf66eb",
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            bncDeck.putObject(temp)
+                            bncDeck.shuffle()
+                            cardsSetup = cardsSetup + 1
+                            bncBlightSetup = bncBlightSetup + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsSetup = cardsSetup + 1
+                bncBlightSetup = bncBlightSetup + 1
+            end
+            if callback ~= nil then
+                Wait.condition(function() callback() end, function() return bncBlightSetup == 1 end)
+            end
+        end, function() return not bncDeck.loading_custom end)
     end
     if SetupChecker.getVar("optionalBlightCard") then
         local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
@@ -1853,12 +1941,11 @@ function SetupBlightCard()
             local grabbedDeck = false
             if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
                 grabbedDeck = true
-                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions)
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions, function() grabBlightCard(true) end)
             end
             if not grabbedDeck then
-                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil)
+                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil, function() grabBlightCard(true) end)
             end
-            Wait.condition(function() grabBlightCard(true) end, function() return #getObjectFromGUID("b38ea8").getObjects() == 1 end)
         end, function() return cardsSetup == 1 end)
     else
         blightedIsland = true
@@ -2019,7 +2106,7 @@ function BlightedIslandFlipPart2()
     printToAll(numBlight.." Blight Tokens Added", Color.SoftBlue)
     wt(1)
     if numBlight == 0 and blightedIsland then
-        broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
+        Defeat({blight = true})
     else
         broadcastToAll("Remember to check the Blight Card's effect!", Color.SoftYellow)
     end
@@ -2722,18 +2809,13 @@ function SetupEventDeck()
         if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
             grabbedDeck = true
             if events["Branch & Claw"] then
-                SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions)
+                SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), bncEventOptions, function() stagesSetup = stagesSetup + 1 end)
+            else
+                stagesSetup = stagesSetup + 1
             end
         end
         if not grabbedDeck then
-            SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), nil)
-        end
-        if usingEvents() then
-            Wait.condition(function()
-                stagesSetup = stagesSetup + 1
-            end, function() return #eventDeckZone.getObjects() == 1 and not eventDeckZone.getObjects()[1].isSmoothMoving() end)
-        else
-            stagesSetup = stagesSetup + 1
+            SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), nil, function() stagesSetup = stagesSetup + 1 end)
         end
     end, function() return cardsSetup == 1 end)
     return 1
@@ -2758,7 +2840,8 @@ function SetupMap()
     return 1
 end
 function BoardSetup()
-    if getMapCount({norm = true, them = true}) == 0 then
+    local maps = getMapTiles()
+    if #maps == 0 then
         if isThematic() then
             MapPlacen(boardLayouts[numBoards][boardLayout])
         else
@@ -2771,7 +2854,7 @@ function BoardSetup()
             end
         end
     else
-        MapPlaceCustom()
+        MapPlaceCustom(maps)
     end
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numBoards end)
 end
@@ -2801,15 +2884,58 @@ function PostSetup()
     createDifficultyButton()
 
     if SetupChecker.getVar("exploratoryBODAN") then
-        local spirit = getObjectFromGUID("606f23")
+        -- TODO change bag image to exploratory (eventually)
+        local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
-            spirit = spirit.setState(2)
-            if not SetupChecker.call("isSpiritPickable", {guid = "606f23"}) then
+            local obj = spirit.takeObject({guid = "606f23"})
+            obj = obj.setState(2)
+            spirit.putObject(obj)
+            postSetupSteps = postSetupSteps + 1
+        else
+            spirit = getObjectFromGUID("606f23")
+            if spirit ~= nil then
+                spirit = spirit.setState(2)
                 Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
             else
                 postSetupSteps = postSetupSteps + 1
             end
+        end
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
+
+    if SetupChecker.getVar("exploratoryTrickster") then
+        local spirit = getObjectFromGUID("472723")
+        if spirit ~= nil then
+            local cardsDone = 0
+            spirit.takeObject({
+                guid = "8152de",
+                position = spirit.getPosition() + Vector(-2, 1, 0),
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        spirit.putObject(temp)
+                        cardsDone = cardsDone + 1
+                    end, 1)
+                end,
+            })
+            spirit.takeObject({
+                guid = "78d741",
+                position = spirit.getPosition() + Vector(2, 1, 0),
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        spirit.putObject(temp)
+                        cardsDone = cardsDone + 1
+                    end, 1)
+                end,
+            })
+            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return cardsDone == 2 end)
         else
+            local card = getObjectFromGUID("8152de")
+            card.setState(2)
+            card = getObjectFromGUID("78d741")
+            card.setState(2)
             postSetupSteps = postSetupSteps + 1
         end
     else
@@ -2839,15 +2965,17 @@ function PostSetup()
         postSetupSteps = postSetupSteps + 1
     end
     if secondWave ~= nil and secondWave.getVar("mapSetup") then
-        secondWave.call("PostSetup")
-        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
+        Wait.condition(function()
+            secondWave.call("PostSetup")
+            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
+        end, function() return postSetupSteps == 5 end)
     else
         postSetupSteps = postSetupSteps + 1
     end
 
-    if not usingEvents() and usingSpiritTokens() then
+    Wait.condition(function()
+        if not usingEvents() and usingSpiritTokens() then
         -- Setup up command cards last
-        Wait.condition(function()
             local invaderDeck = invaderDeckZone.getObjects()[1]
             local cards = invaderDeck.getObjects()
             local stageII = nil
@@ -2885,19 +3013,17 @@ function PostSetup()
                 local objs = invaderDeckZone.getObjects()
                 return #objs == 1 and objs[1].type == "Deck" and #objs[1].getObjects() == #cards + 1
             end)
-        end, function() return postSetupSteps == 5 end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
+        else
+            postSetupSteps = postSetupSteps + 1
+        end
+    end, function() return postSetupSteps == 6 end)
 
     -- HACK: trying to fix client desync issue
-    for _,obj in ipairs(getObjects()) do
-        if isIslandBoard({obj=obj}) then
-            obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
-        end
+    for _,obj in pairs(getMapTiles()) do
+        obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 6 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 7 end)
     return 1
 end
 function createDifficultyButton()
@@ -2969,6 +3095,8 @@ function StartGame()
     enableUI()
     seaTile.registerCollisions(false)
     Wait.time(readyCheck,1,-1)
+    enableVictoryDefeat()
+
     setLookingForPlayers(false)
     if adversaryCard ~= nil and adversaryCard.getVar("hasBroadcast") then
         local broadcast = adversaryCard.call("Broadcast", {level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
@@ -3018,9 +3146,66 @@ function StartGame()
     end
     return 1
 end
+function enableVictoryDefeat()
+    presenceTimer = Wait.time(checkPresenceLoss, 5, -1)
+    if scenarioCard == nil or not scenarioCard.getVar("customVictory") then
+        victoryTimer = Wait.time(checkVictory, 5, -1)
+    else
+        scenarioCard.createButton({
+            click_function = "Victory",
+            function_owner = Global,
+            label          = "Victory Achieved",
+            position       = Vector(0.6, 1, -1.1),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2200,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+    if scenarioCard ~= nil and scenarioCard.getVar("customLoss") then
+        scenarioCard.createButton({
+            click_function = "scenarioDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(0.6, 1, -1.1),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+    if adversaryCard ~= nil and adversaryCard.getVar("customLoss") then
+        adversaryCard.createButton({
+            click_function = "adversaryDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(-0.6, 1, -1.3),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+    if adversaryCard2 ~= nil and adversaryCard2.getVar("customLoss") then
+        adversaryCard2.createButton({
+            click_function = "adversaryDefeat",
+            function_owner = Global,
+            label          = "Loss Condition",
+            position       = Vector(-0.6, 1, -1.3),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2000,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+end
 function enableUI()
     Wait.frames(function()
-        -- HACK: Temporary hack to try to fix visibility TTS bug https://tabletopsimulator.nolt.io/583
+        -- HACK: Temporary fix until TTS bug resolved https://tabletopsimulator.nolt.io/583
         UI.setXmlTable(UI.getXmlTable(), {})
 
         -- Need to wait for xml table to get updated
@@ -3128,6 +3313,7 @@ function timePasses()
     end
 end
 function timePassesCo()
+    turn = turn + 1
     noFear = false
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
@@ -3139,6 +3325,7 @@ function timePassesCo()
     for _,object in pairs(upCast(seaTile, 0, 0.47)) do
         handlePiece(object, 0)
     end
+    noHeal = false
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end
@@ -3158,22 +3345,22 @@ function handlePiece(object, offset)
     local name = object.getName()
     if string.sub(name, 1, 4) == "City" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset)
+            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
     elseif string.sub(name, 1, 4) == "Town" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset)
+            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
     elseif string.sub(name, 1, 8) == "Explorer" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset)
+            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
     elseif string.sub(name, 1, 5) == "Dahan" then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,0,0), offset)
+            object = resetPiece(object, Vector(0,0,0), offset, false)
         end
     elseif name == "Blight" then
-        object = resetPiece(object, Vector(0,180,0), offset)
+        object = resetPiece(object, Vector(0,180,0), offset, false)
     elseif object.hasTag("Reminder Token") then
         if object.getLock() == false then
             object.destruct()
@@ -3182,9 +3369,9 @@ function handlePiece(object, offset)
     end
     return object
 end
-function resetPiece(object, rotation, offset)
+function resetPiece(object, rotation, offset, skip)
     local objOffset = 0
-    if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+    if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         objOffset = 1
     elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
         objOffset = 1
@@ -3203,7 +3390,7 @@ function resetPiece(object, rotation, offset)
         end
         loopOffset = loopOffset + 0.1
     end
-    if object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+    if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         object.setRotationSmooth(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
         object = object.setState(1)
@@ -3511,8 +3698,7 @@ function getMapTiles()
     return mapTiles
 end
 
-function MapPlaceCustom()
-    local maps = getMapTiles()
+function MapPlaceCustom(maps)
     -- board type is guaranteed to either be thematic or normal, and there has to be at least one map tile in the table
     if maps[1].hasTag("Balanced") then
         boardLayout = "Custom"
@@ -3525,10 +3711,18 @@ function MapPlaceCustom()
     if SetupChecker.getVar("optionalExtraBoard") then
         rand = math.random(1,numBoards)
     end
+    local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i,map in pairs(maps) do
+        if map.hasTag("Thematic") then
+            if optionalThematicRedo and map.getStateId() == 1 then
+                map = map.setState(2)
+            elseif not optionalThematicRedo and map.getStateId() == 2 then
+                map = map.setState(1)
+            end
+        end
         map.setLock(true)
         map.interactable = false
-        setupMap(map,i==rand)
+        Wait.condition(function() setupMap(map,i==rand) end, function() return not map.loading_custom end)
     end
 end
 
@@ -3552,6 +3746,7 @@ function MapPlacen(boards)
     scaleOrigin = scaleOrigin * (1./#boards)
 
     local count = 1
+    local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i, board in pairs(boards) do
         if isThematic() then
             ThematicMapBag.takeObject({
@@ -3559,7 +3754,7 @@ function MapPlacen(boards)
                 guid = themGuids[board.board],
                 smooth = false,
                 callback_function = function(obj)
-                    if SetupChecker.getVar("optionalThematicRedo") then
+                    if optionalThematicRedo then
                         obj = obj.setState(2)
                     end
                     BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)
@@ -3843,13 +4038,13 @@ function place(objName, placePos, droppingPlayerColor)
         else
             return
         end
-    elseif objName == "Defend Token" then
+    elseif objName == "Defend Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].defend ~= nil then
             temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return
         end
-    elseif objName == "Isolate Token" then
+    elseif objName == "Isolate Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].isolate ~= nil then
             temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
@@ -3896,8 +4091,8 @@ Pieces = {
     "Disease",
     "Strife",
     "Dahan",
-    "Defend Token",
-    "Isolate Token",
+    "Defend Marker",
+    "Isolate Marker",
     "1 Energy",
     "3 Energy",
     "Box Blight",
@@ -3913,7 +4108,6 @@ end
 
 function cleanupObject(params)
     local bag = nil
-    local removeObject = true
     if string.sub(params.obj.getName(),1,5) == "Dahan" then
         params.obj.setRotation(Vector(0,0,0))
         bag = dahanBag
@@ -3935,7 +4129,7 @@ function cleanupObject(params)
         end
     elseif params.obj.getName() == "Blight" then
         params.obj.setRotation(Vector(0,180,0))
-        if params.fear then
+        if params.remove then
             bag = boxBlightBag
         else
             bag = returnBlightBag
@@ -3957,13 +4151,13 @@ function cleanupObject(params)
         bag = badlandsBag
     else
         if not params.obj.hasTag("Destroy") then
-            removeObject = false
+            return
         end
     end
 
-    if removeObject and (bag == nil or bag.type == "Infinite") then
+    if bag == nil or bag.type == "Infinite" then
         params.obj.destruct()
-    elseif removeObject then
+    else
         params.obj.highlightOff()
         if params.obj.getStateId() ~= -1 and params.obj.getStateId() ~= 1 then
             params.obj = params.obj.setState(1)
@@ -3972,36 +4166,276 @@ function cleanupObject(params)
     end
 end
 ----
-function refreshScore()
-    local dahan = math.floor(#getObjectsWithTag("Dahan") / numBoards)
-    local blight = #getObjectsWithTag("Blight")
-    if SetupChecker.call("isSpiritPickable", {guid="4c061f"}) then
-        -- TODO figure out a more elegant solution here
-        blight = blight - 2
+function getSpiritColor(name)
+    for color,guid in pairs(elementScanZones) do
+        for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
+            if object.hasTag("Spirit") and object.getName() == name then
+                return color
+            end
+        end
     end
-    blight = math.floor(blight / numBoards)
+    return nil
+end
+function checkPresenceLoss()
+    -- Wait until after initial advance invader cards since presence should be on island by then
+    if not setupCompleted then
+        return
+    end
 
-    local invaderDeck = invaderDeckZone.getObjects()[1]
-    local deckCount = 0
-    if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
-        if invaderDeck.type == "Deck" then
-            for _,obj in pairs(invaderDeck.getObjects()) do
-                for _,tag in pairs(obj.tags) do
-                    if tag == "Invader Card" then
-                        deckCount = deckCount + 1
+    local colors = {}
+    for color,_ in pairs(selectedColors) do
+        colors[color] = false
+    end
+
+    for _,obj in pairs(getObjectsWithTag("Presence")) do
+        -- Presence is not in player area
+        if #obj.getZones() == 0 then
+            local color = string.sub(obj.getName(),1,-12)
+            if colors[color] == nil then
+                color = getSpiritColor(obj.getDescription())
+            end
+            -- Color does not already have presence on island
+            if color ~= nil and not colors[color] then
+                local bounds = obj.getBoundsNormalized()
+                local hits = Physics.cast({
+                    origin = bounds.center + bounds.offset,
+                    direction = Vector(0,-1,0),
+                    max_distance = 6,
+                    --debug = true,
+                })
+                for _,v in pairs(hits) do
+                    if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
+                        colors[color] = true
                         break
                     end
                 end
             end
-        elseif invaderDeck.type == "Card" and invaderDeck.hasTag("Invader Card") then
-            deckCount = 1
         end
     end
-    local win = math.floor(5 * difficulty) + 10 + 2 * deckCount + dahan - blight
-    local lose = 2 * difficulty + aidBoard.getVar("numCards") + aidBoard.call("countDiscard") + dahan - blight
 
-    UI.setAttribute("scoreWin", "text", win)
-    UI.setAttribute("scoreLose", "text", lose)
+    local loss = false
+    for color,onIsland in pairs(colors) do
+        if not onIsland then
+            for _, obj in ipairs(getObjectFromGUID(elementScanZones[color]).getObjects()) do
+                if obj.hasTag("Spirit") then
+                    if presenceTimer ~= nil then
+                        Wait.stop(presenceTimer)
+                        presenceTimer = nil
+                    end
+                    Defeat({presence = obj.getName()})
+                    loss = true
+                    break
+                end
+            end
+            if loss then
+                break
+            end
+        end
+    end
+end
+function scenarioDefeat(scenario)
+    scenario.clearButtons()
+    Defeat({scenario = scenario.getName()})
+end
+function adversaryDefeat(adversary)
+    adversary.clearButtons()
+    Defeat({adversary = adversary.getName()})
+end
+function Defeat(params)
+    if checkVictory(true) then
+        if victoryTimer ~= nil then
+            Wait.stop(victoryTimer)
+            victoryTimer = nil
+        end
+        params.sacrifice = true
+    end
+    if params.sacrifice then
+        broadcastToAll("Sacrifice Victory!", Color.SoftYellow)
+    elseif params.adversary then
+        broadcastToAll(params.adversary.." wins via Additional Loss Condition!", Color.SoftYellow)
+    elseif params.scenario then
+        broadcastToAll("Invaders win via "..params.scenario.." Additional Loss Condition!", Color.SoftYellow)
+    elseif params.blight then
+        broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
+    elseif params.invader then
+        broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
+    elseif params.presence then
+        broadcastToAll("Invaders win via the Destroyed Presence Loss Condition!", Color.SoftYellow)
+    else
+        broadcastToAll("Invaders win via Unknown Loss Condition!", Color.SoftYellow)
+    end
+    loss = params
+    showGameOver()
+end
+function checkVictory(returnOnly)
+    if scenarioCard ~= nil and scenarioCard.getVar("customVictory") then
+        return false
+    end
+    local victory = false
+    if #getObjectsWithTag("City") == 0 then
+        if terrorLevel == 3 then
+            victory = true
+        elseif #getObjectsWithTag("Town") == 0 then
+            if terrorLevel == 2 then
+                victory = true
+            elseif #getObjectsWithTag("Explorer") == 0 then
+                victory = true
+            end
+        end
+    end
+    if victory and not returnOnly then
+        Victory()
+    end
+    return victory
+end
+function Victory()
+    if victoryTimer ~= nil then
+        Wait.stop(victoryTimer)
+        victoryTimer = nil
+    end
+    if terrorLevel == 4 then
+        broadcastToAll("Fear Victory Achieved!", Color.SoftYellow)
+    elseif terrorLevel == 3 then
+        broadcastToAll("Terror Level III Victory Achieved!", Color.SoftYellow)
+    elseif terrorLevel == 2 then
+        broadcastToAll("Terror Level II Victory Achieved!", Color.SoftYellow)
+    else
+        broadcastToAll("Terror Level I Victory Achieved!", Color.SoftYellow)
+    end
+    showGameOver()
+end
+function showGameOver()
+    if UI.getAttribute("panelUIGameOver", "active") == "false" then
+        UI.setAttribute("panelUIGameOver","active","true")
+        UI.setAttribute("panelUI","height", UI.getAttribute("panelUI", "height") + 30)
+    end
+
+    refreshGameOver()
+
+    local colors = {}
+    for color,_ in pairs(PlayerBags) do
+        table.insert(colors, color)
+    end
+    setVisiTable("panelGameOver", colors)
+end
+function refreshGameOver()
+    local headerText
+    if loss then
+        headerText = "Defeat - "
+        if loss.sacrifice then
+            headerText = "Sacrifice Victory"
+        elseif loss.adversary then
+            headerText = headerText..loss.adversary.." Loss Condition"
+        elseif loss.scenario then
+            headerText = headerText..loss.scenario.." Loss Condition"
+        elseif loss.blight then
+            headerText = headerText.."Blight Loss Condition"
+        elseif loss.invader then
+            headerText = headerText.."Invader Deck Loss Condition"
+        elseif loss.presence then
+            headerText = headerText.."Destroyed Presence Loss Condition"
+        else
+            headerText = headerText.."Unknown Loss Condition"
+        end
+    else
+        headerText = "Victory - "
+        if terrorLevel == 4 then
+            headerText = headerText.."Fear"
+        elseif terrorLevel == 3 then
+            headerText = headerText.."Terror Level III"
+        elseif terrorLevel == 2 then
+            headerText = headerText.."Terror Level II"
+        else
+            headerText = headerText.."Terror Level I"
+        end
+    end
+    UI.setAttribute("panelGameOverHeader", "text", headerText)
+
+    if adversaryCard ~= nil then
+        UI.setAttribute("panelGameOverLeading", "text", adversaryCard.getName().." "..adversaryLevel)
+    else
+        UI.setAttributes("panelGameOverLeading", {text = "No Adversary", alignment = "MiddleCenter"})
+        UI.setAttribute("panelGameOverLeadingHeaderCell", "active", "false")
+        UI.setAttribute("panelGameOverLeadingCell", "columnSpan", "2")
+    end
+    if adversaryCard2 ~= nil then
+        UI.setAttribute("panelGameOverSupporting", "text", adversaryCard2.getName().." "..adversaryLevel2)
+    else
+        UI.setAttribute("panelGameOverSupportingHeader", "text", "")
+    end
+    if scenarioCard ~= nil then
+        UI.setAttribute("panelGameOverScenario", "text", scenarioCard.getName())
+    else
+        UI.setAttribute("panelGameOverScenario", "text", "No Scenario")
+    end
+    if secondWave ~= nil then
+        UI.setAttribute("panelGameOverSecondWave", "text", "Wave "..wave)
+    end
+
+    local dahan = #getObjectsWithTag("Dahan")
+    local blight = #getObjectsWithTag("Blight")
+    local deck = aidBoard.call("countDeck")
+    local cards = aidBoard.getVar("numCards")
+    local discard = aidBoard.call("countDiscard")
+
+    UI.setAttribute("panelGameOverDifficulty", "text", difficulty)
+    UI.setAttribute("panelGameOverTurn", "text", turn)
+    UI.setAttribute("panelGameOverDeck", "text", deck)
+    UI.setAttribute("panelGameOverFaceup", "text", cards)
+    UI.setAttribute("panelGameOverDiscard", "text", discard)
+
+    UI.setAttribute("panelGameOverExplorer", "text", #getObjectsWithTag("Explorer"))
+    UI.setAttribute("panelGameOverTown", "text", #getObjectsWithTag("Town"))
+    UI.setAttribute("panelGameOverCity", "text", #getObjectsWithTag("City"))
+    UI.setAttribute("panelGameOverBlight", "text", blight)
+    UI.setAttribute("panelGameOverDahan", "text", dahan)
+
+    local score = getScore(dahan, blight, deck, cards, discard)
+    local scoreText
+    if loss then
+        if loss.sacrifice then
+            scoreText = score[1] - 10
+        else
+            scoreText = score[2]
+        end
+    else
+        scoreText = score[1]
+    end
+    UI.setAttribute("panelGameOverScore", "text", scoreText)
+
+    if recorder ~= nil then
+        UI.setAttribute("panelGameOverRecord", {active = "true", tooltip = recorder.getDescription()})
+    end
+end
+function sacrificeGameOver()
+    if loss then
+        loss.sacrifice = true
+    else
+        loss = {sacrifice = true}
+    end
+    refreshGameOver()
+end
+function hideGameOver(player)
+    toggleUI("panelGameOver", player.color, true)
+end
+function toggleGameOver(player)
+    local colorEnabled = getCurrentState("panelGameOver", player.color)
+    toggleUI("panelGameOver", player.color, colorEnabled)
+    if not colorEnabled then
+        refreshGameOver()
+    end
+end
+function RecordGame()
+    recorder.call("Record", {loss = loss})
+    UI.setAttribute("panelGameOverRecord", "active", "false")
+end
+function getScore(dahan, blight, deck, cards, discard)
+    dahan = math.floor(dahan / numBoards)
+    blight = math.floor(blight / numBoards)
+
+    local win = math.floor(5 * difficulty) + 10 + 2 * deck + dahan - blight
+    local lose = math.floor(2 * difficulty) + cards + discard + dahan - blight
+    return {win, lose}
 end
 function flipReady(player)
     if player.color == "Grey" then return end
@@ -4287,7 +4721,7 @@ function setupPlayerArea(params)
             else
                 decal = {
                     name = "Threshold",
-                    position = vec + Vector(0, 0.21, 0),
+                    position = vec + Vector(0, 0.22, 0),
                     rotation = {90, 180, 0},
                     scale    = scale,
                 }
@@ -4341,7 +4775,7 @@ function setupPlayerArea(params)
         energy = 0
         --Go through all items found in the zone
         for _, entry in ipairs(zone.getObjects()) do
-            if entry.hasTag("spirit") then
+            if entry.hasTag("Spirit") then
                 local trackElements = calculateTrackElements(entry)
                 elements:add(trackElements)
                 nonTokenElements:add(trackElements)
@@ -4352,18 +4786,16 @@ function setupPlayerArea(params)
                 end
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
-                    if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
-                        if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
-                            local cardElements = entry.getVar("elements")
-                            elements:add(cardElements)
-                            nonTokenElements:add(cardElements)
-                        end
-                        energy = energy + powerCost(entry)
+                    -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
+                    if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
+                        local cardElements = entry.getVar("elements")
+                        elements:add(cardElements)
+                        nonTokenElements:add(cardElements)
                     end
-                    if entry.getTable("thresholds") ~= nil then
-                        table.insert(thresholdCards, entry)
-                    end
+                    energy = energy + powerCost(entry)
+                end
+                if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
+                    table.insert(thresholdCards, entry)
                 end
             elseif entry.type == "Generic" then
                 local tokenCounts = entry.getVar("elements")
@@ -4933,10 +5365,6 @@ function toggleTurnOrderUI(player)
     local colorEnabled = getCurrentState("panelTurnOrder", player.color)
     toggleUI("panelTurnOrder", player.color, colorEnabled)
 end
-function toggleScoreUI(player)
-    local colorEnabled = getCurrentState("panelScore", player.color)
-    toggleUI("panelScore", player.color, colorEnabled)
-end
 function toggleButtonUI(player)
     local colorEnabled = getCurrentState("panelPowerDraw", player.color)
     toggleUI("panelPowerDraw", player.color, colorEnabled)
@@ -5247,7 +5675,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                 smooth = false,
             })
             table.insert(data.bagContents, obj.guid)
-            if obj.getName() == "Defend Tokens" then
+            if obj.getName() == "Defend Markers" then
                 data.tint = obj.getColorTint()
             end
         end
@@ -5282,13 +5710,13 @@ function swapPlayerPresenceColors(fromColor, toColor)
             for i = #b.bagContents,stop,-1 do  -- Iterate in reverse order.
                 local obj = getObjectFromGUID(b.bagContents[i])
                 local name = obj.getName()
-                if name == "Defend Tokens" then
+                if name == "Defend Markers" then
                     local pos = selectedColors[b.color].defend.getPosition()
                     a.bag.putObject(selectedColors[b.color].defend)
                     obj.setPosition(pos)
                     obj.setLock(true)
                     selectedColors[b.color].defend = obj
-                elseif name == "Isolate Tokens" then
+                elseif name == "Isolate Markers" then
                     local pos = selectedColors[b.color].isolate.getPosition()
                     a.bag.putObject(selectedColors[b.color].isolate)
                     obj.setPosition(pos)
@@ -5321,7 +5749,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         _ = obj.setState(originalState)
                     end
                 elseif suffix == "Defend" then
-                    -- Easier to grab new defend token than to change the name and color of every state
+                    -- Easier to grab new defend marker than to change the name and color of every state
                     for _, obj in ipairs(objs) do
                         local attrs = {position = obj.getPosition(), rotation = obj.getRotation(), smooth = false}
                         local locked = obj.getLock()
@@ -5468,16 +5896,16 @@ function swapPlayerUIs(a, b)
         setVisiTable("panelTurnOrder",newVisiTable)
     end
 
-    newVisiTable = swapPlayerUI(a, b, "panelScore")
-    if newVisiTable ~= nil then
-        setVisiTable("panelScore",newVisiTable)
-    end
-
     newVisiTable = swapPlayerUI(a, b, "panelPowerDraw")
     if newVisiTable ~= nil then
         setVisiTable("panelPowerDraw",newVisiTable)
         setVisiTable("panelTimePasses",newVisiTable)
         setVisiTable("panelReady",newVisiTable)
+    end
+
+    newVisiTable = swapPlayerUI(a, b, "panelGameOver")
+    if newVisiTable ~= nil then
+        setVisiTable("panelGameOver",newVisiTable)
     end
 
     local enabled = gamekeys[a]

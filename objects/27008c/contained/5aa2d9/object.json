@@ -1,0 +1,132 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 103.99369812011719,
+    "posY": 2.463099956512451,
+    "posZ": 81.22309875488281,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Stone's Unyielding Defiance",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752038544/942F15E8A6CC8F8F0A68B1802CED0333654C4357/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752038986/1137984142BF204E7CADF0ACE8E9ED51A26DA622/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.05620000138878822,
+        "y": 0.20000000298023224,
+        "z": -0.4018000066280365
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9677000045776367,
+        "y": 0.20000000298023224,
+        "z": -0.4081999957561493
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9735999703407288,
+        "y": 0.20000000298023224,
+        "z": -0.08799999952316284
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5076000094413757,
+        "y": 0.20000000298023224,
+        "z": -0.4016999900341034
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2833000123500824,
+        "y": 0.20000000298023224,
+        "z": -0.40470001101493835
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1971999406814575,
+        "y": 0.20000000298023224,
+        "z": -0.40700000524520874
+      }
+    },
+    {
+      "Position": {
+        "x": -0.51419997215271,
+        "y": 0.20000000298023224,
+        "z": -0.08320000022649765
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7454000115394592,
+        "y": 0.20000000298023224,
+        "z": -0.08609999716281891
+      }
+    },
+    {
+      "Position": {
+        "x": -0.061400000005960464,
+        "y": 0.20000000298023224,
+        "z": -0.08919999748468399
+      }
+    },
+    {
+      "Position": {
+        "x": -0.28540000319480896,
+        "y": 0.20000000298023224,
+        "z": -0.09130000323057175
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7397000193595886,
+        "y": 0.20000000298023224,
+        "z": -0.40700000524520874
+      }
+    }
+  ]
+}

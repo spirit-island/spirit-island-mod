@@ -1,0 +1,132 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 54.14440155029297,
+    "posY": 2.513000011444092,
+    "posZ": 98.0779037475586,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Lightning's Swift Strike",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Base",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752020727/E3A65527B72ADFCE491461706FDDE88D2C098C6A/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752020953/3A2340CF18E14942F3747E9058B5C3111AC7F5A6/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.030700000002980232,
+        "y": 0.20000000298023224,
+        "z": -0.3977000117301941
+      }
+    },
+    {
+      "Position": {
+        "x": -0.025699999183416367,
+        "y": 0.20000000298023224,
+        "z": -0.08030000329017639
+      }
+    },
+    {
+      "Position": {
+        "x": -0.24950000643730164,
+        "y": 0.20000000298023224,
+        "z": -0.08209999650716782
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2485000044107437,
+        "y": 0.20000000298023224,
+        "z": -0.39989998936653137
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4690000116825104,
+        "y": 0.20000000298023224,
+        "z": -0.39879998564720154
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4702000021934509,
+        "y": 0.20000000298023224,
+        "z": -0.08100000023841858
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6876999735832214,
+        "y": 0.20000000298023224,
+        "z": -0.08020000159740448
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6866000294685364,
+        "y": 0.20000000298023224,
+        "z": -0.39800000190734863
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9043999910354614,
+        "y": 0.20000000298023224,
+        "z": -0.4002000093460083
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1247999668121338,
+        "y": 0.20000000298023224,
+        "z": -0.3961000144481659
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3380999565124512,
+        "y": 0.20000000298023224,
+        "z": -0.3993000090122223
+      }
+    }
+  ]
+}

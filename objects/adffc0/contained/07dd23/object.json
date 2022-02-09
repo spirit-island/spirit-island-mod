@@ -1,0 +1,132 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 108.24459838867188,
+    "posY": 2.3924999237060547,
+    "posZ": 107.33869934082031,
+    "rotX": 359.9928894042969,
+    "rotY": 180.0,
+    "rotZ": 179.9925994873047,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Ocean's Hungry Grasp",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Base",
+    "High",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1618472198117609378/F9AC000BD450E9951A097DA40AB5179A0DD96BEF/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026882/55FF0151193B157FF85F9FC2D773662DC8D8FCA0/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.039500001817941666,
+        "y": 0.20000000298023224,
+        "z": -0.1395999938249588
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04039999842643738,
+        "y": 0.20000000298023224,
+        "z": 0.13979999721050262
+      }
+    },
+    {
+      "Position": {
+        "x": -0.26010000705718994,
+        "y": 0.20000000298023224,
+        "z": -0.13860000669956207
+      }
+    },
+    {
+      "Position": {
+        "x": -0.263700008392334,
+        "y": 0.20000000298023224,
+        "z": 0.13779999315738678
+      }
+    },
+    {
+      "Position": {
+        "x": -0.48100000619888306,
+        "y": 0.20000000298023224,
+        "z": -0.1404999941587448
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4812999963760376,
+        "y": 0.20000000298023224,
+        "z": 0.1387999951839447
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7017999887466431,
+        "y": 0.20000000298023224,
+        "z": -0.1396999955177307
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7023000121116638,
+        "y": 0.20000000298023224,
+        "z": 0.13989999890327454
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9222999811172485,
+        "y": 0.20000000298023224,
+        "z": -0.13860000669956207
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9226999878883362,
+        "y": 0.20000000298023224,
+        "z": 0.14059999585151672
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1426000595092773,
+        "y": 0.20000000298023224,
+        "z": -0.14030000567436218
+      }
+    }
+  ]
+}

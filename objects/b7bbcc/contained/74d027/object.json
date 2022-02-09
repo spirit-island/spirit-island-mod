@@ -1,0 +1,139 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 90.35030364990234,
+    "posY": 2.520400047302246,
+    "posZ": 78.0176010131836,
+    "rotX": -9.999999747378752e-05,
+    "rotY": 180.0,
+    "rotZ": 179.99989318847656,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Starlight Seeks Its Form",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "JE",
+    "Spirit",
+    "Very High"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752085482/E9BBF5F34B2A3398E2F64A826F86F21B70FEF7F1/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752085761/CA48D652FD0ACF84E60C3A82506F597B4BA0A22A/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0017999999690800905,
+        "y": 0.20000000298023224,
+        "z": 0.8177000284194946
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2281000018119812,
+        "y": 0.20000000298023224,
+        "z": 0.8197000026702881
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4602000117301941,
+        "y": 0.20000000298023224,
+        "z": 0.8241000175476074
+      }
+    },
+    {
+      "Position": {
+        "x": -0.45730000734329224,
+        "y": 0.20000000298023224,
+        "z": 0.558899998664856
+      }
+    },
+    {
+      "Position": {
+        "x": -0.22849999368190765,
+        "y": 0.20000000298023224,
+        "z": 0.5511000156402588
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0026000000070780516,
+        "y": 0.20000000298023224,
+        "z": 0.5565999746322632
+      }
+    },
+    {
+      "Position": {
+        "x": 0.21469999849796295,
+        "y": 0.20000000298023224,
+        "z": -0.043699998408555984
+      }
+    },
+    {
+      "Position": {
+        "x": 0.44850000739097595,
+        "y": 0.20000000298023224,
+        "z": -0.04809999838471413
+      }
+    },
+    {
+      "Position": {
+        "x": 0.2167000025510788,
+        "y": 0.20000000298023224,
+        "z": 0.23170000314712524
+      }
+    },
+    {
+      "Position": {
+        "x": 0.4519999921321869,
+        "y": 0.20000000298023224,
+        "z": 0.23589999973773956
+      }
+    },
+    {
+      "Position": {
+        "x": 0.40540000796318054,
+        "y": 0.20000000298023224,
+        "z": -0.28119999170303345
+      }
+    },
+    {
+      "Position": {
+        "x": 0.40470001101493835,
+        "y": 0.20000000298023224,
+        "z": -0.532800018787384
+      }
+    }
+  ]
+}

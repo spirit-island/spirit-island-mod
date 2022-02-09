@@ -28,7 +28,6 @@ function onSave()
 end
 
 function onLoad(saved_data)
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
     local loaded_data = JSON.decode(saved_data)
     count = loaded_data.count
 end
@@ -122,8 +121,8 @@ function checkLoss()
         count = tonumber(Global.UI.getAttribute("panelAdversaryLossCounterCount","text"))
     end
     if count > Global.call("getMapCount", {norm = true, them = true}) then
-        broadcastToAll("Habsburg wins via Additional Loss Condition!", Color.SoftYellow)
         Wait.stop(checkLossID)
+        Global.call("Defeat", {adversary = self.getName()})
     end
 end
 

@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 74.40519714355469,
+    "posY": 2.517400026321411,
+    "posZ": 101.97219848632812,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Heart of the Wildfire",
+  "Description": "B&C",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "BnC",
+    "High",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029467/B0F666B34B1168C995BEA7A4E95705790654E9F0/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029775/422F03AB75EA8F0805D10A5CF362C1218FBCDDA4/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.033799998462200165,
+        "y": 0.20000000298023224,
+        "z": -0.3849000036716461
+      }
+    },
+    {
+      "Position": {
+        "x": -0.034299999475479126,
+        "y": 0.20000000298023224,
+        "z": -0.06610000133514404
+      }
+    },
+    {
+      "Position": {
+        "x": -0.25440001487731934,
+        "y": 0.20000000298023224,
+        "z": -0.383899986743927
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2515999972820282,
+        "y": 0.20000000298023224,
+        "z": -0.06809999793767929
+      }
+    },
+    {
+      "Position": {
+        "x": -0.47530001401901245,
+        "y": 0.20000000298023224,
+        "z": -0.38580000400543213
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4781999886035919,
+        "y": 0.20000000298023224,
+        "z": -0.06700000166893005
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6959999799728394,
+        "y": 0.20000000298023224,
+        "z": -0.38499999046325684
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6992999911308289,
+        "y": 0.20000000298023224,
+        "z": -0.07199999690055847
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9165999889373779,
+        "y": 0.20000000298023224,
+        "z": -0.383899986743927
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9207000136375427,
+        "y": 0.20000000298023224,
+        "z": -0.07129999995231628
+      }
+    }
+  ]
+}

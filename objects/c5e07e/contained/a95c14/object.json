@@ -1,0 +1,132 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 115.62010192871094,
+    "posY": 2.391400098800659,
+    "posZ": 89.03250122070312,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Shroud of Silent Mist",
+  "Description": "JE",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "High",
+    "JE",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752084377/CA2C396C5963C34679B24B40A0C8C59AC02D6505/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752084724/99A3120004F6028E5C6BCB7A5213539BA6564A10/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.009100000374019146,
+        "y": 0.20000000298023224,
+        "z": -0.07930000126361847
+      }
+    },
+    {
+      "Position": {
+        "x": -0.211899995803833,
+        "y": 0.20000000298023224,
+        "z": -0.07590000331401825
+      }
+    },
+    {
+      "Position": {
+        "x": -0.43549999594688416,
+        "y": 0.20000000298023224,
+        "z": -0.07670000195503235
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9010999798774719,
+        "y": 0.20000000298023224,
+        "z": -0.08299999684095383
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3646999597549438,
+        "y": 0.20000000298023224,
+        "z": -0.08579999953508377
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1222000122070312,
+        "y": 0.20000000298023224,
+        "z": -0.08749999850988388
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6751999855041504,
+        "y": 0.20000000298023224,
+        "z": -0.08410000056028366
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6729999780654907,
+        "y": 0.20000000298023224,
+        "z": -0.40630000829696655
+      }
+    },
+    {
+      "Position": {
+        "x": -0.43779999017715454,
+        "y": 0.20000000298023224,
+        "z": -0.40630000829696655
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2117999941110611,
+        "y": 0.20000000298023224,
+        "z": -0.4097000062465668
+      }
+    },
+    {
+      "Position": {
+        "x": 0.013899999670684338,
+        "y": 0.20000000298023224,
+        "z": -0.4097000062465668
+      }
+    }
+  ]
+}

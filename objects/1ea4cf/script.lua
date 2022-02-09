@@ -14,10 +14,6 @@ requirements = true
 destroyed = 0
 checkLossID = 0
 
-function onLoad(saved_data)
-    Color.Add("SoftYellow", Color.new(0.9,0.7,0.1))
-end
-
 function InvaderSetup(params)
     local invaders = nil
     if params.level >= 2 then
@@ -161,11 +157,10 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
     local count = 0
     for i=#fearDeck,1,-1 do
         local card = fearDeck[i]
-        if card.getName() ~= "Terror II" and card.getName() ~= "Terror III" then
-            -- not a terror divider
+        if card.hasTag("Fear") then
             count = count + 1
             if count == depth then
-                local pos = card.getPosition() + Vector(-0.1, 0, 0)
+                local pos = card.getPosition() + Vector(-0.5, 0, 0)
                 local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
                 if obj ~= nil then
                     if obj.type == "Deck" then
@@ -185,27 +180,59 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
             end
         end
     end
-
 end
 function checkLoss()
-    local beasts = #getObjectsWithTag("Beasts")
-    local SetupChecker = Global.getVar("SetupChecker")
-    if SetupChecker.call("isSpiritPickable", {guid="f7422a"}) then
-        -- TODO figure out a more elegant solution here
-        beasts = beasts - 1
+    local count = 0
+    local beasts = getObjectsWithTag("Beasts")
+    for _,obj in pairs(beasts) do
+        local quantity = obj.getQuantity()
+        if quantity == -1 then
+            count = count + 1
+        else
+            count = count + quantity
+        end
     end
-    if SetupChecker.call("isSpiritPickable", {guid="a576cc"}) then
-        -- TODO figure out a more elegant solution here
-        beasts = beasts - 1
+    if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then
+        local color = getPlayerColor()
+        for _,obj in pairs(getObjectsWithTag("Presence")) do
+            -- Presence is not in player area
+            if #obj.getZones() == 0 then
+                if color == string.sub(obj.getName(),1,-12) then
+                    if obj.getQuantity() >= 2 then
+                        local bounds = obj.getBoundsNormalized()
+                        local hits = Physics.cast({
+                            origin = bounds.center + bounds.offset,
+                            direction = Vector(0,-1,0),
+                            max_distance = 6,
+                            --debug = true,
+                        })
+                        for _,v in pairs(hits) do
+                            if v.hit_object ~= obj and Global.call("isIslandBoard", {obj=v.hit_object}) then
+                                count = count + 1
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        end
     end
-    if SetupChecker.call("isSpiritPickable", {guid="b35fd5"}) then
-        -- TODO figure out a more elegant solution here
-        beasts = beasts - 1
-    end
-    if destroyed > beasts then
-        broadcastToAll("Russia wins via Additional Loss Condition!", Color.SoftYellow)
+    if destroyed > count then
         Wait.stop(checkLossID)
+        Global.call("Defeat", {adversary = self.getName()})
     end
+end
+function getPlayerColor()
+    local zoneGuids = {}
+    for color,guid in pairs(Global.getTable("elementScanZones")) do
+        zoneGuids[guid] = color
+    end
+    for _,zone in pairs(getObjectFromGUID("a576cc").getZones()) do
+        if zoneGuids[zone.guid] then
+            return zoneGuids[zone.guid]
+        end
+    end
+    return ""
 end
 
 function Requirements(params)

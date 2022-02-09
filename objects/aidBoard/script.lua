@@ -155,8 +155,8 @@ function onLoad(saved_data)
         click_function = "flipEventCard",
         function_owner = self,
         label          = "",
-        position       = Vector(0.7,0.1,-0.85),
-        rotation       = Vector(0,270,0),
+        position       = Vector(0.32,0.1,-0.3),
+        rotation       = Vector(0,0,0),
         width          = 0,
         height         = 0,
         scale          = Vector(0.2,0.2,0.2),
@@ -245,12 +245,6 @@ end
 
 function blankFunc()
 end
-function wt(some)
-    local Time = os.clock() + some
-    while os.clock() < Time do
-        coroutine.yield(0)
-    end
-end
 
 function secondWave()
     self.editButton({
@@ -338,7 +332,7 @@ function flipExploreCard()
     local objs = Global.getVar("invaderDeckZone").getObjects()
     if #objs == 0 then
         broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
-        broadcastToAll("Invaders win via the Invader Card Loss Condition!", Color.SoftYellow)
+        Global.call("Defeat", {invader = true})
         return
     end
 
@@ -394,6 +388,9 @@ function advanceInvaderCards()
     if not Global.getVar("gameStarted") then
         return
     end
+    -- The last setup of setup generally is performing explore and then advancing invader cards
+    Global.setVar("setupCompleted", true)
+
     local prevOffset = Vector(0, 0, 0)
     local currentOffset = Vector(0, 0, 0)
     for i,v in pairs(scanLoopTable) do
@@ -534,6 +531,25 @@ function aidPanelScanLoop()
     numCards = count
     Global.call("updateAidPanel", outTable)
 end
+function countDeck()
+    local invaderDeck = Global.getVar("invaderDeckZone").getObjects()[1]
+    local count = 0
+    if invaderDeck ~= nil and Vector.equals(invaderDeck.getRotation(), Vector(0,180,180), 0.1) then
+        if invaderDeck.type == "Deck" then
+            for _,obj in pairs(invaderDeck.getObjects()) do
+                for _,tag in pairs(obj.tags) do
+                    if tag == "Invader Card" then
+                        count = count + 1
+                        break
+                    end
+                end
+            end
+        elseif invaderDeck.type == "Card" and invaderDeck.hasTag("Invader Card") then
+            count = 1
+        end
+    end
+    return count
+end
 function countDiscard()
     local count = 0
     local hits = Physics.cast({
@@ -632,7 +648,7 @@ function addFear()
     if fearPool == 1 then
         Global.setVar("fearPool", generatedFear + 1)
         Global.setVar("generatedFear", 0)
-        startLuaCoroutine(self, "fearCardEarned")
+        fearCard({earned = true})
     else
         Global.setVar("fearPool", fearPool - 1)
         Global.setVar("generatedFear", generatedFear + 1)
@@ -665,7 +681,7 @@ function modifyFearPool(obj, color, alt_click)
         elseif fearPool == 1 then
             Global.setVar("fearPool", generatedFear)
             Global.setVar("generatedFear", 0)
-            startLuaCoroutine(self, "fearCardEarned")
+            fearCard({earned = true})
         else
             Global.setVar("fearPool", fearPool-1)
         end
@@ -675,11 +691,16 @@ function modifyFearPool(obj, color, alt_click)
     updateFearUI()
 end
 
-function fearCardEarned()
+function fearCard(params)
     local fearDeck = Player["White"].getHandObjects(1)
     local handTransform = Player["White"].getHandTransform(2)
-    local earnedPos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
     local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
+    local pos
+    if params.earned then
+        pos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
+    else
+        pos = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getPosition()
+    end
 
     local foundFearCount = 0
     for i=#fearDeck,1,-1 do
@@ -691,7 +712,6 @@ function fearCardEarned()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))
             end, function() return not card.isSmoothMoving() end)
-            broadcastToAll("Terror Level II Achieved!", Color.SoftYellow)
         elseif card.getName() == "Terror III" then
             -- HACK work around issue where setPosition sometimes doesn't move object
             card.deal(1, "White")
@@ -699,9 +719,8 @@ function fearCardEarned()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))
             end, function() return not card.isSmoothMoving() end)
-            broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
         elseif card.hasTag("Invader Card") then
-            local pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
+            pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
             if Global.UI.getAttribute("panelBuild21", "active") == "True" then
                 -- already have 2 build cards
                 pos = pos + Vector(0,0,-2)
@@ -720,12 +739,18 @@ function fearCardEarned()
             if foundFearCount == 2 then
                 break
             end
-            card.setPosition(earnedPos)
-            broadcastToAll("Fear Card Earned!", Color.SoftBlue)
+            card.setPosition(pos)
+            if params.earned then
+                broadcastToAll("Fear Card Earned!", Color.SoftBlue)
+            end
         end
     end
     if foundFearCount ~= 2 then
-        broadcastToAll("Fear Victory Achieved!", Color.SoftYellow)
+        local scenarioCard = Global.getVar("scenarioCard")
+        if scenarioCard == nil or not scenarioCard.getVar("customVictory") then
+            Global.setVar("terrorLevel", 4)
+            Global.call("Victory")
+        end
     end
 
     return 1

@@ -168,7 +168,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -2950 14">
+<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -3050 14">
     <VerticalLayout recurse="events2">
         <TableLayout recurse="events2">
             <Row class="header">
@@ -219,8 +219,8 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1000" height="2800" position="-2000 -3770 14">
-    <VerticalLayout>
+<Panel id="panelExploratory" visibility="Invisible" width="1400" height="2800" position="-750 -3300 14">
+    <VerticalLayout width="1150">
         <TableLayout>
             <Row class="header">
                 <Cell><Toggle id="exploratoryAll" onValueChanged="toggleExploratoryAll">Exploratory Testing</Toggle></Cell>
@@ -243,10 +243,13 @@
             <Row class="toggle">
                 <Cell><Toggle id="sweden" onValueChanged="toggleSweden" tooltip="Sweden now has an additional level">Sweden 7</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="trickster" onValueChanged="toggleTrickster" tooltip="The air of 2 Unique Powers has been swapped">Grinning Trickster Stirs Up Trouble</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1400" height="2800" position="-750 -3300 14">
+<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1000" height="2800" position="250 -1460 14">
     <VerticalLayout recurse="playtestExpansion" width="1150">
         <TableLayout recurse="playtestExpansion">
             <Row class="header">

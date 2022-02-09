@@ -5,7 +5,7 @@ function onObjectLeaveContainer(container, leave_object)
             if #self.getObjects() == 0 then
                 if Global.getVar("blightedIsland") then
                     broadcastToAll("Blight Container is now empty", Color.SoftYellow)
-                    broadcastToAll("Invaders win via the Blight Loss Condition!", Color.SoftYellow)
+                    Global.call("Defeat", {blight = true})
                 else
                     broadcastToAll("Blight Container is now empty", Color.SoftYellow)
                 end

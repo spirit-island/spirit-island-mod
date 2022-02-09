@@ -1,0 +1,125 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 92.1791000366211,
+    "posY": 2.5136001110076904,
+    "posZ": 89.61090087890625,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Shadows Flicker Like Flame",
+  "Description": "Base",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Base",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752021618/B1CC9129E2A773AE69142C1B9DAF14ABE6A51986/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752021918/D6E703DA4CF240BB29352347180784E1DDE49D1E/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.03269999846816063,
+        "y": 0.20000000298023224,
+        "z": -0.39739999175071716
+      }
+    },
+    {
+      "Position": {
+        "x": -0.027699999511241913,
+        "y": 0.20000000298023224,
+        "z": -0.07999999821186066
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2515999972820282,
+        "y": 0.20000000298023224,
+        "z": -0.08179999887943268
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2554999887943268,
+        "y": 0.20000000298023224,
+        "z": -0.40230000019073486
+      }
+    },
+    {
+      "Position": {
+        "x": -0.48030000925064087,
+        "y": 0.20000000298023224,
+        "z": -0.4009000062942505
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4722000062465668,
+        "y": 0.20000000298023224,
+        "z": -0.08070000261068344
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6898000240325928,
+        "y": 0.20000000298023224,
+        "z": -0.07989999651908875
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6952000260353088,
+        "y": 0.20000000298023224,
+        "z": -0.4034000039100647
+      }
+    },
+    {
+      "Position": {
+        "x": -0.914900004863739,
+        "y": 0.20000000298023224,
+        "z": -0.07739999890327454
+      }
+    },
+    {
+      "Position": {
+        "x": -0.921500027179718,
+        "y": 0.20000000298023224,
+        "z": -0.39879998564720154
+      }
+    }
+  ]
+}

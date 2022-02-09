@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1640824605,
-  "Date": "12/30/2021 12:36:45 AM",
+  "EpochTime": 1644428555,
+  "Date": "2/9/2022 5:42:35 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -119,26 +119,6 @@
   "ComponentTags": {
     "labels": [
       {
-        "displayed": "Blight",
-        "normalized": "blight"
-      },
-      {
-        "displayed": "Dahan",
-        "normalized": "dahan"
-      },
-      {
-        "displayed": "Major",
-        "normalized": "major"
-      },
-      {
-        "displayed": "Minor",
-        "normalized": "minor"
-      },
-      {
-        "displayed": "Unique",
-        "normalized": "unique"
-      },
-      {
         "displayed": "Spirit",
         "normalized": "spirit"
       },
@@ -151,72 +131,8 @@
         "normalized": "destroy"
       },
       {
-        "displayed": "Balanced",
-        "normalized": "balanced"
-      },
-      {
-        "displayed": "Thematic",
-        "normalized": "thematic"
-      },
-      {
-        "displayed": "Invader Card",
-        "normalized": "invader_card"
-      },
-      {
-        "displayed": "Sun",
-        "normalized": "sun"
-      },
-      {
-        "displayed": "Moon",
-        "normalized": "moon"
-      },
-      {
-        "displayed": "Fire",
-        "normalized": "fire"
-      },
-      {
-        "displayed": "Air",
-        "normalized": "air"
-      },
-      {
-        "displayed": "Water",
-        "normalized": "water"
-      },
-      {
-        "displayed": "Earth",
-        "normalized": "earth"
-      },
-      {
-        "displayed": "Plant",
-        "normalized": "plant"
-      },
-      {
-        "displayed": "Animal",
-        "normalized": "animal"
-      },
-      {
-        "displayed": "Beasts",
-        "normalized": "beasts"
-      },
-      {
         "displayed": "Fear",
         "normalized": "fear"
-      },
-      {
-        "displayed": "Fast",
-        "normalized": "fast"
-      },
-      {
-        "displayed": "Slow",
-        "normalized": "slow"
-      },
-      {
-        "displayed": "Presence",
-        "normalized": "presence"
-      },
-      {
-        "displayed": "Base",
-        "normalized": "base"
       },
       {
         "displayed": "Low",
@@ -231,24 +147,20 @@
         "normalized": "high"
       },
       {
+        "displayed": "Very High",
+        "normalized": "very_high"
+      },
+      {
+        "displayed": "Base",
+        "normalized": "base"
+      },
+      {
         "displayed": "BnC",
         "normalized": "bnc"
       },
       {
         "displayed": "JE",
         "normalized": "je"
-      },
-      {
-        "displayed": "Very High",
-        "normalized": "very_high"
-      },
-      {
-        "displayed": "Any",
-        "normalized": "any"
-      },
-      {
-        "displayed": "Element Marker",
-        "normalized": "element_marker"
       },
       {
         "displayed": "Setup",
@@ -269,6 +181,22 @@
       {
         "displayed": "Uninteractable",
         "normalized": "uninteractable"
+      },
+      {
+        "displayed": "Invader Card",
+        "normalized": "invader_card"
+      },
+      {
+        "displayed": "Major",
+        "normalized": "major"
+      },
+      {
+        "displayed": "Minor",
+        "normalized": "minor"
+      },
+      {
+        "displayed": "Unique",
+        "normalized": "unique"
       }
     ]
   },
@@ -533,6 +461,30 @@
     {
       "Name": "Dropdown Seat Controls",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219907769/D82CD49A9281ADD08A1A9F09908260359FFF1DD6/"
+    },
+    {
+      "Name": "Explorer",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501251463/228497228D0E43E273A4CD28221CFD6F9BA94F26/"
+    },
+    {
+      "Name": "Town",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501242475/E562FF5A9444BE59547D0DCB11C65646A594610F/"
+    },
+    {
+      "Name": "City",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501220359/9B624AF9C4597EC998829C9C82C33201316FAEDC/"
+    },
+    {
+      "Name": "Dahan",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501232182/5CA88E4199CD8CB309401BF9EE29AF112FF8229D/"
+    },
+    {
+      "Name": "Blight",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501217036/1714CE4E6A9DF75AA2BC5957847185A11F6DEA7A/"
+    },
+    {
+      "Name": "Dropdown Game Results",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1847039328585363186/72B5D4AE16C9A9EA6A0D079840DB24C534D13055/"
     }
   ],
   "SnapPoints": [

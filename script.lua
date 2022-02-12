@@ -4196,17 +4196,22 @@ function checkPresenceLoss()
             end
             -- Color does not already have presence on island
             if color ~= nil and not colors[color] then
-                local bounds = obj.getBoundsNormalized()
-                local hits = Physics.cast({
-                    origin = bounds.center + bounds.offset,
-                    direction = Vector(0,-1,0),
-                    max_distance = 6,
-                    --debug = true,
-                })
-                for _,v in pairs(hits) do
-                    if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
-                        colors[color] = true
-                        break
+                -- Presence is currently being moved, count as being on island for now
+                if obj.held_by_color then
+                    colors[color] = true
+                else
+                    local bounds = obj.getBoundsNormalized()
+                    local hits = Physics.cast({
+                        origin = bounds.center + bounds.offset,
+                        direction = Vector(0,-1,0),
+                        max_distance = 1,
+                        --debug = true,
+                    })
+                    for _,v in pairs(hits) do
+                        if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
+                            colors[color] = true
+                            break
+                        end
                     end
                 end
             end

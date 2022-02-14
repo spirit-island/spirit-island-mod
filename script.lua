@@ -3337,6 +3337,7 @@ function timePassesCo()
     wt(2)
     printToAll("- " .. quote[2], Color.SoftBlue)
     wt(2)
+    broadcastToAll("Starting Turn "..turn, Color.White)
     enterSpiritPhase(nil)
     timePassing = false
     return 1

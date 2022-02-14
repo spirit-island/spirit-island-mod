@@ -4409,7 +4409,7 @@ function refreshGameOver()
     UI.setAttribute("panelGameOverScore", "text", scoreText)
 
     if recorder ~= nil then
-        UI.setAttribute("panelGameOverRecord", {active = "true", tooltip = recorder.getDescription()})
+        UI.setAttributes("panelGameOverRecord", {active = "true", tooltip = recorder.getDescription()})
     end
 end
 function sacrificeGameOver()

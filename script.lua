@@ -358,9 +358,10 @@ function onObjectEnterScriptingZone(zone, obj)
 end
 function onObjectLeaveScriptingZone(zone, obj)
     if zone.guid == "341005" then
-        if obj.guid == "969897" then
+        -- When deck is made terror dividers aren't being held
+        if obj.guid == "969897" and obj.held_by_color then
             terrorLevel = 1
-        elseif obj.guid == "f96a71" then
+        elseif obj.guid == "f96a71" and obj.held_by_color then
             terrorLevel = 2
         end
     else

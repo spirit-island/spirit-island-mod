@@ -2135,6 +2135,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     local leadingAdversary = math.random(1, numAdversaries)
     config.adversary = indexTable(adversaries, leadingAdversary)
     local adversaryLevelMax = #getObjectFromGUID(adversaries[config.adversary]).getTable("difficulty")
+    local adversaryLevelMaxFixed = adversaryLevelMax
     local fact = 1
     for i=2,adversaryLevelMax+1 do
         fact = fact * i
@@ -2146,14 +2147,14 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     if supportingAdversary >= leadingAdversary then
         supportingAdversary = supportingAdversary + 1
     end
-    config.adversary2 = indexTable(adversaries, supportingAdversary)
-    local adversaryLevel2Max = #getObjectFromGUID(adversaries[config.adversary2]).getTable("difficulty")
+    local adversary2 = indexTable(adversaries, supportingAdversary)
+    local adversaryLevel2Max = #getObjectFromGUID(adversaries[adversary2]).getTable("difficulty")
     fact = 1
     for i=2,adversaryLevel2Max+1 do
         fact = fact * i
     end
     local supportingAdversaryLevel = math.random(0, fact)
-    config.adversaryLevel2 = supportingAdversaryLevel % (adversaryLevel2Max + 1)
+    local adversaryLevel2 = supportingAdversaryLevel % (adversaryLevel2Max + 1)
 
     -- 2/3 chance to get scenario
     local useScenario = math.random(1, 3)
@@ -2174,6 +2175,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     elseif tier == 3 then
         config.variant.extraBoard = true
     end
+    -- Disabling extra board variant to make adversary choices more interesting
+    config.variant.extraBoard = false
 
     local setups = Global.getTable("boardLayouts")
     local numBoards = numPlayers
@@ -2315,56 +2318,71 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     local difficulty = difficultyCheck(config)
 
     local adversaryLevelMin = 0
-    local adversaryLevel2Min = 0
+    local adversaryLevel2Min = -1
     if prevTierConfig ~= nil then
         adversaryLevelMin = prevTierConfig.adversaryLevel
-        adversaryLevel2Min = prevTierConfig.adversaryLevel2
+        if prevTierConfig.adversaryLevel2 then
+            -- Previous tier had second adversary so should this tier
+            config.adversary2 = adversary2
+            config.adversaryLevel2 = adversaryLevel2
+            adversaryLevel2Min = prevTierConfig.adversaryLevel2
+        end
         -- make sure adversary level is always increasing
         if prevTierConfig.variant.extraBoard then
             if adversaryLevelMin < adversaryLevelMax then
                 adversaryLevelMin = adversaryLevelMin + 1
             end
-            if adversaryLevel2Min < adversaryLevel2Max then
+            if prevTierConfig.adversaryLevel2 and adversaryLevel2Min < adversaryLevel2Max then
                 adversaryLevel2Min = adversaryLevel2Min + 1
             end
         end
     end
     while difficulty < tiers[tier][1] or difficulty >= tiers[tier][2] do
         if difficulty < tiers[tier][1] then
-            if config.adversaryLevel > adversaryLevelMin then
-                adversaryLevelMin = config.adversaryLevel
-            end
-            if config.adversaryLevel2 > adversaryLevel2Min then
-                adversaryLevel2Min = config.adversaryLevel2
-            end
-            if config.adversaryLevel < adversaryLevelMax then
-                local leadingDiff = adversaryLevelMax - config.adversaryLevel
-                config.adversaryLevel = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
-            end
-            if config.adversaryLevel2 < adversaryLevel2Max then
-                local supportingDiff = adversaryLevel2Max - config.adversaryLevel2
-                config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
+            if config.adversaryLevel == adversaryLevelMaxFixed and not config.adversaryLevel2 then
+                -- Need to add second adversary into mix
+                adversaryLevelMin = adversaryLevelMaxFixed
+                adversaryLevel2Min = 0
+                config.adversary2 = adversary2
+                config.adversaryLevel2 = adversaryLevel2
+            else
+                if config.adversaryLevel > adversaryLevelMin then
+                    adversaryLevelMin = config.adversaryLevel
+                end
+                if config.adversaryLevel2 and config.adversaryLevel2 > adversaryLevel2Min then
+                    adversaryLevel2Min = config.adversaryLevel2
+                end
+                if config.adversaryLevel < adversaryLevelMax then
+                    local leadingDiff = adversaryLevelMax - config.adversaryLevel
+                    config.adversaryLevel = leadingAdversaryLevel % leadingDiff + config.adversaryLevel + 1
+                end
+                if config.adversaryLevel2 and config.adversaryLevel2 < adversaryLevel2Max then
+                    local supportingDiff = adversaryLevel2Max - config.adversaryLevel2
+                    config.adversaryLevel2 = supportingAdversaryLevel % supportingDiff + config.adversaryLevel2 + 1
+                end
             end
         else
             -- difficulty >= tiers[tier][2]
             if config.adversaryLevel < adversaryLevelMax then
                 adversaryLevelMax = config.adversaryLevel
             end
-            if config.adversaryLevel2 < adversaryLevel2Max then
+            if config.adversaryLevel2 and config.adversaryLevel2 < adversaryLevel2Max then
                 adversaryLevel2Max = config.adversaryLevel2
             end
             if config.adversaryLevel > adversaryLevelMin then
                 local leadingDiff = config.adversaryLevel - adversaryLevelMin
                 config.adversaryLevel = leadingAdversaryLevel % leadingDiff + adversaryLevelMin
             end
-            if config.adversaryLevel2 > adversaryLevel2Min then
+            if config.adversaryLevel2 and config.adversaryLevel2 > adversaryLevel2Min then
                 local leadingDiff = config.adversaryLevel2 - adversaryLevel2Min
                 config.adversaryLevel2 = supportingAdversaryLevel % leadingDiff + adversaryLevel2Min
             end
         end
-        if adversaryLevelMin >= adversaryLevelMax and adversaryLevel2Min >= adversaryLevel2Max then
+        if adversaryLevelMin >= adversaryLevelMax and ((adversaryLevel2Min == -1 and adversaryLevelMin < adversaryLevelMaxFixed) or adversaryLevel2Min >= adversaryLevel2Max) then
             config.adversaryLevel = adversaryLevelMin
-            config.adversaryLevel2 = adversaryLevel2Min
+            if adversaryLevel2Min ~= -1 then
+                config.adversaryLevel2 = adversaryLevel2Min
+            end
             break
         end
         difficulty = difficultyCheck(config)
@@ -2378,7 +2396,11 @@ end
 function setWeeklyChallengeUI(config)
     difficulty = difficultyCheck(config)
     self.UI.setAttribute("challengeLeadingAdversary", "text", "Leading Adversary: "..config.adversary.." "..config.adversaryLevel)
-    self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)
+    if config.adversary2 then
+        self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)
+    else
+        self.UI.setAttribute("challengeSupportingAdversary", "text", "")
+    end
     if config.scenario then
         self.UI.setAttribute("challengeScenario", "text", "Scenario: "..config.scenario)
     else

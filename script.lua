@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.2.0"
+version = "3.2.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -358,9 +358,10 @@ function onObjectEnterScriptingZone(zone, obj)
 end
 function onObjectLeaveScriptingZone(zone, obj)
     if zone.guid == "341005" then
-        if obj.guid == "969897" then
+        -- When deck is made terror dividers aren't being held
+        if obj.guid == "969897" and obj.held_by_color then
             terrorLevel = 1
-        elseif obj.guid == "f96a71" then
+        elseif obj.guid == "f96a71" and obj.held_by_color then
             terrorLevel = 2
         end
     else
@@ -3337,6 +3338,7 @@ function timePassesCo()
     wt(2)
     printToAll("- " .. quote[2], Color.SoftBlue)
     wt(2)
+    broadcastToAll("Starting Turn "..turn, Color.White)
     enterSpiritPhase(nil)
     timePassing = false
     return 1
@@ -4196,17 +4198,22 @@ function checkPresenceLoss()
             end
             -- Color does not already have presence on island
             if color ~= nil and not colors[color] then
-                local bounds = obj.getBoundsNormalized()
-                local hits = Physics.cast({
-                    origin = bounds.center + bounds.offset,
-                    direction = Vector(0,-1,0),
-                    max_distance = 6,
-                    --debug = true,
-                })
-                for _,v in pairs(hits) do
-                    if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
-                        colors[color] = true
-                        break
+                -- Presence is currently being moved, count as being on island for now
+                if obj.held_by_color then
+                    colors[color] = true
+                else
+                    local bounds = obj.getBoundsNormalized()
+                    local hits = Physics.cast({
+                        origin = bounds.center + bounds.offset,
+                        direction = Vector(0,-1,0),
+                        max_distance = 1,
+                        --debug = true,
+                    })
+                    for _,v in pairs(hits) do
+                        if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
+                            colors[color] = true
+                            break
+                        end
                     end
                 end
             end
@@ -4404,7 +4411,7 @@ function refreshGameOver()
     UI.setAttribute("panelGameOverScore", "text", scoreText)
 
     if recorder ~= nil then
-        UI.setAttribute("panelGameOverRecord", {active = "true", tooltip = recorder.getDescription()})
+        UI.setAttributes("panelGameOverRecord", {active = "true", tooltip = recorder.getDescription()})
     end
 end
 function sacrificeGameOver()

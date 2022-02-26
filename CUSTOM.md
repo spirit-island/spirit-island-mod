@@ -155,6 +155,9 @@ This section is meant for users who are familiar with both the tts mod and progr
           - `exist`: **boolean** - whether there is a second adversary
           - `level`: **number** - other adversary level
       - return **string** - what players should be told, nil otherwise
+  - automatedVictoryDefeat - allows you to start timers that will check for win/loss conditions
+    -`automatedVictoryDefeat`: **boolean** - set to true if you have `AutomatedVictoryDefeat` function
+    -`AutomatedVictoryDefeat()`
 - Adversary Specific:
   - Note: notebook contains sample code for adversary
   - `fearTokens`: **table** - contain keys 0->6 representing the fear token modifier for each adversary level (e.g. England 6)

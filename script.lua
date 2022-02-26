@@ -3148,8 +3148,16 @@ function StartGame()
     return 1
 end
 function enableVictoryDefeat()
+    if presenceTimer ~= nil then
+        Wait.stop(presenceTimer)
+        presenceTimer = nil
+    end
     presenceTimer = Wait.time(checkPresenceLoss, 5, -1)
     if scenarioCard == nil or not scenarioCard.getVar("customVictory") then
+        if victoryTimer ~= nil then
+            Wait.stop(victoryTimer)
+            victoryTimer = nil
+        end
         victoryTimer = Wait.time(checkVictory, 5, -1)
     else
         scenarioCard.createButton({
@@ -3164,44 +3172,59 @@ function enableVictoryDefeat()
             font_size      = 300,
         })
     end
-    if scenarioCard ~= nil and scenarioCard.getVar("customLoss") then
-        scenarioCard.createButton({
-            click_function = "scenarioDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(0.6, 1, -1.1),
-            rotation       = Vector(0,0,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-        })
+    if scenarioCard ~= nil then
+        if scenarioCard.getVar("automatedVictoryDefeat") then
+            scenarioCard.call("AutomatedVictoryDefeat")
+        end
+        if scenarioCard.getVar("customLoss") then
+            scenarioCard.createButton({
+                click_function = "scenarioDefeat",
+                function_owner = Global,
+                label          = "Loss Condition",
+                position       = Vector(0.6, 1, -1.1),
+                rotation       = Vector(0,0,0),
+                scale          = Vector(0.2,0.2,0.2),
+                width          = 2000,
+                height         = 500,
+                font_size      = 300,
+            })
+        end
     end
-    if adversaryCard ~= nil and adversaryCard.getVar("customLoss") then
-        adversaryCard.createButton({
-            click_function = "adversaryDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(-0.6, 1, -1.3),
-            rotation       = Vector(0,0,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-        })
+    if adversaryCard ~= nil then
+        if adversaryCard.getVar("automatedVictoryDefeat") then
+            adversaryCard.call("AutomatedVictoryDefeat")
+        end
+        if adversaryCard.getVar("customLoss") then
+            adversaryCard.createButton({
+                click_function = "adversaryDefeat",
+                function_owner = Global,
+                label          = "Loss Condition",
+                position       = Vector(-0.6, 1, -1.3),
+                rotation       = Vector(0,0,0),
+                scale          = Vector(0.2,0.2,0.2),
+                width          = 2000,
+                height         = 500,
+                font_size      = 300,
+            })
+        end
     end
-    if adversaryCard2 ~= nil and adversaryCard2.getVar("customLoss") then
-        adversaryCard2.createButton({
-            click_function = "adversaryDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(-0.6, 1, -1.3),
-            rotation       = Vector(0,0,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-        })
+    if adversaryCard2 ~= nil then
+        if adversaryCard2.getVar("automatedVictoryDefeat") then
+            adversaryCard2.call("AutomatedVictoryDefeat")
+        end
+        if adversaryCard2.getVar("customLoss") then
+            adversaryCard2.createButton({
+                click_function = "adversaryDefeat",
+                function_owner = Global,
+                label          = "Loss Condition",
+                position       = Vector(-0.6, 1, -1.3),
+                rotation       = Vector(0,0,0),
+                scale          = Vector(0.2,0.2,0.2),
+                width          = 2000,
+                height         = 500,
+                font_size      = 300,
+            })
+        end
     end
 end
 function enableUI()
@@ -4220,7 +4243,7 @@ function checkPresenceLoss()
         end
     end
 
-    local loss = false
+    local presenceLoss = false
     for color,onIsland in pairs(colors) do
         if not onIsland then
             for _, obj in ipairs(getObjectFromGUID(elementScanZones[color]).getObjects()) do
@@ -4230,11 +4253,11 @@ function checkPresenceLoss()
                         presenceTimer = nil
                     end
                     Defeat({presence = obj.getName()})
-                    loss = true
+                    presenceLoss = true
                     break
                 end
             end
-            if loss then
+            if presenceLoss then
                 break
             end
         end
@@ -4308,6 +4331,10 @@ function Victory()
         broadcastToAll("Terror Level II Victory Achieved!", Color.SoftYellow)
     else
         broadcastToAll("Terror Level I Victory Achieved!", Color.SoftYellow)
+    end
+
+    if loss ~= nil then
+        loss.sacrifice = true
     end
     showGameOver()
 end
@@ -4421,6 +4448,11 @@ function sacrificeGameOver()
         loss = {sacrifice = true}
     end
     refreshGameOver()
+end
+function resetGameOver()
+    setVisiTable("panelGameOver", {})
+    loss = nil
+    enableVictoryDefeat()
 end
 function hideGameOver(player)
     toggleUI("panelGameOver", player.color, true)

@@ -10,6 +10,7 @@ hasLossCondition = true
 hasUI = true
 supporting = false
 requirements = true
+automatedVictoryDefeat = true
 
 destroyed = 0
 checkLossID = 0
@@ -61,7 +62,6 @@ function AdversaryUI(params)
         destroyedBeastsBag.call("setCallback", {obj=self,func="updateCount"})
         updateCount({count=#destroyedBeastsBag.getObjects()})
     end
-    checkLossID = Wait.time(checkLoss, 5, -1)
 
     ui.escalation = {}
     ui.escalation.tooltip = "On each board: Add 2 Explorer (total)\namong land with Beasts. If you can't\ninstead add 2 Explorer among lands\nwith Beasts on a different board."
@@ -181,6 +181,30 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
         end
     end
 end
+function getPlayerColor()
+    local zoneGuids = {}
+    for color,guid in pairs(Global.getTable("elementScanZones")) do
+        zoneGuids[guid] = color
+    end
+    for _,zone in pairs(getObjectFromGUID("a576cc").getZones()) do
+        if zoneGuids[zone.guid] then
+            return zoneGuids[zone.guid]
+        end
+    end
+    return ""
+end
+
+function Requirements(params)
+    return params.expansions["Branch & Claw"] or params.expansions["Jagged Earth"]
+end
+
+function AutomatedVictoryDefeat()
+    if checkLossID ~= nil then
+        Wait.stop(checkLossID)
+        checkLossID = nil
+    end
+    checkLossID = Wait.time(checkLoss, 5, -1)
+end
 function checkLoss()
     local count = 0
     local beasts = getObjectsWithTag("Beasts")
@@ -221,20 +245,4 @@ function checkLoss()
         Wait.stop(checkLossID)
         Global.call("Defeat", {adversary = self.getName()})
     end
-end
-function getPlayerColor()
-    local zoneGuids = {}
-    for color,guid in pairs(Global.getTable("elementScanZones")) do
-        zoneGuids[guid] = color
-    end
-    for _,zone in pairs(getObjectFromGUID("a576cc").getZones()) do
-        if zoneGuids[zone.guid] then
-            return zoneGuids[zone.guid]
-        end
-    end
-    return ""
-end
-
-function Requirements(params)
-    return params.expansions["Branch & Claw"] or params.expansions["Jagged Earth"]
 end

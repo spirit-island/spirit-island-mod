@@ -10,8 +10,9 @@ hasLossCondition = true
 hasUI = true
 hasBroadcast = true
 supporting = false
-count = 0
+automatedVictoryDefeat = true
 
+count = 0
 checkLossID = 0
 
 function onSave()
@@ -77,7 +78,6 @@ function AdversaryUI(params)
     ui.loss.counter.text = "Blight Count: "
     ui.loss.counter.buttons = true
     Global.call("UpdateAdversaryLossCounter",{count=count,supporting=supporting})
-    checkLossID = Wait.time(checkLoss, 5, -1)
 
     ui.escalation = {}
     ui.escalation.tooltip = "After Exploring: On each board with\n4 or fewer Blight, add 1 Town to a\nland without Town/Blight. On each board\nwith 2 or fewer Blight, do so again."
@@ -112,18 +112,6 @@ function AdversaryUI(params)
         ui.invader.ravage = true
     end
     return ui
-end
-function checkLoss()
-    local count
-    if supporting then
-        count = tonumber(Global.UI.getAttribute("panelAdversary2LossCounterCount","text"))
-    else
-        count = tonumber(Global.UI.getAttribute("panelAdversaryLossCounterCount","text"))
-    end
-    if count > Global.call("getMapCount", {norm = true, them = true}) then
-        Wait.stop(checkLossID)
-        Global.call("Defeat", {adversary = self.getName()})
-    end
 end
 
 function MapSetup(params)
@@ -197,4 +185,24 @@ function Broadcast(params)
         return "Habsburg Level 1 - Resolve Island Boards in the order: A, A2, B, B2..."
     end
     return nil
+end
+
+function AutomatedVictoryDefeat()
+    if checkLossID ~= nil then
+        Wait.stop(checkLossID)
+        checkLossID = nil
+    end
+    checkLossID = Wait.time(checkLoss, 5, -1)
+end
+function checkLoss()
+    local count
+    if supporting then
+        count = tonumber(Global.UI.getAttribute("panelAdversary2LossCounterCount","text"))
+    else
+        count = tonumber(Global.UI.getAttribute("panelAdversaryLossCounterCount","text"))
+    end
+    if count > Global.call("getMapCount", {norm = true, them = true}) then
+        Wait.stop(checkLossID)
+        Global.call("Defeat", {adversary = self.getName()})
+    end
 end

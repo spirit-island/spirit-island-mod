@@ -2864,7 +2864,7 @@ function PostSetup()
     aidBoard.call("setupGame")
 
     local postSetupSteps = 0
-    local firstAdversarySetup = false
+    local sequentialPostSetupSteps = 0
 
     if secondWave ~= nil then
         difficultyString = difficultyString.."Wave "..wave.."\n"
@@ -2945,34 +2945,50 @@ function PostSetup()
 
     if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
         adversaryCard.call("PostSetup",{level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
-        Wait.condition(function() postSetupSteps = postSetupSteps + 1 firstAdversarySetup = true end, function() return adversaryCard.getVar("postSetupComplete") end)
+        Wait.condition(function()
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end, function() return adversaryCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
-        firstAdversarySetup = true
+        sequentialPostSetupSteps = sequentialPostSetupSteps + 1
     end
-    if adversaryCard2 ~= nil and adversaryCard2.getVar("postSetup") then
-        -- Wait for first adversary to finish
-        Wait.condition(function()
+    Wait.condition(function()
+        if adversaryCard2 ~= nil and adversaryCard2.getVar("postSetup") then
             adversaryCard2.call("PostSetup",{level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return adversaryCard2.getVar("postSetupComplete") end)
-        end, function() return firstAdversarySetup end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
-    if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        scenarioCard.call("PostSetup")
-        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
-    if secondWave ~= nil and secondWave.getVar("mapSetup") then
-        Wait.condition(function()
+            Wait.condition(function()
+                postSetupSteps = postSetupSteps + 1
+                sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+            end, function() return adversaryCard2.getVar("postSetupComplete") end)
+        else
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end
+    end, function() return sequentialPostSetupSteps == 1 end)
+    Wait.condition(function()
+        if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
+            scenarioCard.call("PostSetup")
+            Wait.condition(function()
+                postSetupSteps = postSetupSteps + 1
+                sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+            end, function() return scenarioCard.getVar("postSetupComplete") end)
+        else
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end
+    end, function() return sequentialPostSetupSteps == 2 end)
+    Wait.condition(function()
+        if secondWave ~= nil and secondWave.getVar("mapSetup") then
             secondWave.call("PostSetup")
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
-        end, function() return postSetupSteps == 5 end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
+            Wait.condition(function()
+                postSetupSteps = postSetupSteps + 1
+                sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+            end, function() return secondWave.getVar("postSetupComplete") end)
+        else
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end
+    end, function() return sequentialPostSetupSteps == 3 end)
 
     Wait.condition(function()
         if not usingEvents() and usingSpiritTokens() then

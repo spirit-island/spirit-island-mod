@@ -5276,8 +5276,8 @@ function updateSwapButtons()
             else
                 fg = {1,1,1}
             end
-            obj.editButton({index=0, label="Sit Here", height=400, width=1500})
-            obj.editButton({index=1, label="Pick " .. color, height=400, width=1500, color=bg, font_color=fg})
+            obj.editButton({index=0, label="Swap Place", height=400, width=1500})
+            obj.editButton({index=1, label="Swap " .. color, height=400, width=1500, color=bg, font_color=fg})
         else
             obj.editButton({index=0, label="", height=0, width=0})
             obj.editButton({index=1, label="", height=0, width=0})
@@ -5288,10 +5288,12 @@ end
 function updatePlaySpiritButton(color)
     local table = playerTables[color]
     if table == nil then return end
-    if Player[color].seated or not selectedColors[color] then
-        table.editButton({index=2, label="", height=0, width=0})
-    else
+    if not Player[color].seated and selectedColors[color] then
         table.editButton({index=2, label="Play Spirit", height=400, width=1500})
+    elseif not Player[color].seated and showPlayerButtons then
+        table.editButton({index=2, label="Play " .. color, height=400, width=1500})
+    else
+        table.editButton({index=2, label="", height=0, width=0})
     end
 end
 ---- UI Section

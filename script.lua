@@ -3412,12 +3412,14 @@ function handlePiece(object, offset)
 end
 function resetPiece(object, rotation, offset, skip)
     local objOffset = 0
+    local rot = object.getRotation()
+    rot.y = rotation.y
     if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         objOffset = 1
-    elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
+    elseif not Vector.equals(rot, rotation, 0.1) then
         objOffset = 1
     end
-    local loopOffset = 0
+    local loopOffset = 1
     for _,obj in pairs(upCastRay(object,5)) do
         -- need to store tag since after state change tag isn't instantly updated
         local isFigurine = obj.type == "Figurine"
@@ -3432,11 +3434,11 @@ function resetPiece(object, rotation, offset, skip)
         loopOffset = loopOffset + 0.1
     end
     if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
-        object.setRotationSmooth(rotation)
+        object.setRotation(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
         object = object.setState(1)
-    elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
-        object.setRotationSmooth(rotation)
+    elseif not Vector.equals(rot, rotation, 0.1) then
+        object.setRotation(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
     end
     return object
@@ -4241,7 +4243,7 @@ function checkPresenceLoss()
                 if obj.held_by_color then
                     colors[color] = true
                 else
-                    local bounds = obj.getBoundsNormalized()
+                    local bounds = obj.getBounds()
                     local hits = Physics.cast({
                         origin = bounds.center + bounds.offset,
                         direction = Vector(0,-1,0),
@@ -4533,7 +4535,7 @@ function upCast(obj,dist,offset,dir)
         origin       = obj.getPosition() + Vector(0,offset,0),
         direction    = dir,
         type         = 3,
-        size         = obj.getBoundsNormalized().size,
+        size         = obj.getBounds().size,
         orientation  = obj.getRotation(),
         max_distance = dist,
         --debug        = true,
@@ -4546,7 +4548,7 @@ function upCast(obj,dist,offset,dir)
 end
 function upCastRay(obj,dist)
     local hits = Physics.cast({
-        origin = obj.getBoundsNormalized().center,
+        origin = obj.getBounds().center,
         direction = Vector(0,1,0),
         max_distance = dist,
         --debug = true,

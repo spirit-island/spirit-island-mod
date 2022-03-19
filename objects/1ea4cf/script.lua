@@ -225,7 +225,7 @@ function checkLoss()
             if #obj.getZones() == 0 then
                 if color == string.sub(obj.getName(),1,-12) then
                     if obj.getQuantity() >= 2 then
-                        local bounds = obj.getBoundsNormalized()
+                        local bounds = obj.getBounds()
                         local hits = Physics.cast({
                             origin = bounds.center + bounds.offset,
                             direction = Vector(0,-1,0),

@@ -220,7 +220,7 @@ function upCast(obj,dist,offset,types)
         origin       = obj.getPosition() + Vector(0,offset,0),
         direction    = Vector(0,1,0),
         type         = 3,
-        size         = obj.getBoundsNormalized().size,
+        size         = obj.getBounds().size,
         orientation  = obj.getRotation(),
         max_distance = dist,
         --debug        = true,

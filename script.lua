@@ -3410,16 +3410,45 @@ function handlePiece(object, offset)
     end
     return object
 end
+function rotationEqual(objectRotation, comparisonRotation, tolerance)
+    if Vector.equals(objectRotation, comparisonRotation, tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y ~= 0 and comparisonRotation.z ~= 0 and Vector.equals(objectRotation, Vector(360, comparisonRotation.y, comparisonRotation.z), tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y == 0 and comparisonRotation.z ~= 0 and Vector.equals(objectRotation, Vector(360, 360, comparisonRotation.z), tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y ~= 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(360, comparisonRotation.y, 360), tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y == 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(360, 360, 360), tolerance) then
+        return true
+    elseif comparisonRotation.x ~= 0 and comparisonRotation.y == 0 and comparisonRotation.z ~= 0 and Vector.equals(objectRotation, Vector(comparisonRotation.x, 360, comparisonRotation.z), tolerance) then
+        return true
+    elseif comparisonRotation.x ~= 0 and comparisonRotation.y == 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(comparisonRotation.x, 360, 360), tolerance) then
+        return true
+    elseif comparisonRotation.x ~= 0 and comparisonRotation.y ~= 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(comparisonRotation.x, comparisonRotation.y, 360), tolerance) then
+        return true
+    else
+        return false
+    end
+end
 function resetPiece(object, rotation, offset, skip)
     local objOffset = 0
+    local upsideDown = false
     local rot = object.getRotation()
-    rot.y = rotation.y
+    local flipRot = Vector(rotation.x, rotation.y, 180)
+    local spunRot = Vector(rotation.x, rot.y, rotation.z)
     if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         objOffset = 1
-    elseif not Vector.equals(rot, rotation, 0.1) then
+    elseif rotationEqual(rot, flipRot, 1) then
+        -- object upside down
+        upsideDown = true
+    elseif rotationEqual(rot, spunRot, 1) then
+        -- object spun around
+    else
         objOffset = 1
     end
-    local loopOffset = 1
+
+    local loopOffset = 0
     for _,obj in pairs(upCastRay(object,5)) do
         -- need to store tag since after state change tag isn't instantly updated
         local isFigurine = obj.type == "Figurine"
@@ -3433,11 +3462,15 @@ function resetPiece(object, rotation, offset, skip)
         end
         loopOffset = loopOffset + 0.1
     end
-    if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+
+    if upsideDown then
+        object.setRotation(rotation)
+        object.setPosition(object.getPosition() - Vector(0,object.getBounds().size.y,0))
+    elseif not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         object.setRotation(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
         object = object.setState(1)
-    elseif not Vector.equals(rot, rotation, 0.1) then
+    else
         object.setRotation(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
     end

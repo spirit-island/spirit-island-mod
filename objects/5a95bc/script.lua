@@ -4,6 +4,7 @@ requirements = true
 boardSetup = true
 postSetup = true
 postSetupComplete = false
+automatedVictoryDefeat = true
 
 boardLayouts = {
     { -- 1 Board
@@ -59,7 +60,6 @@ function onLoad()
             lossBag.call("setCallback", {obj=self,func="updateCount"})
             updateCount({count=#lossBag.getObjects()})
         end
-        checkLossID = Wait.time(checkLoss, 5, -1)
     end
 end
 
@@ -85,13 +85,19 @@ function PostSetup()
             updateCount({count=#obj.getObjects()})
         end,
     })
-    checkLossID = Wait.time(checkLoss, 5, -1)
     postSetupComplete = true
 end
 function updateCount(params)
     escaped = params.count
 end
 
+function AutomatedVictoryDefeat()
+    if checkLossID ~= nil then
+        Wait.stop(checkLossID)
+        checkLossID = nil
+    end
+    checkLossID = Wait.time(checkLoss, 5, -1)
+end
 function checkLoss()
     if escaped > 3 * Global.call("getMapCount", {norm = true, them = true}) then
         Wait.stop(checkLossID)

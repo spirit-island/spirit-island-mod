@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.2.1"
+version = "3.2.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -2864,7 +2864,7 @@ function PostSetup()
     aidBoard.call("setupGame")
 
     local postSetupSteps = 0
-    local firstAdversarySetup = false
+    local sequentialPostSetupSteps = 0
 
     if secondWave ~= nil then
         difficultyString = difficultyString.."Wave "..wave.."\n"
@@ -2945,34 +2945,50 @@ function PostSetup()
 
     if adversaryCard ~= nil and adversaryCard.getVar("postSetup") then
         adversaryCard.call("PostSetup",{level = adversaryLevel, other = {exist = adversaryCard2 ~= nil, level = adversaryLevel2}})
-        Wait.condition(function() postSetupSteps = postSetupSteps + 1 firstAdversarySetup = true end, function() return adversaryCard.getVar("postSetupComplete") end)
+        Wait.condition(function()
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end, function() return adversaryCard.getVar("postSetupComplete") end)
     else
         postSetupSteps = postSetupSteps + 1
-        firstAdversarySetup = true
+        sequentialPostSetupSteps = sequentialPostSetupSteps + 1
     end
-    if adversaryCard2 ~= nil and adversaryCard2.getVar("postSetup") then
-        -- Wait for first adversary to finish
-        Wait.condition(function()
+    Wait.condition(function()
+        if adversaryCard2 ~= nil and adversaryCard2.getVar("postSetup") then
             adversaryCard2.call("PostSetup",{level = adversaryLevel2, other = {exist = adversaryCard ~= nil, level = adversaryLevel}})
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return adversaryCard2.getVar("postSetupComplete") end)
-        end, function() return firstAdversarySetup end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
-    if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
-        scenarioCard.call("PostSetup")
-        Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return scenarioCard.getVar("postSetupComplete") end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
-    if secondWave ~= nil and secondWave.getVar("mapSetup") then
-        Wait.condition(function()
+            Wait.condition(function()
+                postSetupSteps = postSetupSteps + 1
+                sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+            end, function() return adversaryCard2.getVar("postSetupComplete") end)
+        else
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end
+    end, function() return sequentialPostSetupSteps == 1 end)
+    Wait.condition(function()
+        if scenarioCard ~= nil and scenarioCard.getVar("postSetup") then
+            scenarioCard.call("PostSetup")
+            Wait.condition(function()
+                postSetupSteps = postSetupSteps + 1
+                sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+            end, function() return scenarioCard.getVar("postSetupComplete") end)
+        else
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end
+    end, function() return sequentialPostSetupSteps == 2 end)
+    Wait.condition(function()
+        if secondWave ~= nil and secondWave.getVar("mapSetup") then
             secondWave.call("PostSetup")
-            Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return secondWave.getVar("postSetupComplete") end)
-        end, function() return postSetupSteps == 5 end)
-    else
-        postSetupSteps = postSetupSteps + 1
-    end
+            Wait.condition(function()
+                postSetupSteps = postSetupSteps + 1
+                sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+            end, function() return secondWave.getVar("postSetupComplete") end)
+        else
+            postSetupSteps = postSetupSteps + 1
+            sequentialPostSetupSteps = sequentialPostSetupSteps + 1
+        end
+    end, function() return sequentialPostSetupSteps == 3 end)
 
     Wait.condition(function()
         if not usingEvents() and usingSpiritTokens() then
@@ -3148,8 +3164,16 @@ function StartGame()
     return 1
 end
 function enableVictoryDefeat()
+    if presenceTimer ~= nil then
+        Wait.stop(presenceTimer)
+        presenceTimer = nil
+    end
     presenceTimer = Wait.time(checkPresenceLoss, 5, -1)
     if scenarioCard == nil or not scenarioCard.getVar("customVictory") then
+        if victoryTimer ~= nil then
+            Wait.stop(victoryTimer)
+            victoryTimer = nil
+        end
         victoryTimer = Wait.time(checkVictory, 5, -1)
     else
         scenarioCard.createButton({
@@ -3164,44 +3188,59 @@ function enableVictoryDefeat()
             font_size      = 300,
         })
     end
-    if scenarioCard ~= nil and scenarioCard.getVar("customLoss") then
-        scenarioCard.createButton({
-            click_function = "scenarioDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(0.6, 1, -1.1),
-            rotation       = Vector(0,0,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-        })
+    if scenarioCard ~= nil then
+        if scenarioCard.getVar("automatedVictoryDefeat") then
+            scenarioCard.call("AutomatedVictoryDefeat")
+        end
+        if scenarioCard.getVar("customLoss") then
+            scenarioCard.createButton({
+                click_function = "scenarioDefeat",
+                function_owner = Global,
+                label          = "Loss Condition",
+                position       = Vector(0.6, 1, -1.1),
+                rotation       = Vector(0,0,0),
+                scale          = Vector(0.2,0.2,0.2),
+                width          = 2000,
+                height         = 500,
+                font_size      = 300,
+            })
+        end
     end
-    if adversaryCard ~= nil and adversaryCard.getVar("customLoss") then
-        adversaryCard.createButton({
-            click_function = "adversaryDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(-0.6, 1, -1.3),
-            rotation       = Vector(0,0,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-        })
+    if adversaryCard ~= nil then
+        if adversaryCard.getVar("automatedVictoryDefeat") then
+            adversaryCard.call("AutomatedVictoryDefeat")
+        end
+        if adversaryCard.getVar("customLoss") then
+            adversaryCard.createButton({
+                click_function = "adversaryDefeat",
+                function_owner = Global,
+                label          = "Loss Condition",
+                position       = Vector(-0.6, 1, -1.3),
+                rotation       = Vector(0,0,0),
+                scale          = Vector(0.2,0.2,0.2),
+                width          = 2000,
+                height         = 500,
+                font_size      = 300,
+            })
+        end
     end
-    if adversaryCard2 ~= nil and adversaryCard2.getVar("customLoss") then
-        adversaryCard2.createButton({
-            click_function = "adversaryDefeat",
-            function_owner = Global,
-            label          = "Loss Condition",
-            position       = Vector(-0.6, 1, -1.3),
-            rotation       = Vector(0,0,0),
-            scale          = Vector(0.2,0.2,0.2),
-            width          = 2000,
-            height         = 500,
-            font_size      = 300,
-        })
+    if adversaryCard2 ~= nil then
+        if adversaryCard2.getVar("automatedVictoryDefeat") then
+            adversaryCard2.call("AutomatedVictoryDefeat")
+        end
+        if adversaryCard2.getVar("customLoss") then
+            adversaryCard2.createButton({
+                click_function = "adversaryDefeat",
+                function_owner = Global,
+                label          = "Loss Condition",
+                position       = Vector(-0.6, 1, -1.3),
+                rotation       = Vector(0,0,0),
+                scale          = Vector(0.2,0.2,0.2),
+                width          = 2000,
+                height         = 500,
+                font_size      = 300,
+            })
+        end
     end
 end
 function enableUI()
@@ -3371,13 +3410,44 @@ function handlePiece(object, offset)
     end
     return object
 end
+function rotationEqual(objectRotation, comparisonRotation, tolerance)
+    if Vector.equals(objectRotation, comparisonRotation, tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y ~= 0 and comparisonRotation.z ~= 0 and Vector.equals(objectRotation, Vector(360, comparisonRotation.y, comparisonRotation.z), tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y == 0 and comparisonRotation.z ~= 0 and Vector.equals(objectRotation, Vector(360, 360, comparisonRotation.z), tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y ~= 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(360, comparisonRotation.y, 360), tolerance) then
+        return true
+    elseif comparisonRotation.x == 0 and comparisonRotation.y == 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(360, 360, 360), tolerance) then
+        return true
+    elseif comparisonRotation.x ~= 0 and comparisonRotation.y == 0 and comparisonRotation.z ~= 0 and Vector.equals(objectRotation, Vector(comparisonRotation.x, 360, comparisonRotation.z), tolerance) then
+        return true
+    elseif comparisonRotation.x ~= 0 and comparisonRotation.y == 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(comparisonRotation.x, 360, 360), tolerance) then
+        return true
+    elseif comparisonRotation.x ~= 0 and comparisonRotation.y ~= 0 and comparisonRotation.z == 0 and Vector.equals(objectRotation, Vector(comparisonRotation.x, comparisonRotation.y, 360), tolerance) then
+        return true
+    else
+        return false
+    end
+end
 function resetPiece(object, rotation, offset, skip)
     local objOffset = 0
+    local upsideDown = false
+    local rot = object.getRotation()
+    local flipRot = Vector(rotation.x, rotation.y, 180)
+    local spunRot = Vector(rotation.x, rot.y, rotation.z)
     if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         objOffset = 1
-    elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
+    elseif rotationEqual(rot, flipRot, 1) then
+        -- object upside down
+        upsideDown = true
+    elseif rotationEqual(rot, spunRot, 1) then
+        -- object spun around
+    else
         objOffset = 1
     end
+
     local loopOffset = 0
     for _,obj in pairs(upCastRay(object,5)) do
         -- need to store tag since after state change tag isn't instantly updated
@@ -3392,12 +3462,16 @@ function resetPiece(object, rotation, offset, skip)
         end
         loopOffset = loopOffset + 0.1
     end
-    if not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
-        object.setRotationSmooth(rotation)
+
+    if upsideDown then
+        object.setRotation(rotation)
+        object.setPosition(object.getPosition() - Vector(0,object.getBounds().size.y,0))
+    elseif not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
+        object.setRotation(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
         object = object.setState(1)
-    elseif not Vector.equals(object.getRotation(), rotation, 0.1) then
-        object.setRotationSmooth(rotation)
+    else
+        object.setRotation(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))
     end
     return object
@@ -4202,7 +4276,7 @@ function checkPresenceLoss()
                 if obj.held_by_color then
                     colors[color] = true
                 else
-                    local bounds = obj.getBoundsNormalized()
+                    local bounds = obj.getBounds()
                     local hits = Physics.cast({
                         origin = bounds.center + bounds.offset,
                         direction = Vector(0,-1,0),
@@ -4220,7 +4294,7 @@ function checkPresenceLoss()
         end
     end
 
-    local loss = false
+    local presenceLoss = false
     for color,onIsland in pairs(colors) do
         if not onIsland then
             for _, obj in ipairs(getObjectFromGUID(elementScanZones[color]).getObjects()) do
@@ -4230,11 +4304,11 @@ function checkPresenceLoss()
                         presenceTimer = nil
                     end
                     Defeat({presence = obj.getName()})
-                    loss = true
+                    presenceLoss = true
                     break
                 end
             end
-            if loss then
+            if presenceLoss then
                 break
             end
         end
@@ -4308,6 +4382,10 @@ function Victory()
         broadcastToAll("Terror Level II Victory Achieved!", Color.SoftYellow)
     else
         broadcastToAll("Terror Level I Victory Achieved!", Color.SoftYellow)
+    end
+
+    if loss ~= nil then
+        loss.sacrifice = true
     end
     showGameOver()
 end
@@ -4422,6 +4500,11 @@ function sacrificeGameOver()
     end
     refreshGameOver()
 end
+function resetGameOver()
+    setVisiTable("panelGameOver", {})
+    loss = nil
+    enableVictoryDefeat()
+end
 function hideGameOver(player)
     toggleUI("panelGameOver", player.color, true)
 end
@@ -4485,7 +4568,7 @@ function upCast(obj,dist,offset,dir)
         origin       = obj.getPosition() + Vector(0,offset,0),
         direction    = dir,
         type         = 3,
-        size         = obj.getBoundsNormalized().size,
+        size         = obj.getBounds().size,
         orientation  = obj.getRotation(),
         max_distance = dist,
         --debug        = true,
@@ -4498,7 +4581,7 @@ function upCast(obj,dist,offset,dir)
 end
 function upCastRay(obj,dist)
     local hits = Physics.cast({
-        origin = obj.getBoundsNormalized().center,
+        origin = obj.getBounds().center,
         direction = Vector(0,1,0),
         max_distance = dist,
         --debug = true,
@@ -5228,8 +5311,8 @@ function updateSwapButtons()
             else
                 fg = {1,1,1}
             end
-            obj.editButton({index=0, label="Sit Here", height=400, width=1500})
-            obj.editButton({index=1, label="Pick " .. color, height=400, width=1500, color=bg, font_color=fg})
+            obj.editButton({index=0, label="Swap Place", height=400, width=1500})
+            obj.editButton({index=1, label="Swap " .. color, height=400, width=1500, color=bg, font_color=fg})
         else
             obj.editButton({index=0, label="", height=0, width=0})
             obj.editButton({index=1, label="", height=0, width=0})
@@ -5240,10 +5323,12 @@ end
 function updatePlaySpiritButton(color)
     local table = playerTables[color]
     if table == nil then return end
-    if Player[color].seated or not selectedColors[color] then
-        table.editButton({index=2, label="", height=0, width=0})
-    else
+    if not Player[color].seated and selectedColors[color] then
         table.editButton({index=2, label="Play Spirit", height=400, width=1500})
+    elseif not Player[color].seated and showPlayerButtons then
+        table.editButton({index=2, label="Play " .. color, height=400, width=1500})
+    else
+        table.editButton({index=2, label="", height=0, width=0})
     end
 end
 ---- UI Section

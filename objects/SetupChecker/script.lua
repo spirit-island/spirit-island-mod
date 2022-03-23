@@ -2131,7 +2131,6 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     local config = {boards = {}, spirits = {}, expansions = {"Branch & Claw", "Jagged Earth"}, events = {}, broadcast = ""}
     local numPlayers = Global.getVar("numPlayers")
 
-    -- Requires two adversaries
     local leadingAdversary = math.random(1, numAdversaries)
     config.adversary = indexTable(adversaries, leadingAdversary)
     local adversaryLevelMax = #getObjectFromGUID(adversaries[config.adversary]).getTable("difficulty")
@@ -2165,18 +2164,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         math.random(0,0)
     end
 
-    -- Make extra board more likely on higher tier
     config.variant = {}
-    local extraBoard = math.random(-2, 1)
-    if tier == 1 then
-        config.variant.extraBoard = false
-    elseif tier == 2 then
-        config.variant.extraBoard = extraBoard >= 0
-    elseif tier == 3 then
-        config.variant.extraBoard = true
-    end
-    -- Disabling extra board variant to make adversary choices more interesting
-    config.variant.extraBoard = false
+    config.variant.extraBoard = math.random(-2, 1) == 1
 
     local setups = Global.getTable("boardLayouts")
     local numBoards = numPlayers

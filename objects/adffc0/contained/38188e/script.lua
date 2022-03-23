@@ -19,11 +19,13 @@ function onLoad(save_state)
         if autoExchange then
             exchangeAuto()
         end
-        self.UI.setAttribute("count", "text", healthCount)
-        self.UI.setAttribute("players", "text", Global.getVar("numPlayers"))
-        self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
-        self.UI.setAttribute("drownPanel", "visibility", "")
-        self.UI.setAttribute("drownPanel2", "visibility", "")
+        Wait.frames(function()
+            self.UI.setAttribute("count", "text", healthCount)
+            self.UI.setAttribute("players", "text", Global.getVar("numPlayers"))
+            self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
+            self.UI.setAttribute("drownPanel", "visibility", "")
+            self.UI.setAttribute("drownPanel2", "visibility", "")
+        end, 2)
     end
 end
 

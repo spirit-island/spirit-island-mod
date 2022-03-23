@@ -10,6 +10,7 @@ hasLossCondition = true
 hasUI = true
 supporting = false
 requirements = true
+automatedVictoryDefeat = true
 
 destroyed = 0
 checkLossID = 0
@@ -61,7 +62,6 @@ function AdversaryUI(params)
         destroyedBeastsBag.call("setCallback", {obj=self,func="updateCount"})
         updateCount({count=#destroyedBeastsBag.getObjects()})
     end
-    checkLossID = Wait.time(checkLoss, 5, -1)
 
     ui.escalation = {}
     ui.escalation.tooltip = "On each board: Add 2 Explorer (total)\namong land with Beasts. If you can't\ninstead add 2 Explorer among lands\nwith Beasts on a different board."
@@ -142,12 +142,12 @@ function PostSetup(params)
     if params.level >= 5 then
         -- Setup extra invader cards
         local fearDeck = Player["White"].getHandObjects(1)
-        local count = #fearDeck
-
-        setupInvaderCard(fearDeck, 7, Global.getVar("stage3DeckZone"))
-        setupInvaderCard(fearDeck, 3, Global.getVar("stage2DeckZone"))
-        Wait.condition(function() postSetupComplete = true end, function()
-            return #Player["White"].getHandObjects(1) == count + 2
+        local stage3 = setupInvaderCard(fearDeck, 7, Global.getVar("stage3DeckZone"))
+        local stage2 = setupInvaderCard(fearDeck, 3, Global.getVar("stage2DeckZone"))
+        Wait.condition(function()
+            Wait.time(function() postSetupComplete = true end, 0.5)
+        end, function()
+            return (stage3 == nil or not stage3.isSmoothMoving()) and (stage2 == nil or not stage2.isSmoothMoving())
         end)
     else
         postSetupComplete = true
@@ -155,7 +155,7 @@ function PostSetup(params)
 end
 function setupInvaderCard(fearDeck, depth, zoneGuid)
     local count = 0
-    for i=#fearDeck,1,-1 do
+    for i = #fearDeck, 1, -1 do
         local card = fearDeck[i]
         if card.hasTag("Fear") then
             count = count + 1
@@ -164,7 +164,7 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
                 local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
                 if obj ~= nil then
                     if obj.type == "Deck" then
-                        obj.takeObject({
+                        return obj.takeObject({
                             position = pos,
                             smooth = false,
                             callback_function = function(o)
@@ -174,12 +174,38 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
                     elseif obj.type == "Card" then
                         obj.scale(1.37)
                         obj.setPosition(pos)
+                        return obj
                     end
                 end
-                return
+                return nil
             end
         end
     end
+    return nil
+end
+function getPlayerColor()
+    local zoneGuids = {}
+    for color,guid in pairs(Global.getTable("elementScanZones")) do
+        zoneGuids[guid] = color
+    end
+    for _,zone in pairs(getObjectFromGUID("a576cc").getZones()) do
+        if zoneGuids[zone.guid] then
+            return zoneGuids[zone.guid]
+        end
+    end
+    return ""
+end
+
+function Requirements(params)
+    return params.expansions["Branch & Claw"] or params.expansions["Jagged Earth"]
+end
+
+function AutomatedVictoryDefeat()
+    if checkLossID ~= nil then
+        Wait.stop(checkLossID)
+        checkLossID = nil
+    end
+    checkLossID = Wait.time(checkLoss, 5, -1)
 end
 function checkLoss()
     local count = 0
@@ -199,7 +225,7 @@ function checkLoss()
             if #obj.getZones() == 0 then
                 if color == string.sub(obj.getName(),1,-12) then
                     if obj.getQuantity() >= 2 then
-                        local bounds = obj.getBoundsNormalized()
+                        local bounds = obj.getBounds()
                         local hits = Physics.cast({
                             origin = bounds.center + bounds.offset,
                             direction = Vector(0,-1,0),
@@ -221,20 +247,4 @@ function checkLoss()
         Wait.stop(checkLossID)
         Global.call("Defeat", {adversary = self.getName()})
     end
-end
-function getPlayerColor()
-    local zoneGuids = {}
-    for color,guid in pairs(Global.getTable("elementScanZones")) do
-        zoneGuids[guid] = color
-    end
-    for _,zone in pairs(getObjectFromGUID("a576cc").getZones()) do
-        if zoneGuids[zone.guid] then
-            return zoneGuids[zone.guid]
-        end
-    end
-    return ""
-end
-
-function Requirements(params)
-    return params.expansions["Branch & Claw"] or params.expansions["Jagged Earth"]
 end

@@ -537,7 +537,7 @@ function upCast(obj)
         origin       = obj.getPosition() + Vector(0,0.1,0),
         direction    = Vector(0,1,0),
         type         = 3,
-        size         = obj.getBoundsNormalized().size,
+        size         = obj.getBounds().size,
         orientation  = Vector(0, 180, 180),
         --debug        = true,
     })

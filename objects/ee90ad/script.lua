@@ -1,21 +1,17 @@
 difficulty=4
-postSetup = true
-postSetupComplete = false
+
 customVictory = true
+automatedVictoryDefeat = true
 
 checkLossID = 0
 
-function onLoad()
-    if Global.getVar("gameStarted") then
-        checkLossID = Wait.time(checkLoss, 5, -1)
+function AutomatedVictoryDefeat()
+    if checkLossID ~= nil then
+        Wait.stop(checkLossID)
+        checkLossID = nil
     end
-end
-
-function PostSetup()
     checkLossID = Wait.time(checkLoss, 5, -1)
-    postSetupComplete = true
 end
-
 function checkLoss()
     local dahan = #getObjectsWithTag("Dahan")
     if dahan < 2 * Global.call("getMapCount", {norm = true, them = true}) then

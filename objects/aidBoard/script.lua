@@ -1,6 +1,8 @@
 numCards = 0
 discard = Vector(-46.21, 1.5, 0.33)
 tokenOffset = Vector(10,0.1,0)
+fearCount = {}
+fearTimers = {}
 
 function onSave()
     local data_table = {
@@ -51,7 +53,7 @@ function onLoad(saved_data)
         font_size      = 200,
     })
     self.createButton({
-        click_function = "removeFear",
+        click_function = "removeFearButton",
         function_owner = self,
         label          = "0",
         position       = Vector(0,-0.1,0.15),
@@ -61,7 +63,7 @@ function onLoad(saved_data)
         tooltip        = "Remove Fear"
     })
     self.createButton({
-        click_function = "addFear",
+        click_function = "addFearButton",
         function_owner = self,
         label          = "0",
         position       = Vector(0,-0.1,0.68),
@@ -639,7 +641,10 @@ function updateFearUI()
     end
     UI.setAttributes("panelFearGenerated", attributes)
 end
-function addFear()
+function addFearButton(_, color, _)
+    addFear({color = color})
+end
+function addFear(params)
     if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
         return
     end
@@ -654,8 +659,15 @@ function addFear()
         Global.setVar("generatedFear", generatedFear + 1)
     end
     updateFearUI()
+
+    if params.color then
+        handlePlayerFear(params.color, 1)
+    end
 end
-function removeFear()
+function removeFearButton(_, color, _)
+    removeFear({color = color})
+end
+function removeFear(params)
     if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
         return
     end
@@ -670,6 +682,27 @@ function removeFear()
         Global.setVar("generatedFear", generatedFear - 1)
     end
     updateFearUI()
+
+    if params.color then
+        handlePlayerFear(params.color, -1)
+    end
+end
+function handlePlayerFear(color, amount)
+    if fearCount[color] == nil then
+        fearCount[color] = 0
+    end
+    fearCount[color] = fearCount[color] + amount
+
+    if fearTimers[color] ~= nil then
+        Wait.stop(fearTimers[color])
+    end
+
+    local function printFear()
+        Player[color].print("Added "..fearCount[color].." Fear!", Color.White)
+        fearCount[color] = 0
+        fearTimers[color] = nil
+    end
+    fearTimers[color] = Wait.time(printFear, 1)
 end
 function modifyFearPool(obj, color, alt_click)
     local fearPool = Global.getVar("fearPool")

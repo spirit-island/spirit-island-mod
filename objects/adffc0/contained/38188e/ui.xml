@@ -12,8 +12,8 @@
     </HorizontalLayout>
 </Panel>
 <Panel id="drownPanel2" visibility="Invisible" width="330" height="150" position="0 180 -12" rotation="0 0 180">
-    <VerticalLayout>
-        <Button onClick="exchange" textAlignment="MiddleCenter" minHeight="60">+1 Energy</Button>
+    <VerticalLayout spacing="10" childForceExpandHeight="false">
+        <Button id="buttonExchange" visibility="Invisible" onClick="exchange" textAlignment="MiddleCenter" minHeight="60">+1 Energy</Button>
         <Toggle id="toggleExchange" onValueChanged="toggleExchange" isOn="true">Auto Energy</Toggle>
     </VerticalLayout>
 </Panel>

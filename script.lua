@@ -98,6 +98,7 @@ adversaryLossCallback2 = nil
 wave = 1
 castDown = nil
 castDownTimer = nil
+castDownColor = nil
 presenceTimer = nil
 victoryTimer = nil
 loss = nil
@@ -213,12 +214,12 @@ function onObjectCollisionEnter(hit_object, collision_info)
             if onlyCleanupTimePasses then
                 objectsToCleanup[collision_info.collision_object.guid] = true
             else
-                cleanupObject({obj = collision_info.collision_object, fear = false})
+                cleanupObject({obj = collision_info.collision_object, fear = false, reason = "Removing"})
             end
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
     elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
-        cleanupObject({obj = collision_info.collision_object, fear = true, remove = true})
+        cleanupObject({obj = collision_info.collision_object, fear = true, remove = true, color = castDownColor, reason = "Cast Down"})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)
         end
@@ -232,6 +233,8 @@ end
 function castDownCallback(board)
     local mapCount = getMapCount({norm = true, them = true})
     castDown = nil
+    castDownTimer = nil
+    castDownColor = nil
     local bag
     if board.hasTag("Balanced") then
         if board.getDecals() == nil then
@@ -479,12 +482,12 @@ function onLoad(saved_data)
 
     addHotkey("Remove Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            cleanupObject({obj = hoveredObject, fear = false})
+            cleanupObject({obj = hoveredObject, fear = false, color = playerColor, reason = "Removing"})
         end
     end)
     addHotkey("Destroy Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            cleanupObject({obj = hoveredObject, fear = true})
+            cleanupObject({obj = hoveredObject, fear = true, color = playerColor, reason = "Destroying"})
         end
     end)
 
@@ -3358,7 +3361,7 @@ function timePassesCo()
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
-            cleanupObject({obj = obj, fear = false})
+            cleanupObject({obj = obj, fear = false, reason = "Removing"})
         end
         objectsToCleanup[guid] = nil
     end
@@ -4194,14 +4197,14 @@ function cleanupObject(params)
         params.obj.setRotation(Vector(0,180,0))
         bag = townBag
         if params.fear and not noFear then
-            aidBoard.call("addFear")
+            aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
     elseif string.sub(params.obj.getName(),1,4) == "City" then
         params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
         if params.fear and not noFear then
-            aidBoard.call("addFear")
-            aidBoard.call("addFear")
+            aidBoard.call("addFear", {color = params.color, reason = params.reason})
+            aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
     elseif params.obj.getName() == "Blight" then
         params.obj.setRotation(Vector(0,180,0))

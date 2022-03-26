@@ -46,7 +46,7 @@ function tryObjectEnter(enter_object)
         exchangeAuto()
     end
     self.UI.setAttribute("count", "text", healthCount)
-    Global.call("cleanupObject", {obj=enter_object, fear=true})
+    Global.call("cleanupObject", {obj=enter_object, fear=true, reason="Drowning"})
     return false
 end
 

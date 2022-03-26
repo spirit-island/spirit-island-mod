@@ -659,10 +659,7 @@ function addFear(params)
         Global.setVar("generatedFear", generatedFear + 1)
     end
     updateFearUI()
-
-    if params.color then
-        handlePlayerFear(params.color, 1)
-    end
+    handlePlayerFear(params.color, 1, params.reason)
 end
 function removeFearButton(_, color, _)
     removeFear({color = color})
@@ -682,27 +679,47 @@ function removeFear(params)
         Global.setVar("generatedFear", generatedFear - 1)
     end
     updateFearUI()
-
-    if params.color then
-        handlePlayerFear(params.color, -1)
-    end
+    handlePlayerFear(params.color, -1, params.reason)
 end
-function handlePlayerFear(color, amount)
-    if fearCount[color] == nil then
-        fearCount[color] = 0
+function handlePlayerFear(color, amount, reason)
+    if color == nil then
+        color = ""
     end
-    fearCount[color] = fearCount[color] + amount
+    if reason == nil then
+        reason = ""
+    end
 
-    if fearTimers[color] ~= nil then
-        Wait.stop(fearTimers[color])
+    if fearCount[color] == nil then
+        fearCount[color] = {}
+    end
+    if fearCount[color][reason] == nil then
+        fearCount[color][reason] = 0
+    end
+    fearCount[color][reason] = fearCount[color][reason] + amount
+
+    if fearTimers[color] == nil then
+        fearTimers[color] = {}
+    end
+    if fearTimers[color][reason] ~= nil then
+        Wait.stop(fearTimers[color][reason])
     end
 
     local function printFear()
-        Player[color].print("Added "..fearCount[color].." Fear!", Color.White)
-        fearCount[color] = 0
-        fearTimers[color] = nil
+        local output = fearCount[color][reason].." Fear Generated"
+        if reason ~= "" then
+            output = output.." from "..reason
+        end
+        output = output.."!"
+
+        if color == "" then
+            printToAll(output.." (Global)", Color.White)
+        else
+            Player[color].print(output, Color.White)
+        end
+        fearCount[color][reason] = 0
+        fearTimers[color][reason] = nil
     end
-    fearTimers[color] = Wait.time(printFear, 1)
+    fearTimers[color][reason] = Wait.time(printFear, 1)
 end
 function modifyFearPool(obj, color, alt_click)
     local fearPool = Global.getVar("fearPool")

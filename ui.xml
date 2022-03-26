@@ -289,7 +289,7 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Invader Deck:</Text>
+                <Text class="gameOver" alignment="MiddleRight">Explores Left:</Text>
             </Cell>
             <Cell>
                 <Text id="panelGameOverDeck" class="gameOver" alignment="MiddleLeft"/>
@@ -303,10 +303,10 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Face-Up:</Text>
+                <Image image="Dahan" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
-                <Text id="panelGameOverFaceup" class="gameOver" alignment="MiddleLeft"/>
+                <Text id="panelGameOverDahan" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell>
                 <Image image="Blight" preserveAspect="true" rectAlignment="MiddleRight"/>
@@ -316,18 +316,6 @@
             </Cell>
         </Row>
         <Row>
-            <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Discard:</Text>
-            </Cell>
-            <Cell>
-                <Text id="panelGameOverDiscard" class="gameOver" alignment="MiddleLeft"/>
-            </Cell>
-            <Cell>
-                <Image image="Dahan" preserveAspect="true" rectAlignment="MiddleRight"/>
-            </Cell>
-            <Cell>
-                <Text id="panelGameOverDahan" class="gameOver" alignment="MiddleLeft"/>
-            </Cell>
         </Row>
         <Row>
             <Cell>
@@ -341,4 +329,6 @@
             </Cell>
         </Row>
     </TableLayout>
+    <Text id="panelGameOverFaceup" class="gameOver" active="false" alignment="MiddleLeft"/>
+    <Text id="panelGameOverDiscard" class="gameOver" active="false" alignment="MiddleLeft"/>
 </Panel>

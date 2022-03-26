@@ -2284,7 +2284,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
 
     -- DO NOT put any more math.random calls below this block of code
     -- Change up the order of boards so the extra board isn't always last
-    if not config.boardLayout == "Thematic" then
+    if config.boardLayout ~= "Thematic" then
         local function shuffle(tbl)
             for i = #tbl, 2, -1 do
                 local j = math.random(i)

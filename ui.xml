@@ -237,18 +237,42 @@
                 <Text id="panelGameOverHeader" class="gameOver"/>
             </Cell>
         </Row>
-        <Row>
-            <Cell id="panelGameOverLeadingHeaderCell">
+        <Row id="panelGameOverSpiritRow1" active="false">
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit1" class="gameOver"/>
+            </Cell>
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit2" class="gameOver"/>
+            </Cell>
+        </Row>
+        <Row id="panelGameOverSpiritRow2" active="false">
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit3" class="gameOver"/>
+            </Cell>
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit4" class="gameOver"/>
+            </Cell>
+        </Row>
+        <Row id="panelGameOverSpiritRow3" active="false">
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit5" class="gameOver"/>
+            </Cell>
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit6" class="gameOver"/>
+            </Cell>
+        </Row>
+        <Row id="panelGameOverAdversaryScenario" active="false">
+            <Cell>
                 <Text id="panelGameOverLeadingHeader" class="gameOver" alignment="MiddleRight">Leading:</Text>
             </Cell>
-            <Cell id="panelGameOverLeadingCell">
+            <Cell>
                 <Text id="panelGameOverLeading" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell columnSpan="2">
                 <Text id="panelGameOverScenario" class="gameOver"/>
             </Cell>
         </Row>
-        <Row>
+        <Row id="panelGameOverSupportSecondWave" active="false">
             <Cell>
                 <Text id="panelGameOverSupportingHeader" class="gameOver" alignment="MiddleRight">Supporting:</Text>
             </Cell>
@@ -258,6 +282,8 @@
             <Cell columnSpan="2">
                 <Text id="panelGameOverSecondWave" class="gameOver"/>
             </Cell>
+        </Row>
+        <Row>
         </Row>
         <Row>
             <Cell>

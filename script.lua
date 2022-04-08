@@ -4407,6 +4407,8 @@ function showGameOver()
     setVisiTable("panelGameOver", colors)
 end
 function refreshGameOver()
+    local lines = 8
+
     local headerText
     if loss then
         headerText = "Defeat - "
@@ -4439,25 +4441,50 @@ function refreshGameOver()
     end
     UI.setAttribute("panelGameOverHeader", "text", headerText)
 
+    local spiritCount = 0
+    for color, _ in pairs(selectedColors) do
+        local zone = getObjectFromGUID(elementScanZones[color])
+        for _, obj in ipairs(zone.getObjects()) do
+            if obj.hasTag("Spirit") then
+                spiritCount = spiritCount + 1
+                UI.setAttribute("panelGameOverSpirit"..spiritCount, "text", obj.getName())
+                if spiritCount % 2 == 1 then
+                    UI.setAttribute("panelGameOverSpiritRow"..(spiritCount + 1)/2, "active", true)
+                    lines = lines + 1
+                end
+            end
+        end
+    end
+
+    local adversaryOrScenario = false
+    local secondAdversaryOrSecondWave = false
     if adversaryCard ~= nil then
         UI.setAttribute("panelGameOverLeading", "text", adversaryCard.getName().." "..adversaryLevel)
+        adversaryOrScenario = true
     else
-        UI.setAttributes("panelGameOverLeading", {text = "No Adversary", alignment = "MiddleCenter"})
-        UI.setAttribute("panelGameOverLeadingHeaderCell", "active", "false")
-        UI.setAttribute("panelGameOverLeadingCell", "columnSpan", "2")
+        UI.setAttribute("panelGameOverLeadingHeader", "text", "")
     end
     if adversaryCard2 ~= nil then
         UI.setAttribute("panelGameOverSupporting", "text", adversaryCard2.getName().." "..adversaryLevel2)
+        secondAdversaryOrSecondWave = true
     else
         UI.setAttribute("panelGameOverSupportingHeader", "text", "")
     end
     if scenarioCard ~= nil then
         UI.setAttribute("panelGameOverScenario", "text", scenarioCard.getName())
-    else
-        UI.setAttribute("panelGameOverScenario", "text", "No Scenario")
+        adversaryOrScenario = true
     end
     if secondWave ~= nil then
         UI.setAttribute("panelGameOverSecondWave", "text", "Wave "..wave)
+        secondAdversaryOrSecondWave = true
+    end
+    if adversaryOrScenario then
+        UI.setAttribute("panelGameOverAdversaryScenario", "active", true)
+        lines = lines + 1
+    end
+    if secondAdversaryOrSecondWave then
+        UI.setAttribute("panelGameOverSupportSecondWave", "active", true)
+        lines = lines + 1
     end
 
     local dahan = #getObjectsWithTag("Dahan")
@@ -4494,6 +4521,8 @@ function refreshGameOver()
     if recorder ~= nil then
         UI.setAttributes("panelGameOverRecord", {active = "true", tooltip = recorder.getDescription()})
     end
+
+    UI.setAttribute("panelGameOver", "height", 80 * lines)
 end
 function sacrificeGameOver()
     if loss then

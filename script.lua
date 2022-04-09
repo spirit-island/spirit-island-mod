@@ -3828,9 +3828,16 @@ function MapPlacen(boards)
     local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i, board in pairs(boards) do
         if isThematic() then
-            ThematicMapBag.takeObject({
+            local selectedBoardName = nil
+            if selectedBoards[count] ~= nil then
+                selectedBoardName = selectedBoards[count]
+            else
+                selectedBoardName = board.board
+            end
+
+            local boardObject = ThematicMapBag.takeObject({
                 position = ThematicMapBag.getPosition() + Vector(0,-5,0),
-                guid = themGuids[board.board],
+                guid = themGuids[selectedBoardName],
                 smooth = false,
                 callback_function = function(obj)
                     if optionalThematicRedo then
@@ -3839,6 +3846,11 @@ function MapPlacen(boards)
                     BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)
                 end,
             })
+
+            if selectedBoards[count] == nil then
+                table.insert(selectedBoards, boardObject.getName())
+            end
+            count = count + 1
         else
             local bag = StandardMapBag
             if #bag.getObjects() == 0 then
@@ -3885,7 +3897,7 @@ function MapPlacen(boards)
                 end
             end
 
-            local boardObject= bag.takeObject({
+            local boardObject = bag.takeObject({
                 index = index,
                 position = bag.getPosition() + Vector(0,-5,0),
                 smooth = false,
@@ -3899,6 +3911,10 @@ function MapPlacen(boards)
                 end
             end
             count = count + 1
+        end
+
+        if i == rand then
+            printToAll("Board "..selectedBoards[i].." was choosen to be the extra board!", Color.SoftBlue)
         end
     end
 end

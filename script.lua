@@ -158,10 +158,10 @@ function onObjectEnterZone(zone, enter_object)
         if zone.guid == "ac8366" then
             handIndex = 2
         end
-        local handZone = Player["White"].getHandTransform(handIndex)
+        local handZone = Player["Black"].getHandTransform(handIndex)
         handZone.scale.x = handZone.scale.x + 0.75
         handZone.position.x = handZone.position.x - 0.375
-        Player["White"].setHandTransform(handZone, handIndex)
+        Player["Black"].setHandTransform(handZone, handIndex)
     end
 end
 function onObjectLeaveZone(zone, leave_object)
@@ -170,10 +170,10 @@ function onObjectLeaveZone(zone, leave_object)
         if zone.guid == "ac8366" then
             handIndex = 2
         end
-        local handZone = Player["White"].getHandTransform(handIndex)
+        local handZone = Player["Black"].getHandTransform(handIndex)
         handZone.scale.x = handZone.scale.x - 0.75
         handZone.position.x = handZone.position.x + 0.375
-        Player["White"].setHandTransform(handZone, handIndex)
+        Player["Black"].setHandTransform(handZone, handIndex)
     end
 end
 function onScriptingButtonDown(index, playerColor)
@@ -1434,7 +1434,7 @@ function SetupFear()
         fearCards[2] = fearCards[2] + 1
     end
 
-    local handZone = Player["White"].getHandTransform(1)
+    local handZone = Player["Black"].getHandTransform(1)
     local fearDeck = getObjectFromGUID(fearDeckSetupZone).getObjects()[1]
     local count = 0
 
@@ -1480,7 +1480,7 @@ function SetupFear()
     end
 
     Wait.frames(function()
-        fearDeck = Player["White"].getHandObjects(1)
+        fearDeck = Player["Black"].getHandObjects(1)
 
         local divider = getObjectFromGUID("f96a71")
         divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]-fearCards[2]+1)].getPosition() - Vector(0.2, 0, 0))
@@ -1492,7 +1492,7 @@ function SetupFear()
 
         Wait.condition(function()
             stagesSetup = stagesSetup + 1
-        end, function() return #Player["White"].getHandObjects(1) == count end)
+        end, function() return #Player["Black"].getHandObjects(1) == count end)
     end, 10)
 
     return 1

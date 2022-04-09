@@ -4,7 +4,7 @@ postSetup=true
 postSetupComplete=false
 
 function PostSetup()
-    local deck = Player["White"].getHandObjects(1)
+    local deck = Player["Black"].getHandObjects(1)
     local dividersSetup = 0
     for _, obj in pairs(deck) do
         if obj.getName() == "Terror II" then
@@ -23,7 +23,7 @@ function PostSetup()
 
     local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
     if fearDeck ~= nil then
-        local handZone = Player["White"].getHandTransform(1)
+        local handZone = Player["Black"].getHandTransform(1)
         if fearDeck.type == "Deck" then
             for i=1,#fearDeck.getObjects() do
                 fearDeck.takeObject({

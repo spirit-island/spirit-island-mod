@@ -15,9 +15,9 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 1.0,
-    "g": 1.0,
-    "b": 1.0,
+    "r": 0.25,
+    "g": 0.25,
+    "b": 0.25,
     "a": 0.0
   },
   "LayoutGroupSortIndex": 0,
@@ -34,5 +34,5 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "FogColor": "White"
+  "FogColor": "Black"
 }

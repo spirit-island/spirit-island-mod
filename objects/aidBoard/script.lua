@@ -742,8 +742,8 @@ function modifyFearPool(obj, color, alt_click)
 end
 
 function fearCard(params)
-    local fearDeck = Player["White"].getHandObjects(1)
-    local handTransform = Player["White"].getHandTransform(2)
+    local fearDeck = Player["Black"].getHandObjects(1)
+    local handTransform = Player["Black"].getHandTransform(2)
     local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
     local pos
     if params.earned then
@@ -757,14 +757,14 @@ function fearCard(params)
         local card = fearDeck[i]
         if card.getName() == "Terror II" then
             -- HACK work around issue where setPosition sometimes doesn't move object
-            card.deal(1, "White")
+            card.deal(1, "Black")
             Wait.condition(function()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))
             end, function() return not card.isSmoothMoving() end)
         elseif card.getName() == "Terror III" then
             -- HACK work around issue where setPosition sometimes doesn't move object
-            card.deal(1, "White")
+            card.deal(1, "Black")
             Wait.condition(function()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))

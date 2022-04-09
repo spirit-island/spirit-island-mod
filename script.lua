@@ -3834,7 +3834,7 @@ function MapPlacen(boards)
     local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i, board in pairs(boards) do
         if isThematic() then
-            local selectedBoardName = nil
+            local selectedBoardName = nil -- luacheck: ignore 311 (variable actually used)
             if selectedBoards[count] ~= nil then
                 selectedBoardName = selectedBoards[count]
             else

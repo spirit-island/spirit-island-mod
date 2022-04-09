@@ -548,6 +548,12 @@ function onLoad(saved_data)
     addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         grabSpiritMarkers()
     end)
+    addHotkey("Grab Destroy Bag", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        local bag = getObjectFromGUID("fd0a22")
+        if bag ~= nil then
+            bag.takeObject({position = cursorLocation})
+        end
+    end)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)

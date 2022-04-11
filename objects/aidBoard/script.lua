@@ -719,7 +719,7 @@ function handlePlayerFear(color, amount, reason)
         fearCount[color][reason] = 0
         fearTimers[color][reason] = nil
     end
-    fearTimers[color][reason] = Wait.time(printFear, 1)
+    fearTimers[color][reason] = Wait.time(printFear, 2)
 end
 function modifyFearPool(obj, color, alt_click)
     local fearPool = Global.getVar("fearPool")

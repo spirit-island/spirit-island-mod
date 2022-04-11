@@ -218,7 +218,7 @@ function setupGame()
     Wait.time(aidPanelScanLoop,1,-1)
     Wait.time(scanReady,1,-1)
 
-    if Global.getVar("useEventDeck") or #Global.getVar("eventDeckZone").getObjects() > 0 then
+    if Global.call("usingEvents") or #Global.getVar("eventDeckZone").getObjects() > 0 then
         UI.setAttribute("panelTurnOrderEvent","active","true")
         self.editButton({
             index = 9,

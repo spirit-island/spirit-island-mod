@@ -237,18 +237,42 @@
                 <Text id="panelGameOverHeader" class="gameOver"/>
             </Cell>
         </Row>
-        <Row>
-            <Cell id="panelGameOverLeadingHeaderCell">
+        <Row id="panelGameOverSpiritRow1" active="false">
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit1" class="gameOver"/>
+            </Cell>
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit2" class="gameOver"/>
+            </Cell>
+        </Row>
+        <Row id="panelGameOverSpiritRow2" active="false">
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit3" class="gameOver"/>
+            </Cell>
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit4" class="gameOver"/>
+            </Cell>
+        </Row>
+        <Row id="panelGameOverSpiritRow3" active="false">
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit5" class="gameOver"/>
+            </Cell>
+            <Cell columnSpan="2">
+                <Text id="panelGameOverSpirit6" class="gameOver"/>
+            </Cell>
+        </Row>
+        <Row id="panelGameOverAdversaryScenario" active="false">
+            <Cell>
                 <Text id="panelGameOverLeadingHeader" class="gameOver" alignment="MiddleRight">Leading:</Text>
             </Cell>
-            <Cell id="panelGameOverLeadingCell">
+            <Cell>
                 <Text id="panelGameOverLeading" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell columnSpan="2">
                 <Text id="panelGameOverScenario" class="gameOver"/>
             </Cell>
         </Row>
-        <Row>
+        <Row id="panelGameOverSupportSecondWave" active="false">
             <Cell>
                 <Text id="panelGameOverSupportingHeader" class="gameOver" alignment="MiddleRight">Supporting:</Text>
             </Cell>
@@ -258,6 +282,8 @@
             <Cell columnSpan="2">
                 <Text id="panelGameOverSecondWave" class="gameOver"/>
             </Cell>
+        </Row>
+        <Row>
         </Row>
         <Row>
             <Cell>
@@ -289,7 +315,7 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Invader Deck:</Text>
+                <Text class="gameOver" alignment="MiddleRight">Explores Left:</Text>
             </Cell>
             <Cell>
                 <Text id="panelGameOverDeck" class="gameOver" alignment="MiddleLeft"/>
@@ -303,10 +329,10 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Face-Up:</Text>
+                <Image image="Dahan" preserveAspect="true" rectAlignment="MiddleRight"/>
             </Cell>
             <Cell>
-                <Text id="panelGameOverFaceup" class="gameOver" alignment="MiddleLeft"/>
+                <Text id="panelGameOverDahan" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell>
                 <Image image="Blight" preserveAspect="true" rectAlignment="MiddleRight"/>
@@ -316,18 +342,6 @@
             </Cell>
         </Row>
         <Row>
-            <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Discard:</Text>
-            </Cell>
-            <Cell>
-                <Text id="panelGameOverDiscard" class="gameOver" alignment="MiddleLeft"/>
-            </Cell>
-            <Cell>
-                <Image image="Dahan" preserveAspect="true" rectAlignment="MiddleRight"/>
-            </Cell>
-            <Cell>
-                <Text id="panelGameOverDahan" class="gameOver" alignment="MiddleLeft"/>
-            </Cell>
         </Row>
         <Row>
             <Cell>
@@ -341,4 +355,6 @@
             </Cell>
         </Row>
     </TableLayout>
+    <Text id="panelGameOverFaceup" class="gameOver" active="false" alignment="MiddleLeft"/>
+    <Text id="panelGameOverDiscard" class="gameOver" active="false" alignment="MiddleLeft"/>
 </Panel>

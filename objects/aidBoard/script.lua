@@ -1,6 +1,8 @@
 numCards = 0
 discard = Vector(-46.21, 1.5, 0.33)
 tokenOffset = Vector(10,0.1,0)
+fearCount = {}
+fearTimers = {}
 
 function onSave()
     local data_table = {
@@ -51,7 +53,7 @@ function onLoad(saved_data)
         font_size      = 200,
     })
     self.createButton({
-        click_function = "removeFear",
+        click_function = "removeFearButton",
         function_owner = self,
         label          = "0",
         position       = Vector(0,-0.1,0.15),
@@ -61,7 +63,7 @@ function onLoad(saved_data)
         tooltip        = "Remove Fear"
     })
     self.createButton({
-        click_function = "addFear",
+        click_function = "addFearButton",
         function_owner = self,
         label          = "0",
         position       = Vector(0,-0.1,0.68),
@@ -216,7 +218,7 @@ function setupGame()
     Wait.time(aidPanelScanLoop,1,-1)
     Wait.time(scanReady,1,-1)
 
-    if Global.getVar("useEventDeck") or #Global.getVar("eventDeckZone").getObjects() > 0 then
+    if Global.call("usingEvents") or #Global.getVar("eventDeckZone").getObjects() > 0 then
         UI.setAttribute("panelTurnOrderEvent","active","true")
         self.editButton({
             index = 9,
@@ -639,7 +641,10 @@ function updateFearUI()
     end
     UI.setAttributes("panelFearGenerated", attributes)
 end
-function addFear()
+function addFearButton(_, color, _)
+    addFear({color = color})
+end
+function addFear(params)
     if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
         return
     end
@@ -654,8 +659,12 @@ function addFear()
         Global.setVar("generatedFear", generatedFear + 1)
     end
     updateFearUI()
+    handlePlayerFear(params.color, 1, params.reason)
 end
-function removeFear()
+function removeFearButton(_, color, _)
+    removeFear({color = color})
+end
+function removeFear(params)
     if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
         return
     end
@@ -670,6 +679,47 @@ function removeFear()
         Global.setVar("generatedFear", generatedFear - 1)
     end
     updateFearUI()
+    handlePlayerFear(params.color, -1, params.reason)
+end
+function handlePlayerFear(color, amount, reason)
+    if color == nil then
+        color = ""
+    end
+    if reason == nil then
+        reason = ""
+    end
+
+    if fearCount[color] == nil then
+        fearCount[color] = {}
+    end
+    if fearCount[color][reason] == nil then
+        fearCount[color][reason] = 0
+    end
+    fearCount[color][reason] = fearCount[color][reason] + amount
+
+    if fearTimers[color] == nil then
+        fearTimers[color] = {}
+    end
+    if fearTimers[color][reason] ~= nil then
+        Wait.stop(fearTimers[color][reason])
+    end
+
+    local function printFear()
+        local output = fearCount[color][reason].." Fear Generated"
+        if reason ~= "" then
+            output = output.." from "..reason
+        end
+        output = output.."!"
+
+        if color == "" then
+            printToAll(output.." (Global)", Color.White)
+        else
+            Player[color].print(output, Color.White)
+        end
+        fearCount[color][reason] = 0
+        fearTimers[color][reason] = nil
+    end
+    fearTimers[color][reason] = Wait.time(printFear, 2)
 end
 function modifyFearPool(obj, color, alt_click)
     local fearPool = Global.getVar("fearPool")
@@ -692,8 +742,8 @@ function modifyFearPool(obj, color, alt_click)
 end
 
 function fearCard(params)
-    local fearDeck = Player["White"].getHandObjects(1)
-    local handTransform = Player["White"].getHandTransform(2)
+    local fearDeck = Player["Black"].getHandObjects(1)
+    local handTransform = Player["Black"].getHandTransform(2)
     local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
     local pos
     if params.earned then
@@ -707,14 +757,14 @@ function fearCard(params)
         local card = fearDeck[i]
         if card.getName() == "Terror II" then
             -- HACK work around issue where setPosition sometimes doesn't move object
-            card.deal(1, "White")
+            card.deal(1, "Black")
             Wait.condition(function()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))
             end, function() return not card.isSmoothMoving() end)
         elseif card.getName() == "Terror III" then
             -- HACK work around issue where setPosition sometimes doesn't move object
-            card.deal(1, "White")
+            card.deal(1, "Black")
             Wait.condition(function()
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))

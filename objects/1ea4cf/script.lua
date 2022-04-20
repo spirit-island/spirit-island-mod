@@ -141,7 +141,7 @@ function PostSetup(params)
 
     if params.level >= 5 then
         -- Setup extra invader cards
-        local fearDeck = Player["White"].getHandObjects(1)
+        local fearDeck = Player["Black"].getHandObjects(1)
         local stage3 = setupInvaderCard(fearDeck, 7, Global.getVar("stage3DeckZone"))
         local stage2 = setupInvaderCard(fearDeck, 3, Global.getVar("stage2DeckZone"))
         Wait.condition(function()

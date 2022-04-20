@@ -19,7 +19,7 @@ function PostSetup()
 
     local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
     if fearDeck ~= nil then
-        local handZone = Player["White"].getHandTransform(1)
+        local handZone = Player["Black"].getHandTransform(1)
         if fearDeck.type == "Deck" then
             for i=1,#fearDeck.getObjects() do
                 fearDeck.takeObject({

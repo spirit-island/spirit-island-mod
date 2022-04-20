@@ -23,6 +23,11 @@ function onLoad(save_state)
             self.UI.setAttribute("count", "text", healthCount)
             self.UI.setAttribute("players", "text", Global.getVar("numPlayers"))
             self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
+            local visiblity = ""
+            if autoExchange then
+                visiblity = "Invisible"
+            end
+            self.UI.setAttribute("buttonExchange", "visibility", visiblity)
             self.UI.setAttribute("drownPanel", "visibility", "")
             self.UI.setAttribute("drownPanel2", "visibility", "")
         end, 2)
@@ -41,7 +46,7 @@ function tryObjectEnter(enter_object)
         exchangeAuto()
     end
     self.UI.setAttribute("count", "text", healthCount)
-    Global.call("cleanupObject", {obj=enter_object, fear=true})
+    Global.call("cleanupObject", {obj=enter_object, fear=true, reason="Drowning"})
     return false
 end
 
@@ -60,6 +65,9 @@ function toggleExchange()
     if autoExchange then
         exchangeAuto()
         self.UI.setAttribute("count", "text", healthCount)
+        self.UI.setAttribute("buttonExchange", "visibility", "Invisible")
+    else
+        self.UI.setAttribute("buttonExchange", "visibility", "")
     end
     self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
 end

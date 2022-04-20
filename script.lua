@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.2.2"
+version = "3.3.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -98,6 +98,7 @@ adversaryLossCallback2 = nil
 wave = 1
 castDown = nil
 castDownTimer = nil
+castDownColor = nil
 presenceTimer = nil
 victoryTimer = nil
 loss = nil
@@ -157,10 +158,10 @@ function onObjectEnterZone(zone, enter_object)
         if zone.guid == "ac8366" then
             handIndex = 2
         end
-        local handZone = Player["White"].getHandTransform(handIndex)
+        local handZone = Player["Black"].getHandTransform(handIndex)
         handZone.scale.x = handZone.scale.x + 0.75
         handZone.position.x = handZone.position.x - 0.375
-        Player["White"].setHandTransform(handZone, handIndex)
+        Player["Black"].setHandTransform(handZone, handIndex)
     end
 end
 function onObjectLeaveZone(zone, leave_object)
@@ -169,10 +170,10 @@ function onObjectLeaveZone(zone, leave_object)
         if zone.guid == "ac8366" then
             handIndex = 2
         end
-        local handZone = Player["White"].getHandTransform(handIndex)
+        local handZone = Player["Black"].getHandTransform(handIndex)
         handZone.scale.x = handZone.scale.x - 0.75
         handZone.position.x = handZone.position.x + 0.375
-        Player["White"].setHandTransform(handZone, handIndex)
+        Player["Black"].setHandTransform(handZone, handIndex)
     end
 end
 function onScriptingButtonDown(index, playerColor)
@@ -213,12 +214,12 @@ function onObjectCollisionEnter(hit_object, collision_info)
             if onlyCleanupTimePasses then
                 objectsToCleanup[collision_info.collision_object.guid] = true
             else
-                cleanupObject({obj = collision_info.collision_object, fear = false})
+                cleanupObject({obj = collision_info.collision_object, fear = false, reason = "Removing"})
             end
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
     elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
-        cleanupObject({obj = collision_info.collision_object, fear = true, remove = true})
+        cleanupObject({obj = collision_info.collision_object, fear = true, remove = true, color = castDownColor, reason = "Cast Down"})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)
         end
@@ -232,6 +233,8 @@ end
 function castDownCallback(board)
     local mapCount = getMapCount({norm = true, them = true})
     castDown = nil
+    castDownTimer = nil
+    castDownColor = nil
     local bag
     if board.hasTag("Balanced") then
         if board.getDecals() == nil then
@@ -479,20 +482,20 @@ function onLoad(saved_data)
 
     addHotkey("Remove Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            cleanupObject({obj = hoveredObject, fear = false})
+            cleanupObject({obj = hoveredObject, fear = false, color = playerColor, reason = "Removing"})
         end
     end)
     addHotkey("Destroy Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         if hoveredObject ~= nil and not hoveredObject.getLock() then
-            cleanupObject({obj = hoveredObject, fear = true})
+            cleanupObject({obj = hoveredObject, fear = true, color = playerColor, reason = "Destroying"})
         end
     end)
 
     addHotkey("Add Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
-        aidBoard.call("addFear")
+        aidBoard.call("addFear", {color = playerColor})
     end)
     addHotkey("Remove Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
-        aidBoard.call("removeFear")
+        aidBoard.call("removeFear", {color = playerColor})
     end)
     addHotkey("Flip Event Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("flipEventCard")
@@ -544,6 +547,12 @@ function onLoad(saved_data)
     addContextMenuItem("Grab Spirit Markers", grabSpiritMarkers, false)
     addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         grabSpiritMarkers()
+    end)
+    addHotkey("Grab Destroy Bag", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        local bag = getObjectFromGUID("fd0a22")
+        if bag ~= nil then
+            bag.takeObject({position = cursorLocation})
+        end
     end)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
@@ -1431,7 +1440,7 @@ function SetupFear()
         fearCards[2] = fearCards[2] + 1
     end
 
-    local handZone = Player["White"].getHandTransform(1)
+    local handZone = Player["Black"].getHandTransform(1)
     local fearDeck = getObjectFromGUID(fearDeckSetupZone).getObjects()[1]
     local count = 0
 
@@ -1477,7 +1486,7 @@ function SetupFear()
     end
 
     Wait.frames(function()
-        fearDeck = Player["White"].getHandObjects(1)
+        fearDeck = Player["Black"].getHandObjects(1)
 
         local divider = getObjectFromGUID("f96a71")
         divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]-fearCards[2]+1)].getPosition() - Vector(0.2, 0, 0))
@@ -1489,7 +1498,7 @@ function SetupFear()
 
         Wait.condition(function()
             stagesSetup = stagesSetup + 1
-        end, function() return #Player["White"].getHandObjects(1) == count end)
+        end, function() return #Player["Black"].getHandObjects(1) == count end)
     end, 10)
 
     return 1
@@ -3358,7 +3367,7 @@ function timePassesCo()
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
-            cleanupObject({obj = obj, fear = false})
+            cleanupObject({obj = obj, fear = false, reason = "Removing"})
         end
         objectsToCleanup[guid] = nil
     end
@@ -3825,9 +3834,16 @@ function MapPlacen(boards)
     local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i, board in pairs(boards) do
         if isThematic() then
-            ThematicMapBag.takeObject({
+            local selectedBoardName = nil -- luacheck: ignore 311 (variable actually used)
+            if selectedBoards[count] ~= nil then
+                selectedBoardName = selectedBoards[count]
+            else
+                selectedBoardName = board.board
+            end
+
+            local boardObject = ThematicMapBag.takeObject({
                 position = ThematicMapBag.getPosition() + Vector(0,-5,0),
-                guid = themGuids[board.board],
+                guid = themGuids[selectedBoardName],
                 smooth = false,
                 callback_function = function(obj)
                     if optionalThematicRedo then
@@ -3836,6 +3852,11 @@ function MapPlacen(boards)
                     BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)
                 end,
             })
+
+            if selectedBoards[count] == nil then
+                table.insert(selectedBoards, boardObject.getName())
+            end
+            count = count + 1
         else
             local bag = StandardMapBag
             if #bag.getObjects() == 0 then
@@ -3882,7 +3903,7 @@ function MapPlacen(boards)
                 end
             end
 
-            local boardObject= bag.takeObject({
+            local boardObject = bag.takeObject({
                 index = index,
                 position = bag.getPosition() + Vector(0,-5,0),
                 smooth = false,
@@ -3896,6 +3917,10 @@ function MapPlacen(boards)
                 end
             end
             count = count + 1
+        end
+
+        if i == rand then
+            printToAll("Board "..selectedBoards[i].." was choosen to be the extra board!", Color.SoftBlue)
         end
     end
 end
@@ -4194,14 +4219,14 @@ function cleanupObject(params)
         params.obj.setRotation(Vector(0,180,0))
         bag = townBag
         if params.fear and not noFear then
-            aidBoard.call("addFear")
+            aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
     elseif string.sub(params.obj.getName(),1,4) == "City" then
         params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
         if params.fear and not noFear then
-            aidBoard.call("addFear")
-            aidBoard.call("addFear")
+            aidBoard.call("addFear", {color = params.color, reason = params.reason})
+            aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
     elseif params.obj.getName() == "Blight" then
         params.obj.setRotation(Vector(0,180,0))
@@ -4404,6 +4429,8 @@ function showGameOver()
     setVisiTable("panelGameOver", colors)
 end
 function refreshGameOver()
+    local lines = 8
+
     local headerText
     if loss then
         headerText = "Defeat - "
@@ -4436,25 +4463,50 @@ function refreshGameOver()
     end
     UI.setAttribute("panelGameOverHeader", "text", headerText)
 
+    local spiritCount = 0
+    for color, _ in pairs(selectedColors) do
+        local zone = getObjectFromGUID(elementScanZones[color])
+        for _, obj in ipairs(zone.getObjects()) do
+            if obj.hasTag("Spirit") then
+                spiritCount = spiritCount + 1
+                UI.setAttribute("panelGameOverSpirit"..spiritCount, "text", obj.getName())
+                if spiritCount % 2 == 1 then
+                    UI.setAttribute("panelGameOverSpiritRow"..(spiritCount + 1)/2, "active", true)
+                    lines = lines + 1
+                end
+            end
+        end
+    end
+
+    local adversaryOrScenario = false
+    local secondAdversaryOrSecondWave = false
     if adversaryCard ~= nil then
         UI.setAttribute("panelGameOverLeading", "text", adversaryCard.getName().." "..adversaryLevel)
+        adversaryOrScenario = true
     else
-        UI.setAttributes("panelGameOverLeading", {text = "No Adversary", alignment = "MiddleCenter"})
-        UI.setAttribute("panelGameOverLeadingHeaderCell", "active", "false")
-        UI.setAttribute("panelGameOverLeadingCell", "columnSpan", "2")
+        UI.setAttribute("panelGameOverLeadingHeader", "text", "")
     end
     if adversaryCard2 ~= nil then
         UI.setAttribute("panelGameOverSupporting", "text", adversaryCard2.getName().." "..adversaryLevel2)
+        secondAdversaryOrSecondWave = true
     else
         UI.setAttribute("panelGameOverSupportingHeader", "text", "")
     end
     if scenarioCard ~= nil then
         UI.setAttribute("panelGameOverScenario", "text", scenarioCard.getName())
-    else
-        UI.setAttribute("panelGameOverScenario", "text", "No Scenario")
+        adversaryOrScenario = true
     end
     if secondWave ~= nil then
         UI.setAttribute("panelGameOverSecondWave", "text", "Wave "..wave)
+        secondAdversaryOrSecondWave = true
+    end
+    if adversaryOrScenario then
+        UI.setAttribute("panelGameOverAdversaryScenario", "active", true)
+        lines = lines + 1
+    end
+    if secondAdversaryOrSecondWave then
+        UI.setAttribute("panelGameOverSupportSecondWave", "active", true)
+        lines = lines + 1
     end
 
     local dahan = #getObjectsWithTag("Dahan")
@@ -4491,6 +4543,8 @@ function refreshGameOver()
     if recorder ~= nil then
         UI.setAttributes("panelGameOverRecord", {active = "true", tooltip = recorder.getDescription()})
     end
+
+    UI.setAttribute("panelGameOver", "height", 80 * lines)
 end
 function sacrificeGameOver()
     if loss then

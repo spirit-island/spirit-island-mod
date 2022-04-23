@@ -3473,8 +3473,9 @@ function resetPiece(object, rotation, offset, skip)
     end
 
     if upsideDown then
+        local flipOffset = object.getBounds().offset.y*2
         object.setRotation(rotation)
-        object.setPosition(object.getPosition() - Vector(0,object.getBounds().size.y,0))
+        object.setPosition(object.getPosition() - Vector(0,flipOffset,0))
     elseif not skip and object.getStateId() ~= -1 and object.getStateId() ~= 1 then
         object.setRotation(rotation)
         object.setPositionSmooth(object.getPosition() + Vector(0,objOffset,0))

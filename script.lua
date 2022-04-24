@@ -1393,13 +1393,13 @@ function setupBlightTokens()
         end
     end
     if adversaryCard ~= nil then
-        local blightTokens = adversaryCard.get("setupBlightTokens")
+        local blightTokens = adversaryCard.getVar("setupBlightTokens")
         if blightTokens ~= nil then
             numBlight = numBlight + math.min(blightTokens[adversaryLevel] * numBoards, max)
         end
     end
     if adversaryCard2 ~= nil then
-        local blightTokens = adversaryCard2.get("setupBlightTokens")
+        local blightTokens = adversaryCard2.getVar("setupBlightTokens")
         if blightTokens ~= nil then
             numBlight = numBlight + math.min(blightTokens[adversaryLevel2] * numBoards, max)
         end

@@ -3378,6 +3378,9 @@ function timePassesCo()
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end
+    for _,object in pairs(getObjectsWithTag("Time Passes")) do
+        object.call("timePasses")
+    end
 
     broadcastToAll("Time Passes...", Color.White)
     local quote = quotes[math.random(#quotes)]

@@ -1,0 +1,18 @@
+<Defaults>
+    <Text color="#000000" fontSize="64" fontStyle="Bold" verticalOverflow="Overflow"/>
+    <Button fontSize="50"/>
+</Defaults>
+
+<Panel id="waterPanel" visibility="Invisible" width="180" height="50" position="0 0 -12" rotation="0 0 180">
+    <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false" childAlignment="MiddleCenter">
+        <Text id="count"/>
+        <Text text=" / "/>
+        <Text id="water"/>
+    </HorizontalLayout>
+</Panel>
+<Panel id="waterPanel2" visibility="Invisible" width="330" height="150" position="0 180 -12" rotation="0 0 180">
+    <VerticalLayout spacing="10" childForceExpandHeight="false">
+        <Button onClick="energy" textAlignment="MiddleCenter" minHeight="60">+1 Energy</Button>
+        <Button onClick="repeatPower" textAlignment="MiddleCenter" minHeight="60">Repeat Power</Button>
+    </VerticalLayout>
+</Panel>

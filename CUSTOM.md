@@ -84,12 +84,6 @@ This section is meant for users who are familiar with both the tts mod and progr
 ### Spirit
 - `broadcast`: **string** - text to display when selecting spirit
   - Note: this needs to be set manually in json under **LuaScriptState** for spirit, anything set in **LuaScript** will be lost to spirit updater operation
-- Extra setup to run when game starts:
-  - Create object and place on top of spirit panel
-  - Tag object with "Setup"
-  - `doSetup(params)`
-    - `params`: **table** - contains data about player
-      - `color`: **string** - is the color of the player who picked the spirit
 
 ### Adversary & Scenario
 - collision workaround
@@ -281,3 +275,14 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `params`: **table** - contains data about game setup
         - `boards`: **number** - number of boards to be setup
       - return **table** - new board layout
+
+### Other
+- Trigger to run when game starts:
+  - Create object and place on top of spirit panel
+  - Tag object with "Setup"
+  - `doSetup(params)`
+    - `params`: **table** - contains data about player
+      - `color`: **string** - is the color of the player who picked the spirit
+- Trigger to run during time passes:
+  - Create object and tag with "Time Passes"
+  - `timePasses()`

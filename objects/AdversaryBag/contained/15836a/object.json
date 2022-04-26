@@ -1,30 +1,29 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -23.5455,
-    "posY": 2.0025,
-    "posZ": 36.3325,
+    "posX": -20.1307,
+    "posY": 2.4033,
+    "posZ": 36.1117,
     "rotX": 0.0,
-    "rotY": 180.0,
+    "rotY": 180.0132,
     "rotZ": 0.0,
-    "scaleX": 0.675,
-    "scaleY": 0.675,
-    "scaleZ": 0.675
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Destroyed Beasts",
-  "Description": "Russia Lv0",
+  "Description": "If there are ever more Beasts here than on the Island, the Invaders win.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.061,
-    "g": 0.061,
-    "b": 0.061,
-    "a": 0.0
+    "r": 0.9647,
+    "g": 0.5843,
+    "b": 0.5176
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
   "Grid": false,
-  "Snap": false,
+  "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
@@ -38,84 +37,42 @@
   "MeshIndex": -1,
   "Number": 0,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-    "DiffuseURL": "",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
     "NormalURL": "",
     "ColliderURL": "",
-    "Convex": false,
-    "MaterialIndex": 0,
+    "Convex": true,
+    "MaterialIndex": 1,
     "TypeIndex": 6,
-    "CastShadows": true
-  },
-  "ChildObjects": [
-    {
-      "GUID": "445754",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -0.0255,
-        "posY": 0.2693,
-        "posZ": -0.0386,
-        "rotX": 0.0,
-        "rotY": 0.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5409,
-        "scaleY": 1.4815,
-        "scaleZ": 0.5409
-      },
-      "Nickname": "Beasts",
-      "Description": "Harms Invaders and generates Fear as specified by Powers and Event Cards",
-      "GMNotes": "",
-      "ColorDiffuse": {
+    "CustomShader": {
+      "SpecularColor": {
         "r": 1.0,
         "g": 1.0,
         "b": 1.0
       },
-      "Tags": [
-        "Highlight"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110812/04019E4C271180904A4648C87F9BFA23364FB9F6/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
     },
+    "CastShadows": true
+  },
+  "Bag": {
+    "Order": 0
+  },
+  "ChildObjects": [
     {
       "GUID": "56e8c7",
       "Name": "BlockSquare",
       "Transform": {
-        "posX": -0.0688,
-        "posY": 0.2258,
-        "posZ": 0.0238,
-        "rotX": 0.0,
-        "rotY": 225.0,
-        "rotZ": 0.0,
-        "scaleX": 2.1583,
-        "scaleY": 0.4423,
-        "scaleZ": 0.16
+        "posX": 0.0017,
+        "posY": 0.062,
+        "posZ": 0.0346,
+        "rotX": 0.1562,
+        "rotY": 224.8837,
+        "rotZ": 359.8256,
+        "scaleX": 0.954,
+        "scaleY": 0.1157,
+        "scaleZ": 0.06
       },
       "Nickname": "",
       "Description": "",
@@ -147,15 +104,15 @@
       "GUID": "51f83b",
       "Name": "BlockSquare",
       "Transform": {
-        "posX": -0.0085,
-        "posY": 0.2013,
-        "posZ": 0.0072,
-        "rotX": 0.0,
-        "rotY": 145.0,
-        "rotZ": 0.0,
-        "scaleX": 2.2963,
-        "scaleY": 0.4773,
-        "scaleZ": 0.159
+        "posX": 0.0073,
+        "posY": 0.0614,
+        "posZ": 0.0324,
+        "rotX": 359.8554,
+        "rotY": 144.8843,
+        "rotZ": 359.8159,
+        "scaleX": 0.9165,
+        "scaleY": 0.1148,
+        "scaleZ": 0.0596
       },
       "Nickname": "",
       "Description": "",

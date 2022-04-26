@@ -1,27 +1,30 @@
 {
-  "Name": "Custom_Model_Infinite_Bag",
+  "Name": "Custom_Model",
   "Transform": {
-    "posX": -37.22,
-    "posY": 1.0942,
-    "posZ": 13.5519,
+    "posX": 45.1444,
+    "posY": 2.4033,
+    "posZ": 37.5996,
     "rotX": 0.0,
-    "rotY": 180.0,
+    "rotY": 180.0002,
     "rotZ": 0.0,
     "scaleX": 1.4,
     "scaleY": 1.4,
     "scaleZ": 1.4
   },
-  "Nickname": "Strife",
-  "Description": "[b]Blocks a specific Invader’s Damage the\r next time they Damage Dahan and/or the land[/b],\r and is then Removed.",
+  "Nickname": "Badlands",
+  "Description": "[b]Increases Damage to Invaders/\rDahan by 1.[/b] [i](Once per Action.)[/i]",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.3961,
-    "g": 0.7647,
-    "b": 0.9137
+    "r": 0.9882,
+    "g": 0.6745,
+    "b": 0.1059
   },
+  "Tags": [
+    "Highlight"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
-  "Locked": true,
+  "Locked": false,
   "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
@@ -33,16 +36,14 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "MaterialIndex": -1,
-  "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927960218/D101BAE77AFA4DA599A21DFB81AA6C53289DD81E/",
-    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931505750/CDE2ECADF7D9370E0B4711DC6172B3EAC5DACF7A/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
     "NormalURL": "",
     "ColliderURL": "",
     "Convex": true,
-    "MaterialIndex": 0,
-    "TypeIndex": 7,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
     "CustomShader": {
       "SpecularColor": {
         "r": 1.0,
@@ -53,6 +54,6 @@
       "SpecularSharpness": 2.0,
       "FresnelStrength": 0.0
     },
-    "CastShadows": true
+    "CastShadows": false
   }
 }

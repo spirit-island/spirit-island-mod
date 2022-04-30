@@ -4392,13 +4392,38 @@ function checkVictory(returnOnly)
         return false
     end
     local victory = false
-    if #getObjectsWithTag("City") == 0 then
+
+    invaderTierLeft = 0
+    for _,bag in pairs(getObjectsWithTag("Counting Bag")) do
+        for _,obj in pairs(bag.getObjects()) do
+            for _,tag in pairs(obj.tags) do
+                if tag == "City" then
+                    invaderTierLeft = 3
+                    break
+                elseif tag == "Town" then
+                    invaderTierLeft = 2
+                    break
+                elseif tag == "Explorer" then
+                    invaderTierLeft = 1
+                    break
+                end
+            end
+            if invaderTierLeft == 3 then
+                break
+            end
+        end
+        if invaderTierLeft == 3 then
+            break
+        end
+    end
+
+    if #getObjectsWithTag("City") == 0 and invaderTierLeft < 3 then
         if terrorLevel == 3 then
             victory = true
-        elseif #getObjectsWithTag("Town") == 0 then
+        elseif #getObjectsWithTag("Town") == 0 and invaderTierLeft < 2 then
             if terrorLevel == 2 then
                 victory = true
-            elseif #getObjectsWithTag("Explorer") == 0 then
+            elseif #getObjectsWithTag("Explorer") == 0 and invaderTierLeft < 1 then
                 victory = true
             end
         end
@@ -4535,9 +4560,36 @@ function refreshGameOver()
     UI.setAttribute("panelGameOverFaceup", "text", cards)
     UI.setAttribute("panelGameOverDiscard", "text", discard)
 
-    UI.setAttribute("panelGameOverExplorer", "text", #getObjectsWithTag("Explorer"))
-    UI.setAttribute("panelGameOverTown", "text", #getObjectsWithTag("Town"))
-    UI.setAttribute("panelGameOverCity", "text", #getObjectsWithTag("City"))
+    local explorers = #getObjectsWithTag("Explorer")
+    local towns = #getObjectsWithTag("Town")
+    local cities = #getObjectsWithTag("City")
+
+    for _,bag in pairs(getObjectsWithTag("Counting Bag")) do
+        for _,obj in pairs(bag.getObjects()) do
+            for _,tag in pairs(obj.tags) do
+                if tag == "City" then
+                    cities = cities + 1
+                    break
+                elseif tag == "Town" then
+                    towns = towns + 1
+                    break
+                elseif tag == "Explorer" then
+                    explorers = explorers + 1
+                    break
+                elseif tag == "Blight" then
+                    blight = blight + 1
+                    break
+                elseif tag == "Dahan" then
+                    dahan = dahan + 1
+                    break
+                end
+            end
+        end
+    end
+
+    UI.setAttribute("panelGameOverExplorer", "text", explorers)
+    UI.setAttribute("panelGameOverTown", "text", towns)
+    UI.setAttribute("panelGameOverCity", "text", cities)
     UI.setAttribute("panelGameOverBlight", "text", blight)
     UI.setAttribute("panelGameOverDahan", "text", dahan)
 

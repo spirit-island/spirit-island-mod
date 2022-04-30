@@ -3395,24 +3395,23 @@ function timePassesCo()
     return 1
 end
 function handlePiece(object, offset)
-    local name = object.getName()
-    if string.sub(name, 1, 4) == "City" then
+    if object.hasTag("City") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
-    elseif string.sub(name, 1, 4) == "Town" then
+    elseif object.hasTag("Town") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
-    elseif string.sub(name, 1, 8) == "Explorer" then
+    elseif object.hasTag("Explorer") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
-    elseif string.sub(name, 1, 5) == "Dahan" then
+    elseif object.hasTag("Dahan") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,0,0), offset, false)
         end
-    elseif name == "Blight" then
+    elseif object.hasTag("Blight") then
         object = resetPiece(object, Vector(0,180,0), offset, false)
     elseif object.hasTag("Reminder Token") then
         if object.getLock() == false then
@@ -4224,26 +4223,26 @@ end
 
 function cleanupObject(params)
     local bag = nil
-    if string.sub(params.obj.getName(),1,5) == "Dahan" then
+    if params.obj.hasTag("Dahan") then
         params.obj.setRotation(Vector(0,0,0))
         bag = dahanBag
-    elseif string.sub(params.obj.getName(),1,8) == "Explorer" then
+    elseif params.obj.hasTag("Explorer") then
         params.obj.setRotation(Vector(0,180,0))
         bag = explorerBag
-    elseif string.sub(params.obj.getName(),1,4) == "Town" then
+    elseif params.obj.hasTag("Town") then
         params.obj.setRotation(Vector(0,180,0))
         bag = townBag
         if params.fear and not noFear then
             aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
-    elseif string.sub(params.obj.getName(),1,4) == "City" then
+    elseif params.obj.hasTag("City") then
         params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
         if params.fear and not noFear then
             aidBoard.call("addFear", {color = params.color, reason = params.reason})
             aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
-    elseif params.obj.getName() == "Blight" then
+    elseif params.obj.hasTag("Blight") then
         params.obj.setRotation(Vector(0,180,0))
         if params.remove then
             bag = boxBlightBag

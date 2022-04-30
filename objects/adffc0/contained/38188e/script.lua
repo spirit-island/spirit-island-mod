@@ -1,6 +1,5 @@
 local healthCount = 0
 local autoExchange = true
-local oceanGuid = "07dd23"
 
 function onSave()
     local data_table = {
@@ -74,7 +73,8 @@ end
 function exchange(player, _, _)
     local numPlayers = Global.getVar("numPlayers")
     if numPlayers <= healthCount then
-        local success = Global.call("giveEnergy", {color=getPlayerColor(), energy=1})
+        local color = Global.call("getSpiritColor", {name = "Ocean's Hungry Grasp"})
+        local success = Global.call("giveEnergy", {color=color, energy=1})
         if success then
             healthCount = healthCount - numPlayers
             self.UI.setAttribute("count", "text", healthCount)
@@ -86,23 +86,12 @@ function exchange(player, _, _)
     end
 end
 
-function getPlayerColor()
-    local zoneGuids = {}
-    for color,guid in pairs(Global.getTable("elementScanZones")) do
-        zoneGuids[guid] = color
-    end
-    for _,zone in pairs(getObjectFromGUID(oceanGuid).getZones()) do
-        if zoneGuids[zone.guid] then
-            return zoneGuids[zone.guid]
-        end
-    end
-    return ""
-end
 function exchangeAuto()
     local numPlayers = Global.getVar("numPlayers")
     local energy = healthCount / numPlayers
     if energy == 0 then return end
-    local success = Global.call("giveEnergy", {color=getPlayerColor(), energy=energy})
+    local color = Global.call("getSpiritColor", {name = "Ocean's Hungry Grasp"})
+    local success = Global.call("giveEnergy", {color=color, energy=energy})
     if success then
         healthCount = healthCount % numPlayers
     else

@@ -1,5 +1,4 @@
 local count = 0
-local downpourGuid = "1c6929"
 
 function onSave()
     local data_table = {
@@ -41,8 +40,8 @@ function timePasses()
 end
 
 function countWater()
-    local color = getPlayerColor()
-    if color == "" then
+    local color = Global.call("getSpiritColor", {name = "Downpour Drenches the World"})
+    if color == nil then
         return
     end
 
@@ -54,7 +53,8 @@ end
 function energy(player, _, _)
     local max = tonumber(self.UI.getAttribute("water", "text"))
     if count < max then
-        local success = Global.call("giveEnergy", {color=getPlayerColor(), energy=1})
+        local color = Global.call("getSpiritColor", {name = "Downpour Drenches the World"})
+        local success = Global.call("giveEnergy", {color=color, energy=1})
         if success then
             count = count + 1
             self.UI.setAttribute("count", "text", count)
@@ -73,17 +73,4 @@ function repeatPower(player, _, _)
     else
         Player[player.color].broadcast("No uses of Pour Down Across the Island remaining", Color.Red)
     end
-end
-
-function getPlayerColor()
-    local zoneGuids = {}
-    for color,guid in pairs(Global.getTable("elementScanZones")) do
-        zoneGuids[guid] = color
-    end
-    for _,zone in pairs(getObjectFromGUID(downpourGuid).getZones()) do
-        if zoneGuids[zone.guid] then
-            return zoneGuids[zone.guid]
-        end
-    end
-    return ""
 end

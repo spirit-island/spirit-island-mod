@@ -4281,10 +4281,20 @@ function cleanupObject(params)
     end
 end
 ----
-function getSpiritColor(name)
+function getSpirit(params)
     for color,guid in pairs(elementScanZones) do
         for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
-            if object.hasTag("Spirit") and object.getName() == name then
+            if object.hasTag("Spirit") and object.getName() == params.name then
+                return object
+            end
+        end
+    end
+    return nil
+end
+function getSpiritColor(params)
+    for color,guid in pairs(elementScanZones) do
+        for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
+            if object.hasTag("Spirit") and object.getName() == params.name then
                 return color
             end
         end
@@ -4307,7 +4317,7 @@ function checkPresenceLoss()
         if #obj.getZones() == 0 then
             local color = string.sub(obj.getName(),1,-12)
             if colors[color] == nil then
-                color = getSpiritColor(obj.getDescription())
+                color = getSpiritColor({name = obj.getDescription()})
             end
             -- Color does not already have presence on island
             if color ~= nil and not colors[color] then

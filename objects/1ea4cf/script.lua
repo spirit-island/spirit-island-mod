@@ -183,18 +183,6 @@ function setupInvaderCard(fearDeck, depth, zoneGuid)
     end
     return nil
 end
-function getPlayerColor()
-    local zoneGuids = {}
-    for color,guid in pairs(Global.getTable("elementScanZones")) do
-        zoneGuids[guid] = color
-    end
-    for _,zone in pairs(getObjectFromGUID("a576cc").getZones()) do
-        if zoneGuids[zone.guid] then
-            return zoneGuids[zone.guid]
-        end
-    end
-    return ""
-end
 
 function Requirements(params)
     return params.expansions["Branch & Claw"] or params.expansions["Jagged Earth"]
@@ -219,7 +207,7 @@ function checkLoss()
         end
     end
     if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then
-        local color = getPlayerColor()
+        local color = Global.call("getSpiritColor", {name = "Many Minds Move as One"})
         for _,obj in pairs(getObjectsWithTag("Presence")) do
             -- Presence is not in player area
             if #obj.getZones() == 0 then

@@ -1,54 +1,217 @@
-Instructions for play
+### Intro
+- For the most part, the only things automated by the mod are Time Passes and Setup (not including the Initial Explore and Spirit Setup)
+- It is not recommended to use the Rewind / Fast Forward Buttons (they often break scripted mods)
+- Aspects of this mod may not match with the printed version as it aims to stay updated with errata (printed or not)
+  - E.g. The Blight Card has 1 more Blight on it during Setup (https://querki.net/u/darker/spirit-island-faq/#!one-more-blight-errata)
+- To use beta versions of the mod:
+  - Download the TTS save from the pinned messages in #tabletop-simulator-mod channel (https://discord.gg/G84zRCrJZa)
+  - Place that save file at: My Documents/My Games/Tabletop Simulator/Saves
+  - Load the save:
+    - Open a lobby in TTS
+    - "Games" (top of the screen) &gt; "Save & Load" &gt; click the save file &gt; "Load"
 
-- While some parts of the mod are scripted, many parts (such as exploring and building/placing of invaders after setup) are not
-- When playing single player you can ignore the ready token and the "ready" text at the upper right (it's used for coordination among players)
-- Do not hit the rewind/fastforward (they do not work well with scripted mods)
-- To look at the reverse side of your spirit panel press Alt+Shift (default keybinding in TTS) and mouse over the spirit panel 
-- To zoom in on a card hold the Alt key (default keybinding in TTS) and mouse over the card/object
-
-Troubleshooting Tips:
-- Some of my items are plain white, or yellow/black hazard markings
-  - Go to Menu -> Configuration -> General and untick "Mod Caching" then reload your mod. Once your mod is successfully loaded, go turn Mod Caching back on again.
-- The mod is stuck at x% and won't load anymore
+### Troubleshooting
+- Some objects are not loading (appearing white or yellow and black)
+  - Go to Menu &gt; Configuration &gt; General and uncheck "Mod Caching" &gt; reload the Mod
+  - Optionally you can turn Mod Caching back on (this will decrease load times in the future)
+- The mod gets stuck at a certain % when loading
   - You've run out of memory. While TTS minimum is 4GB, the Spirit Island mod requires more than this, 8GB advised. If you've got less than 4GB ram, or are playing on a 32-bit operating system, you cannot play this mod.
-- The camera behaves strangely
-  - Press P, or right-click off the table to change your camera mode. 3rd Person is recommended. You can press spacebar to return to your default camera position.
-- A board is rotated or sized incorrectly for some players
-  - Either the player with the issues can reconnect or someone who sees the board properly can use the gizmo tool to change the rotation/scale by 0.01
-- To discard cards, right click and select discard. Reclaim, by selecting the card(s) from the discard zone (below your cards in hand area) and drag them up.
+- An Island Board is rotated/sized incorrectly for some players
+  - The player(s) with the issues should reconnect, or
+  - A player without the issues should use the Gizmo Tool (F8) and change the position/rotation/scale of the effected Island Board(s) by +0.01
 
-Intermediate Tips:
-- Press numpad keys (as shown in the bottom right) to spawn new pieces
-  - Make sure numlock is enabled
-  - Note that these scripting keys can be rebound in the TTS settings
-- Lock pieces (hover over the piece and right-click->Toggles->Lock or press "L")
-- Mark damage on pieces by changing the state
-  - i.e. to mark one damage on a town, right click the town and change the state to 2
-  - You can also press a number key to change the state (so press 2 to change the state to 2)
-  - Note that invaders that have extra health or deal extra damage are rendered in a different color (i.e. red for england buildings, and blue for russian explorers)
-- Defend values can also be set as a state
-- To prevent a piece from going away during time passes you should lock it (right-click and select lock)
-- You can use energy tokens instead of the counter by deleting the energy counter (right-click on the energy counter and press delete)
-  - Note that deleting requires you to be the host or to be promoted
-- When removing blight from the blight card (usually for an event), move it to the "box" to the top-left of the play area (instead of deleting it)
-- When you have dealt enough damage to an invader to destroy it, drag it from the island board onto the "play mat" and add the corresponding amount of fear to the fear pool. 
-  - This has to be manual because some events change the amount of fear that you generate
-  
-Advanced Tips:
-- UI elements can be enabled and disabled with the little triangle near the top-right of your screen
-- You can play double-handed (i.e. play 2 or more spirits) by changing your TTS player color in the top-right of the screen and choosing another spirit
-  - Note that your UI elements are tracked per spirit
-- You can bind keys to many other actions with Options (near the top-middle of the screen) -> Game Keys
-- If you play thresholded "Cast Down Into the Briny Deeps" use the gizmo tool (one of the tools on the left side of the screen) to move the island board
-- You can choose what island boards to play with at setup by placing the island boards before starting your game
-- To change what spirit you're playing after you've already started the game either reload the mod to restart everything, or unlock the spirit panel (right-click and press lock) and delete the spirit panel and any extra tokens/cards it has (right-click and select delete), then drag over a new spirit panel.
-- To play with an archipelago map, grab the map tiles from the box, which is to the left of the setup buttons, and then place them onto the map. When you hit Start Game after choosing your options the mod will set things up for you
-  - You probably want to hit the "Hide UI" button in the setup area to see more clearly where you are putting the boards
-  - This holds true for any custom map setup you want to do
-- To use save files posted in the Discord channel, download the JSON file and put it into your TTS saves folder: My Documents/My Games/Tabletop Simulator/Saves
-- If you play "Unlock The Gates of Deepest Power" you can right-click the "Gain a Major" button to draw two major powers
+## Overview
+### TTS Beginners
+- There are 10 default keybindings (using Num 0 - 9)
+  - These are outlined in the Notes (lower right of the screen)
+- To look at the underside of your Spirit Panel (for the setup instructions):
+ - Hover + Alt + Shift
+- To look at a card
+ - Hover + Alt
+- To mark a piece as Damaged: change its state
+  - Hover + Page Up/Down to Increase/Decrease Damage
+  - Hover + a num row key (0 Damage is state 1, 1 Damage is state 2, etc.)
+- To mark a land as Defended
+    - Use your respective Player's Defend Token (found next to the Elements above your Play Area)
+    - Change its state to show a specific number
+        - To set a double digit state: hover + two numbers in quick succession)
+- To make a Sacred Site
+  - Stack your Presence, or
+  - Set the Presence to state 2 (for Spirits who have others ways of making Sacred Sites, e.g. Rivers Surges in Sunlight)
+- To Remove a piece
+  - Drop it on the Ocean playmat to Removes the piece
+- To Destroy a piece
+  - Remove it and manually Generate Fear, or
+  - Drop it on a Destroy bag (found in the Box, at the top left of the table)
+- To Forget a Power Card
+  - Right click &gt; "Forget"
+  - Forgotten Cards are located in the Box
+- To Discard a Power Card
+  - Right Click &gt; "Discard (to 2nd hand)"
+  - Cards in Play are automatically Discarded during Time Passes
+  - Discarded Cards are located just behind your hand
+- To rebind scripted keybindings or bind additional functionality
+  - Options &gt; Game Keys
 
-Spirit-Specific tips:
-- When playing as Shroud of Silent Mist it's important to not heal invaders and dahan in its land when time passes
-  - You can do this by locking the bottom invader in a stack or by stacking the damaged invader on top of a scenario token
-- When playing Stalight Seeks Its Form and playing "Boon of Reimagining" you can right-click the "Gain a minor power" to draw 6 minors and gain two of them
+### Spirit Island Beginners
+- To simplify the setup UI: Uncheck "Advanced Settings"
+- When choosing a Spirit, it is recommended:
+  - To not use Aspects: Click "Aspects: All" so it shows "Aspects: None", and
+  - To use the Progression Deck: Click "Progression: No" so  it shows "Progression: Yes"
+- To use the Player Aid cards: "Show Player Aids" (upper right of the table) and optionally Unlock (Hover + L) and move them
+
+### In Each Play Area There Is...
+- A bag of Defend Tokens
+  - These have a state for the various defend values
+  - The backside of this token is the generic player marker
+- A bag of Isolate Tokens
+  - The backside of this token is the generic player marker
+- A bag for each of the 8 Elements
+  - With 0's underneath them, tracking what Elements you currently have (from Cards and/or Presence Tracks)
+- A bag of "Any" Elements
+  - These have a state (from 1 - 8) for each Element
+  - Can be used when an "Any" is revealed on your Presence Tracks
+- An "Energy Cost: 0"
+  - Tracking the total Energy Cost of all Power Cards you have in Play
+- A Digital Counter
+  - Tracking how much Energy you have
+- A "Gain" Button
+  - Clicked to Gain Energy equal to the highest number on your Energy Track (excluding Energy from Growth options), or
+  - Right-clicked to undo gaining that Energy
+- A "Pay" Button
+  - Clicked to Pay Energy equal to the total Energy Cost (mentioned above), or
+  - Right-clicked to undo paying that Energy
+- A Ready Token (with a red X on it)
+  - When flipped (Hover + F, or click the UI in the top right) shows a green 🗸
+  - When all are flipped, the turn progresses to the next Phase
+
+### UI Elements (Toggleable in the Top Right):
+- "Core Buttons"
+  - "Gain a Major"
+    - Reveals 4 Major Powers Cards, which you Gain 1 of by pressing "Pick Power"
+  - "Gain a Minor"
+    - The same as "Gain a Major" but with Minor Power Cards
+  - "Time Passes"
+    - Cleans things up for the next turn (see the Time Passes section for more detail)
+  - A Ready Token
+    - Serves as a reminder of if you have already flipped your ready token
+    - Flips your Ready Token
+- "Invader Board"
+  - A tracker of how much Blight is currently remaining on the Blight Card
+  - A tracker of how much Earned/Unearned Fear there is
+    - Can be clicked to Add/Remove Fear from the Earned Fear Pool
+  - A tracker of the Invader Cards in each Invader Step and the current Invader Stage
+    - Any Steps which have been modified by an Adversary will have a bold black outline
+    - "Stage" can be clicked to reveal the top Invader Card
+    - "Explore" (visible when an Explore Card is revealed) can be clicked to Advance Invader Cards
+- "Adversary"
+  - A reminder of the Escalation Effect and Additional Loss Conditions
+    - The Kingdom of France (Plantation Colony), The Habsburg Monarchy (Livestock Colony), and The Tsardom of Russia will also have additional information tracking their loss counter
+    - When playing with 2 Adversaries, where the Supporting Adversary is The Kingdom of France (Plantation Colony) or The Kingdom of Sweden, there is a "Random" button
+      - Which is intended to be used whenever there is a Stage III Escalation (see https://querki.net/u/darker/spirit-island-faq/#!.7w4gecx)
+  - A reminder of each Adversary Level Effect currently in Play (Levels which only affect Setup are not included)
+  - You can hover over any effect to see the full text on the Adversary Card
+- "Turn Order"
+  - An outline of the Phases of the Game
+  - The current Phase of the Game is surrounded by &gt;&gt; &lt;&lt;
+  - The Phase changes when by clicked in this UI, or when all Ready Tokens are flipped to the green side
+- "Seat Controls"
+  - Toggles buttons in each Player's play area
+  - "Swap Place":
+    - Will move your Spirit Panel and Hand/Discarded cards to the area the button is in
+  - "Play [Color]/Spirit"
+    - Will make you functionally become that player
+  - "Swap [Color]"
+    - Will make you and all your Presence / Reminder Markers the color of the button
+- "Game Results"
+  - Clicked to show the Game Results screen, as well as refreshing the current game state shown on that screen
+  - Only visible when the game is either Won or Lost, and a game results screen will be shown automatically
+  - "X"
+    - Closes the screen
+  - "Sacrifice?"
+    - Should be pressed when the end of the action tree results in both a Victory and Loss
+  - "Reset?"
+    - Should be pressed if victory or loss condition was accidentally triggered
+
+### Time Passes
+- Heals all Invaders/Dahan
+- Removes all Reminder Markers
+- Discards all Powers Cards
+- Removes all Element Markers
+  - "Any" Element Markers will be reset back to the "Any" state if that state is locked
+- To prevent something being affected by Time Passes: Lock it (Hover + L)
+
+### Additional Notes
+- There are trackers to help the players (to the right of the Invader Board)
+  - Showing the summed total of Elements that players have (needed for "Aided By..." Events), and
+  - Which players are ready to progress on to the next Phase of the turn
+- There are randomisers
+  - For the Spirits (in the upper right of the table)
+    - Specific Complexities or Expansions can be toggled
+  - For the Adversary / Scenario / Board Layout (in their respective drop down menus)
+    - A Difficulty range should be specified when randomizing Adversary/Scenario
+- To play with more Spirits than players:
+  - Choose a Spirit
+  - Press the "Play [Color]" Button in front of a different seat
+  - Choose a Spirit
+  - To easily swap between Spirits during Play: "Play Spirit" (below the Spirit Panel of Spirits without Players)
+- To grab Spirit Markers: right-click (anywhere) &gt; "Grab Spirit Markers"
+- To Play with a Custom/Archipelago Board Layout
+  - Click "Hide UI"
+  - Take out however many Island Boards you want from the Box (found in the top left on the table)
+  - Place them on the Ocean playmat
+  - Click "Start Game"
+- To play with "Larger Island" rules (one more Island Board than players)
+  - Check "Variant Rules" &gt; Check "Add an extra Island Board"
+  - A message will appear after Setup stating which Board is the 'extra' one, which should not be set up on
+- If you have chosen a Spirit you do not want to play, reload the mod
+- To play with Energy Tokens (instead of the counter): unlock (L) / delete the pre-existing counter
+  - Tokens will now be given by the "Gain" button, and used by the "Pay" button
+  - Adding 1/3 Energy Tokens can be bound
+
+### Specific Effects
+- Some Event/Fear/Power Cards have buttons on them
+  - This is to automate tasks such as: grabbing Reminder Cards, returning Events to the Event Deck, removing Invader Cards from the Invader Deck, etc.
+  - To use Cast Down into the Briny Deep's Button: place the Power Card on the Island Board you are Destroying &gt; "Destroy Board"
+- To prevent an Invader Card from advancing this turn (for Immigration Slows): Lock (Hover + L) that Invader Card
+- To reveal multiple Explore Cards (for Explorers are Reluctant): "Explore" &gt; Lock (Hover + L) that Explore Card &gt; "Explore"
+- To increase/decrease the amount of Fear in the Fear Pool (not generating Fear): Left/Right click "Modify Fear Pool" (on the Invader Board)
+- To choose from 2 Major Power Cards (for Unlock The Gates of Deepest Power): right-click "Gain a Major"
+- To choose from 6 Minor Power Cards (for Boon of Reimagining): right-click "Gain a Minor"
+- To choose 2 Power Cards when gaining them (for Fractured or Boon of Reimagining): right-click "Pick Power" on the first Power Card
+- To choose 2 Power Cards when gaining them (for Entwined Power): have the other Player click "Pick Power" first
+- To prevent Invaders/Dahan from healing during Time Passes (for Shroud of a Silent Mist): lock (Hover + L) them (or if they are stacked, lock the bottom piece in the stack)
+- To Drown Invaders/Dahan (for Ocean's Hungry Grasp)
+  - Drop them onto the Drowning Bag
+  - Fear will automatically be added
+  - By default Energy will automatically be converted when enough Health of Invaders have been Drowned
+    - You can disable this by untoggling "Auto Energy"
+- To track Powers which have been made Fast (for Lightning's Swift Strike)
+  - Drop a Speed Token from the bag onto the power card
+  - If playing with the Blitz Scenario this will also automate Power Card's having a lower Energy Cost
+- To track Element Markers (for Shifting Memory of Ages)
+  - These Element Markers do not increase your total Elements (because they only give you Elements for a single Action)
+  - When using Elemental Teachings make sure to trade them out for actual Element
+
+### Second Wave
+- After finishing the first game
+  - Follow the "After the First Game" instructions on the Second Wave Scenario Card
+    - Any set aside Power Cards should be placed in the brown bag provided (above the Scenario Card)
+  - Click "Export Config" (on the Scenario Card)
+  - Copy the Config from the Notebook
+  - Make note of where pieces are on the island
+    - Via screenshot, notes, or selecting all pieces &gt; right-click &gt; "Save Object"
+- Load the Mod
+  - Paste the copied Config into Notebook
+  - Choose Spirits
+  - Click "Start Game"
+  - Manually add the pieces back to the island
+    - Based on screenshot, notes, or loading them in as a Saved Object ("Objects" &gt; "Saved Objects")
+
+### Custom-made Content Notes
+- To load in custom-made content (if it is a workshop mod): "Games" (top of the screen) &gt; "Workshop" &gt; "..." &gt; "Additively Load"
+- To load in a saved object: "Objects" (top of screen) &gt; "Saved Objects"
+- To give custom Power/Blight Cards appropriate features (Elements, Energy Cost, Threshold, etc.)
+  - "Show Editors" (top right of the table) &gt; Hover over the appropriate tile for more instructions
+  - Likewise, to give custom Spirit Panels the appropriate Elements/Thresholds
+  - For more details on custom-made content, visit https://github.com/spirit-island/spirit-island-mod/blob/beta/CUSTOM.md

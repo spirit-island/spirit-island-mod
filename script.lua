@@ -4282,7 +4282,7 @@ function cleanupObject(params)
 end
 ----
 function getSpirit(params)
-    for color,guid in pairs(elementScanZones) do
+    for _,guid in pairs(elementScanZones) do
         for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
             if object.hasTag("Spirit") and object.getName() == params.name then
                 return object
@@ -4403,7 +4403,7 @@ function checkVictory(returnOnly)
     end
     local victory = false
 
-    invaderTierLeft = 0
+    local invaderTierLeft = 0
     for _,bag in pairs(getObjectsWithTag("Counting Bag")) do
         for _,obj in pairs(bag.getObjects()) do
             for _,tag in pairs(obj.tags) do

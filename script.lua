@@ -452,6 +452,8 @@ function onSave()
             isolate = data.isolate.guid,
             paid = data.paid,
             gained = data.gained,
+            bargain = data.bargain,
+            debt = data.debt
         }
         if data.counter ~= nil then
             colorTable.counter = data.counter.guid
@@ -665,6 +667,7 @@ function onLoad(saved_data)
                 createDifficultyButton()
             end, function() return not aidBoard.spawning end)
             Wait.condition(adversaryUISetup, function() return (adversaryCard == nil or not adversaryCard.spawning) and (adversaryCard2 == nil or not adversaryCard2.spawning) end)
+            Wait.time(bargainCheck,2,-1)
             Wait.time(readyCheck,1,-1)
             enableVictoryDefeat()
 
@@ -692,6 +695,8 @@ function onLoad(saved_data)
             isolate = getObjectFromGUID(data.isolate),
             paid = data.paid,
             gained = data.gained,
+            bargain = data.bargain,
+            debt = data.debt
         }
         if data.counter ~= nil then
             colorTable.counter = getObjectFromGUID(data.counter)
@@ -706,6 +711,45 @@ function onLoad(saved_data)
     Wait.time(spiritUpdater, 10, -1)
 end
 ----
+function bargainCheck()
+    local bargain = {}
+    for color,_ in pairs(selectedColors) do
+        bargain[color] = 0
+    end
+    for _,obj in pairs(getObjectsWithTag("Bargain")) do
+        for _,object in pairs(upCast(obj, 0, 0.1)) do
+            if object.hasTag("Presence") then
+                local count = object.getQuantity()
+                if count == -1 then
+                    count = 1
+                end
+                local color = string.sub(object.getName(),1,-12)
+                if selectedColors[color] == nil then
+                    color = getSpiritColor({name = object.getDescription()})
+                end
+
+                bargain[color] = bargain[color] + count
+            end
+        end
+    end
+
+    for color,count in pairs(bargain) do
+        if selectedColors[color].bargain ~= count then
+            if count == 0 then
+                selectedColors[color].debt = 0
+                playerBlocks[color].editButton({index=4, label=""})
+                playerBlocks[color].editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+            else
+                selectedColors[color].debt = selectedColors[color].debt + count - selectedColors[color].bargain
+                playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+                if selectedColors[color].bargain == 0 then
+                    playerBlocks[color].editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+                end
+            end
+            selectedColors[color].bargain = count
+        end
+    end
+end
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
@@ -3120,6 +3164,7 @@ function StartGame()
     runSpiritSetup()
     enableUI()
     seaTile.registerCollisions(false)
+    Wait.time(bargainCheck,2,-1)
     Wait.time(readyCheck,1,-1)
     enableVictoryDefeat()
 
@@ -3297,6 +3342,8 @@ function removeSpirit(params)
         isolate = params.isolate,
         paid = false,
         gained = false,
+        bargain = 0,
+        debt = 0,
     }
     updatePlayerArea(params.color)
 end
@@ -3514,6 +3561,10 @@ function handlePlayer(color, data)
     if data.gained then
         playerBlocks[color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
         data.gained = false
+    end
+    if data.bargain > 0 then
+        playerBlocks[color].editButton({index=4, label="Debt: "..data.bargain})
+        data.debt = data.bargain
     end
     if data.ready.is_face_down then
         data.ready.flip()
@@ -4834,6 +4885,18 @@ function setupPlayerArea(params)
             position={1.1,3.2,-12.6}, rotation={0,180,0}, height=600, width=2600,
             font_size=500,
         })
+        -- Bargain Debt (button index 4)
+        obj.createButton({
+            label="", click_function="nullFunc",
+            position={9.3,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
+        })
+        -- Bargain Pay (button index 5)
+        obj.createButton({
+            label="", click_function="nullFunc",
+            position={9.3,3.2,-12.6}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
+        })
         for i,bag in pairs(selected.elements) do
             if i == 9 then break end
             bag.createButton({
@@ -4866,6 +4929,13 @@ function setupPlayerArea(params)
         obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
     else
         obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
+    end
+    if selected.debt > 0 then
+        obj.editButton({index=4, label="Debt: "..selected.debt})
+        obj.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+    else
+        obj.editButton({index=4, label=""})
+        obj.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
     local energy = 0
@@ -5056,10 +5126,39 @@ function reclaimAll(target_obj, source_color)
         end
     end
 end
+function payDebt(target_obj, source_color, alt_click)
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    if alt_click then
+        if selectedColors[color].bargain <= selectedColors[color].debt then
+            Player[source_color].broadcast("Spirit has no paid bargain debt!", Color.SoftYellow)
+            return
+        end
+        if not giveEnergy({color = color, energy = 1, ignoreDebt = true}) then
+            return
+        end
+        selectedColors[color].debt = selectedColors[color].debt + 1
+    else
+        if selectedColors[color].debt <= 0 then
+            Player[source_color].broadcast("Spirit has no remaining bargain debt!", Color.SoftYellow)
+            return
+        end
+        if not giveEnergy({color = color, energy = -1, ignoreDebt = false}) then
+            Player[source_color].broadcast("Spirit has no energy to pay debt!", Color.SoftYellow)
+            return
+        end
+        selectedColors[color].debt = selectedColors[color].debt - 1
+    end
+
+    target_obj.editButton({index = 4, label = "Debt: "..selectedColors[color].debt})
+end
 function giveEnergy(params)
-    local success = updateEnergyCounter(params.color, true, params.energy)
+    local success = updateEnergyCounter(params.color, true, params.energy, params.ignoreDebt)
     if not success then
-        success = refundEnergyTokens(params.color, params.energy)
+        success = refundEnergyTokens(params.color, params.energy, params.ignoreDebt)
     end
     return success
 end
@@ -5101,9 +5200,9 @@ function gainEnergy(target_obj, source_color, alt_click)
             if not supported then
                 Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
             else
-                local refunded = updateEnergyCounter(color, true, energyTotal)
+                local refunded = updateEnergyCounter(color, true, energyTotal, false)
                 if not refunded then
-                    refunded = refundEnergyTokens(color, energyTotal)
+                    refunded = refundEnergyTokens(color, energyTotal, false)
                 end
                 if refunded then
                     selectedColors[color].gained = true
@@ -5154,9 +5253,9 @@ function returnEnergy(target_obj, source_color, alt_click)
             if not supported then
                 Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
             else
-                local paid = updateEnergyCounter(color, false, energyTotal)
+                local paid = updateEnergyCounter(color, false, energyTotal, false)
                 if not paid then
-                    paid = payEnergyTokens(color, energyTotal)
+                    paid = payEnergyTokens(color, energyTotal, false)
                 end
                 if paid then
                     selectedColors[color].gained = false
@@ -5180,9 +5279,9 @@ function payEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local paid = updateEnergyCounter(color, false, getEnergyLabel(color))
+    local paid = updateEnergyCounter(color, false, getEnergyLabel(color), true)
     if not paid then
-        paid = payEnergyTokens(color, nil)
+        paid = payEnergyTokens(color, nil, true)
     end
     if paid then
         selectedColors[color].paid = true
@@ -5191,7 +5290,7 @@ function payEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
 end
-function updateEnergyCounter(color, refund, cost)
+function updateEnergyCounter(color, refund, cost, ignoreDebt)
     if selectedColors[color].counter == nil or not selectedColors[color].counter.getLock() then
         return false
     end
@@ -5199,13 +5298,39 @@ function updateEnergyCounter(color, refund, cost)
     if refund then
         cost = cost * -1
     end
+    if not ignoreDebt and selectedColors[color].bargain > 0 then
+        if cost < 0 then
+            if selectedColors[color].debt > 0 then
+                if selectedColors[color].debt < -cost then
+                    cost = cost + selectedColors[color].debt
+                    selectedColors[color].debt = 0
+                else
+                    selectedColors[color].debt = selectedColors[color].debt + cost
+                    cost = 0
+                end
+            end
+        elseif cost > 0 then
+            if selectedColors[color].debt < selectedColors[color].bargain then
+                if cost <= energy + selectedColors[color].bargain - selectedColors[color].debt then
+                    if selectedColors[color].bargain - selectedColors[color].debt <= cost then
+                        cost = cost - (selectedColors[color].bargain - selectedColors[color].debt)
+                        selectedColors[color].debt = selectedColors[color].bargain
+                    else
+                        selectedColors[color].debt = selectedColors[color].debt + cost
+                        cost = 0
+                    end
+                end
+            end
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+    end
     if cost > energy then
         return false
     end
     selectedColors[color].counter.setValue(energy - cost)
     return true
 end
-function payEnergyTokens(color, cost)
+function payEnergyTokens(color, cost, ignoreDebt)
     if cost == nil then
         cost = getEnergyLabel(color)
     end
@@ -5229,6 +5354,20 @@ function payEnergyTokens(color, cost)
                 table.insert(energyTokens[2], obj)
             end
         end
+    end
+    if not ignoreDebt and selectedColors[color].bargain > 0 then
+        if selectedColors[color].debt < selectedColors[color].bargain then
+            if cost <= energy + selectedColors[color].bargain - selectedColors[color].debt then
+                if selectedColors[color].bargain - selectedColors[color].debt <= cost then
+                    cost = cost - (selectedColors[color].bargain - selectedColors[color].debt)
+                    selectedColors[color].debt = selectedColors[color].bargain
+                else
+                    selectedColors[color].debt = selectedColors[color].debt + cost
+                    cost = 0
+                end
+            end
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
     end
     if cost > energy then
         return false
@@ -5311,8 +5450,9 @@ function payEnergyTokens(color, cost)
             end
         end
     end
+    -- Give change for 3 energy token
     if cost < 0 then
-        refundEnergyTokens(color, -cost)
+        refundEnergyTokens(color, -cost, true)
     end
     return true
 end
@@ -5335,9 +5475,9 @@ function refundEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color))
+    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color), true)
     if not refunded then
-        refunded = refundEnergyTokens(color, nil)
+        refunded = refundEnergyTokens(color, nil, true)
     end
     if refunded then
         selectedColors[color].paid = false
@@ -5346,13 +5486,27 @@ function refundEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
 end
-function refundEnergyTokens(color, cost)
+function refundEnergyTokens(color, cost, ignoreDebt)
     if cost == nil then
         cost = getEnergyLabel(color)
     end
     if cost < 0 then
-        return payEnergyTokens(color, -cost)
+        return payEnergyTokens(color, -cost, ignoreDebt)
     end
+
+    if not ignoreDebt and selectedColors[color].bargain > 0 then
+        if selectedColors[color].debt > 0 then
+            if selectedColors[color].debt < cost then
+                cost = cost - selectedColors[color].debt
+                selectedColors[color].debt = 0
+            else
+                selectedColors[color].debt = selectedColors[color].debt - cost
+                cost = 0
+            end
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+    end
+
     local zone = getObjectFromGUID(elementScanZones[color])
     while cost >= 3 do
         threeEnergyBag.takeObject({

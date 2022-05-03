@@ -248,7 +248,7 @@ function SetupSpirit(obj, player_color)
         })
 
         -- Setup Energy Counter
-        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-6.2,1,6.8)})
+        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5.9,1,6.8)})
         counter.setLock(true)
 
         -- Setup Element Bags

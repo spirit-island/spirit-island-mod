@@ -54,7 +54,7 @@ function energy(player, _, _)
     local max = tonumber(self.UI.getAttribute("water", "text"))
     if count < max then
         local color = Global.call("getSpiritColor", {name = "Downpour Drenches the World"})
-        local success = Global.call("giveEnergy", {color=color, energy=1})
+        local success = Global.call("giveEnergy", {color=color, energy=1, ignoreDebt=false})
         if success then
             count = count + 1
             self.UI.setAttribute("count", "text", count)

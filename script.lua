@@ -838,7 +838,6 @@ function SetupGame()
     end
 
     SetupChecker.call("closeUI")
-    SetupChecker.setVar("setupStarted", true)
     showPlayerButtons = false
     updateSwapButtons()
 

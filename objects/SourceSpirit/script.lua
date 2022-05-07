@@ -196,197 +196,204 @@ function PickSpirit(params)
 end
 
 function SetupSpirit(obj, player_color)
+    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
+    if #PlayerBag.getObjects() == 0 then
+        Player[player_color].broadcast("You already picked a Spirit!", Color.Red)
+    else
+        obj.clearButtons()
+        if Global.getVar("SetupChecker").getVar("setupStarted") and not Global.getVar("gameStarted") then
+            Wait.condition(function() setupSpirit(obj, player_color, PlayerBag) end, function() return Global.getVar("gameStarted") end)
+        else
+            setupSpirit(obj, player_color, PlayerBag)
+        end
+    end
+end
+function setupSpirit(obj, player_color, PlayerBag)
     local xPadding = 1.3
     local xOffset = 1
-    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
-    if #PlayerBag.getObjects() ~= 0 then
-        local castObjects = nil
-        local hpos = Player[player_color].getHandTransform().position
-        local spirit
-        if obj.type == "Bag" then
-            for _,o in pairs(obj.getObjects()) do
-                for _,tag in pairs(o.tags) do
-                    if tag == "Spirit" then
-                        spirit = obj.takeObject({
-                            guid = o.guid,
-                            position = Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5),
-                            rotation = Vector(0,180,0),
-                            smooth = false,
-                        })
-                        break
-                    end
+    local castObjects = nil
+    local hpos = Player[player_color].getHandTransform().position
+    local spirit
+    if obj.type == "Bag" then
+        for _,o in pairs(obj.getObjects()) do
+            for _,tag in pairs(o.tags) do
+                if tag == "Spirit" then
+                    spirit = obj.takeObject({
+                        guid = o.guid,
+                        position = Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5),
+                        rotation = Vector(0,180,0),
+                        smooth = false,
+                    })
+                    break
                 end
             end
-            Wait.condition(function() spirit.clearButtons() end, function() return not spirit.loading_custom end)
-        else
-            castObjects = upCast(obj)
-            obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5))
-            obj.setRotation(Vector(0,180,0))
-            spirit = obj
         end
-        obj.clearButtons()
-        spirit.setLock(true)
-        local spos = spirit.getPosition()
-        local snaps = spirit.getSnapPoints()
-        local placed = 0
+        Wait.condition(function() spirit.clearButtons() end, function() return not spirit.loading_custom end)
+    else
+        castObjects = upCast(obj)
+        obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5))
+        obj.setRotation(Vector(0,180,0))
+        spirit = obj
+    end
+    spirit.setLock(true)
+    local spos = spirit.getPosition()
+    local snaps = spirit.getSnapPoints()
+    local placed = 0
 
-        -- Setup Presence
-        for i = 1,13 do
-            local p = snaps[i]
-            if i <= #snaps then
-                PlayerBag.takeObject({position = spirit.positionToWorld(p.position)})
+    -- Setup Presence
+    for i = 1,13 do
+        local p = snaps[i]
+        if i <= #snaps then
+            PlayerBag.takeObject({position = spirit.positionToWorld(p.position)})
+        else
+            PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})
+            placed = placed + 1
+        end
+    end
+
+    -- Setup Ready Token
+    local ready = PlayerBag.takeObject({
+        position = Vector(spos.x,0,spos.z) + Vector(7.2, 1.1, 7),
+        rotation = Vector(0, 180, 0),
+    })
+
+    -- Setup Energy Counter
+    local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5.9,1,6.8)})
+    counter.setLock(true)
+
+    -- Setup Element Bags
+    local elements = {}
+    for i = 1,9 do
+        elements[i] = PlayerBag.takeObject({
+            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21) + Vector(i * 2, 0, 0),
+            rotation = Vector(0, 180, 0),
+        })
+        elements[i].setLock(true)
+    end
+
+    -- Setup Reminder Bags
+    local defend = PlayerBag.takeObject({
+        position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 20.21),
+        rotation = Vector(0, 180, 0),
+    })
+    defend.setLock(true)
+    local isolate = PlayerBag.takeObject({
+        position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21),
+        rotation = Vector(0, 180, 0),
+    })
+    isolate.setLock(true)
+
+    -- Setup Progression Deck if enabled
+    local useProgression = obj.getVar("useProgression")
+    if useProgression then
+        local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
+        local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
+        local progressionCard = obj.getVar("progressionCard")
+        local progressionDeck
+        if type(progressionCard) == "string" then
+            progressionDeck = {}
+            for guid,bool in progressionCard:gmatch "{\"(%w%w%w%w%w%w)\", (%l%l%l%l%l?)}" do
+                table.insert(progressionDeck, {guid, bool == "true"})
+            end
+        else
+            progressionDeck = progressionCard.getVar("progressionDeck")
+        end
+        for i,card in pairs(progressionDeck) do
+            if card[2] then
+                majorPowerDeck.takeObject({
+                    position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),
+                    rotation = Vector(0,180,180),
+                    guid = card[1],
+                })
             else
-                PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})
+                minorPowerDeck.takeObject({
+                    position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),
+                    rotation = Vector(0,180,180),
+                    guid = card[1],
+                })
+            end
+        end
+    end
+
+    -- Setup objects in bag (or on top of board)
+    if obj.type == "Bag" then
+        local aspects = {}
+        for _, o in pairs(obj.getObjects()) do
+            for _,tag in pairs(o.tags) do
+                if tag == "Aspect" then
+                    table.insert(aspects, {o.name, o.guid})
+                    break
+                end
+            end
+        end
+        handleAspect(obj, aspects, player_color)
+        -- all aspect cards not used will be removed by this point
+        for _, o in pairs(obj.getObjects()) do
+            local ob = obj.takeObject({guid = o.guid})
+            if ob.type == "Card" then
+                if ob.getName() == "Progression" then
+                    if useProgression then
+                        ob.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
+                    else
+                        ob.destruct()
+                    end
+                else
+                    ob.deal(1, player_color)
+                end
+            else
+                ob.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
                 placed = placed + 1
             end
+
+            if Global.getVar("gameStarted") and ob.hasTag("Setup") and not ob.hasTag("Aspect") then
+                Wait.frames(function () ob.call("doSetup", {color=player_color}) end, 1)
+            end
         end
-
-        -- Setup Ready Token
-        local ready = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(7.2, 1.1, 7),
-            rotation = Vector(0, 180, 0),
-        })
-
-        -- Setup Energy Counter
-        local counter = getObjectFromGUID(Global.getVar("counterBag")).takeObject({position = Vector(spos.x,0,spos.z) + Vector(-5.9,1,6.8)})
-        counter.setLock(true)
-
-        -- Setup Element Bags
-        local elements = {}
-        for i = 1,9 do
-            elements[i] = PlayerBag.takeObject({
-                position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21) + Vector(i * 2, 0, 0),
-                rotation = Vector(0, 180, 0),
-            })
-            elements[i].setLock(true)
-        end
-
-        -- Setup Reminder Bags
-        local defend = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 20.21),
-            rotation = Vector(0, 180, 0),
-        })
-        defend.setLock(true)
-        local isolate = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21),
-            rotation = Vector(0, 180, 0),
-        })
-        isolate.setLock(true)
-
-        -- Setup Progression Deck if enabled
-        local useProgression = obj.getVar("useProgression")
-        if useProgression then
-            local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
-            local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
-            local progressionCard = obj.getVar("progressionCard")
-            local progressionDeck
-            if type(progressionCard) == "string" then
-                progressionDeck = {}
-                for guid,bool in progressionCard:gmatch "{\"(%w%w%w%w%w%w)\", (%l%l%l%l%l?)}" do
-                    table.insert(progressionDeck, {guid, bool == "true"})
+        obj.destruct()
+    else
+        for _, o in pairs(castObjects) do
+            o.setLock(false)
+            if o.hasTag("Aspect") then
+                handleAspect(obj, o, player_color)
+            elseif o.type == "Deck" then
+                o.deal(#o.getObjects(),player_color)
+            elseif o.type == "Card" and o.getName() == "Progression" then
+                if useProgression then
+                    o.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
+                else
+                    o.destruct()
                 end
             else
-                progressionDeck = progressionCard.getVar("progressionDeck")
+                o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
+                placed = placed + 1
             end
-            for i,card in pairs(progressionDeck) do
-                if card[2] then
-                    majorPowerDeck.takeObject({
-                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),
-                        rotation = Vector(0,180,180),
-                        guid = card[1],
-                    })
-                else
-                    minorPowerDeck.takeObject({
-                        position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),
-                        rotation = Vector(0,180,180),
-                        guid = card[1],
-                    })
-                end
+
+            if Global.getVar("gameStarted") and o.hasTag("Setup") and not o.hasTag("Aspect") then
+                local o = o  -- luacheck: ignore 423 (deliberate shadowing)
+                Wait.frames(function () o.call("doSetup", {color=player_color}) end, 1)
             end
         end
-
-        -- Setup objects in bag (or on top of board)
-        if obj.type == "Bag" then
-            local aspects = {}
-            for _, o in pairs(obj.getObjects()) do
-                for _,tag in pairs(o.tags) do
-                    if tag == "Aspect" then
-                        table.insert(aspects, {o.name, o.guid})
-                        break
-                    end
-                end
-            end
-            handleAspect(obj, aspects, player_color)
-            -- all aspect cards not used will be removed by this point
-            for _, o in pairs(obj.getObjects()) do
-                local ob = obj.takeObject({guid = o.guid})
-                if ob.type == "Card" then
-                    if ob.getName() == "Progression" then
-                        if useProgression then
-                            ob.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
-                        else
-                            ob.destruct()
-                        end
-                    else
-                        ob.deal(1, player_color)
-                    end
-                else
-                    ob.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
-                    placed = placed + 1
-                end
-
-                if Global.getVar("gameStarted") and ob.hasTag("Setup") and not ob.hasTag("Aspect") then
-                    Wait.frames(function () ob.call("doSetup", {color=player_color}) end, 1)
-                end
-            end
-            obj.destruct()
-        else
-            for _, o in pairs(castObjects) do
-                o.setLock(false)
-                if o.hasTag("Aspect") then
-                    handleAspect(obj, o, player_color)
-                elseif o.type == "Deck" then
-                    o.deal(#o.getObjects(),player_color)
-                elseif o.type == "Card" and o.getName() == "Progression" then
-                    if useProgression then
-                        o.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
-                    else
-                        o.destruct()
-                    end
-                else
-                    o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
-                    placed = placed + 1
-                end
-
-                if Global.getVar("gameStarted") and o.hasTag("Setup") and not o.hasTag("Aspect") then
-                    local o = o  -- luacheck: ignore 423 (deliberate shadowing)
-                    Wait.frames(function () o.call("doSetup", {color=player_color}) end, 1)
-                end
-            end
-        end
-
-        Wait.condition(function()
-            local broadcast = spirit.getVar("broadcast")
-            if broadcast ~= nil then
-                Player[player_color].broadcast("Spirit - "..spirit.getName(), Color.White)
-                Player[player_color].broadcast(broadcast, Color.SoftBlue)
-            end
-        end, function() return not spirit.loading_custom end)
-
-        Wait.frames(function()
-            Global.call("removeSpirit", {
-                spirit = spirit.guid,
-                color = player_color,
-                ready = ready,
-                counter = counter,
-                elements = elements,
-                defend = defend,
-                isolate = isolate
-            })
-        end, 2)
-    else
-        Player[player_color].broadcast("You already picked a Spirit!", Color.Red)
     end
+
+    Wait.condition(function()
+        local broadcast = spirit.getVar("broadcast")
+        if broadcast ~= nil then
+            Player[player_color].broadcast("Spirit - "..spirit.getName(), Color.White)
+            Player[player_color].broadcast(broadcast, Color.SoftBlue)
+        end
+    end, function() return not spirit.loading_custom end)
+
+    Wait.frames(function()
+        Global.call("removeSpirit", {
+            spirit = spirit.guid,
+            color = player_color,
+            ready = ready,
+            counter = counter,
+            elements = elements,
+            defend = defend,
+            isolate = isolate
+        })
+    end, 2)
 end
 function ToggleProgression(obj)
     local useProgression = obj.getVar("useProgression")

@@ -3327,12 +3327,18 @@ function runSpiritSetup()
     end
 end
 ------
+function playerHasSpirit(params)
+    return selectedColors[params.color] ~= nil
+end
 function addSpirit(params)
     SetupChecker.call("addSpirit", params)
 end
-function removeSpirit(params)
+function pickSpirit(params)
     SetupChecker.call("removeSpirit", params)
     getObjectFromGUID(elementScanZones[params.color]).clearButtons()
+    selectedColors[params.color] = {}
+end
+function removeSpirit(params)
     selectedColors[params.color] = {
         ready = params.ready,
         counter = params.counter,
@@ -3357,7 +3363,7 @@ function getEmptySeat()
     }
     for _,guid in pairs(orderedBlockGuids) do
         local color = getObjectFromGUID(guid).getVar("playerColor")
-        if #getObjectFromGUID(PlayerBags[color]).getObjects() ~= 0 then
+        if not playerHasSpirit({color = color}) then
             return color
         end
     end

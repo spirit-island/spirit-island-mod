@@ -196,19 +196,22 @@ function PickSpirit(params)
 end
 
 function SetupSpirit(obj, player_color)
-    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
-    if #PlayerBag.getObjects() == 0 then
+    if Global.call("playerHasSpirit", {color = player_color}) then
         Player[player_color].broadcast("You already picked a Spirit!", Color.Red)
     else
         obj.clearButtons()
+        Global.call("pickSpirit", {
+            spirit = obj.guid,
+            color = player_color
+        })
         if Global.getVar("SetupChecker").getVar("setupStarted") and not Global.getVar("gameStarted") then
-            Wait.condition(function() setupSpirit(obj, player_color, PlayerBag) end, function() return Global.getVar("gameStarted") end)
+            Wait.condition(function() setupSpirit(obj, player_color) end, function() return Global.getVar("gameStarted") end)
         else
-            setupSpirit(obj, player_color, PlayerBag)
+            setupSpirit(obj, player_color)
         end
     end
 end
-function setupSpirit(obj, player_color, PlayerBag)
+function setupSpirit(obj, player_color)
     local xPadding = 1.3
     local xOffset = 1
     local castObjects = nil
@@ -240,6 +243,7 @@ function setupSpirit(obj, player_color, PlayerBag)
     local snaps = spirit.getSnapPoints()
     local placed = 0
 
+    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
     -- Setup Presence
     for i = 1,13 do
         local p = snaps[i]

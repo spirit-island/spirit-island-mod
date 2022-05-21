@@ -4383,7 +4383,7 @@ function checkPresenceLoss()
                 else
                     local bounds = obj.getBounds()
                     local hits = Physics.cast({
-                        origin = bounds.center + bounds.offset,
+                        origin = bounds.center,
                         direction = Vector(0,-1,0),
                         max_distance = 1,
                         --debug = true,

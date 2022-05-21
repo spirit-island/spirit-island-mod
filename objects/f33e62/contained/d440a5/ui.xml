@@ -10,9 +10,3 @@
         <Text id="water"/>
     </HorizontalLayout>
 </Panel>
-<Panel id="waterPanel2" visibility="Invisible" width="330" height="150" position="0 180 -12" rotation="0 0 180">
-    <VerticalLayout spacing="10" childForceExpandHeight="false">
-        <Button onClick="energy" textAlignment="MiddleCenter" minHeight="60">+1 Energy</Button>
-        <Button onClick="repeatPower" textAlignment="MiddleCenter" minHeight="60">Repeat Power</Button>
-    </VerticalLayout>
-</Panel>

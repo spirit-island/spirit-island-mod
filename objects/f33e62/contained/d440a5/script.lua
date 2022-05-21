@@ -16,7 +16,17 @@ function onLoad(save_state)
             self.UI.setAttribute("count", "text", count)
             self.UI.setAttribute("water", "text", 0)
             self.UI.setAttribute("waterPanel", "visibility", "")
-            self.UI.setAttribute("waterPanel2", "visibility", "")
+
+            self.createButton({
+                label="+1 Energy", click_function="energy", function_owner = self,
+                position={0,0.12,1.35}, rotation={0,0,0}, height=280, width=1600,
+                font_color={0,0,0}, font_size=250
+            })
+            self.createButton({
+                label="Repeat Power", click_function="repeatPower", function_owner = self,
+                position={0,0.12,2.05}, rotation={0,0,0}, height=280, width=1600,
+                font_color={0,0,0}, font_size=250
+            })
 
             Wait.time(countWater, 2, -1)
         end, 2)
@@ -30,7 +40,17 @@ function doSetup(params)
     self.UI.setAttribute("count", "text", count)
     self.UI.setAttribute("water", "text", 0)
     self.UI.setAttribute("waterPanel", "visibility", "")
-    self.UI.setAttribute("waterPanel2", "visibility", "")
+
+    self.createButton({
+        label="+1 Energy", click_function="energy", function_owner = self,
+        position={0,0.12,1.35}, rotation={0,0,0}, height=280, width=1600,
+        font_color={0,0,0}, font_size=250
+    })
+    self.createButton({
+        label="Repeat Power", click_function="repeatPower", function_owner = self,
+        position={0,0.12,2.05}, rotation={0,0,0}, height=280, width=1600,
+        font_color={0,0,0}, font_size=250
+    })
 
     Wait.time(countWater, 2, -1)
 end
@@ -50,27 +70,55 @@ function countWater()
     self.UI.setAttribute("water", "text", water)
 end
 
-function energy(player, _, _)
-    local max = tonumber(self.UI.getAttribute("water", "text"))
-    if count < max then
-        local color = Global.call("getSpiritColor", {name = "Downpour Drenches the World"})
-        local success = Global.call("giveEnergy", {color=color, energy=1, ignoreDebt=false})
-        if success then
+function energy(_, color, alt_click)
+    local spiritColor = Global.call("getSpiritColor", {name = "Downpour Drenches the World"})
+    if spiritColor == nil then
+        Player[color].broadcast("Unable to find Downpour Drenches the World", Color.Red)
+        return
+    end
+
+    if alt_click then
+        if count > 0 then
+            local success = Global.call("giveEnergy", {color=spiritColor, energy=-1, ignoreDebt=false})
+            if success then
+                count = count - 1
+                self.UI.setAttribute("count", "text", count)
+            else
+                Player[color].broadcast("Unable to refund exchanged energy", Color.Red)
+            end
+        else
+            Player[color].broadcast("Pour Down Across the Island has not been used", Color.Red)
+        end
+    else
+        local max = tonumber(self.UI.getAttribute("water", "text"))
+        if count < max then
+            local success = Global.call("giveEnergy", {color=spiritColor, energy=1, ignoreDebt=false})
+            if success then
+                count = count + 1
+                self.UI.setAttribute("count", "text", count)
+            else
+                Player[color].broadcast("Unable to give exchanged energy", Color.Red)
+            end
+        else
+            Player[color].broadcast("No uses of Pour Down Across the Island remaining", Color.Red)
+        end
+    end
+end
+function repeatPower(_, color, alt_click)
+    if alt_click then
+        if count > 0 then
+            count = count - 1
+            self.UI.setAttribute("count", "text", count)
+        else
+            Player[color].broadcast("Pour Down Across the Island has not been used", Color.Red)
+        end
+    else
+        local max = tonumber(self.UI.getAttribute("water", "text"))
+        if count < max then
             count = count + 1
             self.UI.setAttribute("count", "text", count)
         else
-            Player[player.color].broadcast("Unable to find Downpour player to give exchanged energy to", Color.Red)
+            Player[color].broadcast("No uses of Pour Down Across the Island remaining", Color.Red)
         end
-    else
-        Player[player.color].broadcast("No uses of Pour Down Across the Island remaining", Color.Red)
-    end
-end
-function repeatPower(player, _, _)
-    local max = tonumber(self.UI.getAttribute("water", "text"))
-    if count < max then
-        count = count + 1
-        self.UI.setAttribute("count", "text", count)
-    else
-        Player[player.color].broadcast("No uses of Pour Down Across the Island remaining", Color.Red)
     end
 end

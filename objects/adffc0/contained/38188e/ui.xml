@@ -13,7 +13,7 @@
 </Panel>
 <Panel id="drownPanel2" visibility="Invisible" width="330" height="150" position="0 180 -12" rotation="0 0 180">
     <VerticalLayout spacing="10" childForceExpandHeight="false">
-        <Button id="buttonExchange" visibility="Invisible" onClick="exchange" textAlignment="MiddleCenter" minHeight="60">+1 Energy</Button>
+        <Text id="filler" visibility="Invisible" minHeight="60" />
         <Toggle id="toggleExchange" onValueChanged="toggleExchange" isOn="true">Auto Energy</Toggle>
     </VerticalLayout>
 </Panel>

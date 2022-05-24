@@ -65,6 +65,7 @@ optionalBoardPairings = true
 optionalThematicRebellion = false
 optionalEngland6 = true
 optionalThematicRedo = false
+optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
 
 exploratoryVOTD = false
@@ -111,6 +112,7 @@ function onSave()
     data_table.variant.thematicRebellion = optionalThematicRebellion
     data_table.variant.england6 = optionalEngland6
     data_table.variant.thematicRedo = optionalThematicRedo
+    data_table.variant.gameResults = optionalGameResults
 
     data_table.exploratory = {}
     data_table.exploratory.votd = exploratoryVOTD
@@ -175,6 +177,7 @@ function onLoad(saved_data)
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
         optionalEngland6 = loaded_data.variant.england6
         optionalThematicRedo = loaded_data.variant.thematicRedo
+        optionalGameResults = loaded_data.variant.gameResults
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan
@@ -239,6 +242,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
             self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
             self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
+            self.UI.setAttribute("gameResults", "isOn", optionalGameResults)
 
             self.UI.setAttribute("votd", "isOn", exploratoryVOTD)
             self.UI.setAttribute("bodan", "isOn", exploratoryBODAN)
@@ -1004,6 +1008,9 @@ function loadConfig(config)
                     seaTile.setState(2)
                 end
             end
+        end
+        if config.variant.gameResults ~= nil then
+            optionalGameResults = config.variant.gameResults
         end
     end
     if config.exploratory then
@@ -1836,6 +1843,10 @@ function toggleCarpetRedo()
     else
         seaTile.setState(1)
     end
+end
+function toggleGameResults()
+    optionalGameResults = not optionalGameResults
+    self.UI.setAttribute("gameResults", "isOn", optionalGameResults)
 end
 
 function toggleExploratoryAll()

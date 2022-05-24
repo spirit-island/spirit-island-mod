@@ -134,6 +134,7 @@
     "digitalEvents": false,
     "england6": true,
     "extraBoard": false,
+    "gameResults": true,
     "soloBlight": true,
     "strangeMadness": false,
     "thematicRebellion": false,

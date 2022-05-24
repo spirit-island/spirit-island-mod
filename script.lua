@@ -4527,11 +4527,13 @@ function showGameOver()
 
     refreshGameOver()
 
-    local colors = {}
-    for color,_ in pairs(PlayerBags) do
-        table.insert(colors, color)
+    if SetupChecker.getVar("optionalGameResults") then
+        local colors = {}
+        for color,_ in pairs(PlayerBags) do
+            table.insert(colors, color)
+        end
+        setVisiTable("panelGameOver", colors)
     end
-    setVisiTable("panelGameOver", colors)
 end
 function refreshGameOver()
     local lines = 8

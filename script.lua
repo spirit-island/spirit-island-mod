@@ -445,18 +445,19 @@ function onSave()
     end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
-        local colorTable = {
-            ready = data.ready.guid,
-            elements = convertObjectsToGuids(data.elements),
-            defend = data.defend.guid,
-            isolate = data.isolate.guid,
-            paid = data.paid,
-            gained = data.gained,
-            bargain = data.bargain,
-            debt = data.debt
-        }
-        if data.counter ~= nil then
-            colorTable.counter = data.counter.guid
+        local colorTable = {}
+        if next(data) ~= nil then
+            colorTable.ready = data.ready.guid
+            colorTable.elements = convertObjectsToGuids(data.elements)
+            colorTable.defend = data.defend.guid
+            colorTable.isolate = data.isolate.guid
+            colorTable.paid = data.paid
+            colorTable.gained = data.gained
+            colorTable.bargain = data.bargain
+            colorTable.debt = data.debt
+            if data.counter ~= nil then
+                colorTable.counter = data.counter.guid
+            end
         end
         selectedTable[color] = colorTable
     end
@@ -688,18 +689,19 @@ function onLoad(saved_data)
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
     for color,data in pairs(selectedColors) do
-        local colorTable = {
-            ready = getObjectFromGUID(data.ready),
-            elements = convertGuidsToObjects(data.elements),
-            defend = getObjectFromGUID(data.defend),
-            isolate = getObjectFromGUID(data.isolate),
-            paid = data.paid,
-            gained = data.gained,
-            bargain = data.bargain,
-            debt = data.debt
-        }
-        if data.counter ~= nil then
-            colorTable.counter = getObjectFromGUID(data.counter)
+        local colorTable = {}
+        if next(data) ~= nil then
+            colorTable.ready = getObjectFromGUID(data.ready)
+            colorTable.elements = convertGuidsToObjects(data.elements)
+            colorTable.defend = getObjectFromGUID(data.defend)
+            colorTable.isolate = getObjectFromGUID(data.isolate)
+            colorTable.paid = data.paid
+            colorTable.gained = data.gained
+            colorTable.bargain = data.bargain
+            colorTable.debt = data.debt
+            if data.counter ~= nil then
+                colorTable.counter = getObjectFromGUID(data.counter)
+            end
         end
         selectedColors[color] = colorTable
     end

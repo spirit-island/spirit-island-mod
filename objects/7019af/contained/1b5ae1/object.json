@@ -1,0 +1,59 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -37.33039855957031,
+    "posY": 1.2654999494552612,
+    "posZ": 16.317399978637695,
+    "rotX": 0.0,
+    "rotY": 9.999999747378752e-05,
+    "rotZ": 0.0,
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Disease",
+  "Description": "[b]Prevents the next Build[/b] and is then\r Removed.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.89410001039505,
+    "g": 0.8510000109672546,
+    "b": 0.3528999984264374
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927963700/00BFF0321B442A5FAA19DC90F021B5579D11C90C/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931507596/F8385E44909830C1E66C6195DFAE5321C5FC803D/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

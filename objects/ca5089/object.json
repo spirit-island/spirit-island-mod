@@ -1,29 +1,28 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -50.662200927734375,
-    "posY": 1.2617000341415405,
-    "posZ": 13.138699531555176,
+    "posX": -50.70000076293945,
+    "posY": 1.0942000150680542,
+    "posZ": 13.35420036315918,
     "rotX": -0.0,
-    "rotY": 180.0,
+    "rotY": 180.02430725097656,
     "rotZ": 0.0,
-    "scaleX": 0.8294000029563904,
-    "scaleY": 0.029999999329447746,
-    "scaleZ": 0.8294000029563904
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
   },
   "Nickname": "Wilds",
-  "Description": "[b]Prevents the next Explore[/b] and is then removed",
+  "Description": "[b]Prevents the next Explore[/b] and is then\r Removed.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5646998882293701,
-    "g": 0.5568999648094177,
-    "b": 0.5568999648094177,
-    "a": 0.0
+    "r": 0.611799955368042,
+    "g": 0.819599986076355,
+    "b": 0.6157000064849854
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -37,12 +36,12 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1465311980392984528/73227B5349E276006AB38E1027F18255A26EF555/",
-    "DiffuseURL": "",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927962318/D15BAE9D93BA4549E788DE02461206940CD98990/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931508353/9334CF84DDA99424237039392B3FBE106B553CC9/",
     "NormalURL": "",
     "ColliderURL": "",
     "Convex": true,
-    "MaterialIndex": 3,
+    "MaterialIndex": 0,
     "TypeIndex": 7,
     "CustomShader": {
       "SpecularColor": {
@@ -54,63 +53,6 @@
       "SpecularSharpness": 2.0,
       "FresnelStrength": 0.0
     },
-    "CastShadows": false
-  },
-  "ChildObjects": [
-    {
-      "GUID": "0ab726",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": 0.0013000000035390258,
-        "posY": -2.494499921798706,
-        "posZ": -0.04259999841451645,
-        "rotX": 0.0,
-        "rotY": 0.0,
-        "rotZ": 0.0,
-        "scaleX": 0.44020000100135803,
-        "scaleY": 33.33330154418945,
-        "scaleZ": 0.44020000100135803
-      },
-      "Nickname": "Wilds",
-      "Description": "[b]Prevents the next Explore[/b] and is then removed",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "Tags": [
-        "Highlight"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390107775/A15E0360DF9BF6142E33211BECD5F940DF689577/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    }
-  ]
+    "CastShadows": true
+  }
 }

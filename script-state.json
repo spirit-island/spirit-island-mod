@@ -16,8 +16,14 @@
     "Red": "9fc5a4",
     "Yellow": "102771"
   },
-  "events": [],
-  "expansions": [],
+  "events": {
+    "Branch & Claw": true,
+    "Jagged Earth": true
+  },
+  "expansions": {
+    "Branch & Claw": true,
+    "Jagged Earth": true
+  },
   "explorerBag": "613ea4",
   "fastDiscount": 0,
   "fearPool": 0,

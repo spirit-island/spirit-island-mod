@@ -1,29 +1,28 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -37.222198486328125,
-    "posY": 1.2618000507354736,
-    "posZ": 16.35890007019043,
+    "posX": -37.220001220703125,
+    "posY": 1.094499945640564,
+    "posZ": 16.22369956970215,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.8294000029563904,
-    "scaleY": 0.029999999329447746,
-    "scaleZ": 0.8294000029563904
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
   },
   "Nickname": "Disease",
-  "Description": "[b]Prevents the next Build[/b] and is then removed",
+  "Description": "[b]Prevents the next Build[/b] and is then\r Removed.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.5646998882293701,
-    "g": 0.5568999648094177,
-    "b": 0.5568999648094177,
-    "a": 0.0
+    "r": 0.89410001039505,
+    "g": 0.8510000109672546,
+    "b": 0.3528996706008911
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -37,12 +36,12 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1465311980392984528/73227B5349E276006AB38E1027F18255A26EF555/",
-    "DiffuseURL": "",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927963700/00BFF0321B442A5FAA19DC90F021B5579D11C90C/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931507596/F8385E44909830C1E66C6195DFAE5321C5FC803D/",
     "NormalURL": "",
     "ColliderURL": "",
     "Convex": true,
-    "MaterialIndex": 3,
+    "MaterialIndex": 0,
     "TypeIndex": 7,
     "CustomShader": {
       "SpecularColor": {
@@ -54,63 +53,6 @@
       "SpecularSharpness": 2.0,
       "FresnelStrength": 0.0
     },
-    "CastShadows": false
-  },
-  "ChildObjects": [
-    {
-      "GUID": "784c00",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": 0.10170000046491623,
-        "posY": -2.494499921798706,
-        "posZ": -0.0013000000035390258,
-        "rotX": 0.0,
-        "rotY": 0.0,
-        "rotZ": 0.0,
-        "scaleX": 0.44020000100135803,
-        "scaleY": 33.33330154418945,
-        "scaleZ": 0.44020000100135803
-      },
-      "Nickname": "Disease",
-      "Description": "[b]Prevents the next Build[/b] and is then removed",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "Tags": [
-        "Highlight"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390107720/16A30B2C146A05A6475BC8BAAFD5D227CAC6D315/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    }
-  ]
+    "CastShadows": true
+  }
 }

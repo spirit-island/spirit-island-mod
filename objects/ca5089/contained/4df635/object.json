@@ -1,0 +1,59 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -50.53010177612305,
+    "posY": 1.2653000354766846,
+    "posZ": 13.163100242614746,
+    "rotX": 0.0,
+    "rotY": 9.999999747378752e-05,
+    "rotZ": 0.0,
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Wilds",
+  "Description": "[b]Prevents the next Explore[/b] and is then\r Removed.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.6118000149726868,
+    "g": 0.819599986076355,
+    "b": 0.6157000064849854
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927962318/D15BAE9D93BA4549E788DE02461206940CD98990/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931508353/9334CF84DDA99424237039392B3FBE106B553CC9/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

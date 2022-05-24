@@ -1,0 +1,59 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -37.382598876953125,
+    "posY": 1.2653000354766846,
+    "posZ": 13.42590045928955,
+    "rotX": 0.0,
+    "rotY": 9.999999747378752e-05,
+    "rotZ": 0.0,
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Strife",
+  "Description": "[b]Blocks a specific Invader’s Damage the\r next time they Damage Dahan and/or the land[/b],\r and is then Removed.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.3961000144481659,
+    "g": 0.7646999955177307,
+    "b": 0.9136999845504761
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927960218/D101BAE77AFA4DA599A21DFB81AA6C53289DD81E/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931505750/CDE2ECADF7D9370E0B4711DC6172B3EAC5DACF7A/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

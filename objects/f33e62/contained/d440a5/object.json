@@ -1,0 +1,50 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 100.69599914550781,
+    "posY": 2.404099941253662,
+    "posZ": 63.984500885009766,
+    "rotX": 0.0,
+    "rotY": 180.00010681152344,
+    "rotZ": 0.0,
+    "scaleX": 1.4249999523162842,
+    "scaleY": 1.4249999523162842,
+    "scaleZ": 1.4249999523162842
+  },
+  "Nickname": "Pour Down Across the Island",
+  "Description": "Use this to track the uses of your special rule \"Pour Down Power Across The Land\"",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.19830000400543213,
+    "g": 0.4237000048160553,
+    "b": 0.8391000032424927
+  },
+  "Tags": [
+    "Setup",
+    "Time Passes"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329702298/A506113CA23809C5D314B2010E9129C7084DE53D/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

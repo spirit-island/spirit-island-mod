@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.3.1"
+version = "3.4.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -445,16 +445,19 @@ function onSave()
     end
     local selectedTable = {}
     for color,data in pairs(selectedColors) do
-        local colorTable = {
-            ready = data.ready.guid,
-            elements = convertObjectsToGuids(data.elements),
-            defend = data.defend.guid,
-            isolate = data.isolate.guid,
-            paid = data.paid,
-            gained = data.gained,
-        }
-        if data.counter ~= nil then
-            colorTable.counter = data.counter.guid
+        local colorTable = {}
+        if next(data) ~= nil then
+            colorTable.ready = data.ready.guid
+            colorTable.elements = convertObjectsToGuids(data.elements)
+            colorTable.defend = data.defend.guid
+            colorTable.isolate = data.isolate.guid
+            colorTable.paid = data.paid
+            colorTable.gained = data.gained
+            colorTable.bargain = data.bargain
+            colorTable.debt = data.debt
+            if data.counter ~= nil then
+                colorTable.counter = data.counter.guid
+            end
         end
         selectedTable[color] = colorTable
     end
@@ -665,6 +668,7 @@ function onLoad(saved_data)
                 createDifficultyButton()
             end, function() return not aidBoard.spawning end)
             Wait.condition(adversaryUISetup, function() return (adversaryCard == nil or not adversaryCard.spawning) and (adversaryCard2 == nil or not adversaryCard2.spawning) end)
+            Wait.time(bargainCheck,2,-1)
             Wait.time(readyCheck,1,-1)
             enableVictoryDefeat()
 
@@ -685,16 +689,19 @@ function onLoad(saved_data)
     playerBlocks = convertGuidsToObjects(playerBlocks)
     playerTables = convertGuidsToObjects(playerTables)
     for color,data in pairs(selectedColors) do
-        local colorTable = {
-            ready = getObjectFromGUID(data.ready),
-            elements = convertGuidsToObjects(data.elements),
-            defend = getObjectFromGUID(data.defend),
-            isolate = getObjectFromGUID(data.isolate),
-            paid = data.paid,
-            gained = data.gained,
-        }
-        if data.counter ~= nil then
-            colorTable.counter = getObjectFromGUID(data.counter)
+        local colorTable = {}
+        if next(data) ~= nil then
+            colorTable.ready = getObjectFromGUID(data.ready)
+            colorTable.elements = convertGuidsToObjects(data.elements)
+            colorTable.defend = getObjectFromGUID(data.defend)
+            colorTable.isolate = getObjectFromGUID(data.isolate)
+            colorTable.paid = data.paid
+            colorTable.gained = data.gained
+            colorTable.bargain = data.bargain
+            colorTable.debt = data.debt
+            if data.counter ~= nil then
+                colorTable.counter = getObjectFromGUID(data.counter)
+            end
         end
         selectedColors[color] = colorTable
     end
@@ -706,6 +713,45 @@ function onLoad(saved_data)
     Wait.time(spiritUpdater, 10, -1)
 end
 ----
+function bargainCheck()
+    local bargain = {}
+    for color,_ in pairs(selectedColors) do
+        bargain[color] = 0
+    end
+    for _,obj in pairs(getObjectsWithTag("Bargain")) do
+        for _,object in pairs(upCast(obj, 0, 0.1)) do
+            if object.hasTag("Presence") then
+                local count = object.getQuantity()
+                if count == -1 then
+                    count = 1
+                end
+                local color = string.sub(object.getName(),1,-12)
+                if selectedColors[color] == nil then
+                    color = getSpiritColor({name = object.getDescription()})
+                end
+
+                bargain[color] = bargain[color] + count
+            end
+        end
+    end
+
+    for color,count in pairs(bargain) do
+        if selectedColors[color].bargain ~= count then
+            if count == 0 then
+                selectedColors[color].debt = 0
+                playerBlocks[color].editButton({index=4, label=""})
+                playerBlocks[color].editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+            else
+                selectedColors[color].debt = selectedColors[color].debt + count - selectedColors[color].bargain
+                playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+                if selectedColors[color].bargain == 0 then
+                    playerBlocks[color].editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+                end
+            end
+            selectedColors[color].bargain = count
+        end
+    end
+end
 function readyCheck()
     local colorCount = 0
     local readyCount = 0
@@ -794,7 +840,6 @@ function SetupGame()
     end
 
     SetupChecker.call("closeUI")
-    SetupChecker.setVar("setupStarted", true)
     showPlayerButtons = false
     updateSwapButtons()
 
@@ -1393,13 +1438,13 @@ function setupBlightTokens()
         end
     end
     if adversaryCard ~= nil then
-        local blightTokens = adversaryCard.get("setupBlightTokens")
+        local blightTokens = adversaryCard.getVar("setupBlightTokens")
         if blightTokens ~= nil then
             numBlight = numBlight + math.min(blightTokens[adversaryLevel] * numBoards, max)
         end
     end
     if adversaryCard2 ~= nil then
-        local blightTokens = adversaryCard2.get("setupBlightTokens")
+        local blightTokens = adversaryCard2.getVar("setupBlightTokens")
         if blightTokens ~= nil then
             numBlight = numBlight + math.min(blightTokens[adversaryLevel2] * numBoards, max)
         end
@@ -3120,6 +3165,7 @@ function StartGame()
     runSpiritSetup()
     enableUI()
     seaTile.registerCollisions(false)
+    Wait.time(bargainCheck,2,-1)
     Wait.time(readyCheck,1,-1)
     enableVictoryDefeat()
 
@@ -3283,12 +3329,18 @@ function runSpiritSetup()
     end
 end
 ------
+function playerHasSpirit(params)
+    return selectedColors[params.color] ~= nil
+end
 function addSpirit(params)
     SetupChecker.call("addSpirit", params)
 end
-function removeSpirit(params)
+function pickSpirit(params)
     SetupChecker.call("removeSpirit", params)
     getObjectFromGUID(elementScanZones[params.color]).clearButtons()
+    selectedColors[params.color] = {}
+end
+function removeSpirit(params)
     selectedColors[params.color] = {
         ready = params.ready,
         counter = params.counter,
@@ -3297,6 +3349,8 @@ function removeSpirit(params)
         isolate = params.isolate,
         paid = false,
         gained = false,
+        bargain = 0,
+        debt = 0,
     }
     updatePlayerArea(params.color)
 end
@@ -3311,7 +3365,7 @@ function getEmptySeat()
     }
     for _,guid in pairs(orderedBlockGuids) do
         local color = getObjectFromGUID(guid).getVar("playerColor")
-        if #getObjectFromGUID(PlayerBags[color]).getObjects() ~= 0 then
+        if not playerHasSpirit({color = color}) then
             return color
         end
     end
@@ -3378,6 +3432,9 @@ function timePassesCo()
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end
+    for _,object in pairs(getObjectsWithTag("Time Passes")) do
+        object.call("timePasses")
+    end
 
     broadcastToAll("Time Passes...", Color.White)
     local quote = quotes[math.random(#quotes)]
@@ -3392,24 +3449,23 @@ function timePassesCo()
     return 1
 end
 function handlePiece(object, offset)
-    local name = object.getName()
-    if string.sub(name, 1, 4) == "City" then
+    if object.hasTag("City") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
-    elseif string.sub(name, 1, 4) == "Town" then
+    elseif object.hasTag("Town") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
-    elseif string.sub(name, 1, 8) == "Explorer" then
+    elseif object.hasTag("Explorer") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,180,0), offset, noHeal)
         end
-    elseif string.sub(name, 1, 5) == "Dahan" then
+    elseif object.hasTag("Dahan") then
         if object.getLock() == false then
             object = resetPiece(object, Vector(0,0,0), offset, false)
         end
-    elseif name == "Blight" then
+    elseif object.hasTag("Blight") then
         object = resetPiece(object, Vector(0,180,0), offset, false)
     elseif object.hasTag("Reminder Token") then
         if object.getLock() == false then
@@ -3512,6 +3568,10 @@ function handlePlayer(color, data)
     if data.gained then
         playerBlocks[color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
         data.gained = false
+    end
+    if data.bargain > 0 then
+        playerBlocks[color].editButton({index=4, label="Debt: "..data.bargain})
+        data.debt = data.bargain
     end
     if data.ready.is_face_down then
         data.ready.flip()
@@ -4038,7 +4098,10 @@ function setupMap(map, extra)
                 if posToPlace[l][i] == nil then
                     broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
                 else
-                    place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                    local success = place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                    if not success then
+                        broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
+                    end
                     coroutine.yield(0)
                 end
             end
@@ -4051,20 +4114,23 @@ end
 
 function place(objName, placePos, droppingPlayerColor)
     if objName == "CityS" then
-        place("City",placePos,droppingPlayerColor)
+        local result = place("City",placePos,droppingPlayerColor)
         if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
+        return result
     elseif objName == "TownS" then
-        place("Town",placePos,droppingPlayerColor)
+        local result = place("Town",placePos,droppingPlayerColor)
         if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
+        return result
     elseif objName == "ExplorerS" then
-        place("Explorer",placePos,droppingPlayerColor)
+        local result = place("Explorer",placePos,droppingPlayerColor)
         if usingSpiritTokens() then
             Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
         end
+        return result
     end
     local temp = nil
     if objName == "Explorer" then
@@ -4072,7 +4138,7 @@ function place(objName, placePos, droppingPlayerColor)
             if #explorerBag.getObjects() == 0 then
                 broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
                 explorerBag.call("none")
-                return
+                return false
             end
         end
         temp = explorerBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -4081,7 +4147,7 @@ function place(objName, placePos, droppingPlayerColor)
             if #townBag.getObjects() == 0 then
                 broadcastToAll("There are no Towns left to place", Color.SoftYellow)
                 townBag.call("none")
-                return
+                return false
             end
         end
         temp = townBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -4090,7 +4156,7 @@ function place(objName, placePos, droppingPlayerColor)
             if #cityBag.getObjects() == 0 then
                 broadcastToAll("There are no Cities left to place", Color.SoftYellow)
                 cityBag.call("none")
-                return
+                return false
             end
         end
         temp = cityBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -4098,14 +4164,14 @@ function place(objName, placePos, droppingPlayerColor)
         if dahanBag.getCustomObject().type ~= 7 then
             if #dahanBag.getObjects() == 0 then
                 broadcastToAll("There are no Dahan left to place", Color.SoftYellow)
-                return
+                return false
             end
         end
         temp = dahanBag.takeObject({position=placePos,rotation=Vector(0,0,0)})
     elseif objName == "Blight" then
         if #blightBag.getObjects() == 0 then
             broadcastToAll("There is no Blight left to place", Color.SoftYellow)
-            return
+            return false
         end
         temp = blightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Box Blight" then
@@ -4114,56 +4180,60 @@ function place(objName, placePos, droppingPlayerColor)
         if usingSpiritTokens() then
             temp = strifeBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return
+            return false
         end
     elseif objName == "Beasts" then
         if usingSpiritTokens() then
             temp = beastsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return
+            return false
         end
     elseif objName == "Wilds" then
         if usingSpiritTokens() then
             temp = wildsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return
+            return false
         end
     elseif objName == "Disease" then
         if usingSpiritTokens() then
             temp = diseaseBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return
+            return false
         end
     elseif objName == "Badlands" then
         if expansions["Jagged Earth"] then
             temp = badlandsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return
+            return false
         end
     elseif objName == "Defend Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].defend ~= nil then
             temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return
+            return false
         end
     elseif objName == "Isolate Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].isolate ~= nil then
             temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return
+            return false
         end
     elseif objName == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "3 Energy" then
         temp = threeEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Speed Token" then
-        temp = speedBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+        if speedBag ~= nil then
+            temp = speedBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+        else
+            return false
+        end
     elseif objName == "Scenario Token" then
         local bag = getObjectFromGUID("8d6e46")
         if bag ~= nil then
             temp = bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
         else
-            return
+            return false
         end
     end
     if droppingPlayerColor then
@@ -4179,6 +4249,7 @@ function place(objName, placePos, droppingPlayerColor)
         end
         temp.highlightOn(dropColor, 20)
     end
+    return true
 end
 
 -- one-indexed table
@@ -4210,26 +4281,26 @@ end
 
 function cleanupObject(params)
     local bag = nil
-    if string.sub(params.obj.getName(),1,5) == "Dahan" then
+    if params.obj.hasTag("Dahan") then
         params.obj.setRotation(Vector(0,0,0))
         bag = dahanBag
-    elseif string.sub(params.obj.getName(),1,8) == "Explorer" then
+    elseif params.obj.hasTag("Explorer") then
         params.obj.setRotation(Vector(0,180,0))
         bag = explorerBag
-    elseif string.sub(params.obj.getName(),1,4) == "Town" then
+    elseif params.obj.hasTag("Town") then
         params.obj.setRotation(Vector(0,180,0))
         bag = townBag
         if params.fear and not noFear then
             aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
-    elseif string.sub(params.obj.getName(),1,4) == "City" then
+    elseif params.obj.hasTag("City") then
         params.obj.setRotation(Vector(0,180,0))
         bag = cityBag
         if params.fear and not noFear then
             aidBoard.call("addFear", {color = params.color, reason = params.reason})
             aidBoard.call("addFear", {color = params.color, reason = params.reason})
         end
-    elseif params.obj.getName() == "Blight" then
+    elseif params.obj.hasTag("Blight") then
         params.obj.setRotation(Vector(0,180,0))
         if params.remove then
             bag = boxBlightBag
@@ -4268,10 +4339,20 @@ function cleanupObject(params)
     end
 end
 ----
-function getSpiritColor(name)
+function getSpirit(params)
+    for _,guid in pairs(elementScanZones) do
+        for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
+            if object.hasTag("Spirit") and object.getName() == params.name then
+                return object
+            end
+        end
+    end
+    return nil
+end
+function getSpiritColor(params)
     for color,guid in pairs(elementScanZones) do
         for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
-            if object.hasTag("Spirit") and object.getName() == name then
+            if object.hasTag("Spirit") and object.getName() == params.name then
                 return color
             end
         end
@@ -4294,7 +4375,7 @@ function checkPresenceLoss()
         if #obj.getZones() == 0 then
             local color = string.sub(obj.getName(),1,-12)
             if colors[color] == nil then
-                color = getSpiritColor(obj.getDescription())
+                color = getSpiritColor({name = obj.getDescription()})
             end
             -- Color does not already have presence on island
             if color ~= nil and not colors[color] then
@@ -4304,7 +4385,7 @@ function checkPresenceLoss()
                 else
                     local bounds = obj.getBounds()
                     local hits = Physics.cast({
-                        origin = bounds.center + bounds.offset,
+                        origin = bounds.center,
                         direction = Vector(0,-1,0),
                         max_distance = 1,
                         --debug = true,
@@ -4379,13 +4460,38 @@ function checkVictory(returnOnly)
         return false
     end
     local victory = false
-    if #getObjectsWithTag("City") == 0 then
+
+    local invaderTierLeft = 0
+    for _,bag in pairs(getObjectsWithTag("Counting Bag")) do
+        for _,obj in pairs(bag.getObjects()) do
+            for _,tag in pairs(obj.tags) do
+                if tag == "City" then
+                    invaderTierLeft = 3
+                    break
+                elseif tag == "Town" then
+                    invaderTierLeft = 2
+                    break
+                elseif tag == "Explorer" then
+                    invaderTierLeft = 1
+                    break
+                end
+            end
+            if invaderTierLeft == 3 then
+                break
+            end
+        end
+        if invaderTierLeft == 3 then
+            break
+        end
+    end
+
+    if #getObjectsWithTag("City") == 0 and invaderTierLeft < 3 then
         if terrorLevel == 3 then
             victory = true
-        elseif #getObjectsWithTag("Town") == 0 then
+        elseif #getObjectsWithTag("Town") == 0 and invaderTierLeft < 2 then
             if terrorLevel == 2 then
                 victory = true
-            elseif #getObjectsWithTag("Explorer") == 0 then
+            elseif #getObjectsWithTag("Explorer") == 0 and invaderTierLeft < 1 then
                 victory = true
             end
         end
@@ -4423,11 +4529,13 @@ function showGameOver()
 
     refreshGameOver()
 
-    local colors = {}
-    for color,_ in pairs(PlayerBags) do
-        table.insert(colors, color)
+    if SetupChecker.getVar("optionalGameResults") then
+        local colors = {}
+        for color,_ in pairs(PlayerBags) do
+            table.insert(colors, color)
+        end
+        setVisiTable("panelGameOver", colors)
     end
-    setVisiTable("panelGameOver", colors)
 end
 function refreshGameOver()
     local lines = 8
@@ -4522,9 +4630,36 @@ function refreshGameOver()
     UI.setAttribute("panelGameOverFaceup", "text", cards)
     UI.setAttribute("panelGameOverDiscard", "text", discard)
 
-    UI.setAttribute("panelGameOverExplorer", "text", #getObjectsWithTag("Explorer"))
-    UI.setAttribute("panelGameOverTown", "text", #getObjectsWithTag("Town"))
-    UI.setAttribute("panelGameOverCity", "text", #getObjectsWithTag("City"))
+    local explorers = #getObjectsWithTag("Explorer")
+    local towns = #getObjectsWithTag("Town")
+    local cities = #getObjectsWithTag("City")
+
+    for _,bag in pairs(getObjectsWithTag("Counting Bag")) do
+        for _,obj in pairs(bag.getObjects()) do
+            for _,tag in pairs(obj.tags) do
+                if tag == "City" then
+                    cities = cities + 1
+                    break
+                elseif tag == "Town" then
+                    towns = towns + 1
+                    break
+                elseif tag == "Explorer" then
+                    explorers = explorers + 1
+                    break
+                elseif tag == "Blight" then
+                    blight = blight + 1
+                    break
+                elseif tag == "Dahan" then
+                    dahan = dahan + 1
+                    break
+                end
+            end
+        end
+    end
+
+    UI.setAttribute("panelGameOverExplorer", "text", explorers)
+    UI.setAttribute("panelGameOverTown", "text", towns)
+    UI.setAttribute("panelGameOverCity", "text", cities)
     UI.setAttribute("panelGameOverBlight", "text", blight)
     UI.setAttribute("panelGameOverDahan", "text", dahan)
 
@@ -4759,6 +4894,18 @@ function setupPlayerArea(params)
             position={1.1,3.2,-12.6}, rotation={0,180,0}, height=600, width=2600,
             font_size=500,
         })
+        -- Bargain Debt (button index 4)
+        obj.createButton({
+            label="", click_function="nullFunc",
+            position={9.3,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
+        })
+        -- Bargain Pay (button index 5)
+        obj.createButton({
+            label="", click_function="nullFunc",
+            position={9.3,3.2,-12.6}, rotation={0,180,0}, height=0, width=0,
+            font_color="White", font_size=500,
+        })
         for i,bag in pairs(selected.elements) do
             if i == 9 then break end
             bag.createButton({
@@ -4791,6 +4938,13 @@ function setupPlayerArea(params)
         obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
     else
         obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
+    end
+    if selected.debt > 0 then
+        obj.editButton({index=4, label="Debt: "..selected.debt})
+        obj.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+    else
+        obj.editButton({index=4, label=""})
+        obj.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
     local energy = 0
@@ -4981,10 +5135,39 @@ function reclaimAll(target_obj, source_color)
         end
     end
 end
+function payDebt(target_obj, source_color, alt_click)
+    local color = target_obj.getVar("playerColor")
+    if color ~= source_color and Player[color].seated then
+        return
+    end
+
+    if alt_click then
+        if selectedColors[color].bargain <= selectedColors[color].debt then
+            Player[source_color].broadcast("Spirit has no paid bargain debt!", Color.SoftYellow)
+            return
+        end
+        if not giveEnergy({color = color, energy = 1, ignoreDebt = true}) then
+            return
+        end
+        selectedColors[color].debt = selectedColors[color].debt + 1
+    else
+        if selectedColors[color].debt <= 0 then
+            Player[source_color].broadcast("Spirit has no remaining bargain debt!", Color.SoftYellow)
+            return
+        end
+        if not giveEnergy({color = color, energy = -1, ignoreDebt = false}) then
+            Player[source_color].broadcast("Spirit has no energy to pay debt!", Color.SoftYellow)
+            return
+        end
+        selectedColors[color].debt = selectedColors[color].debt - 1
+    end
+
+    target_obj.editButton({index = 4, label = "Debt: "..selectedColors[color].debt})
+end
 function giveEnergy(params)
-    local success = updateEnergyCounter(params.color, true, params.energy)
+    local success = updateEnergyCounter(params.color, true, params.energy, params.ignoreDebt)
     if not success then
-        success = refundEnergyTokens(params.color, params.energy)
+        success = refundEnergyTokens(params.color, params.energy, params.ignoreDebt)
     end
     return success
 end
@@ -5026,9 +5209,9 @@ function gainEnergy(target_obj, source_color, alt_click)
             if not supported then
                 Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
             else
-                local refunded = updateEnergyCounter(color, true, energyTotal)
+                local refunded = updateEnergyCounter(color, true, energyTotal, false)
                 if not refunded then
-                    refunded = refundEnergyTokens(color, energyTotal)
+                    refunded = refundEnergyTokens(color, energyTotal, false)
                 end
                 if refunded then
                     selectedColors[color].gained = true
@@ -5079,9 +5262,9 @@ function returnEnergy(target_obj, source_color, alt_click)
             if not supported then
                 Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
             else
-                local paid = updateEnergyCounter(color, false, energyTotal)
+                local paid = updateEnergyCounter(color, false, energyTotal, false)
                 if not paid then
-                    paid = payEnergyTokens(color, energyTotal)
+                    paid = payEnergyTokens(color, energyTotal, false)
                 end
                 if paid then
                     selectedColors[color].gained = false
@@ -5105,9 +5288,9 @@ function payEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local paid = updateEnergyCounter(color, false, getEnergyLabel(color))
+    local paid = updateEnergyCounter(color, false, getEnergyLabel(color), true)
     if not paid then
-        paid = payEnergyTokens(color, nil)
+        paid = payEnergyTokens(color, nil, true)
     end
     if paid then
         selectedColors[color].paid = true
@@ -5116,7 +5299,7 @@ function payEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
 end
-function updateEnergyCounter(color, refund, cost)
+function updateEnergyCounter(color, refund, cost, ignoreDebt)
     if selectedColors[color].counter == nil or not selectedColors[color].counter.getLock() then
         return false
     end
@@ -5124,13 +5307,39 @@ function updateEnergyCounter(color, refund, cost)
     if refund then
         cost = cost * -1
     end
+    if not ignoreDebt and selectedColors[color].bargain > 0 then
+        if cost < 0 then
+            if selectedColors[color].debt > 0 then
+                if selectedColors[color].debt < -cost then
+                    cost = cost + selectedColors[color].debt
+                    selectedColors[color].debt = 0
+                else
+                    selectedColors[color].debt = selectedColors[color].debt + cost
+                    cost = 0
+                end
+            end
+        elseif cost > 0 then
+            if selectedColors[color].debt < selectedColors[color].bargain then
+                if cost <= energy + selectedColors[color].bargain - selectedColors[color].debt then
+                    if selectedColors[color].bargain - selectedColors[color].debt <= cost then
+                        cost = cost - (selectedColors[color].bargain - selectedColors[color].debt)
+                        selectedColors[color].debt = selectedColors[color].bargain
+                    else
+                        selectedColors[color].debt = selectedColors[color].debt + cost
+                        cost = 0
+                    end
+                end
+            end
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+    end
     if cost > energy then
         return false
     end
     selectedColors[color].counter.setValue(energy - cost)
     return true
 end
-function payEnergyTokens(color, cost)
+function payEnergyTokens(color, cost, ignoreDebt)
     if cost == nil then
         cost = getEnergyLabel(color)
     end
@@ -5154,6 +5363,20 @@ function payEnergyTokens(color, cost)
                 table.insert(energyTokens[2], obj)
             end
         end
+    end
+    if not ignoreDebt and selectedColors[color].bargain > 0 then
+        if selectedColors[color].debt < selectedColors[color].bargain then
+            if cost <= energy + selectedColors[color].bargain - selectedColors[color].debt then
+                if selectedColors[color].bargain - selectedColors[color].debt <= cost then
+                    cost = cost - (selectedColors[color].bargain - selectedColors[color].debt)
+                    selectedColors[color].debt = selectedColors[color].bargain
+                else
+                    selectedColors[color].debt = selectedColors[color].debt + cost
+                    cost = 0
+                end
+            end
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
     end
     if cost > energy then
         return false
@@ -5236,8 +5459,9 @@ function payEnergyTokens(color, cost)
             end
         end
     end
+    -- Give change for 3 energy token
     if cost < 0 then
-        refundEnergyTokens(color, -cost)
+        refundEnergyTokens(color, -cost, true)
     end
     return true
 end
@@ -5260,9 +5484,9 @@ function refundEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color))
+    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color), true)
     if not refunded then
-        refunded = refundEnergyTokens(color, nil)
+        refunded = refundEnergyTokens(color, nil, true)
     end
     if refunded then
         selectedColors[color].paid = false
@@ -5271,13 +5495,27 @@ function refundEnergy(target_obj, source_color, alt_click)
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
 end
-function refundEnergyTokens(color, cost)
+function refundEnergyTokens(color, cost, ignoreDebt)
     if cost == nil then
         cost = getEnergyLabel(color)
     end
     if cost < 0 then
-        return payEnergyTokens(color, -cost)
+        return payEnergyTokens(color, -cost, ignoreDebt)
     end
+
+    if not ignoreDebt and selectedColors[color].bargain > 0 then
+        if selectedColors[color].debt > 0 then
+            if selectedColors[color].debt < cost then
+                cost = cost - selectedColors[color].debt
+                selectedColors[color].debt = 0
+            else
+                selectedColors[color].debt = selectedColors[color].debt - cost
+                cost = 0
+            end
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+    end
+
     local zone = getObjectFromGUID(elementScanZones[color])
     while cost >= 3 do
         threeEnergyBag.takeObject({

@@ -216,6 +216,9 @@
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="carpetRedo" isOn="true" onValueChanged="toggleCarpetRedo" tooltip="An alternate appeareance for the ocean tile">Use Thematic Ocean Playmat</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="gameResults" isOn="true" onValueChanged="toggleGameResults" tooltip="Automatically show game results when game is over">Automatically Show Game Results</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

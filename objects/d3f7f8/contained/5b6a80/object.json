@@ -1,0 +1,59 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -37.43259811401367,
+    "posY": 1.2654999494552612,
+    "posZ": 14.793299674987793,
+    "rotX": 0.0,
+    "rotY": 9.999999747378752e-05,
+    "rotZ": 0.0,
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Badlands",
+  "Description": "[b]Increases Damage to Invaders/\rDahan by 1.[/b] [i](Once per Action.)[/i]",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.9882000088691711,
+    "g": 0.6744999885559082,
+    "b": 0.10589999705553055
+  },
+  "Tags": [
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  }
+}

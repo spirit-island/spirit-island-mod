@@ -1,15 +1,14 @@
-local lightningGuid = "4a0884"
 function doSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then
         Player[color].broadcast("Please wait for the game to start before pressing this button!", Color.Red)
         return
-    elseif color ~= getPlayerColor() then
+    elseif color ~= Global.call("getSpiritColor", {name = "Lightning's Swift Strike"}) then
         Player[color].broadcast("You have not picked Lightning's Swift Strike!", Color.Red)
         return
     end
 
-    local lightning = getObjectFromGUID(lightningGuid)
+    local lightning = Global.call("getSpirit", {name = "Lightning's Swift Strike"})
     local json = JSON.decode(lightning.script_state)
     if not json.immense then
         for _,data in pairs(json.trackEnergy) do
@@ -19,16 +18,4 @@ function doSetup(params)
         lightning.script_state = JSON.encode(json)
         lightning.setTable("trackEnergy", json.trackEnergy)
     end
-end
-function getPlayerColor()
-    local zoneGuids = {}
-    for color,guid in pairs(Global.getTable("elementScanZones")) do
-        zoneGuids[guid] = color
-    end
-    for _,zone in pairs(getObjectFromGUID(lightningGuid).getZones()) do
-        if zoneGuids[zone.guid] then
-            return zoneGuids[zone.guid]
-    end
-    end
-    return ""
 end

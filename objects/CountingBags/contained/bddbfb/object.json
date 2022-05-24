@@ -1,12 +1,12 @@
 {
   "Name": "Bag",
   "Transform": {
-    "posX": -45.16579818725586,
-    "posY": 1.0995999574661255,
-    "posZ": 42.192501068115234,
-    "rotX": 0.0,
-    "rotY": 180.0,
-    "rotZ": 0.0,
+    "posX": -46.85219955444336,
+    "posY": 1.4055999517440796,
+    "posZ": 61.41830062866211,
+    "rotX": 0.599399983882904,
+    "rotY": 179.99549865722656,
+    "rotZ": 359.57391357421875,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -19,6 +19,9 @@
     "g": 0.9912999868392944,
     "b": 0.9912999868392944
   },
+  "Tags": [
+    "Counting Bag"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
@@ -35,5 +38,8 @@
   "Hands": false,
   "MaterialIndex": -1,
   "MeshIndex": -1,
-  "Number": 0
+  "Number": 0,
+  "Bag": {
+    "Order": 0
+  }
 }

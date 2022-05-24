@@ -644,6 +644,9 @@ end
 function addFearButton(_, color, _)
     addFear({color = color})
 end
+function addFearUI(player)
+    addFear({color = player.color})
+end
 function addFear(params)
     if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then
         return
@@ -663,6 +666,9 @@ function addFear(params)
 end
 function removeFearButton(_, color, _)
     removeFear({color = color})
+end
+function removeFearUI(player)
+    removeFear({color = player.color})
 end
 function removeFear(params)
     if not Global.getVar("gameStarted") or Global.getVar("gamePaused") then

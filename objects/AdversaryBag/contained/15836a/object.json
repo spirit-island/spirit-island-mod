@@ -1,30 +1,29 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -23.545499801635742,
-    "posY": 2.002500057220459,
-    "posZ": 36.33250045776367,
+    "posX": -20.130699157714844,
+    "posY": 2.4033000469207764,
+    "posZ": 36.111698150634766,
     "rotX": 0.0,
-    "rotY": 180.0,
+    "rotY": 180.01319885253906,
     "rotZ": 0.0,
-    "scaleX": 0.675000011920929,
-    "scaleY": 0.675000011920929,
-    "scaleZ": 0.675000011920929
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
   },
   "Nickname": "Destroyed Beasts",
-  "Description": "Russia Lv0",
+  "Description": "If there are ever more Beasts here than on the Island, the Invaders win.",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.061000000685453415,
-    "g": 0.061000000685453415,
-    "b": 0.061000000685453415,
-    "a": 0.0
+    "r": 0.9646999835968018,
+    "g": 0.5842999815940857,
+    "b": 0.5175999999046326
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
   "Grid": false,
-  "Snap": false,
+  "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
@@ -38,84 +37,42 @@
   "MeshIndex": -1,
   "Number": 0,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-    "DiffuseURL": "",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
     "NormalURL": "",
     "ColliderURL": "",
-    "Convex": false,
-    "MaterialIndex": 0,
+    "Convex": true,
+    "MaterialIndex": 1,
     "TypeIndex": 6,
-    "CastShadows": true
-  },
-  "ChildObjects": [
-    {
-      "GUID": "445754",
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -0.025499999523162842,
-        "posY": 0.26930001378059387,
-        "posZ": -0.038600001484155655,
-        "rotX": 0.0,
-        "rotY": 0.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5408999919891357,
-        "scaleY": 1.4815000295639038,
-        "scaleZ": 0.5408999919891357
-      },
-      "Nickname": "Beasts",
-      "Description": "Harms Invaders and generates Fear as specified by Powers and Event Cards",
-      "GMNotes": "",
-      "ColorDiffuse": {
+    "CustomShader": {
+      "SpecularColor": {
         "r": 1.0,
         "g": 1.0,
         "b": 1.0
       },
-      "Tags": [
-        "Highlight"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110812/04019E4C271180904A4648C87F9BFA23364FB9F6/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.20000000298023224,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
     },
+    "CastShadows": true
+  },
+  "Bag": {
+    "Order": 0
+  },
+  "ChildObjects": [
     {
       "GUID": "56e8c7",
       "Name": "BlockSquare",
       "Transform": {
-        "posX": -0.06880000233650208,
-        "posY": 0.22579999268054962,
-        "posZ": 0.023800000548362732,
-        "rotX": 0.0,
-        "rotY": 225.0,
-        "rotZ": 0.0,
-        "scaleX": 2.1582999229431152,
-        "scaleY": 0.4422999918460846,
-        "scaleZ": 0.1599999964237213
+        "posX": 0.0017000000225380063,
+        "posY": 0.06199999898672104,
+        "posZ": 0.03460000082850456,
+        "rotX": 0.15620000660419464,
+        "rotY": 224.88369750976562,
+        "rotZ": 359.8255920410156,
+        "scaleX": 0.9539999961853027,
+        "scaleY": 0.11569999903440475,
+        "scaleZ": 0.05999999865889549
       },
       "Nickname": "",
       "Description": "",
@@ -147,15 +104,15 @@
       "GUID": "51f83b",
       "Name": "BlockSquare",
       "Transform": {
-        "posX": -0.008500000461935997,
-        "posY": 0.2012999951839447,
-        "posZ": 0.007199999876320362,
-        "rotX": 0.0,
-        "rotY": 145.0,
-        "rotZ": 0.0,
-        "scaleX": 2.296299934387207,
-        "scaleY": 0.4772999882698059,
-        "scaleZ": 0.1589999943971634
+        "posX": 0.007300000172108412,
+        "posY": 0.061400000005960464,
+        "posZ": 0.03240000084042549,
+        "rotX": 359.85540771484375,
+        "rotY": 144.88429260253906,
+        "rotZ": 359.8158874511719,
+        "scaleX": 0.9164999723434448,
+        "scaleY": 0.11479999870061874,
+        "scaleZ": 0.05959999933838844
       },
       "Nickname": "",
       "Description": "",

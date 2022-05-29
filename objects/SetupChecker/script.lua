@@ -39,6 +39,7 @@ playerZones = {
     ["61ac7c"] = true,
 }
 
+pickedSpirits = {}
 spiritGuids = {}
 spiritTags = {}
 spiritComplexities = {}
@@ -380,7 +381,7 @@ function onObjectDestroy(obj)
         return
     end
     if obj.hasTag("Spirit") then
-        removeSpirit({spirit=obj.guid})
+        removeSpirit({spirit=obj})
     elseif not setupStarted then
         if obj.type == "Card" then
             local objType = type(obj.getVar("difficulty"))
@@ -1669,11 +1670,10 @@ function addSpirit(params)
     -- Ignore Source Spirit
     if params.spirit.guid == "SourceSpirit" then return end
 
-    if Global.getVar("gameStarted") then
-        for _, zone in pairs(params.spirit.getZones()) do
-            if playerZones[zone.guid] then
-                return
-            end
+    -- Spirit has already been picked
+    for name,_ in pairs(pickedSpirits) do
+        if name == params.spirit.getName() then
+            return false
         end
     end
 
@@ -1717,18 +1717,26 @@ function addSpirit(params)
         complexity = "Very High"
     end
     spiritComplexities[params.spirit.guid] = complexity
+    return true
 end
 function removeSpirit(params)
+    local found = false
     for i,guid in pairs(spiritGuids) do
-        if guid == params.spirit then
+        if guid == params.spirit.guid then
             table.remove(spiritGuids, i)
+            found = true
             break
         end
     end
-    spiritTags[params.spirit] = nil
-    spiritComplexities[params.spirit] = nil
+    if not found then
+        return
+    end
+
+    pickedSpirits[params.spirit.getName()] = true
+    spiritTags[params.spirit.guid] = nil
+    spiritComplexities[params.spirit.guid] = nil
     for name, data in pairs(spiritChoices) do
-        if data.guid == params.spirit then
+        if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
 
             local found = false

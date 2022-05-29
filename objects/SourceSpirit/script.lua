@@ -17,19 +17,10 @@ function load(params)
         params.obj.setTable("bonusEnergy", loaded_data.bonusEnergy)
         params.obj.setTable("thresholds", loaded_data.thresholds)
     end
-    Global.call("addSpirit", {spirit=params.obj})
 
-    -- If game has started don't add pick button to already chosen spirits
-    if Global.getVar("gameStarted") then
-        local zoneGuids = {}
-        for color,guid in pairs(Global.getTable("elementScanZones")) do
-            zoneGuids[guid] = color
-        end
-        for _,zone in pairs(params.obj.getZones()) do
-            if zoneGuids[zone.guid] then
-                return
-            end
-        end
+    local success = Global.call("addSpirit", {spirit=params.obj})
+    if not success then
+        return
     end
 
     local choose, progression, aspect, rotation
@@ -201,7 +192,7 @@ function SetupSpirit(obj, player_color)
     else
         obj.clearButtons()
         Global.call("pickSpirit", {
-            spirit = obj.guid,
+            spirit = obj,
             color = player_color
         })
         if Global.getVar("SetupChecker").getVar("setupStarted") and not Global.getVar("gameStarted") then
@@ -389,7 +380,6 @@ function setupSpirit(obj, player_color)
 
     Wait.frames(function()
         Global.call("removeSpirit", {
-            spirit = spirit.guid,
             color = player_color,
             ready = ready,
             counter = counter,

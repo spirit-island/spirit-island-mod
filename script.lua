@@ -2950,7 +2950,6 @@ function PostSetup()
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
                 spirit = spirit.setState(2)
-                Wait.condition(function() spirit.clearButtons() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
             else
                 postSetupSteps = postSetupSteps + 1
             end
@@ -3333,7 +3332,7 @@ function playerHasSpirit(params)
     return selectedColors[params.color] ~= nil
 end
 function addSpirit(params)
-    SetupChecker.call("addSpirit", params)
+    return SetupChecker.call("addSpirit", params)
 end
 function pickSpirit(params)
     SetupChecker.call("removeSpirit", params)

@@ -2,13 +2,13 @@
   "Name": "ScriptingTrigger",
   "Transform": {
     "posX": -3.8,
-    "posY": 1.4,
+    "posY": 1.05,
     "posZ": -28.0,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 22.0,
-    "scaleY": 1.2,
+    "scaleY": 0.5,
     "scaleZ": 23.0
   },
   "Nickname": "",

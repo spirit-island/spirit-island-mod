@@ -4,7 +4,7 @@ local currentSpirit
 function onLoad()
     self.createButton({
         click_function = "nullFunc",
-        label = "Spirit Board\nValidator",
+        label = "Spirit Panel\nValidator",
         font_color = {1,1,1},
         position = {0,1,0.65},
         scale = {0.3,0.3,0.5},

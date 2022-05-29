@@ -5085,13 +5085,16 @@ function setupPlayerArea(params)
                 end
                 --Ignore if no elements entry
                 if entry.getVar("elements") ~= nil then
-                    -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
-                    if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
-                        local cardElements = entry.getVar("elements")
-                        elements:add(cardElements)
-                        nonTokenElements:add(cardElements)
+                    -- Skip counting face down cards and those below spirit panel
+                    if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
+                        -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
+                        if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
+                            local cardElements = entry.getVar("elements")
+                            elements:add(cardElements)
+                            nonTokenElements:add(cardElements)
+                        end
+                        energy = energy + powerCost(entry)
                     end
-                    energy = energy + powerCost(entry)
                 end
                 if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
                     table.insert(thresholdCards, entry)

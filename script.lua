@@ -2949,7 +2949,7 @@ function PostSetup()
         else
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
-                spirit = spirit.setState(2)
+                spirit.setState(2)
             else
                 postSetupSteps = postSetupSteps + 1
             end

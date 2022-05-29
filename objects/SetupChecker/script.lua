@@ -1677,7 +1677,7 @@ function addSpirit(params)
 
     -- In case of state change, update existing choice with new guid
     if spiritChoices[params.spirit.getName()] ~= nil then
-        spiritChoices[name].guid = params.spirit.guid
+        spiritChoices[params.spirit.getName()].guid = params.spirit.guid
     end
 
     local found = false
@@ -1734,7 +1734,7 @@ function removeSpirit(params)
         if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
 
-            local found = false
+            found = false
             for color,guid in pairs(Global.getVar("elementScanZones")) do
                 local zone = getObjectFromGUID(guid)
                 local buttons = zone.getButtons()

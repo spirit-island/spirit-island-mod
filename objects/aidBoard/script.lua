@@ -797,6 +797,8 @@ function fearCard(params)
             card.setPosition(pos)
             if params.earned then
                 broadcastToAll("Fear Card Earned!", Color.SoftBlue)
+            else
+                broadcastToAll("Fear Card Removed!", Color.SoftBlue)
             end
         end
     end

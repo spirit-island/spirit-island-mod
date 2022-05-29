@@ -1671,18 +1671,13 @@ function addSpirit(params)
     if params.spirit.guid == "SourceSpirit" then return end
 
     -- Spirit has already been picked
-    for name,_ in pairs(pickedSpirits) do
-        if name == params.spirit.getName() then
-            return false
-        end
+    if pickedSpirits[params.spirit.getName()] then
+        return false
     end
 
     -- In case of state change, update existing choice with new guid
-    for name,_ in pairs(spiritChoices) do
-        if name == params.spirit.getName() then
-            spiritChoices[name].guid = params.spirit.guid
-            break
-        end
+    if spiritChoices[params.spirit.getName()] ~= nil then
+        spiritChoices[name].guid = params.spirit.guid
     end
 
     local found = false

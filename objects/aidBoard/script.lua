@@ -789,8 +789,7 @@ function fearCard(params)
             card.setPosition(pos)
             card.setRotationSmooth(Vector(0,180,0))
             invaderCardBroadcast(card)
-        else
-            -- assumed fear card
+        elseif card.hasTag("Fear") then
             foundFearCount = foundFearCount + 1
             if foundFearCount == 2 then
                 break

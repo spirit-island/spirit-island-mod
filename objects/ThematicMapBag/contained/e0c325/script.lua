@@ -117,12 +117,12 @@ posMap = {
 } } }
 
 pieceMap = {
-{  "Explorer",  "Explorer",  "Dahan"  },
+{  "Explorer",  "Explorer",  "Dahan",  "Vitality"  },
 {  "City" },
 {  "Town",  "Disease" },
 {  },
-{  },
-{  "Dahan",  "Dahan"  },
+{  "Vitality"  },
+{  "Dahan",  "Dahan",  "Vitality"  },
 {  "Dahan", "Badlands"  },
 {  "Explorer",  "Dahan" },
 {  "Dahan"  }

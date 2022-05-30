@@ -25,6 +25,12 @@ function PickPower()
     })
 end
 function destroyBoard(card, color)
+    local gravity = Physics.getGravity()
+    if gravity.x == 0 and gravity.y == 0 and gravity.z == 0 then
+        broadcastToAll("Gravity is currently disabled but is required, please enable and try again.", Color.Red)
+        return
+    end
+
     local hits = Physics.cast({
         origin = card.getPosition(),
         direction = Vector(0,-1,0),
@@ -54,4 +60,11 @@ function destroyBoard(card, color)
     Global.setVar("castDown", board.getName())
     Global.setVar("castDownColor", color)
     board.setPosition(board.getPosition() + Vector(0, -0.05, 0))
+    Global.setVar("castDownTimer", Wait.time(castDownCallback, 0.5))
+end
+function castDownCallback()
+    Global.setVar("castDown", nil)
+    Global.setVar("castDownTimer", nil)
+    Global.setVar("castDownColor", nil)
+    broadcastToAll("Physics is required to be \"Full\", please change your setting and try again.", Color.Red)
 end

@@ -25,9 +25,9 @@
 - There are 10 default keybindings (using Num 0 - 9)
   - These are outlined in the Notes (lower right of the screen)
 - To look at the underside of your Spirit Panel (for the setup instructions):
- - Hover + Alt + Shift
+  - Hover + Alt + Shift
 - To look at a card
- - Hover + Alt
+  - Hover + Alt
 - To mark a piece as Damaged: change its state
   - Hover + Page Up/Down to Increase/Decrease Damage
   - Hover + a num row key (0 Damage is state 1, 1 Damage is state 2, etc.)

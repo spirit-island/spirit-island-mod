@@ -274,9 +274,11 @@ function onObjectEnterContainer(container, object)
             -- Not sure of a way around it, but with setDecals it's harmless
             makeSacredSite(container)
         end
-        return
+        makeLabel(container, 2, 0.3, -0.15)
     elseif container.hasTag("Spirit") and object.hasTag("Aspect") then
         sourceSpirit.call("AddAspectButton", {obj = container})
+    elseif container.hasTag("Label") and object.hasTag("Label") then
+        makeLabel(container, 1, 0.11, 0.01)
     end
 end
 function makeSacredSite(obj)
@@ -307,6 +309,28 @@ function makeSacredSite(obj)
         },
     })
 end
+function makeLabel(obj, count, thickness, offset)
+    if obj.getQuantity() <= count then
+        obj.clearButtons()
+    elseif obj.getButtons() == nil then
+        obj.createButton({
+            click_function = "nullFunc",
+            function_owner = Global,
+            label          = obj.getQuantity(),
+            position       = Vector(0,thickness * obj.getQuantity() + offset,0),
+            font_size      = 280 / obj.getScale().x,
+            font_color     = {1,1,1},
+            width          = 0,
+            height         = 0,
+        })
+    else
+        obj.editButton({
+            index          = 0,
+            label          = obj.getQuantity(),
+            position       = Vector(0,thickness * obj.getQuantity() + offset,0),
+        })
+    end
+end
 function onObjectLeaveContainer(container, object)
     if container.hasTag("Presence") and object.hasTag("Presence") then
         if container.getQuantity() == 1 and container.remainder.getStateId() ~= 2 then
@@ -315,7 +339,7 @@ function onObjectLeaveContainer(container, object)
         if object.getStateId() ~= 2 then
             object.setDecals({})
         end
-        return
+        makeLabel(container, 2, 0.3, -0.15)
     elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         if container == ExtraMapBag then
@@ -334,7 +358,8 @@ function onObjectLeaveContainer(container, object)
             end
             object.setDecals({decal})
         end
-        return
+    elseif container.hasTag("Label") and object.hasTag("Label") then
+        makeLabel(container, 1, 0.11, 0.01)
     end
 end
 function onObjectEnterScriptingZone(zone, obj)
@@ -5596,16 +5621,18 @@ function flipVector(vec)
     vec.z = 1/vec.z
     return vec
 end
+function fontColor(bg)
+    if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
+        return {0,0,0}
+    else
+        return {1,1,1}
+    end
+end
 function updateSwapButtons()
     for color,obj in pairs(playerTables) do
         if showPlayerButtons then
             local bg = Color[color]
-            local fg
-            if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
-                fg = {0,0,0}
-            else
-                fg = {1,1,1}
-            end
+            local fg = fontColor(bg)
             obj.editButton({index=0, label="Swap Place", height=400, width=1500})
             obj.editButton({index=1, label="Swap " .. color, height=400, width=1500, color=bg, font_color=fg})
         else

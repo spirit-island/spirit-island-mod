@@ -4654,8 +4654,20 @@ function refreshGameOver()
     local cards = aidBoard.getVar("numCards")
     local discard = aidBoard.call("countDiscard")
 
+    local phase = ""
+    if currentPhase == 1 then
+        phase = "Spirit"
+    elseif currentPhase == 2 then
+        phase = "Fast"
+    elseif currentPhase == 3 then
+        phase = "Invader"
+    elseif currentPhase == 4 then
+        phase = "Slow"
+    end
+
     UI.setAttribute("panelGameOverDifficulty", "text", difficulty)
     UI.setAttribute("panelGameOverTurn", "text", turn)
+    UI.setAttribute("panelGameOverPhase", "text", phase)
     UI.setAttribute("panelGameOverDeck", "text", deck)
     UI.setAttribute("panelGameOverFaceup", "text", cards)
     UI.setAttribute("panelGameOverDiscard", "text", discard)

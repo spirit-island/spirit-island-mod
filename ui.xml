@@ -284,13 +284,19 @@
             </Cell>
         </Row>
         <Row>
+            <Cell columnSpan="2">
+                <Text class="gameOver" alignment="MiddleRight">Difficulty:</Text>
+            </Cell>
+            <Cell columnSpan="2">
+                <Text id="panelGameOverDifficulty" class="gameOver" alignment="MiddleLeft"/>
+            </Cell>
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Difficulty:</Text>
+                <Text class="gameOver" alignment="MiddleRight">Turn:</Text>
             </Cell>
             <Cell>
-                <Text id="panelGameOverDifficulty" class="gameOver" alignment="MiddleLeft"/>
+                <Text id="panelGameOverTurn" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell>
                 <Image image="Explorer" preserveAspect="true" rectAlignment="MiddleRight"/>
@@ -301,10 +307,10 @@
         </Row>
         <Row>
             <Cell>
-                <Text class="gameOver" alignment="MiddleRight">Turn:</Text>
+                <Text class="gameOver" alignment="MiddleRight">Phase:</Text>
             </Cell>
             <Cell>
-                <Text id="panelGameOverTurn" class="gameOver" alignment="MiddleLeft"/>
+                <Text id="panelGameOverPhase" class="gameOver" alignment="MiddleLeft"/>
             </Cell>
             <Cell>
                 <Image image="Town" preserveAspect="true" rectAlignment="MiddleRight"/>

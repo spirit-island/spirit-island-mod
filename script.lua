@@ -5538,7 +5538,7 @@ function refundEnergy(target_obj, source_color, alt_click)
 
     local refunded = updateEnergyCounter(color, true, getEnergyLabel(color), false)
     if not refunded then
-        refunded = refundEnergyTokens(color, nil, true)
+        refunded = refundEnergyTokens(color, nil, false)
     end
     if refunded then
         selectedColors[color].paid = false

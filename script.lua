@@ -5157,7 +5157,7 @@ function payDebt(target_obj, source_color, alt_click)
             Player[source_color].broadcast("Spirit has no remaining bargain debt!", Color.SoftYellow)
             return
         end
-        if not giveEnergy({color = color, energy = -1, ignoreDebt = false}) then
+        if not giveEnergy({color = color, energy = -1, ignoreDebt = true}) then
             Player[source_color].broadcast("Spirit has no energy to pay debt!", Color.SoftYellow)
             return
         end
@@ -5336,7 +5336,7 @@ function updateEnergyCounter(color, refund, cost, ignoreDebt)
                 end
             end
         elseif cost > 0 then
-            -- refund energy
+            -- ungain energy
             if selectedColors[color].debt < 0 then
                 if selectedColors[color].debt <= -cost then
                     selectedColors[color].debt = selectedColors[color].debt + cost

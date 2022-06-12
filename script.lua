@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.4.1-beta.2"
+version = "3.4.1-beta.5"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -5200,7 +5200,7 @@ function payDebt(target_obj, source_color, alt_click)
             Player[source_color].broadcast("Spirit has no remaining bargain debt!", Color.SoftYellow)
             return
         end
-        if not giveEnergy({color = color, energy = -1, ignoreDebt = false}) then
+        if not giveEnergy({color = color, energy = -1, ignoreDebt = true}) then
             Player[source_color].broadcast("Spirit has no energy to pay debt!", Color.SoftYellow)
             return
         end
@@ -5350,36 +5350,63 @@ function updateEnergyCounter(color, refund, cost, ignoreDebt)
     end
     local energy = selectedColors[color].counter.getValue()
     if refund then
-        cost = cost * -1
+        cost = -cost
     end
+
+    if not ignoreDebt then
+        if cost > energy + (selectedColors[color].bargain - selectedColors[color].debt) then
+            return false
+        end
+    else
+        if cost > energy then
+            return false
+        end
+    end
+
     if not ignoreDebt and selectedColors[color].bargain > 0 then
         if cost < 0 then
-            if selectedColors[color].debt > 0 then
-                if selectedColors[color].debt < -cost then
-                    cost = cost + selectedColors[color].debt
-                    selectedColors[color].debt = 0
-                else
+            -- gain energy
+            if selectedColors[color].debt <= 0 then
+                selectedColors[color].debt = selectedColors[color].debt + cost
+            else
+                if selectedColors[color].debt >= -cost then
                     selectedColors[color].debt = selectedColors[color].debt + cost
                     cost = 0
+                else
+                    local diff = selectedColors[color].debt
+                    selectedColors[color].debt = selectedColors[color].debt + cost
+                    cost = cost + diff
                 end
             end
         elseif cost > 0 then
-            if selectedColors[color].debt < selectedColors[color].bargain then
-                if cost <= energy + selectedColors[color].bargain - selectedColors[color].debt then
-                    if selectedColors[color].bargain - selectedColors[color].debt <= cost then
-                        cost = cost - (selectedColors[color].bargain - selectedColors[color].debt)
-                        selectedColors[color].debt = selectedColors[color].bargain
-                    else
+            -- ungain energy
+            if selectedColors[color].debt < 0 then
+                if selectedColors[color].debt <= -cost then
+                    selectedColors[color].debt = selectedColors[color].debt + cost
+                else
+                    if selectedColors[color].bargain - selectedColors[color].debt >= cost then
                         selectedColors[color].debt = selectedColors[color].debt + cost
-                        cost = 0
+                        cost = cost - selectedColors[color].debt
+                    else
+                        selectedColors[color].debt = selectedColors[color].bargain
+                        cost = cost - selectedColors[color].bargain
                     end
+                end
+            else
+                if selectedColors[color].bargain - selectedColors[color].debt >= cost then
+                    selectedColors[color].debt = selectedColors[color].debt + cost
+                    cost = 0
+                else
+                    selectedColors[color].debt = selectedColors[color].bargain
+                    cost = cost - selectedColors[color].bargain
                 end
             end
         end
-        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
-    end
-    if cost > energy then
-        return false
+        local debt = selectedColors[color].debt
+        if debt < 0 then
+            debt = 0
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..debt})
     end
     selectedColors[color].counter.setValue(energy - cost)
     return true
@@ -5409,23 +5436,46 @@ function payEnergyTokens(color, cost, ignoreDebt)
             end
         end
     end
+
+    if not ignoreDebt then
+        if cost > energy + (selectedColors[color].bargain - selectedColors[color].debt) then
+            return false
+        end
+    else
+        if cost > energy then
+            return false
+        end
+    end
+
     if not ignoreDebt and selectedColors[color].bargain > 0 then
-        if selectedColors[color].debt < selectedColors[color].bargain then
-            if cost <= energy + selectedColors[color].bargain - selectedColors[color].debt then
-                if selectedColors[color].bargain - selectedColors[color].debt <= cost then
-                    cost = cost - (selectedColors[color].bargain - selectedColors[color].debt)
-                    selectedColors[color].debt = selectedColors[color].bargain
-                else
+        if selectedColors[color].debt < 0 then
+            if selectedColors[color].debt <= -cost then
+                selectedColors[color].debt = selectedColors[color].debt + cost
+            else
+                if selectedColors[color].bargain - selectedColors[color].debt >= cost then
                     selectedColors[color].debt = selectedColors[color].debt + cost
-                    cost = 0
+                    cost = cost - selectedColors[color].debt
+                else
+                    selectedColors[color].debt = selectedColors[color].bargain
+                    cost = cost - selectedColors[color].bargain
                 end
             end
+        else
+            if selectedColors[color].bargain - selectedColors[color].debt >= cost then
+                selectedColors[color].debt = selectedColors[color].debt + cost
+                cost = 0
+            else
+                selectedColors[color].debt = selectedColors[color].bargain
+                cost = cost - selectedColors[color].bargain
+            end
         end
-        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+        local debt = selectedColors[color].debt
+        if debt < 0 then
+            debt = 0
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..debt})
     end
-    if cost > energy then
-        return false
-    end
+
     -- Only spend 3 energy tokens until you don't go negative unless there aren't enough 1 energy tokens
     for i=#energyTokens[2],1,-1 do
         if cost <= 2 and oneEnergyTotal >= 2 then
@@ -5529,9 +5579,9 @@ function refundEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color), true)
+    local refunded = updateEnergyCounter(color, true, getEnergyLabel(color), false)
     if not refunded then
-        refunded = refundEnergyTokens(color, nil, true)
+        refunded = refundEnergyTokens(color, nil, false)
     end
     if refunded then
         selectedColors[color].paid = false
@@ -5549,16 +5599,23 @@ function refundEnergyTokens(color, cost, ignoreDebt)
     end
 
     if not ignoreDebt and selectedColors[color].bargain > 0 then
-        if selectedColors[color].debt > 0 then
-            if selectedColors[color].debt < cost then
-                cost = cost - selectedColors[color].debt
-                selectedColors[color].debt = 0
-            else
+        if selectedColors[color].debt <= 0 then
+            selectedColors[color].debt = selectedColors[color].debt - cost
+        else
+            if selectedColors[color].debt >= cost then
                 selectedColors[color].debt = selectedColors[color].debt - cost
                 cost = 0
+            else
+                local diff = selectedColors[color].debt
+                selectedColors[color].debt = selectedColors[color].debt - cost
+                cost = cost - diff
             end
         end
-        playerBlocks[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
+        local debt = selectedColors[color].debt
+        if debt < 0 then
+            debt = 0
+        end
+        playerBlocks[color].editButton({index=4, label="Debt: "..debt})
     end
 
     local zone = getObjectFromGUID(elementScanZones[color])

@@ -365,7 +365,13 @@ function onObjectLeaveContainer(container, object)
             object.setDecals({decal})
         end
     elseif container.hasTag("Label") and object.hasTag("Label") then
-        makeLabel(container, 1, 0.11, 0.01)
+        local thickness = 0.11
+        local offset = 0.01
+        if container.hasTag("Blight") then
+            thickness = 0.363
+            offset = 0.05
+        end
+        makeLabel(container, 1, thickness, offset)
     end
 end
 function onObjectEnterScriptingZone(zone, obj)

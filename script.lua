@@ -3556,7 +3556,10 @@ function handlePlayer(color, data)
             obj.setPosition(obj.getPosition() + Vector(0,1,0))
             Wait.frames(function() obj.destruct() end , 1)
         elseif obj.type == "Card" and not obj.getLock() then
-            obj.deal(1, color, 2)
+            -- Skip moving face down cards and those below spirit panel
+            if not obj.is_face_down and obj.getPosition().z > zone.getPosition().z then
+                obj.deal(1, color, 2)
+            end
         end
     end
 

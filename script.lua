@@ -4385,9 +4385,8 @@ function checkPresenceLoss()
                 if obj.held_by_color then
                     colors[color] = true
                 else
-                    local bounds = obj.getBounds()
                     local hits = Physics.cast({
-                        origin = bounds.center,
+                        origin = obj.getPosition(),
                         direction = Vector(0,-1,0),
                         max_distance = 1,
                         --debug = true,

@@ -914,7 +914,9 @@ function startGame()
         return
     end
     if config == nil then
-        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
+        local secondWave = getObjectFromGUID("e924fe")
+        secondWave.setLock(false)
+        Global.getVar("scenarioBag").putObject(secondWave)
     end
     setupStarted = true
 
@@ -1110,7 +1112,9 @@ function loadConfig(config)
             Global.setVar("wave", config.secondWave.wave)
         end
     else
-        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
+        local secondWave = getObjectFromGUID("e924fe")
+        secondWave.setLock(false)
+        Global.getVar("scenarioBag").putObject(secondWave)
     end
     if config.spirits then
         for name,aspect in pairs(config.spirits) do

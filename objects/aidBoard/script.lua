@@ -761,15 +761,15 @@ function fearCard(params)
     local foundFearCount = 0
     for i=#fearDeck,1,-1 do
         local card = fearDeck[i]
-        if card.use_hands then
+        if not card.getLock() then
             if card.getName() == "Terror II" or card.getName() == "Terror III" then
-                card.use_hands = false
+                card.setLock(true)
                 -- HACK work around issue where setPosition sometimes doesn't move object from hand to non hand
                 card.deal(1, "White")
                 Wait.condition(function()
                     card.setPosition(dividerPos)
                     card.setRotation(Vector(0, 180, 0))
-                    card.use_hands = true
+                    card.setLock(false)
                 end, function() return not card.isSmoothMoving() end)
             elseif card.hasTag("Invader Card") then
                 local invaderPos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
@@ -780,7 +780,7 @@ function fearCard(params)
                     -- already have 1 build card
                     invaderPos = invaderPos + Vector(0,0,-1)
                 end
-                card.use_hands = false
+                card.setLock(true)
                 -- HACK work around issue where setPosition sometimes doesn't move object from hand to non hand
                 card.deal(1, "White")
                 Wait.condition(function()
@@ -789,15 +789,15 @@ function fearCard(params)
                     card.setPosition(invaderPos)
                     card.setRotationSmooth(Vector(0,180,0))
                     invaderCardBroadcast(card)
-                    card.use_hands = true
+                    card.setLock(false)
                 end, function() return not card.isSmoothMoving() end)
             elseif card.hasTag("Fear") then
                 foundFearCount = foundFearCount + 1
                 if foundFearCount == 2 then
                     break
                 end
-                card.use_hands = false
-                Wait.frames(function() card.use_hands = true end, 1)
+                card.setLock(true)
+                Wait.frames(function() card.setLock(false) end, 1)
                 card.setPosition(pos)
                 if params.earned then
                     broadcastToAll("Fear Card Earned!", Color.SoftBlue)

@@ -39,6 +39,7 @@ playerZones = {
     ["61ac7c"] = true,
 }
 
+pickedSpirits = {}
 spiritGuids = {}
 spiritTags = {}
 spiritComplexities = {}
@@ -380,7 +381,7 @@ function onObjectDestroy(obj)
         return
     end
     if obj.hasTag("Spirit") then
-        removeSpirit({spirit=obj.guid})
+        removeSpirit({spirit=obj})
     elseif not setupStarted then
         if obj.type == "Card" then
             local objType = type(obj.getVar("difficulty"))
@@ -913,7 +914,9 @@ function startGame()
         return
     end
     if config == nil then
-        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
+        local secondWave = getObjectFromGUID("e924fe")
+        secondWave.setLock(false)
+        Global.getVar("scenarioBag").putObject(secondWave)
     end
     setupStarted = true
 
@@ -1109,7 +1112,9 @@ function loadConfig(config)
             Global.setVar("wave", config.secondWave.wave)
         end
     else
-        Global.getVar("scenarioBag").putObject(getObjectFromGUID("e924fe"))
+        local secondWave = getObjectFromGUID("e924fe")
+        secondWave.setLock(false)
+        Global.getVar("scenarioBag").putObject(secondWave)
     end
     if config.spirits then
         for name,aspect in pairs(config.spirits) do
@@ -1669,20 +1674,14 @@ function addSpirit(params)
     -- Ignore Source Spirit
     if params.spirit.guid == "SourceSpirit" then return end
 
-    if Global.getVar("gameStarted") then
-        for _, zone in pairs(params.spirit.getZones()) do
-            if playerZones[zone.guid] then
-                return
-            end
-        end
+    -- Spirit has already been picked
+    if pickedSpirits[params.spirit.getName()] then
+        return false
     end
 
     -- In case of state change, update existing choice with new guid
-    for name,_ in pairs(spiritChoices) do
-        if name == params.spirit.getName() then
-            spiritChoices[name].guid = params.spirit.guid
-            break
-        end
+    if spiritChoices[params.spirit.getName()] ~= nil then
+        spiritChoices[params.spirit.getName()].guid = params.spirit.guid
     end
 
     local found = false
@@ -1717,21 +1716,29 @@ function addSpirit(params)
         complexity = "Very High"
     end
     spiritComplexities[params.spirit.guid] = complexity
+    return true
 end
 function removeSpirit(params)
+    local found = false
     for i,guid in pairs(spiritGuids) do
-        if guid == params.spirit then
+        if guid == params.spirit.guid then
             table.remove(spiritGuids, i)
+            found = true
             break
         end
     end
-    spiritTags[params.spirit] = nil
-    spiritComplexities[params.spirit] = nil
+    if not found then
+        return
+    end
+
+    pickedSpirits[params.spirit.getName()] = true
+    spiritTags[params.spirit.guid] = nil
+    spiritComplexities[params.spirit.guid] = nil
     for name, data in pairs(spiritChoices) do
-        if data.guid == params.spirit then
+        if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
 
-            local found = false
+            found = false
             for color,guid in pairs(Global.getVar("elementScanZones")) do
                 local zone = getObjectFromGUID(guid)
                 local buttons = zone.getButtons()

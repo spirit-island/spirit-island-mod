@@ -748,56 +748,62 @@ function modifyFearPool(obj, color, alt_click)
 end
 
 function fearCard(params)
-    local fearDeck = Player["Black"].getHandObjects(1)
-    local handTransform = Player["Black"].getHandTransform(2)
-    local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
     local pos
     if params.earned then
+        local handTransform = Player["Black"].getHandTransform(2)
         pos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
     else
         pos = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getPosition()
     end
 
+    local fearDeck = Player["Black"].getHandObjects(1)
+    local dividerPos = self.positionToWorld(Vector(-1.1,1,0.08))
     local foundFearCount = 0
     for i=#fearDeck,1,-1 do
         local card = fearDeck[i]
-        if card.getName() == "Terror II" then
-            -- HACK work around issue where setPosition sometimes doesn't move object
-            card.deal(1, "Black")
-            Wait.condition(function()
-                card.setPosition(dividerPos)
-                card.setRotation(Vector(0, 180, 0))
-            end, function() return not card.isSmoothMoving() end)
-        elseif card.getName() == "Terror III" then
-            -- HACK work around issue where setPosition sometimes doesn't move object
-            card.deal(1, "Black")
-            Wait.condition(function()
-                card.setPosition(dividerPos)
-                card.setRotation(Vector(0, 180, 0))
-            end, function() return not card.isSmoothMoving() end)
-        elseif card.hasTag("Invader Card") then
-            pos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
-            if Global.UI.getAttribute("panelBuild21", "active") == "True" then
-                -- already have 2 build cards
-                pos = pos + Vector(0,0,-2)
-            elseif Global.UI.getAttribute("panelBuild11text", "text") ~= "NO ACTION" then
-                -- already have 1 build card
-                pos = pos + Vector(0,0,-1)
-            end
-            -- Russia puts invader cards in this deck at a scale factor of 1.37
-            card.scale(1/1.37)
-            card.setPosition(pos)
-            card.setRotationSmooth(Vector(0,180,0))
-            invaderCardBroadcast(card)
-        else
-            -- assumed fear card
-            foundFearCount = foundFearCount + 1
-            if foundFearCount == 2 then
-                break
-            end
-            card.setPosition(pos)
-            if params.earned then
-                broadcastToAll("Fear Card Earned!", Color.SoftBlue)
+        if card.use_hands then
+            if card.getName() == "Terror II" or card.getName() == "Terror III" then
+                card.use_hands = false
+                -- HACK work around issue where setPosition sometimes doesn't move object from hand to non hand
+                card.deal(1, "White")
+                Wait.condition(function()
+                    card.setPosition(dividerPos)
+                    card.setRotation(Vector(0, 180, 0))
+                    card.use_hands = true
+                end, function() return not card.isSmoothMoving() end)
+            elseif card.hasTag("Invader Card") then
+                local invaderPos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
+                if Global.UI.getAttribute("panelBuild21", "active") == "True" then
+                    -- already have 2 build cards
+                    invaderPos = invaderPos + Vector(0,0,-2)
+                elseif Global.UI.getAttribute("panelBuild11text", "text") ~= "NO ACTION" then
+                    -- already have 1 build card
+                    invaderPos = invaderPos + Vector(0,0,-1)
+                end
+                card.use_hands = false
+                -- HACK work around issue where setPosition sometimes doesn't move object from hand to non hand
+                card.deal(1, "White")
+                Wait.condition(function()
+                    -- Russia puts invader cards in this deck at a scale factor of 1.37
+                    card.scale(1/1.37)
+                    card.setPosition(invaderPos)
+                    card.setRotationSmooth(Vector(0,180,0))
+                    invaderCardBroadcast(card)
+                    card.use_hands = true
+                end, function() return not card.isSmoothMoving() end)
+            elseif card.hasTag("Fear") then
+                foundFearCount = foundFearCount + 1
+                if foundFearCount == 2 then
+                    break
+                end
+                card.use_hands = false
+                Wait.frames(function() card.use_hands = true end, 1)
+                card.setPosition(pos)
+                if params.earned then
+                    broadcastToAll("Fear Card Earned!", Color.SoftBlue)
+                else
+                    broadcastToAll("Fear Card Removed!", Color.SoftBlue)
+                end
             end
         end
     end
@@ -808,8 +814,6 @@ function fearCard(params)
             Global.call("Victory")
         end
     end
-
-    return 1
 end
 function invaderCardBroadcast(card)
     local stage = card.getVar("cardInvaderStage")
@@ -895,7 +899,7 @@ function scanReady()
     local no = {}
     for color,guid in pairs(playerReadyGuids) do
         if selectedColors[color] then
-            if selectedColors[color].ready.is_face_down then
+            if selectedColors[color].ready and selectedColors[color].ready.is_face_down then
                 getObjectFromGUID(guid).editButton({
                     index=0,
                     label="✓",

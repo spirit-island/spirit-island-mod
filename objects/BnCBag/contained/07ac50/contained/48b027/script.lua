@@ -25,6 +25,12 @@ function PickPower()
     })
 end
 function destroyBoard(card, color)
+    local gravity = Physics.getGravity()
+    if gravity.x == 0 and gravity.y == 0 and gravity.z == 0 then
+        broadcastToAll("Gravity is currently disabled but is required, please enable and try again.", Color.Red)
+        return
+    end
+
     local hits = Physics.cast({
         origin = card.getPosition(),
         direction = Vector(0,-1,0),
@@ -44,13 +50,22 @@ function destroyBoard(card, color)
     end
 
     -- Return cast down to player's play area
-    for c,guid in pairs(Global.getTable("elementScanZones")) do
-        if c == color then
-            self.setPosition(getObjectFromGUID(guid).getPosition() + Vector(-5, 1, -4))
-        end
+    local guid = Global.getTable("elementScanZones")[color]
+    if guid == nil then
+        broadcastToAll("Unable to detect player color, make sure Cast Down into the Briny Deep button is being pressed by a player.", Color.Red)
+        return
     end
+    self.setPosition(getObjectFromGUID(guid).getPosition() + Vector(-5, 1, -4))
 
+    board.registerCollisions(false)
     Global.setVar("castDown", board.getName())
     Global.setVar("castDownColor", color)
     board.setPosition(board.getPosition() + Vector(0, -0.05, 0))
+    Global.setVar("castDownTimer", Wait.time(castDownCallback, 0.5))
+end
+function castDownCallback()
+    Global.setVar("castDown", nil)
+    Global.setVar("castDownTimer", nil)
+    Global.setVar("castDownColor", nil)
+    broadcastToAll("Physics is required to be \"Full\", please change your setting and try again.", Color.Red)
 end

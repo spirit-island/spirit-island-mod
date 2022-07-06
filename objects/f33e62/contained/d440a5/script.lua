@@ -1,4 +1,5 @@
 local count = 0
+local setupComplete = false
 
 function onSave()
     local data_table = {

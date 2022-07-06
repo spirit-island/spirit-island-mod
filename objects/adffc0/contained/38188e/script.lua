@@ -1,5 +1,6 @@
 local healthCount = 0
 local autoExchange = true
+local setupComplete = false
 
 function onSave()
     local data_table = {

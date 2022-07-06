@@ -1,6 +1,5 @@
 local healthCount = 0
 local autoExchange = true
-local setupComplete = false
 
 function onSave()
     local data_table = {
@@ -16,7 +15,7 @@ function onLoad(save_state)
             healthCount = loaded_data.healthCount
             autoExchange = loaded_data.autoExchange
         end
-        setupComplete = true
+        setupComplete = true -- luacheck: ignore 111
         if autoExchange then
             exchangeAuto()
         end

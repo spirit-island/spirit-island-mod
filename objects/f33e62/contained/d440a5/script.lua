@@ -1,5 +1,4 @@
 local count = 0
-local setupComplete = false
 
 function onSave()
     local data_table = {
@@ -13,7 +12,7 @@ function onLoad(save_state)
             local loaded_data = JSON.decode(save_state)
             count = loaded_data.count
         end
-        setupComplete = true
+        setupComplete = true -- luacheck: ignore 111
 
         Wait.frames(function()
             self.UI.setAttribute("count", "text", count)

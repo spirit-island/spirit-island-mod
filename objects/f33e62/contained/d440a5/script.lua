@@ -12,6 +12,8 @@ function onLoad(save_state)
             local loaded_data = JSON.decode(save_state)
             count = loaded_data.count
         end
+        setupComplete = true
+
         Wait.frames(function()
             self.UI.setAttribute("count", "text", count)
             self.UI.setAttribute("water", "text", 0)

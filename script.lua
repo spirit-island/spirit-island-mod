@@ -348,12 +348,11 @@ function onObjectEnterScriptingZone(zone, obj)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
             checkVictory()
         end
-    elseif obj.hasTag("Aspect") then
+    elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
         for color,guid in pairs(elementScanZones) do
             if guid == zone.guid then
-                if gameStarted and obj.hasTag("Setup") then
-                    obj.call("doSetup", {color=color})
-                end
+                obj.setVar("setupComplete", true)
+                obj.call("doSetup", {color=color})
                 break
             end
         end
@@ -3321,7 +3320,8 @@ function runSpiritSetup()
     for color, _ in pairs(selectedColors) do
         local zone = getObjectFromGUID(elementScanZones[color])
         for _, obj in ipairs(zone.getObjects()) do
-            if obj.hasTag("Setup") then
+            if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
+                obj.setVar("setupComplete", true)
                 obj.call("doSetup", {color=color})
             end
         end

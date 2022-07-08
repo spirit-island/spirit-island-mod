@@ -7,9 +7,9 @@
     "rotX": 0.2305,
     "rotY": 0.0197,
     "rotZ": 0.7452,
-    "scaleX": 1.5,
-    "scaleY": 1.5,
-    "scaleZ": 1.5
+    "scaleX": 3.35,
+    "scaleY": 3.35,
+    "scaleZ": 3.35
   },
   "Nickname": "Destroy",
   "Description": "Invaders placed on this will be Destroyed (with the Fear automatically Generated).",

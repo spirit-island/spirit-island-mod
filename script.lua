@@ -550,6 +550,7 @@ function onLoad(saved_data)
     addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         grabSpiritMarkers()
     end)
+    addContextMenuItem("Grab Destroy Bag", grabDestroyBag, false)
     addHotkey("Grab Destroy Bag", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         local bag = getObjectFromGUID("fd0a22")
         if bag ~= nil then
@@ -6513,7 +6514,7 @@ function grabSpiritMarkers()
                     if marker.name == obj.getName() then
                         bag.takeObject({
                             guid = marker.guid,
-                            position = obj.getPosition() + Vector(0, 2, 14.5)
+                            position = zone.getPosition() + Vector(0, 2, 8.5)
                         })
                         break
                     end
@@ -6521,6 +6522,13 @@ function grabSpiritMarkers()
                 break
             end
         end
+    end
+end
+function grabDestroyBag(color)
+    local bag = getObjectFromGUID("fd0a22")
+    if bag ~= nil then
+        local zone = getObjectFromGUID(elementScanZones[color])
+        bag.takeObject({position = zone.getPosition() + Vector(0, 2, 8.5)})
     end
 end
 

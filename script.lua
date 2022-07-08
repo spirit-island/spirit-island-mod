@@ -2950,6 +2950,7 @@ function PostSetup()
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
                 spirit.setState(2)
+                Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
             else
                 postSetupSteps = postSetupSteps + 1
             end

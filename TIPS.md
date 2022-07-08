@@ -42,7 +42,7 @@
   - Drop it on the Ocean playmat to Removes the piece
 - To Destroy a piece
   - Remove it and manually Generate Fear, or
-  - Drop it on a Destroy bag (found in the Box, at the top left of the table)
+  - Drop it on a Destroy bag (right-click (anywhere) &gt; "Grab Destroy Bag")
 - To Forget a Power Card
   - Right click &gt; "Forget"
   - Forgotten Cards are located in the Box

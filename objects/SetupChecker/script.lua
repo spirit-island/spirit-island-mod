@@ -389,7 +389,7 @@ function toggleAdversary(_, value, adversary)
         removeAdversary(obj)
     end
 end
-function toggleScenario(_, _, scenario)
+function toggleScenario(_, value, scenario)
     local obj = getObjectFromGUID(allScenarios[scenario])
     if value == "True" then
         obj.UI.setAttribute(obj.getName(), "isOn", "true")

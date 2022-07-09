@@ -1,7 +1,7 @@
 {
-  "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1650825603,
-  "Date": "4/24/2022 1:40:03 PM",
+  "SaveName": "SI 3.5.0-beta.1",
+  "EpochTime": 1657381709,
+  "Date": "7/9/2022 10:48:29 AM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -201,6 +201,14 @@
       {
         "displayed": "Time Passes",
         "normalized": "time_passes"
+      },
+      {
+        "displayed": "Requires Tokens",
+        "normalized": "requires_tokens"
+      },
+      {
+        "displayed": "Requires Badlands",
+        "normalized": "requires_badlands"
       }
     ]
   },

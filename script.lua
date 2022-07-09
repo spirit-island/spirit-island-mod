@@ -891,6 +891,9 @@ end
 function usingSpiritTokens()
     return expansions["Branch & Claw"] or expansions["Jagged Earth"]
 end
+function usingBadlands()
+    return expansions["Jagged Earth"]
+end
 function randomScenario()
     if difficulty > SetupChecker.getVar("randomMax") then
         return
@@ -4205,7 +4208,7 @@ function place(objName, placePos, droppingPlayerColor)
             return false
         end
     elseif objName == "Badlands" then
-        if expansions["Jagged Earth"] then
+        if usingBadlands() then
             temp = badlandsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return false

@@ -362,16 +362,20 @@ end
 function addAdversary(obj)
     if adversaries[obj.getName()] == nil then
         numAdversaries = numAdversaries + 1
+    elseif adversaries[obj.getName()] == obj.guid then
+        return
     end
     adversaries[obj.getName()] = obj.guid
-    updateXml(self, {updateAdversaryList()})
+    Wait.frames(function() updateXml(self, {updateAdversaryList()}) end, 1)
 end
 function addScenario(obj)
     if scenarios[obj.getName()] == nil then
         numScenarios = numScenarios + 1
+    elseif scenarios[obj.getName()] == obj.guid then
+        return
     end
     scenarios[obj.getName()] = obj.guid
-    updateXml(self, {updateScenarioList()})
+    Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
 end
 function onDestroy()
     exit = true
@@ -404,12 +408,14 @@ function removeExpansion(bag)
 
     local funcList = {
         removeToggle("expansionsRow", bag.getName()),
-        removeToggle("events", "Use "..bag.getName().." Events"),
+        removeToggle("events", bag.getName().." Events"),
     }
     if playtestExpansion == bag.getName() then
         table.insert(funcList, updatePlaytestExpansionList(exps))
     end
     updateXml(self, funcList)
+
+    Wait.frames(updateRequiredContent, 1)
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
@@ -465,7 +471,7 @@ function removeScenario(obj)
                 Global.setVar("scenarioCard", nil)
                 updateDifficulty()
             end
-            Wait.frames(function () updateXml(self, {updateScenarioList()}) end, 1)
+            Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
             break
         end
     end
@@ -699,6 +705,74 @@ function updateSupportingLevel(value, updateUI)
     updateDifficulty()
 end
 
+function updateRequiredContent()
+    local colors = {}
+    if not Global.call("usingSpiritTokens") then
+        colors = Player.getColors()
+    end
+    for _,obj in pairs(getObjectsWithTag("Requires Tokens")) do
+        obj.setInvisibleTo(colors)
+
+        if obj.hasTag("Spirit") then
+            if #colors == 0 then
+                addSpirit({spirit = obj})
+            else
+                removeSpirit({spirit = obj})
+            end
+        end
+
+        if obj.type == "Card" then
+            local objType = type(obj.getVar("difficulty"))
+            if objType == "table" then
+                if #colors == 0 then
+                    addAdversary(obj)
+                else
+                    removeAdversary(obj)
+                end
+            elseif objType == "number" then
+                if #colors == 0 then
+                    addScenario(obj)
+                else
+                    removeScenario(obj)
+                end
+            end
+        end
+    end
+
+    colors = {}
+    if not Global.call("usingBadlands") then
+        colors = Player.getColors()
+    end
+    for _,obj in pairs(getObjectsWithTag("Requires Badlands")) do
+        obj.setInvisibleTo(colors)
+
+        if obj.hasTag("Spirit") then
+            if #colors == 0 then
+                addSpirit({spirit = obj})
+            else
+                removeSpirit({spirit = obj})
+            end
+        end
+
+        if obj.type == "Card" then
+            local objType = type(obj.getVar("difficulty"))
+            if objType == "table" then
+                if #colors == 0 then
+                    addAdversary(obj)
+                else
+                    removeAdversary(obj)
+                end
+            elseif objType == "number" then
+                if #colors == 0 then
+                    addScenario(obj)
+                else
+                    removeScenario(obj)
+                end
+            end
+        end
+    end
+end
+
 function toggleExpansion(_, _, id)
     local exps = Global.getTable("expansions")
     local bool
@@ -716,7 +790,9 @@ function toggleExpansion(_, _, id)
     Global.setTable("events", events)
     self.UI.setAttribute(id.." Events", "isOn", bool)
     updateDifficulty()
-    Wait.frames(function () updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
+
+    Wait.frames(function() updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
+    Wait.frames(updateRequiredContent, 2)
 end
 function toggleEvents(_, _, id)
     local exp = id:sub(1, -8)
@@ -2056,7 +2132,7 @@ function addExpansionToggle(value)
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
     end)
 end
 function addEventToggle(value)
@@ -2068,7 +2144,7 @@ function addEventToggle(value)
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
     end)
 end
 function removeToggle(id, value)
@@ -2080,7 +2156,7 @@ function removeToggle(id, value)
             end
         end
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
     end)
 end
 

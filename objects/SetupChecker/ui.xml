@@ -27,9 +27,9 @@
     <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
-    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
-        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
+    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow">
+        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow">
             <Row class="header">
                 <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
@@ -168,9 +168,9 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -3050 14">
-    <VerticalLayout recurse="events2">
-        <TableLayout recurse="events2">
+<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="2800" position="-2000 -3050 14">
+    <VerticalLayout recurse="events">
+        <TableLayout recurse="events">
             <Row class="header">
                 <Cell columnSpan="2"><Text class="header">Variant Rules</Text></Cell>
             </Row>

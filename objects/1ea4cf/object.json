@@ -19,6 +19,9 @@
     "g": 0.7098,
     "b": 0.7098
   },
+  "Tags": [
+    "Requires Tokens"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,

@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -36.51,
+    "posX": -39.51,
     "posY": 0.99,
     "posZ": 59.65,
     "rotX": 0.0,
-    "rotY": 180.0,
+    "rotY": 180.0002,
     "rotZ": 0.0,
     "scaleX": 0.7274,
     "scaleY": 0.1402,
     "scaleZ": 0.7274
   },
-  "Nickname": "Extra Boards",
+  "Nickname": "Feather & Flame",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -19,6 +19,9 @@
     "g": 0.5601,
     "b": 0.56
   },
+  "Tags": [
+    "Expansion"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,

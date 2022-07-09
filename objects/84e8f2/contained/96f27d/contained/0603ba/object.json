@@ -1,12 +1,12 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -46.18,
-    "posY": 0.9713,
-    "posZ": 27.74,
-    "rotX": 0.0,
+    "posX": -45.2749,
+    "posY": 0.8546,
+    "posZ": 69.2449,
+    "rotX": -0.0041,
     "rotY": 180.0,
-    "rotZ": 0.0,
+    "rotZ": 180.0137,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53

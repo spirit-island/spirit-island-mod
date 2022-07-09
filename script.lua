@@ -2204,6 +2204,7 @@ function SetupScenario()
 
     local pos = Vector(0.75, 0.11, -1.81)
     if scenarioCard ~= nil then
+        scenarioCard.UI.hide(scenarioCard.getName())
         local targetScale = 1.71
         local currentScale = scenarioCard.getScale()[1]
         local scaleMult = (currentScale - targetScale)/10
@@ -2244,6 +2245,7 @@ function SetupAdversary()
     end
 
     if adversaryCard ~= nil then
+        adversaryCard.UI.hide(adversaryCard.getName())
         local targetScale = 1.71
         local currentScale = adversaryCard.getScale()[1]
         local scaleMult = (currentScale - targetScale)/10
@@ -2251,6 +2253,7 @@ function SetupAdversary()
             wt(0.02)
             adversaryCard.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
             if adversaryCard2 ~= nil then
+                adversaryCard2.UI.hide(adversaryCard2.getName())
                 adversaryCard2.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
             end
         end

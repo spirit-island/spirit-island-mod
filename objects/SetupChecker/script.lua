@@ -1469,6 +1469,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("toggles", "visibility", "")
         self.UI.setAttribute("toggles2", "visibility", "")
         showUI()
+        self.UI.setAttribute("panelSpirit", "visibility", "")
 
         Global.setVar("showPlayerButtons", true)
         Global.call("updateAllPlayerAreas", nil)

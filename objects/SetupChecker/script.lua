@@ -1616,7 +1616,22 @@ function gainSpirit(player)
         return
     end
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
-    if obj.getButtons() ~= nil and #obj.getButtons() ~= 0 then
+
+    local options = {}
+    local buttons = obj.getButtons()
+    local hasOptions = 0
+    if buttons ~= nil then
+        for i,button in pairs(buttons) do
+            if button.label ~= "" then
+                options[i] = true
+                hasOptions = hasOptions + 1
+            else
+                options[i] = false
+            end
+        end
+    end
+
+    if hasOptions == 4 then
         Player[player.color].broadcast("You already have Spirit options", Color.Red)
         return
     elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
@@ -1636,24 +1651,26 @@ function gainSpirit(player)
 
     local count = 0
     for i = 1,4 do
-        local spirit, aspect = getNewSpirit(tags, complexities)
-        if spirit then
-            count = count + 1
-            local label = spirit.getName()
-            if aspect ~= nil and aspect ~= "" then
-                label = label.." - "..aspect
+        if not options[i] then
+            local spirit, aspect = getNewSpirit(tags, complexities)
+            if spirit then
+                count = count + 1
+                local label = spirit.getName()
+                if aspect ~= nil and aspect ~= "" then
+                    label = label.." - "..aspect
+                end
+                obj.createButton({
+                    click_function = "pickSpirit" .. i,
+                    function_owner = self,
+                    label = label,
+                    position = Vector(0,0,0.3 - 0.15*i),
+                    rotation = Vector(0,180,0),
+                    scale = Vector(0.1,0.1,0.1),
+                    width = 4850,
+                    height = 600,
+                    font_size = 275,
+                })
             end
-            obj.createButton({
-                click_function = "pickSpirit" .. i,
-                function_owner = self,
-                label = label,
-                position = Vector(0,0,0.3 - 0.15*i),
-                rotation = Vector(0,180,0),
-                scale = Vector(0.1,0.1,0.1),
-                width = 4850,
-                height = 600,
-                font_size = 275,
-            })
         end
     end
     if count > 0 then

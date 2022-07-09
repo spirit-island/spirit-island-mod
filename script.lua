@@ -911,24 +911,26 @@ function randomScenario()
         end
         attempts = attempts + 1
         scenarioCard = SetupChecker.call("RandomScenario")
-        local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
-        if tempDifficulty > randomMax or (tempDifficulty < randomMin and not randomAdversary and not randomAdversary2) then
-            scenarioCard = nil
-        elseif scenarioCard.getVar("requirements") then
-            local allowed = scenarioCard.call("Requirements", {
-                eventDeck = usingEvents(),
-                blightCard = SetupChecker.getVar("optionalBlightCard"),
-                expansions = expansions,
-                thematic = isThematic(),
-                adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or randomAdversary or randomAdversary2,
-            })
-            if not allowed then
+        if scenarioCard ~= nil then
+            local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
+            if tempDifficulty > randomMax or (tempDifficulty < randomMin and not randomAdversary and not randomAdversary2) then
                 scenarioCard = nil
+            elseif scenarioCard.getVar("requirements") then
+                local allowed = scenarioCard.call("Requirements", {
+                    eventDeck = usingEvents(),
+                    blightCard = SetupChecker.getVar("optionalBlightCard"),
+                    expansions = expansions,
+                    thematic = isThematic(),
+                    adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or randomAdversary or randomAdversary2,
+                })
+                if not allowed then
+                    scenarioCard = nil
+                end
+            else
+                SetupChecker.call("updateDifficulty")
+                printToAll("Scenario - "..scenarioCard.getName(), Color.SoftBlue)
+                break
             end
-        else
-            SetupChecker.call("updateDifficulty")
-            printToAll("Scenario - "..scenarioCard.getName(), Color.SoftBlue)
-            break
         end
     end
 end
@@ -949,6 +951,10 @@ function randomAdversary(attempts)
     end
     if SetupChecker.getVar("randomAdversary") and SetupChecker.getVar("randomAdversary2") then
         local adversary = SetupChecker.call("RandomAdversary")
+        if adversary == nil then
+            randomAdversary(attempts + 1)
+            return
+        end
         if adversary.getVar("requirements") then
             local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
             if not allowed then
@@ -956,6 +962,10 @@ function randomAdversary(attempts)
             end
         end
         local adversary2 = SetupChecker.call("RandomAdversary")
+        if adversary2 == nil then
+            randomAdversary(attempts + 1)
+            return
+        end
         if adversary2.getVar("requirements") then
             local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
             if not allowed then
@@ -1001,6 +1011,10 @@ function randomAdversary(attempts)
             selectedAdversary = adversaryCard2
         end
         local adversary = SetupChecker.call("RandomAdversary")
+        if adversary == nil then
+            randomAdversary(attempts + 1)
+            return
+        end
         if adversary.getVar("requirements") then
             local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
             if not allowed then
@@ -2181,7 +2195,7 @@ function hideBlightButton()
 end
 ----- Scenario section
 function SetupScenario()
-    for _,guid in pairs(SetupChecker.getVar("scenarios")) do
+    for _,guid in pairs(SetupChecker.getVar("allScenarios")) do
         if guid == "" then
         elseif scenarioCard == nil or scenarioCard.guid ~= guid then
             getObjectFromGUID(guid).destruct()
@@ -2222,7 +2236,7 @@ function SetupScenario()
 end
 ----- Adversary Section
 function SetupAdversary()
-    for _,guid in pairs(SetupChecker.getVar("adversaries")) do
+    for _,guid in pairs(SetupChecker.getVar("allAdversaries")) do
         if guid == "" then
         elseif (adversaryCard == nil or adversaryCard.guid ~= guid) and (adversaryCard2 == nil or adversaryCard2.guid ~= guid) then
             getObjectFromGUID(guid).destruct()

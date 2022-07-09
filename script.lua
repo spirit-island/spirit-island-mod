@@ -756,7 +756,7 @@ function readyCheck()
     local colorCount = 0
     local readyCount = 0
     for _,data in pairs(selectedColors) do
-        if data.ready.is_face_down and data.ready.resting then
+        if data.ready and data.ready.is_face_down and data.ready.resting then
             readyCount = readyCount + 1
         end
         colorCount = colorCount + 1

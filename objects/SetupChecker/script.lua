@@ -785,10 +785,21 @@ function toggleExpansion(_, _, id)
     end
     Global.setTable("expansions", exps)
     self.UI.setAttribute(id, "isOn", bool)
-    local events = Global.getTable("events")
-    events[id] = exps[id]
-    Global.setTable("events", events)
-    self.UI.setAttribute(id.." Events", "isOn", bool)
+
+    local hasEvents = false
+    for _,obj in pairs(getObjectFromGUID(expansions[id]).getObjects()) do
+        if obj.name == "Events" then
+            hasEvents = true
+            break
+        end
+    end
+
+    if hasEvents then
+        local events = Global.getTable("events")
+        events[id] = exps[id]
+        Global.setTable("events", events)
+        self.UI.setAttribute(id.." Events", "isOn", bool)
+    end
     updateDifficulty()
 
     Wait.frames(function() updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)

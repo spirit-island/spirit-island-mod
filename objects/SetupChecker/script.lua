@@ -152,6 +152,8 @@ function onSave()
     end
     data_table.scenarioList = scenarioList
 
+    data_table.pickedSpirits = pickedSpirits
+
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
@@ -221,6 +223,8 @@ function onLoad(saved_data)
             end
         end
         numScenarios = count
+
+        pickedSpirits = loaded_data.pickedSpirits
 
         setSlaveRebellion(optionalThematicRebellion, not setupStarted)
         setEngland6(optionalEngland6, not setupStarted, true)

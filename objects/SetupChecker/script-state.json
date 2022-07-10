@@ -213,7 +213,6 @@
     "blightSetup": true,
     "boardPairings": true,
     "digitalEvents": false,
-    "england6": true,
     "extraBoard": false,
     "gameResults": true,
     "soloBlight": true,

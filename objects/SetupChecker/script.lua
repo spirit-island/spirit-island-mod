@@ -66,7 +66,6 @@ optionalBlightSetup = true
 optionalExtraBoard = false
 optionalBoardPairings = true
 optionalThematicRebellion = false
-optionalEngland6 = true
 optionalThematicRedo = false
 optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
@@ -113,7 +112,6 @@ function onSave()
     data_table.variant.extraBoard = optionalExtraBoard
     data_table.variant.boardPairings = optionalBoardPairings
     data_table.variant.thematicRebellion = optionalThematicRebellion
-    data_table.variant.england6 = optionalEngland6
     data_table.variant.thematicRedo = optionalThematicRedo
     data_table.variant.gameResults = optionalGameResults
 
@@ -192,7 +190,6 @@ function onLoad(saved_data)
         optionalExtraBoard = loaded_data.variant.extraBoard
         optionalBoardPairings = loaded_data.variant.boardPairings
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
-        optionalEngland6 = loaded_data.variant.england6
         optionalThematicRedo = loaded_data.variant.thematicRedo
         optionalGameResults = loaded_data.variant.gameResults
 
@@ -251,7 +248,6 @@ function onLoad(saved_data)
         pickedSpirits = loaded_data.pickedSpirits
 
         setSlaveRebellion(optionalThematicRebellion, not setupStarted)
-        setEngland6(optionalEngland6, not setupStarted, true)
         setSweden(exploratorySweden, not setupStarted, true)
         if not setupStarted then
             self.UI.setAttribute("variant", "isOn", tostring(loaded_data.toggle.variant))
@@ -1156,9 +1152,6 @@ function loadConfig(config)
         if config.variant.thematicRebellion ~= nil then
             setSlaveRebellion(config.variant.thematicRebellion, false)
         end
-        if config.variant.england6 ~= nil then
-            setEngland6(config.exploratory.england6, false, false)
-        end
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
         end
@@ -2007,26 +2000,6 @@ function setSlaveRebellion(bool, updateUI)
     end
     if updateUI then
         self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
-    end
-end
-function toggleEngland6()
-    setEngland6(not optionalEngland6, true, false)
-end
-function setEngland6(bool, updateUI, loading)
-    optionalEngland6 = bool
-    local obj = getObjectFromGUID(adversaries.England)
-    if obj ~= nil then
-        if optionalEngland6 then
-            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
-        else
-            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
-        end
-        if updateUI and not loading then
-            updateDifficulty()
-        end
-    end
-    if updateUI then
-        self.UI.setAttribute("england6", "isOn", optionalEngland6)
     end
 end
 function toggleThematicRedo()

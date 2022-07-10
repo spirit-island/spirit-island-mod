@@ -208,9 +208,6 @@
                 <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="england6" isOn="true" onValueChanged="toggleEngland6" tooltip="England is formally considered Difficulty 11, but some&#xA;may want to treat it as Difficulty 10 for scoring purposes">Treat England 6 as Difficulty 11</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
             <Row class="toggle">

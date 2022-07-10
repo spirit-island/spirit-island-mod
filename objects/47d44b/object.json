@@ -23,6 +23,8 @@
   "Tags": [
     "High",
     "JE",
+    "Requires Badlands",
+    "Requires Tokens",
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,

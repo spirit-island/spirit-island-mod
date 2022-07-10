@@ -27,9 +27,9 @@
     <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
-    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
-        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
+    <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow">
+        <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow">
             <Row class="header">
                 <Cell columnSpan="2"><Text id="numPlayers" class="slider">Number of Players: 1</Text></Cell>
             </Row>
@@ -168,9 +168,9 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events2" visibility="Invisible" width="1000" height="2800" position="-2000 -3050 14">
-    <VerticalLayout recurse="events2">
-        <TableLayout recurse="events2">
+<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="2800" position="-2000 -3050 14">
+    <VerticalLayout recurse="events">
+        <TableLayout recurse="events">
             <Row class="header">
                 <Cell columnSpan="2"><Text class="header">Variant Rules</Text></Cell>
             </Row>
@@ -445,16 +445,19 @@
                 <Cell><Toggle id="spiritLow" onValueChanged="toggleSpirit" isOn="true">Low</Toggle></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritBnC" onValueChanged="toggleSpirit" isOn="true" tooltip="Include branch and claw and promo pack 1 spirits in randomizer">B&amp;C + P1</Toggle></Cell>
+                <Cell><Toggle id="spiritBnC" onValueChanged="toggleSpirit" isOn="true" tooltip="Include branch and claw spirits in randomizer">B&amp;C</Toggle></Cell>
                 <Cell><Toggle id="spiritModerate" onValueChanged="toggleSpirit" isOn="true">Moderate</Toggle></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth and promo pack 2 spirits in randomizer">JE + P2</Toggle></Cell>
+                <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth spirits in randomizer">JE</Toggle></Cell>
                 <Cell><Toggle id="spiritHigh" onValueChanged="toggleSpirit" isOn="true">High</Toggle></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
+                <Cell><Toggle id="spiritFnF" onValueChanged="toggleSpirit" isOn="true" tooltip="Include feather and flame spirits in randomizer">F&amp;F</Toggle></Cell>
                 <Cell><Toggle id="spiritVeryHigh" onValueChanged="toggleSpirit" isOn="true">Very High</Toggle></Cell>
+            </Row>
+            <Row>
+                <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

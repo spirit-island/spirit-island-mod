@@ -1,24 +1,27 @@
 {
-  "Name": "Deck",
+  "Name": "CardCustom",
   "Transform": {
-    "posX": -22.2955,
-    "posY": 1.0456,
-    "posZ": 42.6702,
-    "rotX": 0.0,
-    "rotY": 180.0,
-    "rotZ": 180.0,
+    "posX": -44.8813,
+    "posY": 0.8817,
+    "posZ": 69.3125,
+    "rotX": 0.004,
+    "rotY": 180.0001,
+    "rotZ": 180.0051,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
   },
-  "Nickname": "Fear",
-  "Description": "Jagged Earth Expansion",
+  "Nickname": "",
+  "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.7132,
     "g": 0.7132,
     "b": 0.7132
   },
+  "Tags": [
+    "Fear"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
@@ -32,16 +35,9 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": true,
-  "Hands": false,
+  "Hands": true,
+  "CardID": 62205,
   "SidewaysCard": false,
-  "DeckIDs": [
-    62201,
-    62203,
-    62204,
-    62206,
-    62208,
-    62210
-  ],
   "CustomDeck": {
     "622": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100579512/2C26031238C9A7FEBC281E70894DDDB4034FF9C4/",

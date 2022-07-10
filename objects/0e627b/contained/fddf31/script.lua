@@ -1,7 +1,10 @@
 function doSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then
-        Player[color].broadcast("Please wait for the game to start before pressing button!", Color.Red)
+        Player[color].broadcast("Please wait for the game to start before pressing this button!", Color.Red)
+        return
+    elseif color ~= Global.call("getSpiritColor", {name = "Fractured Days Split the Sky"}) then
+        Player[color].broadcast("You have not picked Fractured Days Split the Sky!", Color.Red)
         return
     end
 
@@ -13,20 +16,6 @@ function doSetup(params)
     }
     newHandZone.position.z = newHandZone.position.z - 5.5
     Player[color].setHandTransform(newHandZone, 3)
-
-    local zone = getObjectFromGUID(Global.getVar("elementScanZones")[color])
-    local objs = zone.getObjects()
-    local found = false
-    for _,obj in pairs(objs) do
-        if obj.guid == "013dfc" then
-            found = true
-            break
-       end
-    end
-    if not found then
-        Player[color].broadcast("You have not picked Fractured Days Split the Sky!", Color.Red)
-        return
-    end
 
     local count = 4
     if Global.getVar("numPlayers") <= 2 then

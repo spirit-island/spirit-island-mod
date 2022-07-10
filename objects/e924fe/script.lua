@@ -359,7 +359,8 @@ function ExportConfig()
             end
         end
     end
-    data.secondWave.blightedIsland = Global.getVar("blightedIsland")
+    local blightedIsland = Global.getVar("blightedIsland")
+    data.secondWave.blightedIsland = blightedIsland
     if config and config.secondWave then
         data.secondWave.blightedIsland = data.secondWave.blightedIsland or config.secondWave.blightedIsland
     end

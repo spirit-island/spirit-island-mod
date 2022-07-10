@@ -31,7 +31,7 @@
   "MeasureMovement": false,
   "DragSelectable": true,
   "Autoraise": true,
-  "Sticky": false,
+  "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,

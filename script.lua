@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.4.1-beta.5"
+version = "3.5.0-beta.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -385,12 +385,11 @@ function onObjectEnterScriptingZone(zone, obj)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
             checkVictory()
         end
-    elseif obj.hasTag("Aspect") then
+    elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
         for color,guid in pairs(elementScanZones) do
             if guid == zone.guid then
-                if gameStarted and obj.hasTag("Setup") then
-                    obj.call("doSetup", {color=color})
-                end
+                obj.setVar("setupComplete", true)
+                obj.call("doSetup", {color=color})
                 break
             end
         end
@@ -588,6 +587,7 @@ function onLoad(saved_data)
     addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         grabSpiritMarkers()
     end)
+    addContextMenuItem("Grab Destroy Bag", grabDestroyBag, false)
     addHotkey("Grab Destroy Bag", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         local bag = getObjectFromGUID("fd0a22")
         if bag ~= nil then
@@ -793,7 +793,7 @@ function readyCheck()
     local colorCount = 0
     local readyCount = 0
     for _,data in pairs(selectedColors) do
-        if data.ready.is_face_down and data.ready.resting then
+        if data.ready and data.ready.is_face_down and data.ready.resting then
             readyCount = readyCount + 1
         end
         colorCount = colorCount + 1
@@ -928,6 +928,9 @@ end
 function usingSpiritTokens()
     return expansions["Branch & Claw"] or expansions["Jagged Earth"]
 end
+function usingBadlands()
+    return expansions["Jagged Earth"]
+end
 function randomScenario()
     if difficulty > SetupChecker.getVar("randomMax") then
         return
@@ -945,24 +948,26 @@ function randomScenario()
         end
         attempts = attempts + 1
         scenarioCard = SetupChecker.call("RandomScenario")
-        local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
-        if tempDifficulty > randomMax or (tempDifficulty < randomMin and not randomAdversary and not randomAdversary2) then
-            scenarioCard = nil
-        elseif scenarioCard.getVar("requirements") then
-            local allowed = scenarioCard.call("Requirements", {
-                eventDeck = usingEvents(),
-                blightCard = SetupChecker.getVar("optionalBlightCard"),
-                expansions = expansions,
-                thematic = isThematic(),
-                adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or randomAdversary or randomAdversary2,
-            })
-            if not allowed then
+        if scenarioCard ~= nil then
+            local tempDifficulty = SetupChecker.call("difficultyCheck", {scenario = scenarioCard.getVar("difficulty")})
+            if tempDifficulty > randomMax or (tempDifficulty < randomMin and not randomAdversary and not randomAdversary2) then
                 scenarioCard = nil
+            elseif scenarioCard.getVar("requirements") then
+                local allowed = scenarioCard.call("Requirements", {
+                    eventDeck = usingEvents(),
+                    blightCard = SetupChecker.getVar("optionalBlightCard"),
+                    expansions = expansions,
+                    thematic = isThematic(),
+                    adversary = adversaryCard ~= nil or adversaryCard2 ~= nil or randomAdversary or randomAdversary2,
+                })
+                if not allowed then
+                    scenarioCard = nil
+                end
+            else
+                SetupChecker.call("updateDifficulty")
+                printToAll("Scenario - "..scenarioCard.getName(), Color.SoftBlue)
+                break
             end
-        else
-            SetupChecker.call("updateDifficulty")
-            printToAll("Scenario - "..scenarioCard.getName(), Color.SoftBlue)
-            break
         end
     end
 end
@@ -983,6 +988,10 @@ function randomAdversary(attempts)
     end
     if SetupChecker.getVar("randomAdversary") and SetupChecker.getVar("randomAdversary2") then
         local adversary = SetupChecker.call("RandomAdversary")
+        if adversary == nil then
+            randomAdversary(attempts + 1)
+            return
+        end
         if adversary.getVar("requirements") then
             local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
             if not allowed then
@@ -990,6 +999,10 @@ function randomAdversary(attempts)
             end
         end
         local adversary2 = SetupChecker.call("RandomAdversary")
+        if adversary2 == nil then
+            randomAdversary(attempts + 1)
+            return
+        end
         if adversary2.getVar("requirements") then
             local allowed = adversary2.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
             if not allowed then
@@ -1035,6 +1048,10 @@ function randomAdversary(attempts)
             selectedAdversary = adversaryCard2
         end
         local adversary = SetupChecker.call("RandomAdversary")
+        if adversary == nil then
+            randomAdversary(attempts + 1)
+            return
+        end
         if adversary.getVar("requirements") then
             local allowed = adversary.call("Requirements", {eventDeck = usingEvents(), blightCard = SetupChecker.getVar("optionalBlightCard"), expansions = expansions, thematic = isThematic()})
             if not allowed then
@@ -2215,7 +2232,7 @@ function hideBlightButton()
 end
 ----- Scenario section
 function SetupScenario()
-    for _,guid in pairs(SetupChecker.getVar("scenarios")) do
+    for _,guid in pairs(SetupChecker.getVar("allScenarios")) do
         if guid == "" then
         elseif scenarioCard == nil or scenarioCard.guid ~= guid then
             getObjectFromGUID(guid).destruct()
@@ -2224,6 +2241,7 @@ function SetupScenario()
 
     local pos = Vector(0.75, 0.11, -1.81)
     if scenarioCard ~= nil then
+        scenarioCard.UI.hide(scenarioCard.getName())
         local targetScale = 1.71
         local currentScale = scenarioCard.getScale()[1]
         local scaleMult = (currentScale - targetScale)/10
@@ -2256,7 +2274,7 @@ function SetupScenario()
 end
 ----- Adversary Section
 function SetupAdversary()
-    for _,guid in pairs(SetupChecker.getVar("adversaries")) do
+    for _,guid in pairs(SetupChecker.getVar("allAdversaries")) do
         if guid == "" then
         elseif (adversaryCard == nil or adversaryCard.guid ~= guid) and (adversaryCard2 == nil or adversaryCard2.guid ~= guid) then
             getObjectFromGUID(guid).destruct()
@@ -2264,6 +2282,7 @@ function SetupAdversary()
     end
 
     if adversaryCard ~= nil then
+        adversaryCard.UI.hide(adversaryCard.getName())
         local targetScale = 1.71
         local currentScale = adversaryCard.getScale()[1]
         local scaleMult = (currentScale - targetScale)/10
@@ -2271,6 +2290,7 @@ function SetupAdversary()
             wt(0.02)
             adversaryCard.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
             if adversaryCard2 ~= nil then
+                adversaryCard2.UI.hide(adversaryCard2.getName())
                 adversaryCard2.setScale(Vector(currentScale-scaleMult*i,1.00,currentScale-scaleMult*i))
             end
         end
@@ -2987,6 +3007,7 @@ function PostSetup()
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
                 spirit.setState(2)
+                Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
             else
                 postSetupSteps = postSetupSteps + 1
             end
@@ -3358,7 +3379,8 @@ function runSpiritSetup()
     for color, _ in pairs(selectedColors) do
         local zone = getObjectFromGUID(elementScanZones[color])
         for _, obj in ipairs(zone.getObjects()) do
-            if obj.hasTag("Setup") then
+            if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
+                obj.setVar("setupComplete", true)
                 obj.call("doSetup", {color=color})
             end
         end
@@ -3593,7 +3615,10 @@ function handlePlayer(color, data)
             obj.setPosition(obj.getPosition() + Vector(0,1,0))
             Wait.frames(function() obj.destruct() end , 1)
         elseif obj.type == "Card" and not obj.getLock() then
-            obj.deal(1, color, 2)
+            -- Skip moving face down cards and those below spirit panel
+            if not obj.is_face_down and obj.getPosition().z > zone.getPosition().z then
+                obj.deal(1, color, 2)
+            end
         end
     end
 
@@ -4237,7 +4262,7 @@ function place(objName, placePos, droppingPlayerColor)
             return false
         end
     elseif objName == "Badlands" then
-        if expansions["Jagged Earth"] then
+        if usingBadlands() then
             temp = badlandsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
             return false
@@ -4419,9 +4444,8 @@ function checkPresenceLoss()
                 if obj.held_by_color then
                     colors[color] = true
                 else
-                    local bounds = obj.getBounds()
                     local hits = Physics.cast({
-                        origin = bounds.center,
+                        origin = obj.getPosition(),
                         direction = Vector(0,-1,0),
                         max_distance = 1,
                         --debug = true,
@@ -6562,7 +6586,7 @@ function grabSpiritMarkers()
                     if marker.name == obj.getName() then
                         bag.takeObject({
                             guid = marker.guid,
-                            position = obj.getPosition() + Vector(0, 2, 14.5)
+                            position = zone.getPosition() + Vector(0, 2, 8.5)
                         })
                         break
                     end
@@ -6570,6 +6594,13 @@ function grabSpiritMarkers()
                 break
             end
         end
+    end
+end
+function grabDestroyBag(color)
+    local bag = getObjectFromGUID("fd0a22")
+    if bag ~= nil then
+        local zone = getObjectFromGUID(elementScanZones[color])
+        bag.takeObject({position = zone.getPosition() + Vector(0, 2, 8.5)})
     end
 end
 

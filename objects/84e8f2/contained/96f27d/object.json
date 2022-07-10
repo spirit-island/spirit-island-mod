@@ -1,18 +1,18 @@
 {
-  "Name": "CardCustom",
+  "Name": "Deck",
   "Transform": {
-    "posX": -45.62,
-    "posY": 0.9051,
-    "posZ": 27.18,
+    "posX": -22.9293,
+    "posY": 2.3985,
+    "posZ": 77.9196,
     "rotX": 0.0,
     "rotY": 180.0,
-    "rotZ": 0.0,
+    "rotZ": 180.0,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
   },
-  "Nickname": "",
-  "Description": "",
+  "Nickname": "Fear",
+  "Description": "Feather & Flame Expansion",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.7132,
@@ -35,9 +35,15 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": true,
-  "Hands": true,
-  "CardID": 62200,
+  "Hands": false,
   "SidewaysCard": false,
+  "DeckIDs": [
+    62209,
+    62207,
+    62205,
+    62202,
+    62200
+  ],
   "CustomDeck": {
     "622": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100579512/2C26031238C9A7FEBC281E70894DDDB4034FF9C4/",

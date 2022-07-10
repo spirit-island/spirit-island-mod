@@ -276,17 +276,19 @@ function onObjectEnterContainer(container, object)
         end
         local playerColor = object.getName():sub(1,-12)
         local labelColor = fontColor(Color[playerColor])
-        makeLabel(container, 2, 0.3, -0.15, labelColor)
+        makeLabel(container, 2, 0.3, -0.15, labelColor, 0)
     elseif container.hasTag("Spirit") and object.hasTag("Aspect") then
         sourceSpirit.call("AddAspectButton", {obj = container})
     elseif container.hasTag("Label") and object.hasTag("Label") then
         local thickness = 0.11
         local offset = 0.01
+        local size = 230
         if container.hasTag("Blight") then
             thickness = 0.363
             offset = 0.05
+            size = 0
         end
-        makeLabel(container, 1, thickness, offset, {1,1,1})
+        makeLabel(container, 1, thickness, offset, {1,1,1}, size)
     end
 end
 function makeSacredSite(obj)
@@ -317,7 +319,7 @@ function makeSacredSite(obj)
         },
     })
 end
-function makeLabel(obj, count, thickness, offset, labelColor)
+function makeLabel(obj, count, thickness, offset, labelColor, size)
     if obj.getQuantity() <= count then
         obj.clearButtons()
     elseif obj.getButtons() == nil then
@@ -328,8 +330,9 @@ function makeLabel(obj, count, thickness, offset, labelColor)
             position       = Vector(0,thickness * obj.getQuantity() + offset,0),
             font_size      = 280 / obj.getScale().x,
             font_color     = labelColor,
-            width          = 0,
-            height         = 0,
+            color          = {0,0,0},
+            width          = size,
+            height         = size,
         })
     else
         obj.editButton({
@@ -349,7 +352,7 @@ function onObjectLeaveContainer(container, object)
         end
         local playerColor = object.getName():sub(1,-12)
         local labelColor = fontColor(Color[playerColor])
-        makeLabel(container, 2, 0.3, -0.15, labelColor)
+        makeLabel(container, 2, 0.3, -0.15, labelColor, 0)
     elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         if container == ExtraMapBag then
@@ -371,11 +374,13 @@ function onObjectLeaveContainer(container, object)
     elseif container.hasTag("Label") and object.hasTag("Label") then
         local thickness = 0.11
         local offset = 0.01
+        local size = 230
         if container.hasTag("Blight") then
             thickness = 0.363
             offset = 0.05
+            size = 0
         end
-        makeLabel(container, 1, thickness, offset, {1,1,1})
+        makeLabel(container, 1, thickness, offset, {1,1,1}, size)
     end
 end
 function onObjectEnterScriptingZone(zone, obj)

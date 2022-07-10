@@ -921,7 +921,7 @@ function toggleEvents(_, _, id)
         events[exp] = nil
         bool = false
         local allDisabled = true
-        for name,enabled in pairs(events) do
+        for _,enabled in pairs(events) do
             if enabled then
                 allDisabled = false
                 break

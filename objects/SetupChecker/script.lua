@@ -870,6 +870,20 @@ function toggleExpansion(_, _, id)
         events[id] = exps[id]
         Global.setTable("events", events)
         self.UI.setAttribute(id.." Events", "isOn", bool)
+        if bool then
+            self.UI.setAttribute("allEvents", "isOn", "true")
+        else
+            local allDisabled = true
+            for _,enabled in pairs(events) do
+                if enabled then
+                    allDisabled = false
+                    break
+                end
+            end
+            if allDisabled then
+                self.UI.setAttribute("allEvents", "isOn", "false")
+            end
+        end
     end
     updateDifficulty()
 

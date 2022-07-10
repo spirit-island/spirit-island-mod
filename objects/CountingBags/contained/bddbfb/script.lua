@@ -2,10 +2,17 @@
 function onLoad()
     upd()
 end
-function onObjectEnterContainer(container, leave_object)
+function tryObjectEnter(object)
+    if object.hasTag("Explorer") or object.hasTag("Town") or object.hasTag("City") or object.hasTag("Dahan") then
+        return true
+    else
+        return false
+    end
+end
+function onObjectEnterContainer(container, _)
     if container == self then upd() end
 end
-function onObjectLeaveContainer(container, leave_object)
+function onObjectLeaveContainer(container, _)
     if container == self then upd() end
 end
 function upd()

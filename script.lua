@@ -274,7 +274,9 @@ function onObjectEnterContainer(container, object)
             -- Not sure of a way around it, but with setDecals it's harmless
             makeSacredSite(container)
         end
-        makeLabel(container, 2, 0.3, -0.15)
+        local playerColor = object.getName():sub(1,-12)
+        local labelColor = fontColor(Color[playerColor])
+        makeLabel(container, 2, 0.3, -0.15, labelColor)
     elseif container.hasTag("Spirit") and object.hasTag("Aspect") then
         sourceSpirit.call("AddAspectButton", {obj = container})
     elseif container.hasTag("Label") and object.hasTag("Label") then
@@ -284,7 +286,7 @@ function onObjectEnterContainer(container, object)
             thickness = 0.363
             offset = 0.05
         end
-        makeLabel(container, 1, thickness, offset)
+        makeLabel(container, 1, thickness, offset, {1,1,1})
     end
 end
 function makeSacredSite(obj)
@@ -315,7 +317,7 @@ function makeSacredSite(obj)
         },
     })
 end
-function makeLabel(obj, count, thickness, offset)
+function makeLabel(obj, count, thickness, offset, labelColor)
     if obj.getQuantity() <= count then
         obj.clearButtons()
     elseif obj.getButtons() == nil then
@@ -325,7 +327,7 @@ function makeLabel(obj, count, thickness, offset)
             label          = obj.getQuantity(),
             position       = Vector(0,thickness * obj.getQuantity() + offset,0),
             font_size      = 280 / obj.getScale().x,
-            font_color     = {1,1,1},
+            font_color     = labelColor,
             width          = 0,
             height         = 0,
         })
@@ -345,7 +347,9 @@ function onObjectLeaveContainer(container, object)
         if object.getStateId() ~= 2 then
             object.setDecals({})
         end
-        makeLabel(container, 2, 0.3, -0.15)
+        local playerColor = object.getName():sub(1,-12)
+        local labelColor = fontColor(Color[playerColor])
+        makeLabel(container, 2, 0.3, -0.15, labelColor)
     elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         if container == ExtraMapBag then
@@ -371,7 +375,7 @@ function onObjectLeaveContainer(container, object)
             thickness = 0.363
             offset = 0.05
         end
-        makeLabel(container, 1, thickness, offset)
+        makeLabel(container, 1, thickness, offset, {1,1,1})
     end
 end
 function onObjectEnterScriptingZone(zone, obj)
@@ -4396,7 +4400,14 @@ function cleanupObject(params)
         if params.obj.getStateId() ~= -1 and params.obj.getStateId() ~= 1 then
             params.obj = params.obj.setState(1)
         end
-        bag.putObject(params.obj)
+        local quantity = params.obj.getQuantity()
+        if quantity > 1 then
+            for i=1,quantity do
+                bag.putObject(params.obj.takeObject({}))
+            end
+        else
+            bag.putObject(params.obj)
+        end
     end
 end
 ----
@@ -4679,7 +4690,16 @@ function refreshGameOver()
     end
 
     local dahan = #getObjectsWithTag("Dahan")
-    local blight = #getObjectsWithTag("Blight")
+    local blight = 0
+    local blightObjs = getObjectsWithTag("Blight")
+    for _,obj in pairs(blightObjs) do
+        local quantity = obj.getQuantity()
+        if quantity == -1 then
+            blight = blight + 1
+        else
+            blight = blight + quantity
+        end
+    end
     local deck = aidBoard.call("countDeck")
     local cards = aidBoard.getVar("numCards")
     local discard = aidBoard.call("countDiscard")

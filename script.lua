@@ -4402,7 +4402,7 @@ function cleanupObject(params)
         end
         local quantity = params.obj.getQuantity()
         if quantity > 1 then
-            for i=1,quantity do
+            for _ = 1,quantity do
                 bag.putObject(params.obj.takeObject({}))
             end
         else

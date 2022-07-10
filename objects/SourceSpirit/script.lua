@@ -131,7 +131,7 @@ function FindAspects(params)
         for _,obj in pairs(params.obj.getObjects()) do
             for _,tag in pairs(obj.tags) do
                 if tag == "Aspect" then
-                    table.insert(aspects, obj.name)
+                    table.insert(aspects, obj)
                     break
                 end
             end
@@ -151,20 +151,53 @@ function RandomAspect(params)
     if obj == nil then
         return ""
     elseif type(obj) == "table" then
-        local index = math.random(0,#obj)
+        local newDeck = {}
+        for _,aspect in pairs(obj) do
+            local enabled = true
+            for _,tag in pairs(aspect.tags) do
+                if tag == "Requires Tokens" and not Global.call("usingSpiritTokens") then
+                    enabled = false
+                elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
+                    enabled = false
+                end
+            end
+            if enabled then
+                table.insert(newDeck, aspect)
+            end
+        end
+        local index = math.random(0,#newDeck)
         if index == 0 then
             return ""
         end
-        return obj[index]
+        return newDeck[index].name
     elseif obj.type == "Deck" then
-        local objs = obj.getObjects()
-        local index = math.random(0,#objs)
+        local newDeck = {}
+        for _,aspect in pairs(obj.getObjects()) do
+            local enabled = true
+            for _,tag in pairs(aspect.tags) do
+                if tag == "Requires Tokens" and not Global.call("usingSpiritTokens") then
+                    enabled = false
+                elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
+                    enabled = false
+                end
+            end
+            if enabled then
+                table.insert(newDeck, aspect)
+            end
+        end
+        local index = math.random(0,#newDeck)
         if index == 0 then
             return ""
         end
-        return objs[index].name
+        return newDeck[index].name
     elseif obj.type == "Card" then
-        local index = math.random(0,1)
+        local count = 1
+        if obj.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
+            count = 0
+        elseif obj.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
+            count = 0
+        end
+        local index = math.random(0,count)
         if index == 0 then
             return ""
         end
@@ -316,7 +349,7 @@ function setupSpirit(obj, player_color)
         for _, o in pairs(obj.getObjects()) do
             for _,tag in pairs(o.tags) do
                 if tag == "Aspect" then
-                    table.insert(aspects, {o.name, o.guid})
+                    table.insert(aspects, o)
                     break
                 end
             end
@@ -438,11 +471,51 @@ function ToggleAspect(obj, _, alt_click)
 end
 
 function handleAspect(spirit, deck, color)
+    if type(deck) == "table" then
+        local newDeck = {}
+        for _,aspect in pairs(deck) do
+            local enabled = true
+            for _,tag in pairs(aspect.tags) do
+                if tag == "Requires Tokens" and not Global.call("usingSpiritTokens") then
+                    enabled = false
+                elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
+                    enabled = false
+                end
+            end
+            if enabled then
+                table.insert(newDeck, aspect)
+            else
+                spirit.takeObject({guid = aspect.guid}).destruct()
+            end
+        end
+        deck = newDeck
+    elseif deck.type == "Deck" then
+        for _,aspect in pairs(deck.getObjects()) do
+            local enabled = true
+            for _,tag in pairs(aspect.tags) do
+                if tag == "Requires Tokens" and not Global.call("usingSpiritTokens") then
+                    enabled = false
+                elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
+                    enabled = false
+                end
+            end
+            if not enabled then
+                deck.takeObject({guid = aspect.guid}).destruct()
+            end
+        end
+    else
+        if deck.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
+            deck.destruct()
+        elseif deck.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
+            deck.destruct()
+        end
+    end
+
     local useAspect = spirit.getVar("useAspect")
     if useAspect == 0 then
         if type(deck) == "table" then
             for _,aspect in pairs(deck) do
-                spirit.takeObject({guid = aspect[2]}).destruct()
+                spirit.takeObject({guid = aspect.guid}).destruct()
             end
         else
             deck.destruct()
@@ -461,7 +534,7 @@ function handleAspect(spirit, deck, color)
             Player[color].broadcast("Your random Aspect is no Aspect", Color.SoftBlue)
             if type(deck) == "table" then
                 for _,aspect in pairs(deck) do
-                    spirit.takeObject({guid = aspect[2]}).destruct()
+                    spirit.takeObject({guid = aspect.guid}).destruct()
                 end
             else
                 deck.destruct()
@@ -471,9 +544,9 @@ function handleAspect(spirit, deck, color)
             if type(deck) == "table" then
                 for i,aspect in pairs(deck) do
                     if i == index then
-                        name = aspect[1]
+                        name = aspect.name
                     else
-                        spirit.takeObject({guid = aspect[2]}).destruct()
+                        spirit.takeObject({guid = aspect.guid}).destruct()
                     end
                 end
             else
@@ -508,10 +581,10 @@ function handleAspect(spirit, deck, color)
         local aspectName = spirit.getVar("aspect")
         if type(deck) == "table" then
             for _,aspect in pairs(deck) do
-                if aspect[1] == aspectName then
+                if aspect.name == aspectName then
                     found = true
                 else
-                    spirit.takeObject({guid = aspect[2]}).destruct()
+                    spirit.takeObject({guid = aspect.guid}).destruct()
                 end
             end
         elseif deck.type == "Deck" then

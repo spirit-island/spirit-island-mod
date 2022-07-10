@@ -4743,10 +4743,6 @@ function refreshGameOver()
                 elseif tag == "Explorer" then
                     explorers = explorers + 1
                     break
-                elseif tag == "Blight" then
-                    -- TODO: figure out how to count stacks of blight in bag
-                    blight = blight + 1
-                    break
                 elseif tag == "Dahan" then
                     dahan = dahan + 1
                     break

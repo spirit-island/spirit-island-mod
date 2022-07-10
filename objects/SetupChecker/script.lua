@@ -876,6 +876,39 @@ function toggleExpansion(_, _, id)
     Wait.frames(function() updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
     Wait.frames(updateRequiredContent, 2)
 end
+function toggleAllEvents()
+    local checked = self.UI.getAttribute("allEvents", "isOn")
+    if checked == "true" then
+        self.UI.setAttribute("allEvents", "isOn", "false")
+        local events = Global.getTable("events")
+        for exp,enabled in pairs(events) do
+            if enabled then
+                toggleEvents(nil, nil, exp.." Events")
+            end
+        end
+        Global.setTable("events", {})
+    else
+        self.UI.setAttribute("allEvents", "isOn", "true")
+        local events = {}
+        local exps = Global.getTable("expansions")
+        for exp,enabled in pairs(exps) do
+            if enabled then
+                local hasEvents = false
+                for _,obj in pairs(getObjectFromGUID(expansions[exp]).getObjects()) do
+                    if obj.name == "Events" then
+                        hasEvents = true
+                        break
+                    end
+                end
+                if hasEvents then
+                    events[exp] = true
+                    toggleEvents(nil, nil, exp.." Events")
+                end
+            end
+        end
+        Global.setTable("events", events)
+    end
+end
 function toggleEvents(_, _, id)
     local exp = id:sub(1, -8)
     if not Global.getTable("expansions")[exp] then
@@ -887,9 +920,20 @@ function toggleEvents(_, _, id)
     if events[exp] then
         events[exp] = nil
         bool = false
+        local allDisabled = true
+        for name,enabled in pairs(events) do
+            if enabled then
+                allDisabled = false
+                break
+            end
+        end
+        if allDisabled then
+            self.UI.setAttribute("allEvents", "isOn", "false")
+        end
     else
         events[exp] = true
         bool = true
+        self.UI.setAttribute("allEvents", "isOn", "true")
     end
     Global.setTable("events", events)
     self.UI.setAttribute(id, "isOn", bool)
@@ -1442,7 +1486,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
         self.UI.setAttribute("supportingRow", "visibility", "Invisible")
         checkRandomDifficulty(false)
-        self.UI.setAttribute("blightCardRow", "visibility", "")
+        self.UI.setAttribute("simpleRow", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
         self.UI.setAttribute("toggles2", "visibility", "Invisible")
         self.UI.setAttribute("panelVariant", "visibility", "Invisible")
@@ -1458,7 +1502,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("supportingHeader", "visibility", "")
         self.UI.setAttribute("supportingRow", "visibility", "")
         checkRandomDifficulty(true)
-        self.UI.setAttribute("blightCardRow", "visibility", "Invisible")
+        self.UI.setAttribute("simpleRow", "visibility", "Invisible")
         self.UI.setAttribute("toggles", "visibility", "")
         self.UI.setAttribute("toggles2", "visibility", "")
         showUI()

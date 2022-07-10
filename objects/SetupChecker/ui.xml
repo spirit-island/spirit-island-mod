@@ -125,6 +125,10 @@
             <Row id="maxRow" visibility="Invisible">
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
+            <Row id="simpleRow" class="toggle" visibility="Invisible">
+                <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
+                <Cell><Toggle id="allEvents" isOn="true" onValueChanged="toggleAllEvents">Use Events</Toggle></Cell>
+            </Row>
             <Row class="spacing"/>
             <Row id="expansionsHeader" class="header">
                 <Cell columnSpan="2"><Text>Add Expansions</Text></Cell>
@@ -134,9 +138,6 @@
                     <GridLayout constraint="FixedColumnCount" constraintCount="2" cellSize="500 60">
                     </GridLayout>
                 </Cell>
-            </Row>
-            <Row id="blightCardRow" class="toggle" visibility="Invisible">
-                <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
             </Row>
             <Row class="spacing"/>
             <Row>

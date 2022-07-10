@@ -20,7 +20,8 @@
     "b": 0.7132
   },
   "Tags": [
-    "Aspect"
+    "Aspect",
+    "Requires Tokens"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,

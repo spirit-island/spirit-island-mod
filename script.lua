@@ -127,6 +127,7 @@ badlandsBag = "d3f7f8"
 oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
 speedBag = "65fc65"
+genericDefendBag = "1716e3"
 -----
 StandardMapBag = "BalancedMapBag"
 ExtraMapBag = "1f095d"
@@ -633,6 +634,7 @@ function onLoad(saved_data)
     oneEnergyBag = getObjectFromGUID(oneEnergyBag)
     threeEnergyBag = getObjectFromGUID(threeEnergyBag)
     speedBag = getObjectFromGUID(speedBag)
+    genericDefendBag = getObjectFromGUID(genericDefendBag)
     -----
     cityHealth = getObjectFromGUID(cityHealth)
     cityDamage = getObjectFromGUID(cityDamage)
@@ -3851,6 +3853,97 @@ themGuids = {
     ["SE"] = "505d5d",
 }
 ----
+function PopulateMapPositions()
+    local boards = getMapTiles()
+    while true do
+        local moving = false
+        for _, obj in pairs(boards) do
+            if obj.isSmoothMoving() then
+                moving = true
+                break
+            end
+        end
+        if not moving then break end
+        coroutine.yield()
+    end
+
+    for _,board in pairs(boards) do
+        local piecesToPlace = board.getTable("pieceMap")
+        local posToPlace = board.getTable("posMap")
+        local count = 1
+        local beastsIndex = 0
+        for i=1,#piecesToPlace do
+            if #piecesToPlace[i] == 0 then
+                beastsIndex = i
+                break
+            end
+        end
+        for l,landTable in ipairs(posToPlace) do
+            for i,pieceName in ipairs(piecesToPlace[l]) do
+                place(pieceName, board.positionToWorld(posToPlace[l][i]))
+            end
+            local startIndex = #piecesToPlace[l]+1
+            if l == 2 then
+                place("Disease", board.positionToWorld(posToPlace[l][startIndex]))
+                startIndex = startIndex + 1
+            end
+            if l == beastsIndex then
+                place("Beasts", board.positionToWorld(posToPlace[l][startIndex]))
+                startIndex = startIndex + 1
+            end
+            for i=startIndex,#landTable do
+                local defend = place("Defend Marker", board.positionToWorld(posToPlace[l][i]))
+                local countCopy = count
+                Wait.condition(function()
+                    if countCopy ~= 1 then
+                        defend.setState(countCopy)
+                    end
+                end, function() return not defend.isSmoothMoving() end)
+                count = (count % 21) + 1
+            end
+        end
+    end
+end
+function GenerateMapPositions()
+    local boards = getMapTiles()
+    while true do
+        local moving = false
+        for _, obj in pairs(boards) do
+            if obj.isSmoothMoving() then
+                moving = true
+                break
+            end
+        end
+        if not moving then break end
+        coroutine.yield()
+    end
+
+    local noteLines = {}
+    for _,board in pairs(boards) do
+        table.insert(noteLines, board.getName())
+        local hits = Physics.cast({
+            origin = board.getPosition() + Vector(0, 0.5, 0),
+            direction = Vector(0,1,0),
+            type = 3,
+            size = board.getBounds().size,
+        })
+        for _,hit in pairs(hits) do
+            if hit.hit_object ~= board then
+                local name = hit.hit_object.getName()
+                if name == "Defend" then
+                    name = name.." "..hit.hit_object.getStateId()
+                end
+                local pos = board.positionToLocal(hit.hit_object.getPosition())
+                table.insert(noteLines, name.." {\\n    x="..pos.x..", y=0.7, z="..pos.z.."\\n}")
+            end
+        end
+        table.insert(noteLines, "")
+    end
+    Notes.addNotebookTab({
+        title = "New Map Positions",
+        body = table.concat(noteLines, "\n") .. "\n",
+    })
+end
 function GenerateMapData()
     local boards = getMapTiles()
     while true do
@@ -3864,6 +3957,7 @@ function GenerateMapData()
         if not moving then break end
         coroutine.yield()
     end
+
     local noteLines = {}
     table.insert(noteLines, "boardLayout = {")
     table.insert(noteLines, "    -- ...")
@@ -4168,8 +4262,8 @@ function setupMap(map, extra)
                 if posToPlace[l][i] == nil then
                     broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
                 else
-                    local success = place(pieceName,map.positionToWorld(posToPlace[l][i]))
-                    if not success then
+                    local obj = place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                    if obj == nil then
                         broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
                     end
                     coroutine.yield(0)
@@ -4208,7 +4302,7 @@ function place(objName, placePos, droppingPlayerColor)
             if #explorerBag.getObjects() == 0 then
                 broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
                 explorerBag.call("none")
-                return false
+                return nil
             end
         end
         temp = explorerBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -4217,7 +4311,7 @@ function place(objName, placePos, droppingPlayerColor)
             if #townBag.getObjects() == 0 then
                 broadcastToAll("There are no Towns left to place", Color.SoftYellow)
                 townBag.call("none")
-                return false
+                return nil
             end
         end
         temp = townBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -4226,7 +4320,7 @@ function place(objName, placePos, droppingPlayerColor)
             if #cityBag.getObjects() == 0 then
                 broadcastToAll("There are no Cities left to place", Color.SoftYellow)
                 cityBag.call("none")
-                return false
+                return nil
             end
         end
         temp = cityBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -4234,14 +4328,14 @@ function place(objName, placePos, droppingPlayerColor)
         if dahanBag.getCustomObject().type ~= 7 then
             if #dahanBag.getObjects() == 0 then
                 broadcastToAll("There are no Dahan left to place", Color.SoftYellow)
-                return false
+                return nil
             end
         end
         temp = dahanBag.takeObject({position=placePos,rotation=Vector(0,0,0)})
     elseif objName == "Blight" then
         if #blightBag.getObjects() == 0 then
             broadcastToAll("There is no Blight left to place", Color.SoftYellow)
-            return false
+            return nil
         end
         temp = blightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
     elseif objName == "Box Blight" then
@@ -4250,43 +4344,43 @@ function place(objName, placePos, droppingPlayerColor)
         if usingSpiritTokens() then
             temp = strifeBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     elseif objName == "Beasts" then
         if usingSpiritTokens() then
             temp = beastsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     elseif objName == "Wilds" then
         if usingSpiritTokens() then
             temp = wildsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     elseif objName == "Disease" then
         if usingSpiritTokens() then
             temp = diseaseBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     elseif objName == "Badlands" then
         if usingBadlands() then
             temp = badlandsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     elseif objName == "Defend Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].defend ~= nil then
             temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return false
+            temp = genericDefendBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
         end
     elseif objName == "Isolate Marker" then
         if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].isolate ~= nil then
             temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     elseif objName == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
@@ -4296,14 +4390,14 @@ function place(objName, placePos, droppingPlayerColor)
         if speedBag ~= nil then
             temp = speedBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     elseif objName == "Scenario Token" then
         local bag = getObjectFromGUID("8d6e46")
         if bag ~= nil then
             temp = bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
         else
-            return false
+            return nil
         end
     end
     if droppingPlayerColor then
@@ -4319,7 +4413,7 @@ function place(objName, placePos, droppingPlayerColor)
         end
         temp.highlightOn(dropColor, 20)
     end
-    return true
+    return temp
 end
 
 -- one-indexed table

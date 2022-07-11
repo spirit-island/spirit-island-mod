@@ -159,7 +159,7 @@
       ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
-      "Locked": true,
+      "Locked": false,
       "Grid": true,
       "Snap": true,
       "IgnoreFoW": false,

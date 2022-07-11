@@ -3011,8 +3011,7 @@ function PostSetup()
         local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
             local obj = spirit.takeObject({guid = "606f23"})
-            obj = obj.setState(2)
-            spirit.putObject(obj)
+            obj.setState(2)
             postSetupSteps = postSetupSteps + 1
         else
             spirit = getObjectFromGUID("606f23")

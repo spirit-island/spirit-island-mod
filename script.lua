@@ -3926,19 +3926,38 @@ function GenerateMapPositions()
     for _,board in pairs(boards) do
         table.insert(noteLines, board.getName())
         local hits = Physics.cast({
-            origin = board.getPosition() + Vector(0, 0.5, 0),
-            direction = Vector(0,1,0),
+            origin = board.getPosition() + Vector(0, 0.45, 0),
+            direction = Vector(0, 1, 0),
             type = 3,
             size = board.getBounds().size,
         })
         for _,hit in pairs(hits) do
-            if hit.hit_object ~= board then
-                local name = hit.hit_object.getName()
-                if name == "Defend" then
-                    name = name.." "..hit.hit_object.getStateId()
+            if not isIslandBoard({obj=hit.hit_object}) then
+                local subHits = Physics.cast({
+                    origin = hit.hit_object.getPosition() + Vector(0, 0.1, 0),
+                    direction = Vector(0, -1, 0),
+                    max_distance = 0.2,
+                })
+                local onBoard = false
+                for _,subHit in pairs(subHits) do
+                    if subHit.hit_object == board then
+                        onBoard = true
+                        break
+                    end
                 end
-                local pos = board.positionToLocal(hit.hit_object.getPosition())
-                table.insert(noteLines, name.." {\\n    x="..pos.x..", y=0.7, z="..pos.z.."\\n}")
+
+                if onBoard then
+                    local name = hit.hit_object.getName()
+                    if name == "Defend" then
+                        name = name.."-"..hit.hit_object.getStateId()
+                    end
+                    local quantity = hit.hit_object.getQuantity()
+                    if quantity > 1 then
+                        name = name.." "..quantity
+                    end
+                    local pos = board.positionToLocal(hit.hit_object.getPosition())
+                    table.insert(noteLines, name.." {\\n    x="..pos.x..", y=0.7, z="..pos.z.."\\n}")
+                end
             end
         end
         table.insert(noteLines, "")

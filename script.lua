@@ -3872,10 +3872,12 @@ function PopulateMapPositions()
         local posToPlace = board.getTable("posMap")
         local count = 1
         local beastsIndex = 0
-        for i=1,#piecesToPlace do
-            if #piecesToPlace[i] == 0 then
-                beastsIndex = i
-                break
+        if not board.hasTag("Thematic") then
+            for i=1,#piecesToPlace do
+                if #piecesToPlace[i] == 0 then
+                    beastsIndex = i
+                    break
+                end
             end
         end
         for l,landTable in ipairs(posToPlace) do
@@ -3883,13 +3885,15 @@ function PopulateMapPositions()
                 place(pieceName, board.positionToWorld(posToPlace[l][i]))
             end
             local startIndex = #piecesToPlace[l]+1
-            if l == 2 then
-                place("Disease", board.positionToWorld(posToPlace[l][startIndex]))
-                startIndex = startIndex + 1
-            end
-            if l == beastsIndex then
-                place("Beasts", board.positionToWorld(posToPlace[l][startIndex]))
-                startIndex = startIndex + 1
+            if not board.hasTag("Thematic") then
+                if l == 2 then
+                    place("Disease", board.positionToWorld(posToPlace[l][startIndex]))
+                    startIndex = startIndex + 1
+                end
+                if l == beastsIndex then
+                    place("Beasts", board.positionToWorld(posToPlace[l][startIndex]))
+                    startIndex = startIndex + 1
+                end
             end
             for i=startIndex,#landTable do
                 local defend = place("Defend Marker", board.positionToWorld(posToPlace[l][i]))

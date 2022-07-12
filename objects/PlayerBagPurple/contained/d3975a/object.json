@@ -96,7 +96,7 @@
         "TypeIndex": 5,
         "CastShadows": false
       },
-      "LuaScript": "",
+      "LuaScript": "function tryRotate(_, flip, _, _, _)\n    return flip == 0\nend",
       "LuaScriptState": "",
       "XmlUI": "",
       "AttachedDecals": [

@@ -199,14 +199,10 @@
     - Any set aside Power Cards should be placed in the brown bag provided (above the Scenario Card)
   - Click "Export Config" (on the Scenario Card)
   - Copy the Config from the Notebook
-  - Make note of where pieces are on the island
-    - Via screenshot, notes, or selecting all pieces &gt; right-click &gt; "Save Object"
 - Load the Mod
   - Paste the copied Config into Notebook
   - Choose Spirits
   - Click "Start Game"
-  - Manually add the pieces back to the island
-    - Based on screenshot, notes, or loading them in as a Saved Object ("Objects" &gt; "Saved Objects")
 
 ### Custom-made Content Notes
 - To load in custom-made content (if it is a workshop mod): "Games" (top of the screen) &gt; "Workshop" &gt; "..." &gt; "Additively Load"

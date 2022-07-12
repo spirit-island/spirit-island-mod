@@ -824,7 +824,7 @@ function readyCheck()
     end
 end
 function isThematic()
-    return boardLayout == "Thematic"
+    return boardLayout == "Thematic" or boardLayout == "Custom Thematic"
 end
 ---- Setup Buttons Section
 function nullFunc()
@@ -4064,7 +4064,7 @@ function MapPlaceCustom(maps)
     if maps[1].hasTag("Balanced") then
         boardLayout = "Custom"
     else
-        boardLayout = "Thematic"
+        boardLayout = "Custom Thematic"
     end
     SetupChecker.call("updateDifficulty")
 
@@ -4450,6 +4450,8 @@ function place(params)
         else
             return nil
         end
+    else
+        temp = true
     end
     if params.color then
         local dropColor = params.color

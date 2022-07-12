@@ -33,8 +33,37 @@ function PreSetup()
             blightCount = config.secondWave.blight
         end
         blightedIsland = config.blightedIsland
+
+        if config.secondWave.boards then
+            local mapBag
+            if config.boardLayout == "Custom" then
+                mapBag = Global.getVar("StandardMapBag")
+            else
+                mapBag = Global.getVar("ThematicMapBag")
+            end
+            local started = 0
+            local finished = 0
+            for boardName,position in pairs(config.secondWave.boards) do
+                for _,obj in pairs(mapBag.getObjects()) do
+                    if obj.name == boardName then
+                        started = started + 1
+                        local board = mapBag.takeObject({
+                            guid = obj.guid,
+                            position = position,
+                            smooth = false,
+                        })
+                        Wait.condition(function() finished = finished + 1 end, function() return not board.loading_custom end)
+                        break
+                    end
+                end
+            end
+            Wait.condition(function() preSetupComplete = true end, function() return started == finished end)
+        else
+            preSetupComplete = true
+        end
+    else
+        preSetupComplete = true
     end
-    preSetupComplete = true
 end
 
 function MapSetup(params)
@@ -201,11 +230,11 @@ function PostSetup()
                 end
             end
         end
-        if config.secondWave.setup then
+        if config.secondWave.pieces then
             local boards = Global.call("getMapTiles")
             for _,board in pairs(boards) do
-                if config.secondWave.setup[board.getName()] then
-                    for _,objData in pairs(config.secondWave.setup[board.getName()]) do
+                if config.secondWave.pieces[board.getName()] then
+                    for _,objData in pairs(config.secondWave.pieces[board.getName()]) do
                         for _ = 1,objData.quantity do
                             Global.call("place", {name = objData.name, position = board.positionToWorld(objData.position) + Vector(0, 2, 0)})
                         end
@@ -253,6 +282,13 @@ function ExportConfig()
 
     data.numPlayers = Global.getVar("numPlayers")
     data.boardLayout = Global.getVar("boardLayout")
+    if data.boardLayout == "Custom" or data.boardLayout == "Custom Thematic" then
+        local boardPos = {}
+        for _,board in pairs(Global.call("getMapTiles")) do
+            boardPos[board.getName()] = board.getPosition()
+        end
+        data.secondWave.boards = boardPos
+    end
 
     local SetupChecker = Global.getVar("SetupChecker")
     data.variant = {}
@@ -444,9 +480,9 @@ function ExportConfig()
             data.secondWave.powers = powers
         end
     end
-    local setupData = Global.call("GetSpawnPositions", {})
-    local setupDataFiltered = {}
-    for boardName,objsData in pairs(setupData) do
+    local piecesData = Global.call("GetSpawnPositions", {})
+    local piecesDataFiltered = {}
+    for boardName,objsData in pairs(piecesData) do
         local boardTable = {}
         for _,objData in pairs(objsData) do
             if objData.name == "Dahan" then
@@ -463,10 +499,9 @@ function ExportConfig()
                 table.insert(boardTable, objData)
             end
         end
-        setupDataFiltered[boardName] = boardTable
+        piecesDataFiltered[boardName] = boardTable
     end
-    data.secondWave.setup = setupDataFiltered
-    -- TODO save board positions for custom setup
+    data.secondWave.pieces = piecesDataFiltered
     updateNotebook(JSON.encode_pretty(data))
 end
 function updateNotebook(json)

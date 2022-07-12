@@ -201,6 +201,18 @@ function PostSetup()
                 end
             end
         end
+        if config.secondWave.setup then
+            local boards = Global.call("getMapTiles")
+            for _,board in pairs(boards) do
+                if config.secondWave.setup[board.getName()] then
+                    for _,objData in pairs(config.secondWave.setup[board.getName()]) do
+                        for _ = 1,objData.quantity do
+                            Global.call("place", {name = objData.name, position = board.positionToWorld(objData.position) + Vector(0, 2, 0)})
+                        end
+                    end
+                end
+            end
+        end
     end
 
     postSetupComplete = true
@@ -432,6 +444,29 @@ function ExportConfig()
             data.secondWave.powers = powers
         end
     end
+    local setupData = Global.call("GetSpawnPositions", {})
+    local setupDataFiltered = {}
+    for boardName,objsData in pairs(setupData) do
+        local boardTable = {}
+        for _,objData in pairs(objsData) do
+            if objData.name == "Dahan" then
+                table.insert(boardTable, objData)
+            elseif objData.name == "Blight" then
+                table.insert(boardTable, objData)
+            elseif objData.name == "Beasts" then
+                table.insert(boardTable, objData)
+            elseif objData.name == "Wilds" then
+                table.insert(boardTable, objData)
+            elseif objData.name == "Disease" then
+                table.insert(boardTable, objData)
+            elseif objData.name == "Strife" then
+                table.insert(boardTable, objData)
+            end
+        end
+        setupDataFiltered[boardName] = boardTable
+    end
+    data.secondWave.setup = setupDataFiltered
+    -- TODO save board positions for custom setup
     updateNotebook(JSON.encode_pretty(data))
 end
 function updateNotebook(json)

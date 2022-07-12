@@ -3852,7 +3852,7 @@ themGuids = {
     ["SE"] = "505d5d",
 }
 ----
-function PopulateMapPositions()
+function PopulateSpawnPositions()
     local boards = getMapTiles()
     while true do
         local moving = false
@@ -3881,21 +3881,21 @@ function PopulateMapPositions()
         end
         for l,landTable in ipairs(posToPlace) do
             for i,pieceName in ipairs(piecesToPlace[l]) do
-                place(pieceName, board.positionToWorld(posToPlace[l][i]))
+                place({name = pieceName, position = board.positionToWorld(posToPlace[l][i])})
             end
             local startIndex = #piecesToPlace[l]+1
             if not board.hasTag("Thematic") then
                 if l == 2 then
-                    place("Disease", board.positionToWorld(posToPlace[l][startIndex]))
+                    place({name = "Disease", position = board.positionToWorld(posToPlace[l][startIndex])})
                     startIndex = startIndex + 1
                 end
                 if l == beastsIndex then
-                    place("Beasts", board.positionToWorld(posToPlace[l][startIndex]))
+                    place({name = "Beasts", position = board.positionToWorld(posToPlace[l][startIndex])})
                     startIndex = startIndex + 1
                 end
             end
             for i=startIndex,#landTable do
-                local defend = place("Defend Marker", board.positionToWorld(posToPlace[l][i]))
+                local defend = place({name = "Defend Marker", position = board.positionToWorld(posToPlace[l][i])})
                 local countCopy = count
                 Wait.condition(function()
                     if countCopy ~= 1 then
@@ -3907,7 +3907,27 @@ function PopulateMapPositions()
         end
     end
 end
-function GenerateMapPositions()
+function GenerateSpawnPositions()
+    local output = GetSpawnPositions()
+    local noteLines = {}
+    for boardName,objsData in pairs(output) do
+        table.insert(noteLines, boardName)
+        for _,objData in pairs(objsData) do
+            local name = objData.name
+            if objData.quantity > 1 then
+                name = name.." "..quantity
+            end
+            local pos = objData.position
+            table.insert(noteLines, name.." {\\n    x="..pos.x..", y="..pos.y..", z="..pos.z.."\\n}")
+        end
+        table.insert(noteLines, "")
+    end
+    Notes.addNotebookTab({
+        title = "New Map Positions",
+        body = table.concat(noteLines, "\n") .. "\n",
+    })
+end
+function GetSpawnPositions()
     local boards = getMapTiles()
     while true do
         local moving = false
@@ -3921,9 +3941,9 @@ function GenerateMapPositions()
         coroutine.yield()
     end
 
-    local noteLines = {}
+    local output = {}
     for _,board in pairs(boards) do
-        table.insert(noteLines, board.getName())
+        local boardTable = {}
         local hits = Physics.cast({
             origin = board.getPosition() + Vector(0, 0.45, 0),
             direction = Vector(0, 1, 0),
@@ -3935,7 +3955,7 @@ function GenerateMapPositions()
                 local subHits = Physics.cast({
                     origin = hit.hit_object.getPosition() + Vector(0, 0.1, 0),
                     direction = Vector(0, -1, 0),
-                    max_distance = 0.2,
+                    max_distance = 0.6,
                 })
                 local onBoard = false
                 for _,subHit in pairs(subHits) do
@@ -3946,25 +3966,34 @@ function GenerateMapPositions()
                 end
 
                 if onBoard then
-                    local name = hit.hit_object.getName()
+                    local name
+                    if hit.hit_object.hasTag("Dahan") then
+                        name = "Dahan"
+                    elseif hit.hit_object.hasTag("Explorer") then
+                        name = "Explorer"
+                    elseif hit.hit_object.hasTag("Town") then
+                        name = "Town"
+                    elseif hit.hit_object.hasTag("City") then
+                        name = "City"
+                    else
+                        name = hit.hit_object.getName()
+                    end
                     if name == "Defend" then
                         name = name.."-"..hit.hit_object.getStateId()
                     end
                     local quantity = hit.hit_object.getQuantity()
-                    if quantity > 1 then
-                        name = name.." "..quantity
+                    if quantity == -1 then
+                        quantity = 1
                     end
                     local pos = board.positionToLocal(hit.hit_object.getPosition())
-                    table.insert(noteLines, name.." {\\n    x="..pos.x..", y=0.7, z="..pos.z.."\\n}")
+                    pos.y = 0.7
+                    table.insert(boardTable, {name = name, quantity = quantity, position = pos})
                 end
             end
         end
-        table.insert(noteLines, "")
+        output[board.getName()] = boardTable
     end
-    Notes.addNotebookTab({
-        title = "New Map Positions",
-        body = table.concat(noteLines, "\n") .. "\n",
-    })
+    return output
 end
 function GenerateMapData()
     local boards = getMapTiles()
@@ -4284,7 +4313,7 @@ function setupMap(map, extra)
                 if posToPlace[l][i] == nil then
                     broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
                 else
-                    local obj = place(pieceName,map.positionToWorld(posToPlace[l][i]))
+                    local obj = place({name = pieceName, position = map.positionToWorld(posToPlace[l][i])})
                     if obj == nil then
                         broadcastToAll("Board "..map.getName().." did not have room to place "..pieceName.." in land "..l, Color.Red)
                     end
@@ -4298,28 +4327,28 @@ function setupMap(map, extra)
     startLuaCoroutine(Global, "setupMapCo")
 end
 
-function place(objName, placePos, droppingPlayerColor)
-    if objName == "CityS" then
-        local result = place("City",placePos,droppingPlayerColor)
+function place(params)
+    if params.name == "CityS" then
+        local result = place({name = "City", position = params.position, color = params.color})
         if usingSpiritTokens() then
-            Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
+            Wait.time(function() place({name = "Strife", position = params.position + Vector(0,1,0), color = params.color}) end, 0.5)
         end
         return result
-    elseif objName == "TownS" then
-        local result = place("Town",placePos,droppingPlayerColor)
+    elseif params.name == "TownS" then
+        local result = place({name = "Town", position = params.position, color = params.color})
         if usingSpiritTokens() then
-            Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
+            Wait.time(function() place({name = "Strife", position = params.position + Vector(0,1,0), color = params.color}) end, 0.5)
         end
         return result
-    elseif objName == "ExplorerS" then
-        local result = place("Explorer",placePos,droppingPlayerColor)
+    elseif params.name == "ExplorerS" then
+        local result = place({name = "Explorer", position = params.position, color = params.color})
         if usingSpiritTokens() then
-            Wait.time(function() place("Strife",placePos + Vector(0,1,0),droppingPlayerColor) end, 0.5)
+            Wait.time(function() place({name = "Strife", position = params.position + Vector(0,1,0), color = params.color}) end, 0.5)
         end
         return result
     end
     local temp = nil
-    if objName == "Explorer" then
+    if params.name == "Explorer" then
         if explorerBag.getCustomObject().type ~= 7 then
             if #explorerBag.getObjects() == 0 then
                 broadcastToAll("There are no Explorers left to place", Color.SoftYellow)
@@ -4327,8 +4356,8 @@ function place(objName, placePos, droppingPlayerColor)
                 return nil
             end
         end
-        temp = explorerBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "Town" then
+        temp = explorerBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+    elseif params.name == "Town" then
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
                 broadcastToAll("There are no Towns left to place", Color.SoftYellow)
@@ -4336,8 +4365,8 @@ function place(objName, placePos, droppingPlayerColor)
                 return nil
             end
         end
-        temp = townBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "City" then
+        temp = townBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+    elseif params.name == "City" then
         if cityBag.getCustomObject().type ~= 7 then
             if #cityBag.getObjects() == 0 then
                 broadcastToAll("There are no Cities left to place", Color.SoftYellow)
@@ -4345,85 +4374,85 @@ function place(objName, placePos, droppingPlayerColor)
                 return nil
             end
         end
-        temp = cityBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "Dahan" then
+        temp = cityBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+    elseif params.name == "Dahan" then
         if dahanBag.getCustomObject().type ~= 7 then
             if #dahanBag.getObjects() == 0 then
                 broadcastToAll("There are no Dahan left to place", Color.SoftYellow)
                 return nil
             end
         end
-        temp = dahanBag.takeObject({position=placePos,rotation=Vector(0,0,0)})
-    elseif objName == "Blight" then
+        temp = dahanBag.takeObject({position=params.position,rotation=Vector(0,0,0)})
+    elseif params.name == "Blight" then
         if #blightBag.getObjects() == 0 then
             broadcastToAll("There is no Blight left to place", Color.SoftYellow)
             return nil
         end
-        temp = blightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "Box Blight" then
-        temp = boxBlightBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "Strife" then
+        temp = blightBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+    elseif params.name == "Box Blight" then
+        temp = boxBlightBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+    elseif params.name == "Strife" then
         if usingSpiritTokens() then
-            temp = strifeBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
+            temp = strifeBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
             return nil
         end
-    elseif objName == "Beasts" then
+    elseif params.name == "Beasts" then
         if usingSpiritTokens() then
-            temp = beastsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
+            temp = beastsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
             return nil
         end
-    elseif objName == "Wilds" then
+    elseif params.name == "Wilds" then
         if usingSpiritTokens() then
-            temp = wildsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
+            temp = wildsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
             return nil
         end
-    elseif objName == "Disease" then
+    elseif params.name == "Disease" then
         if usingSpiritTokens() then
-            temp = diseaseBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
+            temp = diseaseBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
             return nil
         end
-    elseif objName == "Badlands" then
+    elseif params.name == "Badlands" then
         if usingBadlands() then
-            temp = badlandsBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
+            temp = badlandsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
             return nil
         end
-    elseif objName == "Defend Marker" then
-        if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].defend ~= nil then
-            temp = selectedColors[droppingPlayerColor].defend.takeObject({position = placePos,rotation = Vector(0,180,0)})
+    elseif params.name == "Defend Marker" then
+        if params.color and selectedColors[params.color] and selectedColors[params.color].defend ~= nil then
+            temp = selectedColors[params.color].defend.takeObject({position = params.position,rotation = Vector(0,180,0)})
         else
-            temp = genericDefendBag.takeObject({position = placePos,rotation = Vector(0,180,0)})
+            temp = genericDefendBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         end
-    elseif objName == "Isolate Marker" then
-        if droppingPlayerColor and selectedColors[droppingPlayerColor] and selectedColors[droppingPlayerColor].isolate ~= nil then
-            temp = selectedColors[droppingPlayerColor].isolate.takeObject({position = placePos,rotation = Vector(0,180,0)})
+    elseif params.name == "Isolate Marker" then
+        if params.color and selectedColors[params.color] and selectedColors[params.color].isolate ~= nil then
+            temp = selectedColors[params.color].isolate.takeObject({position = params.position,rotation = Vector(0,180,0)})
         else
             return nil
         end
-    elseif objName == "1 Energy" then
-        temp = oneEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "3 Energy" then
-        temp = threeEnergyBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
-    elseif objName == "Speed Token" then
+    elseif params.name == "1 Energy" then
+        temp = oneEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+    elseif params.name == "3 Energy" then
+        temp = threeEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+    elseif params.name == "Speed Token" then
         if speedBag ~= nil then
-            temp = speedBag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+            temp = speedBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
         else
             return nil
         end
-    elseif objName == "Scenario Token" then
+    elseif params.name == "Scenario Token" then
         local bag = getObjectFromGUID("8d6e46")
         if bag ~= nil then
-            temp = bag.takeObject({position=placePos,rotation=Vector(0,180,0)})
+            temp = bag.takeObject({position=params.position,rotation=Vector(0,180,0)})
         else
             return nil
         end
     end
-    if droppingPlayerColor then
-        local dropColor = droppingPlayerColor
+    if params.color then
+        local dropColor = params.color
         if dropColor == "Blue" then
             dropColor = {0.118, 0.53, 1}
         elseif dropColor == "Red" then
@@ -4462,7 +4491,7 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
     if not gameStarted or gamePaused then
         return
     end
-    place(piece, cursorLocation + Vector(0,2,0), droppingPlayerColor)
+    place({name = piece, position = cursorLocation + Vector(0,2,0), color = droppingPlayerColor})
 end
 
 function cleanupObject(params)

@@ -3915,7 +3915,7 @@ function GenerateSpawnPositions()
         for _,objData in pairs(objsData) do
             local name = objData.name
             if objData.quantity > 1 then
-                name = name.." "..quantity
+                name = name.." "..objData.quantity
             end
             local pos = objData.position
             table.insert(noteLines, name.." {\\n    x="..pos.x..", y="..pos.y..", z="..pos.z.."\\n}")
@@ -4347,7 +4347,7 @@ function place(params)
         end
         return result
     end
-    local temp = nil
+    local temp = true
     if params.name == "Explorer" then
         if explorerBag.getCustomObject().type ~= 7 then
             if #explorerBag.getObjects() == 0 then
@@ -4450,8 +4450,6 @@ function place(params)
         else
             return nil
         end
-    else
-        temp = true
     end
     if params.color then
         local dropColor = params.color

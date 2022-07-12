@@ -488,6 +488,7 @@ function ExportConfig()
             if objData.name == "Dahan" then
                 table.insert(boardTable, objData)
             elseif objData.name == "Blight" then
+                objData.name = "Box Blight"
                 table.insert(boardTable, objData)
             elseif objData.name == "Beasts" then
                 table.insert(boardTable, objData)

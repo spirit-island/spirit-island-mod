@@ -277,19 +277,19 @@ function onObjectEnterContainer(container, object)
         end
         local playerColor = object.getName():sub(1,-12)
         local labelColor = fontColor(Color[playerColor])
-        makeLabel(container, 2, 0.3, -0.15, labelColor, 0)
+        makeLabel(container, 2, 0.3, -0.15, labelColor, false)
     elseif container.hasTag("Spirit") and object.hasTag("Aspect") then
         sourceSpirit.call("AddAspectButton", {obj = container})
     elseif container.hasTag("Label") and object.hasTag("Label") then
         local thickness = 0.11
         local offset = 0.01
-        local size = 230
+        local backdrop = true
         if container.hasTag("Blight") then
             thickness = 0.363
             offset = 0.05
-            size = 0
+            backdrop = false
         end
-        makeLabel(container, 1, thickness, offset, {1,1,1}, size)
+        makeLabel(container, 1, thickness, offset, {1,1,1}, backdrop)
     end
 end
 function makeSacredSite(obj)
@@ -320,26 +320,52 @@ function makeSacredSite(obj)
         },
     })
 end
-function makeLabel(obj, count, thickness, offset, labelColor, size)
+function makeLabel(obj, count, thickness, offset, labelColor, backdrop)
     if obj.getQuantity() <= count then
         obj.clearButtons()
     elseif obj.getButtons() == nil then
+        local quantity = obj.getQuantity()
+        if backdrop then
+            obj.createButton({
+                click_function = "nullFunc",
+                function_owner = Global,
+                label          = "█",
+                position       = Vector(0,thickness * quantity + offset,0),
+                font_size      = 280 / obj.getScale().x * 0.75,
+                font_color     = {0,0,0},
+                width          = 0,
+                height         = 0,
+            })
+        end
         obj.createButton({
             click_function = "nullFunc",
             function_owner = Global,
-            label          = obj.getQuantity(),
-            position       = Vector(0,thickness * obj.getQuantity() + offset,0),
+            label          = quantity,
+            position       = Vector(0,thickness * quantity + offset,0),
             font_size      = 280 / obj.getScale().x,
             font_color     = labelColor,
-            color          = {0,0,0},
-            width          = size,
-            height         = size,
+            width          = 0,
+            height         = 0,
         })
     else
+        local quantity = obj.getQuantity()
+        local index = 0
+        if backdrop then
+            local label = "█"
+            if quantity > 9 then
+                label = label.."█"
+            end
+            obj.editButton({
+                index          = 0,
+                label          = label,
+                position       = Vector(0,thickness * quantity + offset,0),
+            })
+            index = 1
+        end
         obj.editButton({
-            index          = 0,
+            index          = index,
             label          = obj.getQuantity(),
-            position       = Vector(0,thickness * obj.getQuantity() + offset,0),
+            position       = Vector(0,thickness * quantity + offset,0),
         })
     end
 end
@@ -353,7 +379,7 @@ function onObjectLeaveContainer(container, object)
         end
         local playerColor = object.getName():sub(1,-12)
         local labelColor = fontColor(Color[playerColor])
-        makeLabel(container, 2, 0.3, -0.15, labelColor, 0)
+        makeLabel(container, 2, 0.3, -0.15, labelColor, false)
     elseif (container == StandardMapBag or container == ExtraMapBag or container == ThematicMapBag) and isIslandBoard({obj=object}) then
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         if container == ExtraMapBag then
@@ -375,13 +401,13 @@ function onObjectLeaveContainer(container, object)
     elseif container.hasTag("Label") and object.hasTag("Label") then
         local thickness = 0.11
         local offset = 0.01
-        local size = 230
+        local backdrop = true
         if container.hasTag("Blight") then
             thickness = 0.363
             offset = 0.05
-            size = 0
+            backdrop = false
         end
-        makeLabel(container, 1, thickness, offset, {1,1,1}, size)
+        makeLabel(container, 1, thickness, offset, {1,1,1}, backdrop)
     end
 end
 function onObjectEnterScriptingZone(zone, obj)

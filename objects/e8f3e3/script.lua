@@ -23,15 +23,15 @@ end
 function onObjectSpawn(obj)
     if obj.guid == slaveRebellion then
         obj.createButton({
-            click_function = "setupSlaveRebellion",
+            click_function = "slaveRebellionButton",
             function_owner = self,
-            label          = "Return to Deck",
+            label          = "Draw and Return",
             position       = Vector(0,0.3,1.43),
-            width          = 1100,
+            width          = 1200,
             scale          = Vector(0.65,1,0.65),
             height         = 160,
             font_size      = 150,
-            tooltip = "Return Slave Rebellion back to the Event Deck as per Setup"
+            tooltip = "Return Slave Rebellion back to the Event Deck as per Setup and Reveal new Event Card"
         })
     end
 end
@@ -188,11 +188,16 @@ function PostSetup(params)
         postSetupComplete = true
     end
 end
+function slaveRebellionButton(card)
+    local aidBoard = Global.getVar("aidBoard")
+    aidBoard.call("EventCard", {ignore = card.guid})
+    setupSlaveRebellion(card)
+end
 function setupSlaveRebellion(card)
     local zone = Global.getVar("eventDeckZone")
     local eventDeck = zone.getObjects()[1]
     local count = 0
-    if eventDeck ~= nil then
+    if eventDeck ~= nil and eventDeck.type == "Deck" then
         count = #eventDeck.getObjects()
         eventDeck.takeObject({
             position = eventDeck.getPosition() + Vector(0,1.2,0)

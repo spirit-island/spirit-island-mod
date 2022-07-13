@@ -269,6 +269,9 @@ function secondWave()
     secondWave.setLock(true)
 end
 function flipEventCard()
+    EventCard({})
+end
+function EventCard(params)
     if not Global.getVar("gameStarted") then
         return
     end
@@ -282,8 +285,22 @@ function flipEventCard()
         broadcastToAll("Unable to resolve Event Card, Event Deck empty", Color.SoftYellow)
         return
     elseif #objs > 1 or not objs[1].is_face_down then
+        local stop = false
+        for _,obj in pairs(objs) do
+            if obj.type == "Deck" and not obj.is_face_down then
+                stop = true
+                break
+            elseif obj.type == "Card" and not obj.is_face_down then
+                if obj.guid ~= params.ignore then
+                    stop = true
+                    break
+                end
+            end
+        end
         -- already have a faceup card
-        return
+        if stop then
+            return
+        end
     end
 
     if objs[1].type == "Deck" then

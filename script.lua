@@ -4363,31 +4363,31 @@ function place(params)
         if usingSpiritTokens() then
             temp = strifeBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
-            return nil
+            return true
         end
     elseif params.name == "Beasts" then
         if usingSpiritTokens() then
             temp = beastsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
-            return nil
+            return true
         end
     elseif params.name == "Wilds" then
         if usingSpiritTokens() then
             temp = wildsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
-            return nil
+            return true
         end
     elseif params.name == "Disease" then
         if usingSpiritTokens() then
             temp = diseaseBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
-            return nil
+            return true
         end
     elseif params.name == "Badlands" then
         if usingBadlands() then
             temp = badlandsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
-            return nil
+            return true
         end
     elseif params.name == "Defend Marker" then
         if params.color and selectedColors[params.color] and selectedColors[params.color].defend ~= nil then

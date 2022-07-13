@@ -84,4 +84,4 @@ posMap = {
     x=-1.27846153846154, y=0.7, z=-0.516923076923077
 } } }
 
-pieceMap = { {  "Dahan" ,  "Dahan"  }, {  "City" ,  "Dahan"  }, {}, {}, {  "Dahan" ,  "Box Blight"  }, {}, {  "Town" ,  "Dahan" ,  "Dahan"  }, {} }
+pieceMap = { {  "Dahan" ,  "Dahan"  }, {  "City" ,  "Dahan" ,  "Disease"  }, {  "Beasts"  }, {}, {  "Dahan" ,  "Box Blight"  }, {}, {  "Town" ,  "Dahan" ,  "Dahan"  }, {} }

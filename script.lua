@@ -3870,31 +3870,11 @@ function PopulateSpawnPositions()
         local piecesToPlace = board.getTable("pieceMap")
         local posToPlace = board.getTable("posMap")
         local count = 1
-        local beastsIndex = 0
-        if not board.hasTag("Thematic") then
-            for i=1,#piecesToPlace do
-                if #piecesToPlace[i] == 0 then
-                    beastsIndex = i
-                    break
-                end
-            end
-        end
         for l,landTable in ipairs(posToPlace) do
             for i,pieceName in ipairs(piecesToPlace[l]) do
                 place({name = pieceName, position = board.positionToWorld(posToPlace[l][i])})
             end
-            local startIndex = #piecesToPlace[l]+1
-            if not board.hasTag("Thematic") then
-                if l == 2 then
-                    place({name = "Disease", position = board.positionToWorld(posToPlace[l][startIndex])})
-                    startIndex = startIndex + 1
-                end
-                if l == beastsIndex then
-                    place({name = "Beasts", position = board.positionToWorld(posToPlace[l][startIndex])})
-                    startIndex = startIndex + 1
-                end
-            end
-            for i=startIndex,#landTable do
+            for i=#piecesToPlace[l]+1,#landTable do
                 local defend = place({name = "Defend Marker", position = board.positionToWorld(posToPlace[l][i])})
                 local countCopy = count
                 Wait.condition(function()
@@ -4213,18 +4193,6 @@ function setupMap(map, extra)
         local piecesToPlace = map.getTable("pieceMap")
         local posToPlace = map.getTable("posMap")
         local originalPieces = map.getTable("pieceMap")
-
-        if not map.hasTag("Thematic") then -- if not a thematic board
-            if usingSpiritTokens() then -- during Setup put 1 Beast and 1 Disease on each island board
-                for i=1,#piecesToPlace do
-                    if #piecesToPlace[i] == 0 then
-                        table.insert(piecesToPlace[i],"Beasts") -- the Beasts go in the lowest-numbered land with no printed Setup icons
-                        break
-                    end
-                end
-                table.insert(piecesToPlace[2],"Disease") -- the Disease goes in land #2 (with the City)
-            end
-        end
 
         if extra and numPlayers < 5 then
             local townFound = false

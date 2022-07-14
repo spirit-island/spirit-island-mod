@@ -42,9 +42,8 @@ function doSetup(params)
     local serpent = Global.call("getSpirit", {name = spiritName})
 
     local snapPoints = serpent.getSnapPoints()
-
     for _, position in pairs(slumberPoints) do
-        table.insert(snapPoints, {position})
+        table.insert(snapPoints, {position = position})
     end
     serpent.setSnapPoints(snapPoints)
 
@@ -105,12 +104,12 @@ end
 local function slumberPresence(serpent)
     local count = 0
     for _, position in pairs(slumberPoints) do
-        local hits = Physics.cast{
+        local hits = Physics.cast({
             origin = serpent.positionToWorld(position),
             direction = Vector(0, 1, 0),
             max_distance = 1,
             type = 1, --ray
-        }
+        })
         for _, hit in pairs(hits) do
             if hit.hit_object.hasTag("Presence") then
                 count = count + 1

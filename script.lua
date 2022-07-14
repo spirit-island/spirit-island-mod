@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.4.1"
+version = "3.4.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -348,12 +348,11 @@ function onObjectEnterScriptingZone(zone, obj)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
             checkVictory()
         end
-    elseif obj.hasTag("Aspect") then
+    elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
         for color,guid in pairs(elementScanZones) do
             if guid == zone.guid then
-                if gameStarted and obj.hasTag("Setup") then
-                    obj.call("doSetup", {color=color})
-                end
+                obj.setVar("setupComplete", true)
+                obj.call("doSetup", {color=color})
                 break
             end
         end
@@ -551,6 +550,7 @@ function onLoad(saved_data)
     addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         grabSpiritMarkers()
     end)
+    addContextMenuItem("Grab Destroy Bag", grabDestroyBag, false)
     addHotkey("Grab Destroy Bag", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         local bag = getObjectFromGUID("fd0a22")
         if bag ~= nil then
@@ -2950,6 +2950,7 @@ function PostSetup()
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
                 spirit.setState(2)
+                Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
             else
                 postSetupSteps = postSetupSteps + 1
             end
@@ -3321,7 +3322,8 @@ function runSpiritSetup()
     for color, _ in pairs(selectedColors) do
         local zone = getObjectFromGUID(elementScanZones[color])
         for _, obj in ipairs(zone.getObjects()) do
-            if obj.hasTag("Setup") then
+            if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
+                obj.setVar("setupComplete", true)
                 obj.call("doSetup", {color=color})
             end
         end
@@ -6513,7 +6515,7 @@ function grabSpiritMarkers()
                     if marker.name == obj.getName() then
                         bag.takeObject({
                             guid = marker.guid,
-                            position = obj.getPosition() + Vector(0, 2, 14.5)
+                            position = zone.getPosition() + Vector(0, 2, 8.5)
                         })
                         break
                     end
@@ -6521,6 +6523,13 @@ function grabSpiritMarkers()
                 break
             end
         end
+    end
+end
+function grabDestroyBag(color)
+    local bag = getObjectFromGUID("fd0a22")
+    if bag ~= nil then
+        local zone = getObjectFromGUID(elementScanZones[color])
+        bag.takeObject({position = zone.getPosition() + Vector(0, 2, 8.5)})
     end
 end
 

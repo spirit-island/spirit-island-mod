@@ -15,6 +15,7 @@ function onLoad(save_state)
             healthCount = loaded_data.healthCount
             autoExchange = loaded_data.autoExchange
         end
+        setupComplete = true -- luacheck: ignore 111
         if autoExchange then
             exchangeAuto()
         end

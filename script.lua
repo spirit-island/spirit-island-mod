@@ -588,15 +588,11 @@ function onLoad(saved_data)
     addHotkey("Forget Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
-                -- This ugliness is because setPositionSmooth doesn't work from a hand.
-                ensureCardInPlay({card = obj})
-                discardPowerCardFromPlay({card = obj, discardHeight = 1})
+                forgetPowerCard({card = obj, discardHeight = 1})
             end
         end
         if isPowerCard({card=hoveredObject}) then
-            -- This ugliness is because setPositionSmooth doesn't work from a hand.
-            ensureCardInPlay({card = hoveredObject})
-            discardPowerCardFromPlay({card = hoveredObject, discardHeight = 1})
+            forgetPowerCard({card = hoveredObject, discardHeight = 1})
         end
     end)
     addHotkey("Discard Power (to 2nd hand)", function (playerColor, hoveredObject, cursorLocation, key_down_up)
@@ -2002,31 +1998,57 @@ function DiscardPowerCards(handPos)
     local discardTable = {}
     local cardZoneObjects = getPowerZoneObjects(handPos)
     for i, obj in ipairs(cardZoneObjects) do
-        discardPowerCardFromPlay({card = obj, discardHeight = i})
+        forgetPowerCard({card = obj, discardHeight = i})
         obj.clearButtons()
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
         discardTable[i] = obj
     end
     return discardTable
 end
-function discardPowerCardFromPlay(params)
+function forgetPowerCard(params)
     local discardZone
-    if params.card.hasTag("Major") and not params.card.hasTag("Playtest") then
-        discardZone = getObjectFromGUID(majorPowerDiscardZone)
-    elseif params.card.hasTag("Major") and params.card.hasTag("Playtest") then
-        discardZone = getObjectFromGUID(playtestMajorPowerDiscardZone)
-    elseif params.card.hasTag("Minor") and not params.card.hasTag("Playtest") then
-        discardZone = getObjectFromGUID(minorPowerDiscardZone)
-    elseif params.card.hasTag("Minor") and params.card.hasTag("Playtest") then
-        discardZone = getObjectFromGUID(playtestMinorPowerDiscardZone)
+    if params.card.hasTag("Major") then
+        if params.card.hasTag("Playtest") then
+            discardZone = getObjectFromGUID(playtestMajorPowerDiscardZone)
+        else
+            discardZone = getObjectFromGUID(majorPowerDiscardZone)
+        end
+    elseif params.card.hasTag("Minor") then
+        if params.card.hasTag("Playtest") then
+            discardZone = getObjectFromGUID(playtestMinorPowerDiscardZone)
+        else
+            discardZone = getObjectFromGUID(minorPowerDiscardZone)
+        end
     elseif params.card.hasTag("Unique") then
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     else
         -- Discard unknown cards to the unique power discard
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     end
-    params.card.setPositionSmooth(discardZone.getPosition() + Vector(0,params.discardHeight,0), false, true)
-    params.card.setRotation(Vector(0, 180, 0))
+
+    -- HACK work around issue where setPositionSmooth doesn't move object from hand to non hand
+    local inHand = isObjectInHand(params.card)
+    if inHand then
+        params.card.use_hands = false
+        local position = params.card.getPosition()
+        position.y = 0
+        params.card.setPosition(position)
+    end
+    Wait.frames(function()
+        params.card.setPositionSmooth(discardZone.getPosition() + Vector(0,params.discardHeight,0), false, true)
+        params.card.setRotation(Vector(0, 180, 0))
+        if inHand then
+            Wait.condition(function() params.card.use_hands = true end, function() return not params.card.isSmoothMoving() end)
+        end
+    end, 1)
+end
+function isObjectInHand(obj)
+    for _,zone in pairs(obj.getZones()) do
+        if zone.type == "Hand" then
+            return true
+        end
+    end
+    return false
 end
 
 function getPowerZoneObjects(handP)
@@ -6715,37 +6737,11 @@ function applyPowerCardContextMenuItems(card)
         function(player_color)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
                 if isPowerCard({card=obj}) then
-                    -- This ugliness is because setPositionSmooth doesn't work from a hand.
-                    ensureCardInPlay({card = obj})
-                    discardPowerCardFromPlay({card = obj, discardHeight = 1})
+                    forgetPowerCard({card = obj, discardHeight = 1})
                 end
             end
         end,
         false)
-end
-
--- ensureCardInPlay moves the supplied card from a player's hand to a safe
--- location, if it's in a hand.
-function ensureCardInPlay(params)
-    for _, color in pairs(Player.getAvailableColors()) do
-        for handIndex=1,Player[color].getHandCount() do
-            if isObjectInHand(params.card, color, handIndex) then
-                local cpos = params.card.getPosition()
-                params.card.setPosition(Vector(cpos.x, 0, cpos.z))
-                return
-            end
-        end
-    end
-end
-
-
-function isObjectInHand(obj, color, handIndex)
-    for _, handObj in ipairs(Player[color].getHandObjects(handIndex)) do
-        if obj.guid == handObj.guid then
-            return true
-        end
-    end
-    return false
 end
 
 function grabSpiritMarkers()

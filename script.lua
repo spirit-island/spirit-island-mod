@@ -319,6 +319,9 @@ function makeSacredSite(obj)
             scale    = {3, 3, 3},
         },
     })
+    local rotation = obj.getRotation()
+    rotation.z = 0.0
+    obj.setRotation(rotation)
 end
 function makeLabel(obj, count, thickness, offset, labelColor, backdrop)
     if obj.getQuantity() <= count then

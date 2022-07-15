@@ -272,9 +272,15 @@ function setupSpirit(obj, player_color)
     for i = 1,13 do
         local p = snaps[i]
         if i <= #snaps then
-            PlayerBag.takeObject({position = spirit.positionToWorld(p.position)})
+            PlayerBag.takeObject({
+                position = spirit.positionToWorld(p.position),
+                rotation = Vector(0, 180, 0),
+            })
         else
-            PlayerBag.takeObject({position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10)})
+            PlayerBag.takeObject({
+                position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10),
+                rotation = Vector(0, 180, 0),
+            })
             placed = placed + 1
         end
     end

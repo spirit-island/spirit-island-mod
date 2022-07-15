@@ -3039,9 +3039,17 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
-            local obj = spirit.takeObject({guid = "606f23"})
-            obj.setState(2)
-            postSetupSteps = postSetupSteps + 1
+            spirit.takeObject({
+                guid = "606f23",
+                position = spirit.getPosition() + Vector(0, 1, 0),
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        spirit.putObject(temp)
+                        postSetupSteps = postSetupSteps + 1
+                    end, 1)
+                end,
+            })
         else
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then

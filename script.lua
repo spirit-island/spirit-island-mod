@@ -3158,7 +3158,7 @@ function PostSetup()
         end
     end, function() return sequentialPostSetupSteps == 2 end)
     Wait.condition(function()
-        if secondWave ~= nil and secondWave.getVar("mapSetup") then
+        if secondWave ~= nil and secondWave.getVar("postSetup") then
             secondWave.call("PostSetup")
             Wait.condition(function()
                 postSetupSteps = postSetupSteps + 1
@@ -4318,18 +4318,19 @@ function setupMap(map, extra)
             end
         end
 
+        local thematic = isThematic()
         if secondWave ~= nil and secondWave.getVar("mapSetup") then
-            piecesToPlace = secondWave.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
+            piecesToPlace = secondWave.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra, thematic = thematic})
         end
         if scenarioCard ~= nil and scenarioCard.getVar("mapSetup") then
-            piecesToPlace = scenarioCard.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
+            piecesToPlace = scenarioCard.call("MapSetup", {name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra, thematic = thematic})
         end
         -- supporting adversary setup should happen before primary
         if adversaryCard2 ~= nil and adversaryCard2.getVar("mapSetup") then
-            piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
+            piecesToPlace = adversaryCard2.call("MapSetup", {level = adversaryLevel2, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra, thematic = thematic})
         end
         if adversaryCard ~= nil and adversaryCard.getVar("mapSetup") then
-            piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra})
+            piecesToPlace = adversaryCard.call("MapSetup", {level = adversaryLevel, name = map.getName(), pieces = piecesToPlace, original = originalPieces, extra = extra, thematic = thematic})
         end
 
         for l,landTable in ipairs(piecesToPlace) do

@@ -118,7 +118,7 @@ function MapSetup(params)
     if not params.extra and params.level >= 2 then
         table.insert(params.pieces[2],"Town")
         for i=#params.original, 1, -1 do
-            if #params.original[i] == 0 then
+            if #params.original[i] == 0 or (not params.thematic and #params.original[i] == 1 and params.original[i][1] == "Beasts") then
                 table.insert(params.pieces[i],"Town")
                 break
             end

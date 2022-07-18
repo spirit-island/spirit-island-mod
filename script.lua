@@ -731,6 +731,7 @@ function onLoad(saved_data)
             UI.setAttribute("panelBlightFear","visibility",loaded_data.panelBlightFearVisibility)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
+            UI.setAttribute("panelTurnOverTurn", "text", "Turn: "..turn)
 
             updateCurrentPhase(false)
             seaTile.registerCollisions(false)
@@ -3544,6 +3545,7 @@ function timePasses()
 end
 function timePassesCo()
     turn = turn + 1
+    UI.setAttribute("panelTurnOverTurn", "text", "Turn: "..turn)
     noFear = false
     for guid,_ in pairs(objectsToCleanup) do
         local obj = getObjectFromGUID(guid)

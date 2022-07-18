@@ -430,7 +430,8 @@ function advanceInvaderCards()
             for _,hit in pairs(hits) do
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
-            for depth,hit in pairs(hitObjects) do
+            local depth = 1
+            for _,hit in pairs(hitObjects) do
                 if hit.type == "Card" and not hit.is_face_down then
                     if hit.getLock() then
                         hit.setLock(false)
@@ -458,6 +459,7 @@ function advanceInvaderCards()
                             hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y+0.1,hit.getPosition().z)+currentOffset+prevOffset)
                         end
                     end
+                    depth = depth + 1
                 elseif i == "Explore" then
                     if hit.type == "Deck" then
                         local objs = hit.getObjects()

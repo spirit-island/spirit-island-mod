@@ -113,6 +113,7 @@ playtestMajorPowerDiscardZone = "bb37a9"
 ------
 aidBoard = "aidBoard"
 SetupChecker = "SetupChecker"
+blightDeckZone = "b38ea8"
 fearDeckSetupZone = "fbbf69"
 sourceSpirit = "SourceSpirit"
 ------
@@ -641,6 +642,8 @@ function onLoad(saved_data)
     adversaryBag = getObjectFromGUID(adversaryBag)
     scenarioBag = getObjectFromGUID(scenarioBag)
     eventDeckZone = getObjectFromGUID(eventDeckZone)
+    blightDeckZone = getObjectFromGUID(blightDeckZone)
+    fearDeckSetupZone = getObjectFromGUID(fearDeckSetupZone)
     invaderDeckZone = getObjectFromGUID(invaderDeckZone)
     sourceSpirit = getObjectFromGUID(sourceSpirit)
     ------
@@ -1577,11 +1580,11 @@ function SetupFear()
     end
 
     local handZone = Player["Black"].getHandTransform(1)
-    local fearDeck = getObjectFromGUID(fearDeckSetupZone).getObjects()[1]
+    local fearDeck = fearDeckSetupZone.getObjects()[1]
     local count = 0
 
     fearDeck.shuffle()
-    SetupPlaytestDeck(getObjectFromGUID(fearDeckSetupZone), "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
+    SetupPlaytestDeck(fearDeckSetupZone, "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
     local maxCards = #fearDeck.getObjects()
 
     for _ = 1, fearCards[1] do
@@ -2100,7 +2103,7 @@ function SetupBlightCard()
         end, function() return not bncDeck.loading_custom end)
     end
     if SetupChecker.getVar("optionalBlightCard") then
-        local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+        local blightDeck = blightDeckZone.getObjects()[1]
         blightDeck.shuffle()
 
         if expansions["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
@@ -2113,10 +2116,10 @@ function SetupBlightCard()
             local grabbedDeck = false
             if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
                 grabbedDeck = true
-                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions, function() grabBlightCard(true) end)
+                SetupPlaytestDeck(blightDeckZone, "Blight Cards", SetupChecker.getVar("playtestBlight"), bncBlightCardOptions, function() grabBlightCard(true) end)
             end
             if not grabbedDeck then
-                SetupPlaytestDeck(getObjectFromGUID("b38ea8"), "Blight Cards", SetupChecker.getVar("playtestBlight"), nil, function() grabBlightCard(true) end)
+                SetupPlaytestDeck(blightDeckZone, "Blight Cards", SetupChecker.getVar("playtestBlight"), nil, function() grabBlightCard(true) end)
             end
         end, function() return cardsSetup == 1 end)
     else
@@ -2126,7 +2129,7 @@ function SetupBlightCard()
     return 1
 end
 function grabBlightCard(start)
-    local blightDeck = getObjectFromGUID("b38ea8").getObjects()[1]
+    local blightDeck = blightDeckZone.getObjects()[1]
     local blightDiscard = getObjectFromGUID("b18505").getPosition()
 
     if findNextBlightCard(start, blightDeck) then
@@ -2229,7 +2232,6 @@ function BlightedIslandFlip()
     gamePaused = true -- to disable scripting buttons and object cleanup
     if not blightedIslandCard.is_face_down then
         -- still healthy card
-        local blightDeckZone = getObjectFromGUID("b38ea8")
         local blightDiscard = getObjectFromGUID("b18505").getPosition()
         blightedIslandCard.setPositionSmooth(blightDiscard)
         blightedIslandCard.setLock(false)

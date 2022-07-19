@@ -772,7 +772,7 @@ function fearCard(params)
         local handTransform = Player["Black"].getHandTransform(2)
         pos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
     else
-        pos = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getPosition()
+        pos = Global.getVar("fearDeckSetupZone").getPosition()
     end
 
     local fearDeck = Player["Black"].getHandObjects(1)

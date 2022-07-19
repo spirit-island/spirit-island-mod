@@ -1155,7 +1155,10 @@ function startGame()
     Global.setTable("expansions", exps)
     Global.setTable("events", events)
 
-    Wait.condition(function() Global.call("SetupGame") end, function() return expansionsAdded == expansionsSetup end)
+    Wait.condition(function()
+        removeBannedCards()
+        Global.call("SetupGame")
+    end, function() return expansionsAdded == expansionsSetup end)
 end
 function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -1380,7 +1383,7 @@ function setupExpansion(bag)
         for _,obj in pairs(bag.getObjects()) do
             if obj.name == "Fear" then
                 local fearDeck = bag.takeObject({guid = obj.guid})
-                getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+                Global.getVar("fearDeckSetupZone").getObjects()[1].putObject(fearDeck)
             elseif obj.name == "Minor Powers" then
                 local minorPowers = bag.takeObject({guid = obj.guid})
                 getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
@@ -1389,7 +1392,7 @@ function setupExpansion(bag)
                 getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
             elseif obj.name == "Blight Cards" then
                 local blightCards = bag.takeObject({guid = obj.guid})
-                getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+                Global.getVar("blightDeckZone").getObjects()[1].putObject(blightCards)
             elseif obj.name == "Events" then
                 if Global.getTable("events")[bag.getName()] then
                     eventsStarted = true
@@ -1414,6 +1417,52 @@ function setupExpansion(bag)
         return 1
     end
     startLuaCoroutine(self, "setupExpansionCo")
+end
+function removeBannedCards()
+    for _,data in pairs(Notes.getNotebookTabs()) do
+        if data.title == "Card Ban List" then
+            if data.body == "" then
+                return
+            end
+
+            local function split(inputstr, sep)
+                local t={}
+                for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+                    table.insert(t, str)
+                end
+                return t
+            end
+            local count = 0
+            local deck = nil
+
+            for _,line in pairs(split(data.body, "\n")) do
+                if line == "[Major Powers]" then
+                    deck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
+                elseif line == "[Minor Powers]" then
+                    deck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
+                elseif line == "[Event Cards]" then
+                    deck = Global.getVar("eventDeckZone").getObjects()[1]
+                elseif line == "[Blight Cards]" then
+                    deck = Global.getVar("blightDeckZone").getObjects()[1]
+                elseif line == "[Fear Cards]" then
+                    deck = Global.getVar("fearDeckSetupZone").getObjects()[1]
+                else
+                    for _,card in pairs(deck.getObjects()) do
+                        if card.name == line then
+                            deck.takeObject({guid = card.guid}).destruct()
+                            count = count + 1
+                            break
+                        end
+                    end
+                end
+            end
+
+            if count > 0 then
+                broadcastToAll("Removed "..count.." cards as per ban list from notebook", Color.SoftYellow)
+            end
+            return
+        end
+    end
 end
 
 function showUI()

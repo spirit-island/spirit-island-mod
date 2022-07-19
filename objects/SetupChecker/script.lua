@@ -1448,7 +1448,7 @@ function removeBannedCards()
                     deck = Global.getVar("fearDeckSetupZone").getObjects()[1]
                 else
                     for _,card in pairs(deck.getObjects()) do
-                        if card.name == line then
+                        if card.name == line or card.guid == line then
                             deck.takeObject({guid = card.guid}).destruct()
                             count = count + 1
                             break

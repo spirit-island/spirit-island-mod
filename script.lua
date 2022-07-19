@@ -4507,7 +4507,7 @@ function place(params)
         else
             return nil
         end
-    elseif params.name == "Scenario Token" then
+    elseif params.name == "Scenario Marker" then
         local bag = getObjectFromGUID("8d6e46")
         if bag ~= nil then
             temp = bag.takeObject({position=params.position,rotation=Vector(0,180,0)})

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -39.51,
-    "posY": 0.99,
-    "posZ": 59.65,
+    "posX": -38.0902,
+    "posY": 0.9602,
+    "posZ": 60.0483,
     "rotX": 0.0,
-    "rotY": 180.0002,
+    "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7274,
-    "scaleY": 0.1402,
-    "scaleZ": 0.7274
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "Feather & Flame",
   "Description": "",
@@ -60,5 +60,59 @@
   },
   "Bag": {
     "Order": 0
-  }
+  },
+  "ChildObjects": [
+    {
+      "GUID": "60ea2f",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 0.2586,
+        "posZ": 0.0,
+        "rotX": 0.0,
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5256,
+        "scaleY": 8.3041,
+        "scaleZ": 0.5256
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.5677,
+        "g": 0.5601,
+        "b": 0.56
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560125177/ADEA319BA9231EE4DF119B471B3AED0499487A5B/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
 }

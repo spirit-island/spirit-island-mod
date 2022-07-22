@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -55.0327,
-    "posY": -1.5297,
-    "posZ": 63.292,
+    "posX": -43.4885,
+    "posY": 0.9602,
+    "posZ": 60.0483,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7274,
-    "scaleY": 0.1402,
-    "scaleZ": 0.7274
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "Spirit Markers",
   "Description": "",
@@ -60,18 +60,18 @@
   },
   "ChildObjects": [
     {
-      "GUID": "069c17",
+      "GUID": "499b87",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -0.0214,
-        "posY": 0.9999,
-        "posZ": 0.0522,
-        "rotX": 0.0005,
-        "rotY": 359.9468,
-        "rotZ": -0.0015,
-        "scaleX": 0.9623,
-        "scaleY": 4.9929,
-        "scaleZ": 0.9623
+        "posX": 0.0,
+        "posY": 0.4952,
+        "posZ": 0.0,
+        "rotX": 0.0,
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 1.0023,
+        "scaleY": 5.2005,
+        "scaleZ": 1.0023
       },
       "Nickname": "",
       "Description": "",
@@ -83,7 +83,7 @@
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
-      "Locked": false,
+      "Locked": true,
       "Grid": false,
       "Snap": false,
       "IgnoreFoW": false,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -38.01,
-    "posY": 0.99,
-    "posZ": 61.1,
+    "posX": -43.4885,
+    "posY": 0.9635,
+    "posZ": 61.3979,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.727,
-    "scaleY": 0.144,
-    "scaleZ": 0.727
+    "scaleX": 0.6246,
+    "scaleY": 0.1237,
+    "scaleZ": 0.6246
   },
   "Nickname": "Thematic Boards",
   "Description": "",
@@ -63,15 +63,15 @@
       "GUID": "17155d",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -0.033,
-        "posY": 0.2024,
-        "posZ": 0.0403,
+        "posX": 0.0,
+        "posY": 0.6181,
+        "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 20.0,
+        "rotY": 15.0,
         "rotZ": 0.0,
-        "scaleX": 0.4833,
-        "scaleY": 6.634,
-        "scaleZ": 0.4833
+        "scaleX": 0.466,
+        "scaleY": 2.224,
+        "scaleZ": 0.466
       },
       "Nickname": "THEM NE",
       "Description": "",

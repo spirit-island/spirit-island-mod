@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -38.01,
-    "posY": 0.99,
-    "posZ": 59.65,
+    "posX": -42.1389,
+    "posY": 0.9602,
+    "posZ": 60.0483,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7274,
-    "scaleY": 0.1402,
-    "scaleZ": 0.7274
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "Destroy Bags",
   "Description": "",
@@ -57,21 +57,21 @@
   },
   "ChildObjects": [
     {
-      "GUID": "7f4edc",
-      "Name": "Custom_Token",
+      "GUID": "e24301",
+      "Name": "Custom_Model_Bag",
       "Transform": {
-        "posX": 0.0165,
-        "posY": 0.7077,
-        "posZ": 0.0175,
+        "posX": 0.0,
+        "posY": 0.4952,
+        "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.4443,
-        "scaleY": 6.25,
-        "scaleZ": 0.4443
+        "scaleX": 1.0003,
+        "scaleY": 5.1901,
+        "scaleZ": 1.0003
       },
-      "Nickname": "Fear",
-      "Description": "",
+      "Nickname": "Destroy",
+      "Description": "Invaders placed on this will be Destroyed (with the Fear automatically Generated).",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 1.0,
@@ -92,21 +92,35 @@
       "GridProjection": false,
       "HideWhenFaceDown": false,
       "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112364/D70D4D5B387050D91B5863EF376E4A2397C3A89F/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": true
-        }
+      "MaterialIndex": -1,
+      "MeshIndex": -1,
+      "Number": 0,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1847039328580526360/5A5EB783EA6FF4E194694043EE2105C80DD022C4/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 6,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
       },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      "Bag": {
+        "Order": 0
+      },
+      "LuaScript": "function tryObjectEnter(enter_object)\n    Global.call(\"cleanupObject\", {obj=enter_object, fear=true, reason=\"Destroying\"})\n    return false\nend",
+      "LuaScriptState": "{\"autoExchange\": true, \"healthCount\": 0}",
+      "XmlUI": "<Defaults>\n    <Text color=\"#000000\" fontSize=\"64\" fontStyle=\"Bold\" verticalOverflow=\"Overflow\"/>\n    <Button fontSize=\"50\"/>\n    <Toggle toggleWidth=\"50\" toggleHeight=\"50\" textColor=\"#FFFFFF\" fontSize=\"50\" verticalOverflow=\"Overflow\"/>\n</Defaults>\n\n<Panel id=\"drownPanel\" visibility=\"Invisible\" width=\"180\" height=\"50\" position=\"0 0 -12\" rotation=\"0 0 180\">\n    <HorizontalLayout childForceExpandWidth=\"false\" childForceExpandHeight=\"false\" childAlignment=\"MiddleCenter\">\n        <Text id=\"count\"/>\n        <Text text=\" / \"/>\n        <Text id=\"players\"/>\n    </HorizontalLayout>\n</Panel>\n<Panel id=\"drownPanel2\" visibility=\"Invisible\" width=\"330\" height=\"150\" position=\"0 180 -12\" rotation=\"0 0 180\">\n    <VerticalLayout>\n        <Button onClick=\"exchange\" textAlignment=\"MiddleCenter\" minHeight=\"60\">+1 Energy</Button>\n        <Toggle id=\"toggleExchange\" onValueChanged=\"toggleExchange\" isOn=\"true\">Auto Energy</Toggle>\n    </VerticalLayout>\n</Panel>\n"
     }
   ]
 }

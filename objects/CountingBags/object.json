@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -47.01,
-    "posY": 0.99,
-    "posZ": 61.1,
+    "posX": -47.5373,
+    "posY": 0.9602,
+    "posZ": 61.3979,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7274,
-    "scaleY": 0.1402,
-    "scaleZ": 0.7274
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "Counting Bags",
   "Description": "For when there's too many invaders in a land to fit within its borders",
@@ -57,32 +57,32 @@
   },
   "ChildObjects": [
     {
-      "GUID": "67e1bf",
-      "Name": "Bag",
+      "GUID": "f3c2cb",
+      "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0082,
-        "posY": 1.1529,
-        "posZ": 0.8404,
+        "posX": 0.0,
+        "posY": 0.2315,
+        "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 270.0,
-        "rotZ": 90.0,
-        "scaleX": 0.0276,
-        "scaleY": 0.5323,
-        "scaleZ": 0.5323
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5011,
+        "scaleY": 8.3041,
+        "scaleZ": 0.5011
       },
-      "Nickname": "Counting Bag",
+      "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.9913,
-        "g": 0.9913,
-        "b": 0.9913
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
-      "Grid": true,
-      "Snap": true,
+      "Grid": false,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -92,10 +92,19 @@
       "GridProjection": false,
       "HideWhenFaceDown": false,
       "Hands": false,
-      "MaterialIndex": -1,
-      "MeshIndex": -1,
-      "Number": 0,
-      "LuaScript": "\r\nfunction onLoad()\r\n    upd()\r\nend\r\nfunction onObjectEnterContainer(container, leave_object)\r\n    if container == self then upd() end\r\nend\r\nfunction onObjectLeaveContainer(container, leave_object)\r\n    if container == self then upd() end\r\nend\r\nfunction upd()\r\n    objects = {}\r\n    for i,obj in pairs (self.getObjects()) do\r\n        if objects[obj.name] == nil then\r\n            objects[obj.name] = 1\r\n        else\r\n            objects[obj.name] = objects[obj.name]+1\r\n        end\r\n    end\r\n    local keyset = {}\r\n    local n = 0\r\n    for k,v in pairs(objects) do\r\n        n=n+1\r\n        keyset[n]=k\r\n    end\r\n    table.sort(keyset)\r\n    strings = {}\r\n    for i,objName in pairs (keyset) do\r\n        table.insert(strings,objects[objName]..\" x \"..objName)\r\n    end\r\n    self.clearButtons()\r\n    for i,string in pairs(strings) do\r\n        self.createButton({\r\n            click_function = \"nullFunc\",\r\n            function_owner = self,\r\n            label          = string,\r\n            position       = {0,0.3,-1-i*(300 + 100 / #keyset)/450},\r\n            rotation       = {0,180,0},\r\n            width          = 00,\r\n            height         = 0,\r\n            font_size      = 300 + 100 / #keyset,\r\n            font_color     = \"White\",\r\n        })\r\n    end\r\nend\r\nfunction nullFunc() end\r\n",
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560128035/ADBD64089518399A5E3773DB6990F9A9ACC8909D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": ""
     }

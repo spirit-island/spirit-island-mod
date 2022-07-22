@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -42.51,
-    "posY": 0.99,
-    "posZ": 61.1,
+    "posX": -39.4398,
+    "posY": 0.9635,
+    "posZ": 61.3979,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.727,
-    "scaleY": 0.144,
-    "scaleZ": 0.727
+    "scaleX": 0.6246,
+    "scaleY": 0.1237,
+    "scaleZ": 0.6246
   },
   "Nickname": "Adversary Pieces",
   "Description": "",
@@ -60,32 +60,32 @@
   },
   "ChildObjects": [
     {
-      "GUID": "96ef23",
+      "GUID": "97f1eb",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0161,
-        "posY": 0.657,
-        "posZ": -0.0365,
+        "posX": 0.0,
+        "posY": 0.225,
+        "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.3873,
-        "scaleY": 6.0864,
-        "scaleZ": 0.387
+        "scaleX": 0.5257,
+        "scaleY": 8.0825,
+        "scaleZ": 0.5257
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 0.5677,
+        "g": 0.5601,
+        "b": 0.56
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
-      "Grid": true,
-      "Snap": true,
+      "Grid": false,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -96,7 +96,7 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1754683565834684739/F4D07915A0FD445889F2493A352B656EAF79F67F/",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560118703/AC53C64EDBC918B176D8BBB3F5C92A4628AD0BFB/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,

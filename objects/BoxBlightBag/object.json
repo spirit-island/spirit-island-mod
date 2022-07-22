@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -39.51,
-    "posY": 0.99,
-    "posZ": 61.1,
+    "posX": -36.7406,
+    "posY": 0.9602,
+    "posZ": 61.3979,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7274,
-    "scaleY": 0.1402,
-    "scaleZ": 0.7274
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "Blight from the Box",
   "Description": "",
@@ -57,32 +57,32 @@
   },
   "ChildObjects": [
     {
-      "GUID": "2585e8",
-      "Name": "Custom_Model",
+      "GUID": "a1eb82",
+      "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0058,
-        "posY": 0.45,
-        "posZ": 0.0112,
+        "posX": 0.0,
+        "posY": 0.2586,
+        "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.8735,
-        "scaleY": 4.5312,
-        "scaleZ": 0.8735
+        "scaleX": 0.5256,
+        "scaleY": 8.3041,
+        "scaleZ": 0.5256
       },
-      "Nickname": "Blight",
+      "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1815,
-        "g": 0.1815,
-        "b": 0.1864
+        "r": 0.5677,
+        "g": 0.5601,
+        "b": 0.56
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
       "Grid": false,
-      "Snap": true,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -92,38 +92,21 @@
       "GridProjection": false,
       "HideWhenFaceDown": false,
       "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
-        "DiffuseURL": "",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": false,
-        "MaterialIndex": 3,
-        "TypeIndex": 5,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 0.6951,
-            "g": 0.6951,
-            "b": 0.6951
-          },
-          "SpecularIntensity": 0.1,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560123891/749472D8BCD283AD7C72A0D77619A977C7E66DBC/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "AttachedSnapPoints": [
-        {
-          "Position": {
-            "x": 0.0,
-            "y": 0.5005,
-            "z": 0.0
-          }
-        }
-      ]
+      "XmlUI": ""
     }
   ]
 }

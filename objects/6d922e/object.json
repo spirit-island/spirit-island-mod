@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -45.51,
-    "posY": 0.99,
-    "posZ": 61.1,
+    "posX": -46.1877,
+    "posY": 0.9602,
+    "posZ": 61.3979,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7274,
-    "scaleY": 0.1402,
-    "scaleZ": 0.7274
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "1 Energy Bags",
   "Description": "",
@@ -57,32 +57,32 @@
   },
   "ChildObjects": [
     {
-      "GUID": "4b4bdc",
-      "Name": "Bag",
+      "GUID": "942955",
+      "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.012,
-        "posY": 1.1256,
-        "posZ": 0.8793,
+        "posX": 0.0,
+        "posY": 0.2315,
+        "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 270.0,
-        "rotZ": 90.0,
-        "scaleX": 0.0276,
-        "scaleY": 0.5323,
-        "scaleZ": 0.5323
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5011,
+        "scaleY": 8.3041,
+        "scaleZ": 0.5011
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.7059,
-        "g": 0.3665,
-        "b": 0.0
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
-      "Grid": true,
-      "Snap": true,
+      "Grid": false,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -92,29 +92,35 @@
       "GridProjection": false,
       "HideWhenFaceDown": false,
       "Hands": false,
-      "MaterialIndex": -1,
-      "MeshIndex": -1,
-      "Number": 0,
-      "Bag": {
-        "Order": 0
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560127425/C76E130EB989B17E66106EAE6B9F57EC9D5B5203/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
       },
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "ChildObjects": [
         {
-          "GUID": "8e3390",
+          "GUID": "500b0d",
           "Name": "Custom_Model",
           "Transform": {
-            "posX": -15.2836,
-            "posY": 1.2997,
-            "posZ": -0.0472,
-            "rotX": 90.0,
-            "rotY": 90.0,
-            "rotZ": 0.0,
-            "scaleX": 1.2914,
-            "scaleY": 258.276,
-            "scaleZ": 1.2914
+            "posX": 0.1488,
+            "posY": 0.0124,
+            "posZ": 0.3363,
+            "rotX": 0.0004,
+            "rotY": 359.9905,
+            "rotZ": -0.0007,
+            "scaleX": 1.4085,
+            "scaleY": 0.9244,
+            "scaleZ": 1.4085
           },
           "Nickname": "1 Energy",
           "Description": "Pays for Power Cards. Carries over from turn to turn.",

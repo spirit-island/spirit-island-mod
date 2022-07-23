@@ -2634,9 +2634,37 @@ function adversaryUI()
         if deprecated then
             print("AdversaryUI without effects table for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
         end
+        local ravage = false
+        local build = false
+        local explore = false
         if ui.effects then
             for level,data in pairs(ui.effects) do
-                UI.setAttribute("panelAdversaryLevel"..level,"text",level..") "..data.name)
+                local name = data.name
+                if data.ravage then
+                    name = name.."(R)"
+                    ravage = true
+                end
+                if data.afterRavage then
+                    name = name.."(AR)"
+                    ravage = true
+                end
+                if data.build then
+                    name = name.."(B)"
+                    build = true
+                end
+                if data.afterBuild then
+                    name = name.."(AB)"
+                    build = true
+                end
+                if data.explore then
+                    name = name.."(E)"
+                    explore = true
+                end
+                if data.afterExplore then
+                    name = name.."(AE)"
+                    explore = true
+                end
+                UI.setAttribute("panelAdversaryLevel"..level,"text",level..") "..name)
                 if data.tooltip then
                     UI.setAttribute("panelAdversaryLevel"..level,"tooltip",data.tooltip)
                 end
@@ -2646,15 +2674,25 @@ function adversaryUI()
         end
         if ui.invader then
             if ui.invader.ravage then
-                UI.setAttribute("panelRavageOutline", "active", "true")
+                ravage = true
             end
             if ui.invader.build then
-                UI.setAttribute("panelBuildOutline", "active", "true")
-                UI.setAttribute("panelBuild2Outline", "active", "true")
+                build = true
             end
             if ui.invader.explore then
-                UI.setAttribute("panelExploreOutline", "active", "true")
+                explore = true
             end
+            print("AdversaryUI with invader table for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
+        end
+        if ravage then
+            UI.setAttribute("panelRavageOutline", "active", "true")
+        end
+        if build then
+            UI.setAttribute("panelBuildOutline", "active", "true")
+            UI.setAttribute("panelBuild2Outline", "active", "true")
+        end
+        if explore then
+            UI.setAttribute("panelExploreOutline", "active", "true")
         end
     end
     if adversaryCard2 and adversaryCard2.getVar("hasUI") then
@@ -2743,9 +2781,37 @@ function adversaryUI()
         if deprecated then
             print("AdversaryUI without effects table for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
         end
+        local ravage = false
+        local build = false
+        local explore = false
         if ui.effects then
             for level,data in pairs(ui.effects) do
-                UI.setAttribute("panelAdversary2Level"..level,"text",level..") "..data.name)
+                local name = data.name
+                if data.ravage then
+                    name = name.."(R)"
+                    ravage = true
+                end
+                if data.afterRavage then
+                    name = name.."(AR)"
+                    ravage = true
+                end
+                if data.build then
+                    name = name.."(B)"
+                    build = true
+                end
+                if data.afterBuild then
+                    name = name.."(AB)"
+                    build = true
+                end
+                if data.explore then
+                    name = name.."(E)"
+                    explore = true
+                end
+                if data.afterExplore then
+                    name = name.."(AE)"
+                    explore = true
+                end
+                UI.setAttribute("panelAdversary2Level"..level,"text",level..") "..name)
                 if data.tooltip then
                     UI.setAttribute("panelAdversary2Level"..level,"tooltip",data.tooltip)
                 end
@@ -2755,15 +2821,25 @@ function adversaryUI()
         end
         if ui.invader then
             if ui.invader.ravage then
-                UI.setAttribute("panelRavageOutline", "active", "true")
+                ravage = true
             end
             if ui.invader.build then
-                UI.setAttribute("panelBuildOutline", "active", "true")
-                UI.setAttribute("panelBuild2Outline", "active", "true")
+                build = true
             end
             if ui.invader.explore then
-                UI.setAttribute("panelExploreOutline", "active", "true")
+                explore = true
             end
+            print("AdversaryUI with invader table for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
+        end
+        if ravage then
+            UI.setAttribute("panelRavageOutline", "active", "true")
+        end
+        if build then
+            UI.setAttribute("panelBuildOutline", "active", "true")
+            UI.setAttribute("panelBuild2Outline", "active", "true")
+        end
+        if explore then
+            UI.setAttribute("panelExploreOutline", "active", "true")
         end
     end
     local height = lineCount*20

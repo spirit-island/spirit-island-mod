@@ -75,23 +75,23 @@ function AdversaryUI(params)
     end
 
     ui.effects = {}
-    ui.invader = {}
     if params.level >= 1 then
         ui.effects[1] = {}
         ui.effects[1].name = "Frontier Explorers"
         ui.effects[1].tooltip = "Except during Setup: After Invaders\nsuccessfully Explore into a land which\nhad no Town/City, add 1 Explorer there."
-        ui.invader.explore = true
+        ui.effects[1].explore = true
     end
     if params.level >= 2 then
         ui.effects[2] = {}
         ui.effects[2].name = "Slave Labor"
         ui.effects[2].tooltip = "After Invaders Build in a land with 2+\nExplorers replace all but 1 Explorer\nthere with an equal number of Town."
-        ui.invader.build = true
+        ui.effects[2].build = true
     end
     if params.level >= 4 then
         ui.effects[4] = {}
         ui.effects[4].name = "Triangle Trade"
         ui.effects[4].tooltip = "Whenever Invaders Build a Coastal\nCity, add 1 Town to the adjacent\nland with the fewest Town."
+        ui.effects[4].build = true
     end
     if params.level >= 5 then
         ui.effects[5] = {}
@@ -102,6 +102,7 @@ function AdversaryUI(params)
         ui.effects[6] = {}
         ui.effects[6].name = "Persistent Explorers"
         ui.effects[6].tooltip = "After resolving an Explore Card, on each board\nadd 1 Explorer to a land without any. Fear\nCard effects never remove Explorer. If one\nwould, you may instead Push that Explorer."
+        ui.effects[6].explore = true
     end
     return ui
 end

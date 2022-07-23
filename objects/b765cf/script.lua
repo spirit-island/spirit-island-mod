@@ -130,12 +130,11 @@ function AdversaryUI(params)
     ui.escalation.tooltip = "On each board with a Town/City, Build\nin the land with the most Towns/Cities."
 
     ui.effects = {}
-    ui.invader = {}
     if params.level >= 1 then
         ui.effects[1] = {}
         ui.effects[1].name = "Indentured Servants Earn Land"
         ui.effects[1].tooltip = "Invader Build actions affect lands without\nInvaders, if they are adjacent to at least\n2 Town/City before the Build Action."
-        ui.invader.build = true
+        ui.effects[1].build = true
     end
     if params.level == 3 then
         ui.effects[3] = {}

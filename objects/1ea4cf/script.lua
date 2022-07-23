@@ -67,12 +67,11 @@ function AdversaryUI(params)
     ui.escalation.tooltip = "On each board: Add 2 Explorer (total)\namong land with Beasts. If you can't\ninstead add 2 Explorer among lands\nwith Beasts on a different board."
 
     ui.effects = {}
-    ui.invader = {}
     if params.level >= 1 then
         ui.effects[1] = {}
         ui.effects[1].name = "Hunters Seek Shell and Hide"
         ui.effects[1].tooltip = "During Play, Explorer do\n+1 Damage. When Ravage\nadds Blight to a land\n(including cascades),\nDestroy 1 Beasts in that land."
-        ui.invader.ravage = true
+        ui.effects[1].ravage = true
     end
     if params.level >= 2 then
         ui.effects[2] = {}
@@ -83,11 +82,13 @@ function AdversaryUI(params)
         ui.effects[3] = {}
         ui.effects[3].name = "Competition Among Hunters"
         ui.effects[3].tooltip = "Ravage Cards also match lands\nwith 3 or more Explorer. (If the\nland already matched the Ravage\nCard, it still Ravages just once.)"
+        ui.effects[3].ravage = true
     end
     if params.level >= 6 then
         ui.effects[6] = {}
         ui.effects[6].name = "Pressure for Fast Profit"
         ui.effects[6].tooltip = "After the Ravage Step of turn\n2+, on each board where it\nadded no Blight: In the land\nwith the most Explorer (min.\n1), add 1 Explorer and 1 Town."
+        ui.effects[6].afterRavage = true
     end
     return ui
 end

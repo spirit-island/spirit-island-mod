@@ -206,7 +206,13 @@ This section is meant for users who are familiar with both the tts mod and progr
           - `[level]` **table** - level of adversary effect
             - `name`: **string** - name of adversary effect
             - `tooltip`: **string** - text of adversary effect, use \\n to add line breaks
-        - `invader`
+            - `ravage`: **boolean** - reminder that adversary has effect that triggers during ravage actions
+            - `afterRavage`: **boolean** - reminder that adversary has effect that triggers after ravage step
+            - `build`: **boolean** - reminder that adversary has effect that triggers during build actions
+            - `afterBuild`: **boolean** - reminder that adversary has effect that triggers after build step
+            - `explore`: **boolean** - reminder that adversary has effect that triggers during explore actions
+            - `afterExplore`: **boolean** - reminder that adversary has effect that triggers after explore step
+        - `invader` DEPRECATED
           - `ravage`: **boolean** - reminder that adversary has effect that triggers during this invader step
           - `build`: **boolean** - reminder that adversary has effect that triggers during this invader step
           - `explore`: **boolean** - reminder that adversary has effect that triggers during this invader step

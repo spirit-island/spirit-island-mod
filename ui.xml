@@ -5,7 +5,7 @@
     <Text class="gameOver" fontSize="40"/>
 </Defaults>
 
-<Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" rectAlignment="LowerRight" offsetXY="0 409">
+<Panel id="panelBlightFear" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="270" height="104" rectAlignment="LowerRight" offsetXY="0 409">
     <Image image="Fear and Blight" preserveAspect="true" />
     <Text id="panelBlightPool" fontStyle="Bold" fontSize="50" offsetXY="-60 5" text="" />
     <Button id="panelBlightButton" active="false" onClick="BlightIslandButtonUI" height="56%" width="30%" fontSize="40" offsetXY="-60 5" textColor="#323232" text="Flip" />
@@ -13,7 +13,7 @@
     <Text fontStyle="Bold" fontSize="50" offsetXY="50 9" text=":" />
     <Button id="panelFearPool" onClick="aidBoard/removeFearUI" colors="clear|clear|clear|clear" height="56%" width="16%" fontStyle="Bold" fontSize="50" textColor="#323232" offsetXY="75 5" text="0" />
 </Panel>
-<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="104" rectAlignment="LowerRight" offsetXY="0 305">
+<Panel id="panelInvader" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="270" height="104" rectAlignment="LowerRight" offsetXY="0 305">
     <Image id="invaderImage" image="Invader Phase Stage" preserveAspect="true" />
     <HorizontalLayout id="invaderLayout" childAlignment="MiddleCenter" childForceExpandWidth="false" childForceExpandHeight="false" spacing="16" offsetXY="0 8">
         <Panel id="panelBuild2" active="false" preferredWidth="64" preferredHeight="64">
@@ -143,7 +143,7 @@
     </HorizontalLayout>
     <Button id="exploreAdvance" width="84" height="24" rectAlignment="LowerRight" onClick="aidBoard/flipExploreCard" colors="clear|clear|clear|clear" />
 </Panel>
-<Panel id="panelAdversary" recurse="panelAdversaryHelper panelAdversary2Helper" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="360" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 305">
+<Panel id="panelAdversary" recurse="panelAdversaryHelper panelAdversary2Helper" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="270" height="360" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 305">
     <VerticalLayout recurse="panelAdversaryHelper panelAdversary2Helper">
         <VerticalLayout id="panelAdversaryHelper" recurse="panelAdversaryHelper">
             <Text id="panelAdversaryName" fontsize="16" alignment="UpperLeft" fontStyle="Bold"></Text>
@@ -177,7 +177,7 @@
         </VerticalLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="250" height="300" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 0">
+<Panel id="panelTurnOrder" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="270" height="300" color="#C6DA8B" rectAlignment="LowerRight" offsetXY="0 0">
     <VerticalLayout>
         <Text id="panelTurnOverTurn" fontSize="16" alignment="UpperLeft" fontStyle="bold" text="Turn: 1" />
         <Button id="spiritPhase" onClick="enterSpiritPhase" fontSize="16" textColor="#323232" textAlignment="UpperLeft" fontStyle="bold" minHeight="18" colors="clear|clear|clear|clear" text="Spirit Phase" />

@@ -645,6 +645,7 @@ function onLoad(saved_data)
     blightDeckZone = getObjectFromGUID(blightDeckZone)
     fearDeckSetupZone = getObjectFromGUID(fearDeckSetupZone)
     invaderDeckZone = getObjectFromGUID(invaderDeckZone)
+    counterBag = getObjectFromGUID(counterBag)
     sourceSpirit = getObjectFromGUID(sourceSpirit)
     ------
     dahanBag = getObjectFromGUID(dahanBag)

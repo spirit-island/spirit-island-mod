@@ -125,7 +125,7 @@
     "votd": false,
     "war": false
   },
-  "pickedSpirits": [],
+  "pickedSpirits": {},
   "playtest": {
     "blight": "0",
     "event": "0",

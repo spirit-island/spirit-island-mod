@@ -356,9 +356,18 @@ function onLoad(saved_data)
     sourceSpirit = getObjectFromGUID("SourceSpirit")
 end
 
+function onObjectLeaveContainer(container, obj)
+    if obj.hasTag("Spirit") then
+        obj.setVar("leave", true)
+    end
+end
 function onObjectSpawn(obj)
     if obj.hasTag("Spirit") then
-        addSpirit({spirit=obj})
+        if obj.getVar("leave") then
+            obj.setVar("leave")
+        else
+            addSpirit({spirit=obj})
+        end
     elseif not setupStarted then
         if obj.type == "Card" then
             local objType = type(obj.getVar("difficulty"))
@@ -469,12 +478,21 @@ end
 function onDestroy()
     exit = true
 end
+function onObjectEnterContainer(container, obj)
+    if obj.hasTag("Spirit") then
+        obj.setVar("enter", true)
+    end
+end
 function onObjectDestroy(obj)
     if exit then
         return
     end
     if obj.hasTag("Spirit") then
-        removeSpirit({spirit=obj})
+        if obj.getVar("enter") then
+            obj.setVar("enter")
+        else
+            removeSpirit({spirit=obj})
+        end
     elseif not setupStarted then
         if obj.type == "Card" then
             local objType = type(obj.getVar("difficulty"))

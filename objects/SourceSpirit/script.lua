@@ -267,17 +267,32 @@ function setupSpirit(obj, player_color)
     local snaps = spirit.getSnapPoints()
     local placed = 0
 
-    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
+    local objsData = Global.getVar("playerBag").getData().ContainedObjects
+    local color = Color.fromHex(Global.getTable("PlayerTints")[player_color].."FF")
+
     -- Setup Presence
+    local presenceData = objsData[13]
+    presenceData.Nickname = player_color.."'s "..presenceData.Nickname
+    presenceData.ColorDiffuse.r = color.r
+    presenceData.ColorDiffuse.g = color.g
+    presenceData.ColorDiffuse.b = color.b
+    presenceData.States[2].Nickname = player_color.."'s "..presenceData.States[2].Nickname
+    presenceData.States[2].ColorDiffuse.r = color.r
+    presenceData.States[2].ColorDiffuse.g = color.g
+    presenceData.States[2].ColorDiffuse.b = color.b
+    presenceData.States[2].AttachedDecals[1].CustomDecal.Name = player_color.."'s "..presenceData.States[2].AttachedDecals[1].CustomDecal.Name
+    presenceData.States[2].AttachedDecals[1].CustomDecal.ImageURL = Global.call("GetSacredSiteUrl", {color = player_color})
     for i = 1,13 do
         local p = snaps[i]
         if i <= #snaps then
-            PlayerBag.takeObject({
+            spawnObjectData({
+                data = presenceData,
                 position = spirit.positionToWorld(p.position),
                 rotation = Vector(0, 180, 0),
             })
         else
-            PlayerBag.takeObject({
+            spawnObjectData({
+                data = presenceData,
                 position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10),
                 rotation = Vector(0, 180, 0),
             })
@@ -286,7 +301,8 @@ function setupSpirit(obj, player_color)
     end
 
     -- Setup Ready Token
-    local ready = PlayerBag.takeObject({
+    local ready = spawnObjectData({
+        data = objsData[12],
         position = Vector(spos.x,0,spos.z) + Vector(7.2, 1.1, 7),
         rotation = Vector(0, 180, 0),
     })
@@ -301,7 +317,8 @@ function setupSpirit(obj, player_color)
     -- Setup Element Bags
     local elements = {}
     for i = 1,9 do
-        elements[i] = PlayerBag.takeObject({
+        elements[i] = spawnObjectData({
+            data = objsData[12-i],
             position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21) + Vector(i * 2, 0, 0),
             rotation = Vector(0, 180, 0),
         })
@@ -309,16 +326,47 @@ function setupSpirit(obj, player_color)
     end
 
     -- Setup Reminder Bags
-    local defend = PlayerBag.takeObject({
+    local defendData = objsData[2]
+    defendData.ColorDiffuse.r = color.r
+    defendData.ColorDiffuse.g = color.g
+    defendData.ColorDiffuse.b = color.b
+    defendData.ContainedObjects[1].Nickname = player_color.."'s "..defendData.ContainedObjects[1].Nickname
+    defendData.ContainedObjects[1].ColorDiffuse.r = color.r
+    defendData.ContainedObjects[1].ColorDiffuse.g = color.g
+    defendData.ContainedObjects[1].ColorDiffuse.b = color.b
+    for _,stateData in pairs(defendData.ContainedObjects[1].States) do
+        stateData.Nickname = player_color.."'s "..stateData.Nickname
+        stateData.ColorDiffuse.r = color.r
+        stateData.ColorDiffuse.g = color.g
+        stateData.ColorDiffuse.b = color.b
+    end
+    local defend = spawnObjectData({
+        data = defendData,
         position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 20.21),
         rotation = Vector(0, 180, 0),
     })
     defend.setLock(true)
-    local isolate = PlayerBag.takeObject({
+    local isolateData = objsData[1]
+    isolateData.ColorDiffuse.r = color.r
+    isolateData.ColorDiffuse.g = color.g
+    isolateData.ColorDiffuse.b = color.b
+    isolateData.ContainedObjects[1].Nickname = player_color.."'s "..isolateData.ContainedObjects[1].Nickname
+    isolateData.ContainedObjects[1].ColorDiffuse.r = color.r
+    isolateData.ContainedObjects[1].ColorDiffuse.g = color.g
+    isolateData.ContainedObjects[1].ColorDiffuse.b = color.b
+    local isolate = spawnObjectData({
+        data = isolateData,
         position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21),
         rotation = Vector(0, 180, 0),
     })
     isolate.setLock(true)
+
+    -- Setup Scripting Zone
+    local zone = spawnObject({
+        type = "ScriptingTrigger",
+        position = Vector(spos.x,0,spos.z) + Vector(0, 1.14, 5.81),
+        scale = Vector(22, 0.64, 23),
+    })
 
     -- Setup Progression Deck if enabled
     local useProgression = obj.getVar("useProgression")
@@ -433,7 +481,8 @@ function setupSpirit(obj, player_color)
             counter = counter,
             elements = elements,
             defend = defend,
-            isolate = isolate
+            isolate = isolate,
+            zone = zone,
         })
     end, 2)
 end

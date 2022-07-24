@@ -13,6 +13,15 @@ PlayerBags = {
     ["Green"] = "PlayerBagGreen",
     ["Orange"] = "PlayerBagOrange",
 }
+playerBag = "PlayerBag"
+PlayerTints = {
+    ["Red"] = "#DA1918",
+    ["Purple"] = "#831FEF",
+    ["Yellow"] = "#FFFC00",
+    ["Blue"] = "#0009FF",
+    ["Green"] = "#0BFF00",
+    ["Orange"] = "#F38D1C",
+}
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"
 invaderDeckZone = "dd0921"
@@ -22,14 +31,6 @@ stage3DeckZone = "2a9f36"
 adversaryBag = "AdversaryBag"
 scenarioBag = "ScenarioBag"
 ---- Used with ElementsHelper Script
-elementScanZones = {
-    ["Red"] = "9fc5a4",
-    ["Purple"] = "654ab2",
-    ["Yellow"] = "102771",
-    ["Blue"] = "6f2249",
-    ["Green"] = "190f05",
-    ["Orange"] = "61ac7c",
-}
 playerTables = {
     Red = "dce473",
     Purple = "c99d4d",
@@ -293,22 +294,27 @@ function onObjectEnterContainer(container, object)
         makeLabel(container, 1, thickness, offset, {1,1,1}, backdrop)
     end
 end
+function GetSacredSiteUrl(params)
+    if params.color == "Red" then
+        return "http://cloud-3.steamusercontent.com/ugc/1752434562676874388/C51FB839BC19E2E94CE837708F00B462DAC1C89D/"
+    elseif params.color == "Purple" then
+        return "http://cloud-3.steamusercontent.com/ugc/1752434562676885555/CD5BF2645FDC5B6AEFAA98C7D76BBD7015E18B93/"
+    elseif params.color == "Yellow" then
+        return "http://cloud-3.steamusercontent.com/ugc/1752434562676889038/323BA470D164E4C6D36713E34F20E578C0A3F94A/"
+    elseif params.color == "Blue" then
+        return "http://cloud-3.steamusercontent.com/ugc/1752434562676881841/9B1B1859A3BCE1EE2EC77AE688E13E937CB08F09/"
+    elseif params.color == "Green" then
+        return "http://cloud-3.steamusercontent.com/ugc/1752434562676883074/3419998A3044C614DBAEDC710658F3A4CB7D8CF3/"
+    elseif params.color == "Orange" then
+        return "http://cloud-3.steamusercontent.com/ugc/1752434562676884361/85EE264FD32632A9DD3828EA9538FDBC4F2FBC22/"
+    else
+        return ""
+    end
+end
 function makeSacredSite(obj)
     local color = string.sub(obj.getName(),1,-12)
-    local url
-    if color == "Red" then
-        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676874388/C51FB839BC19E2E94CE837708F00B462DAC1C89D/"
-    elseif color == "Purple" then
-        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676885555/CD5BF2645FDC5B6AEFAA98C7D76BBD7015E18B93/"
-    elseif color == "Yellow" then
-        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676889038/323BA470D164E4C6D36713E34F20E578C0A3F94A/"
-    elseif color == "Blue" then
-        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676881841/9B1B1859A3BCE1EE2EC77AE688E13E937CB08F09/"
-    elseif color == "Green" then
-        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676883074/3419998A3044C614DBAEDC710658F3A4CB7D8CF3/"
-    elseif color == "Orange" then
-        url = "http://cloud-3.steamusercontent.com/ugc/1752434562676884361/85EE264FD32632A9DD3828EA9538FDBC4F2FBC22/"
-    else
+    local url = GetSacredSiteUrl({color = color})
+    if url == "" then
         return
     end
     obj.setDecals({
@@ -426,8 +432,8 @@ function onObjectEnterScriptingZone(zone, obj)
             checkVictory()
         end
     elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-        for color,guid in pairs(elementScanZones) do
-            if guid == zone.guid then
+        for color,data in pairs(selectedColors) do
+            if data.zone == zone then
                 obj.setVar("setupComplete", true)
                 obj.call("doSetup", {color=color})
                 break
@@ -444,8 +450,8 @@ function onObjectLeaveScriptingZone(zone, obj)
             terrorLevel = 2
         end
     else
-        for _,guid in pairs(elementScanZones) do
-            if guid == zone.guid then
+        for _,data in pairs(selectedColors) do
+            if data.zone == zone then
                 if obj.getTable("thresholds") ~= nil then
                     obj.setDecals({})
                 end
@@ -498,7 +504,6 @@ function onSave()
         panelPowerDrawVisibility = UI.getAttribute("panelPowerDraw", "visibility"),
         showPlayerButtons = showPlayerButtons,
         playerBlocks = convertObjectsToGuids(playerBlocks),
-        elementScanZones = elementScanZones,
         gamekeys = gamekeys
     }
     if blightedIslandCard ~= nil then
@@ -527,6 +532,7 @@ function onSave()
             colorTable.elements = convertObjectsToGuids(data.elements)
             colorTable.defend = data.defend.guid
             colorTable.isolate = data.isolate.guid
+            colorTable.zone = data.zone.guid
             colorTable.paid = data.paid
             colorTable.gained = data.gained
             colorTable.bargain = data.bargain
@@ -647,6 +653,7 @@ function onLoad(saved_data)
     invaderDeckZone = getObjectFromGUID(invaderDeckZone)
     counterBag = getObjectFromGUID(counterBag)
     sourceSpirit = getObjectFromGUID(sourceSpirit)
+    playerBag = getObjectFromGUID(playerBag)
     ------
     dahanBag = getObjectFromGUID(dahanBag)
     explorerBag = getObjectFromGUID(explorerBag)
@@ -685,7 +692,6 @@ function onLoad(saved_data)
         setupCompleted = loaded_data.setupCompleted
         gameStarted = loaded_data.gameStarted
         playerBlocks = loaded_data.playerBlocks
-        elementScanZones = loaded_data.elementScanZones
         selectedColors = loaded_data.selectedColors
         expansions = loaded_data.expansions
         events = loaded_data.events
@@ -773,6 +779,7 @@ function onLoad(saved_data)
             colorTable.elements = convertGuidsToObjects(data.elements)
             colorTable.defend = getObjectFromGUID(data.defend)
             colorTable.isolate = getObjectFromGUID(data.isolate)
+            colorTable.zone = getObjectFromGUID(data.zone)
             colorTable.paid = data.paid
             colorTable.gained = data.gained
             colorTable.bargain = data.bargain
@@ -3512,7 +3519,7 @@ function enableUI()
         -- Need to wait for xml table to get updated
         Wait.frames(function()
             local colors = {}
-            for color,_ in pairs(PlayerBags) do
+            for color,_ in pairs(PlayerTints) do
                 table.insert(colors, color)
             end
             UI.setAttribute("panelUIToggle","active","true")
@@ -3525,9 +3532,8 @@ function enableUI()
     end, 3)
 end
 function runSpiritSetup()
-    for color, _ in pairs(selectedColors) do
-        local zone = getObjectFromGUID(elementScanZones[color])
-        for _, obj in ipairs(zone.getObjects()) do
+    for color,data in pairs(selectedColors) do
+        for _,obj in ipairs(data.zone.getObjects()) do
             if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
                 obj.setVar("setupComplete", true)
                 obj.call("doSetup", {color=color})
@@ -3544,7 +3550,7 @@ function addSpirit(params)
 end
 function pickSpirit(params)
     SetupChecker.call("removeSpirit", params)
-    getObjectFromGUID(elementScanZones[params.color]).clearButtons()
+    playerBlocks[params.color].clearButtons()
     selectedColors[params.color] = {}
 end
 function removeSpirit(params)
@@ -3554,6 +3560,7 @@ function removeSpirit(params)
         elements = params.elements,
         defend = params.defend,
         isolate = params.isolate,
+        zone = params.zone,
         paid = false,
         gained = false,
         bargain = 0,
@@ -3751,23 +3758,24 @@ function resetPiece(object, rotation, offset, skip)
     return object
 end
 function handlePlayer(color, data)
-    local zone = getObjectFromGUID(elementScanZones[color])
-    for _, obj in ipairs(zone.getObjects()) do
-        if obj.hasTag("Any") then
-            if obj.getStateId() ~= 9 then obj = obj.setState(9) end
-            if obj.getLock() == false then obj.destruct() end
-        elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
-            if obj.getLock() == false then obj.destruct() end
-        elseif obj.hasTag("Reminder Token") then
-            if obj.getLock() == false then obj.destruct() end
-        elseif obj.getName() == "Speed Token" then
-            -- Move speed token up a bit to trigger collision exit callback
-            obj.setPosition(obj.getPosition() + Vector(0,1,0))
-            Wait.frames(function() obj.destruct() end , 1)
-        elseif obj.type == "Card" and not obj.getLock() then
-            -- Skip moving face down cards and those below spirit panel
-            if not obj.is_face_down and obj.getPosition().z > zone.getPosition().z then
-                obj.deal(1, color, 2)
+    if data.zone then
+        for _, obj in ipairs(data.zone.getObjects()) do
+            if obj.hasTag("Any") then
+                if obj.getStateId() ~= 9 then obj = obj.setState(9) end
+                if obj.getLock() == false then obj.destruct() end
+            elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
+                if obj.getLock() == false then obj.destruct() end
+            elseif obj.hasTag("Reminder Token") then
+                if obj.getLock() == false then obj.destruct() end
+            elseif obj.getName() == "Speed Token" then
+                -- Move speed token up a bit to trigger collision exit callback
+                obj.setPosition(obj.getPosition() + Vector(0,1,0))
+                Wait.frames(function() obj.destruct() end , 1)
+            elseif obj.type == "Card" and not obj.getLock() then
+                -- Skip moving face down cards and those below spirit panel
+                if not obj.is_face_down and obj.getPosition().z > data.zone.getPosition().z then
+                    obj.deal(1, color, 2)
+                end
             end
         end
     end
@@ -4703,20 +4711,24 @@ function cleanupObject(params)
 end
 ----
 function getSpirit(params)
-    for _,guid in pairs(elementScanZones) do
-        for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
-            if object.hasTag("Spirit") and object.getName() == params.name then
-                return object
+    for _,data in pairs(selectedColors) do
+        if data.zone then
+            for _,object in pairs(data.zone.getObjects()) do
+                if object.hasTag("Spirit") and object.getName() == params.name then
+                    return object
+                end
             end
         end
     end
     return nil
 end
 function getSpiritColor(params)
-    for color,guid in pairs(elementScanZones) do
-        for _,object in pairs(getObjectFromGUID(guid).getObjects()) do
-            if object.hasTag("Spirit") and object.getName() == params.name then
-                return color
+    for color,data in pairs(selectedColors) do
+        if data.zone then
+            for _,object in pairs(data.zone.getObjects()) do
+                if object.hasTag("Spirit") and object.getName() == params.name then
+                    return object
+                end
             end
         end
     end
@@ -4766,19 +4778,21 @@ function checkPresenceLoss()
     local presenceLoss = false
     for color,onIsland in pairs(colors) do
         if not onIsland then
-            for _, obj in ipairs(getObjectFromGUID(elementScanZones[color]).getObjects()) do
-                if obj.hasTag("Spirit") then
-                    if presenceTimer ~= nil then
-                        Wait.stop(presenceTimer)
-                        presenceTimer = nil
+            if selectedColors[color].zone then
+                for _,obj in ipairs(selectedColors[color].zone.getObjects()) do
+                    if obj.hasTag("Spirit") then
+                        if presenceTimer ~= nil then
+                            Wait.stop(presenceTimer)
+                            presenceTimer = nil
+                        end
+                        Defeat({presence = obj.getName()})
+                        presenceLoss = true
+                        break
                     end
-                    Defeat({presence = obj.getName()})
-                    presenceLoss = true
+                end
+                if presenceLoss then
                     break
                 end
-            end
-            if presenceLoss then
-                break
             end
         end
     end
@@ -4893,7 +4907,7 @@ function showGameOver()
 
     if SetupChecker.getVar("optionalGameResults") then
         local colors = {}
-        for color,_ in pairs(PlayerBags) do
+        for color,_ in pairs(PlayerTints) do
             table.insert(colors, color)
         end
         setVisiTable("panelGameOver", colors)
@@ -4935,15 +4949,16 @@ function refreshGameOver()
     UI.setAttribute("panelGameOverHeader", "text", headerText)
 
     local spiritCount = 0
-    for color, _ in pairs(selectedColors) do
-        local zone = getObjectFromGUID(elementScanZones[color])
-        for _, obj in ipairs(zone.getObjects()) do
-            if obj.hasTag("Spirit") then
-                spiritCount = spiritCount + 1
-                UI.setAttribute("panelGameOverSpirit"..spiritCount, "text", obj.getName())
-                if spiritCount % 2 == 1 then
-                    UI.setAttribute("panelGameOverSpiritRow"..(spiritCount + 1)/2, "active", true)
-                    lines = lines + 1
+    for color,data in pairs(selectedColors) do
+        if data.zone then
+            for _,obj in ipairs(data.zone.getObjects()) do
+                if obj.hasTag("Spirit") then
+                    spiritCount = spiritCount + 1
+                    UI.setAttribute("panelGameOverSpirit"..spiritCount, "text", obj.getName())
+                    if spiritCount % 2 == 1 then
+                        UI.setAttribute("panelGameOverSpiritRow"..(spiritCount + 1)/2, "active", true)
+                        lines = lines + 1
+                    end
                 end
             end
         end
@@ -5198,7 +5213,7 @@ end
 function updatePlayerArea(color)
     local obj = playerBlocks[color]
     if obj then
-        obj.call("setupPlayerArea")
+        setupPlayerArea({obj = obj})
         return true
     end
     return false
@@ -5206,7 +5221,7 @@ end
 -- Updates all player areas.
 function updateAllPlayerAreas()
     for _,obj in pairs(playerBlocks) do
-        obj.call("setupPlayerArea")
+        setupPlayerArea({obj = obj})
     end
 end
 
@@ -5228,17 +5243,16 @@ function detectPresence(spirit, position)
 end
 function setupPlayerArea(params)
     -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
-    local obj = params.obj
-    local timer = obj.getVar("timer")  -- May be nil
-    local initialized = obj.getVar("initialized")
+    local timer = params.obj.getVar("timer")  -- May be nil
+    local initialized = params.obj.getVar("initialized")
     local color
     for k, v in pairs(playerBlocks) do
-        if v.guid == obj.guid then
+        if v.guid == params.obj.guid then
             color = k
             break
         end
     end
-    obj.setVar("playerColor", color)
+    params.obj.setVar("playerColor", color)
     local selected = selectedColors[color]
 
     local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
@@ -5250,38 +5264,38 @@ function setupPlayerArea(params)
         end
     end
     if not initialized and selected then
-        obj.setVar("initialized", true)
+        params.obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
-        obj.createButton({
+        params.obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
             position={1.1,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
-        obj.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
             position={-4.2,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Gain Energy (button index 2)
-        obj.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
             position={-4.2,3.2,-12.6}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
-        obj.createButton({
+        params.obj.createButton({
             label="Reclaim All", click_function="reclaimAll",
             position={1.1,3.2,-12.6}, rotation={0,180,0}, height=600, width=2600,
             font_size=500,
         })
         -- Bargain Debt (button index 4)
-        obj.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
             position={9.3,3.2,-11.2}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
         })
         -- Bargain Pay (button index 5)
-        obj.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
             position={9.3,3.2,-12.6}, rotation={0,180,0}, height=0, width=0,
             font_color="White", font_size=500,
@@ -5296,35 +5310,35 @@ function setupPlayerArea(params)
         end
         -- Other buttons to follow/be fixed later.
     elseif initialized and not selected then
-        obj.setVar("initialized", false)
-        obj.clearButtons()
+        params.obj.setVar("initialized", false)
+        params.obj.clearButtons()
     end
 
     if not selected then
         if timer then  -- No spirit, but a running timer.
             Wait.stop(timer)
             timer = nil
-            obj.setVar("timer", timer)
+            params.obj.setVar("timer", timer)
         end
         return
     end
 
     if selected.paid then
-        obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
+        params.obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
     else
-        obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
+        params.obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
     end
     if selected.gained then
-        obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
+        params.obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
     else
-        obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
+        params.obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
     end
     if selected.debt > 0 then
-        obj.editButton({index=4, label="Debt: "..selected.debt})
-        obj.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+        params.obj.editButton({index=4, label="Debt: "..selected.debt})
+        params.obj.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
     else
-        obj.editButton({index=4, label=""})
-        obj.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+        params.obj.editButton({index=4, label=""})
+        params.obj.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
     local energy = 0
@@ -5441,7 +5455,6 @@ function setupPlayerArea(params)
     end
 
     local function countItems()
-        local zone = params.zone
         local elements = Elements:new()
         -- We track the elements separately, since we count tokens *everywhere*
         -- for the choice event element helper, and don't want to double count
@@ -5453,36 +5466,38 @@ function setupPlayerArea(params)
         local thresholdCards = {}
         energy = 0
         --Go through all items found in the zone
-        for _, entry in ipairs(zone.getObjects()) do
-            if entry.hasTag("Spirit") then
-                local trackElements = calculateTrackElements(entry)
-                elements:add(trackElements)
-                nonTokenElements:add(trackElements)
-                spirit = entry
-            elseif entry.type == "Card" then
-                if entry.hasTag("Aspect") and not entry.is_face_down then
-                    table.insert(aspects, entry)
-                end
-                --Ignore if no elements entry
-                if entry.getVar("elements") ~= nil then
-                    -- Skip counting face down cards and those below spirit panel
-                    if not entry.is_face_down and entry.getPosition().z > zone.getPosition().z then
-                        -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
-                        if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
-                            local cardElements = entry.getVar("elements")
-                            elements:add(cardElements)
-                            nonTokenElements:add(cardElements)
-                        end
-                        energy = energy + powerCost(entry)
+        if selected.zone then
+            for _,entry in ipairs(selected.zone.getObjects()) do
+                if entry.hasTag("Spirit") then
+                    local trackElements = calculateTrackElements(entry)
+                    elements:add(trackElements)
+                    nonTokenElements:add(trackElements)
+                    spirit = entry
+                elseif entry.type == "Card" then
+                    if entry.hasTag("Aspect") and not entry.is_face_down then
+                        table.insert(aspects, entry)
                     end
-                end
-                if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
-                    table.insert(thresholdCards, entry)
-                end
-            elseif entry.type == "Generic" then
-                local tokenCounts = entry.getVar("elements")
-                if tokenCounts ~= nil then
-                    elements:add(tokenCounts)
+                    --Ignore if no elements entry
+                    if entry.getVar("elements") ~= nil then
+                        -- Skip counting face down cards and those below spirit panel
+                        if not entry.is_face_down and entry.getPosition().z > selected.zone.getPosition().z then
+                            -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
+                            if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
+                                local cardElements = entry.getVar("elements")
+                                elements:add(cardElements)
+                                nonTokenElements:add(cardElements)
+                            end
+                            energy = energy + powerCost(entry)
+                        end
+                    end
+                    if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
+                        table.insert(thresholdCards, entry)
+                    end
+                elseif entry.type == "Generic" then
+                    local tokenCounts = entry.getVar("elements")
+                    if tokenCounts ~= nil then
+                        elements:add(tokenCounts)
+                    end
                 end
             end
         end
@@ -5501,7 +5516,7 @@ function setupPlayerArea(params)
         Wait.stop(timer)
     end
     timer = Wait.time(countItems, 1, -1)
-    obj.setVar("timer", timer)
+    params.obj.setVar("timer", timer)
 end
 function reclaimAll(target_obj, source_color)
     if not gameStarted then
@@ -5565,45 +5580,46 @@ function gainEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local zone = getObjectFromGUID(elementScanZones[color])
-    for _, obj in ipairs(zone.getObjects()) do
-        if obj.hasTag("Spirit") then
-            local supported = false
-            local energyTotal = 0
-            local trackEnergy = obj.getTable("trackEnergy")
-            if trackEnergy ~= nil then
-                supported = true
-                for _, energy in pairs(trackEnergy) do
-                    if not detectPresence(obj, energy.position) then
-                        energyTotal = energyTotal + energy.count
-                        break
+    if selectedColors[color].zone then
+        for _,obj in ipairs(selectedColors[color].zone.getObjects()) do
+            if obj.hasTag("Spirit") then
+                local supported = false
+                local energyTotal = 0
+                local trackEnergy = obj.getTable("trackEnergy")
+                if trackEnergy ~= nil then
+                    supported = true
+                    for _, energy in pairs(trackEnergy) do
+                        if not detectPresence(obj, energy.position) then
+                            energyTotal = energyTotal + energy.count
+                            break
+                        end
                     end
                 end
-            end
-            local bonusEnergy = obj.getTable("bonusEnergy")
-            if bonusEnergy ~= nil then
-                supported = true
-                for _, energy in pairs(bonusEnergy) do
-                    if not detectPresence(obj, energy.position) then
-                        energyTotal = energyTotal + energy.count
+                local bonusEnergy = obj.getTable("bonusEnergy")
+                if bonusEnergy ~= nil then
+                    supported = true
+                    for _, energy in pairs(bonusEnergy) do
+                        if not detectPresence(obj, energy.position) then
+                            energyTotal = energyTotal + energy.count
+                        end
                     end
                 end
-            end
-            if not supported then
-                Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
-            else
-                local refunded = updateEnergyCounter(color, true, energyTotal, false)
-                if not refunded then
-                    refunded = refundEnergyTokens(color, energyTotal, false)
-                end
-                if refunded then
-                    selectedColors[color].gained = true
-                    target_obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                if not supported then
+                    Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
                 else
-                    Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
+                    local refunded = updateEnergyCounter(color, true, energyTotal, false)
+                    if not refunded then
+                        refunded = refundEnergyTokens(color, energyTotal, false)
+                    end
+                    if refunded then
+                        selectedColors[color].gained = true
+                        target_obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                    else
+                        Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
+                    end
                 end
+                break
             end
-            break
         end
     end
 end
@@ -5618,45 +5634,46 @@ function returnEnergy(target_obj, source_color, alt_click)
         return
     end
 
-    local zone = getObjectFromGUID(elementScanZones[color])
-    for _, obj in ipairs(zone.getObjects()) do
-        if obj.hasTag("Spirit") then
-            local supported = false
-            local energyTotal = 0
-            local trackEnergy = obj.getTable("trackEnergy")
-            if trackEnergy ~= nil then
-                supported = true
-                for _, energy in pairs(trackEnergy) do
-                    if not detectPresence(obj, energy.position) then
-                        energyTotal = energyTotal + energy.count
-                        break
+    if selectedColors[color].zone then
+        for _,obj in ipairs(selectedColors[color].zone.getObjects()) do
+            if obj.hasTag("Spirit") then
+                local supported = false
+                local energyTotal = 0
+                local trackEnergy = obj.getTable("trackEnergy")
+                if trackEnergy ~= nil then
+                    supported = true
+                    for _, energy in pairs(trackEnergy) do
+                        if not detectPresence(obj, energy.position) then
+                            energyTotal = energyTotal + energy.count
+                            break
+                        end
                     end
                 end
-            end
-            local bonusEnergy = obj.getTable("bonusEnergy")
-            if bonusEnergy ~= nil then
-                supported = true
-                for _, energy in pairs(bonusEnergy) do
-                    if not detectPresence(obj, energy.position) then
-                        energyTotal = energyTotal + energy.count
+                local bonusEnergy = obj.getTable("bonusEnergy")
+                if bonusEnergy ~= nil then
+                    supported = true
+                    for _, energy in pairs(bonusEnergy) do
+                        if not detectPresence(obj, energy.position) then
+                            energyTotal = energyTotal + energy.count
+                        end
                     end
                 end
-            end
-            if not supported then
-                Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
-            else
-                local paid = updateEnergyCounter(color, false, energyTotal, false)
-                if not paid then
-                    paid = payEnergyTokens(color, energyTotal, false)
-                end
-                if paid then
-                    selectedColors[color].gained = false
-                    target_obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                if not supported then
+                    Player[color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
                 else
-                    Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
+                    local paid = updateEnergyCounter(color, false, energyTotal, false)
+                    if not paid then
+                        paid = payEnergyTokens(color, energyTotal, false)
+                    end
+                    if paid then
+                        selectedColors[color].gained = false
+                        target_obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                    else
+                        Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
+                    end
                 end
+                break
             end
-            break
         end
     end
 end
@@ -5754,23 +5771,23 @@ function payEnergyTokens(color, cost, ignoreDebt)
         cost = getEnergyLabel(color)
     end
     local energy = 0
-    local zone = getObjectFromGUID(elementScanZones[color])
-    local objects = zone.getObjects()
     local energyTokens = {{}, {}}
     local oneEnergyTotal = 0
-    for _, obj in ipairs(objects) do
-        if obj.type == "Chip" then
-            local quantity = obj.getQuantity()
-            if quantity == -1 then
-                quantity = 1
-            end
-            if obj.getName() == "1 Energy" then
-                energy = energy + quantity
-                oneEnergyTotal = oneEnergyTotal + quantity
-                table.insert(energyTokens[1], obj)
-            elseif obj.getName() == "3 Energy" then
-                energy = energy + (3 * quantity)
-                table.insert(energyTokens[2], obj)
+    if selectedColors[color].zone then
+        for _,obj in ipairs(selectedColors[color].zone.getObjects()) do
+            if obj.type == "Chip" then
+                local quantity = obj.getQuantity()
+                if quantity == -1 then
+                    quantity = 1
+                end
+                if obj.getName() == "1 Energy" then
+                    energy = energy + quantity
+                    oneEnergyTotal = oneEnergyTotal + quantity
+                    table.insert(energyTokens[1], obj)
+                elseif obj.getName() == "3 Energy" then
+                    energy = energy + (3 * quantity)
+                    table.insert(energyTokens[2], obj)
+                end
             end
         end
     end
@@ -5956,22 +5973,23 @@ function refundEnergyTokens(color, cost, ignoreDebt)
         playerBlocks[color].editButton({index=4, label="Debt: "..debt})
     end
 
-    local zone = getObjectFromGUID(elementScanZones[color])
-    while cost >= 3 do
-        threeEnergyBag.takeObject({
-            position = zone.getPosition()+Vector(-10,2,-5),
-            rotation = Vector(0,180,0),
-            smooth = false,
-        })
-        cost = cost - 3
-    end
-    while cost >= 1 do
-        oneEnergyBag.takeObject({
-            position = zone.getPosition()+Vector(-10,2,-3),
-            rotation = Vector(0,180,0),
-            smooth = false,
-        })
-        cost = cost - 1
+    if selectedColors[color].zone then
+        while cost >= 3 do
+            threeEnergyBag.takeObject({
+                position = selectedColors[color].zone.getPosition()+Vector(-10,2,-5),
+                rotation = Vector(0,180,0),
+                smooth = false,
+            })
+            cost = cost - 3
+        end
+        while cost >= 1 do
+            oneEnergyBag.takeObject({
+                position = selectedColors[color].zone.getPosition()+Vector(-10,2,-3),
+                rotation = Vector(0,180,0),
+                smooth = false,
+            })
+            cost = cost - 1
+        end
     end
     return true
 end
@@ -5981,18 +5999,18 @@ function getCurrentEnergy(color)
     end
 
     local energy = 0
-    local zone = getObjectFromGUID(elementScanZones[color])
-    local objects = zone.getObjects()
-    for _, obj in ipairs(objects) do
-        if obj.type == "Chip" then
-            local quantity = obj.getQuantity()
-            if quantity == -1 then
-                quantity = 1
-            end
-            if obj.getName() == "1 Energy" then
-                energy = energy + quantity
-            elseif obj.getName() == "3 Energy" then
-                energy = energy + (3 * quantity)
+    if selectedColors[color].zone then
+        for _,obj in ipairs(selectedColors[color].zone.getObjects()) do
+            if obj.type == "Chip" then
+                local quantity = obj.getQuantity()
+                if quantity == -1 then
+                    quantity = 1
+                end
+                if obj.getName() == "1 Energy" then
+                    energy = energy + quantity
+                elseif obj.getName() == "3 Energy" then
+                    energy = energy + (3 * quantity)
+                end
             end
         end
     end
@@ -6365,7 +6383,6 @@ function swapPlayerAreaColors(a, b)
     handsSwap()
     positionSwap(playerTables)
     tableSwap(playerBlocks)
-    tableSwap(elementScanZones)
     updatePlayerArea(a)
     updatePlayerArea(b)
 end
@@ -6385,13 +6402,14 @@ function swapPlayerAreaObjects(a, b)
             end
         end
         objects[color] = t
-        local zone = getObjectFromGUID(elementScanZones[color])
-        zones[color] = zone
-        local zoneButtons = zone.getButtons()
-        buttons[color] = zoneButtons
-        if zoneButtons then
-            for i = #zoneButtons - 1, 0, -1 do
-                zone.removeButton(i)
+        if selectedColors[color].zone then
+            zones[color] = selectedColors[color].zone
+            local zoneButtons = selectedColors[color].zone.getButtons()
+            buttons[color] = zoneButtons
+            if zoneButtons then
+                for i = #zoneButtons - 1, 0, -1 do
+                    selectedColors[color].zone.removeButton(i)
+                end
             end
         end
     end
@@ -6752,7 +6770,7 @@ end
 -- Trade places with selected seat.
 function onClickedSitHere(target_obj, source_color, alt_click)
     local target_color = target_obj.getVar("playerColor")
-    if not playerBlocks[source_color] then
+    if not PlayerTints[source_color] then
         swapPlayerColors(source_color, target_color)
     else
         swapPlayerAreas(source_color, target_color)
@@ -6762,7 +6780,7 @@ end
 -- Trade colors with selected seat.
 function onClickedChangeColor(target_obj, source_color, alt_click)
     local target_color = target_obj.getVar("playerColor")
-    if not playerBlocks[source_color] then
+    if not PlayerTints[source_color] then
         swapPlayerColors(source_color, target_color)
     else
         swapSeatColors(source_color, target_color)
@@ -6860,20 +6878,21 @@ end
 
 function grabSpiritMarkers()
     local bag = getObjectFromGUID("011f19")
-    for color, _ in pairs(selectedColors) do
-        local zone = getObjectFromGUID(elementScanZones[color])
-        for _, obj in ipairs(zone.getObjects()) do
-            if obj.hasTag("Spirit") then
-                for _,marker in pairs(bag.getObjects()) do
-                    if marker.name == obj.getName() then
-                        bag.takeObject({
-                            guid = marker.guid,
-                            position = zone.getPosition() + Vector(0, 2, 8.5)
-                        })
-                        break
+    for color,data in pairs(selectedColors) do
+        if data.zone then
+            for _, obj in ipairs(data.zone.getObjects()) do
+                if obj.hasTag("Spirit") then
+                    for _,marker in pairs(bag.getObjects()) do
+                        if marker.name == obj.getName() then
+                            bag.takeObject({
+                                guid = marker.guid,
+                                position = data.zone.getPosition() + Vector(0, 2, 8.5)
+                            })
+                            break
+                        end
                     end
+                    break
                 end
-                break
             end
         end
     end
@@ -6881,8 +6900,9 @@ end
 function grabDestroyBag(color)
     local bag = getObjectFromGUID("fd0a22")
     if bag ~= nil then
-        local zone = getObjectFromGUID(elementScanZones[color])
-        bag.takeObject({position = zone.getPosition() + Vector(0, 2, 8.5)})
+        if selectedColors[color].zone then
+            bag.takeObject({position = selectedColors[color].zone.getPosition() + Vector(0, 2, 8.5)})
+        end
     end
 end
 

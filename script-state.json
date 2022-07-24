@@ -8,14 +8,6 @@
   "currentPhase": 1,
   "difficulty": 0,
   "difficultyString": "",
-  "elementScanZones": {
-    "Blue": "6f2249",
-    "Green": "190f05",
-    "Orange": "61ac7c",
-    "Purple": "654ab2",
-    "Red": "9fc5a4",
-    "Yellow": "102771"
-  },
   "events": {
     "Branch & Claw": true,
     "Jagged Earth": true

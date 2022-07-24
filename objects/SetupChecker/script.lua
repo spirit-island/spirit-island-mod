@@ -31,16 +31,6 @@ scenarios = {
 numScenarios = 12
 allScenarios = {}
 
--- This must match the same guids of global's elementScanZones
-playerZones = {
-    ["9fc5a4"] = true,
-    ["654ab2"] = true,
-    ["102771"] = true,
-    ["6f2249"] = true,
-    ["190f05"] = true,
-    ["61ac7c"] = true,
-}
-
 pickedSpirits = {}
 spiritGuids = {}
 spiritTags = {}
@@ -1792,10 +1782,10 @@ function getSpiritComplexities()
     return complexities
 end
 function randomSpirit(player)
-    local bagGuid = Global.getVar("PlayerBags")[player.color]
-    if bagGuid == nil then
+    if player.color == "Grey" then
         return
-    elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
+    end
+    if Global.getTable("selectedColors")[player.color] then
         Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
@@ -1826,11 +1816,15 @@ function randomSpirit(player)
     Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
-    local bagGuid = Global.getVar("PlayerBags")[player.color]
-    if bagGuid == nil then
+    if player.color == "Grey" then
         return
     end
-    local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
+    if Global.getTable("selectedColors")[player.color] then
+        Player[player.color].broadcast("You already picked a spirit", Color.Red)
+        return
+    end
+
+    local obj = Global.getTable("playerBlocks")[player.color]
 
     local options = {}
     local buttons = obj.getButtons()
@@ -1848,9 +1842,6 @@ function gainSpirit(player)
 
     if hasOptions == 4 then
         Player[player.color].broadcast("You already have Spirit options", Color.Red)
-        return
-    elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
     local tags = getSpiritTags()
@@ -1878,9 +1869,9 @@ function gainSpirit(player)
                     click_function = "pickSpirit" .. i,
                     function_owner = self,
                     label = label,
-                    position = Vector(0,0,0.3 - 0.15*i),
+                    position = Vector(0,3,-6 - 3*i),
                     rotation = Vector(0,180,0),
-                    scale = Vector(0.1,0.1,0.1),
+                    scale = Vector(2,1,2),
                     width = 4850,
                     height = 600,
                     font_size = 275,
@@ -1913,19 +1904,19 @@ function getNewSpirit(tags, complexities)
     return spirit, aspect
 end
 function pickSpirit1(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
+    if Global.getTable("playerBlocks")[color] ~= obj then return end
     pickSpirit(obj, 0, color)
 end
 function pickSpirit2(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
+    if Global.getTable("playerBlocks")[color] ~= obj then return end
     pickSpirit(obj, 1, color)
 end
 function pickSpirit3(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
+    if Global.getTable("playerBlocks")[color] ~= obj then return end
     pickSpirit(obj, 2, color)
 end
 function pickSpirit4(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
+    if Global.getTable("playerBlocks")[color] ~= obj then return end
     pickSpirit(obj, 3, color)
 end
 function replaceSpirit(obj, index, color)
@@ -2047,9 +2038,8 @@ function removeSpirit(params)
             spiritChoicesLength = spiritChoicesLength - 1
 
             found = false
-            for color,guid in pairs(Global.getVar("elementScanZones")) do
-                local zone = getObjectFromGUID(guid)
-                local buttons = zone.getButtons()
+            for color,obj in pairs(Global.getTable("playerBlocks")) do
+                local buttons = obj.getButtons()
                 if buttons ~= nil then
                     for index,button in pairs(buttons) do
                         local label = button.label

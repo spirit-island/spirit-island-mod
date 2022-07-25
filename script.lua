@@ -6136,6 +6136,16 @@ function setupColorPickButtons(obj)
                 },
                 children = {},
             })
+
+            local scale = flipVector(Vector(obj.getScale()))
+            scale = scale * 2
+            -- Swap Place (button index 0)
+            obj.createButton({
+                label="Swap Place", click_function="onClickedSwapPlace", function_owner=Global,
+                position={-3.25,0.4,7.5}, rotation={0,0,0}, height=400, width=1500, scale=scale,
+                font_color={0,0,0}, font_size=250,
+                tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+            })
         end
     end
     obj.UI.setXmlTable({
@@ -6210,6 +6220,7 @@ function setupColor(table, color)
     end
     table.setColorTint(colorTint)
     table.UI.setXml("")
+    table.clearButtons()
     setupSwapButtons(table)
 
     updateColorPickButtons()
@@ -6564,53 +6575,107 @@ function invaderCompare(t1,t2)
     return cc2(t1) == cc2(t2)
 end
 
-function swapPlayerAreaColors(a, b)
-    if a == b then return end
-    local function handsSwap()
-        local offset = playerTables[b].getPosition() - playerTables[a].getPosition()
-        for i = 1,Player[a].getHandCount() do
-            local transform = Player[a].getHandTransform(i)
-            transform.position = transform.position + offset
-            Player[a].setHandTransform(transform, i)
+function getTableColor(table)
+    for color,obj in pairs(playerTables) do
+        if obj == table then
+            return color
         end
-        for i = 1,Player[b].getHandCount() do
-            local transform = Player[b].getHandTransform(i)
-            transform.position = transform.position - offset
-            Player[b].setHandTransform(transform, i)
+    end
+    return ""
+end
+
+colorLock = false
+function swapPlayerColors(a, b)
+    if a == b then
+        return false
+    end
+    local pa, pb = Player[a], Player[b]
+
+    -- I think this can be deleted now?
+    if not playerTables[a] then
+        -- This should only trigger if the player clicking is a non-standard color.
+        if pb.seated then
+            pa.broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
+            return false
         end
     end
 
-    handsSwap()
-end
-
-function swapPlayerAreaTables(a, b)
-    local function positionSwap(table)
-        local oa = table[a]
-        local ob = table[b]
-        if type(oa) == "string" then
-            oa = getObjectFromGUID(oa)
-            ob = getObjectFromGUID(ob)
-        end
-        local ta = oa.getPosition()
-        local tb = ob.getPosition()
-        oa.setPosition(tb)
-        ob.setPosition(ta)
+    if colorLock then
+        pa.broadcast("There's already a color swap in progress, please wait and try again", Color.Red)
+        return
     end
-    positionSwap(playerTables)
-    updatePlayerArea(a)
-    updatePlayerArea(b)
+    colorLock = true
+
+    if pa.seated then
+        if pb.seated then
+            if pa.steam_id == pb.steam_id then  -- Hotseat game
+                -- Hotseat games may lose track of the player when their color changes for strange reasons -- mainly because they're prompted to reenter their name again.
+                broadcastToAll("Color swapping may be unstable in hotseat games.", Color.Red)
+            end
+            -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
+            -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
+            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
+                if pa.changeColor(tempColor) then
+                    Wait.frames(function()
+                        pb.changeColor(a)
+                        Wait.frames(function()
+                            Player[tempColor].changeColor(b)
+                            Wait.frames(function()
+                                colorLock = false
+                            end, 1)
+                        end, 1)
+                    end, 1)
+                    return true
+                end
+            end
+            -- If we reach here, we failed to change colors. Shouldn't happen. Just in case it does.
+            pa.broadcast("Unable to swap colors with " .. b .. ". (All player colors are in use?)", Color.Red)
+        else
+            if pa.changeColor(b) then
+                Wait.frames(function()
+                    colorLock = false
+                end, 1)
+                return true
+            end
+        end
+    elseif pb.seated then
+        if pb.changeColor(a) then
+            Wait.frames(function()
+                colorLock = false
+            end, 1)
+            return true
+        end
+    end
+    colorLock = false
+    return false
 end
 
-function swapPlayerAreaObjects(a, b)
+function swapPlayerAreas(a, b)
+    if(a == b) then return end
+    local colorA = getTableColor(a)
+    local colorB = getTableColor(b)
+
+    swapPlayerAreaObjects(a, b, colorA, colorB)
+    swapPlayerAreaColors(a, b, colorA, colorB)
+    swapPlayerAreaTables(a, b)
+
+    if colorB ~= "" then
+        printToAll(colorA .. " swapped places with " .. colorB .. ".", Color[colorA])
+    end
+end
+
+function swapPlayerAreaObjects(a, b, colorA, colorB)
     if a == b then return end
-    local swaps = {[a] = b, [b] = a}
-    local tables = {[a] = playerTables[a], [b] = playerTables[b]}
+    local swaps = {[colorA] = colorB, [colorB] = colorA}
+    local tables = {[colorA] = a, [colorB] = b}
     local objects = {}
     for color,playerTable in pairs(tables) do
         local t = upCast(playerTable, 1.9)
-        for i = 1,Player[color].getHandCount() do
-            for _,obj in ipairs(Player[color].getHandObjects(i)) do
-                table.insert(t, obj)
+        if color ~= "" then
+            for i = 1,Player[color].getHandCount() do
+                for _,obj in ipairs(Player[color].getHandObjects(i)) do
+                    table.insert(t, obj)
+                end
             end
         end
         objects[color] = t
@@ -6625,29 +6690,48 @@ function swapPlayerAreaObjects(a, b)
         if selectedColors[from] then
             selectedColors[from].defend.setPosition(selectedColors[from].defend.getPosition() + transform)
             selectedColors[from].isolate.setPosition(selectedColors[from].isolate.getPosition() + transform)
-            if not selectedColors[to] then
-                for _,bag in pairs(selectedColors[from].elements) do
-                    bag.setPosition(bag.getPosition() + transform)
-                end
-            end
-
             selectedColors[from].zone.setPosition(selectedColors[from].zone.getPosition() + transform)
+            for _,bag in pairs(selectedColors[from].elements) do
+                bag.setPosition(bag.getPosition() + transform)
+            end
+        end
+    end
+end
+function swapPlayerAreaColors(a, b, colorA, colorB)
+    if a == b then return end
+    local offset = b.getPosition() - a.getPosition()
+
+    if colorA ~= "" then
+        for i = 1,Player[colorA].getHandCount() do
+            local transform = Player[colorA].getHandTransform(i)
+            transform.position = transform.position + offset
+            Player[colorA].setHandTransform(transform, i)
         end
     end
 
-    if selectedColors[a] and selectedColors[b] then
-        local bags = selectedColors[a].elements
-        selectedColors[a].elements = selectedColors[b].elements
-        selectedColors[b].elements = bags
+    if colorB ~= "" then
+        for i = 1,Player[colorB].getHandCount() do
+            local transform = Player[colorB].getHandTransform(i)
+            transform.position = transform.position - offset
+            Player[colorB].setHandTransform(transform, i)
+        end
     end
 end
+function swapPlayerAreaTables(a, b)
+    if a == b then return end
+    local pos = a.getPosition()
+    a.setPosition(b.getPosition())
+    b.setPosition(pos)
+end
 
-function swapPlayerAreas(a, b)
-    if(a == b) then return end
-    swapPlayerAreaObjects(a, b)
+function swapSeatColors(a, b)
+    if not swapPlayerColors(a, b) then
+        return
+    end
+    swapPlayerPresenceColors(a, b)
     swapPlayerAreaColors(a, b)
-    swapPlayerAreaTables(a, b)
-    printToAll(a .. " swapped places with " .. b .. ".", Color[a])
+    swapPlayerAreaButtons(a, b)
+    swapPlayerUIs(a, b)
 end
 
 function swapDefendColor(bag, color)
@@ -6812,73 +6896,6 @@ function swapPlayerPresenceColors(fromColor, toColor)
         end
     end, 1)
 end
-
-colorLock = false
-function swapPlayerColors(a, b)
-    if a == b then
-        return false
-    end
-    local pa, pb = Player[a], Player[b]
-
-    -- I think this can be deleted now?
-    if not playerTables[a] then
-        -- This should only trigger if the player clicking is a non-standard color.
-        if pb.seated then
-            pa.broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
-            return false
-        end
-    end
-
-    if colorLock then
-        pa.broadcast("There's already a color swap in progress, please wait and try again", Color.Red)
-        return
-    end
-    colorLock = true
-
-    if pa.seated then
-        if pb.seated then
-            if pa.steam_id == pb.steam_id then  -- Hotseat game
-                -- Hotseat games may lose track of the player when their color changes for strange reasons -- mainly because they're prompted to reenter their name again.
-                broadcastToAll("Color swapping may be unstable in hotseat games.", Color.Red)
-            end
-            -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
-            -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
-            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
-                if pa.changeColor(tempColor) then
-                    Wait.frames(function()
-                        pb.changeColor(a)
-                        Wait.frames(function()
-                            Player[tempColor].changeColor(b)
-                            Wait.frames(function()
-                                colorLock = false
-                            end, 1)
-                        end, 1)
-                    end, 1)
-                    return true
-                end
-            end
-            -- If we reach here, we failed to change colors. Shouldn't happen. Just in case it does.
-            pa.broadcast("Unable to swap colors with " .. b .. ". (All player colors are in use?)", Color.Red)
-        else
-            if pa.changeColor(b) then
-                Wait.frames(function()
-                    colorLock = false
-                end, 1)
-                return true
-            end
-        end
-    elseif pb.seated then
-        if pb.changeColor(a) then
-            Wait.frames(function()
-                colorLock = false
-            end, 1)
-            return true
-        end
-    end
-    colorLock = false
-    return false
-end
-
 function swapPlayerAreaButtons(a, b)
     -- Fix for handling Fractured's 3rd hand with "Swap Color"
     local offset = Player[b].getHandTransform(1).position - Player[a].getHandTransform(1).position
@@ -7049,16 +7066,6 @@ function swapPlayerUIs(a, b)
     gamekeys[b] = enabled
 end
 
-function swapSeatColors(a, b)
-    if not swapPlayerColors(a, b) then
-        return
-    end
-    swapPlayerPresenceColors(a, b)
-    swapPlayerAreaColors(a, b)
-    swapPlayerAreaButtons(a, b)
-    swapPlayerUIs(a, b)
-end
-
 -- Trade places with selected seat.
 function onClickedSwapPlace(target_obj, source_color, alt_click)
     local target_color = nil
@@ -7068,14 +7075,13 @@ function onClickedSwapPlace(target_obj, source_color, alt_click)
             break
         end
     end
-    if target_color == nil then
-        return
-    end
 
-    if not playerTables[source_color] then
+    if target_color == nil and not playerTables[source_color] then
+        return
+    elseif not playerTables[source_color] then
         swapPlayerColors(source_color, target_color)
     else
-        swapPlayerAreas(source_color, target_color)
+        swapPlayerAreas(playerTables[source_color], target_obj)
     end
 end
 

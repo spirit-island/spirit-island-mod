@@ -6126,7 +6126,7 @@ end
 function setupColorPickButtons(obj, seat)
     local buttons = {}
     for color,_ in pairs(Tints) do
-        if not playerTables[color] then
+        if not seat or not playerTables[color] then
             local buttonColor = Color[color]:toHex(false)
             local textColor = fontColor(Color[color])
             local func = "pickColor"
@@ -6151,6 +6151,12 @@ function setupColorPickButtons(obj, seat)
                     minWidth = minWidth,
                     minHeight = "110",
                 },
+                children = {},
+            })
+        else
+            table.insert(buttons, {
+                tag = "Text",
+                attributes = {},
                 children = {},
             })
         end

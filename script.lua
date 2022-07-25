@@ -6613,61 +6613,6 @@ function swapPlayerAreaObjects(a, b)
         end
     end
 
-    -- TODO remove old hand
-    -- Fix for handling Fractured's 3rd hand with "Swap Place"
-    local offset = Player[b].getHandTransform(1).position - Player[a].getHandTransform(1).position
-    local thirdHandA = Player[a].getHandCount() == 3
-    local thirdHandB = Player[b].getHandCount() == 3
-    if thirdHandA and not thirdHandB then
-        local transform = Player[a].getHandTransform(3)
-        transform.position = transform.position + offset
-        spawnObjectData({
-            data = {
-                Name = "HandTrigger",
-                FogColor = b,
-                Transform = {
-                    posX = 0,
-                    posY = 0,
-                    posZ = 0,
-                    rotX = 0,
-                    rotY = 0,
-                    rotZ = 0,
-                    scaleX = 1.0,
-                    scaleY = 1.0,
-                    scaleZ = 1.0
-                },
-                Locked = true,
-            },
-            position = transform.position,
-            rotation = transform.rotation,
-            scale = transform.scale,
-        })
-    elseif not thirdHandA and thirdHandB then
-        local transform = Player[b].getHandTransform(3)
-        transform.position = transform.position - offset
-        spawnObjectData({
-            data = {
-                Name = "HandTrigger",
-                FogColor = a,
-                Transform = {
-                    posX = 0,
-                    posY = 0,
-                    posZ = 0,
-                    rotX = 0,
-                    rotY = 0,
-                    rotZ = 0,
-                    scaleX = 1.0,
-                    scaleY = 1.0,
-                    scaleZ = 1.0
-                },
-                Locked = true,
-            },
-            position = transform.position,
-            rotation = transform.rotation,
-            scale = transform.scale,
-        })
-    end
-
     if selectedColors[a] and selectedColors[b] then
         local bags = selectedColors[a].elements
         selectedColors[a].elements = selectedColors[b].elements
@@ -6896,6 +6841,82 @@ function swapPlayerColors(a, b)
 end
 
 function swapPlayerAreaButtons(a, b)
+    -- Fix for handling Fractured's 3rd hand with "Swap Color"
+    local offset = Player[b].getHandTransform(1).position - Player[a].getHandTransform(1).position
+    local thirdHandA = Player[a].getHandCount() == 3
+    local thirdHandB = Player[b].getHandCount() == 3
+    if thirdHandA and not thirdHandB then
+        local transform = Player[a].getHandTransform(3)
+        transform.position = transform.position + offset
+        spawnObjectData({
+            data = {
+                Name = "HandTrigger",
+                FogColor = b,
+                Transform = {
+                    posX = 0,
+                    posY = 0,
+                    posZ = 0,
+                    rotX = 0,
+                    rotY = 0,
+                    rotZ = 0,
+                    scaleX = 1.0,
+                    scaleY = 1.0,
+                    scaleZ = 1.0
+                },
+                Locked = true,
+            },
+            position = transform.position,
+            rotation = transform.rotation,
+            scale = transform.scale,
+        })
+        local lastHand = nil
+        for _,obj in pairs(getObjects()) do
+            if obj.type == "Hand" then
+                if obj.getData().FogColor == a then
+                    lastHand = obj
+                end
+            end
+        end
+        if lastHand ~= nil then
+            lastHand.destruct()
+        end
+    elseif not thirdHandA and thirdHandB then
+        local transform = Player[b].getHandTransform(3)
+        transform.position = transform.position - offset
+        spawnObjectData({
+            data = {
+                Name = "HandTrigger",
+                FogColor = a,
+                Transform = {
+                    posX = 0,
+                    posY = 0,
+                    posZ = 0,
+                    rotX = 0,
+                    rotY = 0,
+                    rotZ = 0,
+                    scaleX = 1.0,
+                    scaleY = 1.0,
+                    scaleZ = 1.0
+                },
+                Locked = true,
+            },
+            position = transform.position,
+            rotation = transform.rotation,
+            scale = transform.scale,
+        })
+        local lastHand = nil
+        for _,obj in pairs(getObjects()) do
+            if obj.type == "Hand" then
+                if obj.getData().FogColor == b then
+                    lastHand = obj
+                end
+            end
+        end
+        if lastHand ~= nil then
+            lastHand.destruct()
+        end
+    end
+
     local xml = playerTables[a].UI.getXml()
     playerTables[a].UI.setXml(playerTables[b].UI.getXml())
     playerTables[b].UI.setXml(xml)

@@ -633,7 +633,7 @@ function onLoad(saved_data)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
-        --obj.interactable = false
+        obj.interactable = false
     end
 
     ------
@@ -6561,6 +6561,24 @@ function swapPlayerAreaColors(a, b)
     handsSwap()
 end
 
+function swapPlayerAreaTables(a, b)
+    local function positionSwap(table)
+        local oa = table[a]
+        local ob = table[b]
+        if type(oa) == "string" then
+            oa = getObjectFromGUID(oa)
+            ob = getObjectFromGUID(ob)
+        end
+        local ta = oa.getPosition()
+        local tb = ob.getPosition()
+        oa.setPosition(tb)
+        ob.setPosition(ta)
+    end
+    positionSwap(playerTables)
+    updatePlayerArea(a)
+    updatePlayerArea(b)
+end
+
 function swapPlayerAreaObjects(a, b)
     if a == b then return end
     local swaps = {[a] = b, [b] = a}
@@ -6655,28 +6673,13 @@ function swapPlayerAreaObjects(a, b)
         selectedColors[a].elements = selectedColors[b].elements
         selectedColors[b].elements = bags
     end
-
-    local function positionSwap(table)
-        local oa = table[a]
-        local ob = table[b]
-        if type(oa) == "string" then
-            oa = getObjectFromGUID(oa)
-            ob = getObjectFromGUID(ob)
-        end
-        local ta = oa.getPosition()
-        local tb = ob.getPosition()
-        oa.setPosition(tb)
-        ob.setPosition(ta)
-    end
-    positionSwap(playerTables)
-    updatePlayerArea(a)
-    updatePlayerArea(b)
 end
 
 function swapPlayerAreas(a, b)
     if(a == b) then return end
     swapPlayerAreaObjects(a, b)
     swapPlayerAreaColors(a, b)
+    swapPlayerAreaTables(a, b)
     printToAll(a .. " swapped places with " .. b .. ".", Color[a])
 end
 

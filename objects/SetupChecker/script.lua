@@ -1368,6 +1368,7 @@ function loadConfig(config)
     end
     updateDifficulty()
 end
+-- TODO fix Weekly challenge setup in new world
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
         if spirit.getName():lower() == name:lower() then

@@ -39,7 +39,7 @@ stage3DeckZone = "2a9f36"
 adversaryBag = "AdversaryBag"
 scenarioBag = "ScenarioBag"
 ---- Used with ElementsHelper Script
-tables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
+seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
 playerTables = {
     Red = "dce473",
     Purple = "c99d4d",
@@ -495,7 +495,7 @@ function onSave()
         noHeal = noHeal,
         turn = turn,
         terrorLevel = terrorLevel,
-        tables = tables,
+        seatTables = seatTables,
         playerTables = convertObjectsToGuids(playerTables),
 
         panelInvaderVisibility = UI.getAttribute("panelInvader","visibility"),
@@ -731,7 +731,7 @@ function onLoad(saved_data)
         noHeal = loaded_data.noHeal
         turn = loaded_data.turn
         terrorLevel = loaded_data.terrorLevel
-        tables = loaded_data.tables
+        seatTables = loaded_data.seatTables
         playerTables = convertGuidsToObjects(loaded_data.playerTables)
         recorder = getObjectFromGUID(loaded_data.recorder)
 
@@ -3581,7 +3581,7 @@ function getEmptySeat()
     for color,obj in pairs(playerTables) do
         coloredSeats[obj.guid] = color
     end
-    for _,guid in pairs(tables) do
+    for _,guid in pairs(seatTables) do
         if coloredSeats[guid] then
             if not playerHasSpirit({color = coloredSeats[guid]}) then
                 print("no spirit")
@@ -6100,7 +6100,7 @@ function setupTableButtons()
     for _,obj in pairs(playerTables) do
         coloredSeats[obj.guid] = true
     end
-    for _,guid in pairs(tables) do
+    for _,guid in pairs(seatTables) do
         if not coloredSeats[guid] then
             setupColorPickButtons(getObjectFromGUID(guid))
         else
@@ -6205,9 +6205,9 @@ end
 function setupSwapButtons(obj)
     local scale = flipVector(Vector(obj.getScale()))
     scale = scale * 2
-    -- Swap Here (button index 0)
+    -- Swap Place (button index 0)
     obj.createButton({
-        label="", click_function="onClickedSwapHere", function_owner=Global,
+        label="", click_function="onClickedSwapPlace", function_owner=Global,
         position={-3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
         font_color={0,0,0}, font_size=250,
         tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
@@ -6245,7 +6245,7 @@ function updateColorPickButtons()
     for _,obj in pairs(playerTables) do
         coloredSeats[obj.guid] = true
     end
-    for _,guid in pairs(tables) do
+    for _,guid in pairs(seatTables) do
         if not coloredSeats[guid] then
             if showPlayerButtons then
                 setupColorPickButtons(getObjectFromGUID(guid))
@@ -6553,9 +6553,6 @@ end
 
 function swapPlayerAreaColors(a, b)
     if a == b then return end
-    local function tableSwap(table)
-        table[a], table[b] = table[b], table[a]
-    end
     local function positionSwap(table)
         local oa = table[a]
         local ob = table[b]
@@ -6569,11 +6566,16 @@ function swapPlayerAreaColors(a, b)
         ob.setPosition(ta)
     end
     local function handsSwap()
-        for i = 1,3 do
-            local ta = Player[a].getHandTransform(i)
-            local tb = Player[b].getHandTransform(i)
-            Player[a].setHandTransform(tb, i)
-            Player[b].setHandTransform(ta, i)
+        local offset = playerTables[b].getPosition() - playerTables[a].getPosition()
+        for i = 1,Player[a].getHandCount() do
+            local transform = Player[a].getHandTransform(i)
+            transform.position = transform.position + offset
+            Player[a].setHandTransform(transform, i)
+        end
+        for i = 1,Player[b].getHandCount() do
+            local transform = Player[b].getHandTransform(i)
+            transform.position = transform.position - offset
+            Player[b].setHandTransform(transform, i)
         end
     end
 
@@ -6587,27 +6589,15 @@ function swapPlayerAreaObjects(a, b)
     if a == b then return end
     local swaps = {[a] = b, [b] = a}
     local tables = {[a] = playerTables[a], [b] = playerTables[b]}
-    local zones = {}
-    local buttons = {}
     local objects = {}
     for color,playerTable in pairs(tables) do
-        local t = upCast(playerTable, 2)
-        for i = 1,3 do
+        local t = upCast(playerTable, 1.9)
+        for i = 1,Player[color].getHandCount() do
             for _,obj in ipairs(Player[color].getHandObjects(i)) do
                 table.insert(t, obj)
             end
         end
         objects[color] = t
-        if selectedColors[color].zone then
-            zones[color] = selectedColors[color].zone
-            local zoneButtons = selectedColors[color].zone.getButtons()
-            buttons[color] = zoneButtons
-            if zoneButtons then
-                for i = #zoneButtons - 1, 0, -1 do
-                    selectedColors[color].zone.removeButton(i)
-                end
-            end
-        end
     end
     for from,to in pairs(swaps) do
         local transform = tables[to].getPosition() - tables[from].getPosition()
@@ -6616,32 +6606,72 @@ function swapPlayerAreaObjects(a, b)
                 obj.setPosition(obj.getPosition() + transform)
             end
         end
-        if buttons[from] then
-            for _,button in ipairs(buttons[from]) do
-                zones[to].createButton(button)
-            end
-        end
         if selectedColors[from] then
             selectedColors[from].defend.setPosition(selectedColors[from].defend.getPosition() + transform)
             selectedColors[from].isolate.setPosition(selectedColors[from].isolate.getPosition() + transform)
             if not selectedColors[to] then
-                for _, bag in pairs(selectedColors[from].elements) do
+                for _,bag in pairs(selectedColors[from].elements) do
                     bag.setPosition(bag.getPosition() + transform)
-                    bag.clearButtons()
                 end
             end
+
+            selectedColors[from].zone.setPosition(selectedColors[from].zone.getPosition() + transform)
         end
     end
 
-    -- Fix for handling Fractured's 3rd hand with "Sit Here"
+    -- TODO remove old hand
+    -- Fix for handling Fractured's 3rd hand with "Swap Place"
     local offset = Player[b].getHandTransform(1).position - Player[a].getHandTransform(1).position
-    local ta = Player[a].getHandTransform(3)
-    local tb = Player[b].getHandTransform(3)
-    if ta.position.z < -40 or tb.position.z < -40 then
-        ta.position = ta.position + offset
-        tb.position = tb.position - offset
-        Player[a].setHandTransform(tb, 3)
-        Player[b].setHandTransform(ta, 3)
+    local thirdHandA = Player[a].getHandCount() == 3
+    local thirdHandB = Player[b].getHandCount() == 3
+    if thirdHandA and not thirdHandB then
+        local transform = Player[a].getHandTransform(3)
+        transform.position = transform.position + offset
+        spawnObjectData({
+            data = {
+                Name = "HandTrigger",
+                FogColor = b,
+                Transform = {
+                    posX = 0,
+                    posY = 0,
+                    posZ = 0,
+                    rotX = 0,
+                    rotY = 0,
+                    rotZ = 0,
+                    scaleX = 1.0,
+                    scaleY = 1.0,
+                    scaleZ = 1.0
+                },
+                Locked = true,
+            },
+            position = transform.position,
+            rotation = transform.rotation,
+            scale = transform.scale,
+        })
+    elseif not thirdHandA and thirdHandB then
+        local transform = Player[b].getHandTransform(3)
+        transform.position = transform.position - offset
+        spawnObjectData({
+            data = {
+                Name = "HandTrigger",
+                FogColor = a,
+                Transform = {
+                    posX = 0,
+                    posY = 0,
+                    posZ = 0,
+                    rotX = 0,
+                    rotY = 0,
+                    rotZ = 0,
+                    scaleX = 1.0,
+                    scaleY = 1.0,
+                    scaleZ = 1.0
+                },
+                Locked = true,
+            },
+            position = transform.position,
+            rotation = transform.rotation,
+            scale = transform.scale,
+        })
     end
 
     if selectedColors[a] and selectedColors[b] then
@@ -6828,6 +6858,7 @@ function swapPlayerColors(a, b)
     end
     local pa, pb = Player[a], Player[b]
 
+    -- I think this can be deleted now?
     if not playerTables[a] then
         -- This should only trigger if the player clicking is a non-standard color.
         if pb.seated then
@@ -6964,7 +6995,7 @@ function swapSeatColors(a, b)
 end
 
 -- Trade places with selected seat.
-function onClickedSwapHere(target_obj, source_color, alt_click)
+function onClickedSwapPlace(target_obj, source_color, alt_click)
     local target_color = nil
     for color,obj in pairs(playerTables) do
         if obj == target_obj then

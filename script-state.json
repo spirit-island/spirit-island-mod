@@ -41,11 +41,7 @@
   "playtestMinorPowers": 0,
   "returnBlightBag": "af50b8",
   "seaTile": "5f4be2",
-  "selectedBoards": [],
-  "selectedColors": [],
-  "setupCompleted": false,
-  "showPlayerButtons": true,
-  "tables": [
+  "seatTables": [
     "dce473",
     "c99d4d",
     "794c81",
@@ -53,6 +49,10 @@
     "d7d593",
     "33c4af"
   ],
+  "selectedBoards": [],
+  "selectedColors": [],
+  "setupCompleted": false,
+  "showPlayerButtons": true,
   "terrorLevel": 1,
   "townBag": "4d3c15",
   "turn": 1

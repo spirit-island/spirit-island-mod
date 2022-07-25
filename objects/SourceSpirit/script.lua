@@ -270,9 +270,10 @@ function setupSpirit(obj, player_color)
     local placed = 0
 
     local objsData = Global.getVar("playerBag").getData().ContainedObjects
-    local color = Color.fromHex(Global.getTable("PlayerTints")[player_color].."FF")
 
     -- Setup Presence
+    local playerTints = Global.getTable("Tints")[player_color]
+    local color = Color.fromHex(playerTints.Presence.."FF")
     local presenceData = objsData[13]
     presenceData.Nickname = player_color.."'s "..presenceData.Nickname
     presenceData.ColorDiffuse.r = color.r
@@ -328,6 +329,9 @@ function setupSpirit(obj, player_color)
     end
 
     -- Setup Reminder Bags
+    if playerTints.Token then
+        color = Color.fromHex(playerTints.Token.."FF")
+    end
     local defendData = objsData[2]
     defendData.ColorDiffuse.r = color.r
     defendData.ColorDiffuse.g = color.g

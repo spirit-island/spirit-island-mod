@@ -6,21 +6,37 @@ counterBag = "EnergyCounters"
 minorPowerZone = "cb16ab"
 majorPowerZone = "089896"
 playerBag = "PlayerBag"
-PlayerTints = {
-    ["Red"] = "#DA1918",
-    ["Purple"] = "#831FEF",
-    ["Yellow"] = "#FFFC00",
-    ["Blue"] = "#0009FF",
-    ["Green"] = "#0BFF00",
-    ["Orange"] = "#F38D1C",
-}
-TableTints = {
-    ["Red"] = "#FF8180",
-    ["Purple"] = "#C48DFF",
-    ["Yellow"] = "#FFFE8B",
-    ["Blue"] = "#83BDFF",
-    ["Green"] = "#8DFF87",
-    ["Orange"] = "#FFB86C",
+Tints = {
+    ["Red"] = {
+        Presence = "#DA1918",
+        Token = "#FF312F",
+        Table = "#FF8180"
+    },
+    ["Purple"] = {
+        Presence = "#831FEF",
+        Token = "#C467FE",
+        Table = "#C48DFF"
+    },
+    ["Yellow"] = {
+        Presence = "#FFFC00",
+        Token = "#FFFD23",
+        Table = "#FFFE8B"
+    },
+    ["Blue"] = {
+        Presence = "#0009FF",
+        Token = "#48B6FF",
+        Table = "#83BDFF"
+    },
+    ["Green"] = {
+        Presence = "#0BFF00",
+        Token = "#56FF4D",
+        Table = "#8DFF87"
+    },
+    ["Orange"] = {
+        Presence = "#F38D1C",
+        Token = "#FF9729",
+        Table = "#FFB86C"
+    },
 }
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"
@@ -3580,7 +3596,7 @@ function getEmptySeat()
             end
         else
             local color
-            for c,_ in pairs(PlayerTints) do
+            for c,_ in pairs(Tints) do
                 if not playerTables[c] then
                     color = c
                     break
@@ -6102,7 +6118,7 @@ function setupTableButtons()
 end
 function setupColorPickButtons(obj)
     local buttons = {}
-    for color,_ in pairs(PlayerTints) do
+    for color,_ in pairs(Tints) do
         if not playerTables[color] then
             local buttonColor = Color[color]:toHex(false)
             local textColor = fontColor(Color[color])
@@ -6186,7 +6202,13 @@ function setupColor(table, color)
     })
 
     playerTables[color] = table
-    table.setColorTint(Color.fromHex(TableTints[color].."FF"))
+    local colorTint
+    if Tints[color].Table then
+        colorTint = Color.fromHex(Tints[color].Table.."FF")
+    else
+        colorTint = Color.fromHex(Tints[color].Presence.."FF")
+    end
+    table.setColorTint(colorTint)
     table.UI.setXml("")
     setupSwapButtons(table)
 
@@ -6630,42 +6652,59 @@ end
 
 function swapDefendColor(bag, color)
     local data = bag.getData()
-    local colorTable = Color.fromHex(PlayerTints[color].."FF")
-    data.ColorDiffuse.r = colorTable[1]
-    data.ColorDiffuse.g = colorTable[2]
-    data.ColorDiffuse.b = colorTable[3]
+    local colorTint
+    if Tints[color].Token then
+        colorTint = Color.fromHex(Tints[color].Token.."FF")
+    else
+        colorTint = Color.fromHex(Tints[color].Presence.."FF")
+    end
+    data.ColorDiffuse.r = colorTint[1]
+    data.ColorDiffuse.g = colorTint[2]
+    data.ColorDiffuse.b = colorTint[3]
     data.ContainedObjects[1].Nickname = color.."'s Defend"
-    data.ContainedObjects[1].ColorDiffuse.r = colorTable[1]
-    data.ContainedObjects[1].ColorDiffuse.g = colorTable[2]
-    data.ContainedObjects[1].ColorDiffuse.b = colorTable[3]
+    data.ContainedObjects[1].ColorDiffuse.r = colorTint[1]
+    data.ContainedObjects[1].ColorDiffuse.g = colorTint[2]
+    data.ContainedObjects[1].ColorDiffuse.b = colorTint[3]
     for _,state in pairs(data.ContainedObjects[1].States) do
         state.Nickname = color.."'s Defend"
-        state.ColorDiffuse.r = colorTable[1]
-        state.ColorDiffuse.g = colorTable[2]
-        state.ColorDiffuse.b = colorTable[3]
+        state.ColorDiffuse.r = colorTint[1]
+        state.ColorDiffuse.g = colorTint[2]
+        state.ColorDiffuse.b = colorTint[3]
     end
     bag.destruct()
     return spawnObjectData({data = data})
 end
 function swapIsolateColor(bag, color)
     local data = bag.getData()
-    local colorTable = Color.fromHex(PlayerTints[color].."FF")
-    data.ColorDiffuse.r = colorTable[1]
-    data.ColorDiffuse.g = colorTable[2]
-    data.ColorDiffuse.b = colorTable[3]
+    local colorTint
+    if Tints[color].Token then
+        colorTint = Color.fromHex(Tints[color].Token.."FF")
+    else
+        colorTint = Color.fromHex(Tints[color].Presence.."FF")
+    end
+    data.ColorDiffuse.r = colorTint[1]
+    data.ColorDiffuse.g = colorTint[2]
+    data.ColorDiffuse.b = colorTint[3]
     data.ContainedObjects[1].Nickname = color.."'s Isolate"
-    data.ContainedObjects[1].ColorDiffuse.r = colorTable[1]
-    data.ContainedObjects[1].ColorDiffuse.g = colorTable[2]
-    data.ContainedObjects[1].ColorDiffuse.b = colorTable[3]
+    data.ContainedObjects[1].ColorDiffuse.r = colorTint[1]
+    data.ContainedObjects[1].ColorDiffuse.g = colorTint[2]
+    data.ContainedObjects[1].ColorDiffuse.b = colorTint[3]
     bag.destruct()
     return spawnObjectData({data = data})
 end
 function swapPlayerPresenceColors(fromColor, toColor)
     if fromColor == toColor then return end
     local function initData(color)
+        local colorTint
+        if Tints[color].Token then
+            colorTint = Color.fromHex(Tints[color].Token.."FF")
+        else
+            colorTint = Color.fromHex(Tints[color].Presence.."FF")
+        end
         return {
             color = color,
-            tint = Color.fromHex(PlayerTints[color].."FF"),
+            presenceTint = Color.fromHex(Tints[color].Presence.."FF"),
+            tokenTint = colorTint,
             objects = {},
             pattern = color .. "'s (.*)",
         }
@@ -6727,7 +6766,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                 if suffix == "Presence" then
                     local newname = a.color .. "'s " .. suffix
                     for _, obj in ipairs(objs) do
-                        obj.setColorTint(a.tint)
+                        obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         if obj.getDecals() then
                             makeSacredSite(obj)
@@ -6738,7 +6777,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         else
                             obj = obj.setState(1)
                         end
-                        obj.setColorTint(a.tint)
+                        obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         if obj.getDecals() then
                             makeSacredSite(obj)
@@ -6765,7 +6804,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         if states ~= nil and #states > 1 then
                             broadcastToAll("Internal Error: Object " .. obj.getName() .. " has multiple states and may not handle color swap properly.", Color.Red)
                         end
-                        obj.setColorTint(a.tint)
+                        obj.setColorTint(a.tokenTint)
                         obj.setName(newname)
                     end
                 end

@@ -5,14 +5,6 @@ versionGuid = "57d9fe"
 counterBag = "EnergyCounters"
 minorPowerZone = "cb16ab"
 majorPowerZone = "089896"
-PlayerBags = {
-    ["Red"] = "PlayerBagRed",
-    ["Purple"] = "PlayerBagPurple",
-    ["Yellow"] = "PlayerBagYellow",
-    ["Blue"] = "PlayerBagBlue",
-    ["Green"] = "PlayerBagGreen",
-    ["Orange"] = "PlayerBagOrange",
-} -- TODO remove me
 playerBag = "PlayerBag"
 PlayerTints = {
     ["Red"] = "#DA1918",
@@ -641,7 +633,7 @@ function onLoad(saved_data)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
-        obj.interactable = false
+        --obj.interactable = false
     end
 
     ------
@@ -3584,7 +3576,6 @@ function getEmptySeat()
     for _,guid in pairs(seatTables) do
         if coloredSeats[guid] then
             if not playerHasSpirit({color = coloredSeats[guid]}) then
-                print("no spirit")
                 return coloredSeats[guid]
             end
         else
@@ -6553,18 +6544,6 @@ end
 
 function swapPlayerAreaColors(a, b)
     if a == b then return end
-    local function positionSwap(table)
-        local oa = table[a]
-        local ob = table[b]
-        if type(oa) == "string" then
-            oa = getObjectFromGUID(oa)
-            ob = getObjectFromGUID(ob)
-        end
-        local ta = oa.getPosition()
-        local tb = ob.getPosition()
-        oa.setPosition(tb)
-        ob.setPosition(ta)
-    end
     local function handsSwap()
         local offset = playerTables[b].getPosition() - playerTables[a].getPosition()
         for i = 1,Player[a].getHandCount() do
@@ -6580,9 +6559,6 @@ function swapPlayerAreaColors(a, b)
     end
 
     handsSwap()
-    positionSwap(playerTables)
-    updatePlayerArea(a)
-    updatePlayerArea(b)
 end
 
 function swapPlayerAreaObjects(a, b)
@@ -6679,6 +6655,22 @@ function swapPlayerAreaObjects(a, b)
         selectedColors[a].elements = selectedColors[b].elements
         selectedColors[b].elements = bags
     end
+
+    local function positionSwap(table)
+        local oa = table[a]
+        local ob = table[b]
+        if type(oa) == "string" then
+            oa = getObjectFromGUID(oa)
+            ob = getObjectFromGUID(ob)
+        end
+        local ta = oa.getPosition()
+        local tb = ob.getPosition()
+        oa.setPosition(tb)
+        ob.setPosition(ta)
+    end
+    positionSwap(playerTables)
+    updatePlayerArea(a)
+    updatePlayerArea(b)
 end
 
 function swapPlayerAreas(a, b)
@@ -6688,38 +6680,53 @@ function swapPlayerAreas(a, b)
     printToAll(a .. " swapped places with " .. b .. ".", Color[a])
 end
 
+function swapDefendColor(bag, color)
+    local data = bag.getData()
+    local colorTable = Color.fromHex(PlayerTints[color].."FF")
+    data.ColorDiffuse.r = colorTable[1]
+    data.ColorDiffuse.g = colorTable[2]
+    data.ColorDiffuse.b = colorTable[3]
+    data.ContainedObjects[1].Nickname = color.."'s Defend"
+    data.ContainedObjects[1].ColorDiffuse.r = colorTable[1]
+    data.ContainedObjects[1].ColorDiffuse.g = colorTable[2]
+    data.ContainedObjects[1].ColorDiffuse.b = colorTable[3]
+    for _,state in pairs(data.ContainedObjects[1].States) do
+        state.Nickname = color.."'s Defend"
+        state.ColorDiffuse.r = colorTable[1]
+        state.ColorDiffuse.g = colorTable[2]
+        state.ColorDiffuse.b = colorTable[3]
+    end
+    bag.destruct()
+    return spawnObjectData({data = data})
+end
+function swapIsolateColor(bag, color)
+    local data = bag.getData()
+    local colorTable = Color.fromHex(PlayerTints[color].."FF")
+    data.ColorDiffuse.r = colorTable[1]
+    data.ColorDiffuse.g = colorTable[2]
+    data.ColorDiffuse.b = colorTable[3]
+    data.ContainedObjects[1].Nickname = color.."'s Isolate"
+    data.ContainedObjects[1].ColorDiffuse.r = colorTable[1]
+    data.ContainedObjects[1].ColorDiffuse.g = colorTable[2]
+    data.ContainedObjects[1].ColorDiffuse.b = colorTable[3]
+    bag.destruct()
+    return spawnObjectData({data = data})
+end
 function swapPlayerPresenceColors(fromColor, toColor)
     if fromColor == toColor then return end
-    local function initData(color, ix)
-        local bag = getObjectFromGUID(PlayerBags[color])
-        -- If color has not been selected this will be changed during player bag emptying
-        local colorTint = color
-        if selectedColors[color] then
-            colorTint = selectedColors[color].defend.getColorTint()
-        end
+    local function initData(color)
         return {
             color = color,
-            ix = ix,
-            bag = bag,
-            qty = bag.getQuantity(),
-            tint = colorTint,
-            presenceTint = bag.getColorTint(),
+            tint = Color.fromHex(PlayerTints[color].."FF"),
             objects = {},
             pattern = color .. "'s (.*)",
-            bagContents = {},
         }
     end
     local colors = {
-        from = initData(fromColor, 1),
-        to = initData(toColor, 2)
+        from = initData(fromColor),
+        to = initData(toColor)
     }
 
-    -- If both bags are full, there's not a lot of work to do.
-    if colors.from.qty == 25 and colors.to.qty == 25 then
-        return
-    end
-
-    selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
     -- Only need to handle case where both colors have spirits here
     if selectedColors[fromColor] and selectedColors[toColor] then
         local bag = selectedColors[fromColor].defend
@@ -6735,22 +6742,14 @@ function swapPlayerPresenceColors(fromColor, toColor)
         selectedColors[toColor].isolate = bag
         selectedColors[toColor].isolate.setPosition(selectedColors[fromColor].isolate.getPosition())
         selectedColors[fromColor].isolate.setPosition(pos)
+    elseif selectedColors[fromColor] then
+        selectedColors[fromColor].isolate = swapIsolateColor(selectedColors[fromColor].isolate, toColor)
+        selectedColors[fromColor].defend = swapDefendColor(selectedColors[fromColor].defend, toColor)
+    elseif selectedColors[toColor] then
+        selectedColors[toColor].isolate = swapIsolateColor(selectedColors[toColor].isolate, fromColor)
+        selectedColors[toColor].defend = swapDefendColor(selectedColors[toColor].defend, fromColor)
     end
-
-    -- Remove any items still in the bags
-    for _, data in pairs(colors) do
-        for i = 1,data.qty do
-            local obj = data.bag.takeObject({
-                sound = false,
-                position = Vector(data.ix*2, i*2, 200),    -- Chosen to be out-of-the-way and to prevent items from stacking.
-                smooth = false,
-            })
-            table.insert(data.bagContents, obj.guid)
-            if obj.getName() == "Defend Markers" then
-                data.tint = obj.getColorTint()
-            end
-        end
-    end
+    selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
 
     -- Pass 1: Iterate over all objects looking for "<color>'s X".
     -- Make a note of what we find and what tint it is.
@@ -6776,32 +6775,11 @@ function swapPlayerPresenceColors(fromColor, toColor)
     Wait.frames(function()
         for _,ab in pairs({{colors.from, colors.to}, {colors.to, colors.from}}) do
             local a, b = unpack(ab)
-            local stop = #b.bagContents-1
-            if stop <= 0 then stop = 1 end
-            for i = #b.bagContents,stop,-1 do  -- Iterate in reverse order.
-                local obj = getObjectFromGUID(b.bagContents[i])
-                local name = obj.getName()
-                if name == "Defend Markers" then
-                    local pos = selectedColors[b.color].defend.getPosition()
-                    a.bag.putObject(selectedColors[b.color].defend)
-                    obj.setPosition(pos)
-                    obj.setLock(true)
-                    selectedColors[b.color].defend = obj
-                elseif name == "Isolate Markers" then
-                    local pos = selectedColors[b.color].isolate.getPosition()
-                    a.bag.putObject(selectedColors[b.color].isolate)
-                    obj.setPosition(pos)
-                    obj.setLock(true)
-                    selectedColors[b.color].isolate = obj
-                else
-                    broadcastToAll("Internal Error: Unknown object " .. name .. " in player bag.", Color.Red)
-                end
-            end
             for suffix, objs in pairs(b.objects) do
                 if suffix == "Presence" then
                     local newname = a.color .. "'s " .. suffix
                     for _, obj in ipairs(objs) do
-                        obj.setColorTint(a.presenceTint)
+                        obj.setColorTint(a.tint)
                         obj.setName(newname)
                         if obj.getDecals() then
                             makeSacredSite(obj)
@@ -6812,7 +6790,7 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         else
                             obj = obj.setState(1)
                         end
-                        obj.setColorTint(a.presenceTint)
+                        obj.setColorTint(a.tint)
                         obj.setName(newname)
                         if obj.getDecals() then
                             makeSacredSite(obj)
@@ -6843,9 +6821,6 @@ function swapPlayerPresenceColors(fromColor, toColor)
                         obj.setName(newname)
                     end
                 end
-            end
-            for i = #b.bagContents - 2,1,-1 do  -- Iterate in reverse order.
-                a.bag.putObject(getObjectFromGUID(b.bagContents[i]))
             end
         end
     end, 1)
@@ -6918,25 +6893,30 @@ function swapPlayerColors(a, b)
 end
 
 function swapPlayerAreaButtons(a, b)
-    local selected = selectedColors[a]
-    selectedColors[a] = selectedColors[b]
-    selectedColors[b] = selected
-
     local xml = playerTables[a].UI.getXml()
     playerTables[a].UI.setXml(playerTables[b].UI.getXml())
     playerTables[b].UI.setXml(xml)
 
     local buttons = playerTables[a].getButtons()
-    for i=4,#buttons do
-        playerTables[a].removeButton(i)
-    end
+    playerTables[a].clearButtons()
     local newButtons = playerTables[b].getButtons()
-    for i=4,#newButtons do
-        playerTables[a].createButton(newButtons[i])
+    if newButtons ~= nil then
+        for i=1,#newButtons do
+            playerTables[a].createButton(newButtons[i])
+        end
     end
-    for i=4,#buttons do
-        playerTables[b].createButton(buttons[i])
+    playerTables[b].clearButtons()
+    if buttons ~= nil then
+        for i=1,#buttons do
+            playerTables[b].createButton(buttons[i])
+        end
     end
+
+    local tint = playerTables[a].getColorTint()
+    playerTables[a].setColorTint(playerTables[b].getColorTint())
+    playerTables[b].setColorTint(tint)
+
+    playerTables[a], playerTables[b] = playerTables[b], playerTables[a]
 end
 function swapPlayerUI(a, b, xmlID)
     local aEnabled = false

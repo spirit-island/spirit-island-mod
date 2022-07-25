@@ -6153,6 +6153,7 @@ function setupColorPickButtons(obj, seat)
                 local scale = flipVector(Vector(obj.getScale()))
                 scale = scale * 2
                 -- Swap Place (button index 0)
+                obj.clearButtons()
                 obj.createButton({
                     label="Swap Place", click_function="onClickedSwapPlace", function_owner=Global,
                     position={-3.25,0.4,7.5}, rotation={0,0,0}, height=400, width=1500, scale=scale,
@@ -6288,12 +6289,19 @@ function updateColorPickButtons()
             if showPlayerButtons then
                 setupColorPickButtons(getObjectFromGUID(guid), true)
             else
-                getObjectFromGUID(guid).UI.setXml("")
+                local obj = getObjectFromGUID(guid)
+                obj.UI.setXml("")
+                obj.editButton({index=0, label="", height=0, width=0})
             end
         end
     end
-    setupColorPickButtons(getObjectFromGUID("fe680a"), false)
-    setupColorPickButtons(getObjectFromGUID("2ca216"), false)
+    if showPlayerButtons then
+        setupColorPickButtons(getObjectFromGUID("fe680a"), false)
+        setupColorPickButtons(getObjectFromGUID("2ca216"), false)
+    else
+        getObjectFromGUID("fe680a").UI.setXml("")
+        getObjectFromGUID("2ca216").UI.setXml("")
+    end
 end
 function updateSwapButtons()
     for color,obj in pairs(playerTables) do

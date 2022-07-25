@@ -48,14 +48,7 @@ adversaryBag = "AdversaryBag"
 scenarioBag = "ScenarioBag"
 ---- Used with ElementsHelper Script
 seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
-playerTables = {
-    Red = "dce473",
-    Purple = "c99d4d",
-    Yellow = "794c81",
-    Blue = "125e82",
-    Green = "d7d593",
-    Orange = "33c4af",
-}
+playerTables = {}
 ------ Saved Config Data
 numPlayers = 1
 numBoards = 1
@@ -6122,8 +6115,8 @@ function setupTableButtons()
 end
 function setupColorPickButtons(obj, seat)
     local buttons = {}
-    if not playerTables[color] then
-        for color,_ in pairs(Tints) do
+    for color,_ in pairs(Tints) do
+        if not playerTables[color] then
             local buttonColor = Color[color]:toHex(false)
             local textColor = fontColor(Color[color])
             local func = "pickColor"
@@ -6151,19 +6144,19 @@ function setupColorPickButtons(obj, seat)
                 children = {},
             })
         end
-        if seat then
-            table.insert(buttons, {
-                tag = "Button",
-                attributes = {
-                    onClick = "Global/swapPlace("..obj.guid..")",
-                    text = "Swap Place",
-                    fontSize = "44",
-                    minWidth = "270",
-                    minHeight = "110",
-                },
-                children = {},
-            })
-        end
+    end
+    if seat then
+        table.insert(buttons, {
+            tag = "Button",
+            attributes = {
+                onClick = "Global/swapPlace("..obj.guid..")",
+                text = "Swap Place",
+                fontSize = "44",
+                minWidth = "270",
+                minHeight = "110",
+            },
+            children = {},
+        })
     end
     obj.UI.setXmlTable({
         {
@@ -7139,6 +7132,9 @@ end
 function onObjectSpawn(obj)
     if isPowerCard({card=obj}) then
         applyPowerCardContextMenuItems(obj)
+    elseif obj.hasTag("Player") then
+        table.insert(seatTables, obj.guid)
+        setupColorPickButtons(obj, true)
     end
 end
 function applyPowerCardContextMenuItems(card)

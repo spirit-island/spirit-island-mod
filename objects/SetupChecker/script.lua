@@ -1824,18 +1824,18 @@ function gainSpirit(player)
         return
     end
 
-    local obj = Global.getTable("playerBlocks")[player.color]
+    local obj = Global.getTable("playerTables")[player.color]
 
     local options = {}
     local buttons = obj.getButtons()
     local hasOptions = 0
     if buttons ~= nil then
-        for i,button in pairs(buttons) do
-            if button.label ~= "" then
-                options[i] = true
+        for i=4,#buttons do
+            if buttons[i].label ~= "" then
+                options[i-4] = true
                 hasOptions = hasOptions + 1
             else
-                options[i] = false
+                options[i-4] = false
             end
         end
     end
@@ -1869,9 +1869,9 @@ function gainSpirit(player)
                     click_function = "pickSpirit" .. i,
                     function_owner = self,
                     label = label,
-                    position = Vector(0,3,-6 - 3*i),
-                    rotation = Vector(0,180,0),
-                    scale = Vector(2,1,2),
+                    position = Vector(0,3,-5 + 2*i),
+                    rotation = Vector(0,0,0),
+                    scale = Vector(2/2.3,1,2/1.42),
                     width = 4850,
                     height = 600,
                     font_size = 275,
@@ -1904,20 +1904,20 @@ function getNewSpirit(tags, complexities)
     return spirit, aspect
 end
 function pickSpirit1(obj, color)
-    if Global.getTable("playerBlocks")[color] ~= obj then return end
-    pickSpirit(obj, 0, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 3, color)
 end
 function pickSpirit2(obj, color)
-    if Global.getTable("playerBlocks")[color] ~= obj then return end
-    pickSpirit(obj, 1, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 4, color)
 end
 function pickSpirit3(obj, color)
-    if Global.getTable("playerBlocks")[color] ~= obj then return end
-    pickSpirit(obj, 2, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 5, color)
 end
 function pickSpirit4(obj, color)
-    if Global.getTable("playerBlocks")[color] ~= obj then return end
-    pickSpirit(obj, 3, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 6, color)
 end
 function replaceSpirit(obj, index, color)
     local tags = getSpiritTags()
@@ -1955,7 +1955,6 @@ function pickSpirit(obj, index, color)
     end
     local data = spiritChoices[name]
     if isSpiritPickable({guid = data.guid}) then
-        obj.clearButtons()
         sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
     else
         replaceSpirit(obj, index, color)
@@ -2033,28 +2032,30 @@ function removeSpirit(params)
     pickedSpirits[params.spirit.getName()] = true
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
-    for name, data in pairs(spiritChoices) do
+    for name,data in pairs(spiritChoices) do
         if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
 
             found = false
-            for color,obj in pairs(Global.getTable("playerBlocks")) do
-                local buttons = obj.getButtons()
-                if buttons ~= nil then
-                    for index,button in pairs(buttons) do
-                        local label = button.label
-                        local start,_ = string.find(label, " %- ")
-                        if start ~= nil then
-                            label = string.sub(label, 1, start-1)
+            for color,obj in pairs(Global.getTable("playerTables")) do
+                if params.color ~= color then
+                    local buttons = obj.getButtons()
+                    if buttons ~= nil then
+                        for i=4,#buttons do
+                            local label = buttons[i].label
+                            local start,_ = string.find(label, " %- ")
+                            if start ~= nil then
+                                label = string.sub(label, 1, start-1)
+                            end
+                            if name == label then
+                                replaceSpirit(obj, i-1, color)
+                                found = true
+                                break
+                            end
                         end
-                        if name == label then
-                            replaceSpirit(zone, index-1, color)
-                            found = true
+                        if found then
                             break
                         end
-                    end
-                    if found then
-                        break
                     end
                 end
             end

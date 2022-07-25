@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1658199132,
-  "Date": "7/18/2022 9:52:12 PM",
+  "EpochTime": 1658777243,
+  "Date": "7/25/2022 2:27:23 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -238,7 +238,25 @@
     "TurnColor": ""
   },
   "CameraStates": [
-    null,
+    {
+      "Position": {
+        "x": 0.0,
+        "y": -2.5,
+        "z": 0.0
+      },
+      "Rotation": {
+        "x": 65.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 104.207,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 0.0,
+        "y": 91.9436,
+        "z": -44.0397
+      }
+    },
     {
       "Position": {
         "x": -26.9417,

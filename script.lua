@@ -6155,22 +6155,13 @@ function setupColorPickButtons(obj, seat)
             })
         end
     end
-    if seat then
-        table.insert(buttons, {
-            tag = "Button",
-            attributes = {
-                onClick = "Global/swapPlace("..obj.guid..")",
-                text = "Swap Place",
-                fontSize = "44",
-                minWidth = "270",
-                minHeight = "110",
-            },
-            children = {},
-        })
+    local tag = "GridLayout"
+    if not seat then
+        tag = "VerticalLayout"
     end
-    obj.UI.setXmlTable({
+    local xml = {
         {
-            tag = "VerticalLayout",
+            tag = tag,
             attributes = {
                 childForceExpandWidth = "false",
                 childForceExpandHeight = "false",
@@ -6178,10 +6169,28 @@ function setupColorPickButtons(obj, seat)
                 spacing = "30",
                 position = "0 0 -80",
                 rotation = "0 0 180",
+                constraint = "FixedColumnCount",
+                cellSize = "270 110",
             },
             children = buttons,
         }
-    }, {})
+    }
+    if seat then
+        table.insert(xml, {
+            tag = "Button",
+            attributes = {
+                onClick = "Global/swapPlace("..obj.guid..")",
+                text = "Swap Place",
+                fontSize = "44",
+                position = "0 420 -80",
+                rotation = "0 0 180",
+                width = "270",
+                height = "110",
+            },
+            children = {},
+        })
+    end
+    obj.UI.setXmlTable(xml, {})
 end
 function pickColor(player, guid, color)
     setupColor(getObjectFromGUID(guid), color)

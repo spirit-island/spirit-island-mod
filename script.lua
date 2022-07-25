@@ -93,7 +93,6 @@ terrorLevel = 1
 recorder = nil
 ------ Unsaved Config Data
 gamePaused = false
-yHeight = 0
 stagesSetup = 0
 boardsSetup = 0
 adversaryLossCallback = nil
@@ -773,7 +772,6 @@ function onLoad(saved_data)
             end
         end
     end
-    yHeight = seaTile.getPosition().y + 0.1
     for color,data in pairs(selectedColors) do
         local colorTable = {}
         if next(data) ~= nil then
@@ -1814,7 +1812,7 @@ function SetupPowerDecks()
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return exploratoryPowersDone end)
     return 1
 end
-handOffset = Vector(0,0,36)
+handOffset = Vector(0,-3.25,36)
 scriptWorkingCardC = false
 function MajorPowerC(obj, player_color, alt_click)
     local cards = 4
@@ -1910,7 +1908,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     }
     local cardsAdded = 0
     local cardsResting = 0
-    local powerDealCentre = handOffset + Vector(handPos.x,yHeight,handPos.z)
+    local powerDealCentre = handOffset + handPos
 
     local function dealPowerCards(powersZone, powersDiscardZone, count, offset, isPlaytest)
         local deck = powersZone.getObjects()[1]
@@ -2072,7 +2070,7 @@ end
 
 function getPowerZoneObjects(handP)
     local hits = upCastPosSizRot(
-        handOffset + Vector(handP.x,yHeight,handP.z), -- pos
+        handOffset + handP, -- pos
         Vector(15,0.1,4),  -- size
         Vector(0,0,0),  --  rotation
         0,  -- distance

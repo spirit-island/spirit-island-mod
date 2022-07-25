@@ -37,6 +37,18 @@ Tints = {
         Token = "#FF9729",
         Table = "#FFB86C"
     },
+    ["Teal"] = {
+        Presence = "#20B09A",
+    },
+    ["Pink"] = {
+        Presence = "#F46FCD",
+    },
+    ["White"] = {
+        Presence = "#FFFFFF",
+    },
+    ["Brown"] = {
+        Presence = "#703A16",
+    },
 }
 ---- Used with Adversary Scripts
 eventDeckZone = "a16796"

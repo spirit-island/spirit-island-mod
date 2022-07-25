@@ -833,13 +833,17 @@ function bargainCheck()
         if selectedColors[color].bargain ~= count then
             if count == 0 then
                 selectedColors[color].debt = 0
-                selectedColors[color].zone.editButton({index=4, label=""})
-                selectedColors[color].zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+                if selectedColors[color].zone then
+                    selectedColors[color].zone.editButton({index=4, label=""})
+                    selectedColors[color].zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+                end
             else
                 selectedColors[color].debt = selectedColors[color].debt + count - selectedColors[color].bargain
-                selectedColors[color].zone.editButton({index=4, label="Debt: "..selectedColors[color].debt})
-                if selectedColors[color].bargain == 0 then
-                    selectedColors[color].zone.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+                if selectedColors[color].zone then
+                    selectedColors[color].zone.editButton({index=4, label="Debt: "..selectedColors[color].debt})
+                    if selectedColors[color].bargain == 0 then
+                        selectedColors[color].zone.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+                    end
                 end
             end
             selectedColors[color].bargain = count
@@ -6058,23 +6062,21 @@ function refundEnergyTokens(color, cost, ignoreDebt)
         selectedColors[color].zone.editButton({index=4, label="Debt: "..debt})
     end
 
-    if selectedColors[color].zone then
-        while cost >= 3 do
-            threeEnergyBag.takeObject({
-                position = selectedColors[color].zone.getPosition()+Vector(-10,2,-5),
-                rotation = Vector(0,180,0),
-                smooth = false,
-            })
-            cost = cost - 3
-        end
-        while cost >= 1 do
-            oneEnergyBag.takeObject({
-                position = selectedColors[color].zone.getPosition()+Vector(-10,2,-3),
-                rotation = Vector(0,180,0),
-                smooth = false,
-            })
-            cost = cost - 1
-        end
+    while cost >= 3 do
+        threeEnergyBag.takeObject({
+            position = selectedColors[color].zone.getPosition()+Vector(-10,2,-5),
+            rotation = Vector(0,180,0),
+            smooth = false,
+        })
+        cost = cost - 3
+    end
+    while cost >= 1 do
+        oneEnergyBag.takeObject({
+            position = selectedColors[color].zone.getPosition()+Vector(-10,2,-3),
+            rotation = Vector(0,180,0),
+            smooth = false,
+        })
+        cost = cost - 1
     end
     return true
 end
@@ -6120,8 +6122,8 @@ function setupTableButtons()
 end
 function setupColorPickButtons(obj, seat)
     local buttons = {}
-    for color,_ in pairs(Tints) do
-        if not playerTables[color] then
+    if not playerTables[color] then
+        for color,_ in pairs(Tints) do
             local buttonColor = Color[color]:toHex(false)
             local textColor = fontColor(Color[color])
             local func = "pickColor"
@@ -6148,19 +6150,19 @@ function setupColorPickButtons(obj, seat)
                 },
                 children = {},
             })
-
-            if seat then
-                local scale = flipVector(Vector(obj.getScale()))
-                scale = scale * 2
-                -- Swap Place (button index 0)
-                obj.clearButtons()
-                obj.createButton({
-                    label="Swap Place", click_function="onClickedSwapPlace", function_owner=Global,
-                    position={-3.25,0.4,7.5}, rotation={0,0,0}, height=400, width=1500, scale=scale,
-                    font_color={0,0,0}, font_size=250,
-                    tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
-                })
-            end
+        end
+        if seat then
+            table.insert(buttons, {
+                tag = "Button",
+                attributes = {
+                    onClick = "Global/swapPlace("..obj.guid..")",
+                    text = "Swap Place",
+                    fontSize = "44",
+                    minWidth = "270",
+                    minHeight = "110",
+                },
+                children = {},
+            })
         end
     end
     obj.UI.setXmlTable({
@@ -6291,7 +6293,6 @@ function updateColorPickButtons()
             else
                 local obj = getObjectFromGUID(guid)
                 obj.UI.setXml("")
-                obj.editButton({index=0, label="", height=0, width=0})
             end
         end
     end
@@ -7014,6 +7015,11 @@ function swapPlayerUIs(a, b)
     gamekeys[b] = enabled
 end
 
+function swapPlace(player, guid, _)
+    if playerTables[player.color] then
+        swapPlayerAreas(playerTables[player.color], getObjectFromGUID(guid))
+    end
+end
 -- Trade places with selected seat.
 function onClickedSwapPlace(target_obj, source_color, alt_click)
     local target_color = nil

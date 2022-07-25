@@ -37,6 +37,7 @@ function doSetup(params)
         return
     elseif color ~= Global.call("getSpiritColor", {name = spiritName}) then
         Player[color].broadcast("You have not picked " .. spiritName .. "!", Color.Red)
+        return
     end
 
     local serpent = Global.call("getSpirit", {name = spiritName})

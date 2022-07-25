@@ -423,7 +423,7 @@ function setupSpirit(obj, player_color)
                         ob.destruct()
                     end
                 else
-                    ob.deal(1, player_color)
+                    Wait.frames(function() ob.deal(1, player_color) end, 1)
                 end
             else
                 ob.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
@@ -444,7 +444,7 @@ function setupSpirit(obj, player_color)
             if o.hasTag("Aspect") then
                 handleAspect(obj, o, player_color)
             elseif o.type == "Deck" then
-                o.deal(#o.getObjects(),player_color)
+                Wait.frames(function() o.deal(#o.getObjects(),player_color) end, 1)
             elseif o.type == "Card" and o.getName() == "Progression" then
                 if useProgression then
                     o.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
@@ -619,7 +619,7 @@ function handleAspect(spirit, deck, color)
                 else
                     card = deck
                 end
-                card.deal(1, color)
+                Wait.frames(function() card.deal(1, color) end, 1)
                 name = card.getName()
             end
             Player[color].broadcast("Your random Aspect is "..name, Color.SoftBlue)
@@ -632,7 +632,7 @@ function handleAspect(spirit, deck, color)
             else
                 count = 1
             end
-            deck.deal(count, color)
+            Wait.frames(function() deck.deal(count, color) end, 1)
         end
     elseif useAspect == 3 then
         local found = false
@@ -655,14 +655,14 @@ function handleAspect(spirit, deck, color)
                     })
                     if deck.remainder then deck = deck.remainder end
                     deck.destruct()
-                    card.deal(1, color)
+                    Wait.frames(function() card.deal(1, color) end, 1)
                     break
                 end
             end
         else
             if deck.getName() == aspectName then
                 found = true
-                deck.deal(1, color)
+                Wait.frames(function() deck.deal(1, color) end, 1)
             end
         end
         if not found then

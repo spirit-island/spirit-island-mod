@@ -641,7 +641,7 @@ function onLoad(saved_data)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
-        --obj.interactable = false
+        obj.interactable = false
     end
 
     ------
@@ -792,7 +792,7 @@ function onLoad(saved_data)
         selectedColors[color] = colorTable
     end
 
-    if Player["White"].seated then Player["White"].changeColor("Red") end
+    if Player["White"].seated then Player["White"].changeColor("Grey") end
     updateAllPlayerAreas()
     setupTableButtons()
     updateCurrentPhase(false)
@@ -3537,10 +3537,12 @@ function enableUI()
 end
 function runSpiritSetup()
     for color,data in pairs(selectedColors) do
-        for _,obj in ipairs(data.zone.getObjects()) do
-            if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-                obj.setVar("setupComplete", true)
-                obj.call("doSetup", {color=color})
+        if data.zone then
+            for _,obj in pairs(data.zone.getObjects()) do
+                if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
+                    obj.setVar("setupComplete", true)
+                    obj.call("doSetup", {color=color})
+                end
             end
         end
     end
@@ -3575,23 +3577,26 @@ function removeSpirit(params)
     updatePlayerArea(params.color)
 end
 function getEmptySeat()
-    local orderedTableGuids = {
-        "dce473",
-        "c99d4d",
-        "794c81",
-        "125e82",
-        "d7d593",
-        "33c4af",
-    }
     local coloredSeats = {}
     for color,obj in pairs(playerTables) do
         coloredSeats[obj.guid] = color
     end
-    for _,guid in pairs(orderedTableGuids) do
+    for _,guid in pairs(tables) do
         if coloredSeats[guid] then
             if not playerHasSpirit({color = coloredSeats[guid]}) then
-                return color
+                print("no spirit")
+                return coloredSeats[guid]
             end
+        else
+            local color
+            for c,_ in pairs(PlayerTints) do
+                if not playerTables[c] then
+                    color = c
+                    break
+                end
+            end
+            setupColor(getObjectFromGUID(guid), color)
+            return color
         end
     end
     return nil
@@ -4738,7 +4743,7 @@ function getSpiritColor(params)
         if data.zone then
             for _,object in pairs(data.zone.getObjects()) do
                 if object.hasTag("Spirit") and object.getName() == params.name then
-                    return object
+                    return color
                 end
             end
         end
@@ -6142,8 +6147,10 @@ function setupColorPickButtons(obj)
     }, {})
 end
 function pickColor(player, guid, color)
-    local table = getObjectFromGUID(guid)
-
+    setupColor(getObjectFromGUID(guid), color)
+    player.changeColor(color)
+end
+function setupColor(table, color)
     spawnObjectData({
         data = {
             Name = "HandTrigger",
@@ -6186,7 +6193,6 @@ function pickColor(player, guid, color)
         rotation = Vector(0, 0, 0),
         scale = Vector(18.41, 6.48, 4.7),
     })
-    player.changeColor(color)
 
     playerTables[color] = table
     table.setColorTint(Color.fromHex(TableTints[color].."FF"))

@@ -1368,7 +1368,6 @@ function loadConfig(config)
     end
     updateDifficulty()
 end
--- TODO fix Weekly challenge setup in new world
 function PickSpirit(name, aspect)
     for _,spirit in pairs(getObjectsWithTag("Spirit")) do
         if spirit.getName():lower() == name:lower() then
@@ -1790,6 +1789,9 @@ function randomSpirit(player)
         Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
+    if not Global.getTable("playerTables")[player.color] then
+        return
+    end
 
     local tags = getSpiritTags()
     if tags == nil then
@@ -1824,8 +1826,10 @@ function gainSpirit(player)
         Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
-
     local obj = Global.getTable("playerTables")[player.color]
+    if not obj then
+        return
+    end
 
     local options = {}
     local buttons = obj.getButtons()

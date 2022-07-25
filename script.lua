@@ -6109,43 +6109,57 @@ function setupTableButtons()
     end
     for _,guid in pairs(seatTables) do
         if not coloredSeats[guid] then
-            setupColorPickButtons(getObjectFromGUID(guid))
+            setupColorPickButtons(getObjectFromGUID(guid), true)
         else
             setupSwapButtons(getObjectFromGUID(guid))
         end
     end
+    setupColorPickButtons(getObjectFromGUID("fe680a"), false)
+    setupColorPickButtons(getObjectFromGUID("2ca216"), false)
     updateSwapButtons()
 end
-function setupColorPickButtons(obj)
+function setupColorPickButtons(obj, seat)
     local buttons = {}
     for color,_ in pairs(Tints) do
         if not playerTables[color] then
             local buttonColor = Color[color]:toHex(false)
             local textColor = fontColor(Color[color])
+            local func = "pickColor"
+            local text = "Pick "
+            local fontSize = "44"
+            local minWidth = "270"
+            if not seat then
+                func = "swapColor"
+                text = "Swap to "
+                fontSize = "70"
+                minWidth = "600"
+            end
             table.insert(buttons, {
                 tag = "Button",
                 attributes = {
                     id = color,
-                    onClick = "Global/pickColor("..obj.guid..")",
+                    onClick = "Global/"..func.."("..obj.guid..")",
                     colors = "#"..buttonColor.."|#"..buttonColor.."|#"..buttonColor.."|#"..buttonColor.."80",
                     textColor = "rgb("..textColor[1]..","..textColor[2]..","..textColor[3]..")",
-                    text = "Pick "..color,
-                    fontSize = "44",
-                    minWidth = "270",
+                    text = text..color,
+                    fontSize = fontSize,
+                    minWidth = minWidth,
                     minHeight = "110",
                 },
                 children = {},
             })
 
-            local scale = flipVector(Vector(obj.getScale()))
-            scale = scale * 2
-            -- Swap Place (button index 0)
-            obj.createButton({
-                label="Swap Place", click_function="onClickedSwapPlace", function_owner=Global,
-                position={-3.25,0.4,7.5}, rotation={0,0,0}, height=400, width=1500, scale=scale,
-                font_color={0,0,0}, font_size=250,
-                tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
-            })
+            if seat then
+                local scale = flipVector(Vector(obj.getScale()))
+                scale = scale * 2
+                -- Swap Place (button index 0)
+                obj.createButton({
+                    label="Swap Place", click_function="onClickedSwapPlace", function_owner=Global,
+                    position={-3.25,0.4,7.5}, rotation={0,0,0}, height=400, width=1500, scale=scale,
+                    font_color={0,0,0}, font_size=250,
+                    tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+                })
+            end
         end
     end
     obj.UI.setXmlTable({
@@ -6272,12 +6286,14 @@ function updateColorPickButtons()
     for _,guid in pairs(seatTables) do
         if not coloredSeats[guid] then
             if showPlayerButtons then
-                setupColorPickButtons(getObjectFromGUID(guid))
+                setupColorPickButtons(getObjectFromGUID(guid), true)
             else
                 getObjectFromGUID(guid).UI.setXml("")
             end
         end
     end
+    setupColorPickButtons(getObjectFromGUID("fe680a"), false)
+    setupColorPickButtons(getObjectFromGUID("2ca216"), false)
 end
 function updateSwapButtons()
     for color,obj in pairs(playerTables) do
@@ -6591,15 +6607,6 @@ function swapPlayerColors(a, b)
     end
     local pa, pb = Player[a], Player[b]
 
-    -- I think this can be deleted now?
-    if not playerTables[a] then
-        -- This should only trigger if the player clicking is a non-standard color.
-        if pb.seated then
-            pa.broadcast("Color " .. b .. " is already claimed.  Try another color.", Color.Red)
-            return false
-        end
-    end
-
     if colorLock then
         pa.broadcast("There's already a color swap in progress, please wait and try again", Color.Red)
         return
@@ -6656,8 +6663,8 @@ function swapPlayerAreas(a, b)
     local colorB = getTableColor(b)
 
     swapPlayerAreaObjects(a, b, colorA, colorB)
-    swapPlayerAreaColors(a, b, colorA, colorB)
-    swapPlayerAreaTables(a, b)
+    swapPlayerHands(a, b, colorA, colorB)
+    swapPlayerTables(a, b)
 
     if colorB ~= "" then
         printToAll(colorA .. " swapped places with " .. colorB .. ".", Color[colorA])
@@ -6697,7 +6704,7 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
         end
     end
 end
-function swapPlayerAreaColors(a, b, colorA, colorB)
+function swapPlayerHands(a, b, colorA, colorB)
     if a == b then return end
     local offset = b.getPosition() - a.getPosition()
 
@@ -6717,7 +6724,7 @@ function swapPlayerAreaColors(a, b, colorA, colorB)
         end
     end
 end
-function swapPlayerAreaTables(a, b)
+function swapPlayerTables(a, b)
     if a == b then return end
     local pos = a.getPosition()
     a.setPosition(b.getPosition())
@@ -6728,13 +6735,12 @@ function swapSeatColors(a, b)
     if not swapPlayerColors(a, b) then
         return
     end
-    swapPlayerPresenceColors(a, b)
-    swapPlayerAreaColors(a, b)
-    swapPlayerAreaButtons(a, b)
+    recolorPlayerPieces(a, b)
+    recolorPlayerArea(a, b)
     swapPlayerUIs(a, b)
 end
 
-function swapDefendColor(bag, color)
+function recolorDefend(bag, color)
     local data = bag.getData()
     local colorTint
     if Tints[color].Token then
@@ -6758,7 +6764,7 @@ function swapDefendColor(bag, color)
     bag.destruct()
     return spawnObjectData({data = data})
 end
-function swapIsolateColor(bag, color)
+function recolorIsolate(bag, color)
     local data = bag.getData()
     local colorTint
     if Tints[color].Token then
@@ -6776,7 +6782,7 @@ function swapIsolateColor(bag, color)
     bag.destruct()
     return spawnObjectData({data = data})
 end
-function swapPlayerPresenceColors(fromColor, toColor)
+function recolorPlayerPieces(fromColor, toColor)
     if fromColor == toColor then return end
     local function initData(color)
         local colorTint
@@ -6814,11 +6820,11 @@ function swapPlayerPresenceColors(fromColor, toColor)
         selectedColors[toColor].isolate.setPosition(selectedColors[fromColor].isolate.getPosition())
         selectedColors[fromColor].isolate.setPosition(pos)
     elseif selectedColors[fromColor] then
-        selectedColors[fromColor].isolate = swapIsolateColor(selectedColors[fromColor].isolate, toColor)
-        selectedColors[fromColor].defend = swapDefendColor(selectedColors[fromColor].defend, toColor)
+        selectedColors[fromColor].defend = recolorDefend(selectedColors[fromColor].defend, toColor)
+        selectedColors[fromColor].isolate = recolorIsolate(selectedColors[fromColor].isolate, toColor)
     elseif selectedColors[toColor] then
-        selectedColors[toColor].isolate = swapIsolateColor(selectedColors[toColor].isolate, fromColor)
-        selectedColors[toColor].defend = swapDefendColor(selectedColors[toColor].defend, fromColor)
+        selectedColors[toColor].defend = recolorDefend(selectedColors[toColor].defend, fromColor)
+        selectedColors[toColor].isolate = recolorIsolate(selectedColors[toColor].isolate, fromColor)
     end
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
 
@@ -6896,107 +6902,41 @@ function swapPlayerPresenceColors(fromColor, toColor)
         end
     end, 1)
 end
-function swapPlayerAreaButtons(a, b)
-    -- Fix for handling Fractured's 3rd hand with "Swap Color"
-    local offset = Player[b].getHandTransform(1).position - Player[a].getHandTransform(1).position
-    local thirdHandA = Player[a].getHandCount() == 3
-    local thirdHandB = Player[b].getHandCount() == 3
-    if thirdHandA and not thirdHandB then
-        local transform = Player[a].getHandTransform(3)
-        transform.position = transform.position + offset
-        spawnObjectData({
-            data = {
-                Name = "HandTrigger",
-                FogColor = b,
-                Transform = {
-                    posX = 0,
-                    posY = 0,
-                    posZ = 0,
-                    rotX = 0,
-                    rotY = 0,
-                    rotZ = 0,
-                    scaleX = 1.0,
-                    scaleY = 1.0,
-                    scaleZ = 1.0
-                },
-                Locked = true,
-            },
-            position = transform.position,
-            rotation = transform.rotation,
-            scale = transform.scale,
-        })
-        local lastHand = nil
-        for _,obj in pairs(getObjects()) do
-            if obj.type == "Hand" then
-                if obj.getData().FogColor == a then
-                    lastHand = obj
-                end
+function recolorPlayerArea(a, b)
+    for _,obj in pairs(getObjects()) do
+        if obj.type == "Hand" then
+            local data = obj.getData()
+            if data.FogColor == a then
+                data.FogColor = b
+            elseif data.FogColor == b then
+                data.FogColor = a
             end
-        end
-        if lastHand ~= nil then
-            lastHand.destruct()
-        end
-    elseif not thirdHandA and thirdHandB then
-        local transform = Player[b].getHandTransform(3)
-        transform.position = transform.position - offset
-        spawnObjectData({
-            data = {
-                Name = "HandTrigger",
-                FogColor = a,
-                Transform = {
-                    posX = 0,
-                    posY = 0,
-                    posZ = 0,
-                    rotX = 0,
-                    rotY = 0,
-                    rotZ = 0,
-                    scaleX = 1.0,
-                    scaleY = 1.0,
-                    scaleZ = 1.0
-                },
-                Locked = true,
-            },
-            position = transform.position,
-            rotation = transform.rotation,
-            scale = transform.scale,
-        })
-        local lastHand = nil
-        for _,obj in pairs(getObjects()) do
-            if obj.type == "Hand" then
-                if obj.getData().FogColor == b then
-                    lastHand = obj
-                end
-            end
-        end
-        if lastHand ~= nil then
-            lastHand.destruct()
+            spawnObjectData({data = data})
+            obj.destruct()
         end
     end
 
-    local xml = playerTables[a].UI.getXml()
-    playerTables[a].UI.setXml(playerTables[b].UI.getXml())
-    playerTables[b].UI.setXml(xml)
-
-    local buttons = playerTables[a].getButtons()
-    playerTables[a].clearButtons()
-    local newButtons = playerTables[b].getButtons()
-    if newButtons ~= nil then
-        for i=1,#newButtons do
-            playerTables[a].createButton(newButtons[i])
+    if playerTables[a] then
+        local colorTint
+        if Tints[b].Table then
+            colorTint = Color.fromHex(Tints[b].Table.."FF")
+        else
+            colorTint = Color.fromHex(Tints[b].Presence.."FF")
         end
+        playerTables[a].setColorTint(colorTint)
     end
-    playerTables[b].clearButtons()
-    if buttons ~= nil then
-        for i=1,#buttons do
-            playerTables[b].createButton(buttons[i])
+    if playerTables[b] then
+        local colorTint
+        if Tints[a].Table then
+            colorTint = Color.fromHex(Tints[a].Table.."FF")
+        else
+            colorTint = Color.fromHex(Tints[a].Presence.."FF")
         end
+        playerTables[b].setColorTint(colorTint)
     end
-
-    local tint = playerTables[a].getColorTint()
-    playerTables[a].setColorTint(playerTables[b].getColorTint())
-    playerTables[b].setColorTint(tint)
 
     playerTables[a], playerTables[b] = playerTables[b], playerTables[a]
+    updateSwapButtons()
 end
 function swapPlayerUI(a, b, xmlID)
     local aEnabled = false
@@ -7085,6 +7025,12 @@ function onClickedSwapPlace(target_obj, source_color, alt_click)
     end
 end
 
+function swapColor(player, _, color)
+    if playerTables[player.color] then
+        swapSeatColors(player.color, color)
+        updateColorPickButtons()
+    end
+end
 -- Trade colors with selected seat.
 function onClickedSwapColor(target_obj, source_color, alt_click)
     local target_color = nil

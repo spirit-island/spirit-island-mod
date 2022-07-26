@@ -6941,7 +6941,7 @@ function updateCurrentPhase(clear)
         textColor = "#323232"
     }
     if clear then
-        attributes.text = string.sub(UI.getAttribute(id, "text"), 3, -3)
+        attributes.text = string.gsub(string.gsub(UI.getAttribute(id, "text"), ">>", ""), "<<", "")
     else
         attributes.text = ">>"..UI.getAttribute(id, "text").."<<"
     end

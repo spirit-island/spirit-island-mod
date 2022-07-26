@@ -3653,6 +3653,9 @@ function timePassesCo()
     wt(2)
     broadcastToAll("Starting Turn "..turn, Color.White)
     enterSpiritPhase(nil)
+    for color,_ in pairs(selectedColors) do
+        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftYellow)
+    end
     timePassing = false
     return 1
 end
@@ -6893,10 +6896,6 @@ function enterSpiritPhase(player)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
-
-    for color,_ in pairs(selectedColors) do
-        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftYellow)
-    end
 end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end

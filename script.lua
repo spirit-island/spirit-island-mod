@@ -7036,6 +7036,8 @@ end
 function swapPlace(player, guid, _)
     if playerTables[player.color] then
         swapPlayerAreas(playerTables[player.color], getObjectFromGUID(guid))
+    else
+        player.broadcast("Pick a color first", Color.Red)
     end
 end
 -- Trade places with selected seat.
@@ -7061,6 +7063,8 @@ function swapColor(player, _, color)
     if playerTables[player.color] then
         swapSeatColors(player.color, color)
         updateColorPickButtons()
+    else
+        player.broadcast("Pick a color first", Color.Red)
     end
 end
 -- Trade colors with selected seat.

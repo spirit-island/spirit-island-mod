@@ -43,11 +43,11 @@ Tints = {
     ["Pink"] = {
         Presence = "#F46FCD",
     },
-    ["White"] = {
-        Presence = "#FFFFFF",
-    },
     ["Brown"] = {
         Presence = "#703A16",
+    },
+    ["White"] = {
+        Presence = "#FFFFFF",
     },
 }
 ---- Used with Adversary Scripts
@@ -309,19 +309,27 @@ function onObjectEnterContainer(container, object)
 end
 function GetSacredSiteUrl(params)
     if params.color == "Red" then
-        return "http://cloud-3.steamusercontent.com/ugc/1752434562676874388/C51FB839BC19E2E94CE837708F00B462DAC1C89D/"
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577478456/5AED930161D049CE76309D9A144DD720B6CD90DD/"
     elseif params.color == "Purple" then
-        return "http://cloud-3.steamusercontent.com/ugc/1752434562676885555/CD5BF2645FDC5B6AEFAA98C7D76BBD7015E18B93/"
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577508377/A054E6F4C28CDA53A6E1007637DAE2B31AD3B040/"
     elseif params.color == "Yellow" then
-        return "http://cloud-3.steamusercontent.com/ugc/1752434562676889038/323BA470D164E4C6D36713E34F20E578C0A3F94A/"
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577505356/7E936312C2DC02ADCBCF73431D14F0179648D945/"
     elseif params.color == "Blue" then
-        return "http://cloud-3.steamusercontent.com/ugc/1752434562676881841/9B1B1859A3BCE1EE2EC77AE688E13E937CB08F09/"
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577507696/4F328278536C079106E848C8CABE70CAC02B7D71/"
     elseif params.color == "Green" then
-        return "http://cloud-3.steamusercontent.com/ugc/1752434562676883074/3419998A3044C614DBAEDC710658F3A4CB7D8CF3/"
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577506124/3D05984B0E7FD2B6CFA262613512D65333CCDF0E/"
     elseif params.color == "Orange" then
-        return "http://cloud-3.steamusercontent.com/ugc/1752434562676884361/85EE264FD32632A9DD3828EA9538FDBC4F2FBC22/"
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577503990/84E8BA700D5F36B9E7A1509F63B2108E55E1DE02/"
+    elseif params.color == "Teal" then
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577507093/7F7AF0689015B0E9FEE404761DC05492342C6106/"
+    elseif params.color == "Pink" then
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577508994/315444E91F9EA15D5C71DD676752C16EAD13A510/"
+    elseif params.color == "Brown" then
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577509725/F59973839DF9CEF36777772990C72655C44339E2/"
+    elseif params.color == "White" then
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
     else
-        return ""
+        return "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
     end
 end
 function makeSacredSite(obj)
@@ -6648,7 +6656,7 @@ function swapPlayerColors(a, b)
             end
             -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
             -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
-            for _,tempColor in ipairs({"Brown", "Teal", "Pink", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
+            for _,tempColor in ipairs({"Brown", "Pink", "Teal", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
                 if pa.changeColor(tempColor) then
                     Wait.frames(function()
                         pb.changeColor(a)
@@ -6933,13 +6941,18 @@ function recolorPlayerArea(a, b)
     for _,obj in pairs(getObjects()) do
         if obj.type == "Hand" then
             local data = obj.getData()
+            local found = false
             if data.FogColor == a then
                 data.FogColor = b
+                found = true
             elseif data.FogColor == b then
                 data.FogColor = a
+                found = true
             end
-            spawnObjectData({data = data})
-            obj.destruct()
+            if found then
+                spawnObjectData({data = data})
+                obj.destruct()
+            end
         end
     end
 
@@ -7164,6 +7177,32 @@ function onObjectSpawn(obj)
     elseif obj.hasTag("Player") then
         table.insert(seatTables, obj.guid)
         setupColorPickButtons(obj, true)
+    end
+end
+function onObjectDestroy(obj)
+    if obj.hasTag("Player") then
+        for i,guid in pairs(seatTables) do
+            if guid == obj.guid then
+                table.remove(seatTables, i)
+                break
+            end
+        end
+        for color,table in pairs(playerTables) do
+            if table == obj then
+                -- Not really sure what to do if a spirit has already been picked
+                if not selectedColors[color] then
+                    for _,o in pairs(getObjects()) do
+                        if o.type == "Hand" then
+                            if o.getData().FogColor == color then
+                                o.destruct()
+                            end
+                        end
+                    end
+                end
+                playerTables[color] = nil
+                updateColorPickButtons()
+            end
+        end
     end
 end
 function applyPowerCardContextMenuItems(card)

@@ -1756,6 +1756,10 @@ function getSpiritTags()
         tags["JE"] = true
         added = true
     end
+    if self.UI.getAttribute("spiritFnF", "isOn") == "true" then
+        tags["FnF"] = true
+        added = true
+    end
     if self.UI.getAttribute("spiritCustom", "isOn") == "true" then
         tags[""] = true
         added = true
@@ -2010,6 +2014,8 @@ function addSpirit(params)
         expansion = "BnC"
     elseif params.spirit.hasTag("JE") then
         expansion = "JE"
+    elseif params.spirit.hasTag("FnF") then
+        expansion = "FnF"
     end
     spiritTags[params.spirit.guid] = expansion
 

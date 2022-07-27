@@ -6656,7 +6656,7 @@ function swapPlayerColors(a, b)
             end
             -- Need a temporary color to seat the player at to swap colors. Favor those not used by the game first, followed by those used by the game.
             -- Use Black as a last resort since the player accidentally becoming a GM is probably A Bad Thing(tm).
-            for _,tempColor in ipairs({"Brown", "Pink", "Teal", "White", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
+            for _,tempColor in ipairs({"White", "Brown", "Pink", "Teal", "Orange", "Green", "Blue", "Yellow", "Purple", "Red", "Black"}) do
                 if pa.changeColor(tempColor) then
                     Wait.frames(function()
                         pb.changeColor(a)

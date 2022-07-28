@@ -784,9 +784,14 @@ function fearCard(params)
             if card.getName() == "Terror II" or card.getName() == "Terror III" then
                 card.setLock(true)
                 card.use_hands = false
-                Wait.frames(function() card.setLock(false) card.use_hands = true end, 1)
-                card.setPosition(dividerPos)
-                card.setRotation(Vector(0, 180, 0))
+                local position = card.getPosition()
+                position.y = 0
+                card.setPosition(position)
+                Wait.frames(function()
+                    Wait.condition(function() card.setLock(false) card.use_hands = true end, function() return not card.isSmoothMoving() end)
+                    card.setPosition(dividerPos)
+                    card.setRotation(Vector(0, 180, 0))
+                end, 1)
             elseif card.hasTag("Invader Card") then
                 local invaderPos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
                 if Global.UI.getAttribute("panelBuild21", "active") == "True" then
@@ -797,20 +802,25 @@ function fearCard(params)
                     invaderPos = invaderPos + Vector(0,0,-1)
                 end
                 card.setLock(true)
-                Wait.frames(function() card.setLock(false) end, 1)
-                -- Russia puts invader cards in this deck at a scale factor of 1.37
-                card.scale(1/1.37)
-                card.setPosition(invaderPos)
-                card.setRotationSmooth(Vector(0,180,0))
-                invaderCardBroadcast(card)
+                card.use_hands = false
+                local position = card.getPosition()
+                position.y = 0
+                card.setPosition(position)
+                Wait.frames(function()
+                    Wait.frames(function() card.setLock(false) card.use_hands = true end, 1)
+                    -- Russia puts invader cards in this deck at a scale factor of 1.37
+                    card.scale(1/1.37)
+                    card.setPosition(invaderPos)
+                    card.setRotationSmooth(Vector(0,180,0))
+                    invaderCardBroadcast(card)
+                end, 1)
             elseif card.hasTag("Fear") then
                 foundFearCount = foundFearCount + 1
                 if foundFearCount == 2 then
                     break
                 end
                 card.setLock(true)
-                card.use_hands = false
-                Wait.frames(function() card.setLock(false) card.use_hands = true end, 1)
+                Wait.frames(function() card.setLock(false) end, 1)
                 card.setPosition(pos)
                 if params.earned then
                     broadcastToAll("Fear Card Earned!", Color.SoftBlue)

@@ -783,7 +783,8 @@ function fearCard(params)
         if not card.getLock() then
             if card.getName() == "Terror II" or card.getName() == "Terror III" then
                 card.setLock(true)
-                Wait.frames(function() card.setLock(false) end, 1)
+                card.use_hands = false
+                Wait.frames(function() card.setLock(false) card.use_hands = true end, 1)
                 card.setPosition(dividerPos)
                 card.setRotation(Vector(0, 180, 0))
             elseif card.hasTag("Invader Card") then
@@ -808,7 +809,8 @@ function fearCard(params)
                     break
                 end
                 card.setLock(true)
-                Wait.frames(function() card.setLock(false) end, 1)
+                card.use_hands = false
+                Wait.frames(function() card.setLock(false) card.use_hands = true end, 1)
                 card.setPosition(pos)
                 if params.earned then
                     broadcastToAll("Fear Card Earned!", Color.SoftBlue)

@@ -783,12 +783,8 @@ function fearCard(params)
         if not card.getLock() then
             if card.getName() == "Terror II" or card.getName() == "Terror III" then
                 card.setLock(true)
-                card.use_hands = false
-                local position = card.getPosition()
-                position.y = 0
-                card.setPosition(position)
                 Wait.frames(function()
-                    Wait.condition(function() card.setLock(false) card.use_hands = true end, function() return not card.isSmoothMoving() end)
+                    Wait.frames(function() card.setLock(false) end, 1)
                     card.setPosition(dividerPos)
                     card.setRotation(Vector(0, 180, 0))
                 end, 1)
@@ -802,12 +798,8 @@ function fearCard(params)
                     invaderPos = invaderPos + Vector(0,0,-1)
                 end
                 card.setLock(true)
-                card.use_hands = false
-                local position = card.getPosition()
-                position.y = 0
-                card.setPosition(position)
                 Wait.frames(function()
-                    Wait.frames(function() card.setLock(false) card.use_hands = true end, 1)
+                    Wait.frames(function() card.setLock(false) end, 1)
                     -- Russia puts invader cards in this deck at a scale factor of 1.37
                     card.scale(1/1.37)
                     card.setPosition(invaderPos)

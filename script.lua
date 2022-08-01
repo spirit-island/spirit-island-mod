@@ -4234,6 +4234,8 @@ function MapPlacen(boards)
     local rand = 0
     local BETaken = false
     local DFTaken = false
+    local AGTaken = false
+    local CHTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
         if extraRandomBoard == nil then
             extraRandomBoard = math.random(1,#boards)
@@ -4309,6 +4311,18 @@ function MapPlacen(boards)
                     elseif value.name == "D" or value.name == "F" then
                         if not DFTaken then
                             DFTaken = true
+                            index = value.index
+                            break
+                        end
+                    elseif value.name == "A" or value.name == "G" then
+                        if not AGTaken then
+                            AGTaken = true
+                            index = value.index
+                            break
+                        end
+                    elseif value.name == "C" or value.name == "H" then
+                        if not CHTaken then
+                            CHTaken = true
                             index = value.index
                             break
                         end

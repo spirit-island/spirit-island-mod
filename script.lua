@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.5.0-beta.12"
+version = "3.5.0-beta.19"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -3698,6 +3698,9 @@ function timePassesCo()
     wt(2)
     broadcastToAll("Starting Turn "..turn, Color.White)
     enterSpiritPhase(nil)
+    for color,_ in pairs(selectedColors) do
+        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftYellow)
+    end
     timePassing = false
     return 1
 end
@@ -4277,6 +4280,8 @@ function MapPlacen(boards)
     local rand = 0
     local BETaken = false
     local DFTaken = false
+    local AGTaken = false
+    local CHTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
         if extraRandomBoard == nil then
             extraRandomBoard = math.random(1,#boards)
@@ -4352,6 +4357,18 @@ function MapPlacen(boards)
                     elseif value.name == "D" or value.name == "F" then
                         if not DFTaken then
                             DFTaken = true
+                            index = value.index
+                            break
+                        end
+                    elseif value.name == "A" or value.name == "G" then
+                        if not AGTaken then
+                            AGTaken = true
+                            index = value.index
+                            break
+                        end
+                    elseif value.name == "C" or value.name == "H" then
+                        if not CHTaken then
+                            CHTaken = true
                             index = value.index
                             break
                         end
@@ -7265,10 +7282,6 @@ function enterSpiritPhase(player)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
-
-    for color,_ in pairs(selectedColors) do
-        Player[color].broadcast("Energy at start of Spirit Phase: "..getCurrentEnergy(color), Color.SoftYellow)
-    end
 end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end
@@ -7313,7 +7326,7 @@ function updateCurrentPhase(clear)
         textColor = "#323232"
     }
     if clear then
-        attributes.text = string.sub(UI.getAttribute(id, "text"), 3, -3)
+        attributes.text = string.gsub(string.gsub(UI.getAttribute(id, "text"), ">>", ""), "<<", "")
     else
         attributes.text = ">>"..UI.getAttribute(id, "text").."<<"
     end

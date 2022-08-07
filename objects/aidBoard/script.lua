@@ -783,9 +783,11 @@ function fearCard(params)
         if not card.getLock() then
             if card.getName() == "Terror II" or card.getName() == "Terror III" then
                 card.setLock(true)
-                Wait.frames(function() card.setLock(false) end, 1)
-                card.setPosition(dividerPos)
-                card.setRotation(Vector(0, 180, 0))
+                Wait.frames(function()
+                    Wait.frames(function() card.setLock(false) end, 1)
+                    card.setPosition(dividerPos)
+                    card.setRotation(Vector(0, 180, 0))
+                end, 1)
             elseif card.hasTag("Invader Card") then
                 local invaderPos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
                 if Global.UI.getAttribute("panelBuild21", "active") == "True" then
@@ -796,12 +798,14 @@ function fearCard(params)
                     invaderPos = invaderPos + Vector(0,0,-1)
                 end
                 card.setLock(true)
-                Wait.frames(function() card.setLock(false) end, 1)
-                -- Russia puts invader cards in this deck at a scale factor of 1.37
-                card.scale(1/1.37)
-                card.setPosition(invaderPos)
-                card.setRotationSmooth(Vector(0, 180, 0))
-                invaderCardBroadcast(card)
+                Wait.frames(function()
+                    Wait.frames(function() card.setLock(false) end, 1)
+                    -- Russia puts invader cards in this deck at a scale factor of 1.37
+                    card.scale(1/1.37)
+                    card.setPosition(invaderPos)
+                    card.setRotationSmooth(Vector(0,180,0))
+                    invaderCardBroadcast(card)
+                end, 1)
             elseif card.hasTag("Fear") then
                 foundFearCount = foundFearCount + 1
                 if foundFearCount == 2 then

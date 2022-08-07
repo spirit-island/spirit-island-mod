@@ -83,17 +83,17 @@ function AdversaryUI(params)
     ui.escalation.tooltip = "After Exploring: On each board with\n4 or fewer Blight, add 1 Town to a\nland without Town/Blight. On each board\nwith 2 or fewer Blight, do so again."
 
     ui.effects = {}
-    ui.invader = {}
     if params.level >= 1 then
         ui.effects[1] = {}
         ui.effects[1].name = "Migratory Herders"
         ui.effects[1].tooltip = "After the normal Build Step: In each\nland matching a Build card, Gather\n1 Town from a land not matching\na Build Card. (In board/land order.)"
-        ui.invader.build = true
+        ui.effects[1].afterBuild = true
     end
     if params.level >= 2 then
         ui.effects[2] = {}
         ui.effects[2].name = "More Rural Than Urban"
         ui.effects[2].tooltip = "During Play, when Invaders\nwould Build 1 City in an Inland\nland, they instead Build 2 Town."
+        ui.effects[2].build = true
     end
     if params.level >= 4 then
         ui.effects[4] = {}
@@ -109,7 +109,7 @@ function AdversaryUI(params)
         ui.effects[6] = {}
         ui.effects[6].name = "Far-Flung Herds"
         ui.effects[6].tooltip = "Ravages do +2 Damage (total) if any\nadjacent lands have Town. (This does not\ncause lands without Invaders to Ravage.)"
-        ui.invader.ravage = true
+        ui.effects[6].ravage = true
     end
     return ui
 end

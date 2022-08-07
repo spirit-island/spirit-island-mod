@@ -17,7 +17,7 @@ function PostSetup()
     })
     bag.setLock(true)
 
-    local fearDeck = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1]
+    local fearDeck = Global.getVar("fearDeckSetupZone").getObjects()[1]
     if fearDeck ~= nil then
         local handZone = Player["Black"].getHandTransform(1)
         if fearDeck.type == "Deck" then

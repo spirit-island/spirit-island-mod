@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -44.0099983215332,
-    "posY": 0.9900000095367432,
-    "posZ": 61.099998474121094,
+    "posX": -44.849998474121094,
+    "posY": 0.9602000117301941,
+    "posZ": 61.400001525878906,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.727400004863739,
-    "scaleY": 0.14020000398159027,
-    "scaleZ": 0.727400004863739
+    "scaleX": 0.6248000264167786,
+    "scaleY": 0.12039999663829803,
+    "scaleZ": 0.6248000264167786
   },
   "Nickname": "3 Energy Bags",
   "Description": "",
@@ -57,32 +57,32 @@
   },
   "ChildObjects": [
     {
-      "GUID": "db34ef",
-      "Name": "Bag",
+      "GUID": "ebe583",
+      "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.03460000082850456,
-        "posY": 1.101099967956543,
-        "posZ": 0.8698999881744385,
+        "posX": 0.0,
+        "posY": 0.23149999976158142,
+        "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 270.0,
-        "rotZ": 90.0,
-        "scaleX": 0.02759999968111515,
-        "scaleY": 0.5322999954223633,
-        "scaleZ": 0.5322999954223633
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5011000037193298,
+        "scaleY": 8.304100036621094,
+        "scaleZ": 0.5011000037193298
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.7059000134468079,
-        "g": 0.36649999022483826,
-        "b": 0.0
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
-      "Grid": true,
-      "Snap": true,
+      "Grid": false,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -92,41 +92,44 @@
       "GridProjection": false,
       "HideWhenFaceDown": false,
       "Hands": false,
-      "MaterialIndex": -1,
-      "MeshIndex": -1,
-      "Number": 0,
-      "Bag": {
-        "Order": 0
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560127425/C76E130EB989B17E66106EAE6B9F57EC9D5B5203/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
       },
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
       "ChildObjects": [
         {
-          "GUID": "455c87",
+          "GUID": "5ef44e",
           "Name": "Custom_Model",
           "Transform": {
-            "posX": -14.102899551391602,
-            "posY": 1.2865999937057495,
-            "posZ": -0.00860000029206276,
-            "rotX": 90.0,
-            "rotY": 90.0,
-            "rotZ": 0.0,
-            "scaleX": 1.2913999557495117,
-            "scaleY": 258.277099609375,
-            "scaleZ": 1.2913999557495117
+            "posX": 0.14890000224113464,
+            "posY": 0.012400000356137753,
+            "posZ": 0.33629998564720154,
+            "rotX": -0.0003000000142492354,
+            "rotY": 0.02800000086426735,
+            "rotZ": 9.999999747378752e-05,
+            "scaleX": 1.4084999561309814,
+            "scaleY": 0.9243999719619751,
+            "scaleZ": 1.4084999561309814
           },
-          "Nickname": "3 Energy",
-          "Description": "Pays for Power Cards. Carries over from turn to turn.",
+          "Nickname": "",
+          "Description": "",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 1.0,
             "g": 1.0,
             "b": 1.0
           },
-          "Tags": [
-            "Destroy"
-          ],
           "LayoutGroupSortIndex": 0,
           "Value": 0,
           "Locked": true,

@@ -17,8 +17,7 @@ function doSetup(params)
 
     for _, card in pairs(Player[color].getHandObjects(1)) do
         if card.guid == "22b2f3" then
-            Global.call("ensureCardInPlay", {card=card})
-            Wait.frames(function() Global.call("discardPowerCardFromPlay", {card = card, discardHeight = 1}) end, 1)
+            Global.call("forgetPowerCard", {card=card, discardHeight = 1})
             Global.call("giveEnergy", {color=color, energy=1, ignoreDebt=false})
             break
         end

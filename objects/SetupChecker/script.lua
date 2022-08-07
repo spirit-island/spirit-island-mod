@@ -11,6 +11,7 @@ adversaries = {
     ["Scotland"] = "37a592",
 }
 numAdversaries = 7
+allAdversaries = {}
 scenarios = {
     ["None"] = "",
     ["Random"] = "",
@@ -28,6 +29,7 @@ scenarios = {
     ["A Diversity of Spirits"] = "3d1ba3",
 }
 numScenarios = 12
+allScenarios = {}
 
 -- This must match the same guids of global's elementScanZones
 playerZones = {
@@ -64,7 +66,6 @@ optionalBlightSetup = true
 optionalExtraBoard = false
 optionalBoardPairings = true
 optionalThematicRebellion = false
-optionalEngland6 = true
 optionalThematicRedo = false
 optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
@@ -111,7 +112,6 @@ function onSave()
     data_table.variant.extraBoard = optionalExtraBoard
     data_table.variant.boardPairings = optionalBoardPairings
     data_table.variant.thematicRebellion = optionalThematicRebellion
-    data_table.variant.england6 = optionalEngland6
     data_table.variant.thematicRedo = optionalThematicRedo
     data_table.variant.gameResults = optionalGameResults
 
@@ -146,11 +146,25 @@ function onSave()
     end
     data_table.adversaryList = adversaryList
 
+    local allAdversaryList = {}
+    for name,guid in pairs(allAdversaries) do
+        table.insert(allAdversaryList, {name=name, guid=guid})
+    end
+    data_table.allAdversaryList = allAdversaryList
+
     local scenarioList = {}
     for name,guid in pairs(scenarios) do
         table.insert(scenarioList, {name=name, guid=guid})
     end
     data_table.scenarioList = scenarioList
+
+    local allScenarioList = {}
+    for name,guid in pairs(allScenarios) do
+        table.insert(allScenarioList, {name=name, guid=guid})
+    end
+    data_table.allScenarioList = allScenarioList
+
+    data_table.pickedSpirits = pickedSpirits
 
     return JSON.encode(data_table)
 end
@@ -176,7 +190,6 @@ function onLoad(saved_data)
         optionalExtraBoard = loaded_data.variant.extraBoard
         optionalBoardPairings = loaded_data.variant.boardPairings
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
-        optionalEngland6 = loaded_data.variant.england6
         optionalThematicRedo = loaded_data.variant.thematicRedo
         optionalGameResults = loaded_data.variant.gameResults
 
@@ -212,6 +225,11 @@ function onLoad(saved_data)
         end
         numAdversaries = count
 
+        allAdversaries = {}
+        for _,params in pairs(loaded_data.allAdversaryList) do
+            allAdversaries[params.name] = params.guid
+        end
+
         scenarios = {}
         count = 0
         for _,params in pairs(loaded_data.scenarioList) do
@@ -222,8 +240,14 @@ function onLoad(saved_data)
         end
         numScenarios = count
 
+        allScenarios = {}
+        for _,params in pairs(loaded_data.allScenarioList) do
+            allScenarios[params.name] = params.guid
+        end
+
+        pickedSpirits = loaded_data.pickedSpirits
+
         setSlaveRebellion(optionalThematicRebellion, not setupStarted)
-        setEngland6(optionalEngland6, not setupStarted, true)
         setSweden(exploratorySweden, not setupStarted, true)
         if not setupStarted then
             self.UI.setAttribute("variant", "isOn", tostring(loaded_data.toggle.variant))
@@ -282,6 +306,13 @@ function onLoad(saved_data)
             self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
             self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
 
+            for name,guid in pairs(allAdversaries) do
+                newAdversaryScenario(getObjectFromGUID(guid), true, adversaries[name] == nil)
+            end
+            for name,guid in pairs(allScenarios) do
+                newAdversaryScenario(getObjectFromGUID(guid), false, scenarios[name] == nil)
+            end
+
             -- queue up all dropdown changes at once
             Wait.frames(function()
                 local funcList = {
@@ -325,15 +356,26 @@ function onLoad(saved_data)
     sourceSpirit = getObjectFromGUID("SourceSpirit")
 end
 
+function onObjectLeaveContainer(container, obj)
+    if obj.hasTag("Spirit") then
+        obj.setVar("leave", true)
+    end
+end
 function onObjectSpawn(obj)
     if obj.hasTag("Spirit") then
-        addSpirit({spirit=obj})
+        if obj.getVar("leave") then
+            obj.setVar("leave")
+        else
+            addSpirit({spirit=obj})
+        end
     elseif not setupStarted then
         if obj.type == "Card" then
             local objType = type(obj.getVar("difficulty"))
             if objType == "table" then
+                newAdversaryScenario(obj, true)
                 addAdversary(obj)
             elseif objType == "number" then
+                newAdversaryScenario(obj, false)
                 addScenario(obj)
             end
         end
@@ -341,6 +383,62 @@ function onObjectSpawn(obj)
             addExpansion(obj)
         end
     end
+end
+function toggleAdversary(_, value, adversary)
+    local obj = getObjectFromGUID(allAdversaries[adversary])
+    if value == "True" then
+        obj.UI.setAttribute(obj.getName(), "isOn", "true")
+        addAdversary(obj)
+    else
+        obj.UI.setAttribute(obj.getName(), "isOn", "false")
+        removeAdversary(obj)
+    end
+end
+function toggleScenario(_, value, scenario)
+    local obj = getObjectFromGUID(allScenarios[scenario])
+    if value == "True" then
+        obj.UI.setAttribute(obj.getName(), "isOn", "true")
+        addScenario(obj)
+    else
+        obj.UI.setAttribute(obj.getName(), "isOn", "false")
+        removeScenario(obj)
+    end
+end
+function newAdversaryScenario(obj, adversary, disabled)
+    local funcName = "SetupChecker/toggle"
+    local position = "-95 -128 -28"
+    local rotation = "0 0 180"
+    if adversary then
+        funcName = funcName.."Adversary"
+        allAdversaries[obj.getName()] = obj.guid
+    else
+        funcName = funcName.."Scenario"
+        position = "95 -128 28"
+        rotation = "0 180 180"
+        allScenarios[obj.getName()] = obj.guid
+    end
+
+    local enabled = "true"
+    if disabled == true then
+        enabled = "false"
+    end
+
+    obj.UI.setXmlTable({
+        {
+            tag = "Toggle",
+            attributes = {
+                id = obj.getName(),
+                toggleWidth = "40",
+                toggleHeight = "40",
+                position = position,
+                rotation = rotation,
+                scale = "0.5 1 0.5",
+                isOn = enabled,
+                onValueChanged = funcName
+            },
+            children = {}
+        }
+    }, {})
 end
 function addExpansion(bag)
     local hasEvents = false
@@ -362,33 +460,48 @@ end
 function addAdversary(obj)
     if adversaries[obj.getName()] == nil then
         numAdversaries = numAdversaries + 1
+    elseif adversaries[obj.getName()] == obj.guid then
+        return
     end
     adversaries[obj.getName()] = obj.guid
-    updateXml(self, {updateAdversaryList()})
+    Wait.frames(function() updateXml(self, {updateAdversaryList()}) end, 1)
 end
 function addScenario(obj)
     if scenarios[obj.getName()] == nil then
         numScenarios = numScenarios + 1
+    elseif scenarios[obj.getName()] == obj.guid then
+        return
     end
     scenarios[obj.getName()] = obj.guid
-    updateXml(self, {updateScenarioList()})
+    Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
 end
 function onDestroy()
     exit = true
+end
+function onObjectEnterContainer(container, obj)
+    if obj.hasTag("Spirit") then
+        obj.setVar("enter", true)
+    end
 end
 function onObjectDestroy(obj)
     if exit then
         return
     end
     if obj.hasTag("Spirit") then
-        removeSpirit({spirit=obj})
+        if obj.getVar("enter") then
+            obj.setVar("enter")
+        else
+            removeSpirit({spirit=obj})
+        end
     elseif not setupStarted then
         if obj.type == "Card" then
             local objType = type(obj.getVar("difficulty"))
             if objType == "table" then
                 removeAdversary(obj)
+                allAdversaries[obj.getName()] = nil
             elseif objType == "number" then
                 removeScenario(obj)
+                allScenarios[obj.getName()] = nil
             end
         end
         if obj.hasTag("Expansion") then
@@ -404,12 +517,14 @@ function removeExpansion(bag)
 
     local funcList = {
         removeToggle("expansionsRow", bag.getName()),
-        removeToggle("events", "Use "..bag.getName().." Events"),
+        removeToggle("events", bag.getName().." Events"),
     }
     if playtestExpansion == bag.getName() then
         table.insert(funcList, updatePlaytestExpansionList(exps))
     end
     updateXml(self, funcList)
+
+    Wait.frames(updateRequiredContent, 1)
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
@@ -465,7 +580,7 @@ function removeScenario(obj)
                 Global.setVar("scenarioCard", nil)
                 updateDifficulty()
             end
-            Wait.frames(function () updateXml(self, {updateScenarioList()}) end, 1)
+            Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
             break
         end
     end
@@ -699,6 +814,54 @@ function updateSupportingLevel(value, updateUI)
     updateDifficulty()
 end
 
+function updateRequiredContent()
+    requiredContent("Requires Tokens", Global.call("usingSpiritTokens"))
+    requiredContent("Requires Badlands", Global.call("usingBadlands"))
+end
+function requiredContent(tag, enabled)
+    local colors = {}
+    if not enabled then
+        colors = Player.getColors()
+    end
+    for _,obj in pairs(getObjectsWithTag(tag)) do
+        obj.setInvisibleTo(colors)
+
+        if obj.hasTag("Spirit") then
+            if #colors == 0 then
+                addSpirit({spirit = obj})
+            else
+                removeSpirit({spirit = obj})
+            end
+        end
+
+        if obj.type == "Card" then
+            if #colors ~= 0 then
+                obj.UI.hide(obj.getName())
+            else
+                obj.UI.show(obj.getName())
+            end
+            local objType = type(obj.getVar("difficulty"))
+            if objType == "table" then
+                if #colors == 0 then
+                    if obj.UI.getAttribute(obj.getName(), "isOn") == "true" then
+                        addAdversary(obj)
+                    end
+                else
+                    removeAdversary(obj)
+                end
+            elseif objType == "number" then
+                if #colors == 0 then
+                    if obj.UI.getAttribute(obj.getName(), "isOn") == "true" then
+                        addScenario(obj)
+                    end
+                else
+                    removeScenario(obj)
+                end
+            end
+        end
+    end
+end
+
 function toggleExpansion(_, _, id)
     local exps = Global.getTable("expansions")
     local bool
@@ -711,12 +874,72 @@ function toggleExpansion(_, _, id)
     end
     Global.setTable("expansions", exps)
     self.UI.setAttribute(id, "isOn", bool)
-    local events = Global.getTable("events")
-    events[id] = exps[id]
-    Global.setTable("events", events)
-    self.UI.setAttribute(id.." Events", "isOn", bool)
+
+    local hasEvents = false
+    for _,obj in pairs(getObjectFromGUID(expansions[id]).getObjects()) do
+        if obj.name == "Events" then
+            hasEvents = true
+            break
+        end
+    end
+
+    if hasEvents then
+        local events = Global.getTable("events")
+        events[id] = exps[id]
+        Global.setTable("events", events)
+        self.UI.setAttribute(id.." Events", "isOn", bool)
+        if bool then
+            self.UI.setAttribute("allEvents", "isOn", "true")
+        else
+            local allDisabled = true
+            for _,enabled in pairs(events) do
+                if enabled then
+                    allDisabled = false
+                    break
+                end
+            end
+            if allDisabled then
+                self.UI.setAttribute("allEvents", "isOn", "false")
+            end
+        end
+    end
     updateDifficulty()
-    Wait.frames(function () updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
+
+    Wait.frames(function() updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
+    Wait.frames(updateRequiredContent, 2)
+end
+function toggleAllEvents()
+    local checked = self.UI.getAttribute("allEvents", "isOn")
+    if checked == "true" then
+        self.UI.setAttribute("allEvents", "isOn", "false")
+        local events = Global.getTable("events")
+        for exp,enabled in pairs(events) do
+            if enabled then
+                toggleEvents(nil, nil, exp.." Events")
+            end
+        end
+        Global.setTable("events", {})
+    else
+        self.UI.setAttribute("allEvents", "isOn", "true")
+        local events = {}
+        local exps = Global.getTable("expansions")
+        for exp,enabled in pairs(exps) do
+            if enabled then
+                local hasEvents = false
+                for _,obj in pairs(getObjectFromGUID(expansions[exp]).getObjects()) do
+                    if obj.name == "Events" then
+                        hasEvents = true
+                        break
+                    end
+                end
+                if hasEvents then
+                    events[exp] = true
+                    toggleEvents(nil, nil, exp.." Events")
+                end
+            end
+        end
+        Global.setTable("events", events)
+    end
 end
 function toggleEvents(_, _, id)
     local exp = id:sub(1, -8)
@@ -729,9 +952,20 @@ function toggleEvents(_, _, id)
     if events[exp] then
         events[exp] = nil
         bool = false
+        local allDisabled = true
+        for _,enabled in pairs(events) do
+            if enabled then
+                allDisabled = false
+                break
+            end
+        end
+        if allDisabled then
+            self.UI.setAttribute("allEvents", "isOn", "false")
+        end
     else
         events[exp] = true
         bool = true
+        self.UI.setAttribute("allEvents", "isOn", "true")
     end
     Global.setTable("events", events)
     self.UI.setAttribute(id, "isOn", bool)
@@ -939,7 +1173,10 @@ function startGame()
     Global.setTable("expansions", exps)
     Global.setTable("events", events)
 
-    Wait.condition(function() Global.call("SetupGame") end, function() return expansionsAdded == expansionsSetup end)
+    Wait.condition(function()
+        removeBannedCards()
+        Global.call("SetupGame")
+    end, function() return expansionsAdded == expansionsSetup end)
 end
 function getNotebookConfig()
     for _,data in pairs(Notes.getNotebookTabs()) do
@@ -993,9 +1230,6 @@ function loadConfig(config)
         end
         if config.variant.thematicRebellion ~= nil then
             setSlaveRebellion(config.variant.thematicRebellion, false)
-        end
-        if config.variant.england6 ~= nil then
-            setEngland6(config.exploratory.england6, false, false)
         end
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
@@ -1167,7 +1401,7 @@ function setupExpansion(bag)
         for _,obj in pairs(bag.getObjects()) do
             if obj.name == "Fear" then
                 local fearDeck = bag.takeObject({guid = obj.guid})
-                getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getObjects()[1].putObject(fearDeck)
+                Global.getVar("fearDeckSetupZone").getObjects()[1].putObject(fearDeck)
             elseif obj.name == "Minor Powers" then
                 local minorPowers = bag.takeObject({guid = obj.guid})
                 getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1].putObject(minorPowers)
@@ -1176,7 +1410,7 @@ function setupExpansion(bag)
                 getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1].putObject(majorPowers)
             elseif obj.name == "Blight Cards" then
                 local blightCards = bag.takeObject({guid = obj.guid})
-                getObjectFromGUID("b38ea8").getObjects()[1].putObject(blightCards)
+                Global.getVar("blightDeckZone").getObjects()[1].putObject(blightCards)
             elseif obj.name == "Events" then
                 if Global.getTable("events")[bag.getName()] then
                     eventsStarted = true
@@ -1201,6 +1435,52 @@ function setupExpansion(bag)
         return 1
     end
     startLuaCoroutine(self, "setupExpansionCo")
+end
+function removeBannedCards()
+    for _,data in pairs(Notes.getNotebookTabs()) do
+        if data.title == "Card Ban List" then
+            if data.body == "" then
+                return
+            end
+
+            local function split(inputstr, sep)
+                local t={}
+                for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+                    table.insert(t, str)
+                end
+                return t
+            end
+            local count = 0
+            local deck = nil
+
+            for _,line in pairs(split(data.body, "\n")) do
+                if line == "[Major Powers]" then
+                    deck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
+                elseif line == "[Minor Powers]" then
+                    deck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
+                elseif line == "[Event Cards]" then
+                    deck = Global.getVar("eventDeckZone").getObjects()[1]
+                elseif line == "[Blight Cards]" then
+                    deck = Global.getVar("blightDeckZone").getObjects()[1]
+                elseif line == "[Fear Cards]" then
+                    deck = Global.getVar("fearDeckSetupZone").getObjects()[1]
+                else
+                    for _,card in pairs(deck.getObjects()) do
+                        if card.name == line or card.guid == line then
+                            deck.takeObject({guid = card.guid}).destruct()
+                            count = count + 1
+                            break
+                        end
+                    end
+                end
+            end
+
+            if count > 0 then
+                broadcastToAll("Removed "..count.." cards as per ban list from notebook", Color.SoftYellow)
+            end
+            return
+        end
+    end
 end
 
 function showUI()
@@ -1251,16 +1531,26 @@ function toggleAdversaryScenarioVisiblity(show)
     if not show then
         colors = Player.getColors()
     end
-    for _,guid in pairs(adversaries) do
+    for _,guid in pairs(allAdversaries) do
         if guid ~= "" then
             local obj = getObjectFromGUID(guid)
             obj.setInvisibleTo(colors)
+            if not show then
+                obj.UI.hide(obj.getName())
+            else
+                obj.UI.show(obj.getName())
+            end
         end
     end
-    for _,guid in pairs(scenarios) do
+    for _,guid in pairs(allScenarios) do
         if guid ~= "" then
             local obj = getObjectFromGUID(guid)
             obj.setInvisibleTo(colors)
+            if not show then
+                obj.UI.hide(obj.getName())
+            else
+                obj.UI.show(obj.getName())
+            end
         end
     end
     local secondWave = getObjectFromGUID("e924fe")
@@ -1277,7 +1567,7 @@ function toggleSimpleMode()
         self.UI.setAttribute("supportingHeader", "visibility", "Invisible")
         self.UI.setAttribute("supportingRow", "visibility", "Invisible")
         checkRandomDifficulty(false)
-        self.UI.setAttribute("blightCardRow", "visibility", "")
+        self.UI.setAttribute("simpleRow", "visibility", "")
         self.UI.setAttribute("toggles", "visibility", "Invisible")
         self.UI.setAttribute("toggles2", "visibility", "Invisible")
         self.UI.setAttribute("panelVariant", "visibility", "Invisible")
@@ -1293,10 +1583,11 @@ function toggleSimpleMode()
         self.UI.setAttribute("supportingHeader", "visibility", "")
         self.UI.setAttribute("supportingRow", "visibility", "")
         checkRandomDifficulty(true)
-        self.UI.setAttribute("blightCardRow", "visibility", "Invisible")
+        self.UI.setAttribute("simpleRow", "visibility", "Invisible")
         self.UI.setAttribute("toggles", "visibility", "")
         self.UI.setAttribute("toggles2", "visibility", "")
         showUI()
+        self.UI.setAttribute("panelSpirit", "visibility", "")
 
         Global.setVar("showPlayerButtons", true)
         Global.call("updateAllPlayerAreas", nil)
@@ -1465,6 +1756,10 @@ function getSpiritTags()
         tags["JE"] = true
         added = true
     end
+    if self.UI.getAttribute("spiritFnF", "isOn") == "true" then
+        tags["FnF"] = true
+        added = true
+    end
     if self.UI.getAttribute("spiritCustom", "isOn") == "true" then
         tags[""] = true
         added = true
@@ -1540,7 +1835,22 @@ function gainSpirit(player)
         return
     end
     local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
-    if obj.getButtons() ~= nil and #obj.getButtons() ~= 0 then
+
+    local options = {}
+    local buttons = obj.getButtons()
+    local hasOptions = 0
+    if buttons ~= nil then
+        for i,button in pairs(buttons) do
+            if button.label ~= "" then
+                options[i] = true
+                hasOptions = hasOptions + 1
+            else
+                options[i] = false
+            end
+        end
+    end
+
+    if hasOptions == 4 then
         Player[player.color].broadcast("You already have Spirit options", Color.Red)
         return
     elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
@@ -1560,24 +1870,26 @@ function gainSpirit(player)
 
     local count = 0
     for i = 1,4 do
-        local spirit, aspect = getNewSpirit(tags, complexities)
-        if spirit then
-            count = count + 1
-            local label = spirit.getName()
-            if aspect ~= nil and aspect ~= "" then
-                label = label.." - "..aspect
+        if not options[i] then
+            local spirit, aspect = getNewSpirit(tags, complexities)
+            if spirit then
+                count = count + 1
+                local label = spirit.getName()
+                if aspect ~= nil and aspect ~= "" then
+                    label = label.." - "..aspect
+                end
+                obj.createButton({
+                    click_function = "pickSpirit" .. i,
+                    function_owner = self,
+                    label = label,
+                    position = Vector(0,0,0.3 - 0.15*i),
+                    rotation = Vector(0,180,0),
+                    scale = Vector(0.1,0.1,0.1),
+                    width = 4850,
+                    height = 600,
+                    font_size = 275,
+                })
             end
-            obj.createButton({
-                click_function = "pickSpirit" .. i,
-                function_owner = self,
-                label = label,
-                position = Vector(0,0,0.3 - 0.15*i),
-                rotation = Vector(0,180,0),
-                scale = Vector(0.1,0.1,0.1),
-                width = 4850,
-                height = 600,
-                font_size = 275,
-            })
         end
     end
     if count > 0 then
@@ -1702,6 +2014,8 @@ function addSpirit(params)
         expansion = "BnC"
     elseif params.spirit.hasTag("JE") then
         expansion = "JE"
+    elseif params.spirit.hasTag("FnF") then
+        expansion = "FnF"
     end
     spiritTags[params.spirit.guid] = expansion
 
@@ -1817,26 +2131,6 @@ function setSlaveRebellion(bool, updateUI)
     end
     if updateUI then
         self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
-    end
-end
-function toggleEngland6()
-    setEngland6(not optionalEngland6, true, false)
-end
-function setEngland6(bool, updateUI, loading)
-    optionalEngland6 = bool
-    local obj = getObjectFromGUID(adversaries.England)
-    if obj ~= nil then
-        if optionalEngland6 then
-            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 11})
-        else
-            obj.setTable("difficulty", {[0] = 1, 3, 4, 6, 7, 9, 10})
-        end
-        if updateUI and not loading then
-            updateDifficulty()
-        end
-    end
-    if updateUI then
-        self.UI.setAttribute("england6", "isOn", optionalEngland6)
     end
 end
 function toggleThematicRedo()
@@ -2056,7 +2350,7 @@ function addExpansionToggle(value)
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
     end)
 end
 function addEventToggle(value)
@@ -2068,7 +2362,7 @@ function addEventToggle(value)
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
     end)
 end
 function removeToggle(id, value)
@@ -2080,7 +2374,7 @@ function removeToggle(id, value)
             end
         end
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60
+        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
     end)
 end
 

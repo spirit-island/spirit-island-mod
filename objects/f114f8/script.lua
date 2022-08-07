@@ -27,12 +27,11 @@ function AdversaryUI(params)
     end
 
     ui.effects = {}
-    ui.invader = {}
     if params.level >= 1 then
         ui.effects[1] = {}
         ui.effects[1].name = "Heavy Mining"
         ui.effects[1].tooltip = "If the Invaders do at least 6 Damage to the land\nduring Ravage, add an extra Blight. (The additional\nBlight does not destroy Presence or cause cascades.)"
-        ui.invader.ravage = true
+        ui.effects[1].ravage = true
     end
     if params.level >= 3 then
         ui.effects[3] = {}
@@ -43,6 +42,7 @@ function AdversaryUI(params)
         ui.effects[5] = {}
         ui.effects[5].name = "Mining Rush"
         ui.effects[5].tooltip = "When Ravaging adds at least 1 Blight to a land,\nadd 1 Town to an adjacent land without Town/City.\nCascading Blight does not cause this effect."
+        ui.effects[5].ravage = true
     end
     if exploratory and params.level >= 7 then
         ui.effects[7] = {}

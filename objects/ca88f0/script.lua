@@ -44,7 +44,7 @@ function MapSetup(params)
                 end
             end
             if not landHasDahan then
-                table.insert(params.pieces[i],"Scenario Token")
+                table.insert(params.pieces[i],"Scenario Marker")
             end
         end
     else

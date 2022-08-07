@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -41.0099983215332,
-    "posY": 0.9900000095367432,
-    "posZ": 61.099998474121094,
+    "posX": -38.099998474121094,
+    "posY": 0.9635000228881836,
+    "posZ": 61.400001525878906,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7269999980926514,
-    "scaleY": 0.14399999380111694,
-    "scaleZ": 0.7269999980926514
+    "scaleX": 0.6245999932289124,
+    "scaleY": 0.12370000034570694,
+    "scaleZ": 0.6245999932289124
   },
   "Nickname": "Scenario Pieces",
   "Description": "",
@@ -60,32 +60,32 @@
   },
   "ChildObjects": [
     {
-      "GUID": "d557b6",
+      "GUID": "8d5775",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -0.030799999833106995,
-        "posY": 0.6473000049591064,
-        "posZ": 0.010999999940395355,
+        "posX": 0.0,
+        "posY": 0.22499999403953552,
+        "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.4625999927520752,
-        "scaleY": 6.088500022888184,
-        "scaleZ": 0.4625000059604645
+        "scaleX": 0.5256999731063843,
+        "scaleY": 8.082500457763672,
+        "scaleZ": 0.5256999731063843
       },
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 0.5677000284194946,
+        "g": 0.5601000189781189,
+        "b": 0.5600000023841858
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
-      "Grid": true,
-      "Snap": true,
+      "Grid": false,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -96,7 +96,7 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1754683565834686444/E192E4D742DD8548701CADEFE702A177F3158582/",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560126627/46DEBD4B19E362DC63D0BB52A985BCD99D08B8D1/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,

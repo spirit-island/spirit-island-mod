@@ -1,0 +1,41 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -45.25310134887695,
+    "posY": 0.8166999816894531,
+    "posZ": 69.3125,
+    "rotX": -9.999999747378752e-05,
+    "rotY": 180.0,
+    "rotZ": 179.99920654296875,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Mimic the Dahan",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Fear"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 62200,
+  "SidewaysCard": false
+}

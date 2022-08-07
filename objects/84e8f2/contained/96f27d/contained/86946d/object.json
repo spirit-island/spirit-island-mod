@@ -1,0 +1,41 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -44.88130187988281,
+    "posY": 0.8816999793052673,
+    "posZ": 69.3125,
+    "rotX": 0.004000000189989805,
+    "rotY": 180.00010681152344,
+    "rotZ": 180.00509643554688,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Spreading Timidty",
+  "Description": "",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Fear"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 62205,
+  "SidewaysCard": false
+}

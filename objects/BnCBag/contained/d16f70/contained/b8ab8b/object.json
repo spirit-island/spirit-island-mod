@@ -11,7 +11,7 @@
     "scaleY": 1.0,
     "scaleZ": 1.5299999713897705
   },
-  "Nickname": "",
+  "Nickname": "Panic",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -37,16 +37,5 @@
   "HideWhenFaceDown": true,
   "Hands": true,
   "CardID": 57812,
-  "SidewaysCard": false,
-  "CustomDeck": {
-    "578": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100556205/F792D8EA7BFEECE311BF76DFC6A0068B11975ACF/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756118010/303865702F3092CCDE644633A9D06673B79C049D/",
-      "NumWidth": 4,
-      "NumHeight": 4,
-      "BackIsHidden": false,
-      "UniqueBack": false,
-      "Type": 0
-    }
-  }
+  "SidewaysCard": false
 }

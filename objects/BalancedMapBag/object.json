@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -36.5099983215332,
-    "posY": 0.9900000095367432,
-    "posZ": 61.099998474121094,
+    "posX": -42.150001525878906,
+    "posY": 0.9635000228881836,
+    "posZ": 61.400001525878906,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7269999980926514,
-    "scaleY": 0.14399999380111694,
-    "scaleZ": 0.7269999980926514
+    "scaleX": 0.6245999932289124,
+    "scaleY": 0.12370000034570694,
+    "scaleZ": 0.6245999932289124
   },
-  "Nickname": "Standard Boards",
+  "Nickname": "Balanced Boards",
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
@@ -63,17 +63,17 @@
       "GUID": "d7e7ba",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.010400000028312206,
-        "posY": 0.20239999890327454,
-        "posZ": 0.012900000438094139,
+        "posX": 0.0,
+        "posY": 0.6180999875068665,
+        "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 0.0,
+        "rotY": 345.0,
         "rotZ": 0.0,
-        "scaleX": 0.5058000087738037,
-        "scaleY": 6.088099956512451,
-        "scaleZ": 0.5058000087738037
+        "scaleX": 0.5385000109672546,
+        "scaleY": 2.2239999771118164,
+        "scaleZ": 0.5385000109672546
       },
-      "Nickname": "NORMAL B",
+      "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
@@ -96,7 +96,7 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248751927141/DBB876E0D72159C1601DBD8BDD26BB4A1A82EDA4/",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1895469513173049851/20D6983DD3B1A5CA2D62BFE1AA209D90E1058D85/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,

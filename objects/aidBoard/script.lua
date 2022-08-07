@@ -269,6 +269,9 @@ function secondWave()
     secondWave.setLock(true)
 end
 function flipEventCard()
+    EventCard({})
+end
+function EventCard(params)
     if not Global.getVar("gameStarted") then
         return
     end
@@ -282,8 +285,22 @@ function flipEventCard()
         broadcastToAll("Unable to resolve Event Card, Event Deck empty", Color.SoftYellow)
         return
     elseif #objs > 1 or not objs[1].is_face_down then
+        local stop = false
+        for _,obj in pairs(objs) do
+            if obj.type == "Deck" and not obj.is_face_down then
+                stop = true
+                break
+            elseif obj.type == "Card" and not obj.is_face_down then
+                if obj.guid ~= params.ignore then
+                    stop = true
+                    break
+                end
+            end
+        end
         -- already have a faceup card
-        return
+        if stop then
+            return
+        end
     end
 
     if objs[1].type == "Deck" then
@@ -413,7 +430,8 @@ function advanceInvaderCards()
             for _,hit in pairs(hits) do
                 if hit.hit_object ~= source then table.insert(hitObjects,hit.hit_object) end
             end
-            for depth,hit in pairs(hitObjects) do
+            local depth = 1
+            for _,hit in pairs(hitObjects) do
                 if hit.type == "Card" and not hit.is_face_down then
                     if hit.getLock() then
                         hit.setLock(false)
@@ -441,6 +459,7 @@ function advanceInvaderCards()
                             hit.setPositionSmooth(Vector(nextO[1],hit.getPosition().y+0.1,hit.getPosition().z)+currentOffset+prevOffset)
                         end
                     end
+                    depth = depth + 1
                 elseif i == "Explore" then
                     if hit.type == "Deck" then
                         local objs = hit.getObjects()
@@ -753,7 +772,7 @@ function fearCard(params)
         local handTransform = Player["Black"].getHandTransform(2)
         pos = handTransform.position + Vector(-0.5*handTransform.scale.x, 0, 0)
     else
-        pos = getObjectFromGUID(Global.getVar("fearDeckSetupZone")).getPosition()
+        pos = Global.getVar("fearDeckSetupZone").getPosition()
     end
 
     local fearDeck = Player["Black"].getHandObjects(1)
@@ -764,13 +783,9 @@ function fearCard(params)
         if not card.getLock() then
             if card.getName() == "Terror II" or card.getName() == "Terror III" then
                 card.setLock(true)
-                -- HACK work around issue where setPosition sometimes doesn't move object from hand to non hand
-                card.deal(1, "White")
-                Wait.condition(function()
-                    card.setPosition(dividerPos)
-                    card.setRotation(Vector(0, 180, 0))
-                    card.setLock(false)
-                end, function() return not card.isSmoothMoving() end)
+                Wait.frames(function() card.setLock(false) end, 1)
+                card.setPosition(dividerPos)
+                card.setRotation(Vector(0, 180, 0))
             elseif card.hasTag("Invader Card") then
                 local invaderPos = self.positionToWorld(scanLoopTable["Build"].origin) + Vector(0,1,1.15)
                 if Global.UI.getAttribute("panelBuild21", "active") == "True" then
@@ -781,16 +796,12 @@ function fearCard(params)
                     invaderPos = invaderPos + Vector(0,0,-1)
                 end
                 card.setLock(true)
-                -- HACK work around issue where setPosition sometimes doesn't move object from hand to non hand
-                card.deal(1, "White")
-                Wait.condition(function()
-                    -- Russia puts invader cards in this deck at a scale factor of 1.37
-                    card.scale(1/1.37)
-                    card.setPosition(invaderPos)
-                    card.setRotationSmooth(Vector(0,180,0))
-                    invaderCardBroadcast(card)
-                    card.setLock(false)
-                end, function() return not card.isSmoothMoving() end)
+                Wait.frames(function() card.setLock(false) end, 1)
+                -- Russia puts invader cards in this deck at a scale factor of 1.37
+                card.scale(1/1.37)
+                card.setPosition(invaderPos)
+                card.setRotationSmooth(Vector(0,180,0))
+                invaderCardBroadcast(card)
             elseif card.hasTag("Fear") then
                 foundFearCount = foundFearCount + 1
                 if foundFearCount == 2 then

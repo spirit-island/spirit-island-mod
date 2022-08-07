@@ -37,6 +37,86 @@
       "name": "Scotland"
     }
   ],
+  "allAdversaryList": [
+    {
+      "guid": "dd3d47",
+      "name": "Prussia"
+    },
+    {
+      "guid": "b765cf",
+      "name": "England"
+    },
+    {
+      "guid": "f114f8",
+      "name": "Sweden"
+    },
+    {
+      "guid": "e8f3e3",
+      "name": "France"
+    },
+    {
+      "guid": "1d9bcd",
+      "name": "Habsburg"
+    },
+    {
+      "guid": "1ea4cf",
+      "name": "Russia"
+    },
+    {
+      "guid": "37a592",
+      "name": "Scotland"
+    }
+  ],
+  "allScenarioList": [
+    {
+      "guid": "1b39da",
+      "name": "Blitz"
+    },
+    {
+      "guid": "04397d",
+      "name": "Guard the Isle's Heart"
+    },
+    {
+      "guid": "7ac013",
+      "name": "Rituals of Terror"
+    },
+    {
+      "guid": "ee90ad",
+      "name": "Dahan Insurrection"
+    },
+    {
+      "guid": "bd528e",
+      "name": "Ward the Shores"
+    },
+    {
+      "guid": "ca88f0",
+      "name": "Powers Long Forgotten"
+    },
+    {
+      "guid": "a69e8c",
+      "name": "Rituals of the Destroying Flame"
+    },
+    {
+      "guid": "5a95bc",
+      "name": "The Great River"
+    },
+    {
+      "guid": "b8b521",
+      "name": "Elemental Invocation"
+    },
+    {
+      "guid": "ec49d4",
+      "name": "Despicable Theft"
+    },
+    {
+      "guid": "64caee",
+      "name": "Varied Terrains"
+    },
+    {
+      "guid": "3d1ba3",
+      "name": "A Diversity of Spirits"
+    }
+  ],
   "exploratory": {
     "aid": false,
     "bodan": false,
@@ -45,6 +125,7 @@
     "votd": false,
     "war": false
   },
+  "pickedSpirits": [],
   "playtest": {
     "blight": "0",
     "event": "0",
@@ -132,7 +213,6 @@
     "blightSetup": true,
     "boardPairings": true,
     "digitalEvents": false,
-    "england6": true,
     "extraBoard": false,
     "gameResults": true,
     "soloBlight": true,

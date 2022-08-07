@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -42.5099983215332,
-    "posY": 0.9900000095367432,
-    "posZ": 59.650001525878906,
+    "posX": -39.45000076293945,
+    "posY": 0.9635000228881836,
+    "posZ": 60.04999923706055,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7269999980926514,
-    "scaleY": 0.14399999380111694,
-    "scaleZ": 0.7269999980926514
+    "scaleX": 0.6245999932289124,
+    "scaleY": 0.12370000034570694,
+    "scaleZ": 0.6245999932289124
   },
   "Nickname": "Jagged Earth",
   "Description": "",
@@ -63,32 +63,32 @@
   },
   "ChildObjects": [
     {
-      "GUID": "af3af1",
-      "Name": "Custom_Model",
+      "GUID": "20e4e9",
+      "Name": "Custom_Token",
       "Transform": {
-        "posX": -0.016599999740719795,
-        "posY": 0.6168000102043152,
-        "posZ": 0.13500000536441803,
+        "posX": 0.0,
+        "posY": 0.22499999403953552,
+        "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 30.0,
+        "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 1.0549999475479126,
-        "scaleY": 5.327099800109863,
-        "scaleZ": 1.0549999475479126
+        "scaleX": 0.5256999731063843,
+        "scaleY": 8.082500457763672,
+        "scaleZ": 0.5256999731063843
       },
-      "Nickname": "Infinite 3 Energy",
+      "Nickname": "",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 0.5677000284194946,
+        "g": 0.5601000189781189,
+        "b": 0.5600000023841858
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
-      "Grid": true,
-      "Snap": true,
+      "Grid": false,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,
@@ -98,25 +98,17 @@
       "GridProjection": false,
       "HideWhenFaceDown": false,
       "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1465311980399235252/1004CBCFE9DA0EE3FDAEC76E269365445D7A0E85/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 0,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670560125783/E92D9B9400133A76F19910EEEE53FA3F5DA5E2BF/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.20000000298023224,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
       },
       "LuaScript": "",
       "LuaScriptState": "",

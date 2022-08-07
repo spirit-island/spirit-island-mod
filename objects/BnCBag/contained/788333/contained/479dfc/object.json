@@ -34,16 +34,5 @@
   "HideWhenFaceDown": true,
   "Hands": false,
   "CardID": 58206,
-  "SidewaysCard": false,
-  "CustomDeck": {
-    "582": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100540057/DB8DCCA9FFEC91FB9088092F54B5DC8011FE267F/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
-      "NumWidth": 4,
-      "NumHeight": 2,
-      "BackIsHidden": false,
-      "UniqueBack": false,
-      "Type": 0
-    }
-  }
+  "SidewaysCard": false
 }

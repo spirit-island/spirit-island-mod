@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1657331751,
-  "Date": "7/9/2022 2:55:51 AM",
+  "EpochTime": 1659846537,
+  "Date": "8/7/2022 5:28:57 AM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -47,6 +47,17 @@
         "b": 0.5
       },
       "id": 1
+    },
+    "2": {
+      "title": "Card Ban List",
+      "body": "[Major Powers]\n\n[Minor Powers]\n\n[Event Cards]\n\n[Blight Cards]\n\n[Fear Cards]",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 2
     }
   },
   "MusicPlayer": {
@@ -163,6 +174,10 @@
         "normalized": "je"
       },
       {
+        "displayed": "FnF",
+        "normalized": "fnf"
+      },
+      {
         "displayed": "Setup",
         "normalized": "setup"
       },
@@ -201,6 +216,14 @@
       {
         "displayed": "Time Passes",
         "normalized": "time_passes"
+      },
+      {
+        "displayed": "Requires Tokens",
+        "normalized": "requires_tokens"
+      },
+      {
+        "displayed": "Requires Badlands",
+        "normalized": "requires_badlands"
       }
     ]
   },

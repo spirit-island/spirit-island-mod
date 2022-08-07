@@ -1,0 +1,6 @@
+<Panel position="-5 -55 -22" width="60" height="30" rotation="0 0 180" scale="0.3 0.3 0.3">
+    <!--- Use `scale` to shrink large text, so we get crisper text -->
+    <VerticalLayout>
+        <Text id="presence" resizeTextForBestFit="true" color="Black">(0/5)</Text>
+    </VerticalLayout>
+</Panel>

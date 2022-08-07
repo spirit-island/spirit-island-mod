@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -36.50979995727539,
-    "posY": 0.9900000095367432,
-    "posZ": 59.645301818847656,
+    "posX": -43.5,
+    "posY": 0.9602000117301941,
+    "posZ": 60.04999923706055,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.727400004863739,
-    "scaleY": 0.14020000398159027,
-    "scaleZ": 0.727400004863739
+    "scaleX": 0.6248000264167786,
+    "scaleY": 0.12039999663829803,
+    "scaleZ": 0.6248000264167786
   },
   "Nickname": "Spirit Markers",
   "Description": "",
@@ -60,18 +60,18 @@
   },
   "ChildObjects": [
     {
-      "GUID": "069c17",
+      "GUID": "499b87",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -0.021400000900030136,
-        "posY": 0.9998999834060669,
-        "posZ": 0.05220000073313713,
-        "rotX": 0.0005000000237487257,
-        "rotY": 359.9468078613281,
-        "rotZ": -0.001500000013038516,
-        "scaleX": 0.9623000025749207,
-        "scaleY": 4.9928998947143555,
-        "scaleZ": 0.9623000025749207
+        "posX": 0.0,
+        "posY": 0.4952000081539154,
+        "posZ": 0.0,
+        "rotX": 0.0,
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 1.0023000240325928,
+        "scaleY": 5.200500011444092,
+        "scaleZ": 1.0023000240325928
       },
       "Nickname": "",
       "Description": "",
@@ -83,7 +83,7 @@
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
-      "Locked": false,
+      "Locked": true,
       "Grid": false,
       "Snap": false,
       "IgnoreFoW": false,

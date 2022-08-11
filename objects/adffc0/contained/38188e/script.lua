@@ -81,6 +81,7 @@ function toggleExchange()
             font_color={0,0,0}, font_size=250
         })
     end
+    self.UI.setAttribute("players", "text", Global.getVar("numPlayers"))
     self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
 end
 function exchange(_, color, alt_click)

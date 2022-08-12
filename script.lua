@@ -5006,7 +5006,7 @@ function refreshGameOver()
     UI.setAttribute("panelGameOverHeader", "text", headerText)
 
     local spiritCount = 0
-    for color,data in pairs(selectedColors) do
+    for _,data in pairs(selectedColors) do
         if data.zone then
             for _,obj in ipairs(data.zone.getObjects()) do
                 if obj.hasTag("Spirit") then
@@ -7247,7 +7247,7 @@ end
 
 function grabSpiritMarkers()
     local bag = getObjectFromGUID("011f19")
-    for color,data in pairs(selectedColors) do
+    for _,data in pairs(selectedColors) do
         if data.zone then
             for _, obj in ipairs(data.zone.getObjects()) do
                 if obj.hasTag("Spirit") then

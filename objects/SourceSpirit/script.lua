@@ -392,13 +392,13 @@ function setupSpirit(obj, player_color)
         for i,card in pairs(progressionDeck) do
             if card[2] then
                 majorPowerDeck.takeObject({
-                    position = spos + Vector(0, 0.05, 14),
+                    position = spos + Vector(0, 0.05 + i, 14),
                     rotation = Vector(0,180,180),
                     guid = card[1],
                 })
             else
                 minorPowerDeck.takeObject({
-                    position = spos + Vector(0, 0.05, 14),
+                    position = spos + Vector(0, 0.05 + i, 14),
                     rotation = Vector(0,180,180),
                     guid = card[1],
                 })
@@ -424,7 +424,7 @@ function setupSpirit(obj, player_color)
             if ob.type == "Card" then
                 if ob.getName() == "Progression" then
                     if useProgression then
-                        ob.setPositionSmooth(spos + Vector(0, 0.05, 14))
+                        ob.setPositionSmooth(spos + Vector(0, 8.05, 14))
                     else
                         ob.destruct()
                     end

@@ -11,6 +11,7 @@ read_globals = {
     "UI",
     "Vector",
     "Wait",
+    "addContextMenuItem",
     "addHotkey",
     "broadcastToAll",
     "clearHotkeys",
@@ -23,9 +24,9 @@ read_globals = {
     "group",
     "printToAll",
     "setLookingForPlayers",
-    "startLuaCoroutine",
+    "spawnObject",
     "spawnObjectData",
-    "addContextMenuItem",
+    "startLuaCoroutine",
 }
 -- Additionally `self` and `Hands` have mutable fields.
 files["objects/**/*.lua"] = {

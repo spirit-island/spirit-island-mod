@@ -5596,7 +5596,7 @@ function reclaimAll(target_obj, source_color)
 
     for _,obj in pairs(Player[target_color].getHandObjects(2)) do
         if isPowerCard({card=obj}) then
-            obj.deal(1, color, 1)
+            obj.deal(1, target_color, 1)
         end
     end
 end

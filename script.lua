@@ -8,43 +8,40 @@ majorPowerZone = "089896"
 playerBag = "PlayerBag"
 Tints = {
     ["Red"] = {
-        Presence = "#DA1918",
-        Token = "#FF312F",
-        Table = "#FF8180"
+        Presence = "#DA1A18",
+        Token = "#FF514F"
     },
     ["Purple"] = {
-        Presence = "#831FEF",
-        Token = "#C467FE",
-        Table = "#C48DFF"
+        Presence = "#A020F0",
+        Token = "#C467FE"
     },
     ["Yellow"] = {
-        Presence = "#FFFC00",
-        Token = "#FFFD23",
-        Table = "#FFFE8B"
+        Presence = "#E7E52C",
+        Token = "#FFFC34"
     },
     ["Blue"] = {
-        Presence = "#0009FF",
-        Token = "#48B6FF",
-        Table = "#83BDFF"
+        Presence = "#0038FF",
+        Token = "#358EFF"
     },
     ["Green"] = {
-        Presence = "#0BFF00",
-        Token = "#56FF4D",
-        Table = "#8DFF87"
+        Presence = "#28D620",
+        Token = "#52FF4A"
     },
     ["Orange"] = {
-        Presence = "#F38D1C",
-        Token = "#FF9729",
-        Table = "#FFB86C"
+        Presence = "#FF6920",
+        Token = "#FFA240"
     },
     ["Teal"] = {
-        Presence = "#20B09A",
+        Presence = "#4CFAB4",
+        Token = "#59FFBB"
     },
     ["Pink"] = {
         Presence = "#F46FCD",
+        Token = "#FF73F1"
     },
     ["Brown"] = {
-        Presence = "#703A16",
+        Presence = "#772F00",
+        Token = "#B26C2A"
     },
     ["White"] = {
         Presence = "#FFFFFF",

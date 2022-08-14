@@ -138,7 +138,7 @@ strifeBag = "af4e63"
 badlandsBag = "d3f7f8"
 oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
-speedBag = "65fc65"
+speedBag = "f5ba21"
 genericDefendBag = "1716e3"
 -----
 StandardMapBag = "BalancedMapBag"
@@ -4656,11 +4656,7 @@ function place(params)
     elseif params.name == "3 Energy" then
         temp = threeEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
     elseif params.name == "Speed Token" then
-        if speedBag ~= nil then
-            temp = speedBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
-        else
-            return nil
-        end
+        temp = speedBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
     elseif params.name == "Scenario Marker" then
         local bag = getObjectFromGUID("8d6e46")
         if bag ~= nil then

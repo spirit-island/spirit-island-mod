@@ -895,6 +895,14 @@ function CanSetupGame()
         broadcastToAll("You can only have one type of board at once", Color.Red)
         return false
     end
+    if (numPlayers > 6 or (numPlayers == 6 and SetupChecker.getVar("optionalExtraBoard"))) and isThematic() then
+        broadcastToAll("Thematic setup can't use more than 6 boards", Color.Red)
+        return false
+    end
+    if (numPlayers > 7 or (numPlayers == 7 and SetupChecker.getVar("optionalExtraBoard"))) and getMapCount({norm = true, them = true}) == 0 then
+        broadcastToAll("Custom map setup is required for more than 7 boards", Color.Red)
+        return false
+    end
     if adversaryCard == nil and not SetupChecker.getVar("randomAdversary") and adversaryCard2 ~= nil then
         broadcastToAll("A Leading Adversary is Required to use a Supporting Adversary", Color.Red)
         return false
@@ -3622,6 +3630,15 @@ function getEmptySeat()
         end
     end
     return nil
+end
+function getSeatCount()
+    local count = 0
+    for _,obj in pairs(seatTables) do
+        if obj ~= nil then
+            count = count + 1
+        end
+    end
+    return count
 end
 ------
 quotes = {
@@ -7191,16 +7208,18 @@ end
 function onObjectSpawn(obj)
     if isPowerCard({card=obj}) then
         applyPowerCardContextMenuItems(obj)
-    elseif obj.hasTag("Player") then
+    elseif obj.hasTag("Seat") then
         table.insert(seatTables, obj.guid)
         setupColorPickButtons(obj, true)
+        SetupChecker.call("updateMaxPlayers", {max = getSeatCount()})
     end
 end
 function onObjectDestroy(obj)
-    if obj.hasTag("Player") then
+    if obj.hasTag("Seat") then
         for i,guid in pairs(seatTables) do
             if guid == obj.guid then
                 table.remove(seatTables, i)
+                SetupChecker.call("updateMaxPlayers", {max = getSeatCount()})
                 break
             end
         end

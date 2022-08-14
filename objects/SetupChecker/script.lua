@@ -294,7 +294,7 @@ function onLoad(saved_data)
 
             local numPlayers = Global.getVar("numPlayers")
             self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
-            self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+            self.UI.setAttributes("numPlayersSlider", {value =  numPlayers, maxValue = Global.call("getSeatCount")})
 
             for name,guid in pairs(allAdversaries) do
                 newAdversaryScenario(getObjectFromGUID(guid), true, adversaries[name] == nil)
@@ -607,6 +607,12 @@ function RandomScenario()
 end
 
 ---- Setup UI Section
+function updateMaxPlayers(params)
+    self.UI.setAttribute("numPlayersSlider", "maxValue", params.max)
+    if Global.getVar("numPlayers") > params.max then
+        updateNumPlayers(params.max, true)
+    end
+end
 function toggleNumPlayers(_, value)
     updateNumPlayers(value, true)
 end
@@ -639,17 +645,20 @@ function updateBoardLayouts(numPlayers)
     if optionalExtraBoard then
         numBoards = numPlayers + 1
     end
-    local layoutNames = {
-        "Balanced",
-        "Thematic",
-        "Random",
-        "Random with Thematic",
-        table.unpack(Global.getVar("alternateBoardLayoutNames")[numBoards])
-    }
-    if numPlayers > 5 and optionalExtraBoard then
-        -- Remove layouts that reference thematic since that isn't supported currently
-        table.remove(layoutNames, 4)
-        table.remove(layoutNames, 2)
+    local layoutNames = { "Balanced" }
+    local alternateBoardLayoutNames = Global.getVar("alternateBoardLayoutNames")
+    if alternateBoardLayoutNames[numBoards] then
+        for _,layout in pairs(alternateBoardLayoutNames[numBoards]) do
+            table.insert(layoutNames, layout)
+        end
+    end
+    local canThematic = numPlayers < 6 or (numPlayers == 6 and not optionalExtraBoard)
+    if canThematic then
+        table.insert(layoutNames, "Thematic")
+    end
+    table.insert(layoutNames, "Random")
+    if canThematic then
+        table.insert(layoutNames, "Random with Thematic")
     end
 
     if not tFind(layoutNames, Global.getVar("boardLayout")) then

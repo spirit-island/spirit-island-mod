@@ -621,6 +621,9 @@ function updateNumPlayers(value, updateUI)
     if numPlayers > 5 and optionalExtraBoard and Global.getVar("boardLayout") == "Thematic" then
         numPlayers = 5
     end
+    if numPlayers > 6 and self.UI.getAttribute("challenge", "isOn") == "true" then
+        numPlayers = 6
+    end
     Global.setVar("numPlayers", numPlayers)
     if updateUI then
         self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
@@ -1625,6 +1628,10 @@ end
 function toggleChallenge()
     weeklyChallenge = not weeklyChallenge
     if weeklyChallenge then
+        local numPlayers = Global.getVar("numPlayers")
+        if numPlayers > 6 then
+            toggleNumPlayers(nil, 6)
+        end
         if challengeConfig[challengeTier] == nil then
             for i=1,challengeTier do
                 if challengeConfig[i] == nil then

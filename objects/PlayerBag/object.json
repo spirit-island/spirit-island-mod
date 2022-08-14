@@ -1,11 +1,11 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -54.7654,
-    "posY": -1.0224,
-    "posZ": 63.4037,
+    "posX": -44.7259,
+    "posY": 0.9635,
+    "posZ": 60.0763,
     "rotX": 0.0,
-    "rotY": 180.0,
+    "rotY": 180.0208,
     "rotZ": 0.0,
     "scaleX": 0.6246,
     "scaleY": 0.1237,
@@ -19,9 +19,6 @@
     "g": 0.5608,
     "b": 0.5608
   },
-  "Tags": [
-    "Uninteractable"
-  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
@@ -60,5 +57,59 @@
   },
   "Bag": {
     "Order": 0
-  }
+  },
+  "ChildObjects": [
+    {
+      "GUID": "97f1eb",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 0.2425,
+        "posZ": 0.0,
+        "rotX": 0.0,
+        "rotY": 359.9876,
+        "rotZ": 0.0,
+        "scaleX": 0.5257,
+        "scaleY": 8.0825,
+        "scaleZ": 0.5257
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.5677,
+        "g": 0.5601,
+        "b": 0.56
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "file:///C:\\Users\\mmell\\OneDrive\\Desktop\\Temp HDD Storage\\Spirit Island\\Workshop Mod\\Box Icons\\Player Pieces.png",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
 }

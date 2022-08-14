@@ -1,11 +1,11 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -49.55,
+    "posX": -51.4739,
     "posY": 0.9602,
-    "posZ": 60.05,
+    "posZ": 60.0763,
     "rotX": 0.0,
-    "rotY": 0.0,
+    "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 0.6248,
     "scaleY": 0.1204,
@@ -61,10 +61,10 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.3818,
+        "posY": 0.4216,
         "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 180.0,
+        "rotY": 0.0,
         "rotZ": 0.0,
         "scaleX": 0.4425,
         "scaleY": 6.25,

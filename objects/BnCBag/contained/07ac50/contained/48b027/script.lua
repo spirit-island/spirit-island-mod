@@ -50,12 +50,12 @@ function destroyBoard(card, color)
     end
 
     -- Return cast down to player's play area
-    local guid = Global.getTable("elementScanZones")[color]
-    if guid == nil then
-        broadcastToAll("Unable to detect player color, make sure Cast Down into the Briny Deep button is being pressed by a player.", Color.Red)
+    local selectedColors = Global.getTable("selectedColors")
+    if selectedColors == nil or selectedColors[color] == nil or selectedColors[color].zone == nil then
+        broadcastToAll("Unable to detect player play area, make sure Cast Down into the Briny Deep button is being pressed by a player.", Color.Red)
         return
     end
-    self.setPosition(getObjectFromGUID(guid).getPosition() + Vector(-5, 1, -4))
+    self.setPosition(selectedColors[color].zone.getPosition() + Vector(-5, 1, -4))
 
     board.registerCollisions(false)
     Global.setVar("castDown", board.getName())

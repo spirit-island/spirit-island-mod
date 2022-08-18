@@ -88,7 +88,7 @@
       "Hands": false,
       "CustomMesh": {
         "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
-        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "DiffuseURL": "",
         "NormalURL": "",
         "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
         "Convex": true,

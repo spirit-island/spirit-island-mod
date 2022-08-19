@@ -2568,7 +2568,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         elseif type(aspects) == "table" then
             local aspectIndex = math.random(0,#aspects)
             if aspectIndex ~= 0 then
-                aspect = aspects[aspectIndex]
+                aspect = aspects[aspectIndex].name
             end
         elseif aspects.type == "Deck" then
             local cards = aspects.getObjects()

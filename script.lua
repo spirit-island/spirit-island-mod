@@ -1630,11 +1630,7 @@ function SetupFear()
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
-        fearDeck.takeObject({
-            position = handZone.position - Vector(count/2, 0, 0),
-            rotation = Vector(0, 180, 180),
-            smooth = false,
-        })
+        addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
         count = count + 1
     end
     for _ = 1, fearCards[2] do
@@ -1642,11 +1638,7 @@ function SetupFear()
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
-        fearDeck.takeObject({
-            position = handZone.position - Vector(count/2, 0, 0),
-            rotation = Vector(0, 180, 180),
-            smooth = false,
-        })
+        addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
         count = count + 1
     end
     for _ = 1, fearCards[3] do
@@ -1654,11 +1646,7 @@ function SetupFear()
             broadcastToAll("Not enough Fear Cards", Color.Red)
             break
         end
-        fearDeck.takeObject({
-            position = handZone.position - Vector(count/2, 0, 0),
-            rotation = Vector(0, 180, 180),
-            smooth = false,
-        })
+        addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
         count = count + 1
     end
 
@@ -1679,6 +1667,32 @@ function SetupFear()
     end, 10)
 
     return 1
+end
+function addFearCard(params)
+    local fearDeck = fearDeckSetupZone.getObjects()[1]
+    if fearDeck == nil then
+        broadcastToAll("No Fear Cards remaining", Color.Red)
+        return
+    end
+
+    local position
+    if params.position then
+        position = params.position
+    else
+        local handTransform = Player["Black"].getHandTransform(1)
+        position = handTransform.position + Vector(handTransform.scale.x/2, 0, 0)
+    end
+
+    if fearDeck.type == "Deck" then
+        fearDeck.takeObject({
+            position = position,
+            rotation = Vector(0, 180, 180),
+            smooth = false,
+        })
+    else
+        fearDeck.setPosition(position)
+        fearDeck.setRotation(Vector(0, 180, 180))
+    end
 end
 function setupFearTokens()
     local fearMulti = 4

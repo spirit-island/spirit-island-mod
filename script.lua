@@ -1668,6 +1668,26 @@ function SetupFear()
 
     return 1
 end
+function setupFearTokens()
+    local fearMulti = 4
+    if SetupChecker.getVar("optionalExtraBoard") then
+        fearMulti = fearMulti + 1
+    end
+    if adversaryCard ~= nil then
+        local fearTokens = adversaryCard.getVar("fearTokens")
+        if fearTokens ~= nil then
+            fearMulti = fearMulti + fearTokens[adversaryLevel]
+        end
+    end
+    if adversaryCard2 ~= nil then
+        local fearTokens = adversaryCard2.getVar("fearTokens")
+        if fearTokens ~= nil then
+            fearMulti = fearMulti + fearTokens[adversaryLevel2]
+        end
+    end
+    fearPool = fearMulti * numPlayers
+    aidBoard.call("updateFearUI")
+end
 function addFearCard(params)
     local fearDeck = fearDeckSetupZone.getObjects()[1]
     if fearDeck == nil then
@@ -1693,26 +1713,6 @@ function addFearCard(params)
         fearDeck.setPosition(position)
         fearDeck.setRotation(Vector(0, 180, 180))
     end
-end
-function setupFearTokens()
-    local fearMulti = 4
-    if SetupChecker.getVar("optionalExtraBoard") then
-        fearMulti = fearMulti + 1
-    end
-    if adversaryCard ~= nil then
-        local fearTokens = adversaryCard.getVar("fearTokens")
-        if fearTokens ~= nil then
-            fearMulti = fearMulti + fearTokens[adversaryLevel]
-        end
-    end
-    if adversaryCard2 ~= nil then
-        local fearTokens = adversaryCard2.getVar("fearTokens")
-        if fearTokens ~= nil then
-            fearMulti = fearMulti + fearTokens[adversaryLevel2]
-        end
-    end
-    fearPool = fearMulti * numPlayers
-    aidBoard.call("updateFearUI")
 end
 ----- Minor/Major Power Section
 function SetupPlaytestPowerDeck(deck, name, option, callback)

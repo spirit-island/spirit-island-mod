@@ -7,8 +7,7 @@
   - "High"
   - "Very High"
 - Add snap points to presence track(s) where presence should be setup
-- Presence track elements:
-  - For fixed elements that appear on presence tracks grab object from the element bag (one next to energy bag)
+- Presence track fixed (non choice) elements:
   - Set the state to match the element
   - If multiple elements appear on same spot simply stack elements on top of each other
   - Once all elements are set press the "Update Elements" button
@@ -36,8 +35,8 @@
   - Set the state to match the element
   - Stack elements on top of each other as needed
   - Once all thresholds are set press the "Update Threshold" button (the bottom one)
-  - Note: the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
   - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+  - Note: the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
 
 ### Aspects
 - Add "Aspect" tag
@@ -56,6 +55,8 @@
 
 ### Fear Cards
 - Add "Fear" tag
+- Set name of object to that of fear card
+- Enable Hide Face Down toggle for the card
 
 ### Expansions
 - Create a bag

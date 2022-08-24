@@ -209,6 +209,9 @@
                 <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
             </Row>
             <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="slaveRebellionBack" onValueChanged="toggleSlaveRebellionBack" tooltip="Make Slave Rebellion have unique back">Use Unique "Slave Rebellion" Back</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
             <Row class="toggle">

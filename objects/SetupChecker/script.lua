@@ -56,6 +56,7 @@ optionalBlightSetup = true
 optionalExtraBoard = false
 optionalBoardPairings = true
 optionalThematicRebellion = false
+optionalUniqueRebellion = false
 optionalThematicRedo = false
 optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
@@ -102,6 +103,7 @@ function onSave()
     data_table.variant.extraBoard = optionalExtraBoard
     data_table.variant.boardPairings = optionalBoardPairings
     data_table.variant.thematicRebellion = optionalThematicRebellion
+    data_table.variant.uniqueRebellion = optionalUniqueRebellion
     data_table.variant.thematicRedo = optionalThematicRedo
     data_table.variant.gameResults = optionalGameResults
 
@@ -180,6 +182,7 @@ function onLoad(saved_data)
         optionalExtraBoard = loaded_data.variant.extraBoard
         optionalBoardPairings = loaded_data.variant.boardPairings
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
+        optionalUniqueRebellion = loaded_data.variant.uniqueRebellion
         optionalThematicRedo = loaded_data.variant.thematicRedo
         optionalGameResults = loaded_data.variant.gameResults
 
@@ -255,6 +258,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
             self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
+            self.UI.setAttribute("slaveRebellionBack", "isOn", optionalUniqueRebellion)
             self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
             self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
             self.UI.setAttribute("gameResults", "isOn", optionalGameResults)
@@ -1233,6 +1237,9 @@ function loadConfig(config)
         if config.variant.thematicRebellion ~= nil then
             setSlaveRebellion(config.variant.thematicRebellion, false)
         end
+        if config.variant.uniqueRebellion ~= nil then
+            optionalUniqueRebellion = config.variant.uniqueRebellion
+        end
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
         end
@@ -2144,6 +2151,10 @@ function setSlaveRebellion(bool, updateUI)
     if updateUI then
         self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
     end
+end
+function toggleSlaveRebellionBack()
+    optionalUniqueRebellion = not optionalUniqueRebellion
+    self.UI.setAttribute("slaveRebellionBack", "isOn", optionalUniqueRebellion)
 end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo

@@ -250,6 +250,9 @@
             <Row class="toggle">
                 <Cell><Toggle id="trickster" onValueChanged="toggleTrickster" tooltip="The air of 2 Unique Powers has been swapped">Grinning Trickster Stirs Up Trouble</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="shadows" onValueChanged="toggleShadows" tooltip="The Top Track is more viable, also&#xA;adds a Reclaim 1 to Bottom Track">Shadows Flicker Like Flame</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

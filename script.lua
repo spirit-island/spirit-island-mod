@@ -3206,7 +3206,37 @@ function PostSetup()
         else
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
-                spirit.setState(2)
+                spirit = spirit.setState(2)
+                spirit.setLock(true)
+                Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
+            else
+                postSetupSteps = postSetupSteps + 1
+            end
+        end
+    else
+        postSetupSteps = postSetupSteps + 1
+    end
+
+    if SetupChecker.getVar("exploratoryShadows") then
+        -- TODO change bag image to exploratory (eventually)
+        local spirit = getObjectFromGUID("45e367")
+        if spirit ~= nil then
+            spirit.takeObject({
+                guid = "bd2a4a",
+                position = spirit.getPosition() + Vector(0, 1, 0),
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        spirit.putObject(temp)
+                        postSetupSteps = postSetupSteps + 1
+                    end, 1)
+                end,
+            })
+        else
+            spirit = getObjectFromGUID("bd2a4a")
+            if spirit ~= nil then
+                spirit = spirit.setState(2)
+                spirit.setLock(true)
                 Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return not spirit.loading_custom end)
             else
                 postSetupSteps = postSetupSteps + 1
@@ -3344,14 +3374,14 @@ function PostSetup()
         else
             postSetupSteps = postSetupSteps + 1
         end
-    end, function() return postSetupSteps == 6 end)
+    end, function() return postSetupSteps == 7 end)
 
     -- HACK: trying to fix client desync issue
     for _,obj in pairs(getMapTiles()) do
         obj.setPosition(obj.getPosition()-Vector(0,0.01,0))
     end
 
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 7 end)
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return postSetupSteps == 8 end)
     return 1
 end
 function createDifficultyButton()

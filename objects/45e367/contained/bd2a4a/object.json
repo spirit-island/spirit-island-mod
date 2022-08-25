@@ -121,5 +121,136 @@
         "z": -0.3988
       }
     }
-  ]
+  ],
+  "States": {
+    "2": {
+      "GUID": "0914ab",
+      "Name": "Custom_Tile",
+      "Transform": {
+        "posX": 72.2043,
+        "posY": 1.0031,
+        "posZ": 95.19,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 180.0,
+        "scaleX": 5.46,
+        "scaleY": 1.0,
+        "scaleZ": 5.46
+      },
+      "Nickname": "Shadows Flicker Like Flame",
+      "Description": "Base",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.2003,
+        "g": 0.1603,
+        "b": 0.1518
+      },
+      "Tags": [
+        "Base",
+        "Low",
+        "Spirit"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1762617220648023255/BCC94C4C37C92969EBFE6E66B7165324D2407CE0/",
+        "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752021918/D6E703DA4CF240BB29352347180784E1DDE49D1E/",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomTile": {
+          "Type": 0,
+          "Thickness": 0.2,
+          "Stackable": false,
+          "Stretch": true
+        }
+      },
+      "LuaScript": "-- Spirit Panel for MJ & iakona's Spirit Island Mod --\nuseProgression = false\nuseAspect = 2\n\nfunction onLoad(saved_data)\n    Color.Add(\"SoftBlue\", Color.new(0.53,0.92,1))\n    Color.Add(\"SoftYellow\", Color.new(1,0.8,0.5))\n    getObjectFromGUID(\"SourceSpirit\").call(\"load\", {obj = self, saved_data = saved_data})\nend",
+      "LuaScriptState": "{\"thresholds\": [{\"elements\": \"02100000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.44}}, {\"elements\": \"03200000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.56}}, {\"elements\": \"04320000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.69}}], \"trackEnergy\": [{\"count\": 7, \"position\": {\"x\": -0.92, \"y\": 0, \"z\": -0.4}}, {\"count\": 6, \"position\": {\"x\": -0.69, \"y\": 0, \"z\": -0.41}}, {\"count\": 5, \"position\": {\"x\": -0.48, \"y\": 0, \"z\": -0.4}}, {\"count\": 4, \"position\": {\"x\": -0.25, \"y\": 0, \"z\": -0.41}}, {\"count\": 2, \"position\": {\"x\": -0.03, \"y\": 0, \"z\": -0.4}}, {\"count\": 1, \"position\": {\"x\": 0.2, \"y\": 0, \"z\": -0.4}}]}",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -0.0327,
+            "y": 0.2,
+            "z": -0.3974
+          }
+        },
+        {
+          "Position": {
+            "x": -0.0277,
+            "y": 0.2,
+            "z": -0.08
+          }
+        },
+        {
+          "Position": {
+            "x": -0.2516,
+            "y": 0.2,
+            "z": -0.0818
+          }
+        },
+        {
+          "Position": {
+            "x": -0.2555,
+            "y": 0.2,
+            "z": -0.4023
+          }
+        },
+        {
+          "Position": {
+            "x": -0.4803,
+            "y": 0.2,
+            "z": -0.4009
+          }
+        },
+        {
+          "Position": {
+            "x": -0.4722,
+            "y": 0.2,
+            "z": -0.0807
+          }
+        },
+        {
+          "Position": {
+            "x": -0.6898,
+            "y": 0.2,
+            "z": -0.0799
+          }
+        },
+        {
+          "Position": {
+            "x": -0.6952,
+            "y": 0.2,
+            "z": -0.4034
+          }
+        },
+        {
+          "Position": {
+            "x": -0.9149,
+            "y": 0.2,
+            "z": -0.0774
+          }
+        },
+        {
+          "Position": {
+            "x": -0.9215,
+            "y": 0.2,
+            "z": -0.3988
+          }
+        }
+      ]
+    }
+  }
 }

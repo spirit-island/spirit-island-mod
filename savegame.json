@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1660439111,
-  "Date": "8/13/2022 8:05:11 PM",
+  "EpochTime": 1661832349,
+  "Date": "8/29/2022 11:05:49 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -534,6 +534,22 @@
     {
       "Name": "Dropdown Game Results",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847039328585363186/72B5D4AE16C9A9EA6A0D079840DB24C534D13055/"
+    },
+    {
+      "Name": "Advert-Mobile",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166286/A842B02B2FE71220FDDF1082F9875247B0AB7963/"
+    },
+    {
+      "Name": "Advert-Steam",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166210/35F7F0A1B9A37FECDBFBE4B44CF1FC4D1C53261A/"
+    },
+    {
+      "Name": "Advert-iOS",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166094/64C6D6F0BFDA067D56B2AED06D6CC7C27074016D/"
+    },
+    {
+      "Name": "Advert-Android",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242165990/1D2775C682A1234242B879533348A7F0A44C1933/"
     }
   ],
   "SnapPoints": [

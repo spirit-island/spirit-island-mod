@@ -256,7 +256,28 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1000" height="2800" position="250 -1460 14">
+<Panel id="panelAdvertising" visibility="Invisible" width="1000" height="2800" position="250 -1460 14">
+    <VerticalLayout width="1150">
+        <TableLayout>
+            <Row class="doubleheader">
+                <Cell columnSpan="3"><Text>Please Support Handlebara Games and Greater Than Games by buying the digital version of the game!</Text></Cell>
+            </Row>
+            <Row preferredHeight="320">
+                <Image image="Advert-Mobile" preserveAspect="true"/>
+            </Row>
+            <Row class="spacing"/>
+            <Row>
+                <Cell><Image image="Advert-Steam" preserveAspect="true"/></Cell>
+                <Cell><Image image="Advert-iOS" preserveAspect="true"/></Cell>
+                <Cell><Image image="Advert-Android" preserveAspect="true"/></Cell>
+            </Row>
+            <Row class="header">
+                <Cell columnSpan="3"><Text>Learn More: handelabra.com/spiritisland</Text></Cell>
+            </Row>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1000" height="2800" position="250 -2150 14">
     <VerticalLayout recurse="playtestExpansion" width="1150">
         <TableLayout recurse="playtestExpansion">
             <Row class="header">

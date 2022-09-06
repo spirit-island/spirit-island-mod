@@ -42,6 +42,7 @@ weeklyChallenge = false
 
 randomMin = 0
 randomMax = 11
+randomMaximiseLevel = false
 randomAdversary = false
 randomAdversary2 = false
 randomScenario = false
@@ -128,6 +129,7 @@ function onSave()
     data_table.random = {}
     data_table.random.min = randomMin
     data_table.random.max = randomMax
+    data_table.random.maximiseLevel = randomMaximiseLevel
     data_table.random.adversary = randomAdversary
     data_table.random.adversary2 = randomAdversary2
     data_table.random.scenario = randomScenario
@@ -205,6 +207,7 @@ function onLoad(saved_data)
 
         randomMin = loaded_data.random.min
         randomMax = loaded_data.random.max
+        randomMaximiseLevel = loaded_data.random.maximiseLevel
         randomAdversary = loaded_data.random.adversary
         randomAdversary2 = loaded_data.random.adversary2
         randomScenario = loaded_data.random.scenario
@@ -281,6 +284,7 @@ function onLoad(saved_data)
 
             toggleMinDifficulty(nil, randomMin)
             toggleMaxDifficulty(nil, randomMax)
+            self.UI.setAttribute("maximiseLevelToggle", "isOn", randomMaximiseLevel)
             if randomAdversary or randomAdversary2 or randomScenario then
                 enableRandomDifficulty()
             end
@@ -1734,11 +1738,16 @@ function toggleMaxDifficulty(_, value)
     self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..randomMax)
     self.UI.setAttribute("maxDifficultySlider", "value", randomMax)
 end
+function toggleMaximiseLevel()
+    randomMaximiseLevel = not randomMaximiseLevel
+    self.UI.setAttribute("maximiseLevelToggle", "isOn", randomMaximiseLevel)
+end
 function enableRandomDifficulty()
     self.UI.setAttribute("minTextRow", "visibility", "")
     self.UI.setAttribute("minRow", "visibility", "")
     self.UI.setAttribute("maxTextRow", "visibility", "")
     self.UI.setAttribute("maxRow", "visibility", "")
+    self.UI.setAttribute("maximiseLevelRow", "visibility", "")
 end
 function checkRandomDifficulty(enable, force)
     local visibility = ""
@@ -1751,6 +1760,7 @@ function checkRandomDifficulty(enable, force)
         self.UI.setAttribute("minRow", "visibility", visibility)
         self.UI.setAttribute("maxTextRow", "visibility", visibility)
         self.UI.setAttribute("maxRow", "visibility", visibility)
+        self.UI.setAttribute("maximiseLevelRow", "visibility", visibility)
     end
 end
 

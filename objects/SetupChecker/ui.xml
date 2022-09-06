@@ -125,6 +125,9 @@
             <Row id="maxRow" visibility="Invisible">
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
+            <Row id="maximiseLevelRow" class="toggle"  visibility="Invisible">
+                <Cell columnSpan="2"><Toggle id="maximiseLevelToggle" onValueChanged="toggleMaximiseLevel" tooltip="After randomly selecting an Adversary, maximise its level&#xA;while remaining within the selected difficulty range">Maximise Adversary level in range</Toggle></Cell>
+            </Row>
             <Row id="simpleRow" class="toggle" visibility="Invisible">
                 <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
                 <Cell><Toggle id="allEvents" isOn="true" onValueChanged="toggleAllEvents">Use Events</Toggle></Cell>
@@ -169,7 +172,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="2800" position="-2000 -3080 14">
+<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="2800" position="-2000 -3160 14">
     <VerticalLayout recurse="events">
         <TableLayout recurse="events">
             <Row class="header">

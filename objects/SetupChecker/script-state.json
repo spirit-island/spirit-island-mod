@@ -140,6 +140,7 @@
     "board": false,
     "max": 11,
     "min": 0,
+    "maximiseLevel": false,
     "scenario": false,
     "thematic": false
   },

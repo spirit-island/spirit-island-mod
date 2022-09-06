@@ -46,6 +46,19 @@
   - Follow power card threshold instructions
 - Add "Aspect" tag to deck of aspects as well if you have one of those
 
+### Progression Cards
+- Set name of object to "Progression"
+- Set lua script for object to:
+```
+progressionDeck = {
+    -- reverse order
+    {"<power card guid>", true|false (whether this is major power or not)},
+    {"<power card guid>", true|false (whether this is major power or not)},
+    {"<power card guid>", true|false (whether this is major power or not)},
+    ... (add additional lines as needed)
+}
+```
+
 ### Blight Cards
 - Move card onto blight card editor
 - Change values that appear to match card

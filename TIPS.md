@@ -61,13 +61,14 @@
 - To use the Player Aid cards: "Show Player Aids" (upper right of the table) and optionally Unlock (Hover + L) and move them
 
 ### In Each Play Area There Is...
-- A bag of Defend Tokens
+- A bag of Defend Markers
   - These have a state for the various defend values
   - The backside of this token is the generic player marker
-- A bag of Isolate Tokens
+- A bag of Isolate Markers
   - The backside of this token is the generic player marker
 - A bag for each of the 8 Elements
   - With 0's underneath them, tracking what Elements you currently have (from Cards and/or Presence Tracks)
+  - You can drag out element markers from the bag for additional elements you need during your turn
 - A bag of "Any" Elements
   - These have a state (from 1 - 8) for each Element
   - Can be used when an "Any" is revealed on your Presence Tracks

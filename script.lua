@@ -1096,7 +1096,7 @@ function randomAdversary(attempts)
         local difficulty2 = adversary2.getVar("difficulty")
         local randomMin = SetupChecker.getVar("randomMin")
         local randomMax = SetupChecker.getVar("randomMax")
-        local randomMaxLevel = SetupChecker.getVar("randomMaxLevel")
+        local randomMaximiseLevel = SetupChecker.getVar("randomMaximiseLevel")
         local combos = {}
         for i,v in pairs(difficulty) do
             local params = {lead = v}
@@ -1110,7 +1110,7 @@ function randomAdversary(attempts)
                 if difficulty2[j+1] ~= nil and SetupChecker.call("difficultyCheck", {lead = v, support = difficulty2[j+1]}) <= randomMax then
                     canIncreaseLevel = true
                 end
-                if newDiff >= randomMin and newDiff <= randomMax and not (randomMaxLevel and canIncreaseLevel) then
+                if newDiff >= randomMin and newDiff <= randomMax and not (randomMaximiseLevel and canIncreaseLevel) then
                     table.insert(combos, {i,j})
                 elseif newDiff > randomMax then
                     break
@@ -1151,7 +1151,7 @@ function randomAdversary(attempts)
 
         local randomMin = SetupChecker.getVar("randomMin")
         local randomMax = SetupChecker.getVar("randomMax")
-        local randomMaxLevel = SetupChecker.getVar("randomMaxLevel")
+        local randomMaximiseLevel = SetupChecker.getVar("randomMaximiseLevel")
         local combos = {}
         for i,v in pairs(adversary.getVar("difficulty")) do
             local params = {}
@@ -1169,7 +1169,7 @@ function randomAdversary(attempts)
         end
         if #combos ~= 0 then
             local index
-            if randomMaxLevel then
+            if randomMaximiseLevel then
                 index = #combos
             else
                 index = math.random(1,#combos)

@@ -125,8 +125,8 @@
             <Row id="maxRow" visibility="Invisible">
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
-            <Row id="maxLevelRow" class="toggle"  visibility="Invisible">
-                <Cell columnSpan="2"><Toggle id="maxLevelToggle" onValueChanged="toggleMaxLevel" tooltip="After randomly selecting an Adversary, maximise its level&#xA;while remaining within the selected difficulty range">Maximise Adversary level in range</Toggle></Cell>
+            <Row id="maximiseLevelRow" class="toggle"  visibility="Invisible">
+                <Cell columnSpan="2"><Toggle id="maximiseLevelToggle" onValueChanged="toggleMaximiseLevel" tooltip="After randomly selecting an Adversary, maximise its level&#xA;while remaining within the selected difficulty range">Maximise Adversary level in range</Toggle></Cell>
             </Row>
             <Row id="simpleRow" class="toggle" visibility="Invisible">
                 <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>

@@ -263,7 +263,7 @@
     <VerticalLayout width="1150">
         <TableLayout>
             <Row class="doubleheader">
-                <Cell columnSpan="3"><Text>Please Support Handlebara Games and Greater Than Games by buying the digital version of the game!</Text></Cell>
+                <Cell columnSpan="3"><Text>Please Support Handelabra Games and Greater Than Games by buying the digital version of the game!</Text></Cell>
             </Row>
             <Row preferredHeight="320">
                 <Image image="Advert-Mobile" preserveAspect="true"/>

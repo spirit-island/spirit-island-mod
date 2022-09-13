@@ -480,17 +480,15 @@ function setupSpirit(obj, player_color)
         end
     end, function() return not spirit.loading_custom end)
 
-    Wait.frames(function()
-        Global.call("removeSpirit", {
-            color = player_color,
-            ready = ready,
-            counter = counter,
-            elements = elements,
-            defend = defend,
-            isolate = isolate,
-            zone = zone,
-        })
-    end, 2)
+    Global.call("removeSpirit", {
+        color = player_color,
+        ready = ready,
+        counter = counter,
+        elements = elements,
+        defend = defend,
+        isolate = isolate,
+        zone = zone,
+    })
 end
 function ToggleProgression(obj)
     local useProgression = obj.getVar("useProgression")

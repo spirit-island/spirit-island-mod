@@ -1,0 +1,50 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -54.702598571777344,
+    "posY": 1.0369000434875488,
+    "posZ": 64.5447998046875,
+    "rotX": -0.0010999999940395355,
+    "rotY": 0.00019999999494757503,
+    "rotZ": 359.9913024902344,
+    "scaleX": 0.8999999761581421,
+    "scaleY": 0.8999999761581421,
+    "scaleZ": 0.8999999761581421
+  },
+  "Nickname": "Isolate",
+  "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using adjacencies unless you let them.",
+  "GMNotes": "",
+  "ColorDiffuse": {
+    "r": 0.5685999989509583,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
+  },
+  "Tags": [
+    "Destroy",
+    "Reminder Token"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

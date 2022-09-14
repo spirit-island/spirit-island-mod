@@ -121,5 +121,136 @@
         "z": -0.39879998564720154
       }
     }
-  ]
+  ],
+  "States": {
+    "2": {
+      "GUID": "0914ab",
+      "Name": "Custom_Tile",
+      "Transform": {
+        "posX": 72.20429992675781,
+        "posY": 1.003100037574768,
+        "posZ": 95.19000244140625,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 180.0,
+        "scaleX": 5.460000038146973,
+        "scaleY": 1.0,
+        "scaleZ": 5.460000038146973
+      },
+      "Nickname": "Shadows Flicker Like Flame",
+      "Description": "Base",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.20029999315738678,
+        "g": 0.16030000150203705,
+        "b": 0.1518000066280365
+      },
+      "Tags": [
+        "Base",
+        "Low",
+        "Spirit"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1762617220648023255/BCC94C4C37C92969EBFE6E66B7165324D2407CE0/",
+        "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752021918/D6E703DA4CF240BB29352347180784E1DDE49D1E/",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomTile": {
+          "Type": 0,
+          "Thickness": 0.20000000298023224,
+          "Stackable": false,
+          "Stretch": true
+        }
+      },
+      "LuaScript": "-- Spirit Panel for MJ & iakona's Spirit Island Mod --\nuseProgression = false\nuseAspect = 2\n\nfunction onLoad(saved_data)\n    Color.Add(\"SoftBlue\", Color.new(0.53,0.92,1))\n    Color.Add(\"SoftYellow\", Color.new(1,0.8,0.5))\n    getObjectFromGUID(\"SourceSpirit\").call(\"load\", {obj = self, saved_data = saved_data})\nend",
+      "LuaScriptState": "{\"thresholds\": [{\"elements\": \"02100000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.44}}, {\"elements\": \"03200000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.56}}, {\"elements\": \"04320000\", \"position\": {\"x\": 0.34, \"y\": 0, \"z\": 0.69}}], \"trackEnergy\": [{\"count\": 7, \"position\": {\"x\": -0.92, \"y\": 0, \"z\": -0.4}}, {\"count\": 6, \"position\": {\"x\": -0.69, \"y\": 0, \"z\": -0.41}}, {\"count\": 5, \"position\": {\"x\": -0.48, \"y\": 0, \"z\": -0.4}}, {\"count\": 4, \"position\": {\"x\": -0.25, \"y\": 0, \"z\": -0.41}}, {\"count\": 2, \"position\": {\"x\": -0.03, \"y\": 0, \"z\": -0.4}}, {\"count\": 1, \"position\": {\"x\": 0.2, \"y\": 0, \"z\": -0.4}}]}",
+      "XmlUI": "",
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": -0.03269999846816063,
+            "y": 0.20000000298023224,
+            "z": -0.39739999175071716
+          }
+        },
+        {
+          "Position": {
+            "x": -0.027699999511241913,
+            "y": 0.20000000298023224,
+            "z": -0.07999999821186066
+          }
+        },
+        {
+          "Position": {
+            "x": -0.2515999972820282,
+            "y": 0.20000000298023224,
+            "z": -0.08179999887943268
+          }
+        },
+        {
+          "Position": {
+            "x": -0.2554999887943268,
+            "y": 0.20000000298023224,
+            "z": -0.40230000019073486
+          }
+        },
+        {
+          "Position": {
+            "x": -0.48030000925064087,
+            "y": 0.20000000298023224,
+            "z": -0.4009000062942505
+          }
+        },
+        {
+          "Position": {
+            "x": -0.4722000062465668,
+            "y": 0.20000000298023224,
+            "z": -0.08070000261068344
+          }
+        },
+        {
+          "Position": {
+            "x": -0.6898000240325928,
+            "y": 0.20000000298023224,
+            "z": -0.07989999651908875
+          }
+        },
+        {
+          "Position": {
+            "x": -0.6952000260353088,
+            "y": 0.20000000298023224,
+            "z": -0.4034000039100647
+          }
+        },
+        {
+          "Position": {
+            "x": -0.914900004863739,
+            "y": 0.20000000298023224,
+            "z": -0.07739999890327454
+          }
+        },
+        {
+          "Position": {
+            "x": -0.921500027179718,
+            "y": 0.20000000298023224,
+            "z": -0.39879998564720154
+          }
+        }
+      ]
+    }
+  }
 }

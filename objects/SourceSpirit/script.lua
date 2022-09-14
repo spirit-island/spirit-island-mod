@@ -222,6 +222,8 @@ end
 function SetupSpirit(obj, player_color)
     if Global.call("playerHasSpirit", {color = player_color}) then
         Player[player_color].broadcast("You already picked a Spirit!", Color.Red)
+    elseif not Global.getTable("playerTables")[player_color] then
+        return
     else
         obj.clearButtons()
         Global.call("pickSpirit", {
@@ -247,7 +249,7 @@ function setupSpirit(obj, player_color)
                 if tag == "Spirit" then
                     spirit = obj.takeObject({
                         guid = o.guid,
-                        position = Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5),
+                        position = hpos + Vector(0,-3.05,12.5),
                         rotation = Vector(0,180,0),
                         smooth = false,
                     })
@@ -258,7 +260,7 @@ function setupSpirit(obj, player_color)
         Wait.condition(function() spirit.clearButtons() end, function() return not spirit.loading_custom end)
     else
         castObjects = upCast(obj)
-        obj.setPosition(Vector(hpos.x,0,hpos.z) + Vector(0,1.05,12.5))
+        obj.setPosition(hpos + Vector(0,-3.05,12.5))
         obj.setRotation(Vector(0,180,0))
         spirit = obj
     end
@@ -267,18 +269,34 @@ function setupSpirit(obj, player_color)
     local snaps = spirit.getSnapPoints()
     local placed = 0
 
-    local PlayerBag = getObjectFromGUID(Global.getTable("PlayerBags")[player_color])
+    local objsData = Global.getVar("playerBag").getData().ContainedObjects
+
     -- Setup Presence
+    local playerTints = Global.getTable("Tints")[player_color]
+    local color = Color.fromHex(playerTints.Presence.."FF")
+    local presenceData = objsData[13]
+    presenceData.Nickname = player_color.."'s "..presenceData.Nickname
+    presenceData.ColorDiffuse.r = color.r
+    presenceData.ColorDiffuse.g = color.g
+    presenceData.ColorDiffuse.b = color.b
+    presenceData.States[2].Nickname = player_color.."'s "..presenceData.States[2].Nickname
+    presenceData.States[2].ColorDiffuse.r = color.r
+    presenceData.States[2].ColorDiffuse.g = color.g
+    presenceData.States[2].ColorDiffuse.b = color.b
+    presenceData.States[2].AttachedDecals[1].CustomDecal.Name = player_color.."'s "..presenceData.States[2].AttachedDecals[1].CustomDecal.Name
+    presenceData.States[2].AttachedDecals[1].CustomDecal.ImageURL = Global.call("GetSacredSiteUrl", {color = player_color})
     for i = 1,13 do
         local p = snaps[i]
         if i <= #snaps then
-            PlayerBag.takeObject({
+            spawnObjectData({
+                data = presenceData,
                 position = spirit.positionToWorld(p.position),
                 rotation = Vector(0, 180, 0),
             })
         else
-            PlayerBag.takeObject({
-                position = Vector(spos.x,0,spos.z) + Vector(-placed*xPadding+xOffset,1.1,10),
+            spawnObjectData({
+                data = presenceData,
+                position = spos + Vector(-placed*xPadding+xOffset,0.05,10),
                 rotation = Vector(0, 180, 0),
             })
             placed = placed + 1
@@ -286,14 +304,15 @@ function setupSpirit(obj, player_color)
     end
 
     -- Setup Ready Token
-    local ready = PlayerBag.takeObject({
-        position = Vector(spos.x,0,spos.z) + Vector(7.2, 1.1, 7),
+    local ready = spawnObjectData({
+        data = objsData[12],
+        position = spos + Vector(7.2, 0.05, 7),
         rotation = Vector(0, 180, 0),
     })
 
     -- Setup Energy Counter
     local counter = Global.getVar("counterBag").takeObject({
-        position = Vector(spos.x,0,spos.z) + Vector(-5.9,1,6.8),
+        position = spos + Vector(-5.9, -0.05, 6.8),
         rotation = Vector(0, 0, 0),
     })
     counter.setLock(true)
@@ -301,24 +320,59 @@ function setupSpirit(obj, player_color)
     -- Setup Element Bags
     local elements = {}
     for i = 1,9 do
-        elements[i] = PlayerBag.takeObject({
-            position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21) + Vector(i * 2, 0, 0),
+        elements[i] = spawnObjectData({
+            data = objsData[12-i],
+            position = spos + Vector(-8.31, -0.1, 20.21) + Vector(i * 2, 0, 0),
             rotation = Vector(0, 180, 0),
         })
         elements[i].setLock(true)
     end
 
     -- Setup Reminder Bags
-    local defend = PlayerBag.takeObject({
-        position = Vector(spos.x,0,spos.z) + Vector(-10.31, 0.95, 20.21),
+    if playerTints.Token then
+        color = Color.fromHex(playerTints.Token.."FF")
+    end
+    local defendData = objsData[2]
+    defendData.ColorDiffuse.r = color.r
+    defendData.ColorDiffuse.g = color.g
+    defendData.ColorDiffuse.b = color.b
+    defendData.ContainedObjects[1].Nickname = player_color.."'s "..defendData.ContainedObjects[1].Nickname
+    defendData.ContainedObjects[1].ColorDiffuse.r = color.r
+    defendData.ContainedObjects[1].ColorDiffuse.g = color.g
+    defendData.ContainedObjects[1].ColorDiffuse.b = color.b
+    for _,stateData in pairs(defendData.ContainedObjects[1].States) do
+        stateData.Nickname = player_color.."'s "..stateData.Nickname
+        stateData.ColorDiffuse.r = color.r
+        stateData.ColorDiffuse.g = color.g
+        stateData.ColorDiffuse.b = color.b
+    end
+    local defend = spawnObjectData({
+        data = defendData,
+        position = spos + Vector(-10.31, -0.1, 20.21),
         rotation = Vector(0, 180, 0),
     })
     defend.setLock(true)
-    local isolate = PlayerBag.takeObject({
-        position = Vector(spos.x,0,spos.z) + Vector(-8.31, 0.95, 20.21),
+    local isolateData = objsData[1]
+    isolateData.ColorDiffuse.r = color.r
+    isolateData.ColorDiffuse.g = color.g
+    isolateData.ColorDiffuse.b = color.b
+    isolateData.ContainedObjects[1].Nickname = player_color.."'s "..isolateData.ContainedObjects[1].Nickname
+    isolateData.ContainedObjects[1].ColorDiffuse.r = color.r
+    isolateData.ContainedObjects[1].ColorDiffuse.g = color.g
+    isolateData.ContainedObjects[1].ColorDiffuse.b = color.b
+    local isolate = spawnObjectData({
+        data = isolateData,
+        position = spos + Vector(-8.31, -0.1, 20.21),
         rotation = Vector(0, 180, 0),
     })
     isolate.setLock(true)
+
+    -- Setup Scripting Zone
+    local zone = spawnObject({
+        type = "ScriptingTrigger",
+        position = spos + Vector(0, 0.09, 5.81),
+        scale = Vector(22, 0.64, 23),
+    })
 
     -- Setup Progression Deck if enabled
     local useProgression = obj.getVar("useProgression")
@@ -338,13 +392,13 @@ function setupSpirit(obj, player_color)
         for i,card in pairs(progressionDeck) do
             if card[2] then
                 majorPowerDeck.takeObject({
-                    position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),
+                    position = spos + Vector(0, 0.05 + i, 14),
                     rotation = Vector(0,180,180),
                     guid = card[1],
                 })
             else
                 minorPowerDeck.takeObject({
-                    position = Vector(spos.x,i,spos.z) + Vector(0,1.1,14),
+                    position = spos + Vector(0, 0.05 + i, 14),
                     rotation = Vector(0,180,180),
                     guid = card[1],
                 })
@@ -370,15 +424,15 @@ function setupSpirit(obj, player_color)
             if ob.type == "Card" then
                 if ob.getName() == "Progression" then
                     if useProgression then
-                        ob.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
+                        ob.setPositionSmooth(spos + Vector(0, 8.05, 14))
                     else
                         ob.destruct()
                     end
                 else
-                    ob.deal(1, player_color)
+                    Wait.frames(function() ob.deal(1, player_color) end, 1)
                 end
             else
-                ob.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
+                ob.setPositionSmooth(spos + Vector(-placed*xPadding, 0.05, 10))
                 placed = placed + 1
             end
 
@@ -396,15 +450,15 @@ function setupSpirit(obj, player_color)
             if o.hasTag("Aspect") then
                 handleAspect(obj, o, player_color)
             elseif o.type == "Deck" then
-                o.deal(#o.getObjects(),player_color)
+                Wait.frames(function() o.deal(#o.getObjects(),player_color) end, 1)
             elseif o.type == "Card" and o.getName() == "Progression" then
                 if useProgression then
-                    o.setPositionSmooth(Vector(spos.x,8,spos.z) + Vector(0,1.1,14))
+                    o.setPositionSmooth(spos + Vector(0, 8.05, 14))
                 else
                     o.destruct()
                 end
             else
-                o.setPositionSmooth(Vector(spos.x,0,spos.z) + Vector(-placed*xPadding,1.1,10))
+                o.setPositionSmooth(spos + Vector(-placed*xPadding, 0.05, 10))
                 placed = placed + 1
             end
 
@@ -426,16 +480,15 @@ function setupSpirit(obj, player_color)
         end
     end, function() return not spirit.loading_custom end)
 
-    Wait.frames(function()
-        Global.call("removeSpirit", {
-            color = player_color,
-            ready = ready,
-            counter = counter,
-            elements = elements,
-            defend = defend,
-            isolate = isolate
-        })
-    end, 2)
+    Global.call("removeSpirit", {
+        color = player_color,
+        ready = ready,
+        counter = counter,
+        elements = elements,
+        defend = defend,
+        isolate = isolate,
+        zone = zone,
+    })
 end
 function ToggleProgression(obj)
     local useProgression = obj.getVar("useProgression")
@@ -570,7 +623,7 @@ function handleAspect(spirit, deck, color)
                 else
                     card = deck
                 end
-                card.deal(1, color)
+                Wait.frames(function() card.deal(1, color) end, 1)
                 name = card.getName()
             end
             Player[color].broadcast("Your random Aspect is "..name, Color.SoftBlue)
@@ -583,7 +636,7 @@ function handleAspect(spirit, deck, color)
             else
                 count = 1
             end
-            deck.deal(count, color)
+            Wait.frames(function() deck.deal(count, color) end, 1)
         end
     elseif useAspect == 3 then
         local found = false
@@ -606,14 +659,14 @@ function handleAspect(spirit, deck, color)
                     })
                     if deck.remainder then deck = deck.remainder end
                     deck.destruct()
-                    card.deal(1, color)
+                    Wait.frames(function() card.deal(1, color) end, 1)
                     break
                 end
             end
         else
             if deck.getName() == aspectName then
                 found = true
-                deck.deal(1, color)
+                Wait.frames(function() deck.deal(1, color) end, 1)
             end
         end
         if not found then

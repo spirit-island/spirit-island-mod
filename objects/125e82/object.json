@@ -15,11 +15,12 @@
   "Description": "",
   "GMNotes": "",
   "ColorDiffuse": {
-    "r": 0.511900007724762,
-    "g": 0.7397000193595886,
-    "b": 1.0
+    "r": 0.8392000198364258,
+    "g": 0.5724999904632568,
+    "b": 0.3960995078086853
   },
   "Tags": [
+    "Seat",
     "Uninteractable"
   ],
   "LayoutGroupSortIndex": 0,

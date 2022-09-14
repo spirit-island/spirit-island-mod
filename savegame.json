@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1660205396,
-  "Date": "8/11/2022 9:09:56 AM",
+  "EpochTime": 1663191277,
+  "Date": "9/14/2022 10:34:37 PM",
   "VersionNumber": "v13.1.1",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -224,6 +224,10 @@
       {
         "displayed": "Requires Badlands",
         "normalized": "requires_badlands"
+      },
+      {
+        "displayed": "Seat",
+        "normalized": "seat"
       }
     ]
   },
@@ -238,7 +242,25 @@
     "TurnColor": ""
   },
   "CameraStates": [
-    null,
+    {
+      "Position": {
+        "x": 0.0,
+        "y": -2.5,
+        "z": 0.0
+      },
+      "Rotation": {
+        "x": 65.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Distance": 104.20700073242188,
+      "Zoomed": false,
+      "AbsolutePosition": {
+        "x": 0.0,
+        "y": 91.943603515625,
+        "z": -44.03969955444336
+      }
+    },
     {
       "Position": {
         "x": -26.941699981689453,
@@ -512,6 +534,22 @@
     {
       "Name": "Dropdown Game Results",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847039328585363186/72B5D4AE16C9A9EA6A0D079840DB24C534D13055/"
+    },
+    {
+      "Name": "Advert-Mobile",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166286/A842B02B2FE71220FDDF1082F9875247B0AB7963/"
+    },
+    {
+      "Name": "Advert-Steam",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166210/35F7F0A1B9A37FECDBFBE4B44CF1FC4D1C53261A/"
+    },
+    {
+      "Name": "Advert-iOS",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166094/64C6D6F0BFDA067D56B2AED06D6CC7C27074016D/"
+    },
+    {
+      "Name": "Advert-Android",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242165990/1D2775C682A1234242B879533348A7F0A44C1933/"
     }
   ],
   "SnapPoints": [

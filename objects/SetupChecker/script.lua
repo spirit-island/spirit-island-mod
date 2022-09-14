@@ -31,16 +31,6 @@ scenarios = {
 numScenarios = 12
 allScenarios = {}
 
--- This must match the same guids of global's elementScanZones
-playerZones = {
-    ["9fc5a4"] = true,
-    ["654ab2"] = true,
-    ["102771"] = true,
-    ["6f2249"] = true,
-    ["190f05"] = true,
-    ["61ac7c"] = true,
-}
-
 pickedSpirits = {}
 spiritGuids = {}
 spiritTags = {}
@@ -52,6 +42,7 @@ weeklyChallenge = false
 
 randomMin = 0
 randomMax = 11
+randomMaximizeLevel = false
 randomAdversary = false
 randomAdversary2 = false
 randomScenario = false
@@ -66,6 +57,7 @@ optionalBlightSetup = true
 optionalExtraBoard = false
 optionalBoardPairings = true
 optionalThematicRebellion = false
+optionalUniqueRebellion = false
 optionalThematicRedo = false
 optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
@@ -76,6 +68,7 @@ exploratoryWar = false
 exploratoryAid = false
 exploratorySweden = false
 exploratoryTrickster = false
+exploratoryShadows = false
 
 playtestExpansion = "None"
 playtestFear = "0"
@@ -112,6 +105,7 @@ function onSave()
     data_table.variant.extraBoard = optionalExtraBoard
     data_table.variant.boardPairings = optionalBoardPairings
     data_table.variant.thematicRebellion = optionalThematicRebellion
+    data_table.variant.uniqueRebellion = optionalUniqueRebellion
     data_table.variant.thematicRedo = optionalThematicRedo
     data_table.variant.gameResults = optionalGameResults
 
@@ -122,6 +116,7 @@ function onSave()
     data_table.exploratory.aid = exploratoryAid
     data_table.exploratory.sweden = exploratorySweden
     data_table.exploratory.trickster = exploratoryTrickster
+    data_table.exploratory.shadows = exploratoryShadows
 
     data_table.playtest = {}
     data_table.playtest.expansion = playtestExpansion
@@ -134,6 +129,7 @@ function onSave()
     data_table.random = {}
     data_table.random.min = randomMin
     data_table.random.max = randomMax
+    data_table.random.maximizeLevel = randomMaximizeLevel
     data_table.random.adversary = randomAdversary
     data_table.random.adversary2 = randomAdversary2
     data_table.random.scenario = randomScenario
@@ -190,6 +186,7 @@ function onLoad(saved_data)
         optionalExtraBoard = loaded_data.variant.extraBoard
         optionalBoardPairings = loaded_data.variant.boardPairings
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
+        optionalUniqueRebellion = loaded_data.variant.uniqueRebellion
         optionalThematicRedo = loaded_data.variant.thematicRedo
         optionalGameResults = loaded_data.variant.gameResults
 
@@ -199,6 +196,7 @@ function onLoad(saved_data)
         exploratoryAid = loaded_data.exploratory.aid
         exploratorySweden = loaded_data.exploratory.sweden
         exploratoryTrickster = loaded_data.exploratory.trickster
+        exploratoryShadows = loaded_data.exploratory.shadows
 
         playtestExpansion = loaded_data.playtest.expansion
         playtestFear = loaded_data.playtest.fear
@@ -209,6 +207,7 @@ function onLoad(saved_data)
 
         randomMin = loaded_data.random.min
         randomMax = loaded_data.random.max
+        randomMaximizeLevel = loaded_data.random.maximizeLevel
         randomAdversary = loaded_data.random.adversary
         randomAdversary2 = loaded_data.random.adversary2
         randomScenario = loaded_data.random.scenario
@@ -265,6 +264,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("blightSetup", "isOn", optionalBlightSetup)
             self.UI.setAttribute("extraBoard", "isOn", optionalExtraBoard)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
+            self.UI.setAttribute("slaveRebellionBack", "isOn", optionalUniqueRebellion)
             self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
             self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
             self.UI.setAttribute("gameResults", "isOn", optionalGameResults)
@@ -274,6 +274,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("war", "isOn", exploratoryWar)
             self.UI.setAttribute("aid", "isOn", exploratoryAid)
             self.UI.setAttribute("trickster", "isOn", exploratoryTrickster)
+            self.UI.setAttribute("shadows", "isOn", exploratoryShadows)
 
             togglePlaytestFear(nil, playtestFear, "playtestFear")
             togglePlaytestEvent(nil, playtestEvent, "playtestEvent")
@@ -283,6 +284,7 @@ function onLoad(saved_data)
 
             toggleMinDifficulty(nil, randomMin)
             toggleMaxDifficulty(nil, randomMax)
+            self.UI.setAttribute("maximizeLevelToggle", "isOn", randomMaximizeLevel)
             if randomAdversary or randomAdversary2 or randomScenario then
                 enableRandomDifficulty()
             end
@@ -304,7 +306,7 @@ function onLoad(saved_data)
 
             local numPlayers = Global.getVar("numPlayers")
             self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
-            self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
+            self.UI.setAttributes("numPlayersSlider", {value =  numPlayers, maxValue = Global.call("getSeatCount")})
 
             for name,guid in pairs(allAdversaries) do
                 newAdversaryScenario(getObjectFromGUID(guid), true, adversaries[name] == nil)
@@ -617,6 +619,12 @@ function RandomScenario()
 end
 
 ---- Setup UI Section
+function updateMaxPlayers(params)
+    self.UI.setAttribute("numPlayersSlider", "maxValue", params.max)
+    if Global.getVar("numPlayers") > params.max then
+        updateNumPlayers(params.max, true)
+    end
+end
 function toggleNumPlayers(_, value)
     updateNumPlayers(value, true)
 end
@@ -624,6 +632,9 @@ function updateNumPlayers(value, updateUI)
     local numPlayers = tonumber(value)
     if numPlayers > 5 and optionalExtraBoard and Global.getVar("boardLayout") == "Thematic" then
         numPlayers = 5
+    end
+    if numPlayers > 6 and self.UI.getAttribute("challenge", "isOn") == "true" then
+        numPlayers = 6
     end
     Global.setVar("numPlayers", numPlayers)
     if updateUI then
@@ -649,17 +660,20 @@ function updateBoardLayouts(numPlayers)
     if optionalExtraBoard then
         numBoards = numPlayers + 1
     end
-    local layoutNames = {
-        "Balanced",
-        "Thematic",
-        "Random",
-        "Random with Thematic",
-        table.unpack(Global.getVar("alternateBoardLayoutNames")[numBoards])
-    }
-    if numPlayers > 5 and optionalExtraBoard then
-        -- Remove layouts that reference thematic since that isn't supported currently
-        table.remove(layoutNames, 4)
-        table.remove(layoutNames, 2)
+    local layoutNames = { "Balanced" }
+    local alternateBoardLayoutNames = Global.getVar("alternateBoardLayoutNames")
+    if alternateBoardLayoutNames[numBoards] then
+        for _,layout in pairs(alternateBoardLayoutNames[numBoards]) do
+            table.insert(layoutNames, layout)
+        end
+    end
+    local canThematic = numPlayers < 6 or (numPlayers == 6 and not optionalExtraBoard)
+    if canThematic then
+        table.insert(layoutNames, "Thematic")
+    end
+    table.insert(layoutNames, "Random")
+    if canThematic then
+        table.insert(layoutNames, "Random with Thematic")
     end
 
     if not tFind(layoutNames, Global.getVar("boardLayout")) then
@@ -1231,6 +1245,9 @@ function loadConfig(config)
         if config.variant.thematicRebellion ~= nil then
             setSlaveRebellion(config.variant.thematicRebellion, false)
         end
+        if config.variant.uniqueRebellion ~= nil then
+            optionalUniqueRebellion = config.variant.uniqueRebellion
+        end
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
         end
@@ -1268,6 +1285,9 @@ function loadConfig(config)
         end
         if config.exploratory.trickster ~= nil then
             exploratoryTrickster = config.exploratory.trickster
+        end
+        if config.exploratory.shadows ~= nil then
+            exploratoryShadows = config.exploratory.shadows
         end
     end
     if config.playtest then
@@ -1525,6 +1545,7 @@ function toggleSetupUI(show)
         self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
     end
     self.UI.setAttribute("panelAdvesaryScenario", "visibility", visibility)
+    self.UI.setAttribute("panelAdvertising", "visibility", visibility)
 end
 function toggleAdversaryScenarioVisiblity(show)
     local colors = {}
@@ -1626,6 +1647,10 @@ end
 function toggleChallenge()
     weeklyChallenge = not weeklyChallenge
     if weeklyChallenge then
+        local numPlayers = Global.getVar("numPlayers")
+        if numPlayers > 6 then
+            toggleNumPlayers(nil, 6)
+        end
         if challengeConfig[challengeTier] == nil then
             for i=1,challengeTier do
                 if challengeConfig[i] == nil then
@@ -1713,11 +1738,16 @@ function toggleMaxDifficulty(_, value)
     self.UI.setAttribute("maxDifficulty", "text", "Max Random Difficulty: "..randomMax)
     self.UI.setAttribute("maxDifficultySlider", "value", randomMax)
 end
+function toggleMaximizeLevel()
+    randomMaximizeLevel = not randomMaximizeLevel
+    self.UI.setAttribute("maximizeLevelToggle", "isOn", randomMaximizeLevel)
+end
 function enableRandomDifficulty()
     self.UI.setAttribute("minTextRow", "visibility", "")
     self.UI.setAttribute("minRow", "visibility", "")
     self.UI.setAttribute("maxTextRow", "visibility", "")
     self.UI.setAttribute("maxRow", "visibility", "")
+    self.UI.setAttribute("maximizeLevelRow", "visibility", "")
 end
 function checkRandomDifficulty(enable, force)
     local visibility = ""
@@ -1730,6 +1760,7 @@ function checkRandomDifficulty(enable, force)
         self.UI.setAttribute("minRow", "visibility", visibility)
         self.UI.setAttribute("maxTextRow", "visibility", visibility)
         self.UI.setAttribute("maxRow", "visibility", visibility)
+        self.UI.setAttribute("maximizeLevelRow", "visibility", visibility)
     end
 end
 
@@ -1796,11 +1827,14 @@ function getSpiritComplexities()
     return complexities
 end
 function randomSpirit(player)
-    local bagGuid = Global.getVar("PlayerBags")[player.color]
-    if bagGuid == nil then
+    if player.color == "Grey" then
         return
-    elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
+    end
+    if Global.getTable("selectedColors")[player.color] then
         Player[player.color].broadcast("You already picked a spirit", Color.Red)
+        return
+    end
+    if not Global.getTable("playerTables")[player.color] then
         return
     end
 
@@ -1830,31 +1864,34 @@ function randomSpirit(player)
     Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function gainSpirit(player)
-    local bagGuid = Global.getVar("PlayerBags")[player.color]
-    if bagGuid == nil then
+    if player.color == "Grey" then
         return
     end
-    local obj = getObjectFromGUID(Global.getVar("elementScanZones")[player.color])
+    if Global.getTable("selectedColors")[player.color] then
+        Player[player.color].broadcast("You already picked a spirit", Color.Red)
+        return
+    end
+    local obj = Global.getTable("playerTables")[player.color]
+    if not obj then
+        return
+    end
 
     local options = {}
     local buttons = obj.getButtons()
     local hasOptions = 0
     if buttons ~= nil then
-        for i,button in pairs(buttons) do
-            if button.label ~= "" then
-                options[i] = true
+        for i=4,#buttons do
+            if buttons[i].label ~= "" then
+                options[i-4] = true
                 hasOptions = hasOptions + 1
             else
-                options[i] = false
+                options[i-4] = false
             end
         end
     end
 
     if hasOptions == 4 then
         Player[player.color].broadcast("You already have Spirit options", Color.Red)
-        return
-    elseif #getObjectFromGUID(bagGuid).getObjects() == 0 then
-        Player[player.color].broadcast("You already picked a spirit", Color.Red)
         return
     end
     local tags = getSpiritTags()
@@ -1882,9 +1919,9 @@ function gainSpirit(player)
                     click_function = "pickSpirit" .. i,
                     function_owner = self,
                     label = label,
-                    position = Vector(0,0,0.3 - 0.15*i),
-                    rotation = Vector(0,180,0),
-                    scale = Vector(0.1,0.1,0.1),
+                    position = Vector(0,3,-5 + 2*i),
+                    rotation = Vector(0,0,0),
+                    scale = Vector(2/2.3,1,2/1.42),
                     width = 4850,
                     height = 600,
                     font_size = 275,
@@ -1917,20 +1954,20 @@ function getNewSpirit(tags, complexities)
     return spirit, aspect
 end
 function pickSpirit1(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
-    pickSpirit(obj, 0, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 3, color)
 end
 function pickSpirit2(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
-    pickSpirit(obj, 1, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 4, color)
 end
 function pickSpirit3(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
-    pickSpirit(obj, 2, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 5, color)
 end
 function pickSpirit4(obj, color)
-    if Global.getVar("elementScanZones")[color] ~= obj.guid then return end
-    pickSpirit(obj, 3, color)
+    if Global.getTable("playerTables")[color] ~= obj then return end
+    pickSpirit(obj, 6, color)
 end
 function replaceSpirit(obj, index, color)
     local tags = getSpiritTags()
@@ -1968,7 +2005,6 @@ function pickSpirit(obj, index, color)
     end
     local data = spiritChoices[name]
     if isSpiritPickable({guid = data.guid}) then
-        obj.clearButtons()
         sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
     else
         replaceSpirit(obj, index, color)
@@ -2048,29 +2084,30 @@ function removeSpirit(params)
     pickedSpirits[params.spirit.getName()] = true
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
-    for name, data in pairs(spiritChoices) do
+    for name,data in pairs(spiritChoices) do
         if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
 
             found = false
-            for color,guid in pairs(Global.getVar("elementScanZones")) do
-                local zone = getObjectFromGUID(guid)
-                local buttons = zone.getButtons()
-                if buttons ~= nil then
-                    for index,button in pairs(buttons) do
-                        local label = button.label
-                        local start,_ = string.find(label, " %- ")
-                        if start ~= nil then
-                            label = string.sub(label, 1, start-1)
+            for color,obj in pairs(Global.getTable("playerTables")) do
+                if params.color ~= color then
+                    local buttons = obj.getButtons()
+                    if buttons ~= nil then
+                        for i=4,#buttons do
+                            local label = buttons[i].label
+                            local start,_ = string.find(label, " %- ")
+                            if start ~= nil then
+                                label = string.sub(label, 1, start-1)
+                            end
+                            if name == label then
+                                replaceSpirit(obj, i-1, color)
+                                found = true
+                                break
+                            end
                         end
-                        if name == label then
-                            replaceSpirit(zone, index-1, color)
-                            found = true
+                        if found then
                             break
                         end
-                    end
-                    if found then
-                        break
                     end
                 end
             end
@@ -2133,6 +2170,10 @@ function setSlaveRebellion(bool, updateUI)
         self.UI.setAttribute("slaveRebellion", "isOn", optionalThematicRebellion)
     end
 end
+function toggleSlaveRebellionBack()
+    optionalUniqueRebellion = not optionalUniqueRebellion
+    self.UI.setAttribute("slaveRebellionBack", "isOn", optionalUniqueRebellion)
+end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
@@ -2160,6 +2201,7 @@ function toggleExploratoryAll()
         if exploratoryAid then toggleAid() end
         if exploratorySweden then toggleSweden() end
         if exploratoryTrickster then toggleTrickster() end
+        if exploratoryShadows then toggleShadows() end
     else
         checked = "true"
         if not exploratoryVOTD then toggleVOTD() end
@@ -2168,6 +2210,7 @@ function toggleExploratoryAll()
         if not exploratoryAid then toggleAid() end
         if not exploratorySweden then toggleSweden() end
         if not exploratoryTrickster then toggleTrickster() end
+        if not exploratoryShadows then toggleShadows() end
     end
     self.UI.setAttribute("exploratoryAll", "isOn", checked)
 end
@@ -2225,6 +2268,10 @@ end
 function toggleTrickster()
     exploratoryTrickster = not exploratoryTrickster
     self.UI.setAttribute("trickster", "isOn", exploratoryTrickster)
+end
+function toggleShadows()
+    exploratoryShadows = not exploratoryShadows
+    self.UI.setAttribute("shadows", "isOn", exploratoryShadows)
 end
 
 function wt(some)
@@ -2556,7 +2603,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         elseif type(aspects) == "table" then
             local aspectIndex = math.random(0,#aspects)
             if aspectIndex ~= 0 then
-                aspect = aspects[aspectIndex]
+                aspect = aspects[aspectIndex].name
             end
         elseif aspects.type == "Deck" then
             local cards = aspects.getObjects()

@@ -139,6 +139,7 @@
     "adversary2": false,
     "board": false,
     "max": 11,
+    "maximizeLevel": false,
     "min": 0,
     "scenario": false,
     "thematic": false

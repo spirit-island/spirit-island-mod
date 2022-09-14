@@ -8,14 +8,6 @@
   "currentPhase": 1,
   "difficulty": 0,
   "difficultyString": "",
-  "elementScanZones": {
-    "Blue": "6f2249",
-    "Green": "190f05",
-    "Orange": "61ac7c",
-    "Purple": "654ab2",
-    "Red": "9fc5a4",
-    "Yellow": "102771"
-  },
   "events": {
     "Branch & Claw": true,
     "Jagged Earth": true
@@ -44,18 +36,19 @@
   "panelReadyVisibility": "Invisible",
   "panelTimePassesVisibility": "Invisible",
   "panelTurnOrderVisibility": "Invisible",
-  "playerBlocks": {
-    "Blue": "36bbcc",
-    "Green": "fac8e4",
-    "Orange": "6b5b4b",
-    "Purple": "661aa3",
-    "Red": "c68e2c",
-    "Yellow": "c3c59b"
-  },
+  "playerTables": [],
   "playtestMajorPowers": 0,
   "playtestMinorPowers": 0,
   "returnBlightBag": "af50b8",
   "seaTile": "5f4be2",
+  "seatTables": [
+    "dce473",
+    "c99d4d",
+    "794c81",
+    "125e82",
+    "d7d593",
+    "33c4af"
+  ],
   "selectedBoards": [],
   "selectedColors": [],
   "setupCompleted": false,

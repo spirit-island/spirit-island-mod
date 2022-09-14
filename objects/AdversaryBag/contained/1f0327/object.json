@@ -45,5 +45,60 @@
       "UniqueBack": false,
       "Type": 0
     }
+  },
+  "States": {
+    "2": {
+      "GUID": "3f4bfc",
+      "Name": "Card",
+      "Transform": {
+        "posX": -41.99440002441406,
+        "posY": 0.8166999816894531,
+        "posZ": 70.14710235595703,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 1.5299999713897705,
+        "scaleY": 1.0,
+        "scaleZ": 1.5299999713897705
+      },
+      "Nickname": "Slave Rebellion",
+      "Description": "Branch & Claw Expansion",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.7131999731063843,
+        "g": 0.7131999731063843,
+        "b": 0.7131999731063843
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": true,
+      "Hands": false,
+      "CardID": 65225,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "652": {
+          "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100546995/46241B179EEFA72EDBCAC6EE111F19ECC6D04F73/",
+          "BackURL": "http://cloud-3.steamusercontent.com/ugc/1744602401026969025/D99D4EC5AE9E1EAC9BE938DEB90D7F62BCB1C42B/",
+          "NumWidth": 9,
+          "NumHeight": 3,
+          "BackIsHidden": false,
+          "UniqueBack": false,
+          "Type": 0
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
   }
 }

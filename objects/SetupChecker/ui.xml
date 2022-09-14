@@ -125,6 +125,9 @@
             <Row id="maxRow" visibility="Invisible">
                 <Cell columnSpan="2"><Slider id="maxDifficultySlider" minValue="0" maxValue="28" value="11" onValueChanged="toggleMaxDifficulty"/></Cell>
             </Row>
+            <Row id="maximizeLevelRow" class="toggle" visibility="Invisible">
+                <Cell columnSpan="2"><Toggle id="maximizeLevelToggle" onValueChanged="toggleMaximizeLevel" tooltip="Maximize adversary level(s) while&#xA;remaining within difficulty range">Maximize Adversary Level(s)</Toggle></Cell>
+            </Row>
             <Row id="simpleRow" class="toggle" visibility="Invisible">
                 <Cell><Toggle id="blightCard2" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>
                 <Cell><Toggle id="allEvents" isOn="true" onValueChanged="toggleAllEvents">Use Events</Toggle></Cell>
@@ -169,7 +172,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="2800" position="-2000 -3080 14">
+<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="2800" position="-2000 -3160 14">
     <VerticalLayout recurse="events">
         <TableLayout recurse="events">
             <Row class="header">
@@ -207,6 +210,9 @@
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="slaveRebellion" onValueChanged="toggleSlaveRebellion" tooltip="Make Slave Rebellion's placement randomly&#xA;the 3rd or 4th Event, rather than always the 4th">Use Thematic "Slave Rebellion" Setup</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="slaveRebellionBack" onValueChanged="toggleSlaveRebellionBack" tooltip="Make Slave Rebellion have unique back">Use Unique "Slave Rebellion" Back</Toggle></Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
@@ -247,10 +253,34 @@
             <Row class="toggle">
                 <Cell><Toggle id="trickster" onValueChanged="toggleTrickster" tooltip="The air of 2 Unique Powers has been swapped">Grinning Trickster Stirs Up Trouble</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="shadows" onValueChanged="toggleShadows" tooltip="The Top Track is more viable, also&#xA;adds a Reclaim 1 to Bottom Track">Shadows Flicker Like Flame</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1000" height="2800" position="250 -1460 14">
+<Panel id="panelAdvertising" visibility="Invisible" width="1000" height="2800" position="250 -1460 14">
+    <VerticalLayout width="1150">
+        <TableLayout>
+            <Row class="doubleheader">
+                <Cell columnSpan="3"><Text>Please Support Handelabra Games and Greater Than Games by buying the digital version of the game!</Text></Cell>
+            </Row>
+            <Row preferredHeight="320">
+                <Image image="Advert-Mobile" preserveAspect="true"/>
+            </Row>
+            <Row class="spacing"/>
+            <Row>
+                <Cell><Image image="Advert-Steam" preserveAspect="true"/></Cell>
+                <Cell><Image image="Advert-iOS" preserveAspect="true"/></Cell>
+                <Cell><Image image="Advert-Android" preserveAspect="true"/></Cell>
+            </Row>
+            <Row class="header">
+                <Cell columnSpan="3"><Text>Learn More: handelabra.com/spiritisland</Text></Cell>
+            </Row>
+        </TableLayout>
+    </VerticalLayout>
+</Panel>
+<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1000" height="2800" position="250 -2150 14">
     <VerticalLayout recurse="playtestExpansion" width="1150">
         <TableLayout recurse="playtestExpansion">
             <Row class="header">

@@ -15,13 +15,14 @@ thematicRebellion = false
 hasBroadcast = true
 
 slaveRebellion = "1f0327"
+slaveRebellion2 = "3f4bfc"
 
 function onLoad(saved_data)
     Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
 end
 
 function onObjectSpawn(obj)
-    if obj.guid == slaveRebellion then
+    if obj.guid == slaveRebellion or obj.guid == slaveRebellion2 then
         obj.createButton({
             click_function = "slaveRebellionButton",
             function_owner = self,
@@ -180,6 +181,9 @@ function PostSetup(params)
     end
     if params.level >= 2 then
         local card = adversaryBag.takeObject({guid = slaveRebellion})
+        if Global.getVar("SetupChecker").getVar("optionalUniqueRebellion") then
+            card = card.setState(2)
+        end
         local count = setupSlaveRebellion(card)
         local zone = Global.getVar("eventDeckZone")
         Wait.condition(function() postSetupComplete = true end, function()

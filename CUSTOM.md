@@ -1,3 +1,7 @@
+### Editors
+- There are currently 3 editors: Spirit, Power, and Blight
+- They are found on right side of mod by click the "Show Editors" button
+
 ### Spirits
 - Place object onto spirit editor, this will add the "Spirit" tag as well as basic scripting
 - Set name of object to that of spirit
@@ -7,6 +11,7 @@
   - "High"
   - "Very High"
 - Add snap points to presence track(s) where presence should be setup
+  - Make sure spirit panel is locked first
 - Presence track fixed (non choice) elements:
   - Set the state to match the element
   - If multiple elements appear on same spot simply stack elements on top of each other

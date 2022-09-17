@@ -7337,8 +7337,8 @@ end
 function grabDestroyBag(color)
     local bag = getObjectFromGUID("fd0a22")
     if bag ~= nil then
-        if selectedColors[color].zone then
-            bag.takeObject({position = selectedColors[color].zone.getPosition() + Vector(0, 2, 8.5)})
+        if Player[color] then
+            bag.takeObject({position = Player[color].getPointerPosition() + Vector(0, 2, 0)})
         end
     end
 end

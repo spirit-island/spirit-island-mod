@@ -14,6 +14,11 @@
   "Nickname": "Earth Element Marker",
   "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.4268,
     "g": 0.3694,
@@ -64,6 +69,11 @@
       "Nickname": "Sun Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 1.0,
         "g": 0.8513,
@@ -117,6 +127,11 @@
       "Nickname": "Moon Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Nature",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.9113,
         "g": 0.9053,
@@ -170,6 +185,11 @@
       "Nickname": "Fire Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 1.0,
         "g": 0.3755,
@@ -223,6 +243,11 @@
       "Nickname": "Air Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.6534,
         "g": 0.3329,
@@ -276,6 +301,11 @@
       "Nickname": "Water Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.1983,
         "g": 0.4237,
@@ -329,6 +359,11 @@
       "Nickname": "Plant Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.0,
         "g": 0.7216,
@@ -382,6 +417,11 @@
       "Nickname": "Animal Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.8113,
         "g": 0.0083,
@@ -435,6 +475,11 @@
       "Nickname": "Any Element Marker",
       "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.8252,
         "g": 0.6527,

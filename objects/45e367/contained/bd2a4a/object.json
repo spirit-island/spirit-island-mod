@@ -14,6 +14,11 @@
   "Nickname": "Shadows Flicker Like Flame",
   "Description": "Base",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.2003,
     "g": 0.1603,
@@ -140,6 +145,11 @@
       "Nickname": "Shadows Flicker Like Flame",
       "Description": "Base",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.2003,
         "g": 0.1603,

@@ -14,6 +14,11 @@
   "Nickname": "NORMAL E",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.8157,
     "g": 0.8157,

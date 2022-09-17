@@ -14,6 +14,11 @@
   "Nickname": "Threshold Token",
   "Description": "Place these tokens on the spirit or power card along with required elements ontop of it in the editor to record which elements are needed for threshold.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,

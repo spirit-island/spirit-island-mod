@@ -3,7 +3,7 @@
   "Transform": {
     "posX": -36.66,
     "posY": 0.96,
-    "posZ": 48.51,
+    "posZ": 48.5101,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -14,6 +14,11 @@
   "Nickname": "",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,

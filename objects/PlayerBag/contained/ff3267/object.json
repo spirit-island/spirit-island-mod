@@ -14,6 +14,11 @@
   "Nickname": "Presence",
   "Description": "A piece showing where a spirit lives in a land",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.5686,
     "g": 0.5608,
@@ -64,6 +69,11 @@
       "Nickname": "Presence",
       "Description": "A piece showing where a spirit lives in a land",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.5686,
         "g": 0.5608,

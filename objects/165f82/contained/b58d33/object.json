@@ -14,6 +14,11 @@
   "Nickname": "Guide the Way on Feathered Wings",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.7132,
     "g": 0.7132,

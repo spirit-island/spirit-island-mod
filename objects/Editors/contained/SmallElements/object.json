@@ -14,6 +14,11 @@
   "Nickname": "Any Element",
   "Description": "Place these elements on the spirit in the editor to record which element are available from placing presence.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.8252,
     "g": 0.6527,

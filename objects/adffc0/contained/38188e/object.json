@@ -14,6 +14,11 @@
   "Nickname": "Ocean's Hungry Grasp - Drowning",
   "Description": "Invaders placed on this will be Drowned (with the Fear automatically Generated) and be turned into Energy if able. Automatic conversion to Energy can be toggled.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,

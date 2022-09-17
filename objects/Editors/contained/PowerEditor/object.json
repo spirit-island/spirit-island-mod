@@ -14,6 +14,11 @@
   "Nickname": "Power Editor",
   "Description": "Place a card here to spawn buttons.\n\nSet elements to \"1\" if the card has it or \"0\" if not.\n\nSet energy to 0-9\n\nEvery time you press a button, the card is updated.\n\nWhen finished, remember to save your object/game!",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,

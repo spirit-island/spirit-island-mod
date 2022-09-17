@@ -14,6 +14,11 @@
   "Nickname": "Strife",
   "Description": "[b]Blocks a specific Invader’s Damage the\r next time they Damage Dahan and/or the land[/b],\r and is then Removed.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.3961,
     "g": 0.7647,

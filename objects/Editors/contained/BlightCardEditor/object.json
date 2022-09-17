@@ -14,6 +14,11 @@
   "Nickname": "Blight Card Editor",
   "Description": "Place a card here to spawn buttons.\r\n\r\nSet blight to 1+.\r\n\r\nSet immediate to yes if the card only has immediate effects.\r\n\r\nSet healthy to yes if the card is still healthy on blighted side.\r\n\r\nEvery time you press a button, the card is updated.\r\n\r\nWhen finished, remember to save your object/game!",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,

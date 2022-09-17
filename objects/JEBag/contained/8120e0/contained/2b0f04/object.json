@@ -14,6 +14,11 @@
   "Nickname": "Power Corrodes the Spirit",
   "Description": "Each Spirit Destroys 1 of their Presence if they have 3 or more Power Cards in play, or have a Power Card in play costing 4 or more Energy",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.7132,
     "g": 0.7132,

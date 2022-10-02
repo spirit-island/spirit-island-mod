@@ -4765,6 +4765,10 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
 end
 
 function cleanupObject(params)
+    if params.obj.isDestroyed() then
+        return
+    end
+
     local bag = nil
     if params.obj.hasTag("Dahan") then
         params.obj.setRotation(Vector(0,0,0))

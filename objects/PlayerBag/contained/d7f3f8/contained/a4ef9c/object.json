@@ -14,6 +14,11 @@
   "Nickname": "Animal Element",
   "Description": "Use these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.8112999796867371,
     "g": 0.008299999870359898,

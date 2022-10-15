@@ -14,10 +14,15 @@
   "Nickname": "Red Ready",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.8560000061988831,
-    "g": 0.09999950975179672,
-    "b": 0.093999482691288
+    "g": 0.09999927133321762,
+    "b": 0.09399924427270889
   },
   "Tags": [
     "Uninteractable"

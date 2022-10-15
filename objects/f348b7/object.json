@@ -14,10 +14,15 @@
   "Nickname": "Yellow Ready",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.9049999713897705,
     "g": 0.8980000019073486,
-    "b": 0.1719995141029358
+    "b": 0.1719992756843567
   },
   "Tags": [
     "Uninteractable"

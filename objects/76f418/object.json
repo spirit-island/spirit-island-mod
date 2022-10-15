@@ -14,9 +14,14 @@
   "Nickname": "Fire Element",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.3754994869232178,
+    "g": 0.3754992187023163,
     "b": 0.0
   },
   "Tags": [

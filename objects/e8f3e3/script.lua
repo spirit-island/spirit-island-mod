@@ -181,7 +181,7 @@ function PostSetup(params)
     end
     if params.level >= 2 then
         local card = adversaryBag.takeObject({guid = slaveRebellion})
-        if Global.getVar("SetupChecker").getVar("optionalUniqueRebellion") then
+        if Global.getVar("SetupChecker").getVar("optionalUniqueRebellion") and not thematicRebellion then
             card = card.setState(2)
         end
         local count = setupSlaveRebellion(card)

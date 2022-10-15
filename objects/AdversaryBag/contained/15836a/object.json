@@ -14,6 +14,11 @@
   "Nickname": "Destroyed Beasts",
   "Description": "If there are ever more Beasts here than on the Island, the Invaders win.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.9646999835968018,
     "g": 0.5842999815940857,
@@ -77,6 +82,11 @@
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.9265000224113464,
         "g": 0.0,
@@ -117,6 +127,11 @@
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.9265000224113464,
         "g": 0.0,

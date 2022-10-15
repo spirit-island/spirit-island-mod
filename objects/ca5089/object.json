@@ -14,6 +14,11 @@
   "Nickname": "Wilds",
   "Description": "[b]Prevents the next Explore[/b] and is then\r Removed.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.611799955368042,
     "g": 0.819599986076355,

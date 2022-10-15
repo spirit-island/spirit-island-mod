@@ -14,6 +14,11 @@
   "Nickname": "Energy Counters",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.5677000284194946,
     "g": 0.5600999593734741,
@@ -73,6 +78,11 @@
       "Nickname": "",
       "Description": "",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 1.0,
         "g": 1.0,

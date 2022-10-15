@@ -14,6 +14,11 @@
   "Nickname": "Thieves",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.7059000134468079,
     "g": 0.36649999022483826,

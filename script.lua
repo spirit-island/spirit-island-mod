@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.6.0"
+version = "3.6.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -1401,7 +1401,7 @@ function PreSetup()
 
                         if results[key].color then
                             if invaders[key].color then
-                                invaders[key].color = Color.fromHex(invaders[key].color.."FF"):lerp(Color.fromHex(results[key].color.."FF"), 0.5):toHex(false)
+                                invaders[key].color = Color.fromHex(invaders[key].color):lerp(Color.fromHex(results[key].color), 0.5):toHex(false)
                             else
                                 invaders[key].color = results[key].color
                             end
@@ -1459,7 +1459,7 @@ function PreSetup()
                 end
 
                 if invader.color then
-                    local color = Color.fromHex(invader.color.."FF")
+                    local color = Color.fromHex(invader.color)
                     data.ColorDiffuse.r = color.r
                     data.ColorDiffuse.g = color.g
                     data.ColorDiffuse.b = color.b
@@ -1513,14 +1513,14 @@ function PreSetup()
                         end
 
                         if stateData.color then
-                            local color = Color.fromHex(stateData.color.."FF")
+                            local color = Color.fromHex(stateData.color)
                             if bagColor then
                                 bagColor = bagColor:lerp(color, 0.5)
                             else
                                 bagColor = color
                             end
                             if invader.color then
-                                color = color:lerp(Color.fromHex(invader.color.."FF"), 0.5)
+                                color = color:lerp(Color.fromHex(invader.color), 0.5)
                             end
                             state.ColorDiffuse.r = color.r
                             state.ColorDiffuse.g = color.g
@@ -4765,6 +4765,10 @@ function DropPiece(piece, cursorLocation, droppingPlayerColor)
 end
 
 function cleanupObject(params)
+    if params.obj.isDestroyed() then
+        return
+    end
+
     local bag = nil
     if params.obj.hasTag("Dahan") then
         params.obj.setRotation(Vector(0,0,0))
@@ -6340,9 +6344,9 @@ function setupColor(table, color)
     playerTables[color] = table
     local colorTint
     if Tints[color].Table then
-        colorTint = Color.fromHex(Tints[color].Table.."FF")
+        colorTint = Color.fromHex(Tints[color].Table)
     else
-        colorTint = Color.fromHex(Tints[color].Presence.."FF")
+        colorTint = Color.fromHex(Tints[color].Presence)
     end
     table.setColorTint(colorTint)
     table.UI.setXml("")
@@ -6862,9 +6866,9 @@ function recolorDefend(bag, color)
     local data = bag.getData()
     local colorTint
     if Tints[color].Token then
-        colorTint = Color.fromHex(Tints[color].Token.."FF")
+        colorTint = Color.fromHex(Tints[color].Token)
     else
-        colorTint = Color.fromHex(Tints[color].Presence.."FF")
+        colorTint = Color.fromHex(Tints[color].Presence)
     end
     data.ColorDiffuse.r = colorTint[1]
     data.ColorDiffuse.g = colorTint[2]
@@ -6886,9 +6890,9 @@ function recolorIsolate(bag, color)
     local data = bag.getData()
     local colorTint
     if Tints[color].Token then
-        colorTint = Color.fromHex(Tints[color].Token.."FF")
+        colorTint = Color.fromHex(Tints[color].Token)
     else
-        colorTint = Color.fromHex(Tints[color].Presence.."FF")
+        colorTint = Color.fromHex(Tints[color].Presence)
     end
     data.ColorDiffuse.r = colorTint[1]
     data.ColorDiffuse.g = colorTint[2]
@@ -6905,13 +6909,13 @@ function recolorPlayerPieces(fromColor, toColor)
     local function initData(color)
         local colorTint
         if Tints[color].Token then
-            colorTint = Color.fromHex(Tints[color].Token.."FF")
+            colorTint = Color.fromHex(Tints[color].Token)
         else
-            colorTint = Color.fromHex(Tints[color].Presence.."FF")
+            colorTint = Color.fromHex(Tints[color].Presence)
         end
         return {
             color = color,
-            presenceTint = Color.fromHex(Tints[color].Presence.."FF"),
+            presenceTint = Color.fromHex(Tints[color].Presence),
             tokenTint = colorTint,
             objects = {},
             pattern = color .. "'s (.*)",
@@ -7042,18 +7046,18 @@ function recolorPlayerArea(a, b)
     if playerTables[a] then
         local colorTint
         if Tints[b].Table then
-            colorTint = Color.fromHex(Tints[b].Table.."FF")
+            colorTint = Color.fromHex(Tints[b].Table)
         else
-            colorTint = Color.fromHex(Tints[b].Presence.."FF")
+            colorTint = Color.fromHex(Tints[b].Presence)
         end
         playerTables[a].setColorTint(colorTint)
     end
     if playerTables[b] then
         local colorTint
         if Tints[a].Table then
-            colorTint = Color.fromHex(Tints[a].Table.."FF")
+            colorTint = Color.fromHex(Tints[a].Table)
         else
-            colorTint = Color.fromHex(Tints[a].Presence.."FF")
+            colorTint = Color.fromHex(Tints[a].Presence)
         end
         playerTables[b].setColorTint(colorTint)
     end
@@ -7337,8 +7341,8 @@ end
 function grabDestroyBag(color)
     local bag = getObjectFromGUID("fd0a22")
     if bag ~= nil then
-        if selectedColors[color].zone then
-            bag.takeObject({position = selectedColors[color].zone.getPosition() + Vector(0, 2, 8.5)})
+        if Player[color] then
+            bag.takeObject({position = Player[color].getPointerPosition() + Vector(0, 2, 0)})
         end
     end
 end

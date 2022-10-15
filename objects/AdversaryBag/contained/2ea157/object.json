@@ -14,6 +14,11 @@
   "Nickname": "Blight",
   "Description": "France Lv5",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.21570000052452087,
     "g": 0.21570000052452087,

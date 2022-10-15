@@ -14,6 +14,11 @@
   "Nickname": "Energy",
   "Description": "Place this energy on the spirit in the editor to record how much energy is available from placing presence. For bonus energy like Finder use state 2.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,

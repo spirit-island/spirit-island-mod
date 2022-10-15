@@ -14,6 +14,11 @@
   "Nickname": "Pour Down Across the Island",
   "Description": "Use this to track the uses of your special rule \"Pour Down Power Across The Land\"",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.19830000400543213,
     "g": 0.4237000048160553,

@@ -14,6 +14,11 @@
   "Nickname": "Untended Land Crumbles",
   "Description": "On Each Board: Add 1 Blight to a land adjacent to Blight. Spirits may prevent this on any/all boards; each board to be protected requires jointly paying 3 Energy or Destroying 1 Presence from that board",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.7131999731063843,
     "g": 0.7131999731063843,

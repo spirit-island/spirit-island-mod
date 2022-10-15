@@ -14,6 +14,11 @@
   "Nickname": "Any Element",
   "Description": "Change the state to change the element shown",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.8252000212669373,
     "g": 0.6527000069618225,
@@ -65,6 +70,11 @@
       "Nickname": "Sun Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 1.0,
         "g": 0.8513000011444092,
@@ -129,6 +139,11 @@
       "Nickname": "Moon Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.911300003528595,
         "g": 0.9053000211715698,
@@ -193,6 +208,11 @@
       "Nickname": "Fire Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 1.0,
         "g": 0.37549999356269836,
@@ -257,6 +277,11 @@
       "Nickname": "Air Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.6534000039100647,
         "g": 0.3328999876976013,
@@ -321,6 +346,11 @@
       "Nickname": "Water Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.19830000400543213,
         "g": 0.4237000048160553,
@@ -385,6 +415,11 @@
       "Nickname": "Earth Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.426800012588501,
         "g": 0.3693999946117401,
@@ -449,6 +484,11 @@
       "Nickname": "Plant Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.0,
         "g": 0.7215999960899353,
@@ -513,6 +553,11 @@
       "Nickname": "Animal Element",
       "Description": "Change the state to change the element shown",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.8112999796867371,
         "g": 0.008299999870359898,

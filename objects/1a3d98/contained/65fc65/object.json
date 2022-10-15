@@ -14,6 +14,11 @@
   "Nickname": "Speed Token Bag",
   "Description": "Place this on a Power to show you have changed its speed. This only has a functional difference when playing with the Blitz Scenario.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 1.0,
     "g": 1.0,

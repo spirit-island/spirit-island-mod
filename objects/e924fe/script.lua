@@ -500,6 +500,8 @@ function ExportConfig()
                 table.insert(boardTable, objData)
             elseif objData.name == "Strife" then
                 table.insert(boardTable, objData)
+            elseif objData.name == "Badlands" then
+                table.insert(boardTable, objData)
             end
         end
         piecesDataFiltered[boardName] = boardTable

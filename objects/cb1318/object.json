@@ -14,6 +14,11 @@
   "Nickname": "Moon Element",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.911300003528595,
     "g": 0.9053000211715698,

@@ -14,6 +14,11 @@
   "Nickname": "Beasts",
   "Description": "Harms Invaders and generates Fear as\r [b]specified by Powers and Event Cards[/b].",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.964699923992157,
     "g": 0.5842999815940857,

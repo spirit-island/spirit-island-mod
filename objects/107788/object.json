@@ -14,9 +14,14 @@
   "Nickname": "Air Element",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.6534000039100647,
-    "g": 0.3328994810581207,
+    "g": 0.3328992426395416,
     "b": 0.9320999979972839
   },
   "Tags": [

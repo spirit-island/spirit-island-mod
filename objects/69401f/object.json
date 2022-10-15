@@ -14,8 +14,13 @@
   "Nickname": "Blue Ready",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
-    "r": 0.11799951642751694,
+    "r": 0.11799926310777664,
     "g": 0.5299999713897705,
     "b": 1.0
   },

@@ -1,8 +1,8 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1663191277,
-  "Date": "9/14/2022 10:34:37 PM",
-  "VersionNumber": "v13.1.1",
+  "EpochTime": 1665786351,
+  "Date": "10/14/2022 11:25:51 PM",
+  "VersionNumber": "v13.2.2",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -436,118 +436,147 @@
   "DecalPallet": [],
   "CustomUIAssets": [
     {
+      "Type": 0,
       "Name": "Minor Power Button",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238465994/54DB140D0CA8DB242C18451FB8ADEDFC9A0F52E9/"
     },
     {
+      "Type": 0,
       "Name": "Major Power Button",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238465273/236533C933B35F03B3B22DD138184E57479D5C12/"
     },
     {
+      "Type": 0,
       "Name": "Time Passes Button",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238467685/126385ECD895CF83094C3FF48F6DF76A6E562151/"
     },
     {
+      "Type": 0,
       "Name": "Score Button",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238467021/9C006B350D9140B48777EEE2B20D13C93C32A747/"
     },
     {
+      "Type": 0,
       "Name": "Invader Phase",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239106638/CD27277D950CAA810286918B7A4C76CD525A67B0/"
     },
     {
+      "Type": 0,
       "Name": "England Invader Phase",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238900672/AC51C1FD6F62E69654B8843DC554B948150E874E/"
     },
     {
+      "Type": 0,
       "Name": "Fear and Blight",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239254619/3C45FD6E548CF654BA79CF0822E08AEE6CE5E80F/"
     },
     {
+      "Type": 0,
       "Name": "Ready",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
     },
     {
+      "Type": 0,
       "Name": "Not Ready",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
     },
     {
+      "Type": 0,
       "Name": "Invader Phase Stage",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998239107401/7F05D052B123145085C2E6FBBBB63760212C078B/"
     },
     {
+      "Type": 0,
       "Name": "England Invader Phase Stage",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1752434998238899967/B8A467C06F6B2DB519B368C6CF74217273C3D1B3/"
     },
     {
+      "Type": 0,
       "Name": "Down Arrow",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219943368/8277DA4C674207C55915F1876E8D30777BE2DAC4/"
     },
     {
+      "Type": 0,
       "Name": "Up Arrow",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219944339/EB4D863CFEC287CCCC3EFEB950949B22BDBE5258/"
     },
     {
+      "Type": 0,
       "Name": "Dropdown Core Buttons",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219904645/3F8E3D33F8C4169C84C4D7657F3148FE4E1D7D14/"
     },
     {
+      "Type": 0,
       "Name": "Dropdown Invader Board",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219905379/4CBE4398D6A1E936FBE1753CF639ECBEC630257E/"
     },
     {
+      "Type": 0,
       "Name": "Dropdown Adversary",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219902527/E939E56C9B302B9E2A9DB2567573354371A12E18/"
     },
     {
+      "Type": 0,
       "Name": "Dropdown Turn Order",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219915181/B2051EB6A00C5FE4823408737B0DBAD4993462AC/"
     },
     {
+      "Type": 0,
       "Name": "Dropdown Scoring",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219906839/F2837D447A09B7718F35C669D13197C82E3741A6/"
     },
     {
+      "Type": 0,
       "Name": "Dropdown Seat Controls",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1749057631219907769/D82CD49A9281ADD08A1A9F09908260359FFF1DD6/"
     },
     {
+      "Type": 0,
       "Name": "Explorer",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501251463/228497228D0E43E273A4CD28221CFD6F9BA94F26/"
     },
     {
+      "Type": 0,
       "Name": "Town",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501242475/E562FF5A9444BE59547D0DCB11C65646A594610F/"
     },
     {
+      "Type": 0,
       "Name": "City",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501220359/9B624AF9C4597EC998829C9C82C33201316FAEDC/"
     },
     {
+      "Type": 0,
       "Name": "Dahan",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501232182/5CA88E4199CD8CB309401BF9EE29AF112FF8229D/"
     },
     {
+      "Type": 0,
       "Name": "Blight",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847038999501217036/1714CE4E6A9DF75AA2BC5957847185A11F6DEA7A/"
     },
     {
+      "Type": 0,
       "Name": "Dropdown Game Results",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1847039328585363186/72B5D4AE16C9A9EA6A0D079840DB24C534D13055/"
     },
     {
+      "Type": 0,
       "Name": "Advert-Mobile",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166286/A842B02B2FE71220FDDF1082F9875247B0AB7963/"
     },
     {
+      "Type": 0,
       "Name": "Advert-Steam",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166210/35F7F0A1B9A37FECDBFBE4B44CF1FC4D1C53261A/"
     },
     {
+      "Type": 0,
       "Name": "Advert-iOS",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242166094/64C6D6F0BFDA067D56B2AED06D6CC7C27074016D/"
     },
     {
+      "Type": 0,
       "Name": "Advert-Android",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242165990/1D2775C682A1234242B879533348A7F0A44C1933/"
     }

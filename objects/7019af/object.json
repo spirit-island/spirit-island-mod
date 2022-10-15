@@ -14,10 +14,15 @@
   "Nickname": "Disease",
   "Description": "[b]Prevents the next Build[/b] and is then\r Removed.",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.89410001039505,
     "g": 0.8510000109672546,
-    "b": 0.3528994917869568
+    "b": 0.3528992533683777
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

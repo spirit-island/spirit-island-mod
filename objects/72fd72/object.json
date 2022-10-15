@@ -14,10 +14,15 @@
   "Nickname": "Orange Ready",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.9528999924659729,
     "g": 0.5516998171806335,
-    "b": 0.10979949682950974
+    "b": 0.10979925841093063
   },
   "Tags": [
     "Uninteractable"

@@ -14,6 +14,11 @@
   "Nickname": "Town: 0 Damage",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.8720999956130981,
     "g": 0.8720999956130981,
@@ -84,6 +89,11 @@
       "Nickname": "Town: 1 Damage",
       "Description": "",
       "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
       "ColorDiffuse": {
         "r": 0.8720999956130981,
         "g": 0.8720999956130981,

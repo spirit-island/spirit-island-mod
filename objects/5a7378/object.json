@@ -14,9 +14,14 @@
   "Nickname": "Purple Ready",
   "Description": "",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.6269999742507935,
-    "g": 0.1249995157122612,
+    "g": 0.1249992623925209,
     "b": 0.9409999847412109
   },
   "Tags": [

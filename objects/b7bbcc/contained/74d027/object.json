@@ -14,6 +14,11 @@
   "Nickname": "Starlight Seeks Its Form",
   "Description": "JE",
   "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
   "ColorDiffuse": {
     "r": 0.20029999315738678,
     "g": 0.16030000150203705,

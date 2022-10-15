@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 16.1211,
-    "posY": 1.9712,
-    "posZ": -27.1943,
+    "posX": 16.1210994720459,
+    "posY": 1.9711999893188477,
+    "posZ": -27.194299697875977,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7,
-    "scaleY": 0.7,
-    "scaleZ": 0.7
+    "scaleX": 0.699999988079071,
+    "scaleY": 0.699999988079071,
+    "scaleZ": 0.699999988079071
   },
   "Nickname": "Earth Element",
   "Description": "Use these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.4268,
-    "g": 0.3694,
-    "b": 0.4396
+    "r": 0.426800012588501,
+    "g": 0.3693999946117401,
+    "b": 0.43959999084472656
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

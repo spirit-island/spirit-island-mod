@@ -1,15 +1,15 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": -50.1,
-    "posY": 0.9299,
-    "posZ": 46.22,
-    "rotX": 0.0,
+    "posX": -50.099998474121094,
+    "posY": 0.9299384951591492,
+    "posZ": 46.220001220703125,
+    "rotX": 7.681038738382995e-08,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.53,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.53
+    "scaleZ": 1.5299999713897705
   },
   "Nickname": "Major Powers",
   "Description": "Spirit Island",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

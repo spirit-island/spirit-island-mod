@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 118.1609,
-    "posY": 2.4484,
-    "posZ": 44.065,
+    "posX": 118.16089630126953,
+    "posY": 2.4484000205993652,
+    "posZ": 44.064998626708984,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 7.15,
+    "scaleX": 7.150000095367432,
     "scaleY": 1.0,
-    "scaleZ": 7.15
+    "scaleZ": 7.150000095367432
   },
   "Nickname": "E",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.8157,
-    "g": 0.8157,
-    "b": 0.8157
+    "r": 0.8156999945640564,
+    "g": 0.8156999945640564,
+    "b": 0.8156999945640564
   },
   "Tags": [
     "Balanced"
@@ -47,7 +47,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.395,
+      "Thickness": 0.39500001072883606,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false

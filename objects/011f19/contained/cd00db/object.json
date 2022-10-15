@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 115.126,
-    "posY": 2.5866,
-    "posZ": 18.4142,
+    "posX": 115.1259994506836,
+    "posY": 2.5866000652313232,
+    "posZ": 18.414199829101562,
     "rotX": 0.0,
-    "rotY": 179.9943,
+    "rotY": 179.99429321289062,
     "rotZ": 180.0,
-    "scaleX": 3.35,
-    "scaleY": 3.35,
-    "scaleZ": 3.35
+    "scaleX": 3.3499999046325684,
+    "scaleY": 3.3499999046325684,
+    "scaleZ": 3.3499999046325684
   },
   "Nickname": "Sharp Fangs Behind the Leaves",
   "Description": "",
@@ -49,12 +49,12 @@
     "CustomShader": {
       "SpecularColor": {
         "r": 0.875,
-        "g": 0.8129,
-        "b": 0.7463
+        "g": 0.8129000067710876,
+        "b": 0.7462999820709229
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 4.0,
-      "FresnelStrength": 0.1071
+      "FresnelStrength": 0.1071000024676323
     },
     "CastShadows": true
   }

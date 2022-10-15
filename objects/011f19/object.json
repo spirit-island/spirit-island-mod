@@ -2,14 +2,14 @@
   "Name": "Custom_Model_Bag",
   "Transform": {
     "posX": -45.5,
-    "posY": 0.9602,
-    "posZ": 60.05,
-    "rotX": 0.0,
+    "posY": 0.9602000117301941,
+    "posZ": 60.04999923706055,
+    "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248,
-    "scaleY": 0.1204,
-    "scaleZ": 0.6248
+    "scaleX": 0.6248000264167786,
+    "scaleY": 0.12039999663829803,
+    "scaleZ": 0.6248000264167786
   },
   "Nickname": "Spirit Markers",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5677,
-    "g": 0.5601,
-    "b": 0.56
+    "r": 0.5677000284194946,
+    "g": 0.5600999593734741,
+    "b": 0.5600000023841858
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -69,14 +69,14 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.4952,
+        "posY": 0.4952000081539154,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 1.0023,
-        "scaleY": 5.2005,
-        "scaleZ": 1.0023
+        "scaleX": 1.0023000240325928,
+        "scaleY": 5.200500011444092,
+        "scaleZ": 1.0023000240325928
       },
       "Nickname": "",
       "Description": "",
@@ -116,12 +116,12 @@
         "CustomShader": {
           "SpecularColor": {
             "r": 0.875,
-            "g": 0.8129,
-            "b": 0.7463
+            "g": 0.8129000067710876,
+            "b": 0.7462999820709229
           },
           "SpecularIntensity": 0.0,
           "SpecularSharpness": 4.0,
-          "FresnelStrength": 0.1071
+          "FresnelStrength": 0.1071000024676323
         },
         "CastShadows": true
       },

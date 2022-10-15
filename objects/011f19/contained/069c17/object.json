@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 94.7201,
-    "posY": 2.2521,
-    "posZ": 50.6846,
+    "posX": 94.72010040283203,
+    "posY": 2.2520999908447266,
+    "posZ": 50.684600830078125,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 3.35,
-    "scaleY": 3.35,
-    "scaleZ": 3.35
+    "scaleX": 3.3499999046325684,
+    "scaleY": 3.3499999046325684,
+    "scaleZ": 3.3499999046325684
   },
   "Nickname": "River Surges in Sunlight",
   "Description": "",
@@ -49,12 +49,12 @@
     "CustomShader": {
       "SpecularColor": {
         "r": 0.875,
-        "g": 0.8129,
-        "b": 0.7463
+        "g": 0.8129000067710876,
+        "b": 0.7462999820709229
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 4.0,
-      "FresnelStrength": 0.1071
+      "FresnelStrength": 0.1071000024676323
     },
     "CastShadows": true
   }

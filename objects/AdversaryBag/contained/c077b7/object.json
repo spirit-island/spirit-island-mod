@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -69.635,
-    "posY": 1.3148,
-    "posZ": 0.8416,
+    "posX": -69.63500213623047,
+    "posY": 1.3148000240325928,
+    "posZ": 0.8416000008583069,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.21,
+    "scaleX": 0.20999999344348907,
     "scaleY": 1.0,
-    "scaleZ": 0.2
+    "scaleZ": 0.20000000298023224
   },
   "Nickname": "Russia Ravage Reminder",
   "Description": "Jagged Earth Expansion",
@@ -48,7 +48,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "Stackable": false,
       "Stretch": true
     }

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -27.0966,
-    "posY": 1.0238,
-    "posZ": 31.0474,
+    "posX": -27.096599578857422,
+    "posY": 1.023800015449524,
+    "posZ": 31.047399520874023,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.53,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.53
+    "scaleZ": 1.5299999713897705
   },
   "Nickname": "Slave Rebellion",
   "Description": "Branch & Claw Expansion",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -56,15 +56,15 @@
       "GUID": "3f4bfc",
       "Name": "Card",
       "Transform": {
-        "posX": -41.9944,
-        "posY": 0.8167,
-        "posZ": 70.1471,
+        "posX": -41.99440002441406,
+        "posY": 0.8166999816894531,
+        "posZ": 70.14710235595703,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 1.53,
+        "scaleX": 1.5299999713897705,
         "scaleY": 1.0,
-        "scaleZ": 1.53
+        "scaleZ": 1.5299999713897705
       },
       "Nickname": "Slave Rebellion",
       "Description": "Branch & Claw Expansion",
@@ -75,9 +75,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.7132,
-        "g": 0.7132,
-        "b": 0.7132
+        "r": 0.7131999731063843,
+        "g": 0.7131999731063843,
+        "b": 0.7131999731063843
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,

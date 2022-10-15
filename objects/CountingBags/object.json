@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -49.55,
-    "posY": 0.9602,
-    "posZ": 61.4,
-    "rotX": 0.0,
+    "posX": -49.54999923706055,
+    "posY": 0.9602000117301941,
+    "posZ": 61.400001525878906,
+    "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248,
-    "scaleY": 0.1204,
-    "scaleZ": 0.6248
+    "scaleX": 0.6248000264167786,
+    "scaleY": 0.12039999663829803,
+    "scaleZ": 0.6248000264167786
   },
   "Nickname": "Counting Bags",
   "Description": "For when there's too many invaders in a land to fit within its borders",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5677,
-    "g": 0.5601,
-    "b": 0.56
+    "r": 0.5677000284194946,
+    "g": 0.5600999593734741,
+    "b": 0.5600000023841858
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -66,14 +66,14 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.2315,
+        "posY": 0.23149999976158142,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.5011,
-        "scaleY": 8.3041,
-        "scaleZ": 0.5011
+        "scaleX": 0.5011000037193298,
+        "scaleY": 8.304100036621094,
+        "scaleZ": 0.5011000037193298
       },
       "Nickname": "",
       "Description": "",
@@ -108,7 +108,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.2,
+          "Thickness": 0.20000000298023224,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false

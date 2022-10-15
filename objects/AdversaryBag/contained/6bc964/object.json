@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -27.1474,
-    "posY": 1.9711,
-    "posZ": 53.0092,
+    "posX": -27.14739990234375,
+    "posY": 1.9710999727249146,
+    "posZ": 53.00920104980469,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 2.19,
+    "scaleX": 2.190000057220459,
     "scaleY": 1.0,
-    "scaleZ": 2.19
+    "scaleZ": 2.190000057220459
   },
   "Nickname": "England Build Overlay",
   "Description": "England Lv3",
@@ -45,7 +45,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.1,
+      "Thickness": 0.10000000149011612,
       "Stackable": false,
       "Stretch": true
     }

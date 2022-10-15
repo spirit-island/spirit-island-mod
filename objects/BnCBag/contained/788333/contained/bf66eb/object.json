@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 57.4071,
-    "posY": 1.9847,
-    "posZ": 28.6179,
+    "posX": 57.407100677490234,
+    "posY": 1.9846999645233154,
+    "posZ": 28.617900848388672,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.53,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.53
+    "scaleZ": 1.5299999713897705
   },
   "Nickname": "Aid from Lesser Spirits",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -45,15 +45,15 @@
       "GUID": "ad5b9a",
       "Name": "CardCustom",
       "Transform": {
-        "posX": 52.94,
-        "posY": 0.8636,
-        "posZ": 19.9,
+        "posX": 52.939998626708984,
+        "posY": 0.8636000156402588,
+        "posZ": 19.899999618530273,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 1.53,
+        "scaleX": 1.5299999713897705,
         "scaleY": 1.0,
-        "scaleZ": 1.53
+        "scaleZ": 1.5299999713897705
       },
       "Nickname": "Aid from Lesser Spirits",
       "Description": "",
@@ -64,9 +64,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.7132,
-        "g": 0.7132,
-        "b": 0.7132
+        "r": 0.7131999731063843,
+        "g": 0.7131999731063843,
+        "b": 0.7131999731063843
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,

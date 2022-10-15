@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -50.7,
-    "posY": 1.0944,
-    "posZ": 16.2128,
-    "rotX": 0.0,
+    "posX": -50.70000076293945,
+    "posY": 1.0944000482559204,
+    "posZ": 16.212799072265625,
+    "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.4,
-    "scaleY": 1.4,
-    "scaleZ": 1.4
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
   },
   "Nickname": "Beasts",
   "Description": "Harms Invaders and generates Fear as\r [b]specified by Powers and Event Cards[/b].",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.9647,
-    "g": 0.5843,
-    "b": 0.5176
+    "r": 0.964699923992157,
+    "g": 0.5842999815940857,
+    "b": 0.5175996422767639
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 14.6989,
-    "posY": 1.9711,
-    "posZ": 10.1823,
+    "posX": 14.69890022277832,
+    "posY": 1.9710999727249146,
+    "posZ": 10.182299613952637,
     "rotX": 0.0,
     "rotY": 90.0,
     "rotZ": 0.0,
-    "scaleX": 0.2101,
+    "scaleX": 0.210099995136261,
     "scaleY": 1.0,
-    "scaleZ": 0.2149
+    "scaleZ": 0.21490000188350677
   },
   "Nickname": "After Ravage Reminder Tile",
   "Description": "Custom",
@@ -48,7 +48,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "Stackable": false,
       "Stretch": true
     }

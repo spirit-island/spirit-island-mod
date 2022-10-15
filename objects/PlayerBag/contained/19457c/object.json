@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 10.0669,
-    "posY": 1.9712,
-    "posZ": -18.6116,
+    "posX": 10.066900253295898,
+    "posY": 1.9711999893188477,
+    "posZ": -18.611600875854492,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.7,
-    "scaleY": 0.7,
-    "scaleZ": 0.7
+    "scaleX": 0.699999988079071,
+    "scaleY": 0.699999988079071,
+    "scaleZ": 0.699999988079071
   },
   "Nickname": "Sun Element",
   "Description": "Use these for when a powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
@@ -21,7 +21,7 @@
   },
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.8513,
+    "g": 0.8513000011444092,
     "b": 0.0
   },
   "LayoutGroupSortIndex": 0,

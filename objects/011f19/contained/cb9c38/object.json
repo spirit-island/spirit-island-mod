@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 130.7321,
-    "posY": 2.5866,
-    "posZ": 19.0135,
+    "posX": 130.7321014404297,
+    "posY": 2.5866000652313232,
+    "posZ": 19.013500213623047,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 3.35,
-    "scaleY": 3.35,
-    "scaleZ": 3.35
+    "scaleX": 3.3499999046325684,
+    "scaleY": 3.3499999046325684,
+    "scaleZ": 3.3499999046325684
   },
   "Nickname": "Serpent Slumbering Beneath the Island",
   "Description": "",
@@ -49,12 +49,12 @@
     "CustomShader": {
       "SpecularColor": {
         "r": 0.875,
-        "g": 0.8129,
-        "b": 0.7463
+        "g": 0.8129000067710876,
+        "b": 0.7462999820709229
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 4.0,
-      "FresnelStrength": 0.1071
+      "FresnelStrength": 0.1071000024676323
     },
     "CastShadows": true
   }

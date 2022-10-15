@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -37.3826,
-    "posY": 1.2653,
-    "posZ": 13.4259,
+    "posX": -37.382598876953125,
+    "posY": 1.2653000354766846,
+    "posZ": 13.42590045928955,
     "rotX": 0.0,
-    "rotY": 0.0001,
+    "rotY": 9.999999747378752e-05,
     "rotZ": 0.0,
-    "scaleX": 1.4,
-    "scaleY": 1.4,
-    "scaleZ": 1.4
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
   },
   "Nickname": "Strife",
   "Description": "[b]Blocks a specific Invader’s Damage the\r next time they Damage Dahan and/or the land[/b],\r and is then Removed.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.3961,
-    "g": 0.7647,
-    "b": 0.9137
+    "r": 0.3961000144481659,
+    "g": 0.7646999955177307,
+    "b": 0.9136999845504761
   },
   "Tags": [
     "Highlight",

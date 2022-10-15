@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 108.567,
-    "posY": 2.5876,
-    "posZ": 19.7695,
+    "posX": 108.56700134277344,
+    "posY": 2.587599992752075,
+    "posZ": 19.769500732421875,
     "rotX": 0.0,
-    "rotY": 180.0004,
+    "rotY": 180.00039672851562,
     "rotZ": 180.0,
-    "scaleX": 3.35,
-    "scaleY": 3.35,
-    "scaleZ": 3.35
+    "scaleX": 3.3499999046325684,
+    "scaleY": 3.3499999046325684,
+    "scaleZ": 3.3499999046325684
   },
   "Nickname": "Keeper of the Forbidden Wilds",
   "Description": "",
@@ -49,12 +49,12 @@
     "CustomShader": {
       "SpecularColor": {
         "r": 0.875,
-        "g": 0.8129,
-        "b": 0.7463
+        "g": 0.8129000067710876,
+        "b": 0.7462999820709229
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 4.0,
-      "FresnelStrength": 0.1071
+      "FresnelStrength": 0.1071000024676323
     },
     "CastShadows": true
   }

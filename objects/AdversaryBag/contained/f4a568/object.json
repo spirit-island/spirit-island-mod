@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -42.2598,
-    "posY": 1.2645,
-    "posZ": 48.46,
+    "posX": -42.25979995727539,
+    "posY": 1.2645000219345093,
+    "posZ": 48.459999084472656,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.21,
+    "scaleX": 0.20999999344348907,
     "scaleY": 1.0,
-    "scaleZ": 0.2
+    "scaleZ": 0.20000000298023224
   },
   "Nickname": "France Explore Reminder",
   "Description": "Branch & Claw Expansion",
@@ -48,7 +48,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "Stackable": false,
       "Stretch": true
     }

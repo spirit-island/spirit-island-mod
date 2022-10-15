@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -29.4121,
-    "posY": 2.3126,
-    "posZ": 62.9729,
+    "posX": -29.412099838256836,
+    "posY": 2.3125998973846436,
+    "posZ": 62.972900390625,
     "rotX": 0.0,
-    "rotY": 179.9999,
+    "rotY": 179.99989318847656,
     "rotZ": 0.0,
-    "scaleX": 0.7,
-    "scaleY": 0.7,
-    "scaleZ": 0.7
+    "scaleX": 0.699999988079071,
+    "scaleY": 0.699999988079071,
+    "scaleZ": 0.699999988079071
   },
   "Nickname": "Defend Markers",
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5686,
-    "g": 0.5608,
-    "b": 0.5608
+    "r": 0.5685999989509583,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

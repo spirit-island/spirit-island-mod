@@ -2,14 +2,14 @@
   "Name": "Card",
   "Transform": {
     "posX": 18.0,
-    "posY": 0.8636,
+    "posY": 0.8636000156402588,
     "posZ": 33.0,
-    "rotX": 0.0,
+    "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.9243,
+    "scaleX": 1.924299955368042,
     "scaleY": 1.0,
-    "scaleZ": 1.9243
+    "scaleZ": 1.924299955368042
   },
   "Nickname": "Despicable Theft",
   "Description": "Jagged Earth Expansion",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

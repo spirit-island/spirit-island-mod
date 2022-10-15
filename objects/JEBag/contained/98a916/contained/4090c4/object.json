@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -38.9057,
-    "posY": 1.1588,
-    "posZ": 28.2554,
+    "posX": -38.90570068359375,
+    "posY": 1.1588000059127808,
+    "posZ": 28.255399703979492,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.53,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.53
+    "scaleZ": 1.5299999713897705
   },
   "Nickname": "Unleash a Torrent of the Self's Own Essence",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "Tags": [
     "Fast",

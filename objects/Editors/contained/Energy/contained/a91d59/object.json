@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 116.4151,
-    "posY": 1.0295,
-    "posZ": 54.1882,
+    "posX": 116.41510009765625,
+    "posY": 1.0295000076293945,
+    "posZ": 54.188201904296875,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 0.475,
-    "scaleY": 0.475,
-    "scaleZ": 0.475
+    "scaleX": 0.4749999940395355,
+    "scaleY": 0.4749999940395355,
+    "scaleZ": 0.4749999940395355
   },
   "Nickname": "Energy",
   "Description": "",
@@ -56,15 +56,15 @@
       "GUID": "4ac80e",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 87.3585,
-        "posY": 0.85,
-        "posZ": 52.5299,
+        "posX": 87.3584976196289,
+        "posY": 0.8500000238418579,
+        "posZ": 52.52989959716797,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.475,
-        "scaleY": 0.475,
-        "scaleZ": 0.475
+        "scaleX": 0.4749999940395355,
+        "scaleY": 0.4749999940395355,
+        "scaleZ": 0.4749999940395355
       },
       "Nickname": "Bonus Energy",
       "Description": "Pays for Power Cards. Carries over from turn to turn.",

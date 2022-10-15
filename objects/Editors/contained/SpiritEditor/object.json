@@ -1,15 +1,15 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": 105.22,
-    "posY": 0.85,
-    "posZ": 52.59,
+    "posX": 105.22000122070312,
+    "posY": 0.8500000238418579,
+    "posZ": 52.59000015258789,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 16.3908,
-    "scaleY": 0.1,
-    "scaleZ": 11.2353
+    "scaleX": 16.39080047607422,
+    "scaleY": 0.10000000149011612,
+    "scaleZ": 11.235300064086914
   },
   "Nickname": "Spirit Validator",
   "Description": "1) Load in a spirit panel\n\n2) Make sure the panel is growth-side up before continuing.\n\n3) Place snap points where the presence tracks are (skipping the places that start revealed) by locking the panel and using the point tool\n\n4) Place it here\n\n5) Press the \"Make Me A Spirit!\" button to validate the spirit (this will cause a \"Choose Spirit\" button to appear on the lore side of the spirit\n\n6) Place elemnts on the presence track corresponding to the elements gained from removing each presence. (Currently, \"Any\" elements are ignored)\n\n7) Press the \"Update Elements\" button to record the track elements.\n\n8) Any object the spirit starts with (cards, spirit tokens etc.) should be placed on top of the panel when the \"Choose Spirit\" button is pressed\n",
@@ -23,7 +23,7 @@
     "r": 1.0,
     "g": 1.0,
     "b": 1.0,
-    "a": 0.0824
+    "a": 0.08240000158548355
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

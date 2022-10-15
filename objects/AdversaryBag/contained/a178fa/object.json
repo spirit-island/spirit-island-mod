@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -70.26000213623047,
-    "posY": 1.3186999559402466,
-    "posZ": 0.8600000143051147,
+    "posX": -70.26,
+    "posY": 1.3187,
+    "posZ": 0.86,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.20999999344348907,
+    "scaleX": 0.21,
     "scaleY": 1.0,
-    "scaleZ": 0.20000000298023224
+    "scaleZ": 0.2
   },
   "Nickname": "Build Reminder Tile",
   "Description": "Custom",
@@ -48,7 +48,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

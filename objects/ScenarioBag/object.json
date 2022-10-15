@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -40.099998474121094,
-    "posY": 0.9635000228881836,
-    "posZ": 61.400001525878906,
-    "rotX": -0.0,
+    "posX": -40.1,
+    "posY": 0.9635,
+    "posZ": 61.4,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6245999932289124,
-    "scaleY": 0.12370000034570694,
-    "scaleZ": 0.6245999932289124
+    "scaleX": 0.6246,
+    "scaleY": 0.1237,
+    "scaleZ": 0.6246
   },
   "Nickname": "Scenario Pieces",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5677000284194946,
-    "g": 0.5600999593734741,
-    "b": 0.5600000023841858
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -69,14 +69,14 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.22499999403953552,
+        "posY": 0.225,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.5256999731063843,
-        "scaleY": 8.082500457763672,
-        "scaleZ": 0.5256999731063843
+        "scaleX": 0.5257,
+        "scaleY": 8.0825,
+        "scaleZ": 0.5257
       },
       "Nickname": "",
       "Description": "",
@@ -87,9 +87,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5677000284194946,
-        "g": 0.5601000189781189,
-        "b": 0.5600000023841858
+        "r": 0.5677,
+        "g": 0.5601,
+        "b": 0.56
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -111,7 +111,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false

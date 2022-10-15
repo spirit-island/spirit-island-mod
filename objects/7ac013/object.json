@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 8.889399528503418,
-    "posY": 0.8636000156402588,
+    "posX": 8.8894,
+    "posY": 0.8636,
     "posZ": 51.0,
-    "rotX": -0.0,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.924299955368042,
+    "scaleX": 1.9243,
     "scaleY": 1.0,
-    "scaleZ": 1.924299955368042
+    "scaleZ": 1.9243
   },
   "Nickname": "Rituals of Terror",
   "Description": "Spirit Island",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7131999731063843,
-    "g": 0.7131999731063843,
-    "b": 0.7131999731063843
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

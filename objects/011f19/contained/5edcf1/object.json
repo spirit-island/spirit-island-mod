@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 105.74530029296875,
-    "posY": 2.5866000652313232,
-    "posZ": 45.502201080322266,
+    "posX": 105.7453,
+    "posY": 2.5866,
+    "posZ": 45.5022,
     "rotX": 0.0,
-    "rotY": 180.00050354003906,
+    "rotY": 180.0005,
     "rotZ": 180.0,
-    "scaleX": 3.3499999046325684,
-    "scaleY": 3.3499999046325684,
-    "scaleZ": 3.3499999046325684
+    "scaleX": 3.35,
+    "scaleY": 3.35,
+    "scaleZ": 3.35
   },
   "Nickname": "Lightning's Swift Strike",
   "Description": "",
@@ -49,12 +49,12 @@
     "CustomShader": {
       "SpecularColor": {
         "r": 0.875,
-        "g": 0.8129000067710876,
-        "b": 0.7462999820709229
+        "g": 0.8129,
+        "b": 0.7463
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 4.0,
-      "FresnelStrength": 0.1071000024676323
+      "FresnelStrength": 0.1071
     },
     "CastShadows": true
   }

@@ -1,15 +1,15 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -40.93439865112305,
-    "posY": 1.3004000186920166,
-    "posZ": 27.333900451660156,
+    "posX": -40.9344,
+    "posY": 1.3004,
+    "posZ": 27.3339,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.5299999713897705,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5299999713897705
+    "scaleZ": 1.53
   },
   "Nickname": "Thickets Erupt with Every Touch of Breeze",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7131999731063843,
-    "g": 0.7131999731063843,
-    "b": 0.7131999731063843
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "Tags": [
     "Fast",

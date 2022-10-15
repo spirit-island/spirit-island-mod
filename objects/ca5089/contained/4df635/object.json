@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -50.53010177612305,
-    "posY": 1.2653000354766846,
-    "posZ": 13.163100242614746,
+    "posX": -50.5301,
+    "posY": 1.2653,
+    "posZ": 13.1631,
     "rotX": 0.0,
-    "rotY": 9.999999747378752e-05,
+    "rotY": 0.0001,
     "rotZ": 0.0,
-    "scaleX": 1.399999976158142,
-    "scaleY": 1.399999976158142,
-    "scaleZ": 1.399999976158142
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Wilds",
   "Description": "[b]Prevents the next Explore[/b] and is then\r Removed.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.6118000149726868,
-    "g": 0.819599986076355,
-    "b": 0.6157000064849854
+    "r": 0.6118,
+    "g": 0.8196,
+    "b": 0.6157
   },
   "Tags": [
     "Highlight",

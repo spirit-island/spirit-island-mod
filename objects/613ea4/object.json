@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -42.6510009765625,
-    "posY": 0.8920000195503235,
-    "posZ": 42.45000076293945,
-    "rotX": -0.0,
+    "posX": -42.651,
+    "posY": 0.892,
+    "posZ": 42.45,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.399999976158142,
-    "scaleY": 1.399999976158142,
-    "scaleZ": 1.399999976158142
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Explorers",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.8721000552177429,
-    "g": 0.8721000552177429,
-    "b": 0.8721000552177429
+    "r": 0.8721,
+    "g": 0.8721,
+    "b": 0.8721
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -37.33039855957031,
-    "posY": 1.2654999494552612,
-    "posZ": 16.317399978637695,
+    "posX": -37.3304,
+    "posY": 1.2655,
+    "posZ": 16.3174,
     "rotX": 0.0,
-    "rotY": 9.999999747378752e-05,
+    "rotY": 0.0001,
     "rotZ": 0.0,
-    "scaleX": 1.399999976158142,
-    "scaleY": 1.399999976158142,
-    "scaleZ": 1.399999976158142
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Disease",
   "Description": "[b]Prevents the next Build[/b] and is then\r Removed.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.89410001039505,
-    "g": 0.8510000109672546,
-    "b": 0.3528999984264374
+    "r": 0.8941,
+    "g": 0.851,
+    "b": 0.3529
   },
   "Tags": [
     "Highlight",

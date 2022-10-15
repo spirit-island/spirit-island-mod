@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -54.702598571777344,
-    "posY": 1.0369000434875488,
-    "posZ": 64.5447998046875,
-    "rotX": -0.0010999999940395355,
-    "rotY": 0.00019999999494757503,
-    "rotZ": 359.9913024902344,
-    "scaleX": 0.8999999761581421,
-    "scaleY": 0.8999999761581421,
-    "scaleZ": 0.8999999761581421
+    "posX": -54.7026,
+    "posY": 1.0369,
+    "posZ": 64.5448,
+    "rotX": -0.0011,
+    "rotY": 0.0002,
+    "rotZ": 359.9913,
+    "scaleX": 0.9,
+    "scaleY": 0.9,
+    "scaleZ": 0.9
   },
   "Nickname": "Isolate",
   "Description": "Represents a land hard to travel to, from, or through. Prevents Invader Explore Actions, and prevents Invader pieces from using adjacencies unless you let them.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5685999989509583,
-    "g": 0.5608000159263611,
-    "b": 0.5608000159263611
+    "r": 0.5686,
+    "g": 0.5608,
+    "b": 0.5608
   },
   "Tags": [
     "Destroy",

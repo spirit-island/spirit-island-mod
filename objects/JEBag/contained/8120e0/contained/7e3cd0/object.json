@@ -1,15 +1,15 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -7.110499858856201,
-    "posY": 1.9908000230789185,
-    "posZ": 19.273799896240234,
+    "posX": -7.1105,
+    "posY": 1.9908,
+    "posZ": 19.2738,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.5299999713897705,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5299999713897705
+    "scaleZ": 1.53
   },
   "Nickname": "Untended Land Crumbles",
   "Description": "On Each Board: Add 1 Blight to a land adjacent to Blight. Spirits may prevent this on any/all boards; each board to be protected requires jointly paying 3 Energy or Destroying 1 Presence from that board",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7131999731063843,
-    "g": 0.7131999731063843,
-    "b": 0.7131999731063843
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -50.70000076293945,
-    "posY": 1.0942000150680542,
-    "posZ": 13.35420036315918,
-    "rotX": -0.0,
-    "rotY": 180.02430725097656,
+    "posX": -50.7,
+    "posY": 1.0942,
+    "posZ": 13.3542,
+    "rotX": 0.0,
+    "rotY": 180.0243,
     "rotZ": 0.0,
-    "scaleX": 1.399999976158142,
-    "scaleY": 1.399999976158142,
-    "scaleZ": 1.399999976158142
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Wilds",
   "Description": "[b]Prevents the next Explore[/b] and is then\r Removed.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.611799955368042,
-    "g": 0.819599986076355,
-    "b": 0.6157000064849854
+    "r": 0.6118,
+    "g": 0.8196,
+    "b": 0.6157
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

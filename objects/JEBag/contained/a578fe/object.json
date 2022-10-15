@@ -1,15 +1,15 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -22.48550033569336,
-    "posY": 2.108299970626831,
-    "posZ": 69.40640258789062,
+    "posX": -22.4855,
+    "posY": 2.1083,
+    "posZ": 69.4064,
     "rotX": 0.0,
     "rotY": 90.0,
     "rotZ": 180.0,
-    "scaleX": 1.0499999523162842,
+    "scaleX": 1.05,
     "scaleY": 1.0,
-    "scaleZ": 1.0499999523162842
+    "scaleZ": 1.05
   },
   "Nickname": "Stage III Command",
   "Description": "Jagged Earth Expansion",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7131999731063843,
-    "g": 0.7131999731063843,
-    "b": 0.7131999731063843
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

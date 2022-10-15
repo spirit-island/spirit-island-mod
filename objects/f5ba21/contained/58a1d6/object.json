@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -42.83340072631836,
-    "posY": 1.0990999937057495,
-    "posZ": 59.997398376464844,
-    "rotX": -0.0008999999845400453,
-    "rotY": -9.999999747378752e-05,
-    "rotZ": 0.00430000014603138,
-    "scaleX": 0.699999988079071,
-    "scaleY": 0.699999988079071,
-    "scaleZ": 0.699999988079071
+    "posX": -42.8334,
+    "posY": 1.0991,
+    "posZ": 59.9974,
+    "rotX": -0.0009,
+    "rotY": -0.0001,
+    "rotZ": 0.0043,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
   },
   "Nickname": "Speed Token",
   "Description": "Place this on a Power to show you have changed its speed. This only has a functional difference when playing with the Blitz Scenario.",

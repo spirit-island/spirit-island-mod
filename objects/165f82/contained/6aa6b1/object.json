@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 33.79880142211914,
-    "posY": 2.4033000469207764,
-    "posZ": 34.722801208496094,
+    "posX": 33.7988,
+    "posY": 2.4033,
+    "posZ": 34.7228,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.399999976158142,
-    "scaleY": 1.399999976158142,
-    "scaleZ": 1.399999976158142
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Beasts",
   "Description": "Harms Invaders and generates Fear as\r [b]specified by Powers and Event Cards[/b].",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.9646999835968018,
-    "g": 0.5842999815940857,
-    "b": 0.5175999999046326
+    "r": 0.9647,
+    "g": 0.5843,
+    "b": 0.5176
   },
   "Tags": [
     "Beasts",

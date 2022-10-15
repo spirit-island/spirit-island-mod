@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -42.79999923706055,
-    "posY": 0.9602000117301941,
-    "posZ": 61.400001525878906,
-    "rotX": -0.0,
+    "posX": -42.8,
+    "posY": 0.9602,
+    "posZ": 61.4,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248000264167786,
-    "scaleY": 0.12039999663829803,
-    "scaleZ": 0.6248000264167786
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "Extra Balanced Boards",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5677000284194946,
-    "g": 0.5600999593734741,
-    "b": 0.5600000023841858
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -69,14 +69,14 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.6625000238418579,
+        "posY": 0.6625,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 345.0,
         "rotZ": 0.0,
-        "scaleX": 0.5382999777793884,
-        "scaleY": 2.2850000858306885,
-        "scaleZ": 0.5382999777793884
+        "scaleX": 0.5383,
+        "scaleY": 2.285,
+        "scaleZ": 0.5383
       },
       "Nickname": "",
       "Description": "",
@@ -87,9 +87,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.8156999945640564,
-        "g": 0.8156999945640564,
-        "b": 0.8156999945640564
+        "r": 0.8157,
+        "g": 0.8157,
+        "b": 0.8157
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -111,7 +111,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.39500001072883606,
+          "Thickness": 0.395,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -123,15 +123,15 @@
       "AttachedDecals": [
         {
           "Transform": {
-            "posX": 0.08410000056028366,
-            "posY": 0.2337999939918518,
-            "posZ": -0.014800000004470348,
+            "posX": 0.0841,
+            "posY": 0.2338,
+            "posZ": -0.0148,
             "rotX": 90.0,
-            "rotY": 195.99960327148438,
+            "rotY": 195.9996,
             "rotZ": 0.0,
-            "scaleX": 1.864799976348877,
-            "scaleY": 1.8460999727249146,
-            "scaleZ": 2.2565999031066895
+            "scaleX": 1.8648,
+            "scaleY": 1.8461,
+            "scaleZ": 2.2566
           },
           "CustomDecal": {
             "Name": "a",

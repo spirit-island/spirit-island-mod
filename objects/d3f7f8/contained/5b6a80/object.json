@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -37.43259811401367,
-    "posY": 1.2654999494552612,
-    "posZ": 14.793299674987793,
+    "posX": -37.4326,
+    "posY": 1.2655,
+    "posZ": 14.7933,
     "rotX": 0.0,
-    "rotY": 9.999999747378752e-05,
+    "rotY": 0.0001,
     "rotZ": 0.0,
-    "scaleX": 1.399999976158142,
-    "scaleY": 1.399999976158142,
-    "scaleZ": 1.399999976158142
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Badlands",
   "Description": "[b]Increases Damage to Invaders/\rDahan by 1.[/b] [i](Once per Action.)[/i]",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.9882000088691711,
-    "g": 0.6744999885559082,
-    "b": 0.10589999705553055
+    "r": 0.9882,
+    "g": 0.6745,
+    "b": 0.1059
   },
   "Tags": [
     "Highlight",

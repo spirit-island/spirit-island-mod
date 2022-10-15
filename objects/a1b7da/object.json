@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -46.849998474121094,
-    "posY": 0.9602000117301941,
-    "posZ": 60.04999923706055,
-    "rotX": -0.0,
+    "posX": -46.85,
+    "posY": 0.9602,
+    "posZ": 60.05,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248000264167786,
-    "scaleY": 0.12039999663829803,
-    "scaleZ": 0.6248000264167786
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "3 Energy Tokens",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5677000284194946,
-    "g": 0.5600999593734741,
-    "b": 0.5600000023841858
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -66,14 +66,14 @@
       "Name": "Custom_Model",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.2069000005722046,
+        "posY": 0.2069,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.8003000020980835,
-        "scaleY": 8.299200057983398,
-        "scaleZ": 0.8003000020980835
+        "scaleX": 0.8003,
+        "scaleY": 8.2992,
+        "scaleZ": 0.8003
       },
       "Nickname": "",
       "Description": "",

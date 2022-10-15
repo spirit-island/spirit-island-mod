@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -36.76689910888672,
-    "posY": 1.019700050354004,
-    "posZ": -13.03950023651123,
+    "posX": -36.7669,
+    "posY": 1.0197,
+    "posZ": -13.0395,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 0.8999999761581421,
-    "scaleY": 0.8999999761581421,
-    "scaleZ": 0.8999999761581421
+    "scaleX": 0.9,
+    "scaleY": 0.9,
+    "scaleZ": 0.9
   },
   "Nickname": "Defend",
   "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5685999989509583,
-    "g": 0.5608000159263611,
-    "b": 0.5608000159263611
+    "r": 0.5686,
+    "g": 0.5608,
+    "b": 0.5608
   },
   "Tags": [
     "Destroy",
@@ -57,15 +57,15 @@
       "GUID": "e70d40",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -21.043500900268555,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": -21.0435,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -76,9 +76,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -116,15 +116,15 @@
       "GUID": "7727d2",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -18.976499557495117,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": -18.9765,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -135,9 +135,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -175,15 +175,15 @@
       "GUID": "24f4e8",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -16.907800674438477,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282299995422363,
+        "posX": -16.9078,
+        "posY": 0.05,
+        "posZ": 12.2823,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -194,9 +194,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -234,15 +234,15 @@
       "GUID": "cec1d2",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -14.840999603271484,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": -14.841,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -253,9 +253,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -293,15 +293,15 @@
       "GUID": "e8f74c",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -12.77340030670166,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": -12.7734,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -312,9 +312,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -352,15 +352,15 @@
       "GUID": "424cde",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -10.705499649047852,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": -10.7055,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -371,9 +371,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -411,15 +411,15 @@
       "GUID": "5cc53c",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -8.637999534606934,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": -8.638,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -430,9 +430,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -470,15 +470,15 @@
       "GUID": "3f0ec0",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -6.570000171661377,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": -6.57,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -489,9 +489,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -529,15 +529,15 @@
       "GUID": "3f8627",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -4.502099990844727,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": -4.5021,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -548,9 +548,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -588,15 +588,15 @@
       "GUID": "19e301",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -2.4344000816345215,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282299995422363,
+        "posX": -2.4344,
+        "posY": 0.05,
+        "posZ": 12.2823,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -607,9 +607,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -647,15 +647,15 @@
       "GUID": "25d7ae",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -0.3675999939441681,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": -0.3676,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -666,9 +666,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -706,15 +706,15 @@
       "GUID": "fa7a26",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 1.7000999450683594,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": 1.7001,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -725,9 +725,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -765,15 +765,15 @@
       "GUID": "59ff74",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 3.7685999870300293,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": 3.7686,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -784,9 +784,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -824,15 +824,15 @@
       "GUID": "30bef9",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 5.836100101470947,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": 5.8361,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -843,9 +843,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -883,15 +883,15 @@
       "GUID": "e0dec9",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 7.903800010681152,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": 7.9038,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -902,9 +902,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -942,15 +942,15 @@
       "GUID": "5fb554",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 9.971400260925293,
-        "posY": 0.05000000074505806,
-        "posZ": 12.28219985961914,
+        "posX": 9.9714,
+        "posY": 0.05,
+        "posZ": 12.2822,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -961,9 +961,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -1001,15 +1001,15 @@
       "GUID": "29e3d4",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 12.038800239562988,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": 12.0388,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -1020,9 +1020,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -1060,15 +1060,15 @@
       "GUID": "6481f1",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 14.106399536132812,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": 14.1064,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -1079,9 +1079,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -1119,15 +1119,15 @@
       "GUID": "63f808",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 16.1742000579834,
-        "posY": 0.05000000074505806,
-        "posZ": 12.282099723815918,
+        "posX": 16.1742,
+        "posY": 0.05,
+        "posZ": 12.2821,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -1138,9 +1138,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",
@@ -1178,15 +1178,15 @@
       "GUID": "53550e",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": 18.411100387573242,
-        "posY": 0.05000000074505806,
-        "posZ": 12.35949993133545,
+        "posX": 18.4111,
+        "posY": 0.05,
+        "posZ": 12.3595,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.8999999761581421,
-        "scaleY": 0.8999999761581421,
-        "scaleZ": 0.8999999761581421
+        "scaleX": 0.9,
+        "scaleY": 0.9,
+        "scaleZ": 0.9
       },
       "Nickname": "Defend",
       "Description": "Guard a land against the Invaders. Reduces the Damage done by the Invaders to the land/Dahan by a specified amount.",
@@ -1197,9 +1197,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5685999989509583,
-        "g": 0.5608000159263611,
-        "b": 0.5608000159263611
+        "r": 0.5686,
+        "g": 0.5608,
+        "b": 0.5608
       },
       "Tags": [
         "Destroy",

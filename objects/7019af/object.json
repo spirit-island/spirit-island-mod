@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -37.220001220703125,
-    "posY": 1.094499945640564,
-    "posZ": 16.22369956970215,
-    "rotX": -0.0,
+    "posX": -37.22,
+    "posY": 1.0945,
+    "posZ": 16.2237,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.399999976158142,
-    "scaleY": 1.399999976158142,
-    "scaleZ": 1.399999976158142
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
   "Nickname": "Disease",
   "Description": "[b]Prevents the next Build[/b] and is then\r Removed.",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.89410001039505,
-    "g": 0.8510000109672546,
-    "b": 0.3528992533683777
+    "r": 0.8941,
+    "g": 0.851,
+    "b": 0.3529
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

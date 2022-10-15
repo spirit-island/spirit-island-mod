@@ -1,15 +1,15 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": -45.620399475097656,
-    "posY": 1.2733999490737915,
-    "posZ": 40.620201110839844,
+    "posX": -45.6204,
+    "posY": 1.2734,
+    "posZ": 40.6202,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.0499999523162842,
+    "scaleX": 1.05,
     "scaleY": 1.0,
-    "scaleZ": 1.0499999523162842
+    "scaleZ": 1.05
   },
   "Nickname": "Habsburg Reminder Card",
   "Description": "Habsburg Lv 5",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7131999731063843,
-    "g": 0.7131999731063843,
-    "b": 0.7131999731063843
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

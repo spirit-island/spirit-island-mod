@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": -42.40250015258789,
-    "posY": 3.055000066757202,
-    "posZ": 44.80759811401367,
+    "posX": -42.4025,
+    "posY": 3.055,
+    "posZ": 44.8076,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.8720999956130981,
-    "g": 0.8720999956130981,
-    "b": 0.8720999956130981
+    "r": 0.8721,
+    "g": 0.8721,
+    "b": 0.8721
   },
   "Tags": [
     "Highlight",
@@ -58,7 +58,7 @@
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 7.0,
-      "FresnelStrength": 0.4000000059604645
+      "FresnelStrength": 0.4
     },
     "CastShadows": true
   },
@@ -66,7 +66,7 @@
     {
       "Position": {
         "x": 0.0,
-        "y": 0.23649999499320984,
+        "y": 0.2365,
         "z": 0.0
       }
     }
@@ -76,9 +76,9 @@
       "GUID": "58ba36",
       "Name": "Custom_Model",
       "Transform": {
-        "posX": -52.43429946899414,
-        "posY": 1.621500015258789,
-        "posZ": 28.416799545288086,
+        "posX": -52.4343,
+        "posY": 1.6215,
+        "posZ": 28.4168,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
@@ -95,9 +95,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.8720999956130981,
-        "g": 0.8720999956130981,
-        "b": 0.8720999956130981
+        "r": 0.8721,
+        "g": 0.8721,
+        "b": 0.8721
       },
       "Tags": [
         "Town"
@@ -132,7 +132,7 @@
           },
           "SpecularIntensity": 0.0,
           "SpecularSharpness": 7.0,
-          "FresnelStrength": 0.4000000059604645
+          "FresnelStrength": 0.4
         },
         "CastShadows": true
       },
@@ -143,7 +143,7 @@
         {
           "Position": {
             "x": 0.0,
-            "y": 0.210999995470047,
+            "y": 0.211,
             "z": 0.0
           },
           "Tags": []

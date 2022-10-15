@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 120.90760040283203,
-    "posY": 2.586899995803833,
-    "posZ": 7.718599796295166,
+    "posX": 120.9076,
+    "posY": 2.5869,
+    "posZ": 7.7186,
     "rotX": 0.0,
-    "rotY": 179.98910522460938,
+    "rotY": 179.9891,
     "rotZ": 180.0,
-    "scaleX": 3.3499999046325684,
-    "scaleY": 3.3499999046325684,
-    "scaleZ": 3.3499999046325684
+    "scaleX": 3.35,
+    "scaleY": 3.35,
+    "scaleZ": 3.35
   },
   "Nickname": "Grinning Trickster Stirs Up Trouble",
   "Description": "",
@@ -49,12 +49,12 @@
     "CustomShader": {
       "SpecularColor": {
         "r": 0.875,
-        "g": 0.8129000067710876,
-        "b": 0.7462999820709229
+        "g": 0.8129,
+        "b": 0.7463
       },
       "SpecularIntensity": 0.0,
       "SpecularSharpness": 4.0,
-      "FresnelStrength": 0.1071000024676323
+      "FresnelStrength": 0.1071
     },
     "CastShadows": true
   }

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": -19.208099365234375,
-    "posY": 1.9710999727249146,
-    "posZ": 65.3832015991211,
+    "posX": -19.2081,
+    "posY": 1.9711,
+    "posZ": 65.3832,
     "rotX": 0.0,
     "rotY": 90.0,
     "rotZ": 0.0,
-    "scaleX": 0.210099995136261,
+    "scaleX": 0.2101,
     "scaleY": 1.0,
-    "scaleZ": 0.21490000188350677
+    "scaleZ": 0.2149
   },
   "Nickname": "After Explore Reminder Tile",
   "Description": "Custom",
@@ -48,7 +48,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "Stackable": false,
       "Stretch": true
     }

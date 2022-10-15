@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -48.20000076293945,
-    "posY": 0.9602000117301941,
-    "posZ": 61.400001525878906,
-    "rotX": -0.0,
+    "posX": -48.2,
+    "posY": 0.9602,
+    "posZ": 61.4,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248000264167786,
-    "scaleY": 0.12039999663829803,
-    "scaleZ": 0.6248000264167786
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "1 Energy Bags",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5677000284194946,
-    "g": 0.5600999593734741,
-    "b": 0.5600000023841858
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -66,14 +66,14 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.23149999976158142,
+        "posY": 0.2315,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.5011000037193298,
-        "scaleY": 8.304100036621094,
-        "scaleZ": 0.5011000037193298
+        "scaleX": 0.5011,
+        "scaleY": 8.3041,
+        "scaleZ": 0.5011
       },
       "Nickname": "",
       "Description": "",
@@ -108,7 +108,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false
@@ -122,15 +122,15 @@
           "GUID": "500b0d",
           "Name": "Custom_Model",
           "Transform": {
-            "posX": 0.14880000054836273,
-            "posY": 0.012400000356137753,
-            "posZ": 0.33629998564720154,
-            "rotX": 0.00039999998989515007,
-            "rotY": 359.9905090332031,
-            "rotZ": -0.000699999975040555,
-            "scaleX": 1.4084999561309814,
-            "scaleY": 0.9243999719619751,
-            "scaleZ": 1.4084999561309814
+            "posX": 0.1488,
+            "posY": 0.0124,
+            "posZ": 0.3363,
+            "rotX": 0.0004,
+            "rotY": 359.9905,
+            "rotZ": -0.0007,
+            "scaleX": 1.4085,
+            "scaleY": 0.9244,
+            "scaleZ": 1.4085
           },
           "Nickname": "",
           "Description": "",

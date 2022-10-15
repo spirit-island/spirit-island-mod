@@ -1,15 +1,15 @@
 {
   "Name": "DeckCustom",
   "Transform": {
-    "posX": -26.399700164794922,
-    "posY": 1.2247999906539917,
-    "posZ": 32.51110076904297,
+    "posX": -26.3997,
+    "posY": 1.2248,
+    "posZ": 32.5111,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.5299999713897705,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.5299999713897705
+    "scaleZ": 1.53
   },
   "Nickname": "Events",
   "Description": "Jagged Earth Expansion",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7131999731063843,
-    "g": 0.7131999731063843,
-    "b": 0.7131999731063843
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,

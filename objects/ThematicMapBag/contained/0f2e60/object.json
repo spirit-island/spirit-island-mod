@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 175.22390747070312,
-    "posY": 11.633600234985352,
-    "posZ": 68.44609832763672,
+    "posX": 175.2239,
+    "posY": 11.6336,
+    "posZ": 68.4461,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 7.150000095367432,
+    "scaleX": 7.15,
     "scaleY": 1.0,
-    "scaleZ": 7.150000095367432
+    "scaleZ": 7.15
   },
   "Nickname": "SW",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.8156999945640564,
-    "g": 0.8156999945640564,
-    "b": 0.8156999945640564
+    "r": 0.8157,
+    "g": 0.8157,
+    "b": 0.8157
   },
   "Tags": [
     "Thematic"
@@ -47,7 +47,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.39500001072883606,
+      "Thickness": 0.395,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false
@@ -58,15 +58,15 @@
       "GUID": "ffa7e6",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 52.06909942626953,
-        "posY": 1.0525000095367432,
-        "posZ": 19.765300750732422,
+        "posX": 52.0691,
+        "posY": 1.0525,
+        "posZ": 19.7653,
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 7.150000095367432,
+        "scaleX": 7.15,
         "scaleY": 1.0,
-        "scaleZ": 7.150000095367432
+        "scaleZ": 7.15
       },
       "Nickname": "SW",
       "Description": "",
@@ -104,7 +104,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.4050000011920929,
+          "Thickness": 0.405,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false

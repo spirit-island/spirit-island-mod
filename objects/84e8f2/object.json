@@ -2,14 +2,14 @@
   "Name": "Custom_Model_Bag",
   "Transform": {
     "posX": -38.75,
-    "posY": 0.9602000117301941,
-    "posZ": 60.04999923706055,
-    "rotX": -0.0,
+    "posY": 0.9602,
+    "posZ": 60.05,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248000264167786,
-    "scaleY": 0.12039999663829803,
-    "scaleZ": 0.6248000264167786
+    "scaleX": 0.6248,
+    "scaleY": 0.1204,
+    "scaleZ": 0.6248
   },
   "Nickname": "Feather & Flame",
   "Description": "",
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.5677000284194946,
-    "g": 0.5600999593734741,
-    "b": 0.5600000023841858
+    "r": 0.5677,
+    "g": 0.5601,
+    "b": 0.56
   },
   "Tags": [
     "Expansion"
@@ -72,14 +72,14 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.25859999656677246,
+        "posY": 0.2586,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 0.525600016117096,
-        "scaleY": 8.304100036621094,
-        "scaleZ": 0.525600016117096
+        "scaleX": 0.5256,
+        "scaleY": 8.3041,
+        "scaleZ": 0.5256
       },
       "Nickname": "",
       "Description": "",
@@ -90,9 +90,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.5677000284194946,
-        "g": 0.5601000189781189,
-        "b": 0.5600000023841858
+        "r": 0.5677,
+        "g": 0.5601,
+        "b": 0.56
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -114,7 +114,7 @@
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
-          "Thickness": 0.20000000298023224,
+          "Thickness": 0.2,
           "MergeDistancePixels": 15.0,
           "StandUp": false,
           "Stackable": false

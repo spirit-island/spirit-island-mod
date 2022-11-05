@@ -3748,7 +3748,7 @@ function timePassesCo()
         end
         objectsToCleanup[guid] = nil
     end
-    for _,object in pairs(upCast(seaTile, 0, 0.47)) do
+    for _,object in pairs(upCast(seaTile, 0, 0.48)) do
         handlePiece(object, 0)
     end
     noHeal = false

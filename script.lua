@@ -3604,12 +3604,7 @@ function enableUI()
 
         -- Need to wait for xml table to get updated
         Wait.frames(function()
-            local colors = {}
-            for _,color in pairs(Player.getColors()) do
-                if color ~= "Black" and color ~= "Grey" then
-                    table.insert(colors, color)
-                end
-            end
+            local colors = invertVisiTable({"Black", "Grey"})
             UI.setAttribute("panelUIToggle","active","true")
             setVisiTable("panelTimePasses", colors)
             setVisiTable("panelReady", colors)
@@ -5031,12 +5026,7 @@ function showGameOver()
     refreshGameOver()
 
     if SetupChecker.getVar("optionalGameResults") then
-        local colors = {}
-        for _,color in pairs(Player.getColors()) do
-            if color ~= "Black" and color ~= "Grey" then
-                table.insert(colors, color)
-            end
-        end
+        local colors = invertVisiTable({"Black", "Grey"})
         setVisiTable("panelGameOver", colors)
     end
 end
@@ -6545,6 +6535,24 @@ function getVisiTable(xmlID) return visiStringToTable(UI.getAttribute(xmlID,"vis
 function setVisiTable(xmlID, inTable) UI.setAttribute(xmlID,"visibility",visiTableToString(inTable)) end
 function getVisiTableParams(params) return getVisiTable(params.id) end
 function setVisiTableParams(params) setVisiTable(params.id, params.table) end
+--- Takes a table of player colors and returns a table of all the player colors
+--- not in the argument.
+function invertVisiTable(inTable)
+    local outTable = {}
+    for _, color in pairs(Player.getColors()) do
+        local include = true
+        for _, c in pairs(inTable) do
+            if color == c then
+                include = false
+                break
+            end
+        end
+        if include then
+            table.insert(outTable, color)
+        end
+    end
+    return outTable
+end
 
 function showButtons(player)
     toggleUI("panelUIToggleHide", player.color, false)

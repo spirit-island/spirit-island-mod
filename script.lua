@@ -6374,7 +6374,8 @@ function setupSwapButtons(obj)
             width = "270",
             height = "110",
             visibility = playerButtonVisibility,
-            tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+            -- Note: tooltips don't work on Custom UI (https://tabletopsimulator.nolt.io/1369)
+            -- tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
         },
         children = {},
     })
@@ -6392,7 +6393,8 @@ function setupSwapButtons(obj)
             width = "270",
             height = "110",
             visibility = playerButtonVisibility,
-            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
+            -- Note: tooltips don't work on Custom UI (https://tabletopsimulator.nolt.io/1369)
+            -- tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
         },
         children = {},
     })
@@ -6408,7 +6410,8 @@ function setupSwapButtons(obj)
             width = "270",
             height = "110",
             visibility = playSpiritVisibility,
-            tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+            -- Note: tooltips don't work on Custom UI (https://tabletopsimulator.nolt.io/1369)
+            -- tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
         },
         children = {},
     })

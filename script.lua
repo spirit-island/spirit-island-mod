@@ -6338,11 +6338,13 @@ function setupColor(table, color)
     end
     table.setColorTint(colorTint)
     table.clearButtons()
-    setupSwapButtons(table)
+    setupSwapButtons(table, { seated = true })
 
     updateColorPickButtons()
 end
-function setupSwapButtons(obj)
+-- @param params.seated Boolean indicating if a player is about to be seated here.
+function setupSwapButtons(obj, params)
+    params = params or {}
     local xml = {}
     local color = getTableColor(obj)
     local buttonColor = Color[color]:toHex(false)
@@ -6353,7 +6355,7 @@ function setupSwapButtons(obj)
     end
     local playSpiritVisibility = "Invisible"
     local playSpiritText = ""
-    if not Player[color].seated then
+    if not params.seated and not Player[color].seated then
         if selectedColors[color] then
             playSpiritVisibility = visiTableToString(invertVisiTable({color}))
             playSpiritText = "Play Spirit"

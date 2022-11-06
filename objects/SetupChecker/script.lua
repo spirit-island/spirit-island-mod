@@ -1880,12 +1880,12 @@ function gainSpirit(player)
     local buttons = obj.getButtons()
     local hasOptions = 0
     if buttons ~= nil then
-        for i=4,#buttons do
-            if buttons[i].label ~= "" then
-                options[i-4] = true
+        for i, button in ipairs(buttons) do
+            if button.label ~= "" then
+                options[i] = true
                 hasOptions = hasOptions + 1
             else
-                options[i-4] = false
+                options[i] = false
             end
         end
     end
@@ -1955,19 +1955,19 @@ function getNewSpirit(tags, complexities)
 end
 function pickSpirit1(obj, color)
     if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 3, color)
+    pickSpirit(obj, 0, color)
 end
 function pickSpirit2(obj, color)
     if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 4, color)
+    pickSpirit(obj, 1, color)
 end
 function pickSpirit3(obj, color)
     if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 5, color)
+    pickSpirit(obj, 2, color)
 end
 function pickSpirit4(obj, color)
     if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 6, color)
+    pickSpirit(obj, 3, color)
 end
 function replaceSpirit(obj, index, color)
     local tags = getSpiritTags()
@@ -2093,14 +2093,14 @@ function removeSpirit(params)
                 if params.color ~= color then
                     local buttons = obj.getButtons()
                     if buttons ~= nil then
-                        for i=4,#buttons do
-                            local label = buttons[i].label
+                        for _, button in ipairs(buttons) do
+                            local label = button.label
                             local start,_ = string.find(label, " %- ")
                             if start ~= nil then
                                 label = string.sub(label, 1, start-1)
                             end
                             if name == label then
-                                replaceSpirit(obj, i-1, color)
+                                replaceSpirit(obj, button.index, color)
                                 found = true
                                 break
                             end

@@ -3634,9 +3634,7 @@ function addSpirit(params)
     return SetupChecker.call("addSpirit", params)
 end
 function pickSpirit(params)
-    for i=4,#playerTables[params.color].getButtons() do
-        playerTables[params.color].removeButton(i-1)
-    end
+    playerTables[params.color].clearButtons()
     selectedColors[params.color] = {}
     SetupChecker.call("removeSpirit", params)
 end
@@ -6339,37 +6337,82 @@ function setupColor(table, color)
         colorTint = Color.fromHex(Tints[color].Presence)
     end
     table.setColorTint(colorTint)
-    table.UI.setXml("")
     table.clearButtons()
     setupSwapButtons(table)
 
     updateColorPickButtons()
-    updateSwapButtons()
 end
 function setupSwapButtons(obj)
-    local scale = flipVector(Vector(obj.getScale()))
-    scale = scale * 2
-    -- Swap Place (button index 0)
-    obj.createButton({
-        label="", click_function="onClickedSwapPlace", function_owner=Global,
-        position={-3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
-        font_color={0,0,0}, font_size=250,
-        tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+    local xml = {}
+    local color = getTableColor(obj)
+    local buttonColor = Color[color]:toHex(false)
+    local textColor = fontColor(Color[color])
+    local playerButtonVisibility = "Invisible"
+    if showPlayerButtons then
+        playerButtonVisibility = visiTableToString(invertVisiTable({"Black", "Grey", color}))
+    end
+    local playSpiritVisibility = "Invisible"
+    local playSpiritText = ""
+    if not Player[color].seated then
+        if selectedColors[color] then
+            playSpiritVisibility = visiTableToString(invertVisiTable({color}))
+            playSpiritText = "Play Spirit"
+        elseif showPlayerButtons then
+            playSpiritVisibility = visiTableToString(invertVisiTable({color}))
+            playSpiritText = "Play " .. color
+        end
+    end
+    table.insert(xml, {
+        tag = "Button",
+        attributes = {
+            id = "swapPlace",
+            onClick = "Global/onClickedSwapPlace("..obj.guid..")",
+            position = "320 755 -80",
+            rotation = "0 0 180",
+            text = "Swap Place",
+            fontSize = "44",
+            width = "270",
+            height = "110",
+            visibility = playerButtonVisibility,
+            tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+        },
+        children = {},
     })
-    -- Swap Color (button index 1)
-    obj.createButton({
-        label="", click_function="onClickedSwapColor", function_owner=Global,
-        position={3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
-        font_color={0,0,0}, font_size=250,
-        tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
+    table.insert(xml, {
+        tag = "Button",
+        attributes = {
+            id = "swapColor",
+            onClick = "Global/onClickedSwapColor("..obj.guid..")",
+            position = "-320 755 -80",
+            rotation = "0 0 180",
+            text = "Swap " .. color,
+            colors = "#"..buttonColor.."|#"..buttonColor.."|#"..buttonColor.."|#"..buttonColor.."80",
+            textColor = "rgb("..textColor[1]..","..textColor[2]..","..textColor[3]..")",
+            fontSize = "44",
+            width = "270",
+            height = "110",
+            visibility = playerButtonVisibility,
+            tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
+        },
+        children = {},
     })
-    -- Play Spirit (button index 2)
-    obj.createButton({
-        label="", click_function="onClickedPlaySpirit", function_owner=Global,
-        position={0,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
-        font_color={0,0,0}, font_size=250,
-        tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+    table.insert(xml, {
+        tag = "Button",
+        attributes = {
+            id = "playSpirit",
+            onClick = "Global/onClickedPlaySpirit("..obj.guid..")",
+            position = "0 755 -80",
+            rotation = "0 0 180",
+            text = playSpiritText,
+            fontSize = "44",
+            width = "270",
+            height = "110",
+            visibility = playSpiritVisibility,
+            tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+        },
+        children = {},
     })
+    obj.UI.setXmlTable(xml, {})
 end
 function flipVector(vec)
     vec.x = 1/vec.x
@@ -6408,28 +6451,21 @@ function updateColorPickButtons()
     end
 end
 function updateSwapButtons()
-    for color,obj in pairs(playerTables) do
-        if showPlayerButtons then
-            local bg = Color[color]
-            local fg = fontColor(bg)
-            obj.editButton({index=0, label="Swap Place", height=400, width=1500})
-            obj.editButton({index=1, label="Swap " .. color, height=400, width=1500, color=bg, font_color=fg})
-        else
-            obj.editButton({index=0, label="", height=0, width=0})
-            obj.editButton({index=1, label="", height=0, width=0})
-        end
-        updatePlaySpiritButton(color)
+    for _, obj in pairs(playerTables) do
+        setupSwapButtons(obj)
     end
 end
 function updatePlaySpiritButton(color)
     local table = playerTables[color]
     if table == nil then return end
     if not Player[color].seated and selectedColors[color] then
-        table.editButton({index=2, label="Play Spirit", height=400, width=1500})
+        table.UI.setAttribute("playSpirit", "visibility", "")
+        table.UI.setAttribute("playSpirit", "text", "Play Spirit")
     elseif not Player[color].seated and showPlayerButtons then
-        table.editButton({index=2, label="Play " .. color, height=400, width=1500})
+        table.UI.setAttribute("playSpirit", "visibility", "")
+        table.UI.setAttribute("playSpirit", "text", "Play " .. color)
     else
-        table.editButton({index=2, label="", height=0, width=0})
+        table.UI.setAttribute("playSpirit", "visibility", "Invisible")
     end
 end
 ---- UI Section
@@ -7149,13 +7185,12 @@ function swapPlace(player, guid, _)
     end
 end
 -- Trade places with selected seat.
-function onClickedSwapPlace(target_obj, source_color, alt_click)
-    local target_color = nil
-    for color,obj in pairs(playerTables) do
-        if obj == target_obj then
-            target_color = color
-            break
-        end
+function onClickedSwapPlace(player, guid, id)
+    local target_obj = getObjectFromGUID(guid)
+    local target_color = getTableColor(target_obj)
+    local source_color = player.color
+    if player.color == "Grey" then
+        return
     end
 
     if target_color == nil and not playerTables[source_color] then
@@ -7171,19 +7206,19 @@ function swapColor(player, _, color)
     if playerTables[player.color] then
         swapSeatColors(player.color, color)
         updateColorPickButtons()
+        updateSwapButtons()
     else
         player.broadcast("Pick a color first", Color.Red)
     end
 end
 -- Trade colors with selected seat.
-function onClickedSwapColor(target_obj, source_color, alt_click)
-    local target_color = nil
-    for color,obj in pairs(playerTables) do
-        if obj == target_obj then
-            target_color = color
-            break
-        end
+function onClickedSwapColor(player, guid, id)
+    local target_color = getTableColor(getObjectFromGUID(guid))
+    local source_color = player.color
+    if player.color == "Grey" then
+        return
     end
+
     if target_color == nil then
         return
     end
@@ -7196,15 +7231,16 @@ function onClickedSwapColor(target_obj, source_color, alt_click)
 end
 
 -- Play spirit
-function onClickedPlaySpirit(target_obj, source_color, alt_click)
-    local target_color = nil
-    for color,obj in pairs(playerTables) do
-        if obj == target_obj then
-            target_color = color
-            break
-        end
-    end
+function onClickedPlaySpirit(player, guid, id)
+    local target_color = getTableColor(getObjectFromGUID(guid))
+    local source_color = player.color
+
     if target_color == nil then
+        return
+    end
+
+    if player.color == "Grey" then
+        player.changeColor(target_color)
         return
     end
 

@@ -808,7 +808,9 @@ function onLoad(saved_data)
         selectedColors[color] = colorTable
     end
 
-    if Player["White"].seated then Player["White"].changeColor("Grey") end
+    if Player["White"].seated and not selectedColors["White"] then
+        Player["White"].changeColor("Grey")
+    end
     updateAllPlayerAreas()
     setupTableButtons()
     updateCurrentPhase(false)

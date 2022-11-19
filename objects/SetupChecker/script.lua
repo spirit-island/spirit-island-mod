@@ -1473,7 +1473,7 @@ function removeBannedCards()
             local count = 0
             local deck = nil
 
-            for _,line in pairs(split(data.body, "\n")) do
+            for _,line in pairs(split(data.body, "\r\n")) do
                 if line == "[Major Powers]" then
                     deck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
                 elseif line == "[Minor Powers]" then
@@ -1485,8 +1485,9 @@ function removeBannedCards()
                 elseif line == "[Fear Cards]" then
                     deck = Global.getVar("fearDeckSetupZone").getObjects()[1]
                 else
+                    local lowerLine = line:lower()
                     for _,card in pairs(deck.getObjects()) do
-                        if card.name == line or card.guid == line then
+                        if card.name:lower() == lowerLine or card.guid:lower() == lowerLine then
                             deck.takeObject({guid = card.guid}).destruct()
                             count = count + 1
                             break

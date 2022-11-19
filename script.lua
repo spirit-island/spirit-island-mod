@@ -1791,33 +1791,6 @@ function SetupPlaytestPowerDeck(deck, name, option, callback)
     end
 end
 function SetupPowerDecks()
-    if not gameStarted then
-        local minorPowers = getObjectFromGUID(minorPowerZone).getObjects()[1]
-        minorPowers.shuffle()
-        SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
-
-        local majorPowers = getObjectFromGUID(majorPowerZone).getObjects()[1]
-        majorPowers.shuffle()
-        SetupPlaytestPowerDeck(majorPowers, "Major Powers", SetupChecker.getVar("playtestMajorPower"), nil)
-    end
-
-    local exploratoryPowersDone = false
-    if not gameStarted and SetupChecker.getVar("exploratoryVOTD") then
-        local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
-        deck.takeObject({
-            guid = "152fe0",
-            callback_function = function(obj)
-                local temp = obj.setState(2)
-                Wait.frames(function()
-                    deck.putObject(temp)
-                    deck.shuffle()
-                    exploratoryPowersDone = true
-                end, 1)
-            end,
-        })
-    else
-        exploratoryPowersDone = true
-    end
     SetupChecker.createButton({
         click_function = "MajorPowerC",
         function_owner = Global,
@@ -1862,7 +1835,38 @@ function SetupPowerDecks()
         font_size      = 250,
         tooltip        = "Click to learn a Minor Power",
     })
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return exploratoryPowersDone end)
+
+    if not gameStarted then
+        local minorPowers = getObjectFromGUID(minorPowerZone).getObjects()[1]
+        minorPowers.shuffle()
+        SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
+
+        local majorPowers = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        majorPowers.shuffle()
+        SetupPlaytestPowerDeck(majorPowers, "Major Powers", SetupChecker.getVar("playtestMajorPower"), nil)
+
+        local banList = SetupChecker.getTable("banList")["Major Powers"]
+        local exploratoryPowersDone = false
+        if SetupChecker.getVar("exploratoryVOTD") and not banList["Vengeance of the Dead"] and not banList["152fe0"] then
+            local deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
+            deck.takeObject({
+                guid = "152fe0",
+                callback_function = function(obj)
+                    local temp = obj.setState(2)
+                    Wait.frames(function()
+                        deck.putObject(temp)
+                        deck.shuffle()
+                        exploratoryPowersDone = true
+                    end, 1)
+                end,
+            })
+        else
+            exploratoryPowersDone = true
+        end
+
+        Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return exploratoryPowersDone end)
+    end
+
     return 1
 end
 handOffset = Vector(0,-3.25,36)
@@ -2145,8 +2149,9 @@ function SetupBlightCard()
     local cardsSetup = 0
     local function bncBlightCardOptions(bncDeck, callback)
         Wait.condition(function()
+            local banList = SetupChecker.getTable("banList")["Blight Cards"]
             local bncBlightSetup = 0
-            if SetupChecker.getVar("exploratoryAid") then
+            if SetupChecker.getVar("exploratoryAid") and not banList["Aid from Lesser Spirits"] and not banList["bf66eb"] then
                 bncDeck.takeObject({
                     guid = "bf66eb",
                     callback_function = function(obj)
@@ -3077,8 +3082,9 @@ function SetupEventDeck()
 
     local function bncEventOptions(bncDeck, callback)
         Wait.condition(function()
+            local banList = SetupChecker.getTable("banList")["Event Cards"]
             local bncEventSetup = 0
-            if SetupChecker.getVar("exploratoryWar") then
+            if SetupChecker.getVar("exploratoryWar") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
                 bncDeck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)
@@ -3096,12 +3102,14 @@ function SetupEventDeck()
                 bncEventSetup = bncEventSetup + 1
             end
             if SetupChecker.getVar("optionalDigitalEvents") then
-                if not SetupChecker.getVar("exploratoryWar") then
+                if not SetupChecker.getVar("exploratoryWar") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
                     bncDeck.takeObject({guid = "cfd4d1"}).destruct()
                 end
-                bncDeck.takeObject({guid = "6692e8"}).destruct()
+                if not banList["Outpaced"] and not banList["6692e8"] then
+                    bncDeck.takeObject({guid = "6692e8"}).destruct()
+                end
             end
-            if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") then
+            if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") and not banList["A Strange Madness Among the Beasts"] and not banList["0edac2"] then
                 local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
                     guid = "0edac2",
                     position = eventDeckZone.getPosition(),

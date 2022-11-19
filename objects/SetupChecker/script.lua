@@ -1480,7 +1480,7 @@ function removeBannedCards()
             end
             local count = 0
             local deck = nil
-            local subBanList = nil
+            local subBanList = nil -- luacheck: ignore 331
 
             for _,line in pairs(split(data.body, "\r\n")) do
                 if line == "[Major Powers]" then

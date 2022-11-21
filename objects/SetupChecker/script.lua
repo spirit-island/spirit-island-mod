@@ -1879,7 +1879,9 @@ function gainSpirit(player)
     local options = {}
     local buttons = obj.getButtons()
     local hasOptions = 0
+    local numButtons = 0
     if buttons ~= nil then
+        numButtons = #buttons
         for i, button in ipairs(buttons) do
             if button.label ~= "" then
                 options[i] = true
@@ -1915,17 +1917,28 @@ function gainSpirit(player)
                 if aspect ~= nil and aspect ~= "" then
                     label = label.." - "..aspect
                 end
-                obj.createButton({
-                    click_function = "pickSpirit" .. i,
-                    function_owner = self,
-                    label = label,
-                    position = Vector(0,3,-5 + 2*i),
-                    rotation = Vector(0,0,0),
-                    scale = Vector(2/2.3,1,2/1.42),
-                    width = 4850,
-                    height = 600,
-                    font_size = 275,
-                })
+                if i > numButtons then
+                    obj.createButton({
+                        click_function = "pickSpirit" .. i,
+                        function_owner = self,
+                        label = label,
+                        position = Vector(0,3,-5 + 2*i),
+                        rotation = Vector(0,0,0),
+                        scale = Vector(2/2.3,1,2/1.42),
+                        width = 4850,
+                        height = 600,
+                        font_size = 275,
+                    })
+                else
+                    obj.editButton({
+                        index = i - 1,
+                        label = label,
+                        width = 4850,
+                        height = 600,
+                    })
+                end
+            else
+                break
             end
         end
     end

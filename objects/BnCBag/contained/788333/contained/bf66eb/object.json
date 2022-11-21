@@ -95,7 +95,7 @@
           "Type": 0
         }
       },
-      "LuaScript": "blight=2\nimmediate=false",
+      "LuaScript": "blight=2",
       "LuaScriptState": "",
       "XmlUI": ""
     }

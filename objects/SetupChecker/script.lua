@@ -1937,8 +1937,6 @@ function gainSpirit(player)
                         height = 600,
                     })
                 end
-            else
-                break
             end
         end
     end

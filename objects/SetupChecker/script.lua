@@ -501,7 +501,11 @@ function onObjectDestroy(obj)
         if obj.getVar("enter") then
             obj.setVar("enter")
         else
-            removeSpirit({spirit=obj})
+            if not obj.getVar("reload") then
+                removeSpirit({spirit=obj})
+            else
+                obj.setVar("reload")
+            end
         end
     elseif not setupStarted then
         if obj.type == "Card" then

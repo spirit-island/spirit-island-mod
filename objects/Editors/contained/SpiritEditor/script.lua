@@ -298,7 +298,9 @@ end
 
 function makeSpirit(obj)
     obj.addTag("Spirit")
-    obj.reload()
+    obj.setVar("reload", true)
+    obj = obj.reload()
+    obj.setVar("reload", true)
     rescan = true
     scan()
 end

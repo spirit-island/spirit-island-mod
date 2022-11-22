@@ -12,7 +12,7 @@
     "scaleZ": 0.5
   },
   "Nickname": "Air Element Marker",
-  "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+  "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -67,7 +67,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Sun Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,
@@ -125,7 +125,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Moon Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Nature",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Nature",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,
@@ -183,7 +183,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Fire Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,
@@ -241,7 +241,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Water Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,
@@ -299,7 +299,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Earth Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,
@@ -357,7 +357,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Plant Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,
@@ -415,7 +415,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Animal Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,
@@ -473,7 +473,7 @@
         "scaleZ": 0.5
       },
       "Nickname": "Any Element Marker",
-      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights Into the World's Natures",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Insights into the World's Natures",
       "GMNotes": "",
       "AltLookAngle": {
         "x": 0.0,

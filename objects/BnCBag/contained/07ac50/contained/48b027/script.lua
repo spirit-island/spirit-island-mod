@@ -67,5 +67,5 @@ function castDownCallback()
     Global.setVar("castDown", nil)
     Global.setVar("castDownTimer", nil)
     Global.setVar("castDownColor", nil)
-    broadcastToAll("Physics is required to be \"Full\", please change your setting and try again.", Color.Red)
+    broadcastToAll("Unexpected error occurred. Please make sure that there are pieces on top of the island and that Physics setting is set to  \"Full\".", Color.Red)
 end

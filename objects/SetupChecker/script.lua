@@ -86,6 +86,14 @@ challengeConfig = {}
 expansionsAdded = 0
 expansionsSetup = 0
 
+banList = {
+    ["Major Powers"] = {},
+    ["Minor Powers"] = {},
+    ["Event Cards"] = {},
+    ["Blight Cards"] = {},
+    ["Fear Cards"] = {}
+}
+
 function onSave()
     local data_table = {}
 
@@ -493,7 +501,11 @@ function onObjectDestroy(obj)
         if obj.getVar("enter") then
             obj.setVar("enter")
         else
-            removeSpirit({spirit=obj})
+            if not obj.getVar("reload") then
+                removeSpirit({spirit=obj})
+            else
+                obj.setVar("reload")
+            end
         end
     elseif not setupStarted then
         if obj.type == "Card" then
@@ -1472,25 +1484,35 @@ function removeBannedCards()
             end
             local count = 0
             local deck = nil
+            local subBanList = nil -- luacheck: ignore 331
 
-            for _,line in pairs(split(data.body, "\n")) do
+            for _,line in pairs(split(data.body, "\r\n")) do
                 if line == "[Major Powers]" then
                     deck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
+                    subBanList = banList["Major Powers"]
                 elseif line == "[Minor Powers]" then
                     deck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
+                    subBanList = banList["Minor Powers"]
                 elseif line == "[Event Cards]" then
                     deck = Global.getVar("eventDeckZone").getObjects()[1]
+                    subBanList = banList["Event Cards"]
                 elseif line == "[Blight Cards]" then
                     deck = Global.getVar("blightDeckZone").getObjects()[1]
+                    subBanList = banList["Blight Cards"]
                 elseif line == "[Fear Cards]" then
                     deck = Global.getVar("fearDeckSetupZone").getObjects()[1]
+                    subBanList = banList["Fear Cards"]
                 else
-                    for _,card in pairs(deck.getObjects()) do
-                        if card.name == line or card.guid == line then
-                            deck.takeObject({guid = card.guid}).destruct()
-                            count = count + 1
-                            break
+                    if line:len() > 0 then
+                        local lowerLine = line:lower()
+                        for _,card in pairs(deck.getObjects()) do
+                            if card.name:lower() == lowerLine or card.guid:lower() == lowerLine then
+                                deck.takeObject({guid = card.guid}).destruct()
+                                count = count + 1
+                                break
+                            end
                         end
+                        subBanList[line] = true
                     end
                 end
             end

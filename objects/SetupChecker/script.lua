@@ -51,6 +51,7 @@ randomBoardThematic = false
 
 optionalStrangeMadness = false
 optionalDigitalEvents = false
+optionalNatureIncarnateSetup = true
 optionalBlightCard = true
 optionalSoloBlight = true
 optionalBlightSetup = true
@@ -107,6 +108,7 @@ function onSave()
     data_table.variant = {}
     data_table.variant.strangeMadness = optionalStrangeMadness
     data_table.variant.digitalEvents = optionalDigitalEvents
+    data_table.variant.natureIncarnateSetup = optionalNatureIncarnateSetup
     data_table.variant.blightCard = optionalBlightCard
     data_table.variant.soloBlight = optionalSoloBlight
     data_table.variant.blightSetup = optionalBlightSetup
@@ -188,6 +190,7 @@ function onLoad(saved_data)
 
         optionalStrangeMadness = loaded_data.variant.strangeMadness
         optionalDigitalEvents = loaded_data.variant.digitalEvents
+        optionalNatureIncarnateSetup = loaded_data.variant.natureIncarnateSetup
         optionalBlightCard = loaded_data.variant.blightCard
         optionalSoloBlight = loaded_data.variant.soloBlight
         optionalBlightSetup = loaded_data.variant.blightSetup
@@ -266,6 +269,7 @@ function onLoad(saved_data)
 
             self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
             self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+            self.UI.setAttribute("natureIncarnateSetup", "isOn", optionalNatureIncarnateSetup)
             self.UI.setAttribute("blightCard", "isOn", optionalBlightCard)
             self.UI.setAttribute("blightCard2", "isOn", optionalBlightCard)
             self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
@@ -1234,6 +1238,9 @@ function loadConfig(config)
         if config.variant.digitalEvents ~= nil then
             optionalDigitalEvents = config.variant.digitalEvents
         end
+        if config.variant.natureIncarnateSetup ~= nil then
+            optionalNatureIncarnateSetup = config.variant.natureIncarnateSetup
+        end
         if config.variant.blightCard ~= nil then
             optionalBlightCard = config.variant.blightCard
         end
@@ -2189,6 +2196,10 @@ end
 function toggleDigitalEvents()
     optionalDigitalEvents = not optionalDigitalEvents
     self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+end
+function toggleNatureIncarnateSetup()
+    optionalNatureIncarnateSetup = not optionalNatureIncarnateSetup
+    self.UI.setAttribute("natureIncarnateSetup", "isOn", optionalNatureIncarnateSetup)
 end
 function toggleSlaveRebellion()
     setSlaveRebellion(not optionalThematicRebellion, true)

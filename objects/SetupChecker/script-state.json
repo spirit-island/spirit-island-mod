@@ -216,6 +216,7 @@
     "digitalEvents": false,
     "extraBoard": false,
     "gameResults": true,
+    "natureIncarnateSetup": true,
     "soloBlight": true,
     "strangeMadness": false,
     "thematicRebellion": false,

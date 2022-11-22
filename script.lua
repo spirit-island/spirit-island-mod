@@ -1837,9 +1837,46 @@ function SetupPowerDecks()
     })
 
     if not gameStarted then
+        local function bncMinorPowersOptions(bncDeck, callback)
+            local banList = SetupChecker.getTable("banList")["Minor Powers"]
+            if not SetupChecker.getVar("optionalNatureIncarnateSetup") then
+                if not banList["Growth Through Sacrifice"] and not banList["b35267"] then
+                    local card = getObjectFromGUID("BnCBag").takeObject({
+                        guid = "b35267",
+                        position = getObjectFromGUID(minorPowerZone).getPosition(),
+                        rotation = {0,180,180},
+                        smooth = false,
+                    })
+                    bncDeck.putObject(card)
+                    bncDeck.shuffle()
+                end
+            else
+                if not banList["Roiling Bog and Snagging Thorn"] and not banList["c25a68"] then
+                    local card = getObjectFromGUID("BnCBag").takeObject({
+                        guid = "c25a68",
+                        position = getObjectFromGUID(minorPowerZone).getPosition(),
+                        rotation = {0,180,180},
+                        smooth = false,
+                    })
+                    bncDeck.putObject(card)
+                    bncDeck.shuffle()
+                end
+            end
+            if callback ~= nil then
+                callback()
+            end
+        end
+
         local minorPowers = getObjectFromGUID(minorPowerZone).getObjects()[1]
+        if expansions["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
+            bncMinorPowersOptions(minorPowers)
+        end
         minorPowers.shuffle()
-        SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), bncMinorPowersOptions)
+        else
+            SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
+        end
 
         local majorPowers = getObjectFromGUID(majorPowerZone).getObjects()[1]
         majorPowers.shuffle()
@@ -2167,6 +2204,16 @@ function SetupBlightCard()
             else
                 cardsSetup = cardsSetup + 1
                 bncBlightSetup = bncBlightSetup + 1
+            end
+            if not SetupChecker.getVar("optionalNatureIncarnateSetup") and not banList["Tipping Point"] and not banList["59e61e"] then
+                local card = getObjectFromGUID("BnCBag").takeObject({
+                    guid = "59e61e",
+                    position = blightDeckZone.getPosition(),
+                    rotation = {0,180,180},
+                    smooth = false,
+                })
+                bncDeck.putObject(card)
+                bncDeck.shuffle()
             end
             if callback ~= nil then
                 Wait.condition(function() callback() end, function() return bncBlightSetup == 1 end)
@@ -3084,7 +3131,27 @@ function SetupEventDeck()
         Wait.condition(function()
             local banList = SetupChecker.getTable("banList")["Event Cards"]
             local bncEventSetup = 0
-            if SetupChecker.getVar("exploratoryWar") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
+            if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") and not banList["A Strange Madness Among the Beasts"] and not banList["0edac2"] then
+                local card = getObjectFromGUID("BnCBag").takeObject({
+                    guid = "0edac2",
+                    position = eventDeckZone.getPosition(),
+                    rotation = {0,180,180},
+                    smooth = false,
+                })
+                bncDeck.putObject(card)
+                bncDeck.shuffle()
+            end
+            if not SetupChecker.getVar("optionalNatureIncarnateSetup") and not SetupChecker.getVar("optionalDigitalEvents") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
+                local card = getObjectFromGUID("BnCBag").takeObject({
+                    guid = "cfd4d1",
+                    position = eventDeckZone.getPosition(),
+                    rotation = {0,180,180},
+                    smooth = false,
+                })
+                bncDeck.putObject(card)
+                bncDeck.shuffle()
+            end
+            if SetupChecker.getVar("exploratoryWar") and not SetupChecker.getVar("optionalNatureIncarnateSetup") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
                 bncDeck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)
@@ -3101,23 +3168,8 @@ function SetupEventDeck()
                 cardsSetup = cardsSetup + 1
                 bncEventSetup = bncEventSetup + 1
             end
-            if SetupChecker.getVar("optionalDigitalEvents") then
-                if not SetupChecker.getVar("exploratoryWar") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
-                    bncDeck.takeObject({guid = "cfd4d1"}).destruct()
-                end
-                if not banList["Outpaced"] and not banList["6692e8"] then
-                    bncDeck.takeObject({guid = "6692e8"}).destruct()
-                end
-            end
-            if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") and not banList["A Strange Madness Among the Beasts"] and not banList["0edac2"] then
-                local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
-                    guid = "0edac2",
-                    position = eventDeckZone.getPosition(),
-                    rotation = {0,180,180},
-                    smooth = false,
-                })
-                bncDeck.putObject(strangeMadness)
-                bncDeck.shuffle()
+            if SetupChecker.getVar("optionalDigitalEvents") and not banList["Outpaced"] and not banList["6692e8"] then
+                bncDeck.takeObject({guid = "6692e8"}).destruct()
             end
             if callback ~= nil then
                 Wait.condition(function() callback() end, function() return bncEventSetup == 1 end)

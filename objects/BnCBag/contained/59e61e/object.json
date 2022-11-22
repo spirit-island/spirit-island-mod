@@ -1,17 +1,17 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -47.1283,
-    "posY": 1.2238,
-    "posZ": 28.3022,
+    "posX": -6.7996,
+    "posY": 1.9908,
+    "posZ": 12.913,
     "rotX": 0.0,
     "rotY": 180.0,
-    "rotZ": 0.0,
+    "rotZ": 180.0,
     "scaleX": 1.53,
     "scaleY": 1.0,
     "scaleZ": 1.53
   },
-  "Nickname": "Growth Through Sacrifice",
+  "Nickname": "Tipping Point",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -24,10 +24,6 @@
     "g": 0.7132,
     "b": 0.7132
   },
-  "Tags": [
-    "Fast",
-    "Minor"
-  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
@@ -41,7 +37,18 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": true,
-  "Hands": true,
-  "CardID": 58414,
-  "SidewaysCard": false
+  "Hands": false,
+  "CardID": 58204,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "582": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100540057/DB8DCCA9FFEC91FB9088092F54B5DC8011FE267F/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
+      "NumWidth": 4,
+      "NumHeight": 2,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
 }

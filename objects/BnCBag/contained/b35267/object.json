@@ -1,9 +1,9 @@
 {
-  "Name": "Deck",
+  "Name": "Card",
   "Transform": {
-    "posX": -2.0631,
-    "posY": 1.1413,
-    "posZ": 53.4924,
+    "posX": -47.1283,
+    "posY": 1.2238,
+    "posZ": 28.3022,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
@@ -11,8 +11,8 @@
     "scaleY": 1.0,
     "scaleZ": 1.53
   },
-  "Nickname": "Minor Powers",
-  "Description": "Branch & Claw Expansion",
+  "Nickname": "Growth Through Sacrifice",
+  "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -24,6 +24,10 @@
     "g": 0.7132,
     "b": 0.7132
   },
+  "Tags": [
+    "Fast",
+    "Minor"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
@@ -37,40 +41,9 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": true,
-  "Hands": false,
+  "Hands": true,
+  "CardID": 58414,
   "SidewaysCard": false,
-  "DeckIDs": [
-    58400,
-    58401,
-    58402,
-    58403,
-    58404,
-    58405,
-    58406,
-    58407,
-    58408,
-    58409,
-    58410,
-    58411,
-    58412,
-    58413,
-    58415,
-    58416,
-    58417,
-    58418,
-    58419,
-    58420,
-    58421,
-    58422,
-    58423,
-    58424,
-    58425,
-    58426,
-    58427,
-    58428,
-    58429,
-    58430
-  ],
   "CustomDeck": {
     "584": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100603742/0429826970D11CBD54B14173335E5994E5D761AA/",

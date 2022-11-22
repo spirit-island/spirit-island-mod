@@ -1,9 +1,9 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -6.7996,
-    "posY": 1.9908,
-    "posZ": 12.913,
+    "posX": 16.2805,
+    "posY": 2.3262,
+    "posZ": 22.7083,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -11,7 +11,7 @@
     "scaleY": 1.0,
     "scaleZ": 1.53
   },
-  "Nickname": "Tipping Point",
+  "Nickname": "Roiling Bog and Snagging Thorn",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -24,6 +24,10 @@
     "g": 0.7132,
     "b": 0.7132
   },
+  "Tags": [
+    "Fast",
+    "Minor"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
@@ -37,7 +41,18 @@
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": true,
-  "Hands": false,
-  "CardID": 58204,
-  "SidewaysCard": false
+  "Hands": true,
+  "CardID": 105500,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "1055": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1938265667438481114/38E5E5C6AACFCA1DF9DC7A7A36D189F4778ACD08/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756115964/5577A639021512840E77A6FD8D2DF79DB4E1AEE5/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
 }

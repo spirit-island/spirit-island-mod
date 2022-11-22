@@ -294,6 +294,7 @@ function ExportConfig()
     data.variant = {}
     data.variant.strangeMadness = SetupChecker.getVar("optionalStrangeMadness")
     data.variant.digitalEvents = SetupChecker.getVar("optionalDigitalEvents")
+    data.variant.natureIncarnateSetup = SetupChecker.getVar("optionalNatureIncarnateSetup")
     data.variant.blightCard = SetupChecker.getVar("optionalBlightCard")
     data.variant.soloBlight = SetupChecker.getVar("optionalSoloBlight")
     data.variant.blightSetup = SetupChecker.getVar("optionalBlightSetup")

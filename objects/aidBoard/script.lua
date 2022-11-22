@@ -434,7 +434,9 @@ function advanceInvaderCards()
             for _,hit in pairs(hitObjects) do
                 if hit.type == "Card" and not hit.is_face_down then
                     if hit.getLock() then
-                        hit.setLock(false)
+                        if i ~= "Ravage" then
+                            hit.setLock(false)
+                        end
                         hit.setPositionSmooth(hit.getPosition() + Vector(0, 0, 1) * (depth - 1))
                         currentOffset = currentOffset + Vector(0, 0, 1)
                     else

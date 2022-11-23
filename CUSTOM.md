@@ -3,15 +3,23 @@
 - They are found on right side of mod by click the "Show Editors" button
 
 ### Spirits
-- Place object onto spirit editor, this will add the "Spirit" tag as well as basic scripting
+- https://kb.tabletopsimulator.com/custom-content/custom-tile/
 - Set name of object to that of spirit
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
+- Place object onto spirit editor and click "Make Me A Spirit!" button
+  - This will add the "Spirit" tag as well as basic scripting
+  - The "Choose Spirit" button should now appear on the backside of the panel
+    - Note: You may have inverted the top and bottom images
 - Add tag to object for spirit's complexity, one of the following:
+  - https://kb.tabletopsimulator.com/game-tools/object-tags/#tagging
   - "Low"
   - "Moderate"
   - "High"
   - "Very High"
 - Add snap points to presence track(s) where presence should be setup
-  - Make sure spirit panel is locked first
+  - https://kb.tabletopsimulator.com/game-tools/snap-point-tool/
+  - Note: Make sure spirit panel is locked first
+  - Note: F10 is the keyboard shortcut to switch to Snap Point Tool
 - Presence track fixed (non choice) elements:
   - Set the state to match the element
   - If multiple elements appear on same spot simply stack elements on top of each other
@@ -20,40 +28,49 @@
   - For each time that energy gain increases grab energy tokens from bag and stack them onto spot
   - Energy tokens have a 2nd state to be used for bonus energy (e.g. Finder)
   - Once all energy is set press the "Update Energy" button
-  - Note: You don't need to put them on every spot, only when income changes
+  - Note: You don't need to put them on every spot, only when income increases
   - Note: Don't forget about starting spot if it's not zero
 - Innate thresholds:
   - Grab a threshold token (X) and place it onto object where you want the threshold decal to appear
   - Then grab elements from the element bag right next to threshold
   - Set the state to match the element
-  - Stack elements on top of each other as needed
+  - Stack elements on top of the threshold token (X)
   - Once all thresholds are set press the "Update Threshold" button (the top one)
   - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
 
 ### Power Cards
+- https://kb.tabletopsimulator.com/custom-content/custom-deck/
+- Set name of object to that of power card
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Move card onto power card editor
 - Change values that appear to match card
-- Set name of object to that of power card
 - Thresholds:
   - Grab a threshold token (X) and place it onto object where you want the threshold decal to appear
   - Then grab elements from the element bag right next to threshold
   - Set the state to match the element
-  - Stack elements on top of each other as needed
+  - Stack elements on top of the threshold token (X)
   - Once all thresholds are set press the "Update Threshold" button (the bottom one)
   - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
   - Note: the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
 
 ### Aspects
-- Add "Aspect" tag
+- https://kb.tabletopsimulator.com/custom-content/custom-deck/
 - Set name of object to that of aspect
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
+- Add "Aspect" tag
+  - https://kb.tabletopsimulator.com/game-tools/object-tags/#tagging
 - Thresholds:
   - Move card onto power card editor
   - Follow power card threshold instructions
 - Add "Aspect" tag to deck of aspects as well if you have one of those
+  - Note: You'll only have a deck of Aspects if you place objects ontop of the spirit panel instead of inside a bag
 
 ### Progression Cards
+- https://kb.tabletopsimulator.com/custom-content/custom-deck/
 - Set name of object to "Progression"
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Set lua script for object to:
+  - https://api.tabletopsimulator.com/overview/#in-game-lua-editor
 ```
 progressionDeck = {
     -- reverse order
@@ -65,21 +82,33 @@ progressionDeck = {
 ```
 
 ### Blight Cards
+- https://kb.tabletopsimulator.com/custom-content/custom-deck/
+- Set name of object to that of blight card
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Move card onto blight card editor
 - Change values that appear to match card
-- Set name of object to that of blight card
 - Set description to recurring start of invader effect (if any)
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Enable Hide Face Down toggle for the card
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/#toggles
 
 ### Fear Cards
-- Add "Fear" tag
+- https://kb.tabletopsimulator.com/custom-content/custom-deck/
 - Set name of object to that of fear card
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
+- Add "Fear" tag
+  - https://kb.tabletopsimulator.com/game-tools/object-tags/#tagging
 - Enable Hide Face Down toggle for the card
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/#toggles
 
 ### Expansions
-- Create a bag
+- Spawn a bag
+  - https://kb.tabletopsimulator.com/host-guides/spawning-objects/#components-menu
+  - Note: Bag will be found until Tools component
 - Set name of object to expansion
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Add "Expansion" tag
+  - https://kb.tabletopsimulator.com/game-tools/object-tags/#tagging
 - Decks of cards need to be named one of the following:
   - "Fear"
   - "Events"
@@ -90,7 +119,9 @@ progressionDeck = {
 
 ### Adversary & Scenario
 - Set name of object to that of adversary/scenario
+  - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Basic scripting:
+  - https://api.tabletopsimulator.com/overview/#in-game-lua-editor
   - Adversary Specific:
     - `difficulty`: **table** - contain keys 0->6 representing the difficulty modifier for each adversary level
     - `fearCards`: **table** - 2D, contains keys 0->6 representing the fear cards modifiers for each adversary level. Each adversary level should contain keys 1->3 representing the change of fear cards in each part of the deck

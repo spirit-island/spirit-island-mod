@@ -136,6 +136,7 @@ diseaseBag = "7019af"
 wildsBag = "ca5089"
 strifeBag = "af4e63"
 badlandsBag = "d3f7f8"
+vitalityBag = "fdff9d"
 oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
 speedBag = "f5ba21"
@@ -686,6 +687,7 @@ function onLoad(saved_data)
     beastsBag = getObjectFromGUID(beastsBag)
     strifeBag = getObjectFromGUID(strifeBag)
     badlandsBag = getObjectFromGUID(badlandsBag)
+    vitalityBag = getObjectFromGUID(vitalityBag)
     oneEnergyBag = getObjectFromGUID(oneEnergyBag)
     threeEnergyBag = getObjectFromGUID(threeEnergyBag)
     speedBag = getObjectFromGUID(speedBag)
@@ -4750,6 +4752,12 @@ function place(params)
         else
             return true
         end
+    elseif params.name == "Vitality" then
+        if usingBadlands() then -- TODO: change me to check for nature incarnate expansion later
+            temp = vitalityBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+        else
+            return true
+        end
     elseif params.name == "Defend Marker" then
         if params.color and selectedColors[params.color] and selectedColors[params.color].defend ~= nil then
             temp = selectedColors[params.color].defend.takeObject({position = params.position,rotation = Vector(0,180,0)})
@@ -4810,6 +4818,7 @@ Pieces = {
     "3 Energy",
     "Box Blight",
     "Speed Token",
+    "Vitality",
 }
 
 function DropPiece(piece, cursorLocation, droppingPlayerColor)
@@ -4866,6 +4875,9 @@ function cleanupObject(params)
     elseif params.obj.getName() == "Badlands" then
         params.obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
+    elseif params.obj.getName() == "Vitality" then
+        params.obj.setRotation(Vector(0,180,0))
+        bag = vitalityBag
     else
         if not params.obj.hasTag("Destroy") then
             return

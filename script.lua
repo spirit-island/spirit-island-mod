@@ -3268,17 +3268,19 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
-            spirit.takeObject({
+            local obj = spirit.takeObject({
                 guid = "606f23",
                 position = spirit.getPosition() + Vector(0, 1, 0),
                 callback_function = function(obj)
                     local temp = obj.setState(2)
+                    temp.setVar("setup", true)
                     Wait.frames(function()
                         spirit.putObject(temp)
                         postSetupSteps = postSetupSteps + 1
                     end, 1)
                 end,
             })
+            obj.setVar("setup", true)
         else
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
@@ -3297,17 +3299,19 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("45e367")
         if spirit ~= nil then
-            spirit.takeObject({
+            local obj = spirit.takeObject({
                 guid = "bd2a4a",
                 position = spirit.getPosition() + Vector(0, 1, 0),
                 callback_function = function(obj)
                     local temp = obj.setState(2)
+                    temp.setVar("setup", true)
                     Wait.frames(function()
                         spirit.putObject(temp)
                         postSetupSteps = postSetupSteps + 1
                     end, 1)
                 end,
             })
+            obj.setVar("setup", true)
         else
             spirit = getObjectFromGUID("bd2a4a")
             if spirit ~= nil then

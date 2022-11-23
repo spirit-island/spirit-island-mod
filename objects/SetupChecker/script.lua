@@ -379,6 +379,8 @@ function onObjectSpawn(obj)
     if obj.hasTag("Spirit") then
         if obj.getVar("leave") then
             obj.setVar("leave")
+        elseif obj.getVar("setup") then
+            obj.setVar("setup")
         else
             addSpirit({spirit=obj})
         end
@@ -504,12 +506,12 @@ function onObjectDestroy(obj)
     if obj.hasTag("Spirit") then
         if obj.getVar("enter") then
             obj.setVar("enter")
+        elseif obj.getVar("setup") then
+            obj.setVar("setup")
+        elseif obj.getVar("reload") then
+            obj.setVar("reload")
         else
-            if not obj.getVar("reload") then
-                removeSpirit({spirit=obj})
-            else
-                obj.setVar("reload")
-            end
+            removeSpirit({spirit=obj})
         end
     elseif not setupStarted then
         if obj.type == "Card" then

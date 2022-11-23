@@ -6567,6 +6567,7 @@ invaderColors = {
     W = "#AAEEFF",
     J = "green",
     C = "blue",
+    L = "grey",
     n = "#444444", -- no cards
     E = "#FF3300", -- Stage EMPTY
     ["_"] = "#444444" -- No Explore
@@ -6580,6 +6581,7 @@ invaderFontColors = {
     W = "black",
     J = "black",
     C = "black",
+    L = "black",
     n = "#666666", -- no cards
     E = "black", -- Stage EMPTY
     ["_"] = "#666666" -- No Explore
@@ -6593,6 +6595,7 @@ tooltips = {
     W = "Wetlands",
     J = "Jungle",
     C = "Coastal",
+    L = {"Non-Mining Lands", Ravage = "Mining Lands"},
     n = "NO ACTION", -- no cards
     E = "YOU LOSE WHEN THE\nINVADERS NEXT\nEXPLORE", -- Stage EMPTY
     ["_"] = "UNKNOWN UNTIL\nNEXT INVADER PHASE" -- No Explore
@@ -6606,6 +6609,7 @@ textOut = {
     W = "W",
     J = "J",
     C = "C",
+    L = "Salt",
     n = "NO ACTION", -- no cards
     E = "EMPTY", -- Stage EMPTY
     ["_"] = "?" -- No Explore
@@ -6798,6 +6802,13 @@ function toggleInvaderPhaseImage(explore)
 end
 function set(a,b,c,d, escalate)
     local tooltip = tooltips[d]
+    if type(tooltip) == "table" then
+        if tooltip[a] then
+            tooltip = tooltip[a]
+        else
+            tooltip = tooltip[1]
+        end
+    end
     local text = textOut[d]
     if escalate then
         tooltip = tooltip.." with Escalation"

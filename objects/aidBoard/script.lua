@@ -521,7 +521,7 @@ function aidPanelScanLoop()
                         return
                     end
                     local iType = hit.getVar("cardInvaderType")
-                    local escalate = hit.getVar("cardInvaderStage") == 2 and iType ~= "C"
+                    local escalate = hit.getVar("cardInvaderStage") == 2 and iType ~= "C" and iType ~= "L"
                     table.insert(stageTable,{type=iType,escalate=escalate})
                     count = count + 1
                 end

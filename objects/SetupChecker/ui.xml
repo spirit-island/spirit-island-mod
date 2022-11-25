@@ -188,13 +188,7 @@
                 </Cell>
             </Row>
             <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="strangeMadness" onValueChanged="toggleStrangeMadness" tooltip="An Event that was removed for being too swingy, you&#xA;should not add this with Russia or Many Minds in play">Add "A Strange Madness Among Beasts" Event</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="digitalEvents" onValueChanged="toggleDigitalEvents" tooltip="Removes War Touches the Islands&#xA;Shore's, Outpaced, and A Strange&#xA;Madness Among Beasts Event cards">Remove Swingy B&amp;C Events</Toggle></Cell>
-            </Row>
-            <Row class="toggle">
-                <Cell columnSpan="2"><Toggle id="natureIncarnateSetup" isOn="true" onValueChanged="toggleNatureIncarnateSetup" tooltip="Removes War Touches the Islands Shore's,&#xA;Tipping Point, and Growth Through Sacrifice&#xA;cards. Adds in Roiling Bog and Snagging Thorn">Nature Incarnate Setup Changes</Toggle></Cell>
+                <Cell columnSpan="2"><Toggle id="natureIncarnateSetup" isOn="true" onValueChanged="toggleNatureIncarnateSetup" tooltip="Removes War Touches the Islands Shore's,&#xA;Outpaced, A Strange Madness Among the Beasts,&#xA;Tipping Point, and Growth Through Sacrifice&#xA;cards. Adds in Roiling Bog and Snagging Thorn">Nature Incarnate Setup Changes</Toggle></Cell>
             </Row>
             <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="blightCard" isOn="true" onValueChanged="toggleBlightCard">Use Blight Card</Toggle></Cell>

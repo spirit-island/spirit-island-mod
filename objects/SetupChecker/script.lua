@@ -49,8 +49,6 @@ randomScenario = false
 randomBoard = false
 randomBoardThematic = false
 
-optionalStrangeMadness = false
-optionalDigitalEvents = false
 optionalNatureIncarnateSetup = true
 optionalBlightCard = true
 optionalSoloBlight = true
@@ -106,8 +104,6 @@ function onSave()
     data_table.toggle.advanced = self.UI.getAttribute("simpleMode", "isOn") == "true"
 
     data_table.variant = {}
-    data_table.variant.strangeMadness = optionalStrangeMadness
-    data_table.variant.digitalEvents = optionalDigitalEvents
     data_table.variant.natureIncarnateSetup = optionalNatureIncarnateSetup
     data_table.variant.blightCard = optionalBlightCard
     data_table.variant.soloBlight = optionalSoloBlight
@@ -188,8 +184,6 @@ function onLoad(saved_data)
         -- This will get flipped by toggleChallenge()
         weeklyChallenge = not loaded_data.toggle.challenge
 
-        optionalStrangeMadness = loaded_data.variant.strangeMadness
-        optionalDigitalEvents = loaded_data.variant.digitalEvents
         optionalNatureIncarnateSetup = loaded_data.variant.natureIncarnateSetup
         optionalBlightCard = loaded_data.variant.blightCard
         optionalSoloBlight = loaded_data.variant.soloBlight
@@ -267,8 +261,6 @@ function onLoad(saved_data)
             -- set this to opposite boolean so that toggleSimpleMode() will handle all the UI panels easily
             self.UI.setAttribute("simpleMode", "isOn", tostring(not loaded_data.toggle.advanced))
 
-            self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
-            self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
             self.UI.setAttribute("natureIncarnateSetup", "isOn", optionalNatureIncarnateSetup)
             self.UI.setAttribute("blightCard", "isOn", optionalBlightCard)
             self.UI.setAttribute("blightCard2", "isOn", optionalBlightCard)
@@ -1234,12 +1226,6 @@ function loadConfig(config)
         updateBoardLayout(config.boardLayout, false)
     end
     if config.variant then
-        if config.variant.strangeMadness ~= nil then
-            optionalStrangeMadness = config.variant.strangeMadness
-        end
-        if config.variant.digitalEvents ~= nil then
-            optionalDigitalEvents = config.variant.digitalEvents
-        end
         if config.variant.natureIncarnateSetup ~= nil then
             optionalNatureIncarnateSetup = config.variant.natureIncarnateSetup
         end
@@ -2158,10 +2144,6 @@ function removeSpirit(params)
     end
 end
 
-function toggleStrangeMadness()
-    optionalStrangeMadness = not optionalStrangeMadness
-    self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
-end
 function toggleSoloBlight()
     optionalSoloBlight = not optionalSoloBlight
     self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
@@ -2194,10 +2176,6 @@ end
 function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
-end
-function toggleDigitalEvents()
-    optionalDigitalEvents = not optionalDigitalEvents
-    self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
 end
 function toggleNatureIncarnateSetup()
     optionalNatureIncarnateSetup = not optionalNatureIncarnateSetup

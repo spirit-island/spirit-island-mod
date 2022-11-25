@@ -213,12 +213,10 @@
     "blightCard": true,
     "blightSetup": true,
     "boardPairings": true,
-    "digitalEvents": false,
     "extraBoard": false,
     "gameResults": true,
     "natureIncarnateSetup": true,
     "soloBlight": true,
-    "strangeMadness": false,
     "thematicRebellion": false,
     "thematicRedo": false
   }

@@ -40,6 +40,7 @@
 
 ### Power Cards
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/
+  - The card/deck image should be in portriat orientation
 - Set name of object to that of power card
   - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Move card onto power card editor
@@ -55,6 +56,7 @@
 
 ### Aspects
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/
+  - The card/deck image should be in landscape orientation
 - Set name of object to that of aspect
   - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Add "Aspect" tag
@@ -67,6 +69,7 @@
 
 ### Progression Cards
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/
+  - The card/deck image should be in portriat orientation
 - Set name of object to "Progression"
   - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Set lua script for object to:
@@ -83,6 +86,7 @@ progressionDeck = {
 
 ### Blight Cards
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/
+  - The card/deck image should be in portriat orientation
 - Set name of object to that of blight card
   - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Move card onto blight card editor
@@ -94,6 +98,7 @@ progressionDeck = {
 
 ### Fear Cards
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/
+  - The card/deck image should be in portriat orientation
 - Set name of object to that of fear card
   - https://kb.tabletopsimulator.com/player-guides/context-menu/
 - Add "Fear" tag

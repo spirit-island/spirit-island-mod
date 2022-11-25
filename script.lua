@@ -5607,7 +5607,7 @@ function setupPlayerArea(params)
                 decal = {
                     name = "Threshold",
                     position = vec + Vector(0, 0.22, 0),
-                    rotation = {90, 180, 0},
+                    rotation = Vector(90, 180, 0):sub(object.getRotation():sub(Vector(0, 180, 0))),
                     scale    = scale,
                 }
             end
@@ -5632,7 +5632,13 @@ function setupPlayerArea(params)
             if aspect.script_state ~= "" then
                 local thresholds = aspect.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(aspect, elements, thresholds, {0.12, 0.24, 1})
+                    local scale
+                    if aspect.getRotation():equals(Vector(0, 180, 0)) or aspect.getRotation():equals(Vector(0, 0, 0)) then
+                        scale = {0.12, 0.24, 1}
+                    else
+                        scale = {0.24, 0.12, 1}
+                    end
+                    addThresholdDecals(aspect, elements, thresholds, scale)
                 end
             end
         end

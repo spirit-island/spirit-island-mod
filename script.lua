@@ -656,6 +656,11 @@ function onLoad(saved_data)
             bag.takeObject({position = cursorLocation})
         end
     end)
+    addHotkey("Flip Ready Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if selectedColors[playerColor] and selectedColors[playerColor].ready then
+            selectedColors[playerColor].ready.flip()
+        end
+    end)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)

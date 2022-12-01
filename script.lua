@@ -6289,19 +6289,7 @@ function getCurrentEnergy(color)
 end
 
 function setupTableButtons()
-    local coloredSeats = {}
-    for _,obj in pairs(playerTables) do
-        coloredSeats[obj.guid] = true
-    end
-    for _,guid in pairs(seatTables) do
-        if not coloredSeats[guid] then
-            setupColorPickButtons(getObjectFromGUID(guid), true)
-        else
-            setupSwapButtons(getObjectFromGUID(guid))
-        end
-    end
-    setupColorPickButtons(getObjectFromGUID("fe680a"), false)
-    setupColorPickButtons(getObjectFromGUID("2ca216"), false)
+    updateColorPickButtons()
     updateSwapButtons()
 end
 function setupColorPickButtons(obj, seat)

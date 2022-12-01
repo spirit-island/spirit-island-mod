@@ -714,7 +714,7 @@ function updateScenario(value, updateUI)
     end
 end
 function updateScenarioSelection(name)
-    getXml{updateDropdownSelection("scenario", name)}
+    getXml(self, {updateDropdownSelection("scenario", name)})
 end
 
 function toggleLeadingAdversary(_, value)
@@ -756,7 +756,7 @@ function updateLeadingAdversarySliderMax(card, updateUI)
     end
 end
 function updateLeadingSelection(name)
-    getXml{updateDropdownSelection("leadingAdversary", name)}
+    getXml(self, {updateDropdownSelection("leadingAdversary", name)})
 end
 function toggleSupportingAdversary(_, value)
     updateSupportingAdversary(value, true)
@@ -797,7 +797,7 @@ function updateSupportingAdversarySliderMax(card, updateUI)
     end
 end
 function updateSupportingSelection(name)
-    getXml{updateDropdownSelection("supportingAdversary", name)}
+    getXml(self, {updateDropdownSelection("supportingAdversary", name)})
 end
 function toggleLeadingLevel(_, value)
     updateLeadingLevel(value, true)
@@ -1040,7 +1040,7 @@ function updateBoardLayout(value, updateUI)
     end
 end
 function updateBoardLayoutSelection(name)
-    getXml{updateDropdownSelection("boardLayout", name)}
+    getXml(self, {updateDropdownSelection("boardLayout", name)})
 end
 
 function updateDifficulty()
@@ -2343,7 +2343,7 @@ function updateXml(obj, updateFunctions)
     end
     obj.UI.setXmlTable(t, {})
 end
-function getXml(updateFunctions)
+function getXml(obj, updateFunctions)
     local function recurse(t)
         local shouldRecurse = false
         for _, f in pairs(updateFunctions) do
@@ -2357,7 +2357,7 @@ function getXml(updateFunctions)
             end
         end
     end
-    local t = self.UI.getXmlTable()
+    local t = obj.UI.getXmlTable()
     for _,v in pairs(t) do
         recurse(v)
     end
@@ -2815,7 +2815,7 @@ end
 
 function togglePlaytestExpansion(_, selected, id)
     playtestExpansion = selected
-    getXml{updateDropdownSelection(id, selected)}
+    getXml(self, {updateDropdownSelection(id, selected)})
 end
 function togglePlaytestFear(_, selected, id)
     if playtestExpansion ~= "None" then

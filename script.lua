@@ -6314,11 +6314,13 @@ function setupColorPickButtons(obj, seat)
             local text = "Pick "
             local fontSize = "44"
             local minWidth = "270"
+            local visibility = ""
             if not seat then
                 func = "swapColor"
                 text = "Swap to "
                 fontSize = "70"
                 minWidth = "600"
+                visibility = visiTableToString(invertVisiTable({"Black", "Grey"}))
             end
             table.insert(buttons, {
                 tag = "Button",
@@ -6331,6 +6333,7 @@ function setupColorPickButtons(obj, seat)
                     fontSize = fontSize,
                     minWidth = minWidth,
                     minHeight = "110",
+                    visibility = visibility,
                 },
                 children = {},
             })
@@ -6373,6 +6376,7 @@ function setupColorPickButtons(obj, seat)
                 rotation = "0 0 180",
                 width = "270",
                 height = "110",
+                visibility = visiTableToString(invertVisiTable({"Black", "Grey"}))
             },
             children = {},
         })

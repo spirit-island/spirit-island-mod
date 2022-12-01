@@ -1,5 +1,6 @@
 <Defaults>
-    <VerticalLayout width="1000" rectAlignment="MiddleLeft"/>
+    <Panel rectAlignment="UpperLeft"/>
+    <VerticalLayout rectAlignment="MiddleLeft"/>
     <TableLayout autoCalculateHeight="true" cellPadding="20 20 0 0" rowBackgroundColor="#325742" cellBackgroundColor="clear"/>
     <Row preferredHeight="100"/>
     <Row class="header" preferredHeight="60"/>
@@ -27,7 +28,7 @@
     <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 </Defaults>
 
-<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow" visibility="Invisible" width="1000" height="2800" position="-2000 -1460 14">
+<Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow" visibility="Invisible" width="1000" height="1700" position="-2500 -60 14">
     <VerticalLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow">
         <TableLayout recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow">
             <Row class="header">
@@ -162,7 +163,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelSetupSmall" visibility="Invisible" width="1000" height="2800" position="-2000 -1500 12">
+<Panel id="panelSetupSmall" visibility="Invisible" width="1000" height="100" position="-2500 -100 12">
     <VerticalLayout>
         <TableLayout rowBackgroundColor="clear">
             <Row>
@@ -172,7 +173,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="2800" position="-2000 -3160 14">
+<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="1000" position="-2500 -1760 14">
     <VerticalLayout recurse="events">
         <TableLayout recurse="events">
             <Row class="header">
@@ -223,8 +224,8 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1400" height="2800" position="-750 -3300 14">
-    <VerticalLayout width="1150">
+<Panel id="panelExploratory" visibility="Invisible" width="1150" height="860" position="-1450 -1900 14">
+    <VerticalLayout>
         <TableLayout>
             <Row class="header">
                 <Cell><Toggle id="exploratoryAll" onValueChanged="toggleExploratoryAll">Exploratory Testing</Toggle></Cell>
@@ -256,8 +257,8 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdvertising" visibility="Invisible" width="1000" height="2800" position="250 -1460 14">
-    <VerticalLayout width="1150">
+<Panel id="panelAdvertising" visibility="Invisible" width="1150" height="690" position="-250 -60 14">
+    <VerticalLayout>
         <TableLayout>
             <Row class="doubleheader">
                 <Cell columnSpan="3"><Text>Please Support Handelabra Games and Greater Than Games by buying the digital version of the game!</Text></Cell>
@@ -277,8 +278,8 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1000" height="2800" position="250 -2150 14">
-    <VerticalLayout recurse="playtestExpansion" width="1150">
+<Panel id="panelPlaytesting" recurse="playtestExpansion" visibility="Invisible" width="1150" height="2800" position="-250 -750 14">
+    <VerticalLayout recurse="playtestExpansion">
         <TableLayout recurse="playtestExpansion">
             <Row class="header">
                 <Cell><Text class="header">Playtesting Options</Text></Cell>
@@ -382,7 +383,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelChallenge" visibility="Invisible" width="1000" height="2800" position="-2000 -2050 14">
+<Panel id="panelChallenge" visibility="Invisible" width="1000" height="2800" position="-2500 -650 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -443,8 +444,8 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1400" height="2800" position="-750 -1460 14">
-    <VerticalLayout width="1150">
+<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1150" height="1830" position="-1450 -60 14">
+    <VerticalLayout>
         <TableLayout>
             <Row class="header">
                 <Cell columnSpan="2"><Text text="Adversaries &amp; Scenarios"/></Cell>
@@ -453,8 +454,8 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelSpirit" visibility="Invisible" width="1000" height="2800" position="3225 100 10">
-    <VerticalLayout width="550">
+<Panel id="panelSpirit" visibility="Invisible" width="550" height="1400" position="2725 1500 10">
+    <VerticalLayout>
         <TableLayout rowBackgroundColor="clear">
             <Row class="header">
                 <Cell columnSpan="2"><Text>Spirit Randomizers</Text></Cell>

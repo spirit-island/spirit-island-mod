@@ -1928,7 +1928,8 @@ function setupGainSpiritChoices(obj, choices)
     updateXml(obj, {matchRecurse("GainSpirits", function (t) t.children = buttons end)})
 end
 function gainSpirit(player)
-    if player.color == "Grey" then
+    if player.color == "Grey" or player.color == "Black" then
+        Player[player.color].broadcast("You need to pick a color before gaining spirits.", Color.Red)
         return
     end
     if Global.getTable("selectedColors")[player.color] then
@@ -1937,6 +1938,7 @@ function gainSpirit(player)
     end
     local obj = Global.getTable("playerTables")[player.color]
     if not obj then
+        Player[player.color].broadcast("You need to pick a table before gaining spirits.", Color.Red)
         return
     end
 

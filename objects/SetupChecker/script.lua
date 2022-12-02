@@ -2766,7 +2766,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     return config
 end
 function setWeeklyChallengeUI(config)
-    difficulty = difficultyCheck(config)
+    local difficulty = difficultyCheck(config)
     self.UI.setAttribute("challengeLeadingAdversary", "text", "Leading Adversary: "..config.adversary.." "..config.adversaryLevel)
     if config.adversary2 then
         self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)

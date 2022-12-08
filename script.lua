@@ -4404,7 +4404,10 @@ function MapPlaceCustom(maps)
 
     local rand = 0
     if SetupChecker.getVar("optionalExtraBoard") then
-        rand = math.random(1,numBoards)
+        if extraRandomBoard == nil then
+            extraRandomBoard = math.random(1,#boards)
+        end
+        rand = extraRandomBoard
     end
     local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i,map in pairs(maps) do
@@ -4418,6 +4421,10 @@ function MapPlaceCustom(maps)
         map.setLock(true)
         map.interactable = false
         Wait.condition(function() setupMap(map,i==rand) end, function() return not map.loading_custom end)
+
+        if i == rand then
+            printToAll("Board "..selectedBoards[i].." was chosen to be the extra board!", Color.SoftBlue)
+        end
     end
 end
 
@@ -4544,7 +4551,7 @@ function MapPlacen(boards)
         end
 
         if i == rand then
-            printToAll("Board "..selectedBoards[i].." was choosen to be the extra board!", Color.SoftBlue)
+            printToAll("Board "..selectedBoards[i].." was chosen to be the extra board!", Color.SoftBlue)
         end
     end
 end

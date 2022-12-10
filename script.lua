@@ -55,9 +55,6 @@ stage2DeckZone = "7f21be"
 stage3DeckZone = "2a9f36"
 adversaryBag = "AdversaryBag"
 scenarioBag = "ScenarioBag"
----- Used with ElementsHelper Script
-seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
-playerTables = {}
 ------ Saved Config Data
 numPlayers = 1
 numBoards = 1
@@ -99,6 +96,8 @@ noFear = false
 noHeal = false
 turn = 1
 terrorLevel = 1
+seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
+playerTables = {}
 recorder = nil
 ------ Unsaved Config Data
 gamePaused = false
@@ -3721,6 +3720,16 @@ function pickSpirit(params)
     SetupChecker.call("removeSpirit", params)
 end
 function removeSpirit(params)
+    local seatGuid = playerTables[params.color].guid
+    for index,guid in pairs(seatTables) do
+        if guid == seatGuid then
+            local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
+            playerReadyGuids[index].color = params.color
+            aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+            break
+        end
+    end
+
     selectedColors[params.color] = {
         ready = params.ready,
         counter = params.counter,
@@ -5468,14 +5477,6 @@ function setupPlayerArea(params)
     end
     local selected = selectedColors[color]
 
-    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-    if not selected then
-        local readyIndicator = getObjectFromGUID(playerReadyGuids[color])
-        local buttons = readyIndicator.getButtons()
-        if buttons and #buttons > 0 then
-            readyIndicator.editButton({index=0, label=""})
-        end
-    end
     if not initialized and selected then
         params.obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
@@ -7008,6 +7009,23 @@ function swapPlayerTables(a, b)
     local pos = a.getPosition()
     a.setPosition(b.getPosition())
     b.setPosition(pos)
+
+    local indexA, indexB
+    for i,guid in pairs(seatTables) do
+        if guid == a.guid then
+            indexB = i
+            seatTables[i] = b.guid
+        elseif guid == b.guid then
+            indexA = i
+            seatTables[i] = a.guid
+        end
+    end
+
+    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
+    local color = playerReadyGuids[indexA].color
+    playerReadyGuids[indexA].color = playerReadyGuids[indexB].color
+    playerReadyGuids[indexB].color = color
+    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
 end
 
 function swapSeatColors(a, b)
@@ -7218,8 +7236,18 @@ function recolorPlayerArea(a, b)
         end
         playerTables[b].setColorTint(colorTint)
     end
-
     playerTables[a], playerTables[b] = playerTables[b], playerTables[a]
+
+    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
+    for i,data in pairs(playerReadyGuids) do
+        if data.color == a then
+            data.color = b
+        elseif data.color == b then
+            data.color = a
+        end
+    end
+    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+
     updateSwapButtons()
 end
 function swapPlayerUI(a, b, xmlID)

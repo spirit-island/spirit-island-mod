@@ -11,7 +11,7 @@
     "scaleY": 0.8,
     "scaleZ": 0.5
   },
-  "Nickname": "Green Ready",
+  "Nickname": "Ready",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.192,
-    "g": 0.701,
-    "b": 0.168
+    "r": 0.5686,
+    "g": 0.5608,
+    "b": 0.5608
   },
   "Tags": [
     "Uninteractable"

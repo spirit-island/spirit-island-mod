@@ -36,7 +36,6 @@ spiritGuids = {}
 spiritTags = {}
 spiritComplexities = {}
 spiritChoices = {}
-spiritChoicesLength = 0
 
 weeklyChallenge = false
 
@@ -1789,6 +1788,15 @@ function toggleSpirit(_,_,id)
         self.UI.setAttribute(id, "isOn", "true")
     end
 end
+function toggleRandomSpiritOption(_, _, id)
+    local checked = self.UI.getAttribute(id, "isOn")
+    if checked == "true" then
+        self.UI.setAttribute(id, "isOn", "false")
+    else
+        self.UI.setAttribute(id, "isOn", "true")
+    end
+    Wait.frames(populateRandomSpirits, 1)
+end
 function getSpiritTags()
     local tags = {}
     local added = false
@@ -1866,18 +1874,8 @@ function randomSpirit(player)
         return
     end
 
-    local guid = spiritGuids[math.random(1,#spiritGuids)]
-    local count = 0
-    while((not tags[spiritTags[guid]] or not complexities[spiritComplexities[guid]]) and count < 100) do
-        guid = spiritGuids[math.random(1,#spiritGuids)]
-        count = count + 1
-    end
-    if count >= 100 then
-        Player[player.color].broadcast("No suitable spirit was found", Color.Red)
-        return
-    end
-    local spirit = getObjectFromGUID(guid)
-    sourceSpirit.call("PickSpirit", {obj = spirit, color = player.color, aspect = "Random"})
+    local spirit, aspect = getNewSpirit(tags, complexities)
+    sourceSpirit.call("PickSpirit", {obj = spirit, color = player.color, aspect = aspect})
     Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function getGainSpiritChoices(obj)
@@ -1984,22 +1982,34 @@ function gainSpirit(player)
         Player[player.color].broadcast("No suitable spirits were found", Color.Red)
     end
 end
+availableRandomSpirits = {}
+function populateRandomSpirits()
+    local tags = getSpiritTags()
+    if tags == nil then
+        return
+    end
+    local complexities = getSpiritComplexities()
+    if complexities == nil then
+        return
+    end
+    local newRandomSpirits = {}
+    for _, guid in pairs(spiritGuids) do
+        local spirit = getObjectFromGUID(guid)
+        if tags[spiritTags[guid]] and complexities[spiritComplexities[guid]] and not spiritChoices[spirit.getName()] then
+            table.insert(newRandomSpirits, guid)
+        end
+    end
+    availableRandomSpirits = newRandomSpirits
+end
 function getNewSpirit(tags, complexities)
-    if spiritChoicesLength >= #spiritGuids then
+    if #availableRandomSpirits == 0 then
         return nil
     end
-    local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    local count = 0
-    while((not tags[spiritTags[spirit.guid]] or not complexities[spiritComplexities[spirit.guid]] or spiritChoices[spirit.getName()]) and count < 100) do
-        spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-        count = count + 1
-    end
-    if count >= 100 then
-        return nil
-    end
+    local index = math.random(1, #availableRandomSpirits)
+    local guid = table.remove(availableRandomSpirits, index)
+    local spirit = getObjectFromGUID(guid)
     local aspect = sourceSpirit.call("RandomAspect", {obj = spirit})
     spiritChoices[spirit.getName()] = {guid=spirit.guid}
-    spiritChoicesLength = spiritChoicesLength + 1
     return spirit, aspect
 end
 function replaceSpirit(obj, oldSpirit, player)
@@ -2097,6 +2107,8 @@ function addSpirit(params)
         complexity = "Very High"
     end
     spiritComplexities[params.spirit.guid] = complexity
+
+    populateRandomSpirits()
     return true
 end
 function removeSpirit(params)
@@ -2112,13 +2124,13 @@ function removeSpirit(params)
         return
     end
 
+    populateRandomSpirits()
+
     pickedSpirits[params.spirit.getName()] = true
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
     for name,data in pairs(spiritChoices) do
         if data.guid == params.spirit.guid then
-            spiritChoicesLength = spiritChoicesLength - 1
-
             found = false
             for color,obj in pairs(Global.getTable("playerTables")) do
                 if params.color == color then

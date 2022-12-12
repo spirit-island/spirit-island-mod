@@ -466,23 +466,23 @@
                 <Cell columnSpan="2"><Button onClick="gainSpirit" tooltip="Will give you an option of 4 spirits with those tags to choose from in your play area">"Gain a Spirit"</Button></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritBase" onValueChanged="toggleSpirit" isOn="true" tooltip="Include base game spirits in randomizer">Base</Toggle></Cell>
-                <Cell><Toggle id="spiritLow" onValueChanged="toggleSpirit" isOn="true">Low</Toggle></Cell>
+                <Cell><Toggle id="spiritBase" onValueChanged="toggleRandomSpiritOption" isOn="true" tooltip="Include base game spirits in randomizer">Base</Toggle></Cell>
+                <Cell><Toggle id="spiritLow" onValueChanged="toggleRandomSpiritOption" isOn="true">Low</Toggle></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritBnC" onValueChanged="toggleSpirit" isOn="true" tooltip="Include branch and claw spirits in randomizer">B&amp;C</Toggle></Cell>
-                <Cell><Toggle id="spiritModerate" onValueChanged="toggleSpirit" isOn="true">Moderate</Toggle></Cell>
+                <Cell><Toggle id="spiritBnC" onValueChanged="toggleRandomSpiritOption" isOn="true" tooltip="Include branch and claw spirits in randomizer">B&amp;C</Toggle></Cell>
+                <Cell><Toggle id="spiritModerate" onValueChanged="toggleRandomSpiritOption" isOn="true">Moderate</Toggle></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth spirits in randomizer">JE</Toggle></Cell>
-                <Cell><Toggle id="spiritHigh" onValueChanged="toggleSpirit" isOn="true">High</Toggle></Cell>
+                <Cell><Toggle id="spiritJE" onValueChanged="toggleRandomSpiritOption" isOn="true" tooltip="Include jagged earth spirits in randomizer">JE</Toggle></Cell>
+                <Cell><Toggle id="spiritHigh" onValueChanged="toggleRandomSpiritOption" isOn="true">High</Toggle></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritFnF" onValueChanged="toggleSpirit" isOn="true" tooltip="Include feather and flame spirits in randomizer">F&amp;F</Toggle></Cell>
-                <Cell><Toggle id="spiritVeryHigh" onValueChanged="toggleSpirit" isOn="true">Very High</Toggle></Cell>
+                <Cell><Toggle id="spiritFnF" onValueChanged="toggleRandomSpiritOption" isOn="true" tooltip="Include feather and flame spirits in randomizer">F&amp;F</Toggle></Cell>
+                <Cell><Toggle id="spiritVeryHigh" onValueChanged="toggleRandomSpiritOption" isOn="true">Very High</Toggle></Cell>
             </Row>
             <Row>
-                <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
+                <Cell><Toggle id="spiritCustom" onValueChanged="toggleRandomSpiritOption" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

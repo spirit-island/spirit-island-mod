@@ -3716,7 +3716,6 @@ function addSpirit(params)
     return SetupChecker.call("addSpirit", params)
 end
 function pickSpirit(params)
-    playerTables[params.color].clearButtons()
     selectedColors[params.color] = {}
     SetupChecker.call("removeSpirit", params)
 end
@@ -6427,7 +6426,6 @@ function setupColor(table, color)
         colorTint = Color.fromHex(Tints[color].Presence)
     end
     table.setColorTint(colorTint)
-    table.clearButtons()
     setupSwapButtons(table, { seated = true })
 
     updateColorPickButtons()
@@ -6504,6 +6502,20 @@ function setupSwapButtons(obj, params)
             visibility = playSpiritVisibility,
             -- Note: tooltips don't work on Custom UI (https://tabletopsimulator.nolt.io/1369)
             -- tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+        },
+        children = {},
+    })
+    table.insert(xml, {
+        tag = "VerticalLayout",
+        attributes = {
+            id = "GainSpirits",
+            recurse = "GainSpirits",
+            childForceExpandWidth = "false",
+            childForceExpandHeight = "false",
+            childAlignment = "MiddleCenter",
+            spacing = "30",
+            position = "0 0 -80",
+            rotation = "0 0 180",
         },
         children = {},
     })

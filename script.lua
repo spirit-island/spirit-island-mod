@@ -6513,20 +6513,30 @@ function setupSwapButtons(obj, params)
         },
         children = {},
     })
-    table.insert(xml, {
-        tag = "VerticalLayout",
-        attributes = {
-            id = "GainSpirits",
-            recurse = "GainSpirits",
-            childForceExpandWidth = "false",
-            childForceExpandHeight = "false",
-            childAlignment = "MiddleCenter",
-            spacing = "30",
-            position = "0 0 -80",
-            rotation = "0 0 180",
-        },
-        children = {},
-    })
+    local foundGainOptions = false
+    for _,data in pairs(obj.UI.getXmlTable()) do
+        if data.attributes.id == "GainSpirits" then
+            foundGainOptions = true
+            table.insert(xml, data)
+            break
+        end
+    end
+    if not foundGainOptions then
+        table.insert(xml, {
+            tag = "VerticalLayout",
+            attributes = {
+                id = "GainSpirits",
+                recurse = "GainSpirits",
+                childForceExpandWidth = "false",
+                childForceExpandHeight = "false",
+                childAlignment = "MiddleCenter",
+                spacing = "30",
+                position = "0 0 -80",
+                rotation = "0 0 180",
+            },
+            children = {},
+        })
+    end
     obj.UI.setXmlTable(xml, {})
 end
 function flipVector(vec)

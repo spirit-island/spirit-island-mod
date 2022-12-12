@@ -4413,7 +4413,7 @@ function MapPlaceCustom(maps)
     local rand = 0
     if SetupChecker.getVar("optionalExtraBoard") then
         if extraRandomBoard == nil then
-            extraRandomBoard = math.random(1,#boards)
+            extraRandomBoard = math.random(1,#maps)
         end
         rand = extraRandomBoard
     end
@@ -7261,7 +7261,7 @@ function recolorPlayerArea(a, b)
     playerTables[a], playerTables[b] = playerTables[b], playerTables[a]
 
     local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-    for i,data in pairs(playerReadyGuids) do
+    for _,data in pairs(playerReadyGuids) do
         if data.color == a then
             data.color = b
         elseif data.color == b then

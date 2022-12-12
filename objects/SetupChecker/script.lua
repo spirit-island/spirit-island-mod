@@ -2034,7 +2034,7 @@ function pickGainSpiritChoice(player, guid, id)
     if Global.getTable("playerTables")[player.color] ~= obj then return end
     local spirit = obj.UI.getAttribute(id, "spirit")
     local aspect = obj.UI.getAttribute(id, "aspect")
-    local spiritGuid = spiritGuids[spirit]
+    local spiritGuid = spiritChoices[spirit].guid
     if isSpiritPickable({guid = spiritGuid}) then
         sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(spiritGuid), color = player.color, aspect = aspect})
     else

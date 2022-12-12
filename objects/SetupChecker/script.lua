@@ -2126,7 +2126,9 @@ function removeSpirit(params)
 
     populateRandomSpirits()
 
-    pickedSpirits[params.spirit.getName()] = true
+    if params.color ~= nil then
+        pickedSpirits[params.spirit.getName()] = true
+    end
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
     for name,data in pairs(spiritChoices) do

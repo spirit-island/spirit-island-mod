@@ -1844,11 +1844,11 @@ function getSpiritComplexities()
     return complexities
 end
 function randomSpirit(player)
-    if player.color == "Grey" then
+    if player.color == "Grey" or player.color == "Black" then
         return
     end
     if Global.getTable("selectedColors")[player.color] then
-        Player[player.color].broadcast("You already picked a spirit", Color.Red)
+        player.broadcast("You already picked a spirit", Color.Red)
         return
     end
     if not Global.getTable("playerTables")[player.color] then
@@ -1857,12 +1857,12 @@ function randomSpirit(player)
 
     local tags = getSpiritTags()
     if tags == nil then
-        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        player.broadcast("You have no expansions selected", Color.Red)
         return
     end
     local complexities = getSpiritComplexities()
     if complexities == nil then
-        Player[player.color].broadcast("You have no complexities selected", Color.Red)
+        player.broadcast("You have no complexities selected", Color.Red)
         return
     end
 
@@ -1873,12 +1873,12 @@ function randomSpirit(player)
         count = count + 1
     end
     if count >= 100 then
-        Player[player.color].broadcast("No suitable spirit was found", Color.Red)
+        player.broadcast("No suitable spirit was found", Color.Red)
         return
     end
     local spirit = getObjectFromGUID(guid)
     sourceSpirit.call("PickSpirit", {obj = spirit, color = player.color, aspect = "Random"})
-    Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
+    player.broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
 end
 function getGainSpiritChoices(obj)
     local choices = {}
@@ -1929,16 +1929,16 @@ function setupGainSpiritChoices(obj, choices)
 end
 function gainSpirit(player)
     if player.color == "Grey" or player.color == "Black" then
-        Player[player.color].broadcast("You need to pick a color before gaining spirits.", Color.Red)
+        player.broadcast("You need to pick a color before gaining spirits.", Color.Red)
         return
     end
     if Global.getTable("selectedColors")[player.color] then
-        Player[player.color].broadcast("You already picked a spirit", Color.Red)
+        player.broadcast("You already picked a spirit", Color.Red)
         return
     end
     local obj = Global.getTable("playerTables")[player.color]
     if not obj then
-        Player[player.color].broadcast("You need to pick a table before gaining spirits.", Color.Red)
+        player.broadcast("You need to pick a table before gaining spirits.", Color.Red)
         return
     end
 
@@ -1951,17 +1951,17 @@ function gainSpirit(player)
     end
 
     if numChoices == 4 then
-        Player[player.color].broadcast("You already have Spirit options", Color.Red)
+        player.broadcast("You already have Spirit options", Color.Red)
         return
     end
     local tags = getSpiritTags()
     if tags == nil then
-        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        player.broadcast("You have no expansions selected", Color.Red)
         return
     end
     local complexities = getSpiritComplexities()
     if complexities == nil then
-        Player[player.color].broadcast("You have no complexities selected", Color.Red)
+        player.broadcast("You have no complexities selected", Color.Red)
         return
     end
 
@@ -1979,9 +1979,9 @@ function gainSpirit(player)
     end
     if count > 0 then
         setupGainSpiritChoices(obj, choices)
-        Player[player.color].broadcast("Your randomized spirits to choose from are in your play area", Color.SoftBlue)
+        player.broadcast("Your randomized spirits to choose from are in your play area", Color.SoftBlue)
     else
-        Player[player.color].broadcast("No suitable spirits were found", Color.Red)
+        player.broadcast("No suitable spirits were found", Color.Red)
     end
 end
 function getNewSpirit(tags, complexities)

@@ -18,10 +18,6 @@ function load(params)
         params.obj.setTable("thresholds", loaded_data.thresholds)
     end
 
-    if params.obj.spawning then
-        return
-    end
-
     local success = Global.call("addSpirit", {spirit=params.obj})
     if not success then
         return

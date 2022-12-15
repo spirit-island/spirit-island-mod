@@ -37,6 +37,7 @@ spiritTags = {}
 spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
+allSpirits = {} -- intentionally not backed up on script state
 
 weeklyChallenge = false
 
@@ -2058,6 +2059,12 @@ function addSpirit(params)
         return false
     end
 
+    -- If spirit with same name has already been added, assume this is pulling spirit panel out of bag
+    if allSpirits[params.spirit.getName()] then
+        return false
+    end
+    allSpirits[params.spirit.getName()] = true
+
     -- In case of state change, update existing choice with new guid
     if spiritChoices[params.spirit.getName()] ~= nil then
         spiritChoices[params.spirit.getName()].guid = params.spirit.guid
@@ -2097,6 +2104,7 @@ function addSpirit(params)
         complexity = "Very High"
     end
     spiritComplexities[params.spirit.guid] = complexity
+
     return true
 end
 function removeSpirit(params)
@@ -2111,6 +2119,8 @@ function removeSpirit(params)
     if not found then
         return
     end
+
+    -- TODO: fix bug with changing state for a spirit causing it to be picked
 
     pickedSpirits[params.spirit.getName()] = true
     spiritTags[params.spirit.guid] = nil

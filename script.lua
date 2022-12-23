@@ -6383,6 +6383,9 @@ function pickColor(player, guid, color)
     player.changeColor(color)
 end
 function setupColor(table, color)
+    playerTables[color] = table
+    setupSwapButtons(table, { seated = true })
+
     spawnObjectData({
         data = {
             Name = "HandTrigger",
@@ -6426,7 +6429,6 @@ function setupColor(table, color)
         scale = Vector(18.41, 6.48, 4.7),
     })
 
-    playerTables[color] = table
     local colorTint
     if Tints[color].Table then
         colorTint = Color.fromHex(Tints[color].Table)
@@ -6434,7 +6436,6 @@ function setupColor(table, color)
         colorTint = Color.fromHex(Tints[color].Presence)
     end
     table.setColorTint(colorTint)
-    setupSwapButtons(table, { seated = true })
 
     updateColorPickButtons()
 end

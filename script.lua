@@ -6385,6 +6385,7 @@ end
 function setupColor(table, color)
     playerTables[color] = table
     setupSwapButtons(table, { seated = true })
+    updateColorPickButtons()
 
     SpawnHand({color = color, position = table.getPosition() + Vector(0, 3.29, -16.4)})
     SpawnHand({color = color, position = table.getPosition() + Vector(0, 3.29, -21.9)})
@@ -6396,8 +6397,6 @@ function setupColor(table, color)
         colorTint = Color.fromHex(Tints[color].Presence)
     end
     table.setColorTint(colorTint)
-
-    updateColorPickButtons()
 end
 function SpawnHand(params)
     spawnObjectData({

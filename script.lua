@@ -6386,48 +6386,8 @@ function setupColor(table, color)
     playerTables[color] = table
     setupSwapButtons(table, { seated = true })
 
-    spawnObjectData({
-        data = {
-            Name = "HandTrigger",
-            FogColor = color,
-            Transform = {
-                posX = 0,
-                posY = 0,
-                posZ = 0,
-                rotX = 0,
-                rotY = 0,
-                rotZ = 0,
-                scaleX = 1.0,
-                scaleY = 1.0,
-                scaleZ = 1.0
-            },
-            Locked = true,
-        },
-        position = table.getPosition() + Vector(0, 3.29, -16.4),
-        rotation = Vector(0, 0, 0),
-        scale = Vector(18.41, 6.48, 4.7),
-    })
-    spawnObjectData({
-        data = {
-            Name = "HandTrigger",
-            FogColor = color,
-            Transform = {
-                posX = 0,
-                posY = 0,
-                posZ = 0,
-                rotX = 0,
-                rotY = 0,
-                rotZ = 0,
-                scaleX = 1.0,
-                scaleY = 1.0,
-                scaleZ = 1.0
-            },
-            Locked = true,
-        },
-        position = table.getPosition() + Vector(0, 3.29, -21.9),
-        rotation = Vector(0, 0, 0),
-        scale = Vector(18.41, 6.48, 4.7),
-    })
+    SpawnHand({color = color, position = table.getPosition() + Vector(0, 3.29, -16.4)})
+    SpawnHand({color = color, position = table.getPosition() + Vector(0, 3.29, -21.9)})
 
     local colorTint
     if Tints[color].Table then
@@ -6438,6 +6398,29 @@ function setupColor(table, color)
     table.setColorTint(colorTint)
 
     updateColorPickButtons()
+end
+function SpawnHand(params)
+    spawnObjectData({
+        data = {
+            Name = "HandTrigger",
+            FogColor = params.color,
+            Transform = {
+                posX = 0,
+                posY = 0,
+                posZ = 0,
+                rotX = 0,
+                rotY = 0,
+                rotZ = 0,
+                scaleX = 1.0,
+                scaleY = 1.0,
+                scaleZ = 1.0
+            },
+            Locked = true,
+        },
+        position = params.position,
+        rotation = Vector(0, 0, 0),
+        scale = Vector(18.41, 6.48, 4.7),
+    })
 end
 -- @param params.seated Boolean indicating if a player is about to be seated here.
 function setupSwapButtons(obj, params)

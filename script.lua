@@ -1645,6 +1645,10 @@ function SetupFear()
     SetupPlaytestDeck(fearDeckSetupZone, "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
     local maxCards = #fearDeck.getObjects()
 
+    --[[
+    Fear deck is setup in stages because there's been issues with terror dividers appearing in
+    the wrong place. So now we add one set of fear cards, wait, add terror divider, wait, etc.
+    ]]--
     for _ = 1, fearCards[1] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", Color.Red)
@@ -1653,38 +1657,44 @@ function SetupFear()
         addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
         count = count + 1
     end
-    for _ = 1, fearCards[2] do
-        if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", Color.Red)
-            break
-        end
-        addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
-        count = count + 1
-    end
-    for _ = 1, fearCards[3] do
-        if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", Color.Red)
-            break
-        end
-        addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
-        count = count + 1
-    end
 
-    Wait.frames(function()
-        fearDeck = Player["Black"].getHandObjects(1)
-
-        local divider = getObjectFromGUID("f96a71")
-        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]-fearCards[2]+1)].getPosition() - Vector(0.2, 0, 0))
-        count = count + 1
-
-        divider = getObjectFromGUID("969897")
-        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]+1)].getPosition() - Vector(0.2, 0, 0))
+    Wait.condition(function()
+        local divider = getObjectFromGUID("969897")
+        divider.setPosition(handZone.position - Vector(count/2, 0, 0))
         count = count + 1
 
         Wait.condition(function()
-            stagesSetup = stagesSetup + 1
+            for _ = 1, fearCards[2] do
+                if count >= maxCards then
+                    broadcastToAll("Not enough Fear Cards", Color.Red)
+                    break
+                end
+                addFearCard({position = handZone.position - Vector(count/2 + 1.5, 0, 0)})
+                count = count + 1
+            end
+
+            Wait.condition(function()
+                divider = getObjectFromGUID("f96a71")
+                divider.setPosition(handZone.position - Vector(count/2 + 1.5, 0, 0))
+                count = count + 1
+
+                Wait.condition(function()
+                    for _ = 1, fearCards[3] do
+                        if count >= maxCards then
+                            broadcastToAll("Not enough Fear Cards", Color.Red)
+                            break
+                        end
+                        addFearCard({position = handZone.position - Vector(count/2 + 3, 0, 0)})
+                        count = count + 1
+                    end
+
+                    Wait.condition(function()
+                        stagesSetup = stagesSetup + 1
+                    end, function() return #Player["Black"].getHandObjects(1) == count end)
+                end, function() return #Player["Black"].getHandObjects(1) == count end)
+            end, function() return #Player["Black"].getHandObjects(1) == count end)
         end, function() return #Player["Black"].getHandObjects(1) == count end)
-    end, 10)
+    end, function() return #Player["Black"].getHandObjects(1) == count end)
 
     return 1
 end

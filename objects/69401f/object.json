@@ -11,7 +11,7 @@
     "scaleY": 0.800000011920929,
     "scaleZ": 0.5
   },
-  "Nickname": "Blue Ready",
+  "Nickname": "Ready",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.1179991289973259,
-    "g": 0.5299999713897705,
-    "b": 1.0
+    "r": 0.5685999393463135,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
   },
   "Tags": [
     "Uninteractable"

@@ -223,7 +223,7 @@ function SetupSpirit(obj, player_color)
     if Global.call("playerHasSpirit", {color = player_color}) then
         Player[player_color].broadcast("You already picked a Spirit!", Color.Red)
     elseif not Global.getTable("playerTables")[player_color] then
-        return
+        Player[player_color].broadcast("You need to pick a seat first!", Color.Red)
     else
         obj.clearButtons()
         Global.call("pickSpirit", {

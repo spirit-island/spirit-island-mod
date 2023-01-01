@@ -11,7 +11,7 @@
     "scaleY": 0.800000011920929,
     "scaleZ": 0.5
   },
-  "Nickname": "Red Ready",
+  "Nickname": "Ready",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.8560000061988831,
-    "g": 0.09999913722276688,
-    "b": 0.09399912506341934
+    "r": 0.5685999393463135,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
   },
   "Tags": [
     "Uninteractable"

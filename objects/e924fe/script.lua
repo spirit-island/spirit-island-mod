@@ -78,6 +78,7 @@ function MapSetup(params)
                     or params.pieces[i][j] == "Disease"
                     or params.pieces[i][j] == "Beasts"
                     or params.pieces[i][j] == "Badlands"
+                    or params.pieces[i][j] == "Vitality"
                     or params.pieces[i][j] == "Dahan"
                     or params.pieces[i][j] == "Box Blight" then
                 table.remove(params.pieces[i],j)
@@ -292,8 +293,7 @@ function ExportConfig()
 
     local SetupChecker = Global.getVar("SetupChecker")
     data.variant = {}
-    data.variant.strangeMadness = SetupChecker.getVar("optionalStrangeMadness")
-    data.variant.digitalEvents = SetupChecker.getVar("optionalDigitalEvents")
+    data.variant.natureIncarnateSetup = SetupChecker.getVar("optionalNatureIncarnateSetup")
     data.variant.blightCard = SetupChecker.getVar("optionalBlightCard")
     data.variant.soloBlight = SetupChecker.getVar("optionalSoloBlight")
     data.variant.blightSetup = SetupChecker.getVar("optionalBlightSetup")
@@ -501,6 +501,8 @@ function ExportConfig()
             elseif objData.name == "Strife" then
                 table.insert(boardTable, objData)
             elseif objData.name == "Badlands" then
+                table.insert(boardTable, objData)
+            elseif objData.name == "Vitality" then
                 table.insert(boardTable, objData)
             end
         end

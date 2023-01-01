@@ -1,18 +1,18 @@
 {
   "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": -37.220001220703125,
+    "posX": -50.70000076293945,
     "posY": 1.0942000150680542,
-    "posZ": 13.551899909973145,
+    "posZ": 14.699999809265137,
     "rotX": -0.0,
-    "rotY": 180.0,
+    "rotY": 179.99989318847656,
     "rotZ": 0.0,
     "scaleX": 1.399999976158142,
     "scaleY": 1.399999976158142,
     "scaleZ": 1.399999976158142
   },
-  "Nickname": "Strife",
-  "Description": "[b]Blocks a specific Invader’s Damage the\r next time they Damage Dahan and/or the land[/b],\r and is then Removed.",
+  "Nickname": "Vitality",
+  "Description": "[b]If no Blight is present, prevents the next Blight[/b] and is then Removed.",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.39609968662261963,
-    "g": 0.7646999955177307,
-    "b": 0.9136999845504761
+    "r": 0.7254999876022339,
+    "g": 0.47839993238449097,
+    "b": 0.3372997045516968
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -41,12 +41,12 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927960218/D101BAE77AFA4DA599A21DFB81AA6C53289DD81E/",
-    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1836915105931505750/CDE2ECADF7D9370E0B4711DC6172B3EAC5DACF7A/",
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1836915105927965655/A5B7267E44721ABFAC6D4863E8868226EB890B9C/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1938265667450568629/D004FB5AA8E4EB2246C97A4C74D4781B54063165/",
     "NormalURL": "",
     "ColliderURL": "",
     "Convex": true,
-    "MaterialIndex": 0,
+    "MaterialIndex": 1,
     "TypeIndex": 7,
     "CustomShader": {
       "SpecularColor": {
@@ -58,6 +58,6 @@
       "SpecularSharpness": 2.0,
       "FresnelStrength": 0.0
     },
-    "CastShadows": true
+    "CastShadows": false
   }
 }

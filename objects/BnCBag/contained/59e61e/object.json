@@ -1,18 +1,18 @@
 {
-  "Name": "Deck",
+  "Name": "Card",
   "Transform": {
-    "posX": -42.150001525878906,
-    "posY": 0.8799867630004883,
-    "posZ": 56.29999923706055,
-    "rotX": -9.890928964750856e-09,
+    "posX": -6.799600124359131,
+    "posY": 1.9908000230789185,
+    "posZ": 12.913000106811523,
+    "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.098099946975708,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.098099946975708
+    "scaleZ": 1.5299999713897705
   },
-  "Nickname": "Stage I",
-  "Description": "Spirit Island",
+  "Nickname": "Tipping Point",
+  "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -38,18 +38,13 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": false,
+  "CardID": 58204,
   "SidewaysCard": false,
-  "DeckIDs": [
-    62800,
-    62801,
-    62802,
-    62803
-  ],
   "CustomDeck": {
-    "628": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1847035847583359378/CDF89A6026EF59421815077C24AEB65FD695F27B/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1847035847583412507/50B204037E50EF832DFADF954BF07C410A5A26E9/",
-      "NumWidth": 3,
+    "582": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100540057/DB8DCCA9FFEC91FB9088092F54B5DC8011FE267F/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
+      "NumWidth": 4,
       "NumHeight": 2,
       "BackIsHidden": false,
       "UniqueBack": false,

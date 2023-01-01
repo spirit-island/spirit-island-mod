@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.6.2"
+version = "3.7.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -55,9 +55,6 @@ stage2DeckZone = "7f21be"
 stage3DeckZone = "2a9f36"
 adversaryBag = "AdversaryBag"
 scenarioBag = "ScenarioBag"
----- Used with ElementsHelper Script
-seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
-playerTables = {}
 ------ Saved Config Data
 numPlayers = 1
 numBoards = 1
@@ -99,6 +96,8 @@ noFear = false
 noHeal = false
 turn = 1
 terrorLevel = 1
+seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
+playerTables = {}
 recorder = nil
 ------ Unsaved Config Data
 gamePaused = false
@@ -136,6 +135,7 @@ diseaseBag = "7019af"
 wildsBag = "ca5089"
 strifeBag = "af4e63"
 badlandsBag = "d3f7f8"
+vitalityBag = "fdff9d"
 oneEnergyBag = "d336ca"
 threeEnergyBag = "a1b7da"
 speedBag = "f5ba21"
@@ -655,6 +655,11 @@ function onLoad(saved_data)
             bag.takeObject({position = cursorLocation})
         end
     end)
+    addHotkey("Flip Ready Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if selectedColors[playerColor] and selectedColors[playerColor].ready then
+            selectedColors[playerColor].ready.flip()
+        end
+    end)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
@@ -686,6 +691,7 @@ function onLoad(saved_data)
     beastsBag = getObjectFromGUID(beastsBag)
     strifeBag = getObjectFromGUID(strifeBag)
     badlandsBag = getObjectFromGUID(badlandsBag)
+    vitalityBag = getObjectFromGUID(vitalityBag)
     oneEnergyBag = getObjectFromGUID(oneEnergyBag)
     threeEnergyBag = getObjectFromGUID(threeEnergyBag)
     speedBag = getObjectFromGUID(speedBag)
@@ -1639,6 +1645,10 @@ function SetupFear()
     SetupPlaytestDeck(fearDeckSetupZone, "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
     local maxCards = #fearDeck.getObjects()
 
+    --[[
+    Fear deck is setup in stages because there's been issues with terror dividers appearing in
+    the wrong place. So now we add one set of fear cards, wait, add terror divider, wait, etc.
+    ]]--
     for _ = 1, fearCards[1] do
         if count >= maxCards then
             broadcastToAll("Not enough Fear Cards", Color.Red)
@@ -1647,38 +1657,44 @@ function SetupFear()
         addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
         count = count + 1
     end
-    for _ = 1, fearCards[2] do
-        if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", Color.Red)
-            break
-        end
-        addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
-        count = count + 1
-    end
-    for _ = 1, fearCards[3] do
-        if count >= maxCards then
-            broadcastToAll("Not enough Fear Cards", Color.Red)
-            break
-        end
-        addFearCard({position = handZone.position - Vector(count/2, 0, 0)})
-        count = count + 1
-    end
 
-    Wait.frames(function()
-        fearDeck = Player["Black"].getHandObjects(1)
-
-        local divider = getObjectFromGUID("f96a71")
-        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]-fearCards[2]+1)].getPosition() - Vector(0.2, 0, 0))
-        count = count + 1
-
-        divider = getObjectFromGUID("969897")
-        divider.setPosition(fearDeck[math.max(1,#fearDeck-fearCards[1]+1)].getPosition() - Vector(0.2, 0, 0))
+    Wait.condition(function()
+        local divider = getObjectFromGUID("969897")
+        divider.setPosition(handZone.position - Vector(count/2, 0, 0))
         count = count + 1
 
         Wait.condition(function()
-            stagesSetup = stagesSetup + 1
+            for _ = 1, fearCards[2] do
+                if count >= maxCards then
+                    broadcastToAll("Not enough Fear Cards", Color.Red)
+                    break
+                end
+                addFearCard({position = handZone.position - Vector(count/2 + 1.5, 0, 0)})
+                count = count + 1
+            end
+
+            Wait.condition(function()
+                divider = getObjectFromGUID("f96a71")
+                divider.setPosition(handZone.position - Vector(count/2 + 1.5, 0, 0))
+                count = count + 1
+
+                Wait.condition(function()
+                    for _ = 1, fearCards[3] do
+                        if count >= maxCards then
+                            broadcastToAll("Not enough Fear Cards", Color.Red)
+                            break
+                        end
+                        addFearCard({position = handZone.position - Vector(count/2 + 3, 0, 0)})
+                        count = count + 1
+                    end
+
+                    Wait.condition(function()
+                        stagesSetup = stagesSetup + 1
+                    end, function() return #Player["Black"].getHandObjects(1) == count end)
+                end, function() return #Player["Black"].getHandObjects(1) == count end)
+            end, function() return #Player["Black"].getHandObjects(1) == count end)
         end, function() return #Player["Black"].getHandObjects(1) == count end)
-    end, 10)
+    end, function() return #Player["Black"].getHandObjects(1) == count end)
 
     return 1
 end
@@ -1837,9 +1853,46 @@ function SetupPowerDecks()
     })
 
     if not gameStarted then
+        local function bncMinorPowersOptions(bncDeck, callback)
+            local banList = SetupChecker.getTable("banList")["Minor Powers"]
+            if not SetupChecker.getVar("optionalNatureIncarnateSetup") then
+                if not banList["Growth Through Sacrifice"] and not banList["b35267"] then
+                    local card = getObjectFromGUID("BnCBag").takeObject({
+                        guid = "b35267",
+                        position = getObjectFromGUID(minorPowerZone).getPosition(),
+                        rotation = {0,180,180},
+                        smooth = false,
+                    })
+                    bncDeck.putObject(card)
+                    bncDeck.shuffle()
+                end
+            else
+                if not banList["Roiling Bog and Snagging Thorn"] and not banList["c25a68"] then
+                    local card = getObjectFromGUID("BnCBag").takeObject({
+                        guid = "c25a68",
+                        position = getObjectFromGUID(minorPowerZone).getPosition(),
+                        rotation = {0,180,180},
+                        smooth = false,
+                    })
+                    bncDeck.putObject(card)
+                    bncDeck.shuffle()
+                end
+            end
+            if callback ~= nil then
+                callback()
+            end
+        end
+
         local minorPowers = getObjectFromGUID(minorPowerZone).getObjects()[1]
+        if expansions["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
+            bncMinorPowersOptions(minorPowers)
+        end
         minorPowers.shuffle()
-        SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), bncMinorPowersOptions)
+        else
+            SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
+        end
 
         local majorPowers = getObjectFromGUID(majorPowerZone).getObjects()[1]
         majorPowers.shuffle()
@@ -2167,6 +2220,16 @@ function SetupBlightCard()
             else
                 cardsSetup = cardsSetup + 1
                 bncBlightSetup = bncBlightSetup + 1
+            end
+            if not SetupChecker.getVar("optionalNatureIncarnateSetup") and not banList["Tipping Point"] and not banList["59e61e"] then
+                local card = getObjectFromGUID("BnCBag").takeObject({
+                    guid = "59e61e",
+                    position = blightDeckZone.getPosition(),
+                    rotation = {0,180,180},
+                    smooth = false,
+                })
+                bncDeck.putObject(card)
+                bncDeck.shuffle()
             end
             if callback ~= nil then
                 Wait.condition(function() callback() end, function() return bncBlightSetup == 1 end)
@@ -3084,7 +3147,39 @@ function SetupEventDeck()
         Wait.condition(function()
             local banList = SetupChecker.getTable("banList")["Event Cards"]
             local bncEventSetup = 0
-            if SetupChecker.getVar("exploratoryWar") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
+            if not SetupChecker.getVar("optionalNatureIncarnateSetup") then
+                if not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
+                    local card = getObjectFromGUID("BnCBag").takeObject({
+                        guid = "cfd4d1",
+                        position = eventDeckZone.getPosition(),
+                        rotation = {0,180,180},
+                        smooth = false,
+                    })
+                    bncDeck.putObject(card)
+                    bncDeck.shuffle()
+                end
+                if not banList["Outpaced"] and not banList["6692e8"] then
+                    local card = getObjectFromGUID("BnCBag").takeObject({
+                        guid = "6692e8",
+                        position = eventDeckZone.getPosition(),
+                        rotation = {0,180,180},
+                        smooth = false,
+                    })
+                    bncDeck.putObject(card)
+                    bncDeck.shuffle()
+                end
+                if not banList["A Strange Madness Among the Beasts"] and not banList["0edac2"] then
+                    local card = getObjectFromGUID("BnCBag").takeObject({
+                        guid = "0edac2",
+                        position = eventDeckZone.getPosition(),
+                        rotation = {0,180,180},
+                        smooth = false,
+                    })
+                    bncDeck.putObject(card)
+                    bncDeck.shuffle()
+                end
+            end
+            if SetupChecker.getVar("exploratoryWar") and not SetupChecker.getVar("optionalNatureIncarnateSetup") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
                 bncDeck.takeObject({
                     guid = "cfd4d1",
                     callback_function = function(obj)
@@ -3100,24 +3195,6 @@ function SetupEventDeck()
             else
                 cardsSetup = cardsSetup + 1
                 bncEventSetup = bncEventSetup + 1
-            end
-            if SetupChecker.getVar("optionalDigitalEvents") then
-                if not SetupChecker.getVar("exploratoryWar") and not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
-                    bncDeck.takeObject({guid = "cfd4d1"}).destruct()
-                end
-                if not banList["Outpaced"] and not banList["6692e8"] then
-                    bncDeck.takeObject({guid = "6692e8"}).destruct()
-                end
-            end
-            if SetupChecker.getVar("optionalStrangeMadness") and not SetupChecker.getVar("optionalDigitalEvents") and not banList["A Strange Madness Among the Beasts"] and not banList["0edac2"] then
-                local strangeMadness = getObjectFromGUID("BnCBag").takeObject({
-                    guid = "0edac2",
-                    position = eventDeckZone.getPosition(),
-                    rotation = {0,180,180},
-                    smooth = false,
-                })
-                bncDeck.putObject(strangeMadness)
-                bncDeck.shuffle()
             end
             if callback ~= nil then
                 Wait.condition(function() callback() end, function() return bncEventSetup == 1 end)
@@ -3214,17 +3291,19 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
-            spirit.takeObject({
+            local obj = spirit.takeObject({
                 guid = "606f23",
                 position = spirit.getPosition() + Vector(0, 1, 0),
                 callback_function = function(obj)
                     local temp = obj.setState(2)
+                    temp.setVar("setup", true)
                     Wait.frames(function()
                         spirit.putObject(temp)
                         postSetupSteps = postSetupSteps + 1
                     end, 1)
                 end,
             })
+            obj.setVar("setup", true)
         else
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
@@ -3243,17 +3322,19 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("45e367")
         if spirit ~= nil then
-            spirit.takeObject({
+            local obj = spirit.takeObject({
                 guid = "bd2a4a",
                 position = spirit.getPosition() + Vector(0, 1, 0),
                 callback_function = function(obj)
                     local temp = obj.setState(2)
+                    temp.setVar("setup", true)
                     Wait.frames(function()
                         spirit.putObject(temp)
                         postSetupSteps = postSetupSteps + 1
                     end, 1)
                 end,
             })
+            obj.setVar("setup", true)
         else
             spirit = getObjectFromGUID("bd2a4a")
             if spirit ~= nil then
@@ -3614,12 +3695,7 @@ function enableUI()
 
         -- Need to wait for xml table to get updated
         Wait.frames(function()
-            local colors = {}
-            for _,color in pairs(Player.getColors()) do
-                if color ~= "Black" and color ~= "Grey" then
-                    table.insert(colors, color)
-                end
-            end
+            local colors = invertVisiTable({"Black", "Grey"})
             UI.setAttribute("panelUIToggle","active","true")
             setVisiTable("panelTimePasses", colors)
             setVisiTable("panelReady", colors)
@@ -3649,13 +3725,20 @@ function addSpirit(params)
     return SetupChecker.call("addSpirit", params)
 end
 function pickSpirit(params)
-    for i=4,#playerTables[params.color].getButtons() do
-        playerTables[params.color].removeButton(i-1)
-    end
     selectedColors[params.color] = {}
     SetupChecker.call("removeSpirit", params)
 end
 function removeSpirit(params)
+    local seatGuid = playerTables[params.color].guid
+    for index,guid in pairs(seatTables) do
+        if guid == seatGuid then
+            local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
+            playerReadyGuids[index].color = params.color
+            aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+            break
+        end
+    end
+
     selectedColors[params.color] = {
         ready = params.ready,
         counter = params.counter,
@@ -4339,7 +4422,10 @@ function MapPlaceCustom(maps)
 
     local rand = 0
     if SetupChecker.getVar("optionalExtraBoard") then
-        rand = math.random(1,numBoards)
+        if extraRandomBoard == nil then
+            extraRandomBoard = math.random(1,#maps)
+        end
+        rand = extraRandomBoard
     end
     local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i,map in pairs(maps) do
@@ -4353,6 +4439,10 @@ function MapPlaceCustom(maps)
         map.setLock(true)
         map.interactable = false
         Wait.condition(function() setupMap(map,i==rand) end, function() return not map.loading_custom end)
+
+        if i == rand then
+            printToAll("Board "..selectedBoards[i].." was chosen to be the extra board!", Color.SoftBlue)
+        end
     end
 end
 
@@ -4479,7 +4569,7 @@ function MapPlacen(boards)
         end
 
         if i == rand then
-            printToAll("Board "..selectedBoards[i].." was choosen to be the extra board!", Color.SoftBlue)
+            printToAll("Board "..selectedBoards[i].." was chosen to be the extra board!", Color.SoftBlue)
         end
     end
 end
@@ -4705,6 +4795,12 @@ function place(params)
         else
             return true
         end
+    elseif params.name == "Vitality" then
+        if usingBadlands() then -- TODO: change me to check for nature incarnate expansion later
+            temp = vitalityBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+        else
+            return true
+        end
     elseif params.name == "Defend Marker" then
         if params.color and selectedColors[params.color] and selectedColors[params.color].defend ~= nil then
             temp = selectedColors[params.color].defend.takeObject({position = params.position,rotation = Vector(0,180,0)})
@@ -4765,6 +4861,7 @@ Pieces = {
     "3 Energy",
     "Box Blight",
     "Speed Token",
+    "Vitality",
 }
 
 function DropPiece(piece, cursorLocation, droppingPlayerColor)
@@ -4821,6 +4918,9 @@ function cleanupObject(params)
     elseif params.obj.getName() == "Badlands" then
         params.obj.setRotation(Vector(0,180,0))
         bag = badlandsBag
+    elseif params.obj.getName() == "Vitality" then
+        params.obj.setRotation(Vector(0,180,0))
+        bag = vitalityBag
     else
         if not params.obj.hasTag("Destroy") then
             return
@@ -5041,12 +5141,7 @@ function showGameOver()
     refreshGameOver()
 
     if SetupChecker.getVar("optionalGameResults") then
-        local colors = {}
-        for _,color in pairs(Player.getColors()) do
-            if color ~= "Black" and color ~= "Grey" then
-                table.insert(colors, color)
-            end
-        end
+        local colors = invertVisiTable({"Black", "Grey"})
         setVisiTable("panelGameOver", colors)
     end
 end
@@ -5391,14 +5486,6 @@ function setupPlayerArea(params)
     end
     local selected = selectedColors[color]
 
-    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-    if not selected then
-        local readyIndicator = getObjectFromGUID(playerReadyGuids[color])
-        local buttons = readyIndicator.getButtons()
-        if buttons and #buttons > 0 then
-            readyIndicator.editButton({index=0, label=""})
-        end
-    end
     if not initialized and selected then
         params.obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
@@ -5551,7 +5638,7 @@ function setupPlayerArea(params)
                 decal = {
                     name = "Threshold",
                     position = vec + Vector(0, 0.22, 0),
-                    rotation = {90, 180, 0},
+                    rotation = Vector(90, 180, 0):sub(object.getRotation():sub(Vector(0, 180, 0))),
                     scale    = scale,
                 }
             end
@@ -5576,7 +5663,13 @@ function setupPlayerArea(params)
             if aspect.script_state ~= "" then
                 local thresholds = aspect.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(aspect, elements, thresholds, {0.12, 0.24, 1})
+                    local scale
+                    if aspect.getRotation():equals(Vector(0, 180, 0)) or aspect.getRotation():equals(Vector(0, 0, 0)) then
+                        scale = {0.12, 0.24, 1}
+                    else
+                        scale = {0.24, 0.12, 1}
+                    end
+                    addThresholdDecals(aspect, elements, thresholds, scale)
                 end
             end
         end
@@ -6213,19 +6306,7 @@ function getCurrentEnergy(color)
 end
 
 function setupTableButtons()
-    local coloredSeats = {}
-    for _,obj in pairs(playerTables) do
-        coloredSeats[obj.guid] = true
-    end
-    for _,guid in pairs(seatTables) do
-        if not coloredSeats[guid] then
-            setupColorPickButtons(getObjectFromGUID(guid), true)
-        else
-            setupSwapButtons(getObjectFromGUID(guid))
-        end
-    end
-    setupColorPickButtons(getObjectFromGUID("fe680a"), false)
-    setupColorPickButtons(getObjectFromGUID("2ca216"), false)
+    updateColorPickButtons()
     updateSwapButtons()
 end
 function setupColorPickButtons(obj, seat)
@@ -6238,11 +6319,13 @@ function setupColorPickButtons(obj, seat)
             local text = "Pick "
             local fontSize = "44"
             local minWidth = "270"
+            local visibility = ""
             if not seat then
                 func = "swapColor"
                 text = "Swap to "
                 fontSize = "70"
                 minWidth = "600"
+                visibility = visiTableToString(invertVisiTable({"Black", "Grey"}))
             end
             table.insert(buttons, {
                 tag = "Button",
@@ -6255,6 +6338,7 @@ function setupColorPickButtons(obj, seat)
                     fontSize = fontSize,
                     minWidth = minWidth,
                     minHeight = "110",
+                    visibility = visibility,
                 },
                 children = {},
             })
@@ -6297,6 +6381,7 @@ function setupColorPickButtons(obj, seat)
                 rotation = "0 0 180",
                 width = "270",
                 height = "110",
+                visibility = visiTableToString(invertVisiTable({"Black", "Grey"}))
             },
             children = {},
         })
@@ -6308,50 +6393,13 @@ function pickColor(player, guid, color)
     player.changeColor(color)
 end
 function setupColor(table, color)
-    spawnObjectData({
-        data = {
-            Name = "HandTrigger",
-            FogColor = color,
-            Transform = {
-                posX = 0,
-                posY = 0,
-                posZ = 0,
-                rotX = 0,
-                rotY = 0,
-                rotZ = 0,
-                scaleX = 1.0,
-                scaleY = 1.0,
-                scaleZ = 1.0
-            },
-            Locked = true,
-        },
-        position = table.getPosition() + Vector(0, 3.29, -16.4),
-        rotation = Vector(0, 0, 0),
-        scale = Vector(18.41, 6.48, 4.7),
-    })
-    spawnObjectData({
-        data = {
-            Name = "HandTrigger",
-            FogColor = color,
-            Transform = {
-                posX = 0,
-                posY = 0,
-                posZ = 0,
-                rotX = 0,
-                rotY = 0,
-                rotZ = 0,
-                scaleX = 1.0,
-                scaleY = 1.0,
-                scaleZ = 1.0
-            },
-            Locked = true,
-        },
-        position = table.getPosition() + Vector(0, 3.29, -21.9),
-        rotation = Vector(0, 0, 0),
-        scale = Vector(18.41, 6.48, 4.7),
-    })
-
     playerTables[color] = table
+    setupSwapButtons(table, { seated = true })
+    updateColorPickButtons()
+
+    SpawnHand({color = color, position = table.getPosition() + Vector(0, 3.29, -16.4)})
+    SpawnHand({color = color, position = table.getPosition() + Vector(0, 3.29, -21.9)})
+
     local colorTint
     if Tints[color].Table then
         colorTint = Color.fromHex(Tints[color].Table)
@@ -6359,37 +6407,130 @@ function setupColor(table, color)
         colorTint = Color.fromHex(Tints[color].Presence)
     end
     table.setColorTint(colorTint)
-    table.UI.setXml("")
-    table.clearButtons()
-    setupSwapButtons(table)
-
-    updateColorPickButtons()
-    updateSwapButtons()
 end
-function setupSwapButtons(obj)
-    local scale = flipVector(Vector(obj.getScale()))
-    scale = scale * 2
-    -- Swap Place (button index 0)
-    obj.createButton({
-        label="", click_function="onClickedSwapPlace", function_owner=Global,
-        position={-3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
-        font_color={0,0,0}, font_size=250,
-        tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+function SpawnHand(params)
+    spawnObjectData({
+        data = {
+            Name = "HandTrigger",
+            FogColor = params.color,
+            Transform = {
+                posX = 0,
+                posY = 0,
+                posZ = 0,
+                rotX = 0,
+                rotY = 0,
+                rotZ = 0,
+                scaleX = 1.0,
+                scaleY = 1.0,
+                scaleZ = 1.0
+            },
+            Locked = true,
+        },
+        position = params.position,
+        rotation = Vector(0, 0, 0),
+        scale = Vector(18.41, 6.48, 4.7),
     })
-    -- Swap Color (button index 1)
-    obj.createButton({
-        label="", click_function="onClickedSwapColor", function_owner=Global,
-        position={3.25,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
-        font_color={0,0,0}, font_size=250,
-        tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
+end
+-- @param params.seated Boolean indicating if a player is about to be seated here.
+function setupSwapButtons(obj, params)
+    params = params or {}
+    local xml = {}
+    local color = getTableColor(obj)
+    local buttonColor = Color[color]:toHex(false)
+    local textColor = fontColor(Color[color])
+    local playerButtonVisibility = "Invisible"
+    if showPlayerButtons then
+        playerButtonVisibility = visiTableToString(invertVisiTable({"Black", "Grey", color}))
+    end
+    local playSpiritVisibility = "Invisible"
+    local playSpiritText = ""
+    if not params.seated and not Player[color].seated then
+        if selectedColors[color] then
+            playSpiritVisibility = visiTableToString(invertVisiTable({color}))
+            playSpiritText = "Play Spirit"
+        elseif showPlayerButtons then
+            playSpiritVisibility = visiTableToString(invertVisiTable({color}))
+            playSpiritText = "Play " .. color
+        end
+    end
+    table.insert(xml, {
+        tag = "Button",
+        attributes = {
+            id = "swapPlace",
+            onClick = "Global/onClickedSwapPlace("..obj.guid..")",
+            position = "320 755 -80",
+            rotation = "0 0 180",
+            text = "Swap Place",
+            fontSize = "44",
+            width = "270",
+            height = "110",
+            visibility = playerButtonVisibility,
+            -- Note: tooltips don't work on Custom UI (https://tabletopsimulator.nolt.io/1369)
+            -- tooltip="Moves your current player color to be located here. The color currently seated here will be moved to your current location. Spirit panels and other cards will be relocated if applicable.",
+        },
+        children = {},
     })
-    -- Play Spirit (button index 2)
-    obj.createButton({
-        label="", click_function="onClickedPlaySpirit", function_owner=Global,
-        position={0,0.4,7.5}, rotation={0,0,0}, height=0, width=0, scale=scale,
-        font_color={0,0,0}, font_size=250,
-        tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+    table.insert(xml, {
+        tag = "Button",
+        attributes = {
+            id = "swapColor",
+            onClick = "Global/onClickedSwapColor("..obj.guid..")",
+            position = "-320 755 -80",
+            rotation = "0 0 180",
+            text = "Swap " .. color,
+            colors = "#"..buttonColor.."|#"..buttonColor.."|#"..buttonColor.."|#"..buttonColor.."80",
+            textColor = "rgb("..textColor[1]..","..textColor[2]..","..textColor[3]..")",
+            fontSize = "44",
+            width = "270",
+            height = "110",
+            visibility = playerButtonVisibility,
+            -- Note: tooltips don't work on Custom UI (https://tabletopsimulator.nolt.io/1369)
+            -- tooltip="Change to be this color, updating all of your presence and reminder tokens accordingly. The player that is this color will be changed to be yours. Your seating position will not change.",
+        },
+        children = {},
     })
+    table.insert(xml, {
+        tag = "Button",
+        attributes = {
+            id = "playSpirit",
+            onClick = "Global/onClickedPlaySpirit("..obj.guid..")",
+            position = "0 755 -80",
+            rotation = "0 0 180",
+            text = playSpiritText,
+            fontSize = "44",
+            width = "270",
+            height = "110",
+            visibility = playSpiritVisibility,
+            -- Note: tooltips don't work on Custom UI (https://tabletopsimulator.nolt.io/1369)
+            -- tooltip="Switch to play the spirit that is here, changing your player color accordingly. Only available for spirits without a seated player. Intended for multi-handed solo games.",
+        },
+        children = {},
+    })
+    local foundGainOptions = false
+    for _,data in pairs(obj.UI.getXmlTable()) do
+        if data.attributes.id == "GainSpirits" then
+            foundGainOptions = true
+            table.insert(xml, data)
+            break
+        end
+    end
+    if not foundGainOptions then
+        table.insert(xml, {
+            tag = "VerticalLayout",
+            attributes = {
+                id = "GainSpirits",
+                recurse = "GainSpirits",
+                childForceExpandWidth = "false",
+                childForceExpandHeight = "false",
+                childAlignment = "MiddleCenter",
+                spacing = "30",
+                position = "0 0 -80",
+                rotation = "0 0 180",
+            },
+            children = {},
+        })
+    end
+    obj.UI.setXmlTable(xml, {})
 end
 function flipVector(vec)
     vec.x = 1/vec.x
@@ -6428,28 +6569,21 @@ function updateColorPickButtons()
     end
 end
 function updateSwapButtons()
-    for color,obj in pairs(playerTables) do
-        if showPlayerButtons then
-            local bg = Color[color]
-            local fg = fontColor(bg)
-            obj.editButton({index=0, label="Swap Place", height=400, width=1500})
-            obj.editButton({index=1, label="Swap " .. color, height=400, width=1500, color=bg, font_color=fg})
-        else
-            obj.editButton({index=0, label="", height=0, width=0})
-            obj.editButton({index=1, label="", height=0, width=0})
-        end
-        updatePlaySpiritButton(color)
+    for _, obj in pairs(playerTables) do
+        setupSwapButtons(obj)
     end
 end
 function updatePlaySpiritButton(color)
     local table = playerTables[color]
     if table == nil then return end
     if not Player[color].seated and selectedColors[color] then
-        table.editButton({index=2, label="Play Spirit", height=400, width=1500})
+        table.UI.setAttribute("playSpirit", "visibility", "")
+        table.UI.setAttribute("playSpirit", "text", "Play Spirit")
     elseif not Player[color].seated and showPlayerButtons then
-        table.editButton({index=2, label="Play " .. color, height=400, width=1500})
+        table.UI.setAttribute("playSpirit", "visibility", "")
+        table.UI.setAttribute("playSpirit", "text", "Play " .. color)
     else
-        table.editButton({index=2, label="", height=0, width=0})
+        table.UI.setAttribute("playSpirit", "visibility", "Invisible")
     end
 end
 ---- UI Section
@@ -6472,6 +6606,7 @@ invaderColors = {
     W = "#AAEEFF",
     J = "green",
     C = "blue",
+    L = "grey",
     n = "#444444", -- no cards
     E = "#FF3300", -- Stage EMPTY
     ["_"] = "#444444" -- No Explore
@@ -6485,6 +6620,7 @@ invaderFontColors = {
     W = "black",
     J = "black",
     C = "black",
+    L = "black",
     n = "#666666", -- no cards
     E = "black", -- Stage EMPTY
     ["_"] = "#666666" -- No Explore
@@ -6498,6 +6634,7 @@ tooltips = {
     W = "Wetlands",
     J = "Jungle",
     C = "Coastal",
+    L = {"Non-Mining Lands", Ravage = "Mining Lands"},
     n = "NO ACTION", -- no cards
     E = "YOU LOSE WHEN THE\nINVADERS NEXT\nEXPLORE", -- Stage EMPTY
     ["_"] = "UNKNOWN UNTIL\nNEXT INVADER PHASE" -- No Explore
@@ -6511,6 +6648,7 @@ textOut = {
     W = "W",
     J = "J",
     C = "C",
+    L = "Salt",
     n = "NO ACTION", -- no cards
     E = "EMPTY", -- Stage EMPTY
     ["_"] = "?" -- No Explore
@@ -6555,6 +6693,24 @@ function getVisiTable(xmlID) return visiStringToTable(UI.getAttribute(xmlID,"vis
 function setVisiTable(xmlID, inTable) UI.setAttribute(xmlID,"visibility",visiTableToString(inTable)) end
 function getVisiTableParams(params) return getVisiTable(params.id) end
 function setVisiTableParams(params) setVisiTable(params.id, params.table) end
+--- Takes a table of player colors and returns a table of all the player colors
+--- not in the argument.
+function invertVisiTable(inTable)
+    local outTable = {}
+    for _, color in pairs(Player.getColors()) do
+        local include = true
+        for _, c in pairs(inTable) do
+            if color == c then
+                include = false
+                break
+            end
+        end
+        if include then
+            table.insert(outTable, color)
+        end
+    end
+    return outTable
+end
 
 function showButtons(player)
     toggleUI("panelUIToggleHide", player.color, false)
@@ -6685,6 +6841,13 @@ function toggleInvaderPhaseImage(explore)
 end
 function set(a,b,c,d, escalate)
     local tooltip = tooltips[d]
+    if type(tooltip) == "table" then
+        if tooltip[a] then
+            tooltip = tooltip[a]
+        else
+            tooltip = tooltip[1]
+        end
+    end
     local text = textOut[d]
     if escalate then
         tooltip = tooltip.." with Escalation"
@@ -6861,6 +7024,23 @@ function swapPlayerTables(a, b)
     local pos = a.getPosition()
     a.setPosition(b.getPosition())
     b.setPosition(pos)
+
+    local indexA, indexB
+    for i,guid in pairs(seatTables) do
+        if guid == a.guid then
+            indexB = i
+            seatTables[i] = b.guid
+        elseif guid == b.guid then
+            indexA = i
+            seatTables[i] = a.guid
+        end
+    end
+
+    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
+    local color = playerReadyGuids[indexA].color
+    playerReadyGuids[indexA].color = playerReadyGuids[indexB].color
+    playerReadyGuids[indexB].color = color
+    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
 end
 
 function swapSeatColors(a, b)
@@ -7071,8 +7251,18 @@ function recolorPlayerArea(a, b)
         end
         playerTables[b].setColorTint(colorTint)
     end
-
     playerTables[a], playerTables[b] = playerTables[b], playerTables[a]
+
+    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
+    for _,data in pairs(playerReadyGuids) do
+        if data.color == a then
+            data.color = b
+        elseif data.color == b then
+            data.color = a
+        end
+    end
+    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+
     updateSwapButtons()
 end
 function swapPlayerUI(a, b, xmlID)
@@ -7151,13 +7341,12 @@ function swapPlace(player, guid, _)
     end
 end
 -- Trade places with selected seat.
-function onClickedSwapPlace(target_obj, source_color, alt_click)
-    local target_color = nil
-    for color,obj in pairs(playerTables) do
-        if obj == target_obj then
-            target_color = color
-            break
-        end
+function onClickedSwapPlace(player, guid, id)
+    local target_obj = getObjectFromGUID(guid)
+    local target_color = getTableColor(target_obj)
+    local source_color = player.color
+    if player.color == "Grey" then
+        return
     end
 
     if target_color == nil and not playerTables[source_color] then
@@ -7173,19 +7362,19 @@ function swapColor(player, _, color)
     if playerTables[player.color] then
         swapSeatColors(player.color, color)
         updateColorPickButtons()
+        updateSwapButtons()
     else
         player.broadcast("Pick a color first", Color.Red)
     end
 end
 -- Trade colors with selected seat.
-function onClickedSwapColor(target_obj, source_color, alt_click)
-    local target_color = nil
-    for color,obj in pairs(playerTables) do
-        if obj == target_obj then
-            target_color = color
-            break
-        end
+function onClickedSwapColor(player, guid, id)
+    local target_color = getTableColor(getObjectFromGUID(guid))
+    local source_color = player.color
+    if player.color == "Grey" then
+        return
     end
+
     if target_color == nil then
         return
     end
@@ -7198,15 +7387,16 @@ function onClickedSwapColor(target_obj, source_color, alt_click)
 end
 
 -- Play spirit
-function onClickedPlaySpirit(target_obj, source_color, alt_click)
-    local target_color = nil
-    for color,obj in pairs(playerTables) do
-        if obj == target_obj then
-            target_color = color
-            break
-        end
-    end
+function onClickedPlaySpirit(player, guid, id)
+    local target_color = getTableColor(getObjectFromGUID(guid))
+    local source_color = player.color
+
     if target_color == nil then
+        return
+    end
+
+    if player.color == "Grey" then
+        player.changeColor(target_color)
         return
     end
 

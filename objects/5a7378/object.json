@@ -11,7 +11,7 @@
     "scaleY": 0.800000011920929,
     "scaleZ": 0.5
   },
-  "Nickname": "Purple Ready",
+  "Nickname": "Ready",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.6269999742507935,
-    "g": 0.12499912828207016,
-    "b": 0.9409999847412109
+    "r": 0.5685999393463135,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
   },
   "Tags": [
     "Uninteractable"

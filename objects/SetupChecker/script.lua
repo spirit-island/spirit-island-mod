@@ -37,6 +37,7 @@ spiritTags = {}
 spiritComplexities = {}
 spiritChoices = {}
 spiritChoicesLength = 0
+allSpirits = {} -- intentionally not backed up on script state
 
 weeklyChallenge = false
 
@@ -49,8 +50,7 @@ randomScenario = false
 randomBoard = false
 randomBoardThematic = false
 
-optionalStrangeMadness = false
-optionalDigitalEvents = false
+optionalNatureIncarnateSetup = true
 optionalBlightCard = true
 optionalSoloBlight = true
 optionalBlightSetup = true
@@ -105,8 +105,7 @@ function onSave()
     data_table.toggle.advanced = self.UI.getAttribute("simpleMode", "isOn") == "true"
 
     data_table.variant = {}
-    data_table.variant.strangeMadness = optionalStrangeMadness
-    data_table.variant.digitalEvents = optionalDigitalEvents
+    data_table.variant.natureIncarnateSetup = optionalNatureIncarnateSetup
     data_table.variant.blightCard = optionalBlightCard
     data_table.variant.soloBlight = optionalSoloBlight
     data_table.variant.blightSetup = optionalBlightSetup
@@ -186,8 +185,7 @@ function onLoad(saved_data)
         -- This will get flipped by toggleChallenge()
         weeklyChallenge = not loaded_data.toggle.challenge
 
-        optionalStrangeMadness = loaded_data.variant.strangeMadness
-        optionalDigitalEvents = loaded_data.variant.digitalEvents
+        optionalNatureIncarnateSetup = loaded_data.variant.natureIncarnateSetup
         optionalBlightCard = loaded_data.variant.blightCard
         optionalSoloBlight = loaded_data.variant.soloBlight
         optionalBlightSetup = loaded_data.variant.blightSetup
@@ -264,8 +262,7 @@ function onLoad(saved_data)
             -- set this to opposite boolean so that toggleSimpleMode() will handle all the UI panels easily
             self.UI.setAttribute("simpleMode", "isOn", tostring(not loaded_data.toggle.advanced))
 
-            self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
-            self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+            self.UI.setAttribute("natureIncarnateSetup", "isOn", optionalNatureIncarnateSetup)
             self.UI.setAttribute("blightCard", "isOn", optionalBlightCard)
             self.UI.setAttribute("blightCard2", "isOn", optionalBlightCard)
             self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
@@ -375,6 +372,8 @@ function onObjectSpawn(obj)
     if obj.hasTag("Spirit") then
         if obj.getVar("leave") then
             obj.setVar("leave")
+        elseif obj.getVar("setup") then
+            obj.setVar("setup")
         else
             addSpirit({spirit=obj})
         end
@@ -500,12 +499,12 @@ function onObjectDestroy(obj)
     if obj.hasTag("Spirit") then
         if obj.getVar("enter") then
             obj.setVar("enter")
+        elseif obj.getVar("setup") then
+            obj.setVar("setup")
+        elseif obj.getVar("reload") then
+            obj.setVar("reload")
         else
-            if not obj.getVar("reload") then
-                removeSpirit({spirit=obj})
-            else
-                obj.setVar("reload")
-            end
+            removeSpirit({spirit=obj})
         end
     elseif not setupStarted then
         if obj.type == "Card" then
@@ -716,7 +715,7 @@ function updateScenario(value, updateUI)
     end
 end
 function updateScenarioSelection(name)
-    getXml{updateDropdownSelection("scenario", name)}
+    getXml(self, {updateDropdownSelection("scenario", name)})
 end
 
 function toggleLeadingAdversary(_, value)
@@ -758,7 +757,7 @@ function updateLeadingAdversarySliderMax(card, updateUI)
     end
 end
 function updateLeadingSelection(name)
-    getXml{updateDropdownSelection("leadingAdversary", name)}
+    getXml(self, {updateDropdownSelection("leadingAdversary", name)})
 end
 function toggleSupportingAdversary(_, value)
     updateSupportingAdversary(value, true)
@@ -799,7 +798,7 @@ function updateSupportingAdversarySliderMax(card, updateUI)
     end
 end
 function updateSupportingSelection(name)
-    getXml{updateDropdownSelection("supportingAdversary", name)}
+    getXml(self, {updateDropdownSelection("supportingAdversary", name)})
 end
 function toggleLeadingLevel(_, value)
     updateLeadingLevel(value, true)
@@ -1042,7 +1041,7 @@ function updateBoardLayout(value, updateUI)
     end
 end
 function updateBoardLayoutSelection(name)
-    getXml{updateDropdownSelection("boardLayout", name)}
+    getXml(self, {updateDropdownSelection("boardLayout", name)})
 end
 
 function updateDifficulty()
@@ -1228,11 +1227,8 @@ function loadConfig(config)
         updateBoardLayout(config.boardLayout, false)
     end
     if config.variant then
-        if config.variant.strangeMadness ~= nil then
-            optionalStrangeMadness = config.variant.strangeMadness
-        end
-        if config.variant.digitalEvents ~= nil then
-            optionalDigitalEvents = config.variant.digitalEvents
+        if config.variant.natureIncarnateSetup ~= nil then
+            optionalNatureIncarnateSetup = config.variant.natureIncarnateSetup
         end
         if config.variant.blightCard ~= nil then
             optionalBlightCard = config.variant.blightCard
@@ -1849,11 +1845,11 @@ function getSpiritComplexities()
     return complexities
 end
 function randomSpirit(player)
-    if player.color == "Grey" then
+    if player.color == "Grey" or player.color == "Black" then
         return
     end
     if Global.getTable("selectedColors")[player.color] then
-        Player[player.color].broadcast("You already picked a spirit", Color.Red)
+        player.broadcast("You already picked a spirit", Color.Red)
         return
     end
     if not Global.getTable("playerTables")[player.color] then
@@ -1862,12 +1858,12 @@ function randomSpirit(player)
 
     local tags = getSpiritTags()
     if tags == nil then
-        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        player.broadcast("You have no expansions selected", Color.Red)
         return
     end
     local complexities = getSpiritComplexities()
     if complexities == nil then
-        Player[player.color].broadcast("You have no complexities selected", Color.Red)
+        player.broadcast("You have no complexities selected", Color.Red)
         return
     end
 
@@ -1878,83 +1874,115 @@ function randomSpirit(player)
         count = count + 1
     end
     if count >= 100 then
-        Player[player.color].broadcast("No suitable spirit was found", Color.Red)
+        player.broadcast("No suitable spirit was found", Color.Red)
         return
     end
     local spirit = getObjectFromGUID(guid)
     sourceSpirit.call("PickSpirit", {obj = spirit, color = player.color, aspect = "Random"})
-    Player[player.color].broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
+    player.broadcast("Your randomized spirit is "..spirit.getName(), "Blue")
+end
+function getGainSpiritChoices(obj)
+    local choices = {}
+    getXml(obj, {matchRecurse("GainSpirits", function (t)
+        for _, button in pairs(t.children) do
+            if button.tag == "Button" then
+                table.insert(choices, {spirit = button.attributes.spirit, aspect = button.attributes.aspect})
+            else
+                table.insert(choices, {})
+            end
+        end
+    end)})
+    return choices
+end
+function setupGainSpiritChoices(obj, choices)
+    local buttons = {}
+    for _, choice in pairs(choices) do
+        if choice.spirit ~= nil then
+            local label = choice.spirit
+            if choice.aspect ~= nil and choice.aspect ~= "" then
+                label = label .. " - " .. choice.aspect
+            end
+            table.insert(buttons, {
+                tag = "Button",
+                attributes = {
+                    id = "gain! " .. choice.spirit,
+                    text = label,
+                    onClick = "SetupChecker/pickGainSpiritChoice(" .. obj.guid .. ")",
+                    fontSize = "44",
+                    minWidth = "800",
+                    minHeight = "110",
+                    spirit = choice.spirit,
+                    aspect = choice.aspect,
+                },
+                children = {},
+            })
+        else
+            table.insert(buttons, {
+                tag = "Text",
+                attributes = {
+                    minHeight = "110",
+                },
+                children = {},
+            })
+        end
+    end
+    updateXml(obj, {matchRecurse("GainSpirits", function (t) t.children = buttons end)})
 end
 function gainSpirit(player)
-    if player.color == "Grey" then
+    if player.color == "Grey" or player.color == "Black" then
+        player.broadcast("You need to pick a color before gaining spirits.", Color.Red)
         return
     end
     if Global.getTable("selectedColors")[player.color] then
-        Player[player.color].broadcast("You already picked a spirit", Color.Red)
+        player.broadcast("You already picked a spirit", Color.Red)
         return
     end
     local obj = Global.getTable("playerTables")[player.color]
     if not obj then
+        player.broadcast("You need to pick a table before gaining spirits.", Color.Red)
         return
     end
 
-    local options = {}
-    local buttons = obj.getButtons()
-    local hasOptions = 0
-    if buttons ~= nil then
-        for i=4,#buttons do
-            if buttons[i].label ~= "" then
-                options[i-4] = true
-                hasOptions = hasOptions + 1
-            else
-                options[i-4] = false
-            end
+    local choices = getGainSpiritChoices(obj)
+    local numChoices = 0
+    for _, choice in pairs(choices) do
+        if choice.spirit ~= nil then
+            numChoices = numChoices + 1
         end
     end
 
-    if hasOptions == 4 then
-        Player[player.color].broadcast("You already have Spirit options", Color.Red)
+    if numChoices == 4 then
+        player.broadcast("You already have Spirit options", Color.Red)
         return
     end
     local tags = getSpiritTags()
     if tags == nil then
-        Player[player.color].broadcast("You have no expansions selected", Color.Red)
+        player.broadcast("You have no expansions selected", Color.Red)
         return
     end
     local complexities = getSpiritComplexities()
     if complexities == nil then
-        Player[player.color].broadcast("You have no complexities selected", Color.Red)
+        player.broadcast("You have no complexities selected", Color.Red)
         return
     end
 
     local count = 0
-    for i = 1,4 do
-        if not options[i] then
+    for i = 1, 4 do
+        if choices[i] == nil or choices[i].spirit == nil then
             local spirit, aspect = getNewSpirit(tags, complexities)
             if spirit then
                 count = count + 1
-                local label = spirit.getName()
-                if aspect ~= nil and aspect ~= "" then
-                    label = label.." - "..aspect
-                end
-                obj.createButton({
-                    click_function = "pickSpirit" .. i,
-                    function_owner = self,
-                    label = label,
-                    position = Vector(0,3,-5 + 2*i),
-                    rotation = Vector(0,0,0),
-                    scale = Vector(2/2.3,1,2/1.42),
-                    width = 4850,
-                    height = 600,
-                    font_size = 275,
-                })
+                choices[i] = {spirit = spirit.getName(), aspect = aspect}
+            else
+                break
             end
         end
     end
     if count > 0 then
-        Player[player.color].broadcast("Your randomized spirits to choose from are in your play area", Color.SoftBlue)
+        setupGainSpiritChoices(obj, choices)
+        player.broadcast("Your randomized spirits to choose from are in your play area", Color.SoftBlue)
     else
-        Player[player.color].broadcast("No suitable spirits were found", Color.Red)
+        player.broadcast("No suitable spirits were found", Color.Red)
     end
 end
 function getNewSpirit(tags, complexities)
@@ -1971,65 +1999,47 @@ function getNewSpirit(tags, complexities)
         return nil
     end
     local aspect = sourceSpirit.call("RandomAspect", {obj = spirit})
-    spiritChoices[spirit.getName()] = {guid=spirit.guid, aspect=aspect}
+    spiritChoices[spirit.getName()] = {guid=spirit.guid}
     spiritChoicesLength = spiritChoicesLength + 1
     return spirit, aspect
 end
-function pickSpirit1(obj, color)
-    if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 3, color)
-end
-function pickSpirit2(obj, color)
-    if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 4, color)
-end
-function pickSpirit3(obj, color)
-    if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 5, color)
-end
-function pickSpirit4(obj, color)
-    if Global.getTable("playerTables")[color] ~= obj then return end
-    pickSpirit(obj, 6, color)
-end
-function replaceSpirit(obj, index, color)
+function replaceSpirit(obj, oldSpirit, player)
     local tags = getSpiritTags()
     if tags == nil then
-        Player[color].broadcast("You have no expansions selected", Color.Red)
+        player.broadcast("You have no expansions selected", Color.Red)
         return
     end
     local complexities = getSpiritComplexities()
     if complexities == nil then
-        Player[color].broadcast("You have no complexities selected", Color.Red)
+        player.broadcast("You have no complexities selected", Color.Red)
         return
     end
-    local spirit = getNewSpirit(tags, complexities)
+    local spirit, aspect = getNewSpirit(tags, complexities)
+    local choices = getGainSpiritChoices(obj)
+    for _, choice in pairs(choices) do
+        if choice.spirit == oldSpirit then
+            choice.spirit = spirit and spirit.getName()
+            choice.aspect = aspect
+            break
+        end
+    end
+    setupGainSpiritChoices(obj, choices)
     if spirit ~= nil then
-        Player[color].broadcast("Spirit unavailable getting new one", Color.Red)
-        obj.editButton({
-            index = index,
-            label = spirit.getName(),
-        })
+        player.broadcast("Spirit unavailable getting new one", Color.Red)
     else
-        Player[color].broadcast("No suitable replacment was found", Color.Red)
-        obj.editButton({
-            index = index,
-            label = "",
-            width = 0,
-            height = 0,
-        })
+        player.broadcast("No suitable replacment was found", Color.Red)
     end
 end
-function pickSpirit(obj, index, color)
-    local name = obj.getButtons()[index+1].label
-    local start,_ = string.find(name, " %- ")
-    if start ~= nil then
-        name = string.sub(name, 1, start-1)
-    end
-    local data = spiritChoices[name]
-    if isSpiritPickable({guid = data.guid}) then
-        sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(data.guid), color = color, aspect = data.aspect})
+function pickGainSpiritChoice(player, guid, id)
+    local obj = getObjectFromGUID(guid)
+    if Global.getTable("playerTables")[player.color] ~= obj then return end
+    local spirit = obj.UI.getAttribute(id, "spirit")
+    local aspect = obj.UI.getAttribute(id, "aspect")
+    local spiritGuid = spiritChoices[spirit].guid
+    if isSpiritPickable({guid = spiritGuid}) then
+        sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(spiritGuid), color = player.color, aspect = aspect})
     else
-        replaceSpirit(obj, index, color)
+        replaceSpirit(obj, spirit, player)
     end
 end
 function isSpiritPickable(params)
@@ -2048,6 +2058,12 @@ function addSpirit(params)
     if pickedSpirits[params.spirit.getName()] then
         return false
     end
+
+    -- If spirit with same name has already been added, assume this is pulling spirit panel out of bag
+    if allSpirits[params.spirit.getName()] then
+        return false
+    end
+    allSpirits[params.spirit.getName()] = true
 
     -- In case of state change, update existing choice with new guid
     if spiritChoices[params.spirit.getName()] ~= nil then
@@ -2088,6 +2104,7 @@ function addSpirit(params)
         complexity = "Very High"
     end
     spiritComplexities[params.spirit.guid] = complexity
+
     return true
 end
 function removeSpirit(params)
@@ -2103,6 +2120,8 @@ function removeSpirit(params)
         return
     end
 
+    -- TODO: fix bug with changing state for a spirit causing it to be picked
+
     pickedSpirits[params.spirit.getName()] = true
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
@@ -2112,24 +2131,20 @@ function removeSpirit(params)
 
             found = false
             for color,obj in pairs(Global.getTable("playerTables")) do
-                if params.color ~= color then
-                    local buttons = obj.getButtons()
-                    if buttons ~= nil then
-                        for i=4,#buttons do
-                            local label = buttons[i].label
-                            local start,_ = string.find(label, " %- ")
-                            if start ~= nil then
-                                label = string.sub(label, 1, start-1)
-                            end
-                            if name == label then
-                                replaceSpirit(obj, i-1, color)
-                                found = true
-                                break
-                            end
-                        end
-                        if found then
+                if params.color == color then
+                    -- This is the table of the player selecting the spirit, so remove the choice buttons.
+                    setupGainSpiritChoices(obj, {})
+                else
+                    local choices = getGainSpiritChoices(obj)
+                    for _, choice in pairs(choices) do
+                        if choice.spirit == name then
+                            replaceSpirit(obj, choice.spirit, Player[color])
+                            found = true
                             break
                         end
+                    end
+                    if found then
+                        break
                     end
                 end
             end
@@ -2138,10 +2153,6 @@ function removeSpirit(params)
     end
 end
 
-function toggleStrangeMadness()
-    optionalStrangeMadness = not optionalStrangeMadness
-    self.UI.setAttribute("strangeMadness", "isOn", optionalStrangeMadness)
-end
 function toggleSoloBlight()
     optionalSoloBlight = not optionalSoloBlight
     self.UI.setAttribute("soloBlight", "isOn", optionalSoloBlight)
@@ -2175,9 +2186,9 @@ function toggleBoardPairings()
     optionalBoardPairings = not optionalBoardPairings
     self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
 end
-function toggleDigitalEvents()
-    optionalDigitalEvents = not optionalDigitalEvents
-    self.UI.setAttribute("digitalEvents", "isOn", optionalDigitalEvents)
+function toggleNatureIncarnateSetup()
+    optionalNatureIncarnateSetup = not optionalNatureIncarnateSetup
+    self.UI.setAttribute("natureIncarnateSetup", "isOn", optionalNatureIncarnateSetup)
 end
 function toggleSlaveRebellion()
     setSlaveRebellion(not optionalThematicRebellion, true)
@@ -2341,7 +2352,7 @@ function updateXml(obj, updateFunctions)
     end
     obj.UI.setXmlTable(t, {})
 end
-function getXml(updateFunctions)
+function getXml(obj, updateFunctions)
     local function recurse(t)
         local shouldRecurse = false
         for _, f in pairs(updateFunctions) do
@@ -2355,7 +2366,7 @@ function getXml(updateFunctions)
             end
         end
     end
-    local t = self.UI.getXmlTable()
+    local t = obj.UI.getXmlTable()
     for _,v in pairs(t) do
         recurse(v)
     end
@@ -2764,7 +2775,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     return config
 end
 function setWeeklyChallengeUI(config)
-    difficulty = difficultyCheck(config)
+    local difficulty = difficultyCheck(config)
     self.UI.setAttribute("challengeLeadingAdversary", "text", "Leading Adversary: "..config.adversary.." "..config.adversaryLevel)
     if config.adversary2 then
         self.UI.setAttribute("challengeSupportingAdversary", "text", "Supporting Adversary: "..config.adversary2.." "..config.adversaryLevel2)
@@ -2813,7 +2824,7 @@ end
 
 function togglePlaytestExpansion(_, selected, id)
     playtestExpansion = selected
-    getXml{updateDropdownSelection(id, selected)}
+    getXml(self, {updateDropdownSelection(id, selected)})
 end
 function togglePlaytestFear(_, selected, id)
     if playtestExpansion ~= "None" then

@@ -11,7 +11,7 @@
     "scaleY": 0.800000011920929,
     "scaleZ": 0.5
   },
-  "Nickname": "Yellow Ready",
+  "Nickname": "Ready",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.9049999713897705,
-    "g": 0.8980000019073486,
-    "b": 0.17199915647506714
+    "r": 0.5685999393463135,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
   },
   "Tags": [
     "Uninteractable"

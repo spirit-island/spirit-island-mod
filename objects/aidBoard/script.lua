@@ -434,7 +434,9 @@ function advanceInvaderCards()
             for _,hit in pairs(hitObjects) do
                 if hit.type == "Card" and not hit.is_face_down then
                     if hit.getLock() then
-                        hit.setLock(false)
+                        if i ~= "Ravage" then
+                            hit.setLock(false)
+                        end
                         hit.setPositionSmooth(hit.getPosition() + Vector(0, 0, 1) * (depth - 1))
                         currentOffset = currentOffset + Vector(0, 0, 1)
                     else
@@ -519,7 +521,7 @@ function aidPanelScanLoop()
                         return
                     end
                     local iType = hit.getVar("cardInvaderType")
-                    local escalate = hit.getVar("cardInvaderStage") == 2 and iType ~= "C"
+                    local escalate = hit.getVar("cardInvaderStage") == 2 and iType ~= "C" and iType ~= "L"
                     table.insert(stageTable,{type=iType,escalate=escalate})
                     count = count + 1
                 end
@@ -848,16 +850,16 @@ function invaderCardBroadcast(card)
 end
 ---- Ready Helper Section
 playerReadyGuids = {
-    ["Red"] = "c64244",
-    ["Purple"] = "5a7378",
-    ["Yellow"] = "f348b7",
-    ["Blue"] = "69401f",
-    ["Green"] = "a46d80",
-    ["Orange"] = "72fd72",
+    {guid = "c64244"},
+    {guid = "5a7378"},
+    {guid = "f348b7"},
+    {guid = "69401f"},
+    {guid = "a46d80"},
+    {guid = "72fd72"},
 }
 function placeReadyTokens()
-    for _,v in pairs (playerReadyGuids) do
-        local obj = getObjectFromGUID(v)
+    for _,data in pairs(playerReadyGuids) do
+        local obj = getObjectFromGUID(data.guid)
         local pos = obj.getPosition()
         if pos.x - self.getPosition().x > 10 then
             obj.setPosition(pos - tokenOffset)
@@ -888,8 +890,8 @@ function toggleReady()
     local totalObjects = 0
     readyVisible = not readyVisible
     if readyVisible then
-        for _,v in pairs (playerReadyGuids) do
-            local obj = getObjectFromGUID(v)
+        for _,data in pairs(playerReadyGuids) do
+            local obj = getObjectFromGUID(data.guid)
             local pos = obj.getPosition()
             obj.setPositionSmooth(pos + tokenOffset)
             totalObjects = totalObjects + 1
@@ -897,8 +899,8 @@ function toggleReady()
         end
         Wait.condition(function() self.editButton({index = 8, label = "Close", width = 2100, height = 500, tooltip = ""}) end, function() return objectsMoved == totalObjects end)
     else
-        for _,v in pairs (playerReadyGuids) do
-            local obj = getObjectFromGUID(v)
+        for _,data in pairs(playerReadyGuids) do
+            local obj = getObjectFromGUID(data.guid)
             local pos = obj.getPosition()
             obj.setPositionSmooth(pos - tokenOffset)
             totalObjects = totalObjects + 1
@@ -912,23 +914,36 @@ function scanReady()
     local selectedColors = Global.getVar("selectedColors")
     local yes = {}
     local no = {}
-    for color,guid in pairs(playerReadyGuids) do
-        if selectedColors[color] then
-            if selectedColors[color].ready and selectedColors[color].ready.is_face_down then
-                getObjectFromGUID(guid).editButton({
+    local tints = Global.getTable("Tints")
+    for _,data in pairs(playerReadyGuids) do
+        local readyToken = getObjectFromGUID(data.guid)
+        if data.color and selectedColors[data.color] then
+            local tokenTint = tints[data.color].Presence
+            if tints[data.color].Token then
+                tokenTint = tints[data.color].Token
+            end
+            readyToken.setInvisibleTo({})
+            readyToken.setColorTint(Color.fromHex(tokenTint))
+
+            if selectedColors[data.color].ready and selectedColors[data.color].ready.is_face_down then
+                readyToken.editButton({
                     index=0,
                     label="✓",
                     font_color="Green",
                 })
-                table.insert(yes, color)
+                table.insert(yes, data.color)
             else
-                getObjectFromGUID(guid).editButton({
+                readyToken.editButton({
                     index=0,
                     label="X",
                     font_color="Red",
                 })
-                table.insert(no, color)
+                table.insert(no, data.color)
             end
+        else
+            readyToken.setInvisibleTo(Player.getColors())
+            readyToken.setColorTint(Color.fromHex("#918F8F"))
+            readyToken.editButton({index=0, label=""})
         end
     end
     setReadyUI(yes, no)
@@ -975,7 +990,7 @@ function Elements:__tostring()
 end
 
 function placeElementTokens()
-    for _, v in pairs (elementGuids) do
+    for _, v in pairs(elementGuids) do
         local obj = getObjectFromGUID(v)
         local pos = obj.getPosition()
         if pos.x - self.getPosition().x > 10 then
@@ -1008,7 +1023,7 @@ function toggleElements()
     local totalObjects = 0
     elementsVisible = not elementsVisible
     if elementsVisible then
-        for _,v in pairs (elementGuids) do
+        for _,v in pairs(elementGuids) do
             local obj = getObjectFromGUID(v)
             local pos = obj.getPosition()
             obj.setPositionSmooth(pos + tokenOffset)
@@ -1017,7 +1032,7 @@ function toggleElements()
         end
         Wait.condition(function() self.editButton({index = 9, label = "Close", width = 2100, height = 500, tooltip = ""}) end, function() return objectsMoved == totalObjects end)
     else
-        for _,v in pairs (elementGuids) do
+        for _,v in pairs(elementGuids) do
             local obj = getObjectFromGUID(v)
             local pos = obj.getPosition()
             obj.setPositionSmooth(pos - tokenOffset)

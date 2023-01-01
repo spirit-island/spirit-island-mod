@@ -8,29 +8,9 @@ function doSetup(params)
         return
     end
 
-    local handZone = Player[color].getHandTransform(2)
-    handZone.position.z = handZone.position.z - 5.5
-    spawnObjectData({
-        data = {
-            Name = "HandTrigger",
-            FogColor = color,
-            Transform = {
-                posX = 0,
-                posY = 0,
-                posZ = 0,
-                rotX = 0,
-                rotY = 0,
-                rotZ = 0,
-                scaleX = 1.0,
-                scaleY = 1.0,
-                scaleZ = 1.0
-            },
-            Locked = true,
-        },
-        position = handZone.position,
-        rotation = handZone.rotation,
-        scale = handZone.scale,
-    })
+    local position = Player[color].getHandTransform(2).position
+    position.z = position.z - 5.5
+    Global.call("SpawnHand", {color = color, position = position})
 
     Wait.frames(function()
         local count = 4

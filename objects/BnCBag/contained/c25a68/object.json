@@ -1,9 +1,9 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -47.128299713134766,
-    "posY": 1.2237999439239502,
-    "posZ": 28.302200317382812,
+    "posX": 16.280500411987305,
+    "posY": 2.326200008392334,
+    "posZ": 22.70829963684082,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -11,7 +11,7 @@
     "scaleY": 1.0,
     "scaleZ": 1.5299999713897705
   },
-  "Nickname": "Growth Through Sacrifice",
+  "Nickname": "Roiling Bog and Snagging Thorn",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -42,6 +42,17 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": true,
-  "CardID": 58414,
-  "SidewaysCard": false
+  "CardID": 105500,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "1055": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1938265667438481114/38E5E5C6AACFCA1DF9DC7A7A36D189F4778ACD08/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756115964/5577A639021512840E77A6FD8D2DF79DB4E1AEE5/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
 }

@@ -145,7 +145,7 @@ pieceMap = {
 {  "Explorer",  "Dahan",  "Dahan",  "Dahan"  },
 {  },
 {  "Badlands"  },
-{  },
+{  "Vitality"  },
 {  "Explorer"  },
 {  "Dahan",  "Dahan"  },
 {  "Dahan",  "Dahan"  }

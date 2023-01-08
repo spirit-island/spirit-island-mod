@@ -2125,30 +2125,37 @@ function removeSpirit(params)
     pickedSpirits[params.spirit.getName()] = true
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
+    found = false
     for name,data in pairs(spiritChoices) do
         if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
+            found = true
+            break
+        end
+    end
 
-            found = false
-            for color,obj in pairs(Global.getTable("playerTables")) do
-                if params.color == color then
-                    -- This is the table of the player selecting the spirit, so remove the choice buttons.
-                    setupGainSpiritChoices(obj, {})
-                else
-                    local choices = getGainSpiritChoices(obj)
-                    for _, choice in pairs(choices) do
-                        if choice.spirit == name then
-                            replaceSpirit(obj, choice.spirit, Player[color])
-                            found = true
-                            break
-                        end
-                    end
-                    if found then
-                        break
-                    end
+    local foundColor = false
+    local foundGain = not found
+    for color,obj in pairs(Global.getTable("playerTables")) do
+        if params.color == color then
+            -- This is the table of the player selecting the spirit, so remove the choice buttons.
+            setupGainSpiritChoices(obj, {})
+            foundColor = true
+            if foundGain then
+                break
+            end
+        elseif not foundGain then
+            local choices = getGainSpiritChoices(obj)
+            for _, choice in pairs(choices) do
+                if choice.spirit == name then
+                    replaceSpirit(obj, choice.spirit, Player[color])
+                    foundGain = true
+                    break
                 end
             end
-            break
+            if foundColor then
+                break
+            end
         end
     end
 end

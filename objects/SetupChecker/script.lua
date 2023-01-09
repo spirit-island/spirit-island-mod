@@ -2126,7 +2126,7 @@ function removeSpirit(params)
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
     found = false
-    for name,data in pairs(spiritChoices) do
+    for _,data in pairs(spiritChoices) do
         if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
             found = true
@@ -2147,7 +2147,7 @@ function removeSpirit(params)
         elseif not foundGain then
             local choices = getGainSpiritChoices(obj)
             for _, choice in pairs(choices) do
-                if choice.spirit == name then
+                if choice.spirit == params.spirit.getName() then
                     replaceSpirit(obj, choice.spirit, Player[color])
                     foundGain = true
                     break

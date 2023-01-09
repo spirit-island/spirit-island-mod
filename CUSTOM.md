@@ -1,8 +1,10 @@
 ### Editors
 - There are currently 3 editors: Spirit, Power, and Blight
 - They are found on right side of mod by click the "Show Editors" button
+- Make sure you have selected a player color first
 
 ### Spirits
+#### In place of following these instructions you can instead use https://spiritislandbuilder.com/ and hit the "Export TTS file" button
 - https://kb.tabletopsimulator.com/custom-content/custom-tile/
 - Set name of object to that of spirit
   - https://kb.tabletopsimulator.com/player-guides/context-menu/

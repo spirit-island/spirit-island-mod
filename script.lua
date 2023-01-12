@@ -1017,6 +1017,10 @@ end
 function usingBadlands()
     return expansions["Jagged Earth"]
 end
+function usingVitality()
+    -- TODO: change me to check for nature incarnate expansion later
+    return SetupChecker.getVar("optionalNatureIncarnateSetup")
+end
 function randomScenario()
     if difficulty > SetupChecker.getVar("randomMax") then
         return
@@ -4796,7 +4800,7 @@ function place(params)
             return true
         end
     elseif params.name == "Vitality" then
-        if usingBadlands() then -- TODO: change me to check for nature incarnate expansion later
+        if usingVitality() then
             temp = vitalityBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
             return true

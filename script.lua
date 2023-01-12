@@ -5363,7 +5363,9 @@ function spiritUpdater()
             spiritsScanned[v.guid] = true
             if v.getLuaScript() ~= sScript then
                 v.setLuaScript(sScript)
+                v.setVar("reload", true)
                 v = v.reload()
+                v.setVar("reload", true)
                 broadcastToAll(v.getName().." has been updated to the current version!")
             end
         end

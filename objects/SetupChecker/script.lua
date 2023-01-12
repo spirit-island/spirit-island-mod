@@ -375,7 +375,7 @@ function onObjectSpawn(obj)
         elseif obj.getVar("setup") then
             obj.setVar("setup")
         else
-            addSpirit({spirit=obj})
+            sourceSpirit.call("load", {obj = obj})
         end
     elseif not setupStarted then
         if obj.type == "Card" then
@@ -2060,7 +2060,7 @@ function addSpirit(params)
     end
 
     -- If spirit with same name has already been added, assume this is pulling spirit panel out of bag
-    if allSpirits[params.spirit.getName()] then
+    if allSpirits[params.spirit.getName()] and not params.spirit.getVar("reload") then
         return false
     end
     allSpirits[params.spirit.getName()] = true
@@ -2120,9 +2120,11 @@ function removeSpirit(params)
         return
     end
 
-    -- TODO: fix bug with changing state for a spirit causing it to be picked
+    if params.color ~= nil then
+        pickedSpirits[params.spirit.getName()] = true
+    end
 
-    pickedSpirits[params.spirit.getName()] = true
+    allSpirits[params.spirit.getName()] = nil
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
     found = false

@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.7.1"
+version = "3.7.1-beta.3"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -1645,8 +1645,31 @@ function SetupFear()
     local fearDeck = fearDeckSetupZone.getObjects()[1]
     local count = 0
 
+    local function bncFearOptions(bncDeck, callback)
+        if SetupChecker.getVar("optionalPlaytestWarping") then
+            local banList = SetupChecker.getTable("banList")["Fear Cards"]
+            if not banList["Explorers Are Reluctant"] and not banList["b1fd82"] then
+                bncDeck.takeObject({guid = "b1fd82"}).destruct()
+            end
+            if not banList["Immigration Slows"] and not banList["883057"] then
+                bncDeck.takeObject({guid = "883057"}).destruct()
+            end
+        end
+        if callback ~= nil then
+            callback()
+        end
+    end
+
+    if expansions["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
+        bncFearOptions(fearDeck)
+    end
+
     fearDeck.shuffle()
-    SetupPlaytestDeck(fearDeckSetupZone, "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
+    if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+        SetupPlaytestDeck(fearDeckSetupZone, "Fear", SetupChecker.getVar("playtestFear"), bncFearOptions, nil)
+    else
+        SetupPlaytestDeck(fearDeckSetupZone, "Fear", SetupChecker.getVar("playtestFear"), nil, nil)
+    end
     local maxCards = #fearDeck.getObjects()
 
     --[[
@@ -1898,9 +1921,28 @@ function SetupPowerDecks()
             SetupPlaytestPowerDeck(minorPowers, "Minor Powers", SetupChecker.getVar("playtestMinorPower"), nil)
         end
 
+        local function bncMajorPowerOptions(bncDeck, callback)
+            if SetupChecker.getVar("optionalPlaytestWarping") then
+                local banList = SetupChecker.getTable("banList")["Major Powers"]
+                if not banList["Unrelenting Growth"] and not banList["d3636b"] then
+                    bncDeck.takeObject({guid = "d3636b"}).destruct()
+                end
+            end
+            if callback ~= nil then
+                callback()
+            end
+        end
+
         local majorPowers = getObjectFromGUID(majorPowerZone).getObjects()[1]
+        if expansions["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
+            bncMajorPowerOptions(majorPowers)
+        end
         majorPowers.shuffle()
-        SetupPlaytestPowerDeck(majorPowers, "Major Powers", SetupChecker.getVar("playtestMajorPower"), nil)
+        if SetupChecker.getVar("playtestExpansion") == "Branch & Claw" then
+            SetupPlaytestPowerDeck(majorPowers, "Major Powers", SetupChecker.getVar("playtestMajorPower"), bncMajorPowerOptions)
+        else
+            SetupPlaytestPowerDeck(majorPowers, "Major Powers", SetupChecker.getVar("playtestMajorPower"), nil)
+        end
 
         local banList = SetupChecker.getTable("banList")["Major Powers"]
         local exploratoryPowersDone = false
@@ -2208,7 +2250,13 @@ function SetupBlightCard()
         Wait.condition(function()
             local banList = SetupChecker.getTable("banList")["Blight Cards"]
             local bncBlightSetup = 0
-            if SetupChecker.getVar("exploratoryAid") and not banList["Aid from Lesser Spirits"] and not banList["bf66eb"] then
+            if SetupChecker.getVar("optionalPlaytestWarping") then
+                if not banList["Aid from Lesser Spirits"] and not banList["bf66eb"] then
+                    bncDeck.takeObject({guid = "bf66eb"}).destruct()
+                end
+                cardsSetup = cardsSetup + 1
+                bncBlightSetup = bncBlightSetup + 1
+            elseif SetupChecker.getVar("exploratoryAid") and not banList["Aid from Lesser Spirits"] and not banList["bf66eb"] then
                 bncDeck.takeObject({
                     guid = "bf66eb",
                     callback_function = function(obj)
@@ -3151,6 +3199,11 @@ function SetupEventDeck()
         Wait.condition(function()
             local banList = SetupChecker.getTable("banList")["Event Cards"]
             local bncEventSetup = 0
+            if SetupChecker.getVar("optionalPlaytestWarping") then
+                if not banList["Years of Little Rain"] and not banList["995b5b"] then
+                    bncDeck.takeObject({guid = "995b5b"}).destruct()
+                end
+            end
             if not SetupChecker.getVar("optionalNatureIncarnateSetup") then
                 if not banList["War Touches the Island's Shores"] and not banList["cfd4d1"] then
                     local card = getObjectFromGUID("BnCBag").takeObject({
@@ -3205,9 +3258,32 @@ function SetupEventDeck()
             end
         end, function() return not bncDeck.loading_custom end)
     end
+    local function jeEventOptions(jeDeck, callback)
+        Wait.condition(function()
+            if SetupChecker.getVar("optionalPlaytestWarping") then
+                local banList = SetupChecker.getTable("banList")["Event Cards"]
+                if not banList["Numinous Crisis"] and not banList["3b3b2c"] then
+                    jeDeck.takeObject({guid = "3b3b2c"}).destruct()
+                end
+                if not banList["Lesser Spirits Imperiled"] and not banList["e0433c"] then
+                    jeDeck.takeObject({guid = "e0433c"}).destruct()
+                end
+            end
+            cardsSetup = cardsSetup + 1
+            if callback ~= nil then
+                callback()
+            end
+        end, function() return not jeDeck.loading_custom end)
+    end
 
     if events["Branch & Claw"] and SetupChecker.getVar("playtestExpansion") ~= "Branch & Claw" then
         bncEventOptions(deck)
+    else
+        cardsSetup = cardsSetup + 1
+    end
+
+    if events["Jagged Earth"] and SetupChecker.getVar("playtestExpansion") ~= "Jagged Earth" then
+        jeEventOptions(deck)
     else
         cardsSetup = cardsSetup + 1
     end
@@ -3222,10 +3298,18 @@ function SetupEventDeck()
                 stagesSetup = stagesSetup + 1
             end
         end
+        if SetupChecker.getVar("playtestExpansion") == "Jagged Earth" then
+            grabbedDeck = true
+            if events["Jagged Earth"] then
+                SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), jeEventOptions, function() stagesSetup = stagesSetup + 1 end)
+            else
+                stagesSetup = stagesSetup + 1
+            end
+        end
         if not grabbedDeck then
             SetupPlaytestDeck(eventDeckZone, "Events", SetupChecker.getVar("playtestEvent"), nil, function() stagesSetup = stagesSetup + 1 end)
         end
-    end, function() return cardsSetup == 1 end)
+    end, function() return cardsSetup == 2 end)
     return 1
 end
 ----- Map Section
@@ -4800,7 +4884,12 @@ function place(params)
             return true
         end
     elseif params.name == "Vitality" then
+<<<<<<< HEAD
+        if expansions["Naptime"] then
+        --if usingBadlands() then -- TODO: change me to check for nature incarnate expansion later
+=======
         if usingVitality() then
+>>>>>>> beta
             temp = vitalityBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
         else
             return true

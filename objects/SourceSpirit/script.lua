@@ -9,7 +9,7 @@ function onLoad(saved_data)
 end
 -- Source Spirit start
 function load(params)
-    if params.saved_data ~= "" then
+    if params.saved_data and params.saved_data ~= "" then
         local loaded_data = JSON.decode(params.saved_data)
         params.obj.setVar("broadcast", loaded_data.broadcast)
         params.obj.setTable("trackElements", loaded_data.trackElements)

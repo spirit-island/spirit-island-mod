@@ -375,7 +375,7 @@ function onObjectSpawn(obj)
         elseif obj.getVar("setup") then
             obj.setVar("setup")
         else
-            addSpirit({spirit=obj})
+            sourceSpirit.call("load", {obj = obj})
         end
     elseif not setupStarted then
         if obj.type == "Card" then
@@ -2060,7 +2060,7 @@ function addSpirit(params)
     end
 
     -- If spirit with same name has already been added, assume this is pulling spirit panel out of bag
-    if allSpirits[params.spirit.getName()] then
+    if allSpirits[params.spirit.getName()] and not params.spirit.getVar("reload") then
         return false
     end
     allSpirits[params.spirit.getName()] = true
@@ -2120,35 +2120,44 @@ function removeSpirit(params)
         return
     end
 
-    -- TODO: fix bug with changing state for a spirit causing it to be picked
+    if params.color ~= nil then
+        pickedSpirits[params.spirit.getName()] = true
+    end
 
-    pickedSpirits[params.spirit.getName()] = true
+    allSpirits[params.spirit.getName()] = nil
     spiritTags[params.spirit.guid] = nil
     spiritComplexities[params.spirit.guid] = nil
-    for name,data in pairs(spiritChoices) do
+    found = false
+    for _,data in pairs(spiritChoices) do
         if data.guid == params.spirit.guid then
             spiritChoicesLength = spiritChoicesLength - 1
+            found = true
+            break
+        end
+    end
 
-            found = false
-            for color,obj in pairs(Global.getTable("playerTables")) do
-                if params.color == color then
-                    -- This is the table of the player selecting the spirit, so remove the choice buttons.
-                    setupGainSpiritChoices(obj, {})
-                else
-                    local choices = getGainSpiritChoices(obj)
-                    for _, choice in pairs(choices) do
-                        if choice.spirit == name then
-                            replaceSpirit(obj, choice.spirit, Player[color])
-                            found = true
-                            break
-                        end
-                    end
-                    if found then
-                        break
-                    end
+    local foundColor = false
+    local foundGain = not found
+    for color,obj in pairs(Global.getTable("playerTables")) do
+        if params.color == color then
+            -- This is the table of the player selecting the spirit, so remove the choice buttons.
+            setupGainSpiritChoices(obj, {})
+            foundColor = true
+            if foundGain then
+                break
+            end
+        elseif not foundGain then
+            local choices = getGainSpiritChoices(obj)
+            for _, choice in pairs(choices) do
+                if choice.spirit == params.spirit.getName() then
+                    replaceSpirit(obj, choice.spirit, Player[color])
+                    foundGain = true
+                    break
                 end
             end
-            break
+            if foundColor then
+                break
+            end
         end
     end
 end

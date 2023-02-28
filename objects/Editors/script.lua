@@ -5,8 +5,8 @@ contents = {
     ["Energy"] = {116.48, 0.95, 54.39},
     ["Threshold"] = {114.81, 0.95, 49.44},
     ["SmallElements"] = {116.48, 0.95, 49.44},
-    ["BlightCardEditor"] = {109.33, 0.85, 42.86},
-    ["PowerEditor"] = {98.98, 0.85, 42.86},
+    ["BlightCardEditor"] = {98.98, 0.85, 42.86},
+    ["PowerEditor"] = {109.33, 0.85, 42.86},
 }
 
 function onLoad()

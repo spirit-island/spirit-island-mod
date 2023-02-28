@@ -3295,19 +3295,30 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
-            local obj = spirit.takeObject({
-                guid = "606f23",
-                position = spirit.getPosition() + Vector(0, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    temp.setVar("setup", true)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        postSetupSteps = postSetupSteps + 1
-                    end, 1)
-                end,
-            })
-            obj.setVar("setup", true)
+            local foundSpirit = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "606f23" then
+                    foundSpirit = true
+                    break
+                end
+            end
+            if foundSpirit then
+                local obj = spirit.takeObject({
+                    guid = "606f23",
+                    position = spirit.getPosition() + Vector(0, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        temp.setVar("setup", true)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            postSetupSteps = postSetupSteps + 1
+                        end, 1)
+                    end,
+                })
+                obj.setVar("setup", true)
+            else
+                postSetupSteps = postSetupSteps + 1
+            end
         else
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
@@ -3326,19 +3337,30 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("45e367")
         if spirit ~= nil then
-            local obj = spirit.takeObject({
-                guid = "bd2a4a",
-                position = spirit.getPosition() + Vector(0, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    temp.setVar("setup", true)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        postSetupSteps = postSetupSteps + 1
-                    end, 1)
-                end,
-            })
-            obj.setVar("setup", true)
+            local foundSpirit = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "bd2a4a" then
+                    foundSpirit = true
+                    break
+                end
+            end
+            if foundSpirit then
+                local obj = spirit.takeObject({
+                    guid = "bd2a4a",
+                    position = spirit.getPosition() + Vector(0, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        temp.setVar("setup", true)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            postSetupSteps = postSetupSteps + 1
+                        end, 1)
+                    end,
+                })
+                obj.setVar("setup", true)
+            else
+                postSetupSteps = postSetupSteps + 1
+            end
         else
             spirit = getObjectFromGUID("bd2a4a")
             if spirit ~= nil then
@@ -3357,28 +3379,50 @@ function PostSetup()
         local spirit = getObjectFromGUID("472723")
         if spirit ~= nil then
             local cardsDone = 0
-            spirit.takeObject({
-                guid = "8152de",
-                position = spirit.getPosition() + Vector(-2, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        cardsDone = cardsDone + 1
-                    end, 1)
-                end,
-            })
-            spirit.takeObject({
-                guid = "78d741",
-                position = spirit.getPosition() + Vector(2, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        cardsDone = cardsDone + 1
-                    end, 1)
-                end,
-            })
+            local foundCard = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "8152de" then
+                    foundCard = true
+                    break
+                end
+            end
+            if foundCard then
+                spirit.takeObject({
+                    guid = "8152de",
+                    position = spirit.getPosition() + Vector(-2, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            cardsDone = cardsDone + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsDone = cardsDone + 1
+            end
+            foundCard = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "78d741" then
+                    foundCard = true
+                    break
+                end
+            end
+            if foundCard then
+                spirit.takeObject({
+                    guid = "78d741",
+                    position = spirit.getPosition() + Vector(2, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            cardsDone = cardsDone + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsDone = cardsDone + 1
+            end
             Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return cardsDone == 2 end)
         else
             local card = getObjectFromGUID("8152de")

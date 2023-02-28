@@ -21,7 +21,7 @@ function onLoad(save_state)
         end
         Wait.frames(function()
             self.UI.setAttribute("count", "text", healthCount)
-            self.UI.setAttribute("players", "text", Global.getVar("numPlayers"))
+            self.UI.setAttribute("players", "text", getNumPlayers())
             self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
             local visiblity = ""
             if autoExchange then
@@ -61,7 +61,7 @@ function doSetup(params)
         return
     end
     self.UI.setAttribute("count", "text", healthCount)
-    self.UI.setAttribute("players", "text", Global.getVar("numPlayers"))
+    self.UI.setAttribute("players", "text", getNumPlayers())
     self.UI.setAttribute("drownPanel", "visibility", "")
     self.UI.setAttribute("drownPanel2", "visibility", "")
 end
@@ -81,7 +81,7 @@ function toggleExchange()
             font_color={0,0,0}, font_size=250
         })
     end
-    self.UI.setAttribute("players", "text", Global.getVar("numPlayers"))
+    self.UI.setAttribute("players", "text", getNumPlayers())
     self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
 end
 function exchange(_, color, alt_click)
@@ -90,7 +90,7 @@ function exchange(_, color, alt_click)
         Player[color].broadcast("Unable to find Ocean's Hungry Grasp", Color.Red)
         return
     end
-    local numPlayers = Global.getVar("numPlayers")
+    local numPlayers = getNumPlayers()
 
     if alt_click then
         local success = Global.call("giveEnergy", {color=spiritColor, energy=-1, ignoreDebt=false})
@@ -116,7 +116,7 @@ function exchange(_, color, alt_click)
 end
 
 function exchangeAuto()
-    local numPlayers = Global.getVar("numPlayers")
+    local numPlayers = getNumPlayers()
     local energy = healthCount / numPlayers
     if energy == 0 then return end
     local color = Global.call("getSpiritColor", {name = "Ocean's Hungry Grasp"})
@@ -126,4 +126,14 @@ function exchangeAuto()
     else
         broadcastToAll("Unable to find Ocean player to give exchanged Energy to", Color.Red)
     end
+end
+
+function getNumPlayers()
+    local numPlayers = Global.getVar("numPlayers")
+    if Global.getVar("SetupChecker").getVar("optionalDrowningCap") then
+        if numPlayers > 4 then
+            return 4
+        end
+    end
+    return numPlayers
 end

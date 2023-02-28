@@ -7654,3 +7654,7 @@ function updateCurrentPhase(clear)
     end
     UI.setAttributes(id, attributes)
 end
+
+function EnableOceanDowningLimit()
+    SetupChecker.setVar("optionalDrowningCap", true)
+end

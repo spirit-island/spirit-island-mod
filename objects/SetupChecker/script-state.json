@@ -213,6 +213,7 @@
     "blightCard": true,
     "blightSetup": true,
     "boardPairings": true,
+    "drowningCap": false,
     "extraBoard": false,
     "gameResults": true,
     "natureIncarnateSetup": true,

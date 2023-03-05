@@ -614,11 +614,11 @@ function onLoad(saved_data)
     addHotkey("Forget Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
-                forgetPowerCard({card = obj, discardHeight = 1})
+                forgetPowerCard({card = obj, discardHeight = 1, color = playerColor})
             end
         end
         if isPowerCard({card=hoveredObject}) then
-            forgetPowerCard({card = hoveredObject, discardHeight = 1})
+            forgetPowerCard({card = hoveredObject, discardHeight = 1, color = playerColor})
         end
     end)
     addHotkey("Discard Power (to 2nd hand)", function (playerColor, hoveredObject, cursorLocation, key_down_up)
@@ -2155,6 +2155,10 @@ function forgetPowerCard(params)
     else
         -- Discard unknown cards to the unique power discard
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
+    end
+
+    if params.color then
+        Player[params.color].broadcast("Forgot "..params.card.getName())
     end
 
     -- HACK work around issue where setPositionSmooth doesn't move object from hand to non hand
@@ -7560,7 +7564,7 @@ function applyPowerCardContextMenuItems(card)
         function(player_color)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
                 if isPowerCard({card=obj}) then
-                    forgetPowerCard({card = obj, discardHeight = 1})
+                    forgetPowerCard({card = obj, discardHeight = 1, color = player_color})
                 end
             end
         end,

@@ -5,13 +5,9 @@ function onLoad(saved_data)
         local loaded_data = JSON.decode(saved_data)
         self.setTable("thresholds", loaded_data.thresholds)
     end
+    PickPower()
 end
 -- card loading end
-function onObjectSpawn(obj)
-    if obj == self then
-        PickPower()
-    end
-end
 function PickPower()
     self.createButton({
         click_function = "destroyBoard",

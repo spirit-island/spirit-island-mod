@@ -1,17 +1,15 @@
-function onObjectSpawn(obj)
-    if obj == self then
-        obj.createButton({
-            click_function = "removeCards",
-            function_owner = self,
-            label          = "Remove Invader Cards",
-            position       = Vector(0,0.3,0.72),
-            width          = 1500,
-            scale          = Vector(0.65,1,0.65),
-            height         = 160,
-            font_size      = 150,
-            tooltip = "Remove the bottommost Stage II and Stage III cards in the Invader Deck from the game"
-        })
-    end
+function onLoad()
+    self.createButton({
+        click_function = "removeCards",
+        function_owner = self,
+        label          = "Remove Invader Cards",
+        position       = Vector(0,0.3,0.72),
+        width          = 1500,
+        scale          = Vector(0.65,1,0.65),
+        height         = 160,
+        font_size      = 150,
+        tooltip = "Remove the bottommost Stage II and Stage III cards in the Invader Deck from the game"
+    })
 end
 function removeCards(card)
     local zone = Global.getVar("invaderDeckZone")

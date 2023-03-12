@@ -620,7 +620,7 @@ function getStage(o)
             end
             if found then
                 local _, finish = string.find(obj.lua_script,"cardInvaderStage=")
-                local stage = tonumber(string.sub(obj.lua_script,finish+1))
+                local stage = tonumber(string.sub(obj.lua_script,finish+1,finish+1))
                 -- Prussia early stage 3 should count as stage 2
                 if string.find(obj.lua_script,"special=") ~= nil then
                     stage = stage - 1

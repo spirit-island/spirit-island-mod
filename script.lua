@@ -3496,7 +3496,7 @@ function PostSetup()
             for _,card in pairs(cards) do
                 local start,finish = string.find(card.lua_script,"cardInvaderStage=")
                 if start ~= nil then
-                    local stage = tonumber(string.sub(card.lua_script,finish+1))
+                    local stage = tonumber(string.sub(card.lua_script,finish+1,finish+1))
                     local special = string.find(card.lua_script,"special=")
                     if special ~= nil then
                         stage = stage - 1

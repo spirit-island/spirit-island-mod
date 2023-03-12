@@ -21,7 +21,7 @@ function removeCards(card)
             for _,obj in pairs(deck.getObjects()) do
                 local start, finish = string.find(obj.lua_script,"cardInvaderStage=")
                 if start ~= nil then
-                    local stage = string.sub(obj.lua_script,finish+1)
+                    local stage = string.sub(obj.lua_script,finish+1,finish+1)
                     if stage == "2" then
                         stage2Guid = obj.guid
                     elseif stage == "3" then

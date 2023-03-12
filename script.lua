@@ -5042,7 +5042,7 @@ function checkPresenceLoss()
             -- Color does not already have presence on island
             if color ~= nil and not colors[color] then
                 -- Presence is currently being moved, count as being on island for now
-                if obj.held_by_color then
+                if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
                     colors[color] = true
                 else
                     local hits = Physics.cast({

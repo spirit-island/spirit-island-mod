@@ -5760,10 +5760,13 @@ function setupPlayerArea(params)
                     if entry.hasTag("Aspect") and not entry.is_face_down then
                         table.insert(aspects, entry)
                     end
-                    --Ignore if no elements entry
-                    if entry.getVar("elements") ~= nil then
-                        -- Skip counting face down cards and those below spirit panel
-                        if not entry.is_face_down and entry.getPosition().z > selected.zone.getPosition().z then
+                    --Ignore if no elements entry or if face down
+                    if entry.getVar("elements") ~= nil and not entry.is_face_down then
+                        if entry.hasTag("Aspect") then -- Count elements on aspects regardless of location or locking
+                            local cardElements = entry.getVar("elements")
+                            elements:add(cardElements)
+                            nonTokenElements:add(cardElements)
+                        elseif entry.getPosition().z > selected.zone.getPosition().z then -- Skip counting power cards below spirit panel
                             -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
                             if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
                                 local cardElements = entry.getVar("elements")

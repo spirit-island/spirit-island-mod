@@ -5,6 +5,7 @@ function doSetup(params)
         return
     elseif color ~= Global.call("getSpiritColor", {name = "Fractured Days Split the Sky"}) then
         Player[color].broadcast("You have not picked Fractured Days Split the Sky!", Color.Red)
+        setupComplete = false
         return
     end
 

@@ -12,6 +12,7 @@ function doSetup(params)
         return
     elseif color ~= Global.call("getSpiritColor", {name = "River Surges in Sunlight"}) then
         Player[color].broadcast("You have not picked River Surges in Sunlight!", Color.Red)
+        setupComplete = false
         return
     end
 

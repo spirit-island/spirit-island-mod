@@ -5,6 +5,7 @@ function doSetup(params)
         return
     elseif color ~= Global.call("getSpiritColor", {name = "Lightning's Swift Strike"}) then
         Player[color].broadcast("You have not picked Lightning's Swift Strike!", Color.Red)
+        setupComplete = false
         return
     end
 

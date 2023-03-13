@@ -58,12 +58,13 @@ end
 
 function doSetup(params)
     if not Global.getVar("gameStarted") then
-        return
+        return false
     end
     self.UI.setAttribute("count", "text", healthCount)
     self.UI.setAttribute("players", "text", getNumPlayers())
     self.UI.setAttribute("drownPanel", "visibility", "")
     self.UI.setAttribute("drownPanel2", "visibility", "")
+    return true
 end
 
 function toggleExchange()

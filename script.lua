@@ -769,6 +769,13 @@ function onLoad(saved_data)
             UI.setAttribute("panelUIToggle","active","true")
             UI.setAttribute("panelTurnOverTurn", "text", "Turn: "..turn)
 
+            for _, presence in pairs(getObjectsWithTag("Presence")) do
+                onObjectEnterContainer(presence, presence)
+            end
+            for _, token in pairs(getObjectsWithTag("Label")) do
+                onObjectEnterContainer(token, token)
+            end
+
             updateCurrentPhase(false)
             seaTile.registerCollisions(false)
             SetupPowerDecks()

@@ -3792,8 +3792,10 @@ function removeSpirit(params)
     for index,guid in pairs(seatTables) do
         if guid == seatGuid then
             local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-            playerReadyGuids[index].color = params.color
-            aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+            if index <= #playerReadyGuids then
+                playerReadyGuids[index].color = params.color
+                aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+            end
             break
         end
     end

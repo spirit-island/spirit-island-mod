@@ -349,3 +349,14 @@ This section is meant for users who are familiar with both the tts mod and progr
 - Trigger to run during time passes:
   - Create object and tag with "Time Passes"
   - `timePasses()`
+- Trigger to run during phase changes:
+  - Create object and tag with "Phases"
+  - `changePhase(params)`
+    - `params`: **table** - contains data about phase transition
+      - `phase`: **number** - is the new phase just changed to
+        - 1: Spirit Phase
+        - 2: Fast Phase
+        - 3: Invader Phase
+        - 4: Slow Phase
+        - 5: Time Passes
+      - `turn`: **number** - is the current turn number

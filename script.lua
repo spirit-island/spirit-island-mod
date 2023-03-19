@@ -3892,6 +3892,7 @@ function timePasses()
     end
 end
 function timePassesCo()
+    triggerChangePhase(true)
     turn = turn + 1
     UI.setAttribute("panelTurnOverTurn", "text", "Turn: "..turn)
     noFear = false
@@ -7620,6 +7621,7 @@ function enterSpiritPhase(player)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end
@@ -7628,6 +7630,7 @@ function enterFastPhase(player)
     updateCurrentPhase(true)
     currentPhase = 2
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function enterInvaderPhase(player)
     if player and player.color == "Grey" then return end
@@ -7640,6 +7643,7 @@ function enterInvaderPhase(player)
     updateCurrentPhase(true)
     currentPhase = 3
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function enterSlowPhase(player)
     if player and player.color == "Grey" then return end
@@ -7648,6 +7652,7 @@ function enterSlowPhase(player)
     updateCurrentPhase(true)
     currentPhase = 4
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function updateCurrentPhase(clear)
     local id = ""
@@ -7669,6 +7674,15 @@ function updateCurrentPhase(clear)
         attributes.text = ">>"..UI.getAttribute(id, "text").."<<"
     end
     UI.setAttributes(id, attributes)
+end
+function triggerChangePhase(timePasses)
+    local phase = currentPhase
+    if timePasses then
+        phase = 5
+    end
+    for _,object in pairs(getObjectsWithTag("Phases")) do
+        object.call("changePhase", {phase = phase, turn = turn})
+    end
 end
 
 function EnableOceanDrowningLimit()

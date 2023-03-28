@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.7.1"
+version = "3.7.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -614,11 +614,11 @@ function onLoad(saved_data)
     addHotkey("Forget Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         for _,obj in pairs(Player[playerColor].getSelectedObjects()) do
             if isPowerCard({card=obj}) then
-                forgetPowerCard({card = obj, discardHeight = 1})
+                forgetPowerCard({card = obj, discardHeight = 1, color = playerColor})
             end
         end
         if isPowerCard({card=hoveredObject}) then
-            forgetPowerCard({card = hoveredObject, discardHeight = 1})
+            forgetPowerCard({card = hoveredObject, discardHeight = 1, color = playerColor})
         end
     end)
     addHotkey("Discard Power (to 2nd hand)", function (playerColor, hoveredObject, cursorLocation, key_down_up)
@@ -768,6 +768,13 @@ function onLoad(saved_data)
             UI.setAttribute("panelPowerDraw","visibility",loaded_data.panelPowerDrawVisibility)
             UI.setAttribute("panelUIToggle","active","true")
             UI.setAttribute("panelTurnOverTurn", "text", "Turn: "..turn)
+
+            for _, presence in pairs(getObjectsWithTag("Presence")) do
+                onObjectEnterContainer(presence, presence)
+            end
+            for _, token in pairs(getObjectsWithTag("Label")) do
+                onObjectEnterContainer(token, token)
+            end
 
             updateCurrentPhase(false)
             seaTile.registerCollisions(false)
@@ -2157,6 +2164,10 @@ function forgetPowerCard(params)
         discardZone = getObjectFromGUID(uniquePowerDiscardZone)
     end
 
+    if params.color then
+        Player[params.color].broadcast("Forgot "..params.card.getName())
+    end
+
     -- HACK work around issue where setPositionSmooth doesn't move object from hand to non hand
     local inHand = isObjectInHand(params.card)
     if inHand then
@@ -3295,19 +3306,30 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("fa9c2f")
         if spirit ~= nil then
-            local obj = spirit.takeObject({
-                guid = "606f23",
-                position = spirit.getPosition() + Vector(0, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    temp.setVar("setup", true)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        postSetupSteps = postSetupSteps + 1
-                    end, 1)
-                end,
-            })
-            obj.setVar("setup", true)
+            local foundSpirit = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "606f23" then
+                    foundSpirit = true
+                    break
+                end
+            end
+            if foundSpirit then
+                local obj = spirit.takeObject({
+                    guid = "606f23",
+                    position = spirit.getPosition() + Vector(0, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        temp.setVar("setup", true)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            postSetupSteps = postSetupSteps + 1
+                        end, 1)
+                    end,
+                })
+                obj.setVar("setup", true)
+            else
+                postSetupSteps = postSetupSteps + 1
+            end
         else
             spirit = getObjectFromGUID("606f23")
             if spirit ~= nil then
@@ -3326,19 +3348,30 @@ function PostSetup()
         -- TODO change bag image to exploratory (eventually)
         local spirit = getObjectFromGUID("45e367")
         if spirit ~= nil then
-            local obj = spirit.takeObject({
-                guid = "bd2a4a",
-                position = spirit.getPosition() + Vector(0, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    temp.setVar("setup", true)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        postSetupSteps = postSetupSteps + 1
-                    end, 1)
-                end,
-            })
-            obj.setVar("setup", true)
+            local foundSpirit = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "bd2a4a" then
+                    foundSpirit = true
+                    break
+                end
+            end
+            if foundSpirit then
+                local obj = spirit.takeObject({
+                    guid = "bd2a4a",
+                    position = spirit.getPosition() + Vector(0, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        temp.setVar("setup", true)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            postSetupSteps = postSetupSteps + 1
+                        end, 1)
+                    end,
+                })
+                obj.setVar("setup", true)
+            else
+                postSetupSteps = postSetupSteps + 1
+            end
         else
             spirit = getObjectFromGUID("bd2a4a")
             if spirit ~= nil then
@@ -3357,28 +3390,50 @@ function PostSetup()
         local spirit = getObjectFromGUID("472723")
         if spirit ~= nil then
             local cardsDone = 0
-            spirit.takeObject({
-                guid = "8152de",
-                position = spirit.getPosition() + Vector(-2, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        cardsDone = cardsDone + 1
-                    end, 1)
-                end,
-            })
-            spirit.takeObject({
-                guid = "78d741",
-                position = spirit.getPosition() + Vector(2, 1, 0),
-                callback_function = function(obj)
-                    local temp = obj.setState(2)
-                    Wait.frames(function()
-                        spirit.putObject(temp)
-                        cardsDone = cardsDone + 1
-                    end, 1)
-                end,
-            })
+            local foundCard = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "8152de" then
+                    foundCard = true
+                    break
+                end
+            end
+            if foundCard then
+                spirit.takeObject({
+                    guid = "8152de",
+                    position = spirit.getPosition() + Vector(-2, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            cardsDone = cardsDone + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsDone = cardsDone + 1
+            end
+            foundCard = false
+            for _, obj in pairs(spirit.getObjects()) do
+                if obj.guid == "78d741" then
+                    foundCard = true
+                    break
+                end
+            end
+            if foundCard then
+                spirit.takeObject({
+                    guid = "78d741",
+                    position = spirit.getPosition() + Vector(2, 1, 0),
+                    callback_function = function(obj)
+                        local temp = obj.setState(2)
+                        Wait.frames(function()
+                            spirit.putObject(temp)
+                            cardsDone = cardsDone + 1
+                        end, 1)
+                    end,
+                })
+            else
+                cardsDone = cardsDone + 1
+            end
             Wait.condition(function() postSetupSteps = postSetupSteps + 1 end, function() return cardsDone == 2 end)
         else
             local card = getObjectFromGUID("8152de")
@@ -3448,7 +3503,7 @@ function PostSetup()
             for _,card in pairs(cards) do
                 local start,finish = string.find(card.lua_script,"cardInvaderStage=")
                 if start ~= nil then
-                    local stage = tonumber(string.sub(card.lua_script,finish+1))
+                    local stage = tonumber(string.sub(card.lua_script,finish+1,finish+1))
                     local special = string.find(card.lua_script,"special=")
                     if special ~= nil then
                         stage = stage - 1
@@ -3737,8 +3792,10 @@ function removeSpirit(params)
     for index,guid in pairs(seatTables) do
         if guid == seatGuid then
             local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-            playerReadyGuids[index].color = params.color
-            aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+            if index <= #playerReadyGuids then
+                playerReadyGuids[index].color = params.color
+                aidBoard.setTable("playerReadyGuids", playerReadyGuids)
+            end
             break
         end
     end
@@ -3835,6 +3892,7 @@ function timePasses()
     end
 end
 function timePassesCo()
+    triggerChangePhase(true)
     turn = turn + 1
     UI.setAttribute("panelTurnOverTurn", "text", "Turn: "..turn)
     noFear = false
@@ -4994,7 +5052,7 @@ function checkPresenceLoss()
             -- Color does not already have presence on island
             if color ~= nil and not colors[color] then
                 -- Presence is currently being moved, count as being on island for now
-                if obj.held_by_color then
+                if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
                     colors[color] = true
                 else
                     local hits = Physics.cast({
@@ -5712,10 +5770,13 @@ function setupPlayerArea(params)
                     if entry.hasTag("Aspect") and not entry.is_face_down then
                         table.insert(aspects, entry)
                     end
-                    --Ignore if no elements entry
-                    if entry.getVar("elements") ~= nil then
-                        -- Skip counting face down cards and those below spirit panel
-                        if not entry.is_face_down and entry.getPosition().z > selected.zone.getPosition().z then
+                    --Ignore if no elements entry or if face down
+                    if entry.getVar("elements") ~= nil and not entry.is_face_down then
+                        if entry.hasTag("Aspect") then -- Count elements on aspects regardless of location or locking
+                            local cardElements = entry.getVar("elements")
+                            elements:add(cardElements)
+                            nonTokenElements:add(cardElements)
+                        elseif entry.getPosition().z > selected.zone.getPosition().z then -- Skip counting power cards below spirit panel
                             -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
                             if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
                                 local cardElements = entry.getVar("elements")
@@ -7516,7 +7577,7 @@ function applyPowerCardContextMenuItems(card)
         function(player_color)
             for _,obj in pairs(Player[player_color].getSelectedObjects()) do
                 if isPowerCard({card=obj}) then
-                    forgetPowerCard({card = obj, discardHeight = 1})
+                    forgetPowerCard({card = obj, discardHeight = 1, color = player_color})
                 end
             end
         end,
@@ -7560,6 +7621,7 @@ function enterSpiritPhase(player)
     updateCurrentPhase(true)
     currentPhase = 1
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function enterFastPhase(player)
     if player and player.color == "Grey" then return end
@@ -7568,6 +7630,7 @@ function enterFastPhase(player)
     updateCurrentPhase(true)
     currentPhase = 2
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function enterInvaderPhase(player)
     if player and player.color == "Grey" then return end
@@ -7580,6 +7643,7 @@ function enterInvaderPhase(player)
     updateCurrentPhase(true)
     currentPhase = 3
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function enterSlowPhase(player)
     if player and player.color == "Grey" then return end
@@ -7588,6 +7652,7 @@ function enterSlowPhase(player)
     updateCurrentPhase(true)
     currentPhase = 4
     updateCurrentPhase(false)
+    triggerChangePhase(false)
 end
 function updateCurrentPhase(clear)
     local id = ""
@@ -7609,4 +7674,17 @@ function updateCurrentPhase(clear)
         attributes.text = ">>"..UI.getAttribute(id, "text").."<<"
     end
     UI.setAttributes(id, attributes)
+end
+function triggerChangePhase(timePasses)
+    local phase = currentPhase
+    if timePasses then
+        phase = 5
+    end
+    for _,object in pairs(getObjectsWithTag("Phases")) do
+        object.call("changePhase", {phase = phase, turn = turn})
+    end
+end
+
+function EnableOceanDrowningLimit()
+    SetupChecker.setVar("optionalDrowningCap", true)
 end

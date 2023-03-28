@@ -1,17 +1,15 @@
-function onObjectSpawn(obj)
-    if obj == self then
-        obj.createButton({
-            click_function = "returnCard",
-            function_owner = self,
-            label          = "Return to Deck",
-            position       = Vector(0,0.3,1.43),
-            width          = 1100,
-            scale          = Vector(0.65,1,0.65),
-            height         = 160,
-            font_size      = 150,
-            tooltip = "Return back to the Event Deck under top 2 cards"
-        })
-    end
+function onLoad()
+    self.createButton({
+        click_function = "returnCard",
+        function_owner = self,
+        label          = "Return to Deck",
+        position       = Vector(0,0.3,1.43),
+        width          = 1100,
+        scale          = Vector(0.65,1,0.65),
+        height         = 160,
+        font_size      = 150,
+        tooltip = "Return back to the Event Deck under top 2 cards"
+    })
 end
 function returnCard(card)
     local zone = Global.getVar("eventDeckZone")

@@ -61,6 +61,7 @@ optionalUniqueRebellion = false
 optionalThematicRedo = false
 optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
+optionalDrowningCap = false -- not currently hooked up into UI
 
 exploratoryVOTD = false
 exploratoryBODAN = false
@@ -115,6 +116,7 @@ function onSave()
     data_table.variant.uniqueRebellion = optionalUniqueRebellion
     data_table.variant.thematicRedo = optionalThematicRedo
     data_table.variant.gameResults = optionalGameResults
+    data_table.variant.drowningCap = optionalDrowningCap
 
     data_table.exploratory = {}
     data_table.exploratory.votd = exploratoryVOTD
@@ -195,6 +197,7 @@ function onLoad(saved_data)
         optionalUniqueRebellion = loaded_data.variant.uniqueRebellion
         optionalThematicRedo = loaded_data.variant.thematicRedo
         optionalGameResults = loaded_data.variant.gameResults
+        optionalDrowningCap = loaded_data.variant.drowningCap
 
         exploratoryVOTD = loaded_data.exploratory.votd
         exploratoryBODAN = loaded_data.exploratory.bodan
@@ -1273,6 +1276,9 @@ function loadConfig(config)
         end
         if config.variant.gameResults ~= nil then
             optionalGameResults = config.variant.gameResults
+        end
+        if config.variant.drowningCap ~= nil then
+            optionalDrowningCap = config.variant.drowningCap
         end
     end
     if config.exploratory then

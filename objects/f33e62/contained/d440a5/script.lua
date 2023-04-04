@@ -37,7 +37,7 @@ end
 
 function doSetup(params)
     if not Global.getVar("gameStarted") then
-        return
+        return false
     end
     self.UI.setAttribute("count", "text", count)
     self.UI.setAttribute("water", "text", 0)
@@ -55,6 +55,7 @@ function doSetup(params)
     })
 
     Wait.time(countWater, 2, -1)
+    return true
 end
 function timePasses()
     count = 0

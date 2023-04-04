@@ -2,10 +2,10 @@ function doSetup(params)
     local color = params.color
     if not Global.getVar("gameStarted") then
         Player[color].broadcast("Please wait for the game to start before pressing this button!", Color.Red)
-        return
+        return false
     elseif color ~= Global.call("getSpiritColor", {name = "Fractured Days Split the Sky"}) then
         Player[color].broadcast("You have not picked Fractured Days Split the Sky!", Color.Red)
-        return
+        return false
     end
 
     local position = Player[color].getHandTransform(2).position
@@ -55,4 +55,5 @@ function doSetup(params)
 
         self.destruct()
     end, 1)
+    return true
 end

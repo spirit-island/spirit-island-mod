@@ -346,6 +346,7 @@ This section is meant for users who are familiar with both the tts mod and progr
   - `doSetup(params)`
     - `params`: **table** - contains data about player
       - `color`: **string** - is the color of the player who picked the spirit
+    - return **bool** - was setup successful?
 - Trigger to run during time passes:
   - Create object and tag with "Time Passes"
   - `timePasses()`

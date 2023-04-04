@@ -452,8 +452,8 @@ function onObjectEnterScriptingZone(zone, obj)
     elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
         for color,data in pairs(selectedColors) do
             if data.zone == zone then
-                obj.setVar("setupComplete", true)
-                obj.call("doSetup", {color=color})
+                local success = obj.call("doSetup", {color=color})
+                obj.setVar("setupComplete", success)
                 break
             end
         end
@@ -3769,8 +3769,8 @@ function runSpiritSetup()
         if data.zone then
             for _,obj in pairs(data.zone.getObjects()) do
                 if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-                    obj.setVar("setupComplete", true)
-                    obj.call("doSetup", {color=color})
+                    local success = obj.call("doSetup", {color=color})
+                    obj.setVar("setupComplete", success)
                 end
             end
         end

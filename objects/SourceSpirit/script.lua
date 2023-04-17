@@ -25,9 +25,9 @@ function load(params)
 
     local choose, progression, aspect, rotation
     if params.obj.type == "Bag" then
-        choose = Vector(-1.1, 0.21, 0.9)
-        progression = Vector(-0.7, 0.21, 0.65)
-        aspect = Vector(-0.2, 0.21, 0.9)
+        choose = Vector(-0.8, 0.21, 0.9)
+        progression = Vector(-0.8, 0.21, 0.4)
+        aspect = Vector(-0.8, 0.21, 0.65)
         rotation = Vector(0, 0, 0)
     else
         choose = Vector(0.7, -0.1, 0.9)

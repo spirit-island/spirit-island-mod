@@ -11,6 +11,6 @@ function onLoad()
     })
 end
 function noHeal(card)
-    Global.setVar("noHeal", true)
+    Global.setVar("noHealInvader", true)
     card.clearButtons()
 end

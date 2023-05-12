@@ -6610,7 +6610,7 @@ function flipVector(vec)
     return vec
 end
 function fontColor(bg)
-    if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
+    if bg and (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
         return {0,0,0}
     else
         return {1,1,1}

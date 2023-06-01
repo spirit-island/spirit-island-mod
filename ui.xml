@@ -231,7 +231,7 @@
 <Panel id="panelGameOver" visibility="Invisible" width="1280" height="720" rectAlignment="MiddleCenter" color="#C6DA8B">
     <Button fontSize="40" rectAlignment="UpperRight" width="64" height="64" onClick="hideGameOver">X</Button>
     <Button fontSize="40" rectAlignment="UpperLeft" width="200" height="64" onClick="sacrificeGameOver">Sacrifice?</Button>
-    <Button fontSize="40" rectAlignment="UpperRight" width="150" height="64" offsetXY="-64 0" onClick="resetGameOver">Reset?</Button>
+    <Button fontSize="40" rectAlignment="UpperRight" width="150" height="64" offsetXY="-64 0" onClick="resetGameOver">Undo?</Button>
     <TableLayout>
         <Row>
             <Cell columnSpan="4">

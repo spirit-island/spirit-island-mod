@@ -25,9 +25,9 @@ function load(params)
 
     local choose, progression, aspect, rotation
     if params.obj.type == "Bag" then
-        choose = Vector(-1.1, 0.21, 0.9)
-        progression = Vector(-0.7, 0.21, 0.65)
-        aspect = Vector(-0.2, 0.21, 0.9)
+        choose = Vector(-0.8, 0.21, 0.9)
+        progression = Vector(-0.8, 0.21, 0.4)
+        aspect = Vector(-0.8, 0.21, 0.65)
         rotation = Vector(0, 0, 0)
     else
         choose = Vector(0.7, -0.1, 0.9)
@@ -438,8 +438,8 @@ function setupSpirit(obj, player_color)
 
             if Global.getVar("gameStarted") and ob.hasTag("Setup") and not ob.getVar("setupComplete") and not ob.hasTag("Aspect") then
                 Wait.frames(function()
-                    ob.setVar("setupComplete", true)
-                    ob.call("doSetup", {color=player_color})
+                    local success = ob.call("doSetup", {color=player_color})
+                    ob.setVar("setupComplete", success)
                 end, 1)
             end
         end
@@ -465,8 +465,8 @@ function setupSpirit(obj, player_color)
             if Global.getVar("gameStarted") and o.hasTag("Setup") and not o.getVar("setupComplete") and not o.hasTag("Aspect") then
                 local o = o  -- luacheck: ignore 423 (deliberate shadowing)
                 Wait.frames(function()
-                    o.setVar("setupComplete", true)
-                    o.call("doSetup", {color=player_color})
+                    local success = o.call("doSetup", {color=player_color})
+                    o.setVar("setupComplete", success)
                 end, 1)
             end
         end

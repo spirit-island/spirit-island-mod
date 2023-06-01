@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.7.2"
+version = "3.8.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -93,7 +93,8 @@ objectsToCleanup = {}
 extraRandomBoard = nil
 gamekeys = {}
 noFear = false
-noHeal = false
+noHealInvader = false
+noHealDahan = false
 turn = 1
 terrorLevel = 1
 seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
@@ -452,8 +453,8 @@ function onObjectEnterScriptingZone(zone, obj)
     elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
         for color,data in pairs(selectedColors) do
             if data.zone == zone then
-                obj.setVar("setupComplete", true)
-                obj.call("doSetup", {color=color})
+                local success = obj.call("doSetup", {color=color})
+                obj.setVar("setupComplete", success)
                 break
             end
         end
@@ -509,7 +510,8 @@ function onSave()
         objectsToCleanup = objectsToCleanup,
         extraRandomBoard = extraRandomBoard,
         noFear = noFear,
-        noHeal = noHeal,
+        noHealInvader = noHealInvader,
+        noHealDahan = noHealDahan,
         turn = turn,
         terrorLevel = terrorLevel,
         seatTables = seatTables,
@@ -751,7 +753,8 @@ function onLoad(saved_data)
         extraRandomBoard = loaded_data.extraRandomBoard
         gamekeys = loaded_data.gamekeys
         noFear = loaded_data.noFear
-        noHeal = loaded_data.noHeal
+        noHealInvader = loaded_data.noHealInvader
+        noHealDahan = loaded_data.noHealDahan
         turn = loaded_data.turn
         terrorLevel = loaded_data.terrorLevel
         seatTables = loaded_data.seatTables
@@ -3769,8 +3772,8 @@ function runSpiritSetup()
         if data.zone then
             for _,obj in pairs(data.zone.getObjects()) do
                 if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-                    obj.setVar("setupComplete", true)
-                    obj.call("doSetup", {color=color})
+                    local success = obj.call("doSetup", {color=color})
+                    obj.setVar("setupComplete", success)
                 end
             end
         end
@@ -3906,7 +3909,8 @@ function timePassesCo()
     for _,object in pairs(upCast(seaTile, 0, 0.48)) do
         handlePiece(object, 0)
     end
-    noHeal = false
+    noHealInvader = false
+    noHealDahan = false
     for color,data in pairs(selectedColors) do
         handlePlayer(color, data)
     end
@@ -3932,19 +3936,19 @@ end
 function handlePiece(object, offset)
     if object.hasTag("City") then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
+            object = resetPiece(object, Vector(0,180,0), offset, noHealInvader)
         end
     elseif object.hasTag("Town") then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
+            object = resetPiece(object, Vector(0,180,0), offset, noHealInvader)
         end
     elseif object.hasTag("Explorer") then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,180,0), offset, noHeal)
+            object = resetPiece(object, Vector(0,180,0), offset, noHealInvader)
         end
     elseif object.hasTag("Dahan") then
         if object.getLock() == false then
-            object = resetPiece(object, Vector(0,0,0), offset, false)
+            object = resetPiece(object, Vector(0,0,0), offset, noHealDahan)
         end
     elseif object.hasTag("Blight") then
         object = resetPiece(object, Vector(0,180,0), offset, false)
@@ -6606,7 +6610,7 @@ function flipVector(vec)
     return vec
 end
 function fontColor(bg)
-    if (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
+    if bg and (bg.r*0.30 + bg.g*0.59 + bg.b*0.11) > 0.50 then
         return {0,0,0}
     else
         return {1,1,1}

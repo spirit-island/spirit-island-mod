@@ -444,7 +444,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdvesaryScenario" visibility="Invisible" width="1150" height="1830" position="-1450 -60 14">
+<Panel id="panelAdversaryScenario" visibility="Invisible" width="1150" height="1830" position="-1450 -60 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">

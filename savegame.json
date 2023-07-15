@@ -60,18 +60,6 @@
       "id": 2
     }
   },
-  "MusicPlayer": {
-    "RepeatSong": true,
-    "PlaylistEntry": 0,
-    "CurrentAudioTitle": "Zen",
-    "CurrentAudioURL": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
-    "AudioLibrary": [
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
-        "Item2": "Zen"
-      }
-    ]
-  },
   "Grid": {
     "Type": 0,
     "Lines": false,

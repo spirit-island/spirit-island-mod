@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CardID": 148900,
-  "SidewaysCard": true,
+  "SidewaysCard": false,
   "CustomDeck": {
     "1489": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517345678/EDCCB4402145E7FF3C540520E3BA797C049C7026/",

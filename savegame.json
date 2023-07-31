@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1685642351,
-  "Date": "6/1/2023 6:59:11 PM",
+  "EpochTime": 1690833301,
+  "Date": "7/31/2023 8:55:01 PM",
   "VersionNumber": "v13.2.2",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -59,18 +59,6 @@
       },
       "id": 2
     }
-  },
-  "MusicPlayer": {
-    "RepeatSong": true,
-    "PlaylistEntry": 0,
-    "CurrentAudioTitle": "Zen",
-    "CurrentAudioURL": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
-    "AudioLibrary": [
-      {
-        "Item1": "http://cloud-3.steamusercontent.com/ugc/775105953852831801/B0B73F83EA37721DA7752AC45C05EEDD53045CAE/",
-        "Item2": "Zen"
-      }
-    ]
   },
   "Grid": {
     "Type": 0,

@@ -1568,7 +1568,7 @@ function toggleSetupUI(show)
     else
         self.UI.setAttribute("panelChallenge", "visibility", "Invisible")
     end
-    self.UI.setAttribute("panelAdvesaryScenario", "visibility", visibility)
+    self.UI.setAttribute("panelAdversaryScenario", "visibility", visibility)
     self.UI.setAttribute("panelAdvertising", "visibility", visibility)
 end
 function toggleAdversaryScenarioVisiblity(show)

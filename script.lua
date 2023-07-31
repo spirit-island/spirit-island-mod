@@ -1,5 +1,5 @@
 ---- Versioning
-version = "3.8.0"
+version = "3.8.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -4516,8 +4516,8 @@ function MapPlacen(boards)
     local rand = 0
     local BETaken = false
     local DFTaken = false
-    local AGTaken = false
-    local CHTaken = false
+    local CGTaken = false
+    local AHTaken = false
     if SetupChecker.getVar("optionalExtraBoard") then
         if extraRandomBoard == nil then
             extraRandomBoard = math.random(1,#boards)
@@ -4596,15 +4596,15 @@ function MapPlacen(boards)
                             index = value.index
                             break
                         end
-                    elseif value.name == "A" or value.name == "G" then
-                        if not AGTaken then
-                            AGTaken = true
+                    elseif value.name == "C" or value.name == "G" then
+                        if not CGTaken then
+                            CGTaken = true
                             index = value.index
                             break
                         end
-                    elseif value.name == "C" or value.name == "H" then
-                        if not CHTaken then
-                            CHTaken = true
+                    elseif value.name == "A" or value.name == "H" then
+                        if not AHTaken then
+                            AHTaken = true
                             index = value.index
                             break
                         end

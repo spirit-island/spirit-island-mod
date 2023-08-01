@@ -7589,13 +7589,16 @@ function applyPowerCardContextMenuItems(card)
 
     -- Only allow reminder tokens to be generated on individual card images not deck image since mask requires that
     local imageURL = nil
-    for _, data in pairs(card.getData().CustomDeck) do
-        if data.NumWidth == 1 and data.NumHeight == 1 then
-            imageURL = data.FaceURL
-            break
+    local cardData = card.getData()
+    if cardData.CustomDeck then
+        for _, data in pairs(cardData.CustomDeck) do
+            if data.NumWidth == 1 and data.NumHeight == 1 then
+                imageURL = data.FaceURL
+                break
+            end
         end
     end
-    if imageUrl then
+    if imageURL then
         card.addContextMenuItem(
             "Get Reminder Token",
             function(player_color)
@@ -7626,7 +7629,7 @@ function applyPowerCardContextMenuItems(card)
                         g = color.g,
                         b = color.b
                     },
-                    Nickname = card.getName(),
+                    Nickname = player_color.."'s "..card.getName().." Reminder",
                     Tags = {"Destroy", "Reminder Token"},
                     Grid = false,
                     Snap = false,

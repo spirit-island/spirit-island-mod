@@ -54,7 +54,7 @@
   "States": {
     "2": {
       "GUID": "3f4bfc",
-      "Name": "Card",
+      "Name": "CardCustom",
       "Transform": {
         "posX": -41.9944,
         "posY": 0.8167,

@@ -7586,6 +7586,61 @@ function applyPowerCardContextMenuItems(card)
             end
         end,
         false)
+
+    -- Only allow reminder tokens to be generated on individual card images not deck image since mask requires that
+    local imageURL = nil
+    for _, data in pairs(card.getData().CustomDeck) do
+        if data.NumWidth == 1 and data.NumHeight == 1 then
+            imageURL = data.FaceURL
+            break
+        end
+    end
+    if imageUrl then
+        card.addContextMenuItem(
+            "Get Reminder Token",
+            function(player_color)
+                local pos = card.getPosition()
+                local color
+                if not Tints[player_color] then
+                    color = Color.fromHex(Tints["White"].Presence)
+                elseif Tints[player_color].Token then
+                    color = Color.fromHex(Tints[player_color].Token)
+                else
+                    color = Color.fromHex(Tints[player_color].Presence)
+                end
+                local data = {
+                    Name = "Custom_Model",
+                    Transform = {
+                        posX = pos[1],
+                        posY = pos[2] + 0.02,
+                        posZ = pos[3],
+                        rotX = 0,
+                        rotY = 180,
+                        rotZ = 0,
+                        scaleX = 0.9,
+                        scaleY = 0.9,
+                        scaleZ = 0.9
+                    },
+                    ColorDiffuse = {
+                        r = color.r,
+                        g = color.g,
+                        b = color.b
+                    },
+                    Nickname = card.getName(),
+                    Tags = {"Destroy", "Reminder Token"},
+                    Grid = false,
+                    Snap = false,
+                    CustomMesh = {
+                        MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
+                        MaterialIndex = 1
+                    },
+                    XmlUI = "<Panel rotation=\"0 0 180\" width=\"350\" height=\"490\" position=\"31 86 -11\"><Mask image=\"CardMask\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
+                }
+                spawnObjectData({data = data})
+            end,
+            false)
+    end
 end
 
 function grabSpiritMarkers()

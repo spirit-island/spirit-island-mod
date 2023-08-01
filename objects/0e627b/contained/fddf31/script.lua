@@ -13,9 +13,16 @@ function doSetup(params)
     Global.call("SpawnHand", {color = color, position = position})
 
     Wait.frames(function()
-        local count = 4
-        if Global.getVar("numPlayers") <= 2 then
+        local count
+        if Global.getVar("SetupChecker").getVar("exploratoryFractured") then
+            count = 7 - Global.getVar("numPlayers")
+            if count < 1 then
+                count = 1
+            end
+        elseif Global.getVar("numPlayers") <= 2 then
             count = 6
+        else
+            count = 4
         end
         if Global.getVar("numBoards") == 1 then
             Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
@@ -23,12 +30,10 @@ function doSetup(params)
 
         local playtestPowers = Global.getVar("playtestMinorPowers")
         local playtestCount = playtestPowers
-        if count == 6 then
-            if playtestPowers == 1 then
-                playtestCount = 2
-            elseif playtestPowers == 2 then
-                playtestCount = 3
-            end
+        if playtestPowers == 1 then
+            playtestCount = math.floor(count / 3)
+        elseif playtestPowers == 2 then
+            playtestCount = math.floor(count / 2)
         end
         local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
         minorPowerDeck.deal(count - playtestCount, color, 3)
@@ -39,12 +44,10 @@ function doSetup(params)
 
         playtestPowers = Global.getVar("playtestMajorPowers")
         playtestCount = playtestPowers
-        if count == 6 then
-            if playtestPowers == 1 then
-                playtestCount = 2
-            elseif playtestPowers == 2 then
-                playtestCount = 3
-            end
+        if playtestPowers == 1 then
+            playtestCount = math.floor(count / 3)
+        elseif playtestPowers == 2 then
+            playtestCount = math.floor(count / 2)
         end
         local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
         majorPowerDeck.deal(count - playtestCount, color, 3)

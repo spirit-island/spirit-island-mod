@@ -120,6 +120,8 @@
   "exploratory": {
     "aid": false,
     "bodan": false,
+    "fractured": false,
+    "shadows": false,
     "sweden": false,
     "trickster": false,
     "votd": false,

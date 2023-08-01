@@ -317,6 +317,7 @@ function ExportConfig()
     data.exploratory.sweden = SetupChecker.getVar("exploratorySweden")
     data.exploratory.trickster = SetupChecker.getVar("exploratoryTrickster")
     data.exploratory.shadows = SetupChecker.getVar("exploratoryShadows")
+    data.exploratory.fractured = SetupChecker.getVar("exploratoryFractured")
 
     data.playtest = {}
     data.playtest.expansion = SetupChecker.getVar("playtestExpansion")

@@ -70,6 +70,7 @@ exploratoryAid = false
 exploratorySweden = false
 exploratoryTrickster = false
 exploratoryShadows = false
+exploratoryFractured = false
 
 playtestExpansion = "None"
 playtestFear = "0"
@@ -126,6 +127,7 @@ function onSave()
     data_table.exploratory.sweden = exploratorySweden
     data_table.exploratory.trickster = exploratoryTrickster
     data_table.exploratory.shadows = exploratoryShadows
+    data_table.exploratory.fractured = exploratoryFractured
 
     data_table.playtest = {}
     data_table.playtest.expansion = playtestExpansion
@@ -206,6 +208,7 @@ function onLoad(saved_data)
         exploratorySweden = loaded_data.exploratory.sweden
         exploratoryTrickster = loaded_data.exploratory.trickster
         exploratoryShadows = loaded_data.exploratory.shadows
+        exploratoryFractured = loaded_data.exploratory.fractured
 
         playtestExpansion = loaded_data.playtest.expansion
         playtestFear = loaded_data.playtest.fear
@@ -283,6 +286,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("aid", "isOn", exploratoryAid)
             self.UI.setAttribute("trickster", "isOn", exploratoryTrickster)
             self.UI.setAttribute("shadows", "isOn", exploratoryShadows)
+            self.UI.setAttribute("fractured", "isOn", exploratoryFractured)
 
             togglePlaytestFear(nil, playtestFear, "playtestFear")
             togglePlaytestEvent(nil, playtestEvent, "playtestEvent")
@@ -1303,6 +1307,9 @@ function loadConfig(config)
         if config.exploratory.shadows ~= nil then
             exploratoryShadows = config.exploratory.shadows
         end
+        if config.exploratory.fractured ~= nil then
+            exploratoryFractured = config.exploratory.fractured
+        end
     end
     if config.playtest then
         if config.playtest.expansion ~= nil then
@@ -2250,6 +2257,7 @@ function toggleExploratoryAll()
         if exploratorySweden then toggleSweden() end
         if exploratoryTrickster then toggleTrickster() end
         if exploratoryShadows then toggleShadows() end
+        if exploratoryFractured then toggleFractured() end
     else
         checked = "true"
         if not exploratoryVOTD then toggleVOTD() end
@@ -2259,6 +2267,7 @@ function toggleExploratoryAll()
         if not exploratorySweden then toggleSweden() end
         if not exploratoryTrickster then toggleTrickster() end
         if not exploratoryShadows then toggleShadows() end
+        if not exploratoryFractured then toggleFractured() end
     end
     self.UI.setAttribute("exploratoryAll", "isOn", checked)
 end
@@ -2320,6 +2329,10 @@ end
 function toggleShadows()
     exploratoryShadows = not exploratoryShadows
     self.UI.setAttribute("shadows", "isOn", exploratoryShadows)
+end
+function toggleFractured()
+    exploratoryFractured = not exploratoryFractured
+    self.UI.setAttribute("fractured", "isOn", exploratoryFractured)
 end
 
 function wt(some)

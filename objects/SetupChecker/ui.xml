@@ -254,6 +254,9 @@
             <Row class="toggle">
                 <Cell><Toggle id="shadows" onValueChanged="toggleShadows" tooltip="The Top Track is more viable, also&#xA;adds a Reclaim 1 to Bottom Track">Shadows Flicker Like Flame</Toggle></Cell>
             </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="fractured" onValueChanged="toggleFractured" tooltip="Days that Never Were is now 7 - number of players">Fractured Days Split the Sky</Toggle></Cell>
+            </Row>
         </TableLayout>
     </VerticalLayout>
 </Panel>

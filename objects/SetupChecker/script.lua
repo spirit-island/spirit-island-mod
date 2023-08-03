@@ -59,6 +59,7 @@ optionalBoardPairings = true
 optionalThematicRebellion = false
 optionalUniqueRebellion = false
 optionalThematicRedo = false
+optionalThematicPermute = false
 optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
 optionalDrowningCap = false -- not currently hooked up into UI
@@ -115,6 +116,7 @@ function onSave()
     data_table.variant.thematicRebellion = optionalThematicRebellion
     data_table.variant.uniqueRebellion = optionalUniqueRebellion
     data_table.variant.thematicRedo = optionalThematicRedo
+    data_table.variant.thematicPermute = optionalThematicPermute
     data_table.variant.gameResults = optionalGameResults
     data_table.variant.drowningCap = optionalDrowningCap
 
@@ -196,6 +198,7 @@ function onLoad(saved_data)
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
         optionalUniqueRebellion = loaded_data.variant.uniqueRebellion
         optionalThematicRedo = loaded_data.variant.thematicRedo
+        optionalThematicPermute = loaded_data.variant.thematicPermute
         optionalGameResults = loaded_data.variant.gameResults
         optionalDrowningCap = loaded_data.variant.drowningCap
 
@@ -274,6 +277,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
             self.UI.setAttribute("slaveRebellionBack", "isOn", optionalUniqueRebellion)
             self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
+            self.UI.setAttribute("thematicPermute", "isOn", optionalThematicPermute)
             self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
             self.UI.setAttribute("gameResults", "isOn", optionalGameResults)
 
@@ -1262,6 +1266,9 @@ function loadConfig(config)
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
         end
+        if config.variant.thematicPermute ~= nil then
+            optionalThematicPermute = config.variant.thematicPermute
+        end
         if config.variant.carpetRedo ~= nil then
             local seaTile = Global.getVar("seaTile")
             if config.variant.carpetRedo then
@@ -2225,6 +2232,10 @@ end
 function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
+end
+function toggleThematicPermute()
+    optionalThematicPermute = not optionalThematicPermute
+    self.UI.setAttribute("thematicPermute", "isOn", optionalThematicPermute)
 end
 function toggleCarpetRedo()
     local seaTile = Global.getVar("seaTile")

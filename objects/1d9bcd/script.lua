@@ -73,7 +73,7 @@ function AdversaryUI(params)
     local ui = {}
 
     ui.loss = {}
-    ui.loss.tooltip = "Track how many Blight came off the\nBlight Card during Ravages that do 8+\nDamage to the land. If that number\never exceeds players, the Invaders win."
+    ui.loss.tooltip = "Track how many Blight came off the\nBlight Card during Ravages that do 6+\noverkill to the land. If that number\never exceeds players, the Invaders win."
     ui.loss.counter = {}
     ui.loss.counter.text = "Blight Count: "
     ui.loss.counter.buttons = true

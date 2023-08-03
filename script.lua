@@ -799,8 +799,6 @@ function onLoad(saved_data)
             for _,obj in ipairs(getObjects()) do
                 if isIslandBoard({obj=obj}) then
                     obj.interactable = false -- sets boards to uninteractable after reload
-                elseif isPowerCard({card=obj}) then
-                    applyPowerCardContextMenuItems(obj)
                 end
             end
         end
@@ -822,6 +820,14 @@ function onLoad(saved_data)
             end
         end
         selectedColors[color] = colorTable
+    end
+
+    for _,obj in ipairs(getObjects()) do
+        if isPowerCard({card=obj}) then
+            applyPowerCardContextMenuItems(obj)
+        elseif obj.hasTag("Spirit") then
+            applySpiritContextMenuItems(obj)
+        end
     end
 
     if Player["White"].seated and not selectedColors["White"] then
@@ -7536,6 +7542,8 @@ function onObjectSpawn(obj)
         table.insert(seatTables, obj.guid)
         setupColorPickButtons(obj, true)
         SetupChecker.call("updateMaxPlayers", {max = getSeatCount()})
+    elseif obj.hasTag("Spirit") then
+        applySpiritContextMenuItems(obj)
     end
 end
 function onObjectDestroy(obj)
@@ -7603,14 +7611,6 @@ function applyPowerCardContextMenuItems(card)
             "Get Reminder Token",
             function(player_color)
                 local pos = card.getPosition()
-                local color
-                if not Tints[player_color] then
-                    color = Color.fromHex(Tints["White"].Presence)
-                elseif Tints[player_color].Token then
-                    color = Color.fromHex(Tints[player_color].Token)
-                else
-                    color = Color.fromHex(Tints[player_color].Presence)
-                end
                 local data = {
                     Name = "Custom_Model",
                     Transform = {
@@ -7624,11 +7624,6 @@ function applyPowerCardContextMenuItems(card)
                         scaleY = 0.9,
                         scaleZ = 0.9
                     },
-                    ColorDiffuse = {
-                        r = color.r,
-                        g = color.g,
-                        b = color.b
-                    },
                     Nickname = player_color.."'s "..card.getName().." Reminder",
                     Tags = {"Destroy", "Reminder Token"},
                     Grid = false,
@@ -7638,8 +7633,72 @@ function applyPowerCardContextMenuItems(card)
                         DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
                         MaterialIndex = 1
                     },
+                    LuaScript = "function onLoad()self.UI.setXml(self.UI.getXml())end",
                     XmlUI = "<Panel rotation=\"0 0 180\" width=\"350\" height=\"490\" position=\"31 86 -11\"><Mask image=\"CardMask\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
                 }
+                if Tints[player_color] then
+                    local color
+                    if Tints[player_color].Token then
+                        color = Color.fromHex(Tints[player_color].Token)
+                    else
+                        color = Color.fromHex(Tints[player_color].Presence)
+                    end
+                    data.ColorDiffuse = {
+                        r = color.r,
+                        g = color.g,
+                        b = color.b
+                    }
+                end
+                spawnObjectData({data = data})
+            end,
+            false)
+    end
+end
+function applySpiritContextMenuItems(spirit)
+    local spiritData = spirit.getData()
+    if spiritData.Name == "Custom_Tile" then
+        spirit.addContextMenuItem(
+            "Get Reminder Token",
+            function(player_color)
+                local pos = spirit.getPosition()
+                local data = {
+                    Name = "Custom_Model",
+                    Transform = {
+                        posX = pos[1],
+                        posY = pos[2] + 0.02,
+                        posZ = pos[3],
+                        rotX = 0,
+                        rotY = 180,
+                        rotZ = 0,
+                        scaleX = 0.9,
+                        scaleY = 0.9,
+                        scaleZ = 0.9
+                    },
+                    Nickname = player_color.."'s "..spirit.getName().." Reminder",
+                    Tags = {"Destroy", "Reminder Token"},
+                    Grid = false,
+                    Snap = false,
+                    CustomMesh = {
+                        MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
+                        MaterialIndex = 1
+                    },
+                    LuaScript = "function onLoad()self.UI.setXml(self.UI.getXml())end",
+                    XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-113 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>",
+                }
+                if Tints[player_color] then
+                    local color
+                    if Tints[player_color].Token then
+                        color = Color.fromHex(Tints[player_color].Token)
+                    else
+                        color = Color.fromHex(Tints[player_color].Presence)
+                    end
+                    data.ColorDiffuse = {
+                        r = color.r,
+                        g = color.g,
+                        b = color.b
+                    }
+                end
                 spawnObjectData({data = data})
             end,
             false)

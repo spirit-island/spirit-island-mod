@@ -98,14 +98,6 @@ function load(params)
             end
         end
     end
-    if hasProgression then
-        params.obj.editButton({
-            index          = 1,
-            label          = "Progression: No",
-            width          = 2200,
-            height         = 500,
-        })
-    end
     if hasAspect then
         params.obj.editButton({
             index          = 2,
@@ -113,6 +105,20 @@ function load(params)
             width          = 2300,
             height         = 500,
         })
+    end
+    if hasProgression then
+        params.obj.editButton({
+            index          = 1,
+            label          = "Progression: No",
+            width          = 2200,
+            height         = 500,
+        })
+        if not hasAspect then
+            params.obj.editButton({
+                index          = 1,
+                position       = aspect,
+            })
+        end
     end
 end
 function AddAspectButton(params)

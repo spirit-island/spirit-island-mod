@@ -486,6 +486,9 @@
                 <Cell><Toggle id="spiritVeryHigh" onValueChanged="toggleSpirit" isOn="true">Very High</Toggle></Cell>
             </Row>
             <Row>
+                <Cell><Toggle id="spiritHorizons" onValueChanged="toggleSpirit" isOn="true" tooltip="Include horizons spirits in randomizer">Horizons</Toggle></Cell>
+            </Row>
+            <Row>
                 <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
             </Row>
         </TableLayout>

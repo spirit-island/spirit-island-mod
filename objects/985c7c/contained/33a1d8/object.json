@@ -1,0 +1,137 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 5.9,
+    "posY": 1.2069,
+    "posZ": 107.82,
+    "rotX": -0.0005,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Fathomless Mud of the Swamp",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1825650399182066300/511C448310658B49EB5FCCF37CAD0B286965BBE0/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1825650399182066059/5CE5FE37B029C99361E562652301561776CE481F/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0369,
+        "y": 0.2,
+        "z": -0.4174
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9552,
+        "y": 0.2,
+        "z": -0.1177
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2674,
+        "y": 0.2,
+        "z": -0.4175
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4956,
+        "y": 0.2,
+        "z": -0.4152
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7247,
+        "y": 0.2,
+        "z": -0.4182
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1824,
+        "y": 0.2,
+        "z": -0.4174
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0392,
+        "y": 0.2,
+        "z": -0.1179
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2682,
+        "y": 0.2,
+        "z": -0.1183
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4967,
+        "y": 0.2,
+        "z": -0.1176
+      }
+    },
+    {
+      "Position": {
+        "x": -0.726,
+        "y": 0.2,
+        "z": -0.1184
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9551,
+        "y": 0.2,
+        "z": -0.4164
+      }
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": 30.5928,
+    "posX": 30.6,
     "posY": 0.8,
     "posZ": -46.3771,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 173.9329,
+    "scaleX": 174.0,
     "scaleY": 0.3,
     "scaleZ": 3.9807
   },

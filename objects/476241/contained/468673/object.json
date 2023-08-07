@@ -1,0 +1,144 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -28.26,
+    "posY": 1.2069,
+    "posZ": 107.82,
+    "rotX": -0.0005,
+    "rotY": 180.0004,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Devouring Teeth Lurk Underfoot",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1825650399182054928/DED3F7239CED13C3F39571DF2AC4AA606F8D73DF/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1825650399182055145/DA8A5222A627D1BDF571F88F546B2AD2F85EE881/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0366,
+        "y": 0.2,
+        "z": -0.4177
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2684,
+        "y": 0.2,
+        "z": -0.1181
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4955,
+        "y": 0.2,
+        "z": -0.1178
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9526,
+        "y": 0.2,
+        "z": -0.1193
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7244,
+        "y": 0.2,
+        "z": -0.4157
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1817,
+        "y": 0.2,
+        "z": -0.1184
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7246,
+        "y": 0.2,
+        "z": -0.1182
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4955,
+        "y": 0.2,
+        "z": -0.4173
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2675,
+        "y": 0.2,
+        "z": -0.4145
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0402,
+        "y": 0.2,
+        "z": -0.1199
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1811,
+        "y": 0.2,
+        "z": -0.4166
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9535,
+        "y": 0.2,
+        "z": -0.4153
+      }
+    }
+  ]
+}

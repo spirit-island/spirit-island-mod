@@ -1,0 +1,130 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 38.94,
+    "posY": 1.2069,
+    "posZ": 107.26,
+    "rotX": -0.0006,
+    "rotY": 180.0,
+    "rotZ": 179.9999,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Sun-Bright Whirlwind",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1825650399182060748/E3354963E005D2A83619AB11B102CF99E0A192B3/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1825650399182060959/1DB7649CD395894C7DDC36C8661534B2A86FB4AE/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0403,
+        "y": 0.2,
+        "z": -0.4153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4969,
+        "y": 0.2,
+        "z": -0.4161
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7229,
+        "y": 0.2,
+        "z": -0.4179
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9542,
+        "y": 0.2,
+        "z": -0.4157
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2708,
+        "y": 0.2,
+        "z": -0.4155
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0413,
+        "y": 0.2,
+        "z": -0.1188
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2696,
+        "y": 0.2,
+        "z": -0.117
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4983,
+        "y": 0.2,
+        "z": -0.1194
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9554,
+        "y": 0.2,
+        "z": -0.1186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7269,
+        "y": 0.2,
+        "z": -0.1182
+      }
+    }
+  ]
+}

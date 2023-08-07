@@ -663,6 +663,25 @@ function onLoad(saved_data)
         end
     end)
 
+    addHotkey("Gain 1 Energy", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if not gameStarted then
+            return
+        end
+        local success = giveEnergy({color = playerColor, energy = 1, ignoreDebt = false})
+        if not success then
+            Player[playerColor].broadcast("Was unable to gain energy", Color.SoftYellow)
+        end
+    end)
+    addHotkey("Lose 1 Energy", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if not gameStarted then
+            return
+        end
+        local success = giveEnergy({color = playerColor, energy = -1, ignoreDebt = false})
+        if not success then
+            Player[playerColor].broadcast("Was unable to lose energy", Color.SoftYellow)
+        end
+    end)
+
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
         obj.interactable = false

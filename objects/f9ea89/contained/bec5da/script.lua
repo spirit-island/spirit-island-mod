@@ -17,7 +17,7 @@ function doSetup(params)
 
     for _, card in pairs(Player[color].getHandObjects(1)) do
         if card.guid == "22b2f3" then
-            Global.call("forgetPowerCard", {card=card, discardHeight = 1})
+            card.destruct()
             Global.call("giveEnergy", {color=color, energy=1, ignoreDebt=false})
             break
         end

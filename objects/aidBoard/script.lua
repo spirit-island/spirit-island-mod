@@ -406,9 +406,10 @@ scanLoopTable = {
 function advanceInvaderCards()
     if not Global.getVar("gameStarted") then
         return
+    elseif not Global.getVar("setupComplete") then
+        -- The last setup of setup generally is performing explore and then advancing invader cards
+        Global.call("CompleteSetup")
     end
-    -- The last setup of setup generally is performing explore and then advancing invader cards
-    Global.setVar("setupCompleted", true)
 
     local prevOffset = Vector(0, 0, 0)
     local currentOffset = Vector(0, 0, 0)

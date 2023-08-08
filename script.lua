@@ -3804,6 +3804,24 @@ function runSpiritSetup()
         end
     end
 end
+
+function CompleteSetup()
+    if setupComplete then
+        return
+    end
+    setupComplete = true
+
+    for color,_ in pairs(selectedColors) do
+        -- Remove all aspect cards in hand (any picked aspects should be in player area by now)
+        for i=Player[color].getHandCount(), 1, -1 do
+            for _, obj in pairs(Player[color].getHandObjects(i)) do
+                if obj.hasTag("Aspect") then
+                    obj.destruct()
+                end
+            end
+        end
+    end
+end
 ------
 function playerHasSpirit(params)
     return selectedColors[params.color] ~= nil

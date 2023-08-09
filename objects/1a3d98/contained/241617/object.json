@@ -7,9 +7,9 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.0,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleZ": 1.53
   },
   "Nickname": "Immense",
   "Description": "",
@@ -43,11 +43,11 @@
   "HideWhenFaceDown": false,
   "Hands": true,
   "CardID": 137700,
-  "SidewaysCard": false,
+  "SidewaysCard": true,
   "CustomDeck": {
     "1377": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517392545/4C547457C0D37A1F44E7082B2186939903968220/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517390993/2CAF6AA423E7FDFB756A3D45157F3E196296712B/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175604776/1259564AB629A792957C0B8D6AE20ED100712301/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175601298/13839188F01AEF337FC22A7F550EB14008503F4B/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": false,

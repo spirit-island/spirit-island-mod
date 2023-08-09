@@ -413,7 +413,7 @@ function onObjectLeaveContainer(container, object)
         object.setScale(scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size)
         if container == ExtraMapBag then
             local decal = {
-                name = "Threshold",
+                name = "Two",
                 rotation = {90, 180, 0},
                 scale    = {0.24, 0.24, 1},
                 url      = "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
@@ -3601,7 +3601,7 @@ function setupCommandCard(invaderDeck, depth, guid)
     JEBag.takeObject({
         guid = guid,
         position = invaderDeck.getPosition() + Vector(0,0.1,0),
-        rotation = {0,90,180},
+        rotation = {0,180,180},
         smooth = false,
     })
 end
@@ -5774,13 +5774,7 @@ function setupPlayerArea(params)
             if aspect.script_state ~= "" then
                 local thresholds = aspect.getTable("thresholds")
                 if thresholds ~= nil then
-                    local scale
-                    if aspect.getRotation():equals(Vector(0, 180, 0)) or aspect.getRotation():equals(Vector(0, 0, 0)) then
-                        scale = {0.12, 0.24, 1}
-                    else
-                        scale = {0.24, 0.12, 1}
-                    end
-                    addThresholdDecals(aspect, elements, thresholds, scale)
+                    addThresholdDecals(aspect, elements, thresholds, {0.16, 0.16, 1})
                 end
             end
         end

@@ -7,9 +7,9 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.0,
+    "scaleX": 1.53,
     "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleZ": 1.53
   },
   "Nickname": "Travel",
   "Description": "",
@@ -42,11 +42,11 @@
   "HideWhenFaceDown": false,
   "Hands": true,
   "CardID": 137100,
-  "SidewaysCard": false,
+  "SidewaysCard": true,
   "CustomDeck": {
     "1371": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517392300/DA94C03FEEAD48FA71BC7EBCB222A9C9346200D8/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517390413/547A3A408E79A804FA213D3CA8A79F2C098E9103/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175605625/F7B82BB843DF162AF218AC8D4C1F131DAFE48574/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175597317/3D310D899EAA785515F689691EAC56C7E80DE5C4/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": false,

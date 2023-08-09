@@ -7,9 +7,9 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.05,
+    "scaleX": 1.1,
     "scaleY": 1.0,
-    "scaleZ": 1.05
+    "scaleZ": 1.1
   },
   "Nickname": "Habsburg Reminder Card",
   "Description": "Habsburg Lv 5",
@@ -42,8 +42,8 @@
   "SidewaysCard": false,
   "CustomDeck": {
     "1491": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517344889/976E67E9432128539420DD901083BF564A96ED37/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517344889/976E67E9432128539420DD901083BF564A96ED37/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175602295/43EF3BB0880F773B258F70C6D2599CB0751C032B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175602295/43EF3BB0880F773B258F70C6D2599CB0751C032B/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": false,

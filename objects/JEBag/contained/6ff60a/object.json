@@ -5,11 +5,11 @@
     "posY": 1.9847,
     "posZ": 35.1261,
     "rotX": 0.0,
-    "rotY": 180.0,
+    "rotY": 90.0,
     "rotZ": 0.0,
-    "scaleX": 1.0054,
+    "scaleX": 1.1,
     "scaleY": 1.0,
-    "scaleZ": 1.0054
+    "scaleZ": 1.1
   },
   "Nickname": "",
   "Description": "",
@@ -42,11 +42,11 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CardID": 148500,
-  "SidewaysCard": false,
+  "SidewaysCard": true,
   "CustomDeck": {
     "1485": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517344527/AC3839F3C700F86F8ACC77AD04F99AE848671724/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517344527/AC3839F3C700F86F8ACC77AD04F99AE848671724/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175602749/0DDFAA4C08F90346A7F71E29CDFB672DFC580A0C/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175602749/0DDFAA4C08F90346A7F71E29CDFB672DFC580A0C/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": false,

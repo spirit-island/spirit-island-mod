@@ -3649,10 +3649,10 @@ function runSpiritSetup()
 end
 
 function CompleteSetup()
-    if setupComplete then
+    if setupCompleted then
         return
     end
-    setupComplete = true
+    setupCompleted = true
 
     for color,_ in pairs(selectedColors) do
         -- Remove all aspect cards in hand (any picked aspects should be in player area by now)

@@ -1381,23 +1381,6 @@ end
 ----- Pre Setup Section
 function PreSetup()
     local preSetupSteps = 0
-    if adversaryCard ~= nil and adversaryCard.getVar("preSetup") then
-        print("PreSetup for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
-        adversaryCard.call("PreSetup",{level = adversaryLevel})
-        Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard.getVar("preSetupComplete") end)
-    else
-        preSetupSteps = preSetupSteps + 1
-    end
-    if adversaryCard2 ~= nil and adversaryCard2.getVar("preSetup") then
-        print("PreSetup for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
-        -- Wait for first adversary to finish
-        Wait.condition(function()
-            adversaryCard2.call("PreSetup",{level = adversaryLevel2})
-            Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return adversaryCard2.getVar("preSetupComplete") end)
-        end, function() return preSetupSteps >= 1 end)
-    else
-        preSetupSteps = preSetupSteps + 1
-    end
     if scenarioCard ~= nil and scenarioCard.getVar("preSetup") then
         scenarioCard.call("PreSetup")
         Wait.condition(function() preSetupSteps = preSetupSteps + 1 end, function() return scenarioCard.getVar("preSetupComplete") end)
@@ -1600,7 +1583,7 @@ function PreSetup()
 
         setupBlightTokens()
         setupInvaderPieces()
-    end, function() return preSetupSteps == 4 end)
+    end, function() return preSetupSteps == 2 end)
     return 1
 end
 function setupBlightTokens()
@@ -2753,64 +2736,6 @@ function adversaryUI()
         end
         UI.setAttribute("panelAdversaryEscalation","tooltip",ui.escalation.tooltip)
         lineCount = lineCount + 1
-        local deprecated = false
-        if ui.one then
-            UI.setAttribute("panelAdversaryLevel1","text","1) "..ui.one.name)
-            if ui.one.tooltip then
-                UI.setAttribute("panelAdversaryLevel1","tooltip",ui.one.tooltip)
-            end
-            UI.setAttribute("panelAdversaryLevel1","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.two then
-            UI.setAttribute("panelAdversaryLevel2","text","2) "..ui.two.name)
-            if ui.two.tooltip then
-                UI.setAttribute("panelAdversaryLevel2","tooltip",ui.two.tooltip)
-            end
-            UI.setAttribute("panelAdversaryLevel2","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.three then
-            UI.setAttribute("panelAdversaryLevel3","text","3) "..ui.three.name)
-            if ui.three.tooltip then
-                UI.setAttribute("panelAdversaryLevel3","tooltip",ui.three.tooltip)
-            end
-            UI.setAttribute("panelAdversaryLevel3","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.four then
-            UI.setAttribute("panelAdversaryLevel4","text","4) "..ui.four.name)
-            if ui.four.tooltip then
-                UI.setAttribute("panelAdversaryLevel4","tooltip",ui.four.tooltip)
-            end
-            UI.setAttribute("panelAdversaryLevel4","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.five then
-            UI.setAttribute("panelAdversaryLevel5","text","5) "..ui.five.name)
-            if ui.five.tooltip then
-                UI.setAttribute("panelAdversaryLevel5","tooltip",ui.five.tooltip)
-            end
-            UI.setAttribute("panelAdversaryLevel5","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.six then
-            UI.setAttribute("panelAdversaryLevel6","text","6) "..ui.six.name)
-            if ui.six.tooltip then
-                UI.setAttribute("panelAdversaryLevel6","tooltip",ui.six.tooltip)
-            end
-            UI.setAttribute("panelAdversaryLevel6","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if deprecated then
-            print("AdversaryUI without effects table for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
-        end
         local ravage = false
         local build = false
         local explore = false
@@ -2848,18 +2773,6 @@ function adversaryUI()
                 UI.setAttribute("panelAdversaryLevel"..level,"active","true")
                 lineCount = lineCount + 1
             end
-        end
-        if ui.invader then
-            if ui.invader.ravage then
-                ravage = true
-            end
-            if ui.invader.build then
-                build = true
-            end
-            if ui.invader.explore then
-                explore = true
-            end
-            print("AdversaryUI with invader table for Adversaries is now deprecated, please update code for "..adversaryCard.getName().." to maintain future compatibility with the mod")
         end
         if ravage then
             UI.setAttribute("panelRavageOutline", "active", "true")
@@ -2900,64 +2813,6 @@ function adversaryUI()
         if ui.escalation.random then
             UI.setAttribute("panelAdversary2EscalationRandom","active","true")
         end
-        local deprecated = false
-        if ui.one then
-            UI.setAttribute("panelAdversary2Level1","text","1) "..ui.one.name)
-            if ui.one.tooltip then
-                UI.setAttribute("panelAdversary2Level1","tooltip",ui.one.tooltip)
-            end
-            UI.setAttribute("panelAdversary2Level1","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.two then
-            UI.setAttribute("panelAdversary2Level2","text","2) "..ui.two.name)
-            if ui.two.tooltip then
-                UI.setAttribute("panelAdversary2Level2","tooltip",ui.two.tooltip)
-            end
-            UI.setAttribute("panelAdversary2Level2","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.three then
-            UI.setAttribute("panelAdversary2Level3","text","3) "..ui.three.name)
-            if ui.three.tooltip then
-                UI.setAttribute("panelAdversary2Level3","tooltip",ui.three.tooltip)
-            end
-            UI.setAttribute("panelAdversary2Level3","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.four then
-            UI.setAttribute("panelAdversary2Level4","text","4) "..ui.four.name)
-            if ui.four.tooltip then
-                UI.setAttribute("panelAdversary2Level4","tooltip",ui.four.tooltip)
-            end
-            UI.setAttribute("panelAdversary2Level4","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.five then
-            UI.setAttribute("panelAdversary2Level5","text","5) "..ui.five.name)
-            if ui.five.tooltip then
-                UI.setAttribute("panelAdversary2Level5","tooltip",ui.five.tooltip)
-            end
-            UI.setAttribute("panelAdversary2Level5","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if ui.six then
-            UI.setAttribute("panelAdversary2Level6","text","6) "..ui.six.name)
-            if ui.six.tooltip then
-                UI.setAttribute("panelAdversary2Level6","tooltip",ui.six.tooltip)
-            end
-            UI.setAttribute("panelAdversary2Level6","active","true")
-            lineCount = lineCount + 1
-            deprecated = true
-        end
-        if deprecated then
-            print("AdversaryUI without effects table for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
-        end
         local ravage = false
         local build = false
         local explore = false
@@ -2995,18 +2850,6 @@ function adversaryUI()
                 UI.setAttribute("panelAdversary2Level"..level,"active","true")
                 lineCount = lineCount + 1
             end
-        end
-        if ui.invader then
-            if ui.invader.ravage then
-                ravage = true
-            end
-            if ui.invader.build then
-                build = true
-            end
-            if ui.invader.explore then
-                explore = true
-            end
-            print("AdversaryUI with invader table for Adversaries is now deprecated, please update code for "..adversaryCard2.getName().." to maintain future compatibility with the mod")
         end
         if ravage then
             UI.setAttribute("panelRavageOutline", "active", "true")

@@ -450,12 +450,20 @@ function onObjectEnterScriptingZone(zone, obj)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
             checkVictory()
         end
-    elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-        for color,data in pairs(selectedColors) do
-            if data.zone == zone then
-                local success = obj.call("doSetup", {color=color})
-                obj.setVar("setupComplete", success)
-                break
+    elseif gameStarted and obj.hasTag("Setup") then
+        -- Whether the object has already done setup is stored in its script state, to persist across save/reload
+        local json = JSON.decode(obj.script_state)
+        if not json or not json.setupComplete then
+            if not json then
+                json = {}
+            end
+            for color,data in pairs(selectedColors) do
+                if data.zone == zone then
+                    local success = obj.call("doSetup", {color=color})
+                    json.setupComplete = success
+                    obj.script_state = JSON.encode(json)
+                    break
+                end
             end
         end
     end
@@ -3639,9 +3647,18 @@ function runSpiritSetup()
     for color,data in pairs(selectedColors) do
         if data.zone then
             for _,obj in pairs(data.zone.getObjects()) do
-                if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-                    local success = obj.call("doSetup", {color=color})
-                    obj.setVar("setupComplete", success)
+                if obj.hasTag("Setup") then
+                    -- Whether the object has already done setup is stored in its script state, to persist across save/reload
+                    local json = JSON.decode(obj.script_state)
+                    if not json or not json.setupComplete then
+                        if not json then
+                            json = {}
+                        end
+                        local success = obj.call("doSetup", {color=color})
+                        json.setupComplete = success
+                        obj.script_state = JSON.encode(json)
+                        break
+                    end
                 end
             end
         end

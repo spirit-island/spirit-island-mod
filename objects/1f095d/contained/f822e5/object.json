@@ -1,0 +1,76 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 149.3678,
+    "posY": 2.5101,
+    "posZ": 39.7079,
+    "rotX": 0.0,
+    "rotY": 180.0018,
+    "rotZ": 0.0,
+    "scaleX": 7.15,
+    "scaleY": 1.0,
+    "scaleZ": 7.15
+  },
+  "Nickname": "H",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.8157,
+    "g": 0.8157,
+    "b": 0.8157
+  },
+  "Tags": [
+    "Balanced"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044120005053501045/1B5AD3AA0BB03E2AD94CE3FAB06614B817ED35E9/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.395,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "AttachedDecals": [
+    {
+      "Transform": {
+        "posX": 0.0,
+        "posY": 0.0,
+        "posZ": 0.0,
+        "rotX": 90.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.24,
+        "scaleY": 0.24,
+        "scaleZ": 1.0
+      },
+      "CustomDecal": {
+        "Name": "Threshold",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/",
+        "Size": 1.0
+      }
+    }
+  ]
+}

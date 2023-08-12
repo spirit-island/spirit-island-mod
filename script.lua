@@ -4361,6 +4361,7 @@ function getPermutedThematicLayout(n)
         for _,boardData in pairs(template) do
             if boardData.board == boardName then
                 table.insert(boards, boardData)
+                break
             end
         end
     end

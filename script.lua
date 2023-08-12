@@ -3657,7 +3657,6 @@ function runSpiritSetup()
                         local success = obj.call("doSetup", {color=color})
                         json.setupComplete = success
                         obj.script_state = JSON.encode(json)
-                        break
                     end
                 end
             end

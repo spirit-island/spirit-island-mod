@@ -450,12 +450,20 @@ function onObjectEnterScriptingZone(zone, obj)
             broadcastToAll("Terror Level III Achieved!", Color.SoftYellow)
             checkVictory()
         end
-    elseif gameStarted and obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-        for color,data in pairs(selectedColors) do
-            if data.zone == zone then
-                local success = obj.call("doSetup", {color=color})
-                obj.setVar("setupComplete", success)
-                break
+    elseif gameStarted and obj.hasTag("Setup") then
+        -- Whether the object has already done setup is stored in its script state, to persist across save/reload
+        local json = JSON.decode(obj.script_state)
+        if not json then
+            json = {}
+        end
+        if not json.setupComplete then
+            for color,data in pairs(selectedColors) do
+                if data.zone == zone then
+                    local success = obj.call("doSetup", {color=color})
+                    json.setupComplete = success
+                    obj.script_state = JSON.encode(json)
+                    break
+                end
             end
         end
     end
@@ -3133,7 +3141,11 @@ function BoardSetup()
     local maps = getMapTiles()
     if #maps == 0 then
         if isThematic() then
-            MapPlacen(boardLayouts[numBoards][boardLayout])
+            if SetupChecker.getVar("optionalThematicPermute") then
+                MapPlacen(getPermutedThematicLayout())
+            else
+                MapPlacen(boardLayouts[numBoards][boardLayout])
+            end
         else
             StandardMapBag.shuffle()
             ExtraMapBag.shuffle()
@@ -3639,9 +3651,17 @@ function runSpiritSetup()
     for color,data in pairs(selectedColors) do
         if data.zone then
             for _,obj in pairs(data.zone.getObjects()) do
-                if obj.hasTag("Setup") and not obj.getVar("setupComplete") then
-                    local success = obj.call("doSetup", {color=color})
-                    obj.setVar("setupComplete", success)
+                if obj.hasTag("Setup") then
+                    -- Whether the object has already done setup is stored in its script state, to persist across save/reload
+                    local json = JSON.decode(obj.script_state)
+                    if not json then
+                        json = {}
+                    end
+                    if not json.setupComplete then
+                        local success = obj.call("doSetup", {color=color})
+                        json.setupComplete = success
+                        obj.script_state = JSON.encode(json)
+                    end
                 end
             end
         end
@@ -4155,6 +4175,100 @@ themGuids = {
     ["SW"] = "0f2e60",
     ["SE"] = "505d5d",
 }
+thematicPermutations = { -- All possible combinations are listed, with non-contiguous ones commented out.
+    { -- 1 Board
+        {"NW"},
+        {"NE"},
+        {"W"},
+        {"E"},
+        {"SW"},
+        {"SE"},
+    },
+    { -- 2 Board
+        {"NW", "NE"},
+        {"NW", "W"},
+        --{"NW", "E"},
+        --{"NW", "SW"},
+        --{"NW", "SE"},
+        --{"NE", "W"},
+        {"NE", "E"},
+        --{"NE", "SW"},
+        --{"NE", "SE"},
+        {"W", "E"},
+        {"W", "SW"},
+        --{"W", "SE"},
+        --{"E", "SW"},
+        {"E", "SE"},
+        {"SW", "SE"},
+    },
+    { -- 3 Board
+        {"NW", "NE", "W"},
+        {"NW", "NE", "E"},
+        --{"NW", "NE", "SW"},
+        --{"NW", "NE", "SE"},
+        {"NW", "W", "E"},
+        {"NW", "W", "SW"},
+        --{"NW", "W", "SE"},
+        --{"NW", "E", "SW"},
+        --{"NW", "E", "SE"},
+        --{"NW", "SW", "SE"},
+        {"NE", "W", "E"},
+        --{"NE", "W", "SW"},
+        --{"NE", "W", "SE"},
+        --{"NE", "E", "SW"},
+        {"NE", "E", "SE"},
+        --{"NE", "SW", "SE"},
+        {"W", "E", "SW"},
+        {"W", "E", "SE"},
+        {"W", "SW", "SE"},
+        {"E", "SW", "SE"},
+    },
+    { -- 4 Board
+        {"NW", "NE", "W", "E"},
+        {"NW", "NE", "W", "SW"},
+        --{"NW", "NE", "W", "SE"},
+        --{"NW", "NE", "E", "SW"},
+        {"NW", "NE", "E", "SE"},
+        --{"NW", "NE", "SW", "SE"},
+        {"NW", "W", "E", "SW"},
+        {"NW", "W", "E", "SE"},
+        {"NW", "W", "SW", "SE"},
+        --{"NW", "E", "SW", "SE"},
+        {"NE", "W", "E", "SW"},
+        {"NE", "W", "E", "SE"},
+        --{"NE", "W", "SW", "SE"},
+        {"NE", "E", "SW", "SE"},
+        {"W", "E", "SW", "SE"},
+    },
+    { -- 5 Board
+        {"NW", "NE", "W", "E", "SW"},
+        {"NW", "NE", "W", "E", "SE"},
+        {"NW", "NE", "W", "SW", "SE"},
+        {"NW", "NE", "E", "SW", "SE"},
+        {"NW", "W", "E", "SW", "SE"},
+        {"NE", "W", "E", "SW", "SE"},
+    },
+    { -- 6 Board
+        {"NW", "NE", "W", "E", "SW", "SE"},
+    },
+}
+----
+function getPermutedThematicLayout()
+    -- Select a random permutation of the appropriate length.
+    local permutation = thematicPermutations[numBoards][math.random(#thematicPermutations[numBoards])]
+    -- Subset the six-player thematic map with the appropriate permutation.
+    local template = boardLayouts[6]["Thematic"]
+    local boards = {}
+    for _,boardName in pairs(permutation) do
+        for _,boardData in pairs(template) do
+            if boardData.board == boardName then
+                table.insert(boards, boardData)
+                break
+            end
+        end
+    end
+    return boards
+end
 ----
 function PopulateSpawnPositions()
     local boards = getMapTiles()

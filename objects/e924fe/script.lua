@@ -306,6 +306,7 @@ function ExportConfig()
     data.variant.thematicRebellion = SetupChecker.getVar("optionalThematicRebellion")
     data.variant.uniqueRebellion = SetupChecker.getVar("optionalUniqueRebellion")
     data.variant.thematicRedo = SetupChecker.getVar("optionalThematicRedo")
+    data.variant.thematicPermute = SetupChecker.getVar("optionalThematicPermute")
     data.variant.carpetRedo = Global.getVar("seaTile").getStateId() == 1
     data.variant.gameResults = SetupChecker.getVar("optionalGameResults")
 

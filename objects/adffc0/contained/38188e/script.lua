@@ -2,10 +2,13 @@ local healthCount = 0
 local autoExchange = true
 
 function onSave()
-    local data_table = {
-        healthCount = healthCount,
-        autoExchange = autoExchange
-    }
+    -- We must build on the existing script state, to avoid overwriting setupComplete
+    local data_table = {}
+    if self.script_state ~= "" then
+        data_table = JSON.decode(self.script_state)
+    end
+    data_table.healthCount = healthCount
+    data_table.autoExchange = autoExchange
     return JSON.encode(data_table)
 end
 function onLoad(save_state)
@@ -15,7 +18,6 @@ function onLoad(save_state)
             healthCount = loaded_data.healthCount
             autoExchange = loaded_data.autoExchange
         end
-        setupComplete = true -- luacheck: ignore 111
         if autoExchange then
             exchangeAuto()
         end

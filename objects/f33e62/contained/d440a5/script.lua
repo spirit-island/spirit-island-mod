@@ -1,9 +1,12 @@
 local count = 0
 
 function onSave()
-    local data_table = {
-        count = count
-    }
+    -- We must build on the existing script state, to avoid overwriting setupComplete
+    local data_table = {}
+    if self.script_state ~= "" then
+        data_table = JSON.decode(self.script_state)
+    end
+    data_table.count = count
     return JSON.encode(data_table)
 end
 function onLoad(save_state)
@@ -12,7 +15,6 @@ function onLoad(save_state)
             local loaded_data = JSON.decode(save_state)
             count = loaded_data.count
         end
-        setupComplete = true -- luacheck: ignore 111
 
         Wait.frames(function()
             self.UI.setAttribute("count", "text", count)

@@ -221,6 +221,7 @@
     "natureIncarnateSetup": true,
     "soloBlight": true,
     "thematicRebellion": false,
-    "thematicRedo": false
+    "thematicRedo": false,
+    "thematicPermute": false
   }
 }

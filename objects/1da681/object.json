@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 108.8281,
-    "posY": 2.5141,
-    "posZ": 47.4399,
+    "posX": -50.76,
+    "posY": -0.1,
+    "posZ": 55.81,
     "rotX": 0.0,
-    "rotY": 180.013,
+    "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 7.15,
+    "scaleX": 0.81,
     "scaleY": 1.0,
-    "scaleZ": 7.15
+    "scaleZ": 0.81
   },
-  "Nickname": "G",
+  "Nickname": "NORMAL G",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -25,7 +25,7 @@
     "b": 0.8157
   },
   "Tags": [
-    "Balanced"
+    "Uninteractable"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,

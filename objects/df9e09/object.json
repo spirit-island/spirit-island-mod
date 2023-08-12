@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 108.8281,
-    "posY": 2.5141,
-    "posZ": 47.4399,
+    "posX": -48.49,
+    "posY": -0.1,
+    "posZ": 54.92,
     "rotX": 0.0,
-    "rotY": 180.013,
+    "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 7.15,
+    "scaleX": 0.81,
     "scaleY": 1.0,
-    "scaleZ": 7.15
+    "scaleZ": 0.81
   },
-  "Nickname": "G",
+  "Nickname": "NORMAL H",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -25,11 +25,11 @@
     "b": 0.8157
   },
   "Tags": [
-    "Balanced"
+    "Uninteractable"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
-  "Locked": false,
+  "Locked": true,
   "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044120005053498801/4149B157E0EB8C27DE92908B83553E2D29D9E0E0/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044120005053501045/1B5AD3AA0BB03E2AD94CE3FAB06614B817ED35E9/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

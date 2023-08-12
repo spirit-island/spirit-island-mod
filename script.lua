@@ -453,10 +453,10 @@ function onObjectEnterScriptingZone(zone, obj)
     elseif gameStarted and obj.hasTag("Setup") then
         -- Whether the object has already done setup is stored in its script state, to persist across save/reload
         local json = JSON.decode(obj.script_state)
-        if not json or not json.setupComplete then
-            if not json then
-                json = {}
-            end
+        if not json then
+            json = {}
+        end
+        if not json.setupComplete then
             for color,data in pairs(selectedColors) do
                 if data.zone == zone then
                     local success = obj.call("doSetup", {color=color})
@@ -3650,10 +3650,10 @@ function runSpiritSetup()
                 if obj.hasTag("Setup") then
                     -- Whether the object has already done setup is stored in its script state, to persist across save/reload
                     local json = JSON.decode(obj.script_state)
-                    if not json or not json.setupComplete then
-                        if not json then
-                            json = {}
-                        end
+                    if not json then
+                        json = {}
+                    end
+                    if not json.setupComplete then
                         local success = obj.call("doSetup", {color=color})
                         json.setupComplete = success
                         obj.script_state = JSON.encode(json)

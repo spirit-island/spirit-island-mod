@@ -3266,7 +3266,7 @@ function BoardSetup()
     if #maps == 0 then
         if isThematic() then
             if SetupChecker.getVar("optionalThematicPermute") then
-                MapPlacen(getPermutedThematicLayout(numBoards))
+                MapPlacen(getPermutedThematicLayout())
             else
                 MapPlacen(boardLayouts[numBoards][boardLayout])
             end
@@ -4351,9 +4351,9 @@ thematicPermutations = { -- All possible combinations are listed, with non-conti
     },
 }
 ----
-function getPermutedThematicLayout(n)
+function getPermutedThematicLayout()
     -- Select a random permutation of the appropriate length.
-    local permutation = thematicPermutations[n][math.random(#thematicPermutations[n])]
+    local permutation = thematicPermutations[numBoards][math.random(#thematicPermutations[numBoards])]
     -- Subset the six-player thematic map with the appropriate permutation.
     local template = boardLayouts[6]["Thematic"]
     local boards = {}

@@ -220,8 +220,8 @@
     "gameResults": true,
     "natureIncarnateSetup": true,
     "soloBlight": true,
+    "thematicPermute": false,
     "thematicRebellion": false,
-    "thematicRedo": false,
-    "thematicPermute": false
+    "thematicRedo": false
   }
 }

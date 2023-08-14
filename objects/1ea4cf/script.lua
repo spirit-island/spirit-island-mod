@@ -219,7 +219,6 @@ function checkLoss()
                             origin = bounds.center + bounds.offset,
                             direction = Vector(0,-1,0),
                             max_distance = 6,
-                            --debug = true,
                         })
                         for _,v in pairs(hits) do
                             if v.hit_object ~= obj and Global.call("isIslandBoard", {obj=v.hit_object}) then

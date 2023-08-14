@@ -53,7 +53,6 @@ function moveDiscard(aidBoard, immigrationTile)
         size         = Vector(1,0.9,1.5),
         orientation  = Vector(0,90,0),
         max_distance = 0,
-        --debug        = true,
     })
     local immigrationHits = Physics.cast({
         origin       = immigrationTile.getPosition(),
@@ -62,7 +61,6 @@ function moveDiscard(aidBoard, immigrationTile)
         size         = Vector(1,0.9,1.5),
         orientation  = Vector(0,90,0),
         max_distance = 0,
-        --debug        = true,
     })
 
     for _,hit in pairs(discardHits) do

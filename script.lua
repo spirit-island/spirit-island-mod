@@ -5063,7 +5063,6 @@ function checkPresenceLoss()
                         origin = obj.getPosition(),
                         direction = Vector(0,-1,0),
                         max_distance = 1,
-                        --debug = true,
                     })
                     for _,v in pairs(hits) do
                         if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
@@ -5456,7 +5455,6 @@ function upCast(obj,dist,offset,dir)
         size         = obj.getBounds().size,
         orientation  = obj.getRotation(),
         max_distance = dist,
-        --debug        = true,
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
@@ -5469,7 +5467,6 @@ function upCastRay(obj,dist)
         origin = obj.getBounds().center,
         direction = Vector(0,1,0),
         max_distance = dist,
-        --debug = true,
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
@@ -5489,7 +5486,6 @@ function upCastPosSizRot(pos,size,rot,dist,types)
         size         = size,
         orientation  = rot,
         max_distance = dist,
-        --debug        = true,
     })
     local hitObjects = {}
     for _,v in pairs(hits) do

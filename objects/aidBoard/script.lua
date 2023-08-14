@@ -425,7 +425,6 @@ function advanceInvaderCards()
                 direction    = Vector(0,1,0),
                 type         = 1,
                 max_distance = 0.3,
-                --debug        = true,
             })
             local hitObjects = {}
             for _,hit in pairs(hits) do
@@ -509,7 +508,6 @@ function aidPanelScanLoop()
                 direction    = Vector(0,1,0),
                 type         = 1,
                 max_distance = 0.3,
-                --debug        = true,
             })
             local hitObjects = {}
             for _,hit in pairs(hits) do
@@ -537,7 +535,6 @@ function aidPanelScanLoop()
         direction    = Vector(0,1,0),
         type         = 1,
         max_distance = 0.3,
-        --debug        = true,
     })
     local hitObjects = {}
     for _,hit in pairs(hits) do
@@ -581,7 +578,6 @@ function countDiscard()
         direction    = Vector(0,1,0),
         type         = 1,
         max_distance = 0.3,
-        --debug        = true,
     })
     for _,hit in pairs(hits) do
         if hit.hit_object ~= self then

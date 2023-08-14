@@ -420,7 +420,6 @@ function setupSpirit(obj, player_color)
                 })
                 powerCard.addTag("Progression")
             else
-                found = false
                 for _,progression in pairs(getObjectsWithTag("Progression")) do
                     if progression.type == "Deck" then
                         for _,deckCard in pairs(progression.getObjects()) do
@@ -430,7 +429,6 @@ function setupSpirit(obj, player_color)
                                     position = Vector(0, 3, 0)
                                 })
                                 powerCard.setPositionSmooth(spos + Vector(0, 0.05 + i, 14))
-                                powerCard.addTag("Progression")
                                 found = true
                                 break
                             end
@@ -442,7 +440,6 @@ function setupSpirit(obj, player_color)
                         if progression.guid == card[1] then
                             local powerCard = progression.clone()
                             powerCard.setPositionSmooth(spos + Vector(0, 0.05 + i, 14))
-                            powerCard.addTag("Progression")
                             found = true
                             break
                         end
@@ -730,7 +727,6 @@ function upCast(obj)
         type         = 3,
         size         = obj.getBounds().size,
         orientation  = Vector(0, 180, 180),
-        --debug        = true,
     })
     local hitObjects = {}
     for _, v in pairs(hits) do

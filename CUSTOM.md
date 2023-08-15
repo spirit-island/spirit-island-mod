@@ -39,6 +39,7 @@
   - Stack elements on top of the threshold token (X)
   - Once all thresholds are set press the "Update Threshold" button (the top one)
   - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
+- If the image used for spirit marker/reminder token doesn't look good for custom spirit, add the tag "Lower Spirit Image" for an alternate image
 
 ### Power Cards
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/

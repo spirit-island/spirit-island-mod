@@ -7663,8 +7663,12 @@ function applySpiritContextMenuItems(spirit)
                             MaterialIndex = 1
                         },
                         LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                        XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-113 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>",
                     }
+                    if spirit.hasTag("Lower Spirit Image") then
+                        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
+                    else
+                        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
+                    end
                     if Tints[player_color] then
                         local color
                         if Tints[player_color].Token then
@@ -7709,8 +7713,12 @@ function applySpiritContextMenuItems(spirit)
                         MaterialIndex = 1
                     },
                     LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                    XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-113 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>",
                 }
+                if spirit.hasTag("Lower Spirit Image") then
+                    data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
+                else
+                    data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
+                end
                 if Tints[player_color] then
                     local color
                     if Tints[player_color].Token then

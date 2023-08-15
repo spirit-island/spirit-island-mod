@@ -654,10 +654,6 @@ function onLoad(saved_data)
             reclaimAll(obj.zone, playerColor, false)
         end
     end)
-    addContextMenuItem("Grab Spirit Markers", grabSpiritMarkers, false)
-    addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
-        grabSpiritMarkers()
-    end)
     addContextMenuItem("Grab Destroy Bag", grabDestroyBag, false)
     addHotkey("Grab Destroy Bag", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         local bag = getObjectFromGUID("fd0a22")
@@ -7614,10 +7610,10 @@ function applyPowerCardContextMenuItems(card)
                     Snap = false,
                     CustomMesh = {
                         MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
+                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
                         MaterialIndex = 1
                     },
-                    LuaScript = "function onLoad()self.UI.setXml(self.UI.getXml())end",
+                    LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
                     XmlUI = "<Panel rotation=\"0 0 180\" width=\"350\" height=\"490\" position=\"31 86 -11\"><Mask image=\"CardMask\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
                 }
                 if Tints[player_color] then
@@ -7641,6 +7637,51 @@ end
 function applySpiritContextMenuItems(spirit)
     local spiritData = spirit.getData()
     if spiritData.Name == "Custom_Tile" then
+            spirit.addContextMenuItem(
+                "Get Spirit Marker",
+                function(player_color)
+                    local pos = spirit.getPosition()
+                    local data = {
+                        Name = "Custom_Model",
+                        Transform = {
+                            posX = pos[1],
+                            posY = pos[2] + 0.5,
+                            posZ = pos[3],
+                            rotX = 0,
+                            rotY = 180,
+                            rotZ = 0,
+                            scaleX = 3.35,
+                            scaleY = 3.35,
+                            scaleZ = 3.35
+                        },
+                        Nickname = spirit.getName(),
+                        Grid = false,
+                        Snap = false,
+                        CustomMesh = {
+                            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+                            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+                            MaterialIndex = 1
+                        },
+                        LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
+                        XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-113 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>",
+                    }
+                    if Tints[player_color] then
+                        local color
+                        if Tints[player_color].Token then
+                            color = Color.fromHex(Tints[player_color].Token)
+                        else
+                            color = Color.fromHex(Tints[player_color].Presence)
+                        end
+                        data.ColorDiffuse = {
+                            r = color.r,
+                            g = color.g,
+                            b = color.b
+                        }
+                    end
+                    spawnObjectData({data = data})
+                end,
+                false)
+
         spirit.addContextMenuItem(
             "Get Reminder Token",
             function(player_color)
@@ -7649,7 +7690,7 @@ function applySpiritContextMenuItems(spirit)
                     Name = "Custom_Model",
                     Transform = {
                         posX = pos[1],
-                        posY = pos[2] + 0.02,
+                        posY = pos[2] + 0.5,
                         posZ = pos[3],
                         rotX = 0,
                         rotY = 180,
@@ -7664,10 +7705,10 @@ function applySpiritContextMenuItems(spirit)
                     Snap = false,
                     CustomMesh = {
                         MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/1753560381472354630/0AAC0B3A289E8B8DDFD8CDFABD49D4E47EE4DF26/",
+                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
                         MaterialIndex = 1
                     },
-                    LuaScript = "function onLoad()self.UI.setXml(self.UI.getXml())end",
+                    LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
                     XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-113 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>",
                 }
                 if Tints[player_color] then
@@ -7689,27 +7730,6 @@ function applySpiritContextMenuItems(spirit)
     end
 end
 
-function grabSpiritMarkers()
-    local bag = getObjectFromGUID("011f19")
-    for _,data in pairs(selectedColors) do
-        if data.zone then
-            for _, obj in ipairs(data.zone.getObjects()) do
-                if obj.hasTag("Spirit") then
-                    for _,marker in pairs(bag.getObjects()) do
-                        if marker.name == obj.getName() then
-                            bag.takeObject({
-                                guid = marker.guid,
-                                position = data.zone.getPosition() + Vector(0, 2, 8.5)
-                            })
-                            break
-                        end
-                    end
-                    break
-                end
-            end
-        end
-    end
-end
 function grabDestroyBag(color)
     local bag = getObjectFromGUID("fd0a22")
     if bag ~= nil then

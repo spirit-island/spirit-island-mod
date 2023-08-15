@@ -7640,6 +7640,10 @@ function applySpiritContextMenuItems(spirit)
             spirit.addContextMenuItem(
                 "Get Spirit Marker",
                 function(player_color)
+                    local color = getSpiritColor({name = spirit.getName()})
+                    if not color then
+                        color = player_color
+                    end
                     local pos = spirit.getPosition()
                     local data = {
                         Name = "Custom_Model",
@@ -7669,17 +7673,17 @@ function applySpiritContextMenuItems(spirit)
                     else
                         data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
                     end
-                    if Tints[player_color] then
-                        local color
-                        if Tints[player_color].Token then
-                            color = Color.fromHex(Tints[player_color].Token)
+                    if Tints[color] then
+                        local tokenColor
+                        if Tints[color].Token then
+                            tokenColor = Color.fromHex(Tints[color].Token)
                         else
-                            color = Color.fromHex(Tints[player_color].Presence)
+                            tokenColor = Color.fromHex(Tints[color].Presence)
                         end
                         data.ColorDiffuse = {
-                            r = color.r,
-                            g = color.g,
-                            b = color.b
+                            r = tokenColor.r,
+                            g = tokenColor.g,
+                            b = tokenColor.b
                         }
                     end
                     spawnObjectData({data = data})
@@ -7689,6 +7693,10 @@ function applySpiritContextMenuItems(spirit)
         spirit.addContextMenuItem(
             "Get Reminder Token",
             function(player_color)
+                local color = getSpiritColor({name = spirit.getName()})
+                if not color then
+                    color = player_color
+                end
                 local pos = spirit.getPosition()
                 local data = {
                     Name = "Custom_Model",
@@ -7703,7 +7711,7 @@ function applySpiritContextMenuItems(spirit)
                         scaleY = 0.9,
                         scaleZ = 0.9
                     },
-                    Nickname = player_color.."'s "..spirit.getName().." Reminder",
+                    Nickname = color.."'s "..spirit.getName().." Reminder",
                     Tags = {"Destroy", "Reminder Token"},
                     Grid = false,
                     Snap = false,
@@ -7719,17 +7727,17 @@ function applySpiritContextMenuItems(spirit)
                 else
                     data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
                 end
-                if Tints[player_color] then
-                    local color
-                    if Tints[player_color].Token then
-                        color = Color.fromHex(Tints[player_color].Token)
+                if Tints[color] then
+                    local tokenColor
+                    if Tints[color].Token then
+                        tokenColor = Color.fromHex(Tints[color].Token)
                     else
-                        color = Color.fromHex(Tints[player_color].Presence)
+                        tokenColor = Color.fromHex(Tints[color].Presence)
                     end
                     data.ColorDiffuse = {
-                        r = color.r,
-                        g = color.g,
-                        b = color.b
+                        r = tokenColor.r,
+                        g = tokenColor.g,
+                        b = tokenColor.b
                     }
                 end
                 spawnObjectData({data = data})

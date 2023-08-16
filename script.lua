@@ -7495,6 +7495,10 @@ function onPlayerChangeColor(player_color)
 end
 function onPlayerConnect(player)
     updatePlaySpiritButton(player.color)
+
+    for _,obj in pairs(getObjectsWithTag("Mask")) do
+        obj.reload()
+    end
 end
 function onPlayerDisconnect(player)
     if #Player.getPlayers() == 0 and #Player.getSpectators() == 0 then
@@ -7605,7 +7609,7 @@ function applyPowerCardContextMenuItems(card)
                         scaleZ = 0.9
                     },
                     Nickname = player_color.."'s "..card.getName().." Reminder",
-                    Tags = {"Destroy", "Reminder Token"},
+                    Tags = {"Destroy", "Mask", "Reminder Token"},
                     Grid = false,
                     Snap = false,
                     CustomMesh = {
@@ -7659,6 +7663,7 @@ function applySpiritContextMenuItems(spirit)
                             scaleZ = 3.35
                         },
                         Nickname = spirit.getName(),
+                        Tags = {"Mask"},
                         Grid = false,
                         Snap = false,
                         CustomMesh = {
@@ -7712,7 +7717,7 @@ function applySpiritContextMenuItems(spirit)
                         scaleZ = 0.9
                     },
                     Nickname = color.."'s "..spirit.getName().." Reminder",
-                    Tags = {"Destroy", "Reminder Token"},
+                    Tags = {"Destroy", "Mask", "Reminder Token"},
                     Grid = false,
                     Snap = false,
                     CustomMesh = {

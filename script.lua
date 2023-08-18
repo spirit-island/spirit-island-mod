@@ -2749,27 +2749,27 @@ function adversaryUI()
             for level,data in pairs(ui.effects) do
                 local name = data.name
                 if data.ravage then
-                    name = name.."(R)"
+                    name = name.." (R)"
                     ravage = true
                 end
                 if data.afterRavage then
-                    name = name.."(AR)"
+                    name = name.." (AR)"
                     ravage = true
                 end
                 if data.build then
-                    name = name.."(B)"
+                    name = name.." (B)"
                     build = true
                 end
                 if data.afterBuild then
-                    name = name.."(AB)"
+                    name = name.." (AB)"
                     build = true
                 end
                 if data.explore then
-                    name = name.."(E)"
+                    name = name.." (E)"
                     explore = true
                 end
                 if data.afterExplore then
-                    name = name.."(AE)"
+                    name = name.." (AE)"
                     explore = true
                 end
                 UI.setAttribute("panelAdversaryLevel"..level,"text",level..") "..name)
@@ -2826,27 +2826,27 @@ function adversaryUI()
             for level,data in pairs(ui.effects) do
                 local name = data.name
                 if data.ravage then
-                    name = name.."(R)"
+                    name = name.." (R)"
                     ravage = true
                 end
                 if data.afterRavage then
-                    name = name.."(AR)"
+                    name = name.." (AR)"
                     ravage = true
                 end
                 if data.build then
-                    name = name.."(B)"
+                    name = name.." (B)"
                     build = true
                 end
                 if data.afterBuild then
-                    name = name.."(AB)"
+                    name = name.." (AB)"
                     build = true
                 end
                 if data.explore then
-                    name = name.."(E)"
+                    name = name.." (E)"
                     explore = true
                 end
                 if data.afterExplore then
-                    name = name.."(AE)"
+                    name = name.." (AE)"
                     explore = true
                 end
                 UI.setAttribute("panelAdversary2Level"..level,"text",level..") "..name)

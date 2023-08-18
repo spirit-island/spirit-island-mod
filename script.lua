@@ -2919,21 +2919,21 @@ function randomTerrain(player)
 end
 ----- Invader Deck Section
 invaderCards = {
-    ["W"] = {["guid"] = "8cf7b8", ["stage"] = 1},
-    ["M"] = {["guid"] = "8346dd", ["stage"] = 1},
-    ["J"] = {["guid"] = "cf9353", ["stage"] = 1},
-    ["S"] = {["guid"] = "e07847", ["stage"] = 1},
-    ["We"] = {["guid"] = "3b538b", ["stage"] = 2},
-    ["Me"] = {["guid"] = "ec8fb2", ["stage"] = 2},
-    ["Je"] = {["guid"] = "c304c1", ["stage"] = 2},
-    ["Se"] = {["guid"] = "b88f34", ["stage"] = 2},
-    ["C"] = {["guid"] = "a5afb0", ["stage"] = 2},
-    ["MW"] = {["guid"] = "6c6131", ["stage"] = 3},
-    ["JW"] = {["guid"] = "3e6af4", ["stage"] = 3},
-    ["SW"] = {["guid"] = "0f66d9", ["stage"] = 3},
-    ["MJ"] = {["guid"] = "0f16b8", ["stage"] = 3},
-    ["SM"] = {["guid"] = "72c176", ["stage"] = 3},
-    ["JS"] = {["guid"] = "89d57f", ["stage"] = 3},
+    ["W"] = {["stage"] = 1},
+    ["M"] = {["stage"] = 1},
+    ["J"] = {["stage"] = 1},
+    ["S"] = {["stage"] = 1},
+    ["We"] = {["stage"] = 2},
+    ["Me"] = {["stage"] = 2},
+    ["Je"] = {["stage"] = 2},
+    ["Se"] = {["stage"] = 2},
+    ["C"] = {["stage"] = 2},
+    ["MW"] = {["stage"] = 3},
+    ["JW"] = {["stage"] = 3},
+    ["SW"] = {["stage"] = 3},
+    ["MJ"] = {["stage"] = 3},
+    ["SM"] = {["stage"] = 3},
+    ["JS"] = {["stage"] = 3},
 }
 function SetupInvaderDeck()
     local deckTable = {1,1,1,2,2,2,2,3,3,3,3,3, blacklist={}}
@@ -2973,7 +2973,15 @@ function grabInvaderCards(deckTable)
         local deck = nil
         local stage = deckTable[i]
         if invaderCards[stage] then
-            stage = invaderCards[stage].stage
+            if invaderCards[stage].stage then
+                stage = invaderCards[stage].stage
+            elseif invaderCards[stage].guid then
+                local card = getObjectFromGUID(invaderCards[stage].guid)
+                card.setPosition(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
+                card.setRotationSmooth(Vector(0,180,180))
+                cardsLoaded = cardsLoaded + 1
+                table.insert(cardTable, card)
+            end
         end
         if stage == 1 then
             deck = stage1Deck

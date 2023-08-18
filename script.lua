@@ -2936,7 +2936,7 @@ invaderCards = {
     ["JS"] = {["guid"] = "89d57f", ["stage"] = 3},
 }
 function SetupInvaderDeck()
-    local deckTable = {1,1,1,2,2,2,2,3,3,3,3,3}
+    local deckTable = {1,1,1,2,2,2,2,3,3,3,3,3, blacklist={}}
     -- supporting adversary setup should happen first
     if adversaryCard2 ~= nil and adversaryCard2.getVar("invaderDeckSetup") then
         deckTable = adversaryCard2.call("InvaderDeckSetup",{level = adversaryLevel2, deck = deckTable})
@@ -2948,31 +2948,14 @@ function SetupInvaderDeck()
         deckTable = scenarioCard.call("InvaderDeckSetup",{deck = deckTable})
     end
 
-    local cardsToSetup = 0
-    local cardsSetup = 0
-    for i=1, #deckTable do
-        local cardData = invaderCards[deckTable[i]]
-        if cardData then
-            cardsToSetup = cardsToSetup + 1
-            local deck
-            if cardData.stage == 1 then
-                deck = getObjectFromGUID(stage1DeckZone).getObjects()[1]
-            elseif cardData.stage == 2 then
-                deck = getObjectFromGUID(stage2DeckZone).getObjects()[1]
-            else
-                -- assumed stage 3
-                deck = getObjectFromGUID(stage3DeckZone).getObjects()[1]
-            end
-            deck.takeObject({
-                guid = cardData.guid,
-                position = deck.getPosition() + Vector(-6,1,14 + i),
-                rotation = Vector(0,180,0),
-                callback_function = function(obj) cardsSetup = cardsSetup + 1 end,
-            })
+    -- Any cards specifically placed in deck should not be randomly grabbed for other places in deck
+    for _,card in pairs(deckTable) do
+        if invaderCards[card] then
+            deckTable.blacklist[card] = true
         end
     end
+    grabInvaderCards(deckTable)
 
-    Wait.condition(function() grabInvaderCards(deckTable) end, function() return cardsToSetup == cardsSetup end)
     return 1
 end
 function grabInvaderCards(deckTable)
@@ -2987,41 +2970,39 @@ function grabInvaderCards(deckTable)
     local cardTable = {}
     local cardsLoaded = 0
     for i = #deckTable, 1, -1 do
-        local char = deckTable[i]
-        if char == 1 then
-            local card = stage1Deck.takeObject({
-                position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
-                smooth = false,
-                callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
-            })
-            table.insert(cardTable, card)
-        elseif char == 2 then
-            local card = stage2Deck.takeObject({
-                position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
-                smooth = false,
-                callback_function = function(obj) cardsLoaded = cardsLoaded + 1 end,
-            })
-            table.insert(cardTable, card)
-        elseif char == 3 or char == "3*" then
-            local card = stage3Deck.takeObject({
-                position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
-                smooth = false,
-                callback_function = function(obj)
-                    cardsLoaded = cardsLoaded + 1
-                    if char == "3*" then
-                        local script = obj.getLuaScript()
-                        script = "special=true\n"..script
-                        obj.setLuaScript(script)
-                    end
-                end,
-            })
-            table.insert(cardTable, card)
-        elseif invaderCards[deckTable[i]] then
-            local card = getObjectFromGUID(invaderCards[deckTable[i]].guid)
-            card.setPosition(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
-            card.setRotationSmooth(Vector(0,180,180))
-            cardsLoaded = cardsLoaded + 1
-            table.insert(cardTable, card)
+        local deck = nil
+        local stage = deckTable[i]
+        if invaderCards[stage] then
+            stage = invaderCards[stage].stage
+        end
+        if stage == 1 then
+            deck = stage1Deck
+        elseif stage == 2 then
+            deck = stage2Deck
+        elseif stage == 3 or stage == "3*" then
+            deck = stage3Deck
+        end
+        if deck then
+            for j,cardData in pairs(deck.getObjects()) do
+                -- We are either looking for a specific card or a random one that's not blacklisted
+                if deckTable[i] == cardData.name or (not deckTable.blacklist[cardData.name] and not invaderCards[deckTable[i]]) then
+                    local card = deck.takeObject({
+                        index = j - 1,
+                        position = invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0),
+                        smooth = false,
+                        callback_function = function(obj)
+                            cardsLoaded = cardsLoaded + 1
+                            if char == "3*" then
+                                local script = obj.getLuaScript()
+                                script = "special=true\n"..script
+                                obj.setLuaScript(script)
+                            end
+                        end,
+                    })
+                    table.insert(cardTable, card)
+                    break
+                end
+            end
         end
     end
     Wait.condition(function() group(cardTable) end, function() return cardsLoaded == #deckTable end)

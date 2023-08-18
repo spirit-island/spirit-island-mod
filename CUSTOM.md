@@ -177,7 +177,10 @@ This section is meant for users who are familiar with both the tts mod and progr
           - W, M, J, S: indicates specific stage I card
           - We, Me, Je, Se, C: indicates specific stage II card
           - MW, JW, SW, MJ, SM, JS: indicates specific stage III card
-          - [anything above]*: will have UI treat card as one stage lower (e.g. Prussia 2)
+          - 3*: will have UI treat card as stage III card as stage II (e.g. Prussia 2)
+          - `blacklist`: **table** - table containing cards to not appear randomly in invader deck
+            - Any specific cards used in the invader deck have implied blacklist (e.g. Scotland 2)
+            - Use a specific card name per above and set to true in the table
         - return **table** - updated table for invader deck setup
   - mapSetup - allows you to modify the pieces on a board
     - `mapSetup`: **boolean** - set to true if you have `MapSetup` function

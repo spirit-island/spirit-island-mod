@@ -181,7 +181,7 @@ function PostSetup(params)
 end
 
 function Broadcast(params)
-    if params.level >= 1 and Global.getVar("numBoards") > 6 then
+    if params.level >= 1 and Global.getVar("numBoards") > 8 then
         return "Habsburg Level 1 - Resolve Island Boards in the order: A, A2, B, B2..."
     end
     return nil

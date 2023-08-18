@@ -6,7 +6,7 @@ adversaries = {
     ["England"] = "b765cf",
     ["Sweden"] = "f114f8",
     ["France"] = "e8f3e3",
-    ["Habsburg"] = "1d9bcd",
+    ["Habsburg-Livestock"] = "1d9bcd",
     ["Russia"] = "1ea4cf",
     ["Scotland"] = "37a592",
 }
@@ -1370,6 +1370,8 @@ function loadConfig(config)
     if config.adversary then
         if config.adversary == "Bradenburg-Prussia" then
             config.adversary = "Prussia"
+        elseif config.adversary == "Habsburg" then
+            config.adversary = "Habsburg-Livestock"
         end
         updateLeadingAdversary(config.adversary, false)
     end
@@ -1379,6 +1381,8 @@ function loadConfig(config)
     if config.adversary2 then
         if config.adversary2 == "Bradenburg-Prussia" then
             config.adversary2 = "Prussia"
+        elseif config.adversary2 == "Habsburg" then
+            config.adversary2 = "Habsburg-Livestock"
         end
         updateSupportingAdversary(config.adversary2, false)
     end

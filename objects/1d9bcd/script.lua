@@ -103,7 +103,7 @@ function AdversaryUI(params)
     if params.level >= 5 then
         ui.effects[5] = {}
         ui.effects[5].name = "Wave of Immigration"
-        ui.effects[5].tooltip = "When the Habsburg Reminder Card is\nrevealed, on each board, add 1 City to a\nCoastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
+        ui.effects[5].tooltip = "When the Habsburg-Livestock Reminder\nCard is revealed, on each board, add 1 City\nto a Coastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
     end
     if params.level >= 6 then
         ui.effects[6] = {}

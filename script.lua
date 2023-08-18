@@ -424,6 +424,8 @@ function onObjectLeaveContainer(container, object)
                 decal.position = {1.48, 0.2, -0.05}
             elseif object.getName() == "E" or object.getName() == "F" then
                 decal.position = {1.58, 0.2, 0.05}
+            elseif object.getName() == "G" or object.getName() == "H" then
+                decal.position = {1.58, 0.2, 0.05}
             end
             object.setDecals({decal})
         end

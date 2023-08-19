@@ -54,7 +54,7 @@ function destroyBoard(card, color)
     self.setPosition(selectedColors[color].zone.getPosition() + Vector(-5, 1, -4))
 
     board.registerCollisions(false)
-    Global.setVar("castDown", board.getName())
+    Global.setVar("castDown", board.guid)
     Global.setVar("castDownColor", color)
     board.setPosition(board.getPosition() + Vector(0, -0.05, 0))
     Global.setVar("castDownTimer", Wait.time(castDownCallback, 0.5))

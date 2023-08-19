@@ -232,7 +232,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             end
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
-    elseif isIslandBoard({obj=hit_object}) and hit_object.getName() == castDown then
+elseif isIslandBoard({obj=hit_object}) and hit_object.guid == castDown then
         cleanupObject({obj = collision_info.collision_object, fear = true, remove = true, color = castDownColor, reason = "Cast Down"})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)

@@ -2973,14 +2973,14 @@ function grabInvaderCards(deckTable)
         local deck = nil
         local stage = deckTable[i]
         if invaderCards[stage] then
-            if invaderCards[stage].stage then
-                stage = invaderCards[stage].stage
-            elseif invaderCards[stage].guid then
+            if invaderCards[stage].guid then
                 local card = getObjectFromGUID(invaderCards[stage].guid)
                 card.setPosition(invaderDeckZone.getPosition() + Vector(-#deckTable+i,0,0))
                 card.setRotationSmooth(Vector(0,180,180))
                 cardsLoaded = cardsLoaded + 1
                 table.insert(cardTable, card)
+            elseif invaderCards[stage].stage then
+                stage = invaderCards[stage].stage
             end
         end
         if stage == 1 then

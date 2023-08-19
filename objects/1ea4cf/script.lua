@@ -37,8 +37,9 @@ end
 
 function InvaderDeckSetup(params)
     if params.level >= 4 then
+        local invaderCards = Global.getTable("invaderCards")
         for i=1,#params.deck do
-            if params.deck[i] == 2 or params.deck[i] == "C" then
+            if params.deck[i] == 2 or (invaderCards[params.deck[i]] and invaderCards[params.deck[i]].stage == 2) then
                 -- assumes stage III cards are always at the end
                 local value = table.remove(params.deck, #params.deck)
                 table.insert(params.deck, i + 1, value)

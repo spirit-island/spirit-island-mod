@@ -5,6 +5,7 @@ mapSetup = true
 hasUI = true
 
 function InvaderDeckSetup(params)
+    local invaderCards = Global.getTable("invaderCards")
     local stageIRemoved = 0
     local stageIIRemoved = 0
     if params.level >= 3 then
@@ -27,7 +28,7 @@ function InvaderDeckSetup(params)
         if params.deck[i] == 1 and stageIRemoved > 0 then
             table.remove(params.deck, i)
             stageIRemoved = stageIRemoved - 1
-        elseif (params.deck[i] == 2 or params.deck[i] == "C") and stageIIRemoved > 0 then
+        elseif (params.deck[i] == 2 or (invaderCards[params.deck[i]] and invaderCards[params.deck[i]].stage == 2)) and stageIIRemoved > 0 then
             table.remove(params.deck, i)
             stageIIRemoved = stageIIRemoved - 1
         else
@@ -42,7 +43,7 @@ function InvaderDeckSetup(params)
         for j=1,#params.deck do
             if params.deck[j] == 1 then
                 stageI = j
-            elseif stageII == nil and (params.deck[j] == 2 or params.deck[j] == "C") then
+            elseif stageII == nil and (params.deck[j] == 2 or (invaderCards[params.deck[j]] and invaderCards[params.deck[j]].stage == 2)) then
                 stageII = j
             elseif params.deck[j] == 3 then
                 stageIII = j

@@ -2648,8 +2648,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         end
         boardsCount = numBoards
     else
-        boards = {A = false, B = false, C = false, D = false, E = false, F = false}
-        boardsCount = 6
+        boards = {A = false, B = false, C = false, D = false, E = false, F = false, G = false, H = false}
+        boardsCount = 8
     end
     local function findBoard(picked)
         local board
@@ -2714,8 +2714,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         -- make sure the extra board added is always the same one the next player would use
         math.random(0,0)
         math.random(0,0)
-        if numPlayers > 5 then
-            boards = {A2 = false, B2 = false, C2 = false, D2 = false, E2 = false, F2 = false}
+        if numPlayers > 7 then
+            boards = {A2 = false, B2 = false, C2 = false, D2 = false, E2 = false, F2 = false, G2 = false, H2 = false}
             table.insert(config.boards, findBoard(0))
         else
             table.insert(config.boards, findBoard(numPlayers))

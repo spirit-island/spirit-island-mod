@@ -606,6 +606,58 @@ function onLoad(saved_data)
             cleanupObject({obj = hoveredObject, fear = true, color = playerColor, reason = "Destroying"})
         end
     end)
+    addHotkey("Downgrade Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if hoveredObject ~= nil then
+            local currentDamage = hoveredObject.getStateId()
+            if currentDamage < 1 then
+                currentDamage = 0
+            else
+                currentDamage = currentDamage - 1
+                if hoveredObject.is_face_down then
+                    -- Players sometimes flip over object to represent 1 damage, especially when events add extra health
+                    currentDamage = currentDamage - 1
+                end
+            end
+            if hoveredObject.hasTag("Explorer") then
+                cleanupObject({obj = hoveredObject, fear = false, color = playerColor, reason = "Downgrade"})
+            elseif hoveredObject.hasTag("Town") then
+                Player[playerColor].broadcast("Downgraded Town currently has "..currentDamage.." Damage", Color.SoftBlue)
+                movePiece(hoveredObject, 0.2)
+                cleanupObject({obj = hoveredObject, fear = false, replace = true, color = playerColor, reason = "Downgrade"})
+                place({name = "Explorer", position = hoveredObject.getPosition(), color = playerColor, fast = true})
+            elseif hoveredObject.hasTag("City") then
+                Player[playerColor].broadcast("Downgraded City currently has "..currentDamage.." Damage", Color.SoftBlue)
+                movePiece(hoveredObject, 0.2)
+                cleanupObject({obj = hoveredObject, fear = false, replace = true, color = playerColor, reason = "Downgrade"})
+                place({name = "Town", position = hoveredObject.getPosition(), color = playerColor, fast = true})
+            end
+        end
+    end)
+    addHotkey("Upgrade Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if hoveredObject ~= nil then
+            local currentDamage = hoveredObject.getStateId()
+            if currentDamage < 1 then
+                currentDamage = 0
+            else
+                currentDamage = currentDamage - 1
+                if hoveredObject.is_face_down then
+                    -- Players sometimes flip over object to represent 1 damage, especially when events add extra health
+                    currentDamage = currentDamage - 1
+                end
+            end
+            if hoveredObject.hasTag("Explorer") then
+                Player[playerColor].broadcast("Upgraded Explorer currently has "..currentDamage.." Damage", Color.SoftBlue)
+                movePiece(hoveredObject, 0.2)
+                cleanupObject({obj = hoveredObject, fear = false, replace = true, color = playerColor, reason = "Upgrade"})
+                place({name = "Town", position = hoveredObject.getPosition(), color = playerColor, fast = true})
+            elseif hoveredObject.hasTag("Town") then
+                Player[playerColor].broadcast("Upgraded Town currently has "..currentDamage.." Damage", Color.SoftBlue)
+                movePiece(hoveredObject, 1)
+                cleanupObject({obj = hoveredObject, fear = false, replace = true, color = playerColor, reason = "Upgrade"})
+                place({name = "City", position = hoveredObject.getPosition(), color = playerColor, fast = true})
+            end
+        end
+    end)
 
     addHotkey("Add Fear", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         aidBoard.call("addFear", {color = playerColor})
@@ -4783,7 +4835,7 @@ function place(params)
                 return nil
             end
         end
-        temp = explorerBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = explorerBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "Town" then
         if townBag.getCustomObject().type ~= 7 then
             if #townBag.getObjects() == 0 then
@@ -4792,7 +4844,7 @@ function place(params)
                 return nil
             end
         end
-        temp = townBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = townBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "City" then
         if cityBag.getCustomObject().type ~= 7 then
             if #cityBag.getObjects() == 0 then
@@ -4801,7 +4853,7 @@ function place(params)
                 return nil
             end
         end
-        temp = cityBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = cityBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "Dahan" then
         if dahanBag.getCustomObject().type ~= 7 then
             if #dahanBag.getObjects() == 0 then
@@ -4809,73 +4861,73 @@ function place(params)
                 return nil
             end
         end
-        temp = dahanBag.takeObject({position=params.position,rotation=Vector(0,0,0)})
+        temp = dahanBag.takeObject({position=params.position,rotation=Vector(0,0,0),smooth=not params.fast})
     elseif params.name == "Blight" then
         if #blightBag.getObjects() == 0 then
             broadcastToAll("There is no Blight left to place", Color.SoftYellow)
             return nil
         end
-        temp = blightBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = blightBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "Box Blight" then
-        temp = boxBlightBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = boxBlightBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "Strife" then
         if usingSpiritTokens() then
-            temp = strifeBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+            temp = strifeBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         else
             return true
         end
     elseif params.name == "Beasts" then
         if usingSpiritTokens() then
-            temp = beastsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+            temp = beastsBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         else
             return true
         end
     elseif params.name == "Wilds" then
         if usingSpiritTokens() then
-            temp = wildsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+            temp = wildsBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         else
             return true
         end
     elseif params.name == "Disease" then
         if usingSpiritTokens() then
-            temp = diseaseBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+            temp = diseaseBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         else
             return true
         end
     elseif params.name == "Badlands" then
         if usingBadlands() then
-            temp = badlandsBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+            temp = badlandsBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         else
             return true
         end
     elseif params.name == "Vitality" then
         if usingVitality() then
-            temp = vitalityBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+            temp = vitalityBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         else
             return true
         end
     elseif params.name == "Defend Marker" then
         if params.color and selectedColors[params.color] and selectedColors[params.color].defend ~= nil then
-            temp = selectedColors[params.color].defend.takeObject({position = params.position,rotation = Vector(0,180,0)})
+            temp = selectedColors[params.color].defend.takeObject({position = params.position,rotation = Vector(0,180,0),smooth=not params.fast})
         else
-            temp = genericDefendBag.takeObject({position = params.position, rotation = Vector(0,180,0)})
+            temp = genericDefendBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         end
     elseif params.name == "Isolate Marker" then
         if params.color and selectedColors[params.color] and selectedColors[params.color].isolate ~= nil then
-            temp = selectedColors[params.color].isolate.takeObject({position = params.position,rotation = Vector(0,180,0)})
+            temp = selectedColors[params.color].isolate.takeObject({position = params.position,rotation = Vector(0,180,0),smooth=not params.fast})
         else
             return nil
         end
     elseif params.name == "1 Energy" then
-        temp = oneEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = oneEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "3 Energy" then
-        temp = threeEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = threeEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "Speed Token" then
-        temp = speedBag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+        temp = speedBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
     elseif params.name == "Scenario Marker" then
         local bag = getObjectFromGUID("8d6e46")
         if bag ~= nil then
-            temp = bag.takeObject({position=params.position,rotation=Vector(0,180,0)})
+            temp = bag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})
         else
             return nil
         end
@@ -4980,6 +5032,15 @@ function cleanupObject(params)
         end
     end
 
+    if not params.replace then
+        if params.obj.hasTag("Explorer") or params.obj.hasTag("Town") or params.obj.hasTag("City") then
+            local objs = upCastRay(params.obj,5)
+            if objs[1].getName() == "Strife" then
+                cleanupObject({obj = objs[1]})
+            end
+        end
+    end
+
     if bag == nil or bag.type == "Infinite" then
         params.obj.destruct()
     else
@@ -4995,6 +5056,18 @@ function cleanupObject(params)
         else
             bag.putObject(params.obj)
         end
+    end
+end
+function movePiece(object, offset)
+    local loopOffset = 0
+    for _,obj in pairs(upCastRay(object,5)) do
+        obj.setPositionSmooth(obj.getPosition() + Vector(0,offset + loopOffset,0))
+        if obj.type == "Figurine" then
+            movePiece(obj, offset)
+            -- Figurines are Invaders, Dahan, and Blight, you should only handle the one directly above you
+            break
+        end
+        loopOffset = loopOffset + 0.1
     end
 end
 ----

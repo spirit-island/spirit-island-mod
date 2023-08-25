@@ -3052,7 +3052,7 @@ function grabInvaderCards(deckTable)
                         smooth = false,
                         callback_function = function(obj)
                             cardsLoaded = cardsLoaded + 1
-                            if char == "3*" then
+                            if stage == "3*" then
                                 local script = obj.getLuaScript()
                                 script = "special=true\n"..script
                                 obj.setLuaScript(script)

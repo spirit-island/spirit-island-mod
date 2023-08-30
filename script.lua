@@ -580,7 +580,7 @@ end
 function onLoad(saved_data)
     local text = getObjectFromGUID("a4288f")
     if text then
-        text.destruct()
+        Wait.time(function() text.destruct() end, 5)
     end
 
     local versionObj = getObjectFromGUID(versionGuid)

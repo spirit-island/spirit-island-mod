@@ -232,7 +232,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             end
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
-elseif isIslandBoard({obj=hit_object}) and hit_object.guid == castDown then
+    elseif isIslandBoard({obj=hit_object}) and hit_object.guid == castDown then
         cleanupObject({obj = collision_info.collision_object, fear = true, remove = true, color = castDownColor, reason = "Cast Down"})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)
@@ -5037,7 +5037,7 @@ function cleanupObject(params)
     if not params.replace then
         if params.obj.hasTag("Explorer") or params.obj.hasTag("Town") or params.obj.hasTag("City") then
             local objs = upCastRay(params.obj,5)
-            if objs[1].getName() == "Strife" then
+            if #objs > 0 and objs[1].getName() == "Strife" then
                 cleanupObject({obj = objs[1]})
             end
         end

@@ -578,6 +578,11 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
+    local text = getObjectFromGUID("a4288f")
+    if text then
+        text.destruct()
+    end
+
     local versionObj = getObjectFromGUID(versionGuid)
     if versionObj ~= nil then
         versionObj.setValue("version " .. version)
@@ -878,8 +883,6 @@ function onLoad(saved_data)
                     obj.interactable = false -- sets boards to uninteractable after reload
                 end
             end
-        else
-            broadcastToAll("Downloading new 4.0.0 assets may take a bit of time", Color.Red)
         end
     end
     for color,data in pairs(selectedColors) do
@@ -7561,10 +7564,6 @@ function onPlayerChangeColor(player_color)
 end
 function onPlayerConnect(player)
     updatePlaySpiritButton(player.color)
-
-    if not gameStarted then
-        player.broadcast("Downloading new 4.0.0 assets may take a bit of time", Color.Red)
-    end
 
     for _,obj in pairs(getObjectsWithTag("Mask")) do
         obj.reload()

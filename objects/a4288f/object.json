@@ -1,0 +1,50 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": 8.89,
+    "posY": 0.9611,
+    "posZ": 16.4773,
+    "rotX": 90.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "Downloading new 4.0.0 assets\nmay take a bit of time",
+    "colorstate": {
+      "r": 0.856,
+      "g": 0.1,
+      "b": 0.094
+    },
+    "fontSize": 150
+  }
+}

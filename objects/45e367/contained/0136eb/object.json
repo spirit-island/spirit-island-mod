@@ -1,5 +1,5 @@
 {
-  "Name": "Card",
+  "Name": "CardCustom",
   "Transform": {
     "posX": 31.877599716186523,
     "posY": 2.2462000846862793,
@@ -7,9 +7,9 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.0,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleZ": 1.5299999713897705
   },
   "Nickname": "Amorphous",
   "Description": "",
@@ -41,14 +41,14 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": true,
-  "CardID": 54700,
-  "SidewaysCard": false,
+  "CardID": 138800,
+  "SidewaysCard": true,
   "CustomDeck": {
-    "547": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100501513/B6982783993EA3233FE2242364F2B580D3AFC764/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100586704/66535D43E4564390769FD88585E1776CF2EBDB52/",
-      "NumWidth": 2,
-      "NumHeight": 3,
+    "1388": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175605058/F42F41C7E31DC37822FD6528E6F955E9A9F2AA9F/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175600162/260B2AFCF588E1A5646E178C1EFA0F5800C217C9/",
+      "NumWidth": 1,
+      "NumHeight": 1,
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0

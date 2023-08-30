@@ -37,8 +37,9 @@ end
 
 function InvaderDeckSetup(params)
     if params.level >= 4 then
+        local invaderCards = Global.getTable("invaderCards")
         for i=1,#params.deck do
-            if params.deck[i] == 2 or params.deck[i] == "C" then
+            if params.deck[i] == 2 or (invaderCards[params.deck[i]] and invaderCards[params.deck[i]].stage == 2) then
                 -- assumes stage III cards are always at the end
                 local value = table.remove(params.deck, #params.deck)
                 table.insert(params.deck, i + 1, value)
@@ -219,7 +220,6 @@ function checkLoss()
                             origin = bounds.center + bounds.offset,
                             direction = Vector(0,-1,0),
                             max_distance = 6,
-                            --debug = true,
                         })
                         for _,v in pairs(hits) do
                             if v.hit_object ~= obj and Global.call("isIslandBoard", {obj=v.hit_object}) then

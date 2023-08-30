@@ -30,7 +30,7 @@ function AdversaryUI(params)
     if params.level >= 1 then
         ui.effects[1] = {}
         ui.effects[1].name = "Heavy Mining"
-        ui.effects[1].tooltip = "If the Invaders do at least 6 Damage to the land\nduring Ravage, add an extra Blight. (The additional\nBlight does not destroy Presence or cause cascades.)"
+        ui.effects[1].tooltip = "When a Ravage does 4+ overkill to the land,\nadd 2 Blight instead of 1. (The additional Blight\ndoes not destroy Presence or cause cascades.)"
         ui.effects[1].ravage = true
     end
     if params.level >= 3 then

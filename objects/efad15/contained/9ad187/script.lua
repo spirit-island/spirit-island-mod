@@ -1,5 +1,4 @@
 local spiritName = "Serpent Slumbering Beneath the Island"
-local initialized = false
 
 local slumberTrack = {[0] = 5, 7, 8, 10, 11, 12, 13}
 local slumberPoints = {
@@ -12,22 +11,18 @@ local slumberPoints = {
 }
 
 function onLoad(saved_data)
+    local setupComplete = false
+    -- NB: setupComplete in the script state is set by the global script
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
-        initialized = loaded_data.initialized
+        setupComplete = loaded_data.setupComplete
     end
 
-    if initialized then
+    if setupComplete then
         self.interactable = false
         updatePresence()
         Wait.time(updatePresence, 1, -1)
     end
-end
-
-function onSave()
-    return JSON.encode{
-        initialized = initialized,
-    }
 end
 
 function doSetup(params)
@@ -48,7 +43,6 @@ function doSetup(params)
     end
     serpent.setSnapPoints(snapPoints)
 
-    initialized = true
     self.clearButtons()
     self.locked = true
     self.interactable = false

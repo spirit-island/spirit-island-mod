@@ -3,13 +3,13 @@
   "Transform": {
     "posX": 30.21579933166504,
     "posY": 0.800000011920929,
-    "posZ": 28.221399307250977,
+    "posZ": 40.0,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 6.058300018310547,
     "scaleY": 0.009999999776482582,
-    "scaleZ": 7.2565999031066895
+    "scaleZ": 7.260000228881836
   },
   "Nickname": "",
   "Description": "",
@@ -22,7 +22,7 @@
   "ColorDiffuse": {
     "r": 0.8391000032424927,
     "g": 0.5720000267028809,
-    "b": 0.3970998227596283
+    "b": 0.3970981240272522
   },
   "Tags": [
     "Uninteractable"
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomAssetbundle": {
-    "AssetbundleURL": "http://cloud-3.steamusercontent.com/ugc/2047487561395900011/69A39774195A8C3D4761FBFF532FE847322A6D4D/",
+    "AssetbundleURL": "http://cloud-3.steamusercontent.com/ugc/2042999708207484420/69A39774195A8C3D4761FBFF532FE847322A6D4D/",
     "AssetbundleSecondaryURL": "",
     "MaterialIndex": 1,
     "TypeIndex": 4,

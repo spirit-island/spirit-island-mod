@@ -1,0 +1,137 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 5.900000095367432,
+    "posY": 1.2069000005722046,
+    "posZ": 107.81999969482422,
+    "rotX": -0.0005000000237487257,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Fathomless Mud of the Swamp",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298321924925/E8FF4C8CE2F698B05672B6C986B4535B57102DA3/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050880567269245452/ED9758AF77F642E14EED1847A52FAF69F3913D7E/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.03689999878406525,
+        "y": 0.20000000298023224,
+        "z": -0.4174000024795532
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9552000164985657,
+        "y": 0.20000000298023224,
+        "z": -0.1177000030875206
+      }
+    },
+    {
+      "Position": {
+        "x": -0.26739999651908875,
+        "y": 0.20000000298023224,
+        "z": -0.41749998927116394
+      }
+    },
+    {
+      "Position": {
+        "x": -0.49559998512268066,
+        "y": 0.20000000298023224,
+        "z": -0.41519999504089355
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7246999740600586,
+        "y": 0.20000000298023224,
+        "z": -0.41819998621940613
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1823999881744385,
+        "y": 0.20000000298023224,
+        "z": -0.4174000024795532
+      }
+    },
+    {
+      "Position": {
+        "x": -0.03920000046491623,
+        "y": 0.20000000298023224,
+        "z": -0.11789999902248383
+      }
+    },
+    {
+      "Position": {
+        "x": -0.26820001006126404,
+        "y": 0.20000000298023224,
+        "z": -0.11829999834299088
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4966999888420105,
+        "y": 0.20000000298023224,
+        "z": -0.11760000139474869
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7260000109672546,
+        "y": 0.20000000298023224,
+        "z": -0.11840000003576279
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9550999999046326,
+        "y": 0.20000000298023224,
+        "z": -0.4163999855518341
+      }
+    }
+  ]
+}

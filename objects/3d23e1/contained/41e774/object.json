@@ -1,0 +1,137 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 22.139999389648438,
+    "posY": 1.2069000005722046,
+    "posZ": 106.13999938964844,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Rising Heat of Stone and Sand",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322006773/ACE7382864A6447E0EE6E86DAFED3C4E0AC2822D/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050880567269244589/B01F7F171DA012716FC6CEF3D04AB19A16E2CDAE/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.2624000012874603,
+        "y": 0.20000000298023224,
+        "z": -0.4205000102519989
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4927000105381012,
+        "y": 0.20000000298023224,
+        "z": -0.41920000314712524
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7204999923706055,
+        "y": 0.20000000298023224,
+        "z": -0.41909998655319214
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9505000114440918,
+        "y": 0.20000000298023224,
+        "z": -0.420199990272522
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1786999702453613,
+        "y": 0.20000000298023224,
+        "z": -0.41929998993873596
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9510999917984009,
+        "y": 0.20000000298023224,
+        "z": -0.1200999990105629
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7221999764442444,
+        "y": 0.20000000298023224,
+        "z": -0.12099999934434891
+      }
+    },
+    {
+      "Position": {
+        "x": -0.26579999923706055,
+        "y": 0.20000000298023224,
+        "z": -0.12120000272989273
+      }
+    },
+    {
+      "Position": {
+        "x": -0.03579999879002571,
+        "y": 0.20000000298023224,
+        "z": -0.12099999934434891
+      }
+    },
+    {
+      "Position": {
+        "x": -0.033900000154972076,
+        "y": 0.20000000298023224,
+        "z": -0.41940000653266907
+      }
+    },
+    {
+      "Position": {
+        "x": -0.49380001425743103,
+        "y": 0.20000000298023224,
+        "z": -0.12020000070333481
+      }
+    }
+  ]
+}

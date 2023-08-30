@@ -1,0 +1,137 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -11.460000038146973,
+    "posY": 1.2067999839782715,
+    "posZ": 109.5,
+    "rotX": -0.0006000000284984708,
+    "rotY": 180.0,
+    "rotZ": 179.99989318847656,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Eyes Watch from the Trees",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322005436/5B673702F2D3885E564997A5FD2B4CA81B97E449/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050880567269245816/96132D40B1A0E27B337AB7739EDCC8DF60FEA0EA/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0421999990940094,
+        "y": 0.20000000298023224,
+        "z": -0.4171000123023987
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27090001106262207,
+        "y": 0.20000000298023224,
+        "z": -0.11760000139474869
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4993000030517578,
+        "y": 0.20000000298023224,
+        "z": -0.11829999834299088
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9574000239372253,
+        "y": 0.20000000298023224,
+        "z": -0.11940000206232071
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7257999777793884,
+        "y": 0.20000000298023224,
+        "z": -0.4174000024795532
+      }
+    },
+    {
+      "Position": {
+        "x": -1.184999942779541,
+        "y": 0.20000000298023224,
+        "z": -0.4171999990940094
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7263000011444092,
+        "y": 0.20000000298023224,
+        "z": -0.11990000307559967
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4984000027179718,
+        "y": 0.20000000298023224,
+        "z": -0.4171000123023987
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2718999981880188,
+        "y": 0.20000000298023224,
+        "z": -0.4180000126361847
+      }
+    },
+    {
+      "Position": {
+        "x": -0.045099999755620956,
+        "y": 0.20000000298023224,
+        "z": -0.11819999665021896
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9550999999046326,
+        "y": 0.20000000298023224,
+        "z": -0.4156000018119812
+      }
+    }
+  ]
+}

@@ -73,7 +73,7 @@ function AdversaryUI(params)
     local ui = {}
 
     ui.loss = {}
-    ui.loss.tooltip = "Track how many Blight came off the\nBlight Card during Ravages that do 8+\nDamage to the land. If that number\never exceeds players, the Invaders win."
+    ui.loss.tooltip = "Track how many Blight came off the\nBlight Card during Ravages that do 6+\noverkill to the land. If that number\never exceeds players, the Invaders win."
     ui.loss.counter = {}
     ui.loss.counter.text = "Blight Count: "
     ui.loss.counter.buttons = true
@@ -103,7 +103,7 @@ function AdversaryUI(params)
     if params.level >= 5 then
         ui.effects[5] = {}
         ui.effects[5].name = "Wave of Immigration"
-        ui.effects[5].tooltip = "When the Habsburg Reminder Card is\nrevealed, on each board, add 1 City to a\nCoastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
+        ui.effects[5].tooltip = "When the Habsburg-Livestock Reminder\nCard is revealed, on each board, add 1 City\nto a Coastal land without City and 1 Town to\nthe 3 Inland lands with the fewest Blight."
     end
     if params.level >= 6 then
         ui.effects[6] = {}
@@ -181,7 +181,7 @@ function PostSetup(params)
 end
 
 function Broadcast(params)
-    if params.level >= 1 and Global.getVar("numBoards") > 6 then
+    if params.level >= 1 and Global.getVar("numBoards") > 8 then
         return "Habsburg Level 1 - Resolve Island Boards in the order: A, A2, B, B2..."
     end
     return nil

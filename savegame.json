@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1690833301,
-  "Date": "7/31/2023 8:55:01 PM",
+  "EpochTime": 1693366704,
+  "Date": "8/30/2023 4:38:24 AM",
   "VersionNumber": "v13.2.2",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -216,6 +216,10 @@
       {
         "displayed": "Seat",
         "normalized": "seat"
+      },
+      {
+        "displayed": "Horizons",
+        "normalized": "horizons"
       }
     ]
   },
@@ -567,6 +571,21 @@
       "Type": 0,
       "Name": "Advert-Android",
       "URL": "http://cloud-3.steamusercontent.com/ugc/1762617478242165990/1D2775C682A1234242B879533348A7F0A44C1933/"
+    },
+    {
+      "Type": 0,
+      "Name": "CardMask",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2042997062885048476/D9364C4FF33C4A1D87D5C1B8B7690FB32F05E1E3/"
+    },
+    {
+      "Type": 0,
+      "Name": "SpiritMask",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2050879298353456785/D66B86DC757A20FFFB766E7734211B7298E2B91C/"
+    },
+    {
+      "Type": 0,
+      "Name": "SpiritMask2",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2050879298353456583/D2F073D12EE9155AF0687241797E99610212B347/"
     }
   ],
   "SnapPoints": [

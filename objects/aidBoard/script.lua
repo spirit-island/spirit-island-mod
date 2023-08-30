@@ -406,9 +406,10 @@ scanLoopTable = {
 function advanceInvaderCards()
     if not Global.getVar("gameStarted") then
         return
+    elseif not Global.getVar("setupComplete") then
+        -- The last setup of setup generally is performing explore and then advancing invader cards
+        Global.call("CompleteSetup")
     end
-    -- The last setup of setup generally is performing explore and then advancing invader cards
-    Global.setVar("setupCompleted", true)
 
     local prevOffset = Vector(0, 0, 0)
     local currentOffset = Vector(0, 0, 0)
@@ -424,7 +425,6 @@ function advanceInvaderCards()
                 direction    = Vector(0,1,0),
                 type         = 1,
                 max_distance = 0.3,
-                --debug        = true,
             })
             local hitObjects = {}
             for _,hit in pairs(hits) do
@@ -508,7 +508,6 @@ function aidPanelScanLoop()
                 direction    = Vector(0,1,0),
                 type         = 1,
                 max_distance = 0.3,
-                --debug        = true,
             })
             local hitObjects = {}
             for _,hit in pairs(hits) do
@@ -536,7 +535,6 @@ function aidPanelScanLoop()
         direction    = Vector(0,1,0),
         type         = 1,
         max_distance = 0.3,
-        --debug        = true,
     })
     local hitObjects = {}
     for _,hit in pairs(hits) do
@@ -580,7 +578,6 @@ function countDiscard()
         direction    = Vector(0,1,0),
         type         = 1,
         max_distance = 0.3,
-        --debug        = true,
     })
     for _,hit in pairs(hits) do
         if hit.hit_object ~= self then

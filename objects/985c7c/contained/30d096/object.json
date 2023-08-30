@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 3.9449000358581543,
+    "posY": 1.0326000452041626,
+    "posZ": 107.31819915771484,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Exaltation of Tangled Growth",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 150600,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "1506": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517362040/FDC06BF7993AD81A148EC072FB94CD71CBB4624B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517361470/7EB2F93CB95D26D8BA01ABFF0B2E3ADD812A0404/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

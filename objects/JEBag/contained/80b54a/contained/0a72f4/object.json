@@ -1,5 +1,5 @@
 {
-  "Name": "Card",
+  "Name": "CardCustom",
   "Transform": {
     "posX": -28.309099197387695,
     "posY": 1.392799973487854,
@@ -42,6 +42,17 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": true,
-  "CardID": 60725,
-  "SidewaysCard": false
+  "CardID": 130700,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "1307": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517325857/AD8577A831ED8E82CEA440FCB23668984AD5DD7B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517305126/48D7B7BFCF9AC4267E6E624C3915466A4BCFA580/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
 }

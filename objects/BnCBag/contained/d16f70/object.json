@@ -40,28 +40,154 @@
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
-    57800,
-    57801,
-    57802,
-    57803,
-    57804,
-    57805,
-    57806,
-    57807,
-    57808,
-    57809,
-    57810,
-    57811,
-    57812,
-    57813,
-    57814
+    117200,
+    117300,
+    117400,
+    117500,
+    117600,
+    117700,
+    117800,
+    117900,
+    118000,
+    118100,
+    118200,
+    118300,
+    118400,
+    118500,
+    118600
   ],
   "CustomDeck": {
-    "578": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100556205/F792D8EA7BFEECE311BF76DFC6A0068B11975ACF/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756118010/303865702F3092CCDE644633A9D06673B79C049D/",
-      "NumWidth": 4,
-      "NumHeight": 4,
+    "1172": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517264897/89D438EAD8CD3BE26CBAA7FED3B8CA8FF7608718/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1173": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517264631/549EDD786CD9B32BC5948EAAC6CF2EF7F85D3D54/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1174": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517264429/09CE4BBA460BD84CD79F305CF5D9DF2E77A798C0/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1175": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517264191/B262D3EA13C43A5BBCFB4DCED8B3045D0D13EF2D/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1176": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517263941/EBDD1272551C3CF096780D342B1A406B264D7CC5/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1177": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517263595/827FB674EB480D86A0A911016A127E7E52CF7DEE/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1178": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517263406/6477DB69EF3E6306242962C5F3CB5A975F5B1CA8/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1179": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517263223/DA8FE6CEEBC0ABB5368BE7AEB2CE909F7A30BE31/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1180": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517263047/8473CB6154220D9134D5D87AAD360147B79C85C5/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1181": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517262817/03C7ECF2A3AD7DC76729EE3DD51E275916F70557/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1182": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517262612/3B71A17EBDA5AD21097251E7211EE5A5F8143AA1/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1183": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517262412/E34472CA52CAC2B3E7734C17ADDE8CA3E5446B7D/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1184": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517262186/68D82E11CB6B33054CB78DF2A46AF413996BD73B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1185": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517261887/E75C0B7EC078E0F70237956A4715B8AEC5F8A6E0/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
+    "1186": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517261681/51AA14429B9DA8B791631948DEFD1B002313252E/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517258684/87EDE083E71BACAF74032674A28DCBE65DAFB171/",
+      "NumWidth": 1,
+      "NumHeight": 1,
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0

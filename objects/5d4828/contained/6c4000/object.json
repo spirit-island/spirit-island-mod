@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -11.086099624633789,
+    "posY": 1.0325000286102295,
+    "posZ": 108.19309997558594,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Boon of Watchful Guarding",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 150100,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "1501": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517363419/AA4990C8FF8729C83D1F0D3B8C0099908C3718F8/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517362671/0E0B0DEAA15A3636F11508E2F41D924C456C9FF8/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

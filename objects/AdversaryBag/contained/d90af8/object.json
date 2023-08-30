@@ -7,12 +7,12 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.0499999523162842,
+    "scaleX": 1.100000023841858,
     "scaleY": 1.0,
-    "scaleZ": 1.0499999523162842
+    "scaleZ": 1.100000023841858
   },
-  "Nickname": "Habsburg Reminder Card",
-  "Description": "Habsburg Lv 5",
+  "Nickname": "Habsburg-Livestock Reminder Card",
+  "Description": "Habsburg-Livestock Lv 5",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -38,12 +38,12 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 200,
+  "CardID": 149100,
   "SidewaysCard": false,
   "CustomDeck": {
-    "2": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368463552/3E76DC1C8E31B9E8C1E69852274EFB2AC799F253/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368463552/3E76DC1C8E31B9E8C1E69852274EFB2AC799F253/",
+    "1491": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175602295/43EF3BB0880F773B258F70C6D2599CB0751C032B/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175602295/43EF3BB0880F773B258F70C6D2599CB0751C032B/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": false,

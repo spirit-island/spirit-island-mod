@@ -2,7 +2,7 @@
   "Name": "Custom_Model_Bag",
   "Transform": {
     "posX": 55.400001525878906,
-    "posY": 0.8030999898910522,
+    "posY": 0.800000011920929,
     "posZ": 72.52999877929688,
     "rotX": -0.0,
     "rotY": 180.0,
@@ -112,8 +112,8 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752086200/EF4CBEFF4098527BB01139541AC14F1B60E9E866/",
-        "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752086444/1130398DC64D9AB9FE1DCCF010A13B27639A0657/",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322040139/939A4B931D1DB7FB25A27BC0D116CA39ED3A7373/",
+        "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322040778/1998204FD21BD3A59C880E090CF0CCC2239FBA9D/",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomTile": {

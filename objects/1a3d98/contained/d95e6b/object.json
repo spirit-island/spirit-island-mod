@@ -1,5 +1,5 @@
 {
-  "Name": "Card",
+  "Name": "CardCustom",
   "Transform": {
     "posX": 16.710100173950195,
     "posY": 2.2451999187469482,
@@ -7,9 +7,9 @@
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 180.0,
-    "scaleX": 1.0,
+    "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleZ": 1.5299999713897705
   },
   "Nickname": "Pandemonium",
   "Description": "",
@@ -42,14 +42,14 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": true,
-  "CardID": 54501,
-  "SidewaysCard": false,
+  "CardID": 137800,
+  "SidewaysCard": true,
   "CustomDeck": {
-    "545": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100513019/B8EEC3D6A3E6695635ECC0264011A8D12E56D831/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100588180/E626A8F44900E33575A2182F9B0BB6AB399292A9/",
-      "NumWidth": 2,
-      "NumHeight": 2,
+    "1378": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175600909/1AED3CDF16A49D0C60A8B9F8A5163C3F5BF732BF/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175601298/13839188F01AEF337FC22A7F550EB14008503F4B/",
+      "NumWidth": 1,
+      "NumHeight": 1,
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0

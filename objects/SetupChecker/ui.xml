@@ -51,7 +51,7 @@
                         <Option>England</Option>
                         <Option>Sweden</Option>
                         <Option>France</Option>
-                        <Option>Habsburg</Option>
+                        <Option>Habsburg-Livestock</Option>
                         <Option>Russia</Option>
                         <Option>Scotland</Option>
                     </Dropdown>
@@ -71,7 +71,7 @@
                         <Option>England</Option>
                         <Option>Sweden</Option>
                         <Option>France</Option>
-                        <Option>Habsburg</Option>
+                        <Option>Habsburg-Livestock</Option>
                         <Option>Russia</Option>
                         <Option>Scotland</Option>
                     </Dropdown>
@@ -216,6 +216,9 @@
                 <Cell columnSpan="2"><Toggle id="thematicRedo" onValueChanged="toggleThematicRedo" tooltip="An alternate appeareance for the Thematic boards,&#xA;so the terrains look like the Balanced boards">Use Recolored Thematic Island Boards</Toggle></Cell>
             </Row>
             <Row class="toggle">
+                <Cell columnSpan="2"><Toggle id="thematicPermute" onValueChanged="toggleThematicPermute" tooltip="Use a random contiguous subset of the thematic boards,&#xA;rather than the recommended set">Randomise Thematic Island Boards</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
                 <Cell columnSpan="2"><Toggle id="carpetRedo" isOn="true" onValueChanged="toggleCarpetRedo" tooltip="An alternate appeareance for the ocean tile">Use Thematic Ocean Playmat</Toggle></Cell>
             </Row>
             <Row class="toggle">
@@ -253,6 +256,9 @@
             </Row>
             <Row class="toggle">
                 <Cell><Toggle id="shadows" onValueChanged="toggleShadows" tooltip="The Top Track is more viable, also&#xA;adds a Reclaim 1 to Bottom Track">Shadows Flicker Like Flame</Toggle></Cell>
+            </Row>
+            <Row class="toggle">
+                <Cell><Toggle id="fractured" onValueChanged="toggleFractured" tooltip="Days that Never Were is now 7 - number of players">Fractured Days Split the Sky</Toggle></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>
@@ -481,6 +487,9 @@
             <Row>
                 <Cell><Toggle id="spiritFnF" onValueChanged="toggleSpirit" isOn="true" tooltip="Include feather and flame spirits in randomizer">F&amp;F</Toggle></Cell>
                 <Cell><Toggle id="spiritVeryHigh" onValueChanged="toggleSpirit" isOn="true">Very High</Toggle></Cell>
+            </Row>
+            <Row>
+                <Cell><Toggle id="spiritHorizons" onValueChanged="toggleSpirit" isOn="true" tooltip="Include horizons spirits in randomizer">Horizons</Toggle></Cell>
             </Row>
             <Row>
                 <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>

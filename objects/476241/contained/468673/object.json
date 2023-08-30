@@ -1,0 +1,144 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -28.260000228881836,
+    "posY": 1.2069000005722046,
+    "posZ": 107.81999969482422,
+    "rotX": -0.0005000000237487257,
+    "rotY": 180.00039672851562,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Devouring Teeth Lurk Underfoot",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322008617/F1FBDD7CE141E5ECCA15E146CF0963F4957A491E/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050880567269245086/70FB56FBB591BA1E12B8C9B459C4619E55FFCBF6/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.03660000115633011,
+        "y": 0.20000000298023224,
+        "z": -0.41769999265670776
+      }
+    },
+    {
+      "Position": {
+        "x": -0.26840001344680786,
+        "y": 0.20000000298023224,
+        "z": -0.11810000240802765
+      }
+    },
+    {
+      "Position": {
+        "x": -0.49549999833106995,
+        "y": 0.20000000298023224,
+        "z": -0.11779999732971191
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9526000022888184,
+        "y": 0.20000000298023224,
+        "z": -0.1193000003695488
+      }
+    },
+    {
+      "Position": {
+        "x": -0.724399983882904,
+        "y": 0.20000000298023224,
+        "z": -0.4156999886035919
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1816999912261963,
+        "y": 0.20000000298023224,
+        "z": -0.11840000003576279
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7246000170707703,
+        "y": 0.20000000298023224,
+        "z": -0.11819999665021896
+      }
+    },
+    {
+      "Position": {
+        "x": -0.49549999833106995,
+        "y": 0.20000000298023224,
+        "z": -0.4172999858856201
+      }
+    },
+    {
+      "Position": {
+        "x": -0.26750001311302185,
+        "y": 0.20000000298023224,
+        "z": -0.41449999809265137
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04019999876618385,
+        "y": 0.20000000298023224,
+        "z": -0.11990000307559967
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1811000108718872,
+        "y": 0.20000000298023224,
+        "z": -0.41659998893737793
+      }
+    },
+    {
+      "Position": {
+        "x": -0.953499972820282,
+        "y": 0.20000000298023224,
+        "z": -0.41530001163482666
+      }
+    }
+  ]
+}

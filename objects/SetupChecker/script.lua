@@ -6,7 +6,7 @@ adversaries = {
     ["England"] = "b765cf",
     ["Sweden"] = "f114f8",
     ["France"] = "e8f3e3",
-    ["Habsburg"] = "1d9bcd",
+    ["Habsburg-Livestock"] = "1d9bcd",
     ["Russia"] = "1ea4cf",
     ["Scotland"] = "37a592",
 }
@@ -59,6 +59,7 @@ optionalBoardPairings = true
 optionalThematicRebellion = false
 optionalUniqueRebellion = false
 optionalThematicRedo = false
+optionalThematicPermute = false
 optionalGameResults = true
 optionalScaleBoard = true -- not currently hooked up into UI
 optionalDrowningCap = false -- not currently hooked up into UI
@@ -70,6 +71,7 @@ exploratoryAid = false
 exploratorySweden = false
 exploratoryTrickster = false
 exploratoryShadows = false
+exploratoryFractured = false
 
 playtestExpansion = "None"
 playtestFear = "0"
@@ -115,6 +117,7 @@ function onSave()
     data_table.variant.thematicRebellion = optionalThematicRebellion
     data_table.variant.uniqueRebellion = optionalUniqueRebellion
     data_table.variant.thematicRedo = optionalThematicRedo
+    data_table.variant.thematicPermute = optionalThematicPermute
     data_table.variant.gameResults = optionalGameResults
     data_table.variant.drowningCap = optionalDrowningCap
 
@@ -126,6 +129,7 @@ function onSave()
     data_table.exploratory.sweden = exploratorySweden
     data_table.exploratory.trickster = exploratoryTrickster
     data_table.exploratory.shadows = exploratoryShadows
+    data_table.exploratory.fractured = exploratoryFractured
 
     data_table.playtest = {}
     data_table.playtest.expansion = playtestExpansion
@@ -196,6 +200,7 @@ function onLoad(saved_data)
         optionalThematicRebellion = loaded_data.variant.thematicRebellion
         optionalUniqueRebellion = loaded_data.variant.uniqueRebellion
         optionalThematicRedo = loaded_data.variant.thematicRedo
+        optionalThematicPermute = loaded_data.variant.thematicPermute
         optionalGameResults = loaded_data.variant.gameResults
         optionalDrowningCap = loaded_data.variant.drowningCap
 
@@ -206,6 +211,7 @@ function onLoad(saved_data)
         exploratorySweden = loaded_data.exploratory.sweden
         exploratoryTrickster = loaded_data.exploratory.trickster
         exploratoryShadows = loaded_data.exploratory.shadows
+        exploratoryFractured = loaded_data.exploratory.fractured
 
         playtestExpansion = loaded_data.playtest.expansion
         playtestFear = loaded_data.playtest.fear
@@ -274,6 +280,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("boardPairings", "isOn", optionalBoardPairings)
             self.UI.setAttribute("slaveRebellionBack", "isOn", optionalUniqueRebellion)
             self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
+            self.UI.setAttribute("thematicPermute", "isOn", optionalThematicPermute)
             self.UI.setAttribute("carpetRedo", "isOn", Global.getVar("seaTile").getStateId() == 1)
             self.UI.setAttribute("gameResults", "isOn", optionalGameResults)
 
@@ -283,6 +290,7 @@ function onLoad(saved_data)
             self.UI.setAttribute("aid", "isOn", exploratoryAid)
             self.UI.setAttribute("trickster", "isOn", exploratoryTrickster)
             self.UI.setAttribute("shadows", "isOn", exploratoryShadows)
+            self.UI.setAttribute("fractured", "isOn", exploratoryFractured)
 
             togglePlaytestFear(nil, playtestFear, "playtestFear")
             togglePlaytestEvent(nil, playtestEvent, "playtestEvent")
@@ -1262,6 +1270,9 @@ function loadConfig(config)
         if config.variant.thematicRedo ~= nil then
             optionalThematicRedo = config.variant.thematicRedo
         end
+        if config.variant.thematicPermute ~= nil then
+            optionalThematicPermute = config.variant.thematicPermute
+        end
         if config.variant.carpetRedo ~= nil then
             local seaTile = Global.getVar("seaTile")
             if config.variant.carpetRedo then
@@ -1302,6 +1313,9 @@ function loadConfig(config)
         end
         if config.exploratory.shadows ~= nil then
             exploratoryShadows = config.exploratory.shadows
+        end
+        if config.exploratory.fractured ~= nil then
+            exploratoryFractured = config.exploratory.fractured
         end
     end
     if config.playtest then
@@ -1356,6 +1370,8 @@ function loadConfig(config)
     if config.adversary then
         if config.adversary == "Bradenburg-Prussia" then
             config.adversary = "Prussia"
+        elseif config.adversary == "Habsburg" then
+            config.adversary = "Habsburg-Livestock"
         end
         updateLeadingAdversary(config.adversary, false)
     end
@@ -1365,6 +1381,8 @@ function loadConfig(config)
     if config.adversary2 then
         if config.adversary2 == "Bradenburg-Prussia" then
             config.adversary2 = "Prussia"
+        elseif config.adversary2 == "Habsburg" then
+            config.adversary2 = "Habsburg-Livestock"
         end
         updateSupportingAdversary(config.adversary2, false)
     end
@@ -1815,6 +1833,10 @@ function getSpiritTags()
         tags["FnF"] = true
         added = true
     end
+    if self.UI.getAttribute("spiritHorizons", "isOn") == "true" then
+        tags["Horizons"] = true
+        added = true
+    end
     if self.UI.getAttribute("spiritCustom", "isOn") == "true" then
         tags[""] = true
         added = true
@@ -2096,6 +2118,8 @@ function addSpirit(params)
         expansion = "JE"
     elseif params.spirit.hasTag("FnF") then
         expansion = "FnF"
+    elseif params.spirit.hasTag("Horizons") then
+        expansion = "Horizons"
     end
     spiritTags[params.spirit.guid] = expansion
 
@@ -2226,6 +2250,10 @@ function toggleThematicRedo()
     optionalThematicRedo = not optionalThematicRedo
     self.UI.setAttribute("thematicRedo", "isOn", optionalThematicRedo)
 end
+function toggleThematicPermute()
+    optionalThematicPermute = not optionalThematicPermute
+    self.UI.setAttribute("thematicPermute", "isOn", optionalThematicPermute)
+end
 function toggleCarpetRedo()
     local seaTile = Global.getVar("seaTile")
     if seaTile.getStateId() == 1 then
@@ -2250,6 +2278,7 @@ function toggleExploratoryAll()
         if exploratorySweden then toggleSweden() end
         if exploratoryTrickster then toggleTrickster() end
         if exploratoryShadows then toggleShadows() end
+        if exploratoryFractured then toggleFractured() end
     else
         checked = "true"
         if not exploratoryVOTD then toggleVOTD() end
@@ -2259,6 +2288,7 @@ function toggleExploratoryAll()
         if not exploratorySweden then toggleSweden() end
         if not exploratoryTrickster then toggleTrickster() end
         if not exploratoryShadows then toggleShadows() end
+        if not exploratoryFractured then toggleFractured() end
     end
     self.UI.setAttribute("exploratoryAll", "isOn", checked)
 end
@@ -2320,6 +2350,10 @@ end
 function toggleShadows()
     exploratoryShadows = not exploratoryShadows
     self.UI.setAttribute("shadows", "isOn", exploratoryShadows)
+end
+function toggleFractured()
+    exploratoryFractured = not exploratoryFractured
+    self.UI.setAttribute("fractured", "isOn", exploratoryFractured)
 end
 
 function wt(some)
@@ -2614,8 +2648,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         end
         boardsCount = numBoards
     else
-        boards = {A = false, B = false, C = false, D = false, E = false, F = false}
-        boardsCount = 6
+        boards = {A = false, B = false, C = false, D = false, E = false, F = false, G = false, H = false}
+        boardsCount = 8
     end
     local function findBoard(picked)
         local board
@@ -2680,8 +2714,8 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         -- make sure the extra board added is always the same one the next player would use
         math.random(0,0)
         math.random(0,0)
-        if numPlayers > 5 then
-            boards = {A2 = false, B2 = false, C2 = false, D2 = false, E2 = false, F2 = false}
+        if numPlayers > 7 then
+            boards = {A2 = false, B2 = false, C2 = false, D2 = false, E2 = false, F2 = false, G2 = false, H2 = false}
             table.insert(config.boards, findBoard(0))
         else
             table.insert(config.boards, findBoard(numPlayers))

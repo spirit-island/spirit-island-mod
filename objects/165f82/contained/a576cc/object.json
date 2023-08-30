@@ -26,6 +26,7 @@
   },
   "Tags": [
     "JE",
+    "Lower Spirit Image",
     "Moderate",
     "Spirit"
   ],
@@ -44,8 +45,8 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752078417/5F8321ACDAAE8AD965C5E0283AAB4E27361CA926/",
-    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752078714/CC66FC66714AEB58C9FF7A5C930406D80AEA8A53/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322013793/A466CAD40856995F373A71E837DF2D6FD6EEB512/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322014378/657DC550ECC514B9042C803245FE53E2B0D63F19/",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomTile": {

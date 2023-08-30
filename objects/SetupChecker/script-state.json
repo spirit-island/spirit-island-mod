@@ -26,7 +26,7 @@
     },
     {
       "guid": "1d9bcd",
-      "name": "Habsburg"
+      "name": "Habsburg-Livestock"
     },
     {
       "guid": "1ea4cf",
@@ -56,7 +56,7 @@
     },
     {
       "guid": "1d9bcd",
-      "name": "Habsburg"
+      "name": "Habsburg-Livestock"
     },
     {
       "guid": "1ea4cf",
@@ -120,6 +120,8 @@
   "exploratory": {
     "aid": false,
     "bodan": false,
+    "fractured": false,
+    "shadows": false,
     "sweden": false,
     "trickster": false,
     "votd": false,
@@ -218,6 +220,7 @@
     "gameResults": true,
     "natureIncarnateSetup": true,
     "soloBlight": true,
+    "thematicPermute": false,
     "thematicRebellion": false,
     "thematicRedo": false
   }

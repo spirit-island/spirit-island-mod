@@ -1,0 +1,130 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 38.939998626708984,
+    "posY": 1.2069000005722046,
+    "posZ": 107.26000213623047,
+    "rotX": -0.0006000000284984708,
+    "rotY": 180.0,
+    "rotZ": 179.99989318847656,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Sun-Bright Whirlwind",
+  "Description": "Horizons",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20029999315738678,
+    "g": 0.16030000150203705,
+    "b": 0.1518000066280365
+  },
+  "Tags": [
+    "Horizons",
+    "Low",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322010240/05AE4A383B92A71180D7D59F351F8B59A984394C/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050880567269244208/9A5D3B946B95735A931863405CC64D1BCB08CF61/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.040300000458955765,
+        "y": 0.20000000298023224,
+        "z": -0.41530001163482666
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4968999922275543,
+        "y": 0.20000000298023224,
+        "z": -0.41609999537467957
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7228999733924866,
+        "y": 0.20000000298023224,
+        "z": -0.4178999960422516
+      }
+    },
+    {
+      "Position": {
+        "x": -0.954200029373169,
+        "y": 0.20000000298023224,
+        "z": -0.4156999886035919
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27079999446868896,
+        "y": 0.20000000298023224,
+        "z": -0.4154999852180481
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04129999876022339,
+        "y": 0.20000000298023224,
+        "z": -0.11879999935626984
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2696000039577484,
+        "y": 0.20000000298023224,
+        "z": -0.11699999868869781
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4982999861240387,
+        "y": 0.20000000298023224,
+        "z": -0.11940000206232071
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9553999900817871,
+        "y": 0.20000000298023224,
+        "z": -0.11860000342130661
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7268999814987183,
+        "y": 0.20000000298023224,
+        "z": -0.11819999665021896
+      }
+    }
+  ]
+}

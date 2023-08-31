@@ -28,9 +28,10 @@ end
 
 function InvaderDeckSetup(params)
     if params.level >= 2 then
+        local invaderCards = Global.getTable("invaderCards")
         local stageIICount = 0
         for i=1,#params.deck do
-            if params.deck[i] == 2 then
+            if params.deck[i] == 2 or (invaderCards[params.deck[i]] and invaderCards[params.deck[i]].stage == 2) then
                 stageIICount = stageIICount + 1
                 if stageIICount == 3 then
                     params.deck[i] = "C"

@@ -579,9 +579,7 @@ function onSave()
 end
 function onLoad(saved_data)
     local text = getObjectFromGUID("a4288f")
-    if text then
-        Wait.time(function() text.destruct() end, 5)
-    end
+    text.destruct()
 
     local versionObj = getObjectFromGUID(versionGuid)
     if versionObj ~= nil then

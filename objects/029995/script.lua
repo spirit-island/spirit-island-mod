@@ -1,13 +1,15 @@
 empty = false
 contents = {
     -- Aid Cards
-    ["1e477e"] = {{101.42, 0.82, 32.85},{0.00, 180.00, 0.00}},
-    ["e58dc4"] = {{105.25, 0.82, 32.85},{0.00, 180.00, 180.00}},
-    ["49913c"] = {{109.08, 0.82, 32.85},{0.00, 180.00, 180.00}},
-    ["d1de40"] = {{101.42, 0.82, 27.57},{0.00, 180.00, 180.00}},
-    ["e3a850"] = {{105.25, 0.82, 27.57},{0.00, 180.00, 0.00}},
-    ["b16225"] = {{109.08, 0.82, 27.57},{0.00, 180.00, 0.00}},
+    ["1e477e"] = {{101.42, 0.82, 9.8},{0.00, 180.00, 0.00}},
+    ["e58dc4"] = {{105.25, 0.82, 9.8},{0.00, 180.00, 180.00}},
+    ["49913c"] = {{109.08, 0.82, 9.8},{0.00, 180.00, 180.00}},
+    ["d1de40"] = {{101.42, 0.82, 4.5},{0.00, 180.00, 180.00}},
+    ["e3a850"] = {{105.25, 0.82, 4.5},{0.00, 180.00, 0.00}},
+    ["b16225"] = {{109.08, 0.82, 4.5},{0.00, 180.00, 0.00}},
 }
+editors = "Editors"
+rulebooks = "9f84fc"
 
 function onLoad()
     self.interactable = false
@@ -65,6 +67,7 @@ function toggleObjects()
         end
         empty = false
     else
+        toggleBags()
         for _, bagObject in pairs(self.getObjects()) do
             self.takeObject({
                 guid = bagObject.guid,
@@ -83,4 +86,15 @@ function toggleObjects()
             Wait.stop(timerID)
         end
     end, 1, -1)
+end
+function toggleBags()
+    local editorsBag = getObjectFromGUID(editors)
+    if editorsBag.getVar("empty") then
+        editorsBag.call("toggleObjects")
+    end
+
+    --[[local rulebooksBag = getObjectFromGUID(rulebooks)
+    if rulebooksBag.getVar("empty") then
+        rulebooksBag.call("toggleObjects")
+    end]]--
 end

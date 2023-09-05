@@ -8,6 +8,8 @@ contents = {
     ["BlightCardEditor"] = {98.98, 0.85, 42.86},
     ["PowerEditor"] = {109.33, 0.85, 42.86},
 }
+playerAids = "029995"
+rulebooks = "9f84fc"
 
 function onLoad()
     self.interactable = false
@@ -65,6 +67,7 @@ function toggleObjects()
         end
         empty = false
     else
+        toggleBags()
         for _, bagObject in pairs(self.getObjects()) do
             self.takeObject({
                 guid = bagObject.guid,
@@ -83,4 +86,15 @@ function toggleObjects()
             Wait.stop(timerID)
         end
     end, 1, -1)
+end
+function toggleBags()
+    local playerAidsBag = getObjectFromGUID(playerAids)
+    if playerAidsBag.getVar("empty") then
+        playerAidsBag.call("toggleObjects")
+    end
+
+    local rulebooksBag = getObjectFromGUID(rulebooks)
+    if rulebooksBag.getVar("empty") then
+        rulebooksBag.call("toggleObjects")
+    end
 end

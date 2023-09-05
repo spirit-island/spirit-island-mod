@@ -1,9 +1,9 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": 105.0,
-    "posY": 0.8,
-    "posZ": 54.0,
+    "posX": -10.34,
+    "posY": 0.85,
+    "posZ": 4.78,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -12,7 +12,7 @@
     "scaleZ": 2.49
   },
   "Nickname": "",
-  "Description": "Base Game",
+  "Description": "Feather & Flame Expansion",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomPDF": {
-    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/1458554570423897813/A81E3B78A1FCABE3CBB054B3667E6739A38CA732/",
+    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/2042999997394911508/C3A5EFFBD4D12AAF12B702A0764418D021677179/",
     "PDFPassword": "",
     "PDFPage": 0,
     "PDFPageOffset": 0

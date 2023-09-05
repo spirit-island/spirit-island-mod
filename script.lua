@@ -3992,7 +3992,11 @@ function handlePlayer(color, data)
     if data.zone then
         for _, obj in ipairs(data.zone.getObjects()) do
             if obj.hasTag("Any") then
-                if obj.getStateId() ~= 9 then obj = obj.setState(9) end
+                local states = obj.getStates()
+                local highestState = states[#states].id
+                if highestState > obj.getStateId() then
+                    obj = obj.setState(highestState)
+                end
                 if obj.getLock() == false then obj.destruct() end
             elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
                 if obj.getLock() == false then obj.destruct() end

@@ -469,6 +469,15 @@ function onObjectEnterScriptingZone(zone, obj)
             end
         end
     end
+
+    if gameStarted and obj.hasTag("Aspect") then
+        for color,data in pairs(selectedColors) do
+            if data.zone == zone then
+                Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
+                break
+            end
+        end
+    end
 end
 function onObjectLeaveScriptingZone(zone, obj)
     if zone.guid == "341005" then
@@ -2237,7 +2246,7 @@ function forgetPowerCard(params)
     end
 
     if params.color then
-        Player[params.color].broadcast("Forgot "..params.card.getName())
+        Player[params.color].broadcast("Forgot "..params.card.getName(), Color.White)
     end
 
     -- HACK work around issue where setPositionSmooth doesn't move object from hand to non hand
@@ -3704,6 +3713,10 @@ function runSpiritSetup()
                         json.setupComplete = success
                         obj.script_state = JSON.encode(json)
                     end
+                end
+
+                if obj.hasTag("Aspect") then
+                    Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
                 end
             end
         end

@@ -1,17 +1,17 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": 105.0199966430664,
+    "posX": 105.0,
     "posY": 0.800000011920929,
-    "posZ": 7.019999980926514,
+    "posZ": 32.0,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 2.4834001064300537,
+    "scaleX": 2.490000009536743,
     "scaleY": 1.0,
-    "scaleZ": 2.4834001064300537
+    "scaleZ": 2.490000009536743
   },
-  "Nickname": "Rulebook",
+  "Nickname": "",
   "Description": "Jagged Earth Expansion",
   "GMNotes": "",
   "AltLookAngle": {

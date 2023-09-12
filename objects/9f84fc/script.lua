@@ -1,9 +1,13 @@
 empty = false
 contents = {
-    ["a39453"] = {102.50, 0.80, 17.10},
-    ["e0d42d"] = {110.34, 0.80, 17.10},
-    ["640292"] = {105.02, 0.80, 7.02},
+    ["a39453"] = {102.50, 0.80, 54.50},
+    ["e0d42d"] = {110.50, 0.80, 54.50},
+    ["640292"] = {105.00, 0.80, 44.00},
+    ["2fd45e"] = {105.00, 0.80, 33.50},
+    ["3bc101"] = {105.00, 0.80, 23.00},
 }
+editors = "Editors"
+playerAids = "029995"
 
 function onLoad()
     self.interactable = false
@@ -61,6 +65,7 @@ function toggleObjects()
         end
         empty = false
     else
+        toggleBags()
         for _, bagObject in pairs(self.getObjects()) do
             self.takeObject({
                 guid = bagObject.guid,
@@ -80,4 +85,15 @@ function toggleObjects()
             Wait.stop(timerID)
         end
     end, 1, -1)
+end
+function toggleBags()
+    local editorsBag = getObjectFromGUID(editors)
+    if editorsBag.getVar("empty") then
+        editorsBag.call("toggleObjects")
+    end
+
+    --[[local playerAidsBag = getObjectFromGUID(playerAids)
+    if playerAidsBag.getVar("empty") then
+        playerAidsBag.call("toggleObjects")
+    end]]--
 end

@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.0.2"
+version = "4.0.3"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -469,6 +469,15 @@ function onObjectEnterScriptingZone(zone, obj)
             end
         end
     end
+
+    if gameStarted and obj.hasTag("Aspect") then
+        for color,data in pairs(selectedColors) do
+            if data.zone == zone then
+                Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
+                break
+            end
+        end
+    end
 end
 function onObjectLeaveScriptingZone(zone, obj)
     if zone.guid == "341005" then
@@ -580,7 +589,7 @@ end
 function onLoad(saved_data)
     local text = getObjectFromGUID("a4288f")
     if text then
-        Wait.time(function() text.destruct() end, 5)
+        text.destruct()
     end
 
     local versionObj = getObjectFromGUID(versionGuid)
@@ -2239,7 +2248,7 @@ function forgetPowerCard(params)
     end
 
     if params.color then
-        Player[params.color].broadcast("Forgot "..params.card.getName())
+        Player[params.color].broadcast("Forgot "..params.card.getName(), Color.White)
     end
 
     -- HACK work around issue where setPositionSmooth doesn't move object from hand to non hand
@@ -3707,6 +3716,10 @@ function runSpiritSetup()
                         obj.script_state = JSON.encode(json)
                     end
                 end
+
+                if obj.hasTag("Aspect") then
+                    Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
+                end
             end
         end
     end
@@ -3981,7 +3994,11 @@ function handlePlayer(color, data)
     if data.zone then
         for _, obj in ipairs(data.zone.getObjects()) do
             if obj.hasTag("Any") then
-                if obj.getStateId() ~= 9 then obj = obj.setState(9) end
+                local states = obj.getStates()
+                local highestState = states[#states].id
+                if highestState > obj.getStateId() then
+                    obj = obj.setState(highestState)
+                end
                 if obj.getLock() == false then obj.destruct() end
             elseif obj.type == "Generic" and obj.getVar("elements") ~= nil then
                 if obj.getLock() == false then obj.destruct() end

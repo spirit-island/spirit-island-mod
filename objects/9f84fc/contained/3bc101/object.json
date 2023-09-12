@@ -1,18 +1,18 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": 105.0,
-    "posY": 0.800000011920929,
-    "posZ": 54.0,
-    "rotX": 0.0,
+    "posX": -0.8199997544288635,
+    "posY": 0.8500005602836609,
+    "posZ": 5.899999618530273,
+    "rotX": 1.6617697440324264e-08,
     "rotY": 180.0,
-    "rotZ": 0.0,
+    "rotZ": -5.547859949217582e-10,
     "scaleX": 2.490000009536743,
     "scaleY": 1.0,
     "scaleZ": 2.490000009536743
   },
   "Nickname": "",
-  "Description": "Base Game",
+  "Description": "Horizons of Spirit Island",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomPDF": {
-    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/1458554570423897813/A81E3B78A1FCABE3CBB054B3667E6739A38CA732/",
+    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/2042999997394912742/4144A8EB542EC495F1043D94C6EB18072C88D0C9/",
     "PDFPassword": "",
     "PDFPage": 0,
     "PDFPageOffset": 0

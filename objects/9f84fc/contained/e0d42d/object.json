@@ -1,18 +1,18 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": 110.33999633789062,
+    "posX": 101.0,
     "posY": 0.800000011920929,
-    "posZ": 17.100000381469727,
+    "posZ": 43.0,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 2.4856998920440674,
+    "scaleX": 2.490000009536743,
     "scaleY": 1.0,
-    "scaleZ": 2.4856998920440674
+    "scaleZ": 2.490000009536743
   },
   "Nickname": "",
-  "Description": "",
+  "Description": "Branch & Claw Expansion",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,

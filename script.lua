@@ -722,6 +722,10 @@ function onLoad(saved_data)
             reclaimAll(obj.zone, playerColor, false)
         end
     end)
+    addContextMenuItem("Grab Spirit Markers", grabSpiritMarkers, false)
+    addHotkey("Grab Spirit Markers", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        grabSpiritMarkers()
+    end)
     addContextMenuItem("Grab Destroy Bag", grabDestroyBag, false)
     addHotkey("Grab Destroy Bag", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         local bag = getObjectFromGUID("fd0a22")
@@ -7724,62 +7728,63 @@ function applyPowerCardContextMenuItems(card)
             false)
     end
 end
+function spawnSpiritMarker(player_color, spirit)
+    local color = getSpiritColor({name = spirit.getName()})
+    if not color then
+        color = player_color
+    end
+    local pos = spirit.getPosition()
+    local data = {
+        Name = "Custom_Model",
+        Transform = {
+            posX = pos[1],
+            posY = pos[2] + 0.5,
+            posZ = pos[3],
+            rotX = 0,
+            rotY = 180,
+            rotZ = 0,
+            scaleX = 3.35,
+            scaleY = 3.35,
+            scaleZ = 3.35
+        },
+        Nickname = spirit.getName(),
+        Tags = {"Mask"},
+        Grid = false,
+        Snap = false,
+        CustomMesh = {
+            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+            MaterialIndex = 1
+        },
+        LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
+    }
+    if spirit.hasTag("Lower Spirit Image") then
+        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spirit.getData().CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
+    else
+        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spirit.getData().CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
+    end
+    if Tints[color] then
+        local tokenColor
+        if Tints[color].Token then
+            tokenColor = Color.fromHex(Tints[color].Token)
+        else
+            tokenColor = Color.fromHex(Tints[color].Presence)
+        end
+        data.ColorDiffuse = {
+            r = tokenColor.r,
+            g = tokenColor.g,
+            b = tokenColor.b
+        }
+    end
+    spawnObjectData({data = data})
+end
 function applySpiritContextMenuItems(spirit)
     local spiritData = spirit.getData()
     if spiritData.Name == "Custom_Tile" then
-            spirit.addContextMenuItem(
-                "Get Spirit Marker",
-                function(player_color)
-                    local color = getSpiritColor({name = spirit.getName()})
-                    if not color then
-                        color = player_color
-                    end
-                    local pos = spirit.getPosition()
-                    local data = {
-                        Name = "Custom_Model",
-                        Transform = {
-                            posX = pos[1],
-                            posY = pos[2] + 0.5,
-                            posZ = pos[3],
-                            rotX = 0,
-                            rotY = 180,
-                            rotZ = 0,
-                            scaleX = 3.35,
-                            scaleY = 3.35,
-                            scaleZ = 3.35
-                        },
-                        Nickname = spirit.getName(),
-                        Tags = {"Mask"},
-                        Grid = false,
-                        Snap = false,
-                        CustomMesh = {
-                            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-                            MaterialIndex = 1
-                        },
-                        LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                    }
-                    if spirit.hasTag("Lower Spirit Image") then
-                        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-                    else
-                        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-                    end
-                    if Tints[color] then
-                        local tokenColor
-                        if Tints[color].Token then
-                            tokenColor = Color.fromHex(Tints[color].Token)
-                        else
-                            tokenColor = Color.fromHex(Tints[color].Presence)
-                        end
-                        data.ColorDiffuse = {
-                            r = tokenColor.r,
-                            g = tokenColor.g,
-                            b = tokenColor.b
-                        }
-                    end
-                    spawnObjectData({data = data})
-                end,
-                false)
+        spirit.addContextMenuItem(
+            "Get Spirit Marker",
+            function(player_color) spawnSpiritMarker(player_color, spirit) end,
+            false)
 
         spirit.addContextMenuItem(
             "Get Reminder Token",
@@ -7837,6 +7842,18 @@ function applySpiritContextMenuItems(spirit)
     end
 end
 
+function grabSpiritMarkers()
+    for color,data in pairs(selectedColors) do
+        if data.zone then
+            for _, obj in ipairs(data.zone.getObjects()) do
+                if obj.hasTag("Spirit") then
+                    spawnSpiritMarker(color, obj)
+                    break
+                end
+            end
+        end
+    end
+end
 function grabDestroyBag(color)
     local bag = getObjectFromGUID("fd0a22")
     if bag ~= nil then

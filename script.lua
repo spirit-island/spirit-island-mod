@@ -1128,6 +1128,9 @@ end
 function usingBadlands()
     return expansions["Jagged Earth"]
 end
+function usingIsolate()
+    return expansions["Jagged Earth"] or expansions["Feather & Flame"]
+end
 function usingVitality()
     -- TODO: change me to check for nature incarnate expansion later
     return SetupChecker.getVar("optionalNatureIncarnateSetup")
@@ -1953,7 +1956,7 @@ function SetupPowerDecks()
     if not gameStarted then
         local function bncMinorPowersOptions(bncDeck, callback)
             local banList = SetupChecker.getTable("banList")["Minor Powers"]
-            if not SetupChecker.getVar("optionalNatureIncarnateSetup") then
+            if not SetupChecker.getVar("optionalNatureIncarnateSetup") or not usingIsolate() then
                 if not banList["Growth Through Sacrifice"] and not banList["b35267"] then
                     local card = getObjectFromGUID("BnCBag").takeObject({
                         guid = "b35267",

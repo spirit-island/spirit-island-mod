@@ -18,6 +18,11 @@
   - "Moderate"
   - "High"
   - "Very High"
+- Add tag to object for additional rules spirit uses, this will make sure the content can't be used without the required rules:
+  - https://kb.tabletopsimulator.com/game-tools/object-tags/#tagging
+  - "Requires Tokens"
+  - "Requires Badlands"
+  - "Requires Isolate"
 - Add snap points to presence track(s) where presence should be setup
   - https://kb.tabletopsimulator.com/game-tools/snap-point-tool/
   - Note: Make sure spirit panel is locked first

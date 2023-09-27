@@ -4002,7 +4002,7 @@ function handlePlayer(color, data)
         for _, obj in ipairs(data.zone.getObjects()) do
             if obj.hasTag("Any") then
                 local states = obj.getStates()
-                local highestState = states[#states].id
+                local highestState = #states + 1
                 if highestState > obj.getStateId() then
                     obj = obj.setState(highestState)
                 end

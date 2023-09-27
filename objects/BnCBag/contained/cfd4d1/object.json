@@ -1,5 +1,5 @@
 {
-  "Name": "CardCustom",
+  "Name": "Card",
   "Transform": {
     "posX": -51.2994,
     "posY": 1.1932,
@@ -54,7 +54,7 @@
   "States": {
     "2": {
       "GUID": "507bca",
-      "Name": "CardCustom",
+      "Name": "Card",
       "Transform": {
         "posX": -42.82,
         "posY": 0.9058,

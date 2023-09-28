@@ -1962,7 +1962,6 @@ function SetupPowerDecks()
                         guid = "b35267",
                         position = getObjectFromGUID(minorPowerZone).getPosition(),
                         rotation = {0,180,180},
-                        smooth = false,
                     })
                     bncDeck.putObject(card)
                     bncDeck.shuffle()
@@ -1973,7 +1972,6 @@ function SetupPowerDecks()
                         guid = "c25a68",
                         position = getObjectFromGUID(minorPowerZone).getPosition(),
                         rotation = {0,180,180},
-                        smooth = false,
                     })
                     bncDeck.putObject(card)
                     bncDeck.shuffle()
@@ -2331,7 +2329,6 @@ function SetupBlightCard()
                     guid = "59e61e",
                     position = blightDeckZone.getPosition(),
                     rotation = {0,180,180},
-                    smooth = false,
                 })
                 bncDeck.putObject(card)
                 bncDeck.shuffle()
@@ -3107,7 +3104,6 @@ function SetupEventDeck()
                         guid = "cfd4d1",
                         position = eventDeckZone.getPosition(),
                         rotation = {0,180,180},
-                        smooth = false,
                     })
                     bncDeck.putObject(card)
                     bncDeck.shuffle()
@@ -3117,7 +3113,6 @@ function SetupEventDeck()
                         guid = "6692e8",
                         position = eventDeckZone.getPosition(),
                         rotation = {0,180,180},
-                        smooth = false,
                     })
                     bncDeck.putObject(card)
                     bncDeck.shuffle()
@@ -3127,7 +3122,6 @@ function SetupEventDeck()
                         guid = "0edac2",
                         position = eventDeckZone.getPosition(),
                         rotation = {0,180,180},
-                        smooth = false,
                     })
                     bncDeck.putObject(card)
                     bncDeck.shuffle()

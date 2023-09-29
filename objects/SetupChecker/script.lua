@@ -331,17 +331,8 @@ function onLoad(saved_data)
                 newAdversaryScenario(getObjectFromGUID(guid), false, scenarios[name] == nil)
             end
 
-            -- queue up all dropdown changes at once
             Wait.frames(function()
-                local funcList = {
-                    updateAdversaryList(),
-                    updateScenarioList(),
-                    updateExpansionToggles(),
-                    updateEventToggles(),
-                    updateBoardLayouts(),
-                    updatePlaytestExpansionList(),
-                }
-                updateXml(self, funcList)
+                updateSelfXml()
                 Wait.frames(function()
                     toggleSimpleMode()
                     toggleChallenge()
@@ -382,6 +373,18 @@ function onObjectSpawn(obj)
             addExpansion(obj)
         end
     end
+end
+function updateSelfXml()
+    -- Bundles all updates to own UI XML together, to prevent race conditions.
+    local funcList = {
+        updateAdversaryList(),
+        updateScenarioList(),
+        updateExpansionToggles(),
+        updateEventToggles(),
+        updateBoardLayouts(),
+        updatePlaytestExpansionList(),
+    }
+    updateXml(self, funcList)
 end
 function toggleAdversary(_, value, adversary)
     local obj = getObjectFromGUID(allAdversaries[adversary])
@@ -451,7 +454,7 @@ function expansionHasEvents(bag)
 end
 function addExpansion(bag)
     expansions[bag.getName()] = bag.guid
-    updateXml(self, {updateExpansionToggles(), updateEventToggles()})
+    updateSelfXml()
 end
 function addAdversary(obj)
     if adversaries[obj.getName()] == nil then
@@ -460,7 +463,7 @@ function addAdversary(obj)
         return
     end
     adversaries[obj.getName()] = obj.guid
-    Wait.frames(function() updateXml(self, {updateAdversaryList()}) end, 1)
+    Wait.frames(updateSelfXml, 1)
 end
 function addScenario(obj)
     if scenarios[obj.getName()] == nil then
@@ -469,7 +472,7 @@ function addScenario(obj)
         return
     end
     scenarios[obj.getName()] = obj.guid
-    Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
+    Wait.frames(updateSelfXml, 1)
 end
 function onDestroy()
     exit = true
@@ -520,12 +523,7 @@ function removeExpansion(bag)
     events[bag.getName()] = nil
     Global.setTable("events", events)
 
-    local funcList = {
-        updateExpansionToggles(),
-        updateEventToggles(),
-        updatePlaytestExpansionList(),
-    }
-    updateXml(self, funcList)
+    updateSelfXml()
 
     Wait.frames(updateRequiredContent, 1)
 end
@@ -542,7 +540,7 @@ function removeAdversary(obj)
                 Global.setVar("adversaryCard2", nil)
                 toggleSupportingLevel(nil, 0)
             end
-            Wait.frames(function() updateXml(self, {updateAdversaryList()}) end, 1)
+            Wait.frames(updateSelfXml, 1)
             break
         end
     end
@@ -583,7 +581,7 @@ function removeScenario(obj)
                 Global.setVar("scenarioCard", nil)
                 updateDifficulty()
             end
-            Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
+            Wait.frames(updateSelfXml, 1)
             break
         end
     end
@@ -653,7 +651,7 @@ function updateNumPlayers(value, updateUI)
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts()}) end, 0.5)
+        updateLayoutsID = Wait.time(updateSelfXml, 0.5)
     end
 end
 function updateBoardLayouts()
@@ -913,7 +911,7 @@ function toggleExpansion(_, _, id)
     end
     updateDifficulty()
 
-    Wait.frames(function() updateXml(self, {updatePlaytestExpansionList()}) end, 1)
+    Wait.frames(updateSelfXml, 1)
     Wait.frames(updateRequiredContent, 2)
 end
 function toggleAllEvents()
@@ -2183,7 +2181,7 @@ function toggleExtraBoard()
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts()}) end, 0.5)
+        updateLayoutsID = Wait.time(updateSelfXml, 0.5)
     end
 end
 function toggleBoardPairings()

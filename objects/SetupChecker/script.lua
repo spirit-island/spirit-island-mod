@@ -2459,7 +2459,7 @@ function addExpansionToggle(value)
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
+        t.attributes["preferredHeight"] = math.ceil(count / 2) * 60 + 0.1
     end)
 end
 function addEventToggle(value)
@@ -2471,7 +2471,7 @@ function addEventToggle(value)
             children={},
         })
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
+        t.attributes["preferredHeight"] = math.ceil(count / 2) * 60 + 0.1
     end)
 end
 function removeToggle(id, value)
@@ -2483,7 +2483,7 @@ function removeToggle(id, value)
             end
         end
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
+        t.attributes["preferredHeight"] = math.ceil(count / 2) * 60 + 0.1
     end)
 end
 

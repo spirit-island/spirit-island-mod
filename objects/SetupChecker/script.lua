@@ -340,15 +340,8 @@ function onLoad(saved_data)
                     updatePlaytestExpansionList(expansions),
                 }
                 for expansion,guid in pairs(expansions) do
-                    local hasEvents = false
-                    for _,obj in pairs(getObjectFromGUID(guid).getObjects()) do
-                        if obj.name == "Events" then
-                            hasEvents = true
-                            break
-                        end
-                    end
                     table.insert(funcList, addExpansionToggle(expansion))
-                    if hasEvents then
+                    if expansionHasEvents(getObjectFromGUID(guid)) then
                         table.insert(funcList, addEventToggle(expansion))
                     end
                 end
@@ -460,7 +453,7 @@ function newAdversaryScenario(obj, adversary, disabled)
         }
     }, {})
 end
-function addExpansion(bag)
+function expansionHasEvents(bag)
     local hasEvents = false
     for _,obj in pairs(bag.getObjects()) do
         if obj.name == "Events" then
@@ -468,9 +461,12 @@ function addExpansion(bag)
             break
         end
     end
+    return hasEvents
+end
+function addExpansion(bag)
     if not expansions[bag.getName()] then
         local funcList = {addExpansionToggle(bag.getName())}
-        if hasEvents then
+        if expansionHasEvents(bag) then
             table.insert(funcList, addEventToggle(bag.getName()))
         end
         updateXml(self, funcList)
@@ -912,15 +908,7 @@ function toggleExpansion(_, _, id)
     Global.setTable("expansions", exps)
     self.UI.setAttribute(id, "isOn", bool)
 
-    local hasEvents = false
-    for _,obj in pairs(getObjectFromGUID(expansions[id]).getObjects()) do
-        if obj.name == "Events" then
-            hasEvents = true
-            break
-        end
-    end
-
-    if hasEvents then
+    if expansionHasEvents(getObjectFromGUID(expansions[id])) then
         local events = Global.getTable("events")
         events[id] = exps[id]
         Global.setTable("events", events)
@@ -962,14 +950,7 @@ function toggleAllEvents()
         local exps = Global.getTable("expansions")
         for exp,enabled in pairs(exps) do
             if enabled then
-                local hasEvents = false
-                for _,obj in pairs(getObjectFromGUID(expansions[exp]).getObjects()) do
-                    if obj.name == "Events" then
-                        hasEvents = true
-                        break
-                    end
-                end
-                if hasEvents then
+                if expansionHasEvents(getObjectFromGUID(expansions[exp])) then
                     events[exp] = true
                     toggleEvents(nil, nil, exp.." Events")
                 end

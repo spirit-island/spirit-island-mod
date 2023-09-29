@@ -338,7 +338,7 @@ function onLoad(saved_data)
                     updateScenarioList(),
                     updateExpansionToggles(),
                     updateEventToggles(),
-                    updateBoardLayouts(numPlayers),
+                    updateBoardLayouts(),
                     updatePlaytestExpansionList(),
                 }
                 updateXml(self, funcList)
@@ -653,13 +653,13 @@ function updateNumPlayers(value, updateUI)
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts(numPlayers)}) end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts()}) end, 0.5)
     end
 end
-function updateBoardLayouts(numPlayers)
-    local numBoards = numPlayers
+function updateBoardLayouts()
+    local numBoards = Global.getVar("numPlayers")
     if optionalExtraBoard then
-        numBoards = numPlayers + 1
+        numBoards = numBoards + 1
     end
     local layoutNames = { "Balanced" }
     local alternateBoardLayoutNames = Global.getVar("alternateBoardLayoutNames")
@@ -668,7 +668,7 @@ function updateBoardLayouts(numPlayers)
             table.insert(layoutNames, layout)
         end
     end
-    local canThematic = numPlayers < 6 or (numPlayers == 6 and not optionalExtraBoard)
+    local canThematic = (numBoards <= 6)
     if canThematic then
         table.insert(layoutNames, "Thematic")
     end
@@ -2183,7 +2183,7 @@ function toggleExtraBoard()
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts(numPlayers)}) end, 0.5)
+        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts()}) end, 0.5)
     end
 end
 function toggleBoardPairings()

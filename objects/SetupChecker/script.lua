@@ -339,7 +339,7 @@ function onLoad(saved_data)
                     updateExpansionToggles(),
                     updateEventToggles(),
                     updateBoardLayouts(numPlayers),
-                    updatePlaytestExpansionList(expansions),
+                    updatePlaytestExpansionList(),
                 }
                 updateXml(self, funcList)
                 Wait.frames(function()
@@ -523,7 +523,7 @@ function removeExpansion(bag)
     local funcList = {
         updateExpansionToggles(),
         updateEventToggles(),
-        updatePlaytestExpansionList(exps),
+        updatePlaytestExpansionList(),
     }
     updateXml(self, funcList)
 
@@ -913,7 +913,7 @@ function toggleExpansion(_, _, id)
     end
     updateDifficulty()
 
-    Wait.frames(function() updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
+    Wait.frames(function() updateXml(self, {updatePlaytestExpansionList()}) end, 1)
     Wait.frames(updateRequiredContent, 2)
 end
 function toggleAllEvents()
@@ -972,10 +972,10 @@ function toggleEvents(_, _, id)
     self.UI.setAttribute(id, "isOn", bool)
 end
 
-function updatePlaytestExpansionList(exps)
+function updatePlaytestExpansionList()
     local playtestExpansions = {"None"}
     local found = false
-    for name,enabled in pairs(exps) do
+    for name,enabled in pairs(Global.getTable("expansions")) do
         if enabled then
             table.insert(playtestExpansions, name)
             if playtestExpansion == name then

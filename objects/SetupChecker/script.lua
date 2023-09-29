@@ -455,6 +455,7 @@ end
 function addExpansion(bag)
     expansions[bag.getName()] = bag.guid
     updateSelfXml()
+    Wait.frames(function() toggleExpansion(_, _, bag.getName()) end, 1)
 end
 function addAdversary(obj)
     if adversaries[obj.getName()] == nil then

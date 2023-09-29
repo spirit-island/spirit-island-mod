@@ -538,10 +538,8 @@ function removeExpansion(bag)
     local funcList = {
         removeToggle("expansionsRow", bag.getName()),
         removeToggle("events", bag.getName().." Events"),
+        updatePlaytestExpansionList(exps),
     }
-    if playtestExpansion == bag.getName() then
-        table.insert(funcList, updatePlaytestExpansionList(exps))
-    end
     updateXml(self, funcList)
 
     Wait.frames(updateRequiredContent, 1)

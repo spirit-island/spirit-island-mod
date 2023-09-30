@@ -444,6 +444,9 @@ function newAdversaryScenario(obj, adversary, disabled)
 end
 function expansionHasEvents(bagGUID)
     local bag = getObjectFromGUID(bagGUID)
+    if bag == nil then
+        return false
+    end
     local hasEvents = false
     for _,obj in pairs(bag.getObjects()) do
         if obj.name == "Events" then

@@ -587,11 +587,6 @@ function onSave()
     return JSON.encode(data_table)
 end
 function onLoad(saved_data)
-    local text = getObjectFromGUID("a4288f")
-    if text then
-        text.destruct()
-    end
-
     local versionObj = getObjectFromGUID(versionGuid)
     if versionObj ~= nil then
         versionObj.setValue("version " .. version)

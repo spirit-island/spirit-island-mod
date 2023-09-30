@@ -442,7 +442,8 @@ function newAdversaryScenario(obj, adversary, disabled)
         }
     }, {})
 end
-function expansionHasEvents(bag)
+function expansionHasEvents(bagGUID)
+    local bag = getObjectFromGUID(bagGUID)
     local hasEvents = false
     for _,obj in pairs(bag.getObjects()) do
         if obj.name == "Events" then
@@ -890,7 +891,7 @@ function toggleExpansion(_, _, id)
     Global.setTable("expansions", exps)
     self.UI.setAttribute(id, "isOn", bool)
 
-    if expansionHasEvents(getObjectFromGUID(expansions[id])) then
+    if expansionHasEvents(expansions[id]) then
         local events = Global.getTable("events")
         events[id] = exps[id]
         Global.setTable("events", events)
@@ -932,7 +933,7 @@ function toggleAllEvents()
         local exps = Global.getTable("expansions")
         for exp,enabled in pairs(exps) do
             if enabled then
-                if expansionHasEvents(getObjectFromGUID(expansions[exp])) then
+                if expansionHasEvents(expansions[exp]) then
                     events[exp] = true
                     toggleEvents(nil, nil, exp.." Events")
                 end
@@ -2467,7 +2468,7 @@ function updateEventToggles()
     local events = Global.getTable("events")
     local values = {}
     for name,guid in pairs(expansions) do
-        if expansionHasEvents(getObjectFromGUID(guid)) then
+        if expansionHasEvents(guid) then
             -- The Global events table stores nil for disabled expansions
             -- We want a boolean false, so we explicitly check for equality to true
             values[name.." Events"] = (events[name] == true)

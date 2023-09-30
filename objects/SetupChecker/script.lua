@@ -530,10 +530,15 @@ function onObjectDestroy(obj)
     end
 end
 function removeExpansion(bag)
+    expansions[bag.getName()] = nil
+
     local exps = Global.getTable("expansions")
     exps[bag.getName()] = nil
     Global.setTable("expansions", exps)
-    expansions[bag.getName()] = nil
+
+    local events = Global.getTable("events")
+    events[bag.getName()] = nil
+    Global.setTable("events", events)
 
     local funcList = {
         removeToggle("expansionsRow", bag.getName()),

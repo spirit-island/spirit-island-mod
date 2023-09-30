@@ -224,6 +224,14 @@
       {
         "displayed": "Requires Isolate",
         "normalized": "requires_isolate"
+      },
+      {
+        "displayed": "Phases",
+        "normalized": "phases"
+      },
+      {
+        "displayed": "Gain Pay",
+        "normalized": "gain_pay"
       }
     ]
   },

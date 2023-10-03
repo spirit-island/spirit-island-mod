@@ -370,11 +370,11 @@ This section is meant for users who are familiar with both the tts mod and progr
         - 4: Slow Phase
         - 5: Time Passes
       - `turn`: **number** - is the current turn number
-- Trigger to run when a player gains/pays energy (or undoes these operations)
+- Trigger to run when a player successfully gains/pays energy (or successfully undoes these operations)
   - Create object and tag with "Gain Pay"
   - `onGainPay(params)`
     - `params`: **table** - contains data about gain/pay operation
       - `color`: **string** - is the color of the player who gained/paid energy
       - `isGain`: **bool** - true if the operation is a gain, false if it's a pay
       - `isUndo`: **bool** - true if the operation is being undone (right click), false otherwise
-      - `amount`: **number** - amount of energy gained/paid (before bargain deductions); always non-negative
+      - `amount`: **number** - amount of energy gained/paid (before bargain deductions); positive for gain or pay

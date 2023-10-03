@@ -5717,8 +5717,6 @@ function setupPlayerArea(params)
         selected.zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
-    local energy = 0
-
     local Elements = {}
     Elements.__index = Elements
     function Elements:new(init)
@@ -5840,7 +5838,7 @@ function setupPlayerArea(params)
         local spirit = nil
         local aspects = {}
         local thresholdCards = {}
-        energy = 0
+        local energy = 0
         --Go through all items found in the zone
         if selected.zone then
             for _,entry in ipairs(selected.zone.getObjects()) do

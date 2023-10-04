@@ -9,7 +9,7 @@ function Broadcast(params)
 end
 
 function modifyCost(params)
-    if Global.getVar("scenarioCard") ~= nil and Global.getVar("scenarioCard").guid == self.guid then
+    if Global.getVar("gameStarted") and Global.getVar("scenarioCard") ~= nil and Global.getVar("scenarioCard").guid == self.guid then
         for guid,cost in pairs(params.costs) do
             local card = getObjectFromGUID(guid)
             if (card.hasTag("Fast") and not card.hasTag("Temporary Slow")) or card.hasTag("Temporary Fast") then

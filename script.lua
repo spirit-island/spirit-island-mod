@@ -5630,13 +5630,7 @@ function setupPlayerArea(params)
     -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
     local timer = params.obj.getVar("timer")  -- May be nil
     local initialized = params.obj.getVar("initialized")
-    local color
-    for k, v in pairs(playerTables) do
-        if v.guid == params.obj.guid then
-            color = k
-            break
-        end
-    end
+    local color = getTableColor(params.obj)
     local selected = selectedColors[color]
 
     if not initialized and selected then

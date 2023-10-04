@@ -83,7 +83,6 @@ seaTile = "5f4be2"
 selectedColors = {}
 selectedBoards = {}
 blightCards = {}
-fastDiscount = 0
 currentPhase = 1
 playtestMinorPowers = 0
 playtestMajorPowers = 0
@@ -521,7 +520,6 @@ function onSave()
         numPlayers = numPlayers,
         numBoards = numBoards,
         blightCards = blightCards,
-        fastDiscount = fastDiscount,
         currentPhase = currentPhase,
         playtestMinorPowers = playtestMinorPowers,
         playtestMajorPowers = playtestMajorPowers,
@@ -839,7 +837,6 @@ function onLoad(saved_data)
         numBoards = loaded_data.numBoards
         blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
-        fastDiscount = loaded_data.fastDiscount
         currentPhase = loaded_data.currentPhase
         playtestMinorPowers = loaded_data.playtestMinorPowers
         playtestMajorPowers = loaded_data.playtestMajorPowers
@@ -5744,17 +5741,6 @@ function setupPlayerArea(params)
         return table.concat(self, "")
     end
 
-    local function powerCost(card)
-        local cost = card.getVar("energy")
-        -- Skip counting locked card's energy (Aid from Lesser Spirits)
-        if card.getLock() or cost == nil then
-            return nil
-        elseif (card.hasTag("Fast") and not card.hasTag("Temporary Slow")) or card.hasTag("Temporary Fast") then
-            cost = cost - fastDiscount
-        end
-        return cost
-    end
-
     local function calculateTrackElements(spiritBoard)
         local elements = Elements:new()
         if spiritBoard.script_state ~= "" then
@@ -5858,7 +5844,10 @@ function setupPlayerArea(params)
                                 elements:add(cardElements)
                                 nonTokenElements:add(cardElements)
                             end
-                            costs[entry.guid] = powerCost(entry)
+                            -- Skip counting locked card's energy (Aid from Lesser Spirits)
+                            if not entry.getLock() then
+                                costs[entry.guid] = entry.getVar("energy")
+                            end
                         end
                     end
                     if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then

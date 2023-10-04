@@ -5748,7 +5748,7 @@ function setupPlayerArea(params)
         local cost = card.getVar("energy")
         -- Skip counting locked card's energy (Aid from Lesser Spirits)
         if card.getLock() or cost == nil then
-            return 0
+            return nil
         elseif (card.hasTag("Fast") and not card.hasTag("Temporary Slow")) or card.hasTag("Temporary Fast") then
             cost = cost - fastDiscount
         end
@@ -5832,7 +5832,7 @@ function setupPlayerArea(params)
         local spirit = nil
         local aspects = {}
         local thresholdCards = {}
-        local energy = 0
+        local costs = {}
         --Go through all items found in the zone
         if selected.zone then
             for _,entry in ipairs(selected.zone.getObjects()) do
@@ -5858,7 +5858,7 @@ function setupPlayerArea(params)
                                 elements:add(cardElements)
                                 nonTokenElements:add(cardElements)
                             end
-                            energy = energy + powerCost(entry)
+                            costs[entry.guid] = powerCost(entry)
                         end
                     end
                     if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
@@ -5871,6 +5871,11 @@ function setupPlayerArea(params)
                     end
                 end
             end
+        end
+        costs = modifyCost(getTableColor(params.obj), costs)
+        local energy = 0
+        for _,cost in pairs(costs) do
+            energy = energy + cost
         end
         if spirit ~= nil then
             checkThresholds(spirit, aspects, thresholdCards, elements)
@@ -5914,6 +5919,18 @@ function reclaimAll(target_obj, source_color)
             obj.deal(1, target_color, 1)
         end
     end
+end
+function modifyCost(color, costs)
+    for _,object in pairs(getObjectsWithTag("Modify Cost")) do
+        costs = object.call("modifyCost", {color = color, costs = costs})
+    end
+    return costs
+end
+function modifyGain(color, amount)
+    for _,object in pairs(getObjectsWithTag("Modify Gain")) do
+        amount = object.call("modifyGain", {color = color, amount = amount})
+    end
+    return amount
 end
 function onGainPay(color, isGain, isUndo, amount)
     for _,object in pairs(getObjectsWithTag("Gain Pay")) do
@@ -6014,6 +6031,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                 if not supported then
                     Player[target_color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
                 else
+                    energyTotal = modifyGain(target_color, energyTotal)
                     local refunded = updateEnergyCounter(target_color, true, energyTotal, false)
                     if not refunded then
                         refunded = refundEnergyTokens(target_color, energyTotal, false)
@@ -6079,6 +6097,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                 if not supported then
                     Player[target_color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
                 else
+                    energyTotal = modifyGain(target_color, energyTotal)
                     local paid = updateEnergyCounter(target_color, false, energyTotal, false)
                     if not paid then
                         paid = payEnergyTokens(target_color, energyTotal, false)

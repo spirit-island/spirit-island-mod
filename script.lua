@@ -5911,15 +5911,15 @@ function reclaimAll(target_obj, source_color)
 end
 function modifyCost(params)
     for _,object in pairs(getObjectsWithTag("Modify Cost")) do
-        costs = object.call("modifyCost", params)
+        params.costs = object.call("modifyCost", params)
     end
-    return costs
+    return params.costs
 end
 function modifyGain(params)
     for _,object in pairs(getObjectsWithTag("Modify Gain")) do
-        amount = object.call("modifyGain", params)
+        params.amount = object.call("modifyGain", params)
     end
-    return amount
+    return params.amount
 end
 function onGainPay(params)
     for _,object in pairs(getObjectsWithTag("Gain Pay")) do

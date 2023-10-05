@@ -7751,7 +7751,7 @@ function spawnSpiritMarker(player_color, spirit)
             scaleZ = 3.35
         },
         Nickname = spirit.getName(),
-        Tags = {"Mask"},
+        Tags = {"Mask", "Spirit Marker"},
         Grid = false,
         Snap = false,
         CustomMesh = {

@@ -7258,6 +7258,7 @@ function recolorPlayerPieces(fromColor, toColor)
             presenceTint = Color.fromHex(Tints[color].Presence),
             tokenTint = colorTint,
             objects = {},
+            markers = {},
             pattern = color .. "'s (.*)",
         }
     end
@@ -7290,7 +7291,7 @@ function recolorPlayerPieces(fromColor, toColor)
     end
     selectedColors[fromColor], selectedColors[toColor] = selectedColors[toColor], selectedColors[fromColor]
 
-    -- Pass 1: Iterate over all objects looking for "<color>'s X".
+    -- Pass 1a: Iterate over all objects looking for "<color>'s X".
     -- Make a note of what we find and what tint it is.
     local match = string.match  -- Performance
     for _,obj in pairs(getObjects()) do
@@ -7305,6 +7306,16 @@ function recolorPlayerPieces(fromColor, toColor)
                         table.insert(data.objects[suffix], obj)
                     end
                 end
+            end
+        end
+    end
+
+    -- Pass 1b: Find all spirit markers of each colour.
+    -- These won't be found in pass 1a, as they don't have colours in their names.
+    for _,obj in pairs(getObjectsWithTag("Spirit Marker")) do
+        for _,data in pairs(colors) do
+            if obj.getColorTint() == data.tokenTint then
+                table.insert(data.markers, obj)
             end
         end
     end
@@ -7360,6 +7371,9 @@ function recolorPlayerPieces(fromColor, toColor)
                         obj.setName(newname)
                     end
                 end
+            end
+            for _,obj in ipairs(b.markers) do
+                obj.setColorTint(a.tokenTint)
             end
         end
     end, 1)

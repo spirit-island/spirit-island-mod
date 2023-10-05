@@ -178,6 +178,10 @@
         "normalized": "reminder_token"
       },
       {
+        "displayed": "Spirit Marker",
+        "normalized": "spirit_marker"
+      },
+      {
         "displayed": "Expansion",
         "normalized": "expansion"
       },

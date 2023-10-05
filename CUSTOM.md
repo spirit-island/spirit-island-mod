@@ -384,7 +384,7 @@ This section is meant for users who are familiar with both the tts mod and progr
     - `params`: **table** - contains data about the energ gain
       - `color`: **string** - is the color of the player who is gaining energy
       - `amount`: **number** - baseline amount of energy to gain (before bargain deductions)
-    - return **number** - modified amount of energy to gain (before brgain deductions)
+    - return **number** - modified amount of energy to gain (before bargain deductions)
 - Trigger to run when a player successfully gains/pays energy (or successfully undoes these operations)
   - Create object and tag with "Gain Pay"
   - `onGainPay(params)`

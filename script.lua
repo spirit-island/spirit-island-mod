@@ -83,7 +83,6 @@ seaTile = "5f4be2"
 selectedColors = {}
 selectedBoards = {}
 blightCards = {}
-fastDiscount = 0
 currentPhase = 1
 playtestMinorPowers = 0
 playtestMajorPowers = 0
@@ -521,7 +520,6 @@ function onSave()
         numPlayers = numPlayers,
         numBoards = numBoards,
         blightCards = blightCards,
-        fastDiscount = fastDiscount,
         currentPhase = currentPhase,
         playtestMinorPowers = playtestMinorPowers,
         playtestMajorPowers = playtestMajorPowers,
@@ -839,7 +837,6 @@ function onLoad(saved_data)
         numBoards = loaded_data.numBoards
         blightCards = loaded_data.blightCards
         showPlayerButtons = loaded_data.showPlayerButtons
-        fastDiscount = loaded_data.fastDiscount
         currentPhase = loaded_data.currentPhase
         playtestMinorPowers = loaded_data.playtestMinorPowers
         playtestMajorPowers = loaded_data.playtestMajorPowers
@@ -5630,13 +5627,7 @@ function setupPlayerArea(params)
     -- Figure out what color we're supposed to be, or if playerswapping is even allowed.
     local timer = params.obj.getVar("timer")  -- May be nil
     local initialized = params.obj.getVar("initialized")
-    local color
-    for k, v in pairs(playerTables) do
-        if v.guid == params.obj.guid then
-            color = k
-            break
-        end
-    end
+    local color = getTableColor(params.obj)
     local selected = selectedColors[color]
 
     if not initialized and selected then
@@ -5717,8 +5708,6 @@ function setupPlayerArea(params)
         selected.zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
-    local energy = 0
-
     local Elements = {}
     Elements.__index = Elements
     function Elements:new(init)
@@ -5750,17 +5739,6 @@ function setupPlayerArea(params)
     end
     function Elements:__tostring()
         return table.concat(self, "")
-    end
-
-    local function powerCost(card)
-        local cost = card.getVar("energy")
-        -- Skip counting locked card's energy (Aid from Lesser Spirits)
-        if card.getLock() or cost == nil then
-            return 0
-        elseif (card.hasTag("Fast") and not card.hasTag("Temporary Slow")) or card.hasTag("Temporary Fast") then
-            cost = cost - fastDiscount
-        end
-        return cost
     end
 
     local function calculateTrackElements(spiritBoard)
@@ -5840,7 +5818,7 @@ function setupPlayerArea(params)
         local spirit = nil
         local aspects = {}
         local thresholdCards = {}
-        energy = 0
+        local costs = {}
         --Go through all items found in the zone
         if selected.zone then
             for _,entry in ipairs(selected.zone.getObjects()) do
@@ -5866,7 +5844,10 @@ function setupPlayerArea(params)
                                 elements:add(cardElements)
                                 nonTokenElements:add(cardElements)
                             end
-                            energy = energy + powerCost(entry)
+                            -- Skip counting locked card's energy (Aid from Lesser Spirits)
+                            if not entry.getLock() then
+                                costs[entry.guid] = entry.getVar("energy")
+                            end
                         end
                     end
                     if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
@@ -5879,6 +5860,11 @@ function setupPlayerArea(params)
                     end
                 end
             end
+        end
+        costs = modifyCost({color = getTableColor(params.obj), costs = costs})
+        local energy = 0
+        for _,cost in pairs(costs) do
+            energy = energy + cost
         end
         if spirit ~= nil then
             checkThresholds(spirit, aspects, thresholdCards, elements)
@@ -5921,6 +5907,23 @@ function reclaimAll(target_obj, source_color)
         if isPowerCard({card=obj}) then
             obj.deal(1, target_color, 1)
         end
+    end
+end
+function modifyCost(params)
+    for _,object in pairs(getObjectsWithTag("Modify Cost")) do
+        params.costs = object.call("modifyCost", params)
+    end
+    return params.costs
+end
+function modifyGain(params)
+    for _,object in pairs(getObjectsWithTag("Modify Gain")) do
+        params.amount = object.call("modifyGain", params)
+    end
+    return params.amount
+end
+function onGainPay(params)
+    for _,object in pairs(getObjectsWithTag("Gain Pay")) do
+        object.call("onGainPay", params)
     end
 end
 function payDebt(target_obj, source_color, alt_click)
@@ -6017,6 +6020,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                 if not supported then
                     Player[target_color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
                 else
+                    energyTotal = modifyGain({color = target_color, amount = energyTotal})
                     local refunded = updateEnergyCounter(target_color, true, energyTotal, false)
                     if not refunded then
                         refunded = refundEnergyTokens(target_color, energyTotal, false)
@@ -6024,6 +6028,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                     if refunded then
                         selectedColors[target_color].gained = true
                         selectedColors[target_color].zone.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                        onGainPay({color = target_color, isGain = true, isPay = false, amount = energyTotal})
                     else
                         Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
                     end
@@ -6081,6 +6086,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                 if not supported then
                     Player[target_color].broadcast("Spirit does not support automatic energy gain", Color.SoftYellow)
                 else
+                    energyTotal = modifyGain({color = target_color, amount = energyTotal})
                     local paid = updateEnergyCounter(target_color, false, energyTotal, false)
                     if not paid then
                         paid = payEnergyTokens(target_color, energyTotal, false)
@@ -6088,6 +6094,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                     if paid then
                         selectedColors[target_color].gained = false
                         selectedColors[target_color].zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                        onGainPay({color = target_color, isGain = true, isPay = true, amount = energyTotal})
                     else
                         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
                     end
@@ -6125,6 +6132,7 @@ function payEnergy(target_obj, source_color, alt_click)
     if paid then
         selectedColors[target_color].paid = true
         selectedColors[target_color].zone.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
+        onGainPay({color = target_color, isGain = false, isPay = false, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
@@ -6381,6 +6389,7 @@ function refundEnergy(target_obj, source_color, alt_click)
     if refunded then
         selectedColors[target_color].paid = false
         selectedColors[target_color].zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        onGainPay({color = target_color, isGain = false, isPay = true, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end

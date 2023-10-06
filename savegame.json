@@ -228,6 +228,22 @@
       {
         "displayed": "Requires Isolate",
         "normalized": "requires_isolate"
+      },
+      {
+        "displayed": "Phases",
+        "normalized": "phases"
+      },
+      {
+        "displayed": "Modify Cost",
+        "normalized": "modify_cost"
+      },
+      {
+        "displayed": "Modify Gain",
+        "normalized": "modify_gain"
+      },
+      {
+        "displayed": "Gain Pay",
+        "normalized": "gain_pay"
       }
     ]
   },

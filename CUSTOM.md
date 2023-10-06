@@ -370,3 +370,26 @@ This section is meant for users who are familiar with both the tts mod and progr
         - 4: Slow Phase
         - 5: Time Passes
       - `turn`: **number** - is the current turn number
+- Trigger to modify the cost of played cards
+  - Create object and tag with "Modify Cost"
+  - `modifyCost(params)`
+    - `params`: **table** - contains data about the player and the cards played
+      - `color`: **string** - is the color of the player whose card cost is being calculated
+      - `costs`: **table** - maps card GUIDs (as keys) to costs (as values)
+    - return **table** - the `costs` table, modified appropriately
+      - e.g. Blitz would reduce the cost of all fast cards by 1, cards could be ignored in cost calculations by deleting them from the table
+- Trigger to modify the energy gained with the "Gain" button
+  - Create object and tag with "Modify Gain"
+  - `modifyGain(params)`
+    - `params`: **table** - contains data about the energ gain
+      - `color`: **string** - is the color of the player who is gaining energy
+      - `amount`: **number** - baseline amount of energy to gain (before bargain deductions)
+    - return **number** - modified amount of energy to gain (before bargain deductions)
+- Trigger to run when a player successfully gains/pays energy (or successfully undoes these operations)
+  - Create object and tag with "Gain Pay"
+  - `onGainPay(params)`
+    - `params`: **table** - contains data about gain/pay operation
+      - `color`: **string** - is the color of the player who gained/paid energy
+      - `isGain`: **bool** - true if the operation is a gain, false if it's a pay
+      - `isUndo`: **bool** - true if the operation is being undone (right click), false otherwise
+      - `amount`: **number** - amount of energy gained/paid (before bargain deductions); positive for gain or pay

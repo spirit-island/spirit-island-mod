@@ -2020,7 +2020,7 @@ function MajorPowerC(obj, player_color, alt_click)
     if alt_click then
         cards = 2
     end
-    startDealPowerCards(false, Player[player_color], cards)
+    startDealPowerCards({minor = false, player = Player[player_color], count = cards})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2029,14 +2029,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards(false, player, cards)
+    startDealPowerCards({minor = false, player = player, count = cards})
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards(true, Player[player_color], cards)
+    startDealPowerCards({minor = true, player = Player[player_color], count = cards})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2045,18 +2045,18 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards(true, player, cards)
+    startDealPowerCards({minor = true, player = player, count = cards})
 end
-function startDealPowerCards(minor, player, cardCount)
+function startDealPowerCards(params)
     -- protection from double clicking
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
 
-    if minor then
+    if params.minor then
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
+                params.player,
+                params.count,
                 getObjectFromGUID(minorPowerZone),
                 getObjectFromGUID(minorPowerDiscardZone),
                 getObjectFromGUID(playtestMinorPowerZone),
@@ -2068,8 +2068,8 @@ function startDealPowerCards(minor, player, cardCount)
     else
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
+                params.player,
+                params.count,
                 getObjectFromGUID(majorPowerZone),
                 getObjectFromGUID(majorPowerDiscardZone),
                 getObjectFromGUID(playtestMajorPowerZone),

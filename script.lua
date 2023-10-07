@@ -2047,10 +2047,18 @@ function MinorPowerUI(player, button)
     end
     startDealPowerCards({minor = true, player = player, count = cards})
 end
+function modifyCardGain(params)
+    for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
+        params.count = obj.call("modifyCardGain", params)
+    end
+    return params.count
+end
 function startDealPowerCards(params)
     -- protection from double clicking
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
+
+    params.count = modifyCardGain({minor = params.minor, color = params.player.color, count = params.count})
 
     if params.minor then
         _G["startDealPowerCardsCo"] = function()

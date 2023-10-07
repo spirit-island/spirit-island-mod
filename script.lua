@@ -2107,6 +2107,11 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     if cardCount > 4 then
         xPadding = 3.6
     end
+    if cardCount > 6 then
+        player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
+        scriptWorkingCardC = false
+        return
+    end
     local cardPlaceOffset = {
         Vector(-(2.5*xPadding)+2*xPadding,0,0),
         Vector(-(2.5*xPadding)+3*xPadding,0,0),

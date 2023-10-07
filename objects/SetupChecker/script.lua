@@ -331,41 +331,11 @@ function onLoad(saved_data)
                 newAdversaryScenario(getObjectFromGUID(guid), false, scenarios[name] == nil)
             end
 
-            -- queue up all dropdown changes at once
             Wait.frames(function()
-                local funcList = {
-                    updateAdversaryList(),
-                    updateScenarioList(),
-                    updateBoardLayouts(numPlayers),
-                    updatePlaytestExpansionList(expansions),
-                }
-                for expansion,guid in pairs(expansions) do
-                    local hasEvents = false
-                    for _,obj in pairs(getObjectFromGUID(guid).getObjects()) do
-                        if obj.name == "Events" then
-                            hasEvents = true
-                            break
-                        end
-                    end
-                    table.insert(funcList, addExpansionToggle(expansion))
-                    if hasEvents then
-                        table.insert(funcList, addEventToggle(expansion))
-                    end
-                end
-                updateXml(self, funcList)
+                updateSelfXml()
                 Wait.frames(function()
                     toggleSimpleMode()
                     toggleChallenge()
-                    local events = Global.getTable("events")
-                    for expansion, enabled in pairs(Global.getTable("expansions")) do
-                        if enabled then
-                            self.UI.setAttribute(expansion, "isOn", "true")
-                            if events[expansion] then
-                                self.UI.setAttribute(expansion.." Events", "isOn", "true")
-                            end
-                        end
-                    end
-
                     updateDifficulty()
                 end, 2)
             end, 2)
@@ -403,6 +373,18 @@ function onObjectSpawn(obj)
             addExpansion(obj)
         end
     end
+end
+function updateSelfXml()
+    -- Bundles all updates to own UI XML together, to prevent race conditions.
+    local funcList = {
+        updateAdversaryList(),
+        updateScenarioList(),
+        updateExpansionToggles(),
+        updateEventToggles(),
+        updateBoardLayouts(),
+        updatePlaytestExpansionList(),
+    }
+    updateXml(self, funcList)
 end
 function toggleAdversary(_, value, adversary)
     local obj = getObjectFromGUID(allAdversaries[adversary])
@@ -460,7 +442,11 @@ function newAdversaryScenario(obj, adversary, disabled)
         }
     }, {})
 end
-function addExpansion(bag)
+function expansionHasEvents(bagGUID)
+    local bag = getObjectFromGUID(bagGUID)
+    if bag == nil then
+        return false
+    end
     local hasEvents = false
     for _,obj in pairs(bag.getObjects()) do
         if obj.name == "Events" then
@@ -468,14 +454,12 @@ function addExpansion(bag)
             break
         end
     end
-    if not expansions[bag.getName()] then
-        local funcList = {addExpansionToggle(bag.getName())}
-        if hasEvents then
-            table.insert(funcList, addEventToggle(bag.getName()))
-        end
-        updateXml(self, funcList)
-    end
+    return hasEvents
+end
+function addExpansion(bag)
     expansions[bag.getName()] = bag.guid
+    updateSelfXml()
+    Wait.frames(function() toggleExpansion(nil, nil, bag.getName()) end, 1)
 end
 function addAdversary(obj)
     if adversaries[obj.getName()] == nil then
@@ -484,7 +468,7 @@ function addAdversary(obj)
         return
     end
     adversaries[obj.getName()] = obj.guid
-    Wait.frames(function() updateXml(self, {updateAdversaryList()}) end, 1)
+    Wait.frames(updateSelfXml, 1)
 end
 function addScenario(obj)
     if scenarios[obj.getName()] == nil then
@@ -493,7 +477,7 @@ function addScenario(obj)
         return
     end
     scenarios[obj.getName()] = obj.guid
-    Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
+    Wait.frames(updateSelfXml, 1)
 end
 function onDestroy()
     exit = true
@@ -534,19 +518,17 @@ function onObjectDestroy(obj)
     end
 end
 function removeExpansion(bag)
+    expansions[bag.getName()] = nil
+
     local exps = Global.getTable("expansions")
     exps[bag.getName()] = nil
     Global.setTable("expansions", exps)
-    expansions[bag.getName()] = nil
 
-    local funcList = {
-        removeToggle("expansionsRow", bag.getName()),
-        removeToggle("events", bag.getName().." Events"),
-    }
-    if playtestExpansion == bag.getName() then
-        table.insert(funcList, updatePlaytestExpansionList(exps))
-    end
-    updateXml(self, funcList)
+    local events = Global.getTable("events")
+    events[bag.getName()] = nil
+    Global.setTable("events", events)
+
+    updateSelfXml()
 
     Wait.frames(updateRequiredContent, 1)
 end
@@ -563,7 +545,7 @@ function removeAdversary(obj)
                 Global.setVar("adversaryCard2", nil)
                 toggleSupportingLevel(nil, 0)
             end
-            Wait.frames(function() updateXml(self, {updateAdversaryList()}) end, 1)
+            Wait.frames(updateSelfXml, 1)
             break
         end
     end
@@ -604,7 +586,7 @@ function removeScenario(obj)
                 Global.setVar("scenarioCard", nil)
                 updateDifficulty()
             end
-            Wait.frames(function() updateXml(self, {updateScenarioList()}) end, 1)
+            Wait.frames(updateSelfXml, 1)
             break
         end
     end
@@ -674,13 +656,13 @@ function updateNumPlayers(value, updateUI)
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts(numPlayers)}) end, 0.5)
+        updateLayoutsID = Wait.time(updateSelfXml, 0.5)
     end
 end
-function updateBoardLayouts(numPlayers)
-    local numBoards = numPlayers
+function updateBoardLayouts()
+    local numBoards = Global.getVar("numPlayers")
     if optionalExtraBoard then
-        numBoards = numPlayers + 1
+        numBoards = numBoards + 1
     end
     local layoutNames = { "Balanced" }
     local alternateBoardLayoutNames = Global.getVar("alternateBoardLayoutNames")
@@ -689,7 +671,7 @@ function updateBoardLayouts(numPlayers)
             table.insert(layoutNames, layout)
         end
     end
-    local canThematic = numPlayers < 6 or (numPlayers == 6 and not optionalExtraBoard)
+    local canThematic = (numBoards <= 6)
     if canThematic then
         table.insert(layoutNames, "Thematic")
     end
@@ -912,15 +894,7 @@ function toggleExpansion(_, _, id)
     Global.setTable("expansions", exps)
     self.UI.setAttribute(id, "isOn", bool)
 
-    local hasEvents = false
-    for _,obj in pairs(getObjectFromGUID(expansions[id]).getObjects()) do
-        if obj.name == "Events" then
-            hasEvents = true
-            break
-        end
-    end
-
-    if hasEvents then
+    if expansionHasEvents(expansions[id]) then
         local events = Global.getTable("events")
         events[id] = exps[id]
         Global.setTable("events", events)
@@ -942,7 +916,7 @@ function toggleExpansion(_, _, id)
     end
     updateDifficulty()
 
-    Wait.frames(function() updateXml(self, {updatePlaytestExpansionList(exps)}) end, 1)
+    Wait.frames(updateSelfXml, 1)
     Wait.frames(updateRequiredContent, 2)
 end
 function toggleAllEvents()
@@ -962,14 +936,7 @@ function toggleAllEvents()
         local exps = Global.getTable("expansions")
         for exp,enabled in pairs(exps) do
             if enabled then
-                local hasEvents = false
-                for _,obj in pairs(getObjectFromGUID(expansions[exp]).getObjects()) do
-                    if obj.name == "Events" then
-                        hasEvents = true
-                        break
-                    end
-                end
-                if hasEvents then
+                if expansionHasEvents(expansions[exp]) then
                     events[exp] = true
                     toggleEvents(nil, nil, exp.." Events")
                 end
@@ -1008,10 +975,10 @@ function toggleEvents(_, _, id)
     self.UI.setAttribute(id, "isOn", bool)
 end
 
-function updatePlaytestExpansionList(exps)
+function updatePlaytestExpansionList()
     local playtestExpansions = {"None"}
     local found = false
-    for name,enabled in pairs(exps) do
+    for name,enabled in pairs(Global.getTable("expansions")) do
         if enabled then
             table.insert(playtestExpansions, name)
             if playtestExpansion == name then
@@ -2219,7 +2186,7 @@ function toggleExtraBoard()
         if updateLayoutsID ~= 0 then
             Wait.stop(updateLayoutsID)
         end
-        updateLayoutsID = Wait.time(function() updateXml(self, {updateBoardLayouts(numPlayers)}) end, 0.5)
+        updateLayoutsID = Wait.time(updateSelfXml, 0.5)
     end
 end
 function toggleBoardPairings()
@@ -2471,41 +2438,46 @@ function updateDropdownSelection(id, value)
     end)
 end
 
-function addExpansionToggle(value)
-    return matchRecurse("expansionsRow", function (t)
-        table.insert(t.children[1].children[1].children, {
-            tag="Toggle",
-            value=value,
-            attributes={id = value, onValueChanged = "toggleExpansion"},
-            children={},
-        })
-        local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
-    end)
-end
-function addEventToggle(value)
-    return matchRecurse("events", function (t)
-        table.insert(t.children[1].children[1].children, {
-            tag="Toggle",
-            value=value.." Events",
-            attributes={id = value.." Events", onValueChanged = "toggleEvents"},
-            children={},
-        })
-        local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
-    end)
-end
-function removeToggle(id, value)
+-- Update a 2-width grid of toggle buttons to the have the given items and states
+-- @param id The id of the row containing the grid of toggles
+-- @param values A table mapping toggle names to boolean values
+-- @param onValueChanged The name of the function to call when a toggle is clicked
+function updateToggleGrid(id, values, onValueChanged)
     return matchRecurse(id, function (t)
-        for i,child in pairs(t.children[1].children[1].children) do
-            if child.value == value then
-                table.remove(t.children[1].children[1].children, i)
-                break
-            end
+        t.children[1].children[1].children = {}
+        for name,isOn in pairs(values) do
+            table.insert(t.children[1].children[1].children, {
+                tag="Toggle",
+                value=name,
+                attributes={id = name, onValueChanged = onValueChanged, isOn = tostring(isOn)},
+                children={},
+            })
         end
         local count = #t.children[1].children[1].children
-        t.attributes["preferredHeight"] = math.floor((count + 1) / 2) * 60 + 0.1
+        t.attributes["preferredHeight"] = math.ceil(count / 2) * 60 + 0.1
     end)
+end
+function updateExpansionToggles()
+    local exps = Global.getTable("expansions")
+    local values = {}
+    for name,_ in pairs(expansions) do
+        -- The Global expansions table stores nil for disabled expansions
+        -- We want a boolean false, so we explicitly check for equality to true
+        values[name] = (exps[name] == true)
+    end
+    return updateToggleGrid("expansionsRow", values, "toggleExpansion")
+end
+function updateEventToggles()
+    local events = Global.getTable("events")
+    local values = {}
+    for name,guid in pairs(expansions) do
+        if expansionHasEvents(guid) then
+            -- The Global events table stores nil for disabled expansions
+            -- We want a boolean false, so we explicitly check for equality to true
+            values[name.." Events"] = (events[name] == true)
+        end
+    end
+    return updateToggleGrid("events", values, "toggleEvents")
 end
 
 function updateAdversaryUI(params)

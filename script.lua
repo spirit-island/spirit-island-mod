@@ -2112,14 +2112,10 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         scriptWorkingCardC = false
         return
     end
-    local cardPlaceOffset = {
-        Vector(-(2.5*xPadding)+2*xPadding,0,0),
-        Vector(-(2.5*xPadding)+3*xPadding,0,0),
-        Vector(-(2.5*xPadding)+1*xPadding,0,0),
-        Vector(-(2.5*xPadding)+4*xPadding,0,0),
-        Vector(-(2.5*xPadding)+0*xPadding,0,0),
-        Vector(-(2.5*xPadding)+5*xPadding,0,0),
-    }
+    local cardPlaceOffset = {}
+    for i = -(cardCount-1)/2,(cardCount-1)/2,1 do
+        table.insert(cardPlaceOffset, Vector(i*xPadding,0,0))
+    end
     local cardsAdded = 0
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos

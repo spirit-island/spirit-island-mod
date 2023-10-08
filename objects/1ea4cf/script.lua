@@ -201,11 +201,14 @@ function checkLoss()
     local count = 0
     local beasts = getObjectsWithTag("Beasts")
     for _,obj in pairs(beasts) do
-        local quantity = obj.getQuantity()
-        if quantity == -1 then
-            count = count + 1
-        else
-            count = count + quantity
+        -- Beast is not in player area
+        if #obj.getZones() == 0 then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                count = count + 1
+            else
+                count = count + quantity
+            end
         end
     end
     if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then

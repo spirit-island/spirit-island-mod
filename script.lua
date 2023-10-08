@@ -5869,7 +5869,9 @@ function setupPlayerArea(params)
         --Updates the number display
         selected.zone.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
-            selected.elements[i].editButton({index=0, label=v})
+            if selected.elements[i] then
+                selected.elements[i].editButton({index=0, label=v})
+            end
         end
         selected.elementCounts = elements
     end

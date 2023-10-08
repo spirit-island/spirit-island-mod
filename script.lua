@@ -5799,10 +5799,6 @@ function setupPlayerArea(params)
 
     local function countItems()
         local elements = Elements:new()
-        -- We track the elements separately, since we count tokens *everywhere*
-        -- for the choice event element helper, and don't want to double count
-        -- the tokens in the scan zones.
-        local nonTokenElements = Elements:new()
 
         local spirit = nil
         local aspects = {}
@@ -5814,7 +5810,6 @@ function setupPlayerArea(params)
                 if entry.hasTag("Spirit") then
                     local trackElements = calculateTrackElements(entry)
                     elements:add(trackElements)
-                    nonTokenElements:add(trackElements)
                     spirit = entry
                 elseif entry.type == "Card" then
                     if entry.hasTag("Aspect") and not entry.is_face_down then
@@ -5825,13 +5820,11 @@ function setupPlayerArea(params)
                         if entry.hasTag("Aspect") then -- Count elements on aspects regardless of location or locking
                             local cardElements = entry.getVar("elements")
                             elements:add(cardElements)
-                            nonTokenElements:add(cardElements)
                         elseif entry.getPosition().z > selected.zone.getPosition().z then -- Skip counting power cards below spirit panel
                             -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
                             if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
                                 local cardElements = entry.getVar("elements")
                                 elements:add(cardElements)
-                                nonTokenElements:add(cardElements)
                             end
                             -- Skip counting locked card's energy (Aid from Lesser Spirits)
                             if not entry.getLock() then
@@ -5863,7 +5856,7 @@ function setupPlayerArea(params)
         for i, v in ipairs(elements) do
             selected.elements[i].editButton({index=0, label=v})
         end
-        selected.nonTokenElements = nonTokenElements
+        selected.elementCounts = elements
     end
     countItems()    -- Update counts immediately.
     if timer then

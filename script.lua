@@ -5729,17 +5729,17 @@ function setupPlayerArea(params)
     function Elements:__tostring()
         return table.concat(self, "")
     end
-    local function modifyElements(params)
+    local function modifyElements(pars)
         for _,object in pairs(getObjectsWithTag("Modify Elements")) do
-            params.elements = object.call("modifyElements", params)
+            pars.elements = object.call("modifyElements", pars)
         end
-        return Elements:new(params.elements)
+        return Elements:new(pars.elements)
     end
-    local function modifyThresholds(params)
+    local function modifyThresholds(pars)
         for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
-            params.elements = object.call("modifyThresholds", params)
+            pars.elements = object.call("modifyThresholds", pars)
         end
-        return Elements:new(params.elements)
+        return Elements:new(pars.elements)
     end
 
     local function calculateTrackElements(spiritBoard)

@@ -5757,7 +5757,7 @@ function setupPlayerArea(params)
         return elements
     end
 
-    local function addThresholdDecals(color, object, elements, thresholds, scale)
+    local function addThresholdDecals(object, elements, thresholds, scale)
         local decals = {}
         local positions = {}
         for _, threshold in pairs(thresholds) do
@@ -5785,18 +5785,18 @@ function setupPlayerArea(params)
         end
         object.setDecals(decals)
     end
-    local function checkThresholds(color, spiritBoard, aspects, thresholdCards, elements)
+    local function checkThresholds(spiritBoard, aspects, thresholdCards, elements)
         if spiritBoard.script_state ~= "" then
             local thresholds = spiritBoard.getTable("thresholds")
             if thresholds ~= nil then
-                addThresholdDecals(color, spiritBoard, elements, thresholds, {0.08, 0.08, 1})
+                addThresholdDecals(spiritBoard, elements, thresholds, {0.08, 0.08, 1})
             end
         end
         for _, aspect in pairs(aspects) do
             if aspect.script_state ~= "" then
                 local thresholds = aspect.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(color, aspect, elements, thresholds, {0.16, 0.16, 1})
+                    addThresholdDecals(aspect, elements, thresholds, {0.16, 0.16, 1})
                 end
             end
         end
@@ -5804,16 +5804,16 @@ function setupPlayerArea(params)
             if card.script_state ~= "" then
                 local thresholds = card.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(color, card, elements, thresholds, {0.16, 0.16, 1})
+                    addThresholdDecals(card, elements, thresholds, {0.16, 0.16, 1})
                 end
             end
         end
     end
 
     local function countItems()
+        color = getTableColor(params.obj) -- In case the player has swapped color
         local elements = Elements:new()
 
-        local color = getTableColor(params.obj) -- In case the player has swapped color
         local spirit = nil
         local aspects = {}
         local thresholdCards = {}
@@ -5864,7 +5864,7 @@ function setupPlayerArea(params)
             energy = energy + cost
         end
         if spirit ~= nil then
-            checkThresholds(color, spirit, aspects, thresholdCards, elements)
+            checkThresholds(spirit, aspects, thresholdCards, elements)
         end
         --Updates the number display
         selected.zone.editButton({index=0, label="Energy Cost: "..energy})

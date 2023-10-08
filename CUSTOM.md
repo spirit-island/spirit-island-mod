@@ -381,7 +381,7 @@ This section is meant for users who are familiar with both the tts mod and progr
 - Trigger to modify the energy gained with the "Gain" button
   - Create object and tag with "Modify Gain"
   - `modifyGain(params)`
-    - `params`: **table** - contains data about the energ gain
+    - `params`: **table** - contains data about the energy gain
       - `color`: **string** - is the color of the player who is gaining energy
       - `amount`: **number** - baseline amount of energy to gain (before bargain deductions)
     - return **number** - modified amount of energy to gain (before bargain deductions)

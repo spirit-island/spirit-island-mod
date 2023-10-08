@@ -5729,13 +5729,13 @@ function setupPlayerArea(params)
     function Elements:__tostring()
         return table.concat(self, "")
     end
-    function modifyElements(params)
+    local function modifyElements(params)
         for _,object in pairs(getObjectsWithTag("Modify Elements")) do
             params.elements = object.call("modifyElements", params)
         end
         return Elements:new(params.elements)
     end
-    function modifyThresholds(params)
+    local function modifyThresholds(params)
         for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
             params.elements = object.call("modifyThresholds", params)
         end

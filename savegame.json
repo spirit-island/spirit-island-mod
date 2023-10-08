@@ -198,6 +198,10 @@
         "normalized": "thematic"
       },
       {
+        "displayed": "Island Tile",
+        "normalized": "island_tile"
+      },
+      {
         "displayed": "Invader Card",
         "normalized": "invader_card"
       },

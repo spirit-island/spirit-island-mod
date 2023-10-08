@@ -5140,7 +5140,7 @@ function checkPresenceLoss()
                         max_distance = 1,
                     })
                     for _,v in pairs(hits) do
-                        if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
+                        if v.hit_object ~= obj and isIsland({obj=v.hit_object}) then
                             colors[color] = true
                             break
                         end
@@ -5545,7 +5545,7 @@ function upCastRay(obj,dist)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if v.hit_object ~= obj and not isIslandBoard({obj=v.hit_object}) then
+        if v.hit_object ~= obj and not isIsland({obj=v.hit_object}) then
             table.insert(hitObjects,v.hit_object)
         end
     end
@@ -7617,6 +7617,13 @@ function isIslandBoard(params)
         return false
     end
     return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic")
+end
+function isIsland(params)
+    -- As isIslandBoard, except it also includes island tiles such as the Endless Dark
+    if params.obj == nil then
+        return false
+    end
+    return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic") or params.obj.hasTag("Island Tile")
 end
 function isPowerCard(params)
     if params.card == nil then

@@ -5800,6 +5800,7 @@ function setupPlayerArea(params)
     local function countItems()
         local elements = Elements:new()
 
+        local color = getTableColor(params.obj) -- In case the player has swapped color
         local spirit = nil
         local aspects = {}
         local thresholdCards = {}
@@ -5843,7 +5844,7 @@ function setupPlayerArea(params)
                 end
             end
         end
-        costs = modifyCost({color = getTableColor(params.obj), costs = costs})
+        costs = modifyCost({color = color, costs = costs})
         local energy = 0
         for _,cost in pairs(costs) do
             energy = energy + cost

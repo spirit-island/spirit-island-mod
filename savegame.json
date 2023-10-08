@@ -244,6 +244,14 @@
       {
         "displayed": "Gain Pay",
         "normalized": "gain_pay"
+      },
+      {
+        "displayed": "Modify Elements",
+        "normalized": "modify_elements"
+      },
+      {
+        "displayed": "Modify Thresholds",
+        "normalized": "modify_thresholds"
       }
     ]
   },

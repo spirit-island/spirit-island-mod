@@ -5729,6 +5729,18 @@ function setupPlayerArea(params)
     function Elements:__tostring()
         return table.concat(self, "")
     end
+    function modifyElements(params)
+        for _,object in pairs(getObjectsWithTag("Modify Elements")) do
+            params.elements = object.call("modifyElements", params)
+        end
+        return Elements:new(params.elements)
+    end
+    function modifyThresholds(params)
+        for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
+            params.elements = object.call("modifyThresholds", params)
+        end
+        return Elements:new(params.elements)
+    end
 
     local function calculateTrackElements(spiritBoard)
         local elements = Elements:new()
@@ -5745,11 +5757,12 @@ function setupPlayerArea(params)
         return elements
     end
 
-    local function addThresholdDecals(object, elements, thresholds, scale)
+    local function addThresholdDecals(color, object, elements, thresholds, scale)
         local decals = {}
         local positions = {}
         for _, threshold in pairs(thresholds) do
             local decal
+            local thresholdElements = modifyThresholds({color = color, object = object, elements = Elements:new(threshold.elements)})
             local vec = Vector(threshold.position)
             local vecString = vec:string()
             if positions[vecString] then
@@ -5762,7 +5775,7 @@ function setupPlayerArea(params)
                     scale    = scale,
                 }
             end
-            if elements:threshold(Elements:new(threshold.elements)) then
+            if elements:threshold(thresholdElements) then
                 decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
             elseif not positions[vecString] then
                 decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
@@ -5772,18 +5785,18 @@ function setupPlayerArea(params)
         end
         object.setDecals(decals)
     end
-    local function checkThresholds(spiritBoard, aspects, thresholdCards, elements)
+    local function checkThresholds(color, spiritBoard, aspects, thresholdCards, elements)
         if spiritBoard.script_state ~= "" then
             local thresholds = spiritBoard.getTable("thresholds")
             if thresholds ~= nil then
-                addThresholdDecals(spiritBoard, elements, thresholds, {0.08, 0.08, 1})
+                addThresholdDecals(color, spiritBoard, elements, thresholds, {0.08, 0.08, 1})
             end
         end
         for _, aspect in pairs(aspects) do
             if aspect.script_state ~= "" then
                 local thresholds = aspect.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(aspect, elements, thresholds, {0.16, 0.16, 1})
+                    addThresholdDecals(color, aspect, elements, thresholds, {0.16, 0.16, 1})
                 end
             end
         end
@@ -5791,7 +5804,7 @@ function setupPlayerArea(params)
             if card.script_state ~= "" then
                 local thresholds = card.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(card, elements, thresholds, {0.16, 0.16, 1})
+                    addThresholdDecals(color, card, elements, thresholds, {0.16, 0.16, 1})
                 end
             end
         end
@@ -5844,13 +5857,14 @@ function setupPlayerArea(params)
                 end
             end
         end
+        elements = modifyElements({color = color, elements = elements})
         costs = modifyCost({color = color, costs = costs})
         local energy = 0
         for _,cost in pairs(costs) do
             energy = energy + cost
         end
         if spirit ~= nil then
-            checkThresholds(spirit, aspects, thresholdCards, elements)
+            checkThresholds(color, spirit, aspects, thresholdCards, elements)
         end
         --Updates the number display
         selected.zone.editButton({index=0, label="Energy Cost: "..energy})

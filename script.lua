@@ -6017,7 +6017,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                     if refunded then
                         selectedColors[target_color].gained = true
                         selectedColors[target_color].zone.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
-                        onGainPay({color = target_color, isGain = true, isPay = false, amount = energyTotal})
+                        onGainPay({color = target_color, isGain = true, isUndo = false, amount = energyTotal})
                     else
                         Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
                     end
@@ -6083,7 +6083,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                     if paid then
                         selectedColors[target_color].gained = false
                         selectedColors[target_color].zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
-                        onGainPay({color = target_color, isGain = true, isPay = true, amount = energyTotal})
+                        onGainPay({color = target_color, isGain = true, isUndo = true, amount = energyTotal})
                     else
                         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
                     end
@@ -6121,7 +6121,7 @@ function payEnergy(target_obj, source_color, alt_click)
     if paid then
         selectedColors[target_color].paid = true
         selectedColors[target_color].zone.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
-        onGainPay({color = target_color, isGain = false, isPay = false, amount = getEnergyLabel(target_color)})
+        onGainPay({color = target_color, isGain = false, isUndo = false, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
@@ -6378,7 +6378,7 @@ function refundEnergy(target_obj, source_color, alt_click)
     if refunded then
         selectedColors[target_color].paid = false
         selectedColors[target_color].zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
-        onGainPay({color = target_color, isGain = false, isPay = true, amount = getEnergyLabel(target_color)})
+        onGainPay({color = target_color, isGain = false, isUndo = true, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end

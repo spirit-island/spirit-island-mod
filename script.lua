@@ -7619,7 +7619,6 @@ function isIslandBoard(params)
     return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic")
 end
 function isIsland(params)
-    -- As isIslandBoard, except it also includes island tiles such as the Endless Dark
     if params.obj == nil then
         return false
     end

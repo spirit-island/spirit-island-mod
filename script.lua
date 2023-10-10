@@ -2020,7 +2020,7 @@ function MajorPowerC(obj, player_color, alt_click)
     if alt_click then
         cards = 2
     end
-    startDealPowerCards({minor = false, player = Player[player_color], count = cards})
+    startDealPowerCards({player = Player[player_color], minor = false, count = cards})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2029,14 +2029,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards({minor = false, player = player, count = cards})
+    startDealPowerCards({player = player, minor = false, count = cards})
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards({minor = true, player = Player[player_color], count = cards})
+    startDealPowerCards({player = Player[player_color], minor = true, count = cards})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2045,7 +2045,7 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards({minor = true, player = player, count = cards})
+    startDealPowerCards({player = player, minor = true, count = cards})
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
@@ -2058,7 +2058,7 @@ function startDealPowerCards(params)
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
 
-    params.count = modifyCardGain({minor = params.minor, color = params.player.color, count = params.count})
+    params.count = modifyCardGain({color = params.player.color, minor = params.minor, count = params.count})
 
     if params.minor then
         _G["startDealPowerCardsCo"] = function()

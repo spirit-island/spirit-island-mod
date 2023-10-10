@@ -222,6 +222,7 @@ function checkLoss()
                             max_distance = 6,
                         })
                         for _,v in pairs(hits) do
+                            -- The use of isIslandBoard rather than isIsland here is intentional: the Endless Dark is not a land and thus cannot be a sacred site
                             if v.hit_object ~= obj and Global.call("isIslandBoard", {obj=v.hit_object}) then
                                 count = count + 1
                                 break

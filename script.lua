@@ -231,7 +231,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             end
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
-    elseif isIslandBoard({obj=hit_object}) and hit_object.guid == castDown then
+    elseif hit_object.guid == castDown then
         cleanupObject({obj = collision_info.collision_object, fear = true, remove = true, color = castDownColor, reason = "Cast Down"})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)
@@ -5140,7 +5140,7 @@ function checkPresenceLoss()
                         max_distance = 1,
                     })
                     for _,v in pairs(hits) do
-                        if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
+                        if v.hit_object ~= obj and isIsland({obj=v.hit_object}) then
                             colors[color] = true
                             break
                         end
@@ -5545,7 +5545,7 @@ function upCastRay(obj,dist)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if v.hit_object ~= obj and not isIslandBoard({obj=v.hit_object}) then
+        if v.hit_object ~= obj and not isIsland({obj=v.hit_object}) then
             table.insert(hitObjects,v.hit_object)
         end
     end
@@ -7617,6 +7617,12 @@ function isIslandBoard(params)
         return false
     end
     return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic")
+end
+function isIsland(params)
+    if params.obj == nil then
+        return false
+    end
+    return isIslandBoard(params) or params.obj.hasTag("Island Tile")
 end
 function isPowerCard(params)
     if params.card == nil then

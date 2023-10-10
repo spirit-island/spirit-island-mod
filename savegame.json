@@ -190,6 +190,18 @@
         "normalized": "uninteractable"
       },
       {
+        "displayed": "Balanced",
+        "normalized": "balanced"
+      },
+      {
+        "displayed": "Thematic",
+        "normalized": "thematic"
+      },
+      {
+        "displayed": "Island Tile",
+        "normalized": "island_tile"
+      },
+      {
         "displayed": "Invader Card",
         "normalized": "invader_card"
       },

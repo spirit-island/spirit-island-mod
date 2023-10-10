@@ -80,7 +80,7 @@ local function presenceOnIsland(color)
                     })
                     for _, hit in pairs(hits) do
                         local obj = hit.hit_object
-                        if Global.call("isIslandBoard", {obj=obj}) then
+                        if Global.call("isIsland", {obj=obj}) then
                             local quantity = presence.getQuantity()
                             if quantity == -1 then
                                 count = count + 1

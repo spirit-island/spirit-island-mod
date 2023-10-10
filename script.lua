@@ -2020,7 +2020,7 @@ function MajorPowerC(obj, player_color, alt_click)
     if alt_click then
         cards = 2
     end
-    startDealPowerCards({player = Player[player_color], minor = false, count = cards})
+    startDealPowerCards({player = Player[player_color], major = true, count = cards})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2029,14 +2029,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards({player = player, minor = false, count = cards})
+    startDealPowerCards({player = player, major = true, count = cards})
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards({player = Player[player_color], minor = true, count = cards})
+    startDealPowerCards({player = Player[player_color], major = false, count = cards})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2045,7 +2045,7 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards({player = player, minor = true, count = cards})
+    startDealPowerCards({player = player, major = false, count = cards})
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
@@ -2058,22 +2058,9 @@ function startDealPowerCards(params)
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
 
-    params.count = modifyCardGain({color = params.player.color, minor = params.minor, count = params.count})
+    params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
 
-    if params.minor then
-        _G["startDealPowerCardsCo"] = function()
-            DealPowerCards(
-                params.player,
-                params.count,
-                getObjectFromGUID(minorPowerZone),
-                getObjectFromGUID(minorPowerDiscardZone),
-                getObjectFromGUID(playtestMinorPowerZone),
-                getObjectFromGUID(playtestMinorPowerDiscardZone),
-                playtestMinorPowers
-            )
-            return 1
-        end
-    else
+    if params.major then
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
                 params.player,
@@ -2083,6 +2070,19 @@ function startDealPowerCards(params)
                 getObjectFromGUID(playtestMajorPowerZone),
                 getObjectFromGUID(playtestMajorPowerDiscardZone),
                 playtestMajorPowers
+            )
+            return 1
+        end
+    else
+        _G["startDealPowerCardsCo"] = function()
+            DealPowerCards(
+                params.player,
+                params.count,
+                getObjectFromGUID(minorPowerZone),
+                getObjectFromGUID(minorPowerDiscardZone),
+                getObjectFromGUID(playtestMinorPowerZone),
+                getObjectFromGUID(playtestMinorPowerDiscardZone),
+                playtestMinorPowers
             )
             return 1
         end

@@ -399,5 +399,5 @@ This section is meant for users who are familiar with both the tts mod and progr
     - `params`: **table** - contains data about the player and the cards played
       - `color`: **string** - is the color of the player whose card cost is being calculated
       - `minor`: **boolean** - true if gaining minors, false if gaining majors
-      - `count`: **table** - the number of cards being gained
-    - return **table** - the number of cards to gain
+      - `count`: **number** - the number of cards being gained
+    - return **number** - the number of cards to gain

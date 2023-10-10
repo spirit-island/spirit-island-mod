@@ -7623,7 +7623,7 @@ function isIsland(params)
     if params.obj == nil then
         return false
     end
-    return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic") or params.obj.hasTag("Island Tile")
+    return isIslandBoard(params) or params.obj.hasTag("Island Tile")
 end
 function isPowerCard(params)
     if params.card == nil then

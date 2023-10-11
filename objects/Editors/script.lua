@@ -1,6 +1,7 @@
 empty = false
 contents = {
     ["SpiritEditor"] = {105.22, 0.85, 52.59},
+    ["Reminder"] = {115.645, 0.95, 59.34},
     ["AnyElements"] = {114.81, 0.95, 54.39},
     ["Energy"] = {116.48, 0.95, 54.39},
     ["Threshold"] = {114.81, 0.95, 49.44},

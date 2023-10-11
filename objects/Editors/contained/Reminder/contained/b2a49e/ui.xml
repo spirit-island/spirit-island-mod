@@ -1,4 +1,4 @@
-<Panel id="panel" rotation="0 0 180" width="180" height="180" position="0 0 -11">
+<Panel id="panel" rotation="0 0 180" width="185" height="185" position="0 0 -11">
 	<Mask image="ReminderMask">
 		<Image id="image"/>
 	</Mask>

@@ -314,7 +314,11 @@ function updateReminder(player)
     state.reminder = location
     currentSpirit.script_state = JSON.encode(state)
 
-    player.broadcast("Updated reminder image location for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
+    local opString = "Updated"
+    if location == nil then
+        opString = "Reset"
+    end
+    player.broadcast(opString .. " reminder image location for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
 end
 function populateReminder()
     if currentSpirit == nil then

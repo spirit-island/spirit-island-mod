@@ -7668,6 +7668,66 @@ function onObjectDestroy(obj)
         end
     end
 end
+function getDefaultReminderLocation(params)
+    local obj = params.obj
+    if obj == nil then
+        return nil
+    end
+
+    if obj.type == "Card" then
+        return {
+            field = "FaceURL",
+            x = -0.17,
+            y = -0.45,
+            width = 1.85,
+            height = 2.59,
+        }
+    elseif obj.hasTag("Spirit") then
+        return {
+            field = "ImageSecondaryURL",
+            x = 0.63,
+            y = -0.23,
+            width = 2.40,
+            height = 1.60,
+        }
+    else
+        return nil
+    end
+end
+function getReminderImageAttributes(params)
+    local objSize = 200 -- The height/width of UI panel to be the same size as the object
+
+    local obj = params.obj
+    if obj == nil then
+        return {image = ""}
+    end
+
+    local location = params.location
+    if location == nil then
+        location = getDefaultReminderLocation({obj = obj})
+    end
+
+    local imageURL = ""
+    local data = obj.getData()
+    if obj.type == "Card" then
+        if data.CustomDeck then
+            for _,d in pairs(data.CustomDeck) do
+                if d.NumWidth == 1 and d.NumHeight == 1 then
+                    imageURL = d[location.field]
+                end
+            end
+        end
+    else
+        imageURL = data.CustomImage[location.field]
+    end
+
+    return {
+        image = imageURL,
+        position = tostring(location.x * objSize).." "..tostring(location.y * objSize).." 0",
+        width = tostring(location.width * objSize),
+        height = tostring(location.height * objSize),
+    }
+end
 function applyPowerCardContextMenuItems(card)
     card.addContextMenuItem(
         "Discard (to 2nd hand)",

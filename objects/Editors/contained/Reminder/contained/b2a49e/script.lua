@@ -50,6 +50,37 @@ function getImageLocation(params)
     return location
 end
 
+-- Sets this object's position and size above a given object such that getImageLocation() would return a given location.
+-- We can't do this with takeObject(), as that can't set size.
+-- So we might as well do this here, so that the code sits next to getImageLocation().
+function setToLocation(params)
+    local obj = params.obj
+    if obj == nil then
+        return
+    end
+
+    local location = params.location
+    if location == nil then
+        location = getDefaultLocation({obj = obj})
+    end
+    if location == nil then
+        return
+    end
+
+    local objPos = obj.getPosition()
+    local selfBounds = self.getBounds()
+    local objBounds = obj.getBounds()
+    local selfSize = selfBounds.size.x
+
+    local desiredX = objPos.x - location.x * objBounds.size.x / location.width
+    local desiredZ = objPos.z - location.y * objBounds.size.z / location.height
+    local desiredY = objPos.y + 1
+    self.setPosition(Vector(desiredX, desiredY, desiredZ))
+
+    local desiredSize = objBounds.size.x * objSize / location.width
+    self.setScale(self.getScale():scale(desiredSize / selfSize))
+end
+
 -- TODO: Shunt getDefaultLocation(), getField() and getImageAttributes() up to global so they can be used there.
 
 function getDefaultLocation(params)

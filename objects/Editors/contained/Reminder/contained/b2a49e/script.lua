@@ -7,7 +7,7 @@ function getObject()
     })
     for _,v in pairs(hits) do
         local obj = v.hit_object
-        if obj.hasTag("Spirit") or obj.type == "Card" then
+        if (obj.hasTag("Spirit") and obj.type == "Tile") or obj.type == "Card" then
             return obj
         end
     end

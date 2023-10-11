@@ -7668,12 +7668,22 @@ function onObjectDestroy(obj)
         end
     end
 end
-function getDefaultReminderLocation(params)
+function getReminderLocation(params)
     local obj = params.obj
     if obj == nil then
         return nil
     end
 
+    -- Get it from the script state if it's there
+    local state = {}
+    if obj.script_state ~= "" then
+        state = JSON.decode(obj.script_state)
+    end
+    if state.reminder ~= nil then
+        return state.reminder
+    end
+
+    -- Otherwise, use a sensible default
     if obj.type == "Card" then
         return {
             field = "FaceURL",
@@ -7704,7 +7714,7 @@ function getReminderImageAttributes(params)
 
     local location = params.location
     if location == nil then
-        location = getDefaultReminderLocation({obj = obj})
+        location = getReminderLocation({obj = obj})
     end
 
     local imageURL = ""

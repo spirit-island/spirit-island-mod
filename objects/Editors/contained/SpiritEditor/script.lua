@@ -324,12 +324,7 @@ function populateReminder()
     if currentSpirit == nil then
         return
     end
-
-    local state = {}
-    if currentSpirit.script_state ~= "" then
-        state = JSON.decode(currentSpirit.script_state)
-    end
-    local location = state.reminder
+    local location = Global.call("getReminderLocation", {obj = currentSpirit})
 
     -- TODO: Check the spirit is the correct way up
     local reminderBag = getObjectFromGUID("Reminder")

@@ -515,12 +515,7 @@ function populateReminder()
     if currentCard == nil then
         return
     end
-
-    local state = {}
-    if currentCard.script_state ~= "" then
-        state = JSON.decode(currentCard.script_state)
-    end
-    local location = state.reminder
+    local location = Global.call("getReminderLocation", {obj = currentCard})
 
     local reminderBag = getObjectFromGUID("Reminder")
     reminderBag.takeObject{

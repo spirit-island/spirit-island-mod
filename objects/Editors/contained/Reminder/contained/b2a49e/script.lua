@@ -52,15 +52,8 @@ end
 -- So we might as well do this here, so that the code sits next to getImageLocation().
 function setToLocation(params)
     local obj = params.obj
-    if obj == nil then
-        return
-    end
-
     local location = params.location
-    if location == nil then
-        location = Global.call("getDefaultReminderLocation", {obj = obj})
-    end
-    if location == nil then
+    if obj == nil or location == nil then
         return
     end
 

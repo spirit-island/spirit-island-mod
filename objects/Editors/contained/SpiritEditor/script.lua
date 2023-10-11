@@ -296,6 +296,49 @@ function populateThreshold()
     end
 end
 
+function updateReminder(player)
+    if currentSpirit == nil then
+        return
+    end
+    local hits = upCast(currentSpirit, 0.4, 0, {"Generic"}, "Reminder")
+    local location = nil
+    for _, entry in pairs(hits) do
+        location = entry.call("getImageLocation", {obj = currentSpirit})
+        entry.destroy()
+    end
+
+    local state = {}
+    if currentSpirit.script_state ~= "" then
+        state = JSON.decode(currentSpirit.script_state)
+    end
+    state.reminder = location
+    currentSpirit.script_state = JSON.encode(state)
+
+    player.broadcast("Updated reminder image location for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
+end
+function populateReminder()
+    if currentSpirit == nil then
+        return
+    end
+
+    local state = {}
+    if currentSpirit.script_state ~= "" then
+        state = JSON.decode(currentSpirit.script_state)
+    end
+    local location = state.reminder
+
+    -- TODO: Check the spirit is the correct way up
+    local reminderBag = getObjectFromGUID("Reminder")
+    reminderBag.takeObject{
+        smooth = false,
+        callback_function = function(obj)
+             Wait.frames(function()
+                 obj.call("setToLocation", {obj = currentSpirit, location = location})
+             end, 1)
+        end,
+    }
+end
+
 function makeSpirit(obj)
     obj.addTag("Spirit")
     obj.setVar("reload", true)

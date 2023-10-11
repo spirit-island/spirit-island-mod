@@ -44,7 +44,11 @@
   - Stack elements on top of the threshold token (X)
   - Once all thresholds are set press the "Update Threshold" button (the top one)
   - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
-- If the image used for spirit marker/reminder token doesn't look good for custom spirit, add the tag "Lower Spirit Image" for an alternate image
+- Spirit marker & reminder token (optional):
+  - Grab a reminder token from the editor and place it on the spirit panel (or press "Populate Reminder")
+  - Position and scale it to show the best image of the spirit's face
+  - Flip the panel over if the other side offers a better image
+  - Press the "Update Reminder" button
 
 ### Power Cards
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/
@@ -61,6 +65,10 @@
   - Once all thresholds are set press the "Update Threshold" button (the bottom one)
   - Note: for thresholds with OR (e.g. Trickster), you'll need to manually edit the json file to add a second threshold at the exact same coordinates as the other one
   - Note: the decal will appear smaller than the actual size of the object, just a TTS limitation for how small an object can be
+- Reminder token (optional):
+  - Grab a reminder token from the editor and place it on the cart art (or press "Populate Reminder")
+  - Position and scale it to show the best image
+  - Press the "Update Reminder" button
 
 ### Aspects
 - https://kb.tabletopsimulator.com/custom-content/custom-deck/

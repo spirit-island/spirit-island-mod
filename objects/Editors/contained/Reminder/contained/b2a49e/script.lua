@@ -78,7 +78,7 @@ function setToLocation(params)
     self.setScale(self.getScale():scale(desiredSize / selfSize))
 end
 
--- TODO: Shunt getDefaultLocation(), getField() and getImageAttributes() up to global so they can be used there.
+-- TODO: Shunt getDefaultLocation() and getImageAttributes() up to global so they can be used there.
 
 function getDefaultLocation(params)
     local obj = params.obj
@@ -107,22 +107,6 @@ function getDefaultLocation(params)
     end
 end
 
-function getField(obj, field)
-    local data = obj.getData()
-    if obj.type == "Card" then
-        if data.CustomDeck then
-            for _,d in pairs(data.CustomDeck) do
-                if d.NumWidth == 1 and d.NumHeight == 1 then
-                    return d[field]
-                end
-            end
-        end
-        return ""
-    else
-        return data.CustomImage[field]
-    end
-end
-
 -- Gets the image attributes to be set in the UI
 function getImageAttributes(params)
     local objSize = 200 -- The height/width of UI panel to be the same size as the object
@@ -137,8 +121,22 @@ function getImageAttributes(params)
         location = getDefaultLocation({obj = obj})
     end
 
+    local imageURL = ""
+    local data = obj.getData()
+    if obj.type == "Card" then
+        if data.CustomDeck then
+            for _,d in pairs(data.CustomDeck) do
+                if d.NumWidth == 1 and d.NumHeight == 1 then
+                    imageURL = d[location.field]
+                end
+            end
+        end
+    else
+        imageURL = data.CustomImage[location.field]
+    end
+
     return {
-        image = getField(obj, location.field),
+        image = imageURL,
         position = tostring(location.x * objSize).." "..tostring(location.y * objSize).." 0",
         width = tostring(location.width * objSize),
         height = tostring(location.height * objSize),

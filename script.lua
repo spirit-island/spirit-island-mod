@@ -7738,6 +7738,13 @@ function getReminderImageAttributes(params)
         height = tostring(location.height * objSize),
     }
 end
+function getReminderXml(params)
+    local attributesString = ""
+    for key,value in pairs(getReminderImageAttributes(params)) do
+        attributesString = attributesString.." "..key.."=\""..value.."\""
+    end
+    return "<Panel rotation=\"0 0 180\" width=\"185\" height=\"185\" position=\"0 0 -11\"><Mask image=\"ReminderMask\"><Image id=\"image\""..attributesString.."/></Mask></Panel>"
+end
 function applyPowerCardContextMenuItems(card)
     card.addContextMenuItem(
         "Discard (to 2nd hand)",

@@ -5900,7 +5900,9 @@ function reclaimAll(target_obj, source_color)
 end
 function modifyCost(params)
     for _,object in pairs(getObjectsWithTag("Modify Cost")) do
-        params.costs = object.call("modifyCost", params)
+        if not object.spawning then
+            params.costs = object.call("modifyCost", params)
+        end
     end
     return params.costs
 end

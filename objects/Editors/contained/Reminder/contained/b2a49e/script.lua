@@ -92,18 +92,18 @@ function getDefaultLocation(params)
     if obj.type == "Card" then
         return {
             field = "FaceURL",
-            x = 0, --TODO
-            y = 0,
-            width = 100,
-            height = 200,
+            x = -0.17 * objSize,
+            y = -0.45 * objSize,
+            width = 1.85 * objSize,
+            height = 2.59 * objSize,
         }
     elseif obj.hasTag("Spirit") then
         return {
             field = "ImageSecondaryURL",
-            x = 0, --TODO
-            y = 0,
-            width = 300,
-            height = 200,
+            x = 0.63 * objSize,
+            y = -0.23 * objSize,
+            width = 2.40 * objSize,
+            height = 1.60 * objSize,
         }
     else
         return nil

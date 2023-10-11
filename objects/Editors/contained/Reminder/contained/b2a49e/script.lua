@@ -39,9 +39,10 @@ function getImageLocation(params)
     local objPos = obj.getPosition()
     local selfBounds = self.getBounds()
     local objBounds = obj.getBounds()
+    local selfSize = selfBounds.size.x -- We're not quite square, so only use our width
 
-    location.width = objBounds.size.x / selfBounds.size.x * objSize
-    location.height = objBounds.size.z / selfBounds.size.z * objSize
+    location.width = objBounds.size.x / selfSize * objSize
+    location.height = objBounds.size.z / selfSize * objSize
 
     location.x = (objPos.x - selfPos.x) / objBounds.size.x * location.width
     location.y = (objPos.z - selfPos.z) / objBounds.size.z * location.height

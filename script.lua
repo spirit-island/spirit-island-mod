@@ -7768,17 +7768,17 @@ function applyPowerCardContextMenuItems(card)
         false)
 
     -- Only allow reminder tokens to be generated on individual card images not deck image since mask requires that
-    local imageURL = nil
+    local isSingle = false
     local cardData = card.getData()
     if cardData.CustomDeck then
         for _, data in pairs(cardData.CustomDeck) do
             if data.NumWidth == 1 and data.NumHeight == 1 then
-                imageURL = data.FaceURL
+                isSingle = true
                 break
             end
         end
     end
-    if imageURL then
+    if isSingle then
         card.addContextMenuItem(
             "Get Reminder Token",
             function(player_color)
@@ -7806,7 +7806,7 @@ function applyPowerCardContextMenuItems(card)
                         MaterialIndex = 1
                     },
                     LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                    XmlUI = "<Panel rotation=\"0 0 180\" width=\"350\" height=\"490\" position=\"31 86 -11\"><Mask image=\"CardMask\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
+                    XmlUI = getReminderXml({obj = card}),
                 }
                 if Tints[player_color] then
                     local color
@@ -7855,12 +7855,8 @@ function spawnSpiritMarker(player_color, spirit)
             MaterialIndex = 1
         },
         LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
+        XmlUI = getReminderXml({obj = spirit}),
     }
-    if spirit.hasTag("Lower Spirit Image") then
-        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spirit.getData().CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-    else
-        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spirit.getData().CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-    end
     if Tints[color] then
         local tokenColor
         if Tints[color].Token then
@@ -7877,8 +7873,7 @@ function spawnSpiritMarker(player_color, spirit)
     spawnObjectData({data = data})
 end
 function applySpiritContextMenuItems(spirit)
-    local spiritData = spirit.getData()
-    if spiritData.Name == "Custom_Tile" then
+    if spirit.type == "Tile" then
         spirit.addContextMenuItem(
             "Get Spirit Marker",
             function(player_color) spawnSpiritMarker(player_color, spirit) end,
@@ -7915,12 +7910,8 @@ function applySpiritContextMenuItems(spirit)
                         MaterialIndex = 1
                     },
                     LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
+                    XmlUI = getReminderXml({obj = spirit}),
                 }
-                if spirit.hasTag("Lower Spirit Image") then
-                    data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-                else
-                    data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-                end
                 if Tints[color] then
                     local tokenColor
                     if Tints[color].Token then

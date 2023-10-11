@@ -25,6 +25,13 @@
       }
     }
   ],
+  "reminder": {
+    "field": "ImageURL",
+    "height": 1.7495,
+    "width": 2.6258,
+    "x": 0.7697,
+    "y": -0.3929
+  },
   "thresholds": [
     {
       "elements": "02020000",

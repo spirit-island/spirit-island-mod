@@ -1,5 +1,12 @@
 {
   "broadcast": "For Boon of Reimagining right click the \"Gain a Minor\" button to choose from 6 Minor Power Card, and right click the \"Pick Power\" button for your first choice",
+  "reminder": {
+    "field": "ImageSecondaryURL",
+    "height": 1.3149,
+    "width": 1.9734,
+    "x": 0.5336,
+    "y": -0.0679
+  },
   "thresholds": [
     {
       "elements": "00030000",

@@ -1,6 +1,3 @@
--- The height/width of UI panel to be the same size as the object
-local objSize = 200
-
 -- Gets the object (spirit or power card) beneath the reminder token
 function getObject()
     local hits = Physics.cast({
@@ -41,8 +38,8 @@ function getImageLocation(params)
     local objBounds = obj.getBounds()
     local selfSize = selfBounds.size.x -- We're not quite square, so only use our width
 
-    location.width = objBounds.size.x / selfSize * objSize
-    location.height = objBounds.size.z / selfSize * objSize
+    location.width = objBounds.size.x / selfSize
+    location.height = objBounds.size.z / selfSize
 
     location.x = (objPos.x - selfPos.x) / objBounds.size.x * location.width
     location.y = (objPos.z - selfPos.z) / objBounds.size.z * location.height
@@ -77,7 +74,7 @@ function setToLocation(params)
     local desiredY = objPos.y + 1
     self.setPosition(Vector(desiredX, desiredY, desiredZ))
 
-    local desiredSize = objBounds.size.x * objSize / location.width
+    local desiredSize = objBounds.size.x / location.width
     self.setScale(self.getScale():scale(desiredSize / selfSize))
 end
 
@@ -92,18 +89,18 @@ function getDefaultLocation(params)
     if obj.type == "Card" then
         return {
             field = "FaceURL",
-            x = -0.17 * objSize,
-            y = -0.45 * objSize,
-            width = 1.85 * objSize,
-            height = 2.59 * objSize,
+            x = -0.17,
+            y = -0.45,
+            width = 1.85,
+            height = 2.59,
         }
     elseif obj.hasTag("Spirit") then
         return {
             field = "ImageSecondaryURL",
-            x = 0.63 * objSize,
-            y = -0.23 * objSize,
-            width = 2.40 * objSize,
-            height = 1.60 * objSize,
+            x = 0.63,
+            y = -0.23,
+            width = 2.40,
+            height = 1.60,
         }
     else
         return nil
@@ -128,6 +125,8 @@ end
 
 -- Gets the image attributes to be set in the UI
 function getImageAttributes(params)
+    local objSize = 200 -- The height/width of UI panel to be the same size as the object
+
     local obj = params.obj
     if obj == nil then
         return {image = ""}
@@ -140,9 +139,9 @@ function getImageAttributes(params)
 
     return {
         image = getField(obj, location.field),
-        position = tostring(location.x).." "..tostring(location.y).." 0",
-        width = tostring(location.width),
-        height = tostring(location.height),
+        position = tostring(location.x * objSize).." "..tostring(location.y * objSize).." 0",
+        width = tostring(location.width * objSize),
+        height = tostring(location.height * objSize),
     }
 end
 

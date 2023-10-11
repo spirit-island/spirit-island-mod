@@ -320,13 +320,17 @@ function updateReminder(player)
     end
     player.broadcast(opString .. " reminder image location for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
 end
-function populateReminder()
+function populateReminder(player)
     if currentSpirit == nil then
         return
     end
     local location = Global.call("getReminderLocation", {obj = currentSpirit})
 
-    -- TODO: Check the spirit is the correct way up
+    if (location.field == "ImageURL" and currentSpirit.is_face_down) or (location.field == "ImageSecondaryURL" and not currentSpirit.is_face_down) then
+        player.broadcast("Current reminder image uses the reverse of the panel. Please flip it.", Color.Red)
+        return
+    end
+
     local reminderBag = getObjectFromGUID("Reminder")
     reminderBag.takeObject{
         smooth = false,

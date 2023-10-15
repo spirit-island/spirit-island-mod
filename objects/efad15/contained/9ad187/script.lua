@@ -58,37 +58,34 @@ end
 local function presenceOnIsland(color)
     local count = 0
     for _, presence in pairs(getObjectsWithTag("Presence")) do
-        -- Presence is not in player area
-        if #presence.getZones() == 0 then
-            local presenceColor = string.sub(presence.getName(),1,-12)
-            if presenceColor ~= color then
-                presenceColor = Global.call("getSpiritColor", {name = presence.getDescription()})
-            end
-            if presenceColor == color then
-                if presence.held_by_color then
-                    local quantity = presence.getQuantity()
-                    if quantity == -1 then
-                        count = count + 1
-                    else
-                        count = count + quantity
-                    end
+        local presenceColor = string.sub(presence.getName(),1,-12)
+        if presenceColor ~= color then
+            presenceColor = Global.call("getSpiritColor", {name = presence.getDescription()})
+        end
+        if presenceColor == color then
+            if presence.held_by_color then
+                local quantity = presence.getQuantity()
+                if quantity == -1 then
+                    count = count + 1
                 else
-                    local hits = Physics.cast({
-                        origin = presence.getPosition(),
-                        direction = Vector(0,-1,0),
-                        max_distance = 1,
-                    })
-                    for _, hit in pairs(hits) do
-                        local obj = hit.hit_object
-                        if Global.call("isIsland", {obj=obj}) then
-                            local quantity = presence.getQuantity()
-                            if quantity == -1 then
-                                count = count + 1
-                            else
-                                count = count + quantity
-                            end
-                            break
+                    count = count + quantity
+                end
+            else
+                local hits = Physics.cast({
+                    origin = presence.getPosition(),
+                    direction = Vector(0,-1,0),
+                    max_distance = 1,
+                })
+                for _, hit in pairs(hits) do
+                    local obj = hit.hit_object
+                    if Global.call("isIsland", {obj=obj}) then
+                        local quantity = presence.getQuantity()
+                        if quantity == -1 then
+                            count = count + 1
+                        else
+                            count = count + quantity
                         end
+                        break
                     end
                 end
             end

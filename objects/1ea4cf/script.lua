@@ -212,6 +212,7 @@ function checkLoss()
         local color = Global.call("getSpiritColor", {name = "Many Minds Move as One"})
         for _,obj in pairs(getObjectsWithTag("Presence")) do
             -- Presence is not in player area
+            -- This optimisation is permissible because we don't want to count presence in the Endless Dark (which may be a in player area)
             if #obj.getZones() == 0 then
                 if color == string.sub(obj.getName(),1,-12) then
                     if obj.getQuantity() >= 2 then

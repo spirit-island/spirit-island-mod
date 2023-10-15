@@ -5122,28 +5122,25 @@ function checkPresenceLoss()
     end
 
     for _,obj in pairs(getObjectsWithTag("Presence")) do
-        -- Presence is not in player area
-        if #obj.getZones() == 0 then
-            local color = string.sub(obj.getName(),1,-12)
-            if colors[color] == nil then
-                color = getSpiritColor({name = obj.getDescription()})
-            end
-            -- Color does not already have presence on island
-            if color ~= nil and not colors[color] then
-                -- Presence is currently being moved, count as being on island for now
-                if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
-                    colors[color] = true
-                else
-                    local hits = Physics.cast({
-                        origin = obj.getPosition(),
-                        direction = Vector(0,-1,0),
-                        max_distance = 1,
-                    })
-                    for _,v in pairs(hits) do
-                        if v.hit_object ~= obj and isIsland({obj=v.hit_object}) then
-                            colors[color] = true
-                            break
-                        end
+        local color = string.sub(obj.getName(),1,-12)
+        if colors[color] == nil then
+            color = getSpiritColor({name = obj.getDescription()})
+        end
+        -- Color does not already have presence on island
+        if color ~= nil and not colors[color] then
+            -- Presence is currently being moved, count as being on island for now
+            if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
+                colors[color] = true
+            else
+                local hits = Physics.cast({
+                    origin = obj.getPosition(),
+                    direction = Vector(0,-1,0),
+                    max_distance = 1,
+                })
+                for _,v in pairs(hits) do
+                    if v.hit_object ~= obj and isIsland({obj=v.hit_object}) then
+                        colors[color] = true
+                        break
                     end
                 end
             end

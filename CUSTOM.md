@@ -398,7 +398,7 @@ This section is meant for users who are familiar with both the tts mod and progr
   - `modifyElements(params)`
     - `params`: **table** - contains data about the player and their elements
       - `color`: **string** - is the color of the player whose elements are being counted
-      - `elements`: **table** - a table of eight numbers, representing the number of each element in order
+      - `elements`: **table** - a table of eight numbers, representing the number of each element in order, indexed by numbers 1-8 (1: Sun, 2: Moon, 3: Fire, 4: Air, 5: Water, 6: Earth, 7: Plant, 8: Animal)
     - return **table** - the `elements` table, modified appropriately
 - Trigger to modify a elemental thresholds
   - Create object and tag with "Modify Thresholds"
@@ -406,5 +406,5 @@ This section is meant for users who are familiar with both the tts mod and progr
     - `params`: **table** - contains data about the threshold
       - `color`: **string** - is the color of the player for whom the threshold is being evaluated
       - `object`: **object reference** - the object on which the threshold sits (e.g. spirit panel, aspect card, power card)
-      - `elements`: **table** - a table of eight numbers, representing the number of each element in order
+      - `elements`: **table** - a table of eight numbers, representing the number of each element in order, indexed by numbers 1-8 (1: Sun, 2: Moon, 3: Fire, 4: Air, 5: Water, 6: Earth, 7: Plant, 8: Animal)
     - return **table** - the `elements` table, modified appropriately

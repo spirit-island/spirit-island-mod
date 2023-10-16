@@ -1838,6 +1838,23 @@ function addFearCard(params)
     end
 end
 ----- Minor/Major Power Section
+function getPlaytestCount(params)
+    local count = params.count
+    local playtestPowers
+    if params.major then
+        playtestPowers = Global.getVar("playtestMajorPowers")
+    else
+        playtestPowers = Global.getVar("playtestMinorPowers")
+    end
+    -- If gaining one card, randomise with probability playtestPowers/4
+    if count == 1 and math.random(1,4) > playtestPowers then
+        return 0
+    elseif playtestPowers == 1 then
+        return math.max(1, math.floor(count / 3))
+    elseif playtestPowers == 2 then
+        return math.max(1, math.floor(count / 2))
+    end
+end
 function SetupPlaytestPowerDeck(deck, name, option, callback)
     local stagingArea = {
         ["Minor Powers"] = getObjectFromGUID(playtestMinorPowerZone).getPosition(),
@@ -2059,6 +2076,7 @@ function startDealPowerCards(params)
     scriptWorkingCardC = true
 
     params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
+    local playtestCount = getPlaytestCount({count = params.count, major = params.major})
 
     if params.major then
         _G["startDealPowerCardsCo"] = function()
@@ -2069,7 +2087,7 @@ function startDealPowerCards(params)
                 getObjectFromGUID(majorPowerDiscardZone),
                 getObjectFromGUID(playtestMajorPowerZone),
                 getObjectFromGUID(playtestMajorPowerDiscardZone),
-                playtestMajorPowers
+                playtestCount
             )
             return 1
         end
@@ -2082,7 +2100,7 @@ function startDealPowerCards(params)
                 getObjectFromGUID(minorPowerDiscardZone),
                 getObjectFromGUID(playtestMinorPowerZone),
                 getObjectFromGUID(playtestMinorPowerDiscardZone),
-                playtestMinorPowers
+                playtestCount
             )
             return 1
         end
@@ -2090,7 +2108,7 @@ function startDealPowerCards(params)
 
     startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
-function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
+function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestCount)
     -- clear the zone!
     local hand = player.getHandTransform()
     if hand == nil then
@@ -2171,14 +2189,6 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
         end
-    end
-    local playtestCount = playtestPowers
-    if cardCount == 1 and math.random(1,4) > playtestPowers then
-        playtestCount = 0
-    elseif playtestPowers == 1 then
-        playtestCount = math.max(1, math.floor(cardCount / 3))
-    elseif playtestPowers == 2 then
-        playtestCount = math.max(1, math.floor(cardCount / 2))
     end
     dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
     dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, cardCount - playtestCount, true)

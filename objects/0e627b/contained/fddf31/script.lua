@@ -28,15 +28,7 @@ function doSetup(params)
             Player[color].broadcast("Don't forget to gain 1 Time", "Blue")
         end
 
-        local playtestPowers = Global.getVar("playtestMinorPowers")
-        local playtestCount = playtestPowers
-        if count == 1 and math.random(1,4) > playtestPowers then
-            playtestCount = 0
-        elseif playtestPowers == 1 then
-            playtestCount = math.max(1, math.floor(count / 3))
-        elseif playtestPowers == 2 then
-            playtestCount = math.max(1, math.floor(count / 2))
-        end
+        local playtestCount = Global.call("getPlaytestCount", {count = count, major = false})
         local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
         minorPowerDeck.deal(count - playtestCount, color, 3)
         if playtestCount > 0 then
@@ -44,15 +36,7 @@ function doSetup(params)
             minorPowerDeck.deal(playtestCount, color, 3)
         end
 
-        playtestPowers = Global.getVar("playtestMajorPowers")
-        playtestCount = playtestPowers
-        if count == 1 and math.random(1,4) > playtestPowers then
-            playtestCount = 0
-        elseif playtestPowers == 1 then
-            playtestCount = math.max(1, math.floor(count / 3))
-        elseif playtestPowers == 2 then
-            playtestCount = math.max(1, math.floor(count / 2))
-        end
+        playtestCount = Global.call("getPlaytestCount", {count = count, major = true})
         local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
         majorPowerDeck.deal(count - playtestCount, color, 3)
         if playtestCount > 0 then

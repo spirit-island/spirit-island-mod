@@ -2173,16 +2173,12 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         end
     end
     local playtestCount = playtestPowers
-    if cardCount == 2 then
-        if playtestPowers > 0 then
-            playtestCount = 1
-        end
-    elseif cardCount == 6 then
-        if playtestPowers == 1 then
-            playtestCount = 2
-        elseif playtestPowers == 2 then
-            playtestCount = 3
-        end
+    if cardCount == 1 and math.random(1,4) > playtestPowers then
+        playtestCount = 0
+    elseif playtestPowers == 1 then
+        playtestCount = math.max(1, math.floor(cardCount / 3))
+    elseif playtestPowers == 2 then
+        playtestCount = math.max(1, math.floor(cardCount / 2))
     end
     dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
     dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, cardCount - playtestCount, true)

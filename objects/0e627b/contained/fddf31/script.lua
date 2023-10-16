@@ -30,10 +30,12 @@ function doSetup(params)
 
         local playtestPowers = Global.getVar("playtestMinorPowers")
         local playtestCount = playtestPowers
-        if playtestPowers == 1 then
-            playtestCount = math.floor(count / 3)
+        if count == 1 and math.random(1,4) > playtestPowers then
+            playtestCount = 0
+        elseif playtestPowers == 1 then
+            playtestCount = math.max(1, math.floor(count / 3))
         elseif playtestPowers == 2 then
-            playtestCount = math.floor(count / 2)
+            playtestCount = math.max(1, math.floor(count / 2))
         end
         local minorPowerDeck = getObjectFromGUID(Global.getVar("minorPowerZone")).getObjects()[1]
         minorPowerDeck.deal(count - playtestCount, color, 3)
@@ -44,10 +46,12 @@ function doSetup(params)
 
         playtestPowers = Global.getVar("playtestMajorPowers")
         playtestCount = playtestPowers
-        if playtestPowers == 1 then
-            playtestCount = math.floor(count / 3)
+        if count == 1 and math.random(1,4) > playtestPowers then
+            playtestCount = 0
+        elseif playtestPowers == 1 then
+            playtestCount = math.max(1, math.floor(count / 3))
         elseif playtestPowers == 2 then
-            playtestCount = math.floor(count / 2)
+            playtestCount = math.max(1, math.floor(count / 2))
         end
         local majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
         majorPowerDeck.deal(count - playtestCount, color, 3)

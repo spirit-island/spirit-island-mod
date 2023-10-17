@@ -2083,6 +2083,11 @@ function startDealPowerCards(minor, player, cardCount)
     startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
 function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
+    local deckObj = deckZone.getObjects()[1]
+    local discardObj = discardZone.getObjects()[1]
+    local playtestDeckObj = playtestDeckZone.getObjects()[1]
+    local playtestDiscardObj = playtestDiscardZone.getObjects()[1]
+
     -- clear the zone!
     local hand = player.getHandTransform()
     if hand == nil then
@@ -2111,8 +2116,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos
 
-    local function dealPowerCards(powersZone, powersDiscardZone, count, isPlaytest)
-        local deck = powersZone.getObjects()[1]
+    local function dealPowerCards(deck, discard, deckPos, count, isPlaytest)
         if deck == nil then
         elseif deck.type == "Card" then
             if count > 0 then
@@ -2143,16 +2147,13 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
         end
-        if count > 0 then
-            local discardDeck = powersDiscardZone.getObjects()[1]
-            if discardDeck ~= nil then
-                discardDeck.setPositionSmooth(powersZone.getPosition(), false, true)
-                discardDeck.setRotationSmooth(Vector(0, 180, 180), false, true)
-                discardDeck.shuffle()
-                wt(0.5)
+        if count > 0 and discard ~= nil then
+            discard.setPositionSmooth(deckPos, false, true)
+            discard.setRotationSmooth(Vector(0, 180, 180), false, true)
+            discard.shuffle()
+            wt(0.5)
 
-                dealPowerCards(powersZone, powersDiscardZone, count, isPlaytest)
-            end
+            dealPowerCards(discard, nil, deckPos, count, isPlaytest)
         end
     end
     local playtestCount = playtestPowers
@@ -2167,8 +2168,8 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
             playtestCount = 3
         end
     end
-    dealPowerCards(deckZone, discardZone, cardCount - playtestCount, false)
-    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, true)
+    dealPowerCards(deckObj, discardObj, deckZone.getPosition(), cardCount - playtestCount, false)
+    dealPowerCards(playtestDeckObj, playtestDiscardObj, playtestDeckZone.getPosition(), playtestCount, true)
 
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end

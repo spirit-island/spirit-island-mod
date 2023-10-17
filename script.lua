@@ -2285,7 +2285,7 @@ function removeButtons(params)
     for i = #buttons,1,-1 do
         local match = true
         for key,val in pairs(params) do
-            if buttons[i][key] != val then
+            if buttons[i][key] ~= val then
                 match = false
             end
         end

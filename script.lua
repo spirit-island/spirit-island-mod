@@ -2142,7 +2142,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
             end
         elseif deck.type == "Deck" then
-            for i=1, math.min(deck.getQuantity(), count) do
+            for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
                     position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
                     flip = true,

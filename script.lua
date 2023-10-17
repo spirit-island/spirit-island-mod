@@ -5578,6 +5578,52 @@ function upCastPosSizRot(pos,size,rot,dist,types)
     end
     return hitObjects
 end
+-----
+local Elements = {}
+Elements.__index = Elements
+function Elements:new(init)
+    local outTable = {0,0,0,0,0,0,0,0}
+    setmetatable(outTable, self)
+    outTable:add(init)
+    return outTable
+end
+function Elements:add(other)
+    if other == nil then
+        return
+    elseif type(other) == "table" then
+        for i = 1, 8 do
+            self[i] = self[i] + other[i]
+        end
+    elseif type(other) == "string" then
+        for i = 1, string.len(other) do
+            self[i] = self[i] + math.floor(string.sub(other, i, i))
+        end
+    end
+end
+function Elements:threshold(threshold)
+    for i = 1, 8 do
+        if threshold[i] > self[i] then
+            return false
+        end
+    end
+    return true
+end
+function Elements:__tostring()
+    return table.concat(self, "")
+end
+
+local function modifyElements(params)
+    for _,object in pairs(getObjectsWithTag("Modify Elements")) do
+        params.elements = object.call("modifyElements", params)
+    end
+    return Elements:new(params.elements)
+end
+local function modifyThresholds(params)
+    for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
+        params.elements = object.call("modifyThresholds", params)
+    end
+    return Elements:new(params.elements)
+end
 
 -- Updates the selected player color's player area.  Does nothing if they don't have one.
 -- Returns TRUE if an update occured, FALSE if no such player area existed.
@@ -5695,51 +5741,6 @@ function setupPlayerArea(params)
     else
         selected.zone.editButton({index=4, label=""})
         selected.zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
-    end
-
-    local Elements = {}
-    Elements.__index = Elements
-    function Elements:new(init)
-        local outTable = {0,0,0,0,0,0,0,0}
-        setmetatable(outTable, self)
-        outTable:add(init)
-        return outTable
-    end
-    function Elements:add(other)
-        if other == nil then
-            return
-        elseif type(other) == "table" then
-            for i = 1, 8 do
-                self[i] = self[i] + other[i]
-            end
-        elseif type(other) == "string" then
-            for i = 1, string.len(other) do
-                self[i] = self[i] + math.floor(string.sub(other, i, i))
-            end
-        end
-    end
-    function Elements:threshold(threshold)
-        for i = 1, 8 do
-            if threshold[i] > self[i] then
-                return false
-            end
-        end
-        return true
-    end
-    function Elements:__tostring()
-        return table.concat(self, "")
-    end
-    local function modifyElements(pars)
-        for _,object in pairs(getObjectsWithTag("Modify Elements")) do
-            pars.elements = object.call("modifyElements", pars)
-        end
-        return Elements:new(pars.elements)
-    end
-    local function modifyThresholds(pars)
-        for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
-            pars.elements = object.call("modifyThresholds", pars)
-        end
-        return Elements:new(pars.elements)
     end
 
     local function calculateTrackElements(spiritBoard)

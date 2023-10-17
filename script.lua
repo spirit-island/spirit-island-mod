@@ -2115,7 +2115,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         local deck = powersZone.getObjects()[1]
         if deck == nil then
         elseif deck.type == "Card" then
-            if cardsAdded < count then
+            if cardsAdded - offset < count then
                 deck.setLock(true)
                 deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
                 deck.setRotationSmooth(Vector(0, 180, 0))
@@ -2141,14 +2141,14 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
         end
-        if cardsAdded < count then
+        if cardsAdded - offset < count then
             deck = powersDiscardZone.getObjects()[1]
             deck.setPositionSmooth(powersZone.getPosition(), false, true)
             deck.setRotationSmooth(Vector(0, 180, 180), false, true)
             deck.shuffle()
             wt(0.5)
 
-            for i=cardsAdded+1, math.min(cardsAdded+deck.getQuantity(), count) do
+            for i=cardsAdded-offset+1, math.min(cardsAdded-offset+deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
                     position = powerDealCentre + cardPlaceOffset[offset + i],
                     flip = true,

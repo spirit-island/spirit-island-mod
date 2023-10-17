@@ -1846,10 +1846,7 @@ function getPlaytestCount(params)
     else
         playtestPowers = Global.getVar("playtestMinorPowers")
     end
-    -- If gaining one card, randomise with probability playtestPowers/4
-    if count == 1 and math.random(1,4) > playtestPowers then
-        return 0
-    elseif playtestPowers == 1 then
+    if playtestPowers == 1 then
         return math.max(1, math.floor(count / 3))
     elseif playtestPowers == 2 then
         return math.max(1, math.floor(count / 2))

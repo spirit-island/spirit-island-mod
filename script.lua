@@ -2111,25 +2111,26 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos
 
-    local function dealPowerCards(powersZone, powersDiscardZone, count, offset, isPlaytest)
+    local function dealPowerCards(powersZone, powersDiscardZone, count, isPlaytest)
         local deck = powersZone.getObjects()[1]
         if deck == nil then
         elseif deck.type == "Card" then
-            if cardsAdded - offset < count then
+            if count > 0 then
                 deck.setLock(true)
-                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
+                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[cardsAdded + 1])
                 deck.setRotationSmooth(Vector(0, 180, 0))
                 if isPlaytest then
                     deck.addTag("Playtest")
                 end
                 CreatePickPowerButton(deck)
                 cardsAdded = cardsAdded + 1
+                count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
             end
         elseif deck.type == "Deck" then
             for i=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
                     flip = true,
                     callback_function = CreatePickPowerButton,
                 })
@@ -2138,19 +2139,20 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                     tempCard.addTag("Playtest")
                 end
                 cardsAdded = cardsAdded + 1
+                count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
         end
-        if cardsAdded - offset < count then
+        if count > 0 then
             deck = powersDiscardZone.getObjects()[1]
             deck.setPositionSmooth(powersZone.getPosition(), false, true)
             deck.setRotationSmooth(Vector(0, 180, 180), false, true)
             deck.shuffle()
             wt(0.5)
 
-            for i=cardsAdded-offset+1, math.min(cardsAdded-offset+deck.getQuantity(), count) do
+            for i=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
                     flip = true,
                     callback_function = CreatePickPowerButton,
                 })
@@ -2159,6 +2161,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                     tempCard.addTag("Playtest")
                 end
                 cardsAdded = cardsAdded + 1
+                count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
         end
@@ -2175,8 +2178,8 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
             playtestCount = 3
         end
     end
-    dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
-    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, cardCount - playtestCount, true)
+    dealPowerCards(deckZone, discardZone, cardCount - playtestCount, false)
+    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, true)
 
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end

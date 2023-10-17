@@ -2116,6 +2116,16 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos
 
+    local function countDeck(deck)
+        if deck == nil then
+            return 0
+        elseif deck.type == "Card" then
+            return 1
+        elseif deck.type == "Deck" then
+            return deck.getQuantity()
+        end
+        return 0
+    end
     local function dealPowerCards(deck, discard, deckPos, count, isPlaytest)
         if deck == nil then
         elseif deck.type == "Card" then
@@ -2168,6 +2178,15 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
             playtestCount = 3
         end
     end
+
+    -- If there are not enough playtest powers available, deal more non-playtest powers, or vice versa
+    if playtestPowers > 0 then
+        local availableCards = countDeck(deckObj) + countDeck(discardObj)
+        local availablePlaytestCards = countDeck(playtestDeckObj) + countDeck(playtestDiscardObj)
+        playtestCount = math.min(playtestCount, availablePlaytestCards)
+        playtestCount = math.max(playtestCount, cardCount - availableCards)
+    end
+
     dealPowerCards(deckObj, discardObj, deckZone.getPosition(), cardCount - playtestCount, false)
     dealPowerCards(playtestDeckObj, playtestDiscardObj, playtestDeckZone.getPosition(), playtestCount, true)
 

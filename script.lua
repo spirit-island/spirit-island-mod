@@ -1838,6 +1838,20 @@ function addFearCard(params)
     end
 end
 ----- Minor/Major Power Section
+function getPlaytestCount(params)
+    local count = params.count
+    local playtestPowers
+    if params.major then
+        playtestPowers = Global.getVar("playtestMajorPowers")
+    else
+        playtestPowers = Global.getVar("playtestMinorPowers")
+    end
+    if playtestPowers == 1 then
+        return math.max(1, math.floor(count / 3))
+    elseif playtestPowers == 2 then
+        return math.max(1, math.floor(count / 2))
+    end
+end
 function SetupPlaytestPowerDeck(deck, name, option, callback)
     local stagingArea = {
         ["Minor Powers"] = getObjectFromGUID(playtestMinorPowerZone).getPosition(),
@@ -2020,7 +2034,7 @@ function MajorPowerC(obj, player_color, alt_click)
     if alt_click then
         cards = 2
     end
-    startDealPowerCards(false, Player[player_color], cards)
+    startDealPowerCards({player = Player[player_color], major = true, count = cards})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2029,14 +2043,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards(false, player, cards)
+    startDealPowerCards({player = player, major = true, count = cards})
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards(true, Player[player_color], cards)
+    startDealPowerCards({player = Player[player_color], major = false, count = cards})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2045,36 +2059,45 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards(true, player, cards)
+    startDealPowerCards({player = player, major = false, count = cards})
 end
-function startDealPowerCards(minor, player, cardCount)
+function modifyCardGain(params)
+    for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
+        params.count = obj.call("modifyCardGain", params)
+    end
+    return params.count
+end
+function startDealPowerCards(params)
     -- protection from double clicking
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
 
-    if minor then
+    params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
+    local playtestCount = getPlaytestCount({count = params.count, major = params.major})
+
+    if params.major then
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
-                getObjectFromGUID(minorPowerZone),
-                getObjectFromGUID(minorPowerDiscardZone),
-                getObjectFromGUID(playtestMinorPowerZone),
-                getObjectFromGUID(playtestMinorPowerDiscardZone),
-                playtestMinorPowers
+                params.player,
+                params.count,
+                getObjectFromGUID(majorPowerZone),
+                getObjectFromGUID(majorPowerDiscardZone),
+                getObjectFromGUID(playtestMajorPowerZone),
+                getObjectFromGUID(playtestMajorPowerDiscardZone),
+                playtestCount
             )
             return 1
         end
     else
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
-                getObjectFromGUID(majorPowerZone),
-                getObjectFromGUID(majorPowerDiscardZone),
-                getObjectFromGUID(playtestMajorPowerZone),
-                getObjectFromGUID(playtestMajorPowerDiscardZone),
-                playtestMajorPowers
+                params.player,
+                params.count,
+                getObjectFromGUID(minorPowerZone),
+                getObjectFromGUID(minorPowerDiscardZone),
+                getObjectFromGUID(playtestMinorPowerZone),
+                getObjectFromGUID(playtestMinorPowerDiscardZone),
+                playtestCount
             )
             return 1
         end
@@ -2082,7 +2105,7 @@ function startDealPowerCards(minor, player, cardCount)
 
     startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
-function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
+function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestCount)
     -- clear the zone!
     local hand = player.getHandTransform()
     if hand == nil then
@@ -2099,14 +2122,15 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     if cardCount > 4 then
         xPadding = 3.6
     end
-    local cardPlaceOffset = {
-        Vector(-(2.5*xPadding)+2*xPadding,0,0),
-        Vector(-(2.5*xPadding)+3*xPadding,0,0),
-        Vector(-(2.5*xPadding)+1*xPadding,0,0),
-        Vector(-(2.5*xPadding)+4*xPadding,0,0),
-        Vector(-(2.5*xPadding)+0*xPadding,0,0),
-        Vector(-(2.5*xPadding)+5*xPadding,0,0),
-    }
+    if cardCount > 6 then
+        player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
+        scriptWorkingCardC = false
+        return
+    end
+    local cardPlaceOffset = {}
+    for i = -(cardCount-1)/2,(cardCount-1)/2,1 do
+        table.insert(cardPlaceOffset, Vector(i*xPadding,0,0))
+    end
     local cardsAdded = 0
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos
@@ -2161,18 +2185,6 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 cardsAdded = cardsAdded + 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
-        end
-    end
-    local playtestCount = playtestPowers
-    if cardCount == 2 then
-        if playtestPowers > 0 then
-            playtestCount = 1
-        end
-    elseif cardCount == 6 then
-        if playtestPowers == 1 then
-            playtestCount = 2
-        elseif playtestPowers == 2 then
-            playtestCount = 3
         end
     end
     dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)

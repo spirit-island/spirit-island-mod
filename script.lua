@@ -7875,10 +7875,14 @@ function applySpiritContextMenuItems(spirit)
 end
 
 function grabSpiritMarkers()
+    local hasMarker = {}
+    for _,obj in pairs(getObjectsWithTag("Spirit Marker")) do
+        hasMarker[obj.getName()] = true
+    end
     for color,data in pairs(selectedColors) do
         if data.zone then
             for _, obj in ipairs(data.zone.getObjects()) do
-                if obj.hasTag("Spirit") then
+                if obj.hasTag("Spirit") and not hasMarker[obj.getName()] then
                     spawnSpiritMarker(color, obj)
                     break
                 end

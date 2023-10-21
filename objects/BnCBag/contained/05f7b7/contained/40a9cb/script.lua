@@ -13,5 +13,5 @@ function onLoad()
 end
 function returnFear(card)
     Global.getVar("aidBoard").call("fearCard", { earned = false })
-    self.clearButtons()
+    Global.call("removeButtons", {obj = card, click_function = "returnFear", function_owner = self})
 end

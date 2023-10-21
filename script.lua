@@ -2285,6 +2285,29 @@ function isObjectInHand(obj)
     return false
 end
 
+function removeButtons(params)
+    -- "params" is a table containing "obj", plus any number of other parameters
+    -- Removes buttons on obj with parameters matching all the other parameters given in params
+    -- "label" and "click_function" are the most likely parameters to match by
+    local obj = params.obj
+    params.obj = nil
+
+    -- Iterate over buttons in reverse order, so that removals do not change indices
+    local buttons = obj.getButtons()
+    for i = #buttons,1,-1 do
+        local match = true
+        for key,val in pairs(params) do
+            if buttons[i][key] ~= val then
+                match = false
+                break
+            end
+        end
+        if match then
+            obj.removeButton(buttons[i].index)
+        end
+    end
+end
+
 function getPowerZoneObjects(handP)
     local hits = upCastPosSizRot(
         handOffset + handP, -- pos

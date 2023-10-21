@@ -106,7 +106,7 @@
           "Type": 0
         }
       },
-      "LuaScript": "function onLoad()\n    self.createButton({\n        click_function = \"returnFear\",\n        function_owner = self,\n        label          = \"Add Fear Card\",\n        position       = Vector(0,0.3,1.43),\n        width          = 1200,\n        scale          = Vector(0.65,1,0.65),\n        height         = 160,\n        font_size      = 150,\n        tooltip = \"Add Fear Card\"\n    })\nend\nfunction returnFear(card)\n    Global.call(\"addFearCard\", {})\n    self.clearButtons()\nend",
+      "LuaScript": "function onLoad()\n    self.createButton({\n        click_function = \"returnFear\",\n        function_owner = self,\n        label          = \"Add Fear Card\",\n        position       = Vector(0,0.3,1.43),\n        width          = 1200,\n        scale          = Vector(0.65,1,0.65),\n        height         = 160,\n        font_size      = 150,\n        tooltip = \"Add Fear Card\"\n    })\nend\nfunction returnFear(card)\n    Global.call(\"addFearCard\", {})\n    Global.call(\"removeButtons\", {obj = card, click_function = \"returnFear\", function_owner = self})\nend",
       "LuaScriptState": "",
       "XmlUI": ""
     }

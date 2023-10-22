@@ -1850,6 +1850,8 @@ function getPlaytestCount(params)
         return math.max(1, math.floor(count / 3))
     elseif playtestPowers == 2 then
         return math.max(1, math.floor(count / 2))
+    else
+        return 0
     end
 end
 function SetupPlaytestPowerDeck(deck, name, option, callback)

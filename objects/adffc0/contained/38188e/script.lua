@@ -120,7 +120,7 @@ end
 
 function exchangeAuto()
     local numPlayers = getNumPlayers()
-    local energy = healthCount / numPlayers
+    local energy = math.floor(healthCount / numPlayers)
     if energy == 0 then return end
     local color = Global.call("getSpiritColor", {name = "Ocean's Hungry Grasp"})
     local success = Global.call("giveEnergy", {color=color, energy=energy, ignoreDebt=false})

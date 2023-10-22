@@ -12,5 +12,5 @@ function onLoad()
 end
 function noHeal(card)
     Global.setVar("noHealInvader", true)
-    card.clearButtons()
+    Global.call("removeButtons", {obj = card, click_function = "noHeal", function_owner = self})
 end

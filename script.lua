@@ -2108,6 +2108,11 @@ function startDealPowerCards(params)
     startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
 function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestCount)
+    local deckObj = deckZone.getObjects()[1]
+    local discardObj = discardZone.getObjects()[1]
+    local playtestDeckObj = playtestDeckZone.getObjects()[1]
+    local playtestDiscardObj = playtestDiscardZone.getObjects()[1]
+
     -- clear the zone!
     local hand = player.getHandTransform()
     if hand == nil then
@@ -2137,25 +2142,35 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos
 
-    local function dealPowerCards(powersZone, powersDiscardZone, count, offset, isPlaytest)
-        local deck = powersZone.getObjects()[1]
+    local function countDeck(deck)
+        if deck == nil then
+            return 0
+        elseif deck.type == "Card" then
+            return 1
+        elseif deck.type == "Deck" then
+            return deck.getQuantity()
+        end
+        return 0
+    end
+    local function dealPowerCards(deck, discard, deckPos, count, isPlaytest)
         if deck == nil then
         elseif deck.type == "Card" then
-            if cardsAdded < count then
+            if count > 0 then
                 deck.setLock(true)
-                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
+                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[cardsAdded + 1])
                 deck.setRotationSmooth(Vector(0, 180, 0))
                 if isPlaytest then
                     deck.addTag("Playtest")
                 end
                 CreatePickPowerButton(deck)
                 cardsAdded = cardsAdded + 1
+                count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
             end
         elseif deck.type == "Deck" then
-            for i=1, math.min(deck.getQuantity(), count) do
+            for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
                     flip = true,
                     callback_function = CreatePickPowerButton,
                 })
@@ -2164,33 +2179,30 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                     tempCard.addTag("Playtest")
                 end
                 cardsAdded = cardsAdded + 1
+                count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
         end
-        if cardsAdded < count then
-            deck = powersDiscardZone.getObjects()[1]
-            deck.setPositionSmooth(powersZone.getPosition(), false, true)
-            deck.setRotationSmooth(Vector(0, 180, 180), false, true)
-            deck.shuffle()
+        if count > 0 and discard ~= nil then
+            discard.setPositionSmooth(deckPos, false, true)
+            discard.setRotationSmooth(Vector(0, 180, 180), false, true)
+            discard.shuffle()
             wt(0.5)
 
-            for i=cardsAdded+1, math.min(deck.getQuantity(), count) do
-                local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[offset + i],
-                    flip = true,
-                    callback_function = CreatePickPowerButton,
-                })
-                tempCard.setLock(true)
-                if isPlaytest then
-                    tempCard.addTag("Playtest")
-                end
-                cardsAdded = cardsAdded + 1
-                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
-            end
+            dealPowerCards(discard, nil, deckPos, count, isPlaytest)
         end
     end
-    dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
-    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, cardCount - playtestCount, true)
+
+    -- If there are not enough playtest powers available, deal more non-playtest powers, or vice versa
+    if playtestCount > 0 then
+        local availableCards = countDeck(deckObj) + countDeck(discardObj)
+        local availablePlaytestCards = countDeck(playtestDeckObj) + countDeck(playtestDiscardObj)
+        playtestCount = math.min(playtestCount, availablePlaytestCards)
+        playtestCount = math.max(playtestCount, cardCount - availableCards)
+    end
+
+    dealPowerCards(deckObj, discardObj, deckZone.getPosition(), cardCount - playtestCount, false)
+    dealPowerCards(playtestDeckObj, playtestDiscardObj, playtestDeckZone.getPosition(), playtestCount, true)
 
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end

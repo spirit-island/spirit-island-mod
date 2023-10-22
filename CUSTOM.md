@@ -381,7 +381,7 @@ This section is meant for users who are familiar with both the tts mod and progr
 - Trigger to modify the energy gained with the "Gain" button
   - Create object and tag with "Modify Gain"
   - `modifyGain(params)`
-    - `params`: **table** - contains data about the energ gain
+    - `params`: **table** - contains data about the energy gain
       - `color`: **string** - is the color of the player who is gaining energy
       - `amount`: **number** - baseline amount of energy to gain (before bargain deductions)
     - return **number** - modified amount of energy to gain (before bargain deductions)
@@ -393,6 +393,14 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `isGain`: **bool** - true if the operation is a gain, false if it's a pay
       - `isUndo`: **bool** - true if the operation is being undone (right click), false otherwise
       - `amount`: **number** - amount of energy gained/paid (before bargain deductions); positive for gain or pay
+- Trigger to modify the number of cards gained
+  - Create object and tag with "Modify Card Gain"
+  - `modifyCardGain(params)`
+    - `params`: **table** - contains data about the player and the cards played
+      - `color`: **string** - is the color of the player whose card cost is being calculated
+      - `major`: **boolean** - true if gaining majors, false if gaining minors
+      - `count`: **number** - the number of cards being gained
+    - return **number** - the number of cards to gain
 - Trigger to modify how a spirit's elements are counted
   - Create object and tag with "Modify Elements"
   - `modifyElements(params)`

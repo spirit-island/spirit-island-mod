@@ -348,16 +348,9 @@ function flipExploreCard()
         end
     end
 
-    local objs = Global.getVar("invaderDeckZone").getObjects()
-    if #objs == 0 then
-        broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
-        Global.call("Defeat", {invader = true})
-        return
-    end
-
     local deck = nil
     local offset = Vector(0, .5, 0)
-    for _,obj in pairs(objs) do
+    for _,obj in pairs(Global.getVar("invaderDeckZone").getObjects()) do
         if obj.type == "Deck" then
             deck = obj
         elseif obj.type == "Card" and obj.is_face_down then
@@ -374,7 +367,11 @@ function flipExploreCard()
         end
     end
 
-    if deck.type == "Deck" then
+    if deck == nil then
+        broadcastToAll("Unable to Explore, Invader Deck empty", Color.SoftYellow)
+        Global.call("Defeat", {invader = true})
+        return
+    elseif deck.type == "Deck" then
         deck.takeObject({
             position = deck.getPosition() + offset,
             flip = true,

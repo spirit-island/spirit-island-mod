@@ -48,5 +48,5 @@ function removeCards(card)
             end
         end
     end
-    card.clearButtons()
+    Global.call("removeButtons", {obj = card, click_function = "removeCards", function_owner = self})
 end

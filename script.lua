@@ -231,7 +231,7 @@ function onObjectCollisionEnter(hit_object, collision_info)
             end
         end
     -- TODO: extract cast down code once onObjectCollisionEnter can exist outside of global
-    elseif isIslandBoard({obj=hit_object}) and hit_object.guid == castDown then
+    elseif hit_object.guid == castDown then
         cleanupObject({obj = collision_info.collision_object, fear = true, remove = true, color = castDownColor, reason = "Cast Down"})
         if castDownTimer ~= nil then
             Wait.stop(castDownTimer)
@@ -1838,6 +1838,20 @@ function addFearCard(params)
     end
 end
 ----- Minor/Major Power Section
+function getPlaytestCount(params)
+    local count = params.count
+    local playtestPowers
+    if params.major then
+        playtestPowers = Global.getVar("playtestMajorPowers")
+    else
+        playtestPowers = Global.getVar("playtestMinorPowers")
+    end
+    if playtestPowers == 1 then
+        return math.max(1, math.floor(count / 3))
+    elseif playtestPowers == 2 then
+        return math.max(1, math.floor(count / 2))
+    end
+end
 function SetupPlaytestPowerDeck(deck, name, option, callback)
     local stagingArea = {
         ["Minor Powers"] = getObjectFromGUID(playtestMinorPowerZone).getPosition(),
@@ -2020,7 +2034,7 @@ function MajorPowerC(obj, player_color, alt_click)
     if alt_click then
         cards = 2
     end
-    startDealPowerCards(false, Player[player_color], cards)
+    startDealPowerCards({player = Player[player_color], major = true, count = cards})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2029,14 +2043,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards(false, player, cards)
+    startDealPowerCards({player = player, major = true, count = cards})
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards(true, Player[player_color], cards)
+    startDealPowerCards({player = Player[player_color], major = false, count = cards})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2045,36 +2059,45 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards(true, player, cards)
+    startDealPowerCards({player = player, major = false, count = cards})
 end
-function startDealPowerCards(minor, player, cardCount)
+function modifyCardGain(params)
+    for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
+        params.count = obj.call("modifyCardGain", params)
+    end
+    return params.count
+end
+function startDealPowerCards(params)
     -- protection from double clicking
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
 
-    if minor then
+    params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
+    local playtestCount = getPlaytestCount({count = params.count, major = params.major})
+
+    if params.major then
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
-                getObjectFromGUID(minorPowerZone),
-                getObjectFromGUID(minorPowerDiscardZone),
-                getObjectFromGUID(playtestMinorPowerZone),
-                getObjectFromGUID(playtestMinorPowerDiscardZone),
-                playtestMinorPowers
+                params.player,
+                params.count,
+                getObjectFromGUID(majorPowerZone),
+                getObjectFromGUID(majorPowerDiscardZone),
+                getObjectFromGUID(playtestMajorPowerZone),
+                getObjectFromGUID(playtestMajorPowerDiscardZone),
+                playtestCount
             )
             return 1
         end
     else
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
-                getObjectFromGUID(majorPowerZone),
-                getObjectFromGUID(majorPowerDiscardZone),
-                getObjectFromGUID(playtestMajorPowerZone),
-                getObjectFromGUID(playtestMajorPowerDiscardZone),
-                playtestMajorPowers
+                params.player,
+                params.count,
+                getObjectFromGUID(minorPowerZone),
+                getObjectFromGUID(minorPowerDiscardZone),
+                getObjectFromGUID(playtestMinorPowerZone),
+                getObjectFromGUID(playtestMinorPowerDiscardZone),
+                playtestCount
             )
             return 1
         end
@@ -2082,7 +2105,7 @@ function startDealPowerCards(minor, player, cardCount)
 
     startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
-function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
+function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestCount)
     -- clear the zone!
     local hand = player.getHandTransform()
     if hand == nil then
@@ -2099,14 +2122,15 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     if cardCount > 4 then
         xPadding = 3.6
     end
-    local cardPlaceOffset = {
-        Vector(-(2.5*xPadding)+2*xPadding,0,0),
-        Vector(-(2.5*xPadding)+3*xPadding,0,0),
-        Vector(-(2.5*xPadding)+1*xPadding,0,0),
-        Vector(-(2.5*xPadding)+4*xPadding,0,0),
-        Vector(-(2.5*xPadding)+0*xPadding,0,0),
-        Vector(-(2.5*xPadding)+5*xPadding,0,0),
-    }
+    if cardCount > 6 then
+        player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
+        scriptWorkingCardC = false
+        return
+    end
+    local cardPlaceOffset = {}
+    for i = -(cardCount-1)/2,(cardCount-1)/2,1 do
+        table.insert(cardPlaceOffset, Vector(i*xPadding,0,0))
+    end
     local cardsAdded = 0
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos
@@ -2161,18 +2185,6 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                 cardsAdded = cardsAdded + 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
-        end
-    end
-    local playtestCount = playtestPowers
-    if cardCount == 2 then
-        if playtestPowers > 0 then
-            playtestCount = 1
-        end
-    elseif cardCount == 6 then
-        if playtestPowers == 1 then
-            playtestCount = 2
-        elseif playtestPowers == 2 then
-            playtestCount = 3
         end
     end
     dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
@@ -2271,6 +2283,29 @@ function isObjectInHand(obj)
         end
     end
     return false
+end
+
+function removeButtons(params)
+    -- "params" is a table containing "obj", plus any number of other parameters
+    -- Removes buttons on obj with parameters matching all the other parameters given in params
+    -- "label" and "click_function" are the most likely parameters to match by
+    local obj = params.obj
+    params.obj = nil
+
+    -- Iterate over buttons in reverse order, so that removals do not change indices
+    local buttons = obj.getButtons()
+    for i = #buttons,1,-1 do
+        local match = true
+        for key,val in pairs(params) do
+            if buttons[i][key] ~= val then
+                match = false
+                break
+            end
+        end
+        if match then
+            obj.removeButton(buttons[i].index)
+        end
+    end
 end
 
 function getPowerZoneObjects(handP)
@@ -5122,28 +5157,25 @@ function checkPresenceLoss()
     end
 
     for _,obj in pairs(getObjectsWithTag("Presence")) do
-        -- Presence is not in player area
-        if #obj.getZones() == 0 then
-            local color = string.sub(obj.getName(),1,-12)
-            if colors[color] == nil then
-                color = getSpiritColor({name = obj.getDescription()})
-            end
-            -- Color does not already have presence on island
-            if color ~= nil and not colors[color] then
-                -- Presence is currently being moved, count as being on island for now
-                if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
-                    colors[color] = true
-                else
-                    local hits = Physics.cast({
-                        origin = obj.getPosition(),
-                        direction = Vector(0,-1,0),
-                        max_distance = 1,
-                    })
-                    for _,v in pairs(hits) do
-                        if v.hit_object ~= obj and isIslandBoard({obj=v.hit_object}) then
-                            colors[color] = true
-                            break
-                        end
+        local color = string.sub(obj.getName(),1,-12)
+        if colors[color] == nil then
+            color = getSpiritColor({name = obj.getDescription()})
+        end
+        -- Color does not already have presence on island
+        if color ~= nil and not colors[color] then
+            -- Presence is currently being moved, count as being on island for now
+            if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
+                colors[color] = true
+            else
+                local hits = Physics.cast({
+                    origin = obj.getPosition(),
+                    direction = Vector(0,-1,0),
+                    max_distance = 1,
+                })
+                for _,v in pairs(hits) do
+                    if v.hit_object ~= obj and isIsland({obj=v.hit_object}) then
+                        colors[color] = true
+                        break
                     end
                 end
             end
@@ -5545,7 +5577,7 @@ function upCastRay(obj,dist)
     })
     local hitObjects = {}
     for _,v in pairs(hits) do
-        if v.hit_object ~= obj and not isIslandBoard({obj=v.hit_object}) then
+        if v.hit_object ~= obj and not isIsland({obj=v.hit_object}) then
             table.insert(hitObjects,v.hit_object)
         end
     end
@@ -5911,7 +5943,9 @@ function reclaimAll(target_obj, source_color)
 end
 function modifyCost(params)
     for _,object in pairs(getObjectsWithTag("Modify Cost")) do
-        params.costs = object.call("modifyCost", params)
+        if not object.spawning then
+            params.costs = object.call("modifyCost", params)
+        end
     end
     return params.costs
 end
@@ -6028,7 +6062,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                     if refunded then
                         selectedColors[target_color].gained = true
                         selectedColors[target_color].zone.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
-                        onGainPay({color = target_color, isGain = true, isPay = false, amount = energyTotal})
+                        onGainPay({color = target_color, isGain = true, isUndo = false, amount = energyTotal})
                     else
                         Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
                     end
@@ -6094,7 +6128,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                     if paid then
                         selectedColors[target_color].gained = false
                         selectedColors[target_color].zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
-                        onGainPay({color = target_color, isGain = true, isPay = true, amount = energyTotal})
+                        onGainPay({color = target_color, isGain = true, isUndo = true, amount = energyTotal})
                     else
                         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
                     end
@@ -6132,7 +6166,7 @@ function payEnergy(target_obj, source_color, alt_click)
     if paid then
         selectedColors[target_color].paid = true
         selectedColors[target_color].zone.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
-        onGainPay({color = target_color, isGain = false, isPay = false, amount = getEnergyLabel(target_color)})
+        onGainPay({color = target_color, isGain = false, isUndo = false, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
     end
@@ -6389,7 +6423,7 @@ function refundEnergy(target_obj, source_color, alt_click)
     if refunded then
         selectedColors[target_color].paid = false
         selectedColors[target_color].zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
-        onGainPay({color = target_color, isGain = false, isPay = true, amount = getEnergyLabel(target_color)})
+        onGainPay({color = target_color, isGain = false, isUndo = true, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
     end
@@ -7629,6 +7663,12 @@ function isIslandBoard(params)
     end
     return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic")
 end
+function isIsland(params)
+    if params.obj == nil then
+        return false
+    end
+    return isIslandBoard(params) or params.obj.hasTag("Island Tile")
+end
 function isPowerCard(params)
     if params.card == nil then
         return false
@@ -7869,10 +7909,14 @@ function applySpiritContextMenuItems(spirit)
 end
 
 function grabSpiritMarkers()
+    local hasMarker = {}
+    for _,obj in pairs(getObjectsWithTag("Spirit Marker")) do
+        hasMarker[obj.getName()] = true
+    end
     for color,data in pairs(selectedColors) do
         if data.zone then
             for _, obj in ipairs(data.zone.getObjects()) do
-                if obj.hasTag("Spirit") then
+                if obj.hasTag("Spirit") and not hasMarker[obj.getName()] then
                     spawnSpiritMarker(color, obj)
                     break
                 end

@@ -16,5 +16,5 @@ function grabReminder(card)
         position = card.getPosition() + Vector(0, 1, 0),
         rotation = Vector(0, 180, 0)
     })
-    card.clearButtons()
+    Global.call("removeButtons", {obj = card, click_function = "grabReminder", function_owner = self})
 end

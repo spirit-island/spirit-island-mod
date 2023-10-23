@@ -148,6 +148,10 @@ This section is meant for users who are familiar with both the tts mod and progr
 - `broadcast`: **string** - text to display when selecting spirit
   - Note: this needs to be set manually in json under **LuaScriptState** for spirit, anything set in **LuaScript** will be lost to spirit updater operation
 
+### Aspect
+- `broadcast`: **string** - text to display when selecting aspect
+  - Note: unlike the spirit broadcast, this can be set in the script
+
 ### Adversary & Scenario
 - collision workaround
   - workaround for TTS bug https://tabletopsimulator.nolt.io/770

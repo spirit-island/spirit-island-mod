@@ -473,6 +473,9 @@ function onObjectEnterScriptingZone(zone, obj)
         for color,data in pairs(selectedColors) do
             if data.zone == zone then
                 Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
+                if obj.getVar("broadcast") then
+                    Player[color].broadcast(obj.getVar("broadcast"), Color.SoftBlue)
+                end
                 break
             end
         end
@@ -3761,6 +3764,9 @@ function runSpiritSetup()
 
                 if obj.hasTag("Aspect") then
                     Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
+                    if obj.getVar("broadcast") then
+                        Player[color].broadcast(obj.getVar("broadcast"), Color.SoftBlue)
+                    end
                 end
             end
         end

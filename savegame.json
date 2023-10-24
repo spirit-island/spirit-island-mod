@@ -260,6 +260,14 @@
       {
         "displayed": "Modify Card Gain",
         "normalized": "modify_card_gain"
+      },
+      {
+        "displayed": "Modify Elements",
+        "normalized": "modify_elements"
+      },
+      {
+        "displayed": "Modify Thresholds",
+        "normalized": "modify_thresholds"
       }
     ]
   },

@@ -1040,17 +1040,22 @@ end
 function scanElements()
     local elements = Elements:new()
     for _, selected in pairs(Global.getVar("selectedColors")) do
-        elements:add(selected.nonTokenElements)
+        elements:add(selected.elementCounts)
     end
 
     local elementsTable = {"Sun","Moon","Fire","Air","Water","Earth","Plant","Animal"}
     for i,total in ipairs(elements) do
-        local elementTokensCount = #getObjectsWithTag(elementsTable[i])
+        for _,obj in pairs(getObjectsWithTag(elementsTable[i])) do
+            -- Don't count markers in player areas
+            if #obj.getZones() == 0 then
+                total = total + 1
+            end
+        end
         -- We double count tokens on the Island Board for the Elemental Invocation scenario
-        local invocationElementTokensCount = #getObjectsWithAllTags({elementsTable[i],"Invocation Element"})
+        total = total + #getObjectsWithAllTags({elementsTable[i],"Invocation Element"})
         getObjectFromGUID(elementGuids[i]).editButton({
             index = 0,
-            label = total + elementTokensCount + invocationElementTokensCount,
+            label = total,
         })
     end
 end

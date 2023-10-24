@@ -5630,6 +5630,52 @@ function upCastPosSizRot(pos,size,rot,dist,types)
     end
     return hitObjects
 end
+-----
+local Elements = {}
+Elements.__index = Elements
+function Elements:new(init)
+    local outTable = {0,0,0,0,0,0,0,0}
+    setmetatable(outTable, self)
+    outTable:add(init)
+    return outTable
+end
+function Elements:add(other)
+    if other == nil then
+        return
+    elseif type(other) == "table" then
+        for i = 1, 8 do
+            self[i] = self[i] + other[i]
+        end
+    elseif type(other) == "string" then
+        for i = 1, string.len(other) do
+            self[i] = self[i] + math.floor(string.sub(other, i, i))
+        end
+    end
+end
+function Elements:threshold(threshold)
+    for i = 1, 8 do
+        if threshold[i] > self[i] then
+            return false
+        end
+    end
+    return true
+end
+function Elements:__tostring()
+    return table.concat(self, "")
+end
+
+local function modifyElements(params)
+    for _,object in pairs(getObjectsWithTag("Modify Elements")) do
+        params.elements = object.call("modifyElements", params)
+    end
+    return Elements:new(params.elements)
+end
+local function modifyThresholds(params)
+    for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
+        params.elements = object.call("modifyThresholds", params)
+    end
+    return Elements:new(params.elements)
+end
 
 -- Updates the selected player color's player area.  Does nothing if they don't have one.
 -- Returns TRUE if an update occured, FALSE if no such player area existed.
@@ -5749,39 +5795,6 @@ function setupPlayerArea(params)
         selected.zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
-    local Elements = {}
-    Elements.__index = Elements
-    function Elements:new(init)
-        local outTable = {0,0,0,0,0,0,0,0}
-        setmetatable(outTable, self)
-        outTable:add(init)
-        return outTable
-    end
-    function Elements:add(other)
-        if other == nil then
-            return
-        elseif type(other) == "table" then
-            for i = 1, 8 do
-                self[i] = self[i] + other[i]
-            end
-        elseif type(other) == "string" then
-            for i = 1, string.len(other) do
-                self[i] = self[i] + math.floor(string.sub(other, i, i))
-            end
-        end
-    end
-    function Elements:threshold(threshold)
-        for i = 1, 8 do
-            if threshold[i] > self[i] then
-                return false
-            end
-        end
-        return true
-    end
-    function Elements:__tostring()
-        return table.concat(self, "")
-    end
-
     local function calculateTrackElements(spiritBoard)
         local elements = Elements:new()
         if spiritBoard.script_state ~= "" then
@@ -5802,6 +5815,7 @@ function setupPlayerArea(params)
         local positions = {}
         for _, threshold in pairs(thresholds) do
             local decal
+            local thresholdElements = modifyThresholds({color = color, object = object, elements = Elements:new(threshold.elements)})
             local vec = Vector(threshold.position)
             local vecString = vec:string()
             if positions[vecString] then
@@ -5814,7 +5828,7 @@ function setupPlayerArea(params)
                     scale    = scale,
                 }
             end
-            if elements:threshold(Elements:new(threshold.elements)) then
+            if elements:threshold(thresholdElements) then
                 decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
             elseif not positions[vecString] then
                 decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
@@ -5850,11 +5864,8 @@ function setupPlayerArea(params)
     end
 
     local function countItems()
+        color = getTableColor(params.obj) -- In case the player has swapped color
         local elements = Elements:new()
-        -- We track the elements separately, since we count tokens *everywhere*
-        -- for the choice event element helper, and don't want to double count
-        -- the tokens in the scan zones.
-        local nonTokenElements = Elements:new()
 
         local spirit = nil
         local aspects = {}
@@ -5866,7 +5877,6 @@ function setupPlayerArea(params)
                 if entry.hasTag("Spirit") then
                     local trackElements = calculateTrackElements(entry)
                     elements:add(trackElements)
-                    nonTokenElements:add(trackElements)
                     spirit = entry
                 elseif entry.type == "Card" then
                     if entry.hasTag("Aspect") and not entry.is_face_down then
@@ -5877,13 +5887,11 @@ function setupPlayerArea(params)
                         if entry.hasTag("Aspect") then -- Count elements on aspects regardless of location or locking
                             local cardElements = entry.getVar("elements")
                             elements:add(cardElements)
-                            nonTokenElements:add(cardElements)
                         elseif entry.getPosition().z > selected.zone.getPosition().z then -- Skip counting power cards below spirit panel
                             -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
                             if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
                                 local cardElements = entry.getVar("elements")
                                 elements:add(cardElements)
-                                nonTokenElements:add(cardElements)
                             end
                             -- Skip counting locked card's energy (Aid from Lesser Spirits)
                             if not entry.getLock() then
@@ -5902,7 +5910,8 @@ function setupPlayerArea(params)
                 end
             end
         end
-        costs = modifyCost({color = getTableColor(params.obj), costs = costs})
+        elements = modifyElements({color = color, elements = elements})
+        costs = modifyCost({color = color, costs = costs})
         local energy = 0
         for _,cost in pairs(costs) do
             energy = energy + cost
@@ -5913,9 +5922,11 @@ function setupPlayerArea(params)
         --Updates the number display
         selected.zone.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
-            selected.elements[i].editButton({index=0, label=v})
+            if selected.elements[i] then
+                selected.elements[i].editButton({index=0, label=v})
+            end
         end
-        selected.nonTokenElements = nonTokenElements
+        selected.elementCounts = elements
     end
     countItems()    -- Update counts immediately.
     if timer then

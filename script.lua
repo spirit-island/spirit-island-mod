@@ -2228,15 +2228,32 @@ function PickPower(cardo,playero,alt_click)
     if cardo.hasTag("Major") then
         Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
     end
-    -- Give card to player regardless of whose hand they are in front of
+    -- Figure out which player the card is in front of
+    local handPos = nil
+    for color,_ in pairs(playerTables) do
+        local transform = Player[color].getHandTransform()
+        if transform then
+            local pos = transform.position
+            for _,obj in ipairs(getPowerZoneObjects(pos)) do
+                if obj == cardo then
+                    handPos = pos
+                    break
+                end
+            end
+            if handPos then
+                break
+            end
+        end
+    end
+
+    -- Give card to clicking player regardless of whose hand it is in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
     cardo.call("PickPower", {})
 
     Wait.condition(function()
         cardo.setLock(false)
-        if not alt_click then
-            local handPos = Player[playero].getHandTransform().position
+        if handPos and not alt_click then
             DiscardPowerCards(handPos)
         end
     end, function() return not cardo.isSmoothMoving() end)

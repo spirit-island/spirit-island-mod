@@ -7195,13 +7195,18 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
             for _,obj in pairs(getPowerZoneObjects(Player[color].getHandTransform().position)) do
                 table.insert(t, obj)
             end
+            for _,obj in ipairs(getObjects()) do
+                if obj.type == "Fog" and obj.getData().FogColor == color and obj.getPosition().x == tables[color].getPosition().x then
+                    table.insert(t, obj)
+                end
+            end
         end
         objects[color] = t
     end
     for from,to in pairs(swaps) do
         local transform = tables[to].getPosition() - tables[from].getPosition()
         for _,obj in ipairs(objects[from]) do
-            if obj.interactable then
+            if obj.interactable or obj.type == "Fog" then
                 obj.setPosition(obj.getPosition() + transform)
             end
         end
@@ -7446,7 +7451,7 @@ function recolorPlayerPieces(fromColor, toColor)
 end
 function recolorPlayerArea(a, b)
     for _,obj in pairs(getObjects()) do
-        if obj.type == "Hand" then
+        if obj.type == "Hand" or obj.type == "Fog" then
             local data = obj.getData()
             local found = false
             if data.FogColor == a then

@@ -7454,8 +7454,8 @@ function recolorPlayerArea(a, b)
                 found = true
             end
             if found then
-                spawnObjectData({data = data})
                 obj.destruct()
+                spawnObjectData({data = data})
             end
         end
     end

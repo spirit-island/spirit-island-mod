@@ -7192,6 +7192,9 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
                     table.insert(t, obj)
                 end
             end
+            for _,obj in pairs(getPowerZoneObjects(Player[color].getHandTransform().position)) do
+                table.insert(t, obj)
+            end
         end
         objects[color] = t
     end

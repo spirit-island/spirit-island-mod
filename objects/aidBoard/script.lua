@@ -7,6 +7,7 @@ fearTimers = {}
 function onSave()
     local data_table = {
         discard = discard,
+        playerReadyGuids = playerReadyGuids,
     }
     return JSON.encode(data_table)
 end
@@ -16,6 +17,7 @@ function onLoad(saved_data)
     if saved_data ~= "" then
         local loaded_data = JSON.decode(saved_data)
         discard = Vector(loaded_data.discard)
+        playerReadyGuids = loaded_data.playerReadyGuids
     end
 
     self.createButton({ -- Blighted Island Placeholder

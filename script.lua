@@ -3819,18 +3819,6 @@ function pickSpirit(params)
     SetupChecker.call("removeSpirit", params)
 end
 function removeSpirit(params)
-    local seatGuid = playerTables[params.color].guid
-    for index,guid in pairs(seatTables) do
-        if guid == seatGuid then
-            local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-            if index <= #playerReadyGuids then
-                playerReadyGuids[index].color = params.color
-                aidBoard.setTable("playerReadyGuids", playerReadyGuids)
-            end
-            break
-        end
-    end
-
     selectedColors[params.color] = {
         ready = params.ready,
         counter = params.counter,
@@ -7265,22 +7253,13 @@ function swapPlayerTables(a, b)
     a.setPosition(b.getPosition())
     b.setPosition(pos)
 
-    local indexA, indexB
     for i,guid in pairs(seatTables) do
         if guid == a.guid then
-            indexB = i
             seatTables[i] = b.guid
         elseif guid == b.guid then
-            indexA = i
             seatTables[i] = a.guid
         end
     end
-
-    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-    local color = playerReadyGuids[indexA].color
-    playerReadyGuids[indexA].color = playerReadyGuids[indexB].color
-    playerReadyGuids[indexB].color = color
-    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
 end
 
 function swapSeatColors(a, b)
@@ -7506,16 +7485,6 @@ function recolorPlayerArea(a, b)
         playerTables[b].setColorTint(colorTint)
     end
     playerTables[a], playerTables[b] = playerTables[b], playerTables[a]
-
-    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-    for _,data in pairs(playerReadyGuids) do
-        if data.color == a then
-            data.color = b
-        elseif data.color == b then
-            data.color = a
-        end
-    end
-    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
 
     updateSwapButtons()
 end

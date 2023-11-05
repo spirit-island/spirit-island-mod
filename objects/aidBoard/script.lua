@@ -906,33 +906,35 @@ end
 
 function scanReady()
     local selectedColors = Global.getVar("selectedColors")
+    local seatTables = Global.getVar("seatTables")
     local yes = {}
     local no = {}
     local tints = Global.getTable("Tints")
-    for _,data in pairs(playerReadyGuids) do
+    for i,data in pairs(playerReadyGuids) do
         local readyToken = getObjectFromGUID(data.guid)
-        if data.color and selectedColors[data.color] then
-            local tokenTint = tints[data.color].Presence
-            if tints[data.color].Token then
-                tokenTint = tints[data.color].Token
+        local color = Global.call("getTableColor", getObjectFromGUID(seatTables[i]))
+        if color ~= "" and selectedColors[color] then
+            local tokenTint = tints[color].Presence
+            if tints[color].Token then
+                tokenTint = tints[color].Token
             end
             readyToken.setInvisibleTo({})
             readyToken.setColorTint(Color.fromHex(tokenTint))
 
-            if selectedColors[data.color].ready and selectedColors[data.color].ready.is_face_down then
+            if selectedColors[color].ready and selectedColors[color].ready.is_face_down then
                 readyToken.editButton({
                     index=0,
                     label="✓",
                     font_color="Green",
                 })
-                table.insert(yes, data.color)
+                table.insert(yes, color)
             else
                 readyToken.editButton({
                     index=0,
                     label="X",
                     font_color="Red",
                 })
-                table.insert(no, data.color)
+                table.insert(no, color)
             end
         else
             readyToken.setInvisibleTo(Player.getColors())

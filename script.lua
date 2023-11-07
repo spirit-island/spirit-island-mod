@@ -7721,10 +7721,23 @@ function getReminderImageAttributes(params)
     local data = obj.getData()
     if obj.type == "Card" then
         if data.CustomDeck then
-            for _,d in pairs(data.CustomDeck) do
-                if d.NumWidth == 1 and d.NumHeight == 1 then
-                    imageURL = d[location.field]
+            for deckID,deckData in pairs(data.CustomDeck) do
+                imageURL = deckData[location.field]
+                local row = 0 -- 0-indexed
+                local column = 0 -- 0-indexed
+                local deckID = tonumber(deckID)
+                if data.CardID and deckID then
+                    local cardIndex = data.CardID - 100 * deckID -- 0-indexed
+                    if cardIndex >= 0 and cardIndex < deckData.NumWidth * deckData.NumHeight then
+                        column = cardIndex % deckData.NumWidth
+                        row = (cardIndex - column) / deckData.NumWidth
+                    end
                 end
+                location.x = location.x + ((deckData.NumWidth - 1) / 2 - column) * location.width
+                location.y = location.y - ((deckData.NumHeight - 1) / 2 - row) * location.height
+                location.width = location.width * deckData.NumWidth
+                location.height = location.height * deckData.NumHeight
+                break
             end
         end
     else
@@ -7766,65 +7779,51 @@ function applyPowerCardContextMenuItems(card)
             end
         end,
         false)
-
-    -- Only allow reminder tokens to be generated on individual card images not deck image since mask requires that
-    local isSingle = false
-    local cardData = card.getData()
-    if cardData.CustomDeck then
-        for _, data in pairs(cardData.CustomDeck) do
-            if data.NumWidth == 1 and data.NumHeight == 1 then
-                isSingle = true
-                break
-            end
-        end
-    end
-    if isSingle then
-        card.addContextMenuItem(
-            "Get Reminder Token",
-            function(player_color)
-                local pos = card.getPosition()
-                local data = {
-                    Name = "Custom_Model",
-                    Transform = {
-                        posX = pos[1],
-                        posY = pos[2] + 0.02,
-                        posZ = pos[3],
-                        rotX = 0,
-                        rotY = 180,
-                        rotZ = 0,
-                        scaleX = 0.9,
-                        scaleY = 0.9,
-                        scaleZ = 0.9
-                    },
-                    Nickname = player_color.."'s "..card.getName().." Reminder",
-                    Tags = {"Destroy", "Mask", "Reminder Token"},
-                    Grid = false,
-                    Snap = false,
-                    CustomMesh = {
-                        MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-                        MaterialIndex = 1
-                    },
-                    LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                    XmlUI = getReminderXml({obj = card}),
-                }
-                if Tints[player_color] then
-                    local color
-                    if Tints[player_color].Token then
-                        color = Color.fromHex(Tints[player_color].Token)
-                    else
-                        color = Color.fromHex(Tints[player_color].Presence)
-                    end
-                    data.ColorDiffuse = {
-                        r = color.r,
-                        g = color.g,
-                        b = color.b
-                    }
+    card.addContextMenuItem(
+        "Get Reminder Token",
+        function(player_color)
+            local pos = card.getPosition()
+            local data = {
+                Name = "Custom_Model",
+                Transform = {
+                    posX = pos[1],
+                    posY = pos[2] + 0.02,
+                    posZ = pos[3],
+                    rotX = 0,
+                    rotY = 180,
+                    rotZ = 0,
+                    scaleX = 0.9,
+                    scaleY = 0.9,
+                    scaleZ = 0.9
+                },
+                Nickname = player_color.."'s "..card.getName().." Reminder",
+                Tags = {"Destroy", "Mask", "Reminder Token"},
+                Grid = false,
+                Snap = false,
+                CustomMesh = {
+                    MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+                    DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+                    MaterialIndex = 1
+                },
+                LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
+                XmlUI = getReminderXml({obj = card}),
+            }
+            if Tints[player_color] then
+                local color
+                if Tints[player_color].Token then
+                    color = Color.fromHex(Tints[player_color].Token)
+                else
+                    color = Color.fromHex(Tints[player_color].Presence)
                 end
-                spawnObjectData({data = data})
-            end,
-            false)
-    end
+                data.ColorDiffuse = {
+                    r = color.r,
+                    g = color.g,
+                    b = color.b
+                }
+            end
+            spawnObjectData({data = data})
+        end,
+        false)
 end
 function spawnSpiritMarker(player_color, spirit)
     local color = getSpiritColor({name = spirit.getName()})

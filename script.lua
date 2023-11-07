@@ -7721,24 +7721,22 @@ function getReminderImageAttributes(params)
     local data = obj.getData()
     if obj.type == "Card" then
         if data.CustomDeck then
-            for deckID,deckData in pairs(data.CustomDeck) do
-                imageURL = deckData[location.field]
-                local row = 0 -- 0-indexed
-                local column = 0 -- 0-indexed
-                deckID = tonumber(deckID)
-                if data.CardID and deckID then
-                    local cardIndex = data.CardID - 100 * deckID -- 0-indexed
-                    if cardIndex >= 0 and cardIndex < deckData.NumWidth * deckData.NumHeight then
-                        column = cardIndex % deckData.NumWidth
-                        row = (cardIndex - column) / deckData.NumWidth
-                    end
+            local deckID, deckData = next(data.CustomDeck)
+            deckID = tonumber(deckID)
+            imageURL = deckData[location.field]
+            local row = 0 -- 0-indexed
+            local column = 0 -- 0-indexed
+            if data.CardID and deckID then
+                local cardIndex = data.CardID - 100 * deckID -- 0-indexed
+                if cardIndex >= 0 and cardIndex < deckData.NumWidth * deckData.NumHeight then
+                    column = cardIndex % deckData.NumWidth
+                    row = (cardIndex - column) / deckData.NumWidth
                 end
-                location.x = location.x + ((deckData.NumWidth - 1) / 2 - column) * location.width
-                location.y = location.y - ((deckData.NumHeight - 1) / 2 - row) * location.height
-                location.width = location.width * deckData.NumWidth
-                location.height = location.height * deckData.NumHeight
-                break
             end
+            location.x = location.x + ((deckData.NumWidth - 1) / 2 - column) * location.width
+            location.y = location.y - ((deckData.NumHeight - 1) / 2 - row) * location.height
+            location.width = location.width * deckData.NumWidth
+            location.height = location.height * deckData.NumHeight
         end
     else
         imageURL = data.CustomImage[location.field]

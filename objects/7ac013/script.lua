@@ -3,7 +3,35 @@ difficulty=3
 postSetup=true
 postSetupComplete=false
 
+function onLoad()
+    if Global.getVar("gameStarted") then
+        self.createButton({
+            click_function = "Victory",
+            function_owner = self,
+            label          = "Victory Achieved",
+            position       = Vector(0.6, 1, -1.1),
+            rotation       = Vector(0,0,0),
+            scale          = Vector(0.2,0.2,0.2),
+            width          = 2200,
+            height         = 500,
+            font_size      = 300,
+        })
+    end
+end
+
 function PostSetup()
+    self.createButton({
+        click_function = "Victory",
+        function_owner = self,
+        label          = "Victory Achieved",
+        position       = Vector(0.6, 1, -1.1),
+        rotation       = Vector(0,0,0),
+        scale          = Vector(0.2,0.2,0.2),
+        width          = 2200,
+        height         = 500,
+        font_size      = 300,
+    })
+
     local deck = Player["Black"].getHandObjects(1)
     local dividersSetup = 0
     for _, obj in pairs(deck) do
@@ -39,4 +67,9 @@ function PostSetup()
     else
         postSetupComplete = true
     end
+end
+
+function Victory()
+    Global.setVar("terrorLevel", 4)
+    Global.call("Victory")
 end

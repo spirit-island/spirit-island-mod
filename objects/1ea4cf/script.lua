@@ -201,17 +201,35 @@ function checkLoss()
     local count = 0
     local beasts = getObjectsWithTag("Beasts")
     for _,obj in pairs(beasts) do
-        local quantity = obj.getQuantity()
-        if quantity == -1 then
-            count = count + 1
-        else
-            count = count + quantity
+        -- Count the beast if it's not in a player area, or if it is in a player area but over the island (e.g. the Endless Dark)
+        local isOnIsland = (#obj.getZones() == 0)
+        if not isOnIsland then
+            local hits = Physics.cast({
+                origin = obj.getBounds().center,
+                direction = Vector(0,-1,0),
+                max_distance = 6,
+            })
+            for _,v in pairs(hits) do
+                if v.hit_object ~= obj and Global.call("isIsland", {obj=v.hit_object}) then
+                    isOnIsland = true
+                    break
+                end
+            end
+        end
+        if isOnIsland then
+            local quantity = obj.getQuantity()
+            if quantity == -1 then
+                count = count + 1
+            else
+                count = count + quantity
+            end
         end
     end
     if not Global.getVar("SetupChecker").call("isSpiritPickable", {guid="165f82"}) then
         local color = Global.call("getSpiritColor", {name = "Many Minds Move as One"})
         for _,obj in pairs(getObjectsWithTag("Presence")) do
             -- Presence is not in player area
+            -- This optimisation is permissible because we don't want to count presence in the Endless Dark (which may be a in player area)
             if #obj.getZones() == 0 then
                 if color == string.sub(obj.getName(),1,-12) then
                     if obj.getQuantity() >= 2 then

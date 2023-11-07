@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.0.4-beta.2"
+version = "4.0.4-beta.4"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -473,6 +473,9 @@ function onObjectEnterScriptingZone(zone, obj)
         for color,data in pairs(selectedColors) do
             if data.zone == zone then
                 Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
+                if obj.getVar("broadcast") then
+                    Player[color].broadcast(obj.getVar("broadcast"), Color.SoftBlue)
+                end
                 break
             end
         end
@@ -701,6 +704,9 @@ function onLoad(saved_data)
         if isPowerCard({card=hoveredObject}) then
             hoveredObject.deal(1, playerColor, 2)
         end
+    end)
+    addHotkey("Get Reminder Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        spawnMaskedReminder(playerColor, hoveredObject, false)
     end)
 
     addHotkey("Gain Major Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
@@ -1838,6 +1844,22 @@ function addFearCard(params)
     end
 end
 ----- Minor/Major Power Section
+function getPlaytestCount(params)
+    local count = params.count
+    local playtestPowers
+    if params.major then
+        playtestPowers = Global.getVar("playtestMajorPowers")
+    else
+        playtestPowers = Global.getVar("playtestMinorPowers")
+    end
+    if playtestPowers == 1 then
+        return math.max(1, math.floor(count / 3))
+    elseif playtestPowers == 2 then
+        return math.max(1, math.floor(count / 2))
+    else
+        return 0
+    end
+end
 function SetupPlaytestPowerDeck(deck, name, option, callback)
     local stagingArea = {
         ["Minor Powers"] = getObjectFromGUID(playtestMinorPowerZone).getPosition(),
@@ -2020,7 +2042,7 @@ function MajorPowerC(obj, player_color, alt_click)
     if alt_click then
         cards = 2
     end
-    startDealPowerCards(false, Player[player_color], cards)
+    startDealPowerCards({player = Player[player_color], major = true, count = cards})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2029,14 +2051,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards(false, player, cards)
+    startDealPowerCards({player = player, major = true, count = cards})
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards(true, Player[player_color], cards)
+    startDealPowerCards({player = Player[player_color], major = false, count = cards})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2045,36 +2067,45 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards(true, player, cards)
+    startDealPowerCards({player = player, major = false, count = cards})
 end
-function startDealPowerCards(minor, player, cardCount)
+function modifyCardGain(params)
+    for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
+        params.count = obj.call("modifyCardGain", params)
+    end
+    return params.count
+end
+function startDealPowerCards(params)
     -- protection from double clicking
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
 
-    if minor then
+    params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
+    local playtestCount = getPlaytestCount({count = params.count, major = params.major})
+
+    if params.major then
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
-                getObjectFromGUID(minorPowerZone),
-                getObjectFromGUID(minorPowerDiscardZone),
-                getObjectFromGUID(playtestMinorPowerZone),
-                getObjectFromGUID(playtestMinorPowerDiscardZone),
-                playtestMinorPowers
+                params.player,
+                params.count,
+                getObjectFromGUID(majorPowerZone),
+                getObjectFromGUID(majorPowerDiscardZone),
+                getObjectFromGUID(playtestMajorPowerZone),
+                getObjectFromGUID(playtestMajorPowerDiscardZone),
+                playtestCount
             )
             return 1
         end
     else
         _G["startDealPowerCardsCo"] = function()
             DealPowerCards(
-                player,
-                cardCount,
-                getObjectFromGUID(majorPowerZone),
-                getObjectFromGUID(majorPowerDiscardZone),
-                getObjectFromGUID(playtestMajorPowerZone),
-                getObjectFromGUID(playtestMajorPowerDiscardZone),
-                playtestMajorPowers
+                params.player,
+                params.count,
+                getObjectFromGUID(minorPowerZone),
+                getObjectFromGUID(minorPowerDiscardZone),
+                getObjectFromGUID(playtestMinorPowerZone),
+                getObjectFromGUID(playtestMinorPowerDiscardZone),
+                playtestCount
             )
             return 1
         end
@@ -2082,7 +2113,12 @@ function startDealPowerCards(minor, player, cardCount)
 
     startLuaCoroutine(Global, "startDealPowerCardsCo")
 end
-function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestPowers)
+function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestCount)
+    local deckObj = deckZone.getObjects()[1]
+    local discardObj = discardZone.getObjects()[1]
+    local playtestDeckObj = playtestDeckZone.getObjects()[1]
+    local playtestDiscardObj = playtestDiscardZone.getObjects()[1]
+
     -- clear the zone!
     local hand = player.getHandTransform()
     if hand == nil then
@@ -2099,37 +2135,48 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     if cardCount > 4 then
         xPadding = 3.6
     end
-    local cardPlaceOffset = {
-        Vector(-(2.5*xPadding)+2*xPadding,0,0),
-        Vector(-(2.5*xPadding)+3*xPadding,0,0),
-        Vector(-(2.5*xPadding)+1*xPadding,0,0),
-        Vector(-(2.5*xPadding)+4*xPadding,0,0),
-        Vector(-(2.5*xPadding)+0*xPadding,0,0),
-        Vector(-(2.5*xPadding)+5*xPadding,0,0),
-    }
+    if cardCount > 6 then
+        player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
+        scriptWorkingCardC = false
+        return
+    end
+    local cardPlaceOffset = {}
+    for i = -(cardCount-1)/2,(cardCount-1)/2,1 do
+        table.insert(cardPlaceOffset, Vector(i*xPadding,0,0))
+    end
     local cardsAdded = 0
     local cardsResting = 0
     local powerDealCentre = handOffset + handPos
 
-    local function dealPowerCards(powersZone, powersDiscardZone, count, offset, isPlaytest)
-        local deck = powersZone.getObjects()[1]
+    local function countDeck(deck)
+        if deck == nil then
+            return 0
+        elseif deck.type == "Card" then
+            return 1
+        elseif deck.type == "Deck" then
+            return deck.getQuantity()
+        end
+        return 0
+    end
+    local function dealPowerCards(deck, discard, deckPos, count, isPlaytest)
         if deck == nil then
         elseif deck.type == "Card" then
-            if cardsAdded < count then
+            if count > 0 then
                 deck.setLock(true)
-                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[offset + 1])
+                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[cardsAdded + 1])
                 deck.setRotationSmooth(Vector(0, 180, 0))
                 if isPlaytest then
                     deck.addTag("Playtest")
                 end
                 CreatePickPowerButton(deck)
                 cardsAdded = cardsAdded + 1
+                count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
             end
         elseif deck.type == "Deck" then
-            for i=1, math.min(deck.getQuantity(), count) do
+            for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[offset + i],
+                    position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
                     flip = true,
                     callback_function = CreatePickPowerButton,
                 })
@@ -2138,45 +2185,30 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
                     tempCard.addTag("Playtest")
                 end
                 cardsAdded = cardsAdded + 1
+                count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
             end
         end
-        if cardsAdded < count then
-            deck = powersDiscardZone.getObjects()[1]
-            deck.setPositionSmooth(powersZone.getPosition(), false, true)
-            deck.setRotationSmooth(Vector(0, 180, 180), false, true)
-            deck.shuffle()
+        if count > 0 and discard ~= nil then
+            discard.setPositionSmooth(deckPos, false, true)
+            discard.setRotationSmooth(Vector(0, 180, 180), false, true)
+            discard.shuffle()
             wt(0.5)
 
-            for i=cardsAdded+1, math.min(deck.getQuantity(), count) do
-                local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[offset + i],
-                    flip = true,
-                    callback_function = CreatePickPowerButton,
-                })
-                tempCard.setLock(true)
-                if isPlaytest then
-                    tempCard.addTag("Playtest")
-                end
-                cardsAdded = cardsAdded + 1
-                Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not tempCard.isSmoothMoving() end)
-            end
+            dealPowerCards(discard, nil, deckPos, count, isPlaytest)
         end
     end
-    local playtestCount = playtestPowers
-    if cardCount == 2 then
-        if playtestPowers > 0 then
-            playtestCount = 1
-        end
-    elseif cardCount == 6 then
-        if playtestPowers == 1 then
-            playtestCount = 2
-        elseif playtestPowers == 2 then
-            playtestCount = 3
-        end
+
+    -- If there are not enough playtest powers available, deal more non-playtest powers, or vice versa
+    if playtestCount > 0 then
+        local availableCards = countDeck(deckObj) + countDeck(discardObj)
+        local availablePlaytestCards = countDeck(playtestDeckObj) + countDeck(playtestDiscardObj)
+        playtestCount = math.min(playtestCount, availablePlaytestCards)
+        playtestCount = math.max(playtestCount, cardCount - availableCards)
     end
-    dealPowerCards(deckZone, discardZone, cardCount - playtestCount, 0, false)
-    dealPowerCards(playtestDeckZone, playtestDiscardZone, playtestCount, cardCount - playtestCount, true)
+
+    dealPowerCards(deckObj, discardObj, deckZone.getPosition(), cardCount - playtestCount, false)
+    dealPowerCards(playtestDeckObj, playtestDiscardObj, playtestDeckZone.getPosition(), playtestCount, true)
 
     Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
 end
@@ -2199,15 +2231,32 @@ function PickPower(cardo,playero,alt_click)
     if cardo.hasTag("Major") then
         Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
     end
-    -- Give card to player regardless of whose hand they are in front of
+    -- Figure out which player the card is in front of
+    local handPos = nil
+    for color,_ in pairs(playerTables) do
+        local transform = Player[color].getHandTransform()
+        if transform then
+            local pos = transform.position
+            for _,obj in ipairs(getPowerZoneObjects(pos)) do
+                if obj == cardo then
+                    handPos = pos
+                    break
+                end
+            end
+            if handPos then
+                break
+            end
+        end
+    end
+
+    -- Give card to clicking player regardless of whose hand it is in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
     cardo.call("PickPower", {})
 
     Wait.condition(function()
         cardo.setLock(false)
-        if not alt_click then
-            local handPos = Player[playero].getHandTransform().position
+        if handPos and not alt_click then
             DiscardPowerCards(handPos)
         end
     end, function() return not cardo.isSmoothMoving() end)
@@ -2271,6 +2320,29 @@ function isObjectInHand(obj)
         end
     end
     return false
+end
+
+function removeButtons(params)
+    -- "params" is a table containing "obj", plus any number of other parameters
+    -- Removes buttons on obj with parameters matching all the other parameters given in params
+    -- "label" and "click_function" are the most likely parameters to match by
+    local obj = params.obj
+    params.obj = nil
+
+    -- Iterate over buttons in reverse order, so that removals do not change indices
+    local buttons = obj.getButtons()
+    for i = #buttons,1,-1 do
+        local match = true
+        for key,val in pairs(params) do
+            if buttons[i][key] ~= val then
+                match = false
+                break
+            end
+        end
+        if match then
+            obj.removeButton(buttons[i].index)
+        end
+    end
 end
 
 function getPowerZoneObjects(handP)
@@ -3712,6 +3784,9 @@ function runSpiritSetup()
 
                 if obj.hasTag("Aspect") then
                     Player[color].broadcast("Using Aspect "..obj.getName(), Color.White)
+                    if obj.getVar("broadcast") then
+                        Player[color].broadcast(obj.getVar("broadcast"), Color.SoftBlue)
+                    end
                 end
             end
         end
@@ -3747,18 +3822,6 @@ function pickSpirit(params)
     SetupChecker.call("removeSpirit", params)
 end
 function removeSpirit(params)
-    local seatGuid = playerTables[params.color].guid
-    for index,guid in pairs(seatTables) do
-        if guid == seatGuid then
-            local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-            if index <= #playerReadyGuids then
-                playerReadyGuids[index].color = params.color
-                aidBoard.setTable("playerReadyGuids", playerReadyGuids)
-            end
-            break
-        end
-    end
-
     selectedColors[params.color] = {
         ready = params.ready,
         counter = params.counter,
@@ -5122,28 +5185,25 @@ function checkPresenceLoss()
     end
 
     for _,obj in pairs(getObjectsWithTag("Presence")) do
-        -- Presence is not in player area
-        if #obj.getZones() == 0 then
-            local color = string.sub(obj.getName(),1,-12)
-            if colors[color] == nil then
-                color = getSpiritColor({name = obj.getDescription()})
-            end
-            -- Color does not already have presence on island
-            if color ~= nil and not colors[color] then
-                -- Presence is currently being moved, count as being on island for now
-                if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
-                    colors[color] = true
-                else
-                    local hits = Physics.cast({
-                        origin = obj.getPosition(),
-                        direction = Vector(0,-1,0),
-                        max_distance = 1,
-                    })
-                    for _,v in pairs(hits) do
-                        if v.hit_object ~= obj and isIsland({obj=v.hit_object}) then
-                            colors[color] = true
-                            break
-                        end
+        local color = string.sub(obj.getName(),1,-12)
+        if colors[color] == nil then
+            color = getSpiritColor({name = obj.getDescription()})
+        end
+        -- Color does not already have presence on island
+        if color ~= nil and not colors[color] then
+            -- Presence is currently being moved, count as being on island for now
+            if obj.held_by_color or not obj.getVelocity():equals(Vector(0, 0, 0)) then
+                colors[color] = true
+            else
+                local hits = Physics.cast({
+                    origin = obj.getPosition(),
+                    direction = Vector(0,-1,0),
+                    max_distance = 1,
+                })
+                for _,v in pairs(hits) do
+                    if v.hit_object ~= obj and isIsland({obj=v.hit_object}) then
+                        colors[color] = true
+                        break
                     end
                 end
             end
@@ -5578,6 +5638,52 @@ function upCastPosSizRot(pos,size,rot,dist,types)
     end
     return hitObjects
 end
+-----
+local Elements = {}
+Elements.__index = Elements
+function Elements:new(init)
+    local outTable = {0,0,0,0,0,0,0,0}
+    setmetatable(outTable, self)
+    outTable:add(init)
+    return outTable
+end
+function Elements:add(other)
+    if other == nil then
+        return
+    elseif type(other) == "table" then
+        for i = 1, 8 do
+            self[i] = self[i] + other[i]
+        end
+    elseif type(other) == "string" then
+        for i = 1, string.len(other) do
+            self[i] = self[i] + math.floor(string.sub(other, i, i))
+        end
+    end
+end
+function Elements:threshold(threshold)
+    for i = 1, 8 do
+        if threshold[i] > self[i] then
+            return false
+        end
+    end
+    return true
+end
+function Elements:__tostring()
+    return table.concat(self, "")
+end
+
+local function modifyElements(params)
+    for _,object in pairs(getObjectsWithTag("Modify Elements")) do
+        params.elements = object.call("modifyElements", params)
+    end
+    return Elements:new(params.elements)
+end
+local function modifyThresholds(params)
+    for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
+        params.elements = object.call("modifyThresholds", params)
+    end
+    return Elements:new(params.elements)
+end
 
 -- Updates the selected player color's player area.  Does nothing if they don't have one.
 -- Returns TRUE if an update occured, FALSE if no such player area existed.
@@ -5697,39 +5803,6 @@ function setupPlayerArea(params)
         selected.zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
-    local Elements = {}
-    Elements.__index = Elements
-    function Elements:new(init)
-        local outTable = {0,0,0,0,0,0,0,0}
-        setmetatable(outTable, self)
-        outTable:add(init)
-        return outTable
-    end
-    function Elements:add(other)
-        if other == nil then
-            return
-        elseif type(other) == "table" then
-            for i = 1, 8 do
-                self[i] = self[i] + other[i]
-            end
-        elseif type(other) == "string" then
-            for i = 1, string.len(other) do
-                self[i] = self[i] + math.floor(string.sub(other, i, i))
-            end
-        end
-    end
-    function Elements:threshold(threshold)
-        for i = 1, 8 do
-            if threshold[i] > self[i] then
-                return false
-            end
-        end
-        return true
-    end
-    function Elements:__tostring()
-        return table.concat(self, "")
-    end
-
     local function calculateTrackElements(spiritBoard)
         local elements = Elements:new()
         if spiritBoard.script_state ~= "" then
@@ -5750,6 +5823,7 @@ function setupPlayerArea(params)
         local positions = {}
         for _, threshold in pairs(thresholds) do
             local decal
+            local thresholdElements = modifyThresholds({color = color, object = object, elements = Elements:new(threshold.elements)})
             local vec = Vector(threshold.position)
             local vecString = vec:string()
             if positions[vecString] then
@@ -5762,7 +5836,7 @@ function setupPlayerArea(params)
                     scale    = scale,
                 }
             end
-            if elements:threshold(Elements:new(threshold.elements)) then
+            if elements:threshold(thresholdElements) then
                 decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
             elseif not positions[vecString] then
                 decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
@@ -5798,11 +5872,8 @@ function setupPlayerArea(params)
     end
 
     local function countItems()
+        color = getTableColor(params.obj) -- In case the player has swapped color
         local elements = Elements:new()
-        -- We track the elements separately, since we count tokens *everywhere*
-        -- for the choice event element helper, and don't want to double count
-        -- the tokens in the scan zones.
-        local nonTokenElements = Elements:new()
 
         local spirit = nil
         local aspects = {}
@@ -5814,7 +5885,6 @@ function setupPlayerArea(params)
                 if entry.hasTag("Spirit") then
                     local trackElements = calculateTrackElements(entry)
                     elements:add(trackElements)
-                    nonTokenElements:add(trackElements)
                     spirit = entry
                 elseif entry.type == "Card" then
                     if entry.hasTag("Aspect") and not entry.is_face_down then
@@ -5825,13 +5895,11 @@ function setupPlayerArea(params)
                         if entry.hasTag("Aspect") then -- Count elements on aspects regardless of location or locking
                             local cardElements = entry.getVar("elements")
                             elements:add(cardElements)
-                            nonTokenElements:add(cardElements)
                         elseif entry.getPosition().z > selected.zone.getPosition().z then -- Skip counting power cards below spirit panel
                             -- Skip counting locked card's elements (exploratory Aid from Lesser Spirits)
                             if not entry.getLock() or not (blightedIsland and blightedIslandCard ~= nil and blightedIslandCard.guid == "ad5b9a") then
                                 local cardElements = entry.getVar("elements")
                                 elements:add(cardElements)
-                                nonTokenElements:add(cardElements)
                             end
                             -- Skip counting locked card's energy (Aid from Lesser Spirits)
                             if not entry.getLock() then
@@ -5850,7 +5918,8 @@ function setupPlayerArea(params)
                 end
             end
         end
-        costs = modifyCost({color = getTableColor(params.obj), costs = costs})
+        elements = modifyElements({color = color, elements = elements})
+        costs = modifyCost({color = color, costs = costs})
         local energy = 0
         for _,cost in pairs(costs) do
             energy = energy + cost
@@ -5861,9 +5930,11 @@ function setupPlayerArea(params)
         --Updates the number display
         selected.zone.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
-            selected.elements[i].editButton({index=0, label=v})
+            if selected.elements[i] then
+                selected.elements[i].editButton({index=0, label=v})
+            end
         end
-        selected.nonTokenElements = nonTokenElements
+        selected.elementCounts = elements
     end
     countItems()    -- Update counts immediately.
     if timer then
@@ -5900,7 +5971,9 @@ function reclaimAll(target_obj, source_color)
 end
 function modifyCost(params)
     for _,object in pairs(getObjectsWithTag("Modify Cost")) do
-        params.costs = object.call("modifyCost", params)
+        if not object.spawning then
+            params.costs = object.call("modifyCost", params)
+        end
     end
     return params.costs
 end
@@ -7127,13 +7200,23 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
                     table.insert(t, obj)
                 end
             end
+            for _,obj in pairs(getPowerZoneObjects(Player[color].getHandTransform().position)) do
+                table.insert(t, obj)
+            end
+            for _,obj in ipairs(getObjects()) do
+                local objPos = obj.getPosition()
+                local powerZonePos = Player[color].getHandTransform().position + handOffset
+                if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z then
+                    table.insert(t, obj)
+                end
+            end
         end
         objects[color] = t
     end
     for from,to in pairs(swaps) do
         local transform = tables[to].getPosition() - tables[from].getPosition()
         for _,obj in ipairs(objects[from]) do
-            if obj.interactable then
+            if obj.interactable or obj.type == "Fog" then
                 obj.setPosition(obj.getPosition() + transform)
             end
         end
@@ -7173,22 +7256,13 @@ function swapPlayerTables(a, b)
     a.setPosition(b.getPosition())
     b.setPosition(pos)
 
-    local indexA, indexB
     for i,guid in pairs(seatTables) do
         if guid == a.guid then
-            indexB = i
             seatTables[i] = b.guid
         elseif guid == b.guid then
-            indexA = i
             seatTables[i] = a.guid
         end
     end
-
-    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-    local color = playerReadyGuids[indexA].color
-    playerReadyGuids[indexA].color = playerReadyGuids[indexB].color
-    playerReadyGuids[indexB].color = color
-    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
 end
 
 function swapSeatColors(a, b)
@@ -7378,7 +7452,7 @@ function recolorPlayerPieces(fromColor, toColor)
 end
 function recolorPlayerArea(a, b)
     for _,obj in pairs(getObjects()) do
-        if obj.type == "Hand" then
+        if obj.type == "Hand" or obj.type == "Fog" then
             local data = obj.getData()
             local found = false
             if data.FogColor == a then
@@ -7389,8 +7463,8 @@ function recolorPlayerArea(a, b)
                 found = true
             end
             if found then
-                spawnObjectData({data = data})
                 obj.destruct()
+                spawnObjectData({data = data})
             end
         end
     end
@@ -7414,16 +7488,6 @@ function recolorPlayerArea(a, b)
         playerTables[b].setColorTint(colorTint)
     end
     playerTables[a], playerTables[b] = playerTables[b], playerTables[a]
-
-    local playerReadyGuids = aidBoard.getTable("playerReadyGuids")
-    for _,data in pairs(playerReadyGuids) do
-        if data.color == a then
-            data.color = b
-        elseif data.color == b then
-            data.color = a
-        end
-    end
-    aidBoard.setTable("playerReadyGuids", playerReadyGuids)
 
     updateSwapButtons()
 end
@@ -7756,6 +7820,73 @@ function getReminderXml(params)
     end
     return "<Panel rotation=\"0 0 180\" width=\"185\" height=\"185\" position=\"0 0 -11\"><Mask image=\"ReminderMask\"><Image id=\"image\""..attributesString.."/></Mask></Panel>"
 end
+function spawnMaskedReminder(color, obj, isMarker)
+    local objData = obj.getData()
+    local position = obj.getPosition()
+    local name, tags, scale
+
+    if obj.hasTag("Spirit") and objData.Name == "Custom_Tile" then
+        local spiritColor = getSpiritColor({name = obj.getName()})
+        if spiritColor then
+            color = spiritColor
+        end
+        position = position + Vector(0, 0.5, 0)
+    elseif obj.type == "Card" then
+        position = position + Vector(0, 0.02, 0)
+    else
+        return
+    end
+
+    if isMarker then
+        name = obj.getName()
+        tags = {"Mask", "Spirit Marker"}
+        scale = Vector(3.35, 3.35, 3.35)
+    else
+        name = color.."'s "..obj.getName().." Reminder"
+        tags = {"Destroy", "Mask", "Reminder Token"}
+        scale = Vector(0.9, 0.9, 0.9)
+    end
+
+    local data = {
+        Name = "Custom_Model",
+        Transform = {
+            scaleX = scale.x,
+            scaleY = scale.y,
+            scaleZ = scale.z,
+        },
+        Nickname = name,
+        Tags = tags,
+        Grid = false,
+        Snap = false,
+        CustomMesh = {
+            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+            MaterialIndex = 1,
+        },
+        LuaScript = "function onLoad() Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2) end",
+        XmlUI = getReminderXml({obj = obj}),
+    }
+
+    if Tints[color] then
+        local tokenColor
+        if Tints[color].Token then
+            tokenColor = Color.fromHex(Tints[color].Token)
+        else
+            tokenColor = Color.fromHex(Tints[color].Presence)
+        end
+        data.ColorDiffuse = {
+            r = tokenColor.r,
+            g = tokenColor.g,
+            b = tokenColor.b,
+        }
+    end
+
+    spawnObjectData({
+        data = data,
+        position = position,
+        rotation = Vector(0, 180, 0),
+    })
+end
 function applyPowerCardContextMenuItems(card)
     card.addContextMenuItem(
         "Discard (to 2nd hand)",
@@ -7779,161 +7910,33 @@ function applyPowerCardContextMenuItems(card)
         false)
     card.addContextMenuItem(
         "Get Reminder Token",
-        function(player_color)
-            local pos = card.getPosition()
-            local data = {
-                Name = "Custom_Model",
-                Transform = {
-                    posX = pos[1],
-                    posY = pos[2] + 0.02,
-                    posZ = pos[3],
-                    rotX = 0,
-                    rotY = 180,
-                    rotZ = 0,
-                    scaleX = 0.9,
-                    scaleY = 0.9,
-                    scaleZ = 0.9
-                },
-                Nickname = player_color.."'s "..card.getName().." Reminder",
-                Tags = {"Destroy", "Mask", "Reminder Token"},
-                Grid = false,
-                Snap = false,
-                CustomMesh = {
-                    MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                    DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-                    MaterialIndex = 1
-                },
-                LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                XmlUI = getReminderXml({obj = card}),
-            }
-            if Tints[player_color] then
-                local color
-                if Tints[player_color].Token then
-                    color = Color.fromHex(Tints[player_color].Token)
-                else
-                    color = Color.fromHex(Tints[player_color].Presence)
-                end
-                data.ColorDiffuse = {
-                    r = color.r,
-                    g = color.g,
-                    b = color.b
-                }
-            end
-            spawnObjectData({data = data})
-        end,
+        function(player_color) spawnMaskedReminder(player_color, card, false) end,
         false)
 end
-function spawnSpiritMarker(player_color, spirit)
-    local color = getSpiritColor({name = spirit.getName()})
-    if not color then
-        color = player_color
-    end
-    local pos = spirit.getPosition()
-    local data = {
-        Name = "Custom_Model",
-        Transform = {
-            posX = pos[1],
-            posY = pos[2] + 0.5,
-            posZ = pos[3],
-            rotX = 0,
-            rotY = 180,
-            rotZ = 0,
-            scaleX = 3.35,
-            scaleY = 3.35,
-            scaleZ = 3.35
-        },
-        Nickname = spirit.getName(),
-        Tags = {"Mask", "Spirit Marker"},
-        Grid = false,
-        Snap = false,
-        CustomMesh = {
-            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-            MaterialIndex = 1
-        },
-        LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-        XmlUI = getReminderXml({obj = spirit}),
-    }
-    if Tints[color] then
-        local tokenColor
-        if Tints[color].Token then
-            tokenColor = Color.fromHex(Tints[color].Token)
-        else
-            tokenColor = Color.fromHex(Tints[color].Presence)
-        end
-        data.ColorDiffuse = {
-            r = tokenColor.r,
-            g = tokenColor.g,
-            b = tokenColor.b
-        }
-    end
-    spawnObjectData({data = data})
-end
 function applySpiritContextMenuItems(spirit)
-    if spirit.type == "Tile" then
+    if spirit.getData().Name == "Custom_Tile" then
         spirit.addContextMenuItem(
             "Get Spirit Marker",
-            function(player_color) spawnSpiritMarker(player_color, spirit) end,
+            function(player_color) spawnMaskedReminder(player_color, spirit, true) end,
             false)
 
         spirit.addContextMenuItem(
             "Get Reminder Token",
-            function(player_color)
-                local color = getSpiritColor({name = spirit.getName()})
-                if not color then
-                    color = player_color
-                end
-                local pos = spirit.getPosition()
-                local data = {
-                    Name = "Custom_Model",
-                    Transform = {
-                        posX = pos[1],
-                        posY = pos[2] + 0.5,
-                        posZ = pos[3],
-                        rotX = 0,
-                        rotY = 180,
-                        rotZ = 0,
-                        scaleX = 0.9,
-                        scaleY = 0.9,
-                        scaleZ = 0.9
-                    },
-                    Nickname = color.."'s "..spirit.getName().." Reminder",
-                    Tags = {"Destroy", "Mask", "Reminder Token"},
-                    Grid = false,
-                    Snap = false,
-                    CustomMesh = {
-                        MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-                        MaterialIndex = 1
-                    },
-                    LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                    XmlUI = getReminderXml({obj = spirit}),
-                }
-                if Tints[color] then
-                    local tokenColor
-                    if Tints[color].Token then
-                        tokenColor = Color.fromHex(Tints[color].Token)
-                    else
-                        tokenColor = Color.fromHex(Tints[color].Presence)
-                    end
-                    data.ColorDiffuse = {
-                        r = tokenColor.r,
-                        g = tokenColor.g,
-                        b = tokenColor.b
-                    }
-                end
-                spawnObjectData({data = data})
-            end,
+            function(player_color) spawnMaskedReminder(player_color, spirit, false) end,
             false)
     end
 end
 
 function grabSpiritMarkers()
+    local hasMarker = {}
+    for _,obj in pairs(getObjectsWithTag("Spirit Marker")) do
+        hasMarker[obj.getName()] = true
+    end
     for color,data in pairs(selectedColors) do
         if data.zone then
             for _, obj in ipairs(data.zone.getObjects()) do
-                if obj.hasTag("Spirit") then
-                    spawnSpiritMarker(color, obj)
+                if obj.hasTag("Spirit") and not hasMarker[obj.getName()] then
+                    spawnMaskedReminder(color, obj, true)
                     break
                 end
             end

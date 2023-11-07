@@ -12,5 +12,5 @@ function onLoad()
 end
 function noFear(card)
     Global.setVar("noFear", true)
-    card.clearButtons()
+    Global.call("removeButtons", {obj = card, click_function = "noFear", function_owner = self})
 end

@@ -156,6 +156,10 @@ This section is meant for users who are familiar with both the tts mod and progr
 - `broadcast`: **string** - text to display when selecting spirit
   - Note: this needs to be set manually in json under **LuaScriptState** for spirit, anything set in **LuaScript** will be lost to spirit updater operation
 
+### Aspect
+- `broadcast`: **string** - text to display when selecting aspect
+  - Note: unlike the spirit broadcast, this can be set in the script
+
 ### Adversary & Scenario
 - collision workaround
   - workaround for TTS bug https://tabletopsimulator.nolt.io/770
@@ -401,3 +405,26 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `isGain`: **bool** - true if the operation is a gain, false if it's a pay
       - `isUndo`: **bool** - true if the operation is being undone (right click), false otherwise
       - `amount`: **number** - amount of energy gained/paid (before bargain deductions); positive for gain or pay
+- Trigger to modify the number of cards gained
+  - Create object and tag with "Modify Card Gain"
+  - `modifyCardGain(params)`
+    - `params`: **table** - contains data about the player and the cards played
+      - `color`: **string** - is the color of the player whose card cost is being calculated
+      - `major`: **boolean** - true if gaining majors, false if gaining minors
+      - `count`: **number** - the number of cards being gained
+    - return **number** - the number of cards to gain
+- Trigger to modify how a spirit's elements are counted
+  - Create object and tag with "Modify Elements"
+  - `modifyElements(params)`
+    - `params`: **table** - contains data about the player and their elements
+      - `color`: **string** - is the color of the player whose elements are being counted
+      - `elements`: **table** - a table of eight numbers, representing the number of each element in order, indexed by numbers 1-8 (1: Sun, 2: Moon, 3: Fire, 4: Air, 5: Water, 6: Earth, 7: Plant, 8: Animal)
+    - return **table** - the `elements` table, modified appropriately
+- Trigger to modify a elemental thresholds
+  - Create object and tag with "Modify Thresholds"
+  - `modifyThresholds(params)`
+    - `params`: **table** - contains data about the threshold
+      - `color`: **string** - is the color of the player for whom the threshold is being evaluated
+      - `object`: **object reference** - the object on which the threshold sits (e.g. spirit panel, aspect card, power card)
+      - `elements`: **table** - a table of eight numbers, representing the number of each element in order, indexed by numbers 1-8 (1: Sun, 2: Moon, 3: Fire, 4: Air, 5: Water, 6: Earth, 7: Plant, 8: Animal)
+    - return **table** - the `elements` table, modified appropriately

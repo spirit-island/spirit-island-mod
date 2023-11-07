@@ -7766,7 +7766,7 @@ function spawnMaskedReminder(color, obj, isMarker)
             maskImage = "SpiritMask"
         end
     elseif obj.type == "Card" then
-        position = position + Vector(0, 0.2, 0)
+        position = position + Vector(0, 0.02, 0)
         imageURL = getCardImageURL(obj)
         panelWidth, panelHeight, panelX, panelY = 350, 490, 31, 86
         maskImage = "CardMask"

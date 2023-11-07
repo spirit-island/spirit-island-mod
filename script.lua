@@ -7729,6 +7729,102 @@ function onObjectDestroy(obj)
         end
     end
 end
+function getCardImageURL(card)
+    local cardData = card.getData()
+    if cardData.CustomDeck then
+        for _, data in pairs(cardData.CustomDeck) do
+            if data.NumWidth == 1 and data.NumHeight == 1 then
+                return data.FaceURL
+            end
+        end
+    end
+    return nil
+end
+function spawnMaskedReminder(color, obj, isMarker)
+    local objData = obj.getData()
+    local position = obj.getPosition()
+    local imageURL, maskImage
+    local panelWidth, panelHeight, panelX, panelY
+    local name, tags, scale
+
+    if obj.hasTag("Spirit") and objData.Name == "Custom_Tile" then
+        local spiritColor = getSpiritColor({name = obj.getName()})
+        if spiritColor then
+            color = spiritColor
+        end
+
+        position = position + Vector(0, 0.5, 0)
+        imageURL = objData.CustomImage.ImageSecondaryURL
+        if obj.hasTag("Lower Spirit Image") then
+            panelWidth, panelHeight, panelX, panelY = 378, 252, -97, -33
+            maskImage = "SpiritMask2"
+        else
+            panelWidth, panelHeight, panelX, panelY = 480, 320, -127, 46
+            maskImage = "SpiritMask"
+        end
+    elseif obj.type == "Card" then
+        position = position + Vector(0, 0.2, 0)
+        imageURL = getCardImageURL(obj)
+        panelWidth, panelHeight, panelX, panelY = 350, 490, 31, 86
+        maskImage = "CardMask"
+    else
+        return
+    end
+
+    if imageURL == nil then
+        return
+    end
+
+    if isMarker then
+        name = obj.getName()
+        tags = {"Mask", "Spirit Marker"}
+        scale = Vector(3.35, 3.35, 3.35)
+    else
+        name = color.."'s "..obj.getName().." Reminder"
+        tags = {"Destroy", "Mask", "Reminder Token"}
+        scale = Vector(0.9, 0.9, 0.9)
+    end
+
+    local data = {
+        Name = "Custom_Model",
+        Transform = {
+            scaleX = scale.x,
+            scaleY = scale.y,
+            scaleZ = scale.z,
+        },
+        Nickname = name,
+        Tags = tags,
+        Grid = false,
+        Snap = false,
+        CustomMesh = {
+            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+            MaterialIndex = 1,
+        },
+        LuaScript = "function onLoad() Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2) end",
+        XmlUI = "<Panel rotation=\"0 0 180\" width=\""..panelWidth.."\" height=\""..panelHeight.."\" position=\""..panelX.." "..panelY.." -11\"><Mask image=\""..maskImage.."\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
+    }
+
+    if Tints[color] then
+        local tokenColor
+        if Tints[color].Token then
+            tokenColor = Color.fromHex(Tints[color].Token)
+        else
+            tokenColor = Color.fromHex(Tints[color].Presence)
+        end
+        data.ColorDiffuse = {
+            r = tokenColor.r,
+            g = tokenColor.g,
+            b = tokenColor.b,
+        }
+    end
+
+    spawnObjectData({
+        data = data,
+        position = position,
+        rotation = Vector(0, 180, 0),
+    })
+end
 function applyPowerCardContextMenuItems(card)
     card.addContextMenuItem(
         "Discard (to 2nd hand)",
@@ -7752,174 +7848,23 @@ function applyPowerCardContextMenuItems(card)
         false)
 
     -- Only allow reminder tokens to be generated on individual card images not deck image since mask requires that
-    local imageURL = nil
-    local cardData = card.getData()
-    if cardData.CustomDeck then
-        for _, data in pairs(cardData.CustomDeck) do
-            if data.NumWidth == 1 and data.NumHeight == 1 then
-                imageURL = data.FaceURL
-                break
-            end
-        end
-    end
-    if imageURL then
+    if getCardImageURL(card) then
         card.addContextMenuItem(
             "Get Reminder Token",
-            function(player_color)
-                local pos = card.getPosition()
-                local data = {
-                    Name = "Custom_Model",
-                    Transform = {
-                        posX = pos[1],
-                        posY = pos[2] + 0.02,
-                        posZ = pos[3],
-                        rotX = 0,
-                        rotY = 180,
-                        rotZ = 0,
-                        scaleX = 0.9,
-                        scaleY = 0.9,
-                        scaleZ = 0.9
-                    },
-                    Nickname = player_color.."'s "..card.getName().." Reminder",
-                    Tags = {"Destroy", "Mask", "Reminder Token"},
-                    Grid = false,
-                    Snap = false,
-                    CustomMesh = {
-                        MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-                        MaterialIndex = 1
-                    },
-                    LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                    XmlUI = "<Panel rotation=\"0 0 180\" width=\"350\" height=\"490\" position=\"31 86 -11\"><Mask image=\"CardMask\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
-                }
-                if Tints[player_color] then
-                    local color
-                    if Tints[player_color].Token then
-                        color = Color.fromHex(Tints[player_color].Token)
-                    else
-                        color = Color.fromHex(Tints[player_color].Presence)
-                    end
-                    data.ColorDiffuse = {
-                        r = color.r,
-                        g = color.g,
-                        b = color.b
-                    }
-                end
-                spawnObjectData({data = data})
-            end,
+            function(player_color) spawnMaskedReminder(player_color, card, false) end,
             false)
     end
 end
-function spawnSpiritMarker(player_color, spirit)
-    local color = getSpiritColor({name = spirit.getName()})
-    if not color then
-        color = player_color
-    end
-    local pos = spirit.getPosition()
-    local data = {
-        Name = "Custom_Model",
-        Transform = {
-            posX = pos[1],
-            posY = pos[2] + 0.5,
-            posZ = pos[3],
-            rotX = 0,
-            rotY = 180,
-            rotZ = 0,
-            scaleX = 3.35,
-            scaleY = 3.35,
-            scaleZ = 3.35
-        },
-        Nickname = spirit.getName(),
-        Tags = {"Mask", "Spirit Marker"},
-        Grid = false,
-        Snap = false,
-        CustomMesh = {
-            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-            MaterialIndex = 1
-        },
-        LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-    }
-    if spirit.hasTag("Lower Spirit Image") then
-        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spirit.getData().CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-    else
-        data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spirit.getData().CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-    end
-    if Tints[color] then
-        local tokenColor
-        if Tints[color].Token then
-            tokenColor = Color.fromHex(Tints[color].Token)
-        else
-            tokenColor = Color.fromHex(Tints[color].Presence)
-        end
-        data.ColorDiffuse = {
-            r = tokenColor.r,
-            g = tokenColor.g,
-            b = tokenColor.b
-        }
-    end
-    spawnObjectData({data = data})
-end
 function applySpiritContextMenuItems(spirit)
-    local spiritData = spirit.getData()
-    if spiritData.Name == "Custom_Tile" then
+    if spirit.getData().Name == "Custom_Tile" then
         spirit.addContextMenuItem(
             "Get Spirit Marker",
-            function(player_color) spawnSpiritMarker(player_color, spirit) end,
+            function(player_color) spawnMaskedReminder(player_color, spirit, true) end,
             false)
 
         spirit.addContextMenuItem(
             "Get Reminder Token",
-            function(player_color)
-                local color = getSpiritColor({name = spirit.getName()})
-                if not color then
-                    color = player_color
-                end
-                local pos = spirit.getPosition()
-                local data = {
-                    Name = "Custom_Model",
-                    Transform = {
-                        posX = pos[1],
-                        posY = pos[2] + 0.5,
-                        posZ = pos[3],
-                        rotX = 0,
-                        rotY = 180,
-                        rotZ = 0,
-                        scaleX = 0.9,
-                        scaleY = 0.9,
-                        scaleZ = 0.9
-                    },
-                    Nickname = color.."'s "..spirit.getName().." Reminder",
-                    Tags = {"Destroy", "Mask", "Reminder Token"},
-                    Grid = false,
-                    Snap = false,
-                    CustomMesh = {
-                        MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-                        DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
-                        MaterialIndex = 1
-                    },
-                    LuaScript = "function onLoad()Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2)end",
-                }
-                if spirit.hasTag("Lower Spirit Image") then
-                    data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"378\" height=\"252\" position=\"-97 -33 -11\"><Mask image=\"SpiritMask2\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-                else
-                    data.XmlUI = "<Panel rotation=\"0 0 180\" width=\"480\" height=\"320\" position=\"-127 46 -11\"><Mask image=\"SpiritMask\"><Image image=\""..spiritData.CustomImage.ImageSecondaryURL.."\"/></Mask></Panel>"
-                end
-                if Tints[color] then
-                    local tokenColor
-                    if Tints[color].Token then
-                        tokenColor = Color.fromHex(Tints[color].Token)
-                    else
-                        tokenColor = Color.fromHex(Tints[color].Presence)
-                    end
-                    data.ColorDiffuse = {
-                        r = tokenColor.r,
-                        g = tokenColor.g,
-                        b = tokenColor.b
-                    }
-                end
-                spawnObjectData({data = data})
-            end,
+            function(player_color) spawnMaskedReminder(player_color, spirit, false) end,
             false)
     end
 end
@@ -7933,7 +7878,7 @@ function grabSpiritMarkers()
         if data.zone then
             for _, obj in ipairs(data.zone.getObjects()) do
                 if obj.hasTag("Spirit") and not hasMarker[obj.getName()] then
-                    spawnSpiritMarker(color, obj)
+                    spawnMaskedReminder(color, obj, true)
                     break
                 end
             end

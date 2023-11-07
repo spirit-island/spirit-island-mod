@@ -7725,7 +7725,7 @@ function getReminderImageAttributes(params)
                 imageURL = deckData[location.field]
                 local row = 0 -- 0-indexed
                 local column = 0 -- 0-indexed
-                local deckID = tonumber(deckID)
+                deckID = tonumber(deckID)
                 if data.CardID and deckID then
                     local cardIndex = data.CardID - 100 * deckID -- 0-indexed
                     if cardIndex >= 0 and cardIndex < deckData.NumWidth * deckData.NumHeight then

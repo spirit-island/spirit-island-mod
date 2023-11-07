@@ -705,6 +705,9 @@ function onLoad(saved_data)
             hoveredObject.deal(1, playerColor, 2)
         end
     end)
+    addHotkey("Get Reminder Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        spawnMaskedReminder(playerColor, hoveredObject, false)
+    end)
 
     addHotkey("Gain Major Power", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         MajorPowerC(nil, playerColor, false)

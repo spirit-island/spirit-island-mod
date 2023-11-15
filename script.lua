@@ -7744,6 +7744,10 @@ function getCardImageURL(card)
     return nil
 end
 function spawnMaskedReminder(color, obj, isMarker)
+    if obj == nil then
+        return
+    end
+
     local objData = obj.getData()
     local position = obj.getPosition()
     local imageURL, maskImage

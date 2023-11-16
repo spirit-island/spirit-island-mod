@@ -7744,6 +7744,10 @@ function getCardImageURL(card)
     return nil
 end
 function spawnMaskedReminder(color, obj, isMarker)
+    if obj == nil then
+        return
+    end
+
     local objData = obj.getData()
     local position = obj.getPosition()
     local imageURL, maskImage
@@ -7765,7 +7769,7 @@ function spawnMaskedReminder(color, obj, isMarker)
             panelWidth, panelHeight, panelX, panelY = 480, 320, -127, 46
             maskImage = "SpiritMask"
         end
-    elseif obj.type == "Card" then
+    elseif isPowerCard({card = obj}) then
         position = position + Vector(0, 0.02, 0)
         imageURL = getCardImageURL(obj)
         panelWidth, panelHeight, panelX, panelY = 350, 490, 31, 86

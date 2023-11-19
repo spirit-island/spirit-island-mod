@@ -1228,7 +1228,7 @@ function randomAdversary(attempts)
                 params.support = w
                 local newDiff = SetupChecker.call("difficultyCheck", params)
                 if newDiff >= randomMin and newDiff <= randomMax then
-                    table.insert(combos, {i,j})
+                    table.insert(combos, {leadingLevel = i, supportingLevel = j, sortKey = v + w})
                 elseif newDiff > randomMax then
                     break
                 end
@@ -1237,14 +1237,15 @@ function randomAdversary(attempts)
         if #combos ~= 0 then
             local index
             if randomMaximizeLevel then
+                table.sort(combos, function(a, b) return a.sortKey < b.sortKey end)
                 index = #combos
             else
                 index = math.random(1,#combos)
             end
             adversaryCard = adversary
-            adversaryLevel = combos[index][1]
+            adversaryLevel = combos[index].leadingLevel
             adversaryCard2 = adversary2
-            adversaryLevel2 = combos[index][2]
+            adversaryLevel2 = combos[index].supportingLevel
             SetupChecker.call("updateDifficulty")
             printToAll("Adversaries - "..adversaryCard.getName().." "..adversaryLevel.." and "..adversaryCard2.getName().." "..adversaryLevel2, Color.SoftBlue)
         else

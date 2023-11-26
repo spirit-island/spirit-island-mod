@@ -202,7 +202,7 @@ function checkLoss()
     local beasts = getObjectsWithTag("Beasts")
     for _,obj in pairs(beasts) do
         -- Count the beast if it's not in a player area, or if it is in a player area but over the island (e.g. the Endless Dark)
-        local isOnIsland = (#obj.getZones() == 0)
+        local isOnIsland = (#obj.getZones() == 0 and not obj.hasTag("Presence"))
         if not isOnIsland then
             local hits = Physics.cast({
                 origin = obj.getBounds().center,

@@ -20,3 +20,16 @@ function doSetup(params)
     end
     return true
 end
+
+function onDestroy()
+    local lightning = Global.call("getSpirit", {name = "Lightning's Swift Strike"})
+    local json = JSON.decode(lightning.script_state)
+    if json.immense then
+        for _,data in pairs(json.trackEnergy) do
+            data.count = math.floor(data.count / 2)
+        end
+        json.immense = nil
+        lightning.script_state = JSON.encode(json)
+        lightning.setTable("trackEnergy", json.trackEnergy)
+    end
+end

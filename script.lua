@@ -2178,7 +2178,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
             for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
                     position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
-                    flip = true,
+                    rotation = Vector(0, 180, 0),
                     callback_function = CreatePickPowerButton,
                 })
                 tempCard.setLock(true)

@@ -7744,6 +7744,22 @@ function getCardImageURL(card)
     end
     return nil
 end
+function setReminderLabel(params)
+    local obj, num = params.obj, params.num
+    obj.clearButtons();
+    if num > 0 then
+        obj.createButton({
+            click_function = "nullFunc",
+            function_owner = Global,
+            label = tostring(num),
+            position = Vector(0,0.1,0),
+            font_size = 700,
+            font_color = Color.White,
+            width = 0,
+            height = 0,
+        })
+    end
+end
 function spawnMaskedReminder(color, obj, isMarker)
     if obj == nil then
         return
@@ -7754,6 +7770,7 @@ function spawnMaskedReminder(color, obj, isMarker)
     local imageURL, maskImage
     local panelWidth, panelHeight, panelX, panelY
     local name, tags, scale
+    local scriptSuffix, onLoadSuffix = "", ""
 
     if obj.hasTag("Spirit") and objData.Name == "Custom_Tile" then
         local spiritColor = getSpiritColor({name = obj.getName()})
@@ -7791,6 +7808,8 @@ function spawnMaskedReminder(color, obj, isMarker)
         name = color.."'s "..obj.getName().." Reminder"
         tags = {"Destroy", "Mask", "Reminder Token"}
         scale = Vector(0.9, 0.9, 0.9)
+        scriptSuffix = "function onNumberTyped(_, num) Global.call(\"setReminderLabel\", {obj = self, num = num}); self.script_state = tostring(num) end"
+        onLoadSuffix = "self.max_typed_number = 99; if(saved_data ~= \"\") then onNumberTyped(nil, tonumber(saved_data)) end"
     end
 
     local data = {
@@ -7809,7 +7828,7 @@ function spawnMaskedReminder(color, obj, isMarker)
             DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
             MaterialIndex = 1,
         },
-        LuaScript = "function onLoad() Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2) end",
+        LuaScript = "function onLoad(saved_data) Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2);"..onLoadSuffix.." end "..scriptSuffix,
         XmlUI = "<Panel rotation=\"0 0 180\" width=\""..panelWidth.."\" height=\""..panelHeight.."\" position=\""..panelX.." "..panelY.." -11\"><Mask image=\""..maskImage.."\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
     }
 

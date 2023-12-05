@@ -325,6 +325,9 @@ function populateReminder(player)
         return
     end
     local location = Global.call("getReminderLocation", {obj = currentSpirit})
+    if location == nil then
+        return
+    end
 
     if (location.field == "ImageURL" and currentSpirit.is_face_down) or (location.field == "ImageSecondaryURL" and not currentSpirit.is_face_down) then
         player.broadcast("Current reminder image uses the reverse of the panel. Please flip it.", Color.Red)

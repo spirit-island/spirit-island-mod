@@ -516,6 +516,9 @@ function populateReminder()
         return
     end
     local location = Global.call("getReminderLocation", {obj = currentCard})
+    if location == nil then
+        return
+    end
 
     local reminderBag = getObjectFromGUID("Reminder")
     reminderBag.takeObject{

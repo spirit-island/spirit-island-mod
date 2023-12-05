@@ -67,7 +67,7 @@ function setToLocation(params)
     local desiredY = objPos.y + 1
     self.setPosition(Vector(desiredX, desiredY, desiredZ))
 
-    local desiredSize = objBounds.size.x / location.width
+    local desiredSize = objBounds.size.x / location.width -- Use only use our width, as in getImageLocation().
     self.setScale(self.getScale():scale(desiredSize / selfSize))
 end
 

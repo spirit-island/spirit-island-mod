@@ -7741,7 +7741,7 @@ function getReminderLocation(params)
 
     -- Get it from the script state if it's there
     local state = {}
-    if obj.script_state ~= "" then
+    if obj.script_state ~= nil and obj.script_state ~= "" then
         state = JSON.decode(obj.script_state)
     end
     if state.reminder ~= nil then

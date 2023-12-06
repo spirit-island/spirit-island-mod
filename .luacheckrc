@@ -26,6 +26,7 @@ read_globals = {
     "setLookingForPlayers",
     "spawnObject",
     "spawnObjectData",
+    "spawnObjectJSON",
     "startLuaCoroutine",
 }
 -- Additionally `self` and `Hands` have mutable fields.

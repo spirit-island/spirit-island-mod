@@ -364,6 +364,7 @@ This section is meant for users who are familiar with both the tts mod and progr
 - Trigger to run when game starts:
   - Create object and place on top of spirit panel
   - Tag object with "Setup"
+  - `spiritName`: **string** - name of the spirit setup is associated with
   - `doSetup(params)`
     - `params`: **table** - contains data about player
       - `color`: **string** - is the color of the player who picked the spirit

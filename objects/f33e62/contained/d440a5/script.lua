@@ -1,3 +1,5 @@
+spiritName = "Downpour Drenches the World"
+
 local count = 0
 
 function onSave()
@@ -38,9 +40,6 @@ function onLoad(save_state)
 end
 
 function doSetup(params)
-    if not Global.getVar("gameStarted") then
-        return false
-    end
     self.UI.setAttribute("count", "text", count)
     self.UI.setAttribute("water", "text", 0)
     self.UI.setAttribute("waterPanel", "visibility", "")
@@ -65,7 +64,7 @@ function timePasses()
 end
 
 function countWater()
-    local color = Global.call("getSpiritColor", {name = "Downpour Drenches the World"})
+    local color = Global.call("getSpiritColor", {name = spiritName})
     if color == nil then
         return
     end
@@ -76,9 +75,9 @@ function countWater()
 end
 
 function energy(_, color, alt_click)
-    local spiritColor = Global.call("getSpiritColor", {name = "Downpour Drenches the World"})
+    local spiritColor = Global.call("getSpiritColor", {name = spiritName})
     if spiritColor == nil then
-        Player[color].broadcast("Unable to find Downpour Drenches the World", Color.Red)
+        Player[color].broadcast("Unable to find "..spiritName.."!", Color.Red)
         return
     end
 

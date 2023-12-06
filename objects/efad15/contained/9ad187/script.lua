@@ -1,4 +1,4 @@
-local spiritName = "Serpent Slumbering Beneath the Island"
+spiritName = "Serpent Slumbering Beneath the Island"
 
 local slumberTrack = {[0] = 5, 7, 8, 10, 11, 12, 13}
 local slumberPoints = {
@@ -26,15 +26,6 @@ function onLoad(saved_data)
 end
 
 function doSetup(params)
-    local color = params.color
-    if not Global.getVar("gameStarted") then
-        Player[color].broadcast("Please wait for the game to start before pressing this button!", Color.Red)
-        return false
-    elseif color ~= Global.call("getSpiritColor", {name = spiritName}) then
-        Player[color].broadcast("You have not picked " .. spiritName .. "!", Color.Red)
-        return false
-    end
-
     local serpent = Global.call("getSpirit", {name = spiritName})
 
     local snapPoints = serpent.getSnapPoints()

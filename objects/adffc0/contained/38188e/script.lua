@@ -1,3 +1,5 @@
+spiritName = "Ocean's Hungry Grasp"
+
 local healthCount = 0
 local autoExchange = true
 
@@ -59,9 +61,6 @@ function tryObjectEnter(enter_object)
 end
 
 function doSetup(params)
-    if not Global.getVar("gameStarted") then
-        return false
-    end
     self.UI.setAttribute("count", "text", healthCount)
     self.UI.setAttribute("players", "text", getNumPlayers())
     self.UI.setAttribute("drownPanel", "visibility", "")
@@ -88,9 +87,9 @@ function toggleExchange()
     self.UI.setAttribute("toggleExchange", "isOn", autoExchange)
 end
 function exchange(_, color, alt_click)
-    local spiritColor = Global.call("getSpiritColor", {name = "Ocean's Hungry Grasp"})
+    local spiritColor = Global.call("getSpiritColor", {name = spiritName})
     if spiritColor == nil then
-        Player[color].broadcast("Unable to find Ocean's Hungry Grasp", Color.Red)
+        Player[color].broadcast("Unable to find "..spiritName.."!", Color.Red)
         return
     end
     local numPlayers = getNumPlayers()
@@ -122,7 +121,10 @@ function exchangeAuto()
     local numPlayers = getNumPlayers()
     local energy = math.floor(healthCount / numPlayers)
     if energy == 0 then return end
-    local color = Global.call("getSpiritColor", {name = "Ocean's Hungry Grasp"})
+    local color = Global.call("getSpiritColor", {name = spiritName})
+    if color == nil then
+        return
+    end
     local success = Global.call("giveEnergy", {color=color, energy=energy, ignoreDebt=false})
     if success then
         healthCount = healthCount % numPlayers

@@ -3783,14 +3783,17 @@ function handleDoSetup(obj, color)
     end
     if not json.setupComplete then
         local spiritName = obj.getVar("spiritName")
-        local spiritColor = getSpiritColor({name = spiritName})
-        if color == spiritColor then
-            local success = obj.call("doSetup", {color=color})
-            json.setupComplete = success
-            obj.script_state = JSON.encode(json)
-        else
-            Player[color].broadcast("You have not picked "..spiritName.."!", Color.Red)
+        if spiritName then
+            local spiritColor = getSpiritColor({name = spiritName})
+            if color ~= spiritColor then
+                Player[color].broadcast("You have not picked "..spiritName.."!", Color.Red)
+                return
+            end
         end
+
+        local success = obj.call("doSetup", {color=color})
+        json.setupComplete = success
+        obj.script_state = JSON.encode(json)
     end
 end
 

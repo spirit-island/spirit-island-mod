@@ -7938,7 +7938,8 @@ function applyPowerCardContextMenuItems(card)
         false)
 end
 function applySpiritContextMenuItems(spirit)
-    if spirit.getData().Name == "Custom_Tile" then
+    local data = spirit.getData()
+    if data.Name == "Custom_Tile" then
         spirit.addContextMenuItem(
             "Get Spirit Marker",
             function(player_color) spawnMaskedReminder(player_color, spirit, true) end,
@@ -7948,7 +7949,38 @@ function applySpiritContextMenuItems(spirit)
             "Get Reminder Token",
             function(player_color) spawnMaskedReminder(player_color, spirit, false) end,
             false)
+    elseif data.Name == "Custom_Model_Bag" then
+        spirit.addContextMenuItem(
+            "Duplicate Spirit",
+            function(player_color) duplicateSpirit(spirit) end,
+            false)
     end
+end
+
+function duplicateSpirit(spirit)
+    local suffix = " Copy"
+    local newName = spirit.getName()..suffix
+    local offset = 1
+
+    local function isNameTaken()
+        for _,obj in pairs(getObjectsWithTag("Spirit")) do
+            if obj.getName() == newName then
+                return true
+            end
+        end
+        return false
+    end
+    while isNameTaken() do
+        newName = newName..suffix
+        offset = offset + 1
+    end
+
+    local json = spirit.getJSON(false)
+    json = json:gsub(spirit.getName(), newName)
+    spawnObjectJSON({
+        json = json,
+        position = spirit.getPosition() + Vector(0, 4 * offset, 0)
+    })
 end
 
 function grabSpiritMarkers()

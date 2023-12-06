@@ -1,5 +1,12 @@
 {
   "bonusEnergy": [],
+  "reminder": {
+    "field": "ImageURL",
+    "height": 1.6489,
+    "width": 2.4704,
+    "x": 0.7577,
+    "y": -0.3239
+  },
   "thresholds": [
     {
       "elements": "01000020",

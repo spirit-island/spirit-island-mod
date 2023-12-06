@@ -487,6 +487,50 @@ function populateThreshold()
     end
 end
 
+function updateReminder(player)
+    if currentCard == nil then
+        return
+    end
+    local hits = upCast(currentCard, 0.4, 0, {"Generic"}, "Reminder")
+    local location = nil
+    for _, entry in pairs(hits) do
+        location = entry.call("getImageLocation", {obj = currentCard})
+        entry.destroy()
+    end
+
+    local state = {}
+    if currentCard.script_state ~= "" then
+        state = JSON.decode(currentCard.script_state)
+    end
+    state.reminder = location
+    currentCard.script_state = JSON.encode(state)
+
+    local opString = "Updated"
+    if location == nil then
+        opString = "Reset"
+    end
+    player.broadcast(opString .. " reminder image location for " .. currentCard.getName() .. ".", Color.SoftBlue)
+end
+function populateReminder()
+    if currentCard == nil then
+        return
+    end
+    local location = Global.call("getReminderLocation", {obj = currentCard})
+    if location == nil then
+        return
+    end
+
+    local reminderBag = getObjectFromGUID("Reminder")
+    reminderBag.takeObject{
+        smooth = false,
+        callback_function = function(obj)
+             Wait.frames(function()
+                 obj.call("setToLocation", {obj = currentCard, location = location})
+             end, 1)
+        end,
+    }
+end
+
 function upCast(obj,dist,offset,types,name)
     dist = dist or 1
     offset = offset or 0

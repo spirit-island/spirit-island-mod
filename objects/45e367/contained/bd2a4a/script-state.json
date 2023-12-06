@@ -1,4 +1,11 @@
 {
+  "reminder": {
+    "field": "ImageSecondaryURL",
+    "height": 1.5111,
+    "width": 2.2679,
+    "x": 0.5119,
+    "y": 0.2908
+  },
   "thresholds": [
     {
       "elements": "02100000",

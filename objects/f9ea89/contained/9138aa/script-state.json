@@ -1,5 +1,12 @@
 {
   "broadcast": "To show your Presence in Wetlands are Sacred Sites (due to River's Domain) change that Presence to its second state.",
+  "reminder": {
+    "field": "ImageSecondaryURL",
+    "height": 1.2414,
+    "width": 1.8631,
+    "x": 0.4706,
+    "y": 0.1028
+  },
   "thresholds": [
     {
       "elements": "10002000",

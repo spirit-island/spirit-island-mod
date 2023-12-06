@@ -7733,16 +7733,93 @@ function onObjectDestroy(obj)
         end
     end
 end
-function getCardImageURL(card)
-    local cardData = card.getData()
-    if cardData.CustomDeck then
-        for _, data in pairs(cardData.CustomDeck) do
-            if data.NumWidth == 1 and data.NumHeight == 1 then
-                return data.FaceURL
-            end
-        end
+function getReminderLocation(params)
+    local obj = params.obj
+    if obj == nil then
+        return nil
     end
-    return nil
+
+    -- Get it from the script state if it's there
+    local state = {}
+    if obj.script_state ~= nil and obj.script_state ~= "" then
+        state = JSON.decode(obj.script_state)
+    end
+    if state.reminder ~= nil then
+        return state.reminder
+    end
+
+    -- Otherwise, use a sensible default
+    if obj.type == "Card" then
+        return {
+            field = "FaceURL",
+            x = -0.17,
+            y = -0.45,
+            width = 1.85,
+            height = 2.59,
+        }
+    elseif obj.hasTag("Spirit") then
+        return {
+            field = "ImageSecondaryURL",
+            x = 0.63,
+            y = -0.23,
+            width = 2.40,
+            height = 1.60,
+        }
+    else
+        return nil
+    end
+end
+function getReminderImageAttributes(params)
+    local objSize = 200 -- The height/width of UI panel to be the same size as the object
+
+    local obj = params.obj
+    if obj == nil then
+        return {image = ""}
+    end
+
+    local location = params.location
+    if location == nil then
+        location = getReminderLocation({obj = obj})
+    end
+
+    local imageURL = ""
+    local data = obj.getData()
+    if obj.type == "Card" then
+        if data.CustomDeck then
+            local deckID, deckData = next(data.CustomDeck)
+            deckID = tonumber(deckID)
+            imageURL = deckData[location.field]
+            local row = 0 -- 0-indexed
+            local column = 0 -- 0-indexed
+            if data.CardID and deckID then
+                local cardIndex = data.CardID - 100 * deckID -- 0-indexed
+                if cardIndex >= 0 and cardIndex < deckData.NumWidth * deckData.NumHeight then
+                    column = cardIndex % deckData.NumWidth
+                    row = (cardIndex - column) / deckData.NumWidth
+                end
+            end
+            location.x = location.x + ((deckData.NumWidth - 1) / 2 - column) * location.width
+            location.y = location.y - ((deckData.NumHeight - 1) / 2 - row) * location.height
+            location.width = location.width * deckData.NumWidth
+            location.height = location.height * deckData.NumHeight
+        end
+    else
+        imageURL = data.CustomImage[location.field]
+    end
+
+    return {
+        image = imageURL,
+        position = tostring(location.x * objSize).." "..tostring(location.y * objSize).." 0",
+        width = tostring(location.width * objSize),
+        height = tostring(location.height * objSize),
+    }
+end
+function getReminderXml(params)
+    local attributesString = ""
+    for key,value in pairs(getReminderImageAttributes(params)) do
+        attributesString = attributesString.." "..key.."=\""..value.."\""
+    end
+    return "<Panel rotation=\"0 0 180\" width=\"185\" height=\"185\" position=\"0 0 -11\"><Mask image=\"ReminderMask\"><Image id=\"image\""..attributesString.."/></Mask></Panel>"
 end
 function setReminderLabel(params)
     local obj, num = params.obj, params.num
@@ -7767,8 +7844,6 @@ function spawnMaskedReminder(color, obj, isMarker)
 
     local objData = obj.getData()
     local position = obj.getPosition()
-    local imageURL, maskImage
-    local panelWidth, panelHeight, panelX, panelY
     local name, tags, scale
     local scriptSuffix, onLoadSuffix = "", ""
 
@@ -7777,26 +7852,10 @@ function spawnMaskedReminder(color, obj, isMarker)
         if spiritColor then
             color = spiritColor
         end
-
         position = position + Vector(0, 0.5, 0)
-        imageURL = objData.CustomImage.ImageSecondaryURL
-        if obj.hasTag("Lower Spirit Image") then
-            panelWidth, panelHeight, panelX, panelY = 378, 252, -97, -33
-            maskImage = "SpiritMask2"
-        else
-            panelWidth, panelHeight, panelX, panelY = 480, 320, -127, 46
-            maskImage = "SpiritMask"
-        end
     elseif isPowerCard({card = obj}) then
         position = position + Vector(0, 0.02, 0)
-        imageURL = getCardImageURL(obj)
-        panelWidth, panelHeight, panelX, panelY = 350, 490, 31, 86
-        maskImage = "CardMask"
     else
-        return
-    end
-
-    if imageURL == nil then
         return
     end
 
@@ -7829,7 +7888,7 @@ function spawnMaskedReminder(color, obj, isMarker)
             MaterialIndex = 1,
         },
         LuaScript = "function onLoad(saved_data) Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2);"..onLoadSuffix.." end "..scriptSuffix,
-        XmlUI = "<Panel rotation=\"0 0 180\" width=\""..panelWidth.."\" height=\""..panelHeight.."\" position=\""..panelX.." "..panelY.." -11\"><Mask image=\""..maskImage.."\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
+        XmlUI = getReminderXml({obj = obj}),
     }
 
     if Tints[color] then
@@ -7873,14 +7932,10 @@ function applyPowerCardContextMenuItems(card)
             end
         end,
         false)
-
-    -- Only allow reminder tokens to be generated on individual card images not deck image since mask requires that
-    if getCardImageURL(card) then
-        card.addContextMenuItem(
-            "Get Reminder Token",
-            function(player_color) spawnMaskedReminder(player_color, card, false) end,
-            false)
-    end
+    card.addContextMenuItem(
+        "Get Reminder Token",
+        function(player_color) spawnMaskedReminder(player_color, card, false) end,
+        false)
 end
 function applySpiritContextMenuItems(spirit)
     if spirit.getData().Name == "Custom_Tile" then

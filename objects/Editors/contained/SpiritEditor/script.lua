@@ -296,6 +296,55 @@ function populateThreshold()
     end
 end
 
+function updateReminder(player)
+    if currentSpirit == nil then
+        return
+    end
+    local hits = upCast(currentSpirit, 0.4, 0, {"Generic"}, "Reminder")
+    local location = nil
+    for _, entry in pairs(hits) do
+        location = entry.call("getImageLocation", {obj = currentSpirit})
+        entry.destroy()
+    end
+
+    local state = {}
+    if currentSpirit.script_state ~= "" then
+        state = JSON.decode(currentSpirit.script_state)
+    end
+    state.reminder = location
+    currentSpirit.script_state = JSON.encode(state)
+
+    local opString = "Updated"
+    if location == nil then
+        opString = "Reset"
+    end
+    player.broadcast(opString .. " reminder image location for " .. currentSpirit.getName() .. ".", Color.SoftBlue)
+end
+function populateReminder(player)
+    if currentSpirit == nil then
+        return
+    end
+    local location = Global.call("getReminderLocation", {obj = currentSpirit})
+    if location == nil then
+        return
+    end
+
+    if (location.field == "ImageURL" and currentSpirit.is_face_down) or (location.field == "ImageSecondaryURL" and not currentSpirit.is_face_down) then
+        player.broadcast("Current reminder image uses the reverse of the panel. Please flip it.", Color.Red)
+        return
+    end
+
+    local reminderBag = getObjectFromGUID("Reminder")
+    reminderBag.takeObject{
+        smooth = false,
+        callback_function = function(obj)
+             Wait.frames(function()
+                 obj.call("setToLocation", {obj = currentSpirit, location = location})
+             end, 1)
+        end,
+    }
+end
+
 function makeSpirit(obj)
     obj.addTag("Spirit")
     obj.setVar("reload", true)

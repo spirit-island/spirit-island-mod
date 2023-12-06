@@ -1,0 +1,51 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 116.4151,
+    "posY": 1.0295,
+    "posZ": 54.1882,
+    "rotX": 0.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 0.9,
+    "scaleY": 0.9,
+    "scaleZ": 0.9
+  },
+  "Nickname": "Reminder",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

@@ -8029,8 +8029,23 @@ function duplicateSpirit(spirit)
         offset = offset + 1
     end
 
+    local namePattern = spirit.getName()
+    namePattern = namePattern:gsub("%%", "%%%%")
+    namePattern = namePattern:gsub("%(", "%%(")
+    namePattern = namePattern:gsub("%)", "%%)")
+    namePattern = namePattern:gsub("%.", "%%.")
+    namePattern = namePattern:gsub("%+", "%%+")
+    namePattern = namePattern:gsub("%-", "%%-")
+    namePattern = namePattern:gsub("%*", "%%*")
+    namePattern = namePattern:gsub("%?", "%%?")
+    namePattern = namePattern:gsub("%[", "%%[")
+    namePattern = namePattern:gsub("%^", "%%^")
+    namePattern = namePattern:gsub("%$", "%%$")
+
+    newName = newName:gsub("%%", "%%%%")
+
     local json = spirit.getJSON(false)
-    json = json:gsub(spirit.getName(), newName)
+    json = json:gsub(namePattern, newName)
     spawnObjectJSON({
         json = json,
         position = spirit.getPosition() + Vector(0, 4 * offset, 0)

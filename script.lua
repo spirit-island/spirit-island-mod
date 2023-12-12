@@ -5187,6 +5187,47 @@ function getSpiritColor(params)
     end
     return nil
 end
+function getPowerCard(params)
+    local deck
+    if params.major then
+        deck = getObjectFromGUID(majorPowerZone).getObjects()[1]
+    else
+        deck = getObjectFromGUID(minorPowerZone).getObjects()[1]
+    end
+
+    for _,deckCard in pairs(deck.getObjects()) do
+        if deckCard.guid == params.guid then
+            return deck.takeObject({
+                position = Vector(0, 3, 0),
+                guid = params.guid,
+            })
+        end
+    end
+
+    local card = getObjectFromGUID(params.guid)
+    if card then
+        local cardClone = card.clone()
+        cardClone.removeTag("Progression")
+        return cardClone
+    end
+
+    for _,progression in pairs(getObjectsWithTag("Progression")) do
+        if progression.type == "Deck" then
+            for _,deckCard in pairs(progression.getObjects()) do
+                if deckCard.guid == params.guid then
+                    local cardClone = spawnObjectData({
+                        data = progression.getData().ContainedObjects[deckCard.index + 1],
+                        position = Vector(0, 3, 0)
+                    })
+                    cardClone.removeTag("Progression")
+                    return cardClone
+                end
+            end
+        end
+    end
+
+    broadcastToAll("Unable to find power card with guid "..params.guid, Color.Red)
+end
 function checkPresenceLoss()
     -- Wait until after initial advance invader cards since presence should be on island by then
     if not setupCompleted then

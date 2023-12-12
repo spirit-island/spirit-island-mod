@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -50.76,
-    "posY": -0.1,
-    "posZ": 54.81,
+    "posX": -45.1212,
+    "posY": -0.755,
+    "posZ": 71.4391,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.81,
+    "scaleX": 0.6,
     "scaleY": 1.0,
-    "scaleZ": 0.81
+    "scaleZ": 0.6
   },
   "Nickname": "NORMAL G",
   "Description": "",
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879843778159452/609814EA84810D27B67E97C91E441F3D4301C4B9/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245064321/45B703C37F42B0A3F9BFE48985F463335A2F97A2/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 120.5004,
-    "posY": 2.5099,
-    "posZ": 51.4245,
+    "posX": 147.2212,
+    "posY": 1.3035,
+    "posZ": -21.6735,
     "rotX": 0.0,
-    "rotY": 180.0018,
+    "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 7.15,
+    "scaleX": 6.65,
     "scaleY": 1.0,
-    "scaleZ": 7.15
+    "scaleZ": 6.65
   },
   "Nickname": "H",
   "Description": "",
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879843778159681/F2218563E33276F8D515FC9084104E8DE3445FDC/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245065090/10EA39780A41780BC36D19AD5EAAA0D11B04E194/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

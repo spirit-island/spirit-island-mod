@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 110.4859,
-    "posY": 2.1747,
-    "posZ": 40.2498,
+    "posX": -76.1959,
+    "posY": 1.2889,
+    "posZ": 133.7957,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 7.15,
+    "scaleX": 6.65,
     "scaleY": 1.0,
-    "scaleZ": 7.15
+    "scaleZ": 6.65
   },
   "Nickname": "D",
   "Description": "",
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1895469513173050115/BDCB4D53B81F945AB7126C8D9986F15FD6642252/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245061067/615CED9200F4FC7C2C26F9277C5DDCA686D81C76/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
@@ -52,5 +52,25 @@
       "StandUp": false,
       "Stackable": false
     }
-  }
+  },
+  "AttachedDecals": [
+    {
+      "Transform": {
+        "posX": 1.7344,
+        "posY": 0.2075,
+        "posZ": 0.0926,
+        "rotX": 90.0,
+        "rotY": 179.4806,
+        "rotZ": 0.0,
+        "scaleX": 0.2696,
+        "scaleY": 0.2664,
+        "scaleZ": 1.7716
+      },
+      "CustomDecal": {
+        "Name": "Dirty 2 Boat",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
+        "Size": 1.0
+      }
+    }
+  ]
 }

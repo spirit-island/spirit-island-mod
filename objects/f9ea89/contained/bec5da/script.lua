@@ -10,7 +10,7 @@ spiritName = "River Surges in Sunlight"
 function doSetup(params)
     local color = params.color
     for _, card in pairs(Player[color].getHandObjects(1)) do
-        if card.guid == "22b2f3" then
+        if card.getName() == "Boon of Vigor" then
             card.destruct()
             Global.call("giveEnergy", {color=color, energy=1, ignoreDebt=false})
             break

@@ -161,7 +161,7 @@ alternateBoardLayoutNames = {
     {"Leaf","Snake"},
     {"Snail","Peninsula","V"},
     {"Star","Flower","Caldera"},
-    {"Power","Pi"},
+    {"Pi","Power"},
 }
 
 ---- TTS Events Section
@@ -4293,7 +4293,7 @@ boardLayouts = {
             { pos = Vector(30.63, 1.05, 10.48), rot = Vector(0.00, 0.00, 0.00) },
             { pos = Vector(5.48, 1.05, 36.71), rot = Vector(0.00, 120.00, 0.00) },
             { pos = Vector(15.51, 1.05, 19.38), rot = Vector(0.00, 120.00, 0.00) },
-            { pos = Vector(40.69, 1.05, 45.44), rot = Vector(0.00, 230.00, 0.00) },
+            { pos = Vector(40.69, 1.05, 45.44), rot = Vector(0.00, 240.00, 0.00) },
             { pos = Vector(20.68, 1.05, 45.42), rot = Vector(0.00, 240.00, 0.00) },
         },
     },

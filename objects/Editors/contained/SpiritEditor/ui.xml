@@ -1,3 +1,11 @@
+<Panel position="-64 -82 -180" width="140" height="160" rotation="0 0 180" scale="0.15 0.15 0.15">
+    <!--- Use `scale` to shrink large text, so we get crisper text -->
+    <VerticalLayout>
+        <Button color="White" id="UpdateReminder" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="updateReminder">Update Reminder</Button>
+        <Button color="White" id="PopulateReminder" resizeTextForBestFit="true" fontStyle="true" textColor="Black" onClick="populateReminder">Populate Reminder</Button>
+    </VerticalLayout>
+</Panel>
+
 <Panel position="-64 -38 -180" width="140" height="160" rotation="0 0 180" scale="0.15 0.15 0.15">
     <!--- Use `scale` to shrink large text, so we get crisper text -->
     <VerticalLayout>

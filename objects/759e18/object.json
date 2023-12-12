@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -47.681400299072266,
-    "posY": -0.10000000149011612,
-    "posZ": 56.7489013671875,
+    "posX": -47.907901763916016,
+    "posY": -0.7549999952316284,
+    "posZ": 71.43910217285156,
     "rotX": -0.0,
-    "rotY": 0.0,
+    "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.8119999766349792,
+    "scaleX": 0.6000000238418579,
     "scaleY": 1.0,
-    "scaleZ": 0.8119999766349792
+    "scaleZ": 0.6000000238418579
   },
   "Nickname": "NORMAL F",
   "Description": "",
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1895469513173050275/ABC6A538F595F82E657060369394A54A4BC97217/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245063314/89E499AE330BCA1C35FDEC9A36413FDAAD5B21CA/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

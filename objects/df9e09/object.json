@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -48.4900016784668,
-    "posY": -0.10000000149011612,
-    "posZ": 54.91999816894531,
+    "posX": -42.33449935913086,
+    "posY": -0.7549999952316284,
+    "posZ": 71.43920135498047,
     "rotX": -0.0,
-    "rotY": 0.0,
+    "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.8100000023841858,
+    "scaleX": 0.6000000238418579,
     "scaleY": 1.0,
-    "scaleZ": 0.8100000023841858
+    "scaleZ": 0.6000000238418579
   },
   "Nickname": "NORMAL H",
   "Description": "",
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879843778159681/F2218563E33276F8D515FC9084104E8DE3445FDC/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245065090/10EA39780A41780BC36D19AD5EAAA0D11B04E194/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

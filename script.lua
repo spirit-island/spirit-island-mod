@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.0.4"
+version = "4.1.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -161,7 +161,7 @@ alternateBoardLayoutNames = {
     {"Leaf","Snake"},
     {"Snail","Peninsula","V"},
     {"Star","Flower","Caldera"},
-    {"Pi"},
+    {"Pi","Power"},
 }
 
 ---- TTS Events Section
@@ -452,19 +452,10 @@ function onObjectEnterScriptingZone(zone, obj)
             checkVictory()
         end
     elseif gameStarted and obj.hasTag("Setup") then
-        -- Whether the object has already done setup is stored in its script state, to persist across save/reload
-        local json = JSON.decode(obj.script_state)
-        if not json then
-            json = {}
-        end
-        if not json.setupComplete then
-            for color,data in pairs(selectedColors) do
-                if data.zone == zone then
-                    local success = obj.call("doSetup", {color=color})
-                    json.setupComplete = success
-                    obj.script_state = JSON.encode(json)
-                    break
-                end
+        for color,data in pairs(selectedColors) do
+            if data.zone == zone then
+                handleDoSetup(obj, color)
+                break
             end
         end
     end
@@ -2178,7 +2169,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
             for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
                     position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
-                    flip = true,
+                    rotation = Vector(0, 180, 0),
                     callback_function = CreatePickPowerButton,
                 })
                 tempCard.setLock(true)
@@ -3771,16 +3762,7 @@ function runSpiritSetup()
         if data.zone then
             for _,obj in pairs(data.zone.getObjects()) do
                 if obj.hasTag("Setup") then
-                    -- Whether the object has already done setup is stored in its script state, to persist across save/reload
-                    local json = JSON.decode(obj.script_state)
-                    if not json then
-                        json = {}
-                    end
-                    if not json.setupComplete then
-                        local success = obj.call("doSetup", {color=color})
-                        json.setupComplete = success
-                        obj.script_state = JSON.encode(json)
-                    end
+                    handleDoSetup(obj, color)
                 end
 
                 if obj.hasTag("Aspect") then
@@ -3791,6 +3773,27 @@ function runSpiritSetup()
                 end
             end
         end
+    end
+end
+function handleDoSetup(obj, color)
+    -- Whether the object has already done setup is stored in its script state, to persist across save/reload
+    local json = JSON.decode(obj.script_state)
+    if not json then
+        json = {}
+    end
+    if not json.setupComplete then
+        local spiritName = obj.getVar("spiritName")
+        if spiritName then
+            local spiritColor = getSpiritColor({name = spiritName})
+            if color ~= spiritColor then
+                Player[color].broadcast("You have not picked "..spiritName.."!", Color.Red)
+                return
+            end
+        end
+
+        local success = obj.call("doSetup", {color=color})
+        json.setupComplete = success
+        obj.script_state = JSON.encode(json)
     end
 end
 
@@ -4094,194 +4097,204 @@ end
 scaleFactors = {
     -- Note that we scale the boards up more than the position, so the gaps
     -- don't increase in size.
-    [true]={name = "Large", position = 1.09, size = Vector(7.15, 1, 7.15)},
-    [false]={name = "Standard", position = 1, size = Vector(6.5, 1, 6.5)},
+    -- 'position' creates a width between the boards
+    [true]={name = "Large", position = 1, size = Vector(6.65, 1, 6.65)},
+    [false]={name = "Standard", position = 1, size = Vector(6.65, 1, 6.65)},
 }
 boardLayouts = {
     { -- 1 Board
         ["Thematic"] = {
-            { pos = Vector(-1.93, 1.08, 20.44), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(-1.93, 1.05, 20.44), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
         },
         ["Balanced"] = {
-            { pos = Vector(5.96, 1.08, 16.59), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(-5.11, 1.05, 20.91), rot = Vector(0.00, 180.00, 0.00) },
         },
     },
     { -- 2 Board
         ["Thematic"] = {
-            { pos = Vector(9.54, 1.08, 18.07), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(-10.34, 1.08, 18.04), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(9.54, 1.05, 18.07), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(-10.34, 1.05, 18.04), rot = Vector(0.00, 180.00, 0.00), board = "W" },
         },
         ["Balanced"] = {
-            { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(0.29, 1.08, 10.21), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(3.60, 1.04, 34.30), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(-6.57, 1.04, 16.92), rot = Vector(0.00, 180.00, 0.00) },
         },
         ["Top to Top"] = {
-            { pos = Vector(9.13, 1.08, 25.29), rot = Vector(0.00, 0.00, 0.00) },
-            { pos = Vector(-0.06, 1.08, 9.62), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(4.37, 1.04, 32.22), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(-5.81, 1.04, 14.92), rot = Vector(0.00, 180.00, 0.00) },
         },
         ["Coastline"] = {
-            { pos = Vector(2.54, 1.08, 10.34), rot = Vector(0.00, 240.69, 0.00) },
-            { pos = Vector(20.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
+            { pos = Vector(11.74, 1.04, 15.80), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(-8.42, 1.04, 15.83), rot = Vector(0.00, 240.00, 0.00) },
         },
         ["Opposite Shores"] = {
-            { pos = Vector(-4.22, 1.08, 18.91), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(13.78, 1.08, 19.09), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(-5.11, 1.05, 20.91), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(15.08, 1.05, 20.79), rot = Vector(0.00, 0.00, 0.00) },
         },
         ["Fragment"] = {
-            { pos = Vector(-5.20, 1.08, 18.87), rot = Vector(0.00, 90.00, 0.00) },
-            { pos = Vector(10.12, 1.08, 19.08), rot = Vector(0.00, 330.00, 0.00) },
+            { pos = Vector(6.56, 1.04, 20.06), rot = Vector(0.00, 330.00, 0.00) },
+            { pos = Vector(-10.96, 1.04, 20.09), rot = Vector(0.00, 90.00, 0.00) },
         },
         ["Inverted Fragment"] = {
-            { pos = Vector(-5.44, 1.08, 18.99), rot = Vector(0.00, 270.00, 0.00) },
-            { pos = Vector(10.12, 1.08, 19.08), rot = Vector(0.00, 330.00, 0.00) },
+            { pos = Vector(1.15, 1.04, 15.16), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(-13.87, 1.04, 24.00), rot = Vector(0.00, 300.00, 0.00) },
         },
     },
     { -- 3 Board
         ["Thematic"] = {
-            { pos = Vector(24.91, 1.08, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(5.03, 1.08, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(15.03, 1.08, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(24.91, 1.05, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(5.03, 1.05, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(15.03, 1.05, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
         },
         ["Balanced"] = {
-            { pos = Vector(2.33, 1.08, 26.80), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(2.46, 1.08, 11.54), rot = Vector(0.00, 60.00, 0.00) },
-            { pos = Vector(15.70, 1.08, 19.37), rot = Vector(0.00, 300.00, 0.00) },
+            { pos = Vector(-6.47, 1.04, 25.50), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(8.78, 1.04, 34.19), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(8.70, 1.04, 16.73), rot = Vector(0.00, 0.00, 0.00) },
         },
         ["Coastline"] = {
-            { pos = Vector(-2.47, 1.08, 10.29), rot = Vector(0.00, 240.69, 0.00) },
-            { pos = Vector(15.38, 1.08, 9.96), rot = Vector(0.00, 240.69, 0.00) },
-            { pos = Vector(33.22, 1.08, 9.58), rot = Vector(0.00, 240.69, 0.00) },
+            { pos = Vector(27.59, 1.05, 16.31), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(7.55, 1.05, 16.33), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(-12.56, 1.05, 16.38), rot = Vector(0.00, 240.00, 0.00) },
         },
         ["Sunrise"] = {
-            { pos = Vector(-6.01, 1.08, 10.63), rot = Vector(0.00, 60.00, 0.00) },
-            { pos = Vector(7.19, 1.08, 18.54), rot = Vector(0.00, 300.00, 0.00) },
-            { pos = Vector(20.60, 1.08, 10.69), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(18.28, 1.05, 15.00), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(3.30, 1.05, 23.74), rot = Vector(0.00, 300.00, 0.00) },
+            { pos = Vector(-11.87, 1.05, 14.98), rot = Vector(0.00, 60.00, 0.00) },
         },
     },
     { -- 4 Board
         ["Thematic"] = {
-            { pos = Vector(29.29, 1.08, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(9.41, 1.08, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(19.41, 1.08, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(-0.62, 1.08, 27.04), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            { pos = Vector(29.29, 1.05, 10.20), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(9.41, 1.05, 10.17), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(19.41, 1.05, 27.16), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(-0.62, 1.05, 27.04), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
         },
         ["Balanced"] = {
-            { pos = Vector(2.36, 1.08, 26.47), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(20.40, 1.08, 26.64), rot = Vector(0.00, 0.00, 0.00) },
-            { pos = Vector(-6.65, 1.08, 11.13), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(11.27, 1.08, 11.33), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(17.54, 1.04, 16.10), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(27.60, 1.04, 33.53), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(7.48, 1.04, 33.72), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(-2.58, 1.04, 16.31), rot = Vector(0.00, 180.00, 0.00) },
         },
         ["Leaf"] = {
-            { pos = Vector(7.05, 1.08, 34.30), rot = Vector(0.00, 300.27, 0.00) },
-            { pos = Vector(20.53, 1.08, 26.36), rot = Vector(0.00, 0.27, 0.00) },
-            { pos = Vector(-2.00, 1.08, 18.53), rot = Vector(0.00, 120.27, 0.00) },
-            { pos = Vector(11.39, 1.08, 10.92), rot = Vector(0.00, 0.27, 0.00) },
+            { pos = Vector(13.16, 1.04, 10.95), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(23.30, 1.04, 28.38), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(8.23, 1.04, 37.16), rot = Vector(0.00, 300.00, 0.00) },
+            { pos = Vector(-2.01, 1.04, 19.78), rot = Vector(0.00, 120.00, 0.00) },
         },
         ["Snake"] = {
-            { pos = Vector(35.36, 1.08, 37.55), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(8.26, 1.08, 22.19), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(26.45, 1.08, 22.36), rot = Vector(0.00, 0.05, 0.00) },
-            { pos = Vector(-0.73, 1.08, 7.00), rot = Vector(0.00, 0.01, 0.00) },
+            { pos = Vector(24.16, 1.04, 25.35), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(-6.05, 1.04, 8.04), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(34.12, 1.04, 42.76), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(3.97, 1.04, 25.47), rot = Vector(0.00, 180.00, 0.00) },
         },
     },
     { -- 5 Board
         ["Thematic"] = {
-            { pos = Vector(33.53, 1.08, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(13.65, 1.08, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(23.65, 1.08, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(3.62, 1.08, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(43.40, 1.08, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+            { pos = Vector(33.53, 1.05, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(13.65, 1.05, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(23.65, 1.05, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(3.62, 1.05, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            { pos = Vector(43.40, 1.05, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
         },
         ["Balanced"] = {
-            { pos = Vector(3.32, 1.08, 32.42), rot = Vector(0.00, 120.00, 0.00) },
-            { pos = Vector(25.46, 1.08, 24.68), rot = Vector(0.00, 240.00, 0.00) },
-            { pos = Vector(38.99, 1.08, 32.44), rot = Vector(0.00, 300.00, 0.00) },
-            { pos = Vector(12.18, 1.08, 16.81), rot = Vector(0.00, 120.02, 0.00) },
-            { pos = Vector(25.62, 1.08, 9.32), rot = Vector(0.00, 359.99, 0.00) },
+            { pos = Vector(23.69, 1.04, 14.13), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(8.52, 1.04, 22.96), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(38.97, 1.04, 40.27), rot = Vector(0.00, 300.00, 0.00) },
+            { pos = Vector(23.72, 1.04, 31.66), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(-1.56, 1.04, 40.37), rot = Vector(0.00, 120.00, 0.00) },
         },
         ["Snail"] = {
-            { pos = Vector(26.42, 1.08, 41.16), rot = Vector(0.00, 240.00, 0.00) },
-            { pos = Vector(13.22, 1.08, 33.29), rot = Vector(0.00, 120.02, 0.00) },
-            { pos = Vector(26.68, 1.08, 25.70), rot = Vector(0.00, 359.99, 0.00) },
-            { pos = Vector(8.72, 1.08, 10.08), rot = Vector(0.00, 60.01, 0.00) },
-            { pos = Vector(26.67, 1.08, 9.98), rot = Vector(0.00, 60.00, 0.00) },
+            { pos = Vector(26.39, 1.04, 25.76), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(11.23, 1.04, 34.59), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(26.25, 1.04, 8.29), rot = Vector(0.00, 60.00, 0.00) },
+            { pos = Vector(26.43, 1.04, 43.30), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(6.12, 1.04, 8.28), rot = Vector(0.00, 60.00, 0.00) },
         },
         ["Peninsula"] = {
-            { pos = Vector(10.81, 1.08, 32.03), rot = Vector(0.00, 150.07, 0.00) },
-            { pos = Vector(26.27, 1.08, 32.27), rot = Vector(0.00, 270.07, 0.00) },
-            { pos = Vector(18.66, 1.08, 18.81), rot = Vector(0.00, 30.09, 0.00) },
-            { pos = Vector(41.71, 1.08, 23.07), rot = Vector(0.00, 270.25, 0.00) },
-            { pos = Vector(57.12, 1.08, 13.96), rot = Vector(0.00, 270.25, 0.00) },
+            { pos = Vector(14.10, 1.04, 20.87), rot = Vector(0.00, 30.00, 0.00) },
+            { pos = Vector(5.39, 1.04, 36.09), rot = Vector(0.00, 150.00, 0.00) },
+            { pos = Vector(57.76, 1.04, 15.84), rot = Vector(0.00, 270.00, 0.00) },
+            { pos = Vector(22.90, 1.04, 36.03), rot = Vector(0.00, 270.00, 0.00) },
+            { pos = Vector(40.32, 1.04, 25.90), rot = Vector(0.00, 270.00, 0.00) },
         },
         ["V"] = {
-            { pos = Vector(0.17, 1.08, 33.75), rot = Vector(0.00, 119.99, 0.00) },
-            { pos = Vector(40.67, 1.08, 41.60), rot = Vector(0.00, 0.01, 0.00) },
-            { pos = Vector(8.96, 1.08, 18.16), rot = Vector(0.00, 119.99, 0.00) },
-            { pos = Vector(31.52, 1.08, 26.14), rot = Vector(0.00, 359.99, 0.00) },
-            { pos = Vector(22.40, 1.08, 10.67), rot = Vector(0.00, 0.01, 0.00) },
+            { pos = Vector(37.19, 1.04, 25.59), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(27.05, 1.04, 8.14), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(47.35, 1.04, 42.88), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(11.90, 1.04, 16.96), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(1.90, 1.04, 34.44), rot = Vector(0.00, 120.00, 0.00) },
         },
     },
     { -- 6 Board
         ["Thematic"] = {
-            { pos = Vector(33.53, 1.08, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(13.65, 1.08, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(23.65, 1.08, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(3.62, 1.08, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(43.40, 1.08, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
-            { pos = Vector(23.59, 1.08, 7.55), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
+            { pos = Vector(33.53, 1.05, 24.51), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            { pos = Vector(13.65, 1.05, 24.48), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            { pos = Vector(23.65, 1.05, 41.47), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            { pos = Vector(3.62, 1.05, 41.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            { pos = Vector(43.40, 1.05, 7.63), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+            { pos = Vector(23.59, 1.05, 7.55), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
         },
         ["Balanced"] = {
-            { pos = Vector(4.31, 1.08, 29.13), rot = Vector(0.00, 150.01, 0.00) },
-            { pos = Vector(19.72, 1.08, 29.32), rot = Vector(0.00, 270.00, 0.00) },
-            { pos = Vector(43.04, 1.08, 33.51), rot = Vector(0.00, 210.00, 0.00) },
-            { pos = Vector(12.25, 1.08, 15.90), rot = Vector(0.00, 30.01, 0.00) },
-            { pos = Vector(35.44, 1.08, 20.02), rot = Vector(0.00, 90.00, 0.00) },
-            { pos = Vector(50.90, 1.08, 20.26), rot = Vector(0.00, 330.00, 0.00) },
+            { pos = Vector(56.74, 1.04, 19.56), rot = Vector(0.00, 330.00, 0.00) },
+            { pos = Vector(48.05, 1.04, 34.70), rot = Vector(0.00, 210.00, 0.00) },
+            { pos = Vector(39.25, 1.04, 19.60), rot = Vector(0.00, 90.00, 0.00) },
+            { pos = Vector(13.09, 1.04, 14.65), rot = Vector(0.00, 30.00, 0.00) },
+            { pos = Vector(21.92, 1.04, 29.86), rot = Vector(0.00, 270.00, 0.00) },
+            { pos = Vector(4.39, 1.04, 29.83), rot = Vector(0.00, 150.00, 0.00) },
         },
         ["Star"] = {
-            { pos = Vector(33.19, 1.08, 40.36), rot = Vector(0.00, 330.00, 0.00) },
-            { pos = Vector(40.94, 1.08, 26.76), rot = Vector(0.00, 30.00, 0.00) },
-            { pos = Vector(33.16, 1.08, 13.18), rot = Vector(0.00, 90.00, 0.00) },
-            { pos = Vector(17.52, 1.08, 13.25), rot = Vector(0.00, 149.99, 0.00) },
-            { pos = Vector(9.71, 1.08, 26.79), rot = Vector(0.00, 210.00, 0.00) },
-            { pos = Vector(17.50, 1.08, 40.33), rot = Vector(0.00, 269.99, 0.00) },
+            { pos = Vector(22.53, 1.04, 43.81), rot = Vector(0.00, 270.00, 0.00) },
+            { pos = Vector(13.69, 1.04, 28.71), rot = Vector(0.00, 210.00, 0.00) },
+            { pos = Vector(22.26, 1.04, 13.49), rot = Vector(0.00, 150.00, 0.00) },
+            { pos = Vector(39.74, 1.04, 13.40), rot = Vector(0.00, 90.00, 0.00) },
+            { pos = Vector(48.60, 1.04, 28.43), rot = Vector(0.00, 30.00, 0.00) },
+            { pos = Vector(40.04, 1.04, 43.60), rot = Vector(0.00, 330.00, 0.00) },
         },
         ["Flower"] = {
-            { pos = Vector(22.76, 1.08, 45.03), rot = Vector(0.00, 162.62, 0.00) },
-            { pos = Vector(33.80, 1.08, 24.36), rot = Vector(0.00, 282.64, 0.00) },
-            { pos = Vector(46.88, 1.08, 12.07), rot = Vector(0.00, 282.62, 0.00) },
-            { pos = Vector(18.70, 1.08, 27.55), rot = Vector(0.00, 162.65, 0.00) },
-            { pos = Vector(23.48, 1.08, 12.88), rot = Vector(0.00, 42.62, 0.00) },
-            { pos = Vector(6.30, 1.08, 7.69), rot = Vector(0.00, 42.61, 0.00) },
+            { pos = Vector(6.32, 1.04, 8.26), rot = Vector(0.00, 45.00, 0.00) },
+            { pos = Vector(26.59, 1.04, 49.73), rot = Vector(0.00, 165.00, 0.00) },
+            { pos = Vector(52.48, 1.04, 11.55), rot = Vector(0.00, 285.00, 0.00) },
+            { pos = Vector(25.83, 1.04, 13.42), rot = Vector(0.00, 45.00, 0.00) },
+            { pos = Vector(38.29, 1.04, 25.78), rot = Vector(0.00, 285.00, 0.00) },
+            { pos = Vector(21.36, 1.04, 30.34), rot = Vector(0.00, 165.00, 0.00) },
         },
         ["Caldera"] = {
-            { pos = Vector(-0.20, 1.08, 31.44), rot = Vector(0.00, 120.42, 0.00) },
-            { pos = Vector(13.16, 1.08, 39.17), rot = Vector(0.00, 240.44, 0.00) },
-            { pos = Vector(31.10, 1.08, 38.86), rot = Vector(0.00, 240.43, 0.00) },
-            { pos = Vector(8.54, 1.08, 15.76), rot = Vector(0.00, 120.46, 0.00) },
-            { pos = Vector(31.18, 1.08, 23.41), rot = Vector(0.00, 0.43, 0.00) },
-            { pos = Vector(21.95, 1.08, 8.04), rot = Vector(0.00, 0.42, 0.00) },
+            { pos = Vector(43.43, 1.03, 24.82), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(18.13, 1.03, 16.19), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(23.22, 1.03, 42.43), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(8.10, 1.03, 33.61), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(33.34, 1.03, 7.42), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(43.37, 1.03, 42.33), rot = Vector(0.00, 240.00, 0.00) },
         },
     },
     { -- 7 Board
         ["Thematic"] = {},
         ["Balanced"] = {
-            { pos = Vector(-2.92, 1.08, 26.63), rot = Vector(0.00, 140.00, 0.00) },
-            { pos = Vector(12.33, 1.08, 29.40), rot = Vector(0.00, 260.00, 0.00) },
-            { pos = Vector(7.18, 1.08, 14.98), rot = Vector(0.00, 20.00, 0.00) },
-            { pos = Vector(29.16, 1.08, 23.23), rot = Vector(0.00, 260.00, 0.00) },
-            { pos = Vector(46.29, 1.08, 16.93), rot = Vector(0.00, 80.00, 0.00) },
-            { pos = Vector(51.43, 1.08, 31.42), rot = Vector(0.00, 200.00, 0.00) },
-            { pos = Vector(61.44, 1.08, 19.74), rot = Vector(0.00, 320.00, 0.00) },
+            { pos = Vector(51.80, 1.05, 46.82), rot = Vector(0.07, 180.00, 359.64) },
+            { pos = Vector(51.78, 1.05, 29.25), rot = Vector(359.65, 60.00, 0.12) },
+            { pos = Vector(66.96, 1.05, 38.01), rot = Vector(0.27, 299.99, 0.24) },
+            { pos = Vector(31.62, 1.05, 29.39), rot = Vector(0.00, 239.99, 0.00) },
+            { pos = Vector(-3.63, 1.05, 20.60), rot = Vector(359.93, 120.02, 359.97) },
+            { pos = Vector(11.55, 1.05, 11.83), rot = Vector(358.60, 359.99, 359.91) },
+            { pos = Vector(11.60, 1.05, 29.37), rot = Vector(0.00, 240.00, 0.00) },
         },
         ["Pi"] = {
-            { pos = Vector(5.50, 1.06, 8.62), rot = Vector(0.00, 0.00, 0.00) },
-            { pos = Vector(14.48, 1.07, 24.01), rot = Vector(0.00, 0.00, 0.00) },
-            { pos = Vector(14.36, 1.09, 39.34), rot = Vector(0.00, 240.00, 0.00) },
-            { pos = Vector(32.18, 1.05, 39.30), rot = Vector(0.00, 240.00, 0.00) },
-            { pos = Vector(50.00, 1.05, 39.22), rot = Vector(0.00, 240.00, 0.00) },
-            { pos = Vector(50.02, 1.05, 23.67), rot = Vector(0.00, 180.00, 0.00) },
-            { pos = Vector(41.01, 1.05, 8.27), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(55.04, 1.05, 44.78), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(34.91, 1.05, 44.84), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(14.87, 1.05, 44.93), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(44.97, 1.05, 9.82), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(54.97, 1.05, 27.29), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(14.76, 1.05, 27.46), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(4.54, 1.05, 10.14), rot = Vector(0.00, 180.00, 0.00) },
+        },
+        ["Power"] = {
+            { pos = Vector(60.79, 1.05, 27.79), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(40.59, 1.05, 27.94), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(30.63, 1.05, 10.48), rot = Vector(0.00, 0.00, 0.00) },
+            { pos = Vector(5.48, 1.05, 36.71), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(15.51, 1.05, 19.38), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(40.69, 1.05, 45.44), rot = Vector(0.00, 240.00, 0.00) },
+            { pos = Vector(20.68, 1.05, 45.42), rot = Vector(0.00, 240.00, 0.00) },
         },
     },
 }
@@ -7733,16 +7746,109 @@ function onObjectDestroy(obj)
         end
     end
 end
-function getCardImageURL(card)
-    local cardData = card.getData()
-    if cardData.CustomDeck then
-        for _, data in pairs(cardData.CustomDeck) do
-            if data.NumWidth == 1 and data.NumHeight == 1 then
-                return data.FaceURL
-            end
-        end
+function getReminderLocation(params)
+    local obj = params.obj
+    if obj == nil then
+        return nil
     end
-    return nil
+
+    -- Get it from the script state if it's there
+    local state = {}
+    if obj.script_state ~= nil and obj.script_state ~= "" then
+        state = JSON.decode(obj.script_state)
+    end
+    if state.reminder ~= nil then
+        return state.reminder
+    end
+
+    -- Otherwise, use a sensible default
+    if obj.type == "Card" then
+        return {
+            field = "FaceURL",
+            x = -0.17,
+            y = -0.45,
+            width = 1.85,
+            height = 2.59,
+        }
+    elseif obj.hasTag("Spirit") then
+        return {
+            field = "ImageSecondaryURL",
+            x = 0.63,
+            y = -0.23,
+            width = 2.40,
+            height = 1.60,
+        }
+    else
+        return nil
+    end
+end
+function getReminderImageAttributes(params)
+    local objSize = 200 -- The height/width of UI panel to be the same size as the object
+
+    local obj = params.obj
+    if obj == nil then
+        return {image = ""}
+    end
+
+    local location = params.location
+    if location == nil then
+        location = getReminderLocation({obj = obj})
+    end
+
+    local imageURL = ""
+    local data = obj.getData()
+    if obj.type == "Card" then
+        if data.CustomDeck then
+            local deckID, deckData = next(data.CustomDeck)
+            deckID = tonumber(deckID)
+            imageURL = deckData[location.field]
+            local row = 0 -- 0-indexed
+            local column = 0 -- 0-indexed
+            if data.CardID and deckID then
+                local cardIndex = data.CardID - 100 * deckID -- 0-indexed
+                if cardIndex >= 0 and cardIndex < deckData.NumWidth * deckData.NumHeight then
+                    column = cardIndex % deckData.NumWidth
+                    row = (cardIndex - column) / deckData.NumWidth
+                end
+            end
+            location.x = location.x + ((deckData.NumWidth - 1) / 2 - column) * location.width
+            location.y = location.y - ((deckData.NumHeight - 1) / 2 - row) * location.height
+            location.width = location.width * deckData.NumWidth
+            location.height = location.height * deckData.NumHeight
+        end
+    else
+        imageURL = data.CustomImage[location.field]
+    end
+
+    return {
+        image = imageURL,
+        position = tostring(location.x * objSize).." "..tostring(location.y * objSize).." 0",
+        width = tostring(location.width * objSize),
+        height = tostring(location.height * objSize),
+    }
+end
+function getReminderXml(params)
+    local attributesString = ""
+    for key,value in pairs(getReminderImageAttributes(params)) do
+        attributesString = attributesString.." "..key.."=\""..value.."\""
+    end
+    return "<Panel rotation=\"0 0 180\" width=\"185\" height=\"185\" position=\"0 0 -11\"><Mask image=\"ReminderMask\"><Image id=\"image\""..attributesString.."/></Mask></Panel>"
+end
+function setReminderLabel(params)
+    local obj, num = params.obj, params.num
+    obj.clearButtons();
+    if num > 0 then
+        obj.createButton({
+            click_function = "nullFunc",
+            function_owner = Global,
+            label = tostring(num),
+            position = Vector(0,0.1,0),
+            font_size = 700,
+            font_color = Color.White,
+            width = 0,
+            height = 0,
+        })
+    end
 end
 function spawnMaskedReminder(color, obj, isMarker)
     if obj == nil then
@@ -7751,35 +7857,18 @@ function spawnMaskedReminder(color, obj, isMarker)
 
     local objData = obj.getData()
     local position = obj.getPosition()
-    local imageURL, maskImage
-    local panelWidth, panelHeight, panelX, panelY
     local name, tags, scale
+    local scriptSuffix, onLoadSuffix = "", ""
 
     if obj.hasTag("Spirit") and objData.Name == "Custom_Tile" then
         local spiritColor = getSpiritColor({name = obj.getName()})
         if spiritColor then
             color = spiritColor
         end
-
         position = position + Vector(0, 0.5, 0)
-        imageURL = objData.CustomImage.ImageSecondaryURL
-        if obj.hasTag("Lower Spirit Image") then
-            panelWidth, panelHeight, panelX, panelY = 378, 252, -97, -33
-            maskImage = "SpiritMask2"
-        else
-            panelWidth, panelHeight, panelX, panelY = 480, 320, -127, 46
-            maskImage = "SpiritMask"
-        end
     elseif isPowerCard({card = obj}) then
         position = position + Vector(0, 0.02, 0)
-        imageURL = getCardImageURL(obj)
-        panelWidth, panelHeight, panelX, panelY = 350, 490, 31, 86
-        maskImage = "CardMask"
     else
-        return
-    end
-
-    if imageURL == nil then
         return
     end
 
@@ -7791,6 +7880,8 @@ function spawnMaskedReminder(color, obj, isMarker)
         name = color.."'s "..obj.getName().." Reminder"
         tags = {"Destroy", "Mask", "Reminder Token"}
         scale = Vector(0.9, 0.9, 0.9)
+        scriptSuffix = "function onNumberTyped(_, num) Global.call(\"setReminderLabel\", {obj = self, num = num}); self.script_state = tostring(num) end"
+        onLoadSuffix = "self.max_typed_number = 99; if(saved_data ~= \"\") then onNumberTyped(nil, tonumber(saved_data)) end"
     end
 
     local data = {
@@ -7809,8 +7900,8 @@ function spawnMaskedReminder(color, obj, isMarker)
             DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
             MaterialIndex = 1,
         },
-        LuaScript = "function onLoad() Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2) end",
-        XmlUI = "<Panel rotation=\"0 0 180\" width=\""..panelWidth.."\" height=\""..panelHeight.."\" position=\""..panelX.." "..panelY.." -11\"><Mask image=\""..maskImage.."\"><Image image=\""..imageURL.."\"/></Mask></Panel>",
+        LuaScript = "function onLoad(saved_data) Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2);"..onLoadSuffix.." end "..scriptSuffix,
+        XmlUI = getReminderXml({obj = obj}),
     }
 
     if Tints[color] then
@@ -7854,17 +7945,14 @@ function applyPowerCardContextMenuItems(card)
             end
         end,
         false)
-
-    -- Only allow reminder tokens to be generated on individual card images not deck image since mask requires that
-    if getCardImageURL(card) then
-        card.addContextMenuItem(
-            "Get Reminder Token",
-            function(player_color) spawnMaskedReminder(player_color, card, false) end,
-            false)
-    end
+    card.addContextMenuItem(
+        "Get Reminder Token",
+        function(player_color) spawnMaskedReminder(player_color, card, false) end,
+        false)
 end
 function applySpiritContextMenuItems(spirit)
-    if spirit.getData().Name == "Custom_Tile" then
+    local data = spirit.getData()
+    if data.Name == "Custom_Tile" then
         spirit.addContextMenuItem(
             "Get Spirit Marker",
             function(player_color) spawnMaskedReminder(player_color, spirit, true) end,
@@ -7874,7 +7962,38 @@ function applySpiritContextMenuItems(spirit)
             "Get Reminder Token",
             function(player_color) spawnMaskedReminder(player_color, spirit, false) end,
             false)
+    elseif data.Name == "Custom_Model_Bag" then
+        spirit.addContextMenuItem(
+            "Duplicate Spirit",
+            function(player_color) duplicateSpirit(spirit) end,
+            false)
     end
+end
+
+function duplicateSpirit(spirit)
+    local suffix = " Copy"
+    local newName = spirit.getName()..suffix
+    local offset = 1
+
+    local function isNameTaken()
+        for _,obj in pairs(getObjectsWithTag("Spirit")) do
+            if obj.getName() == newName then
+                return true
+            end
+        end
+        return false
+    end
+    while isNameTaken() do
+        newName = newName..suffix
+        offset = offset + 1
+    end
+
+    local json = spirit.getJSON(false)
+    json = json:gsub(spirit.getName(), newName)
+    spawnObjectJSON({
+        json = json,
+        position = spirit.getPosition() + Vector(0, 4 * offset, 0)
+    })
 end
 
 function grabSpiritMarkers()

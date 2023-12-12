@@ -1,5 +1,12 @@
 {
   "broadcast": "Drag invaders into drowned bag to automatically generate fear and for easy energy exchange",
+  "reminder": {
+    "field": "ImageSecondaryURL",
+    "height": 1.2698,
+    "width": 1.9057,
+    "x": 0.5089,
+    "y": -0.0727
+  },
   "thresholds": [
     {
       "elements": "01012000",

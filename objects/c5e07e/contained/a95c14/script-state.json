@@ -1,5 +1,12 @@
 {
   "broadcast": "To prevent Invaders/Dahan healing during Time Passes, lock that Invader/Dahan (if Invaders/Dahan are stacked on top of each other, you only need to lock the bottom piece in the stack).",
+  "reminder": {
+    "field": "ImageSecondaryURL",
+    "height": 1.3468,
+    "width": 2.0213,
+    "x": 0.5145,
+    "y": -0.0614
+  },
   "thresholds": [
     {
       "elements": "01021000",

@@ -69,14 +69,14 @@
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.6625000238418579,
+        "posY": 0.0,
         "posZ": 0.0,
         "rotX": 0.0,
         "rotY": 345.0,
         "rotZ": 0.0,
-        "scaleX": 0.5382999777793884,
-        "scaleY": 2.2850000858306885,
-        "scaleZ": 0.5382999777793884
+        "scaleX": 0.46129998564720154,
+        "scaleY": 5.472799777984619,
+        "scaleZ": 0.46129998564720154
       },
       "Nickname": "",
       "Description": "",
@@ -106,7 +106,7 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1895469513173049851/20D6983DD3B1A5CA2D62BFE1AA209D90E1058D85/",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245056835/6AD4A0AD972B5E1E9F068D15564B26CAB74316A5/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
@@ -123,19 +123,19 @@
       "AttachedDecals": [
         {
           "Transform": {
-            "posX": 0.08410000056028366,
-            "posY": 0.2337999939918518,
-            "posZ": -0.014800000004470348,
+            "posX": -0.0348999984562397,
+            "posY": 0.2126999944448471,
+            "posZ": -0.018799999728798866,
             "rotX": 90.0,
-            "rotY": 195.99960327148438,
+            "rotY": 195.4998016357422,
             "rotZ": 0.0,
-            "scaleX": 1.864799976348877,
-            "scaleY": 1.8460999727249146,
-            "scaleZ": 2.2565999031066895
+            "scaleX": 3.511399984359741,
+            "scaleY": 3.4697000980377197,
+            "scaleZ": 1.5226999521255493
           },
           "CustomDecal": {
-            "Name": "a",
-            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/",
+            "Name": "Dirty 2 Boat",
+            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
             "Size": 1.0
           }
         }

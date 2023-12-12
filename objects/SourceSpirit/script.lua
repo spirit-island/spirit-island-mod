@@ -415,38 +415,41 @@ function setupSpirit(obj, player_color)
             if found then
                 local powerCard = deck.takeObject({
                     position = spos + Vector(0, 0.05 + i, 14),
-                    rotation = Vector(0,180,180),
+                    rotation = Vector(0, 180, 180),
                     guid = card[1],
                 })
                 powerCard.addTag("Progression")
             else
-                for _,progression in pairs(getObjectsWithTag("Progression")) do
-                    if progression.type == "Deck" then
-                        for _,deckCard in pairs(progression.getObjects()) do
-                            if deckCard.guid == card[1] then
-                                local powerCard = spawnObjectData({
-                                    data = progression.getData().ContainedObjects[deckCard.index + 1],
-                                    position = Vector(0, 3, 0)
-                                })
-                                powerCard.setPositionSmooth(spos + Vector(0, 0.05 + i, 14))
-                                found = true
+                local powerCard = getObjectFromGUID(card[1])
+                if powerCard then
+                    local powerCardClone = powerCard.clone()
+                    powerCardClone.setPositionSmooth(spos + Vector(0, 0.05 + i, 14))
+                    powerCardClone.setRotation(Vector(0, 180, 180))
+                    powerCardClone.addTag("Progression")
+                    found = true
+                else
+                    for _,progression in pairs(getObjectsWithTag("Progression")) do
+                        if progression.type == "Deck" then
+                            for _,deckCard in pairs(progression.getObjects()) do
+                                if deckCard.guid == card[1] then
+                                    local powerCard = spawnObjectData({
+                                        data = progression.getData().ContainedObjects[deckCard.index + 1],
+                                        position = Vector(0, 3, 0),
+                                        rotation = Vector(0, 180, 180)
+                                    })
+                                    powerCard.setPositionSmooth(spos + Vector(0, 0.05 + i, 14))
+                                    found = true
+                                    break
+                                end
+                            end
+                            if found then
                                 break
                             end
                         end
-                        if found then
-                            break
-                        end
-                    elseif progression.type == "Card" then
-                        if progression.guid == card[1] then
-                            local powerCard = progression.clone()
-                            powerCard.setPositionSmooth(spos + Vector(0, 0.05 + i, 14))
-                            found = true
-                            break
-                        end
                     end
-                end
-                if not found then
-                    broadcastToAll("Unable to find power progression card with guid "..card[1].." for "..obj.getName(), Color.Red)
+                    if not found then
+                        broadcastToAll("Unable to find power progression card with guid "..card[1].." for "..obj.getName(), Color.Red)
+                    end
                 end
             end
         end

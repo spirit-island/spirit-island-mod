@@ -165,6 +165,10 @@ function RandomAspect(params)
                     enabled = false
                 elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
                     enabled = false
+                elseif tag == "Requires Isolate" and not Global.call("usingIsolate") then
+                    enabled = false
+                elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
+                    enabled = false
                 end
             end
             if enabled then
@@ -185,6 +189,10 @@ function RandomAspect(params)
                     enabled = false
                 elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
                     enabled = false
+                elseif tag == "Requires Isolate" and not Global.call("usingIsolate") then
+                    enabled = false
+                elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
+                    enabled = false
                 end
             end
             if enabled then
@@ -201,6 +209,10 @@ function RandomAspect(params)
         if obj.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
             count = 0
         elseif obj.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
+            count = 0
+        elseif obj.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
+            count = 0
+        elseif obj.hasTag("Requires Vitality") and not Global.call("usingVitality") then
             count = 0
         end
         local index = math.random(0,count)
@@ -540,6 +552,10 @@ function handleAspect(spirit, deck, color)
                     enabled = false
                 elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
                     enabled = false
+                elseif tag == "Requires Isolate" and not Global.call("usingIsolate") then
+                    enabled = false
+                elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
+                    enabled = false
                 end
             end
             if enabled then
@@ -557,6 +573,10 @@ function handleAspect(spirit, deck, color)
                     enabled = false
                 elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
                     enabled = false
+                elseif tag == "Requires Isolate" and not Global.call("usingIsolate") then
+                    enabled = false
+                elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
+                    enabled = false
                 end
             end
             if not enabled then
@@ -567,6 +587,10 @@ function handleAspect(spirit, deck, color)
         if deck.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
             deck.destruct()
         elseif deck.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
+            deck.destruct()
+        elseif deck.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
+            deck.destruct()
+        elseif deck.hasTag("Requires Vitality") and not Global.call("usingVitality") then
             deck.destruct()
         end
     end

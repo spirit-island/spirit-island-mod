@@ -840,6 +840,7 @@ function updateRequiredContent()
     requiredContent("Requires Tokens", Global.call("usingSpiritTokens"))
     requiredContent("Requires Badlands", Global.call("usingBadlands"))
     requiredContent("Requires Isolate", Global.call("usingIsolate"))
+    requiredContent("Requires Vitality", Global.call("usingVitality"))
 end
 function requiredContent(tag, enabled)
     local colors = {}

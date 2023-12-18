@@ -23,6 +23,7 @@
   - "Requires Tokens"
   - "Requires Badlands"
   - "Requires Isolate"
+  - "Requires Vitality"
 - Add snap points to presence track(s) where presence should be setup
   - https://kb.tabletopsimulator.com/game-tools/snap-point-tool/
   - Note: Make sure spirit panel is locked first

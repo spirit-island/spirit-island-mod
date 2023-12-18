@@ -1,0 +1,59 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -24.8992,
+    "posY": 1.0326,
+    "posZ": 73.5216,
+    "rotX": -0.0002,
+    "rotY": 90.0107,
+    "rotZ": 0.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Intensify",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Aspect",
+    "Requires Badlands",
+    "Requires Tokens"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 257800,
+  "SidewaysCard": true,
+  "CustomDeck": {
+    "2578": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044126440714839138/03380795DB556D52F1AFD4D694ED417D2E2CA6E2/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044126440714839762/E706CCC3C9AB5F25F7EB910660FA9A8A5FC48DB3/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

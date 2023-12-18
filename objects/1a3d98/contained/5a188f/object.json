@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 112.6723,
+    "posY": 2.3262,
+    "posZ": 76.0442,
+    "rotX": 0.0,
+    "rotY": 180.0186,
+    "rotZ": 0.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Smite the Land with Fulmination",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 248400,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2484": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863004555/721C0A55B4CDD994C830100BD30990D3D6C8C45C/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863004788/E93A0AE96213FC7A68F0CB184E496AB521BD78BF/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

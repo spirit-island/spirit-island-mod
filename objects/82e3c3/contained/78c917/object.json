@@ -1,0 +1,59 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 7.5234,
+    "posY": 1.0326,
+    "posZ": 84.7503,
+    "rotX": -0.0008,
+    "rotY": 179.9893,
+    "rotZ": -0.0002,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Transforming",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Aspect",
+    "Requires Badlands",
+    "Requires Tokens"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 248800,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2488": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863012272/E6B5D627001922FD3C0A58B77E573A79D3277762/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863012951/B5F9C81BF1DBDF8E02FF327678C1F4C6BD7E29A9/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

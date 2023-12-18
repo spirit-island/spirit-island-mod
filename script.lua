@@ -3807,6 +3807,9 @@ function CompleteSetup()
         for i=Player[color].getHandCount(), 1, -1 do
             for _, obj in pairs(Player[color].getHandObjects(i)) do
                 if obj.hasTag("Aspect") then
+                    if obj.hasTag("OnDestroy") then
+                        obj.call("OnDestroy", {color = color})
+                    end
                     obj.destruct()
                 end
             end

@@ -1,0 +1,59 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -25.8255,
+    "posY": 1.0326,
+    "posZ": 83.1856,
+    "rotX": 0.0001,
+    "rotY": 90.0145,
+    "rotZ": 0.0006,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Spreading Hostility",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Aspect",
+    "Requires Badlands",
+    "Setup"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 257500,
+  "SidewaysCard": true,
+  "CustomDeck": {
+    "2575": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044126440714828931/CBBA490292DE7B2444D3F3B14A824BF5BD83F5D1/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044126440714829530/234882056661DA61039A25269E03E9E0D79C28EC/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

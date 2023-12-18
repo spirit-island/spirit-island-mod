@@ -1,9 +1,9 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": 102.5,
+    "posX": 105.0,
     "posY": 0.8,
-    "posZ": 44.0,
+    "posZ": 23.0,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -12,7 +12,7 @@
     "scaleZ": 2.49
   },
   "Nickname": "",
-  "Description": "Jagged Earth Expansion",
+  "Description": "Nature Incarnate Expansion",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -27,7 +27,7 @@
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomPDF": {
-    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/1461933996974582482/41F2C9C6278FE8ABBAC2B5468F26BF4955F7CD70/",
+    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/2044121537045325022/82A16292797B1FA3CB8B487CDFAC0A85A37EDD41/",
     "PDFPassword": "",
     "PDFPage": 0,
     "PDFPageOffset": 0

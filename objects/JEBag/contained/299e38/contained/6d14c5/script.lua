@@ -1,14 +1,19 @@
 function onLoad()
-    self.createButton({
-        click_function = "grabReminder",
-        function_owner = self,
-        label          = "Grab Reminder",
-        position       = Vector(0,0.3,1.43),
-        width          = 1100,
-        scale          = Vector(0.65,1,0.65),
-        height         = 160,
-        font_size      = 150
-    })
+    for _,obj in pairs(getObjectFromGUID("JEBag").getObjects()) do
+        if obj.guid == "ec5eb3" then
+            self.createButton({
+                click_function = "grabReminder",
+                function_owner = self,
+                label          = "Grab Reminder",
+                position       = Vector(0,0.3,1.43),
+                width          = 1100,
+                scale          = Vector(0.65,1,0.65),
+                height         = 160,
+                font_size      = 150
+            })
+            break
+        end
+    end
 end
 function grabReminder(card)
     getObjectFromGUID("JEBag").takeObject({

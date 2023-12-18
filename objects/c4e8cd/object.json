@@ -1,7 +1,7 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 18.0,
+    "posX": 8.89,
     "posY": 0.8636,
     "posZ": 15.0,
     "rotX": 0.0,
@@ -11,8 +11,8 @@
     "scaleY": 1.0,
     "scaleZ": 1.9243
   },
-  "Nickname": "Second Wave",
-  "Description": "Branch & Claw Expansion",
+  "Nickname": "Destiny Unfolds",
+  "Description": "Nature Incarnate",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -33,20 +33,20 @@
   "MeasureMovement": false,
   "DragSelectable": true,
   "Autoraise": true,
-  "Sticky": false,
+  "Sticky": true,
   "Tooltip": true,
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 114900,
+  "CardID": 256900,
   "SidewaysCard": false,
   "CustomDeck": {
-    "1149": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517249175/86D863C00F6B69FEB7FA898EA6E291B4B7557742/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517248314/31F1338A04CC95777AEA4862A49AFAED93709C23/",
+    "2569": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863100306/D10A23C17111DEFD07894FCA35016C371FABFC33/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863100706/2EC4BAED7180FD8A1C3D7DB5B5A022A6BD15C1BA/",
       "NumWidth": 1,
       "NumHeight": 1,
-      "BackIsHidden": false,
+      "BackIsHidden": true,
       "UniqueBack": false,
       "Type": 0
     }

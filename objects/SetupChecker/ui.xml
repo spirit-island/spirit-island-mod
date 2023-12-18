@@ -227,7 +227,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelExploratory" visibility="Invisible" width="1150" height="860" position="-1450 -1900 14">
+<Panel id="panelExploratory" visibility="Invisible" width="1150" height="860" position="-1450 -2100 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
@@ -450,13 +450,13 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelAdversaryScenario" visibility="Invisible" width="1150" height="1830" position="-1450 -60 14">
+<Panel id="panelAdversaryScenario" visibility="Invisible" width="1150" height="1960" position="-1450 -60 14">
     <VerticalLayout>
         <TableLayout>
             <Row class="header">
                 <Cell columnSpan="2"><Text text="Adversaries &amp; Scenarios"/></Cell>
             </Row>
-            <Row preferredHeight="1730"/>
+            <Row preferredHeight="1960"/>
         </TableLayout>
     </VerticalLayout>
 </Panel>

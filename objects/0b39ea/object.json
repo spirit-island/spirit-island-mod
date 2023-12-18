@@ -1,18 +1,18 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 18.0,
+    "posX": -0.2228,
     "posY": 0.8636,
     "posZ": 15.0,
     "rotX": 0.0,
     "rotY": 180.0,
-    "rotZ": 180.0,
-    "scaleX": 1.9243,
+    "rotZ": 0.0,
+    "scaleX": 1.9278,
     "scaleY": 1.0,
-    "scaleZ": 1.9243
+    "scaleZ": 1.9278
   },
-  "Nickname": "Second Wave",
-  "Description": "Branch & Claw Expansion",
+  "Nickname": "Habsburg-Mining",
+  "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -24,6 +24,9 @@
     "g": 0.7132,
     "b": 0.7132
   },
+  "Tags": [
+    "Requires Tokens"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
@@ -38,15 +41,15 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 114900,
+  "CardID": 257100,
   "SidewaysCard": false,
   "CustomDeck": {
-    "1149": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517249175/86D863C00F6B69FEB7FA898EA6E291B4B7557742/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517248314/31F1338A04CC95777AEA4862A49AFAED93709C23/",
+    "2571": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906862931300/4DA86C08259758962169BD4699BEF1DADA5D896C/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906862931595/4A485DD74964BBAE266E38677B2F2B04C59752BE/",
       "NumWidth": 1,
       "NumHeight": 1,
-      "BackIsHidden": false,
+      "BackIsHidden": true,
       "UniqueBack": false,
       "Type": 0
     }

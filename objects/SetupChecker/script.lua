@@ -28,7 +28,7 @@ scenarios = {
     ["Despicable Theft"] = "ec49d4",
     ["Varied Terrains"] = "64caee",
     ["A Diversity of Spirits"] = "3d1ba3",
-    ["Surges of Colonization"] = "6fd785",
+    ["Surges of Colonization (Normal Surges)"] = "6fd785",
     ["Surges of Colonization (Larger Surges)"] = "91570e",
     ["Destiny Unfolds"] = "c4e8cd",
 }

@@ -1,18 +1,18 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 8.89,
-    "posY": 0.8636,
-    "posZ": 21.0,
+    "posX": 32.0745,
+    "posY": 2.3262,
+    "posZ": 33.1661,
     "rotX": 0.0,
-    "rotY": 180.0,
-    "rotZ": 180.0,
-    "scaleX": 1.9243,
+    "rotY": 90.0,
+    "rotZ": 0.0,
+    "scaleX": 1.1,
     "scaleY": 1.0,
-    "scaleZ": 1.9243
+    "scaleZ": 1.1
   },
-  "Nickname": "Surges of Colonization (Normal Surges)",
-  "Description": "Nature Incarnate",
+  "Nickname": "",
+  "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -24,12 +24,9 @@
     "g": 0.7132,
     "b": 0.7132
   },
-  "Tags": [
-    "Time Passes"
-  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
-  "Locked": true,
+  "Locked": false,
   "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
@@ -41,12 +38,12 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 256800,
-  "SidewaysCard": false,
+  "CardID": 256600,
+  "SidewaysCard": true,
   "CustomDeck": {
-    "2568": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863102386/41A1A9DD9211E16CEF479E594DAEFF4FB4C3C483/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863103775/7E8A7D76199E1C151BAB3A7683CDFF8832F2068D/",
+    "2566": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863091016/F1F6338683AFD0C0C22EC9D6F6EC36B2B3BD8B12/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863090620/6AD7A7819DDE77DF95022731382ECB1ED62FE8D9/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": true,

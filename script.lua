@@ -1121,8 +1121,7 @@ function usingIsolate()
     return expansions["Jagged Earth"] or expansions["Feather & Flame"]
 end
 function usingVitality()
-    -- TODO: change me to check for nature incarnate expansion later
-    return SetupChecker.getVar("optionalNatureIncarnateSetup")
+    return expansions["Nature Incarnate"]
 end
 function randomScenario()
     if difficulty > SetupChecker.getVar("randomMax") then

@@ -465,6 +465,9 @@
                 <Cell><Toggle id="spiritHorizons" onValueChanged="toggleSpirit" isOn="true" tooltip="Include horizons spirits in randomizer">Horizons</Toggle></Cell>
             </Row>
             <Row>
+                <Cell><Toggle id="spiritNI" onValueChanged="toggleSpirit" isOn="true" tooltip="Include nature incarnate spirits in randomizer">NI</Toggle></Cell>
+            </Row>
+            <Row>
                 <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
             </Row>
         </TableLayout>

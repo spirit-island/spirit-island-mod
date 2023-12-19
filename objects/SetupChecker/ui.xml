@@ -47,13 +47,6 @@
                     <Dropdown id="leadingAdversary" recurse="leadingAdversary" onValueChanged="toggleLeadingAdversary">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
-                        <Option>Prussia</Option>
-                        <Option>England</Option>
-                        <Option>Sweden</Option>
-                        <Option>France</Option>
-                        <Option>Habsburg-Livestock</Option>
-                        <Option>Russia</Option>
-                        <Option>Scotland</Option>
                     </Dropdown>
                 </Cell>
                 <Cell><Slider id="leadingLevelSlider" enabled="false" minValue="0" maxValue="6" value="0" onValueChanged="toggleLeadingLevel"/></Cell>
@@ -67,13 +60,6 @@
                     <Dropdown id="supportingAdversary" recurse="supportingAdversary" onValueChanged="toggleSupportingAdversary">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
-                        <Option>Prussia</Option>
-                        <Option>England</Option>
-                        <Option>Sweden</Option>
-                        <Option>France</Option>
-                        <Option>Habsburg-Livestock</Option>
-                        <Option>Russia</Option>
-                        <Option>Scotland</Option>
                     </Dropdown>
                 </Cell>
                 <Cell><Slider id="supportingLevelSlider" enabled="false" minValue="0" maxValue="6" value="0" onValueChanged="toggleSupportingLevel"/></Cell>
@@ -87,19 +73,6 @@
                     <Dropdown id="scenario" recurse="scenario" onValueChanged="toggleScenario">
                         <Option selected="true">None</Option>
                         <Option>Random</Option>
-                        <Option>Blitz</Option>
-                        <Option>Guard the Isle's Heart</Option>
-                        <Option>Rituals of Terror</Option>
-                        <Option>Dahan Insurrection</Option>
-                        <Option>Ward the Shores</Option>
-                        <Option>Powers Long Forgotten</Option>
-                        <Option>Rituals of the Destroying Flame</Option>
-                        <Option>Second Wave</Option>
-                        <Option>The Great River</Option>
-                        <Option>Elemental Invocation</Option>
-                        <Option>Despicable Theft</Option>
-                        <Option>Varied Terrains</Option>
-                        <Option>A Diversity of Spirits</Option>
                     </Dropdown>
                 </Cell>
                 <Cell recurse="boardLayout">

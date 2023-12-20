@@ -60,5 +60,25 @@
       "FresnelStrength": 0.0
     },
     "CastShadows": true
-  }
+  },
+  "AttachedDecals": [
+    {
+      "Transform": {
+        "posX": 0.0,
+        "posY": -0.054,
+        "posZ": 0.0,
+        "rotX": 90.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 3.0,
+        "scaleY": 3.0,
+        "scaleZ": 3.0
+      },
+      "CustomDecal": {
+        "Name": "Sacred Site",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/",
+        "Size": 1.0
+      }
+    }
+  ]
 }

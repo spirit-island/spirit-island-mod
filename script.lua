@@ -285,7 +285,7 @@ function onObjectEnterContainer(container, object)
         if container.getQuantity() == 2 then
             -- This will trigger twice when a chip container is formed
             -- Not sure of a way around it, but with setDecals it's harmless
-            makeSacredSite(container)
+            makeSacredSite({obj = container})
         end
         local playerColor = object.getName():sub(1,-12)
         local labelColor = fontColor(Color[playerColor])
@@ -329,24 +329,52 @@ function GetSacredSiteUrl(params)
         return "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
     end
 end
-function makeSacredSite(obj)
-    local color = string.sub(obj.getName(),1,-12)
+function makeSacredSite(params)
+    local color = params.color
+    if not color then
+        color = string.sub(params.obj.getName(),1,-12)
+    end
+    if selectedColors[color] == nil then
+        color = getSpiritColor({name = params.obj.getDescription()})
+    end
+
     local url = GetSacredSiteUrl({color = color})
     if url == "" then
         return
     end
-    obj.setDecals({
+
+    local position
+    local rotation
+    if params.obj.getName() == "Incarna" then
+        if params.obj.is_face_down then
+            position = {0, 0.054, 0}
+            rotation = {-90, 180, 0}
+        else
+            position = {0, -0.054, 0}
+            rotation = {90, 180, 0}
+        end
+    else
+        position = {0, -0.14, 0}
+        rotation = {90, 180, 0}
+
+        local objRot = params.obj.getRotation()
+        objRot.z = 0.0
+        params.obj.setRotation(objRot)
+    end
+
+    if not color then
+        color = "Grey"
+    end
+
+    params.obj.setDecals({
         {
             name     = color.."'s Sacred Site",
             url      = url,
-            position = {0, -0.14, 0},
-            rotation = {90, 180, 0},
+            position = position,
+            rotation = rotation,
             scale    = {3, 3, 3},
         },
     })
-    local rotation = obj.getRotation()
-    rotation.z = 0.0
-    obj.setRotation(rotation)
 end
 function makeLabel(obj, count, thickness, offset, labelColor, backdrop)
     if obj.getQuantity() <= count then
@@ -7478,7 +7506,7 @@ function recolorPlayerPieces(fromColor, toColor)
                         obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         if obj.getDecals() then
-                            makeSacredSite(obj)
+                            makeSacredSite({obj = obj})
                         end
                         local originalState = obj.getStateId()
                         if originalState == 1 then
@@ -7489,7 +7517,7 @@ function recolorPlayerPieces(fromColor, toColor)
                         obj.setColorTint(a.presenceTint)
                         obj.setName(newname)
                         if obj.getDecals() then
-                            makeSacredSite(obj)
+                            makeSacredSite({obj = obj})
                         end
                         _ = obj.setState(originalState)
                     end
@@ -7523,6 +7551,9 @@ function recolorPlayerPieces(fromColor, toColor)
             end
             for _,obj in ipairs(b.incarna) do
                 obj.setColorTint(a.presenceTint)
+                if obj.getDecals() then
+                    makeSacredSite({obj = obj})
+                end
             end
         end
     end, 1)

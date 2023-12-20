@@ -444,6 +444,9 @@ function setupSpirit(obj, player_color)
             else
                 if ob.getName() == "Incarna" then
                     ob.setColorTint(Color.fromHex(playerTints.Presence))
+                    if ob.getDecals() then
+                        Global.call("makeSacredSite", {obj = ob, color = player_color})
+                    end
                 end
                 ob.setPositionSmooth(spos + Vector(-placed*xPadding, 0.05, 10))
                 placed = placed + 1

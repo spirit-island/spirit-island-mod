@@ -1,38 +1,9 @@
 expansions = {}
-adversaries = {
-    ["None"] = "",
-    ["Random"] = "",
-    ["Prussia"] = "dd3d47",
-    ["England"] = "b765cf",
-    ["Sweden"] = "f114f8",
-    ["France"] = "e8f3e3",
-    ["Habsburg-Livestock"] = "1d9bcd",
-    ["Russia"] = "1ea4cf",
-    ["Scotland"] = "37a592",
-    ["Habsburg-Mining"] = "0b39ea",
-}
-numAdversaries = 7
+adversaries = {}
+numAdversaries = 0
 allAdversaries = {}
-scenarios = {
-    ["None"] = "",
-    ["Random"] = "",
-    ["Blitz"] = "1b39da",
-    ["Guard the Isle's Heart"] = "04397d",
-    ["Rituals of Terror"] = "7ac013",
-    ["Dahan Insurrection"] = "ee90ad",
-    ["Ward the Shores"] = "bd528e",
-    ["Powers Long Forgotten"] = "ca88f0",
-    ["Rituals of the Destroying Flame"] = "a69e8c",
-    ["The Great River"] = "5a95bc",
-    ["Elemental Invocation"] = "b8b521",
-    ["Despicable Theft"] = "ec49d4",
-    ["Varied Terrains"] = "64caee",
-    ["A Diversity of Spirits"] = "3d1ba3",
-    ["Surges of Colonization (Normal Surges)"] = "6fd785",
-    ["Surges of Colonization (Larger Surges)"] = "91570e",
-    ["Destiny Unfolds"] = "c4e8cd",
-}
-numScenarios = 12
+scenarios = {}
+numScenarios = 0
 allScenarios = {}
 
 pickedSpirits = {}

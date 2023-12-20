@@ -433,7 +433,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelSpirit" visibility="Invisible" width="550" height="1400" position="2725 1500 10">
+<Panel id="panelSpirit" visibility="Invisible" width="550" height="1400" position="2725 1000 10">
     <VerticalLayout>
         <TableLayout rowBackgroundColor="clear">
             <Row class="header">

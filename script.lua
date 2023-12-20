@@ -5914,7 +5914,13 @@ function setupPlayerArea(params)
             if aspect.script_state ~= "" then
                 local thresholds = aspect.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(aspect, elements, thresholds, {0.16, 0.16, 1})
+                    local scale
+                    if aspect.hasTag("Wide") then
+                        scale = {0.08, 0.16, 1}
+                    else
+                        scale = {0.16, 0.16, 1}
+                    end
+                    addThresholdDecals(aspect, elements, thresholds, scale)
                 end
             end
         end

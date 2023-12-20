@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 26.0303,
+    "posY": 1.0762,
+    "posZ": 82.701,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Coordinated Raid",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 254100,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2541": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863125491/C29C1BE3CB510B627003DCD5191557C5AADE7E99/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863122650/54A71789E8B935C77597FDCC3754DC24FC8B5835/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

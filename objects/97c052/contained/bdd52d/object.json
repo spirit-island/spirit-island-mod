@@ -1,0 +1,130 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 26.7878,
+    "posY": 1.3115,
+    "posZ": 82.2379,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Hearth-Vigil",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2,
+    "g": 0.1608,
+    "b": 0.1529
+  },
+  "Tags": [
+    "Moderate",
+    "NI",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863120950/B92AFD491A9079431472263116E46CC022873674/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863121283/5335FC17FCF0E050EAD73BF9713AEE9FDCB5466B/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.2484,
+        "y": 0.2,
+        "z": -0.1428
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4846,
+        "y": 0.2,
+        "z": -0.1428
+      }
+    },
+    {
+      "Position": {
+        "x": -0.723,
+        "y": 0.2,
+        "z": -0.1428
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9597,
+        "y": 0.2,
+        "z": -0.1428
+      }
+    },
+    {
+      "Position": {
+        "x": -1.196,
+        "y": 0.2,
+        "z": -0.1427
+      }
+    },
+    {
+      "Position": {
+        "x": -0.248,
+        "y": 0.2,
+        "z": -0.456
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4843,
+        "y": 0.2,
+        "z": -0.456
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7223,
+        "y": 0.2,
+        "z": -0.456
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9584,
+        "y": 0.2,
+        "z": -0.4559
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1962,
+        "y": 0.2,
+        "z": -0.4559
+      }
+    }
+  ]
+}

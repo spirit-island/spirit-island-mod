@@ -1,0 +1,130 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 4.6046,
+    "posY": 1.2182,
+    "posZ": 72.8155,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Towering Roots of the Jungle",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2,
+    "g": 0.1608,
+    "b": 0.1529
+  },
+  "Tags": [
+    "Moderate",
+    "NI",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863130407/672E5884361DE4E2E06DD01F26D5DAD6BA67DB28/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863130775/41BD26A4BE18ADF4FD165A5653075907B026AD29/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0365,
+        "y": 0.2,
+        "z": -0.1832
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2742,
+        "y": 0.2,
+        "z": -0.1831
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5106,
+        "y": 0.2,
+        "z": -0.1831
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7494,
+        "y": 0.2,
+        "z": -0.1831
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9857,
+        "y": 0.2,
+        "z": -0.1831
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0385,
+        "y": 0.2,
+        "z": 0.1337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2757,
+        "y": 0.2,
+        "z": 0.1337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5119,
+        "y": 0.2,
+        "z": 0.1337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7505,
+        "y": 0.2,
+        "z": 0.1337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9863,
+        "y": 0.2,
+        "z": 0.1337
+      }
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 73.9577,
+    "posY": 1.2649,
+    "posZ": 94.0188,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 179.9842,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Relentless Gaze of the Sun",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2,
+    "g": 0.1608,
+    "b": 0.1529
+  },
+  "Tags": [
+    "High",
+    "NI",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863151775/D524A37B1AB0E4E53B60E92893DAF5D686B1804B/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863152108/EAFC1AAE00AFCE55793A0E117DA5DB43FB8136EA/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0445,
+        "y": 0.2,
+        "z": -0.347
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2822,
+        "y": 0.2,
+        "z": -0.347
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5192,
+        "y": 0.2,
+        "z": -0.347
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7553,
+        "y": 0.2,
+        "z": -0.347
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9931,
+        "y": 0.2,
+        "z": -0.347
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2304,
+        "y": 0.2,
+        "z": -0.0337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9923,
+        "y": 0.2,
+        "z": -0.0337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7556,
+        "y": 0.2,
+        "z": -0.0337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5192,
+        "y": 0.2,
+        "z": -0.0337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2812,
+        "y": 0.2,
+        "z": -0.0337
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0439,
+        "y": 0.2,
+        "z": -0.0344
+      }
+    }
+  ]
+}

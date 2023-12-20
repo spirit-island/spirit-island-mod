@@ -1,0 +1,137 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -28.7401,
+    "posY": 1.2182,
+    "posZ": 72.9974,
+    "rotX": 0.0001,
+    "rotY": 180.0055,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Ember-Eyed Behemoth",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2,
+    "g": 0.1608,
+    "b": 0.1529
+  },
+  "Tags": [
+    "Moderate",
+    "NI",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863109489/E2455B878359D18B81DEABF808A7C6D73EAB2DEF/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863109878/576E28581251B2A42E32485F67667B932C8C5368/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.9918,
+        "y": 0.2,
+        "z": -0.1421
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2295,
+        "y": 0.2,
+        "z": -0.1421
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7491,
+        "y": 0.2,
+        "z": -0.1433
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0362,
+        "y": 0.2,
+        "z": -0.141
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2757,
+        "y": 0.2,
+        "z": -0.1419
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5111,
+        "y": 0.2,
+        "z": -0.1421
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0375,
+        "y": 0.2,
+        "z": 0.1486
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2739,
+        "y": 0.2,
+        "z": 0.1488
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5134,
+        "y": 0.2,
+        "z": 0.1484
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7492,
+        "y": 0.2,
+        "z": 0.1484
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9874,
+        "y": 0.2,
+        "z": 0.1475
+      }
+    }
+  ]
+}

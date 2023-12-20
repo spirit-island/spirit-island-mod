@@ -45,7 +45,7 @@
     254900,
     255000,
     255100,
-    260300,
+    255200,
     255300,
     255400,
     255500,
@@ -99,7 +99,7 @@
       "UniqueBack": false,
       "Type": 0
     },
-    "2603": {
+    "2552": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863067937/78D2C2757E53BA424E00A622E595AB950A559E21/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
       "NumWidth": 1,

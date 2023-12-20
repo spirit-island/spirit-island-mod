@@ -43,10 +43,10 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": true,
-  "CardID": 257500,
+  "CardID": 260300,
   "SidewaysCard": true,
   "CustomDeck": {
-    "2575": {
+    "2603": {
       "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044126440714828931/CBBA490292DE7B2444D3F3B14A824BF5BD83F5D1/",
       "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044126440714829530/234882056661DA61039A25269E03E9E0D79C28EC/",
       "NumWidth": 1,

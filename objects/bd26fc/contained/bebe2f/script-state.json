@@ -1,0 +1,136 @@
+{
+  "bonusEnergy": [],
+  "reminder": {
+    "field": "ImageSecondaryURL",
+    "height": 1.2409,
+    "width": 1.8632,
+    "x": 0.4783,
+    "y": 0.0466
+  },
+  "thresholds": [
+    {
+      "elements": "10000010",
+      "position": {
+        "x": 0.34,
+        "y": 0,
+        "z": 0.62
+      }
+    },
+    {
+      "elements": "10000120",
+      "position": {
+        "x": 0.34,
+        "y": 0,
+        "z": 0.72
+      }
+    },
+    {
+      "elements": "20000130",
+      "position": {
+        "x": 0.34,
+        "y": 0,
+        "z": 0.82
+      }
+    },
+    {
+      "elements": "30000240",
+      "position": {
+        "x": 0.34,
+        "y": 0,
+        "z": 0.92
+      }
+    },
+    {
+      "elements": "11000020",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.62
+      }
+    },
+    {
+      "elements": "21000030",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.72
+      }
+    },
+    {
+      "elements": "22000040",
+      "position": {
+        "x": -0.58,
+        "y": 0,
+        "z": 0.82
+      }
+    }
+  ],
+  "trackElements": [
+    {
+      "elements": "00000010",
+      "position": {
+        "x": -0.75,
+        "y": 0,
+        "z": 0.13
+      }
+    },
+    {
+      "elements": "00000010",
+      "position": {
+        "x": -0.75,
+        "y": 0,
+        "z": -0.18
+      }
+    },
+    {
+      "elements": "10000000",
+      "position": {
+        "x": -0.28,
+        "y": 0,
+        "z": 0.13
+      }
+    },
+    {
+      "elements": "00000100",
+      "position": {
+        "x": -0.27,
+        "y": 0,
+        "z": -0.18
+      }
+    }
+  ],
+  "trackEnergy": [
+    {
+      "count": 6,
+      "position": {
+        "x": -0.99,
+        "y": 0,
+        "z": -0.18
+      }
+    },
+    {
+      "count": 4,
+      "position": {
+        "x": -0.51,
+        "y": 0,
+        "z": -0.18
+      }
+    },
+    {
+      "count": 2,
+      "position": {
+        "x": -0.04,
+        "y": 0,
+        "z": -0.18
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": 0.19,
+        "y": 0,
+        "z": -0.18
+      }
+    }
+  ]
+}

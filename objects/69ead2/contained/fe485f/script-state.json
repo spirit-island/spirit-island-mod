@@ -1,0 +1,121 @@
+{
+  "broadcast": "Hover over the information object for info about how to use the automated impending system.",
+  "bonusEnergy": [],
+  "reminder": {
+    "field": "ImageSecondaryURL",
+    "height": 1.284,
+    "width": 1.9279,
+    "x": 0.5089,
+    "y": -0.0844
+  },
+  "thresholds": [
+    {
+      "elements": "00000100",
+      "position": {
+        "x": 0.36,
+        "y": 0,
+        "z": 0.47
+      }
+    },
+    {
+      "elements": "01000100",
+      "position": {
+        "x": 0.36,
+        "y": 0,
+        "z": 0.6
+      }
+    },
+    {
+      "elements": "01000200",
+      "position": {
+        "x": 0.36,
+        "y": 0,
+        "z": 0.73
+      }
+    },
+    {
+      "elements": "02000300",
+      "position": {
+        "x": 0.36,
+        "y": 0,
+        "z": 0.85
+      }
+    },
+    {
+      "elements": "00200300",
+      "position": {
+        "x": -0.5,
+        "y": 0,
+        "z": 0.53
+      }
+    },
+    {
+      "elements": "00300400",
+      "position": {
+        "x": -0.5,
+        "y": 0,
+        "z": 0.68
+      }
+    },
+    {
+      "elements": "00400500",
+      "position": {
+        "x": -0.5,
+        "y": 0,
+        "z": 0.86
+      }
+    }
+  ],
+  "trackElements": [
+    {
+      "elements": "00000100",
+      "position": {
+        "x": -0.76,
+        "y": 0,
+        "z": -0.1
+      }
+    },
+    {
+      "elements": "01100000",
+      "position": {
+        "x": -0.28,
+        "y": 0,
+        "z": -0.1
+      }
+    }
+  ],
+  "trackEnergy": [
+    {
+      "count": 4,
+      "position": {
+        "x": -1.23,
+        "y": 0,
+        "z": -0.41
+      }
+    },
+    {
+      "count": 3,
+      "position": {
+        "x": -0.76,
+        "y": 0,
+        "z": -0.41
+      }
+    },
+    {
+      "count": 2,
+      "position": {
+        "x": -0.28,
+        "y": 0,
+        "z": -0.41
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": 0.19,
+        "y": 0,
+        "z": -0.41
+      }
+    }
+  ]
+}

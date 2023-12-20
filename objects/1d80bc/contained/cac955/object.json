@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 79.8055,
+    "posY": 13.4835,
+    "posZ": 100.8453,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Boon of Corrupted Blood",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 256500,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2565": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863188083/67403FBFC3BB0B113E0B26C7F17E3C32E490D55F/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863185529/7B31DF5EA19975D64D7DD74488F74FC9669B28FC/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

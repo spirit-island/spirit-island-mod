@@ -1,0 +1,144 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 42.6398,
+    "posY": 1.3236,
+    "posZ": 32.3169,
+    "rotX": 0.0001,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Dances Up Earthquakes",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2,
+    "g": 0.1608,
+    "b": 0.1529
+  },
+  "Tags": [
+    "NI",
+    "Spirit",
+    "Very High"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863192952/A1645ADE4D33AAD2703B8FCD5D6D9DA7B6529F8F/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863193918/5E895A747978E536F65B32519CD264C814A52FE9/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0435,
+        "y": 0.2,
+        "z": -0.413
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2806,
+        "y": 0.2,
+        "z": -0.413
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5184,
+        "y": 0.2,
+        "z": -0.413
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7557,
+        "y": 0.2,
+        "z": -0.413
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9909,
+        "y": 0.2,
+        "z": -0.413
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2293,
+        "y": 0.2,
+        "z": -0.413
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0445,
+        "y": 0.2,
+        "z": -0.1
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2813,
+        "y": 0.2,
+        "z": -0.1
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5198,
+        "y": 0.2,
+        "z": -0.1
+      }
+    },
+    {
+      "Position": {
+        "x": -0.756,
+        "y": 0.2,
+        "z": -0.1
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9927,
+        "y": 0.2,
+        "z": -0.1
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2301,
+        "y": 0.2,
+        "z": -0.1
+      }
+    }
+  ]
+}

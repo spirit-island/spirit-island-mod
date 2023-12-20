@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 90.2814,
+    "posY": 26.6401,
+    "posZ": 102.1362,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.53,
+    "scaleY": 1.0,
+    "scaleZ": 1.53
+  },
+  "Nickname": "Swallowed by the Endless Dark",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 258500,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2585": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863145550/C34F3EDE357AA8FFD95955948FB3733471F01097/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863143938/6AABDA262F19AEA4542B80CCEBF13DC14AF54F41/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

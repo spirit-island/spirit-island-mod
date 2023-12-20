@@ -1,0 +1,123 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 53.8158,
+    "posY": 17.9786,
+    "posZ": 102.3898,
+    "rotX": 0.0211,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Wounded Waters Bleeding",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2,
+    "g": 0.1608,
+    "b": 0.1529
+  },
+  "Tags": [
+    "High",
+    "NI",
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863174367/1FA661CFAA833CB5A5FBA2CC6724AF1B973B77D3/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2044121906863174727/38ED2C2BA761383EB155DEDFAC0AF742DED49BC3/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0481,
+        "y": 0.2,
+        "z": -0.0676
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2839,
+        "y": 0.2,
+        "z": -0.0676
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5219,
+        "y": 0.2,
+        "z": -0.0676
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7579,
+        "y": 0.2,
+        "z": 0.0828
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9938,
+        "y": 0.2,
+        "z": 0.0828
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2325,
+        "y": 0.2,
+        "z": 0.0828
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7589,
+        "y": 0.2,
+        "z": -0.2164
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9949,
+        "y": 0.2,
+        "z": -0.2164
+      }
+    },
+    {
+      "Position": {
+        "x": -1.232,
+        "y": 0.2,
+        "z": -0.2164
+      }
+    }
+  ]
+}

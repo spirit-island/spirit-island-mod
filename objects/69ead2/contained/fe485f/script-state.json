@@ -1,5 +1,4 @@
 {
-  "broadcast": "Hover over the information object for info about how to use the automated impending system.",
   "bonusEnergy": [],
   "reminder": {
     "field": "ImageSecondaryURL",
@@ -12,7 +11,7 @@
     {
       "elements": "00000100",
       "position": {
-        "x": 0.36,
+        "x": 0.37,
         "y": 0,
         "z": 0.47
       }
@@ -20,7 +19,7 @@
     {
       "elements": "01000100",
       "position": {
-        "x": 0.36,
+        "x": 0.37,
         "y": 0,
         "z": 0.6
       }
@@ -28,7 +27,7 @@
     {
       "elements": "01000200",
       "position": {
-        "x": 0.36,
+        "x": 0.37,
         "y": 0,
         "z": 0.73
       }
@@ -36,15 +35,15 @@
     {
       "elements": "02000300",
       "position": {
-        "x": 0.36,
+        "x": 0.37,
         "y": 0,
-        "z": 0.85
+        "z": 0.87
       }
     },
     {
       "elements": "00200300",
       "position": {
-        "x": -0.5,
+        "x": -0.49,
         "y": 0,
         "z": 0.53
       }
@@ -52,7 +51,7 @@
     {
       "elements": "00300400",
       "position": {
-        "x": -0.5,
+        "x": -0.49,
         "y": 0,
         "z": 0.68
       }
@@ -60,7 +59,7 @@
     {
       "elements": "00400500",
       "position": {
-        "x": -0.5,
+        "x": -0.49,
         "y": 0,
         "z": 0.86
       }

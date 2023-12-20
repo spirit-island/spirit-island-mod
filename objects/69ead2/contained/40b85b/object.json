@@ -42,7 +42,7 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": true,
-  "CardID": 256000,
+  "CardID": 260000,
   "SidewaysCard": false,
   "CustomDeck": {
     "2600": {

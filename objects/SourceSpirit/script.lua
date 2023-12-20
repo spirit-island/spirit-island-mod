@@ -442,6 +442,9 @@ function setupSpirit(obj, player_color)
                     Wait.frames(function() ob.deal(1, player_color) end, 1)
                 end
             else
+                if ob.getName() == "Incarna" then
+                    ob.setColorTint(Color.fromHex(playerTints.Presence))
+                end
                 ob.setPositionSmooth(spos + Vector(-placed*xPadding, 0.05, 10))
                 placed = placed + 1
             end

@@ -7394,6 +7394,7 @@ function recolorPlayerPieces(fromColor, toColor)
             tokenTint = colorTint,
             objects = {},
             markers = {},
+            incarna = {},
             pattern = color .. "'s (.*)",
         }
     end
@@ -7445,12 +7446,22 @@ function recolorPlayerPieces(fromColor, toColor)
         end
     end
 
-    -- Pass 1b: Find all spirit markers of each colour.
-    -- These won't be found in pass 1a, as they don't have colours in their names.
+    -- Pass 1b: Find all spirit markers of each color.
+    -- These won't be found in pass 1a, as they don't have colors in their names.
     for _,obj in pairs(getObjectsWithTag("Spirit Marker")) do
         for _,data in pairs(colors) do
             if obj.getColorTint() == data.tokenTint then
                 table.insert(data.markers, obj)
+            end
+        end
+    end
+
+    -- Pass 1c: Find all incarna of each color.
+    -- These won't be found in pass 1a, as they don't have colors in their names.
+    for _,obj in pairs(getObjectsWithTag("Presence")) do
+        for _,data in pairs(colors) do
+            if obj.getName() == "Incarna" and obj.getColorTint() == data.presenceTint then
+                table.insert(data.incarna, obj)
             end
         end
     end
@@ -7509,6 +7520,9 @@ function recolorPlayerPieces(fromColor, toColor)
             end
             for _,obj in ipairs(b.markers) do
                 obj.setColorTint(a.tokenTint)
+            end
+            for _,obj in ipairs(b.incarna) do
+                obj.setColorTint(a.presenceTint)
             end
         end
     end, 1)

@@ -18,8 +18,8 @@ function doSetup(params)
     return true
 end
 
-function OnDestroy(params)
-    local color = params.color
+function onDestroy()
+    local color = Global.call("getSpiritColor", {name = spiritName})
     for _, card in pairs(Player[color].getHandObjects(1)) do
         if card.getName() == "Smite the Land with Fulmination" then
             card.destruct()

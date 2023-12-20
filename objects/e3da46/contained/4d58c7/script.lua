@@ -56,7 +56,7 @@ end
 
 function onDestroy()
     for _, obj in pairs(getObjectsWithTag("Presence")) do
-        if obj.getDescription() == spiritName then
+        if obj.getName() == "Incarna" and obj.getDescription() == spiritName then
             obj.destruct()
             break
         end

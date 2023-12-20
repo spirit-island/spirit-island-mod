@@ -1,0 +1,63 @@
+{
+  "Name": "Custom_Model_Infinite_Bag",
+  "Transform": {
+    "posX": 119.5245,
+    "posY": 2.4226,
+    "posZ": 48.3311,
+    "rotX": 0.0,
+    "rotY": 180.0001,
+    "rotZ": 0.0,
+    "scaleX": 2.0,
+    "scaleY": 2.0,
+    "scaleZ": 2.0
+  },
+  "Nickname": "Deeps",
+  "Description": "Ocean's Hungry Grasp",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.4314,
+    "g": 0.639,
+    "b": 0.7927
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787486029/3DA86C2EA3EC1CBDBD122F4E37DB4AFD7C370124/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/2252424264022078433/CF8647D715A77EDFF0CEC4071005B4F2B2E80C1D/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787486029/3DA86C2EA3EC1CBDBD122F4E37DB4AFD7C370124/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 7,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  }
+}

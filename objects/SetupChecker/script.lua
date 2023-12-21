@@ -2451,16 +2451,20 @@ end
 
 -- Update a 2-width grid of toggle buttons to the have the given items and states
 -- @param id The id of the row containing the grid of toggles
--- @param values A table mapping toggle names to boolean values
+-- @param values A table mapping toggle names to boolean values and tooltip
 -- @param onValueChanged The name of the function to call when a toggle is clicked
 function updateToggleGrid(id, values, onValueChanged)
     return matchRecurse(id, function (t)
         t.children[1].children[1].children = {}
-        for name,isOn in pairs(values) do
+        for name,params in pairs(values) do
+            local attributes = {id = name, onValueChanged = onValueChanged, isOn = tostring(params.enabled)}
+            if params.tooltip then
+                attributes.tooltip = params.tooltip
+            end
             table.insert(t.children[1].children[1].children, {
                 tag="Toggle",
                 value=name,
-                attributes={id = name, onValueChanged = onValueChanged, isOn = tostring(isOn)},
+                attributes=attributes,
                 children={},
             })
         end
@@ -2471,10 +2475,16 @@ end
 function updateExpansionToggles()
     local exps = Global.getTable("expansions")
     local values = {}
-    for name,_ in pairs(expansions) do
+    for name,guid in pairs(expansions) do
+        values[name] = {}
         -- The Global expansions table stores nil for disabled expansions
         -- We want a boolean false, so we explicitly check for equality to true
-        values[name] = (exps[name] == true)
+        values[name].enabled = (exps[name] == true)
+
+        local expBag = getObjectFromGUID(guid)
+        if expBag and expBag.getDescription() then
+            values[name].tooltip = expBag.getDescription()
+        end
     end
     return updateToggleGrid("expansionsRow", values, "toggleExpansion")
 end
@@ -2483,9 +2493,10 @@ function updateEventToggles()
     local values = {}
     for name,guid in pairs(expansions) do
         if expansionHasEvents(guid) then
+            values[name.." Events"] = {}
             -- The Global events table stores nil for disabled expansions
             -- We want a boolean false, so we explicitly check for equality to true
-            values[name.." Events"] = (events[name] == true)
+            values[name.." Events"].enabled = (events[name] == true)
         end
     end
     return updateToggleGrid("events", values, "toggleEvents")

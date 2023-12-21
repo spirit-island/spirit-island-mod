@@ -5032,10 +5032,14 @@ function place(params)
             temp = genericDefendBag.takeObject({position = params.position, rotation = Vector(0,180,0),smooth=not params.fast})
         end
     elseif params.name == "Isolate Marker" then
-        if params.color and selectedColors[params.color] and selectedColors[params.color].isolate ~= nil then
-            temp = selectedColors[params.color].isolate.takeObject({position = params.position,rotation = Vector(0,180,0),smooth=not params.fast})
+        if usingIsolate() then
+            if params.color and selectedColors[params.color] and selectedColors[params.color].isolate ~= nil then
+                temp = selectedColors[params.color].isolate.takeObject({position = params.position,rotation = Vector(0,180,0),smooth=not params.fast})
+            else
+                return nil
+            end
         else
-            return nil
+            return true
         end
     elseif params.name == "1 Energy" then
         temp = oneEnergyBag.takeObject({position=params.position,rotation=Vector(0,180,0),smooth=not params.fast})

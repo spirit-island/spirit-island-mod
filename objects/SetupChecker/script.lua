@@ -431,6 +431,22 @@ function expansionHasEvents(bagGUID)
     end
     return hasEvents
 end
+function checkExpansionRequiredTags(bagGUID)
+    local bag = getObjectFromGUID(bagGUID)
+    if bag == nil then
+        return false
+    end
+    if bag.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
+        return false
+    elseif bag.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
+        return false
+    elseif bag.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
+        return false
+    elseif bag.hasTag("Requires Vitality") and not Global.call("usingVitality") then
+        return false
+    end
+    return true
+end
 function addExpansion(bag)
     expansions[bag.getName()] = bag.guid
     updateSelfXml()
@@ -859,23 +875,36 @@ end
 
 function toggleExpansion(_, _, id)
     local exps = Global.getTable("expansions")
-    local bool
-    if exps[id] then
+    local enable = not exps[id]
+
+    if enable then
+        enable = checkExpansionRequiredTags(expansions[id])
+    end
+
+    if not enable then
         exps[id] = nil
-        bool = false
     else
         exps[id] = true
-        bool = true
     end
     Global.setTable("expansions", exps)
-    self.UI.setAttribute(id, "isOn", bool)
+    self.UI.setAttribute(id, "isOn", enable)
+
+    if not enable then
+        for exp, enabled in pairs(exps) do
+            if enabled and exp ~= id then
+                if not checkExpansionRequiredTags(expansions[exp]) then
+                    toggleExpansion(_, _, exp)
+                end
+            end
+        end
+    end
 
     if expansionHasEvents(expansions[id]) then
         local events = Global.getTable("events")
         events[id] = exps[id]
         Global.setTable("events", events)
-        self.UI.setAttribute(id.." Events", "isOn", bool)
-        if bool then
+        self.UI.setAttribute(id.." Events", "isOn", enable)
+        if enable then
             self.UI.setAttribute("allEvents", "isOn", "true")
         else
             local allDisabled = true

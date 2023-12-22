@@ -992,6 +992,17 @@ end
 function isThematic()
     return boardLayout == "Thematic" or boardLayout == "Custom Thematic"
 end
+function getTriggers(tag, priorityVarName)
+    local function getPriority(obj)
+        local priority = obj.getVar(priorityVarName)
+        if priority == nil then
+            return -math.huge
+        else
+            return priority
+        end
+    end
+    return table.sort(getObjectsWithTag(tag), function(a, b) return getPriority(a) > getPriority(b) end)
+end
 ---- Setup Buttons Section
 function nullFunc()
 end
@@ -2062,7 +2073,7 @@ function MinorPowerUI(player, button)
     startDealPowerCards({player = player, major = false, count = cards})
 end
 function modifyCardGain(params)
-    for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
+    for _,obj in ipairs(getTriggers("Modify Card Gain", "modifyCardGainPriority")) do
         params.count = obj.call("modifyCardGain", params)
     end
     return params.count
@@ -5728,13 +5739,13 @@ function Elements:__tostring()
 end
 
 local function modifyElements(params)
-    for _,object in pairs(getObjectsWithTag("Modify Elements")) do
+    for _,object in ipairs(getTriggers("Modify Elements", "modifyElementsPriority")) do
         params.elements = object.call("modifyElements", params)
     end
     return Elements:new(params.elements)
 end
 local function modifyThresholds(params)
-    for _,object in pairs(getObjectsWithTag("Modify Thresholds")) do
+    for _,object in ipairs(getTriggers("Modify Thresholds", "modifyThresholdsPriority")) do
         params.elements = object.call("modifyThresholds", params)
     end
     return Elements:new(params.elements)
@@ -6025,7 +6036,7 @@ function reclaimAll(target_obj, source_color)
     end
 end
 function modifyCost(params)
-    for _,object in pairs(getObjectsWithTag("Modify Cost")) do
+    for _,object in ipairs(getTriggers("Modify Cost", "modifyCostPriority")) do
         if not object.spawning then
             params.costs = object.call("modifyCost", params)
         end
@@ -6033,7 +6044,7 @@ function modifyCost(params)
     return params.costs
 end
 function modifyGain(params)
-    for _,object in pairs(getObjectsWithTag("Modify Gain")) do
+    for _,object in ipairs(getTriggers("Modify Gain", "modifyGainPriority")) do
         params.amount = object.call("modifyGain", params)
     end
     return params.amount

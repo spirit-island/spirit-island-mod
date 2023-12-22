@@ -391,6 +391,7 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `costs`: **table** - maps card GUIDs (as keys) to costs (as values)
     - return **table** - the `costs` table, modified appropriately
       - e.g. Blitz would reduce the cost of all fast cards by 1, cards could be ignored in cost calculations by deleting them from the table
+  - Prioritized by `modifyCostPriority`
 - Trigger to modify the energy gained with the "Gain" button
   - Create object and tag with "Modify Gain"
   - `modifyGain(params)`
@@ -398,6 +399,7 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `color`: **string** - is the color of the player who is gaining energy
       - `amount`: **number** - baseline amount of energy to gain (before bargain deductions)
     - return **number** - modified amount of energy to gain (before bargain deductions)
+  - Prioritized by `modifyGainPriority`
 - Trigger to run when a player successfully gains/pays energy (or successfully undoes these operations)
   - Create object and tag with "Gain Pay"
   - `onGainPay(params)`
@@ -414,6 +416,7 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `major`: **boolean** - true if gaining majors, false if gaining minors
       - `count`: **number** - the number of cards being gained
     - return **number** - the number of cards to gain
+  - Prioritized by `modifyCardGainPriority`
 - Trigger to modify how a spirit's elements are counted
   - Create object and tag with "Modify Elements"
   - `modifyElements(params)`
@@ -421,6 +424,7 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `color`: **string** - is the color of the player whose elements are being counted
       - `elements`: **table** - a table of eight numbers, representing the number of each element in order, indexed by numbers 1-8 (1: Sun, 2: Moon, 3: Fire, 4: Air, 5: Water, 6: Earth, 7: Plant, 8: Animal)
     - return **table** - the `elements` table, modified appropriately
+  - Prioritized by `modifyElementsPriority`
 - Trigger to modify elemental thresholds
   - Create object and tag with "Modify Thresholds"
   - `modifyThresholds(params)`
@@ -429,3 +433,11 @@ This section is meant for users who are familiar with both the tts mod and progr
       - `object`: **object reference** - the object on which the threshold sits (e.g. spirit panel, aspect card, power card)
       - `elements`: **table** - a table of eight numbers, representing the number of each element in order, indexed by numbers 1-8 (1: Sun, 2: Moon, 3: Fire, 4: Air, 5: Water, 6: Earth, 7: Plant, 8: Animal)
     - return **table** - the `elements` table, modified appropriately
+  - Prioritized by `modifyThresholdsPriority`
+
+#### Trigger Prioritization
+- Some triggers can be prioritized to ensure they're called in the correct order
+  - Define a variable (name specified above) on the object with the trigger function, set to a number
+  - Triggers with a higher number are run first
+  - Triggers with the same number are run an unspecified order
+  - Triggers with no defined priority are run after all others, in an unspecified order

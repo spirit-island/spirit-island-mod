@@ -19,11 +19,10 @@ function doSetup(params)
 end
 
 function onDestroy()
-    local color = Global.call("getSpiritColor", {name = spiritName})
-    for _, card in pairs(Player[color].getHandObjects(1)) do
-        if card.getName() == "Belligerent and Aggressive Crops" then
-            card.destruct()
-            return
+    for _, obj in pairs(getAllObjects()) do
+        if obj.getName() == "Belligerent and Aggressive Crops" and obj.getDescription() == spiritName then
+            obj.destruct()
+            break
         end
     end
 end

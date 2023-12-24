@@ -3,9 +3,9 @@ name: Linting
 
 on:
     push:
-        branches: [main, beta]
+        branches: [main, beta, ni]
     pull_request:
-        branches: [main, beta]
+        branches: [main, beta, ni]
 
 jobs:
     luacheck:

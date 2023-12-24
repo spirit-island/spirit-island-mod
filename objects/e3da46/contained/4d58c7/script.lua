@@ -47,7 +47,7 @@ function doSetup(params)
 
     local zOffset = 2.6
     local spos = spirit.getPosition()
-    local dahan = Global.getVar("dahanBag").takeObject({
+    Global.getVar("dahanBag").takeObject({
         position = spos + Vector(0,0.05,10+zOffset),
     })
 

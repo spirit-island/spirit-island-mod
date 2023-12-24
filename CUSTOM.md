@@ -20,9 +20,10 @@
   - "Very High"
 - Add tag to object for additional rules spirit uses, this will make sure the content can't be used without the required rules:
   - https://kb.tabletopsimulator.com/game-tools/object-tags/#tagging
-  - "Requires Tokens"
   - "Requires Badlands"
+  - "Requires Incarna"
   - "Requires Isolate"
+  - "Requires Tokens"
   - "Requires Vitality"
 - Add snap points to presence track(s) where presence should be setup
   - https://kb.tabletopsimulator.com/game-tools/snap-point-tool/

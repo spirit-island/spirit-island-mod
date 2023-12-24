@@ -444,6 +444,8 @@ function checkExpansionRequiredTags(bagGUID)
         return false
     elseif bag.hasTag("Requires Vitality") and not Global.call("usingVitality") then
         return false
+    elseif bag.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
+        return false
     end
     return true
 end
@@ -828,6 +830,7 @@ function updateRequiredContent()
     requiredContent("Requires Badlands", Global.call("usingBadlands"))
     requiredContent("Requires Isolate", Global.call("usingIsolate"))
     requiredContent("Requires Vitality", Global.call("usingVitality"))
+    requiredContent("Requires Incarna", Global.call("usingIncarna"))
 end
 function requiredContent(tag, enabled)
     local colors = {}

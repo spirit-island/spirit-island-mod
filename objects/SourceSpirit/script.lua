@@ -169,6 +169,8 @@ function RandomAspect(params)
                     enabled = false
                 elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
                     enabled = false
+                elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
+                    enabled = false
                 end
             end
             if enabled then
@@ -193,6 +195,8 @@ function RandomAspect(params)
                     enabled = false
                 elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
                     enabled = false
+                elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
+                    enabled = false
                 end
             end
             if enabled then
@@ -213,6 +217,8 @@ function RandomAspect(params)
         elseif obj.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
             count = 0
         elseif obj.hasTag("Requires Vitality") and not Global.call("usingVitality") then
+            count = 0
+        elseif obj.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
             count = 0
         end
         local index = math.random(0,count)
@@ -562,6 +568,8 @@ function handleAspect(spirit, deck, color)
                     enabled = false
                 elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
                     enabled = false
+                elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
+                    enabled = false
                 end
             end
             if enabled then
@@ -583,6 +591,8 @@ function handleAspect(spirit, deck, color)
                     enabled = false
                 elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
                     enabled = false
+                elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
+                    enabled = false
                 end
             end
             if not enabled then
@@ -597,6 +607,8 @@ function handleAspect(spirit, deck, color)
         elseif deck.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
             deck.destruct()
         elseif deck.hasTag("Requires Vitality") and not Global.call("usingVitality") then
+            deck.destruct()
+        elseif deck.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
             deck.destruct()
         end
     end

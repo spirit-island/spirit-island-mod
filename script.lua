@@ -1151,6 +1151,9 @@ end
 function usingVitality()
     return expansions["Nature Incarnate"]
 end
+function usingIncarna()
+    return expansions["Nature Incarnate"]
+end
 function randomScenario()
     if difficulty > SetupChecker.getVar("randomMax") then
         return

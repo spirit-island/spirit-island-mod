@@ -446,13 +446,13 @@ function onObjectLeaveContainer(container, object)
                 url      = "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
             }
             if object.getName() == "A" or object.getName() == "C" then
-                decal.position = {1.48, 0.2, -0.1}
+                decal.position = {1.7, 0.2, 0.05}
             elseif object.getName() == "B" or object.getName() == "D" then
-                decal.position = {1.48, 0.2, -0.05}
+                decal.position = {1.72, 0.2, 0.08}
             elseif object.getName() == "E" or object.getName() == "F" then
-                decal.position = {1.58, 0.2, 0.05}
+                decal.position = {1.75, 0.2, 0.1}
             elseif object.getName() == "G" or object.getName() == "H" then
-                decal.position = {1.58, 0.2, 0.05}
+                decal.position = {1.72, 0.2, 0.1}
             end
             object.setDecals({decal})
         end

@@ -56,19 +56,19 @@
   "AttachedDecals": [
     {
       "Transform": {
-        "posX": 1.7317,
-        "posY": 0.2075,
-        "posZ": 0.0783,
+        "posX": 1.72,
+        "posY": 0.2,
+        "posZ": 0.08,
         "rotX": 90.0,
-        "rotY": 179.4228,
+        "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.2696,
-        "scaleY": 0.2664,
-        "scaleZ": 1.7716
+        "scaleX": 0.24,
+        "scaleY": 0.24,
+        "scaleZ": 1.0
       },
       "CustomDecal": {
-        "Name": "Dirty 2 Boat",
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
+        "Name": "Two",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/",
         "Size": 1.0
       }
     }

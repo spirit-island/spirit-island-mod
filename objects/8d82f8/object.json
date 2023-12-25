@@ -29,6 +29,7 @@
     "High",
     "NI",
     "Requires Incarna",
+    "Requires Isolate",
     "Requires Tokens",
     "Spirit"
   ],

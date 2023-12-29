@@ -98,14 +98,19 @@ end
 function MapSetup(params)
     if params.level >= 2 then
         for i=#params.original, 1, -1 do -- add disease and city into highest land with town setup symbol
+            local found = false
             for _,v in pairs (params.original[i]) do
                 if string.sub(v,1,4) == "Town" then
                     table.insert(params.pieces[i],"Disease")
                     if not params.extra then
                         table.insert(params.pieces[i],"City")
                     end
+                    found = true
                     break
                 end
+            end
+            if found then
+                break
             end
         end
         if not params.extra then -- add 1 explorer in each land with no dahan

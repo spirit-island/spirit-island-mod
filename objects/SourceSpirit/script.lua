@@ -437,7 +437,7 @@ function setupSpirit(obj, player_color)
                 elseif ob.type == "Card" then
                     if ob.getName() == "Progression" then
                         if useProgression then
-                            ob.setPositionSmooth(spos + Vector(0, 8.05, 14))
+                            ob.setPositionSmooth(spos + Vector(-3.6, 0.05, 14))
                         else
                             ob.destruct()
                         end

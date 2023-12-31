@@ -423,6 +423,7 @@ function setupSpirit(obj, player_color)
     end
 
     -- Setup objects in bag (or on top of board)
+    local offset = 0
     if obj.type == "Bag" then
         local randomAspect = nil
         if obj.getVar("useAspect") == 1 then
@@ -451,8 +452,10 @@ function setupSpirit(obj, player_color)
                             Global.call("makeSacredSite", {obj = ob, color = player_color})
                         end
                     end
-                    ob.setPositionSmooth(spos + Vector(-placed*xPadding, 0.05, 10))
-                    placed = placed + 1
+                    local bounds = math.max(ob.getBounds().size.x, 0.04)
+                    offset = offset + bounds * xPadding / 2
+                    ob.setPositionSmooth(spos + Vector(-placed*xPadding+xOffset-offset, 0.05, 10))
+                    offset = offset + bounds * xPadding / 2
                 end
 
                 if Global.getVar("gameStarted") and ob.hasTag("Setup") and not ob.getVar("setupComplete") and not ob.hasTag("Aspect") then
@@ -461,7 +464,7 @@ function setupSpirit(obj, player_color)
                         ob.setVar("setupComplete", success)
                     end, 1)
                 end
-            end, 1)
+            end, 3)
         end
         obj.destruct()
     else
@@ -478,8 +481,10 @@ function setupSpirit(obj, player_color)
                     o.destruct()
                 end
             else
-                o.setPositionSmooth(spos + Vector(-placed*xPadding, 0.05, 10))
-                placed = placed + 1
+                local bounds = math.max(ob.getBounds().size.x, 0.04)
+                offset = offset + bounds * xPadding / 2
+                o.setPositionSmooth(spos + Vector(-placed*xPadding+xOffset-offset, 0.05, 10))
+                offset = offset + bounds * xPadding / 2
             end
 
             if Global.getVar("gameStarted") and o.hasTag("Setup") and not o.getVar("setupComplete") and not o.hasTag("Aspect") then

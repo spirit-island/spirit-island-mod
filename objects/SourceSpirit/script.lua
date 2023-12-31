@@ -481,7 +481,7 @@ function setupSpirit(obj, player_color)
                     o.destruct()
                 end
             else
-                local bounds = math.max(ob.getBounds().size.x, 0.04)
+                local bounds = math.max(o.getBounds().size.x, 0.04)
                 offset = offset + bounds * xPadding / 2
                 o.setPositionSmooth(spos + Vector(-placed*xPadding+xOffset-offset, 0.05, 10))
                 offset = offset + bounds * xPadding / 2

@@ -90,7 +90,7 @@ end
 
 function Broadcast(params)
     if params.level >= 4 then
-        return "Sweden Level 4 - At the end of Setup (after the Explore Card), Accelerate the Invader Deck and on each board, add 1 Town to the land with the fewest invaders that matches the discarded card"
+        return "Sweden Level 4 - Royal Backing: At the end of Setup (after the Explore Card), Accelerate the Invader Deck and on each board, add 1 Town to the land with the fewest invaders that matches the discarded card"
     end
     return nil
 end

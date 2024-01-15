@@ -1,0 +1,65 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 28.8888,
+    "posY": 1.1639,
+    "posZ": 115.441,
+    "rotX": -0.0005,
+    "rotY": -0.0046,
+    "rotZ": 0.0008,
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
+  },
+  "Nickname": "Vitality",
+  "Description": "[b]If no Blight is present, prevents the next Blight[/b] and is then Removed.",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.4314,
+    "g": 0.5255,
+    "b": 0.0471
+  },
+  "Tags": [
+    "Highlight",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  }
+}

@@ -53,4 +53,10 @@ function onDestroy()
             break
         end
     end
+    for _, obj in pairs(getAllObjects()) do
+        if obj.getName() == "Vitality" and obj.getDescription() == spiritName then
+            obj.destruct()
+            break
+        end
+    end
 end

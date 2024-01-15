@@ -22,3 +22,12 @@ function doSetup(params)
 
     return true
 end
+
+function onDestroy()
+    for _, obj in pairs(getAllObjects()) do
+        if obj.getName() == "Vitality" and obj.getDescription() == spiritName then
+            obj.destruct()
+            break
+        end
+    end
+end

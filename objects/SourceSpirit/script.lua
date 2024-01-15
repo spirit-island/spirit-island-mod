@@ -155,9 +155,12 @@ end
 function RandomAspect(params)
     local obj = FindAspects(params)
     if obj == nil then
+        -- math.random call is for weekly challenge to always call once regardless of type of aspects
+        math.random(0,0)
         return ""
     elseif type(obj) == "table" then
         local newDeck = {}
+        local aspectNames = {}
         for _,aspect in pairs(obj) do
             local enabled = true
             for _,tag in pairs(aspect.tags) do
@@ -173,8 +176,9 @@ function RandomAspect(params)
                     enabled = false
                 end
             end
-            if enabled then
+            if enabled and not aspectNames[aspect.name] then
                 table.insert(newDeck, aspect)
+                aspectNames[aspect.name] = true
             end
         end
         local index = math.random(0,#newDeck)
@@ -184,6 +188,7 @@ function RandomAspect(params)
         return newDeck[index].name
     elseif obj.type == "Deck" then
         local newDeck = {}
+        local aspectNames = {}
         for _,aspect in pairs(obj.getObjects()) do
             local enabled = true
             for _,tag in pairs(aspect.tags) do
@@ -199,8 +204,9 @@ function RandomAspect(params)
                     enabled = false
                 end
             end
-            if enabled then
+            if enabled and not aspectNames[aspect.name] then
                 table.insert(newDeck, aspect)
+                aspectNames[aspect.name] = true
             end
         end
         local index = math.random(0,#newDeck)
@@ -428,7 +434,11 @@ function setupSpirit(obj, player_color)
         local randomAspect = nil
         if obj.getVar("useAspect") == 1 then
             randomAspect = RandomAspect({obj = obj})
-            print("random aspect "..randomAspect)
+            if randomAspect == "" then
+                Player[player_color].broadcast("Your random Aspect is no Aspect", Color.SoftBlue)
+            else
+                Player[player_color].broadcast("Your random Aspect is "..randomAspect, Color.SoftBlue)
+            end
         end
         for _, o in pairs(obj.getObjects()) do
             local ob = obj.takeObject({guid = o.guid})
@@ -598,7 +608,6 @@ function handleAspect(spirit, deck, color, randomAspect)
     elseif useAspect == 1 then
         if randomAspect then
             if randomAspect == "" then
-                Player[color].broadcast("Your random Aspect is no Aspect", Color.SoftBlue)
                 deck.destruct()
             else
                 local card
@@ -623,13 +632,19 @@ function handleAspect(spirit, deck, color, randomAspect)
                 end
                 if card then
                     card.deal(1, color)
-                    Player[color].broadcast("Your random Aspect is "..card.getName(), Color.SoftBlue)
                 end
             end
         else
             local count
             if deck.type == "Deck" then
-                count = #deck.getObjects()
+                count = 0
+                local aspectNames = {}
+                for _,aspect in pairs(deck.getObjects()) do
+                    if not aspectNames[aspect.name] then
+                        count = count + 1
+                        aspectNames[aspect.name] = true
+                    end
+                end
             elseif deck.type == "Card" then
                 count = 1
             end
@@ -640,16 +655,40 @@ function handleAspect(spirit, deck, color, randomAspect)
             else
                 local card
                 if deck.type == "Deck" then
-                    card = deck.takeObject({
-                        index = index - 1,
-                        position = deck.getPosition() + Vector(0,2,0),
-                    })
-                    if deck.remainder then deck = deck.remainder end
-                    deck.destruct()
+                    count = 0
+                    local aspectNames = {}
+                    for _,aspect in pairs(deck.getObjects()) do
+                        if not aspectNames[aspect.name] then
+                            count = count + 1
+                            aspectNames[aspect.name] = true
+                            if count == index then
+                                card = deck.takeObject({
+                                    guid = aspect.guid,
+                                    position = deck.getPosition() + Vector(0,2,0),
+                                })
+                                card.deal(1, color)
+                            end
+                        elseif card.getName() == aspect.name then
+                            if deck.remainder then
+                                deck.deal(1, color)
+                                deck = nil
+                            else
+                                local newCard = deck.takeObject({
+                                    guid = aspect.guid,
+                                    position = deck.getPosition() + Vector(0,2,0),
+                                })
+                                newCard.deal(1, color)
+                            end
+                        end
+                    end
+                    if deck then
+                        if deck.remainder then deck = deck.remainder end
+                        deck.destruct()
+                    end
                 elseif deck.type == "Card" then
                     card = deck
+                    card.deal(1, color)
                 end
-                card.deal(1, color)
                 Player[color].broadcast("Your random Aspect is "..card.getName(), Color.SoftBlue)
             end
         end

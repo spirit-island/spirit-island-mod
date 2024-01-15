@@ -2675,27 +2675,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     for i=1,numPlayers do
         local index = math.random(1, #spiritGuidsCopy)
         local spirit = getObjectFromGUID(spiritGuidsCopy[index])
-
-        local aspects = sourceSpirit.call("FindAspects", {obj=spirit})
-        local aspect = ""
-        if aspects == nil then
-            math.random(0,0)
-        elseif type(aspects) == "table" then
-            local aspectIndex = math.random(0,#aspects)
-            if aspectIndex ~= 0 then
-                aspect = aspects[aspectIndex].name
-            end
-        elseif aspects.type == "Deck" then
-            local cards = aspects.getObjects()
-            local aspectIndex = math.random(0,#cards)
-            if aspectIndex ~= 0 then
-                aspect = cards[aspectIndex].name
-            end
-        elseif aspects.type == "Card" then
-            if math.random(0,1) == 1 then
-                aspect = aspects.getName()
-            end
-        end
+        local aspect = sourceSpirit.call("RandomAspect", {obj=spirit})
 
         config.spirits[spirit.getName()] = aspect
         table.remove(spiritGuidsCopy, index)

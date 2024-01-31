@@ -4668,7 +4668,11 @@ function MapPlaceCustom(maps)
         Wait.condition(function() setupMap(map,i==rand) end, function() return not map.loading_custom end)
 
         if i == rand then
-            printToAll("Board "..selectedBoards[i].." was chosen to be the extra board!", Color.SoftBlue)
+            local boardName = map.getName()
+            if map.getDecals() then
+                boardName = boardName.."2"
+            end
+            printToAll("Board "..boardName.." was chosen to be the extra board!", Color.SoftBlue)
         end
     end
 end

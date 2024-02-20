@@ -1,0 +1,59 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 102.92880249023438,
+    "posY": 2.326200008392334,
+    "posZ": 75.47460174560547,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Sparking",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Aspect",
+    "Requires Badlands",
+    "Setup"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 248300,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2483": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351043091/E19EE85A35DE2FF823602D4B7886ED287D3FEF6A/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175601298/13839188F01AEF337FC22A7F550EB14008503F4B/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

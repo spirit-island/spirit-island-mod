@@ -1,0 +1,57 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 121.3405990600586,
+    "posY": 2.326200008392334,
+    "posZ": 88.35040283203125,
+    "rotX": 0.0,
+    "rotY": 180.0041046142578,
+    "rotZ": 0.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Deeps",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Aspect"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 261000,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2610": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351050352/901E1955C26A12F8EF63461E5304F4E0ECEF1A3E/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351049458/DCB5C29495FA1BFE472DDD7BA89AC49D993AFC3D/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

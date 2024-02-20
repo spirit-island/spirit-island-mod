@@ -1,0 +1,57 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 18.0,
+    "posY": 0.8636000156402588,
+    "posZ": 21.0,
+    "rotX": -0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.924299955368042,
+    "scaleY": 1.0,
+    "scaleZ": 1.924299955368042
+  },
+  "Nickname": "Surges of Colonization (Larger Surges)",
+  "Description": "Nature Incarnate",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Time Passes"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 258100,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2581": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355493961/89175C5B7252B37CE5FDD00097279B61C7004A79/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355493697/A6A4591237E651772FAF23F4C83FAE4A591F16CD/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

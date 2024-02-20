@@ -25,14 +25,12 @@
     "b": 0.1518000066280365
   },
   "Tags": [
-    "Horizons",
-    "Low",
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,

@@ -1,6 +1,6 @@
 function onLoad()
     self.createButton({
-        click_function = "returnFear",
+        click_function = "addFearCard",
         function_owner = self,
         label          = "Add Fear Card",
         position       = Vector(0,0.3,1.43),
@@ -11,7 +11,7 @@ function onLoad()
         tooltip = "Add Fear Card"
     })
 end
-function returnFear(card)
+function addFearCard(card)
     Global.call("addFearCard", {})
-    Global.call("removeButtons", {obj = card, click_function = "returnFear", function_owner = self})
+    Global.call("removeButtons", {obj = card, click_function = "addFearCard", function_owner = self})
 end

@@ -1,0 +1,57 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -7.667300224304199,
+    "posY": 1.0325000286102295,
+    "posZ": 82.3125991821289,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Encircle",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Aspect"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 246800,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2468": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351049153/BE6F04CEF61709AAA79C0D704FD260B82ED6E6B8/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351048810/12C523C65DAA9FC8BF78AD8954F26C8E69779302/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

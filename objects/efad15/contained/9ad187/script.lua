@@ -53,7 +53,7 @@ local function presenceOnIsland(color)
         if presenceColor ~= color then
             presenceColor = Global.call("getSpiritColor", {name = presence.getDescription()})
         end
-        if presenceColor == color then
+        if presenceColor == color and presence.getName() ~= "Incarna" then
             if presence.held_by_color then
                 local quantity = presence.getQuantity()
                 if quantity == -1 then

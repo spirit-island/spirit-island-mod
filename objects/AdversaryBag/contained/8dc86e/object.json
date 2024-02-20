@@ -1,0 +1,57 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 0.5950999855995178,
+    "posY": 2.326200008392334,
+    "posZ": 21.273099899291992,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.098099946975708,
+    "scaleY": 1.0,
+    "scaleZ": 1.098099946975708
+  },
+  "Nickname": "L",
+  "Description": "Habsburg-Mining Lv 4",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Invader Card"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 251600,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2516": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351061421/99E8F5317894EB7D4C2062DF290AA87869F7E7AD/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351061635/7D904195309A0C77F7120700F786B3BC3552E34F/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

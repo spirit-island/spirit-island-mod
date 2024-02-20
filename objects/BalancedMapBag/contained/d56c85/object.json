@@ -31,7 +31,7 @@
   "Value": 0,
   "Locked": false,
   "Grid": false,
-  "Snap": true,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245063314/89E499AE330BCA1C35FDEC9A36413FDAAD5B21CA/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351483058/B65590E968306B338219BE350D4F1548D353FDC6/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,

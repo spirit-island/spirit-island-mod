@@ -1,0 +1,128 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 26.787799835205078,
+    "posY": 1.3114999532699585,
+    "posZ": 82.23789978027344,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Hearth-Vigil",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20000000298023224,
+    "g": 0.1607999950647354,
+    "b": 0.15289999544620514
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355500787/13BB19BBBE91C111DECB5DDB40718C96E24613F8/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355500254/019A500EC9582709EEE30C767EFCC312AF7C4E01/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.2484000027179718,
+        "y": 0.20000000298023224,
+        "z": -0.1428000032901764
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4846000075340271,
+        "y": 0.20000000298023224,
+        "z": -0.1428000032901764
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7229999899864197,
+        "y": 0.20000000298023224,
+        "z": -0.1428000032901764
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9596999883651733,
+        "y": 0.20000000298023224,
+        "z": -0.1428000032901764
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1959999799728394,
+        "y": 0.20000000298023224,
+        "z": -0.14270000159740448
+      }
+    },
+    {
+      "Position": {
+        "x": -0.24799999594688416,
+        "y": 0.20000000298023224,
+        "z": -0.4560000002384186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.48429998755455017,
+        "y": 0.20000000298023224,
+        "z": -0.4560000002384186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7222999930381775,
+        "y": 0.20000000298023224,
+        "z": -0.4560000002384186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9584000110626221,
+        "y": 0.20000000298023224,
+        "z": -0.45590001344680786
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1962000131607056,
+        "y": 0.20000000298023224,
+        "z": -0.45590001344680786
+      }
+    }
+  ]
+}

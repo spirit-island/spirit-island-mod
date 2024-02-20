@@ -1,0 +1,172 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -1.0640000104904175,
+    "posY": 1.0491000413894653,
+    "posZ": 5.779399871826172,
+    "rotX": 0.0,
+    "rotY": 0.002899999963119626,
+    "rotZ": 0.0,
+    "scaleX": 0.4000000059604645,
+    "scaleY": 0.5,
+    "scaleZ": 0.4000000059604645
+  },
+  "Nickname": "Unassigned Healing Marker",
+  "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Seeking a Path Towards Healing",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.8252000212669373,
+    "g": 0.6527000069618225,
+    "b": 0.39820000529289246
+  },
+  "Tags": [
+    "Destroy"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932661536357729/A989A1335AC48A7515A984870ECBC74E38D381C5/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  },
+  "States": {
+    "1": {
+      "GUID": "4c6c5d",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 0.4465000033378601,
+        "posY": 0.9599999785423279,
+        "posZ": 5.8480000495910645,
+        "rotX": 9.999999747378752e-05,
+        "rotY": 180.02310180664062,
+        "rotZ": 0.0,
+        "scaleX": 0.4000000059604645,
+        "scaleY": 0.5,
+        "scaleZ": 0.4000000059604645
+      },
+      "Nickname": "Water Healing Marker",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Seeking a Path Towards Healing",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.19830000400543213,
+        "g": 0.4237000048160553,
+        "b": 0.8391000032424927
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329702298/A506113CA23809C5D314B2010E9129C7084DE53D/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "2": {
+      "GUID": "2a056e",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 0.4465000033378601,
+        "posY": 0.9599999785423279,
+        "posZ": 5.8480000495910645,
+        "rotX": 9.999999747378752e-05,
+        "rotY": 180.02310180664062,
+        "rotZ": 0.0,
+        "scaleX": 0.4000000059604645,
+        "scaleY": 0.5,
+        "scaleZ": 0.4000000059604645
+      },
+      "Nickname": "Animal Healing Marker",
+      "Description": "Change the state to change the element shown\n\nUse these for your Special Rule Seeking a Path Towards Healing",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.8112999796867371,
+        "g": 0.008299999870359898,
+        "b": 0.0
+      },
+      "Tags": [
+        "Destroy"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329142252/6341A59F51F0A734161493B7F300819FE2BA7979/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

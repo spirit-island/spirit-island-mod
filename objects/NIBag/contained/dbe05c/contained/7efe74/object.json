@@ -1,0 +1,54 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -4.327199935913086,
+    "posY": 1.2115999460220337,
+    "posZ": 1.5089999437332153,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Thriving Crops",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 257700,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2577": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351051288/C389FA9DE001430C6F7D06DCCDAB960D06491F9A/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050878574170533488/A8622308B70378FA14431072AD953D654E03E339/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

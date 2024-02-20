@@ -1,0 +1,135 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": -28.740100860595703,
+    "posY": 1.2181999683380127,
+    "posZ": 72.99739837646484,
+    "rotX": 9.999999747378752e-05,
+    "rotY": 180.0054931640625,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Ember-Eyed Behemoth",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20000000298023224,
+    "g": 0.1607999950647354,
+    "b": 0.15289999544620514
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355504601/C63F533DB7EF3A97B9185C0C6A153E1A33C18950/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355504026/8FEAA4FF87F1452F6E3EB4E142970BB3D148A264/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.9918000102043152,
+        "y": 0.20000000298023224,
+        "z": -0.1421000063419342
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2295000553131104,
+        "y": 0.20000000298023224,
+        "z": -0.1421000063419342
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7491000294685364,
+        "y": 0.20000000298023224,
+        "z": -0.14329999685287476
+      }
+    },
+    {
+      "Position": {
+        "x": -0.03620000183582306,
+        "y": 0.20000000298023224,
+        "z": -0.14100000262260437
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27570000290870667,
+        "y": 0.20000000298023224,
+        "z": -0.14190000295639038
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5110999941825867,
+        "y": 0.20000000298023224,
+        "z": -0.1421000063419342
+      }
+    },
+    {
+      "Position": {
+        "x": -0.03750000149011612,
+        "y": 0.20000000298023224,
+        "z": 0.1485999971628189
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27390000224113464,
+        "y": 0.20000000298023224,
+        "z": 0.14880000054836273
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5134000182151794,
+        "y": 0.20000000298023224,
+        "z": 0.14839999377727509
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7491999864578247,
+        "y": 0.20000000298023224,
+        "z": 0.14839999377727509
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9873999953269958,
+        "y": 0.20000000298023224,
+        "z": 0.14749999344348907
+      }
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 117.8156967163086,
+    "posY": 2.3896000385284424,
+    "posZ": 86.2562026977539,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.399999976158142,
+    "scaleY": 2.799999952316284,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Incarna",
+  "Description": "Lure of the Deep Wilderness",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.5685999989509583,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
+  },
+  "Tags": [
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/2301964313844119145/96C6F19D168FA136EFE522620DB0E2A515052A5D/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "Convex": false,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  },
+  "AttachedDecals": [
+    {
+      "Transform": {
+        "posX": 0.0,
+        "posY": -0.05400000140070915,
+        "posZ": 0.0,
+        "rotX": 90.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 3.0,
+        "scaleY": 3.0,
+        "scaleZ": 3.0
+      },
+      "CustomDecal": {
+        "Name": "Sacred Site",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/",
+        "Size": 1.0
+      }
+    }
+  ]
+}

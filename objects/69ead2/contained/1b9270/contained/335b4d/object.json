@@ -1,0 +1,66 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": -9.156499862670898,
+    "posY": 1.2762999534606934,
+    "posZ": 6.559100151062012,
+    "rotX": 0.00039999998989515007,
+    "rotY": -0.0031999999191612005,
+    "rotZ": 0.0003000000142492354,
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Quake",
+  "Description": "Represents tectonic tension building beneath the earth.",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.9136999845504761,
+    "g": 0.3255000114440918,
+    "b": 0.3450999855995178
+  },
+  "Tags": [
+    "Destroy",
+    "Highlight",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787495473/E4C6949E8CF72A8C9548C8A71AE606D5742DE7AE/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/2252424264022073497/FF7FF80741FD67A3DC7B67B22221A73F7836645D/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787495473/E4C6949E8CF72A8C9548C8A71AE606D5742DE7AE/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  }
+}

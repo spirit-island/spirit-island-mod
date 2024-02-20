@@ -3,13 +3,13 @@
   "Transform": {
     "posX": 87.7177963256836,
     "posY": 0.800000011920929,
-    "posZ": 40.0,
+    "posZ": 44.70000076293945,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
     "scaleX": 5.496300220489502,
     "scaleY": 0.009999999776482582,
-    "scaleZ": 7.248000144958496
+    "scaleZ": 7.699999809265137
   },
   "Nickname": "",
   "Description": "",
@@ -30,8 +30,8 @@
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
-  "Grid": true,
-  "Snap": true,
+  "Grid": false,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,

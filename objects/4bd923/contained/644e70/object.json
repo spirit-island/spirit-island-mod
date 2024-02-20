@@ -1,0 +1,135 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 85.55130004882812,
+    "posY": 26.77050018310547,
+    "posZ": 102.32360076904297,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Breath of Darkness Down Your Spine",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20000000298023224,
+    "g": 0.1607999950647354,
+    "b": 0.15289999544620514
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355503593/5C471C8BCBB0C8B26F9EDFF1E7D778EE80F9CF37/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355503063/38BB7F80C9AA8003443B9E1AE03C2118B2EC1B1B/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -1.2237999439239502,
+        "y": 0.20000000298023224,
+        "z": -0.22589999437332153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9876000285148621,
+        "y": 0.20000000298023224,
+        "z": -0.22589999437332153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7491000294685364,
+        "y": 0.20000000298023224,
+        "z": -0.22589999437332153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.512499988079071,
+        "y": 0.20000000298023224,
+        "z": -0.22589999437332153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27480000257492065,
+        "y": 0.20000000298023224,
+        "z": -0.22589999437332153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.03709999844431877,
+        "y": 0.20000000298023224,
+        "z": -0.22589999437332153
+      }
+    },
+    {
+      "Position": {
+        "x": -0.03999999910593033,
+        "y": 0.20000000298023224,
+        "z": 0.09239999949932098
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2757999897003174,
+        "y": 0.20000000298023224,
+        "z": 0.09239999949932098
+      }
+    },
+    {
+      "Position": {
+        "x": -0.51419997215271,
+        "y": 0.20000000298023224,
+        "z": 0.0917000025510788
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7512000203132629,
+        "y": 0.20000000298023224,
+        "z": 0.0917000025510788
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9866999983787537,
+        "y": 0.20000000298023224,
+        "z": 0.09019999951124191
+      }
+    }
+  ]
+}

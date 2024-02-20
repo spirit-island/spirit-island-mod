@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 154.7519989013672,
+    "posY": 2.326200008392334,
+    "posZ": 96.97899627685547,
+    "rotX": 0.0,
+    "rotY": 180.0045928955078,
+    "rotZ": 0.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Belligerent and Aggressive Crops",
+  "Description": "A Spread of Rampant Green",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 248100,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2481": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351038880/717E0FC805B7E62A75B9165545B990F86855FFE5/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351038492/6F201E9E5A0A56733207F311B3F6B4033623D0C9/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -25,14 +25,12 @@
     "b": 0.14900000393390656
   },
   "Tags": [
-    "JE",
-    "Moderate",
     "Spirit"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
-  "Grid": true,
+  "Grid": false,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,

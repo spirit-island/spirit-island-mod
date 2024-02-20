@@ -1,0 +1,95 @@
+{
+  "bonusEnergy": [],
+  "reminder": {
+    "field": "ImageURL",
+    "height": 1.8342,
+    "width": 2.7541,
+    "x": 0.8898,
+    "y": -0.2818
+  },
+  "thresholds": [
+    {
+      "elements": "00002000",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.58
+      }
+    },
+    {
+      "elements": "00003001",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.71
+      }
+    },
+    {
+      "elements": "00005022",
+      "position": {
+        "x": 0.35,
+        "y": 0,
+        "z": 0.85
+      }
+    },
+    {
+      "elements": "00000002",
+      "position": {
+        "x": -0.57,
+        "y": 0,
+        "z": 0.58
+      }
+    },
+    {
+      "elements": "00001003",
+      "position": {
+        "x": -0.57,
+        "y": 0,
+        "z": 0.71
+      }
+    },
+    {
+      "elements": "00202005",
+      "position": {
+        "x": -0.57,
+        "y": 0,
+        "z": 0.85
+      }
+    }
+  ],
+  "trackElements": [],
+  "trackEnergy": [
+    {
+      "count": 5,
+      "position": {
+        "x": -1.23,
+        "y": 0,
+        "z": -0.22
+      }
+    },
+    {
+      "count": 4,
+      "position": {
+        "x": -0.99,
+        "y": 0,
+        "z": -0.22
+      }
+    },
+    {
+      "count": 3,
+      "position": {
+        "x": -0.76,
+        "y": 0,
+        "z": -0.22
+      }
+    },
+    {
+      "count": 1,
+      "position": {
+        "x": -0.52,
+        "y": 0,
+        "z": -0.07
+      }
+    }
+  ]
+}

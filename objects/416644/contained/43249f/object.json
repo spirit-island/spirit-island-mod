@@ -1,0 +1,59 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 135.48460388183594,
+    "posY": 2.326200008392334,
+    "posZ": 90.04940032958984,
+    "rotX": 0.0,
+    "rotY": 90.0,
+    "rotZ": 0.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Nourishing",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Aspect",
+    "Requires Vitality",
+    "Setup"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 260100,
+  "SidewaysCard": true,
+  "CustomDeck": {
+    "2601": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351044422/CFA9725CEEB5F193EC7F169A63DB45CC519DCBA5/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050879209175599872/EAC4BD2702C1EAC8C5707C6E72DCB418A38D7FB2/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

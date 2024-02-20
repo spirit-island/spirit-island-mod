@@ -98,7 +98,7 @@
       "CustomDeck": {
         "653": {
           "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1754683565837862382/AD1F373B7CDC50B06D9F4BDA261829DFAF550143/",
-          "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756101604/79D0940A7EB765C9CE852482DFFE0E397E11FFC1/",
+          "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404517238966/02BD15E4CB64460CAEAD4F2C0DB7ABADEB0A8C0A/",
           "NumWidth": 1,
           "NumHeight": 1,
           "BackIsHidden": false,
@@ -106,7 +106,7 @@
           "Type": 0
         }
       },
-      "LuaScript": "function onLoad()\n    self.createButton({\n        click_function = \"returnFear\",\n        function_owner = self,\n        label          = \"Add Fear Card\",\n        position       = Vector(0,0.3,1.43),\n        width          = 1200,\n        scale          = Vector(0.65,1,0.65),\n        height         = 160,\n        font_size      = 150,\n        tooltip = \"Add Fear Card\"\n    })\nend\nfunction returnFear(card)\n    Global.call(\"addFearCard\", {})\n    Global.call(\"removeButtons\", {obj = card, click_function = \"returnFear\", function_owner = self})\nend",
+      "LuaScript": "function onLoad()\n    self.createButton({\n        click_function = \"addFearCard\",\n        function_owner = self,\n        label          = \"Add Fear Card\",\n        position       = Vector(0,0.3,1.43),\n        width          = 1200,\n        scale          = Vector(0.65,1,0.65),\n        height         = 160,\n        font_size      = 150,\n        tooltip = \"Add Fear Card\"\n    })\nend\nfunction addFearCard(card)\n    Global.call(\"addFearCard\", {})\n    Global.call(\"removeButtons\", {obj = card, click_function = \"addFearCard\", function_owner = self})\nend",
       "LuaScriptState": "",
       "XmlUI": ""
     }

@@ -1,13 +1,13 @@
 {
   "Name": "BlockSquare",
   "Transform": {
-    "posX": 30.569299697875977,
+    "posX": 30.600000381469727,
     "posY": 0.800000011920929,
     "posZ": 63.35919952392578,
     "rotX": -0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 174.10740661621094,
+    "scaleX": 174.0,
     "scaleY": 0.30000001192092896,
     "scaleZ": 2.0924999713897705
   },
@@ -30,8 +30,8 @@
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
-  "Grid": true,
-  "Snap": true,
+  "Grid": false,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,

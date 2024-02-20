@@ -1,0 +1,57 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -0.22280000150203705,
+    "posY": 0.8636000156402588,
+    "posZ": 15.0,
+    "rotX": -0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.9278000593185425,
+    "scaleY": 1.0,
+    "scaleZ": 1.9278000593185425
+  },
+  "Nickname": "Habsburg-Mining",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Requires Tokens"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 257900,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2579": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355492622/21AF5E73847C5CE23AC5406B0F6130462C46E1BF/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355492876/394DD194107E9E8F60F8CA7531B6A9345590E7C9/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

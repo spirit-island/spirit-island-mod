@@ -31,7 +31,7 @@
   "Value": 0,
   "Locked": false,
   "Grid": false,
-  "Snap": true,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
   "DragSelectable": true,
@@ -56,19 +56,19 @@
   "AttachedDecals": [
     {
       "Transform": {
-        "posX": 1.7344000339508057,
-        "posY": 0.20749999582767487,
-        "posZ": 0.09260000288486481,
+        "posX": 1.7200000286102295,
+        "posY": 0.20000000298023224,
+        "posZ": 0.07999999821186066,
         "rotX": 90.0,
-        "rotY": 179.48060607910156,
+        "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 0.2696000039577484,
-        "scaleY": 0.266400009393692,
-        "scaleZ": 1.7716000080108643
+        "scaleX": 0.23999999463558197,
+        "scaleY": 0.23999999463558197,
+        "scaleZ": 1.0
       },
       "CustomDecal": {
-        "Name": "Dirty 2 Boat",
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
+        "Name": "Two",
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/",
         "Size": 1.0
       }
     }

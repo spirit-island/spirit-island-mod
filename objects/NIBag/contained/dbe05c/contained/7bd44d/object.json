@@ -1,0 +1,54 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -3.6008999347686768,
+    "posY": 1.0836999416351318,
+    "posZ": 1.4290000200271606,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Slow Dissolution of Will",
+  "Description": "Each Spirit Replaces 1 Presence with their chosen type of Spirit Token",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 257500,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2575": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351052319/7F43DFDACE721B08C077168D7F461F6CDE119FB8/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050878574170533488/A8622308B70378FA14431072AD953D654E03E339/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

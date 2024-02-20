@@ -10,12 +10,14 @@
   "difficultyString": "",
   "events": {
     "Branch & Claw": true,
-    "Jagged Earth": true
+    "Jagged Earth": true,
+    "Nature Incarnate": true
   },
   "expansions": {
     "Branch & Claw": true,
     "Feather & Flame": true,
-    "Jagged Earth": true
+    "Jagged Earth": true,
+    "Nature Incarnate": true
   },
   "explorerBag": "613ea4",
   "fearPool": 0,

@@ -1,0 +1,121 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 53.815799713134766,
+    "posY": 17.978599548339844,
+    "posZ": 102.38980102539062,
+    "rotX": 0.0210999995470047,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Wounded Waters Bleeding",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20000000298023224,
+    "g": 0.1607999950647354,
+    "b": 0.15289999544620514
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355582055/076BC0F6F180E55D747742B43EA108C73C272897/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355505154/C3E5CA7FB72B1F8312982612083128DE8749831F/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.04809999838471413,
+        "y": 0.20000000298023224,
+        "z": -0.06759999692440033
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2838999927043915,
+        "y": 0.20000000298023224,
+        "z": -0.06759999692440033
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5218999981880188,
+        "y": 0.20000000298023224,
+        "z": -0.06759999692440033
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7578999996185303,
+        "y": 0.20000000298023224,
+        "z": 0.0828000009059906
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9937999844551086,
+        "y": 0.20000000298023224,
+        "z": 0.0828000009059906
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2324999570846558,
+        "y": 0.20000000298023224,
+        "z": 0.0828000009059906
+      }
+    },
+    {
+      "Position": {
+        "x": -0.758899986743927,
+        "y": 0.20000000298023224,
+        "z": -0.21639999747276306
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9948999881744385,
+        "y": 0.20000000298023224,
+        "z": -0.21639999747276306
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2319999933242798,
+        "y": 0.20000000298023224,
+        "z": -0.21639999747276306
+      }
+    }
+  ]
+}

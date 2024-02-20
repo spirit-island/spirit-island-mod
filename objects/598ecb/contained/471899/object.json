@@ -1,0 +1,60 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 142.577392578125,
+    "posY": 2.326200008392334,
+    "posZ": 94.17620086669922,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Tangles",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Aspect",
+    "Requires Isolate",
+    "Requires Tokens",
+    "Setup"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 248000,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2480": {
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2308724646351039682/5FD7C63E3240401D01A392B563D2459E709A7069/",
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355008752/59E47319C941008167BD80242442E731BA37BE38/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

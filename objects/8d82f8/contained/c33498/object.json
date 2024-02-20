@@ -1,0 +1,135 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 102.49559783935547,
+    "posY": 8.007800102233887,
+    "posZ": 93.89900207519531,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Wandering Voice Keens Delirium",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20000000298023224,
+    "g": 0.1607999950647354,
+    "b": 0.15289999544620514
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355498666/90A11CA86CA473722CA91DEA4824AE2CF0104048/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355498086/29161F97962468EB196F711B87F56EFEB9F0F171/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.036400001496076584,
+        "y": 0.20000000298023224,
+        "z": -0.4124999940395355
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27469998598098755,
+        "y": 0.20000000298023224,
+        "z": -0.4124999940395355
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5115000009536743,
+        "y": 0.20000000298023224,
+        "z": -0.4124999940395355
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7508000135421753,
+        "y": 0.20000000298023224,
+        "z": -0.4124999940395355
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9901999831199646,
+        "y": 0.20000000298023224,
+        "z": -0.4124999940395355
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2283999919891357,
+        "y": 0.20000000298023224,
+        "z": -0.4124999940395355
+      }
+    },
+    {
+      "Position": {
+        "x": -0.037300001829862595,
+        "y": 0.20000000298023224,
+        "z": -0.09960000216960907
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2741999924182892,
+        "y": 0.20000000298023224,
+        "z": -0.09960000216960907
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5123999714851379,
+        "y": 0.20000000298023224,
+        "z": -0.09960000216960907
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7511000037193298,
+        "y": 0.20000000298023224,
+        "z": -0.09960000216960907
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9897000193595886,
+        "y": 0.20000000298023224,
+        "z": -0.09960000216960907
+      }
+    }
+  ]
+}

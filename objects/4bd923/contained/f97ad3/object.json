@@ -1,0 +1,65 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 103.02020263671875,
+    "posY": 71.22570037841797,
+    "posZ": 10.798299789428711,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.399999976158142,
+    "scaleY": 2.799999952316284,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Incarna",
+  "Description": "Breath of Darkness Down Your Spine",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.5685999989509583,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
+  },
+  "Tags": [
+    "Beasts",
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/2301964313844216919/FA4BF615E0B5B94B7F132FB7300698DDD4CC9365/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "Convex": false,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

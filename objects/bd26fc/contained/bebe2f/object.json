@@ -1,0 +1,128 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 4.604599952697754,
+    "posY": 1.2181999683380127,
+    "posZ": 72.81549835205078,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Towering Roots of the Jungle",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20000000298023224,
+    "g": 0.1607999950647354,
+    "b": 0.15289999544620514
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355499755/4C467242482A4005B252E5EA9DF2EFD30C8E3949/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355499193/8F01F8D14C217CF7A8ADAFC652C4D95E0F1EE319/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0364999994635582,
+        "y": 0.20000000298023224,
+        "z": -0.18320000171661377
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2741999924182892,
+        "y": 0.20000000298023224,
+        "z": -0.18310000002384186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5105999708175659,
+        "y": 0.20000000298023224,
+        "z": -0.18310000002384186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7494000196456909,
+        "y": 0.20000000298023224,
+        "z": -0.18310000002384186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9857000112533569,
+        "y": 0.20000000298023224,
+        "z": -0.18310000002384186
+      }
+    },
+    {
+      "Position": {
+        "x": -0.03849999979138374,
+        "y": 0.20000000298023224,
+        "z": 0.13369999825954437
+      }
+    },
+    {
+      "Position": {
+        "x": -0.27570000290870667,
+        "y": 0.20000000298023224,
+        "z": 0.13369999825954437
+      }
+    },
+    {
+      "Position": {
+        "x": -0.511900007724762,
+        "y": 0.20000000298023224,
+        "z": 0.13369999825954437
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7505000233650208,
+        "y": 0.20000000298023224,
+        "z": 0.13369999825954437
+      }
+    },
+    {
+      "Position": {
+        "x": -0.986299991607666,
+        "y": 0.20000000298023224,
+        "z": 0.13369999825954437
+      }
+    }
+  ]
+}

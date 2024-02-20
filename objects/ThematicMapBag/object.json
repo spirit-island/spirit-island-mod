@@ -95,7 +95,7 @@
       "Value": 0,
       "Locked": true,
       "Grid": false,
-      "Snap": true,
+      "Snap": false,
       "IgnoreFoW": false,
       "MeasureMovement": false,
       "DragSelectable": true,

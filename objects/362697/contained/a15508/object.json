@@ -1,0 +1,135 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 73.95770263671875,
+    "posY": 1.2648999691009521,
+    "posZ": 94.018798828125,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 179.9842071533203,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Relentless Gaze of the Sun",
+  "Description": "NI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.20000000298023224,
+    "g": 0.1607999950647354,
+    "b": 0.15289999544620514
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355501702/7FC3CEC6B1727D9E1909BAF6F8227C1B5293B7A4/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2308724646355501214/B4D4CE9E354ECFCF5139375F97DA06682554B8C6/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.04450000077486038,
+        "y": 0.20000000298023224,
+        "z": -0.34700000286102295
+      }
+    },
+    {
+      "Position": {
+        "x": -0.28220000863075256,
+        "y": 0.20000000298023224,
+        "z": -0.34700000286102295
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5192000269889832,
+        "y": 0.20000000298023224,
+        "z": -0.34700000286102295
+      }
+    },
+    {
+      "Position": {
+        "x": -0.755299985408783,
+        "y": 0.20000000298023224,
+        "z": -0.34700000286102295
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9930999875068665,
+        "y": 0.20000000298023224,
+        "z": -0.34700000286102295
+      }
+    },
+    {
+      "Position": {
+        "x": -1.2303999662399292,
+        "y": 0.20000000298023224,
+        "z": -0.03370000049471855
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9922999739646912,
+        "y": 0.20000000298023224,
+        "z": -0.03370000049471855
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7555999755859375,
+        "y": 0.20000000298023224,
+        "z": -0.03370000049471855
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5192000269889832,
+        "y": 0.20000000298023224,
+        "z": -0.03370000049471855
+      }
+    },
+    {
+      "Position": {
+        "x": -0.28119999170303345,
+        "y": 0.20000000298023224,
+        "z": -0.03370000049471855
+      }
+    },
+    {
+      "Position": {
+        "x": -0.04390000179409981,
+        "y": 0.20000000298023224,
+        "z": -0.03440000116825104
+      }
+    }
+  ]
+}

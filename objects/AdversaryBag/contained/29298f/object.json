@@ -1,0 +1,56 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 15.194700241088867,
+    "posY": 2.3125998973846436,
+    "posZ": 47.775299072265625,
+    "rotX": 0.0,
+    "rotY": 179.98550415039062,
+    "rotZ": 0.0,
+    "scaleX": 0.20999999344348907,
+    "scaleY": 1.0,
+    "scaleZ": 0.20000000298023224
+  },
+  "Nickname": "Habsburg-Mining Build Reminder",
+  "Description": "Nature Incarnate Expansion",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Uninteractable"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2044121906862935949/509EF9E88A4989995D975A50CC35410B89DA5135/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  }
+}

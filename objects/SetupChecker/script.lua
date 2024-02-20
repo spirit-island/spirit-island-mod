@@ -1,34 +1,9 @@
 expansions = {}
-adversaries = {
-    ["None"] = "",
-    ["Random"] = "",
-    ["Prussia"] = "dd3d47",
-    ["England"] = "b765cf",
-    ["Sweden"] = "f114f8",
-    ["France"] = "e8f3e3",
-    ["Habsburg-Livestock"] = "1d9bcd",
-    ["Russia"] = "1ea4cf",
-    ["Scotland"] = "37a592",
-}
-numAdversaries = 7
+adversaries = {}
+numAdversaries = 0
 allAdversaries = {}
-scenarios = {
-    ["None"] = "",
-    ["Random"] = "",
-    ["Blitz"] = "1b39da",
-    ["Guard the Isle's Heart"] = "04397d",
-    ["Rituals of Terror"] = "7ac013",
-    ["Dahan Insurrection"] = "ee90ad",
-    ["Ward the Shores"] = "bd528e",
-    ["Powers Long Forgotten"] = "ca88f0",
-    ["Rituals of the Destroying Flame"] = "a69e8c",
-    ["The Great River"] = "5a95bc",
-    ["Elemental Invocation"] = "b8b521",
-    ["Despicable Theft"] = "ec49d4",
-    ["Varied Terrains"] = "64caee",
-    ["A Diversity of Spirits"] = "3d1ba3",
-}
-numScenarios = 12
+scenarios = {}
+numScenarios = 0
 allScenarios = {}
 
 pickedSpirits = {}
@@ -456,6 +431,24 @@ function expansionHasEvents(bagGUID)
     end
     return hasEvents
 end
+function checkExpansionRequiredTags(bagGUID)
+    local bag = getObjectFromGUID(bagGUID)
+    if bag == nil then
+        return false
+    end
+    if bag.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
+        return false
+    elseif bag.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
+        return false
+    elseif bag.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
+        return false
+    elseif bag.hasTag("Requires Vitality") and not Global.call("usingVitality") then
+        return false
+    elseif bag.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
+        return false
+    end
+    return true
+end
 function addExpansion(bag)
     expansions[bag.getName()] = bag.guid
     updateSelfXml()
@@ -836,6 +829,8 @@ function updateRequiredContent()
     requiredContent("Requires Tokens", Global.call("usingSpiritTokens"))
     requiredContent("Requires Badlands", Global.call("usingBadlands"))
     requiredContent("Requires Isolate", Global.call("usingIsolate"))
+    requiredContent("Requires Vitality", Global.call("usingVitality"))
+    requiredContent("Requires Incarna", Global.call("usingIncarna"))
 end
 function requiredContent(tag, enabled)
     local colors = {}
@@ -883,23 +878,36 @@ end
 
 function toggleExpansion(_, _, id)
     local exps = Global.getTable("expansions")
-    local bool
-    if exps[id] then
+    local enable = not exps[id]
+
+    if enable then
+        enable = checkExpansionRequiredTags(expansions[id])
+    end
+
+    if not enable then
         exps[id] = nil
-        bool = false
     else
         exps[id] = true
-        bool = true
     end
     Global.setTable("expansions", exps)
-    self.UI.setAttribute(id, "isOn", bool)
+    self.UI.setAttribute(id, "isOn", enable)
+
+    if not enable then
+        for exp, enabled in pairs(exps) do
+            if enabled and exp ~= id then
+                if not checkExpansionRequiredTags(expansions[exp]) then
+                    toggleExpansion(_, _, exp)
+                end
+            end
+        end
+    end
 
     if expansionHasEvents(expansions[id]) then
         local events = Global.getTable("events")
         events[id] = exps[id]
         Global.setTable("events", events)
-        self.UI.setAttribute(id.." Events", "isOn", bool)
-        if bool then
+        self.UI.setAttribute(id.." Events", "isOn", enable)
+        if enable then
             self.UI.setAttribute("allEvents", "isOn", "true")
         else
             local allDisabled = true
@@ -1805,6 +1813,10 @@ function getSpiritTags()
         tags["Horizons"] = true
         added = true
     end
+    if self.UI.getAttribute("spiritNI", "isOn") == "true" then
+        tags["NI"] = true
+        added = true
+    end
     if self.UI.getAttribute("spiritCustom", "isOn") == "true" then
         tags[""] = true
         added = true
@@ -2088,6 +2100,8 @@ function addSpirit(params)
         expansion = "FnF"
     elseif params.spirit.hasTag("Horizons") then
         expansion = "Horizons"
+    elseif params.spirit.hasTag("NI") then
+        expansion = "NI"
     end
     spiritTags[params.spirit.guid] = expansion
 
@@ -2440,16 +2454,20 @@ end
 
 -- Update a 2-width grid of toggle buttons to the have the given items and states
 -- @param id The id of the row containing the grid of toggles
--- @param values A table mapping toggle names to boolean values
+-- @param values A table mapping toggle names to boolean values and tooltip
 -- @param onValueChanged The name of the function to call when a toggle is clicked
 function updateToggleGrid(id, values, onValueChanged)
     return matchRecurse(id, function (t)
         t.children[1].children[1].children = {}
-        for name,isOn in pairs(values) do
+        for name,params in pairs(values) do
+            local attributes = {id = name, onValueChanged = onValueChanged, isOn = tostring(params.enabled)}
+            if params.tooltip then
+                attributes.tooltip = params.tooltip
+            end
             table.insert(t.children[1].children[1].children, {
                 tag="Toggle",
                 value=name,
-                attributes={id = name, onValueChanged = onValueChanged, isOn = tostring(isOn)},
+                attributes=attributes,
                 children={},
             })
         end
@@ -2460,10 +2478,16 @@ end
 function updateExpansionToggles()
     local exps = Global.getTable("expansions")
     local values = {}
-    for name,_ in pairs(expansions) do
+    for name,guid in pairs(expansions) do
+        values[name] = {}
         -- The Global expansions table stores nil for disabled expansions
         -- We want a boolean false, so we explicitly check for equality to true
-        values[name] = (exps[name] == true)
+        values[name].enabled = (exps[name] == true)
+
+        local expBag = getObjectFromGUID(guid)
+        if expBag and expBag.getDescription() then
+            values[name].tooltip = expBag.getDescription()
+        end
     end
     return updateToggleGrid("expansionsRow", values, "toggleExpansion")
 end
@@ -2472,9 +2496,10 @@ function updateEventToggles()
     local values = {}
     for name,guid in pairs(expansions) do
         if expansionHasEvents(guid) then
+            values[name.." Events"] = {}
             -- The Global events table stores nil for disabled expansions
             -- We want a boolean false, so we explicitly check for equality to true
-            values[name.." Events"] = (events[name] == true)
+            values[name.." Events"].enabled = (events[name] == true)
         end
     end
     return updateToggleGrid("events", values, "toggleEvents")
@@ -2650,27 +2675,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     for i=1,numPlayers do
         local index = math.random(1, #spiritGuidsCopy)
         local spirit = getObjectFromGUID(spiritGuidsCopy[index])
-
-        local aspects = sourceSpirit.call("FindAspects", {obj=spirit})
-        local aspect = ""
-        if aspects == nil then
-            math.random(0,0)
-        elseif type(aspects) == "table" then
-            local aspectIndex = math.random(0,#aspects)
-            if aspectIndex ~= 0 then
-                aspect = aspects[aspectIndex].name
-            end
-        elseif aspects.type == "Deck" then
-            local cards = aspects.getObjects()
-            local aspectIndex = math.random(0,#cards)
-            if aspectIndex ~= 0 then
-                aspect = cards[aspectIndex].name
-            end
-        elseif aspects.type == "Card" then
-            if math.random(0,1) == 1 then
-                aspect = aspects.getName()
-            end
-        end
+        local aspect = sourceSpirit.call("RandomAspect", {obj=spirit})
 
         config.spirits[spirit.getName()] = aspect
         table.remove(spiritGuidsCopy, index)

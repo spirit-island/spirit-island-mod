@@ -20,21 +20,6 @@ function InvaderDeckSetup(params)
     if params.level >= 6 then
         stageIRemoved = stageIRemoved + 1
     end
-    local i = 1
-    while (i <= #params.deck) do
-        if stageIRemoved == 0 and stageIIRemoved == 0 then
-            break
-        end
-        if params.deck[i] == 1 and stageIRemoved > 0 then
-            table.remove(params.deck, i)
-            stageIRemoved = stageIRemoved - 1
-        elseif (params.deck[i] == 2 or (invaderCards[params.deck[i]] and invaderCards[params.deck[i]].stage == 2)) and stageIIRemoved > 0 then
-            table.remove(params.deck, i)
-            stageIIRemoved = stageIIRemoved - 1
-        else
-            i = i + 1
-        end
-    end
 
     if params.level >= 2 then
         local stageI = nil
@@ -51,12 +36,28 @@ function InvaderDeckSetup(params)
         end
         -- assumes a deck will always have stage 3 cards
         table.remove(params.deck, stageIII)
-        if stageII ~= nil then
-            table.insert(params.deck, stageII, "3*")
-        elseif stageI ~= nil then
+        if stageI ~= nil then
             table.insert(params.deck, stageI+1, "3*")
+        elseif stageII ~= nil then
+            table.insert(params.deck, stageII, "3*")
         else
             table.insert(params.deck, 1, "3*")
+        end
+    end
+
+    local i = 1
+    while (i <= #params.deck) do
+        if stageIRemoved == 0 and stageIIRemoved == 0 then
+            break
+        end
+        if params.deck[i] == 1 and stageIRemoved > 0 then
+            table.remove(params.deck, i)
+            stageIRemoved = stageIRemoved - 1
+        elseif (params.deck[i] == 2 or (invaderCards[params.deck[i]] and invaderCards[params.deck[i]].stage == 2)) and stageIIRemoved > 0 then
+            table.remove(params.deck, i)
+            stageIIRemoved = stageIIRemoved - 1
+        else
+            i = i + 1
         end
     end
     return params.deck

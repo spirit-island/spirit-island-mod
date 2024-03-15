@@ -382,11 +382,17 @@ function setupSpirit(obj, player_color)
                 o.deal(#o.getObjects(),player_color)
             elseif o.type == "Card" and o.getName() == "Progression" then
                 if useProgression then
-                    o.setPositionSmooth(spos + Vector(0, 8.05, 14))
+                    o.setPositionSmooth(spos + Vector(-3.6, 0.05, 14))
                 else
                     o.destruct()
                 end
             else
+                if o.getName() == "Incarna" then
+                    o.setColorTint(Color.fromHex(playerTints.Presence))
+                    if o.getDecals() then
+                        Global.call("makeSacredSite", {obj = o, color = player_color})
+                    end
+                end
                 local bounds = math.max(o.getBounds().size.x, 0.04)
                 offset = offset + bounds * xPadding / 2
                 o.setPositionSmooth(spos + Vector(-placed*xPadding+xOffset-offset, 0.05, 10))

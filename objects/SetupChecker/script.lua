@@ -2006,7 +2006,7 @@ function getNewSpirit(tags, complexities)
     if count >= 100 then
         return nil
     end
-    local aspect = sourceSpirit.call("RandomAspect", {obj = spirit})
+    local aspect = RandomAspect({obj = spirit})
     spiritChoices[spirit.getName()] = {guid=spirit.guid}
     spiritChoicesLength = spiritChoicesLength + 1
     return spirit, aspect
@@ -2675,7 +2675,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     for i=1,numPlayers do
         local index = math.random(1, #spiritGuidsCopy)
         local spirit = getObjectFromGUID(spiritGuidsCopy[index])
-        local aspect = sourceSpirit.call("RandomAspect", {obj=spirit})
+        local aspect = RandomAspect({obj=spirit})
 
         config.spirits[spirit.getName()] = aspect
         table.remove(spiritGuidsCopy, index)
@@ -2847,6 +2847,110 @@ function setWeeklyChallengeUI(config)
         self.UI.setAttribute("challengeSpiritRow"..i, "visibility", "Invisible")
         i = i + 1
     end
+end
+function FindAspects(params)
+    if params.obj.type == "Bag" then
+        local aspects = {}
+        for _,obj in pairs(params.obj.getObjects()) do
+            for _,tag in pairs(obj.tags) do
+                if tag == "Aspect" then
+                    table.insert(aspects, obj)
+                    break
+                end
+            end
+        end
+        return aspects
+    else
+        for _,obj in pairs(upCast(params.obj)) do
+            if obj.hasTag("Aspect") then
+                return obj
+            end
+        end
+    end
+    return nil
+end
+function RandomAspect(params)
+    local obj = FindAspects(params)
+    if obj == nil then
+        -- math.random call is for weekly challenge to always call once regardless of type of aspects
+        math.random(0,0)
+        return ""
+    elseif type(obj) == "table" then
+        local newDeck = {}
+        local aspectNames = {}
+        for _,aspect in pairs(obj) do
+            local enabled = true
+            for _,tag in pairs(aspect.tags) do
+                if tag == "Requires Tokens" and not Global.call("usingSpiritTokens") then
+                    enabled = false
+                elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
+                    enabled = false
+                elseif tag == "Requires Isolate" and not Global.call("usingIsolate") then
+                    enabled = false
+                elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
+                    enabled = false
+                elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
+                    enabled = false
+                end
+            end
+            if enabled and not aspectNames[aspect.name] then
+                table.insert(newDeck, aspect)
+                aspectNames[aspect.name] = true
+            end
+        end
+        local index = math.random(0,#newDeck)
+        if index == 0 then
+            return ""
+        end
+        return newDeck[index].name
+    elseif obj.type == "Deck" then
+        local newDeck = {}
+        local aspectNames = {}
+        for _,aspect in pairs(obj.getObjects()) do
+            local enabled = true
+            for _,tag in pairs(aspect.tags) do
+                if tag == "Requires Tokens" and not Global.call("usingSpiritTokens") then
+                    enabled = false
+                elseif tag == "Requires Badlands" and not Global.call("usingBadlands") then
+                    enabled = false
+                elseif tag == "Requires Isolate" and not Global.call("usingIsolate") then
+                    enabled = false
+                elseif tag == "Requires Vitality" and not Global.call("usingVitality") then
+                    enabled = false
+                elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
+                    enabled = false
+                end
+            end
+            if enabled and not aspectNames[aspect.name] then
+                table.insert(newDeck, aspect)
+                aspectNames[aspect.name] = true
+            end
+        end
+        local index = math.random(0,#newDeck)
+        if index == 0 then
+            return ""
+        end
+        return newDeck[index].name
+    elseif obj.type == "Card" then
+        local count = 1
+        if obj.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
+            count = 0
+        elseif obj.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
+            count = 0
+        elseif obj.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
+            count = 0
+        elseif obj.hasTag("Requires Vitality") and not Global.call("usingVitality") then
+            count = 0
+        elseif obj.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
+            count = 0
+        end
+        local index = math.random(0,count)
+        if index == 0 then
+            return ""
+        end
+        return obj.getName()
+    end
+    return ""
 end
 
 function togglePlaytestExpansion(_, selected, id)

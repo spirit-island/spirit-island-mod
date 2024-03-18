@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.2.1"
+version = "4.2.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -3922,7 +3922,6 @@ quotes = {
     {"Time is the most undefinable yet paradoxical of things; the past is gone, the future is not come, and the present becomes the past even while we attempt to define it, and, like the flash of lightning, at once exists and expires.","Charles Caleb Colton"},
     {"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma - which is living with the results of other people's thinking.","Steve Jobs"},
     {"Time and tide wait for no man, but time always stands still for a woman of 30.","Robert Frost"},
-    {"Time, you old gypsy man, will you not stay, put up your caravan just for one day?","Ralph Hodgson"},
     {"The more sand that has escaped from the hourglass of our life, the clearer we should see through it.","Jean Paul"},
     {"Don't say you don't have enough time. You have exactly the same number of hours per day that were given to Helen Keller, Pasteur, Michaelangelo, Mother Teresa, Leonardo da Vinci, Thomas Jefferson, and Albert Einstein.","H. Jackson Brown Junior"},
     {"Time is a brisk wind, for each hour it brings something new... but who can understand and measure its sharp breath, its mystery and its design?","Paracelsus"},

@@ -2567,7 +2567,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     seedTimestamp()
 
     -- Requires both Branch & Claw and Jagged Earth expansions
-    local config = {boards = {}, spirits = {}, expansions = {"Branch & Claw", "Jagged Earth"}, events = {}, broadcast = ""}
+    local config = {boards = {}, spirits = {}, expansions = {"Branch & Claw", "Jagged Earth", "Nature Incarnate"}, events = {}, broadcast = ""}
     local numPlayers = Global.getVar("numPlayers")
 
     local leadingAdversary = math.random(1, numAdversaries)
@@ -2629,12 +2629,15 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
         config.boardLayout = indexTable(setups[numBoards], layoutRng)
     end
 
-    local events = math.random(1, 4)
-    if events == 1 or events >= 3 then
+    local events = math.random(1, 12)
+    if events == 1 or events == 4 or events == 5 or events >= 7 then
         table.insert(config.events, "Branch & Claw")
     end
-    if events == 2 or events >= 3 then
+    if events == 2 or events == 4 or events == 6 or events >= 7 then
         table.insert(config.events, "Jagged Earth")
+    end
+    if events == 3 or events == 5 or events == 6 or events >= 7 then
+        table.insert(config.events, "Nature Incarnate")
     end
 
     local boardsCount

@@ -27,7 +27,7 @@
     <Toggle class="3-1" tooltip="Keep new cards in separate&#xA;deck and draw 1 each time"/>
     <Toggle class="2-2" tooltip="Keep new cards in separate&#xA;deck and draw 2 each time"/>
 
-    <Text class="spirit" resizeTextForBestFit="true"/>
+    <Text class="resize" resizeTextForBestFit="true" verticalOverflow="Truncate"/>
 </Defaults>
 
 <Panel id="panelSetup" recurse="leadingAdversary supportingAdversary scenario boardLayout expansionsRow" visibility="Invisible" width="1000" height="1700" position="-2500 -60 14">
@@ -392,7 +392,7 @@
                 <Cell><Text id="challengeScenario" class="header"/></Cell>
             </Row>
             <Row class="header">
-                <Cell><Text id="challengeEvents" class="header"/></Cell>
+                <Cell><Text id="challengeEvents" class="header resize"/></Cell>
             </Row>
             <Row class="header">
                 <Cell><Text id="challengeLayout" class="header"/></Cell>
@@ -405,22 +405,22 @@
             </Row>
             <Row class="spacing"/>
             <Row id="challengeSpiritRow1" class="header">
-                <Cell><Text id="challengeSpirit1" class="header spirit"/></Cell>
+                <Cell><Text id="challengeSpirit1" class="header resize"/></Cell>
             </Row>
             <Row id="challengeSpiritRow2" class="header">
-                <Cell><Text id="challengeSpirit2" class="header spirit"/></Cell>
+                <Cell><Text id="challengeSpirit2" class="header resize"/></Cell>
             </Row>
             <Row id="challengeSpiritRow3" class="header">
-                <Cell><Text id="challengeSpirit3" class="header spirit"/></Cell>
+                <Cell><Text id="challengeSpirit3" class="header resize"/></Cell>
             </Row>
             <Row id="challengeSpiritRow4" class="header">
-                <Cell><Text id="challengeSpirit4" class="header spirit"/></Cell>
+                <Cell><Text id="challengeSpirit4" class="header resize"/></Cell>
             </Row>
             <Row id="challengeSpiritRow5" class="header">
-                <Cell><Text id="challengeSpirit5" class="header spirit"/></Cell>
+                <Cell><Text id="challengeSpirit5" class="header resize"/></Cell>
             </Row>
             <Row id="challengeSpiritRow6" class="header">
-                <Cell><Text id="challengeSpirit6" class="header spirit"/></Cell>
+                <Cell><Text id="challengeSpirit6" class="header resize"/></Cell>
             </Row>
         </TableLayout>
     </VerticalLayout>

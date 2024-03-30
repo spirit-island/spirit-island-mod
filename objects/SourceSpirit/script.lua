@@ -488,19 +488,25 @@ function handleAspect(spirit, deck, color, randomAspect)
             end
             if not enabled then
                 deck.takeObject({guid = aspect.guid}).destruct()
+                return
             end
         end
     elseif deck.type == "Card" then
         if deck.hasTag("Requires Tokens") and not Global.call("usingSpiritTokens") then
             deck.destruct()
+            return
         elseif deck.hasTag("Requires Badlands") and not Global.call("usingBadlands") then
             deck.destruct()
+            return
         elseif deck.hasTag("Requires Isolate") and not Global.call("usingIsolate") then
             deck.destruct()
+            return
         elseif deck.hasTag("Requires Vitality") and not Global.call("usingVitality") then
             deck.destruct()
+            return
         elseif deck.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
             deck.destruct()
+            return
         end
     end
 

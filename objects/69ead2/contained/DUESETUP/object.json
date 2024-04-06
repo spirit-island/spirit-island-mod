@@ -1,0 +1,66 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 30.0486031,
+    "posY": 1.138573,
+    "posZ": 13.990737,
+    "rotX": 3.19994022e-08,
+    "rotY": 180.023621,
+    "rotZ": -1.796537e-08,
+    "scaleX": 1.0,
+    "scaleY": 0.1,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Impend Script and Info",
+  "Description": "If you wish to play without the automated impend system, delete this [b]before[/b] you set up the game.\r\n\r\nTo put card(s) into impend, place them onto the spirit panel's artwork and then press the button.\r\n\r\nTo adjust the input energy of a card, left and right click on the counter that is placed upon the card itself.\r\n\r\nThere are override buttons placed on the back of each card if anything goes wrong, or to un-impend a card.\r\n\r\nIf the third growth option is chosen, press the button over the +/-1 energy symbol and this will create buttons on the cards for this too.",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.028691018,
+    "g": 0.378747135,
+    "b": 0.7160278
+  },
+  "Tags": [
+    "Gain Pay",
+    "Setup",
+    "Time Passes"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

@@ -3,11 +3,8 @@ local thematicBag = "bb7fce"
 
 local preparedTileHeight = 0
 local raiseHeight = 0.2
-local castDownDropHeight = 0.05 -- The distance that the main mod drops a board when casting down.
 local preparedTag = "Drowned Prepared"
 local activeTag = "Drowned Active"
- -- A boolean, does the timer exist, stored in global.
-local timerVarName = "castDownDrownedLandTimer"
 
 local toPopulate = 0
 
@@ -85,39 +82,10 @@ function err(color, message)
     Player[color].broadcast(message, Color.Red)
 end
 
-function castDownCallback()
-    -- If we're not currently casting down, return immediately to avoid overhead.
-    if not Global.getVar("castDown") then
-        return
-    end
-    
-    local board = getObjectFromGUID(Global.getVar("castDown"))
-    local drowningTiles = getBoardTiles(board)
-    for _,guid in pairs(drowningTiles) do
-        local obj = getObjectFromGUID(guid)
-        if obj ~= nil then
-            obj.destruct()
-        end
-    end
-end
-
--- Starts the Cast Down timer.
-function startCastDownTimer()
-    -- We store the reference to the Cast Down timer in Global, so every Deeps token has access to it.
-    -- Every Deeps token will try to do this, so if it already exists, don't worry about it.
-    if Global.getVar(timerVarName) then
-        return
-    end
-    -- Cast Down lasts 0.5 seconds.
-    -- We need to drop the tiles early, to give things time to fall, so do this every 0.2 seconds.
-    Wait.time(castDownCallback, 0.2, -1)
-    Global.setVar(timerVarName, true)
-end
-
 -- Casts down from the provided location, returning the board found.
 function getBoard(position)
     local hits = Physics.cast({
-        origin = position, -- + Vector(0,0.2,0) [this was used temporarily while the models were slightly off]
+        origin = position,
         direction = Vector(0,-1,0),
         max_distance = 1,
     })
@@ -143,21 +111,12 @@ function markBoard(board, drowningTiles)
 end
 
 -- Returns whether a board has been marked by markBoard.
-function checkBoard(board)
+function hasDrowningTiles(board)
     if board.script_state == "" then
         return false
     end
     local json = JSON.decode(board.script_state)
     return json.drowningTiles ~= nil
-end
-
--- Gets the table of drowning tiles from a board
-function getBoardTiles(board)
-    if board.script_state == "" then
-        return {}
-    end
-    local json = JSON.decode(board.script_state)
-    return json.drowningTiles
 end
 
 -- Places a single drowned land tile, from a bag, into the correct place.
@@ -194,8 +153,8 @@ function calculatePosition(board, tilePosition)
 end
 
 -- Takes a board and fills it with drowning tiles, locked and hidden inside it.
-function populateBoard(board)
-    if checkBoard(board) then
+function setupDrowningTiles(board)
+    if hasDrowningTiles(board) then
         return
     end
     
@@ -214,7 +173,7 @@ function populateBoard(board)
     -- We store GUIDs as populateTile modifies the bag contents, which may interfere with bag operations.
     local guids = {}
     for _,obj in pairs(bag.getObjects()) do
-        if string.find(obj.name, "^"..board.getName().."[0-9]*$") then
+        if string.find(obj.name, "^"..board.getName().."[0-9]+$") then
             guids[obj.name] = obj.guid
             toPopulate = toPopulate + 1
         end
@@ -228,7 +187,6 @@ function populateBoard(board)
     end
     
     markBoard(board, drowningTiles)
-    startCastDownTimer()
 end
 
 -- Adds right-click functionality to a tile to undrown itself.
@@ -247,6 +205,7 @@ function addUndrown(tile)
             )
         end
     ]], raiseHeight, activeTag, preparedTag))
+    tile.reload()
 end
 
 -- Lifts a tile up out of the board to be visible.
@@ -273,7 +232,7 @@ function liftTile(color, token_position)
     err(color, "Can't find drowned land tile\nIs the token on a land boundary? Has this tile already been drowned?")
 end
 
-function activate(color, token_position, _)
+function drownLand(color, token_position, _)
     -- First, find which board we're over.
     local board = getBoard(token_position)
     if not board then
@@ -281,7 +240,7 @@ function activate(color, token_position, _)
         return
     end
     
-    populateBoard(board)
+    setupDrowningTiles(board)
     
     -- Wait for the drowned land tiles to appear before raising one.
     Wait.condition(
@@ -291,9 +250,5 @@ function activate(color, token_position, _)
 end
 
 function onLoad()
-    self.addContextMenuItem("Drown Land", activate)
-    
-    if getObjectsWithAnyTags({preparedTag, activeTag}) then
-        startCastDownTimer()
-    end
+    self.addContextMenuItem("Drown Land", drownLand)
 end

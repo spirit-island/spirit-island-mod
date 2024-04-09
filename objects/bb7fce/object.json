@@ -3,7 +3,7 @@
   "Transform": {
     "posX": -50.9,
     "posY": 0.96,
-    "posZ": 61.4,
+    "posZ": 60.05,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -11,7 +11,7 @@
     "scaleY": 0.1237,
     "scaleZ": 0.6246
   },
-  "Nickname": "Balanced Drowned Lands",
+  "Nickname": "Thematic Drowned Lands",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -21,7 +21,7 @@
   },
   "ColorDiffuse": {
     "r": 0.5677,
-    "g": 0.560099959,
+    "g": 0.5601,
     "b": 0.56
   },
   "LayoutGroupSortIndex": 0,
@@ -68,14 +68,14 @@
       "GUID": "6e5603",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 5.22610843e-11,
-        "posY": 0.2344385,
-        "posZ": -2.02733386e-10,
-        "rotX": -3.539594e-07,
-        "rotY": 0.00162337383,
-        "rotZ": -3.139042e-08,
-        "scaleX": 0.427473545,
-        "scaleY": 8.084074,
+        "posX": 0.0,
+        "posY": 0.2344,
+        "posZ": 0.0,
+        "rotX": 0.0,
+        "rotY": 0.0016,
+        "rotZ": 0.0,
+        "scaleX": 0.4275,
+        "scaleY": 8.0841,
         "scaleZ": 0.72
       },
       "Nickname": "",
@@ -88,7 +88,7 @@
       },
       "ColorDiffuse": {
         "r": 0.5677,
-        "g": 0.560099959,
+        "g": 0.5601,
         "b": 0.56
       },
       "LayoutGroupSortIndex": 0,

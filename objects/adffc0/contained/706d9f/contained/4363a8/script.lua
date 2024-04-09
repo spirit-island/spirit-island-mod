@@ -117,7 +117,7 @@ end
 -- Casts down from the provided location, returning the board found.
 function getBoard(position)
     local hits = Physics.cast({
-        origin = position, -- + Vector(0,0.2,0) [this was used temporarily while the models were slightly off]
+        origin = position,
         direction = Vector(0,-1,0),
         max_distance = 1,
     })

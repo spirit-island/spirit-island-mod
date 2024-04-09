@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Model",
   "Transform": {
-    "posX": 72.4290543,
-    "posY": 1.55759406,
-    "posZ": 39.5244522,
-    "rotX": 5.38509539e-06,
-    "rotY": 179.999084,
-    "rotZ": 2.16221069e-05,
+    "posX": 72.4291,
+    "posY": 1.5576,
+    "posZ": 39.5245,
+    "rotX": 0.0,
+    "rotY": 179.9991,
+    "rotZ": 0.0,
     "scaleX": 2.1,
     "scaleY": 1.0,
     "scaleZ": 2.1

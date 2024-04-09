@@ -92,7 +92,7 @@ function castDownCallback()
     end
     
     local board = getObjectFromGUID(Global.getVar("castDown"))
-    local drowningTiles = getBoardTiles(board)
+    local drowningTiles = getDrowningTiles(board)
     for _,guid in pairs(drowningTiles) do
         local obj = getObjectFromGUID(guid)
         if obj ~= nil then
@@ -143,7 +143,7 @@ function markBoard(board, drowningTiles)
 end
 
 -- Returns whether a board has been marked by markBoard.
-function checkBoard(board)
+function hasDrowningTiles(board)
     if board.script_state == "" then
         return false
     end
@@ -152,7 +152,7 @@ function checkBoard(board)
 end
 
 -- Gets the table of drowning tiles from a board
-function getBoardTiles(board)
+function getDrowningTiles(board)
     if board.script_state == "" then
         return {}
     end
@@ -194,8 +194,8 @@ function calculatePosition(board, tilePosition)
 end
 
 -- Takes a board and fills it with drowning tiles, locked and hidden inside it.
-function populateBoard(board)
-    if checkBoard(board) then
+function setupDrowningTiles(board)
+    if hasDrowningTiles(board) then
         return
     end
     
@@ -273,7 +273,7 @@ function liftTile(color, token_position)
     err(color, "Can't find drowned land tile\nIs the token on a land boundary? Has this tile already been drowned?")
 end
 
-function activate(color, token_position, _)
+function drownLand(color, token_position, _)
     -- First, find which board we're over.
     local board = getBoard(token_position)
     if not board then
@@ -281,7 +281,7 @@ function activate(color, token_position, _)
         return
     end
     
-    populateBoard(board)
+    setupDrowningTiles(board)
     
     -- Wait for the drowned land tiles to appear before raising one.
     Wait.condition(
@@ -291,7 +291,7 @@ function activate(color, token_position, _)
 end
 
 function onLoad()
-    self.addContextMenuItem("Drown Land", activate)
+    self.addContextMenuItem("Drown Land", drownLand)
     
     if getObjectsWithAnyTags({preparedTag, activeTag}) then
         startCastDownTimer()

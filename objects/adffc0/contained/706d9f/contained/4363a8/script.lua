@@ -247,6 +247,7 @@ function addUndrown(tile)
             )
         end
     ]], raiseHeight, activeTag, preparedTag))
+    tile.reload()
 end
 
 -- Lifts a tile up out of the board to be visible.

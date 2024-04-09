@@ -3,11 +3,8 @@ local thematicBag = "bb7fce"
 
 local preparedTileHeight = 0
 local raiseHeight = 0.2
-local castDownDropHeight = 0.05 -- The distance that the main mod drops a board when casting down.
 local preparedTag = "Drowned Prepared"
 local activeTag = "Drowned Active"
- -- A boolean, does the timer exist, stored in global.
-local timerVarName = "castDownDrownedLandTimer"
 
 local toPopulate = 0
 
@@ -85,35 +82,6 @@ function err(color, message)
     Player[color].broadcast(message, Color.Red)
 end
 
-function castDownCallback()
-    -- If we're not currently casting down, return immediately to avoid overhead.
-    if not Global.getVar("castDown") then
-        return
-    end
-    
-    local board = getObjectFromGUID(Global.getVar("castDown"))
-    local drowningTiles = getDrowningTiles(board)
-    for _,guid in pairs(drowningTiles) do
-        local obj = getObjectFromGUID(guid)
-        if obj ~= nil then
-            obj.destruct()
-        end
-    end
-end
-
--- Starts the Cast Down timer.
-function startCastDownTimer()
-    -- We store the reference to the Cast Down timer in Global, so every Deeps token has access to it.
-    -- Every Deeps token will try to do this, so if it already exists, don't worry about it.
-    if Global.getVar(timerVarName) then
-        return
-    end
-    -- Cast Down lasts 0.5 seconds.
-    -- We need to drop the tiles early, to give things time to fall, so do this every 0.2 seconds.
-    Wait.time(castDownCallback, 0.2, -1)
-    Global.setVar(timerVarName, true)
-end
-
 -- Casts down from the provided location, returning the board found.
 function getBoard(position)
     local hits = Physics.cast({
@@ -149,15 +117,6 @@ function hasDrowningTiles(board)
     end
     local json = JSON.decode(board.script_state)
     return json.drowningTiles ~= nil
-end
-
--- Gets the table of drowning tiles from a board
-function getDrowningTiles(board)
-    if board.script_state == "" then
-        return {}
-    end
-    local json = JSON.decode(board.script_state)
-    return json.drowningTiles
 end
 
 -- Places a single drowned land tile, from a bag, into the correct place.
@@ -228,7 +187,6 @@ function setupDrowningTiles(board)
     end
     
     markBoard(board, drowningTiles)
-    startCastDownTimer()
 end
 
 -- Adds right-click functionality to a tile to undrown itself.
@@ -293,8 +251,4 @@ end
 
 function onLoad()
     self.addContextMenuItem("Drown Land", drownLand)
-    
-    if getObjectsWithAnyTags({preparedTag, activeTag}) then
-        startCastDownTimer()
-    end
 end

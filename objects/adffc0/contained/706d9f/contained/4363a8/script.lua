@@ -214,7 +214,7 @@ function populateBoard(board)
     -- We store GUIDs as populateTile modifies the bag contents, which may interfere with bag operations.
     local guids = {}
     for _,obj in pairs(bag.getObjects()) do
-        if string.find(obj.name, "^"..board.getName().."[0-9]*$") then
+        if string.find(obj.name, "^"..board.getName().."[0-9]+$") then
             guids[obj.name] = obj.guid
             toPopulate = toPopulate + 1
         end

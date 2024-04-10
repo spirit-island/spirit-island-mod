@@ -119,32 +119,6 @@ function hasDrowningTiles(board)
     return json.drowningTiles ~= nil
 end
 
--- Places a single drowned land tile, from a bag, into the correct place.
--- Creates a copy from the bag, 'cause we may need multiple copies for extra bags.
--- Gives the object a tag to indicate it's submerged in a board.
-function populateTile(bag, guid, position, rotation)
-    -- TODO: Scale this properly according to scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size
-    -- Get the object out of the bag to clone it, but use a callback to put it back as soon as it spawns.
-    local original = bag.takeObject({
-        guid = guid,
-        position = bag.getPosition() + Vector(0, 10, 0),
-        callback_function = function(obj) bag.putObject(obj) end,
-    })
-    -- Spawn the clones somewhere out of the way, so we can lock them before moving them into position.
-    local clone = original.clone({position = original.getPosition() + Vector(0, 10, 0)})
-    clone.setLock(true)
-    clone.setPosition(position)
-    clone.setRotation(rotation)
-    clone.addTag(preparedTag)
-    clone.interactable = false
-    clone.addTag("Uninteractable")
-    Wait.condition(
-        function() toPopulate = toPopulate - 1 end,
-        function() return not clone.spawning and not clone.loading_custom end
-    )
-    return clone.getGUID()
-end
-
 -- Calculates the correct position for a tile, given a board.
 function calculatePosition(board, tilePosition)
     local boardScale = board.getScale()
@@ -169,23 +143,37 @@ function setupDrowningTiles(board)
         positions = thematicPositions
     end
     
-    -- Go through the bag, storing the GUIDs of the objects we want.
-    -- We store GUIDs as populateTile modifies the bag contents, which may interfere with bag operations.
-    local guids = {}
-    for _,obj in pairs(bag.getObjects()) do
-        if string.find(obj.name, "^"..board.getName().."[0-9]+$") then
-            guids[obj.name] = obj.guid
+    -- We want to leave the original objecs in the bag, in case we have duplicates of a board.
+    -- So we spawn new objects from the data in the bag.
+    local data = bag.getData()
+    local drowningTiles = {}
+    for _,newData in pairs(data.ContainedObjects) do
+        if string.find(newData.Nickname, "^"..board.getName().."[0-9]+$") then
+            local name = newData.Nickname
+            local position = calculatePosition(board, positions[name])
+            local rotation = board.getRotation()
+            newData.Locked = true
+            newData.Tags = {preparedTag, "Uninteractable"}
+
+            local spawnedObj = spawnObjectData({
+                data = newData,
+                position = position,
+                rotation = rotation,
+                callback_function = function(obj) obj.interactable = false end,
+            })
+            drowningTiles[name] = spawnedObj.getGUID()
+
             toPopulate = toPopulate + 1
+            Wait.condition(
+                function()
+                    toPopulate = toPopulate - 1
+                    spawnedObj.interactable = false
+                end,
+                function() return not spawnedObj.spawning and not spawnedObj.loading_custom end
+            )
         end
     end
-    
-    local drowningTiles = {}
-    -- Copy all the appropriate objects into place.
-    for name,guid in pairs(guids) do
-        local spawnedGUID = populateTile(bag, guid, calculatePosition(board, positions[name]), board.getRotation())
-        drowningTiles[name] = spawnedGUID
-    end
-    
+
     markBoard(board, drowningTiles)
 end
 

@@ -78,8 +78,8 @@ local balancedPositions = {
 local thematicPositions = {
 }
 
-function err(color, message)
-    Player[color].broadcast(message, Color.Red)
+function err(playerColor, message)
+    Player[playerColor].broadcast(message, Color.Red)
 end
 
 -- Casts down from the provided location, returning the board found.
@@ -198,7 +198,7 @@ end
 
 -- Lifts a tile up out of the board to be visible.
 -- Acts only on objects with preparedTag.
-function liftTile(color, token_position)
+function liftTile(playerColor, token_position)
     local hits = Physics.cast({
         origin = token_position,
         direction = Vector(0,-1,0),
@@ -217,22 +217,22 @@ function liftTile(color, token_position)
         end
     end
     
-    err(color, "Can't find drowned land tile\nIs the token on a land boundary? Has this tile already been drowned?")
+    err(playerColor, "Can't find drowned land tile\nIs the token on a land boundary? Has this tile already been drowned?")
 end
 
-function drownLand(color, token_position, _)
+function drownLand(playerColor, token_position, _)
     -- First, find which board we're over.
     local board = getBoard(token_position)
     if not board then
-        err(color, "Token is not on a board")
+        err(playerColor, "Token is not on a board")
         return
     end
     
-    setupDrowningTiles(board)
+    setupDrowningTiles(playerColor, board)
     
     -- Wait for the drowned land tiles to appear before raising one.
     Wait.condition(
-        function() liftTile(color, token_position) end,
+        function() liftTile(playerColor, token_position) end,
         function() return toPopulate == 0 end
     )
 end

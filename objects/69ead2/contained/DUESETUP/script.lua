@@ -72,7 +72,7 @@ function doSetup(params)
     position1.z = position1.z - 5.5
     Global.call("SpawnHand", {color = color, position = position1})
     
-    Wait.time(function() createPanelButtons() end, 0.1) -- without a wait, if spirit chosen after setup, buttons don't appear
+    Wait.condition(function() createPanelButtons() end, function() return not panel.isSmoothMoving() end) -- without a wait, if spirit chosen after setup, buttons don't appear
     
     return true
 end
@@ -97,10 +97,16 @@ function createPanelButtons()
         tooltip = "Place a card on the panel art\nand press the button to impend it!",
     })
     
+    local label
+    if g3Selected then
+        label = "☑\n\n\n"
+    else
+        label = "☐\n\n\n"
+    end
     dances.createButton({
         click_function = "g3Toggle",
         function_owner = self,
-        label = "☐\n\n\n", 
+        label = label,
         position = {1.1,0.2,-0.78},
         scale = {x=0.08, y=0.08, z=0.08},
         width = 1800,
@@ -110,13 +116,6 @@ function createPanelButtons()
         font_color = {0,0,0,100},
         tooltip = "Press this if you are choosing the third growth option in order to show buttons on impending cards.",
     })
-    if g3Selected then
-        local ind = getButtonIndex(dances, "g3Toggle")
-        dances.editButton({
-            index = ind,
-            label = "☑\n\n\n",
-        })
-    end
 end
 
 function impendCard(obj)
@@ -130,8 +129,8 @@ function impendCard(obj)
         -- debug = true
     })
     for _,hit in pairs(hits) do
-        if hit.hit_object.type == "Card" and hit.hit_object.getVar("energy") ~= nil then -- check cards for energy to make sure they are correct hits
             local card = hit.hit_object
+        if Global.call("isPowerCard", {card=card}) then
             if impendTable[card.guid] == nil then
                 local costs = {}
                 costs[card.guid] = card.getVar("energy")
@@ -140,7 +139,7 @@ function impendCard(obj)
                 impendTable[card.guid] = {
                     guid = card.guid,
                     name = card.getName(),
-                    maxEnergy = energy, -- may need to revert to storing without discount
+                    maxEnergy = energy,
                     turnSelected = Global.getVar("turn"),
                     energy = {0,0,0},
                 }
@@ -150,7 +149,6 @@ function impendCard(obj)
                 updateEnergyDisplay(card.guid)
                 card.deal(1, color, 3)
             end
-            -- print(card.guid .. " is impended") -- debug
         end
     end
     updateSave()
@@ -323,7 +321,7 @@ end
 function createAllG3Buttons()
     if g3Selected then
         for _,tbl in pairs(impendTable) do
-            card = getObjectFromGUID(tbl.guid)
+            local card = getObjectFromGUID(tbl.guid)
             if card then
                createG3Buttons(card)
             end
@@ -362,7 +360,7 @@ end
 
 function removeAllG3Buttons()
     for _,tbl in pairs(impendTable) do
-        card = getObjectFromGUID(tbl.guid)
+        local card = getObjectFromGUID(tbl.guid)
         if card then
             removeG3Buttons(card)
         end
@@ -407,26 +405,30 @@ function g3CardsSelected()
     return count
 end
 
-function g3Plus(card)
+function g3Plus(card, color)
     local selected = g3CardsSelected()
     local guid = card.guid
     if impendTable[guid].energy[3] == 1 then
         impendTable[guid].energy[3] = 0
     elseif impendTable[guid].energy[3] == -1 or selected < 2 then
         impendTable[guid].energy[3] = 1
+    else
+        broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
     end
     updateEnergyDisplay(guid)
     updateG3Buttons(guid)
     updateSave()
 end
 
-function g3Minus(card)
+function g3Minus(card, color)
     local selected = g3CardsSelected()
     local guid = card.guid
     if impendTable[guid].energy[3] == -1 then
         impendTable[guid].energy[3] = 0
     elseif impendTable[guid].energy[3] == 1 or selected < 2 then
         impendTable[guid].energy[3] = -1
+    else
+        broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
     end
     updateEnergyDisplay(guid)
     updateG3Buttons(guid)
@@ -501,106 +503,105 @@ local function energyPerTurn(dances)
 end
 
 function onGainPay(params)
+    if not params.color == Global.call("getSpiritColor", {name = spiritName}) then return end
     local dances = Global.call("getSpirit", {name = spiritName})
-    if params.color == Global.call("getSpiritColor", {name = spiritName}) then
-        if params.isGain then
-            for _,tbl in pairs(impendTable) do
-                if params.isUndo then
-                    impendTable[tbl.guid].energy[2] = 0
-                elseif tbl.turnSelected ~= Global.getVar("turn") then
-                    impendTable[tbl.guid].energy[2] = energyPerTurn(dances)
-                end
-                updateEnergyDisplay(tbl.guid)
-            end
-            updateSave()
-        else
-            local zone = Global.getVar("selectedColors")[params.color].zone
+    if params.isGain then
+        for _,tbl in pairs(impendTable) do
             if params.isUndo then
-                for _,obj in pairs(zone.getObjects()) do
-                    local tbl = impendTable[obj.guid]
-                    if tbl then
-                        -- originally pulled all impend cards back to impend hand but that can be annoying
-                        -- swapping to only pull back cards not currently with sufficient energy
-                        if tbl.energy[1] + tbl.energy[2] + tbl.energy[3] < tbl.maxEnergy then
-                            obj.deal(1, params.color, 3)
-                        end
+                impendTable[tbl.guid].energy[2] = 0
+            elseif tbl.turnSelected ~= Global.getVar("turn") then
+                impendTable[tbl.guid].energy[2] = energyPerTurn(dances)
+            end
+            updateEnergyDisplay(tbl.guid)
+        end
+        updateSave()
+    else
+        local zone = Global.getTable("selectedColors")[params.color].zone
+        if params.isUndo then
+            for _,obj in pairs(zone.getObjects()) do
+                local tbl = impendTable[obj.guid]
+                if tbl then
+                    -- originally pulled all impend cards back to impend hand but that can be annoying
+                    -- swapping to only pull back cards not currently with sufficient energy
+                    if tbl.energy[1] + tbl.energy[2] + tbl.energy[3] < tbl.maxEnergy then
+                        obj.deal(1, params.color, 3)
                     end
                 end
-            else
-                -- Store all impended cards with enough energy into a table
-                local toPlayFast = {}
-                local toPlaySlow = {}
-                local impendInPlay = {}
-                for _,obj in pairs(zone.getObjects()) do
-                    local tbl = impendTable[obj.guid]
-                    if tbl then
-                        if tbl.energy[1] + tbl.energy[2] + tbl.energy[3] >= tbl.maxEnergy then
-                            impendInPlay[obj] = true
-                        else
-                            obj.deal(1, params.color, 3)
-                        end
+            end
+        else
+            -- Store all impended cards with enough energy into a table
+            local toPlayFast = {}
+            local toPlaySlow = {}
+            local impendInPlay = {}
+            for _,obj in pairs(zone.getObjects()) do
+                local tbl = impendTable[obj.guid]
+                if tbl then
+                    if tbl.energy[1] + tbl.energy[2] + tbl.energy[3] >= tbl.maxEnergy then
+                        impendInPlay[obj] = true
+                    else
+                        obj.deal(1, params.color, 3)
                     end
                 end
-                for _,tbl in pairs(impendTable) do
-                    local card = getObjectFromGUID(tbl.guid)
-                    local energy = tbl.energy[1] + tbl.energy[2] + tbl.energy[3]
-                    if tbl.turnSelected ~= Global.getVar("turn") and energy >= tbl.maxEnergy then
-                        -- Check the card is not in a bag/deck
-                        if card then -- possibly also check card is not in zone as may annoy people if their cards keep moving
-                            local card_z = card.getPosition().z
-                            local zone_z = zone.getPosition().z
-                            if not (impendInPlay[card] and card_z > zone_z and card_z < zone_z + 9.5) then
-                                if card.hasTag("Fast") then
-                                    table.insert(toPlayFast,card)
-                                else
-                                    table.insert(toPlaySlow,card)
-                                end
-                            end
-                        else
-                            if tbl.container then
-                                Player[params.color].broadcast("Cannot find impended card: " .. tbl.name .. "\nThis is in bag or deck with guid: " .. tbl.container .. "\nIf expected, ignore this message. Otherwise, please find it and put it in play!", Color.Orange)
+            end
+            for _,tbl in pairs(impendTable) do
+                local card = getObjectFromGUID(tbl.guid)
+                local energy = tbl.energy[1] + tbl.energy[2] + tbl.energy[3]
+                if tbl.turnSelected ~= Global.getVar("turn") and energy >= tbl.maxEnergy then
+                    -- Check the card is not in a bag/deck
+                    if card then -- possibly also check card is not in zone as may annoy people if their cards keep moving
+                        local card_z = card.getPosition().z
+                        local zone_z = zone.getPosition().z
+                        if not (impendInPlay[card] and card_z > zone_z and card_z < zone_z + 9.5) then
+                            if card.hasTag("Fast") then
+                                table.insert(toPlayFast,card)
                             else
-                                Player[params.color].broadcast("Cannot find impended card: " .. tbl.name .. "\nIf expected, ignore this message. Otherwise, please find it and put it in play!", Color.Orange)
+                                table.insert(toPlaySlow,card)
                             end
+                        end
+                    else
+                        if tbl.container then
+                            Player[params.color].broadcast("Cannot find impended card: " .. tbl.name .. "\nThis is in bag or deck with guid: " .. tbl.container .. "\nIf expected, ignore this message. Otherwise, please find it and put it in play!", Color.Orange)
+                        else
+                            Player[params.color].broadcast("Cannot find impended card: " .. tbl.name .. "\nIf expected, ignore this message. Otherwise, please find it and put it in play!", Color.Orange)
                         end
                     end
                 end
-                -- Place all ready cards into play
-                local spos = dances.getPosition()
-                local xOffset = -9.5
-                local xScale = 19
-                local xSpacing = 1/math.max(5, #toPlayFast + #toPlaySlow - 1)
-                local yOffset = -0.22
-                local ySpacing = 0.05
-                local zOffset = 16
-                for ind,card in pairs(toPlayFast) do
-                    card.use_hands = false
-                    card.setPositionSmooth(spos + Vector(xOffset+xScale*(ind-1)*xSpacing, yOffset+(ind-1)*ySpacing, zOffset), false, false)
-                    card.setRotation({0,180,0})
-                    Wait.condition(
-                        function() card.use_hands = true end,
-                        function() return not card.isSmoothMoving() end,
-                        3, -- don't think this timeout function will be necessary, but thought I'd add it to be safe
-                        function()
-                            card.use_hands = true
-                            card.setPosition(spos + Vector(xOffset+xScale*(ind-1)*xSpacing, yOffset+(ind-1)*ySpacing, zOffset))
-                        end
-                    )
-                end
-                for ind,card in pairs(toPlaySlow) do
-                    card.use_hands = false
-                    card.setPositionSmooth(spos + Vector(xOffset+xScale*(ind+#toPlayFast-1)*xSpacing, yOffset+(ind+#toPlayFast-1)*ySpacing, zOffset), false, false)
-                    card.setRotation({0,180,0})
-                    Wait.condition(
-                        function() card.use_hands = true end,
-                        function() return not card.isSmoothMoving() end,
-                        3, -- don't think this timeout function will be necessary, but thought I'd add it to be safe
-                        function()
-                            card.use_hands = true
-                            card.setPosition(spos + Vector(xOffset+xScale*(ind-1)*xSpacing, yOffset+(ind-1)*ySpacing, zOffset))
-                        end
-                    )
-                end
+            end
+            -- Place all ready cards into play
+            local spos = dances.getPosition()
+            local xOffset = -9.5
+            local xScale = 19
+            local xSpacing = 1/math.max(5, #toPlayFast + #toPlaySlow - 1)
+            local yOffset = -0.22
+            local ySpacing = 0.05
+            local zOffset = 16
+            for ind,card in pairs(toPlayFast) do
+                card.use_hands = false
+                card.setPositionSmooth(spos + Vector(xOffset+xScale*(ind-1)*xSpacing, yOffset+(ind-1)*ySpacing, zOffset), false, false)
+                card.setRotation({0,180,0})
+                Wait.condition(
+                    function() card.use_hands = true end,
+                    function() return not card.isSmoothMoving() end,
+                    3, -- don't think this timeout function will be necessary, but thought I'd add it to be safe
+                    function()
+                        card.use_hands = true
+                        card.setPosition(spos + Vector(xOffset+xScale*(ind-1)*xSpacing, yOffset+(ind-1)*ySpacing, zOffset))
+                    end
+                )
+            end
+            for ind,card in pairs(toPlaySlow) do
+                card.use_hands = false
+                card.setPositionSmooth(spos + Vector(xOffset+xScale*(ind+#toPlayFast-1)*xSpacing, yOffset+(ind+#toPlayFast-1)*ySpacing, zOffset), false, false)
+                card.setRotation({0,180,0})
+                Wait.condition(
+                    function() card.use_hands = true end,
+                    function() return not card.isSmoothMoving() end,
+                    3, -- don't think this timeout function will be necessary, but thought I'd add it to be safe
+                    function()
+                        card.use_hands = true
+                        card.setPosition(spos + Vector(xOffset+xScale*(ind-1)*xSpacing, yOffset+(ind-1)*ySpacing, zOffset))
+                    end
+                )
             end
         end
     end
@@ -631,7 +632,7 @@ end
 
 function modifyCost(params)
     local costs = params.costs
-    if params.color == Global.call("getSpiritColor", {name = spiritName}) and costs ~= nil then
+    if params.color == Global.call("getSpiritColor", {name = spiritName}) then
         for guid,_ in pairs(costs) do
             if impendTable[guid] then
                 costs[guid] = 0

@@ -127,9 +127,9 @@ function calculatePosition(board, tilePosition)
 end
 
 -- Takes a board and fills it with drowning tiles, locked and hidden inside it.
-function setupDrowningTiles(board)
+function setupDrowningTiles(playerColor, board)
     if hasDrowningTiles(board) then
-        return
+        return true
     end
     
     -- Determine the appropriate bag.
@@ -147,6 +147,10 @@ function setupDrowningTiles(board)
     -- So we spawn new objects from the data in the bag.
     local data = bag.getData()
     local drowningTiles = {}
+    if not data.ContainedObjects then
+        err(playerColor, "There are no drowning tiles for this type of board")
+        return false
+    end
     for _,newData in pairs(data.ContainedObjects) do
         if string.find(newData.Nickname, "^"..board.getName().."[0-9]+$") then
             local name = newData.Nickname
@@ -173,8 +177,13 @@ function setupDrowningTiles(board)
             )
         end
     end
+    if toPopulate == 0 then
+        err(playerColor, "No drowning tiles found for this board")
+        return false
+    end
 
     markBoard(board, drowningTiles)
+    return true
 end
 
 -- Adds right-click functionality to a tile to undrown itself.
@@ -228,7 +237,10 @@ function drownLand(playerColor, token_position, _)
         return
     end
     
-    setupDrowningTiles(playerColor, board)
+    local success = setupDrowningTiles(playerColor, board)
+    if not success then
+        return
+    end
     
     -- Wait for the drowned land tiles to appear before raising one.
     Wait.condition(

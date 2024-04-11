@@ -375,16 +375,15 @@ function removeG3Buttons(card)
     end
 end
 
-function updateG3Buttons(guid)
-    local card = getObjectFromGUID(guid)
+function updateG3Buttons(card)
     if card then
-        local plus_color = impendTable[guid].energy[3] == 1 and {1,1,0,1} or {1,1,1,1}
+        local plus_color = impendTable[card.guid].energy[3] == 1 and {1,1,0,1} or {1,1,1,1}
         local plus_ind = getButtonIndex(card,"g3Plus")
         card.editButton({
             index = plus_ind,
             color = plus_color,
         })
-        local minus_color = impendTable[guid].energy[3] == -1 and {1,1,0,1} or {1,1,1,1}
+        local minus_color = impendTable[card.guid].energy[3] == -1 and {1,1,0,1} or {1,1,1,1}
         local minus_ind = getButtonIndex(card,"g3Minus")
         card.editButton({
             index = minus_ind,
@@ -414,7 +413,7 @@ function g3Plus(card, color)
         broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
     end
     updateEnergyDisplay(card)
-    updateG3Buttons(guid)
+    updateG3Buttons(card)
     updateSave()
 end
 
@@ -429,7 +428,7 @@ function g3Minus(card, color)
         broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
     end
     updateEnergyDisplay(card)
-    updateG3Buttons(guid)
+    updateG3Buttons(card)
     updateSave()
 end
 
@@ -443,7 +442,7 @@ function createAllCardButtons()
                 updateEnergyDisplay(card)
                 if g3Selected and impendTable[guid].turnSelected ~= Global.getVar("turn") then
                     createG3Buttons(card)
-                    updateG3Buttons(guid)
+                    updateG3Buttons(card)
                 end
             end, 0.01)
         end
@@ -627,7 +626,7 @@ function onObjectLeaveContainer(_container, obj)
             updateEnergyDisplay(obj)
             if g3Selected and impendTable[obj.guid].turnSelected ~= Global.getVar("turn") then
                 createG3Buttons(obj)
-                updateG3Buttons(obj.guid)
+                updateG3Buttons(obj)
             end
         end, 0.01)
     end

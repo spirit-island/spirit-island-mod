@@ -437,14 +437,12 @@ function createAllCardButtons()
     for guid,_ in pairs(impendTable) do
         local card = getObjectFromGUID(guid)
         if card then
-            Wait.time(function()
-                createCardButtons(card)
-                updateEnergyDisplay(card)
-                if g3Selected and impendTable[guid].turnSelected ~= Global.getVar("turn") then
-                    createG3Buttons(card)
-                    updateG3Buttons(card)
-                end
-            end, 0.01)
+            createCardButtons(card)
+            updateEnergyDisplay(card)
+            if g3Selected and impendTable[guid].turnSelected ~= Global.getVar("turn") then
+                createG3Buttons(card)
+                updateG3Buttons(card)
+            end
         end
     end
     updateSave()

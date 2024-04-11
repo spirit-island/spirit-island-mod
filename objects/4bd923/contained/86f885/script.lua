@@ -1,7 +1,7 @@
 spiritName = "Breath of Darkness Down Your Spine"
 
 function doSetup(params)
-    local spirit = Global.call("getSpirit", {name = spiritName})
+    local spirit = params.spiritPanel
     local pos = spirit.getPosition()
 
     for _,obj in pairs(self.getObjects()) do

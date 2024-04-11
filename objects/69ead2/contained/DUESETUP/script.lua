@@ -62,7 +62,7 @@ end
 
 function doSetup(params)
     local color = params.color
-    local panel = Global.call("getSpirit", {name = spiritName})
+    local panel = params.spiritPanel
     self.locked = true
     local position = panel.getPosition() + Vector(-8.2,-0.22,6.8)
     self.setPosition(position)

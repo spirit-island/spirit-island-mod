@@ -370,6 +370,7 @@ This section is meant for users who are familiar with both the tts mod and progr
   - `doSetup(params)`
     - `params`: **table** - contains data about player
       - `color`: **string** - is the color of the player who picked the spirit
+      - `spiritPanel`: **object reference** - the spirit panel object for the spirit that the setup object belongs to
     - return **bool** - was setup successful?
 - Trigger to run during time passes:
   - Create object and tag with "Time Passes"

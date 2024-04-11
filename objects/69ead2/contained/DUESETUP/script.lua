@@ -137,7 +137,6 @@ function impendCard(obj)
                 local energy = Global.call("modifyCost",{color = color, costs = costs})[card.guid]
                 card.hide_when_face_down = false
                 impendTable[card.guid] = {
-                    guid = card.guid,
                     name = card.getName(),
                     maxEnergy = energy,
                     turnSelected = Global.getVar("turn"),
@@ -320,8 +319,8 @@ end
 
 function createAllG3Buttons()
     if g3Selected then
-        for _,tbl in pairs(impendTable) do
-            local card = getObjectFromGUID(tbl.guid)
+        for guid,_ in pairs(impendTable) do
+            local card = getObjectFromGUID(guid)
             if card then
                createG3Buttons(card)
             end
@@ -359,8 +358,8 @@ function createG3Buttons(card)
 end
 
 function removeAllG3Buttons()
-    for _,tbl in pairs(impendTable) do
-        local card = getObjectFromGUID(tbl.guid)
+    for guid,_ in pairs(impendTable) do
+        local card = getObjectFromGUID(guid)
         if card then
             removeG3Buttons(card)
         end
@@ -368,12 +367,13 @@ function removeAllG3Buttons()
 end
 
 function removeG3Buttons(card)
-    local tbl = impendTable[card.guid]
+    local guid = card.guid
+    local tbl = impendTable[guid]
     if tbl.turnSelected ~= Global.getVar("turn") and getButtonIndex(card,"g3Plus") ~= nil then
         card.removeButton(getButtonIndex(card,"g3Plus"))
         card.removeButton(getButtonIndex(card,"g3Minus"))
-        impendTable[tbl.guid].energy[3] = 0
-        updateEnergyDisplay(tbl.guid)
+        impendTable[guid].energy[3] = 0
+        updateEnergyDisplay(guid)
     end
 end
 
@@ -470,15 +470,15 @@ end
 
 function timePasses()
     local dances = Global.call("getSpirit", {name = spiritName})
-    for _,tbl in pairs(impendTable) do
+    for guid,tbl in pairs(impendTable) do
         local var = tbl.energy[1] + tbl.energy[2] + tbl.energy[3]
         if var >= tbl.maxEnergy and tbl.turnSelected ~= Global.getVar("turn") - 1 then
-            clearCardData(tbl.guid)
+            clearCardData(guid)
         else
             tbl.energy[1] = var
             tbl.energy[2] = 0
             tbl.energy[3] = 0
-            updateEnergyDisplay(tbl.guid)
+            updateEnergyDisplay(guid)
         end
     end
     g3Selected = true
@@ -506,13 +506,13 @@ function onGainPay(params)
     if not params.color == Global.call("getSpiritColor", {name = spiritName}) then return end
     local dances = Global.call("getSpirit", {name = spiritName})
     if params.isGain then
-        for _,tbl in pairs(impendTable) do
+        for guid,tbl in pairs(impendTable) do
             if params.isUndo then
-                impendTable[tbl.guid].energy[2] = 0
+                impendTable[guid].energy[2] = 0
             elseif tbl.turnSelected ~= Global.getVar("turn") then
-                impendTable[tbl.guid].energy[2] = energyPerTurn(dances)
+                impendTable[guid].energy[2] = energyPerTurn(dances)
             end
-            updateEnergyDisplay(tbl.guid)
+            updateEnergyDisplay(guid)
         end
         updateSave()
     else
@@ -543,8 +543,8 @@ function onGainPay(params)
                     end
                 end
             end
-            for _,tbl in pairs(impendTable) do
-                local card = getObjectFromGUID(tbl.guid)
+            for guid,tbl in pairs(impendTable) do
+                local card = getObjectFromGUID(guid)
                 local energy = tbl.energy[1] + tbl.energy[2] + tbl.energy[3]
                 if tbl.turnSelected ~= Global.getVar("turn") and energy >= tbl.maxEnergy then
                     -- Check the card is not in a bag/deck

@@ -3,7 +3,7 @@
   "Transform": {
     "posX": -50.9,
     "posY": 0.96,
-    "posZ": 61.4,
+    "posZ": 60.05,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -11,7 +11,7 @@
     "scaleY": 0.1237,
     "scaleZ": 0.6246
   },
-  "Nickname": "Balanced Drowned Lands",
+  "Nickname": "Thematic Drowned Lands",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {

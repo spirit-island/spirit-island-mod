@@ -3,11 +3,8 @@ local thematicBag = "bb7fce"
 
 local preparedTileHeight = 0
 local raiseHeight = 0.2
-local castDownDropHeight = 0.05 -- The distance that the main mod drops a board when casting down.
 local preparedTag = "Drowned Prepared"
 local activeTag = "Drowned Active"
- -- A boolean, does the timer exist, stored in global.
-local timerVarName = "castDownDrownedLandTimer"
 
 local toPopulate = 0
 
@@ -81,43 +78,14 @@ local balancedPositions = {
 local thematicPositions = {
 }
 
-function err(color, message)
-    Player[color].broadcast(message, Color.Red)
-end
-
-function castDownCallback()
-    -- If we're not currently casting down, return immediately to avoid overhead.
-    if not Global.getVar("castDown") then
-        return
-    end
-    
-    local board = getObjectFromGUID(Global.getVar("castDown"))
-    local drowningTiles = getBoardTiles(board)
-    for _,guid in pairs(drowningTiles) do
-        local obj = getObjectFromGUID(guid)
-        if obj ~= nil then
-            obj.destruct()
-        end
-    end
-end
-
--- Starts the Cast Down timer.
-function startCastDownTimer()
-    -- We store the reference to the Cast Down timer in Global, so every Deeps token has access to it.
-    -- Every Deeps token will try to do this, so if it already exists, don't worry about it.
-    if Global.getVar(timerVarName) then
-        return
-    end
-    -- Cast Down lasts 0.5 seconds.
-    -- We need to drop the tiles early, to give things time to fall, so do this every 0.2 seconds.
-    Wait.time(castDownCallback, 0.2, -1)
-    Global.setVar(timerVarName, true)
+function err(playerColor, message)
+    Player[playerColor].broadcast(message, Color.Red)
 end
 
 -- Casts down from the provided location, returning the board found.
 function getBoard(position)
     local hits = Physics.cast({
-        origin = position, -- + Vector(0,0.2,0) [this was used temporarily while the models were slightly off]
+        origin = position,
         direction = Vector(0,-1,0),
         max_distance = 1,
     })
@@ -143,47 +111,12 @@ function markBoard(board, drowningTiles)
 end
 
 -- Returns whether a board has been marked by markBoard.
-function checkBoard(board)
+function hasDrowningTiles(board)
     if board.script_state == "" then
         return false
     end
     local json = JSON.decode(board.script_state)
     return json.drowningTiles ~= nil
-end
-
--- Gets the table of drowning tiles from a board
-function getBoardTiles(board)
-    if board.script_state == "" then
-        return {}
-    end
-    local json = JSON.decode(board.script_state)
-    return json.drowningTiles
-end
-
--- Places a single drowned land tile, from a bag, into the correct place.
--- Creates a copy from the bag, 'cause we may need multiple copies for extra bags.
--- Gives the object a tag to indicate it's submerged in a board.
-function populateTile(bag, guid, position, rotation)
-    -- TODO: Scale this properly according to scaleFactors[SetupChecker.getVar("optionalScaleBoard")].size
-    -- Get the object out of the bag to clone it, but use a callback to put it back as soon as it spawns.
-    local original = bag.takeObject({
-        guid = guid,
-        position = bag.getPosition() + Vector(0, 10, 0),
-        callback_function = function(obj) bag.putObject(obj) end,
-    })
-    -- Spawn the clones somewhere out of the way, so we can lock them before moving them into position.
-    local clone = original.clone({position = original.getPosition() + Vector(0, 10, 0)})
-    clone.setLock(true)
-    clone.setPosition(position)
-    clone.setRotation(rotation)
-    clone.addTag(preparedTag)
-    clone.interactable = false
-    clone.addTag("Uninteractable")
-    Wait.condition(
-        function() toPopulate = toPopulate - 1 end,
-        function() return not clone.spawning and not clone.loading_custom end
-    )
-    return clone.getGUID()
 end
 
 -- Calculates the correct position for a tile, given a board.
@@ -194,9 +127,9 @@ function calculatePosition(board, tilePosition)
 end
 
 -- Takes a board and fills it with drowning tiles, locked and hidden inside it.
-function populateBoard(board)
-    if checkBoard(board) then
-        return
+function setupDrowningTiles(playerColor, board)
+    if hasDrowningTiles(board) then
+        return true
     end
     
     -- Determine the appropriate bag.
@@ -210,25 +143,47 @@ function populateBoard(board)
         positions = thematicPositions
     end
     
-    -- Go through the bag, storing the GUIDs of the objects we want.
-    -- We store GUIDs as populateTile modifies the bag contents, which may interfere with bag operations.
-    local guids = {}
-    for _,obj in pairs(bag.getObjects()) do
-        if string.find(obj.name, "^"..board.getName().."[0-9]*$") then
-            guids[obj.name] = obj.guid
+    -- We want to leave the original objecs in the bag, in case we have duplicates of a board.
+    -- So we spawn new objects from the data in the bag.
+    local data = bag.getData()
+    local drowningTiles = {}
+    if not data.ContainedObjects then
+        err(playerColor, "There are no drowning tiles for this type of board")
+        return false
+    end
+    for _,newData in pairs(data.ContainedObjects) do
+        if string.find(newData.Nickname, "^"..board.getName().."[0-9]+$") then
+            local name = newData.Nickname
+            local position = calculatePosition(board, positions[name])
+            local rotation = board.getRotation()
+            newData.Locked = true
+            newData.Tags = {preparedTag, "Uninteractable"}
+
+            local spawnedObj = spawnObjectData({
+                data = newData,
+                position = position,
+                rotation = rotation,
+                callback_function = function(obj) obj.interactable = false end,
+            })
+            drowningTiles[name] = spawnedObj.getGUID()
+
             toPopulate = toPopulate + 1
+            Wait.condition(
+                function()
+                    toPopulate = toPopulate - 1
+                    spawnedObj.interactable = false
+                end,
+                function() return not spawnedObj.spawning and not spawnedObj.loading_custom end
+            )
         end
     end
-    
-    local drowningTiles = {}
-    -- Copy all the appropriate objects into place.
-    for name,guid in pairs(guids) do
-        local spawnedGUID = populateTile(bag, guid, calculatePosition(board, positions[name]), board.getRotation())
-        drowningTiles[name] = spawnedGUID
+    if toPopulate == 0 then
+        err(playerColor, "No drowning tiles found for this board")
+        return false
     end
-    
+
     markBoard(board, drowningTiles)
-    startCastDownTimer()
+    return true
 end
 
 -- Adds right-click functionality to a tile to undrown itself.
@@ -247,11 +202,12 @@ function addUndrown(tile)
             )
         end
     ]], raiseHeight, activeTag, preparedTag))
+    tile.reload()
 end
 
 -- Lifts a tile up out of the board to be visible.
 -- Acts only on objects with preparedTag.
-function liftTile(color, token_position)
+function liftTile(playerColor, token_position)
     local hits = Physics.cast({
         origin = token_position,
         direction = Vector(0,-1,0),
@@ -270,30 +226,29 @@ function liftTile(color, token_position)
         end
     end
     
-    err(color, "Can't find drowned land tile\nIs the token on a land boundary? Has this tile already been drowned?")
+    err(playerColor, "Can't find drowned land tile\nIs the token on a land boundary? Has this tile already been drowned?")
 end
 
-function activate(color, token_position, _)
+function drownLand(playerColor, token_position, _)
     -- First, find which board we're over.
     local board = getBoard(token_position)
     if not board then
-        err(color, "Token is not on a board")
+        err(playerColor, "Token is not on a board")
         return
     end
     
-    populateBoard(board)
+    local success = setupDrowningTiles(playerColor, board)
+    if not success then
+        return
+    end
     
     -- Wait for the drowned land tiles to appear before raising one.
     Wait.condition(
-        function() liftTile(color, token_position) end,
+        function() liftTile(playerColor, token_position) end,
         function() return toPopulate == 0 end
     )
 end
 
 function onLoad()
-    self.addContextMenuItem("Drown Land", activate)
-    
-    if getObjectsWithAnyTags({preparedTag, activeTag}) then
-        startCastDownTimer()
-    end
+    self.addContextMenuItem("Drown Land", drownLand)
 end

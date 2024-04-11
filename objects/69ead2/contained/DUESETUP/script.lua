@@ -291,17 +291,16 @@ function clearAll(card)
 end
 
 function clearCardData(guid)
-    clearCardButtons(guid)
-    impendTable[guid] = nil
+    impendTable[guid] = nil -- needs guid rather than card in case card is in a deck for time passes and would throw an error
     local card = getObjectFromGUID(guid)
     if card then
         card.hide_when_face_down = true -- if card is in bag then oh well it can stay that way it really won't matter
+        clearCardButtons(card)
     end
     updateSave()
 end
 
-function clearCardButtons(guid)
-    local card = getObjectFromGUID(guid)
+function clearCardButtons(card)
     if card then
         for _,func in pairs({"energyDisplay", "overridePlus", "overrideMinus", "clearAll", "g3Minus", "g3Plus"}) do -- add to if needed
             local ind = getButtonIndex(card, func)

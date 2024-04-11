@@ -145,7 +145,7 @@ function impendCard(obj)
             end
             if impendTable[card.guid] then -- don't think this is necessary any more, but useful is a case arises
                 createCardButtons(card)
-                updateEnergyDisplay(card.guid)
+                updateEnergyDisplay(card)
                 card.deal(1, color, 3)
             end
         end
@@ -250,16 +250,15 @@ function energyDisplay(card,_color,alt_click)
             Global.call("giveEnergy",{color = spiritColor, energy = 1, ignoreDebt = true})
             impendTable[card.guid].energy[1] = tbl.energy[1] - 1
         end
-        updateEnergyDisplay(card.guid)
+        updateEnergyDisplay(card)
     end
     updateSave()
 end
 
-function updateEnergyDisplay(guid)
-    local card = getObjectFromGUID(guid)
+function updateEnergyDisplay(card)
     if card then -- prevents function if card is in bag/deck
         local ind = getButtonIndex(card,"energyDisplay")
-        local tbl = impendTable[guid]
+        local tbl = impendTable[card.guid]
         local val = tbl.energy[1] + tbl.energy[2] + tbl.energy[3]
         local fontColor = {1,1,1,100}
         local ttText = val .. "/" .. tbl.maxEnergy .. "\n" .. card.getName()
@@ -277,13 +276,13 @@ end
 
 function overridePlus(card)
     impendTable[card.guid].energy[1] = impendTable[card.guid].energy[1] + 1 -- unsure if need to set a limit on this
-    updateEnergyDisplay(card.guid)
+    updateEnergyDisplay(card)
     updateSave()
 end
 
 function overrideMinus(card)
     impendTable[card.guid].energy[1] = math.max(impendTable[card.guid].energy[1] - 1, 0)
-    updateEnergyDisplay(card.guid)
+    updateEnergyDisplay(card)
     updateSave()
 end
 
@@ -373,7 +372,7 @@ function removeG3Buttons(card)
         card.removeButton(getButtonIndex(card,"g3Plus"))
         card.removeButton(getButtonIndex(card,"g3Minus"))
         impendTable[guid].energy[3] = 0
-        updateEnergyDisplay(guid)
+        updateEnergyDisplay(card)
     end
 end
 
@@ -415,7 +414,7 @@ function g3Plus(card, color)
     else
         broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
     end
-    updateEnergyDisplay(guid)
+    updateEnergyDisplay(card)
     updateG3Buttons(guid)
     updateSave()
 end
@@ -430,7 +429,7 @@ function g3Minus(card, color)
     else
         broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
     end
-    updateEnergyDisplay(guid)
+    updateEnergyDisplay(card)
     updateG3Buttons(guid)
     updateSave()
 end
@@ -442,7 +441,7 @@ function createAllCardButtons()
         if card then
             Wait.time(function()
                 createCardButtons(card)
-                updateEnergyDisplay(guid)
+                updateEnergyDisplay(card)
                 if g3Selected and impendTable[guid].turnSelected ~= Global.getVar("turn") then
                     createG3Buttons(card)
                     updateG3Buttons(guid)
@@ -478,7 +477,10 @@ function timePasses()
             tbl.energy[1] = var
             tbl.energy[2] = 0
             tbl.energy[3] = 0
-            updateEnergyDisplay(guid)
+            local card = getObjectFromGUID(guid)
+            if card then
+                updateEnergyDisplay(card)
+            end
         end
     end
     g3Selected = true
@@ -512,7 +514,10 @@ function onGainPay(params)
             elseif tbl.turnSelected ~= Global.getVar("turn") then
                 impendTable[guid].energy[2] = energyPerTurn(dances)
             end
-            updateEnergyDisplay(guid)
+            local card = getObjectFromGUID(guid)
+            if card then
+                updateEnergyDisplay(card)
+            end
         end
         updateSave()
     else
@@ -620,7 +625,7 @@ function onObjectLeaveContainer(_container, obj)
         impendTable[obj.guid].container = nil
         Wait.time(function() -- needs a wait otherwise the card's energy variable is nil
             createCardButtons(obj)
-            updateEnergyDisplay(obj.guid)
+            updateEnergyDisplay(obj)
             if g3Selected and impendTable[obj.guid].turnSelected ~= Global.getVar("turn") then
                 createG3Buttons(obj)
                 updateG3Buttons(obj.guid)

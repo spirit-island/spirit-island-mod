@@ -242,7 +242,7 @@ function energyDisplay(card,_color,alt_click)
     local spiritColor = Global.call("getSpiritColor", {name = spiritName})
     if tbl.turnSelected == Global.getVar("turn") then
         if not alt_click then -- check if have energy and need energy
-            if Global.getVar("selectedColors")[spiritColor].counter.getValue() > 0 and tbl.energy[1] < tbl.maxEnergy then
+            if Global.getTable("selectedColors")[spiritColor].counter.getValue() > 0 and tbl.energy[1] < tbl.maxEnergy then
                 Global.call("giveEnergy",{color = spiritColor, energy = -1, ignoreDebt = true})
                 impendTable[card.guid].energy[1] = tbl.energy[1] + 1
             end
@@ -410,7 +410,7 @@ function g3Plus(card, color)
     elseif impendTable[guid].energy[3] == -1 or selected < 2 then
         impendTable[guid].energy[3] = 1
     else
-        broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
+        Player[color].broadcast("You have already made your two selections for G3 energy adjustments!", Color.Yellow)
     end
     updateEnergyDisplay(card)
     updateG3Buttons(card)
@@ -425,7 +425,7 @@ function g3Minus(card, color)
     elseif impendTable[guid].energy[3] == 1 or selected < 2 then
         impendTable[guid].energy[3] = -1
     else
-        broadcastToColor("You have already made your two selections for G3 energy adjustments!", color, {r=1, g=1, b=0})
+        Player[color].broadcast("You have already made your two selections for G3 energy adjustments!", Color.Yellow)
     end
     updateEnergyDisplay(card)
     updateG3Buttons(card)

@@ -52,7 +52,8 @@ function onLoad(saved_data)
     end
 
     if setupComplete then
-        createPanelButtons()
+        local panel = Global.call("getSpirit", {name = spiritName})
+        createPanelButtons(panel)
         createAllCardButtons()
     end
 end
@@ -72,7 +73,7 @@ function doSetup(params)
     position1.z = position1.z - 5.5
     Global.call("SpawnHand", {color = color, position = position1})
     
-    Wait.condition(function() createPanelButtons() end, function() return not panel.isSmoothMoving() end) -- without a wait, if spirit chosen after setup, buttons don't appear
+    createPanelButtons(panel)
     
     return true
 end
@@ -81,9 +82,8 @@ end
 -- buttons and functions for spirit panel
 -----------------------------------------
 
-function createPanelButtons()
-    local dances = Global.call("getSpirit", {name = spiritName})
-    dances.createButton({
+function createPanelButtons(panel)
+    panel.createButton({
         click_function = "impendCard",
         function_owner = self,
         label = "Impend a card!",
@@ -103,7 +103,7 @@ function createPanelButtons()
     else
         label = "☐\n\n\n"
     end
-    dances.createButton({
+    panel.createButton({
         click_function = "g3Toggle",
         function_owner = self,
         label = label,
@@ -129,7 +129,7 @@ function impendCard(obj)
         -- debug = true
     })
     for _,hit in pairs(hits) do
-            local card = hit.hit_object
+        local card = hit.hit_object
         if Global.call("isPowerCard", {card=card}) then
             if impendTable[card.guid] == nil then
                 local costs = {}
@@ -275,7 +275,7 @@ function updateEnergyDisplay(card)
 end
 
 function overridePlus(card)
-    impendTable[card.guid].energy[1] = impendTable[card.guid].energy[1] + 1 -- unsure if need to set a limit on this
+    impendTable[card.guid].energy[1] = impendTable[card.guid].energy[1] + 1
     updateEnergyDisplay(card)
     updateSave()
 end

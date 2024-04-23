@@ -1,11 +1,12 @@
 spiritName = "Dances Up Earthquakes"
 
-energyPoint = Vector(-0.99, 0.20, -0.41) -- location of the snap point where the presence for 2 impending energy/turn sits
-impendTable = {}
-g3Selected = false
+local energyPoint = Vector(-0.99, 0.20, -0.41) -- location of the snap point where the presence for 2 impending energy/turn sits
+local impendTable = {}
+local g3Selected = false
+local setupComplete = false
 
-aboveCard = 0.5
-buttonVisibility = 0.4 -- increase for testing, 0 ultimately. May put this value dependent on a slider so people can vary?
+local aboveCard = 0.5
+local buttonVisibility = 0.4
 
 ------------------
 -- setup functions
@@ -67,14 +68,14 @@ function doSetup(params)
     self.locked = true
     local position = panel.getPosition() + Vector(-8.2,-0.22,6.8)
     self.setPosition(position)
-    
+
     -- hand for impending cards:
     local position1 = Player[color].getHandTransform(2).position
     position1.z = position1.z - 5.5
     Global.call("SpawnHand", {color = color, position = position1})
-    
+
     createPanelButtons(panel)
-    
+
     return true
 end
 
@@ -96,7 +97,7 @@ function createPanelButtons(panel)
         font_color = {0,0,0},
         tooltip = "Place a card on the panel art\nand press the button to impend it!",
     })
-    
+
     local label
     if g3Selected then
         label = "☑\n\n\n"
@@ -179,7 +180,7 @@ end
 
 function createCardButtons(card)
     if not getButtonIndex(card,"energyDisplay") then -- stop multiple buttons appearing, did prevent another way before but that removed other functionality
-        card.createButton({ 
+        card.createButton({
             click_function = "energyDisplay",
             function_owner = self,
             label = "0/0",
@@ -191,7 +192,7 @@ function createCardButtons(card)
             font_color = {1,1,1,100},
             tooltip = "Select a card to impend",
         })
-        
+
         card.createButton({
             click_function = "overridePlus",
             function_owner = self,
@@ -205,7 +206,7 @@ function createCardButtons(card)
             font_color = {1,0,0,100},
             tooltip = "Press this to override the value of impended energy.\nUseful for if time passes twice.",
         })
-        
+
         card.createButton({
             click_function = "overrideMinus",
             function_owner = self,
@@ -219,7 +220,7 @@ function createCardButtons(card)
             font_color = {1,0,0,100},
             tooltip = "Press this to override the value of impended energy.\nUseful for if time passes twice.",
         })
-        
+
         card.createButton({
             click_function = "clearAll",
             function_owner = self,
@@ -235,7 +236,7 @@ function createCardButtons(card)
         })
     end
 end
-    
+
 function energyDisplay(card,_color,alt_click)
     -- probably need tighter restriction that just turnSelected, since could be forgotten in fast phase. use Global.getVar("currentPhase")
     local tbl = impendTable[card.guid]
@@ -501,7 +502,7 @@ local function energyPerTurn(dances)
 end
 
 function onGainPay(params)
-    if not params.color == Global.call("getSpiritColor", {name = spiritName}) then return end
+    if params.color ~= Global.call("getSpiritColor", {name = spiritName}) then return end
     local dances = Global.call("getSpirit", {name = spiritName})
     if params.isGain then
         for guid,tbl in pairs(impendTable) do

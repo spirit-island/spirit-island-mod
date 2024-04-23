@@ -131,7 +131,7 @@ function setupDrowningTiles(playerColor, board)
     if hasDrowningTiles(board) then
         return true
     end
-    
+
     -- Determine the appropriate bag.
     local bag
     local positions
@@ -142,7 +142,7 @@ function setupDrowningTiles(playerColor, board)
         bag = getObjectFromGUID(thematicBag)
         positions = thematicPositions
     end
-    
+
     -- We want to leave the original objecs in the bag, in case we have duplicates of a board.
     -- So we spawn new objects from the data in the bag.
     local data = bag.getData()
@@ -225,7 +225,7 @@ function liftTile(playerColor, token_position)
             return
         end
     end
-    
+
     err(playerColor, "Can't find drowned land tile\nIs the token on a land boundary? Has this tile already been drowned?")
 end
 
@@ -236,12 +236,12 @@ function drownLand(playerColor, token_position, _)
         err(playerColor, "Token is not on a board")
         return
     end
-    
+
     local success = setupDrowningTiles(playerColor, board)
     if not success then
         return
     end
-    
+
     -- Wait for the drowned land tiles to appear before raising one.
     Wait.condition(
         function() liftTile(playerColor, token_position) end,

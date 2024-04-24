@@ -163,7 +163,7 @@ function g3Toggle(obj)
             label = "☐\n\n\n",
         })
         removeAllG3Buttons()
-    else    
+    else
         g3Selected = true
         obj.editButton({
             index = ind,

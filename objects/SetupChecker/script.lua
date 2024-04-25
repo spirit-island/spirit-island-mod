@@ -658,7 +658,7 @@ function updateBoardLayouts()
         numBoards = numBoards + 1
     end
     local layoutNames = { "Balanced" }
-    local alternateBoardLayoutNames = Global.getVar("alternateBoardLayoutNames")
+    local alternateBoardLayoutNames = Global.getTable("alternateBoardLayoutNames")
     if alternateBoardLayoutNames[numBoards] then
         for _,layout in pairs(alternateBoardLayoutNames[numBoards]) do
             table.insert(layoutNames, layout)
@@ -1052,7 +1052,7 @@ function difficultyCheck(params)
         else
             leadingLevel = Global.getVar("adversaryLevel")
         end
-        difficulty = difficulty + leadingAdversary.getVar("difficulty")[leadingLevel]
+        difficulty = difficulty + leadingAdversary.getTable("difficulty")[leadingLevel]
     elseif params.lead ~= nil then
         difficulty = difficulty + params.lead
     end
@@ -1070,7 +1070,7 @@ function difficultyCheck(params)
         else
             supportingLevel = Global.getVar("adversaryLevel2")
         end
-        local difficulty2 = supportingAdversary.getVar("difficulty")[supportingLevel]
+        local difficulty2 = supportingAdversary.getTable("difficulty")[supportingLevel]
         if difficulty > difficulty2 then
             difficulty = difficulty + (0.5 * difficulty2)
         else

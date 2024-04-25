@@ -37,7 +37,7 @@ function changePhase(params)
         setCounter()
 
         local color = Global.call("getSpiritColor", {name = spiritName})
-        local isolate = Global.getVar("selectedColors")[color].isolate
+        local isolate = Global.getTable("selectedColors")[color].isolate
         local isoToken = isolate.takeObject({position = self.getPosition() + Vector(0,0.03,0)})
         isoToken.setName(isoToken.getName().." - Stranded in the Shifting Mist")
     elseif params.phase == 4 then

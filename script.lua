@@ -1237,8 +1237,8 @@ function randomAdversary(attempts)
             return
         end
 
-        local difficulty = adversary.getVar("difficulty")
-        local difficulty2 = adversary2.getVar("difficulty")
+        local difficulty = adversary.getTable("difficulty")
+        local difficulty2 = adversary2.getTable("difficulty")
         local randomMin = SetupChecker.getVar("randomMin")
         local randomMax = SetupChecker.getVar("randomMax")
         local randomMaximizeLevel = SetupChecker.getVar("randomMaximizeLevel")
@@ -1297,7 +1297,7 @@ function randomAdversary(attempts)
         local randomMax = SetupChecker.getVar("randomMax")
         local randomMaximizeLevel = SetupChecker.getVar("randomMaximizeLevel")
         local combos = {}
-        for i,v in pairs(adversary.getVar("difficulty")) do
+        for i,v in pairs(adversary.getTable("difficulty")) do
             local params = {}
             if adversaryCard == nil then
                 params.lead = v
@@ -2619,7 +2619,7 @@ function hideBlightButton()
 end
 ----- Scenario section
 function SetupScenario()
-    for _,guid in pairs(SetupChecker.getVar("allScenarios")) do
+    for _,guid in pairs(SetupChecker.getTable("allScenarios")) do
         if guid == "" then
         elseif scenarioCard == nil or scenarioCard.guid ~= guid then
             getObjectFromGUID(guid).destruct()
@@ -2661,7 +2661,7 @@ function SetupScenario()
 end
 ----- Adversary Section
 function SetupAdversary()
-    for _,guid in pairs(SetupChecker.getVar("allAdversaries")) do
+    for _,guid in pairs(SetupChecker.getTable("allAdversaries")) do
         if guid == "" then
         elseif (adversaryCard == nil or adversaryCard.guid ~= guid) and (adversaryCard2 == nil or adversaryCard2.guid ~= guid) then
             getObjectFromGUID(guid).destruct()

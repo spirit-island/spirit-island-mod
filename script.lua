@@ -3821,7 +3821,8 @@ function handleDoSetup(obj, color)
             end
         end
 
-        local success = obj.call("doSetup", {color=color})
+        local spiritPanel = getSpirit({name = spiritName})
+        local success = obj.call("doSetup", {color = color, spiritPanel = spiritPanel})
         json.setupComplete = success
         obj.script_state = JSON.encode(json)
     end

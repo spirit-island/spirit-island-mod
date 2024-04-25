@@ -26,7 +26,7 @@ function onLoad(saved_data)
 end
 
 function doSetup(params)
-    local serpent = Global.call("getSpirit", {name = spiritName})
+    local serpent = params.spiritPanel
 
     local snapPoints = serpent.getSnapPoints()
     for _, position in pairs(slumberPoints) do

@@ -9,7 +9,7 @@ spiritName = "A Spread of Rampant Green"
 
 function doSetup(params)
     local player_color = params.color
-    local spirit = Global.call("getSpirit", {name = spiritName})
+    local spirit = params.spiritPanel
 
     -- Set up additional presence
     -- Mostly copied from SourceSpirit's setupSpirit() function

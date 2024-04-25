@@ -1,7 +1,7 @@
 spiritName = "Lightning's Swift Strike"
 
 function doSetup(params)
-    local lightning = Global.call("getSpirit", {name = spiritName})
+    local lightning = params.spiritPanel
     if lightning then
         local json = JSON.decode(lightning.script_state)
         if not json.immense then

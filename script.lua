@@ -5939,22 +5939,16 @@ function setupPlayerArea(params)
         end
         object.setDecals(decals)
     end
-    local function checkThresholds(spiritBoard, aspects, thresholdCards, elements)
-        if spiritBoard.script_state ~= "" then
-            local thresholds = spiritBoard.getTable("thresholds")
-            if thresholds ~= nil then
-                addThresholdDecals(spiritBoard, elements, thresholds, {0.08, 0.08, 1})
-            end
-        end
-        for _, aspect in pairs(aspects) do
-            if aspect.script_state ~= "" then
-                local thresholds = aspect.getTable("thresholds")
+    local function checkThresholds(tiles, cards, elements)
+        for _, tile in pairs(tiles) do
+            if tile.script_state ~= "" then
+                local thresholds = tile.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(aspect, elements, thresholds, {0.16, 0.16, 1})
+                    addThresholdDecals(tile, elements, thresholds, {0.08, 0.08, 1})
                 end
             end
         end
-        for _, card in pairs(thresholdCards) do
+        for _, card in pairs(cards) do
             if card.script_state ~= "" then
                 local thresholds = card.getTable("thresholds")
                 if thresholds ~= nil then
@@ -5969,19 +5963,24 @@ function setupPlayerArea(params)
         local elements = Elements:new()
 
         local spirit = nil
-        local aspects = {}
-        local thresholdCards = {}
+        local tiles = {}
+        local cards = {}
         local costs = {}
         --Go through all items found in the zone
         if selected.zone then
             for _,entry in ipairs(selected.zone.getObjects()) do
-                if entry.hasTag("Spirit") then
-                    local trackElements = calculateTrackElements(entry)
-                    elements:add(trackElements)
-                    spirit = entry
+                if entry.type == "Tile" then
+                    if entry.hasTag("Spirit") then
+                        local trackElements = calculateTrackElements(entry)
+                        elements:add(trackElements)
+                        spirit = entry
+                        table.insert(tiles, entry)
+                    elseif entry.getTable("thresholds") ~= nil then
+                        table.insert(tiles, entry)
+                    end
                 elseif entry.type == "Card" then
                     if entry.hasTag("Aspect") and not entry.is_face_down then
-                        table.insert(aspects, entry)
+                        table.insert(cards, entry)
                     end
                     --Ignore if no elements entry or if face down
                     if entry.getVar("elements") ~= nil and not entry.is_face_down then
@@ -6001,7 +6000,7 @@ function setupPlayerArea(params)
                         end
                     end
                     if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
-                        table.insert(thresholdCards, entry)
+                        table.insert(cards, entry)
                     end
                 elseif entry.type == "Generic" then
                     local tokenCounts = entry.getVar("elements")
@@ -6018,7 +6017,7 @@ function setupPlayerArea(params)
             energy = energy + cost
         end
         if spirit ~= nil then
-            checkThresholds(spirit, aspects, thresholdCards, elements)
+            checkThresholds(tiles, cards, elements)
         end
         --Updates the number display
         selected.zone.editButton({index=0, label="Energy Cost: "..energy})

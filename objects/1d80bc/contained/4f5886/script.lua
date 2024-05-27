@@ -20,7 +20,7 @@ local healingMarkerPoints = {
 
 function doSetup(params)
     local color = params.color
-    local panel = Global.call("getSpirit", {name = spiritName})
+    local panel = params.spiritPanel
 
     -- Starting energy
     Global.call("giveEnergy", {color=color, energy=startingEnergy, ignoreDebt=false})

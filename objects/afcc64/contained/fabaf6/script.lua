@@ -2,7 +2,7 @@ spiritName = "Sharp Fangs Behind the Leaves"
 
 function doSetup(params)
     local color = params.color
-    local zone = Global.getVar("selectedColors")[color].zone
+    local zone = Global.getTable("selectedColors")[color].zone
 
     -- Delete the initial beast
     for _,object in pairs(zone.getObjects()) do

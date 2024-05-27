@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.2.3"
+version = "4.3.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -1237,8 +1237,8 @@ function randomAdversary(attempts)
             return
         end
 
-        local difficulty = adversary.getVar("difficulty")
-        local difficulty2 = adversary2.getVar("difficulty")
+        local difficulty = adversary.getTable("difficulty")
+        local difficulty2 = adversary2.getTable("difficulty")
         local randomMin = SetupChecker.getVar("randomMin")
         local randomMax = SetupChecker.getVar("randomMax")
         local randomMaximizeLevel = SetupChecker.getVar("randomMaximizeLevel")
@@ -1297,7 +1297,7 @@ function randomAdversary(attempts)
         local randomMax = SetupChecker.getVar("randomMax")
         local randomMaximizeLevel = SetupChecker.getVar("randomMaximizeLevel")
         local combos = {}
-        for i,v in pairs(adversary.getVar("difficulty")) do
+        for i,v in pairs(adversary.getTable("difficulty")) do
             local params = {}
             if adversaryCard == nil then
                 params.lead = v
@@ -2619,7 +2619,7 @@ function hideBlightButton()
 end
 ----- Scenario section
 function SetupScenario()
-    for _,guid in pairs(SetupChecker.getVar("allScenarios")) do
+    for _,guid in pairs(SetupChecker.getTable("allScenarios")) do
         if guid == "" then
         elseif scenarioCard == nil or scenarioCard.guid ~= guid then
             getObjectFromGUID(guid).destruct()
@@ -2661,7 +2661,7 @@ function SetupScenario()
 end
 ----- Adversary Section
 function SetupAdversary()
-    for _,guid in pairs(SetupChecker.getVar("allAdversaries")) do
+    for _,guid in pairs(SetupChecker.getTable("allAdversaries")) do
         if guid == "" then
         elseif (adversaryCard == nil or adversaryCard.guid ~= guid) and (adversaryCard2 == nil or adversaryCard2.guid ~= guid) then
             getObjectFromGUID(guid).destruct()
@@ -3821,7 +3821,8 @@ function handleDoSetup(obj, color)
             end
         end
 
-        local success = obj.call("doSetup", {color=color})
+        local spiritPanel = getSpirit({name = spiritName})
+        local success = obj.call("doSetup", {color = color, spiritPanel = spiritPanel})
         json.setupComplete = success
         obj.script_state = JSON.encode(json)
     end
@@ -5938,22 +5939,16 @@ function setupPlayerArea(params)
         end
         object.setDecals(decals)
     end
-    local function checkThresholds(spiritBoard, aspects, thresholdCards, elements)
-        if spiritBoard.script_state ~= "" then
-            local thresholds = spiritBoard.getTable("thresholds")
-            if thresholds ~= nil then
-                addThresholdDecals(spiritBoard, elements, thresholds, {0.08, 0.08, 1})
-            end
-        end
-        for _, aspect in pairs(aspects) do
-            if aspect.script_state ~= "" then
-                local thresholds = aspect.getTable("thresholds")
+    local function checkThresholds(tiles, cards, elements)
+        for _, tile in pairs(tiles) do
+            if tile.script_state ~= "" then
+                local thresholds = tile.getTable("thresholds")
                 if thresholds ~= nil then
-                    addThresholdDecals(aspect, elements, thresholds, {0.16, 0.16, 1})
+                    addThresholdDecals(tile, elements, thresholds, {0.08, 0.08, 1})
                 end
             end
         end
-        for _, card in pairs(thresholdCards) do
+        for _, card in pairs(cards) do
             if card.script_state ~= "" then
                 local thresholds = card.getTable("thresholds")
                 if thresholds ~= nil then
@@ -5968,19 +5963,24 @@ function setupPlayerArea(params)
         local elements = Elements:new()
 
         local spirit = nil
-        local aspects = {}
-        local thresholdCards = {}
+        local tiles = {}
+        local cards = {}
         local costs = {}
         --Go through all items found in the zone
         if selected.zone then
             for _,entry in ipairs(selected.zone.getObjects()) do
-                if entry.hasTag("Spirit") then
-                    local trackElements = calculateTrackElements(entry)
-                    elements:add(trackElements)
-                    spirit = entry
+                if entry.type == "Tile" then
+                    if entry.hasTag("Spirit") then
+                        local trackElements = calculateTrackElements(entry)
+                        elements:add(trackElements)
+                        spirit = entry
+                        table.insert(tiles, entry)
+                    elseif entry.getTable("thresholds") ~= nil then
+                        table.insert(tiles, entry)
+                    end
                 elseif entry.type == "Card" then
                     if entry.hasTag("Aspect") and not entry.is_face_down then
-                        table.insert(aspects, entry)
+                        table.insert(cards, entry)
                     end
                     --Ignore if no elements entry or if face down
                     if entry.getVar("elements") ~= nil and not entry.is_face_down then
@@ -6000,7 +6000,7 @@ function setupPlayerArea(params)
                         end
                     end
                     if not entry.hasTag("Aspect") and entry.getTable("thresholds") ~= nil then
-                        table.insert(thresholdCards, entry)
+                        table.insert(cards, entry)
                     end
                 elseif entry.type == "Generic" then
                     local tokenCounts = entry.getVar("elements")
@@ -6017,7 +6017,7 @@ function setupPlayerArea(params)
             energy = energy + cost
         end
         if spirit ~= nil then
-            checkThresholds(spirit, aspects, thresholdCards, elements)
+            checkThresholds(tiles, cards, elements)
         end
         --Updates the number display
         selected.zone.editButton({index=0, label="Energy Cost: "..energy})

@@ -9,8 +9,8 @@ spiritName = "Lure of the Deep Wilderness"
 
 function doSetup(params)
     local color = params.color
-    local spirit = Global.call("getSpirit", {name = spiritName})
-    local zone = Global.getVar("selectedColors")[color].zone
+    local spirit = params.spiritPanel
+    local zone = Global.getTable("selectedColors")[color].zone
 
     local removed = 0
     local toRemove = 3

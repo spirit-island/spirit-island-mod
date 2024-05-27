@@ -16,7 +16,7 @@ function PostSetup(params)
     else
         majorPowerDeck = getObjectFromGUID(Global.getVar("majorPowerZone")).getObjects()[1]
     end
-    for color,_ in pairs(Global.getVar("selectedColors")) do
+    for color,_ in pairs(Global.getTable("selectedColors")) do
         minorPowerDeck.deal(1, color)
         majorPowerDeck.deal(1, color)
     end

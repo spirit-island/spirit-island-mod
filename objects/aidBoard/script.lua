@@ -905,7 +905,7 @@ function toggleReady()
 end
 
 function scanReady()
-    local selectedColors = Global.getVar("selectedColors")
+    local selectedColors = Global.getTable("selectedColors")
     local seatTables = Global.getVar("seatTables")
     local yes = {}
     local no = {}
@@ -1041,7 +1041,7 @@ end
 
 function scanElements()
     local elements = Elements:new()
-    for _, selected in pairs(Global.getVar("selectedColors")) do
+    for _, selected in pairs(Global.getTable("selectedColors")) do
         elements:add(selected.elementCounts)
     end
 

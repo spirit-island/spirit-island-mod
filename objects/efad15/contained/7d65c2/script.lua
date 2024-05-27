@@ -2,7 +2,7 @@ spiritName = "Serpent Slumbering Beneath the Island"
 
 function doSetup(params)
     local color = params.color
-    local spirit = Global.call("getSpirit", {name = spiritName})
+    local spirit = params.spiritPanel
 
     for _, card in pairs(Player[color].getHandObjects(1)) do
         if card.getName() == "Elemental Aegis" then

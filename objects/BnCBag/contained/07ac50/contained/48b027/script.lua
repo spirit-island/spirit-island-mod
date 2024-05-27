@@ -53,6 +53,19 @@ function destroyBoard(card, color)
     end
     self.setPosition(selectedColors[color].zone.getPosition() + Vector(-5, 1, -4))
 
+    -- Delete any drowned land tiles
+    if board.script_state ~= "" then
+        local json = JSON.decode(board.script_state)
+        if json.drowningTiles ~= nil then
+            for _,guid in pairs(json.drowningTiles) do
+                local obj = getObjectFromGUID(guid)
+                if obj ~= nil then
+                    obj.destruct()
+                end
+            end
+        end
+    end
+
     board.registerCollisions(false)
     Global.setVar("castDown", board.guid)
     Global.setVar("castDownColor", color)

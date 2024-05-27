@@ -9,8 +9,8 @@ spiritName = "Thunderspeaker"
 
 function doSetup(params)
     local color = params.color
-    local spirit = Global.call("getSpirit", {name = spiritName})
-    local zone = Global.getVar("selectedColors")[color].zone
+    local spirit = params.spiritPanel
+    local zone = Global.getTable("selectedColors")[color].zone
 
     for _, card in pairs(Player[color].getHandObjects(1)) do
         if card.getName() == "Manifestation of Power and Glory" then

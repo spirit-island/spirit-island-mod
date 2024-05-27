@@ -1,7 +1,7 @@
 spiritName = "Keeper of the Forbidden Wilds"
 
 function doSetup(params)
-    local keeper = Global.call("getSpirit", {name = spiritName})
+    local keeper = params.spiritPanel
     if keeper then
         local json = JSON.decode(keeper.script_state)
         if not json.hostility then

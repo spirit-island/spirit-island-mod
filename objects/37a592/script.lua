@@ -53,12 +53,10 @@ function InvaderDeckSetup(params)
                 stageIII = index
             end
         end
-        -- assumes a deck will always have stage 3 cards
-        table.remove(params.deck, stageIII)
         if stageI ~= nil then
+            -- assumes a deck will always have stage 3 cards
+            table.remove(params.deck, stageIII)
             params.deck[stageI] = 3
-        else
-            table.insert(params.deck, 1, 3)
         end
     end
     return params.deck

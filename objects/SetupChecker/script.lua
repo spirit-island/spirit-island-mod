@@ -2872,6 +2872,20 @@ function FindAspects(params)
     end
     return nil
 end
+function upCast(obj)
+    local hits = Physics.cast({
+        origin       = obj.getPosition() + Vector(0,0.1,0),
+        direction    = Vector(0,1,0),
+        type         = 3,
+        size         = obj.getBounds().size,
+        orientation  = Vector(0, 180, 180),
+    })
+    local hitObjects = {}
+    for _, v in pairs(hits) do
+        if v.hit_object ~= obj then table.insert(hitObjects,v.hit_object) end
+    end
+    return hitObjects
+end
 function RandomAspect(params)
     local obj = FindAspects(params)
     if obj == nil then

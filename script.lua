@@ -3917,7 +3917,7 @@ quotes = {
     {"Time is a sort of river of passing events, and strong is its current; no sooner is a thing brought to sight than it is swept by and another takes its place, and this too will be swept away.","Marcus Aurelius"},
     {"Time is a great teacher, but unfortunately it kills all its pupils.","Hector Louis Berlioz"},
     {"Half our time is spent trying to find something to do with the time we have rushed through life trying to save.","Will Rogers"},
-    {"The bad news is time flies. The good news is you're the pilot.","Michael Althsuler"},
+    {"The bad news is time flies. The good news is you're the pilot.","Michael Altshuler"},
     {"Time flies never to be recalled.","Virgil"},
     {"Time flies over us, but leaves its shadow behind.","Nathaniel Hawthorne"},
     {"Time is the most undefinable yet paradoxical of things; the past is gone, the future is not come, and the present becomes the past even while we attempt to define it, and, like the flash of lightning, at once exists and expires.","Charles Caleb Colton"},

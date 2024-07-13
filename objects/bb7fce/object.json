@@ -43,6 +43,7 @@
   "Hands": false,
   "MaterialIndex": -1,
   "MeshIndex": -1,
+  "Number": 0,
   "CustomMesh": {
     "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1465311980392984528/73227B5349E276006AB38E1027F18255A26EF555/",
     "DiffuseURL": "",

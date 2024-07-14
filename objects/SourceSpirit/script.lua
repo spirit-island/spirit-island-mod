@@ -16,6 +16,12 @@ function load(params)
         params.obj.setTable("trackEnergy", loaded_data.trackEnergy)
         params.obj.setTable("bonusEnergy", loaded_data.bonusEnergy)
         params.obj.setTable("thresholds", loaded_data.thresholds)
+        if loaded_data.useProgression then
+            params.obj.setVar("useProgression", loaded_data.useProgression)
+        end
+        if loaded_data.useAspect then
+            params.obj.setVar("useAspect", loaded_data.useAspect)
+        end
     end
 
     local success = Global.call("addSpirit", {spirit=params.obj})
@@ -99,17 +105,32 @@ function load(params)
         end
     end
     if hasAspect then
+        local label
+        local useAspect = params.obj.getVar("useAspect")
+        if useAspect == 0 then
+            label = "Aspects: None"
+        elseif useAspect == 1 then
+            label = "Aspects: Random"
+        else
+            label = "Aspects: All"
+        end
         params.obj.editButton({
             index          = 2,
-            label          = "Aspects: All",
+            label          = label,
             width          = 2300,
             height         = 500,
         })
     end
     if hasProgression then
+        local label
+        if params.obj.getVar("useProgression") then
+            label = "Progression: Yes"
+        else
+            label = "Progression: No"
+        end
         params.obj.editButton({
             index          = 1,
-            label          = "Progression: No",
+            label          = label,
             width          = 2200,
             height         = 500,
         })
@@ -123,9 +144,18 @@ function load(params)
 end
 function AddAspectButton(params)
     if params.obj.getButtons()[2].width == 0 then
+        local label
+        local useAspect = params.obj.getVar("useAspect")
+        if useAspect == 0 then
+            label = "Aspects: None"
+        elseif useAspect == 1 then
+            label = "Aspects: Random"
+        else
+            label = "Aspects: All"
+        end
         params.obj.editButton({
             index          = 2,
-            label          = "Aspects: All",
+            label          = label,
             width          = 2300,
             height         = 500,
         })

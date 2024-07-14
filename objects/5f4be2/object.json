@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 30.3449,
+    "posX": 30.53,
     "posY": 0.75,
-    "posZ": 28.4378,
+    "posZ": 28.35,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 36.7006,
+    "scaleX": 36.05,
     "scaleY": 1.0,
-    "scaleZ": 34.0076
+    "scaleZ": 33.95
   },
   "Nickname": "",
   "Description": "",
@@ -64,9 +64,9 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 38.0,
+        "scaleX": 37.87,
         "scaleY": 1.0,
-        "scaleZ": 34.01
+        "scaleZ": 33.95
       },
       "Nickname": "",
       "Description": "",

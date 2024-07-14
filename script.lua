@@ -3298,7 +3298,114 @@ function BoardSetup()
     else
         MapPlaceCustom(maps)
     end
+
+    SetupChecker.createButton({
+        click_function = "ShiftIslandNorth",
+        function_owner = Global,
+        label          = "↑",
+        position       = Vector(30.75, -0.1, -41.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands North",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandSouth",
+        function_owner = Global,
+        label          = "↓",
+        position       = Vector(30.75, -0.1, -42.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands South",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandEast",
+        function_owner = Global,
+        label          = "→",
+        position       = Vector(29.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands East",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandWest",
+        function_owner = Global,
+        label          = "←",
+        position       = Vector(31.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands West",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandNorth",
+        function_owner = Global,
+        label          = "↑",
+        position       = Vector(-30.75, -0.1, -41.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands North",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandSouth",
+        function_owner = Global,
+        label          = "↓",
+        position       = Vector(-30.75, -0.1, -42.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands South",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandEast",
+        function_owner = Global,
+        label          = "→",
+        position       = Vector(-31.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands East",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandWest",
+        function_owner = Global,
+        label          = "←",
+        position       = Vector(-29.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands West",
+    })
+
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numBoards end)
+end
+function ShiftIslandNorth()
+    ShiftIsland(Vector(0, 0, 1))
+end
+function ShiftIslandSouth()
+    ShiftIsland(Vector(0, 0, -1))
+end
+function ShiftIslandEast()
+    ShiftIsland(Vector(1, 0, 0))
+end
+function ShiftIslandWest()
+    ShiftIsland(Vector(-1, 0, 0))
+end
+function ShiftIsland(direction)
+    for _,object in pairs(upCast(seaTile, 12, 0.11)) do
+        object.setPosition(object.getPosition() + direction * 4)
+    end
 end
 ----- Post Setup Section
 function PostSetup()

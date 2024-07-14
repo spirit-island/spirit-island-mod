@@ -29,16 +29,21 @@ function load(params)
         return
     end
 
-    local choose, progression, aspect, rotation
+    local choose, progression, aspect, rotation, offset
+    if params.obj.hasTag("Apocrypha") then
+        offset = Vector(0, 0, -0.42)
+    else
+        offset = Vector(0, 0, 0)
+    end
     if params.obj.type == "Bag" then
-        choose = Vector(-0.75, 0.21, 0.9)
-        progression = Vector(-0.75, 0.21, 0.4)
-        aspect = Vector(-0.75, 0.21, 0.65)
+        choose = Vector(-0.75, 0.21, 0.9) + offset
+        progression = Vector(-0.75, 0.21, 0.4) + offset
+        aspect = Vector(-0.75, 0.21, 0.65) + offset
         rotation = Vector(0, 0, 0)
     else
-        choose = Vector(0.7, -0.1, 0.9)
-        progression = Vector(-0.7, -0.1, 0.9)
-        aspect = Vector(0.7, -0.2, 0.4)
+        choose = Vector(0.7, -0.1, 0.9) + offset
+        progression = Vector(-0.7, -0.1, 0.9) + offset
+        aspect = Vector(0.7, -0.2, 0.4) + offset
         rotation = Vector(0, 0, 180)
     end
     params.obj.createButton({

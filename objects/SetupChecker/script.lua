@@ -306,6 +306,8 @@ function onLoad(saved_data)
                 newAdversaryScenario(getObjectFromGUID(guid), false, scenarios[name] == nil)
             end
 
+            Wait.frames(updateRequiredContent, 1)
+
             Wait.frames(function()
                 updateSelfXml()
                 Wait.frames(function()

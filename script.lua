@@ -1154,6 +1154,9 @@ end
 function usingIncarna()
     return expansions["Nature Incarnate"]
 end
+function usingApocrypha()
+    return expansions["Apocrypha"]
+end
 function randomScenario()
     if difficulty > SetupChecker.getVar("randomMax") then
         return

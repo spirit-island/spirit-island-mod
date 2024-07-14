@@ -518,6 +518,8 @@ function handleAspect(spirit, deck, color, randomAspect)
                     enabled = false
                 elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
                     enabled = false
+                elseif tag == "Requires Apocrypha" and not Global.call("usingApocrypha") then
+                    enabled = false
                 end
             end
             if not enabled then
@@ -539,6 +541,9 @@ function handleAspect(spirit, deck, color, randomAspect)
             deck.destruct()
             return
         elseif deck.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
+            deck.destruct()
+            return
+        elseif deck.hasTag("Requires Apocrypha") and not Global.call("usingApocrypha") then
             deck.destruct()
             return
         end

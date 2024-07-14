@@ -446,6 +446,8 @@ function checkExpansionRequiredTags(bagGUID)
         return false
     elseif bag.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
         return false
+    elseif bag.hasTag("Requires Apocrypha") and not Global.call("usingApocrypha") then
+        return false
     end
     return true
 end
@@ -831,6 +833,7 @@ function updateRequiredContent()
     requiredContent("Requires Isolate", Global.call("usingIsolate"))
     requiredContent("Requires Vitality", Global.call("usingVitality"))
     requiredContent("Requires Incarna", Global.call("usingIncarna"))
+    requiredContent("Requires Apocrypha", Global.call("usingApocrypha"))
 end
 function requiredContent(tag, enabled)
     local colors = {}
@@ -1817,6 +1820,10 @@ function getSpiritTags()
         tags["NI"] = true
         added = true
     end
+    if self.UI.getAttribute("spiritApocrypha", "isOn") == "true" then
+        tags["Apocrypha"] = true
+        added = true
+    end
     if self.UI.getAttribute("spiritCustom", "isOn") == "true" then
         tags[""] = true
         added = true
@@ -2102,6 +2109,8 @@ function addSpirit(params)
         expansion = "Horizons"
     elseif params.spirit.hasTag("NI") then
         expansion = "NI"
+    elseif params.spirit.hasTag("Apocrypha") then
+        expansion = "Apocrypha"
     end
     spiritTags[params.spirit.guid] = expansion
 
@@ -2908,6 +2917,8 @@ function RandomAspect(params)
                     enabled = false
                 elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
                     enabled = false
+                elseif tag == "Requires Apocrypha" and not Global.call("usingApocrypha") then
+                    enabled = false
                 end
             end
             if enabled and not aspectNames[aspect.name] then
@@ -2936,6 +2947,8 @@ function RandomAspect(params)
                     enabled = false
                 elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
                     enabled = false
+                elseif tag == "Requires Apocrypha" and not Global.call("usingApocrypha") then
+                    enabled = false
                 end
             end
             if enabled and not aspectNames[aspect.name] then
@@ -2959,6 +2972,8 @@ function RandomAspect(params)
         elseif obj.hasTag("Requires Vitality") and not Global.call("usingVitality") then
             count = 0
         elseif obj.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
+            count = 0
+        elseif obj.hasTag("Requires Apocrypha") and not Global.call("usingApocrypha") then
             count = 0
         end
         local index = math.random(0,count)

@@ -148,7 +148,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="1000" position="-2500 -1760 14">
+<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="1000" position="-2500 -1800 14">
     <VerticalLayout recurse="events">
         <TableLayout recurse="events">
             <Row class="header">

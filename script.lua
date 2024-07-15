@@ -2060,7 +2060,7 @@ function SetupPowerDecks()
 
     return 1
 end
-handOffset = Vector(0,-3.25,36)
+tableOffset = Vector(0,0.04,19.6)
 scriptWorkingCardC = false
 function MajorPowerC(obj, player_color, alt_click)
     local cards = 4
@@ -2145,13 +2145,13 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     local playtestDiscardObj = playtestDiscardZone.getObjects()[1]
 
     -- clear the zone!
-    local hand = player.getHandTransform()
-    if hand == nil then
+    local playerTable = playerTables[player.color]
+    if playerTable == nil then
         scriptWorkingCardC = false
         return
     end
-    local handPos = hand.position
-    local discardTable = DiscardPowerCards(handPos)
+    local tablePos = playerTable.getPosition()
+    local discardTable = DiscardPowerCards(tablePos)
     if #discardTable > 0 then
         wt(0.1)
     end
@@ -2171,7 +2171,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     end
     local cardsAdded = 0
     local cardsResting = 0
-    local powerDealCentre = handOffset + handPos
+    local powerDealCentre = tableOffset + tablePos
 
     local function countDeck(deck)
         if deck == nil then
@@ -2257,20 +2257,17 @@ function PickPower(cardo,playero,alt_click)
         Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
     end
     -- Figure out which player the card is in front of
-    local handPos = nil
-    for color,_ in pairs(playerTables) do
-        local transform = Player[color].getHandTransform()
-        if transform then
-            local pos = transform.position
-            for _,obj in ipairs(getPowerZoneObjects(pos)) do
-                if obj == cardo then
-                    handPos = pos
-                    break
-                end
-            end
-            if handPos then
+    local tablePos = nil
+    for _,playerTable in pairs(playerTables) do
+        local pos = playerTable.getPosition()
+        for _,obj in ipairs(getPowerZoneObjects(pos)) do
+            if obj == cardo then
+                tablePos = pos
                 break
             end
+        end
+        if tablePos then
+            break
         end
     end
 
@@ -2281,14 +2278,14 @@ function PickPower(cardo,playero,alt_click)
 
     Wait.condition(function()
         cardo.setLock(false)
-        if handPos and not alt_click then
-            DiscardPowerCards(handPos)
+        if tablePos and not alt_click then
+            DiscardPowerCards(tablePos)
         end
     end, function() return not cardo.isSmoothMoving() end)
 end
-function DiscardPowerCards(handPos)
+function DiscardPowerCards(tablePos)
     local discardTable = {}
-    local cardZoneObjects = getPowerZoneObjects(handPos)
+    local cardZoneObjects = getPowerZoneObjects(tablePos)
     for i, obj in ipairs(cardZoneObjects) do
         forgetPowerCard({card = obj, discardHeight = i})
         obj.clearButtons()
@@ -2370,9 +2367,9 @@ function removeButtons(params)
     end
 end
 
-function getPowerZoneObjects(handP)
+function getPowerZoneObjects(tablePos)
     local hits = upCastPosSizRot(
-        handOffset + handP, -- pos
+        tableOffset + tablePos, -- pos
         Vector(15,0.1,4),  -- size
         Vector(0,0,0),  --  rotation
         0,  -- distance
@@ -2381,7 +2378,7 @@ function getPowerZoneObjects(handP)
 end
 function addGainPowerCardButtons()
     for color, _ in pairs(selectedColors) do
-        local cardZoneObjects = getPowerZoneObjects(Player[color].getHandTransform().position)
+        local cardZoneObjects = getPowerZoneObjects(playerTables[color].getPosition())
         for _, obj in ipairs(cardZoneObjects) do
             if obj.type == "Card" then
                 CreatePickPowerButton(obj, "PickPower")
@@ -7402,12 +7399,12 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
                     table.insert(t, obj)
                 end
             end
-            for _,obj in pairs(getPowerZoneObjects(Player[color].getHandTransform().position)) do
+            for _,obj in pairs(getPowerZoneObjects(playerTables[color].getPosition())) do
                 table.insert(t, obj)
             end
             for _,obj in ipairs(getObjects()) do
                 local objPos = obj.getPosition()
-                local powerZonePos = Player[color].getHandTransform().position + handOffset
+                local powerZonePos = Player[color].getHandTransform().position + tableOffset
                 if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z then
                     table.insert(t, obj)
                 end

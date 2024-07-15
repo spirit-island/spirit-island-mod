@@ -1,0 +1,59 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": 131.8896,
+    "posY": 2.3226,
+    "posZ": 145.6709,
+    "rotX": 0.0,
+    "rotY": 180.0059,
+    "rotZ": 0.0,
+    "scaleX": 10.0,
+    "scaleY": 10.0,
+    "scaleZ": 10.0
+  },
+  "Nickname": "The Gleaming Hoard summoner",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Setup"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1754683441115249154/B284A821AE46B04E3399AE51B6B94ED0BEFC5F92/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 0,
+    "TypeIndex": 6,
+    "CastShadows": true
+  },
+  "Bag": {
+    "Order": 0
+  }
+}

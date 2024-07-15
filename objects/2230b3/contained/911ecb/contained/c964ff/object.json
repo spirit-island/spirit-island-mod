@@ -1,0 +1,272 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 30.5453,
+    "posY": 2.0619,
+    "posZ": 2.6688,
+    "rotX": 0.0,
+    "rotY": 180.0008,
+    "rotZ": 0.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "The Gleaming Hoard",
+  "Description": "Apocrypha",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2544054074185196615/C494369CAB062E1FCCEBEB4E2DB806DE040ABB25/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.2309,
+        "y": 0.011,
+        "z": 0.7403
+      }
+    },
+    {
+      "Position": {
+        "x": 1.3325,
+        "y": 0.011,
+        "z": 0.7448
+      }
+    },
+    {
+      "Position": {
+        "x": 1.1093,
+        "y": 0.1111,
+        "z": 0.7423
+      }
+    },
+    {
+      "Position": {
+        "x": 0.4508,
+        "y": 0.011,
+        "z": 0.7396
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2128,
+        "y": 0.011,
+        "z": 0.7415
+      }
+    },
+    {
+      "Position": {
+        "x": 0.6636,
+        "y": 0.1111,
+        "z": 0.742
+      }
+    },
+    {
+      "Position": {
+        "x": 0.885,
+        "y": 0.1111,
+        "z": 0.744
+      }
+    },
+    {
+      "Position": {
+        "x": 0.01,
+        "y": 0.011,
+        "z": 0.7418
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4396,
+        "y": 0.2,
+        "z": 0.7419
+      }
+    },
+    {
+      "Position": {
+        "x": -1.0989,
+        "y": 0.2,
+        "z": 0.7388
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3191,
+        "y": 0.2,
+        "z": 0.7393
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8821,
+        "y": 0.2,
+        "z": 0.7384
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6585,
+        "y": 0.2,
+        "z": 0.7431
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5321,
+        "y": 0.2,
+        "z": 0.3059
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5341,
+        "y": 0.2,
+        "z": -0.1731
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5366,
+        "y": 0.2,
+        "z": -0.6607
+      }
+    },
+    {
+      "Position": {
+        "x": 0.3184,
+        "y": 0.2,
+        "z": -0.6614
+      }
+    },
+    {
+      "Position": {
+        "x": 0.316,
+        "y": 0.2,
+        "z": -0.2847
+      }
+    },
+    {
+      "Position": {
+        "x": 0.3115,
+        "y": 0.2,
+        "z": 0.1418
+      }
+    },
+    {
+      "Position": {
+        "x": 0.7961,
+        "y": 0.2,
+        "z": -0.2847
+      }
+    },
+    {
+      "Position": {
+        "x": 0.8096,
+        "y": 0.2,
+        "z": -0.6649
+      }
+    },
+    {
+      "Position": {
+        "x": 1.3186,
+        "y": 0.2,
+        "z": 0.2622
+      }
+    },
+    {
+      "Position": {
+        "x": 1.3216,
+        "y": 0.2,
+        "z": 0.4892
+      }
+    },
+    {
+      "Position": {
+        "x": 0.8575,
+        "y": 0.2,
+        "z": 0.4931
+      }
+    },
+    {
+      "Position": {
+        "x": 0.8584,
+        "y": 0.2,
+        "z": 0.2543
+      }
+    },
+    {
+      "Position": {
+        "x": 1.1008,
+        "y": 0.2,
+        "z": 0.2571
+      }
+    },
+    {
+      "Position": {
+        "x": 1.1032,
+        "y": 0.2,
+        "z": 0.4922
+      }
+    },
+    {
+      "Position": {
+        "x": 0.6397,
+        "y": 0.2,
+        "z": 0.4943
+      }
+    },
+    {
+      "Position": {
+        "x": 0.6383,
+        "y": 0.2,
+        "z": 0.2517
+      }
+    },
+    {
+      "Position": {
+        "x": 0.3915,
+        "y": 0.2,
+        "z": 0.4988
+      }
+    },
+    {
+      "Position": {
+        "x": 0.1757,
+        "y": 0.2,
+        "z": 0.4926
+      }
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 148.5804,
+    "posY": 2.5126,
+    "posZ": 169.0641,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Spreading Rot Renews the Earth",
+  "Description": "Apocrypha",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2544054074185213509/E70748B79D3909DFA124F5E773D9BC99D55A486F/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2544054074185223513/C03B97174E7FF104E520656E18DE96DBAD668ABF/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0202,
+        "y": 0.2,
+        "z": -0.3881
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2465,
+        "y": 0.2,
+        "z": -0.3856
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4621,
+        "y": 0.2,
+        "z": -0.3856
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9126,
+        "y": 0.2,
+        "z": -0.3864
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4611,
+        "y": 0.2,
+        "z": -0.0757
+      }
+    },
+    {
+      "Position": {
+        "x": -0.026,
+        "y": 0.2,
+        "z": -0.0757
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6926,
+        "y": 0.2,
+        "z": -0.0735
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1334,
+        "y": 0.2,
+        "z": -0.08
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6869,
+        "y": 0.2,
+        "z": -0.3828
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9067,
+        "y": 0.2,
+        "z": -0.0758
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2486,
+        "y": 0.2,
+        "z": -0.075
+      }
+    }
+  ]
+}

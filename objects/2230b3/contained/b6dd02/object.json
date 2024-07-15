@@ -1,0 +1,149 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 92.109,
+    "posY": 1.2195,
+    "posZ": 119.1736,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 179.9964,
+    "scaleX": 5.46,
+    "scaleY": 1.0,
+    "scaleZ": 5.46
+  },
+  "Nickname": "Covets Gleaming Shards of Earth",
+  "Description": "Apocrypha",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.2003,
+    "g": 0.1603,
+    "b": 0.1518
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2544054074185200583/488F51B244D1DE57D2A1D33E7D4819A2EFDA9F00/",
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2544054074185234840/5DA19A4C14F240B271ECC644796CD368BC55C770/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.2,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0243,
+        "y": 0.2,
+        "z": -0.3928
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0224,
+        "y": 0.2,
+        "z": 0.0052
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9028,
+        "y": 0.2,
+        "z": 0.0029
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9143,
+        "y": 0.2,
+        "z": -0.3976
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1241,
+        "y": 0.2,
+        "z": -0.3875
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6923,
+        "y": 0.2,
+        "z": -0.1132
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4679,
+        "y": 0.2,
+        "z": -0.3885
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2482,
+        "y": 0.2,
+        "z": -0.2733
+      }
+    },
+    {
+      "Position": {
+        "x": -0.246,
+        "y": 0.2,
+        "z": 0.0056
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2499,
+        "y": 0.2,
+        "z": -0.4898
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6935,
+        "y": 0.2,
+        "z": 0.1139
+      }
+    },
+    {
+      "Position": {
+        "x": -0.686,
+        "y": 0.2,
+        "z": -0.3911
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4746,
+        "y": 0.2,
+        "z": 0.0079
+      }
+    }
+  ]
+}

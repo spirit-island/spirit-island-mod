@@ -1,0 +1,64 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 57.4694,
+    "posY": 2.1251,
+    "posZ": 20.4653,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.4,
+    "scaleY": 2.8,
+    "scaleZ": 1.4
+  },
+  "Nickname": "Incarna",
+  "Description": "Covets Gleaming Shards of Earth",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.5686,
+    "g": 0.5608,
+    "b": 0.5608
+  },
+  "Tags": [
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/2473119197017643983/B1AF556AFD58C73B2C78AB4E811DD4BAEFDFD498/",
+    "NormalURL": "",
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "Convex": false,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

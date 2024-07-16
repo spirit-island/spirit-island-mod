@@ -1,8 +1,7 @@
 spiritName = "Covets Gleaming Shards of Earth"
 
 function doSetup(params)
-    local spirit = Global.call("getSpirit", {name = spiritName})
-    local pos = spirit.getPosition()
+    local pos = params.spiritPanel.getPosition()
 
     local hoard = nil
     for _,obj in pairs(self.getObjects()) do
@@ -29,6 +28,11 @@ function doSetup(params)
             end
         end
     end
+
+    -- Scale scripting zone to cover hoard board
+    local zone = Global.getTable("selectedColors")[params.color].zone
+    zone.setPosition(zone.getPosition() + Vector(0, 0, -5))
+    zone.setScale(zone.getScale() + Vector(0, 0, 10))
 
     -- Wait for hoard board to finish loading before putting treasure markers on top of it
     Wait.condition(function()

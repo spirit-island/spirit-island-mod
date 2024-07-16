@@ -7394,19 +7394,41 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
     for color,playerTable in pairs(tables) do
         local t = upCast(playerTable, 1.9)
         if color ~= "" then
+            local guids = {}
+            for _, obj in pairs(t) do
+                guids[obj.guid] = true
+            end
+
+            if selectedColors[color].zone then
+                for _, obj in pairs(selectedColors[color].zone.getObjects()) do
+                    if not guids[obj.guid] then
+                        table.insert(t, obj)
+                        guids[obj.guid] = true
+                    end
+                end
+            end
             for i = 1,Player[color].getHandCount() do
                 for _,obj in ipairs(Player[color].getHandObjects(i)) do
-                    table.insert(t, obj)
+                    if not guids[obj.guid] then
+                        table.insert(t, obj)
+                        guids[obj.guid] = true
+                    end
                 end
             end
             for _,obj in pairs(getPowerZoneObjects(playerTables[color].getPosition())) do
-                table.insert(t, obj)
+                if not guids[obj.guid] then
+                    table.insert(t, obj)
+                    guids[obj.guid] = true
+                end
             end
             for _,obj in ipairs(getObjects()) do
                 local objPos = obj.getPosition()
                 local powerZonePos = Player[color].getHandTransform().position + tableOffset
                 if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z then
-                    table.insert(t, obj)
+                    if not guids[obj.guid] then
+                        table.insert(t, obj)
+                        guids[obj.guid] = true
+                    end
                 end
             end
         end

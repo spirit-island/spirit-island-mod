@@ -977,16 +977,16 @@ function bargainCheck()
         if selectedColors[color].bargain ~= count then
             if count == 0 then
                 selectedColors[color].debt = 0
-                if selectedColors[color].zone then
-                    selectedColors[color].zone.editButton({index=4, label=""})
-                    selectedColors[color].zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+                if playerTables[color] then
+                    playerTables[color].editButton({index=4, label=""})
+                    playerTables[color].editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
                 end
             else
                 selectedColors[color].debt = selectedColors[color].debt + count - selectedColors[color].bargain
-                if selectedColors[color].zone then
-                    selectedColors[color].zone.editButton({index=4, label="Debt: "..selectedColors[color].debt})
+                if playerTables[color] then
+                    playerTables[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
                     if selectedColors[color].bargain == 0 then
-                        selectedColors[color].zone.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+                        playerTables[color].editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
                     end
                 end
             end
@@ -4215,15 +4215,15 @@ function handlePlayer(color, data)
     end
 
     if data.paid then
-        selectedColors[color].zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        playerTables[color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         data.paid = false
     end
     if data.gained then
-        selectedColors[color].zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+        playerTables[color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
         data.gained = false
     end
     if data.bargain > 0 then
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..data.bargain})
+        playerTables[color].editButton({index=4, label="Debt: "..data.bargain})
         data.debt = data.bargain
     end
     if data.ready.is_face_down then
@@ -5928,38 +5928,38 @@ function setupPlayerArea(params)
     if not initialized and selected then
         params.obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
-            position={0.05,0,0.08}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-0.48,32,-2.65}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={-0.19,0,0.08}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={1.81,32,-2.65}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
         -- Gain Energy (button index 2)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={-0.19,0,0.02}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={1.81,32,-1.67}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
-        selected.zone.createButton({
+        params.obj.createButton({
             label="Reclaim All", click_function="reclaimAll",
-            position={0.05,0,0.02}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-0.48,32,-1.67}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=600, width=2600, font_size=500,
         })
         -- Bargain Debt (button index 4)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={0.43,0,0.08}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-4.11,32,-2.65}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
         -- Bargain Pay (button index 5)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={0.43,0,0.02}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-4.11,32,-1.67}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
         for i,bag in pairs(selected.elements) do
@@ -5986,21 +5986,21 @@ function setupPlayerArea(params)
     end
 
     if selected.paid then
-        selected.zone.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
+        params.obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
     else
-        selected.zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
+        params.obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
     end
     if selected.gained then
-        selected.zone.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
+        params.obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
     else
-        selected.zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
+        params.obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
     end
     if selected.debt > 0 then
-        selected.zone.editButton({index=4, label="Debt: "..selected.debt})
-        selected.zone.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+        params.obj.editButton({index=4, label="Debt: "..selected.debt})
+        params.obj.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
     else
-        selected.zone.editButton({index=4, label=""})
-        selected.zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+        params.obj.editButton({index=4, label=""})
+        params.obj.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
     local function calculateTrackElements(spiritBoard)
@@ -6127,7 +6127,7 @@ function setupPlayerArea(params)
             checkThresholds(tiles, cards, elements)
         end
         --Updates the number display
-        selected.zone.editButton({index=0, label="Energy Cost: "..energy})
+        params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
             if selected.elements[i] then
                 selected.elements[i].editButton({index=0, label=v})
@@ -6148,8 +6148,8 @@ function reclaimAll(target_obj, source_color)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6189,8 +6189,8 @@ function onGainPay(params)
 end
 function payDebt(target_obj, source_color, alt_click)
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6224,7 +6224,7 @@ function payDebt(target_obj, source_color, alt_click)
         selectedColors[target_color].debt = selectedColors[target_color].debt - 1
     end
 
-    selectedColors[target_color].zone.editButton({index = 4, label = "Debt: "..selectedColors[target_color].debt})
+    playerTables[target_color].editButton({index = 4, label = "Debt: "..selectedColors[target_color].debt})
 end
 function giveEnergy(params)
     local success = updateEnergyCounter(params.color, true, params.energy, params.ignoreDebt)
@@ -6241,8 +6241,8 @@ function gainEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6288,7 +6288,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                     end
                     if refunded then
                         selectedColors[target_color].gained = true
-                        selectedColors[target_color].zone.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                        playerTables[target_color].editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
                         onGainPay({color = target_color, isGain = true, isUndo = false, amount = energyTotal})
                     else
                         Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
@@ -6307,8 +6307,8 @@ function returnEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6354,7 +6354,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                     end
                     if paid then
                         selectedColors[target_color].gained = false
-                        selectedColors[target_color].zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                        playerTables[target_color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
                         onGainPay({color = target_color, isGain = true, isUndo = true, amount = energyTotal})
                     else
                         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
@@ -6373,8 +6373,8 @@ function payEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6392,7 +6392,7 @@ function payEnergy(target_obj, source_color, alt_click)
     end
     if paid then
         selectedColors[target_color].paid = true
-        selectedColors[target_color].zone.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
+        playerTables[target_color].editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
         onGainPay({color = target_color, isGain = false, isUndo = false, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
@@ -6460,7 +6460,7 @@ function updateEnergyCounter(color, refund, cost, ignoreDebt)
         if debt < 0 then
             debt = 0
         end
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..debt})
+        playerTables[color].editButton({index=4, label="Debt: "..debt})
     end
     selectedColors[color].counter.setValue(energy - cost)
     return true
@@ -6527,7 +6527,7 @@ function payEnergyTokens(color, cost, ignoreDebt)
         if debt < 0 then
             debt = 0
         end
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..debt})
+        playerTables[color].editButton({index=4, label="Debt: "..debt})
     end
 
     -- Only spend 3 energy tokens until you don't go negative unless there aren't enough 1 energy tokens
@@ -6615,7 +6615,7 @@ function payEnergyTokens(color, cost, ignoreDebt)
     return true
 end
 function getEnergyLabel(color)
-    local energy = selectedColors[color].zone.getButtons()[1].label
+    local energy = playerTables[color].getButtons()[1].label
     energy = tonumber(string.sub(energy, 14, -1))
     if energy == nil then
         energy = 0
@@ -6630,8 +6630,8 @@ function refundEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6649,7 +6649,7 @@ function refundEnergy(target_obj, source_color, alt_click)
     end
     if refunded then
         selectedColors[target_color].paid = false
-        selectedColors[target_color].zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        playerTables[target_color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         onGainPay({color = target_color, isGain = false, isUndo = true, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
@@ -6680,7 +6680,7 @@ function refundEnergyTokens(color, cost, ignoreDebt)
         if debt < 0 then
             debt = 0
         end
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..debt})
+        playerTables[color].editButton({index=4, label="Debt: "..debt})
     end
 
     while cost >= 3 do

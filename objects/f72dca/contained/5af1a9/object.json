@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 81.3410873413086,
+    "posY": 2.326202630996704,
+    "posZ": 54.04102325439453,
+    "rotX": 8.894831893258015e-08,
+    "rotY": 180.00001525878906,
+    "rotZ": -7.93788004216367e-08,
+    "scaleX": 1.5300447940826416,
+    "scaleY": 1.0,
+    "scaleZ": 1.5300447940826416
+  },
+  "Nickname": "Exaltation of the Re-Forming Land",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 261800,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2618": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185232134/5A3F099305BCBD888F6EF3C1F833F59B418B9562/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185211636/EB24A2547828BDD22A1B9ECD784004069CED2A58/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

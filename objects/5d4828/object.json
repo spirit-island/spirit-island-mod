@@ -47,7 +47,7 @@
   "MaterialIndex": -1,
   "MeshIndex": -1,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1847038070178749845/F9B69FD810B4A07F92D525124179BDDABADB884E/",
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1847038070178749845/F9B69FD810B4A07F92D525124179BDDABADB884E/",
     "DiffuseURL": "",
     "NormalURL": "",
     "ColliderURL": "",
@@ -112,8 +112,8 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322005436/5B673702F2D3885E564997A5FD2B4CA81B97E449/",
-        "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050880567269245816/96132D40B1A0E27B337AB7739EDCC8DF60FEA0EA/",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2050879298322005436/5B673702F2D3885E564997A5FD2B4CA81B97E449/",
+        "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/2050880567269245816/96132D40B1A0E27B337AB7739EDCC8DF60FEA0EA/",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomTile": {

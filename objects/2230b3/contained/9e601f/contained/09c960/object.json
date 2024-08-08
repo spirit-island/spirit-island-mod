@@ -1,0 +1,53 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 50.8849983215332,
+    "posY": 3.0355188846588135,
+    "posZ": 14.233903884887695,
+    "rotX": 0.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 0.3330551087856293,
+    "scaleY": 1.0,
+    "scaleZ": 0.3330551087856293
+  },
+  "Nickname": "Metal Token",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.3667002022266388,
+    "g": 0.42206376791000366,
+    "b": 0.5383273959159851
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2473119299006881282/7A3A6A5F7F1ED7B825E03E6FF5DEC402EF0D708B/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.20000000298023224,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  }
+}

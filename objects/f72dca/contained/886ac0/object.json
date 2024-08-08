@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 67.47515106201172,
+    "posY": 2.326202630996704,
+    "posZ": 44.998069763183594,
+    "rotX": 5.1581872106964965e-09,
+    "rotY": 180.0,
+    "rotZ": -1.7831961462988488e-09,
+    "scaleX": 1.5300447940826416,
+    "scaleY": 1.0,
+    "scaleZ": 1.5300447940826416
+  },
+  "Nickname": "Worms and Bugs Enrich the Soil",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 262100,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2621": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185231091/9EA8FC3D30A7AF8D10C5B044314BE3E1953860FD/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185211636/EB24A2547828BDD22A1B9ECD784004069CED2A58/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

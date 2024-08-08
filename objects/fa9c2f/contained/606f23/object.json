@@ -42,8 +42,8 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322027639/731D20ACD3B87E1BF14557B1BAEA1EBCABFA281E/",
-    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322028273/93BF9014778F791BDEB451635AF402490A74AD20/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2050879298322027639/731D20ACD3B87E1BF14557B1BAEA1EBCABFA281E/",
+    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/2050879298322028273/93BF9014778F791BDEB451635AF402490A74AD20/",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomTile": {
@@ -178,8 +178,8 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1749057496680614961/7F089E63A8759A8A410BB99A8012A135FC40E683/",
-        "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/2050879298322028273/93BF9014778F791BDEB451635AF402490A74AD20/",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1749057496680614961/7F089E63A8759A8A410BB99A8012A135FC40E683/",
+        "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/2050879298322028273/93BF9014778F791BDEB451635AF402490A74AD20/",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomTile": {

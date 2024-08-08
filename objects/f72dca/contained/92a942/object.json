@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 69.17681121826172,
+    "posY": 2.326202630996704,
+    "posZ": 47.193660736083984,
+    "rotX": -4.776626205682533e-09,
+    "rotY": 180.0,
+    "rotZ": -7.202118013083236e-09,
+    "scaleX": 1.5300447940826416,
+    "scaleY": 1.0,
+    "scaleZ": 1.5300447940826416
+  },
+  "Nickname": "Land of Deadfall and Rot",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 262000,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2620": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185229390/7AEDB195B1B8C2F634643B32BBB711BE7FE57DE6/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185211636/EB24A2547828BDD22A1B9ECD784004069CED2A58/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

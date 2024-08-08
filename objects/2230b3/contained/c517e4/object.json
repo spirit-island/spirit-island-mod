@@ -1,0 +1,64 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 57.46936798095703,
+    "posY": 2.1251349449157715,
+    "posZ": 20.465293884277344,
+    "rotX": -2.3710137497801043e-07,
+    "rotY": 180.0,
+    "rotZ": 2.1201290678618534e-07,
+    "scaleX": 1.399999976158142,
+    "scaleY": 2.799999952316284,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Incarna",
+  "Description": "Covets Gleaming Shards of Earth",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.5685999393463135,
+    "g": 0.5608000159263611,
+    "b": 0.5608000159263611
+  },
+  "Tags": [
+    "Presence"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2473119197017643983/B1AF556AFD58C73B2C78AB4E811DD4BAEFDFD498/",
+    "NormalURL": "",
+    "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/2301965672787312336/2C91003E8C4CDDC5AB126A349EAD097139157E79/",
+    "Convex": false,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
+}

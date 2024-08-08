@@ -1,0 +1,135 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 148.5804443359375,
+    "posY": 2.5126123428344727,
+    "posZ": 169.06405639648438,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 5.460000038146973,
+    "scaleY": 1.0,
+    "scaleZ": 5.460000038146973
+  },
+  "Nickname": "Spreading Rot Renews the Earth",
+  "Description": "Apocrypha",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.200273334980011,
+    "g": 0.16031861305236816,
+    "b": 0.1517568826675415
+  },
+  "Tags": [
+    "Spirit"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185213509/E70748B79D3909DFA124F5E773D9BC99D55A486F/",
+    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185223513/C03B97174E7FF104E520656E18DE96DBAD668ABF/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.020171836018562317,
+        "y": 0.20000040531158447,
+        "z": -0.3880815804004669
+      }
+    },
+    {
+      "Position": {
+        "x": -0.24647799134254456,
+        "y": 0.20000040531158447,
+        "z": -0.3856181800365448
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4620603322982788,
+        "y": 0.20000040531158447,
+        "z": -0.385553240776062
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9125989079475403,
+        "y": 0.20000040531158447,
+        "z": -0.3863924741744995
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4610564410686493,
+        "y": 0.20000040531158447,
+        "z": -0.07570777833461761
+      }
+    },
+    {
+      "Position": {
+        "x": -0.026048511266708374,
+        "y": 0.20000040531158447,
+        "z": -0.0757245272397995
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6925612092018127,
+        "y": 0.20000040531158447,
+        "z": -0.07348738610744476
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1333609819412231,
+        "y": 0.20000040531158447,
+        "z": -0.0799575001001358
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6869127750396729,
+        "y": 0.20000040531158447,
+        "z": -0.3828272521495819
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9066987037658691,
+        "y": 0.20000040531158447,
+        "z": -0.07584764063358307
+      }
+    },
+    {
+      "Position": {
+        "x": -0.24862490594387054,
+        "y": 0.20000040531158447,
+        "z": -0.07495167851448059
+      }
+    }
+  ]
+}

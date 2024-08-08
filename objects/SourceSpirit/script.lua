@@ -16,6 +16,12 @@ function load(params)
         params.obj.setTable("trackEnergy", loaded_data.trackEnergy)
         params.obj.setTable("bonusEnergy", loaded_data.bonusEnergy)
         params.obj.setTable("thresholds", loaded_data.thresholds)
+        if loaded_data.useProgression then
+            params.obj.setVar("useProgression", loaded_data.useProgression)
+        end
+        if loaded_data.useAspect then
+            params.obj.setVar("useAspect", loaded_data.useAspect)
+        end
     end
 
     local success = Global.call("addSpirit", {spirit=params.obj})
@@ -23,16 +29,21 @@ function load(params)
         return
     end
 
-    local choose, progression, aspect, rotation
+    local choose, progression, aspect, rotation, offset
+    if params.obj.hasTag("Apocrypha") then
+        offset = Vector(0, 0, -0.42)
+    else
+        offset = Vector(0, 0, 0)
+    end
     if params.obj.type == "Bag" then
-        choose = Vector(-0.75, 0.21, 0.9)
-        progression = Vector(-0.75, 0.21, 0.4)
-        aspect = Vector(-0.75, 0.21, 0.65)
+        choose = Vector(-0.75, 0.21, 0.9) + offset
+        progression = Vector(-0.75, 0.21, 0.4) + offset
+        aspect = Vector(-0.75, 0.21, 0.65) + offset
         rotation = Vector(0, 0, 0)
     else
-        choose = Vector(0.7, -0.1, 0.9)
-        progression = Vector(-0.7, -0.1, 0.9)
-        aspect = Vector(0.7, -0.2, 0.4)
+        choose = Vector(0.7, -0.1, 0.9) + offset
+        progression = Vector(-0.7, -0.1, 0.9) + offset
+        aspect = Vector(0.7, -0.2, 0.4) + offset
         rotation = Vector(0, 0, 180)
     end
     params.obj.createButton({
@@ -99,17 +110,32 @@ function load(params)
         end
     end
     if hasAspect then
+        local label
+        local useAspect = params.obj.getVar("useAspect")
+        if useAspect == 0 then
+            label = "Aspects: None"
+        elseif useAspect == 1 then
+            label = "Aspects: Random"
+        else
+            label = "Aspects: All"
+        end
         params.obj.editButton({
             index          = 2,
-            label          = "Aspects: All",
+            label          = label,
             width          = 2300,
             height         = 500,
         })
     end
     if hasProgression then
+        local label
+        if params.obj.getVar("useProgression") then
+            label = "Progression: Yes"
+        else
+            label = "Progression: No"
+        end
         params.obj.editButton({
             index          = 1,
-            label          = "Progression: No",
+            label          = label,
             width          = 2200,
             height         = 500,
         })
@@ -123,9 +149,18 @@ function load(params)
 end
 function AddAspectButton(params)
     if params.obj.getButtons()[2].width == 0 then
+        local label
+        local useAspect = params.obj.getVar("useAspect")
+        if useAspect == 0 then
+            label = "Aspects: None"
+        elseif useAspect == 1 then
+            label = "Aspects: Random"
+        else
+            label = "Aspects: All"
+        end
         params.obj.editButton({
             index          = 2,
-            label          = "Aspects: All",
+            label          = label,
             width          = 2300,
             height         = 500,
         })
@@ -488,6 +523,8 @@ function handleAspect(spirit, deck, color, randomAspect)
                     enabled = false
                 elseif tag == "Requires Incarna" and not Global.call("usingIncarna") then
                     enabled = false
+                elseif tag == "Requires Apocrypha" and not Global.call("usingApocrypha") then
+                    enabled = false
                 end
             end
             if not enabled then
@@ -509,6 +546,9 @@ function handleAspect(spirit, deck, color, randomAspect)
             deck.destruct()
             return
         elseif deck.hasTag("Requires Incarna") and not Global.call("usingIncarna") then
+            deck.destruct()
+            return
+        elseif deck.hasTag("Requires Apocrypha") and not Global.call("usingApocrypha") then
             deck.destruct()
             return
         end

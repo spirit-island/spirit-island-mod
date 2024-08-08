@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.3.1"
+version = "4.4.0"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -306,27 +306,27 @@ function onObjectEnterContainer(container, object)
 end
 function GetSacredSiteUrl(params)
     if params.color == "Red" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577478456/5AED930161D049CE76309D9A144DD720B6CD90DD/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577478456/5AED930161D049CE76309D9A144DD720B6CD90DD/"
     elseif params.color == "Purple" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577508377/A054E6F4C28CDA53A6E1007637DAE2B31AD3B040/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577508377/A054E6F4C28CDA53A6E1007637DAE2B31AD3B040/"
     elseif params.color == "Yellow" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577505356/7E936312C2DC02ADCBCF73431D14F0179648D945/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577505356/7E936312C2DC02ADCBCF73431D14F0179648D945/"
     elseif params.color == "Blue" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577507696/4F328278536C079106E848C8CABE70CAC02B7D71/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577507696/4F328278536C079106E848C8CABE70CAC02B7D71/"
     elseif params.color == "Green" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577506124/3D05984B0E7FD2B6CFA262613512D65333CCDF0E/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577506124/3D05984B0E7FD2B6CFA262613512D65333CCDF0E/"
     elseif params.color == "Orange" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577503990/84E8BA700D5F36B9E7A1509F63B2108E55E1DE02/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577503990/84E8BA700D5F36B9E7A1509F63B2108E55E1DE02/"
     elseif params.color == "Teal" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577507093/7F7AF0689015B0E9FEE404761DC05492342C6106/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577507093/7F7AF0689015B0E9FEE404761DC05492342C6106/"
     elseif params.color == "Pink" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577508994/315444E91F9EA15D5C71DD676752C16EAD13A510/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577508994/315444E91F9EA15D5C71DD676752C16EAD13A510/"
     elseif params.color == "Brown" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577509725/F59973839DF9CEF36777772990C72655C44339E2/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577509725/F59973839DF9CEF36777772990C72655C44339E2/"
     elseif params.color == "White" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
     else
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
     end
 end
 function makeSacredSite(params)
@@ -443,7 +443,7 @@ function onObjectLeaveContainer(container, object)
                 name = "Two",
                 rotation = {90, 180, 0},
                 scale    = {0.24, 0.24, 1},
-                url      = "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
+                url      = "https://steamusercontent-a.akamaihd.net/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
             }
             if object.getName() == "A" or object.getName() == "C" then
                 decal.position = {1.7, 0.2, 0.05}
@@ -977,16 +977,16 @@ function bargainCheck()
         if selectedColors[color].bargain ~= count then
             if count == 0 then
                 selectedColors[color].debt = 0
-                if selectedColors[color].zone then
-                    selectedColors[color].zone.editButton({index=4, label=""})
-                    selectedColors[color].zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+                if playerTables[color] then
+                    playerTables[color].editButton({index=4, label=""})
+                    playerTables[color].editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
                 end
             else
                 selectedColors[color].debt = selectedColors[color].debt + count - selectedColors[color].bargain
-                if selectedColors[color].zone then
-                    selectedColors[color].zone.editButton({index=4, label="Debt: "..selectedColors[color].debt})
+                if playerTables[color] then
+                    playerTables[color].editButton({index=4, label="Debt: "..selectedColors[color].debt})
                     if selectedColors[color].bargain == 0 then
-                        selectedColors[color].zone.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+                        playerTables[color].editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
                     end
                 end
             end
@@ -1153,6 +1153,9 @@ function usingVitality()
 end
 function usingIncarna()
     return expansions["Nature Incarnate"]
+end
+function usingApocrypha()
+    return expansions["Apocrypha"]
 end
 function randomScenario()
     if difficulty > SetupChecker.getVar("randomMax") then
@@ -2057,7 +2060,7 @@ function SetupPowerDecks()
 
     return 1
 end
-handOffset = Vector(0,-3.25,36)
+tableOffset = Vector(0,0.04,19.6)
 scriptWorkingCardC = false
 function MajorPowerC(obj, player_color, alt_click)
     local cards = 4
@@ -2142,13 +2145,13 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     local playtestDiscardObj = playtestDiscardZone.getObjects()[1]
 
     -- clear the zone!
-    local hand = player.getHandTransform()
-    if hand == nil then
+    local playerTable = playerTables[player.color]
+    if playerTable == nil then
         scriptWorkingCardC = false
         return
     end
-    local handPos = hand.position
-    local discardTable = DiscardPowerCards(handPos)
+    local tablePos = playerTable.getPosition()
+    local discardTable = DiscardPowerCards(tablePos)
     if #discardTable > 0 then
         wt(0.1)
     end
@@ -2168,7 +2171,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
     end
     local cardsAdded = 0
     local cardsResting = 0
-    local powerDealCentre = handOffset + handPos
+    local powerDealCentre = tableOffset + tablePos
 
     local function countDeck(deck)
         if deck == nil then
@@ -2254,20 +2257,17 @@ function PickPower(cardo,playero,alt_click)
         Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
     end
     -- Figure out which player the card is in front of
-    local handPos = nil
-    for color,_ in pairs(playerTables) do
-        local transform = Player[color].getHandTransform()
-        if transform then
-            local pos = transform.position
-            for _,obj in ipairs(getPowerZoneObjects(pos)) do
-                if obj == cardo then
-                    handPos = pos
-                    break
-                end
-            end
-            if handPos then
+    local tablePos = nil
+    for _,playerTable in pairs(playerTables) do
+        local pos = playerTable.getPosition()
+        for _,obj in ipairs(getPowerZoneObjects(pos)) do
+            if obj == cardo then
+                tablePos = pos
                 break
             end
+        end
+        if tablePos then
+            break
         end
     end
 
@@ -2278,14 +2278,14 @@ function PickPower(cardo,playero,alt_click)
 
     Wait.condition(function()
         cardo.setLock(false)
-        if handPos and not alt_click then
-            DiscardPowerCards(handPos)
+        if tablePos and not alt_click then
+            DiscardPowerCards(tablePos)
         end
     end, function() return not cardo.isSmoothMoving() end)
 end
-function DiscardPowerCards(handPos)
+function DiscardPowerCards(tablePos)
     local discardTable = {}
-    local cardZoneObjects = getPowerZoneObjects(handPos)
+    local cardZoneObjects = getPowerZoneObjects(tablePos)
     for i, obj in ipairs(cardZoneObjects) do
         forgetPowerCard({card = obj, discardHeight = i})
         obj.clearButtons()
@@ -2367,9 +2367,9 @@ function removeButtons(params)
     end
 end
 
-function getPowerZoneObjects(handP)
+function getPowerZoneObjects(tablePos)
     local hits = upCastPosSizRot(
-        handOffset + handP, -- pos
+        tableOffset + tablePos, -- pos
         Vector(15,0.1,4),  -- size
         Vector(0,0,0),  --  rotation
         0,  -- distance
@@ -2378,7 +2378,7 @@ function getPowerZoneObjects(handP)
 end
 function addGainPowerCardButtons()
     for color, _ in pairs(selectedColors) do
-        local cardZoneObjects = getPowerZoneObjects(Player[color].getHandTransform().position)
+        local cardZoneObjects = getPowerZoneObjects(playerTables[color].getPosition())
         for _, obj in ipairs(cardZoneObjects) do
             if obj.type == "Card" then
                 CreatePickPowerButton(obj, "PickPower")
@@ -3298,7 +3298,114 @@ function BoardSetup()
     else
         MapPlaceCustom(maps)
     end
+
+    SetupChecker.createButton({
+        click_function = "ShiftIslandNorth",
+        function_owner = Global,
+        label          = "↑",
+        position       = Vector(30.75, -0.1, -41.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands North",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandSouth",
+        function_owner = Global,
+        label          = "↓",
+        position       = Vector(30.75, -0.1, -42.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands South",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandEast",
+        function_owner = Global,
+        label          = "→",
+        position       = Vector(29.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands East",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandWest",
+        function_owner = Global,
+        label          = "←",
+        position       = Vector(31.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands West",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandNorth",
+        function_owner = Global,
+        label          = "↑",
+        position       = Vector(-30.75, -0.1, -41.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands North",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandSouth",
+        function_owner = Global,
+        label          = "↓",
+        position       = Vector(-30.75, -0.1, -42.7),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands South",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandEast",
+        function_owner = Global,
+        label          = "→",
+        position       = Vector(-31.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands East",
+    })
+    SetupChecker.createButton({
+        click_function = "ShiftIslandWest",
+        function_owner = Global,
+        label          = "←",
+        position       = Vector(-29.75, -0.1, -42.2),
+        rotation       = Vector(0, 180, 0),
+        width          = 400,
+        height         = 400,
+        font_size      = 250,
+        tooltip        = "Click to shift islands West",
+    })
+
     Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numBoards end)
+end
+function ShiftIslandNorth()
+    ShiftIsland(Vector(0, 0, 1))
+end
+function ShiftIslandSouth()
+    ShiftIsland(Vector(0, 0, -1))
+end
+function ShiftIslandEast()
+    ShiftIsland(Vector(1, 0, 0))
+end
+function ShiftIslandWest()
+    ShiftIsland(Vector(-1, 0, 0))
+end
+function ShiftIsland(direction)
+    for _,object in pairs(upCast(seaTile, 12, 0.11)) do
+        object.setPosition(object.getPosition() + direction * 4)
+    end
 end
 ----- Post Setup Section
 function PostSetup()
@@ -3917,7 +4024,7 @@ quotes = {
     {"Time is a sort of river of passing events, and strong is its current; no sooner is a thing brought to sight than it is swept by and another takes its place, and this too will be swept away.","Marcus Aurelius"},
     {"Time is a great teacher, but unfortunately it kills all its pupils.","Hector Louis Berlioz"},
     {"Half our time is spent trying to find something to do with the time we have rushed through life trying to save.","Will Rogers"},
-    {"The bad news is time flies. The good news is you're the pilot.","Michael Althsuler"},
+    {"The bad news is time flies. The good news is you're the pilot.","Michael Altshuler"},
     {"Time flies never to be recalled.","Virgil"},
     {"Time flies over us, but leaves its shadow behind.","Nathaniel Hawthorne"},
     {"Time is the most undefinable yet paradoxical of things; the past is gone, the future is not come, and the present becomes the past even while we attempt to define it, and, like the flash of lightning, at once exists and expires.","Charles Caleb Colton"},
@@ -4108,15 +4215,15 @@ function handlePlayer(color, data)
     end
 
     if data.paid then
-        selectedColors[color].zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        playerTables[color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         data.paid = false
     end
     if data.gained then
-        selectedColors[color].zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+        playerTables[color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
         data.gained = false
     end
     if data.bargain > 0 then
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..data.bargain})
+        playerTables[color].editButton({index=4, label="Debt: "..data.bargain})
         data.debt = data.bargain
     end
     if data.ready.is_face_down then
@@ -5821,38 +5928,38 @@ function setupPlayerArea(params)
     if not initialized and selected then
         params.obj.setVar("initialized", true)
         -- Energy Cost (button index 0)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="Energy Cost: ?", click_function="nullFunc",
-            position={0.05,0,0.08}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-0.48,32,-2.65}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color={1,1,1}, font_size=500
         })
         -- Pay Energy (button index 1)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={-0.19,0,0.08}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={1.81,32,-2.65}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
         -- Gain Energy (button index 2)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={-0.19,0,0.02}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={1.81,32,-1.67}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
-        selected.zone.createButton({
+        params.obj.createButton({
             label="Reclaim All", click_function="reclaimAll",
-            position={0.05,0,0.02}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-0.48,32,-1.67}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=600, width=2600, font_size=500,
         })
         -- Bargain Debt (button index 4)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={0.43,0,0.08}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-4.11,32,-2.65}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
         -- Bargain Pay (button index 5)
-        selected.zone.createButton({
+        params.obj.createButton({
             label="", click_function="nullFunc",
-            position={0.43,0,0.02}, rotation={0,180,0}, scale={1/22,0,1/23},
+            position={-4.11,32,-1.67}, rotation={0,0,0}, scale={1/2.3,0,1/1.42},
             height=0, width=0, font_color="White", font_size=500,
         })
         for i,bag in pairs(selected.elements) do
@@ -5879,21 +5986,21 @@ function setupPlayerArea(params)
     end
 
     if selected.paid then
-        selected.zone.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
+        params.obj.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", height=600, width=1550, tooltip="Right click to refund energy for your cards"})
     else
-        selected.zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
+        params.obj.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", height=600, width=1550, tooltip="Left click to pay energy for your cards"})
     end
     if selected.gained then
-        selected.zone.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
+        params.obj.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", height=600, width=1550, tooltip="Right click to return energy from presence track"})
     else
-        selected.zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
+        params.obj.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", height=600, width=1550, tooltip="Left click to gain energy from presence track"})
     end
     if selected.debt > 0 then
-        selected.zone.editButton({index=4, label="Debt: "..selected.debt})
-        selected.zone.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
+        params.obj.editButton({index=4, label="Debt: "..selected.debt})
+        params.obj.editButton({index=5, label="Pay 1", click_function="payDebt", color="Red", height=600, width=1550, tooltip="Left click to pay 1 energy to Bargain Debt. Right click to refund 1 energy from Bargain Debt."})
     else
-        selected.zone.editButton({index=4, label=""})
-        selected.zone.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
+        params.obj.editButton({index=4, label=""})
+        params.obj.editButton({index=5, label="", click_function="nullFunc", color="White", height=0, width=0, tooltip=""})
     end
 
     local function calculateTrackElements(spiritBoard)
@@ -5930,9 +6037,9 @@ function setupPlayerArea(params)
                 }
             end
             if elements:threshold(thresholdElements) then
-                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
+                decal.url = "https://steamusercontent-a.akamaihd.net/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
             elseif not positions[vecString] then
-                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
+                decal.url = "https://steamusercontent-a.akamaihd.net/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
             end
             positions[vecString] = decal
             table.insert(decals, decal)
@@ -6020,7 +6127,7 @@ function setupPlayerArea(params)
             checkThresholds(tiles, cards, elements)
         end
         --Updates the number display
-        selected.zone.editButton({index=0, label="Energy Cost: "..energy})
+        params.obj.editButton({index=0, label="Energy Cost: "..energy})
         for i, v in ipairs(elements) do
             if selected.elements[i] then
                 selected.elements[i].editButton({index=0, label=v})
@@ -6041,8 +6148,8 @@ function reclaimAll(target_obj, source_color)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6082,8 +6189,8 @@ function onGainPay(params)
 end
 function payDebt(target_obj, source_color, alt_click)
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6117,7 +6224,7 @@ function payDebt(target_obj, source_color, alt_click)
         selectedColors[target_color].debt = selectedColors[target_color].debt - 1
     end
 
-    selectedColors[target_color].zone.editButton({index = 4, label = "Debt: "..selectedColors[target_color].debt})
+    playerTables[target_color].editButton({index = 4, label = "Debt: "..selectedColors[target_color].debt})
 end
 function giveEnergy(params)
     local success = updateEnergyCounter(params.color, true, params.energy, params.ignoreDebt)
@@ -6134,8 +6241,8 @@ function gainEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6181,7 +6288,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                     end
                     if refunded then
                         selectedColors[target_color].gained = true
-                        selectedColors[target_color].zone.editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
+                        playerTables[target_color].editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
                         onGainPay({color = target_color, isGain = true, isUndo = false, amount = energyTotal})
                     else
                         Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
@@ -6200,8 +6307,8 @@ function returnEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6247,7 +6354,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                     end
                     if paid then
                         selectedColors[target_color].gained = false
-                        selectedColors[target_color].zone.editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
+                        playerTables[target_color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
                         onGainPay({color = target_color, isGain = true, isUndo = true, amount = energyTotal})
                     else
                         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
@@ -6266,8 +6373,8 @@ function payEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6285,7 +6392,7 @@ function payEnergy(target_obj, source_color, alt_click)
     end
     if paid then
         selectedColors[target_color].paid = true
-        selectedColors[target_color].zone.editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
+        playerTables[target_color].editButton({index=1, label="Paid", click_function="refundEnergy", color="Green", tooltip="Right click to refund energy for your cards"})
         onGainPay({color = target_color, isGain = false, isUndo = false, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
@@ -6353,7 +6460,7 @@ function updateEnergyCounter(color, refund, cost, ignoreDebt)
         if debt < 0 then
             debt = 0
         end
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..debt})
+        playerTables[color].editButton({index=4, label="Debt: "..debt})
     end
     selectedColors[color].counter.setValue(energy - cost)
     return true
@@ -6420,7 +6527,7 @@ function payEnergyTokens(color, cost, ignoreDebt)
         if debt < 0 then
             debt = 0
         end
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..debt})
+        playerTables[color].editButton({index=4, label="Debt: "..debt})
     end
 
     -- Only spend 3 energy tokens until you don't go negative unless there aren't enough 1 energy tokens
@@ -6508,7 +6615,7 @@ function payEnergyTokens(color, cost, ignoreDebt)
     return true
 end
 function getEnergyLabel(color)
-    local energy = selectedColors[color].zone.getButtons()[1].label
+    local energy = playerTables[color].getButtons()[1].label
     energy = tonumber(string.sub(energy, 14, -1))
     if energy == nil then
         energy = 0
@@ -6523,8 +6630,8 @@ function refundEnergy(target_obj, source_color, alt_click)
     end
 
     local target_color = nil
-    for color,data in pairs(selectedColors) do
-        if data.zone == target_obj then
+    for color,playerTable in pairs(playerTables) do
+        if playerTable == target_obj then
             target_color = color
             break
         end
@@ -6542,7 +6649,7 @@ function refundEnergy(target_obj, source_color, alt_click)
     end
     if refunded then
         selectedColors[target_color].paid = false
-        selectedColors[target_color].zone.editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
+        playerTables[target_color].editButton({index=1, label="Pay", click_function="payEnergy", color="Red", tooltip="Left click to pay energy for your cards"})
         onGainPay({color = target_color, isGain = false, isUndo = true, amount = getEnergyLabel(target_color)})
     else
         Player[source_color].broadcast("Was unable to refund energy", Color.SoftYellow)
@@ -6573,7 +6680,7 @@ function refundEnergyTokens(color, cost, ignoreDebt)
         if debt < 0 then
             debt = 0
         end
-        selectedColors[color].zone.editButton({index=4, label="Debt: "..debt})
+        playerTables[color].editButton({index=4, label="Debt: "..debt})
     end
 
     while cost >= 3 do
@@ -7287,19 +7394,41 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
     for color,playerTable in pairs(tables) do
         local t = upCast(playerTable, 1.9)
         if color ~= "" then
-            for i = 1,Player[color].getHandCount() do
-                for _,obj in ipairs(Player[color].getHandObjects(i)) do
-                    table.insert(t, obj)
+            local guids = {}
+            for _, obj in pairs(t) do
+                guids[obj.guid] = true
+            end
+
+            if selectedColors[color].zone then
+                for _, obj in pairs(selectedColors[color].zone.getObjects()) do
+                    if not guids[obj.guid] then
+                        table.insert(t, obj)
+                        guids[obj.guid] = true
+                    end
                 end
             end
-            for _,obj in pairs(getPowerZoneObjects(Player[color].getHandTransform().position)) do
-                table.insert(t, obj)
+            for i = 1,Player[color].getHandCount() do
+                for _,obj in ipairs(Player[color].getHandObjects(i)) do
+                    if not guids[obj.guid] then
+                        table.insert(t, obj)
+                        guids[obj.guid] = true
+                    end
+                end
+            end
+            for _,obj in pairs(getPowerZoneObjects(playerTables[color].getPosition())) do
+                if not guids[obj.guid] then
+                    table.insert(t, obj)
+                    guids[obj.guid] = true
+                end
             end
             for _,obj in ipairs(getObjects()) do
                 local objPos = obj.getPosition()
-                local powerZonePos = Player[color].getHandTransform().position + handOffset
+                local powerZonePos = Player[color].getHandTransform().position + tableOffset
                 if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z then
-                    table.insert(t, obj)
+                    if not guids[obj.guid] then
+                        table.insert(t, obj)
+                        guids[obj.guid] = true
+                    end
                 end
             end
         end
@@ -7991,8 +8120,8 @@ function spawnMaskedReminder(color, obj, isMarker)
         Grid = false,
         Snap = false,
         CustomMesh = {
-            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+            MeshURL = "https://steamusercontent-a.akamaihd.net/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+            DiffuseURL = "https://steamusercontent-a.akamaihd.net/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
             MaterialIndex = 1,
         },
         LuaScript = "function onLoad(saved_data) Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2);"..onLoadSuffix.." end "..scriptSuffix,

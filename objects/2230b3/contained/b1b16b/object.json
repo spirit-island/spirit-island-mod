@@ -1,0 +1,53 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 7.020000457763672,
+    "posY": 1.0705845355987549,
+    "posZ": 1.4200000762939453,
+    "rotX": 2.8260743420105428e-05,
+    "rotY": 180.00009155273438,
+    "rotZ": -0.0002057362871710211,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Lair",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2282829814080234009/FAE07B03FA6387FC05E0D8E99CCD1F3488D3F220/",
+    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/2282829814080234009/FAE07B03FA6387FC05E0D8E99CCD1F3488D3F220/",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 2,
+      "Thickness": 0.20000000298023224,
+      "Stackable": false,
+      "Stretch": true
+    }
+  }
+}

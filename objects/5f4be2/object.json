@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 30.344900131225586,
+    "posX": 30.530000686645508,
     "posY": 0.75,
-    "posZ": 28.43779945373535,
+    "posZ": 28.350000381469727,
     "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 36.700599670410156,
+    "scaleX": 36.04999923706055,
     "scaleY": 1.0,
-    "scaleZ": 34.007598876953125
+    "scaleZ": 33.95000076293945
   },
   "Nickname": "",
   "Description": "",
@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1756938796033607290/C1F6EDFD833D0B18691BE154A33AB2235A85D812/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1756938796033607290/C1F6EDFD833D0B18691BE154A33AB2235A85D812/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
@@ -64,9 +64,9 @@
         "rotX": 0.0,
         "rotY": 180.0,
         "rotZ": 0.0,
-        "scaleX": 38.0,
+        "scaleX": 37.869998931884766,
         "scaleY": 1.0,
-        "scaleZ": 34.0099983215332
+        "scaleZ": 33.95000076293945
       },
       "Nickname": "",
       "Description": "",
@@ -99,7 +99,7 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390105966/ACE9E631EAA6D3F8F764BC97BBBC831C902B9BE6/",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390105966/ACE9E631EAA6D3F8F764BC97BBBC831C902B9BE6/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,

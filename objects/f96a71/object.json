@@ -4,9 +4,9 @@
     "posX": -37.9989013671875,
     "posY": 0.8534048795700073,
     "posZ": 51.260101318359375,
-    "rotX": -8.59254001284171e-09,
+    "rotX": 2.947682320453282e-09,
     "rotY": 180.0,
-    "rotZ": 1.715518926914683e-08,
+    "rotZ": -5.974543970665991e-09,
     "scaleX": 1.531999945640564,
     "scaleY": 1.0,
     "scaleZ": 1.531999945640564
@@ -42,8 +42,8 @@
   "SidewaysCard": false,
   "CustomDeck": {
     "1166": {
-      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2050875404522429165/C5934287A67F4DEEA03C52C73EAA5EF3CAB90D3B/",
-      "BackURL": "http://cloud-3.steamusercontent.com/ugc/2050875404522429351/BBD0CE1111B593B5A855D781EB4276BFC40E9EB8/",
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/2050875404522429165/C5934287A67F4DEEA03C52C73EAA5EF3CAB90D3B/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/2050875404522429351/BBD0CE1111B593B5A855D781EB4276BFC40E9EB8/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": false,

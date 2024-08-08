@@ -42,10 +42,10 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
     "DiffuseURL": "",
     "NormalURL": "",
-    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
     "Convex": true,
     "MaterialIndex": 1,
     "TypeIndex": 5,
@@ -97,10 +97,10 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
         "DiffuseURL": "",
         "NormalURL": "",
-        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
         "Convex": true,
         "MaterialIndex": 1,
         "TypeIndex": 5,
@@ -124,7 +124,7 @@
           },
           "CustomDecal": {
             "Name": "Sacred Site",
-            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/",
+            "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/",
             "Size": 1.0
           }
         }

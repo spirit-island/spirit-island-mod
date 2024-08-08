@@ -42,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2308721072245056835/6AD4A0AD972B5E1E9F068D15564B26CAB74316A5/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2308721072245056835/6AD4A0AD972B5E1E9F068D15564B26CAB74316A5/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
@@ -68,7 +68,7 @@
       },
       "CustomDecal": {
         "Name": "Two",
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/",
         "Size": 1.0
       }
     }

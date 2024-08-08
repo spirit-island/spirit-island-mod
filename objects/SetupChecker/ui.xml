@@ -148,7 +148,7 @@
         </TableLayout>
     </VerticalLayout>
 </Panel>
-<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="1000" position="-2500 -1760 14">
+<Panel id="panelVariant" recurse="events" visibility="Invisible" width="1000" height="1000" position="-2500 -1800 14">
     <VerticalLayout recurse="events">
         <TableLayout recurse="events">
             <Row class="header">
@@ -471,6 +471,7 @@
                 <Cell><Toggle id="spiritNI" onValueChanged="toggleSpirit" isOn="true" tooltip="Include nature incarnate spirits in randomizer">NI</Toggle></Cell>
             </Row>
             <Row>
+                <Cell><Toggle id="spiritApocrypha" onValueChanged="toggleSpirit" isOn="true" tooltip="Include apocrypha spirits in randomizer">Apocrypha</Toggle></Cell>
                 <Cell><Toggle id="spiritCustom" onValueChanged="toggleSpirit" isOn="true" tooltip="Include custom spirits in randomizer">Custom</Toggle></Cell>
             </Row>
         </TableLayout>

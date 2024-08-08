@@ -1,0 +1,58 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 125.72404479980469,
+    "posY": 2.326202630996704,
+    "posZ": 52.211509704589844,
+    "rotX": -7.869163596296858e-07,
+    "rotY": 179.995849609375,
+    "rotZ": 1.7886573289160879e-07,
+    "scaleX": 1.5299999713897705,
+    "scaleY": 1.0,
+    "scaleZ": 1.5299999713897705
+  },
+  "Nickname": "Unnerving Attention",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 261600,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "2616": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185211074/4B8624A0860E5DD5FC0F1CBBA800A0ADF9F28D19/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185196269/F0248AC73F6DBAFFC83ACE5675C2B6399FD6FB44/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

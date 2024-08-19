@@ -306,27 +306,27 @@ function onObjectEnterContainer(container, object)
 end
 function GetSacredSiteUrl(params)
     if params.color == "Red" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577478456/5AED930161D049CE76309D9A144DD720B6CD90DD/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577478456/5AED930161D049CE76309D9A144DD720B6CD90DD/"
     elseif params.color == "Purple" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577508377/A054E6F4C28CDA53A6E1007637DAE2B31AD3B040/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577508377/A054E6F4C28CDA53A6E1007637DAE2B31AD3B040/"
     elseif params.color == "Yellow" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577505356/7E936312C2DC02ADCBCF73431D14F0179648D945/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577505356/7E936312C2DC02ADCBCF73431D14F0179648D945/"
     elseif params.color == "Blue" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577507696/4F328278536C079106E848C8CABE70CAC02B7D71/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577507696/4F328278536C079106E848C8CABE70CAC02B7D71/"
     elseif params.color == "Green" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577506124/3D05984B0E7FD2B6CFA262613512D65333CCDF0E/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577506124/3D05984B0E7FD2B6CFA262613512D65333CCDF0E/"
     elseif params.color == "Orange" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577503990/84E8BA700D5F36B9E7A1509F63B2108E55E1DE02/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577503990/84E8BA700D5F36B9E7A1509F63B2108E55E1DE02/"
     elseif params.color == "Teal" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577507093/7F7AF0689015B0E9FEE404761DC05492342C6106/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577507093/7F7AF0689015B0E9FEE404761DC05492342C6106/"
     elseif params.color == "Pink" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577508994/315444E91F9EA15D5C71DD676752C16EAD13A510/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577508994/315444E91F9EA15D5C71DD676752C16EAD13A510/"
     elseif params.color == "Brown" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577509725/F59973839DF9CEF36777772990C72655C44339E2/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577509725/F59973839DF9CEF36777772990C72655C44339E2/"
     elseif params.color == "White" then
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
     else
-        return "http://cloud-3.steamusercontent.com/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
+        return "https://steamusercontent-a.akamaihd.net/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/"
     end
 end
 function makeSacredSite(params)
@@ -443,7 +443,7 @@ function onObjectLeaveContainer(container, object)
                 name = "Two",
                 rotation = {90, 180, 0},
                 scale    = {0.24, 0.24, 1},
-                url      = "http://cloud-3.steamusercontent.com/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
+                url      = "https://steamusercontent-a.akamaihd.net/ugc/1616219505080617822/E2AA0C5E430D8E48373022F7D00F6307B02E5E7C/"
             }
             if object.getName() == "A" or object.getName() == "C" then
                 decal.position = {1.7, 0.2, 0.05}
@@ -6037,9 +6037,9 @@ function setupPlayerArea(params)
                 }
             end
             if elements:threshold(thresholdElements) then
-                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
+                decal.url = "https://steamusercontent-a.akamaihd.net/ugc/1752434998238112918/1438FD310432FAA24898C44212AB081770C923B9/"
             elseif not positions[vecString] then
-                decal.url = "http://cloud-3.steamusercontent.com/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
+                decal.url = "https://steamusercontent-a.akamaihd.net/ugc/1752434998238120811/7B41881EE983802C10E4ECEF57123443AE9F11BA/"
             end
             positions[vecString] = decal
             table.insert(decals, decal)
@@ -8120,8 +8120,8 @@ function spawnMaskedReminder(color, obj, isMarker)
         Grid = false,
         Snap = false,
         CustomMesh = {
-            MeshURL = "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-            DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+            MeshURL = "https://steamusercontent-a.akamaihd.net/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+            DiffuseURL = "https://steamusercontent-a.akamaihd.net/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
             MaterialIndex = 1,
         },
         LuaScript = "function onLoad(saved_data) Wait.frames(function() self.UI.setXml(self.UI.getXml()) end, 2);"..onLoadSuffix.." end "..scriptSuffix,

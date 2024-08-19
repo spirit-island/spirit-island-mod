@@ -39,10 +39,10 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/2365021141198130451/0A24BD16B63E9F0C306B3A8291E331A8D129006B/",
-    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1756938796033607290/C1F6EDFD833D0B18691BE154A33AB2235A85D812/",
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2365021141198130451/0A24BD16B63E9F0C306B3A8291E331A8D129006B/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1756938796033607290/C1F6EDFD833D0B18691BE154A33AB2235A85D812/",
     "NormalURL": "",
-    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/2365021141198130451/0A24BD16B63E9F0C306B3A8291E331A8D129006B/",
+    "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/2365021141198130451/0A24BD16B63E9F0C306B3A8291E331A8D129006B/",
     "Convex": false,
     "MaterialIndex": 3,
     "TypeIndex": 0,

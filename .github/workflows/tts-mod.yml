@@ -23,7 +23,7 @@ jobs:
             - name: Build mod
               run: |
                   tts repack
-            - uses: actions/upload-artifact@v2
+            - uses: actions/upload-artifact@v4
               with:
                   name: spirit-island-ci
                   path: build/packed-savegame.json

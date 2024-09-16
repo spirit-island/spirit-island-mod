@@ -4361,6 +4361,13 @@ boardLayouts = {
             { pos = Vector(11.90, 1.05, 16.96), rot = Vector(0.00, 120.00, 0.00) },
             { pos = Vector(1.90, 1.05, 34.44), rot = Vector(0.00, 120.00, 0.00) },
         },
+        ["Meeple"] = {
+            { pos = Vector(14.02, 1.05, 18.02), rot = Vector(0.00, 150.00, 0.00) },
+            { pos = Vector(31.59, 1.06, 17.89), rot = Vector(0.00, 90.00, 0.00) },
+            { pos = Vector(5.35, 1.05, 33.22), rot = Vector(0.00, 210.00, 0.00) },
+            { pos = Vector(40.55, 1.05, 33.07), rot = Vector(0.00, 30.00, 0.00) },
+            { pos = Vector(22.95, 1.05, 43.25), rot = Vector(0.00, 210.00, 0.00) },
+        },
     },
     { -- 6 Board
         ["Thematic"] = {

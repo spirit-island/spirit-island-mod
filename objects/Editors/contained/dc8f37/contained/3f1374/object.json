@@ -1,0 +1,54 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 106.6238,
+    "posY": 0.8961,
+    "posZ": 37.743,
+    "rotX": 0.0039,
+    "rotY": 0.0177,
+    "rotZ": -0.0002,
+    "scaleX": 0.475,
+    "scaleY": 0.475,
+    "scaleZ": 0.475
+  },
+  "Nickname": "Energy Marker",
+  "Description": "Place on [b]Presence Track spaces which grant Energy[/b].\n\nThe toggleable \"+\" is for bonus Energy (as on Finder and Stone).",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Destroy"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1753560381472358304/A200B815400F7CF50C47E4EBE30AA806B52787A7/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

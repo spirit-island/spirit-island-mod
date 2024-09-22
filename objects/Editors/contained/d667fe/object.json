@@ -1,0 +1,50 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": 105.21,
+    "posY": 0.96,
+    "posZ": 58.65,
+    "rotX": 90.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "Hover over pieces to see where to put them.\n\n\"Update\" will remove pieces currently placed\nand update the Spirit/Card's code.\n\n\"Populate\" will place pieces as per the \nSpirit/Card's code, for easy editing.\n\nA useful website for making Spirits/Cards is:\nhttps://www.spiritislandbuilder.com",
+    "colorstate": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "fontSize": 48
+  }
+}

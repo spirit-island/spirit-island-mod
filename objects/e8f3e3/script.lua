@@ -18,7 +18,7 @@ slaveRebellion = "1f0327"
 slaveRebellion2 = "3f4bfc"
 
 function onLoad(saved_data)
-    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
+    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
 end
 
 function onObjectSpawn(obj)

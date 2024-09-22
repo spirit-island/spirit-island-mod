@@ -1,0 +1,41 @@
+<Panel position="0 -650 0" width="1250" height="250" rotation="0 0 180">
+        <Button fontSize="150" color="rgba(0,0,0,0)" textColor="White">
+                Spirit Panel Editor
+        </Button>
+</Panel>
+
+
+<Panel position="0 950 0" width="1400" height="400" rotation="0 0 180">
+    <VerticalLayout>
+            <HorizontalLayout spacing="40">
+        <Button fontSize="55" color="rgba(0,0,0,0)" textColor="White">
+            Reminder
+            Marker
+        </Button>
+        <Button fontSize="55" color="rgba(0,0,0,0)" textColor="White">
+            Track
+            Elements
+        </Button>
+        <Button fontSize="55" color="rgba(0,0,0,0)" textColor="White">
+            Track
+            Energy
+        </Button>
+        <Button fontSize="55" color="rgba(0,0,0,0)" textColor="White">
+            Elemental
+            Thresholds
+        </Button>
+    </HorizontalLayout>
+        <HorizontalLayout spacing="40">
+            <Button fontSize="60" color="White" id="UpdateReminder" textColor="Black" onClick="updateReminder">Update</Button>
+            <Button fontSize="60" color="White" id="UpdateElements" textColor="Black" onClick="updateElements">Update</Button>
+            <Button fontSize="60" color="White" id="UpdateEnergy" textColor="Black" onClick="updateEnergy">Update</Button>
+            <Button fontSize="60" color="White" id="UpdateThreshold" textColor="Black" onClick="updateThreshold">Update</Button>
+        </HorizontalLayout>
+        <HorizontalLayout spacing="40">
+            <Button fontSize="60" color="White" id="PopulateReminder" textColor="Black" onClick="populateReminder">Populate</Button>
+            <Button fontSize="60" color="White" id="PopulateElements" textColor="Black" onClick="populateElements">Populate</Button>
+            <Button fontSize="60" color="White" id="PopulateEnergy" textColor="Black" onClick="populateEnergy">Populate</Button>
+            <Button fontSize="60" color="White" id="PopulateThreshold" textColor="Black" onClick="populateThreshold">Populate</Button>
+        </HorizontalLayout>
+    </VerticalLayout>
+</Panel>

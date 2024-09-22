@@ -1,0 +1,588 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 108.1709,
+    "posY": 1.886,
+    "posZ": 16.138,
+    "rotX": 0.0313,
+    "rotY": 0.0206,
+    "rotZ": 0.0222,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Dahan",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Dahan",
+    "Highlight"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "NormalURL": "",
+    "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 1,
+    "CastShadows": true
+  },
+  "States": {
+    "2": {
+      "GUID": "4bbc7d",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -26.4605,
+        "posY": 1.3753,
+        "posZ": 0.6235,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "3": {
+      "GUID": "065bc9",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -24.1017,
+        "posY": 1.3753,
+        "posZ": 0.8477,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "e9037c",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -21.89,
+        "posY": 1.3753,
+        "posZ": 0.7885,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "835c25",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -19.7567,
+        "posY": 1.3753,
+        "posZ": 0.8062,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "19798b",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -17.6611,
+        "posY": 1.3753,
+        "posZ": 0.7072,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "f78698",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -15.6829,
+        "posY": 1.3753,
+        "posZ": 0.7236,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "03246e",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -13.6662,
+        "posY": 1.3753,
+        "posZ": 0.7792,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "9": {
+      "GUID": "43f15d",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -11.7656,
+        "posY": 1.3753,
+        "posZ": 0.795,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "10": {
+      "GUID": "86d2de",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -10.097,
+        "posY": 1.3753,
+        "posZ": 0.7312,
+        "rotX": 0.0,
+        "rotY": 180.0001,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Dahan",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Dahan",
+        "Highlight"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 1,
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

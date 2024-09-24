@@ -46,7 +46,7 @@ function updateButtons()
             width = 320,
             height = 400,
         })
-        local func = function() editCount(1) end
+        func = function() editCount(1) end
         self.setVar("button2",func)
 
         local bonus = ""

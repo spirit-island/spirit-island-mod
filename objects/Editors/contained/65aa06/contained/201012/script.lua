@@ -12,12 +12,12 @@ elementColors = {
 }
 
 function onLoad()
-    state = self.script_state
+    local state = self.script_state
     if state ~= "" then
         local data = JSON.decode(state)
         threshold = data.threshold or threshold
         editMode = data.editMode or editMode
-    end 
+    end
     updateButtons()
 end
 
@@ -66,7 +66,7 @@ function updateButtons()
                 width = 400,
                 height = 500,
             })
-            local func = function() editThreshold(i,1) end
+            func = function() editThreshold(i,1) end
             self.setVar("button"..i+8,func)
         end
         self.createButton({

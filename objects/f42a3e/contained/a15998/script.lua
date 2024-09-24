@@ -1,4 +1,4 @@
-local rescan
+--local rescan
 local currentBoard
 local boardTypes = {"Balanced", "Thematic"}
 
@@ -15,7 +15,7 @@ function onLoad()
     Color.Add("SoftBlue", Color.new(0.53,0.92,1))
     Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     Wait.time(scan, 0.5, -1)
-    rescan = false
+    --rescan = false
 end
 
 function scan()
@@ -50,7 +50,6 @@ function createButtons(board, type)
         click_function = "nullFunc",
         label          = "Type",
         position       = {3,0.1,16},
-        scale          = scale,
         width          = 830,
         height         = 330,
         font_size      = 300,
@@ -62,13 +61,12 @@ function createButtons(board, type)
         function_owner = self,
         label          = "<",
         position       = {4.25,0.1,16},
-        scale          = scale,
         width          = 330,
         height         = 330,
         font_size      = 300,
 	tooltip	       = tooltip,
     })
-    func = function() editType(board,-1) end
+    local func = function() editType(board,-1) end
     self.setVar("button2",func)
 
     local label = type
@@ -79,7 +77,6 @@ function createButtons(board, type)
         click_function = "nullFunc",
         label          = label,
         position       = {5.95,0.1,16},
-        scale          = scale,
         width          = 1245,
         height         = 330,
         font_size      = 300,
@@ -91,7 +88,6 @@ function createButtons(board, type)
         function_owner = self,
         label          = ">",
         position       = {7.65,0.1,16},
-        scale          = scale,
         width          = 330,
         height         = 330,
         font_size      = 300,
@@ -120,7 +116,7 @@ function editType(obj, num)
             obj.removeTag(tag)
         end
     end
-    rescan = true
+    --rescan = true
     scan()
 end
 
@@ -138,9 +134,9 @@ function populateSetupPos(player)
 end
 
 function upCast(object,dist,offset,types)
-    local dist = dist or 1
-    local offset = offset or 0
-    local types = types or {}
+    dist = dist or 1
+    offset = offset or 0
+    types = types or {}
     local hits = Physics.cast({
         origin       = object.getPosition() + Vector(0,offset,0),
         direction    = Vector(0,1,0),
@@ -192,7 +188,7 @@ function GenerateSpawnPositions()
 
     local function concat2DTable(t, tName) --concatenate a 2D table
         local result = {tName.." = {"}
-        for i, row in ipairs(t) do
+        for _, row in ipairs(t) do
             local rowString = " {\n" .. table.concat(row, ",\n").."\n},"
             table.insert(result, rowString)
         end
@@ -202,31 +198,31 @@ function GenerateSpawnPositions()
 
     for boardGUID,objsData in pairs(output) do
 	local board = getObjectFromGUID(boardGUID)
-        for _,objData in pairs(objsData) do
-            local name = objData.name
-            local pos = objData.position
-            local state = objData.state
-            if not setupCoordsUnnamed[state] then
-              setupCoordsUnnamed[state] = {}
-              setupPiecesUnnamed[state] = {}
-              setupCoordsNamed[state] = {}
-              setupPiecesNamed[state] = {}
-            end
-            if name == "Empty Space" then
-              table.insert(setupCoordsUnnamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
-            else
-              table.insert(setupCoordsNamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
-              table.insert(setupPiecesNamed[state], "\""..name.."\"")
-            end
+    for _,objData in pairs(objsData) do
+        local name = objData.name
+        local pos = objData.position
+        local state = objData.state
+        if not setupCoordsUnnamed[state] then
+            setupCoordsUnnamed[state] = {}
+            setupPiecesUnnamed[state] = {}
+            setupCoordsNamed[state] = {}
+            setupPiecesNamed[state] = {}
         end
-        table.insert(boardLines, concat2DTable(combine2DTables(setupCoordsNamed, setupCoordsUnnamed), "posMap"))
-        table.insert(boardLines, concat2DTable(combine2DTables(setupPiecesNamed, setupPiecesUnnamed), "pieceMap"))
-        boardScript = table.concat(boardLines, "\n").."\n",
-        board.setLuaScript(boardScript)
+        if name == "Empty Space" then
+            table.insert(setupCoordsUnnamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
+        else
+            table.insert(setupCoordsNamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
+            table.insert(setupPiecesNamed[state], "\""..name.."\"")
+        end
+    end
+    table.insert(boardLines, concat2DTable(combine2DTables(setupCoordsNamed, setupCoordsUnnamed), "posMap"))
+    table.insert(boardLines, concat2DTable(combine2DTables(setupPiecesNamed, setupPiecesUnnamed), "pieceMap"))
+    local boardScript = table.concat(boardLines, "\n").."\n",
+    board.setLuaScript(boardScript)
 	board.setLuaScript(boardScript)
 	--HACK: I have no clue why but it doesn't work when the script is applied only once :shrug:
 	board.reload()
-        setupCoords, setupPieces, setupCoordsUnnamed, setupPiecesUnnamed, setupCoordsNamed, setupPiecesNamed = {}, {}, {}, {}, {}, {}
+    setupCoordsUnnamed, setupPiecesUnnamed, setupCoordsNamed, setupPiecesNamed = {}, {}, {}, {}
     end
 end
 
@@ -280,17 +276,17 @@ function GetSpawnPositions()
                     end
                     local name = hit.hit_object.getName() 
                     if strifeablePieces[name] then
-                      local strifeHits = Physics.cast({
+                        local strifeHits = Physics.cast({
                         origin = hit.hit_object.getPosition(),
-                        direction = vector(0, 1, 0),
+                        direction = Vector(0, 1, 0),
                         max_distance = 5,
                         --debug = true
-                      })
-                       for _,strifeHit in pairs(strifeHits) do
-                          if strifeHit.hit_object.getName() == "Strife" then
-                              name = name.."S"
-			      state = strifeHit.hit_object.getStateId()
-			      destroyObject(strifeHit.hit_object)
+                        })
+                        for _,strifeHit in pairs(strifeHits) do
+                            if strifeHit.hit_object.getName() == "Strife" then
+                                name = name.."S"
+                                state = strifeHit.hit_object.getStateId()
+                                destroyObject(strifeHit.hit_object)
                               break
                           end
                        end
@@ -355,24 +351,23 @@ function PopulateSpawnPositions(player)
         end
         local piecesToPlace = board.getTable("pieceMap")
         local posToPlace = board.getTable("posMap")
-        local count = 1
 
         for l,landTable in ipairs(posToPlace) do
             for i,pieceName in ipairs(piecesToPlace[l]) do
                 place({
-    		    name     = pieceName,
-		    position = board.positionToWorld(posToPlace[l][i]),
-		    state    = l,
-		})
+    		        name     = pieceName,
+                    position = board.positionToWorld(posToPlace[l][i]),
+                    state    = l,
+                })
             end
 
             local startIndex = #piecesToPlace[l]+1
             for i=startIndex,#landTable do
                 place({
-		    name = "Empty",
-		    position = board.positionToWorld(posToPlace[l][i]),
-		    state = l,
-		})
+                    name = "Empty",
+                    position = board.positionToWorld(posToPlace[l][i]),
+                    state = l,
+                })
             end
         end
     end
@@ -410,7 +405,7 @@ function place(params)
 	})
     elseif piecesWithStrife[pieceName] then
 	Wait.time(function() place({
-	    name 	 = "Strife",
+        name 	 = "Strife",
 	    position     = params.position + Vector(0,1.5,0),
             state        = params.state,
 	    }) end, 0.5)

@@ -1,6 +1,7 @@
 local rescan
 
-function onLoad()
+function onLoad()
+
     self.createButton({
         click_function = "nullFunc",
         label = "Place\nBlight\nCard\nHere",
@@ -190,11 +191,11 @@ function editBlight(obj, cardBlight, blightChange, cardImmediate, cardHealthy)
 end
 
 function editImmediate(obj, cardBlight, immediate, cardHealthy)
-    local immediate = not immediate
+    immediate = not immediate
     updateCard(obj, cardBlight, immediate, cardHealthy)
 end
 function editHealthy(obj, cardBlight, cardImmediate, healthy)
-    local healthy = not healthy
+    healthy = not healthy
     updateCard(obj, cardBlight, cardImmediate, healthy)
 end
 

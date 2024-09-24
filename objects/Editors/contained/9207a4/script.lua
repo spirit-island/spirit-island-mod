@@ -136,7 +136,7 @@ function createButtons(card, cardEnergy, cardElements, type, speed)
             font_size      = 360,
             color          = hexToDec(elementColors[i])
         })
-        local func = function() editElement(card,cardElements,i,cardEnergy) end
+        func = function() editElement(card,cardElements,i,cardEnergy) end
         self.setVar("button"..i+8,func)
     end
 

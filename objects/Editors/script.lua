@@ -71,18 +71,20 @@ function toggleObjects()
     else
         toggleBags()
         for _, bagObject in pairs(self.getObjects()) do
+            local pos = contents[bagObject.guid][1]
+            local rot = contents[bagObject.guid][2]
             self.takeObject({
                 guid = bagObject.guid,
-                position = contents[bagObject.guid][1],
-                rotation = contents[bagObject.guid][2],
+                position = pos,
+                rotation = rot,
                 callback_function = function(obj)
-		                obj.setLock(true)
-		                objectsMoved = objectsMoved + 1
-		                obj.setPosition(contents[bagObject.guid][1])
-		                obj.setRotation(contents[bagObject.guid][2])
-	    	            end,
-                })
-              count = count + 1
+                    obj.setLock(true)
+                    objectsMoved = objectsMoved + 1
+                    obj.setPosition(pos)
+                    obj.setRotation(rot)
+                    end,
+            })
+            count = count + 1
         end
         empty = true
     end

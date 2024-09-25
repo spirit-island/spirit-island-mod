@@ -217,7 +217,7 @@ function GenerateSpawnPositions()
     end
     table.insert(boardLines, concat2DTable(combine2DTables(setupCoordsNamed, setupCoordsUnnamed), "posMap"))
     table.insert(boardLines, concat2DTable(combine2DTables(setupPiecesNamed, setupPiecesUnnamed), "pieceMap"))
-    local boardScript = table.concat(boardLines, "\n").."\n",
+    local boardScript = table.concat(boardLines, "\n").."\n"
     board.setLuaScript(boardScript)
 	board.setLuaScript(boardScript)
 	--HACK: I have no clue why but it doesn't work when the script is applied only once :shrug:
@@ -274,7 +274,7 @@ function GetSpawnPositions()
                     if state == -1 then
                         state = 1
                     end
-                    local name = hit.hit_object.getName() 
+                    local name = hit.hit_object.getName()
                     if strifeablePieces[name] then
                         local strifeHits = Physics.cast({
                         origin = hit.hit_object.getPosition(),
@@ -338,7 +338,7 @@ function PopulateSpawnPositions(player)
                 break
             end
         end
-        if not moving then 
+        if not moving then
             break
         end
         coroutine.yield()
@@ -355,7 +355,7 @@ function PopulateSpawnPositions(player)
         for l,landTable in ipairs(posToPlace) do
             for i,pieceName in ipairs(piecesToPlace[l]) do
                 place({
-    		        name     = pieceName,
+                    name     = pieceName,
                     position = board.positionToWorld(posToPlace[l][i]),
                     state    = l,
                 })
@@ -398,9 +398,9 @@ function place(params)
     local pieceBag = getObjectFromGUID(possiblePieces[pieceName])
     if pieceBag ~= nil then
 	return pieceBag.takeObject({
-	    position 	         = params.position,
-	    rotation 	         = Vector(0,180,0),
- 	    smooth  	         = not params.fast,
+	    position             = params.position,
+	    rotation             = Vector(0,180,0),
+        smooth               = not params.fast,
 	    callback_function    = function(obj) if params.state ~= 1 then obj.setState(params.state) end end,
 	})
     elseif piecesWithStrife[pieceName] then

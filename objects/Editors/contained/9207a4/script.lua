@@ -378,31 +378,6 @@ local function round(val, quantum)
     return math.floor(val/quantum+0.5)*quantum
 end
 ---
-local Elements = {}
-Elements.__index = Elements
-function Elements:new(init)
-    local outTable = {0,0,0,0,0,0,0,0}
-    setmetatable(outTable, self)
-    outTable:add(init)
-    return outTable
-end
-function Elements:add(other)
-    if other == nil then
-        return
-    elseif type(other) == "table" then
-        for i = 1, 8 do
-            self[i] = self[i] + other[i]
-        end
-    elseif type(other) == "string" then
-        for i = 1, string.len(other) do
-            self[i] = self[i] + math.floor(string.sub(other, i, i))
-        end
-    end
-end
-function Elements:__tostring()
-    return table.concat(self, "")
-end
----
 cardLoadingScript = "function onLoad(saved_data)\n    if saved_data ~= \"\" then\n        local loaded_data = JSON.decode(saved_data)\n        self.setTable(\"thresholds\", loaded_data.thresholds)\n    end\nend\n-- card loading end"
 
 function updateThreshold(player)

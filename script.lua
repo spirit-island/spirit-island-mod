@@ -2100,6 +2100,18 @@ function modifyCardGain(params)
     end
     return params.count
 end
+function getCardPositions(params)
+    local xPadding = 4.4
+    if params.count > 4 then
+        xPadding = 3.6
+    end
+    local cardPositions = {}
+    for i = 1,cardCount do
+        local x = (i - (cardCount + 1) / 2) * xPadding
+        table.insert(cardPositions, params.tablePos + tableOffset + Vector(x, 0, 0))
+    end
+    return cardPositions
+end
 function startDealPowerCards(params)
     -- protection from double clicking
     if scriptWorkingCardC then return end
@@ -2156,22 +2168,15 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         wt(0.1)
     end
 
-    local xPadding = 4.4
-    if cardCount > 4 then
-        xPadding = 3.6
-    end
     if cardCount > 6 then
         player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
         scriptWorkingCardC = false
         return
     end
-    local cardPlaceOffset = {}
-    for i = -(cardCount-1)/2,(cardCount-1)/2,1 do
-        table.insert(cardPlaceOffset, Vector(i*xPadding,0,0))
-    end
+    local cardPositions = getCardPositions({tablePos = tablePos, count = cardCount})
+
     local cardsAdded = 0
     local cardsResting = 0
-    local powerDealCentre = tableOffset + tablePos
 
     local function countDeck(deck)
         if deck == nil then
@@ -2188,7 +2193,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         elseif deck.type == "Card" then
             if count > 0 then
                 deck.setLock(true)
-                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[cardsAdded + 1])
+                deck.setPositionSmooth(cardPositions[cardsAdded + 1])
                 deck.setRotationSmooth(Vector(0, 180, 0))
                 if isPlaytest then
                     deck.addTag("Playtest")
@@ -2201,7 +2206,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         elseif deck.type == "Deck" then
             for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
+                    position = cardPositions[cardsAdded + 1],
                     rotation = Vector(0, 180, 0),
                     callback_function = CreatePickPowerButton,
                 })

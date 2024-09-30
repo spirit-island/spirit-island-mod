@@ -2105,9 +2105,14 @@ function getCardPositions(params)
     if params.count > 4 then
         xPadding = 3.6
     end
+    local pairShift = 0 -- Pairing cards for two-player Destiny Unfolds
+    if params.pair then
+        pairShift = xPadding - 3.34
+    end
+
     local cardPositions = {}
     for i = 1,params.count do
-        local x = (i - (params.count + 1) / 2) * xPadding
+        local x = (i - (params.count + 1) / 2) * xPadding + (i%2 - 0.5) * pairShift
         table.insert(cardPositions, params.tablePos + tableOffset + Vector(x, 0, 0))
     end
     return cardPositions

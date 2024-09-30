@@ -1,8 +1,29 @@
 difficulty=0
+boardSetup = true
 postSetup = true
 postSetupComplete = false
 hasBroadcast = true
 customLoss = true
+
+function BoardSetup(params)
+    local boardLayouts = Global.getTable("boardLayouts")
+    if params.boards == 1 then
+        return boardLayouts[params.boards]["Balanced"]
+    elseif params.boards == 2 then
+        return boardLayouts[params.boards]["Opposite Shores"]
+    elseif params.boards == 3 then
+        return boardLayouts[params.boards]["Balanced"]
+    elseif params.boards == 4 then
+        return boardLayouts[params.boards]["Balanced"]
+    elseif params.boards == 5 then
+        return boardLayouts[params.boards]["Meeple"]
+    elseif params.boards == 6 then
+        return boardLayouts[params.boards]["Star"]
+    else
+        broadcastToAll("Board count "..params.boards.." is currently unsupported, defaulting to balanced", Color.Red)
+        return boardLayouts[params.boards]["Balanced"]
+    end
+end
 
 function PostSetup(params)
     local minorPowerDeck, majorPowerDeck

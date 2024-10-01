@@ -8341,3 +8341,10 @@ end
 function EnableOceanDrowningLimit()
     SetupChecker.setVar("optionalDrowningCap", true)
 end
+function UnlockIslandBoards()
+    for _,obj in ipairs(getObjects()) do
+        if isIslandBoard({obj=obj}) then
+            obj.interactable = true
+        end
+    end
+end

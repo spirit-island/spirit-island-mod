@@ -7406,7 +7406,7 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
                 guids[obj.guid] = true
             end
 
-            if selectedColors[color].zone then
+            if selectedColors[color] then
                 for _, obj in pairs(selectedColors[color].zone.getObjects()) do
                     if not guids[obj.guid] then
                         table.insert(t, obj)

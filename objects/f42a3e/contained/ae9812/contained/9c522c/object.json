@@ -1,0 +1,688 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 109.1911,
+    "posY": 0.96,
+    "posZ": 13.5241,
+    "rotX": 359.9474,
+    "rotY": -0.0026,
+    "rotZ": 359.9648,
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
+  },
+  "Nickname": "Vitality",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.4314,
+    "g": 0.5255,
+    "b": 0.0471
+  },
+  "Tags": [
+    "Highlight",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  },
+  "States": {
+    "2": {
+      "GUID": "52beaf",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -23.9076,
+        "posY": 0.96,
+        "posZ": 3.1321,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "3": {
+      "GUID": "2d865d",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -22.5429,
+        "posY": 0.96,
+        "posZ": 3.2182,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "346a60",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -21.1029,
+        "posY": 0.96,
+        "posZ": 3.1668,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "f7fc86",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -19.681,
+        "posY": 0.96,
+        "posZ": 3.1008,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "25eb88",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.3163,
+        "posY": 0.96,
+        "posZ": 3.1869,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "aadf0e",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -16.8258,
+        "posY": 0.96,
+        "posZ": 3.2214,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "dfbb1a",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -15.4039,
+        "posY": 0.96,
+        "posZ": 3.1554,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "9": {
+      "GUID": "dae5ea",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -14.0392,
+        "posY": 0.96,
+        "posZ": 3.2415,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "10": {
+      "GUID": "c70a2f",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -12.7536,
+        "posY": 0.96,
+        "posZ": 3.1281,
+        "rotX": 0.0,
+        "rotY": 180.0346,
+        "rotZ": 0.0,
+        "scaleX": 1.4,
+        "scaleY": 1.4,
+        "scaleZ": 1.4
+      },
+      "Nickname": "Vitality",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.4314,
+        "g": 0.5255,
+        "b": 0.0471
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022119052/FC12535F1B71A344E6A6124CB9F2B4A15DA13C65/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2252424264022064113/A19B614F0503AC802472375D98DEF627E7A22A22/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

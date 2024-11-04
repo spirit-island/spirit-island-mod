@@ -357,8 +357,7 @@ function spawnZones(zoneGUID)
     local lastHandPos = player.getHandTransform(player.getHandCount()).position
 
     local pickZoneScale = Vector(22.0, 5.1, 5.1)
-    local destinyScale = Vector(18.41, 6.48, 4.7) -- From Global.spawnHand()
-    --TODO: Try and get the above from global code dynamically.
+    local destinyScale = Global.getTable("handScale")
 
     local pickZonePos = getTablePos(zoneGUID) + Global.getVar("tableOffset")
     local hiddenDestinyPos = lastHandPos + 2 * handSep

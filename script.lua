@@ -6890,6 +6890,7 @@ function setupColor(table, color)
     end
     table.setColorTint(colorTint)
 end
+handScale = Vector(18.41, 6.48, 4.7)
 function SpawnHand(params)
     spawnObjectData({
         data = {
@@ -6910,7 +6911,7 @@ function SpawnHand(params)
         },
         position = params.position,
         rotation = Vector(0, 0, 0),
-        scale = Vector(18.41, 6.48, 4.7),
+        scale = handScale,
     })
 end
 -- @param params.seated Boolean indicating if a player is about to be seated here.

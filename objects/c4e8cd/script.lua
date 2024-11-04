@@ -616,7 +616,7 @@ function grabGroup(card, player_clicker_color, _)
                 break
             end
         end
-        if group != nil then
+        if group ~= nil then
             for cardGUID,selected in pairs(data.cards) do
                 if selected == group then
                     local card = getObjectFromGUID(cardGUID)

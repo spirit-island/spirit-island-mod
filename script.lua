@@ -2219,9 +2219,14 @@ function dealPowerCards(params)
         deal(deckObjs[cardType].playtestDeck, deckObjs[cardType].playtestDiscard, deckZones[cardType].playtestDeck.getPosition(), counts[cardType].playtest, true)
     end
 
-    if params.callback ~= nil then
-        Wait.condition(params.callback, function() return cardsResting == cardsAdded end)
+    if params.callback_function ~= nil then
+        -- When another object uses Global.call and passes a parameters table including a function, it throws an "unknown error"
+        -- As a workaround, we take a function name, and the object to call it on
+        Wait.condition(function() params.callback_object.call(params.callback_function) end, function() return cardsResting == cardsAdded end)
     end
+end
+function endDraftPowerCards()
+    scriptWorkingCardC = false
 end
 function startDraftPowerCards(params)
     -- protection from double clicking
@@ -2283,7 +2288,8 @@ function draftPowerCards(player, numMajors, numPlaytestMajors, numMinors, numPla
         numPlaytestMinors = numPlaytestMinors,
         numMajors = numMajors,
         numPlaytestMajors = numPlaytestMajors,
-        callback = function() scriptWorkingCardC = false end
+        callback_function = "endDraftPowerCards",
+        callback_object = Global
     })
 end
 function CreatePickPowerButton(card)

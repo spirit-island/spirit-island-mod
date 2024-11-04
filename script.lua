@@ -7487,7 +7487,7 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
             for _,obj in ipairs(getObjects()) do
                 local objPos = obj.getPosition()
                 local powerZonePos = playerTables[color].getPosition() + tableOffset
-                if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z then
+                if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z + 0.01 then
                     if not guids[obj.guid] then
                         table.insert(t, obj)
                         guids[obj.guid] = true

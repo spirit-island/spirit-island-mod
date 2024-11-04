@@ -352,8 +352,8 @@ end
 function spawnZones(zoneGUID)
     local handSep = Vector(0.0, 0.0, -5.5)
 
-    local color = getZoneColor(zoneGUID)
-    local player = Player[color]
+    local playerColor = getZoneColor(zoneGUID)
+    local player = Player[playerColor]
     local lastHandPos = player.getHandTransform(player.getHandCount()).position
 
     local pickZoneScale = Vector(22.0, 5.1, 5.1)
@@ -406,11 +406,11 @@ function spawnZones(zoneGUID)
         end
     end
 
-    spawnHidingZone("pickHiding", color, pickZonePos, pickZoneScale)
-    spawnHand("publicDestiny", color, publicDestinyPos, destinyScale)
+    spawnHidingZone("pickHiding", playerColor, pickZonePos, pickZoneScale)
+    spawnHand("publicDestiny", playerColor, publicDestinyPos, destinyScale)
     if getNumPlayers() > 2 then
-        spawnHidingZone("destinyHiding", color, hiddenDestinyPos, destinyScale)
-        spawnHand("hiddenDestiny", color, hiddenDestinyPos, destinyScale)
+        spawnHidingZone("destinyHiding", playerColor, hiddenDestinyPos, destinyScale)
+        spawnHand("hiddenDestiny", playerColor, hiddenDestinyPos, destinyScale)
     end
 end
 
@@ -554,7 +554,7 @@ function updateAllCardButtons()
 end
 
 function selectCard(card, _, alt_click)
-    for zoneGUID,data in pairs(destinyPlayers) do
+    for _,data in pairs(destinyPlayers) do
         local found = false
         for cardGUID,selected in pairs(data.cards) do
             if cardGUID == card.guid then
@@ -566,7 +566,7 @@ function selectCard(card, _, alt_click)
             end
         end
         if found then
-            for cardGUID,selected in pairs(data.cards) do
+            for cardGUID,_ in pairs(data.cards) do
                 data.cards[cardGUID] = (cardGUID == card.guid and not alt_click)
                 updateCardButtons(getObjectFromGUID(cardGUID), data.cards[cardGUID])
             end
@@ -580,9 +580,9 @@ function selectCardGroup(card, _, alt_click, group)
     if alt_click then
         group = false
     end
-    for zoneGUID,data in pairs(destinyPlayers) do
+    for _,data in pairs(destinyPlayers) do
         local found = false
-        for cardGUID,selected in pairs(data.cards) do
+        for cardGUID,_ in pairs(data.cards) do
             if cardGUID == card.guid then
                 data.cards[cardGUID] = group
                 updateCardButtons(getObjectFromGUID(cardGUID), data.cards[cardGUID])
@@ -619,13 +619,13 @@ function grabGroup(card, player_clicker_color, _)
         if group ~= nil then
             for cardGUID,selected in pairs(data.cards) do
                 if selected == group then
-                    local card = getObjectFromGUID(cardGUID)
+                    local c = getObjectFromGUID(cardGUID)
                     destinyPlayers[zoneGUID].cards[cardGUID] = nil
-                    dealCard(card, player_clicker_color, false)
+                    dealCard(c, player_clicker_color, false)
                     cardsDealt = cardsDealt + 1
                     Wait.condition(
                         function() cardsResting = cardsResting + 1 end,
-                        function() return not card.isSmoothMoving() end
+                        function() return not c.isSmoothMoving() end
                     )
                 end
             end

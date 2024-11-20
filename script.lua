@@ -894,6 +894,7 @@ function onLoad(saved_data)
             updateCurrentPhase(false)
             seaTile.registerCollisions(false)
             SetupPowerDecks()
+            SetupIslandButtons()
             Wait.frames(addGainPowerCardButtons, 1)
             Wait.condition(function()
                 aidBoard.call("setupGame")
@@ -3299,6 +3300,11 @@ function BoardSetup()
         MapPlaceCustom(maps)
     end
 
+    SetupIslandButtons()
+
+    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numBoards end)
+end
+function SetupIslandButtons()
     SetupChecker.createButton({
         click_function = "ShiftIslandNorth",
         function_owner = Global,
@@ -3387,8 +3393,6 @@ function BoardSetup()
         font_size      = 250,
         tooltip        = "Click to shift islands West",
     })
-
-    Wait.condition(function() stagesSetup = stagesSetup + 1 end, function() return boardsSetup == numBoards end)
 end
 function ShiftIslandNorth()
     ShiftIsland(Vector(0, 0, 1))

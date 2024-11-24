@@ -347,6 +347,7 @@ function getSpiritName(zoneGUID)
             return obj.getName()
         end
     end
+    return "Unknown Spirit"
 end
 
 function spawnZones(zoneGUID)

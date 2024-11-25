@@ -2068,7 +2068,7 @@ function MajorPowerC(obj, player_color, alt_click)
     if alt_click then
         cards = 2
     end
-    startDealPowerCards({player = Player[player_color], major = true, count = cards})
+    startDraftPowerCards({player = Player[player_color], major = true, count = cards})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2077,14 +2077,14 @@ function MajorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 2
     end
-    startDealPowerCards({player = player, major = true, count = cards})
+    startDraftPowerCards({player = player, major = true, count = cards})
 end
 function MinorPowerC(obj, player_color, alt_click)
     local cards = 4
     if alt_click then
         cards = 6
     end
-    startDealPowerCards({player = Player[player_color], major = false, count = cards})
+    startDraftPowerCards({player = Player[player_color], major = false, count = cards})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
@@ -2093,7 +2093,7 @@ function MinorPowerUI(player, button)
     if math.abs(button) > 1 then
         cards = 6
     end
-    startDealPowerCards({player = player, major = false, count = cards})
+    startDraftPowerCards({player = player, major = false, count = cards})
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
@@ -2101,78 +2101,49 @@ function modifyCardGain(params)
     end
     return params.count
 end
-function startDealPowerCards(params)
-    -- protection from double clicking
-    if scriptWorkingCardC then return end
-    scriptWorkingCardC = true
-
-    params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
-    local playtestCount = getPlaytestCount({count = params.count, major = params.major})
-
-    if params.major then
-        _G["startDealPowerCardsCo"] = function()
-            DealPowerCards(
-                params.player,
-                params.count,
-                getObjectFromGUID(majorPowerZone),
-                getObjectFromGUID(majorPowerDiscardZone),
-                getObjectFromGUID(playtestMajorPowerZone),
-                getObjectFromGUID(playtestMajorPowerDiscardZone),
-                playtestCount
-            )
-            return 1
-        end
-    else
-        _G["startDealPowerCardsCo"] = function()
-            DealPowerCards(
-                params.player,
-                params.count,
-                getObjectFromGUID(minorPowerZone),
-                getObjectFromGUID(minorPowerDiscardZone),
-                getObjectFromGUID(playtestMinorPowerZone),
-                getObjectFromGUID(playtestMinorPowerDiscardZone),
-                playtestCount
-            )
-            return 1
-        end
-    end
-
-    startLuaCoroutine(Global, "startDealPowerCardsCo")
-end
-function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZone, playtestDiscardZone, playtestCount)
-    local deckObj = deckZone.getObjects()[1]
-    local discardObj = discardZone.getObjects()[1]
-    local playtestDeckObj = playtestDeckZone.getObjects()[1]
-    local playtestDiscardObj = playtestDiscardZone.getObjects()[1]
-
-    -- clear the zone!
-    local playerTable = playerTables[player.color]
-    if playerTable == nil then
-        scriptWorkingCardC = false
-        return
-    end
-    local tablePos = playerTable.getPosition()
-    local discardTable = DiscardPowerCards(tablePos)
-    if #discardTable > 0 then
-        wt(0.1)
-    end
-
+function getCardPositions(params)
     local xPadding = 4.4
-    if cardCount > 4 then
+    if params.count > 4 then
         xPadding = 3.6
     end
-    if cardCount > 6 then
-        player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
-        scriptWorkingCardC = false
-        return
+    local pairShift = 0 -- Pairing cards for two-player Destiny Unfolds
+    if params.pair then
+        pairShift = xPadding - 3.34
     end
-    local cardPlaceOffset = {}
-    for i = -(cardCount-1)/2,(cardCount-1)/2,1 do
-        table.insert(cardPlaceOffset, Vector(i*xPadding,0,0))
+
+    local cardPositions = {}
+    for i = 1,params.count do
+        local x = (i - (params.count + 1) / 2) * xPadding + (i%2 - 0.5) * pairShift
+        table.insert(cardPositions, params.tablePos + tableOffset + Vector(x, 0, 0))
     end
+    return cardPositions
+end
+function dealPowerCards(params)
+    local deckZones = {
+        major = {
+            deck = getObjectFromGUID(majorPowerZone),
+            discard = getObjectFromGUID(majorPowerDiscardZone),
+            playtestDeck = getObjectFromGUID(playtestMajorPowerZone),
+            playtestDiscard = getObjectFromGUID(playtestMajorPowerDiscardZone)
+        },
+        minor = {
+            deck = getObjectFromGUID(minorPowerZone),
+            discard = getObjectFromGUID(minorPowerDiscardZone),
+            playtestDeck = getObjectFromGUID(playtestMinorPowerZone),
+            playtestDiscard = getObjectFromGUID(playtestMinorPowerDiscardZone)
+        }
+    }
+
+    local deckObjs = {}
+    for cardType,_ in pairs(deckZones) do
+        deckObjs[cardType] = {}
+        for key,zone in pairs(deckZones[cardType]) do
+            deckObjs[cardType][key] = zone.getObjects()[1]
+        end
+    end
+
     local cardsAdded = 0
     local cardsResting = 0
-    local powerDealCentre = tableOffset + tablePos
 
     local function countDeck(deck)
         if deck == nil then
@@ -2184,12 +2155,12 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         end
         return 0
     end
-    local function dealPowerCards(deck, discard, deckPos, count, isPlaytest)
+    local function deal(deck, discard, deckPos, count, isPlaytest)
         if deck == nil then
         elseif deck.type == "Card" then
             if count > 0 then
                 deck.setLock(true)
-                deck.setPositionSmooth(powerDealCentre + cardPlaceOffset[cardsAdded + 1])
+                deck.setPositionSmooth(params.cardPositions[cardsAdded + 1])
                 deck.setRotationSmooth(Vector(0, 180, 0))
                 if isPlaytest then
                     deck.addTag("Playtest")
@@ -2202,7 +2173,7 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
         elseif deck.type == "Deck" then
             for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
-                    position = powerDealCentre + cardPlaceOffset[cardsAdded + 1],
+                    position = params.cardPositions[cardsAdded + 1],
                     rotation = Vector(0, 180, 0),
                     callback_function = CreatePickPowerButton,
                 })
@@ -2221,22 +2192,106 @@ function DealPowerCards(player, cardCount, deckZone, discardZone, playtestDeckZo
             discard.shuffle()
             wt(0.5)
 
-            dealPowerCards(discard, nil, deckPos, count, isPlaytest)
+            deal(discard, nil, deckPos, count, isPlaytest)
         end
     end
 
-    -- If there are not enough playtest powers available, deal more non-playtest powers, or vice versa
-    if playtestCount > 0 then
-        local availableCards = countDeck(deckObj) + countDeck(discardObj)
-        local availablePlaytestCards = countDeck(playtestDeckObj) + countDeck(playtestDiscardObj)
-        playtestCount = math.min(playtestCount, availablePlaytestCards)
-        playtestCount = math.max(playtestCount, cardCount - availableCards)
+    local counts = {
+        major = {
+            total = params.numMajors,
+            playtest = params.numPlaytestMajors
+        },
+        minor = {
+            total = params.numMinors,
+            playtest = params.numPlaytestMinors
+        }
+    }
+
+    for cardType,_ in pairs(counts) do
+        -- If there are not enough playtest powers available, deal more non-playtest powers, or vice versa
+        if counts[cardType].playtest > 0 then
+            local availableCards = countDeck(deckObjs[cardType].deck) +  countDeck(deckObjs[cardType].discard)
+            local availablePlaytestCards = countDeck(deckObjs[cardType].playtestDeck) +  countDeck(deckObjs[cardType].playtestDiscard)
+            counts[cardType].playtest = math.min(counts[cardType].playtest, availablePlaytestCards)
+            counts[cardType].playtest = math.max(counts[cardType].playtest, counts[cardType].total - availableCards)
+        end
+
+        deal(deckObjs[cardType].deck, deckObjs[cardType].discard, deckZones[cardType].deck.getPosition(), counts[cardType].total - counts[cardType].playtest, false)
+        deal(deckObjs[cardType].playtestDeck, deckObjs[cardType].playtestDiscard, deckZones[cardType].playtestDeck.getPosition(), counts[cardType].playtest, true)
     end
 
-    dealPowerCards(deckObj, discardObj, deckZone.getPosition(), cardCount - playtestCount, false)
-    dealPowerCards(playtestDeckObj, playtestDiscardObj, playtestDeckZone.getPosition(), playtestCount, true)
+    if params.callback_function ~= nil then
+        -- When another object uses Global.call and passes a parameters table including a function, it throws an "unknown error"
+        -- As a workaround, we take a function name, and the object to call it on
+        Wait.condition(function() params.callback_object.call(params.callback_function) end, function() return cardsResting == cardsAdded end)
+    end
+end
+function endDraftPowerCards()
+    scriptWorkingCardC = false
+end
+function startDraftPowerCards(params)
+    -- protection from double clicking
+    if scriptWorkingCardC then return end
+    scriptWorkingCardC = true
 
-    Wait.condition(function() scriptWorkingCardC = false end, function() return cardsResting == cardsAdded end)
+    params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
+    local playtestCount = getPlaytestCount({count = params.count, major = params.major})
+
+    if params.major then
+        _G["startDraftPowerCardsCo"] = function()
+            draftPowerCards(
+                params.player,
+                params.count,
+                playtestCount,
+                0,
+                0
+            )
+            return 1
+        end
+    else
+        _G["startDraftPowerCardsCo"] = function()
+            draftPowerCards(
+                params.player,
+                0,
+                0,
+                params.count,
+                playtestCount
+            )
+            return 1
+        end
+    end
+
+    startLuaCoroutine(Global, "startDraftPowerCardsCo")
+end
+function draftPowerCards(player, numMajors, numPlaytestMajors, numMinors, numPlaytestMinors)
+    -- clear the zone!
+    local playerTable = playerTables[player.color]
+    if playerTable == nil then
+        scriptWorkingCardC = false
+        return
+    end
+    local tablePos = playerTable.getPosition()
+    local discardTable = DiscardPowerCards(tablePos)
+    if #discardTable > 0 then
+        wt(0.1)
+    end
+
+    if numMinors + numMajors > 6 then
+        player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
+        scriptWorkingCardC = false
+        return
+    end
+    local cardPositions = getCardPositions({tablePos = tablePos, count = numMinors + numMajors})
+
+    dealPowerCards({
+        cardPositions = cardPositions,
+        numMinors = numMinors,
+        numPlaytestMinors = numPlaytestMinors,
+        numMajors = numMajors,
+        numPlaytestMajors = numPlaytestMajors,
+        callback_function = "endDraftPowerCards",
+        callback_object = Global
+    })
 end
 function CreatePickPowerButton(card)
     local scale = flipVector(Vector(card.getScale()))
@@ -6839,6 +6894,7 @@ function setupColor(table, color)
     end
     table.setColorTint(colorTint)
 end
+handScale = Vector(18.41, 6.48, 4.7)
 function SpawnHand(params)
     spawnObjectData({
         data = {
@@ -6859,7 +6915,7 @@ function SpawnHand(params)
         },
         position = params.position,
         rotation = Vector(0, 0, 0),
-        scale = Vector(18.41, 6.48, 4.7),
+        scale = handScale,
     })
 end
 -- @param params.seated Boolean indicating if a player is about to be seated here.
@@ -7434,8 +7490,8 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
             end
             for _,obj in ipairs(getObjects()) do
                 local objPos = obj.getPosition()
-                local powerZonePos = Player[color].getHandTransform().position + tableOffset
-                if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z then
+                local powerZonePos = playerTables[color].getPosition() + tableOffset
+                if obj.type == "Fog" and obj.getData().FogColor == color and objPos.x == powerZonePos.x and objPos.z <= powerZonePos.z + 0.01 then
                     if not guids[obj.guid] then
                         table.insert(t, obj)
                         guids[obj.guid] = true

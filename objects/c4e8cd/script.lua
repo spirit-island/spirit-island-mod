@@ -901,8 +901,8 @@ function spawnReadyTokens()
             Tags = {"Uninteractable"},
             Locked = true,
             CustomMesh = {
-                MeshURL = "http://cloud-3.steamusercontent.com/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
-                DiffuseURL = "http://cloud-3.steamusercontent.com/ugc/863986017479109174/7B1C203C001E522EB47374C09461EAC2A71E59EB/",
+                MeshURL = "https://steamusercontent-a.akamaihd.net/ugc/868489312390110251/5C3337D08AA1E8E0DD9A2B79D23BB60B568F478E/",
+                DiffuseURL = "https://steamusercontent-a.akamaihd.net/ugc/863986017479109174/7B1C203C001E522EB47374C09461EAC2A71E59EB/",
                 MaterialIndex = 3
             },
         }

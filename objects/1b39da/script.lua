@@ -8,6 +8,7 @@ function Broadcast(params)
     return "Blitz - Remember, Invaders get an additional set of Actions at the end of Setup"
 end
 
+modifyCostPriority = 10
 function modifyCost(params)
     if Global.getVar("gameStarted") and Global.getVar("scenarioCard") ~= nil and Global.getVar("scenarioCard").guid == self.guid then
         for guid,cost in pairs(params.costs) do

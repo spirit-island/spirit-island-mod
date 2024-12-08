@@ -1406,6 +1406,14 @@ function loadConfig(config)
         end
         Global.setTable("events", events)
     end
+    if config.banList then
+        for _,tab in pairs(Notes.getNotebookTabs()) do
+            if tab.title == "Card Ban List" then
+                Notes.editNotebookTab({index = tab.index, body = config.banList})
+                break
+            end
+        end
+    end
     if config.broadcast then
         printToAll(config.broadcast, Color.SoftYellow)
     end

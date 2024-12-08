@@ -205,6 +205,30 @@
   - Choose Spirits
   - Click "Start Game"
 
+### Ban List
+- Open up the Notebook tab called "Card Ban List"
+- You can ban cards using two different methods:
+  - Name
+  - GUID
+    - In order to find GUID you'll want to right click on object -> Scripting -> GUID
+    - This method mainly exists for event cards which have multiple names
+- Each card you wish to ban should appear on separate lines under the matching header
+```
+[Major Powers]
+
+[Minor Powers]
+Growth Through Sacrifice
+Elemental Boon
+
+[Event Cards]
+Years of Little Rain
+7bb820
+
+[Blight Cards]
+
+[Fear Cards]
+```
+
 ### Custom-made Content Notes
 - To load in custom-made content (if it is a workshop mod): "Games" (top of the screen) &gt; "Workshop" &gt; "..." &gt; "Additively Load"
 - To load in a saved object: "Objects" (top of screen) &gt; "Saved Objects"

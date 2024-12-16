@@ -8127,15 +8127,21 @@ function getReminderXml(params)
 end
 function setReminderLabel(params)
     local obj, num = params.obj, params.num
-    obj.clearButtons();
+    obj.clearButtons()
     if num > 0 then
+        local color
+        if obj.hasTag("Black Text") then
+            color = Color(0, 0, 0)
+        else
+            color = Color.White
+        end
         obj.createButton({
             click_function = "nullFunc",
             function_owner = Global,
             label = tostring(num),
             position = Vector(0,0.15,0),
             font_size = 700,
-            font_color = Color.White,
+            font_color = color,
             width = 0,
             height = 0,
         })
@@ -8170,6 +8176,9 @@ function spawnMaskedReminder(color, obj, isMarker)
     else
         name = color.."'s "..obj.getName().." Reminder"
         tags = {"Destroy", "Mask", "Reminder Token"}
+        if obj.hasTag("Black Text") then
+            table.insert(tags, "Black Text")
+        end
         scale = Vector(0.9, 0.9, 0.9)
         scriptSuffix = "function onNumberTyped(_, num) Global.call(\"setReminderLabel\", {obj = self, num = num}); self.script_state = tostring(num) end"
         onLoadSuffix = "self.max_typed_number = 99; if(saved_data ~= \"\") then onNumberTyped(nil, tonumber(saved_data)) end"

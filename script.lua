@@ -8133,7 +8133,7 @@ function setReminderLabel(params)
             click_function = "nullFunc",
             function_owner = Global,
             label = tostring(num),
-            position = Vector(0,0.1,0),
+            position = Vector(0,0.15,0),
             font_size = 700,
             font_color = Color.White,
             width = 0,

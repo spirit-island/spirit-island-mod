@@ -8123,7 +8123,7 @@ function getReminderXml(params)
     for key,value in pairs(getReminderImageAttributes(params)) do
         attributesString = attributesString.." "..key.."=\""..value.."\""
     end
-    return "<Panel rotation=\"0 0 180\" width=\"185\" height=\"185\" position=\"0 0 -11\"><Mask image=\"ReminderMask\"><Image id=\"image\""..attributesString.."/></Mask></Panel>"
+    return "<Panel rotation=\"0 0 180\" width=\"185\" height=\"185\" position=\"0 0 -10.01\"><Mask image=\"ReminderMask\"><Image id=\"image\""..attributesString.."/></Mask></Panel>"
 end
 function setReminderLabel(params)
     local obj, num = params.obj, params.num

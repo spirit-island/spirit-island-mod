@@ -42,8 +42,8 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185200583/488F51B244D1DE57D2A1D33E7D4819A2EFDA9F00/",
-    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185234840/5DA19A4C14F240B271ECC644796CD368BC55C770/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/14170847386118415/78E57C380DC814C8891F19FA6A199A909BE48955/",
+    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/14170847386118467/70713ADA2213FE5CB010CCE26DC0E703B2019AF0/",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomTile": {
@@ -58,35 +58,63 @@
       "Position": {
         "x": -0.0243,
         "y": 0.2,
-        "z": -0.3928
+        "z": -0.386
       }
     },
     {
       "Position": {
-        "x": -0.0224,
+        "x": -0.2482,
         "y": 0.2,
-        "z": 0.0052
+        "z": -0.386
       }
     },
     {
       "Position": {
-        "x": -0.9028,
+        "x": -0.4679,
         "y": 0.2,
-        "z": 0.0029
+        "z": -0.386
+      }
+    },
+    {
+      "Position": {
+        "x": -0.686,
+        "y": 0.2,
+        "z": -0.386
       }
     },
     {
       "Position": {
         "x": -0.9143,
         "y": 0.2,
-        "z": -0.3976
+        "z": -0.386
       }
     },
     {
       "Position": {
         "x": -1.1241,
         "y": 0.2,
-        "z": -0.3875
+        "z": -0.386
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0224,
+        "y": 0.2,
+        "z": 0.005
+      }
+    },
+    {
+      "Position": {
+        "x": -0.246,
+        "y": 0.2,
+        "z": 0.005
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4746,
+        "y": 0.2,
+        "z": 0.005
       }
     },
     {
@@ -98,34 +126,6 @@
     },
     {
       "Position": {
-        "x": -0.4679,
-        "y": 0.2,
-        "z": -0.3885
-      }
-    },
-    {
-      "Position": {
-        "x": -0.2482,
-        "y": 0.2,
-        "z": -0.2733
-      }
-    },
-    {
-      "Position": {
-        "x": -0.246,
-        "y": 0.2,
-        "z": 0.0056
-      }
-    },
-    {
-      "Position": {
-        "x": -0.2499,
-        "y": 0.2,
-        "z": -0.4898
-      }
-    },
-    {
-      "Position": {
         "x": -0.6935,
         "y": 0.2,
         "z": 0.1139
@@ -133,16 +133,9 @@
     },
     {
       "Position": {
-        "x": -0.686,
+        "x": -0.9028,
         "y": 0.2,
-        "z": -0.3911
-      }
-    },
-    {
-      "Position": {
-        "x": -0.4746,
-        "y": 0.2,
-        "z": 0.0079
+        "z": 0.005
       }
     }
   ]

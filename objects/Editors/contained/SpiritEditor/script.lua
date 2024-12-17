@@ -11,7 +11,7 @@ function onLoad()
         width = 0,
         height = 0,
     })
-    Color.Add("SoftBlue", Color.new(0.45,0.6,0.7))
+    Color.Add("SoftBlue", Color.new(0.53,0.92,1))
     Wait.time(scan, 0.5, -1)
     rescan = false
 end

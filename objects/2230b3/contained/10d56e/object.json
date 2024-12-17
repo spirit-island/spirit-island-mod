@@ -1,12 +1,12 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 124.67642974853516,
-    "posY": 2.326202630996704,
-    "posZ": 52.28864669799805,
-    "rotX": -7.940445811982499e-07,
-    "rotY": 179.995849609375,
-    "rotZ": 2.5305163831035316e-07,
+    "posX": 124.67639923095703,
+    "posY": 2.326200008392334,
+    "posZ": 52.28860092163086,
+    "rotX": 0.0,
+    "rotY": 179.9958038330078,
+    "rotZ": 0.0,
     "scaleX": 1.5299999713897705,
     "scaleY": 1.0,
     "scaleZ": 1.5299999713897705
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132352590560913,
-    "g": 0.7132352590560913,
-    "b": 0.7132352590560913
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "Tags": [
     "Fast",
@@ -46,8 +46,8 @@
   "SidewaysCard": false,
   "CustomDeck": {
     "2617": {
-      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185208651/CF10AEFCA4930B36956EFDB3277CFB90D2EB1C1B/",
-      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/2544054074185196269/F0248AC73F6DBAFFC83ACE5675C2B6399FD6FB44/",
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14170847386118731/16E71D6D11522BB4C9B13D206BAEF4911FC42536/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14170847386118717/E293A387637D7541BE79FE7CABA80AF7A9853323/",
       "NumWidth": 1,
       "NumHeight": 1,
       "BackIsHidden": true,

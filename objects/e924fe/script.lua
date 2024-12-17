@@ -513,6 +513,15 @@ function ExportConfig()
         piecesDataFiltered[boardName] = boardTable
     end
     data.secondWave.pieces = piecesDataFiltered
+    for _,tab in pairs(Notes.getNotebookTabs()) do
+        if tab.title == "Card Ban List" then
+            local defaultBanList = "[Major Powers]\n\n[Minor Powers]\n\n[Event Cards]\n\n[Blight Cards]\n\n[Fear Cards]"
+            if tab.body ~= "" and tab.body ~= defaultBanList then
+                data.banList = tab.body
+            end
+            break
+        end
+    end
     updateNotebook(JSON.encode_pretty(data))
 end
 function updateNotebook(json)

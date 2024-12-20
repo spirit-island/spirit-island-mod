@@ -1,6 +1,5 @@
 empty = false
 contents = {
-    -- Aid Cards
     ["1e477e"] = {{99.25, 0.82, 9.8},{0.00, 180.00, 0.00}},
     ["e58dc4"] = {{103.25, 0.82, 9.8},{0.00, 180.00, 180.00}},
     ["49913c"] = {{107.25, 0.82, 9.8},{0.00, 180.00, 180.00}},
@@ -10,8 +9,7 @@ contents = {
     ["b16225"] = {{107.25, 0.82, 4.5},{0.00, 180.00, 0.00}},
     ["1f5f58"] = {{111.25, 0.82, 4.5},{0.00, 180.00, 0.00}},
 }
-editors = "Editors"
-rulebooks = "9f84fc"
+otherBags = {"Editors","f42a3e"}
 
 function onLoad()
     self.interactable = false
@@ -89,14 +87,12 @@ function toggleObjects()
         end
     end, 1, -1)
 end
-function toggleBags()
-    local editorsBag = getObjectFromGUID(editors)
-    if editorsBag.getVar("empty") then
-        editorsBag.call("toggleObjects")
-    end
 
-    --[[local rulebooksBag = getObjectFromGUID(rulebooks)
-    if rulebooksBag.getVar("empty") then
-        rulebooksBag.call("toggleObjects")
-    end]]--
+function toggleBags()
+    for _,otherBagGUID in pairs(otherBags) do
+        local otherBag = getObjectFromGUID(otherBagGUID)
+        if otherBag.getVar("empty") then
+          otherBag.call("toggleObjects")
+        end
+    end
 end

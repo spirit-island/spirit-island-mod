@@ -1,16 +1,17 @@
 empty = false
 contents = {
-    ["SpiritEditor"] = {105.22, 0.85, 52.59},
-    ["Reminder"] = {115.645, 0.95, 59.34},
-    ["AnyElements"] = {114.81, 0.95, 54.39},
-    ["Energy"] = {116.48, 0.95, 54.39},
-    ["Threshold"] = {114.81, 0.95, 49.44},
-    ["SmallElements"] = {116.48, 0.95, 49.44},
-    ["BlightCardEditor"] = {98.98, 0.85, 42.86},
-    ["PowerEditor"] = {109.33, 0.85, 42.86},
+    ["d667fe"] = {{105.21, 0.96, 58.65}, {90, 0, 0}},  --info text
+    ["02413e"] = {{105.20, 1.00, 42.87}, {0, 180, 0}}, --spirit editor
+    ["76f826"] = {{99.90, 0.80, 36.31}, {0, 180, 0}},  --reminder markers
+    ["861b95"] = {{103.43, 0.80, 36.31}, {0, 180, 0}}, --element markers
+    ["dc8f37"] = {{106.99, 0.80, 36.31}, {0, 180, 0}}, --energy markers
+    ["3d8fa9"] = {{110.72, 0.80, 36.31}, {0, 180, 0}}, --threshold markers
+    ["9207a4"] = {{105.20, 1.00, 24.95}, {0, 180, 0}}, --power editor
+    ["d7a008"] = {{103.44, 0.80, 21.50}, {0, 180, 0}}, --reminder markers
+    ["65aa06"] = {{106.99, 0.80, 21.50}, {0, 180, 0}}, --threshold markers
+    ["53669a"] = {{105.20, 1.00, 9.77}, {0, 180, 0}},  --blight card editor
 }
-playerAids = "029995"
-rulebooks = "9f84fc"
+otherBags = {"9f84fc","029995","f42a3e"}
 
 function onLoad()
     self.interactable = false
@@ -23,23 +24,23 @@ function onLoad()
         label = "",
         position = {0,1.5,0},
         rotation = {0,180,0},
-        width = 1000,
-        height = 750,
+        width = 1700,
+        height = 1000,
         font_size = 300,
     })
     updateButton()
 end
 
 function updateButton()
-    local label = "Show\nEditors"
+    local label = "Show\nSpirit & Card\nEditors"
     if empty then
-        label = "Hide\nEditors"
+        label = "Hide\nSpirit & Card\nEditors"
     end
     self.editButton({
         index = 0,
         label = label,
-        width = 1000,
-        height = 750,
+        width = 1700,
+        height = 1000,
     })
 end
 
@@ -70,11 +71,18 @@ function toggleObjects()
     else
         toggleBags()
         for _, bagObject in pairs(self.getObjects()) do
+            local pos = contents[bagObject.guid][1]
+            local rot = contents[bagObject.guid][2]
             self.takeObject({
                 guid = bagObject.guid,
-                position = contents[bagObject.guid],
-                rotation = {0,180,0},
-                callback_function = function(obj) obj.setLock(true) objectsMoved = objectsMoved + 1 obj.setPosition(contents[bagObject.guid]) end,
+                position = pos,
+                rotation = rot,
+                callback_function = function(obj)
+                    obj.setLock(true)
+                    objectsMoved = objectsMoved + 1
+                    obj.setPosition(pos)
+                    obj.setRotation(rot)
+                    end,
             })
             count = count + 1
         end
@@ -88,14 +96,12 @@ function toggleObjects()
         end
     end, 1, -1)
 end
-function toggleBags()
-    local playerAidsBag = getObjectFromGUID(playerAids)
-    if playerAidsBag.getVar("empty") then
-        playerAidsBag.call("toggleObjects")
-    end
 
-    local rulebooksBag = getObjectFromGUID(rulebooks)
-    if rulebooksBag.getVar("empty") then
-        rulebooksBag.call("toggleObjects")
+function toggleBags()
+    for _,otherBagGUID in pairs(otherBags) do
+        local otherBag = getObjectFromGUID(otherBagGUID)
+        if otherBag.getVar("empty") then
+          otherBag.call("toggleObjects")
+        end
     end
 end

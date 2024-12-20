@@ -7,8 +7,7 @@ contents = {
     ["3bc101"] = {105.00, 0.80, 33.50},
     ["b67827"] = {105.00, 0.80, 23.00},
 }
-editors = "Editors"
-playerAids = "029995"
+otherBags = {"Editors","f42a3e"}
 
 function onLoad()
     self.interactable = false
@@ -87,14 +86,12 @@ function toggleObjects()
         end
     end, 1, -1)
 end
-function toggleBags()
-    local editorsBag = getObjectFromGUID(editors)
-    if editorsBag.getVar("empty") then
-        editorsBag.call("toggleObjects")
-    end
 
-    --[[local playerAidsBag = getObjectFromGUID(playerAids)
-    if playerAidsBag.getVar("empty") then
-        playerAidsBag.call("toggleObjects")
-    end]]--
+function toggleBags()
+    for _,otherBagGUID in pairs(otherBags) do
+        local otherBag = getObjectFromGUID(otherBagGUID)
+        if otherBag.getVar("empty") then
+          otherBag.call("toggleObjects")
+        end
+    end
 end

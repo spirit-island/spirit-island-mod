@@ -1,0 +1,19 @@
+<Panel position="0 -1150 0" width="1300" height="250" rotation="0 0 180">
+    <Button fontSize="150" color="rgba(0,0,0,0)" textColor="White">
+        Island Board Editor
+    </Button>
+</Panel>
+<Panel position="0 1600 0" width="325" height="400" rotation="0 0 180">
+    <VerticalLayout>
+        <Button fontSize="55" color="rgba(0,0,0,0)" textColor="White">
+            Setup
+            Positions
+        </Button>
+        <Button fontSize="60" color="White" id="UpdateSetupPos" textColor="Black" onClick="updateSetupPos">
+            Update
+        </Button>
+        <Button fontSize="60" color="White" id="PopulateSetupPos" textColor="Black" onClick="populateSetupPos">
+            Populate
+        </Button>
+    </VerticalLayout>
+</Panel>

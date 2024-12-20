@@ -1,4 +1,3 @@
---local rescan
 local currentBoard
 local boardTypes = {"Balanced", "Thematic"}
 
@@ -15,7 +14,6 @@ function onLoad()
     Color.Add("SoftBlue", Color.new(0.53,0.92,1))
     Color.Add("SoftYellow", Color.new(1,0.8,0.5))
     Wait.time(scan, 0.5, -1)
-    --rescan = false
 end
 
 function scan()
@@ -116,7 +114,6 @@ function editType(obj, num)
             obj.removeTag(tag)
         end
     end
-    --rescan = true
     scan()
 end
 
@@ -172,8 +169,8 @@ function GenerateSpawnPositions()
     local setupCoordsUnnamed = {}
 
     local function combine2DTables(t1, t2) --concatenate rows from two 2D tables
-      local result = {}
-      for i = 1, #t1 do
+    local result = {}
+    for i = 1, #t1 do
         local combinedRow = {}
         for _, v in ipairs(t1[i]) do
             table.insert(combinedRow, v)
@@ -197,32 +194,32 @@ function GenerateSpawnPositions()
     end
 
     for boardGUID,objsData in pairs(output) do
-	local board = getObjectFromGUID(boardGUID)
-    for _,objData in pairs(objsData) do
-        local name = objData.name
-        local pos = objData.position
-        local state = objData.state
-        if not setupCoordsUnnamed[state] then
-            setupCoordsUnnamed[state] = {}
-            setupPiecesUnnamed[state] = {}
-            setupCoordsNamed[state] = {}
-            setupPiecesNamed[state] = {}
+        local board = getObjectFromGUID(boardGUID)
+        for _,objData in pairs(objsData) do
+            local name = objData.name
+            local pos = objData.position
+            local state = objData.state
+            if not setupCoordsUnnamed[state] then
+                setupCoordsUnnamed[state] = {}
+                setupPiecesUnnamed[state] = {}
+                setupCoordsNamed[state] = {}
+                setupPiecesNamed[state] = {}
+            end
+            if name == "Empty Space" then
+                table.insert(setupCoordsUnnamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
+            else
+                table.insert(setupCoordsNamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
+                table.insert(setupPiecesNamed[state], "\""..name.."\"")
+            end
         end
-        if name == "Empty Space" then
-            table.insert(setupCoordsUnnamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
-        else
-            table.insert(setupCoordsNamed[state], "{x="..pos.x..", y="..pos.y..", z="..pos.z.."}")
-            table.insert(setupPiecesNamed[state], "\""..name.."\"")
-        end
-    end
-    table.insert(boardLines, concat2DTable(combine2DTables(setupCoordsNamed, setupCoordsUnnamed), "posMap"))
-    table.insert(boardLines, concat2DTable(combine2DTables(setupPiecesNamed, setupPiecesUnnamed), "pieceMap"))
-    local boardScript = table.concat(boardLines, "\n").."\n"
-    board.setLuaScript(boardScript)
-	board.setLuaScript(boardScript)
-	--HACK: I have no clue why but it doesn't work when the script is applied only once :shrug:
-	board.reload()
-    setupCoordsUnnamed, setupPiecesUnnamed, setupCoordsNamed, setupPiecesNamed = {}, {}, {}, {}
+        table.insert(boardLines, concat2DTable(combine2DTables(setupCoordsNamed, setupCoordsUnnamed), "posMap"))
+        table.insert(boardLines, concat2DTable(combine2DTables(setupPiecesNamed, setupPiecesUnnamed), "pieceMap"))
+        local boardScript = table.concat(boardLines, "\n").."\n"
+        board.setLuaScript(boardScript)
+        board.setLuaScript(boardScript)
+        --HACK: I have no clue why but it doesn't work when the script is applied only once :shrug:
+        board.reload()
+        setupCoordsUnnamed, setupPiecesUnnamed, setupCoordsNamed, setupPiecesNamed = {}, {}, {}, {}
     end
 end
 
@@ -234,12 +231,11 @@ function GetSpawnPositions()
     }
     local boards = getMapTiles()
 
-    while true do
-        local moving = false
+    local moving = false
+    while moving do
         for _, obj in pairs(boards) do
             if obj.isSmoothMoving() then
                 moving = true
-                break
             end
         end
         if not moving then break end
@@ -256,7 +252,7 @@ function GetSpawnPositions()
             size = board.getBounds().size,
         })
         for _,hit in pairs(hits) do
-            if not isIslandBoard({obj=hit.hit_object}) then
+            if not Global.call("isIslandBoard", {obj=hit.hit_object}) then
                 local subHits = Physics.cast({
                     origin = hit.hit_object.getPosition() + Vector(0, 0.1, 0),
                     direction = Vector(0, -1, 0),
@@ -277,10 +273,10 @@ function GetSpawnPositions()
                     local name = hit.hit_object.getName()
                     if strifeablePieces[name] then
                         local strifeHits = Physics.cast({
-                        origin = hit.hit_object.getPosition(),
-                        direction = Vector(0, 1, 0),
-                        max_distance = 5,
-                        --debug = true
+                            origin          = hit.hit_object.getPosition(),
+                            direction       = Vector(0, 1, 0),
+                            max_distance    = 5,
+                            --debug           = true
                         })
                         for _,strifeHit in pairs(strifeHits) do
                             if strifeHit.hit_object.getName() == "Strife" then
@@ -303,24 +299,10 @@ function GetSpawnPositions()
     return output
 end
 
-function isIslandBoard(params)
-    if params.obj == nil then
-        return false
-    end
-    return params.obj.hasTag("Balanced") or params.obj.hasTag("Thematic")
-end
-
-function isIsland(params)
-    if params.obj == nil then
-        return false
-    end
-    return isIslandBoard(params) or params.obj.hasTag("Island Tile")
-end
-
 function getMapTiles()
     local mapTiles = {}
     for _,obj in pairs(upCast(self, 1, 0, {"Tile"})) do
-        if isIslandBoard({obj=obj}) then
+        if Global.call("isIslandBoard", {obj=obj}) then
             table.insert(mapTiles,obj)
         end
     end
@@ -406,13 +388,13 @@ function place(params)
     elseif piecesWithStrife[pieceName] then
 	Wait.time(function() place({
         name 	 = "Strife",
-	    position     = params.position + Vector(0,1.5,0),
-            state        = params.state,
+	    position = params.position + Vector(0,1.5,0),
+        state    = params.state,
 	    }) end, 0.5)
 	return place({
 	    name	 = string.sub(pieceName, 1, -2),
-	    position     = params.position,
-	    state    	 = params.state,
+	    position = params.position,
+	    state    = params.state,
 	    })
     end
 end

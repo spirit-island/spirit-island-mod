@@ -1,7 +1,7 @@
 <Panel position="0 -1150 0" width="1300" height="250" rotation="0 0 180">
-        <Button fontSize="150" color="rgba(0,0,0,0)" textColor="White">
-                Island Board Editor
-        </Button>
+    <Button fontSize="150" color="rgba(0,0,0,0)" textColor="White">
+        Island Board Editor
+    </Button>
 </Panel>
 <Panel position="0 1600 0" width="325" height="400" rotation="0 0 180">
     <VerticalLayout>

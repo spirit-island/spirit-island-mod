@@ -1,7 +1,7 @@
 <Panel position="0 -350 0" width="1250" height="250" rotation="0 0 180">
-        <Button fontSize="150" color="rgba(0,0,0,0)" textColor="White">
-            Power Card Editor
-        </Button>
+    <Button fontSize="150" color="rgba(0,0,0,0)" textColor="White">
+        Power Card Editor
+    </Button>
 </Panel>
 <Panel position="0 650 0" width="700" height="400" rotation="0 0 180">
     <VerticalLayout>

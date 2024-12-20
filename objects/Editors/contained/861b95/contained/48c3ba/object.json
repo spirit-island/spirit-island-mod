@@ -53,6 +53,66 @@
     "CastShadows": true
   },
   "States": {
+    "1": {
+      "GUID": "7d3cb6",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": 103.7286,
+        "posY": 1.1,
+        "posZ": 40.598,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 0.5,
+        "scaleY": 0.5,
+        "scaleZ": 0.5
+      },
+      "Nickname": "Sun Element",
+      "Description": "Place on [b]Presence Track spaces which grant Elements[/b].\n\nChange its state to change which Element is shown.",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.8513,
+        "b": 0.0
+      },
+      "Tags": [
+        "Any",
+        "Destroy",
+        "Sun"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": false,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CastShadows": true
+      },
+      "LuaScript": "elements=\"10000000\"\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
     "2": {
       "GUID": "3b1a39",
       "Name": "Custom_Model",
@@ -470,66 +530,6 @@
         "CastShadows": true
       },
       "LuaScript": "elements=\"00000001\"\n",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    "1": {
-      "GUID": "7d3cb6",
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": 103.7286,
-        "posY": 1.1,
-        "posZ": 40.598,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 0.5,
-        "scaleY": 0.5,
-        "scaleZ": 0.5
-      },
-      "Nickname": "Sun Element",
-      "Description": "Place on [b]Presence Track spaces which grant Elements[/b].\n\nChange its state to change which Element is shown.",
-      "GMNotes": "",
-      "AltLookAngle": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 0.8513,
-        "b": 0.0
-      },
-      "Tags": [
-        "Any",
-        "Destroy",
-        "Sun"
-      ],
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": false,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
-        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 0,
-        "CastShadows": true
-      },
-      "LuaScript": "elements=\"10000000\"\n",
       "LuaScriptState": "",
       "XmlUI": ""
     }

@@ -36,7 +36,7 @@ function onLoad()
 end
 
 function updateButton()
-    local label = "Show\nIsland Board\nEdtior"
+    local label = "Show\nIsland Board\nEditor"
     if empty then
         label = "Hide\nIsland Board\nEditor"
     end
@@ -105,7 +105,7 @@ function toggleBags()
     for _,otherBagGUID in pairs(otherBags) do
         local otherBag = getObjectFromGUID(otherBagGUID)
         if otherBag.getVar("empty") then
-          otherBag.call("toggleObjects")
+            otherBag.call("toggleObjects")
         end
     end
 end

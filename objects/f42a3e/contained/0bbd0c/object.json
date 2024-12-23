@@ -1,0 +1,50 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": 105.23,
+    "posY": 0.96,
+    "posZ": 58.65,
+    "rotX": 90.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "Place pieces where you want them to be set up.\nPlace defend markers to denote empty spaces;\nit is recommended to have 2+ per land.\nChange pieces' states to match their land's number.\n\nNotes:\nFor pieces with Strife, only the Strife's state matters.\nFor balanced boards, do not place the starting\nBeasts and Disease (added by BnC/JE rules).\n\n\"Update\" will remove pieces currently placed\nand update the board's code.\n\r\r\n\"Populate\" will place pieces as per the\nboard's code, for easy editing.\n",
+    "colorstate": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "fontSize": 48
+  }
+}

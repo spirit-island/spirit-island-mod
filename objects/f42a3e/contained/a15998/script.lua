@@ -103,6 +103,7 @@ function editType(obj, num)
             break
         end
     end
+    -- Increase the index by num, keeping it in the range [1, #boardTypes]
     index = (index + num - 1) % #boardTypes + 1
     if index < 1 then
         index = index + #boardTypes
@@ -169,18 +170,18 @@ function GenerateSpawnPositions()
     local setupCoordsUnnamed = {}
 
     local function combine2DTables(t1, t2) --concatenate rows from two 2D tables
-    local result = {}
-    for i = 1, #t1 do
-        local combinedRow = {}
-        for _, v in ipairs(t1[i]) do
-            table.insert(combinedRow, v)
+        local result = {}
+        for i = 1, #t1 do
+            local combinedRow = {}
+            for _, v in ipairs(t1[i]) do
+                table.insert(combinedRow, v)
+            end
+            for _, v in ipairs(t2[i]) do
+                table.insert(combinedRow, v)
+            end
+            table.insert(result, combinedRow)
         end
-        for _, v in ipairs(t2[i]) do
-            table.insert(combinedRow, v)
-        end
-        table.insert(result, combinedRow)
-    end
-    return result
+        return result
     end
 
     local function concat2DTable(t, tName) --concatenate a 2D table
@@ -215,9 +216,9 @@ function GenerateSpawnPositions()
         table.insert(boardLines, concat2DTable(combine2DTables(setupCoordsNamed, setupCoordsUnnamed), "posMap"))
         table.insert(boardLines, concat2DTable(combine2DTables(setupPiecesNamed, setupPiecesUnnamed), "pieceMap"))
         local boardScript = table.concat(boardLines, "\n").."\n"
-        board.setLuaScript(boardScript)
-        board.setLuaScript(boardScript)
         --HACK: I have no clue why but it doesn't work when the script is applied only once :shrug:
+        board.setLuaScript(boardScript)
+        board.setLuaScript(boardScript)
         board.reload()
         setupCoordsUnnamed, setupPiecesUnnamed, setupCoordsNamed, setupPiecesNamed = {}, {}, {}, {}
     end
@@ -266,7 +267,7 @@ function GetSpawnPositions()
                     end
                 end
                 if onBoard then
-		    local state = hit.hit_object.getStateId()
+		    local state = hit.hit_object.getStateId() --State tracks what land the piece is in
                     if state == -1 then
                         state = 1
                     end
@@ -312,7 +313,7 @@ end
 function PopulateSpawnPositions(player)
     local boards = getMapTiles()
 
-    while true do
+    while not moving do
         local moving = false
         for _, obj in pairs(boards) do
             if obj.isSmoothMoving() then
@@ -356,7 +357,7 @@ function PopulateSpawnPositions(player)
 end
 
 function place(params)
-    local possiblePieces = {
+    local pieceBags = {
         ["Empty"]      = "cd370a",
         ["Explorer"]   = "85225b",
         ["Town"]       = "78540e",
@@ -377,24 +378,31 @@ function place(params)
         ["CityS"]     = true
     }
     local pieceName = params.name
-    local pieceBag = getObjectFromGUID(possiblePieces[pieceName])
-    if pieceBag ~= nil then
-	return pieceBag.takeObject({
-	    position             = params.position,
-	    rotation             = Vector(0,180,0),
-        smooth               = not params.fast,
-	    callback_function    = function(obj) if params.state ~= 1 then obj.setState(params.state) end end,
-	})
-    elseif piecesWithStrife[pieceName] then
-	Wait.time(function() place({
-        name 	 = "Strife",
-	    position = params.position + Vector(0,1.5,0),
-        state    = params.state,
-	    }) end, 0.5)
-	return place({
-	    name	 = string.sub(pieceName, 1, -2),
-	    position = params.position,
-	    state    = params.state,
-	    })
+    local pieceBag = getObjectFromGUID(pieceBags[pieceName])
+    local pieceWithStrife = piecesWithStrife[pieceName]
+
+    --If there is no bag for such a piece, place nothing
+    if not (pieceBag or pieceWithStrife) then
+        return
     end
+    
+    --If it requires Strife, queue up its placement
+    if pieceWithStrife then
+        Wait.time(function() place({
+            name 	 = "Strife",
+            position = params.position + Vector(0,1.5,0),
+            state    = params.state,
+            }) end, 0.5)
+        --Remove 'S' from the end of the pieceName
+        pieceName = string.sub(pieceName, 1, -2)
+        pieceBag = getObjectFromGUID(pieceBags[pieceName])
+    end
+    
+    --Place the piece
+    return pieceBag.takeObject({
+        position             = params.position,
+        rotation             = Vector(0,180,0),
+        smooth               = not params.fast,
+        callback_function    = function(obj) if params.state ~= 1 then obj.setState(params.state) end end,
+    })
 end

@@ -162,14 +162,14 @@ function updateEnergy(player)
 	local bonus = JSON.decode(hit.script_state).bonusMode
 	if bonus then
         table.insert(bonusEnergy, {
-                position = pos,
-                count = count
-            })
+            position = pos,
+            count = count
+        })
 	else
         table.insert(trackEnergy, {
-                position = pos,
-                count = count
-            })
+            position = pos,
+            count = count
+        })
 	end
         hit.destroy()
     end

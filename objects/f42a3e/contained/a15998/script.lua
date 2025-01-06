@@ -312,9 +312,8 @@ end
 
 function PopulateSpawnPositions(player)
     local boards = getMapTiles()
-
+    local moving = false
     while not moving do
-        local moving = false
         for _, obj in pairs(boards) do
             if obj.isSmoothMoving() then
                 moving = true
@@ -385,7 +384,6 @@ function place(params)
     if not (pieceBag or pieceWithStrife) then
         return
     end
-    
     --If it requires Strife, queue up its placement
     if pieceWithStrife then
         Wait.time(function() place({
@@ -397,7 +395,6 @@ function place(params)
         pieceName = string.sub(pieceName, 1, -2)
         pieceBag = getObjectFromGUID(pieceBags[pieceName])
     end
-    
     --Place the piece
     return pieceBag.takeObject({
         position             = params.position,

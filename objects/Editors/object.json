@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": 101.7497,
-    "posY": 0.6,
-    "posZ": 61.0364,
+    "posX": 103.8279,
+    "posY": 0.5404,
+    "posZ": 60.775,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -11,7 +11,7 @@
     "scaleY": 0.198,
     "scaleZ": 1.0
   },
-  "Nickname": "Editors",
+  "Nickname": "Spirit/Card Editors",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {

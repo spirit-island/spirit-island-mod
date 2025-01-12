@@ -463,7 +463,7 @@
                 <Cell><Toggle id="spiritBnC" onValueChanged="toggleSpirit" isOn="true" tooltip="Include branch and claw spirits in randomizer">B&amp;C</Toggle></Cell>
             </Row>
             <Row>
-            <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth spirits in randomizer">JE</Toggle></Cell>
+                <Cell><Toggle id="spiritJE" onValueChanged="toggleSpirit" isOn="true" tooltip="Include jagged earth spirits in randomizer">JE</Toggle></Cell>
                 <Cell><Toggle id="spiritFnF" onValueChanged="toggleSpirit" isOn="true" tooltip="Include feather and flame spirits in randomizer">F&amp;F</Toggle></Cell>
             </Row>
             <Row>

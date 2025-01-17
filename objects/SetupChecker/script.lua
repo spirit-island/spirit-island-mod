@@ -854,27 +854,29 @@ function requiredContent(tag, enabled)
         end
 
         if obj.type == "Card" then
-            if #colors ~= 0 then
-                obj.UI.hide(obj.getName())
-            else
-                obj.UI.show(obj.getName())
-            end
             local objType = type(obj.getVar("difficulty"))
-            if objType == "table" then
-                if #colors == 0 then
-                    if obj.UI.getAttribute(obj.getName(), "isOn") == "true" then
-                        addAdversary(obj)
-                    end
+            if objType ~= "nil" then
+                if #colors ~= 0 then
+                    obj.UI.hide(obj.getName())
                 else
-                    removeAdversary(obj)
+                    obj.UI.show(obj.getName())
                 end
-            elseif objType == "number" then
-                if #colors == 0 then
-                    if obj.UI.getAttribute(obj.getName(), "isOn") == "true" then
-                        addScenario(obj)
+                if objType == "table" then
+                    if #colors == 0 then
+                        if obj.UI.getAttribute(obj.getName(), "isOn") == "true" then
+                            addAdversary(obj)
+                        end
+                    else
+                        removeAdversary(obj)
                     end
-                else
-                    removeScenario(obj)
+                elseif objType == "number" then
+                    if #colors == 0 then
+                        if obj.UI.getAttribute(obj.getName(), "isOn") == "true" then
+                            addScenario(obj)
+                        end
+                    else
+                        removeScenario(obj)
+                    end
                 end
             end
         end

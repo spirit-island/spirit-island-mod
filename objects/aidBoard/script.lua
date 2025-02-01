@@ -726,17 +726,21 @@ function handlePlayerFear(color, amount, reason)
     end
 
     local function printFear()
-        local output = fearCount[color][reason].." Fear Generated"
+        local output
+        if color == "" then
+            output = fearCount[color][reason].." Fear generated"
+        else
+            output = color.." generated "..fearCount[color][reason].." Fear"
+        end
         if reason ~= "" then
             output = output.." from "..reason
         end
         output = output.."!"
 
         if color == "" then
-            printToAll(output.." (Global)", Color.White)
-        else
-            Player[color].print(output, Color.White)
+            output = output.." (Global)"
         end
+        printToAll(output, Color.White)
         fearCount[color][reason] = 0
         fearTimers[color][reason] = nil
     end

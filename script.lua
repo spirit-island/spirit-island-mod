@@ -208,6 +208,7 @@ function onObjectDrop(player_color, dropped_object)
                 dropColor = {0.627, 0.125, 0.941}
             end
             dropped_object.highlightOn(dropColor, 20)
+            dropped_object.setVar("color", player_color)
         end
     end
 end

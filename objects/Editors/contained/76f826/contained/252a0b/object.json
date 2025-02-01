@@ -1,0 +1,52 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 99.84159851074219,
+    "posY": 0.9571999907493591,
+    "posZ": 38.58539962768555,
+    "rotX": 359.8623962402344,
+    "rotY": 0.06930000334978104,
+    "rotZ": 1.3776999711990356,
+    "scaleX": 2.875,
+    "scaleY": 2.875,
+    "scaleZ": 2.875
+  },
+  "Nickname": "Reminder Marker",
+  "Description": "Place on the [b]Sprit's art[/b].\n\nUse + and - to rescale as necessary.",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 0.7843000292778015
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/2050879298352687582/0903B5F8D08AB12D8F4C05A703A9E193F049A702/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CastShadows": true
+  }
+}

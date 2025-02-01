@@ -1,0 +1,698 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 110.20610046386719,
+    "posY": 1.0471999645233154,
+    "posZ": 15.6628999710083,
+    "rotX": -0.0017000000225380063,
+    "rotY": 0.0406000018119812,
+    "rotZ": 0.034699998795986176,
+    "scaleX": 0.550000011920929,
+    "scaleY": 0.550000011920929,
+    "scaleZ": 0.550000011920929
+  },
+  "Nickname": "Box Blight",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.18150000274181366,
+    "g": 0.18150000274181366,
+    "b": 0.18639999628067017
+  },
+  "Tags": [
+    "Blight",
+    "Highlight",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 0.6951000094413757,
+        "g": 0.6951000094413757,
+        "b": 0.6951000094413757
+      },
+      "SpecularIntensity": 0.10000000149011612,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  },
+  "States": {
+    "3": {
+      "GUID": "9a7fc2",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -22.542999267578125,
+        "posY": 1.0019999742507935,
+        "posZ": 4.697700023651123,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "284240",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -21.1028995513916,
+        "posY": 1.0019999742507935,
+        "posZ": 4.646299839019775,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "a8b5c1",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -19.680999755859375,
+        "posY": 1.0019999742507935,
+        "posZ": 4.5802998542785645,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "84d030",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.316299438476562,
+        "posY": 1.0019999742507935,
+        "posZ": 4.666399955749512,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "88a4bd",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -16.8257999420166,
+        "posY": 1.0019999742507935,
+        "posZ": 4.700900077819824,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "26e204",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -15.403900146484375,
+        "posY": 1.0019999742507935,
+        "posZ": 4.634900093078613,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "9": {
+      "GUID": "06c3e0",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -14.039199829101562,
+        "posY": 1.0019999742507935,
+        "posZ": 4.7210001945495605,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "10": {
+      "GUID": "59df74",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -12.753600120544434,
+        "posY": 1.0019999742507935,
+        "posZ": 4.607600212097168,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "2": {
+      "GUID": "a3fe64",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -11.608599662780762,
+        "posY": 1.0019999742507935,
+        "posZ": -7.009900093078613,
+        "rotX": 0.0,
+        "rotY": 180.0001983642578,
+        "rotZ": 0.0,
+        "scaleX": 0.550000011920929,
+        "scaleY": 0.550000011920929,
+        "scaleZ": 0.550000011920929
+      },
+      "Nickname": "Box Blight",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.18150000274181366,
+        "g": 0.18150000274181366,
+        "b": 0.18639999628067017
+      },
+      "Tags": [
+        "Blight",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "https://steamusercontent-a.akamaihd.net/ugc/1673611100766865967/FF3F12A6069F78B2961AD5414DBD95F6A82FB888/",
+        "Convex": true,
+        "MaterialIndex": 3,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 0.6951000094413757,
+            "g": 0.6951000094413757,
+            "b": 0.6951000094413757
+          },
+          "SpecularIntensity": 0.10000000149011612,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

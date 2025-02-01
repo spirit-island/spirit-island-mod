@@ -1,0 +1,688 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 103.19280242919922,
+    "posY": 0.9643999934196472,
+    "posZ": 13.757599830627441,
+    "rotX": 0.0,
+    "rotY": 0.02539999969303608,
+    "rotZ": 0.0,
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Badlands",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.9961000084877014,
+    "g": 0.7411999702453613,
+    "b": 0.10589999705553055
+  },
+  "Tags": [
+    "Highlight",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": false
+  },
+  "States": {
+    "2": {
+      "GUID": "6d12df",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -23.908599853515625,
+        "posY": 0.9592000246047974,
+        "posZ": 0.17219999432563782,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "3": {
+      "GUID": "66b023",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -22.543899536132812,
+        "posY": 0.9592000246047974,
+        "posZ": 0.2581999897956848,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "a38bc9",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -19.68199920654297,
+        "posY": 0.9592000246047974,
+        "posZ": 0.14079999923706055,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "7a713f",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.31730079650879,
+        "posY": 0.9592000246047974,
+        "posZ": 0.22689999639987946,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "2de749",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -21.103900909423828,
+        "posY": 0.9592000246047974,
+        "posZ": 0.20679999887943268,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "297f79",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -16.82670021057129,
+        "posY": 0.9592000246047974,
+        "posZ": 0.2614000141620636,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "d5691c",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -15.404800415039062,
+        "posY": 0.9592000246047974,
+        "posZ": 0.19539999961853027,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "9": {
+      "GUID": "d858ff",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -14.04010009765625,
+        "posY": 0.9592000246047974,
+        "posZ": 0.2815000116825104,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "10": {
+      "GUID": "fd950a",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -12.754500389099121,
+        "posY": 0.9592000246047974,
+        "posZ": 0.1680999994277954,
+        "rotX": 0.0,
+        "rotY": 180.00680541992188,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Badlands",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9961000084877014,
+        "g": 0.7411999702453613,
+        "b": 0.10589999705553055
+      },
+      "Tags": [
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927958781/5F4C0B6ECCDF65BE97734642CCB85D10B00CF4D9/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931503642/4D587027C24AA7E5896CC2B2AFB28CCBF36B86A1/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": false
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

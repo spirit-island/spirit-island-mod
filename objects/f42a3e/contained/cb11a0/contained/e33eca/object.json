@@ -1,0 +1,698 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 101.89289855957031,
+    "posY": 0.958899974822998,
+    "posZ": 13.428199768066406,
+    "rotX": 0.010999999940395355,
+    "rotY": 359.9903869628906,
+    "rotZ": 0.00139999995008111,
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
+  },
+  "Nickname": "Beasts",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.9646999835968018,
+    "g": 0.5842999815940857,
+    "b": 0.5175999999046326
+  },
+  "Tags": [
+    "Beasts",
+    "Highlight",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 0,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  },
+  "States": {
+    "2": {
+      "GUID": "f6d234",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -23.907699584960938,
+        "posY": 0.9592000246047974,
+        "posZ": -1.306399941444397,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "3": {
+      "GUID": "bb3f94",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -22.542999267578125,
+        "posY": 0.9592000246047974,
+        "posZ": -1.2203999757766724,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "4": {
+      "GUID": "cb8ef1",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -21.1028995513916,
+        "posY": 0.9592000246047974,
+        "posZ": -1.2718000411987305,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "5": {
+      "GUID": "aca1f8",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -19.680999755859375,
+        "posY": 0.9592000246047974,
+        "posZ": -1.3378000259399414,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "6": {
+      "GUID": "69e4d6",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -18.316299438476562,
+        "posY": 0.9592000246047974,
+        "posZ": -1.2517000436782837,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "7": {
+      "GUID": "988e3a",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -16.8257999420166,
+        "posY": 0.9592000246047974,
+        "posZ": -1.2172000408172607,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "8": {
+      "GUID": "7ad315",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -15.403900146484375,
+        "posY": 0.9592000246047974,
+        "posZ": -1.2832000255584717,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "9": {
+      "GUID": "1496b1",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -14.039199829101562,
+        "posY": 0.9592000246047974,
+        "posZ": -1.197100043296814,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    "10": {
+      "GUID": "2967e8",
+      "Name": "Custom_Model",
+      "Transform": {
+        "posX": -12.753600120544434,
+        "posY": 0.9592000246047974,
+        "posZ": -1.3105000257492065,
+        "rotX": 0.0,
+        "rotY": 179.97579956054688,
+        "rotZ": 0.0,
+        "scaleX": 1.399999976158142,
+        "scaleY": 1.399999976158142,
+        "scaleZ": 1.399999976158142
+      },
+      "Nickname": "Beasts",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.9646999835968018,
+        "g": 0.5842999815940857,
+        "b": 0.5175999999046326
+      },
+      "Tags": [
+        "Beasts",
+        "Highlight",
+        "Label"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomMesh": {
+        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105927961481/E6F87B5D2BA72AB3CB28FD673F30CEA9A3C85A62/",
+        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1836915105931504830/BDD392D7C8BDF3468DFEB706E84C0E26B87C858A/",
+        "NormalURL": "",
+        "ColliderURL": "",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 0,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 2.0,
+          "FresnelStrength": 0.0
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

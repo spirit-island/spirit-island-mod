@@ -24,6 +24,9 @@
     "g": 0.16030000150203705,
     "b": 0.1518000066280365
   },
+  "Tags": [
+    "Modify Card Gain"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
@@ -39,7 +42,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/14170847386118617/3117E59FCA1544F42B545A1D1C3C68DCC9A10E8C/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/14173935050252002/F80549AF1D817C8EAC501D71C60E0FF734D88762/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
@@ -165,7 +168,7 @@
     },
     {
       "Position": {
-        "x": 0.31839999556541443,
+        "x": 0.20839999616146088,
         "y": 0.20000000298023224,
         "z": -0.6614000201225281
       }

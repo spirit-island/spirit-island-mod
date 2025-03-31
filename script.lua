@@ -5804,8 +5804,8 @@ function RecordGame()
     UI.setAttribute("panelGameOverRecord", "active", "false")
 end
 function getScore(dahan, blight, deck, cards, discard)
-    dahan = math.floor(dahan / numBoards)
-    blight = math.floor(blight / numBoards)
+    dahan = math.floor(dahan / numPlayers)
+    blight = math.floor(blight / numPlayers)
 
     local win = math.floor(5 * difficulty) + 10 + 2 * deck + dahan - blight
     local lose = math.floor(2 * difficulty) + cards + discard + dahan - blight

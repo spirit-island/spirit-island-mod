@@ -1,10 +1,21 @@
 spiritName = "Shadows Flicker Like Flame"
 elements={0,0,1,0,0,0,0,0}
+setupComplete = false
 
 local darkFireTokenName = "Dark Fire Element"
 local darkFireTokenColor = Color(1,1,1)
 
+function onLoad(saved_data)
+    if saved_data ~= "" then
+        local loaded_data = JSON.decode(saved_data)
+        setupComplete = loaded_data.setupComplete
+    end
+end
+
 function modifyElements(params)
+    if not setupComplete then
+        return params.elements
+    end
     if params.color == Global.call("getSpiritColor", {name = spiritName}) then
         local darkFire = params.elements[2] + params.elements[3]
         params.elements[2] = darkFire
@@ -14,6 +25,9 @@ function modifyElements(params)
 end
 
 function modifyThresholds(params)
+    if not setupComplete then
+        return params.elements
+    end
     return modifyElements({color = params.color, elements = params.elements})
 end
 

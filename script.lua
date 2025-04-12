@@ -777,6 +777,21 @@ function onLoad(saved_data)
         end
     end)
 
+    addHotkey("Gain/Ungain Energy", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if not selectedColors[playerColor].gained then
+            gainEnergy(playerTables[playerColor], playerColor, false)
+        else
+            returnEnergy(playerTables[playerColor], playerColor, true)
+        end
+    end)
+    addHotkey("Pay/Unpay for Power Cards", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if not selectedColors[playerColor].paid then
+            payEnergy(playerTables[playerColor], playerColor, false)
+        else
+            refundEnergy(playerTables[playerColor], playerColor, true)
+        end
+    end)
+
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
         obj.interactable = false

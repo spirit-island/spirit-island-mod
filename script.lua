@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.5.0"
+version = "4.5.1"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -208,6 +208,7 @@ function onObjectDrop(player_color, dropped_object)
                 dropColor = {0.627, 0.125, 0.941}
             end
             dropped_object.highlightOn(dropColor, 20)
+            dropped_object.setVar("color", player_color)
         end
     end
 end
@@ -773,6 +774,21 @@ function onLoad(saved_data)
         local success = giveEnergy({color = playerColor, energy = -1, ignoreDebt = false})
         if not success then
             Player[playerColor].broadcast("Was unable to lose energy", Color.SoftYellow)
+        end
+    end)
+
+    addHotkey("Gain/Ungain Energy", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if not selectedColors[playerColor].gained then
+            gainEnergy(playerTables[playerColor], playerColor, false)
+        else
+            returnEnergy(playerTables[playerColor], playerColor, true)
+        end
+    end)
+    addHotkey("Pay/Unpay for Power Cards", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if not selectedColors[playerColor].paid then
+            payEnergy(playerTables[playerColor], playerColor, false)
+        else
+            refundEnergy(playerTables[playerColor], playerColor, true)
         end
     end)
 
@@ -3990,6 +4006,7 @@ function handleDoSetup(obj, color)
         local spiritPanel = getSpirit({name = spiritName})
         local success = obj.call("doSetup", {color = color, spiritPanel = spiritPanel})
         json.setupComplete = success
+        obj.setVar("setupComplete", success)
         obj.script_state = JSON.encode(json)
     end
 end
@@ -5803,8 +5820,8 @@ function RecordGame()
     UI.setAttribute("panelGameOverRecord", "active", "false")
 end
 function getScore(dahan, blight, deck, cards, discard)
-    dahan = math.floor(dahan / numBoards)
-    blight = math.floor(blight / numBoards)
+    dahan = math.floor(dahan / numPlayers)
+    blight = math.floor(blight / numPlayers)
 
     local win = math.floor(5 * difficulty) + 10 + 2 * deck + dahan - blight
     local lose = math.floor(2 * difficulty) + cards + discard + dahan - blight
@@ -6297,6 +6314,13 @@ function giveEnergy(params)
     if not success then
         success = refundEnergyTokens(params.color, params.energy, params.ignoreDebt)
     end
+    if success then
+        if params.energy >= 0 then
+            Player[params.color].broadcast("Gained "..params.energy.." Energy", Color.White)
+        else
+            Player[params.color].broadcast("Lost "..(params.energy * -1).." Energy", Color.White)
+        end
+    end
     return success
 end
 function gainEnergy(target_obj, source_color, alt_click)
@@ -6356,6 +6380,7 @@ function gainEnergy(target_obj, source_color, alt_click)
                         selectedColors[target_color].gained = true
                         playerTables[target_color].editButton({index=2, label="Gained", click_function="returnEnergy", color="Green", tooltip="Right click to return energy from presence track"})
                         onGainPay({color = target_color, isGain = true, isUndo = false, amount = energyTotal})
+                        Player[source_color].broadcast("Gained "..energyTotal.." Energy from Presence Tracks", Color.White)
                     else
                         Player[source_color].broadcast("Was unable to gain energy", Color.SoftYellow)
                     end
@@ -6422,6 +6447,7 @@ function returnEnergy(target_obj, source_color, alt_click)
                         selectedColors[target_color].gained = false
                         playerTables[target_color].editButton({index=2, label="Gain", click_function="gainEnergy", color="Red", tooltip="Left click to gain energy from presence track"})
                         onGainPay({color = target_color, isGain = true, isUndo = true, amount = energyTotal})
+                        Player[source_color].broadcast("Ungained "..energyTotal.." Energy from Presence Tracks", Color.White)
                     else
                         Player[source_color].broadcast("You don't have enough energy", Color.SoftYellow)
                     end
@@ -6489,14 +6515,18 @@ function updateEnergyCounter(color, refund, cost, ignoreDebt)
             if selectedColors[color].debt <= 0 then
                 selectedColors[color].debt = selectedColors[color].debt + cost
             else
+                local amount
                 if selectedColors[color].debt >= -cost then
                     selectedColors[color].debt = selectedColors[color].debt + cost
+                    amount = -cost
                     cost = 0
                 else
                     local diff = selectedColors[color].debt
-                    selectedColors[color].debt = selectedColors[color].debt + cost
+                    selectedColors[color].debt = 0
+                    amount = diff
                     cost = cost + diff
                 end
+                Player[color].broadcast("Paid "..amount.." Energy to Bargain debt", Color.White)
             end
         elseif cost > 0 then
             -- ungain energy
@@ -6513,13 +6543,17 @@ function updateEnergyCounter(color, refund, cost, ignoreDebt)
                     end
                 end
             else
+                local amount
                 if selectedColors[color].bargain - selectedColors[color].debt >= cost then
                     selectedColors[color].debt = selectedColors[color].debt + cost
+                    amount = cost
                     cost = 0
                 else
                     selectedColors[color].debt = selectedColors[color].bargain
+                    amount = selectedColors[color].bargain
                     cost = cost - selectedColors[color].bargain
                 end
+                Player[color].broadcast("Unpaid "..amount.." Energy to Bargain debt", Color.White)
             end
         end
         local debt = selectedColors[color].debt
@@ -6581,13 +6615,17 @@ function payEnergyTokens(color, cost, ignoreDebt)
                 end
             end
         else
+            local amount
             if selectedColors[color].bargain - selectedColors[color].debt >= cost then
                 selectedColors[color].debt = selectedColors[color].debt + cost
+                amount = cost
                 cost = 0
             else
                 selectedColors[color].debt = selectedColors[color].bargain
+                amount = selectedColors[color].bargain
                 cost = cost - selectedColors[color].bargain
             end
+            Player[color].broadcast("Unpaid "..amount.." Energy to Bargain debt", Color.White)
         end
         local debt = selectedColors[color].debt
         if debt < 0 then
@@ -6733,14 +6771,18 @@ function refundEnergyTokens(color, cost, ignoreDebt)
         if selectedColors[color].debt <= 0 then
             selectedColors[color].debt = selectedColors[color].debt - cost
         else
+            local amount
             if selectedColors[color].debt >= cost then
                 selectedColors[color].debt = selectedColors[color].debt - cost
+                amount = cost
                 cost = 0
             else
                 local diff = selectedColors[color].debt
-                selectedColors[color].debt = selectedColors[color].debt - cost
+                selectedColors[color].debt = 0
+                amount = diff
                 cost = cost - diff
             end
+            Player[color].broadcast("Paid "..amount.." Energy to Bargain debt", Color.White)
         end
         local debt = selectedColors[color].debt
         if debt < 0 then

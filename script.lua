@@ -792,6 +792,10 @@ function onLoad(saved_data)
         end
     end)
 
+    addHotkey("Lock/Unlock Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        hoveredObject.setLock(not hoveredObject.getLock())
+    end)
+
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do
         obj.setLock(true)
         obj.interactable = false

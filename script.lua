@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.5.1"
+version = "4.5.2"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -790,6 +790,10 @@ function onLoad(saved_data)
         else
             refundEnergy(playerTables[playerColor], playerColor, true)
         end
+    end)
+
+    addHotkey("Lock/Unlock Piece", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        hoveredObject.setLock(not hoveredObject.getLock())
     end)
 
     for _,obj in ipairs(getObjectsWithTag("Uninteractable")) do

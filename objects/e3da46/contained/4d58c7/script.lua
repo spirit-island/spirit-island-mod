@@ -24,7 +24,7 @@ function doSetup(params)
     end
 
     for _,object in pairs(zone.getObjects()) do
-        if object.hasTag("Presence") then
+        if object.hasTag("Presence") and object.getName() ~= "Incarna" then
             local isOnBoard = false
             local hits = Physics.cast({
                 origin = object.getPosition(),

@@ -457,6 +457,8 @@ function addExpansion(bag)
     expansions[bag.getName()] = bag.guid
     updateSelfXml()
     Wait.frames(function() toggleExpansion(nil, nil, bag.getName()) end, 1)
+
+    updateChallengeConfig()
 end
 function addAdversary(obj)
     if adversaries[obj.getName()] == nil then
@@ -466,6 +468,8 @@ function addAdversary(obj)
     end
     adversaries[obj.getName()] = obj.guid
     Wait.frames(updateSelfXml, 1)
+
+    updateChallengeConfig()
 end
 function addScenario(obj)
     if scenarios[obj.getName()] == nil then
@@ -475,6 +479,8 @@ function addScenario(obj)
     end
     scenarios[obj.getName()] = obj.guid
     Wait.frames(updateSelfXml, 1)
+
+    updateChallengeConfig()
 end
 function onDestroy()
     exit = true
@@ -528,6 +534,8 @@ function removeExpansion(bag)
     updateSelfXml()
 
     Wait.frames(updateRequiredContent, 1)
+
+    updateChallengeConfig()
 end
 function removeAdversary(obj)
     for name,guid in pairs(adversaries) do
@@ -543,6 +551,8 @@ function removeAdversary(obj)
                 toggleSupportingLevel(nil, 0)
             end
             Wait.frames(updateSelfXml, 1)
+
+            updateChallengeConfig()
             break
         end
     end
@@ -584,6 +594,8 @@ function removeScenario(obj)
                 updateDifficulty()
             end
             Wait.frames(updateSelfXml, 1)
+
+            updateChallengeConfig()
             break
         end
     end
@@ -641,13 +653,7 @@ function updateNumPlayers(value, updateUI)
     if updateUI then
         self.UI.setAttribute("numPlayers", "text", "Number of Players: "..numPlayers)
         self.UI.setAttribute("numPlayersSlider", "value", numPlayers)
-        if self.UI.getAttribute("challenge", "isOn") == "true" then
-            challengeConfig = {}
-            for i=1,challengeTier do
-                challengeConfig[i] = getWeeklyChallengeConfig(i, challengeConfig[i-1])
-            end
-            setWeeklyChallengeUI(challengeConfig[challengeTier])
-        end
+        updateChallengeConfig()
 
         -- Stop previous timer and start a new one
         if updateLayoutsID ~= 0 then
@@ -1749,6 +1755,16 @@ function toggleChallengeTier(_, selected, id)
     setWeeklyChallengeUI(challengeConfig[challengeTier])
 end
 
+function updateChallengeConfig()
+    challengeConfig = {}
+    if weeklyChallenge then
+        for i=1,challengeTier do
+            challengeConfig[i] = getWeeklyChallengeConfig(i, challengeConfig[i-1])
+        end
+        setWeeklyChallengeUI(challengeConfig[challengeTier])
+    end
+end
+
 function toggleMinDifficulty(_, value)
     local min = tonumber(value)
     if min > randomMax then
@@ -2138,6 +2154,8 @@ function addSpirit(params)
     end
     spiritComplexities[params.spirit.guid] = complexity
 
+    updateChallengeConfig()
+
     return true
 end
 function removeSpirit(params)
@@ -2193,6 +2211,8 @@ function removeSpirit(params)
             end
         end
     end
+
+    updateChallengeConfig()
 end
 
 function toggleSoloBlight()

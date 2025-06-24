@@ -1,17 +1,17 @@
 {
-  "Name": "Custom_Tile",
+  "Name": "Custom_Token",
   "Transform": {
-    "posX": 7.02,
-    "posY": 1.0706,
-    "posZ": 1.42,
+    "posX": 92.7559,
+    "posY": 1.1121,
+    "posZ": 118.1137,
     "rotX": 0.0,
-    "rotY": 180.0001,
-    "rotZ": -0.0002,
-    "scaleX": 1.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 0.6499,
     "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleZ": 0.6499
   },
-  "Nickname": "Lair",
+  "Nickname": "Lair Marker",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -28,10 +28,10 @@
   "Value": 0,
   "Locked": false,
   "Grid": false,
-  "Snap": true,
+  "Snap": false,
   "IgnoreFoW": false,
   "MeasureMovement": false,
-  "DragSelectable": true,
+  "DragSelectable": false,
   "Autoraise": true,
   "Sticky": true,
   "Tooltip": true,
@@ -39,15 +39,15 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2282829814080234009/FAE07B03FA6387FC05E0D8E99CCD1F3488D3F220/",
-    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/2282829814080234009/FAE07B03FA6387FC05E0D8E99CCD1F3488D3F220/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/15879448064761454943/454936D4F92BBE15B09519DA4AD6DFD9C7EF5017/",
+    "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
-    "CustomTile": {
-      "Type": 2,
+    "CustomToken": {
       "Thickness": 0.2,
-      "Stackable": false,
-      "Stretch": true
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
     }
   }
 }

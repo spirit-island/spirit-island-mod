@@ -33,10 +33,10 @@ function scan()
     if rescan or #self.getButtons() == 1 then
         rescan = false
         currentCard = objs[1]
-        currentCardName = currentCard.getName() 
+        currentCardName = currentCard.getName()
         if currentCardName == "" then
             currentCardName = "an unnamed Power Card"
-        end 
+        end
         local energy = 0
         if currentCard.getVar("energy") ~= nil then
             energy = currentCard.getVar("energy")
@@ -495,7 +495,7 @@ function updateReminder(player)
 
     player.broadcast(opString .. " Reminder for " .. currentCardName, Color.SoftBlue)
 end
-function populateReminder()
+function populateReminder(player)
     if currentCard == nil then
         return
     end

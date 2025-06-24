@@ -25,7 +25,7 @@ function scan()
         return
     end
     currentSpirit = objs[1]
-    currentSpiritName = currentSpirit.getName() 
+    currentSpiritName = currentSpirit.getName()
     if currentSpiritName == "" then
         currentSpiritName = "an unnamed Spirit"
     end

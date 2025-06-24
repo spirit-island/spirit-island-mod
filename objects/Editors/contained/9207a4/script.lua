@@ -3,6 +3,7 @@ speeds = {"Fast", "Slow"}
 
 local rescan
 local currentCard
+local currentCardName
 
 function onLoad()
     self.createButton({
@@ -32,6 +33,10 @@ function scan()
     if rescan or #self.getButtons() == 1 then
         rescan = false
         currentCard = objs[1]
+        currentCardName = currentCard.getName() 
+        if currentCardName == "" then
+            currentCardName = "an unnamed Power Card"
+        end 
         local energy = 0
         if currentCard.getVar("energy") ~= nil then
             energy = currentCard.getVar("energy")
@@ -380,10 +385,27 @@ end
 ---
 cardLoadingScript = "function onLoad(saved_data)\n    if saved_data ~= \"\" then\n        local loaded_data = JSON.decode(saved_data)\n        self.setTable(\"thresholds\", loaded_data.thresholds)\n    end\nend\n-- card loading end"
 
+function ensureScriptState(keys)
+    local state = {}
+    if currentCard.script_state and currentCard.script_state ~= "" then
+        state = JSON.decode(currentCard.script_state)
+    end
+
+    for _, key in ipairs(keys) do
+        local k = tostring(key)
+        if not state[k] then
+            state[k] = {}
+        end
+    end
+
+    currentCard.script_state = JSON.encode(state)
+end
+
 function updateThreshold(player)
     if currentCard == nil then
         return
     end
+    ensureScriptState({"thresholds"})
     local thresholds = {}
     local hits = upCast(currentCard, 1, 0, {"Generic"}, "Threshold Marker")
     for _, hit in pairs(hits) do
@@ -417,7 +439,8 @@ function updateThreshold(player)
         end
         currentCard.setLuaScript(script)
     end
-    player.broadcast("Updated Elemental Thresholds for " .. currentCard.getName(), Color.SoftBlue)
+
+    player.broadcast("Updated Elemental Thresholds for " .. currentCardName, Color.SoftBlue)
 end
 
 function populateThreshold()
@@ -450,6 +473,7 @@ function updateReminder(player)
     if currentCard == nil then
         return
     end
+    ensureScriptState({"reminder"})
     local hits = upCast(currentCard, 1, 0, {"Generic"}, "Reminder Marker")
     local location = nil
     for _, entry in pairs(hits) do
@@ -468,7 +492,8 @@ function updateReminder(player)
     if location == nil then
         opString = "Reset"
     end
-    player.broadcast(opString .. " Reminder for " .. currentCard.getName(), Color.SoftBlue)
+
+    player.broadcast(opString .. " Reminder for " .. currentCardName, Color.SoftBlue)
 end
 function populateReminder()
     if currentCard == nil then
@@ -476,6 +501,10 @@ function populateReminder()
     end
     local location = Global.call("getReminderLocation", {obj = currentCard})
     if location == nil then
+        return
+    end
+    if (location.field == "ImageURL" and currentCard.is_face_down) or (location.field == "ImageSecondaryURL" and not currentCard.is_face_down) then
+        player.broadcast("Flip the Spirit Panel first", Color.SoftYellow)
         return
     end
 

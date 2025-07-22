@@ -2084,36 +2084,18 @@ end
 tableOffset = Vector(0,0.04,19.6)
 scriptWorkingCardC = false
 function MajorPowerC(obj, player_color, alt_click)
-    local cards = 4
-    if alt_click then
-        cards = 2
-    end
-    startDraftPowerCards({player = Player[player_color], major = true, count = cards})
+    startDraftPowerCards({player = Player[player_color], major = true, count = 4})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
-    local cards = 4
-    -- button is "-1"/"1" for left click/single touch
-    if math.abs(button) > 1 then
-        cards = 2
-    end
-    startDraftPowerCards({player = player, major = true, count = cards})
+    startDraftPowerCards({player = player, major = true, count = 4})
 end
 function MinorPowerC(obj, player_color, alt_click)
-    local cards = 4
-    if alt_click then
-        cards = 6
-    end
-    startDraftPowerCards({player = Player[player_color], major = false, count = cards})
+    startDraftPowerCards({player = Player[player_color], major = false, count = 4})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
-    local cards = 4
-    -- button is "-1"/"1" for left click/single touch
-    if math.abs(button) > 1 then
-        cards = 6
-    end
-    startDraftPowerCards({player = player, major = false, count = cards})
+    startDraftPowerCards({player = player, major = false, count = 4})
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do

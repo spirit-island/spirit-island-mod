@@ -177,8 +177,6 @@
 - To prevent an Invader Card from advancing this turn (for Immigration Slows): Lock (Hover + L) that Invader Card
 - To reveal multiple Explore Cards (for Explorers are Reluctant): "Explore" &gt; Lock (Hover + L) that Explore Card &gt; "Explore"
 - To increase/decrease the amount of Fear in the Fear Pool (not generating Fear): Left/Right click "Modify Fear Pool" (on the Invader Board)
-- To choose from 2 Major Power Cards (for Unlock The Gates of Deepest Power): right-click "Gain a Major"
-- To choose from 6 Minor Power Cards (for Boon of Reimagining): right-click "Gain a Minor"
 - To choose 2 Power Cards when gaining them (for Fractured or Boon of Reimagining): right-click "Pick Power" on the first Power Card
 - To choose 2 Power Cards when gaining them (for Entwined Power): have the other Player click "Pick Power" first
 - To prevent Invaders/Dahan from healing during Time Passes (for Shroud of a Silent Mist): lock (Hover + L) them (or if they are stacked, lock the bottom piece in the stack)

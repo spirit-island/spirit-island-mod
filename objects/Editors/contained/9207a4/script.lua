@@ -392,9 +392,8 @@ function ensureScriptState(keys)
     end
 
     for _, key in ipairs(keys) do
-        local k = tostring(key)
-        if not state[k] then
-            state[k] = {}
+        if not state[key] then
+            state[key] = {}
         end
     end
 
@@ -504,7 +503,7 @@ function populateReminder(player)
         return
     end
     if (location.field == "ImageURL" and currentCard.is_face_down) or (location.field == "ImageSecondaryURL" and not currentCard.is_face_down) then
-        player.broadcast("Flip the Spirit Panel first", Color.SoftYellow)
+        player.broadcast("Flip the Power Card first", Color.SoftYellow)
         return
     end
 

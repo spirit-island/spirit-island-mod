@@ -127,7 +127,7 @@ function updateElements(player)
     state.trackElements = trackElements
     currentSpirit.script_state = JSON.encode(state)
     currentSpirit.setTable("trackElements", trackElements)
-    player.broadcast("Updated Elemental Thresholds for " .. currentSpiritName, Color.SoftBlue)
+    player.broadcast("Updated Elements for " .. currentSpiritName, Color.SoftBlue)
 end
 
 function populateElements(player)

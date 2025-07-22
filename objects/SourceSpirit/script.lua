@@ -352,7 +352,7 @@ function setupSpirit(obj, player_color)
         for i,card in pairs(progressionDeck) do
             local powerCard = Global.call("getPowerCard", {guid = card[1], major = card[2]})
             if powerCard then
-                powerCard.setPositionSmooth(spos + Vector(0, 0.05 + i, 14))
+                powerCard.setPositionSmooth(spos + Vector(0, 0.05 + i, -7.8))
                 powerCard.setRotation(Vector(0, 180, 180))
                 powerCard.addTag("Progression")
             end
@@ -379,7 +379,7 @@ function setupSpirit(obj, player_color)
                 elseif ob.type == "Card" then
                     if ob.getName() == "Progression" then
                         if useProgression then
-                            ob.setPositionSmooth(spos + Vector(-3.6, 0.05, 14))
+                            ob.setPositionSmooth(spos + Vector(-3.6, 0.05, -7.8))
                         else
                             ob.destruct()
                         end
@@ -419,7 +419,7 @@ function setupSpirit(obj, player_color)
                 o.deal(#o.getObjects(),player_color)
             elseif o.type == "Card" and o.getName() == "Progression" then
                 if useProgression then
-                    o.setPositionSmooth(spos + Vector(-3.6, 0.05, 14))
+                    o.setPositionSmooth(spos + Vector(-3.6, 0.05, -7.8))
                 else
                     o.destruct()
                 end

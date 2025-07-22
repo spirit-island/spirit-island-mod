@@ -2232,6 +2232,27 @@ function endDraftPowerCards()
     scriptWorkingCardC = false
 end
 function startDraftPowerCards(params)
+    -- Check if the player has progression cards left
+    for _,progression in pairs(getObjectsWithTag("Progression")) do
+        for _,zone in pairs(progression.getZones()) do
+            if zone == selectedColors[params.player.color].zone then
+                local card
+                if progression.type == "Deck" then
+                    card = progression.dealToColorWithOffset({9, 0, 0}, false, params.player.color)
+                    card.setRotationSmooth(Vector(0, 180, 0))
+                else
+                    card = progression
+                    card.deal(1, params.player.color)
+                end
+                card.removeTag("Progression")
+                if card.hasTag("Major") then
+                    params.player.broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
+                end
+                return
+            end
+        end
+    end
+
     -- protection from double clicking
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true

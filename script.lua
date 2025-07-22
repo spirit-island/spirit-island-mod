@@ -2238,12 +2238,11 @@ function startDraftPowerCards(params)
             if zone == selectedColors[params.player.color].zone then
                 local card
                 if progression.type == "Deck" then
-                    card = progression.dealToColorWithOffset({9, 0, 0}, false, params.player.color)
-                    card.setRotationSmooth(Vector(0, 180, 0))
+                    card = progression.takeObject()
                 else
                     card = progression
-                    card.deal(1, params.player.color)
                 end
+                card.deal(1, params.player.color)
                 card.removeTag("Progression")
                 if card.hasTag("Major") then
                     params.player.broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)

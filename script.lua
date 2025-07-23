@@ -2338,7 +2338,7 @@ function PickPower(cardo,playero,alt_click)
     local tablePos = nil
     for _,playerTable in pairs(playerTables) do
         local pos = playerTable.getPosition()
-        for _,obj in ipairs(getPowerZoneObjects(pos)) do
+        for _,obj in ipairs(getPowerDraftObjects(pos)) do
             if obj == cardo then
                 tablePos = pos
                 break
@@ -2363,8 +2363,8 @@ function PickPower(cardo,playero,alt_click)
 end
 function DiscardPowerCards(tablePos)
     local discardTable = {}
-    local cardZoneObjects = getPowerZoneObjects(tablePos)
-    for i, obj in ipairs(cardZoneObjects) do
+    local powerDraftObjects = getPowerDraftObjects(tablePos)
+    for i, obj in ipairs(powerDraftObjects) do
         forgetPowerCard({card = obj, discardHeight = i})
         obj.clearButtons()
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
@@ -2445,7 +2445,7 @@ function removeButtons(params)
     end
 end
 
-function getPowerZoneObjects(tablePos)
+function getPowerDraftObjects(tablePos)
     local hits = upCastPosSizRot(
         tableOffset + tablePos, -- pos
         Vector(15,0.1,4),  -- size
@@ -2456,8 +2456,8 @@ function getPowerZoneObjects(tablePos)
 end
 function addGainPowerCardButtons()
     for color, _ in pairs(selectedColors) do
-        local cardZoneObjects = getPowerZoneObjects(playerTables[color].getPosition())
-        for _, obj in ipairs(cardZoneObjects) do
+        local powerDraftObjects = getPowerDraftObjects(playerTables[color].getPosition())
+        for _, obj in ipairs(powerDraftObjects) do
             if obj.type == "Card" then
                 CreatePickPowerButton(obj, "PickPower")
             end
@@ -7530,7 +7530,7 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
                     end
                 end
             end
-            for _,obj in pairs(getPowerZoneObjects(playerTables[color].getPosition())) do
+            for _,obj in pairs(getPowerDraftObjects(playerTables[color].getPosition())) do
                 if not guids[obj.guid] then
                     table.insert(t, obj)
                     guids[obj.guid] = true
@@ -8084,6 +8084,21 @@ function onObjectDestroy(obj)
             end
         end
     end
+end
+function onObjectNumberTyped(obj, player_color, number)
+    -- Check to see if the object is a card in power draft
+    for _,playerTable in pairs(playerTables) do
+        local pos = playerTable.getPosition()
+        for _,powerDraftObj in ipairs(getPowerDraftObjects(pos)) do
+            if powerDraftObj == obj then
+                PickPower(obj, player_color, false)
+                return true
+            end
+        end
+    end
+
+    -- If not a power draft card, then do normal functionality
+    return false
 end
 function getReminderLocation(params)
     local obj = params.obj

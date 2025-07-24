@@ -2084,18 +2084,24 @@ end
 tableOffset = Vector(0,0.04,19.6)
 scriptWorkingCardC = false
 function MajorPowerC(obj, player_color, alt_click)
-    startDraftPowerCards({player = Player[player_color], major = true, count = 4})
+    local ignoreProgression = alt_click
+    startDraftPowerCards({player = Player[player_color], major = true, count = 4, ignoreProgression = ignoreProgression})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
-    startDraftPowerCards({player = player, major = true, count = 4})
+    -- button is "-1"/"1" for left click/single touch
+    local ignoreProgression = math.abs(button) > 1
+    startDraftPowerCards({player = player, major = true, count = 4, ignoreProgression = ignoreProgression})
 end
 function MinorPowerC(obj, player_color, alt_click)
-    startDraftPowerCards({player = Player[player_color], major = false, count = 4})
+    local ignoreProgression = alt_click
+    startDraftPowerCards({player = Player[player_color], major = false, count = 4, ignoreProgression = ignoreProgression})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
-    startDraftPowerCards({player = player, major = false, count = 4})
+    -- button is "-1"/"1" for left click/single touch
+    local ignoreProgression = math.abs(button) > 1
+    startDraftPowerCards({player = player, major = false, count = 4, ignoreProgression = ignoreProgression})
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
@@ -2232,22 +2238,24 @@ function endDraftPowerCards()
     scriptWorkingCardC = false
 end
 function startDraftPowerCards(params)
-    -- Check if the player has progression cards left
-    for _,progression in pairs(getObjectsWithTag("Progression")) do
-        for _,zone in pairs(progression.getZones()) do
-            if zone == selectedColors[params.player.color].zone then
-                local card
-                if progression.type == "Deck" then
-                    card = progression.takeObject()
-                else
-                    card = progression
+    if not params.ignoreProgression then
+        -- Check if the player has progression cards left
+        for _,progression in pairs(getObjectsWithTag("Progression")) do
+            for _,zone in pairs(progression.getZones()) do
+                if zone == selectedColors[params.player.color].zone then
+                    local card
+                    if progression.type == "Deck" then
+                        card = progression.takeObject()
+                    else
+                        card = progression
+                    end
+                    card.deal(1, params.player.color)
+                    card.removeTag("Progression")
+                    if card.hasTag("Major") then
+                        params.player.broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
+                    end
+                    return
                 end
-                card.deal(1, params.player.color)
-                card.removeTag("Progression")
-                if card.hasTag("Major") then
-                    params.player.broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
-                end
-                return
             end
         end
     end

@@ -143,9 +143,8 @@ function PostSetup(params)
 
     if params.level >= 5 then
         -- Setup extra invader cards
-        local fearDeck = Player["Black"].getHandObjects(1)
-        local stage3 = setupInvaderCard(fearDeck, 7, Global.getVar("stage3DeckZone"))
-        local stage2 = setupInvaderCard(fearDeck, 3, Global.getVar("stage2DeckZone"))
+        local stage3 = setupInvaderCard(7, Global.getVar("stage3DeckZone"))
+        local stage2 = setupInvaderCard(3, Global.getVar("stage2DeckZone"))
         Wait.condition(function()
             Wait.time(function() postSetupComplete = true end, 0.5)
         end, function()
@@ -155,32 +154,18 @@ function PostSetup(params)
         postSetupComplete = true
     end
 end
-function setupInvaderCard(fearDeck, depth, zoneGuid)
-    local count = 0
-    for i = #fearDeck, 1, -1 do
-        local card = fearDeck[i]
-        if card.hasTag("Fear") then
-            count = count + 1
-            if count == depth then
-                local pos = card.getPosition() + Vector(-0.5, 0, 0)
-                local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
-                if obj ~= nil then
-                    if obj.type == "Deck" then
-                        return obj.takeObject({
-                            position = pos,
-                            smooth = false,
-                            callback_function = function(o)
-                                o.scale(1.37)
-                            end,
-                        })
-                    elseif obj.type == "Card" then
-                        obj.scale(1.37)
-                        obj.setPosition(pos)
-                        return obj
-                    end
-                end
-                return nil
-            end
+function setupInvaderCard(depth, zoneGuid)
+    local obj = getObjectFromGUID(zoneGuid).getObjects()[1]
+    if obj ~= nil then
+        if obj.type == "Deck" then
+            local card = obj.takeObject({smooth = false})
+            card.scale(1.37)
+            Global.call("AddToFearHand", {obj = card, count = depth})
+            return card
+        elseif obj.type == "Card" then
+            obj.scale(1.37)
+            Global.call("AddToFearHand", {obj = obj, count = depth})
+            return obj
         end
     end
     return nil

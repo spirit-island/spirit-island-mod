@@ -7286,10 +7286,6 @@ function toggleButtonUI(player)
     toggleUI("panelReady", player.color, colorEnabled)
 end
 function togglePlayerControls(player)
-    if not player.admin then
-        player.broadcast("Only promoted players can toggle seat controls.")
-        return
-    end
     showPlayerButtons = not showPlayerButtons
     updateColorPickButtons()
     updateSwapButtons()

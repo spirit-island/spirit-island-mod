@@ -1756,12 +1756,15 @@ function toggleChallengeTier(_, selected, id)
 end
 
 function updateChallengeConfig()
-    challengeConfig = {}
-    if weeklyChallenge then
-        for i=1,challengeTier do
-            challengeConfig[i] = getWeeklyChallengeConfig(i, challengeConfig[i-1])
+    -- After game has started weekly challenge is irrelevant
+    if not Global.getVar("gameStarted") then
+        challengeConfig = {}
+        if weeklyChallenge then
+            for i=1,challengeTier do
+                challengeConfig[i] = getWeeklyChallengeConfig(i, challengeConfig[i-1])
+            end
+            setWeeklyChallengeUI(challengeConfig[challengeTier])
         end
-        setWeeklyChallengeUI(challengeConfig[challengeTier])
     end
 end
 

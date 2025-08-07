@@ -2058,7 +2058,7 @@ function getNewSpirit(tags, complexities)
     local spirit, candidate
     local count = 0  -- # of eligible spirits seen so far
     for _, guid in pairs(spiritGuids) do
-        local candidate = getObjectFromGUID(guid)
+        candidate = getObjectFromGUID(guid)
         if tags[spiritTags[guid]] and complexities[spiritComplexities[guid]] and not spiritChoices[candidate.getName()] then
             count = count + 1
             if math.random(1, count) == 1 then

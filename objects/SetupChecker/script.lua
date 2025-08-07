@@ -11,7 +11,6 @@ spiritGuids = {}
 spiritTags = {}
 spiritComplexities = {}
 spiritChoices = {}
-spiritChoicesLength = 0
 allSpirits = {} -- intentionally not backed up on script state
 
 weeklyChallenge = false
@@ -1931,10 +1930,8 @@ function getGainSpiritChoices(obj)
     local choices = {}
     getXml(obj, {matchRecurse("GainSpirits", function (t)
         for _, button in pairs(t.children) do
-            if button.tag == "Button" then
+            if button.tag == "Button" and button.attributes.spirit then
                 table.insert(choices, {spirit = button.attributes.spirit, aspect = button.attributes.aspect})
-            else
-                table.insert(choices, {})
             end
         end
     end)})
@@ -1942,8 +1939,10 @@ function getGainSpiritChoices(obj)
 end
 function setupGainSpiritChoices(obj, choices)
     local buttons = {}
+    local count = 0
     for _, choice in pairs(choices) do
         if choice.spirit ~= nil then
+            count = count + 1
             local label = choice.spirit
             if choice.aspect ~= nil and choice.aspect ~= "" then
                 label = label .. " - " .. choice.aspect
@@ -1960,21 +1959,39 @@ function setupGainSpiritChoices(obj, choices)
                     spirit = choice.spirit,
                     aspect = choice.aspect,
                 },
-                children = {},
-            })
-        else
-            table.insert(buttons, {
-                tag = "Text",
-                attributes = {
-                    minHeight = "110",
-                },
-                children = {},
             })
         end
     end
+    if count < 4 then
+        table.insert(buttons, {
+            tag = "Text",
+            attributes = {
+                color="#FFFF00",
+                text = "No other spirits available.",
+                fontSize = "44",
+                minWidth = "800",
+                minHeight = "110"
+            }
+        })
+    end
+    if count > 0 then
+        table.insert(buttons, {
+            tag = "Button",
+            attributes = {
+                colors = "#92E5AF|#92E5AF|#72B389|#72B38980",
+                id = "reroll! " .. obj.guid,
+                text = "Reroll Spirit Choices",
+                onClick = "SetupChecker/gainSpirit(reroll)",
+                fontSize = "44",
+                minWidth = "800",
+                minHeight = "110",
+            },
+        })
+    end
     updateXml(obj, {matchRecurse("GainSpirits", function (t) t.children = buttons end)})
 end
-function gainSpirit(player)
+function gainSpirit(player, value, id)
+    local reroll = (value == 'reroll')
     if player.color == "Grey" or player.color == "Black" then
         player.broadcast("You need to pick a color before gaining spirits.", Color.Red)
         return
@@ -1988,15 +2005,20 @@ function gainSpirit(player)
         player.broadcast("You need to pick a table before gaining spirits.", Color.Red)
         return
     end
-
     local choices = getGainSpiritChoices(obj)
     local numChoices = 0
     for _, choice in pairs(choices) do
         if choice.spirit ~= nil then
-            numChoices = numChoices + 1
+            if reroll and spiritChoices[choice.spirit] then
+                spiritChoices[choice.spirit] = nil
+            else
+                numChoices = numChoices + 1
+            end
         end
     end
-
+    if reroll then
+        choices = {}
+    end
     if numChoices == 4 then
         player.broadcast("You already have Spirit options", Color.Red)
         return
@@ -2032,21 +2054,23 @@ function gainSpirit(player)
     end
 end
 function getNewSpirit(tags, complexities)
-    if spiritChoicesLength >= #spiritGuids then
-        return nil
+    -- Uses reservoir sampling -- see https://en.wikipedia.org/wiki/Reservoir_sampling for details
+    local spirit, candidate
+    local count = 0  -- # of eligible spirits seen so far
+    for _, guid in pairs(spiritGuids) do
+        local candidate = getObjectFromGUID(guid)
+        if tags[spiritTags[guid]] and complexities[spiritComplexities[guid]] and not spiritChoices[candidate.getName()] then
+            count = count + 1
+            if math.random(1, count) == 1 then
+                spirit = candidate
+            end
+        end
     end
-    local spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-    local count = 0
-    while((not tags[spiritTags[spirit.guid]] or not complexities[spiritComplexities[spirit.guid]] or spiritChoices[spirit.getName()]) and count < 100) do
-        spirit = getObjectFromGUID(spiritGuids[math.random(1,#spiritGuids)])
-        count = count + 1
-    end
-    if count >= 100 then
+    if not spirit then  -- Never found an eligible candidate.
         return nil
     end
     local aspect = RandomAspect({obj = spirit})
     spiritChoices[spirit.getName()] = {guid=spirit.guid}
-    spiritChoicesLength = spiritChoicesLength + 1
     return spirit, aspect
 end
 function replaceSpirit(obj, oldSpirit, player)
@@ -2073,7 +2097,7 @@ function replaceSpirit(obj, oldSpirit, player)
     if spirit ~= nil then
         player.broadcast("Spirit unavailable getting new one", Color.Red)
     else
-        player.broadcast("No suitable replacment was found", Color.Red)
+        player.broadcast("No suitable replacement was found", Color.Red)
     end
 end
 function pickGainSpiritChoice(player, guid, id)
@@ -2083,6 +2107,14 @@ function pickGainSpiritChoice(player, guid, id)
     local aspect = obj.UI.getAttribute(id, "aspect")
     local spiritGuid = spiritChoices[spirit].guid
     if isSpiritPickable({guid = spiritGuid}) then
+        -- Return the unchosen spirits to the pool
+        local choices = getGainSpiritChoices(obj)
+        for _, choice in pairs(choices) do
+            if  choice.spirit ~= nil and choice.spirit ~= spirit then
+                spiritChoices[choice.spirit] = nil
+            end
+        end
+        -- Choose the spirit
         sourceSpirit.call("PickSpirit", {obj = getObjectFromGUID(spiritGuid), color = player.color, aspect = aspect})
     else
         replaceSpirit(obj, spirit, player)
@@ -2184,7 +2216,6 @@ function removeSpirit(params)
     found = false
     for _,data in pairs(spiritChoices) do
         if data.guid == params.spirit.guid then
-            spiritChoicesLength = spiritChoicesLength - 1
             found = true
             break
         end

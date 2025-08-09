@@ -1966,7 +1966,7 @@ function setupGainSpiritChoices(obj, choices)
         table.insert(buttons, {
             tag = "Text",
             attributes = {
-                color="#FFFF00",
+                color = "#FFFF00",
                 text = "No other spirits available.",
                 fontSize = "44",
                 minWidth = "800",

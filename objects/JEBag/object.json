@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -41.45,
-    "posY": 0.9635,
-    "posZ": 60.05,
+    "posX": -39.2724,
+    "posY": 0.96,
+    "posZ": 59.8536,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -69,18 +69,18 @@
   "AttachedDecals": [
     {
       "Transform": {
-        "posX": -0.0169,
+        "posX": 0.0226,
         "posY": 1.0808,
-        "posZ": -0.0323,
+        "posZ": 0.0471,
         "rotX": 90.0,
-        "rotY": 179.6668,
+        "rotY": 179.3336,
         "rotZ": 0.0,
         "scaleX": 1.8853,
         "scaleY": 1.4555,
         "scaleZ": 7.3492
       },
       "CustomDecal": {
-        "Name": "aaaaa",
+        "Name": "a",
         "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/11938627119964598682/6CE51A1D7541FA22E2C9CDF49B59605E86492E07/",
         "Size": 1.0
       }

@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -41.45,
-    "posY": 0.9635,
-    "posZ": 61.4,
+    "posX": -40.6224,
+    "posY": 0.96,
+    "posZ": 61.2036,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -66,11 +66,11 @@
   "AttachedDecals": [
     {
       "Transform": {
-        "posX": -0.0258,
+        "posX": 0.0274,
         "posY": 1.0808,
-        "posZ": -0.0085,
+        "posZ": 0.0025,
         "rotX": 90.0,
-        "rotY": 179.6668,
+        "rotY": 179.3336,
         "rotZ": 0.0,
         "scaleX": 1.7861,
         "scaleY": 1.7611,

@@ -11,7 +11,7 @@
     "scaleY": 0.1237,
     "scaleZ": 0.6246
   },
-  "Nickname": "Thematic Redo Boards",
+  "Nickname": "Thematic Boards (Recoloured)",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -63,20 +63,40 @@
   "Bag": {
     "Order": 0
   },
+  "AttachedDecals": [
+    {
+      "Transform": {
+        "posX": 0.0207,
+        "posY": 1.0808,
+        "posZ": -0.0414,
+        "rotX": 90.0,
+        "rotY": 179.3336,
+        "rotZ": 0.0,
+        "scaleX": 1.6202,
+        "scaleY": 1.601,
+        "scaleZ": 8.0841
+      },
+      "CustomDecal": {
+        "Name": "a",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
+        "Size": 1.0
+      }
+    }
+  ],
   "ChildObjects": [
     {
-      "GUID": "250025",
+      "GUID": "0b3934",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0,
-        "posY": 0.6181,
+        "posX": -0.0014,
+        "posY": 0.4778,
         "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 15.0,
+        "rotY": 20.0,
         "rotZ": 0.0,
-        "scaleX": 0.466,
-        "scaleY": 2.224,
-        "scaleZ": 0.466
+        "scaleX": 0.4323,
+        "scaleY": 2.708,
+        "scaleZ": 0.4323
       },
       "Nickname": "",
       "Description": "",
@@ -91,6 +111,9 @@
         "g": 0.8157,
         "b": 0.8157
       },
+      "Tags": [
+        "Thematic"
+      ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
@@ -106,40 +129,20 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1617312248751944356/231B959FF1D7AB85611A7EE9A43440A742EE3C97/",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/15037723417491722401/479445306C868008A27AC22BC48B0535E95993ED/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
           "Thickness": 0.395,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 7.0,
           "StandUp": false,
           "Stackable": false
         }
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "AttachedDecals": [
-        {
-          "Transform": {
-            "posX": -0.0432,
-            "posY": 0.2338,
-            "posZ": -0.2107,
-            "rotX": 90.0,
-            "rotY": 164.6668,
-            "rotZ": 0.0,
-            "scaleX": 3.4769,
-            "scaleY": 3.4357,
-            "scaleZ": 3.6349
-          },
-          "CustomDecal": {
-            "Name": "a",
-            "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
-            "Size": 1.0
-          }
-        }
-      ]
+      "XmlUI": ""
     }
   ]
 }

@@ -60,63 +60,24 @@
     },
     "CastShadows": true
   },
-  "ChildObjects": [
+  "AttachedDecals": [
     {
-      "GUID": "a1eb82",
-      "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0,
-        "posY": 0.2586,
-        "posZ": 0.0,
-        "rotX": 0.0,
-        "rotY": 0.0,
+        "posX": -0.0066,
+        "posY": 1.0831,
+        "posZ": -0.0176,
+        "rotX": 90.0,
+        "rotY": 179.6668,
         "rotZ": 0.0,
-        "scaleX": 0.5256,
-        "scaleY": 8.3041,
-        "scaleZ": 0.5256
+        "scaleX": 1.7183,
+        "scaleY": 1.7606,
+        "scaleZ": 9.1362
       },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "AltLookAngle": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "ColorDiffuse": {
-        "r": 0.5677,
-        "g": 0.5601,
-        "b": 0.56
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1923617670560123891/749472D8BCD283AD7C72A0D77619A977C7E66DBC/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": false
-        }
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      "CustomDecal": {
+        "Name": "aaa",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/16855392090099851067/06656E466E811D1216EC7FA3B9956BF9A1758C92/",
+        "Size": 1.0
+      }
     }
   ]
 }

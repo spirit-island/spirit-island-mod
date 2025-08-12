@@ -1,17 +1,17 @@
 {
-  "Name": "Custom_Model_Infinite_Bag",
+  "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -49.547,
-    "posY": 0.9602,
-    "posZ": 60.05,
+    "posX": -46.85,
+    "posY": 0.9646,
+    "posZ": 61.4,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248,
-    "scaleY": 0.1204,
-    "scaleZ": 0.6248
+    "scaleX": 0.6246,
+    "scaleY": 0.1237,
+    "scaleZ": 0.6246
   },
-  "Nickname": "1 Energy Tokens",
+  "Nickname": "Thematic Redo Boards",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -47,7 +47,7 @@
     "ColliderURL": "",
     "Convex": true,
     "MaterialIndex": 3,
-    "TypeIndex": 7,
+    "TypeIndex": 6,
     "CustomShader": {
       "SpecularColor": {
         "r": 1.0,
@@ -58,22 +58,25 @@
       "SpecularSharpness": 2.0,
       "FresnelStrength": 0.0
     },
-    "CastShadows": true
+    "CastShadows": false
+  },
+  "Bag": {
+    "Order": 0
   },
   "ChildObjects": [
     {
-      "GUID": "8e3390",
-      "Name": "Custom_Model",
+      "GUID": "250025",
+      "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.2069,
+        "posY": 0.6181,
         "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 0.0,
+        "rotY": 15.0,
         "rotZ": 0.0,
-        "scaleX": 0.8003,
-        "scaleY": 8.2991,
-        "scaleZ": 0.8003
+        "scaleX": 0.466,
+        "scaleY": 2.224,
+        "scaleZ": 0.466
       },
       "Nickname": "",
       "Description": "",
@@ -84,9 +87,9 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
+        "r": 0.8157,
+        "g": 0.8157,
+        "b": 0.8157
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -97,24 +100,46 @@
       "MeasureMovement": false,
       "DragSelectable": true,
       "Autoraise": true,
-      "Sticky": false,
+      "Sticky": true,
       "Tooltip": true,
       "GridProjection": false,
       "HideWhenFaceDown": false,
       "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
-        "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1753560381472358304/A200B815400F7CF50C47E4EBE30AA806B52787A7/",
-        "NormalURL": "",
-        "ColliderURL": "",
-        "Convex": true,
-        "MaterialIndex": 1,
-        "TypeIndex": 5,
-        "CastShadows": true
+      "CustomImage": {
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1617312248751944356/231B959FF1D7AB85611A7EE9A43440A742EE3C97/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.395,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": ""
+      "XmlUI": "",
+      "AttachedDecals": [
+        {
+          "Transform": {
+            "posX": -0.0432,
+            "posY": 0.2338,
+            "posZ": -0.2107,
+            "rotX": 90.0,
+            "rotY": 164.6668,
+            "rotZ": 0.0,
+            "scaleX": 3.4769,
+            "scaleY": 3.4357,
+            "scaleZ": 3.6349
+          },
+          "CustomDecal": {
+            "Name": "a",
+            "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
+            "Size": 1.0
+          }
+        }
+      ]
     }
   ]
 }

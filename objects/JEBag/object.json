@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -39.2724,
-    "posY": 0.96,
-    "posZ": 59.8536,
+    "posX": -41.45,
+    "posY": 0.9635,
+    "posZ": 60.05,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -66,24 +66,63 @@
   "Bag": {
     "Order": 0
   },
-  "AttachedDecals": [
+  "ChildObjects": [
     {
+      "GUID": "20e4e9",
+      "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0226,
-        "posY": 1.0808,
-        "posZ": 0.0471,
-        "rotX": 90.0,
-        "rotY": 179.3336,
+        "posX": 0.0,
+        "posY": 0.225,
+        "posZ": 0.0,
+        "rotX": 0.0,
+        "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 1.8853,
-        "scaleY": 1.4555,
-        "scaleZ": 7.3492
+        "scaleX": 0.5257,
+        "scaleY": 8.0825,
+        "scaleZ": 0.5257
       },
-      "CustomDecal": {
-        "Name": "a",
-        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/11938627119964598682/6CE51A1D7541FA22E2C9CDF49B59605E86492E07/",
-        "Size": 1.0
-      }
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.5677,
+        "g": 0.5601,
+        "b": 0.56
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1923617670560125783/E92D9B9400133A76F19910EEEE53FA3F5DA5E2BF/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
     }
   ]
 }

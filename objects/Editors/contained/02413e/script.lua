@@ -1,5 +1,6 @@
 local rescan
 local currentSpirit
+local currentSpiritName
 
 function onLoad()
     self.createButton({
@@ -24,6 +25,10 @@ function scan()
         return
     end
     currentSpirit = objs[1]
+    currentSpiritName = currentSpirit.getName()
+    if currentSpiritName == "" then
+        currentSpiritName = "an unnamed Spirit"
+    end
     if rescan or #self.getButtons() == 1 then
         rescan = false
         createButtons(currentSpirit)
@@ -122,11 +127,15 @@ function updateElements(player)
     state.trackElements = trackElements
     currentSpirit.script_state = JSON.encode(state)
     currentSpirit.setTable("trackElements", trackElements)
-    player.broadcast("Updated Elements for " .. currentSpirit.getName(), Color.SoftBlue)
+    player.broadcast("Updated Elements for " .. currentSpiritName, Color.SoftBlue)
 end
 
-function populateElements()
+function populateElements(player)
     if currentSpirit == nil then
+        return
+    end
+    if currentSpirit.is_face_down then
+        player.broadcast("Flip the Spirit Panel first", Color.SoftYellow)
         return
     end
     local trackElements = currentSpirit.getTable("trackElements")
@@ -182,11 +191,15 @@ function updateEnergy(player)
     currentSpirit.script_state = JSON.encode(state)
     currentSpirit.setTable("trackEnergy", trackEnergy)
     currentSpirit.setTable("bonusEnergy", bonusEnergy)
-    player.broadcast("Updated Energy for " .. currentSpirit.getName(), Color.SoftBlue)
+    player.broadcast("Updated Energy for " .. currentSpiritName, Color.SoftBlue)
 end
 
-function populateEnergy()
+function populateEnergy(player)
     if currentSpirit == nil then
+        return
+    end
+    if currentSpirit.is_face_down then
+        player.broadcast("Flip the Spirit Panel first", Color.SoftYellow)
         return
     end
     local trackEnergy = currentSpirit.getTable("trackEnergy")
@@ -246,12 +259,15 @@ function updateThreshold(player)
     state.thresholds = thresholds
     currentSpirit.script_state = JSON.encode(state)
     currentSpirit.setTable("thresholds", thresholds)
-
-    player.broadcast("Updated Elemental Thresholds for " .. currentSpirit.getName(), Color.SoftBlue)
+    player.broadcast("Updated Elemental Thresholds for " .. currentSpiritName, Color.SoftBlue)
 end
 
-function populateThreshold()
+function populateThreshold(player)
     if currentSpirit == nil then
+        return
+    end
+    if currentSpirit.is_face_down then
+        player.broadcast("Flip the Spirit Panel first", Color.SoftYellow)
         return
     end
     local thresholds = currentSpirit.getTable("thresholds")
@@ -298,7 +314,7 @@ function updateReminder(player)
     if location == nil then
         opString = "Reset"
     end
-    player.broadcast(opString .. " Reminder for " .. currentSpirit.getName(), Color.SoftBlue)
+    player.broadcast(opString .. " Reminder for " .. currentSpiritName, Color.SoftBlue)
 end
 
 function populateReminder(player)
@@ -309,12 +325,10 @@ function populateReminder(player)
     if location == nil then
         return
     end
-
     if (location.field == "ImageURL" and currentSpirit.is_face_down) or (location.field == "ImageSecondaryURL" and not currentSpirit.is_face_down) then
         player.broadcast("Flip the Spirit Panel first", Color.SoftYellow)
         return
     end
-
     local reminderBag = getObjectFromGUID("76f826")
     reminderBag.takeObject{
         smooth = false,

@@ -1,5 +1,5 @@
 ---- Versioning
-version = "4.5.2"
+version = "4.5.3"
 versionGuid = "57d9fe"
 ---- Used with Spirit Board Scripts
 counterBag = "EnergyCounters"
@@ -2084,36 +2084,24 @@ end
 tableOffset = Vector(0,0.04,19.6)
 scriptWorkingCardC = false
 function MajorPowerC(obj, player_color, alt_click)
-    local cards = 4
-    if alt_click then
-        cards = 2
-    end
-    startDraftPowerCards({player = Player[player_color], major = true, count = cards})
+    local ignoreProgression = alt_click
+    startDraftPowerCards({player = Player[player_color], major = true, count = 4, ignoreProgression = ignoreProgression})
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
-    local cards = 4
     -- button is "-1"/"1" for left click/single touch
-    if math.abs(button) > 1 then
-        cards = 2
-    end
-    startDraftPowerCards({player = player, major = true, count = cards})
+    local ignoreProgression = math.abs(button) > 1
+    startDraftPowerCards({player = player, major = true, count = 4, ignoreProgression = ignoreProgression})
 end
 function MinorPowerC(obj, player_color, alt_click)
-    local cards = 4
-    if alt_click then
-        cards = 6
-    end
-    startDraftPowerCards({player = Player[player_color], major = false, count = cards})
+    local ignoreProgression = alt_click
+    startDraftPowerCards({player = Player[player_color], major = false, count = 4, ignoreProgression = ignoreProgression})
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
-    local cards = 4
     -- button is "-1"/"1" for left click/single touch
-    if math.abs(button) > 1 then
-        cards = 6
-    end
-    startDraftPowerCards({player = player, major = false, count = cards})
+    local ignoreProgression = math.abs(button) > 1
+    startDraftPowerCards({player = player, major = false, count = 4, ignoreProgression = ignoreProgression})
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
@@ -2250,6 +2238,28 @@ function endDraftPowerCards()
     scriptWorkingCardC = false
 end
 function startDraftPowerCards(params)
+    if not params.ignoreProgression then
+        -- Check if the player has progression cards left
+        for _,progression in pairs(getObjectsWithTag("Progression")) do
+            for _,zone in pairs(progression.getZones()) do
+                if zone == selectedColors[params.player.color].zone then
+                    local card
+                    if progression.type == "Deck" then
+                        card = progression.takeObject()
+                    else
+                        card = progression
+                    end
+                    card.deal(1, params.player.color)
+                    card.removeTag("Progression")
+                    if card.hasTag("Major") then
+                        params.player.broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
+                    end
+                    return
+                end
+            end
+        end
+    end
+
     -- protection from double clicking
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
@@ -2336,7 +2346,7 @@ function PickPower(cardo,playero,alt_click)
     local tablePos = nil
     for _,playerTable in pairs(playerTables) do
         local pos = playerTable.getPosition()
-        for _,obj in ipairs(getPowerZoneObjects(pos)) do
+        for _,obj in ipairs(getPowerDraftObjects(pos)) do
             if obj == cardo then
                 tablePos = pos
                 break
@@ -2361,8 +2371,8 @@ function PickPower(cardo,playero,alt_click)
 end
 function DiscardPowerCards(tablePos)
     local discardTable = {}
-    local cardZoneObjects = getPowerZoneObjects(tablePos)
-    for i, obj in ipairs(cardZoneObjects) do
+    local powerDraftObjects = getPowerDraftObjects(tablePos)
+    for i, obj in ipairs(powerDraftObjects) do
         forgetPowerCard({card = obj, discardHeight = i})
         obj.clearButtons()
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
@@ -2443,7 +2453,7 @@ function removeButtons(params)
     end
 end
 
-function getPowerZoneObjects(tablePos)
+function getPowerDraftObjects(tablePos)
     local hits = upCastPosSizRot(
         tableOffset + tablePos, -- pos
         Vector(15,0.1,4),  -- size
@@ -2454,8 +2464,8 @@ function getPowerZoneObjects(tablePos)
 end
 function addGainPowerCardButtons()
     for color, _ in pairs(selectedColors) do
-        local cardZoneObjects = getPowerZoneObjects(playerTables[color].getPosition())
-        for _, obj in ipairs(cardZoneObjects) do
+        local powerDraftObjects = getPowerDraftObjects(playerTables[color].getPosition())
+        for _, obj in ipairs(powerDraftObjects) do
             if obj.type == "Card" then
                 CreatePickPowerButton(obj, "PickPower")
             end
@@ -7276,10 +7286,6 @@ function toggleButtonUI(player)
     toggleUI("panelReady", player.color, colorEnabled)
 end
 function togglePlayerControls(player)
-    if not player.admin then
-        player.broadcast("Only promoted players can toggle seat controls.")
-        return
-    end
     showPlayerButtons = not showPlayerButtons
     updateColorPickButtons()
     updateSwapButtons()
@@ -7528,7 +7534,7 @@ function swapPlayerAreaObjects(a, b, colorA, colorB)
                     end
                 end
             end
-            for _,obj in pairs(getPowerZoneObjects(playerTables[color].getPosition())) do
+            for _,obj in pairs(getPowerDraftObjects(playerTables[color].getPosition())) do
                 if not guids[obj.guid] then
                     table.insert(t, obj)
                     guids[obj.guid] = true
@@ -8082,6 +8088,21 @@ function onObjectDestroy(obj)
             end
         end
     end
+end
+function onObjectNumberTyped(obj, player_color, number)
+    -- Check to see if the object is a card in power draft
+    for _,playerTable in pairs(playerTables) do
+        local pos = playerTable.getPosition()
+        for _,powerDraftObj in ipairs(getPowerDraftObjects(pos)) do
+            if powerDraftObj == obj then
+                PickPower(obj, player_color, false)
+                return true
+            end
+        end
+    end
+
+    -- If not a power draft card, then do normal functionality
+    return false
 end
 function getReminderLocation(params)
     local obj = params.obj

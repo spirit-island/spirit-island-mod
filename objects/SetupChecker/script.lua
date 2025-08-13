@@ -1975,6 +1975,7 @@ function setupGainSpiritChoices(obj, choices)
         })
     end
     if count > 0 then
+        table.insert(buttons, {tag = "Text"})
         table.insert(buttons, {
             tag = "Button",
             attributes = {
@@ -1982,9 +1983,9 @@ function setupGainSpiritChoices(obj, choices)
                 id = "reroll! " .. obj.guid,
                 text = "Reroll Spirit Choices",
                 onClick = "SetupChecker/gainSpirit(reroll)",
-                fontSize = "44",
-                minWidth = "800",
-                minHeight = "110",
+                fontSize = "36",
+                minWidth = "400",
+                minHeight = "80",
             },
         })
     end

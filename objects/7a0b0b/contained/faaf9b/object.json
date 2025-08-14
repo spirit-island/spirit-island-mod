@@ -1,0 +1,56 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -48.4996,
+    "posY": 1.9598,
+    "posZ": 91.9571,
+    "rotX": 0.9884,
+    "rotY": 184.4243,
+    "rotZ": 359.281,
+    "scaleX": 6.65,
+    "scaleY": 1.0,
+    "scaleZ": 6.65
+  },
+  "Nickname": "NW",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.8157,
+    "g": 0.8157,
+    "b": 0.8157
+  },
+  "Tags": [
+    "Thematic"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2488891055302045516/5106F3D0363C8BEE19BF279F80FFB5691718B5AB/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.395,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  }
+}

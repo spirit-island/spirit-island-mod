@@ -72,4 +72,3 @@ pieceMap = { {
 "Disease",
 "Beasts"
 }, }
-

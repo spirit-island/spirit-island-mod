@@ -1975,7 +1975,7 @@ function setupGainSpiritChoices(obj, choices)
         })
     end
     if count > 0 then
-        table.insert(buttons, {tag = "Text"})
+        table.insert(buttons, {tag = "Text"})  -- Empty text to offset the reroll button from the spirit choices.
         table.insert(buttons, {
             tag = "Button",
             attributes = {

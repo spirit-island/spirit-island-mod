@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -45.5,
-    "posY": 0.9635,
-    "posZ": 61.4,
+    "posX": -44.67,
+    "posY": 0.96,
+    "posZ": 61.2,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -65,18 +65,18 @@
   },
   "ChildObjects": [
     {
-      "GUID": "17155d",
+      "GUID": "71e7d2",
       "Name": "Custom_Token",
       "Transform": {
         "posX": 0.0,
-        "posY": 0.6181,
+        "posY": 0.8084,
         "posZ": 0.0,
-        "rotX": 0.0,
-        "rotY": 15.0,
-        "rotZ": 0.0,
-        "scaleX": 0.466,
-        "scaleY": 2.224,
-        "scaleZ": 0.466
+        "rotX": 359.8054,
+        "rotY": 20.0,
+        "rotZ": 0.5175,
+        "scaleX": 0.4323,
+        "scaleY": 1.651,
+        "scaleZ": 0.4323
       },
       "Nickname": "",
       "Description": "",
@@ -91,6 +91,9 @@
         "g": 0.8157,
         "b": 0.8157
       },
+      "Tags": [
+        "Thematic"
+      ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
@@ -106,13 +109,13 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1617312248751944356/231B959FF1D7AB85611A7EE9A43440A742EE3C97/",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/15037723417491722401/479445306C868008A27AC22BC48B0535E95993ED/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
           "Thickness": 0.395,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 7.0,
           "StandUp": false,
           "Stackable": false
         }

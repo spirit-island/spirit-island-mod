@@ -1,17 +1,17 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -41.9724,
+    "posX": -46.02,
     "posY": 0.96,
-    "posZ": 61.2036,
+    "posZ": 61.2,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 0.6248,
-    "scaleY": 0.1204,
-    "scaleZ": 0.6248
+    "scaleX": 0.6246,
+    "scaleY": 0.1237,
+    "scaleZ": 0.6246
   },
-  "Nickname": "Extra Balanced Boards",
+  "Nickname": "Thematic Boards (Recoloured)",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -58,25 +58,45 @@
       "SpecularSharpness": 2.0,
       "FresnelStrength": 0.0
     },
-    "CastShadows": true
+    "CastShadows": false
   },
   "Bag": {
     "Order": 0
   },
+  "AttachedDecals": [
+    {
+      "Transform": {
+        "posX": 0.0207,
+        "posY": 1.0808,
+        "posZ": -0.0414,
+        "rotX": 90.0,
+        "rotY": 179.3336,
+        "rotZ": 0.0,
+        "scaleX": 1.6202,
+        "scaleY": 1.601,
+        "scaleZ": 8.0841
+      },
+      "CustomDecal": {
+        "Name": "a",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
+        "Size": 1.0
+      }
+    }
+  ],
   "ChildObjects": [
     {
-      "GUID": "8a3ec4",
+      "GUID": "0b3934",
       "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0,
-        "posY": 0.0,
+        "posX": -0.0014,
+        "posY": 0.4778,
         "posZ": 0.0,
         "rotX": 0.0,
-        "rotY": 345.0,
+        "rotY": 20.0,
         "rotZ": 0.0,
-        "scaleX": 0.4613,
-        "scaleY": 5.4728,
-        "scaleZ": 0.4613
+        "scaleX": 0.4323,
+        "scaleY": 2.708,
+        "scaleZ": 0.4323
       },
       "Nickname": "",
       "Description": "",
@@ -91,6 +111,9 @@
         "g": 0.8157,
         "b": 0.8157
       },
+      "Tags": [
+        "Thematic"
+      ],
       "LayoutGroupSortIndex": 0,
       "Value": 0,
       "Locked": true,
@@ -106,40 +129,20 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "CustomImage": {
-        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2308721072245056835/6AD4A0AD972B5E1E9F068D15564B26CAB74316A5/",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/15037723417491722401/479445306C868008A27AC22BC48B0535E95993ED/",
         "ImageSecondaryURL": "",
         "ImageScalar": 1.0,
         "WidthScale": 0.0,
         "CustomToken": {
           "Thickness": 0.395,
-          "MergeDistancePixels": 15.0,
+          "MergeDistancePixels": 7.0,
           "StandUp": false,
           "Stackable": false
         }
       },
       "LuaScript": "",
       "LuaScriptState": "",
-      "XmlUI": "",
-      "AttachedDecals": [
-        {
-          "Transform": {
-            "posX": -0.0349,
-            "posY": 0.2127,
-            "posZ": -0.0188,
-            "rotX": 90.0,
-            "rotY": 195.4998,
-            "rotZ": 0.0,
-            "scaleX": 3.5114,
-            "scaleY": 3.4697,
-            "scaleZ": 1.5227
-          },
-          "CustomDecal": {
-            "Name": "Dirty 2 Boat",
-            "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2308721072245362039/488B18C9D38481BDE5A13B0001D297437884D699/",
-            "Size": 1.0
-          }
-        }
-      ]
+      "XmlUI": ""
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -40.1,
-    "posY": 0.9602,
-    "posZ": 60.05,
+    "posX": -40.6224,
+    "posY": 0.96,
+    "posZ": 59.8536,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -66,63 +66,24 @@
   "Bag": {
     "Order": 0
   },
-  "ChildObjects": [
+  "AttachedDecals": [
     {
-      "GUID": "60ea2f",
-      "Name": "Custom_Token",
       "Transform": {
-        "posX": 0.0,
-        "posY": 0.2586,
-        "posZ": 0.0,
-        "rotX": 0.0,
-        "rotY": 0.0,
+        "posX": 0.0053,
+        "posY": 1.0831,
+        "posZ": -0.0057,
+        "rotX": 90.0,
+        "rotY": 179.3336,
         "rotZ": 0.0,
-        "scaleX": 0.5256,
-        "scaleY": 8.3041,
-        "scaleZ": 0.5256
+        "scaleX": 1.7606,
+        "scaleY": 1.7606,
+        "scaleZ": 9.1362
       },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "AltLookAngle": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "ColorDiffuse": {
-        "r": 0.5677,
-        "g": 0.5601,
-        "b": 0.56
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": false,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1923617670560125177/ADEA319BA9231EE4DF119B471B3AED0499487A5B/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.2,
-          "MergeDistancePixels": 15.0,
-          "StandUp": false,
-          "Stackable": false
-        }
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
+      "CustomDecal": {
+        "Name": "a",
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/13648236223386587918/5705BC5520586EA5A17AC786D0A93EBF530EBE9D/",
+        "Size": 1.0
+      }
     }
   ]
 }

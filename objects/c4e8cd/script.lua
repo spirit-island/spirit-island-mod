@@ -477,7 +477,7 @@ end
 function scanCards()
     for zoneGUID,_ in pairs(destinyPlayers) do
         destinyPlayers[zoneGUID].cards = {}
-        for _,card in pairs(Global.call("getPowerZoneObjects", getTablePos(zoneGUID))) do
+        for _,card in pairs(Global.call("getPowerDraftObjects", getTablePos(zoneGUID))) do
             destinyPlayers[zoneGUID].cards[card.guid] = false
         end
     end

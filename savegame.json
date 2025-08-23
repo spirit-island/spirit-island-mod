@@ -1,7 +1,7 @@
 {
   "SaveName": "Spirit Island [By MJ & iakona]",
-  "EpochTime": 1754947918,
-  "Date": "8/11/2025 10:31:58 PM",
+  "EpochTime": 1755976639,
+  "Date": "8/23/2025 8:17:19 PM",
   "VersionNumber": "v13.3",
   "GameMode": "Spirit Island [By MJ & iakona]",
   "GameType": "Game",
@@ -288,6 +288,18 @@
       {
         "displayed": "Requires Apocrypha",
         "normalized": "requires_apocrypha"
+      },
+      {
+        "displayed": "Fast",
+        "normalized": "fast"
+      },
+      {
+        "displayed": "Slow",
+        "normalized": "slow"
+      },
+      {
+        "displayed": "Presence",
+        "normalized": "presence"
       }
     ]
   },

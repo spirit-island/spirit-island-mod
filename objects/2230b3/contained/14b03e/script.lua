@@ -1,2 +1,2 @@
-elements="01110000"
-energy=1
+elements="01110100"
+energy=2

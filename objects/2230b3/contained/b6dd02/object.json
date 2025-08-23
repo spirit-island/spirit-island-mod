@@ -42,8 +42,8 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/14170847386118415/78E57C380DC814C8891F19FA6A199A909BE48955/",
-    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/14173935050251672/8D891F0585DE0BFBD601D67E3256677FCE547B0D/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/11029887912212401268/3525E0AB2E7EF3F5A9A95870528AA2D83DE2162B/",
+    "ImageSecondaryURL": "https://steamusercontent-a.akamaihd.net/ugc/17826483561653535420/815F600DD8104F6CC28FB936C789700C8B3840E6/",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomTile": {
@@ -98,6 +98,13 @@
     },
     {
       "Position": {
+        "x": -1.3438999652862549,
+        "y": 0.20000000298023224,
+        "z": -0.38600000739097595
+      }
+    },
+    {
+      "Position": {
         "x": -0.02239999920129776,
         "y": 0.20000000298023224,
         "z": 0.004999999888241291
@@ -112,23 +119,16 @@
     },
     {
       "Position": {
-        "x": -0.4745999872684479,
+        "x": -0.46459999680519104,
         "y": 0.20000000298023224,
         "z": 0.004999999888241291
       }
     },
     {
       "Position": {
-        "x": -0.692300021648407,
+        "x": -0.6822999715805054,
         "y": 0.20000000298023224,
-        "z": -0.11320000141859055
-      }
-    },
-    {
-      "Position": {
-        "x": -0.6934999823570251,
-        "y": 0.20000000298023224,
-        "z": 0.11389999836683273
+        "z": 0.004999999888241291
       }
     },
     {

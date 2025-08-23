@@ -1,0 +1,118 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 148.7639,
+    "posY": 2.1692,
+    "posZ": 61.0478,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 6.65,
+    "scaleY": 1.0,
+    "scaleZ": 6.65
+  },
+  "Nickname": "SE",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.8157,
+    "g": 0.8157,
+    "b": 0.8157
+  },
+  "Tags": [
+    "Thematic"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": false,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/9346368888519341772/5D2C5968FB3546022DF07F31D90D8FDB7E8E797C/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.395,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  },
+  "States": {
+    "2": {
+      "GUID": "214c72",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 76.1239,
+        "posY": 1.05,
+        "posZ": 49.4834,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 6.65,
+        "scaleY": 1.0,
+        "scaleZ": 6.65
+      },
+      "Nickname": "SE",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Tags": [
+        "Thematic"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": false,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2488891055302066432/19E8CC2B341E20DA8C1B11D676433BED0232E56A/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.395,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "posMap = { {\n{x=-0.476439982652664, y=0.7, z=-0.846576988697052},\n{x=-0.677029669284821, y=0.7, z=-0.479827255010605},\n{x=-0.499185860157013, y=0.7, z=-0.240660056471825},\n{x=-0.287950724363327, y=0.7, z=-0.46979895234108},\n{x=-0.797838807106018, y=0.7, z=-0.812914431095123},\n{x=-0.496960997581482, y=0.7, z=-1.15207397937775}\n}, {\n{x=-0.887108981609344, y=0.7, z=0.150939211249352},\n{x=-0.915263056755066, y=0.7, z=0.427070885896683},\n{x=-1.09339082241058, y=0.7, z=-0.304082691669464},\n{x=-1.17643797397614, y=0.7, z=0.0193619709461927},\n{x=-1.2093220949173, y=0.7, z=0.336201399564743}\n}, {\n{x=-1.27021324634552, y=0.7, z=0.877427160739899},\n{x=-1.54654061794281, y=0.7, z=0.761852562427521},\n{x=-1.47999489307404, y=0.7, z=1.18035590648651},\n{x=-1.87687063217163, y=0.7, z=1.04542481899261}\n}, {\n{x=-0.703055202960968, y=0.7, z=1.0737931728363},\n{x=-0.365765780210495, y=0.7, z=0.923354029655457}\n}, {\n{x=0.146697700023651, y=0.7, z=0.451435327529907},\n{x=-0.145565435290337, y=0.7, z=0.358186006546021},\n{x=0.481399685144424, y=0.7, z=0.446400791406631}\n}, {\n{x=0.20429639518261, y=0.7, z=-0.145616888999939},\n{x=0.460346966981888, y=0.7, z=-0.524160623550415},\n{x=0.232368379831314, y=0.7, z=-0.780758619308472},\n{x=0.53088104724884, y=0.7, z=-0.859749972820282},\n{x=0.198630169034004, y=0.7, z=-0.448015451431274},\n{x=0.491766184568405, y=0.7, z=-0.186412498354912}\n}, {\n{x=0.456946462392807, y=0.7, z=0.970854341983795},\n{x=1.06588840484619, y=0.7, z=0.594260334968567},\n{x=0.707080066204071, y=0.7, z=0.857990622520447}\n}, {\n{x=1.20580470561981, y=0.7, z=-0.0865104719996452},\n{x=0.975817799568176, y=0.7, z=0.0511561594903469},\n{x=1.35671353340149, y=0.7, z=-0.34654712677002},\n{x=1.01383745670319, y=0.7, z=-0.416406482458115}\n}, {\n{x=1.474613904953, y=0.7, z=-0.825516521930695},\n{x=1.19929945468903, y=0.7, z=-1.09683918952942},\n{x=1.64464902877808, y=0.7, z=-1.12166404724121}\n}, }\n\npieceMap = { {\n\"Town\",\n\"Dahan\",\n\"Dahan\"\n}, {\n\"Dahan\",\n\"Dahan\"\n}, {\n\"Dahan\"\n}, {\n\n}, {\n\"Beasts\"\n}, {\n\"Dahan\",\n\"Disease\",\n\"Town\",\n\"Town\"\n}, {\n\"Explorer\"\n}, {\n\"Wilds\",\n\"Box Blight\"\n}, {\n\n}, }",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

@@ -144,7 +144,6 @@ genericDefendBag = "1716e3"
 StandardMapBag = "BalancedMapBag"
 ExtraMapBag = "1f095d"
 ThematicMapBag = "ThematicMapBag"
-ThematicRedoMapBag = "7a0b0b"
 -----
 cityHealth = "22928c"
 cityDamage = "d8b6c7"
@@ -844,7 +843,6 @@ function onLoad(saved_data)
     -----
     StandardMapBag = getObjectFromGUID(StandardMapBag)
     ExtraMapBag = getObjectFromGUID(ExtraMapBag)
-    ThematicRedoMapBag = getObjectFromGUID(ThematicRedoMapBag)
     ThematicMapBag = getObjectFromGUID(ThematicMapBag)
     seaTile = getObjectFromGUID(seaTile)
 
@@ -1041,7 +1039,7 @@ function readyCheck()
     end
 end
 function isThematic()
-    return boardLayout == "Thematic" or boardLayout == "Thematic Redo" or boardLayout == "Custom Thematic"
+    return boardLayout == "Thematic" or boardLayout == "Custom Thematic"
 end
 ---- Setup Buttons Section
 function nullFunc()
@@ -3369,13 +3367,15 @@ function BoardSetup()
     local maps = getMapTiles()
     if #maps == 0 then
         if isThematic() then
-            if SetupChecker.getVar("optionalThematicRedo") then
-                boardLayout = "Thematic Redo"
-            end
             if SetupChecker.getVar("optionalThematicPermute") then
                 MapPlacen(getPermutedThematicLayout())
             else
-                MapPlacen(boardLayouts[numBoards][boardLayout])
+                local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
+                if optionalThematicRedo then
+                    MapPlacen(boardLayouts[numBoards][boardLayout][2])
+                else
+                    MapPlacen(boardLayouts[numBoards][boardLayout][1])
+                end
             end
         else
             StandardMapBag.shuffle()
@@ -4335,24 +4335,28 @@ scaleFactors = {
 }
 boardLayouts = {
     { -- 1 Board
-        ["Thematic Redo"] = {
-            { pos = Vector(-7.42, 1.05, 16.43), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-        },
         ["Thematic"] = {
-            { pos = Vector(-17.73, 1.05, 7.00), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            {
+                { pos = Vector(-17.73, 1.05, 7.00), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            },
+            { -- thematic redo
+                { pos = Vector(-7.42, 1.05, 16.43), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            }
         },
         ["Balanced"] = {
-            { pos = Vector(-5.11, 1.05, 20.91), rot = Vector(0.00, 180.00, 0.00)},
+            { pos = Vector(-5.11, 1.05, 20.91), rot = Vector(0.00, 180.00, 0.00) },
         },
     },
     { -- 2 Board
-        ["Thematic Redo"] = {
-            { pos = Vector(7.73, 1.05, 15.21), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(-12.43, 1.05, 14.93), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-        },
         ["Thematic"] = {
-            { pos = Vector(-17.52, 1.04, 7.08), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(2.39, 1.05, 8.03), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            {
+                { pos = Vector(2.39, 1.05, 8.03), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(-17.52, 1.06, 7.08), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            },
+            { -- thematic redo
+                { pos = Vector(7.73, 1.05, 15.21), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(-12.43, 1.05, 14.93), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+            }
         },
         ["Balanced"] = {
             { pos = Vector(-6.57, 1.05, 16.92), rot = Vector(0.00, 0.00, 0.00) },
@@ -4380,15 +4384,17 @@ boardLayouts = {
         },
     },
     { -- 3 Board
-        ["Thematic Redo"] = {
-            { pos = Vector(10.41, 1.05, 12.42), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(-9.75, 1.05, 12.14), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(0.31, 1.05, 29.79), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-        },
         ["Thematic"] = {
-            { pos = Vector(-10.96, 1.04, 5.14), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(8.95, 1.05, 6.09), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(-0.73, 1.07, 22.41), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            {
+                { pos = Vector(8.95, 1.05, 6.09), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(-10.96, 1.06, 5.14), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(-0.73, 1.07, 22.41), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            },
+            { -- thematic redo
+                { pos = Vector(10.41, 1.05, 12.42), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(-9.75, 1.05, 12.14), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(0.31, 1.05, 29.79), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+            }
         },
         ["Balanced"] = {
             { pos = Vector(-6.47, 1.05, 25.50), rot = Vector(0.00, 120.00, 0.00) },
@@ -4407,17 +4413,19 @@ boardLayouts = {
         },
     },
     { -- 4 Board
-        ["Thematic Redo"] = {
-            { pos = Vector(22.67, 1.05, 14.26), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(2.51, 1.05, 13.98), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(12.58, 1.05, 31.63), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(-7.58, 1.05, 31.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-        },
         ["Thematic"] = {
-            { pos = Vector(-6.31, 1.06, 23.88), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(13.83, 1.07, 24.57), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(3.60, 1.04, 7.30), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(23.51, 1.05, 8.25), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+            {
+                { pos = Vector(23.51, 1.05, 8.25), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(3.60, 1.06, 7.30), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(13.83, 1.07, 24.57), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+                { pos = Vector(-6.31, 1.08, 23.88), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            },
+            { -- thematic redo
+                { pos = Vector(22.67, 1.05, 14.26), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(2.51, 1.05, 13.98), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(12.58, 1.05, 31.63), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+                { pos = Vector(-7.58, 1.05, 31.35), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            }
         },
         ["Balanced"] = {
             { pos = Vector(17.54, 1.05, 16.10), rot = Vector(0.00, 0.00, 0.00) },
@@ -4439,19 +4447,21 @@ boardLayouts = {
         },
     },
     { -- 5 Board
-        ["Thematic Redo"] = {
-            { pos = Vector(28.41, 1.05, 27.72), rot = Vector(0.00, 180.01, 0.00), board = "E" },
-            { pos = Vector(8.25, 1.05, 27.45), rot = Vector(0.00, 179.96, 0.00), board = "W" },
-            { pos = Vector(18.32, 1.05, 45.09), rot = Vector(0.00, 180.01, 0.00), board = "NE" },
-            { pos = Vector(-1.84, 1.05, 44.81), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(38.51, 1.05, 10.35), rot = Vector(0.00, 180.00, 359.94), board = "SE" },
-        },
         ["Thematic"] = {
-            { pos = Vector(39.81, 1.03, 6.04), rot = Vector(0.00, 180.00, 0.01), board = "SE" },
-            { pos = Vector(30.42, 1.05, 23.39), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(20.74, 1.07, 39.71), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(10.51, 1.04, 22.44), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(0.60, 1.06, 39.02), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            {
+                { pos = Vector(30.42, 1.05, 23.39), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(10.51, 1.06, 22.44), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(20.74, 1.07, 39.71), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+                { pos = Vector(0.60, 1.08, 39.02), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+                { pos = Vector(39.81, 1.09, 6.04), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+            },
+            { -- thematic redo
+                { pos = Vector(28.41, 1.05, 27.72), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(8.25, 1.05, 27.45), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(18.32, 1.05, 45.09), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+                { pos = Vector(-1.84, 1.05, 44.81), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+                { pos = Vector(38.51, 1.05, 10.35), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+            }
         },
         ["Balanced"] = {
             { pos = Vector(23.69, 1.05, 14.13), rot = Vector(0.00, 0.00, 0.00) },
@@ -4483,28 +4493,30 @@ boardLayouts = {
         },
         ["Meeple"] = {
             { pos = Vector(14.02, 1.05, 18.02), rot = Vector(0.00, 150.00, 0.00) },
-            { pos = Vector(31.59, 1.06, 17.89), rot = Vector(0.00, 90.00, 0.00) },
+            { pos = Vector(31.59, 1.05, 17.89), rot = Vector(0.00, 90.00, 0.00) },
             { pos = Vector(5.35, 1.05, 33.22), rot = Vector(0.00, 210.00, 0.00) },
             { pos = Vector(40.55, 1.05, 33.07), rot = Vector(0.00, 30.00, 0.00) },
             { pos = Vector(22.95, 1.05, 43.25), rot = Vector(0.00, 210.00, 0.00) },
         },
     },
     { -- 6 Board
-        ["Thematic Redo"] = {
-            { pos = Vector(26.49, 1.04, 10.07), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
-            { pos = Vector(46.65, 1.04, 10.35), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
-            { pos = Vector(6.30, 1.04, 44.81), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
-            { pos = Vector(26.46, 1.04, 45.09), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(16.39, 1.04, 27.45), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(36.55, 1.04, 27.72), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-        },
         ["Thematic"] = {
-            { pos = Vector(51.37, 1.03, 6.20), rot = Vector(0.00, 180.00, 0.01), board = "SE" },
-            { pos = Vector(31.76, 1.02, 5.69), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
-            { pos = Vector(41.98, 1.05, 23.55), rot = Vector(0.00, 180.00, 0.00), board = "E" },
-            { pos = Vector(22.07, 1.04, 22.60), rot = Vector(0.00, 180.00, 0.00), board = "W" },
-            { pos = Vector(32.30, 1.07, 39.87), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
-            { pos = Vector(12.16, 1.06, 39.18), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+            {
+                { pos = Vector(41.98, 1.05, 23.55), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(22.07, 1.06, 22.60), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(32.30, 1.07, 39.87), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+                { pos = Vector(12.16, 1.08, 39.18), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+                { pos = Vector(51.37, 1.09, 6.20), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+                { pos = Vector(31.76, 1.10, 5.69), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
+            },
+            { -- thematic redo
+                { pos = Vector(36.55, 1.05, 27.72), rot = Vector(0.00, 180.00, 0.00), board = "E" },
+                { pos = Vector(16.39, 1.05, 27.45), rot = Vector(0.00, 180.00, 0.00), board = "W" },
+                { pos = Vector(26.46, 1.05, 45.09), rot = Vector(0.00, 180.00, 0.00), board = "NE" },
+                { pos = Vector(6.30, 1.05, 44.81), rot = Vector(0.00, 180.00, 0.00), board = "NW" },
+                { pos = Vector(46.65, 1.05, 10.35), rot = Vector(0.00, 180.00, 0.00), board = "SE" },
+                { pos = Vector(26.49, 1.05, 10.07), rot = Vector(0.00, 180.00, 0.00), board = "SW" },
+            }
         },
         ["Balanced"] = {
             { pos = Vector(56.74, 1.05, 19.56), rot = Vector(0.00, 330.00, 0.00) },
@@ -4540,15 +4552,14 @@ boardLayouts = {
         },
     },
     { -- 7 Board
-        ["Thematic Redo"] = {},
         ["Thematic"] = {},
         ["Balanced"] = {
-            { pos = Vector(51.80, 1.05, 46.82), rot = Vector(0.07, 180.00, 359.64) },
-            { pos = Vector(51.78, 1.05, 29.25), rot = Vector(359.65, 60.00, 0.12) },
-            { pos = Vector(66.96, 1.05, 38.01), rot = Vector(0.27, 299.99, 0.24) },
-            { pos = Vector(31.62, 1.05, 29.39), rot = Vector(0.00, 239.99, 0.00) },
-            { pos = Vector(-3.63, 1.05, 20.60), rot = Vector(359.93, 120.02, 359.97) },
-            { pos = Vector(11.55, 1.05, 11.83), rot = Vector(358.60, 359.99, 359.91) },
+            { pos = Vector(51.80, 1.05, 46.82), rot = Vector(0.00, 180.00, 0.00) },
+            { pos = Vector(51.78, 1.05, 29.25), rot = Vector(0.00, 60.00, 0.00) },
+            { pos = Vector(66.96, 1.05, 38.01), rot = Vector(0.00, 300.0, 0.00) },
+            { pos = Vector(31.62, 1.05, 29.39), rot = Vector(0.00, 240.0, 0.00) },
+            { pos = Vector(-3.63, 1.05, 20.60), rot = Vector(0.00, 120.00, 0.00) },
+            { pos = Vector(11.55, 1.05, 11.83), rot = Vector(0.00, 0.00, 0.00) },
             { pos = Vector(11.60, 1.05, 29.37), rot = Vector(0.00, 240.00, 0.00) },
         },
         ["Pi"] = {
@@ -4572,20 +4583,12 @@ boardLayouts = {
     },
 }
 themGuids = {
-    ["NW"] = "b0b632",
-    ["NE"] = "71e7d2",
-    ["W"] = "75b20c",
-    ["E"] = "531906",
-    ["SW"] = "e6e185",
-    ["SE"] = "bf69c3",
-}
-themRedoGuids = {
-    ["NW"] = "faaf9b",
-    ["NE"] = "b651fd",
-    ["W"] = "3641fb",
-    ["E"] = "ba5edc",
-    ["SW"] = "f30633",
-    ["SE"] = "b7d9e6",
+    ["NW"] = "e0c325",
+    ["NE"] = "bd6555",
+    ["W"] = "9d9b8f",
+    ["E"] = "051c66",
+    ["SW"] = "0f2e60",
+    ["SE"] = "505d5d",
 }
 thematicPermutations = { -- All possible combinations are listed, with non-contiguous ones commented out.
     { -- 1 Board
@@ -4669,9 +4672,12 @@ function getPermutedThematicLayout()
     -- Select a random permutation of the appropriate length.
     local permutation = thematicPermutations[numBoards][math.random(#thematicPermutations[numBoards])]
     -- Subset the six-player thematic map with the appropriate permutation.
-    local template = boardLayouts[6]["Thematic"]
-    if SetupChecker.getVar("optionalThematicRedo") then
-        template = boardLayouts[6]["Thematic Redo"]
+    local template
+    local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
+    if optionalThematicRedo then
+        template = boardLayouts[6]["Thematic"][2]
+    else
+        template = boardLayouts[6]["Thematic"][1]
     end
     local boards = {}
     for _,boardName in pairs(permutation) do
@@ -4908,7 +4914,15 @@ function MapPlaceCustom(maps)
         end
         rand = extraRandomBoard
     end
+    local optionalThematicRedo = SetupChecker.getVar("optionalThematicRedo")
     for i,map in pairs(maps) do
+        if map.hasTag("Thematic") then
+            if optionalThematicRedo and map.getStateId() == 1 then
+                map = map.setState(2)
+            elseif not optionalThematicRedo and map.getStateId() == 2 then
+                map = map.setState(1)
+            end
+        end
         map.setLock(true)
         map.interactable = false
         Wait.condition(function() setupMap(map,i==rand) end, function() return not map.loading_custom end)
@@ -4955,26 +4969,17 @@ function MapPlacen(boards)
                 selectedBoardName = board.board
             end
 
-            local boardObject
-            if optionalThematicRedo then
-                boardObject = ThematicRedoMapBag.takeObject({
-                position = ThematicRedoMapBag.getPosition() + Vector(0,-5,0),
-                guid = themRedoGuids[selectedBoardName],
-                smooth = false,
-                callback_function = function(obj)
-                    BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)
-                end,
-            })
-            else
-                boardObject = ThematicMapBag.takeObject({
+            local boardObject = ThematicMapBag.takeObject({
                 position = ThematicMapBag.getPosition() + Vector(0,-5,0),
                 guid = themGuids[selectedBoardName],
                 smooth = false,
                 callback_function = function(obj)
+                    if optionalThematicRedo then
+                        obj = obj.setState(2)
+                    end
                     BoardCallback(obj, board.pos, board.rot, i==rand, scaleOrigin)
                 end,
             })
-            end
 
             if selectedBoards[count] == nil then
                 table.insert(selectedBoards, boardObject.getName())

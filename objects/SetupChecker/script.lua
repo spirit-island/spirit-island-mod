@@ -2720,7 +2720,7 @@ function getWeeklyChallengeConfig(tier, prevTierConfig)
     local boards
     if config.boardLayout == "Thematic" then
         boards = {}
-        for _,board in pairs(setups[numBoards]["Thematic"]) do
+        for _,board in pairs(setups[numBoards]["Thematic"][1]) do
             boards[board.board] = false
         end
         boardsCount = numBoards

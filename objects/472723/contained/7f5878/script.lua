@@ -8,9 +8,8 @@ function doSetup(params)
     local trickster = params.spiritPanel
 
     trickster.createButton({
-        function_owner = self,
         click_function = "drawOneMinor",
-	      function_owner = self,
+	    function_owner = self,
         label          = "Draw a Minor",
         tooltip        = "Draw the top Card of the Minor Power Deck",
         position       = {0.93,0.2,0.87},

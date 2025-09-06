@@ -9,15 +9,15 @@ function doSetup(params)
 
     trickster.createButton({
         click_function = "drawOneMinor",
-	    function_owner = self,
-        label          = "Draw a Minor",
+        function_owner = self,
+        label          = "Draw 1 Minor",
         tooltip        = "Draw the top Card of the Minor Power Deck",
-        position       = {0.93,0.2,0.87},
+        position       = {0.83,0.23,0.87},
         rotation       = {0,0,0},
-        width          = 700,
+        width          = 530,
         scale          = Vector(0.5,1,0.5),
-        height         = 40,
-        font_size      = 90,
+        height         = 35,
+        font_size      = 80,
     })
 
     self.locked = true

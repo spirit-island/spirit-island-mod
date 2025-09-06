@@ -49,7 +49,6 @@ function doSetup(params)
         end
 
         hoard.createButton({
-            function_owner = self,
             click_function = "drawOneMinor",
             function_owner = self,
             label          = "Draw a Minor",

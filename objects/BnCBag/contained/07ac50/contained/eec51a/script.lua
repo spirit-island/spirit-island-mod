@@ -22,5 +22,9 @@ function CreateButton()
     })
 end
 function drawMajors(_, player_color)
-    Global.call("startDraftPowerCards", {player = Player[player_color], major = true, count = 2})
+    Global.call("startDraftPowerCards", {
+        player    = Player[player_color],
+        major     = true,
+        count     = 2,
+    })
 end

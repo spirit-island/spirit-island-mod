@@ -2131,7 +2131,7 @@ function MinorPowerUI(player, button)
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
-        modified = obj.call("modifyCardGain", params)
+        local modified = obj.call("modifyCardGain", params)
         if modified then
             params = modified
         end
@@ -2284,7 +2284,7 @@ function dealPowerCards(params)
         -- As a workaround, we take a function name, and the object to call it on
         Wait.condition(function() params.callback_object.call(params.callback_function) end, function() return cardsResting == cardsAdded end)
     end
-    return cardsDealt
+    return
 end
 function endDraftPowerCards()
     scriptWorkingCardC = false

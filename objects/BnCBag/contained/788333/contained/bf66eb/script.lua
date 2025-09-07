@@ -21,7 +21,7 @@ function drawMinors(_, player_color)
         count              = numSpirits + 1,
         pickCount          = numSpirits,
         ignoreProgression  = true,
-        location           = self.getPosition() + vector(0,5,0),
+        location           = self.getPosition() + Vector(0,5,0),
         alignment          = "left",
         pickBroadcast      = "Lock this Power Card in your play area to make it cost no Energy and not get discarded during Time Passes"
     })

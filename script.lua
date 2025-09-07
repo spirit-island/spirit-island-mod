@@ -99,6 +99,8 @@ terrorLevel = 1
 seatTables = {"dce473", "c99d4d", "794c81", "125e82", "d7d593", "33c4af"}
 playerTables = {}
 recorder = nil
+draftCounter = 0
+currentDrafts = {}
 ------ Unsaved Config Data
 gamePaused = false
 stagesSetup = 0
@@ -2105,9 +2107,12 @@ function MinorPowerUI(player, button)
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
-        params.count = obj.call("modifyCardGain", params)
+        modified = obj.call("modifyCardGain", params)
+        if modified then
+            params = modified
+        end
     end
-    return params.count
+    return params
 end
 function getCardPositions(params)
     local xPadding = 4.4
@@ -2120,9 +2125,23 @@ function getCardPositions(params)
     end
 
     local cardPositions = {}
-    for i = 1,params.count do
-        local x = (i - (params.count + 1) / 2) * xPadding + (i%2 - 0.5) * pairShift
-        table.insert(cardPositions, params.tablePos + tableOffset + Vector(x, 0, 0))
+    local x
+    if params.alignment == "left" then
+        for i = 1,params.count do
+            x = (i - 1) * xPadding
+            table.insert(cardPositions, params.location + tableOffset + Vector(x, 0, 0))
+        end
+    elseif params.alignment == "right" then
+        for i = 1,params.count do
+            x = -(i - 1) * xPadding
+            table.insert(cardPositions, params.location + tableOffset + Vector(x, 0, 0))
+        end
+    else -- centered
+        local centerConst = (params.count + 1) / 2
+        for i = 1,params.count do
+            x = (i - centerConst) * xPadding + (i%2 - 0.5) * pairShift
+            table.insert(cardPositions, params.location + tableOffset + Vector(x, 0, 0))
+        end
     end
     return cardPositions
 end
@@ -2163,7 +2182,7 @@ function dealPowerCards(params)
         end
         return 0
     end
-    local function deal(deck, discard, deckPos, count, isPlaytest)
+    local function deal(deck, discard, deckPos, count, isPlaytest, draftID)
         if deck == nil then
         elseif deck.type == "Card" then
             if count > 0 then
@@ -2174,6 +2193,9 @@ function dealPowerCards(params)
                     deck.addTag("Playtest")
                 end
                 CreatePickPowerButton(deck)
+                table.insert(currentDrafts[draftID].cards, deck.getGUID())
+                deck.setVar("draftID", draftID)
+
                 cardsAdded = cardsAdded + 1
                 count = count - 1
                 Wait.condition(function() cardsResting = cardsResting + 1 end, function() return not deck.isSmoothMoving() end)
@@ -2181,9 +2203,13 @@ function dealPowerCards(params)
         elseif deck.type == "Deck" then
             for _=1, math.min(deck.getQuantity(), count) do
                 local tempCard = deck.takeObject({
-                    position = params.cardPositions[cardsAdded + 1],
-                    rotation = Vector(0, 180, 0),
-                    callback_function = CreatePickPowerButton,
+                    position          = params.cardPositions[cardsAdded + 1],
+                    rotation          = Vector(0, 180, 0),
+                    callback_function = function(card)
+                        CreatePickPowerButton(card)
+                        table.insert(currentDrafts[draftID].cards, card.getGUID())
+                        card.setVar("draftID", draftID)
+                    end,
                 })
                 tempCard.setLock(true)
                 if isPlaytest then
@@ -2200,7 +2226,7 @@ function dealPowerCards(params)
             discard.shuffle()
             wt(0.5)
 
-            deal(discard, nil, deckPos, count, isPlaytest)
+            deal(discard, nil, deckPos, count, isPlaytest, draftID)
         end
     end
 
@@ -2214,6 +2240,7 @@ function dealPowerCards(params)
             playtest = params.numPlaytestMinors
         }
     }
+    local draftID = params.draftID
 
     for cardType,_ in pairs(counts) do
         -- If there are not enough playtest powers available, deal more non-playtest powers, or vice versa
@@ -2224,8 +2251,8 @@ function dealPowerCards(params)
             counts[cardType].playtest = math.max(counts[cardType].playtest, counts[cardType].total - availableCards)
         end
 
-        deal(deckObjs[cardType].deck, deckObjs[cardType].discard, deckZones[cardType].deck.getPosition(), counts[cardType].total - counts[cardType].playtest, false)
-        deal(deckObjs[cardType].playtestDeck, deckObjs[cardType].playtestDiscard, deckZones[cardType].playtestDeck.getPosition(), counts[cardType].playtest, true)
+        deal(deckObjs[cardType].deck, deckObjs[cardType].discard, deckZones[cardType].deck.getPosition(), counts[cardType].total - counts[cardType].playtest, false, draftID)
+        deal(deckObjs[cardType].playtestDeck, deckObjs[cardType].playtestDiscard, deckZones[cardType].playtestDeck.getPosition(), counts[cardType].playtest, true, draftID)
     end
 
     if params.callback_function ~= nil then
@@ -2233,9 +2260,32 @@ function dealPowerCards(params)
         -- As a workaround, we take a function name, and the object to call it on
         Wait.condition(function() params.callback_object.call(params.callback_function) end, function() return cardsResting == cardsAdded end)
     end
+    return cardsDealt
 end
 function endDraftPowerCards()
     scriptWorkingCardC = false
+end
+function newDraftID()
+    draftCounter = draftCounter + 1
+    return "draft_" .. draftCounter
+end
+function createDraft(params)
+    local id = newDraftID()
+    currentDrafts[id] = {
+        owner          = params.owner,
+        cards          = {},
+        picksRemaining = params.picksRemaining or 1,
+    }
+
+--[[    -- optionally tag cards with draftID
+    for _,guid in ipairs(drafts[id].cards) do
+        local card = getObjectFromGUID(guid)
+        if card then
+            card.setVar("draftID", id)
+        end
+    end
+--]]
+    return id
 end
 function startDraftPowerCards(params)
     if not params.ignoreProgression then
@@ -2264,63 +2314,94 @@ function startDraftPowerCards(params)
     if scriptWorkingCardC then return end
     scriptWorkingCardC = true
 
-    params.count = modifyCardGain({color = params.player.color, major = params.major, count = params.count})
+    params.pickCount = params.pickCount or 1
+    params.count = params.count or 4
+    params = modifyCardGain(params)
     local playtestCount = getPlaytestCount({count = params.count, major = params.major})
+
+    local owner
+    if params.owner then
+        owner = params.owner -- for cards placed by Blight Cards or future effects
+    elseif not params.location then
+        owner = params.player.color -- to track if a player has cards in front of them
+    end
+    for id, draft in pairs(currentDrafts) do
+        if draft.owner == owner then
+            -- discard the cards that are already placed to make room for the new ones
+            discardPowerCards(id)
+        end
+    end
+    local draftID = createDraft({owner = owner, picksRemaining = params.pickCount})
 
     if params.major then
         _G["startDraftPowerCardsCo"] = function()
-            draftPowerCards(
-                params.player,
-                params.count,
-                playtestCount,
-                0,
-                0
-            )
+            draftPowerCards({
+                player             = params.player,
+                numMajors          = params.count,
+                numPlaytestMajors  = playtestCount,
+                numMinors          = 0,
+                numPlaytestMinors  = 0,
+                location           = params.location,
+                alignment          = params.alignment,
+                draftID            = draftID
+            })
             return 1
         end
     else
         _G["startDraftPowerCardsCo"] = function()
-            draftPowerCards(
-                params.player,
-                0,
-                0,
-                params.count,
-                playtestCount
-            )
+            draftPowerCards({
+                player             = params.player,
+                numMajors          = 0,
+                numPlaytestMajors  = 0,
+                numMinors          = params.count,
+                numPlaytestMinors  = playtestCount,
+                location           = params.location,
+                alignment          = params.alignment,
+                draftID            = draftID
+            })
             return 1
         end
     end
 
     startLuaCoroutine(Global, "startDraftPowerCardsCo")
 end
-function draftPowerCards(player, numMajors, numPlaytestMajors, numMinors, numPlaytestMinors)
-    -- clear the zone!
-    local playerTable = playerTables[player.color]
-    if playerTable == nil then
-        scriptWorkingCardC = false
-        return
+function draftPowerCards(params)
+    -- params = {player, numMajors, numPlaytestMajors, numMinors, numPlaytestMinors, location, alignment, draftID}
+
+    if not params.location then
+        local playerTable = playerTables[params.player.color]
+        if playerTable == nil then
+            scriptWorkingCardC = false
+            return
+        end
+        params.location = playerTable.getPosition()
     end
-    local tablePos = playerTable.getPosition()
-    local discardTable = DiscardPowerCards(tablePos)
+    -- clear the zone!
+--[[    local discardTable = discardPowerCards(tablePos)
     if #discardTable > 0 then
         wt(0.1)
     end
-
     if numMinors + numMajors > 6 then
         player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
         scriptWorkingCardC = false
         return
     end
-    local cardPositions = getCardPositions({tablePos = tablePos, count = numMinors + numMajors})
+AAA]]
+    local cardPositions = getCardPositions({
+      count = params.numMinors + params.numMajors,
+      location = params.location,
+      alignment = params.alignment
+    })
 
     dealPowerCards({
-        cardPositions = cardPositions,
-        numMinors = numMinors,
-        numPlaytestMinors = numPlaytestMinors,
-        numMajors = numMajors,
-        numPlaytestMajors = numPlaytestMajors,
-        callback_function = "endDraftPowerCards",
-        callback_object = Global
+        cardPositions       = cardPositions,
+        numMinors           = params.numMinors,
+        numPlaytestMinors   = params.numPlaytestMinors,
+        numMajors           = params.numMajors,
+        numPlaytestMajors   = params.numPlaytestMajors,
+        callback_function   = "endDraftPowerCards",
+        callback_object     = Global,
+        draftID             = params.draftID,
     })
 end
 function CreatePickPowerButton(card)
@@ -2342,7 +2423,8 @@ function PickPower(cardo,playero,alt_click)
     if cardo.hasTag("Major") then
         Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
     end
-    -- Figure out which player the card is in front of
+
+--[[    -- Figure out which player the card is in front of
     local tablePos = nil
     for _,playerTable in pairs(playerTables) do
         local pos = playerTable.getPosition()
@@ -2356,20 +2438,33 @@ function PickPower(cardo,playero,alt_click)
             break
         end
     end
+]]
 
     -- Give card to clicking player regardless of whose hand it is in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
+    Wait.condition(function() cardo.setLock(false) end, function() return not cardo.isSmoothMoving() end)
     cardo.call("PickPower", {})
 
-    Wait.condition(function()
-        cardo.setLock(false)
-        if tablePos and not alt_click then
-            DiscardPowerCards(tablePos)
+    local guid = cardo.getGUID()
+    local draftID = cardo.getVar("draftID")
+    local cardsInDraft = currentDrafts[draftID].cards
+    for i = 1, #cardsInDraft do
+        if cardsInDraft[i] == guid then
+            table.remove(cardsInDraft, i)
+            cardo.setVar(draftID, nil)
         end
-    end, function() return not cardo.isSmoothMoving() end)
+    end
+    currentDrafts[draftID].picksRemaining = currentDrafts[draftID].picksRemaining - 1
+    if currentDrafts[draftID].picksRemaining <= 0 then
+        Wait.condition(function()
+            if not alt_click then
+                discardPowerCards(draftID)
+            end
+        end, function() return not cardo.isSmoothMoving() end)
+    end
 end
-function DiscardPowerCards(tablePos)
+--[[function discardPowerCards(tablePos)
     local discardTable = {}
     local powerDraftObjects = getPowerDraftObjects(tablePos)
     for i, obj in ipairs(powerDraftObjects) do
@@ -2378,6 +2473,22 @@ function DiscardPowerCards(tablePos)
         Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
         discardTable[i] = obj
     end
+    return discardTable
+end
+]]
+function discardPowerCards(draftID)
+    local discardTable = {}
+    local cardsInDraft = currentDrafts[draftID].cards
+    for i = 1, #cardsInDraft do
+        local card = getObjectFromGUID(cardsInDraft[i])
+        forgetPowerCard({card = card, discardHeight = i})
+        card.clearButtons()
+        Wait.condition(function() card.setLock(false) end, function() return not card.isSmoothMoving() end)
+        discardTable[i] = card
+
+        card.setVar(draftID, nil)
+    end
+    currentDrafts[draftID] = nil
     return discardTable
 end
 function forgetPowerCard(params)

@@ -2087,23 +2087,47 @@ tableOffset = Vector(0,0.04,19.6)
 scriptWorkingCardC = false
 function MajorPowerC(obj, player_color, alt_click)
     local ignoreProgression = alt_click
-    startDraftPowerCards({player = Player[player_color], major = true, count = 4, ignoreProgression = ignoreProgression})
+    startDraftPowerCards({
+        player             = Player[player_color],
+        major              = true,
+        count              = 4,
+        ignoreProgression  = ignoreProgression,
+        pickBroadcast      = "Remember to Forget a Power Card",
+        pickBroadcastColor = Color.SoftYellow
+    })
 end
 function MajorPowerUI(player, button)
     if player.color == "Grey" then return end
     -- button is "-1"/"1" for left click/single touch
     local ignoreProgression = math.abs(button) > 1
-    startDraftPowerCards({player = player, major = true, count = 4, ignoreProgression = ignoreProgression})
+    startDraftPowerCards({
+        player             = player,
+        major              = true,
+        count              = 4,
+        ignoreProgression  = ignoreProgression,
+        pickBroadcast      = "Remember to Forget a Power Card",
+        pickBroadcastColor = Color.SoftYellow
+    })
 end
 function MinorPowerC(obj, player_color, alt_click)
     local ignoreProgression = alt_click
-    startDraftPowerCards({player = Player[player_color], major = false, count = 4, ignoreProgression = ignoreProgression})
+    startDraftPowerCards({
+        player            = Player[player_color],
+        major             = false,
+        count             = 4,
+        ignoreProgression = ignoreProgression
+    })
 end
 function MinorPowerUI(player, button)
     if player.color == "Grey" then return end
     -- button is "-1"/"1" for left click/single touch
     local ignoreProgression = math.abs(button) > 1
-    startDraftPowerCards({player = player, major = false, count = 4, ignoreProgression = ignoreProgression})
+    startDraftPowerCards({
+        player            = player,
+        major             = false,
+        count             = 4,
+        ignoreProgression = ignoreProgression
+    })
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
@@ -2129,18 +2153,18 @@ function getCardPositions(params)
     if params.alignment == "left" then
         for i = 1,params.count do
             x = (i - 1) * xPadding
-            table.insert(cardPositions, params.location + tableOffset + Vector(x, 0, 0))
+            table.insert(cardPositions, params.location + Vector(x, 0, 0))
         end
     elseif params.alignment == "right" then
         for i = 1,params.count do
             x = -(i - 1) * xPadding
-            table.insert(cardPositions, params.location + tableOffset + Vector(x, 0, 0))
+            table.insert(cardPositions, params.location + Vector(x, 0, 0))
         end
     else -- centered
         local centerConst = (params.count + 1) / 2
         for i = 1,params.count do
             x = (i - centerConst) * xPadding + (i%2 - 0.5) * pairShift
-            table.insert(cardPositions, params.location + tableOffset + Vector(x, 0, 0))
+            table.insert(cardPositions, params.location + Vector(x, 0, 0))
         end
     end
     return cardPositions
@@ -2272,19 +2296,12 @@ end
 function createDraft(params)
     local id = newDraftID()
     currentDrafts[id] = {
-        owner          = params.owner,
-        cards          = {},
-        picksRemaining = params.picksRemaining or 1,
+        owner              = params.owner,
+        cards              = {},
+        picksRemaining     = params.picksRemaining or 1,
+        pickBroadcast      = params.pickBroadcast,
+        pickBroadcastColor = params.pickBroadcastColor,
     }
-
---[[    -- optionally tag cards with draftID
-    for _,guid in ipairs(drafts[id].cards) do
-        local card = getObjectFromGUID(guid)
-        if card then
-            card.setVar("draftID", id)
-        end
-    end
---]]
     return id
 end
 function startDraftPowerCards(params)
@@ -2301,8 +2318,9 @@ function startDraftPowerCards(params)
                     end
                     card.deal(1, params.player.color)
                     card.removeTag("Progression")
-                    if card.hasTag("Major") then
-                        params.player.broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
+                    if params.pickBroadcast then
+                        local broadcastColor = params.pickBroadcastColor or Color.SoftBlue
+                        params.player.broadcast(params.pickBroadcast, broadcastColor)
                     end
                     return
                 end
@@ -2331,7 +2349,7 @@ function startDraftPowerCards(params)
             discardPowerCards(id)
         end
     end
-    local draftID = createDraft({owner = owner, picksRemaining = params.pickCount})
+    local draftID = createDraft({owner = owner, picksRemaining = params.pickCount, pickBroadcast = params.pickBroadcast, pickBroadcastColor = params.pickBroadcastColor})
 
     if params.major then
         _G["startDraftPowerCardsCo"] = function()
@@ -2374,19 +2392,8 @@ function draftPowerCards(params)
             scriptWorkingCardC = false
             return
         end
-        params.location = playerTable.getPosition()
+        params.location = playerTable.getPosition() + tableOffset
     end
-    -- clear the zone!
---[[    local discardTable = discardPowerCards(tablePos)
-    if #discardTable > 0 then
-        wt(0.1)
-    end
-    if numMinors + numMajors > 6 then
-        player.broadcast("Gaining more than 6 cards is not supported.", Color.Red)
-        scriptWorkingCardC = false
-        return
-    end
-AAA]]
     local cardPositions = getCardPositions({
       count = params.numMinors + params.numMajors,
       location = params.location,
@@ -2416,30 +2423,17 @@ function CreatePickPowerButton(card)
         scale          = scale,
         height         = 160,
         font_size      = 150,
-        tooltip = "Pick Power Card to your hand"
+        tooltip        = "Pick this Power Card?"
     })
 end
 function PickPower(cardo,playero,alt_click)
-    if cardo.hasTag("Major") then
-        Player[playero].broadcast("Don't forget to Forget a Power Card!", Color.SoftYellow)
+    local draftID = cardo.getVar("draftID")
+    local draftInfo = currentDrafts[draftID]
+    local broadcast = draftInfo.pickBroadcast
+    if broadcast then
+        local broadcastColor = draftInfo.pickBroadcastColor or Color.SoftBlue
+        Player[playero].broadcast(broadcast, broadcastColor)
     end
-
---[[    -- Figure out which player the card is in front of
-    local tablePos = nil
-    for _,playerTable in pairs(playerTables) do
-        local pos = playerTable.getPosition()
-        for _,obj in ipairs(getPowerDraftObjects(pos)) do
-            if obj == cardo then
-                tablePos = pos
-                break
-            end
-        end
-        if tablePos then
-            break
-        end
-    end
-]]
-
     -- Give card to clicking player regardless of whose hand it is in front of
     cardo.deal(1,playero)
     cardo.clearButtons()
@@ -2447,7 +2441,6 @@ function PickPower(cardo,playero,alt_click)
     cardo.call("PickPower", {})
 
     local guid = cardo.getGUID()
-    local draftID = cardo.getVar("draftID")
     local cardsInDraft = currentDrafts[draftID].cards
     for i = 1, #cardsInDraft do
         if cardsInDraft[i] == guid then
@@ -2464,21 +2457,14 @@ function PickPower(cardo,playero,alt_click)
         end, function() return not cardo.isSmoothMoving() end)
     end
 end
---[[function discardPowerCards(tablePos)
-    local discardTable = {}
-    local powerDraftObjects = getPowerDraftObjects(tablePos)
-    for i, obj in ipairs(powerDraftObjects) do
-        forgetPowerCard({card = obj, discardHeight = i})
-        obj.clearButtons()
-        Wait.condition(function() obj.setLock(false) end, function() return not obj.isSmoothMoving() end)
-        discardTable[i] = obj
-    end
-    return discardTable
-end
-]]
+
 function discardPowerCards(draftID)
     local discardTable = {}
-    local cardsInDraft = currentDrafts[draftID].cards
+    local draftInfo = currentDrafts[draftID]
+    if not draftInfo then
+        return
+    end
+    local cardsInDraft = draftInfo.cards
     for i = 1, #cardsInDraft do
         local card = getObjectFromGUID(cardsInDraft[i])
         forgetPowerCard({card = card, discardHeight = i})

@@ -1,5 +1,4 @@
 blight=2
-immediate=true
 
 function onLoad()
     self.createButton({

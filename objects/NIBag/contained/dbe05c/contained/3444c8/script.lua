@@ -21,7 +21,7 @@ function drawMajors(_, player_color)
         count              = numSpirits + 2,
         pickCount          = numSpirits,
         ignoreProgression  = true,
-        location           = self.getPosition() + vector(0,5,0),
+        location           = self.getPosition() + Vector(0,5,0),
         alignment          = "left",
         pickBroadcast      = "Remember to Gain 2 Energy"
     })

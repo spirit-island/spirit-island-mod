@@ -2131,10 +2131,7 @@ function MinorPowerUI(player, button)
 end
 function modifyCardGain(params)
     for _,obj in pairs(getObjectsWithTag("Modify Card Gain")) do
-        local modified = obj.call("modifyCardGain", params)
-        if modified then
-            params = modified
-        end
+        params = obj.call("modifyCardGain", params)
     end
     return params
 end
@@ -2143,29 +2140,25 @@ function getCardPositions(params)
     if params.count > 4 then
         xPadding = 3.6
     end
+
+    local a = 1
+    local b = 1
     local pairShift = 0 -- Pairing cards for two-player Destiny Unfolds
-    if params.pair then
-        pairShift = xPadding - 3.34
+    if params.alignment == "center" then
+        a = (params.count + 1) / 2
+        if params.pair then
+            pairShift = xPadding - 3.34
+        end
+    end
+    if params.alignment == "right" then
+        b = -1
     end
 
     local cardPositions = {}
     local x
-    if params.alignment == "left" then
-        for i = 1,params.count do
-            x = (i - 1) * xPadding
+    for i = 1,params.count do
+            x = b * (i - a) * xPadding + (i%2 - 0.5) * pairShift
             table.insert(cardPositions, params.location + Vector(x, 0, 0))
-        end
-    elseif params.alignment == "right" then
-        for i = 1,params.count do
-            x = -(i - 1) * xPadding
-            table.insert(cardPositions, params.location + Vector(x, 0, 0))
-        end
-    else -- centered
-        local centerConst = (params.count + 1) / 2
-        for i = 1,params.count do
-            x = (i - centerConst) * xPadding + (i%2 - 0.5) * pairShift
-            table.insert(cardPositions, params.location + Vector(x, 0, 0))
-        end
     end
     return cardPositions
 end
@@ -2337,6 +2330,8 @@ function startDraftPowerCards(params)
     params = modifyCardGain(params)
     local playtestCount = getPlaytestCount({count = params.count, major = params.major})
 
+    local alignment = params.alignment or "center"
+
     local owner
     if params.owner then
         owner = params.owner -- for cards placed by Blight Cards or future effects
@@ -2349,7 +2344,11 @@ function startDraftPowerCards(params)
             discardPowerCards(id)
         end
     end
-    local draftID = createDraft({owner = owner, picksRemaining = params.pickCount, pickBroadcast = params.pickBroadcast, pickBroadcastColor = params.pickBroadcastColor})
+    local draftID = createDraft({
+        owner = owner,
+        picksRemaining = params.pickCount,
+        pickBroadcast = params.pickBroadcast,
+        pickBroadcastColor = params.pickBroadcastColor})
 
     if params.major then
         _G["startDraftPowerCardsCo"] = function()
@@ -2360,7 +2359,7 @@ function startDraftPowerCards(params)
                 numMinors          = 0,
                 numPlaytestMinors  = 0,
                 location           = params.location,
-                alignment          = params.alignment,
+                alignment          = alignment,
                 draftID            = draftID
             })
             return 1
@@ -2374,7 +2373,7 @@ function startDraftPowerCards(params)
                 numMinors          = params.count,
                 numPlaytestMinors  = playtestCount,
                 location           = params.location,
-                alignment          = params.alignment,
+                alignment          = alignment,
                 draftID            = draftID
             })
             return 1

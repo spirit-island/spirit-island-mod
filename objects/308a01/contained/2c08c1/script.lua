@@ -49,3 +49,4 @@ function drawMajors(_, player_color)
         pickBroadcastColor = Color.SoftYellow
     })
 end
+-- card loading end

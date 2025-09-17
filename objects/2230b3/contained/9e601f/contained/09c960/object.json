@@ -1,17 +1,18 @@
 {
-  "Name": "Custom_Token",
+
+  "Name": "Custom_Model",
   "Transform": {
-    "posX": 50.885,
-    "posY": 3.0355,
-    "posZ": 14.2339,
+    "posX": 0.96,
+    "posY": 1.7472,
+    "posZ": 0.96,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 0.3331,
-    "scaleY": 1.0,
-    "scaleZ": 0.3331
+    "scaleX": 1.4,
+    "scaleY": 1.4,
+    "scaleZ": 1.4
   },
-  "Nickname": "Metal Token",
+  "Nickname": "Metal",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -38,16 +39,24 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CustomImage": {
-    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2473119299006881282/7A3A6A5F7F1ED7B825E03E6FF5DEC402EF0D708B/",
-    "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
-    "CustomToken": {
-      "Thickness": 0.2,
-      "MergeDistancePixels": 15.0,
-      "StandUp": false,
-      "Stackable": false
-    }
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/13953333404298826878/82E8D8B5C8CE0CAB6ED59D90B93790D0381D78C8/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/14618988941293102057/BB32F399C55FD1956F4BB55A15DA2008EEFDD6E9/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
   }
 }

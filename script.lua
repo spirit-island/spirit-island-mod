@@ -3888,7 +3888,7 @@ function StartGame()
         wt(2)
     end
     printToAll("Game Started!", Color.White)
-    printToAll("Don't forget to perform the initial Explore Step!", Color.SoftYellow)
+    printToAll("Don't forget to perform the initial Explore Action!", Color.SoftYellow)
     if SetupChecker.getVar("optionalExtraBoard") and numPlayers == 1 then
         printToAll("But not on the extra board!", Color.SoftYellow)
     end

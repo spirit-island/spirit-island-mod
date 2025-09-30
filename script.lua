@@ -1280,13 +1280,16 @@ function randomAdversary(attempts)
             end
         end
         if #combos ~= 0 then
-            local index
             if randomMaximizeLevel then
                 table.sort(combos, function(a, b) return a.sortKey < b.sortKey end)
-                index = #combos
-            else
-                index = math.random(1,#combos)
+                local maxLevel = combos[#combos].sortKey
+                for i = #combos, 1, -1 do
+                    if combos[i].sortKey < maxLevel then
+                        table.remove(combos, i)
+                    end
+                end
             end
+            local index = math.random(1,#combos)
             adversaryCard = adversary
             adversaryLevel = combos[index].leadingLevel
             adversaryCard2 = adversary2

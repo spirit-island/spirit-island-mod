@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomImage": {
-    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/12001308138324342468/76478FAAC7272F73DF0E401AC3AEAE3F98F45618/",
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/16847704530730587702/5CBEC1D5383DA2A2F842B35AE352CA60A9C63105/",
     "ImageSecondaryURL": "",
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
@@ -165,23 +165,23 @@
     },
     {
       "Position": {
-        "x": 0.3115,
+        "x": 0.2828,
         "y": 0.2,
-        "z": -0.6614
+        "z": -0.6572
       }
     },
     {
       "Position": {
-        "x": 0.316,
+        "x": 0.2845,
         "y": 0.2,
-        "z": -0.2847
+        "z": -0.2874
       }
     },
     {
       "Position": {
-        "x": 0.3115,
+        "x": 0.2853,
         "y": 0.2,
-        "z": 0.1418
+        "z": 0.1425
       }
     },
     {

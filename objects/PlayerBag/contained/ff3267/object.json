@@ -126,7 +126,8 @@
             "Name": "Sacred Site",
             "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1923617670577510383/5ABC8245C0D4D145DBB816C93FB59DFACB332E41/",
             "Size": 1.0
-          }
+          },
+          "OwnerSteamID": 0
         }
       ]
     }

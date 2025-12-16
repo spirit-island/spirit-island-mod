@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Damage",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 0.9093999862670898,
       "g": 0.9093999862670898,

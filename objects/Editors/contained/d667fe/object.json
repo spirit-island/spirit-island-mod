@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Hover over pieces to see where to put them.\n\n\"Update\" will remove pieces currently placed\nand update the Spirit/Card's code.\n\n\"Populate\" will place pieces as per the \nSpirit/Card's code, for easy editing.\n\nA useful website for making Spirits/Cards is:\nhttps://www.spiritislandbuilder.com",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

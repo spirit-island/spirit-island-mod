@@ -1,17 +1,17 @@
 {
-  "Name": "Custom_Token",
+  "Name": "Custom_Model",
   "Transform": {
-    "posX": 50.8849983215332,
-    "posY": 3.0355000495910645,
-    "posZ": 14.23390007019043,
+    "posX": 0.9599999785423279,
+    "posY": 1.7472000122070312,
+    "posZ": 0.9599999785423279,
     "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 0.33309999108314514,
-    "scaleY": 1.0,
-    "scaleZ": 0.33309999108314514
+    "scaleX": 1.399999976158142,
+    "scaleY": 1.399999976158142,
+    "scaleZ": 1.399999976158142
   },
-  "Nickname": "Metal Token",
+  "Nickname": "Metal",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -24,6 +24,11 @@
     "g": 0.4221000075340271,
     "b": 0.5382999777793884
   },
+  "Tags": [
+    "Destroy",
+    "Highlight",
+    "Label"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,
@@ -38,16 +43,24 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CustomImage": {
-    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/2473119299006881282/7A3A6A5F7F1ED7B825E03E6FF5DEC402EF0D708B/",
-    "ImageSecondaryURL": "",
-    "ImageScalar": 1.0,
-    "WidthScale": 0.0,
-    "CustomToken": {
-      "Thickness": 0.20000000298023224,
-      "MergeDistancePixels": 15.0,
-      "StandUp": false,
-      "Stackable": false
-    }
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/13953333404298826878/82E8D8B5C8CE0CAB6ED59D90B93790D0381D78C8/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/14618988941293102057/BB32F399C55FD1956F4BB55A15DA2008EEFDD6E9/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 5,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
   }
 }

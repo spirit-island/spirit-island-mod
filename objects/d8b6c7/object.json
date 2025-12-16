@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "3",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 0.713699996471405,

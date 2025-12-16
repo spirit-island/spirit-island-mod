@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Place pieces where you want them to be set up.\nPlace defend markers to denote empty spaces;\nit is recommended to have 2+ per land.\nChange pieces' states to match their land's number.\n\nNotes:\nFor pieces with Strife, only the Strife's state matters.\nFor balanced boards, do not place the starting\nBeasts and Disease (added by BnC/JE rules).\n\n\"Update\" will remove pieces currently placed\nand update the board's code.\n\r\r\n\"Populate\" will place pieces as per the\nboard's code, for easy editing.\n",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

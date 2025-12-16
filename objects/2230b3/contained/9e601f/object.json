@@ -1,17 +1,17 @@
 {
-  "Name": "Infinite_Bag",
+  "Name": "Custom_Model_Infinite_Bag",
   "Transform": {
-    "posX": 77.33200073242188,
-    "posY": 0.9950000047683716,
-    "posZ": 120.56169891357422,
+    "posX": 143.38819885253906,
+    "posY": 1.3039000034332275,
+    "posZ": 105.60269927978516,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 1.0,
-    "scaleY": 1.0,
-    "scaleZ": 1.0
+    "scaleX": 2.200000047683716,
+    "scaleY": 2.200000047683716,
+    "scaleZ": 2.200000047683716
   },
-  "Nickname": "Metal Tokens",
+  "Nickname": "Metal",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.3059000074863434,
-    "g": 0.3725999891757965,
-    "b": 1.0
+    "r": 0.3666999936103821,
+    "g": 0.4221000075340271,
+    "b": 0.5382999777793884
   },
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -39,5 +39,25 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "MaterialIndex": -1,
-  "MeshIndex": -1
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/13953333404298826878/82E8D8B5C8CE0CAB6ED59D90B93790D0381D78C8/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/14618988941293102057/BB32F399C55FD1956F4BB55A15DA2008EEFDD6E9/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 7,
+    "CustomShader": {
+      "SpecularColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularSharpness": 2.0,
+      "FresnelStrength": 0.0
+    },
+    "CastShadows": true
+  }
 }

@@ -39,7 +39,8 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "version 4.6.0",
+    "Text": "version 4.7.0",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 0.7333999872207642,
       "g": 0.7333999872207642,

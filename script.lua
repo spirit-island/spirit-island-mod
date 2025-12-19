@@ -8614,7 +8614,7 @@ function processPowerCards(params)
         )
     end
 
-    for i = 1, count do
+    for _ = 1, count do
         if playtestLeft > 0 then
             playtestLeft = playtestLeft - 1
             attempt("playtest", "normal")

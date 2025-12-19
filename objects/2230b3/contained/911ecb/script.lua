@@ -6,7 +6,12 @@ function doSetup(params)
     local hoard = nil
     for _,obj in pairs(self.getObjects()) do
         if obj.name == "The Gleaming Hoard" then
-            hoard = self.takeObject({guid = obj.guid, position = pos + Vector(0,0,-11), smooth = false})
+            hoard = self.takeObject({
+              guid = obj.guid,
+              position = pos + Vector(0,0,-11),
+              smooth = false,
+              rotation = Vector(0,180,0)
+            })
             break
         end
     end
@@ -38,10 +43,38 @@ function doSetup(params)
     Wait.condition(function()
         local snapPoints = hoard.getSnapPoints()
         for i,_ in pairs(self.getObjects()) do
-            self.takeObject({position = hoard.positionToWorld(snapPoints[i].position) + Vector(0,0.1,0)})
+            self.takeObject({
+                position = hoard.positionToWorld(snapPoints[i].position) + Vector(0,0.1,0)
+            })
         end
 
-        self.destruct()
+        hoard.createButton({
+            click_function = "drawOneMinor",
+            function_owner = self,
+            label          = "Draw 1 Minor",
+            tooltip        = "Draw the top Card of the Minor Power Deck",
+            position       = {-0.7,0.23,0.04},
+            rotation       = {0,0,0},
+            width          = 530,
+            scale          = Vector(0.5,1,0.5),
+            height         = 35,
+            font_size      = 80,
+        })
+
+        self.locked = true
+        self.interactable = false
+        local position = self.getPosition()
+        position.y = -2
+        self.setPosition(position)
+
     end, function() return not hoard.loading_custom end)
     return true
+end
+
+function drawOneMinor(obj, player_color, alt_click)
+    processPowerCards({
+        player_color = player_color,
+        powerType    = "minor",
+        count        = 1
+    })
 end

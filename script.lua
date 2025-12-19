@@ -8543,3 +8543,175 @@ function UnlockIslandBoards()
         end
     end
 end
+----- Custom Card Deal/Discard Section
+function processPowerCards(params)
+    local player_color = params.player_color
+    local powerType    = params.powerType
+    local count        = params.count
+    local doDiscard    = params.doDiscard or false -- if the card should go to the deck's discard
+    local dealHand     = params.dealHand or 1 -- which hand the card should go to (including the player's discard)
+    local callbackFn   = params.callbackFn -- function ran (once) after all cards are dealt, arguments: player_color, cardGUIDs
+    local callbackObj  = params.callbackObj -- where the function is to be called from
+
+    local cfg = resolvePowerConfig(powerType) -- store the deck zones we are using
+    -- determine the number of playtest cards to draw (proptional to a normal draft)
+    local expected   = count * cfg.playtestCount / 4
+    local guaranteed = math.floor(expected)
+    local remainder  = expected - guaranteed
+    local playtestLeft = guaranteed
+    if math.random() < remainder then
+        playtestLeft = playtestLeft + 1
+    end
+
+    local remaining = count
+    local failures  = 0
+    local collectedGUIDs = {}
+
+    -- ran everytime a card is dealt
+    local function finish(card)
+        if card then
+            collectedGUIDs[#collectedGUIDs + 1] = card.getGUID()
+        else
+            failures = failures + 1
+        end
+
+        remaining = remaining - 1
+        if remaining == 0 then
+            if failures > 0 then
+                Player[player_color].broadcast(
+                    failures.." card(s) could not be drawn.",
+                    Color.SoftYellow
+                )
+            end
+
+            if callbackObj and callbackFn then
+                callbackObj.call(callbackFn, {
+                    player_color = player_color,
+                    cardGuids = collectedGUIDs
+                })
+            end
+        end
+    end
+    -- when dealing a card, if no deck was found, try the other
+    local function attempt(primary, fallback)
+        tryProcessOne(
+            cfg.deckZones[primary],
+            cfg.discardZones[primary],
+            player_color,
+            doDiscard,
+            dealHand,
+            function(card)
+                if card then
+                    finish(card)
+                else
+                    tryProcessOne(
+                        cfg.deckZones[fallback],
+                        cfg.discardZones[fallback],
+                        player_color,
+                        doDiscard,
+                        dealHand,
+                        finish
+                    )
+                end
+            end
+        )
+    end
+
+    for _ = 1, count do
+        if playtestLeft > 0 then
+            playtestLeft = playtestLeft - 1
+            attempt("playtest", "normal")
+        else
+            attempt("normal", "playtest")
+        end
+    end
+end
+function resolvePowerConfig(powerType)
+    if powerType == "minor" then
+        return {
+            playtestCount = Global.getVar("playtestMinorPowers"),
+            deckZones = {
+                normal   = getObjectFromGUID(Global.getVar("minorPowerZone")),
+                playtest = getObjectFromGUID(Global.getVar("playtestMinorPowerZone"))
+            },
+            discardZones = {
+                normal   = getObjectFromGUID(Global.getVar("minorPowerDiscardZone")),
+                playtest = getObjectFromGUID(Global.getVar("playtestMinorPowerDiscardZone"))
+            }
+        }
+    elseif powerType == "major" then
+        return {
+            playtestCount = Global.getVar("playtestMajorPowers"),
+            deckZones = {
+                normal   = getObjectFromGUID(Global.getVar("majorPowerZone")),
+                playtest = getObjectFromGUID(Global.getVar("playtestMajorPowerZone"))
+            },
+            discardZones = {
+                normal   = getObjectFromGUID(Global.getVar("majorPowerDiscardZone")),
+                playtest = getObjectFromGUID(Global.getVar("playtestMajorPowerDiscardZone"))
+            }
+        }
+    end
+
+    error("Unknown powerType: "..tostring(powerType))
+end
+function tryProcessOne(deckZone, discardZone, player_color, doDiscard, dealHand, done)
+    -- deal or discard a card (reshuffling as necessary)
+    local deck    = deckZone.getObjects()[1]
+    local discard = discardZone.getObjects()[1]
+
+    local function handleCard(d)
+        if doDiscard then
+            discardCard(d, discardZone, done)
+        else
+            dealCard(d, player_color, dealHand, done)
+        end
+    end
+
+    if deck then
+        handleCard(deck)
+        return
+    end
+
+    if discard then
+        discard.setPositionSmooth(deckZone.getPosition(), false, true)
+        discard.setRotationSmooth(Vector(0,180,180), false, true)
+        discard.shuffle()
+
+        Wait.time(function()
+            handleCard(discard)
+        end, 1)
+        return
+    end
+
+    done(nil)
+end
+function dealCard(deck, player_color, hand, done)
+    if deck.type == "Card" then
+        deck.deal(1, player_color, hand)
+        done(deck)
+        return
+    end
+
+    deck.takeObject({
+        smooth = true,
+        callback_function = function(card)
+            card.deal(1, player_color, hand)
+            done(card)
+        end
+    })
+end
+function discardCard(deck, discardZone, done)
+    if deck.type == "Card" then
+        deck.flip()
+        deck.setPosition(discardZone.getPosition() + Vector(0,3,0))
+        done(deck)
+    else
+        deck.takeObject({
+            position = discardZone.getPosition() + Vector(0,3,0),
+            flip = true,
+            smooth = true,
+            callback_function = done
+        })
+    end
+end

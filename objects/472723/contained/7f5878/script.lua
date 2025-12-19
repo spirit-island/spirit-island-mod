@@ -28,45 +28,9 @@ function doSetup(params)
 end
 
 function drawOneMinor(obj, player_color, alt_click)
-    local deckZones = { getObjectFromGUID(Global.getVar("minorPowerZone")) }
-    local discardZones = { getObjectFromGUID(Global.getVar("minorPowerDiscardZone")) }
-    local numPlaytestMinors = Global.getVar("playtestMinorPowers")
-
-    -- Adding the playtest deck to the pool of possibilities if it is being used
-    if numPlaytestMinors > 0 then
-        table.insert(deckZones, getObjectFromGUID(Global.getVar("playtestMinorPowerZone")))
-        table.insert(discardZones, getObjectFromGUID(Global.getVar("playtestMinorPowerDiscardZone")))
-    end
-
-    -- Randomising which deck to draw from
-    -- Depends on what proportion of the draft is playtest
-    local choice = 1
-    if numPlaytestMinors > 0 and math.random() < numPlaytestMinors / 4 then
-        choice = 2
-    end
-
-    if tryDeal(deckZones[choice], discardZones[choice], player_color) then return end
-    if tryDeal(deckZones[3 - choice], discardZones[3 - choice], player_color) then return end
-
-    Player[player_color].broadcast("There are no Minor Powers to draw", Color.SoftYellow)
-end
-
-function tryDeal(deckZone, discardZone, player_color)
-    local deck = deckZone.getObjects()[1]
-    local discard = discardZone.getObjects()[1]
-
-    if deck then
-        deck.deal(1, player_color, 1)
-        return true
-    elseif discard then
-        discard.setPositionSmooth(deckZone.getPosition(), false, true)
-        discard.setRotationSmooth(Vector(0, 180, 180), false, true)
-        discard.shuffle()
-        -- Wait so that the deck is the face-down when drawn from
-        Wait.time(function()
-            discard.deal(1, player_color, 1)
-        end, 1)
-        return true
-    end
-    return false
+    processPowerCards({
+        player_color = player_color,
+        powerType    = "minor",
+        count        = 1
+    })
 end

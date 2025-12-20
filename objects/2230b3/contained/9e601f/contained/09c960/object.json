@@ -24,6 +24,11 @@
     "g": 0.4221,
     "b": 0.5383
   },
+    "Tags": [
+    "Destroy",
+    "Highlight",
+    "Label"
+  ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": false,

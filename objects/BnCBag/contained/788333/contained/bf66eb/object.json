@@ -106,7 +106,7 @@
           "Type": 0
         }
       },
-      "LuaScript": "blight=2",
+      "LuaScript": "blight=2\r\n\r\nfunction onLoad()\r\n    self.createButton({\r\n        click_function = \"drawMinors\",\r\n        function_owner = self,\r\n        label          = \"Draw Minors\",\r\n        position       = Vector(0,0.5,1.33),\r\n        width          = 1700,\r\n        scale          = Vector(0.65,1,0.65),\r\n        height         = 320,\r\n        font_size      = 300,\r\n    })\r\nend\r\nfunction drawMinors(_, player_color)\r\n    local numSpirits = Global.getVar(\"numPlayers\")\r\n    Global.call(\"startDraftPowerCards\", {\r\n        owner              = self.getName(),\r\n        major              = false,\r\n        count              = numSpirits + 1,\r\n        pickCount          = numSpirits,\r\n        ignoreProgression  = true,\r\n        location           = self.getPosition() + vector(0,5,0),\r\n        alignment          = \"left\",\r\n        pickBroadcast      = \"Lock this Power Card in your play area to make it cost no Energy, provide no Elements, and not get discarded during Time Passes\"\r\n    })\r\n    self.clearButtons()\r\nend\r\n",
       "LuaScriptState": "",
       "XmlUI": ""
     }

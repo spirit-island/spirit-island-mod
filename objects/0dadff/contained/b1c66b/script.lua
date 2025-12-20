@@ -22,9 +22,9 @@ function isThisPlayer(color)
 end
 
 function modifyCardGain(params)
-    if isThisPlayer(params.color) then
-        return math.max(params.count - 2, 2)
-    else
-        return params.count
+    if isThisPlayer(params.player.color) then
+        params.count = math.max(params.count - 2, 2)
+        params.pickCount = params.pickCount + 1
     end
+    return params
 end

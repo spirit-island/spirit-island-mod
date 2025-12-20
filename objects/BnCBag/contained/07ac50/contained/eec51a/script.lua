@@ -5,11 +5,12 @@ function onLoad(saved_data)
         local loaded_data = JSON.decode(saved_data)
         self.setTable("thresholds", loaded_data.thresholds)
     end
-    CreateButton()
+    Wait.time(function() recreateButtons() end, 0.5)
 end
 -- card loading end
 
-function CreateButton()
+function recreateButtons()
+    self.clearButtons()
     self.createButton({
         click_function = "drawMajors",
         function_owner = self,
@@ -22,5 +23,10 @@ function CreateButton()
     })
 end
 function drawMajors(_, player_color)
-    Global.call("startDraftPowerCards", {player = Player[player_color], major = true, count = 2})
+    Global.call("startDraftPowerCards", {
+        player    = Player[player_color],
+        major     = true,
+        count     = 2,
+    })
+    Wait.time(function() recreateButtons() end, 0.5)
 end

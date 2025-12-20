@@ -6,7 +6,12 @@ function onLoad(saved_data)
         local loaded_data = JSON.decode(saved_data)
         self.setTable("thresholds", loaded_data.thresholds)
     end
+    Wait.time(function() recreateButtons() end, 0.5)
+end
+-- card loading end
 
+function recreateButtons()
+    self.clearButtons()
     self.createButton({
         click_function = "drawMinors",
         function_owner = self,
@@ -37,6 +42,7 @@ function drawMinors(_, player_color)
         pickCount          = 2,
         ignoreProgression  = true,
     })
+    Wait.time(function() recreateButtons() end, 0.5)
 end
 function drawMajors(_, player_color)
     Global.call("startDraftPowerCards", {
@@ -48,5 +54,5 @@ function drawMajors(_, player_color)
         pickBroadcast      = "Remember to Forget a Power Card",
         pickBroadcastColor = Color.SoftYellow
     })
+    Wait.time(function() recreateButtons() end, 0.5)
 end
--- card loading end

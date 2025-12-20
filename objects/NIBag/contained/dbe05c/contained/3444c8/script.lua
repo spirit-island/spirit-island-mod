@@ -1,7 +1,11 @@
 blight=2
 immediate=true
-
 function onLoad()
+    Wait.time(function() createButtons() end, 0.5)
+end
+-- card loading end
+
+function createButtons()
     self.createButton({
         click_function = "drawMajors",
         function_owner = self,

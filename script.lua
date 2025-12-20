@@ -2210,7 +2210,7 @@ function dealPowerCards(params)
                     deck.addTag("Playtest")
                 end
                 CreatePickPowerButton(deck)
-                table.insert(currentDrafts[draftID].cards, deck.getGUID())
+                table.insert(currentDrafts[draftID].cards, deck.guid)
                 deck.setVar("draftID", draftID)
 
                 cardsAdded = cardsAdded + 1

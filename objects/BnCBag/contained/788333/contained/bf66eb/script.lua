@@ -1,6 +1,10 @@
 blight=2
-
 function onLoad()
+    Wait.time(function() createButtons() end, 0.5)
+end
+-- card loading end
+
+function createButtons()
     self.createButton({
         click_function = "drawMinors",
         function_owner = self,
